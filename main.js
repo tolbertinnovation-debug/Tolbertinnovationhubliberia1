@@ -1,31 +1,8 @@
-document.querySelectorAll('form.form-card').forEach((form) => {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
+// ============================================================
+// Tolbert Innovation Hub — main.js
+// ============================================================
 
-    const feedback = form.querySelector('.form-feedback');
-    const message = form.dataset.successMessage || 'Form submitted successfully.';
-
-    if (!form.checkValidity()) {
-      feedback.textContent = 'Please complete all required fields before submitting.';
-      feedback.style.color = '#b42318';
-      form.reportValidity();
-      return;
-    }
-
-    const data = new FormData(form);
-    const entries = Object.fromEntries(data.entries());
-    console.log('Form submission preview:', entries);
-
-    feedback.textContent = message;
-    feedback.style.color = '#0b5a32';
-    form.reset();
-  });
-});
-
-const navWrap = document.querySelector('.nav-wrap');
-const navLinks = navWrap?.querySelector('.nav-links');
-const siteHeader = document.querySelector('.site-header');
-
+// News data
 const newsPosts = [
   {
     title: '2026 Scholarship Intake Opens for Qualified Applicants',
@@ -65,57 +42,198 @@ const newsPosts = [
   }
 ];
 
+// ============================================================
+// Form submission handler
+// ============================================================
+document.querySelectorAll('form.form-card').forEach((form) => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const feedback = form.querySelector('.form-feedback');
+    const message = form.dataset.successMessage || 'Form submitted successfully.';
+
+    if (!form.checkValidity()) {
+      if (feedback) {
+        feedback.textContent = 'Please complete all required fields before submitting.';
+        feedback.style.color = '#b91c1c';
+      }
+      form.reportValidity();
+      return;
+    }
+
+    if (feedback) {
+      feedback.textContent = message;
+      feedback.style.color = '#065f46';
+    }
+    form.reset();
+  });
+});
+
+// ============================================================
+// Newsletter form handler
+// ============================================================
+document.querySelectorAll('.newsletter-form').forEach((form) => {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const input = form.querySelector('.newsletter-input');
+    if (btn) {
+      btn.textContent = '✓ Subscribed!';
+      btn.disabled = true;
+    }
+    if (input) input.value = '';
+    const note = form.querySelector('.newsletter-note') || form.nextElementSibling;
+    if (note) note.textContent = 'Thank you! You will receive updates from Tolbert Innovation Hub.';
+  });
+});
+
+// ============================================================
+// Dark mode
+// ============================================================
+function updateToggleIcon(btn, isDark) {
+  btn.innerHTML = isDark ? '☀️' : '🌙';
+  btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  btn.setAttribute('title', isDark ? 'Light mode' : 'Dark mode');
+}
+
+function initDarkMode() {
+  const saved = localStorage.getItem('tih-theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = saved || (prefersDark ? 'dark' : 'light');
+  if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+  document.querySelectorAll('.dark-mode-toggle').forEach((btn) => {
+    updateToggleIcon(btn, theme === 'dark');
+    btn.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('tih-theme', 'light');
+        document.querySelectorAll('.dark-mode-toggle').forEach((b) => updateToggleIcon(b, false));
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('tih-theme', 'dark');
+        document.querySelectorAll('.dark-mode-toggle').forEach((b) => updateToggleIcon(b, true));
+      }
+    });
+  });
+}
+
+// ============================================================
+// Animated counters
+// ============================================================
+function initCounters() {
+  const counters = document.querySelectorAll('[data-target]');
+  if (!counters.length) return;
+
+  const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+
+  const animateCounter = (el) => {
+    const target = parseFloat(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    const duration = 1500;
+    const start = performance.now();
+
+    const update = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const current = target * easeOut(progress);
+      const display = Number.isInteger(target) ? Math.round(current) : current.toFixed(1);
+      el.textContent = prefix + display + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = 'true';
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  counters.forEach((el) => observer.observe(el));
+}
+
+// ============================================================
+// Scroll reveal
+// ============================================================
+function initReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach((el) => observer.observe(el));
+}
+
+// ============================================================
+// Render latest news
+// ============================================================
 function renderLatestUpdates() {
   const container = document.querySelector('[data-latest-news]');
   if (!container) return;
-
-  container.innerHTML = newsPosts
-    .slice(0, 3)
-    .map((post) => `
-      <article class="card news-card">
-        <img class="news-card-image" src="${post.image}" alt="${post.imageAlt}" loading="lazy" />
-        <p class="news-meta">${post.date}</p>
-        <p class="news-category">${post.category}</p>
-        <h3>${post.title}</h3>
-        <p>${post.summary}</p>
-        <a class="card-link" href="${post.href}">Read More →</a>
-      </article>
-    `)
-    .join('');
+  container.innerHTML = newsPosts.slice(0, 3).map((post) => `
+    <article class="card news-card reveal">
+      <img class="news-card-image" src="${post.image}" alt="${post.imageAlt}" loading="lazy" />
+      <p class="news-meta">${post.date}</p>
+      <p class="news-category">${post.category}</p>
+      <h3>${post.title}</h3>
+      <p>${post.summary}</p>
+      <a class="card-link" href="${post.href}">Read More</a>
+    </article>
+  `).join('');
+  initReveal();
 }
 
+// ============================================================
+// Footer featured news injection
+// ============================================================
 function injectFooterFeaturedNews() {
   const footer = document.querySelector('.site-footer');
-  if (!footer) return;
-  if (footer.querySelector('[data-featured-news-footer]')) return;
-
+  if (!footer || footer.querySelector('[data-featured-news-footer]')) return;
   const footerGrid = footer.querySelector('.footer-grid');
   if (footerGrid) {
     const card = document.createElement('div');
     card.setAttribute('data-featured-news-footer', 'true');
-    card.innerHTML = '<h3>Featured News</h3><p><a href="news.html">Read the latest updates from Tolbert Innovation Hub</a></p>';
+    card.innerHTML = '<h3 style="color:#fff;font-size:0.9rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem;">Latest News</h3><p><a href="news.html" style="color:#90bfff">Read the latest updates from Tolbert Innovation Hub →</a></p>';
     footerGrid.appendChild(card);
-    return;
   }
-
-  const container = footer.querySelector('.container') || footer;
-  const paragraph = document.createElement('p');
-  paragraph.setAttribute('data-featured-news-footer', 'true');
-  paragraph.innerHTML = '<a href="news.html">Featured News: Read the latest updates</a>';
-  container.appendChild(paragraph);
 }
 
+// ============================================================
+// Header auto-hide + scroll class
+// ============================================================
 function wireAutoHideHeader() {
+  const siteHeader = document.querySelector('.site-header');
   if (!siteHeader) return;
-
   let lastScrollY = window.scrollY;
   const threshold = 8;
 
   window.addEventListener('scroll', () => {
     const currentY = window.scrollY;
     const delta = currentY - lastScrollY;
-    const menuOpen = navWrap?.classList.contains('nav-open');
+    const menuOpen = document.querySelector('.nav-wrap')?.classList.contains('nav-open');
 
+    // Add/remove header-scrolled class
+    if (currentY > 10) {
+      siteHeader.classList.add('header-scrolled');
+    } else {
+      siteHeader.classList.remove('header-scrolled');
+    }
+
+    // Auto-hide logic
     if (currentY <= 40 || menuOpen) {
       siteHeader.classList.remove('header-hidden');
       lastScrollY = currentY;
@@ -132,11 +250,17 @@ function wireAutoHideHeader() {
   }, { passive: true });
 }
 
-if (navWrap && navLinks) {
-  if (!navLinks.id) {
-    navLinks.id = 'primary-navigation';
-  }
+// ============================================================
+// Nav setup
+// ============================================================
+function initNav() {
+  const navWrap = document.querySelector('.nav-wrap');
+  const navLinks = navWrap?.querySelector('.nav-links');
+  if (!navWrap || !navLinks) return;
 
+  if (!navLinks.id) navLinks.id = 'primary-navigation';
+
+  // Add news link if missing
   if (!navLinks.querySelector('a[href="news.html"]')) {
     const newsLink = document.createElement('a');
     newsLink.href = 'news.html';
@@ -144,18 +268,17 @@ if (navWrap && navLinks) {
     const homeLink = navLinks.querySelector('a[href="index.html"]');
     if (homeLink?.nextSibling) {
       homeLink.insertAdjacentElement('afterend', newsLink);
-    } else if (homeLink) {
-      navLinks.append(newsLink);
     } else {
-      navLinks.prepend(newsLink);
+      navLinks.append(newsLink);
     }
   }
 
+  // Active state for news
   const isNewsPage = /news(.*)?\.html$/i.test(window.location.pathname.split('/').pop() || '');
   if (isNewsPage) {
-    navLinks.querySelectorAll('a').forEach((link) => {
-      link.classList.remove('active');
-      link.removeAttribute('aria-current');
+    navLinks.querySelectorAll('a').forEach((l) => {
+      l.classList.remove('active');
+      l.removeAttribute('aria-current');
     });
     const newsNav = navLinks.querySelector('a[href="news.html"]');
     if (newsNav) {
@@ -164,25 +287,46 @@ if (navWrap && navLinks) {
     }
   }
 
+  // Brand logo injection
   const brand = navWrap.querySelector('.brand');
   if (brand && !brand.querySelector('.brand-logo')) {
     const brandText = brand.textContent.trim();
     brand.textContent = '';
-
     const logo = document.createElement('img');
     logo.className = 'brand-logo';
     logo.src = 'https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg';
     logo.alt = 'Tolbert Innovation Hub logo';
     logo.width = 48;
     logo.height = 48;
-
     const text = document.createElement('span');
     text.className = 'brand-text';
     text.textContent = brandText || 'Tolbert Innovation Hub';
-
     brand.append(logo, text);
   }
 
+  // Dark mode toggle injection if not already present in the DOM
+  if (!navWrap.querySelector('.dark-mode-toggle')) {
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'dark-mode-toggle';
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    updateToggleIcon(toggle, isDark);
+    navWrap.appendChild(toggle);
+    toggle.addEventListener('click', () => {
+      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (dark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('tih-theme', 'light');
+        document.querySelectorAll('.dark-mode-toggle').forEach((b) => updateToggleIcon(b, false));
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('tih-theme', 'dark');
+        document.querySelectorAll('.dark-mode-toggle').forEach((b) => updateToggleIcon(b, true));
+      }
+    });
+  }
+
+  // Menu toggle button
   let menuButton = navWrap.querySelector('.menu-toggle');
   if (!menuButton) {
     menuButton = document.createElement('button');
@@ -192,7 +336,6 @@ if (navWrap && navLinks) {
     menuButton.setAttribute('aria-controls', navLinks.id);
     menuButton.setAttribute('aria-label', 'Toggle navigation menu');
     menuButton.innerHTML = '<span aria-hidden="true">☰</span> Menu';
-
     if (brand) {
       brand.insertAdjacentElement('afterend', menuButton);
     } else {
@@ -203,12 +346,16 @@ if (navWrap && navLinks) {
   const closeMenu = () => {
     navWrap.classList.remove('nav-open');
     menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.innerHTML = '<span aria-hidden="true">☰</span> Menu';
   };
 
   menuButton.addEventListener('click', () => {
     const shouldOpen = !navWrap.classList.contains('nav-open');
     navWrap.classList.toggle('nav-open', shouldOpen);
     menuButton.setAttribute('aria-expanded', String(shouldOpen));
+    menuButton.innerHTML = shouldOpen
+      ? '<span aria-hidden="true">✕</span> Close'
+      : '<span aria-hidden="true">☰</span> Menu';
   });
 
   navLinks.querySelectorAll('a').forEach((link) => {
@@ -218,12 +365,19 @@ if (navWrap && navLinks) {
   });
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 920) {
-      closeMenu();
-    }
+    if (window.innerWidth > 920) closeMenu();
   });
 }
 
-wireAutoHideHeader();
-renderLatestUpdates();
-injectFooterFeaturedNews();
+// ============================================================
+// Init
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  initDarkMode();
+  initNav();
+  wireAutoHideHeader();
+  renderLatestUpdates();
+  injectFooterFeaturedNews();
+  initCounters();
+  initReveal();
+});
