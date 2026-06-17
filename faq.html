@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frequently Asked Questions | Tolbert Innovation Hub</title>
+  <meta name="description" content="Find answers to common questions about Tolbert Innovation Hub scholarships, IELTS/TOEFL preparation, healthcare access, software services, and how to get involved." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    /* ── Category nav tabs ── */
+    .faq-category-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+    .faq-cat-link {
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      border-radius: var(--radius-full, 9999px);
+      background: #fff;
+      border: 2px solid var(--border-light, #e4eaf4);
+      color: var(--brand-blue);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+      font-family: 'Inter', sans-serif;
+    }
+    .faq-cat-link:hover,
+    .faq-cat-link.active {
+      background: var(--brand-blue);
+      border-color: var(--brand-blue);
+      color: #fff;
+    }
+    .faq-cat-link.red:hover,
+    .faq-cat-link.red.active {
+      background: var(--brand-red);
+      border-color: var(--brand-red);
+    }
+
+    /* ── Section headings ── */
+    .faq-section { margin-bottom: 3rem; }
+    .faq-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .faq-section-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+    .faq-section-heading h2 {
+      font-size: 1.45rem;
+      color: var(--brand-blue);
+      margin: 0;
+    }
+
+    /* ── Accordion items ── */
+    details.faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+    details.faq-item summary {
+      padding: 1.1rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--brand-blue);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: background 0.15s;
+    }
+    details.faq-item summary:hover { background: var(--brand-blue-pale, #e8f0fb); }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::marker { display: none; }
+    details.faq-item summary .faq-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      color: var(--brand-red);
+      transition: transform 0.2s;
+      font-weight: 700;
+    }
+    details.faq-item[open] summary {
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 0;
+    }
+    details.faq-item[open] summary .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      padding: 1rem 1.5rem 1.25rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+    .faq-answer p { margin: 0 0 0.75rem; }
+    .faq-answer p:last-child { margin-bottom: 0; }
+    .faq-answer a {
+      color: var(--brand-blue);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .faq-answer a:hover { color: var(--brand-red); }
+
+    /* ── CTA box ── */
+    .faq-cta-box {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, #003a8c 100%);
+      color: #fff;
+      border-radius: var(--radius-lg, 18px);
+      padding: 2.5rem 3rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .faq-cta-box h2 { color: #fff; margin-bottom: 0.5rem; font-size: 1.6rem; }
+    .faq-cta-box p { opacity: 0.9; margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.75; }
+
+    @media (max-width: 600px) {
+      details.faq-item summary { padding: 1rem 1.1rem; font-size: 0.93rem; }
+      .faq-answer { padding: 0.9rem 1.1rem 1.1rem; }
+      .faq-cta-box { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="scholarship.html">Scholarship</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="scholarship.html#application-form" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">FAQs</p>
+        <h1>Frequently Asked Questions</h1>
+        <p class="lead">
+          Find answers to the most common questions about our programs, application processes,
+          classroom access, and how to get involved.
+        </p>
+      </div>
+    </section>
+
+    <!-- Category Navigation -->
+    <section class="section section-alt" style="padding-top:1.5rem; padding-bottom:1.5rem;">
+      <div class="container" style="text-align:center;">
+        <p style="font-size:0.9rem; color:#666; margin-bottom:0.75rem; font-weight:500;">Browse by category:</p>
+        <nav class="faq-category-nav" aria-label="FAQ categories">
+          <a href="#all" class="faq-cat-link active">All Questions</a>
+          <a href="#scholarships" class="faq-cat-link">&#x1F393; Scholarships</a>
+          <a href="#healthcare" class="faq-cat-link">&#x1F3E5; Healthcare</a>
+          <a href="#classroom" class="faq-cat-link">&#x1F4DA; Classroom</a>
+          <a href="#technology" class="faq-cat-link">&#x1F4BB; Technology</a>
+          <a href="#general" class="faq-cat-link">&#x2139;&#xFE0F; General</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- All FAQ Sections -->
+    <section class="section" id="all">
+      <div class="container" style="max-width:860px; margin-left:auto; margin-right:auto;">
+
+        <!-- ── Scholarships ── -->
+        <div class="faq-section" id="scholarships">
+          <div class="faq-section-heading">
+            <span class="faq-section-icon">&#x1F393;</span>
+            <h2>Scholarships</h2>
+          </div>
+
+          <details class="faq-item">
+            <summary>
+              Who is eligible for the TIH scholarship program?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>The scholarship program is open to Liberian students and recent graduates with valid identification, academic transcripts from recognized institutions, and a personal statement explaining their study goals.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              What is the ICCR Fully Funded Scholarship?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>The ICCR (Indian Council for Cultural Relations) Fully Funded Scholarship is offered by the Government of India under the India-Africa Maitri initiative. It covers full tuition, monthly stipend, return airfare, visa support, and hostel accommodation for Liberian students studying in India.</p>
+              <p>Learn more on our <a href="fully-funded-scholarship.html">Fully Funded Scholarship page</a>.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How do I apply for a scholarship?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Visit our <a href="scholarship.html">Scholarship Program page</a> and complete the online application form. Our team will review your submission and contact you with next steps within 5&ndash;7 business days.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              What documents do I need for the scholarship application?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>You'll need academic transcripts/certificates, valid national identification, a personal statement, and contact details. Specific requirements may vary by scholarship type. Check the relevant program page for the exact checklist.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Is there an application fee?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>The ICCR Scholarship requires a non-refundable application processing fee of $100 USD by April 30, 2026. Other programs may have different requirements &mdash; check the specific program page for the most current information.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              When is the scholarship application deadline?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>The 2026 ICCR Scholarship deadline is <strong>April 21, 2026</strong> for application submission and <strong>April 30, 2026</strong> for fee payment. Other programs have rolling deadlines &mdash; apply early for the best chance of consideration.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              What countries can I study in?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Current scholarship pathways include <strong>India, Cyprus, United Kingdom, Canada,</strong> and the <strong>United States of America</strong>. We continue to expand our scholarship network &mdash; check our programs page for the latest available pathways.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How long does the review process take?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Applications are typically reviewed within 5&ndash;10 business days. Complete, accurate applications move through the process faster. Ensure all required documents are submitted to avoid delays.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- ── Healthcare ── -->
+        <div class="faq-section" id="healthcare">
+          <div class="faq-section-heading">
+            <span class="faq-section-icon">&#x1F3E5;</span>
+            <h2>Healthcare</h2>
+          </div>
+
+          <details class="faq-item">
+            <summary>
+              What healthcare services does TIH provide?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>TIH facilitates medical case intake, specialist referrals, hospital coordination, and travel guidance for individuals seeking healthcare abroad &mdash; primarily in India. We act as a bridge between patients and international medical institutions.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How does TIH coordinate healthcare access?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>You submit a healthcare inquiry form, our team assesses your case, we coordinate with partner hospitals and specialists, and provide you with treatment guidance and travel support information. Visit our <a href="healthcare.html">Healthcare page</a> to begin the process.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Does TIH cover medical costs?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>No &mdash; TIH facilitates access and coordination. Medical costs are determined by the treating institutions. We help you understand costs, navigate the process, and connect you with the right resources to make informed decisions about your care.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How quickly can I get a healthcare referral?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Initial assessment is usually within 3&ndash;5 business days. For urgent cases, contact us directly via WhatsApp at <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">+231 880 559 227</a> for a faster response.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              What medical specialties can TIH help with?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>We work with a wide network including oncology, cardiology, orthopedics, neurology, and general surgery specialists. Contact us with your specific case for accurate guidance on which partner institutions can best serve your needs.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- ── Classroom ── -->
+        <div class="faq-section" id="classroom">
+          <div class="faq-section-heading">
+            <span class="faq-section-icon">&#x1F4DA;</span>
+            <h2>IELTS / TOEFL Classroom</h2>
+          </div>
+
+          <details class="faq-item">
+            <summary>
+              Is the classroom really free?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes &mdash; 100% free. No payment, no registration required for access. Simply visit our <a href="classroom.html">Classroom page</a> and choose your pathway (IELTS or TOEFL) to get started immediately.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              What does the IELTS classroom include?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>6 structured modules covering Foundation, Listening &amp; Reading, Writing &amp; Speaking, Strategy &amp; Techniques, Practice Tests, and Full Mock Exams &mdash; plus a certificate request system for students who complete all modules.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              What's the difference between IELTS and TOEFL?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p><strong>IELTS</strong> (British Council) uses a Band Score 1&ndash;9 system and is widely accepted in the UK, Australia, Canada, and many universities globally.</p>
+              <p><strong>TOEFL</strong> (ETS) uses a 0&ndash;120 score system and is preferred by many US universities. Both are internationally recognized &mdash; your choice depends on where you're applying. Our classroom covers both pathways in full.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How do I get a certificate after completing the course?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>After completing the mock exams, use the Certificate Request form to request your completion certificate: <a href="classroom-ielts-certificate-request.html">IELTS Certificate Request</a> or <a href="classroom-toefl-certificate-request.html">TOEFL Certificate Request</a>.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Do I need an account to use the classroom?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>No account is needed for classroom access. You can optionally register for the <a href="portal-register.html">Student Portal</a> to track your progress, save your work, and receive personalized updates on your learning journey.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How long does it take to complete the course?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Most students complete each 6-module pathway in 4&ndash;8 weeks depending on study pace. You can go at your own speed &mdash; the classroom is available 24/7, so you can study whenever it suits you best.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- ── Technology ── -->
+        <div class="faq-section" id="technology">
+          <div class="faq-section-heading">
+            <span class="faq-section-icon">&#x1F4BB;</span>
+            <h2>Technology &amp; Software</h2>
+          </div>
+
+          <details class="faq-item">
+            <summary>
+              What software services does TIH offer?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Business websites, web applications, custom software, school and business management systems, process automation, and digital transformation consulting. Visit our <a href="software.html">Software Platform page</a> to see the full range of services.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How do I request a software consultation?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Visit our <a href="software.html">Software Platform page</a> and complete the Business Project Intake Form. We'll respond within 2&ndash;3 business days with consultation details and next steps for your project.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How long does a typical project take?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Project timelines vary based on scope. A basic business website typically takes 2&ndash;4 weeks. Custom software and management systems may take 4&ndash;12 weeks. We'll give you a clear, detailed timeline in your project proposal before any work begins.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Does TIH work with businesses outside Liberia?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes &mdash; we support organizations across Africa and beyond. All of our software and digital services can be delivered remotely. <a href="contact.html">Contact us</a> to discuss your project regardless of your location.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- ── General ── -->
+        <div class="faq-section" id="general">
+          <div class="faq-section-heading">
+            <span class="faq-section-icon">&#x2139;&#xFE0F;</span>
+            <h2>General</h2>
+          </div>
+
+          <details class="faq-item">
+            <summary>
+              Where is Tolbert Innovation Hub located?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>We are based in Liberia, West Africa (Spriggs Payne Airport area, Sinkor, Monrovia). Our programs are accessible online globally, so students and partners from anywhere in the world can engage with our services.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How do I contact TIH?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                <strong>Email:</strong> <a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a><br />
+                <strong>Phone / WhatsApp:</strong> <a href="tel:+231880559227">+231 880 559 227</a><br />
+                <strong>WhatsApp:</strong> <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat with us directly</a><br />
+                <strong>Website:</strong> www.tolbertinnovationhub.org
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Can I volunteer with TIH?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes! Visit our <a href="volunteer.html">Volunteer page</a> to see available roles and submit a volunteer application. We welcome educators, technology professionals, healthcare workers, community leaders, and anyone passionate about youth empowerment.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How can my organization partner with TIH?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Visit our <a href="partner-with-us.html">Partner With Us page</a> to submit a partnership inquiry. We welcome corporations, NGOs, government agencies, educational institutions, healthcare organizations, and individual investors.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Is TIH a registered organization?
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes &mdash; Tolbert Innovation Hub is a registered organization in Liberia, inspired by the legacy of President William V. S. Tolbert. We are committed to transparency, accountability, and delivering measurable impact for the communities we serve.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- Still have questions CTA -->
+        <div class="faq-cta-box reveal">
+          <h2>Still Have Questions?</h2>
+          <p>
+            Can't find what you're looking for? Our team is happy to help. Reach out via WhatsApp for a
+            quick response, or visit our Contact page to send a detailed message.
+          </p>
+          <div class="hero-actions" style="justify-content:center;">
+            <a class="btn btn-primary" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+            <a class="btn btn-secondary" href="contact.html">Contact Us</a>
+            <a class="btn btn-outline-blue" href="mailto:info@tolbertinnovationhub.org" style="color:#fff; border-color:rgba(255,255,255,0.5);">Send an Email</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link">&#x1F4AC;</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link">&#x1F4E7;</a>
+            <a href="tel:+231880559227" class="social-link">&#x1F4DE;</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="scholarship.html">Scholarship Program</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
+            <li><a href="healthcare.html">Healthcare Exposure</a></li>
+            <li><a href="software.html">Software Innovation</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Get Involved</p>
+          <ul class="footer-links">
+            <li><a href="partner-with-us.html">Partner With Us</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4E7;</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4DE;</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4AC;</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">&copy; 2026 Tolbert Innovation Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+  </a>
+  <script src="main.js"></script>
+</body>
+</html>

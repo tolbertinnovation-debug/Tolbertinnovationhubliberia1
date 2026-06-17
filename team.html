@@ -1,13 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Team | Tolbert Innovation Hub</title><link rel="stylesheet" href="styles.css" />  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Team | Tolbert Innovation Hub</title>
+  <meta name="description" content="Meet the dedicated leaders behind Tolbert Innovation Hub — the team driving education, healthcare, and technology innovation across Liberia and Africa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    /* ---- Team page styles ---- */
+    .page-hero {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, #1a3d8a 55%, #002055 100%);
+      padding: clamp(3.5rem, 7vw, 6.5rem) 0 clamp(3rem, 5vw, 5rem);
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 40%, rgba(191,10,48,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 85%, rgba(255,255,255,0.04) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    .page-hero > * { position: relative; z-index: 1; }
+    .page-hero .container { position: relative; z-index: 1; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .team-card {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 1.75rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .team-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--brand-blue), var(--brand-red));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border);
+    }
+    .team-card:hover::before {
+      opacity: 1;
+    }
+
+    .team-avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      font-family: var(--font-heading);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .avatar-blue { background: linear-gradient(135deg, var(--brand-blue) 0%, #1a4a9c 100%); }
+    .avatar-red  { background: linear-gradient(135deg, var(--brand-red) 0%, #8f0822 100%); }
+
+    .team-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 0.4rem;
+    }
+
+    .team-title-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.28rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 1rem;
+    }
+    .badge-blue {
+      background: var(--brand-blue-pale);
+      color: var(--brand-blue);
+    }
+    .badge-red {
+      background: var(--brand-red-pale);
+      color: var(--brand-red);
+    }
+
+    .team-bio {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0 0 1.25rem;
+      max-width: none;
+    }
+
+    .team-social {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+    .team-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-alt);
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      font-size: 1rem;
+      transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
+      text-decoration: none;
+    }
+    .team-social a:hover {
+      background: var(--brand-blue);
+      border-color: var(--brand-blue);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .cta-band {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, #1a3d8a 100%);
+      border-radius: var(--radius-xl);
+      padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem);
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(191,10,48,0.2) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-band > * { position: relative; z-index: 1; }
+    .cta-band h2 { color: #fff; margin-bottom: 0.75rem; }
+    .cta-band p { color: rgba(255,255,255,0.82); max-width: 58ch; margin: 0 auto 2rem; font-size: 1.05rem; }
+    .cta-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    .value-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-full);
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+    }
+    .values-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
-<header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html">Tolbert Innovation Hub</a><nav class="nav-links" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="process.html">Process</a><a href="projects.html">Projects</a><a class="active" aria-current="page" href="team.html">Team</a><a href="entertainment.html">Entertainment</a>
-        <a href="contact.html">Contact</a><a href="classroom.html">Classroom</a></nav></div></header>
-<main id="main-content"><section class="section"><div class="container"><p class="section-label">Our Team</p><h2>Committed Leadership</h2><ul class="list"><li><strong>Samuel S. Tolbert</strong> — Founder & Chief Executive Officer</li><li><strong>Esther Boakai</strong> — Chief Administrative Officer (CFO / HR)</li><li><strong>Alieu Saysay</strong> — General Manager</li><li><strong>Christlove P. Jaye</strong> — Financial Officer</li><li><strong>Feature A. Cartee</strong> — Administrative Assistant</li><li><strong>Precelia Jallah</strong> — Media & Communication Officer</li></ul></div></section></main>
-<footer class="site-footer"><div class="container"><p><strong>Tolbert Innovation Hub</strong></p></div><p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p></footer>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="scholarship.html">Scholarship</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a class="active" aria-current="page" href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
+        <a href="scholarship.html#application-form" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="page-hero" aria-label="Team hero">
+      <div class="container">
+        <p class="eyebrow">Our People</p>
+        <h1>Meet Our <span style="color:#ef9090;">Team</span></h1>
+        <p class="lead" style="max-width:60ch;">The dedicated leaders and passionate professionals behind Africa's Innovation Hub — united by a shared commitment to empowering Liberian communities through education, health, and technology.</p>
+        <div class="hero-badges">
+          <span class="hero-badge"><span class="hero-badge-icon">🎓</span> Educators &amp; Scholars</span>
+          <span class="hero-badge"><span class="hero-badge-icon">💡</span> Innovators</span>
+          <span class="hero-badge"><span class="hero-badge-icon">🤝</span> Community Leaders</span>
+          <span class="hero-badge"><span class="hero-badge-icon">🌍</span> Africa-Focused</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP SECTION -->
+    <section class="section" aria-labelledby="leadership-heading">
+      <div class="container">
+        <div class="section-header centered">
+          <p class="section-label">Leadership Team</p>
+          <h2 id="leadership-heading">Our Leadership Team</h2>
+          <p class="section-intro">Six dedicated professionals steering Tolbert Innovation Hub's mission to connect Liberians with world-class scholarship, healthcare, and technology opportunities.</p>
+        </div>
+
+        <div class="team-grid">
+
+          <!-- Samuel S. Tolbert -->
+          <article class="team-card reveal">
+            <div class="team-avatar avatar-blue" aria-hidden="true">SST</div>
+            <h3>Samuel S. Tolbert</h3>
+            <span class="team-title-badge badge-blue">Founder &amp; CEO</span>
+            <p class="team-bio">Samuel founded Tolbert Innovation Hub with a bold vision to bridge the gap between Liberian talent and global opportunity. His leadership drives every scholarship placement, healthcare referral, and technology initiative the organisation delivers.</p>
+            <div class="team-social">
+              <a href="mailto:info@tolbertinnovationhub.org" aria-label="Email Samuel Tolbert" title="Send email">✉️</a>
+            </div>
+          </article>
+
+          <!-- Esther Boakai -->
+          <article class="team-card reveal">
+            <div class="team-avatar avatar-red" aria-hidden="true">EB</div>
+            <h3>Esther Boakai</h3>
+            <span class="team-title-badge badge-red">Chief Administrative Officer</span>
+            <p class="team-bio">Esther oversees the organisation's financial health and human resource operations, ensuring every department runs with efficiency and accountability. Her dual expertise in finance and HR provides the institutional backbone that sustains the Hub's growth.</p>
+            <div class="team-social">
+              <a href="mailto:info@tolbertinnovationhub.org" aria-label="Email Esther Boakai" title="Send email">✉️</a>
+            </div>
+          </article>
+
+          <!-- Alieu Saysay -->
+          <article class="team-card reveal">
+            <div class="team-avatar avatar-blue" aria-hidden="true">AS</div>
+            <h3>Alieu Saysay</h3>
+            <span class="team-title-badge badge-blue">General Manager</span>
+            <p class="team-bio">Alieu manages day-to-day operations and coordinates across all program units to keep the Hub's ambitious projects on schedule and on target. His strategic oversight ensures that every applicant receives timely support throughout their journey.</p>
+            <div class="team-social">
+              <a href="mailto:info@tolbertinnovationhub.org" aria-label="Email Alieu Saysay" title="Send email">✉️</a>
+            </div>
+          </article>
+
+          <!-- Christlove P. Jaye -->
+          <article class="team-card reveal">
+            <div class="team-avatar avatar-red" aria-hidden="true">CPJ</div>
+            <h3>Christlove P. Jaye</h3>
+            <span class="team-title-badge badge-red">Financial Officer</span>
+            <p class="team-bio">Christlove manages the organisation's financial records, budgeting, and fiscal reporting with precision and transparency. His diligent stewardship of resources ensures that every programme remains financially sustainable and donor-accountable.</p>
+            <div class="team-social">
+              <a href="mailto:info@tolbertinnovationhub.org" aria-label="Email Christlove Jaye" title="Send email">✉️</a>
+            </div>
+          </article>
+
+          <!-- Feature A. Cartee -->
+          <article class="team-card reveal">
+            <div class="team-avatar avatar-blue" aria-hidden="true">FAC</div>
+            <h3>Feature A. Cartee</h3>
+            <span class="team-title-badge badge-blue">Administrative Assistant</span>
+            <p class="team-bio">Feature supports the executive leadership with scheduling, correspondence, and programme documentation, making sure nothing falls through the cracks. Her meticulous organisational skills keep the Hub's administrative operations running smoothly.</p>
+            <div class="team-social">
+              <a href="mailto:info@tolbertinnovationhub.org" aria-label="Email Feature Cartee" title="Send email">✉️</a>
+            </div>
+          </article>
+
+          <!-- Precelia Jallah -->
+          <article class="team-card reveal">
+            <div class="team-avatar avatar-red" aria-hidden="true">PJ</div>
+            <h3>Precelia Jallah</h3>
+            <span class="team-title-badge badge-red">Media &amp; Communications Officer</span>
+            <p class="team-bio">Precelia shapes the public voice of Tolbert Innovation Hub, managing social media, press outreach, and storytelling that connects the community with the Hub's work. Her communications expertise amplifies the impact of every programme and success story.</p>
+            <div class="team-social">
+              <a href="mailto:info@tolbertinnovationhub.org" aria-label="Email Precelia Jallah" title="Send email">✉️</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES STRIP -->
+    <section class="section section-alt" aria-label="Team values">
+      <div class="container" style="text-align:center;">
+        <p class="section-label" style="justify-content:center;">What Drives Us</p>
+        <h2 style="margin-bottom:1rem;">Shared Values, Common Purpose</h2>
+        <p class="section-intro" style="margin:0 auto 2rem;">Every member of our team is guided by the same north star — creating lasting, measurable change for the people of Liberia and across Africa.</p>
+        <div class="values-row">
+          <span class="value-tag" style="background:var(--brand-blue-pale);color:var(--brand-blue);border-color:var(--border-light);">🎯 Purpose-Driven</span>
+          <span class="value-tag" style="background:var(--brand-blue-pale);color:var(--brand-blue);border-color:var(--border-light);">🤝 Integrity</span>
+          <span class="value-tag" style="background:var(--brand-blue-pale);color:var(--brand-blue);border-color:var(--border-light);">🌍 Africa-First</span>
+          <span class="value-tag" style="background:var(--brand-red-pale);color:var(--brand-red);border-color:var(--border-light);">💡 Innovation</span>
+          <span class="value-tag" style="background:var(--brand-red-pale);color:var(--brand-red);border-color:var(--border-light);">📚 Education</span>
+          <span class="value-tag" style="background:var(--brand-red-pale);color:var(--brand-red);border-color:var(--border-light);">🙌 Service</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN CTA -->
+    <section class="section" aria-label="Join our team">
+      <div class="container">
+        <div class="cta-band">
+          <p class="eyebrow" style="justify-content:center;margin:0 auto 1rem;">Get Involved</p>
+          <h2>Join Our Team</h2>
+          <p>Passionate about education, healthcare access, or technology innovation in Africa? We are always looking for dedicated volunteers, mentors, and partners who want to make a real difference in Liberia.</p>
+          <div class="cta-actions">
+            <a href="volunteer.html" class="btn btn-primary btn-lg">Become a Volunteer</a>
+            <a href="contact.html" class="btn btn-outline btn-lg">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="scholarship.html">Scholarship Program</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
+            <li><a href="healthcare.html">Healthcare Exposure</a></li>
+            <li><a href="software.html">Software Innovation</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="classroom-ielts.html">IELTS Preparation</a></li>
+            <li><a href="classroom-toefl.html">TOEFL Preparation</a></li>
+            <li><a href="impact.html">Impact Report</a></li>
+            <li><a href="success-stories.html">Success Stories</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+  </a>
+
   <script src="main.js"></script>
-</body></html>
+</body>
+</html>
