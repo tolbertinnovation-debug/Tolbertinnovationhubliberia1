@@ -14,6 +14,26 @@
   <link rel="stylesheet" href="styles.css" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    .form-card { background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: clamp(1.75rem,4vw,2.5rem); box-shadow: var(--shadow); }
+    .form-card h3 { font-size: 1.2rem; color: var(--brand-blue); margin-bottom: 0.4rem; }
+    .form-card-lead { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.75rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
+    .form-group:last-of-type { margin-bottom: 0; }
+    .form-label { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.01em; }
+    .form-label .required { color: var(--brand-red); margin-left: 2px; }
+    .form-input, .form-select, .form-textarea { width: 100%; padding: 0.72rem 0.95rem; border: 1.5px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-2); color: var(--text); font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; transition: border-color var(--transition), box-shadow var(--transition); appearance: none; -webkit-appearance: none; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--brand-blue); background: var(--surface); box-shadow: 0 0 0 3px rgba(0,40,104,0.1); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-textarea { resize: vertical; min-height: 130px; }
+    .form-select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; }
+    .form-feedback { font-size: 0.9rem; font-weight: 600; margin-top: 0.85rem; padding: 0.7rem 1rem; border-radius: var(--radius-sm); background: var(--bg-alt); display: none; }
+    .form-feedback:not(:empty) { display: block; }
+    .form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.5rem; }
+    .form-note { font-size: 0.8rem; color: var(--text-muted); }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -136,8 +156,125 @@
           </div>
         </div>
 
-        <p class="form-note">Loading application form...</p>
-        <script type="text/javascript" src="https://form.jotform.com/jsform/260666926708065"></script>
+        <form class="form-card"
+              data-success-message="Thank you for your application! Our team will review your submission and contact you within 3–5 business days."
+              novalidate>
+          <h3>Scholarship Application Form</h3>
+          <p class="form-card-lead">All fields marked <span style="color:var(--brand-red)">*</span> are required. Please complete every section accurately.</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="sch-name">Full Legal Name <span class="required">*</span></label>
+              <input class="form-input" type="text" id="sch-name" name="fullName" placeholder="Your name as on ID / passport" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sch-email">Email Address <span class="required">*</span></label>
+              <input class="form-input" type="email" id="sch-email" name="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="sch-phone">Phone / WhatsApp <span class="required">*</span></label>
+              <input class="form-input" type="tel" id="sch-phone" name="phone" placeholder="+231 XXX XXX XXX" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sch-dob">Date of Birth <span class="required">*</span></label>
+              <input class="form-input" type="date" id="sch-dob" name="dob" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="sch-gender">Gender</label>
+              <select class="form-select" id="sch-gender" name="gender">
+                <option value="">Select gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Prefer not to say</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sch-nationality">Nationality <span class="required">*</span></label>
+              <input class="form-input" type="text" id="sch-nationality" name="nationality" value="Liberian" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="sch-edu-current">Current Education Level <span class="required">*</span></label>
+              <select class="form-select" id="sch-edu-current" name="currentEducation" required>
+                <option value="">Select current level</option>
+                <option>WASSCE / Senior High School</option>
+                <option>Diploma / Certificate</option>
+                <option>Bachelor's Degree</option>
+                <option>Master's Degree</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sch-edu-target">Preferred Level of Study <span class="required">*</span></label>
+              <select class="form-select" id="sch-edu-target" name="targetLevel" required>
+                <option value="">Select target level</option>
+                <option>Undergraduate</option>
+                <option>Postgraduate (Master's)</option>
+                <option>PhD</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="sch-field">Preferred Field of Study <span class="required">*</span></label>
+            <input class="form-input" type="text" id="sch-field" name="fieldOfStudy" placeholder="e.g. Medicine, Engineering, Business Administration, Law, Education" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="sch-destination">Preferred Study Destination <span class="required">*</span></label>
+              <select class="form-select" id="sch-destination" name="destination" required>
+                <option value="">Select destination</option>
+                <option>India</option>
+                <option>Cyprus</option>
+                <option>United Kingdom</option>
+                <option>Canada</option>
+                <option>United States of America</option>
+                <option>Open to Suggestions</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sch-type">Scholarship Type <span class="required">*</span></label>
+              <select class="form-select" id="sch-type" name="scholarshipType" required>
+                <option value="">Select type</option>
+                <option>ICCR Fully Funded Scholarship</option>
+                <option>General Scholarship</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="sch-statement">Personal Statement <span class="required">*</span></label>
+            <textarea class="form-textarea" id="sch-statement" name="statement" placeholder="Describe your academic goals, why you want this scholarship, and how you plan to use your education to make a positive impact in Liberia and Africa." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="sch-source">How did you hear about us?</label>
+            <select class="form-select" id="sch-source" name="source">
+              <option value="">Select one</option>
+              <option>Social Media (Facebook, Instagram, TikTok)</option>
+              <option>Friend or Family</option>
+              <option>WhatsApp</option>
+              <option>Google Search</option>
+              <option>School / University</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <p class="form-feedback" aria-live="polite"></p>
+          <div class="form-submit-row">
+            <button class="btn btn-primary" type="submit">Submit Application</button>
+            <p class="form-note">We respond within 3–5 business days. Check your email and WhatsApp.</p>
+          </div>
+        </form>
       </div>
     </section>
   </main>

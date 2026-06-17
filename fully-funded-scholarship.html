@@ -14,6 +14,26 @@
   <link rel="stylesheet" href="styles.css" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    .form-card { background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: clamp(1.75rem,4vw,2.5rem); box-shadow: var(--shadow); }
+    .form-card h3 { font-size: 1.2rem; color: var(--brand-blue); margin-bottom: 0.4rem; }
+    .form-card-lead { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.75rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
+    .form-group:last-of-type { margin-bottom: 0; }
+    .form-label { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.01em; }
+    .form-label .required { color: var(--brand-red); margin-left: 2px; }
+    .form-input, .form-select, .form-textarea { width: 100%; padding: 0.72rem 0.95rem; border: 1.5px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-2); color: var(--text); font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; transition: border-color var(--transition), box-shadow var(--transition); appearance: none; -webkit-appearance: none; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--brand-blue); background: var(--surface); box-shadow: 0 0 0 3px rgba(0,40,104,0.1); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-textarea { resize: vertical; min-height: 130px; }
+    .form-select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; }
+    .form-feedback { font-size: 0.9rem; font-weight: 600; margin-top: 0.85rem; padding: 0.7rem 1rem; border-radius: var(--radius-sm); background: var(--bg-alt); display: none; }
+    .form-feedback:not(:empty) { display: block; }
+    .form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.5rem; }
+    .form-note { font-size: 0.8rem; color: var(--text-muted); }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -107,7 +127,144 @@
           </ul>
         </div>
 
-        <script type="text/javascript" src="https://form.jotform.com/jsform/260667847831065"></script>
+        <form class="form-card"
+            data-success-message="Thank you for applying! Our ICCR scholarship team will review your application and contact you within 5–7 business days."
+            novalidate>
+        <h3>ICCR Scholarship Application (2026–2027)</h3>
+        <p class="form-card-lead">All fields marked <span style="color:var(--brand-red)">*</span> are required. Ensure all information matches your official documents.</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="iccr-name">Full Legal Name <span class="required">*</span></label>
+            <input class="form-input" type="text" id="iccr-name" name="fullName" placeholder="Exactly as on passport / national ID" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="iccr-email">Email Address <span class="required">*</span></label>
+            <input class="form-input" type="email" id="iccr-email" name="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="iccr-phone">Phone / WhatsApp <span class="required">*</span></label>
+            <input class="form-input" type="tel" id="iccr-phone" name="phone" placeholder="+231 XXX XXX XXX" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="iccr-dob">Date of Birth <span class="required">*</span></label>
+            <input class="form-input" type="date" id="iccr-dob" name="dob" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="iccr-gender">Gender <span class="required">*</span></label>
+            <select class="form-select" id="iccr-gender" name="gender" required>
+              <option value="">Select gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other / Prefer not to say</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="iccr-nationality">Nationality <span class="required">*</span></label>
+            <input class="form-input" type="text" id="iccr-nationality" name="nationality" value="Liberian" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="iccr-passport">Passport Number <span style="font-weight:400;color:var(--text-muted)">(if available)</span></label>
+            <input class="form-input" type="text" id="iccr-passport" name="passportNumber" placeholder="Leave blank if not yet issued" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="iccr-city">City / Town, County <span class="required">*</span></label>
+            <input class="form-input" type="text" id="iccr-city" name="cityCounty" placeholder="e.g. Monrovia, Montserrado" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="iccr-edu-current">Current Education Level <span class="required">*</span></label>
+            <select class="form-select" id="iccr-edu-current" name="currentEducation" required>
+              <option value="">Select level</option>
+              <option>WASSCE / Senior High School</option>
+              <option>Diploma / HND</option>
+              <option>Bachelor's Degree</option>
+              <option>Master's Degree</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="iccr-cgpa">CGPA / Final Grade <span class="required">*</span></label>
+            <input class="form-input" type="text" id="iccr-cgpa" name="cgpa" placeholder="e.g. 3.5 / 4.0, A, B+" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="iccr-target">Preferred Level of Study <span class="required">*</span></label>
+            <select class="form-select" id="iccr-target" name="targetLevel" required>
+              <option value="">Select target level</option>
+              <option>Undergraduate (4-year degree)</option>
+              <option>Postgraduate (Master's)</option>
+              <option>PhD</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="iccr-field">Preferred Field of Study <span class="required">*</span></label>
+            <input class="form-input" type="text" id="iccr-field" name="fieldOfStudy" placeholder="e.g. Medicine, Engineering, Law, Agriculture" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="iccr-university">Preferred University in India <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+          <input class="form-input" type="text" id="iccr-university" name="preferredUniversity" placeholder="Leave blank if you have no preference — we will match you" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="iccr-english">English Proficiency Test <span class="required">*</span></label>
+            <select class="form-select" id="iccr-english" name="englishTest" required>
+              <option value="">Select option</option>
+              <option>No formal test taken yet</option>
+              <option>IELTS</option>
+              <option>TOEFL iBT</option>
+              <option>Duolingo English Test</option>
+              <option>Cambridge (B2/C1/C2)</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="iccr-score">English Test Score <span style="font-weight:400;color:var(--text-muted)">(if applicable)</span></label>
+            <input class="form-input" type="text" id="iccr-score" name="englishScore" placeholder="e.g. IELTS 6.5, TOEFL 88" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="iccr-abroad">Have you studied outside Liberia before?</label>
+          <select class="form-select" id="iccr-abroad" name="studiedAbroad">
+            <option value="">Select one</option>
+            <option>No — this will be my first time studying abroad</option>
+            <option>Yes — I have studied outside Liberia previously</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="iccr-statement">Why do you want this scholarship? <span class="required">*</span></label>
+          <textarea class="form-textarea" id="iccr-statement" name="statement" placeholder="Explain your motivation for applying, your academic and career goals, and how you plan to use this opportunity to contribute to Liberia and Africa." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="iccr-notes">Additional Notes <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+          <textarea class="form-textarea" id="iccr-notes" name="additionalNotes" placeholder="Any special circumstances, additional qualifications, or other information you would like us to consider." style="min-height:100px;"></textarea>
+        </div>
+
+        <p class="form-feedback" aria-live="polite"></p>
+        <div class="form-submit-row">
+          <button class="btn btn-primary btn-lg" type="submit">Submit ICCR Scholarship Application</button>
+          <p class="form-note">We respond within 5–7 business days. Deadline: 21 April 2026.</p>
+        </div>
+      </form>
       </div>
     </section>
   </main>
