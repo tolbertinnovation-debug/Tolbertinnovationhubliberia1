@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate &amp; Support | Tolbert Innovation Hub</title>
+  <meta name="description" content="Support Tolbert Innovation Hub's mission to empower Liberian youth through scholarships, education, and innovation. Your donation creates real impact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    .impact-banner {
+      background: linear-gradient(135deg, #002868 0%, #003a8c 100%);
+      color: #fff;
+      border-radius: 14px;
+      padding: 2.25rem 2.5rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .impact-banner .impact-banner-number {
+      font-size: 3rem;
+      font-weight: 800;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .impact-banner .impact-banner-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-top: 0.4rem;
+    }
+    .donation-tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .tier-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 2px 14px rgba(0,40,104,0.10);
+      border: 2px solid #e8ecf4;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .tier-card:hover { box-shadow: 0 6px 24px rgba(0,40,104,0.16); border-color: #002868; }
+    .tier-card.tier-featured { border-color: #BF0A30; box-shadow: 0 4px 20px rgba(191,10,48,0.15); }
+    .tier-badge {
+      position: absolute;
+      top: -14px; left: 50%; transform: translateX(-50%);
+      background: #BF0A30;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .tier-name { font-size: 1.3rem; font-weight: 800; color: #002868; font-family: 'Poppins', sans-serif; }
+    .tier-amount { font-size: 2.2rem; font-weight: 800; color: #BF0A30; font-family: 'Poppins', sans-serif; line-height: 1; }
+    .tier-amount span { font-size: 0.95rem; font-weight: 500; color: #666; }
+    .tier-description { color: #555; font-size: 0.95rem; line-height: 1.65; }
+    .tier-impact-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #888; margin-bottom: -0.5rem; }
+    .tier-impact { background: #f4f7ff; border-left: 3px solid #002868; padding: 0.75rem 1rem; border-radius: 0 8px 8px 0; font-size: 0.9rem; color: #002868; font-weight: 600; }
+    .tier-card.tier-featured .tier-impact { border-left-color: #BF0A30; color: #BF0A30; background: #fff5f7; }
+    .usage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .usage-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.75rem 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,40,104,0.07);
+      text-align: center;
+    }
+    .usage-icon { font-size: 2.5rem; margin-bottom: 0.75rem; line-height: 1; }
+    .usage-category { font-weight: 700; color: #002868; font-size: 1rem; margin-bottom: 0.4rem; }
+    .usage-description { color: #555; font-size: 0.9rem; line-height: 1.6; }
+    .contact-donate-panel {
+      background: linear-gradient(135deg, #002868 0%, #003a8c 100%);
+      border-radius: 16px;
+      padding: 2.5rem 3rem;
+      color: #fff;
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .contact-donate-panel h2 { color: #fff; margin-bottom: 0.75rem; }
+    .contact-donate-panel p { opacity: 0.9; line-height: 1.75; margin-bottom: 0; }
+    .contact-donate-actions { display: flex; flex-direction: column; gap: 1rem; flex-shrink: 0; }
+    .contact-option {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 0.85rem 1.25rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .contact-option:hover { background: rgba(255,255,255,0.22); color: #fff; }
+    .contact-option .co-icon { font-size: 1.4rem; }
+    .corporate-panel {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 2px 14px rgba(0,40,104,0.09);
+      margin-top: 2rem;
+    }
+    .corporate-panel h3 { color: #002868; margin-bottom: 0.75rem; }
+    .corporate-benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .corp-benefit { display: flex; gap: 0.75rem; align-items: flex-start; }
+    .corp-benefit-icon { width: 32px; height: 32px; background: #002868; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .corp-benefit-text { font-size: 0.93rem; color: #444; line-height: 1.6; }
+    .corp-benefit-text strong { color: #002868; display: block; margin-bottom: 0.2rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="scholarship.html">Scholarship</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="scholarship.html#application-form" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Support Our Mission</p>
+        <h1>Help Us Empower the Next Generation of African Innovators</h1>
+        <p class="lead">
+          Tolbert Innovation Hub's programs are built on a simple belief: that every young person in Liberia deserves
+          access to the resources, guidance, and opportunities that can change the trajectory of their life. Your support
+          — in any form — makes that belief real for another student, another family, another business.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#donation-options">Explore Ways to Give</a>
+          <a class="btn btn-secondary" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Talk to Us on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Statement -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="impact-banner reveal">
+          <div class="impact-banner-number">$1 Donated</div>
+          <div class="impact-banner-label">= Direct impact on a student's future. Every contribution goes toward real programs, real people, and real change in Liberia.</div>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.5rem; margin-top:2rem;">
+          <div class="panel reveal" style="text-align:center; padding:1.75rem;">
+            <div style="font-size:2rem; font-weight:800; color:#002868; font-family:'Poppins',sans-serif;">500+</div>
+            <div style="color:#555; font-size:0.9rem; margin-top:0.3rem;">Students reached through our programs</div>
+          </div>
+          <div class="panel reveal" style="text-align:center; padding:1.75rem;">
+            <div style="font-size:2rem; font-weight:800; color:#BF0A30; font-family:'Poppins',sans-serif;">100%</div>
+            <div style="color:#555; font-size:0.9rem; margin-top:0.3rem;">Of classroom resources are free for students</div>
+          </div>
+          <div class="panel reveal" style="text-align:center; padding:1.75rem;">
+            <div style="font-size:2rem; font-weight:800; color:#002868; font-family:'Poppins',sans-serif;">12+</div>
+            <div style="color:#555; font-size:0.9rem; margin-top:0.3rem;">Countries our students have studied in</div>
+          </div>
+          <div class="panel reveal" style="text-align:center; padding:1.75rem;">
+            <div style="font-size:2rem; font-weight:800; color:#BF0A30; font-family:'Poppins',sans-serif;">30+</div>
+            <div style="color:#555; font-size:0.9rem; margin-top:0.3rem;">Businesses supported through technology programs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donation Tiers -->
+    <section class="section" id="donation-options">
+      <div class="container">
+        <p class="section-label">Ways to Give</p>
+        <h2>Choose Your Level of Support</h2>
+        <p class="section-intro">
+          Whether you can contribute a little or a lot, every amount creates meaningful impact. Below are our three
+          giving tiers — each one targeted to a specific aspect of our work. All donations are coordinated directly
+          through our team via WhatsApp or email.
+        </p>
+        <div class="donation-tiers">
+
+          <div class="tier-card reveal">
+            <div class="tier-name">Supporter</div>
+            <div class="tier-amount">Any Amount <span>/ month</span></div>
+            <p class="tier-description">
+              Every contribution at the Supporter level goes directly toward maintaining and expanding our free
+              classroom resources — keeping the platform online, updating course materials, and producing new
+              study content for IELTS and TOEFL students who cannot afford paid preparation programs.
+            </p>
+            <div class="tier-impact-label">Your Impact</div>
+            <div class="tier-impact">Funds classroom resources for students who cannot afford paid prep</div>
+            <a class="btn btn-outline-blue" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Donate as Supporter</a>
+          </div>
+
+          <div class="tier-card tier-featured reveal">
+            <span class="tier-badge">Most Impactful</span>
+            <div class="tier-name">Champion</div>
+            <div class="tier-amount">Monthly Support <span>/ ongoing</span></div>
+            <p class="tier-description">
+              Champions directly sponsor an individual student's IELTS or TOEFL exam preparation journey. This
+              tier covers the cost of study materials, mock exam resources, and access to tutor-led review
+              sessions for one student per month, giving them the best possible chance of achieving their
+              target score and qualifying for the scholarships they deserve.
+            </p>
+            <div class="tier-impact-label">Your Impact</div>
+            <div class="tier-impact">Sponsors one student's full exam preparation journey each month</div>
+            <a class="btn btn-primary" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Donate as Champion</a>
+          </div>
+
+          <div class="tier-card reveal">
+            <div class="tier-name">Transformer</div>
+            <div class="tier-amount">Partnership Level <span>/ discuss with us</span></div>
+            <p class="tier-description">
+              Transformer-level donors support the full arc of a student's scholarship journey — from initial
+              eligibility assessment through application preparation, exam guidance, document coordination, and
+              post-placement follow-up. This tier also contributes to healthcare referral coordination and
+              technology program delivery for businesses and entrepreneurs.
+            </p>
+            <div class="tier-impact-label">Your Impact</div>
+            <div class="tier-impact">Supports a complete scholarship journey from start to placement</div>
+            <a class="btn btn-outline-blue" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Discuss Transformer Giving</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- How Donations Are Used -->
+    <section class="section section-alt">
+      <div class="container">
+        <p class="section-label">Transparency</p>
+        <h2>How Donations Are Used</h2>
+        <p class="section-intro">
+          We are committed to responsible, transparent stewardship of every contribution. Here is how donations
+          are allocated across our four program categories.
+        </p>
+        <div class="usage-grid">
+          <div class="usage-item reveal">
+            <div class="usage-icon">&#x1F4DA;</div>
+            <div class="usage-category">Classroom Resources</div>
+            <p class="usage-description">Maintaining and expanding free IELTS and TOEFL course content, study materials, and practice test systems for students across Liberia.</p>
+          </div>
+          <div class="usage-item reveal">
+            <div class="usage-icon">&#x1F393;</div>
+            <div class="usage-category">Scholarship Guidance</div>
+            <p class="usage-description">Supporting students through eligibility assessments, application preparation, document coordination, and admission letter processing.</p>
+          </div>
+          <div class="usage-item reveal">
+            <div class="usage-icon">&#x1F3E5;</div>
+            <div class="usage-category">Healthcare Support</div>
+            <p class="usage-description">Coordinating medical referrals, supporting families with documentation, and maintaining relationships with partner medical facilities abroad.</p>
+          </div>
+          <div class="usage-item reveal">
+            <div class="usage-icon">&#x1F4BB;</div>
+            <div class="usage-category">Technology Programs</div>
+            <p class="usage-description">Delivering free and subsidized technology consultations to small businesses and entrepreneurs in Liberia who need digital support.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact for Donations -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">How to Give</p>
+        <h2>Contact Us to Coordinate Your Donation</h2>
+        <p class="section-intro">
+          Because we currently operate without an online payment processor, all donations are coordinated directly
+          through our team. This allows us to discuss your preferred giving method, confirm impact alignment, and
+          provide full transparency on how your contribution will be used.
+        </p>
+        <div class="contact-donate-panel reveal">
+          <div style="flex:1; min-width:280px;">
+            <h2>Ready to Make a Difference?</h2>
+            <p>
+              Reach out to our team via WhatsApp or email to begin the donation coordination process. We will
+              respond within 24 hours, discuss your giving goals, and confirm the most convenient method for
+              your contribution — whether local mobile money, bank transfer, or international wire.
+            </p>
+          </div>
+          <div class="contact-donate-actions">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="contact-option">
+              <span class="co-icon">&#x1F4AC;</span> Chat on WhatsApp
+            </a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="contact-option">
+              <span class="co-icon">&#x1F4E7;</span> Email Our Team
+            </a>
+            <a href="tel:+231880559227" class="contact-option">
+              <span class="co-icon">&#x1F4DE;</span> Call Us Directly
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Corporate Giving -->
+    <section class="section section-alt">
+      <div class="container">
+        <p class="section-label">Organizations &amp; Businesses</p>
+        <h2>Corporate &amp; Organizational Giving</h2>
+        <p class="section-intro">
+          We welcome partnerships with businesses, foundations, NGOs, and institutions that share our commitment
+          to education, healthcare access, and technology empowerment in Liberia and Africa.
+        </p>
+        <div class="corporate-panel reveal">
+          <h3>Why Partner With Tolbert Innovation Hub?</h3>
+          <p>
+            Corporate giving and organizational partnerships create a direct, traceable line between your resources
+            and life-changing outcomes for young Liberians. Whether you want to sponsor a scholarship cohort,
+            fund a specific program, or provide technology resources, we can build a partnership structure that
+            works for your organization's goals and reporting requirements.
+          </p>
+          <div class="corporate-benefits">
+            <div class="corp-benefit">
+              <div class="corp-benefit-icon">&#x1F4CA;</div>
+              <div class="corp-benefit-text">
+                <strong>Transparent Impact Reporting</strong>
+                Regular updates on exactly how your organization's contribution is being used and the outcomes it is generating.
+              </div>
+            </div>
+            <div class="corp-benefit">
+              <div class="corp-benefit-icon">&#x1F91D;</div>
+              <div class="corp-benefit-text">
+                <strong>Named Program Partnerships</strong>
+                Opportunity to have your organization's name associated with a specific program, cohort, or initiative.
+              </div>
+            </div>
+            <div class="corp-benefit">
+              <div class="corp-benefit-icon">&#x1F30D;</div>
+              <div class="corp-benefit-text">
+                <strong>Community Recognition</strong>
+                Acknowledgement across our digital platforms, social channels, and student community.
+              </div>
+            </div>
+            <div class="corp-benefit">
+              <div class="corp-benefit-icon">&#x1F4DD;</div>
+              <div class="corp-benefit-text">
+                <strong>Flexible Giving Structures</strong>
+                One-time gifts, recurring contributions, in-kind support, or volunteer time — we accommodate a range of partnership models.
+              </div>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="contact.html" style="margin-top:2rem; display:inline-block;">Discuss a Corporate Partnership</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section">
+      <div class="container" style="text-align:center; max-width:640px; margin-left:auto; margin-right:auto;">
+        <p class="section-label">Take Action</p>
+        <h2>Your Support Changes Everything</h2>
+        <p>
+          No amount is too small. No conversation is too early. If you believe in what we are building for
+          Liberia's future — in education, healthcare access, and technology — reach out today and let's talk
+          about how you can be part of it.
+        </p>
+        <div class="hero-actions" style="justify-content:center; margin-top:1.5rem;">
+          <a class="btn btn-primary" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">WhatsApp Us Now</a>
+          <a class="btn btn-secondary" href="mailto:info@tolbertinnovationhub.org">Send an Email</a>
+          <a class="btn btn-outline-blue" href="impact.html">View Our Impact</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">&#x1F4AC;</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">&#x1F4E7;</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">&#x1F4DE;</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="scholarship.html">Scholarship Program</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
+            <li><a href="healthcare.html">Healthcare Exposure</a></li>
+            <li><a href="software.html">Software Innovation</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="classroom-ielts.html">IELTS Preparation</a></li>
+            <li><a href="classroom-toefl.html">TOEFL Preparation</a></li>
+            <li><a href="classroom-resource-center.html">Resource Center</a></li>
+            <li><a href="portal-login.html">Student Portal</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4E7;</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4DE;</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4AC;</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">WhatsApp Chat</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">&copy; 2026 Tolbert Innovation Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+  </a>
+  <script src="main.js"></script>
+</body>
+</html>

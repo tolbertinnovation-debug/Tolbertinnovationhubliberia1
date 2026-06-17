@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Volunteer &amp; Get Involved | Tolbert Innovation Hub</title>
+  <meta name="description" content="Join Tolbert Innovation Hub as a volunteer mentor, educator, or program supporter. Help empower youth in Liberia through education and innovation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    .why-volunteer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .why-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 2px 12px rgba(0,40,104,0.09);
+      border-top: 4px solid #002868;
+      text-align: center;
+    }
+    .why-icon { font-size: 2.75rem; margin-bottom: 1rem; line-height: 1; }
+    .why-card h3 { color: #002868; margin-bottom: 0.5rem; }
+    .why-card p { color: #555; font-size: 0.95rem; line-height: 1.7; }
+    .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.75rem; margin-top: 2rem; }
+    .role-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.75rem 1.75rem;
+      box-shadow: 0 2px 12px rgba(0,40,104,0.09);
+      border-left: 5px solid #002868;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .role-card.role-red { border-left-color: #BF0A30; }
+    .role-header { display: flex; align-items: center; gap: 0.9rem; }
+    .role-icon { width: 44px; height: 44px; background: #002868; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.3rem; flex-shrink: 0; }
+    .role-card.role-red .role-icon { background: #BF0A30; }
+    .role-title { font-weight: 700; font-size: 1rem; color: #111; }
+    .role-commitment { font-size: 0.78rem; color: #888; font-weight: 600; }
+    .role-description { color: #555; font-size: 0.93rem; line-height: 1.65; }
+    .role-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .role-skill { background: #eef2ff; color: #002868; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.65rem; border-radius: 10px; }
+    .role-card.role-red .role-skill { background: #fff0f3; color: #BF0A30; }
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin-top: 2rem; counter-reset: steps; }
+    .step-item { position: relative; padding-left: 0; text-align: center; }
+    .step-number {
+      width: 56px; height: 56px;
+      background: #002868;
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: 800;
+      font-family: 'Poppins', sans-serif;
+      margin: 0 auto 1rem;
+    }
+    .step-title { font-weight: 700; color: #002868; font-size: 1rem; margin-bottom: 0.4rem; }
+    .step-desc { color: #555; font-size: 0.93rem; line-height: 1.65; }
+    .form-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 20px rgba(0,40,104,0.10);
+      max-width: 720px;
+      margin: 2rem auto 0;
+    }
+    .form-card h2 { color: #002868; margin-bottom: 0.5rem; }
+    .form-card > p { color: #555; margin-bottom: 2rem; font-size: 0.95rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label { font-size: 0.88rem; font-weight: 600; color: #333; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem 1rem;
+      border: 2px solid #dde4f0;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      color: #222;
+      outline: none;
+      transition: border-color 0.2s;
+      background: #fafbff;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: #002868; background: #fff; }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit-row { margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .form-note { font-size: 0.83rem; color: #888; }
+    #vol-success { display: none; background: #f0fff4; border: 2px solid #22c55e; border-radius: 10px; padding: 1.25rem 1.5rem; color: #166534; font-weight: 600; margin-top: 1rem; }
+    .volunteer-testimonial {
+      background: linear-gradient(135deg, #002868 0%, #003a8c 100%);
+      color: #fff;
+      border-radius: 14px;
+      padding: 2.5rem 3rem;
+      margin-top: 2rem;
+      position: relative;
+    }
+    .volunteer-testimonial::before {
+      content: '\201C';
+      font-size: 6rem;
+      opacity: 0.12;
+      position: absolute;
+      top: 0; left: 1.5rem;
+      font-family: serif;
+      line-height: 1;
+      color: #fff;
+    }
+    .vol-testimonial-text { font-size: 1.1rem; font-style: italic; line-height: 1.8; opacity: 0.93; margin-bottom: 1.5rem; }
+    .vol-testimonial-author { font-weight: 700; font-size: 1rem; }
+    .vol-testimonial-role { font-size: 0.88rem; opacity: 0.78; margin-top: 0.2rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="scholarship.html">Scholarship</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="scholarship.html#application-form" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Get Involved</p>
+        <h1>Join Our Mission to Transform Lives in Africa</h1>
+        <p class="lead">
+          At Tolbert Innovation Hub, we believe transformation happens through people — passionate, committed people
+          who share their knowledge, time, and skills with those who need it most. Whether you are an educator, a
+          technologist, a healthcare professional, or a storyteller, there is a role here for you.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#application-form">Apply to Volunteer</a>
+          <a class="btn btn-secondary" href="#volunteer-roles">See Open Roles</a>
+          <a class="btn btn-outline-blue" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Ask on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Volunteer -->
+    <section class="section section-alt">
+      <div class="container">
+        <p class="section-label">Why It Matters</p>
+        <h2>Why Volunteer with Tolbert Innovation Hub?</h2>
+        <p class="section-intro">
+          Volunteering with us is not just about giving back — it is about being part of a community building
+          something lasting and real in Liberia and across Africa.
+        </p>
+        <div class="why-volunteer-grid">
+          <div class="why-card reveal">
+            <div class="why-icon">&#x1F31F;</div>
+            <h3>Create Real, Lasting Impact</h3>
+            <p>
+              Your hours directly benefit students pursuing scholarships, families navigating healthcare, and
+              entrepreneurs growing their businesses. You will see the difference you make in concrete, human terms.
+            </p>
+          </div>
+          <div class="why-card reveal">
+            <div class="why-icon">&#x1F30D;</div>
+            <h3>Join a Global Network</h3>
+            <p>
+              Tolbert Innovation Hub connects volunteers with a community that spans Liberia and the diaspora —
+              educators, technologists, healthcare professionals, and advocates all working toward the same vision.
+            </p>
+          </div>
+          <div class="why-card reveal">
+            <div class="why-icon">&#x1F4C8;</div>
+            <h3>Grow Your Own Skills</h3>
+            <p>
+              Volunteering challenges you to teach, communicate, mentor, and lead. Many of our volunteers report
+              that their time with us has sharpened their own professional and personal skills in unexpected ways.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Volunteer Roles -->
+    <section class="section" id="volunteer-roles">
+      <div class="container">
+        <p class="section-label">Open Positions</p>
+        <h2>Volunteer Roles Available</h2>
+        <p class="section-intro">
+          We have structured roles across all our program areas. Roles can be remote or in-person, ongoing or
+          project-based. All volunteers receive orientation and ongoing support from our team.
+        </p>
+        <div class="roles-grid">
+
+          <div class="role-card reveal">
+            <div class="role-header">
+              <div class="role-icon">&#x1F4D6;</div>
+              <div>
+                <div class="role-title">Education Mentor</div>
+                <div class="role-commitment">2–4 hrs/week &middot; Remote-friendly</div>
+              </div>
+            </div>
+            <p class="role-description">
+              Support students preparing for IELTS or TOEFL examinations. You will guide learners through
+              difficult module concepts, provide feedback on practice writing and speaking tasks, and help
+              them build the confidence they need to perform on exam day.
+            </p>
+            <div class="role-skills">
+              <span class="role-skill">IELTS/TOEFL knowledge</span>
+              <span class="role-skill">Teaching</span>
+              <span class="role-skill">Patient communication</span>
+            </div>
+          </div>
+
+          <div class="role-card reveal">
+            <div class="role-header">
+              <div class="role-icon">&#x1F393;</div>
+              <div>
+                <div class="role-title">Scholarship Advisor</div>
+                <div class="role-commitment">3–5 hrs/week &middot; Hybrid</div>
+              </div>
+            </div>
+            <p class="role-description">
+              Guide scholarship applicants through the application process — from eligibility review and
+              document checklist management through essay guidance, deadline tracking, and final submission
+              support. Ideal for anyone with knowledge of international scholarship programs or admissions processes.
+            </p>
+            <div class="role-skills">
+              <span class="role-skill">Scholarship knowledge</span>
+              <span class="role-skill">Counseling</span>
+              <span class="role-skill">Attention to detail</span>
+            </div>
+          </div>
+
+          <div class="role-card role-red reveal">
+            <div class="role-header">
+              <div class="role-icon">&#x1F4BB;</div>
+              <div>
+                <div class="role-title">Technology Trainer</div>
+                <div class="role-commitment">3–6 hrs/week &middot; Remote or In-person</div>
+              </div>
+            </div>
+            <p class="role-description">
+              Deliver digital skills training to small business owners and entrepreneurs in Liberia. Topics
+              include basic website management, social media for business, digital marketing, and foundational
+              productivity tools. No advanced technical background needed — just practical knowledge and
+              a willingness to teach.
+            </p>
+            <div class="role-skills">
+              <span class="role-skill">Digital skills</span>
+              <span class="role-skill">Training delivery</span>
+              <span class="role-skill">Business understanding</span>
+            </div>
+          </div>
+
+          <div class="role-card role-red reveal">
+            <div class="role-header">
+              <div class="role-icon">&#x1F3E5;</div>
+              <div>
+                <div class="role-title">Healthcare Coordinator</div>
+                <div class="role-commitment">2–4 hrs/week &middot; Remote or Local</div>
+              </div>
+            </div>
+            <p class="role-description">
+              Assist with patient referral coordination by helping families understand their options, organize
+              required medical documentation, and navigate the process of accessing care abroad. Healthcare or
+              medical administration background preferred, but compassion and organizational skills are
+              equally important.
+            </p>
+            <div class="role-skills">
+              <span class="role-skill">Healthcare knowledge</span>
+              <span class="role-skill">Documentation</span>
+              <span class="role-skill">Empathy</span>
+            </div>
+          </div>
+
+          <div class="role-card reveal">
+            <div class="role-header">
+              <div class="role-icon">&#x270F;&#xFE0F;</div>
+              <div>
+                <div class="role-title">Content Creator</div>
+                <div class="role-commitment">Flexible &middot; Fully Remote</div>
+              </div>
+            </div>
+            <p class="role-description">
+              Develop educational materials, study guides, blog posts, and social media content that supports
+              our programs and extends our reach. If you can write clearly, explain complex concepts simply,
+              and create content that resonates with a Liberian and African student audience, we want to
+              hear from you.
+            </p>
+            <div class="role-skills">
+              <span class="role-skill">Writing</span>
+              <span class="role-skill">Content strategy</span>
+              <span class="role-skill">Educational design</span>
+            </div>
+          </div>
+
+          <div class="role-card reveal">
+            <div class="role-header">
+              <div class="role-icon">&#x1F4E3;</div>
+              <div>
+                <div class="role-title">Community Outreach</div>
+                <div class="role-commitment">Flexible &middot; Monrovia-based preferred</div>
+              </div>
+            </div>
+            <p class="role-description">
+              Help spread awareness of Tolbert Innovation Hub's programs to schools, community centers, youth
+              groups, and neighborhoods across Liberia. This role is about being a bridge between students and
+              families who need our services and the programs that can help them. Strong communication skills
+              and community connections are your key tools.
+            </p>
+            <div class="role-skills">
+              <span class="role-skill">Community networks</span>
+              <span class="role-skill">Communication</span>
+              <span class="role-skill">Outreach experience</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Apply -->
+    <section class="section section-alt">
+      <div class="container">
+        <p class="section-label">The Process</p>
+        <h2>How to Become a Volunteer</h2>
+        <p class="section-intro">
+          Joining as a volunteer is straightforward. We review every application carefully and respond within
+          five business days.
+        </p>
+        <div class="steps-grid">
+          <div class="step-item reveal">
+            <div class="step-number">1</div>
+            <div class="step-title">Submit Your Application</div>
+            <p class="step-desc">
+              Fill out the volunteer application form below with your background, interests, and availability.
+              Tell us which role excites you most and what you hope to contribute.
+            </p>
+          </div>
+          <div class="step-item reveal">
+            <div class="step-number">2</div>
+            <div class="step-title">Brief Orientation Call</div>
+            <p class="step-desc">
+              Our team will reach out to schedule a short call — usually 20–30 minutes — to discuss your
+              application, answer your questions, and confirm the best role fit for your skills and schedule.
+            </p>
+          </div>
+          <div class="step-item reveal">
+            <div class="step-number">3</div>
+            <div class="step-title">Start Making Impact</div>
+            <p class="step-desc">
+              Once confirmed, you will receive access to our volunteer resources, be connected with your
+              program team, and begin contributing within the week. Welcome to the family.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="section" id="application-form">
+      <div class="container">
+        <p class="section-label">Apply Today</p>
+        <h2>Volunteer Application Form</h2>
+        <p class="section-intro">
+          Complete the form below and our team will be in touch within five business days.
+        </p>
+        <div class="form-card reveal">
+          <h2>Volunteer Application</h2>
+          <p>All fields marked with * are required. Your information is kept confidential and used only to coordinate your volunteer placement.</p>
+          <form id="volunteer-form" onsubmit="handleVolunteerSubmit(event)" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="vol-name">Full Name *</label>
+                <input type="text" id="vol-name" name="full_name" placeholder="Your full name" required autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="vol-email">Email Address *</label>
+                <input type="email" id="vol-email" name="email" placeholder="your@email.com" required autocomplete="email" />
+              </div>
+              <div class="form-group">
+                <label for="vol-phone">Phone / WhatsApp Number *</label>
+                <input type="tel" id="vol-phone" name="phone" placeholder="+231 or your country code" required autocomplete="tel" />
+              </div>
+              <div class="form-group">
+                <label for="vol-role">Role of Interest *</label>
+                <select id="vol-role" name="role" required>
+                  <option value="" disabled selected>Select a volunteer role</option>
+                  <option value="education-mentor">Education Mentor (IELTS/TOEFL)</option>
+                  <option value="scholarship-advisor">Scholarship Advisor</option>
+                  <option value="technology-trainer">Technology Trainer</option>
+                  <option value="healthcare-coordinator">Healthcare Coordinator</option>
+                  <option value="content-creator">Content Creator</option>
+                  <option value="community-outreach">Community Outreach</option>
+                  <option value="other">Other / Open to Discussion</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label for="vol-experience">Relevant Experience *</label>
+                <textarea id="vol-experience" name="experience" rows="4" placeholder="Briefly describe your professional background, relevant skills, and any previous volunteer or teaching experience..." required></textarea>
+              </div>
+              <div class="form-group full">
+                <label for="vol-availability">Availability &amp; Preferred Schedule *</label>
+                <textarea id="vol-availability" name="availability" rows="3" placeholder="How many hours per week can you commit? Are you available weekdays, evenings, or weekends? Remote, in-person, or both?" required></textarea>
+              </div>
+              <div class="form-group full">
+                <label for="vol-motivation">Why Do You Want to Volunteer? (Optional)</label>
+                <textarea id="vol-motivation" name="motivation" rows="3" placeholder="Tell us what motivates you to get involved with Tolbert Innovation Hub..."></textarea>
+              </div>
+            </div>
+            <div class="form-submit-row">
+              <button type="submit" class="btn btn-primary">Submit Application</button>
+              <span class="form-note">We respond within 5 business days.</span>
+            </div>
+            <div id="vol-success">
+              Thank you for applying! Our team will review your application and contact you within five business days.
+              We look forward to welcoming you to the Tolbert Innovation Hub volunteer family.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Volunteer Testimonial -->
+    <section class="section section-alt">
+      <div class="container" style="max-width:780px; margin-left:auto; margin-right:auto;">
+        <p class="section-label">From a Volunteer</p>
+        <h2>What Our Volunteers Say</h2>
+        <div class="volunteer-testimonial reveal">
+          <p class="vol-testimonial-text">
+            "I joined as an Education Mentor expecting to help a few students with IELTS grammar questions.
+            What I found instead was a community of young Liberians who were brilliant, hungry to learn, and just
+            needed someone to believe in them and show them the right path. I have been volunteering for seven
+            months now, and watching three of my mentees achieve their target IELTS scores and progress with
+            their scholarship applications has been one of the most fulfilling experiences of my career.
+            If you have knowledge and a few hours a week, give them here — it will matter more than you know."
+          </p>
+          <div class="vol-testimonial-author">K. Blamo</div>
+          <div class="vol-testimonial-role">Education Mentor Volunteer &mdash; 7 months</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container" style="text-align:center; max-width:640px; margin-left:auto; margin-right:auto;">
+        <p class="section-label">Questions?</p>
+        <h2>Not Sure Which Role Is Right for You?</h2>
+        <p>
+          Reach out via WhatsApp and one of our team members will help you figure out how your skills and
+          availability align with our current volunteer needs. There is no pressure — just a conversation about
+          how we might work together.
+        </p>
+        <div class="hero-actions" style="justify-content:center; margin-top:1.5rem;">
+          <a class="btn btn-primary" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+          <a class="btn btn-secondary" href="mailto:info@tolbertinnovationhub.org">Send an Email</a>
+          <a class="btn btn-outline-blue" href="impact.html">See Our Impact</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">&#x1F4AC;</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">&#x1F4E7;</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">&#x1F4DE;</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="scholarship.html">Scholarship Program</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
+            <li><a href="healthcare.html">Healthcare Exposure</a></li>
+            <li><a href="software.html">Software Innovation</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="classroom-ielts.html">IELTS Preparation</a></li>
+            <li><a href="classroom-toefl.html">TOEFL Preparation</a></li>
+            <li><a href="classroom-resource-center.html">Resource Center</a></li>
+            <li><a href="portal-login.html">Student Portal</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4E7;</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4DE;</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4AC;</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">WhatsApp Chat</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">&copy; 2026 Tolbert Innovation Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+  </a>
+  <script src="main.js"></script>
+  <script>
+    function handleVolunteerSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('volunteer-form');
+      const success = document.getElementById('vol-success');
+      // Show success message and reset form
+      success.style.display = 'block';
+      form.querySelectorAll('input, select, textarea').forEach(el => { el.value = ''; });
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  </script>
+</body>
+</html>

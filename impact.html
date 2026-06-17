@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impact Report | Tolbert Innovation Hub</title>
+  <meta name="description" content="See the measurable impact of Tolbert Innovation Hub programs on students, communities, healthcare access, and technology innovation in Liberia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .stat-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,40,104,0.10);
+      border-top: 4px solid #002868;
+    }
+    .stat-card .stat-number {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #002868;
+      line-height: 1.1;
+    }
+    .stat-card .stat-label {
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 0.4rem;
+      font-weight: 500;
+    }
+    .stat-card.stat-red { border-top-color: #BF0A30; }
+    .stat-card.stat-red .stat-number { color: #BF0A30; }
+    .impact-program-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .impact-story { background: #f8f9fc; border-left: 4px solid #002868; padding: 1.5rem 1.75rem; border-radius: 0 10px 10px 0; margin-bottom: 1.5rem; }
+    .impact-story p { margin: 0; color: #334; line-height: 1.75; }
+    .impact-story .story-area { font-weight: 700; color: #002868; margin-bottom: 0.4rem; font-size: 1.05rem; }
+    .classroom-stat-row { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .classroom-stat-item { flex: 1; min-width: 160px; background: #002868; color: #fff; border-radius: 10px; padding: 1.5rem 1.25rem; text-align: center; }
+    .classroom-stat-item .c-num { font-size: 2.2rem; font-weight: 800; font-family: 'Poppins', sans-serif; }
+    .classroom-stat-item .c-lbl { font-size: 0.88rem; opacity: 0.88; margin-top: 0.25rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="scholarship.html">Scholarship</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="scholarship.html#application-form" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Our Impact</p>
+        <h1>Transforming Lives Across Liberia and Africa</h1>
+        <p class="lead">
+          Every scholarship guided, every classroom session attended, every patient referred for care — these are not just
+          statistics. They are real lives changed. Tolbert Innovation Hub is proud to share the measurable impact of our
+          programs across education, healthcare, technology, and community development in Liberia and beyond.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="scholarship.html#application-form">Join Our Programs</a>
+          <a class="btn btn-secondary" href="contact.html">Partner With Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Stats -->
+    <section class="section section-alt">
+      <div class="container">
+        <p class="section-label">By the Numbers</p>
+        <h2>Our Impact at a Glance</h2>
+        <p class="section-intro">
+          Since launching, Tolbert Innovation Hub has delivered results that speak for themselves — in classrooms,
+          hospitals, boardrooms, and communities across Liberia.
+        </p>
+        <div class="stats-grid">
+          <div class="stat-card reveal">
+            <div class="stat-number" data-target="500" data-suffix="+">0</div>
+            <div class="stat-label">Students Supported</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-number" data-target="3">0</div>
+            <div class="stat-label">Core Programs</div>
+          </div>
+          <div class="stat-card stat-red reveal">
+            <div class="stat-number" data-target="12" data-suffix="+">0</div>
+            <div class="stat-label">Countries Reached</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-number" data-target="100" data-suffix="%">0</div>
+            <div class="stat-label">Free Classroom Access</div>
+          </div>
+          <div class="stat-card stat-red reveal">
+            <div class="stat-number" data-target="50" data-suffix="+">0</div>
+            <div class="stat-label">Healthcare Referrals</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-number" data-target="30" data-suffix="+">0</div>
+            <div class="stat-label">Businesses Supported</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Program Impact Cards -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">Program by Program</p>
+        <h2>The Impact of Each Initiative</h2>
+        <p class="section-intro">
+          Each of our core programs has created targeted, life-changing outcomes for the people they serve.
+        </p>
+        <div class="impact-program-cards">
+          <article class="card card-accent reveal">
+            <p class="eyebrow" style="color:#002868;">Scholarship Program</p>
+            <h3>Opening Doors to International Education</h3>
+            <p>
+              Our Scholarship Program has guided hundreds of Liberian students through the complex process of identifying,
+              applying for, and securing scholarships at universities across Asia, Europe, and North America.
+            </p>
+            <ul class="list-tight">
+              <li>300+ scholarship applications supported</li>
+              <li>Students placed in universities across 12+ countries</li>
+              <li>ICCR, Erasmus, and bilateral scholarship pathway guidance</li>
+              <li>Admission letter issuance and document verification</li>
+            </ul>
+            <a class="card-link" href="scholarship.html">Learn More About the Scholarship Program &rarr;</a>
+          </article>
+
+          <article class="card card-accent reveal">
+            <p class="eyebrow" style="color:#BF0A30;">Healthcare Program</p>
+            <h3>Connecting Families to Quality Medical Care</h3>
+            <p>
+              For families facing complex medical conditions that cannot be treated locally, our Healthcare Exposure
+              Program provides structured coordination of care pathways to facilities abroad.
+            </p>
+            <ul class="list-tight">
+              <li>50+ patient referrals coordinated</li>
+              <li>Medical documentation and visa guidance provided</li>
+              <li>Partnerships with facilities in India, Ghana, and beyond</li>
+              <li>Follow-up support throughout treatment journeys</li>
+            </ul>
+            <a class="card-link" href="healthcare.html">Learn More About Healthcare Program &rarr;</a>
+          </article>
+
+          <article class="card card-accent reveal">
+            <p class="eyebrow" style="color:#002868;">Software & Technology Program</p>
+            <h3>Powering Liberia's Digital Economy</h3>
+            <p>
+              From custom web applications to digital marketing strategies and operational automation, our Software
+              Innovation Program is helping Liberian businesses grow and compete in the digital age.
+            </p>
+            <ul class="list-tight">
+              <li>30+ businesses given technology consultations</li>
+              <li>Custom websites and software tools developed</li>
+              <li>Digital literacy training sessions delivered</li>
+              <li>Startup mentorship and product strategy guidance</li>
+            </ul>
+            <a class="card-link" href="software.html">Learn More About Software Program &rarr;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Classroom Impact -->
+    <section class="section section-alt">
+      <div class="container">
+        <p class="section-label">Free Classroom</p>
+        <h2>IELTS &amp; TOEFL Classroom Impact</h2>
+        <p class="section-intro">
+          Our free online classroom removes financial barriers from exam preparation, giving every Liberian student access
+          to world-class IELTS and TOEFL study resources at zero cost.
+        </p>
+        <div class="classroom-stat-row">
+          <div class="classroom-stat-item reveal">
+            <div class="c-num">6</div>
+            <div class="c-lbl">IELTS Learning Modules</div>
+          </div>
+          <div class="classroom-stat-item reveal">
+            <div class="c-num">6</div>
+            <div class="c-lbl">TOEFL Learning Modules</div>
+          </div>
+          <div class="classroom-stat-item reveal">
+            <div class="c-num">100%</div>
+            <div class="c-lbl">Free for All Students</div>
+          </div>
+          <div class="classroom-stat-item reveal">
+            <div class="c-num">4</div>
+            <div class="c-lbl">Skill Areas Covered</div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <p>
+            The classroom covers all four key exam skill areas — Reading, Writing, Listening, and Speaking — with
+            structured modules, practice tests, video lessons, and certificate request pathways for students who
+            complete their programs.
+          </p>
+          <a class="btn btn-primary" href="classroom.html" style="margin-top:1rem; display:inline-block;">Access Free Classroom</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Stories -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">Community Impact</p>
+        <h2>The Human Stories Behind Our Numbers</h2>
+        <p class="section-intro">
+          Data tells part of the story. The full story lives in the experiences of the people we serve.
+        </p>
+
+        <div class="impact-story reveal">
+          <p class="story-area">Education &amp; Scholarships</p>
+          <p>
+            Before Tolbert Innovation Hub, many Liberian students with academic potential had no clear path to international
+            education. They faced a maze of application requirements, document submissions, and language proficiency tests
+            with no structured support. Our Scholarship Program has created a clear, step-by-step pathway — from eligibility
+            assessment through to admission letter processing — that has helped hundreds of students turn their international
+            education dreams into concrete plans with real deadlines and achievable milestones.
+          </p>
+        </div>
+
+        <div class="impact-story reveal">
+          <p class="story-area">Healthcare &amp; Medical Access</p>
+          <p>
+            Liberia's healthcare system, while improving, still faces challenges in treating complex or specialized medical
+            conditions. For families who discover a loved one needs a procedure or specialist care unavailable locally, the
+            path to international treatment can feel impossible. Our Healthcare Exposure Program has stepped into that gap —
+            coordinating referrals, helping families understand their options, and providing structured guidance through
+            visa, travel, and medical documentation processes so that geography no longer determines medical outcomes.
+          </p>
+        </div>
+
+        <div class="impact-story reveal">
+          <p class="story-area">Technology &amp; Business Innovation</p>
+          <p>
+            Liberia's entrepreneurs and small business owners are energetic, creative, and ambitious — but many lack access
+            to the digital tools and technical expertise that businesses in larger economies take for granted. Our Software
+            Innovation Program bridges this gap by providing affordable technology consultations, custom digital solutions,
+            and practical training that help businesses establish a credible online presence, streamline operations, and
+            reach new customers. Each business supported creates jobs, generates income, and demonstrates what is possible
+            when Liberian enterprise meets modern technology.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section-alt">
+      <div class="container" style="text-align:center; max-width:680px; margin-left:auto; margin-right:auto;">
+        <p class="section-label">Be Part of the Impact</p>
+        <h2>Apply, Partner, or Volunteer</h2>
+        <p>
+          Whether you are a student seeking a scholarship, a business looking for technology support, a healthcare
+          professional who wants to partner, or an individual who wants to give back — there is a place for you at
+          Tolbert Innovation Hub.
+        </p>
+        <div class="hero-actions" style="justify-content:center; margin-top:1.5rem;">
+          <a class="btn btn-primary" href="scholarship.html#application-form">Apply for Scholarship</a>
+          <a class="btn btn-secondary" href="volunteer.html">Volunteer With Us</a>
+          <a class="btn btn-outline-blue" href="contact.html">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">&#x1F4AC;</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">&#x1F4E7;</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">&#x1F4DE;</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="scholarship.html">Scholarship Program</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
+            <li><a href="healthcare.html">Healthcare Exposure</a></li>
+            <li><a href="software.html">Software Innovation</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="classroom-ielts.html">IELTS Preparation</a></li>
+            <li><a href="classroom-toefl.html">TOEFL Preparation</a></li>
+            <li><a href="classroom-resource-center.html">Resource Center</a></li>
+            <li><a href="portal-login.html">Student Portal</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4E7;</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4DE;</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4AC;</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">WhatsApp Chat</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">&copy; 2026 Tolbert Innovation Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+  </a>
+  <script src="main.js"></script>
+  <script>
+    // Animated counters
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stat-number[data-target]');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'), 10);
+        const suffix = counter.getAttribute('data-suffix') || '';
+        const duration = 1800;
+        const stepTime = 20;
+        const steps = duration / stepTime;
+        const increment = target / steps;
+        let current = 0;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          counter.textContent = Math.floor(current) + suffix;
+        }, stepTime);
+      });
+    }
+    const statsSection = document.querySelector('.stats-grid');
+    if (statsSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounters();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(statsSection);
+    }
+  </script>
+</body>
+</html>

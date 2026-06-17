@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Success Stories | Tolbert Innovation Hub</title>
+  <meta name="description" content="Read inspiring success stories from scholarship beneficiaries, IELTS students, healthcare patients, and entrepreneurs supported by Tolbert Innovation Hub." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    .featured-story {
+      background: linear-gradient(135deg, #002868 0%, #00408a 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 3rem;
+      margin-top: 2rem;
+    }
+    .featured-story .featured-badge {
+      display: inline-block;
+      background: #BF0A30;
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .featured-story h2 { color: #fff; margin-bottom: 0.75rem; }
+    .featured-story p { opacity: 0.92; line-height: 1.8; margin-bottom: 1rem; }
+    .featured-story .outcome-box {
+      background: rgba(255,255,255,0.13);
+      border-left: 4px solid #BF0A30;
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin-top: 1.5rem;
+    }
+    .featured-story .outcome-box strong { color: #fff; }
+    .stories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .story-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.75rem;
+      box-shadow: 0 2px 14px rgba(0,40,104,0.09);
+      border-top: 4px solid #002868;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .story-card.story-red { border-top-color: #BF0A30; }
+    .story-card-top { display: flex; align-items: center; gap: 1rem; }
+    .story-avatar {
+      width: 52px; height: 52px;
+      background: #002868;
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 800;
+      font-family: 'Poppins', sans-serif;
+      flex-shrink: 0;
+    }
+    .story-avatar.avatar-red { background: #BF0A30; }
+    .story-name { font-weight: 700; font-size: 1rem; color: #111; }
+    .story-badge {
+      display: inline-block;
+      background: #eef2ff;
+      color: #002868;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.7rem;
+      border-radius: 12px;
+      margin-top: 0.2rem;
+    }
+    .story-badge.badge-red { background: #fff0f3; color: #BF0A30; }
+    .story-text { color: #444; line-height: 1.7; font-size: 0.95rem; flex: 1; }
+    .story-outcome {
+      background: #f4f7ff;
+      border-left: 3px solid #002868;
+      padding: 0.6rem 1rem;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #002868;
+    }
+    .story-outcome.outcome-red { border-left-color: #BF0A30; color: #BF0A30; background: #fff5f7; }
+    .testimonials-section { background: #f8f9fc; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .testimonial-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,40,104,0.08);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      font-size: 4rem;
+      color: #002868;
+      opacity: 0.15;
+      position: absolute;
+      top: 0.5rem; left: 1rem;
+      font-family: serif;
+      line-height: 1;
+    }
+    .testimonial-text { font-style: italic; color: #444; line-height: 1.75; margin-bottom: 1rem; }
+    .testimonial-author { font-weight: 700; color: #002868; }
+    .testimonial-role { font-size: 0.85rem; color: #777; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="scholarship.html">Scholarship</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="scholarship.html#application-form" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Success Stories</p>
+        <h1>Lives Transformed, Futures Built</h1>
+        <p class="lead">
+          Behind every program we run is a real person whose life has been changed. These are some of the stories we are
+          most proud to share — students who earned scholarships, families who got the medical care they needed, and
+          businesses that found their digital footing. Every story begins with a single step toward Tolbert Innovation Hub.
+        </p>
+      </div>
+    </section>
+
+    <!-- Featured Story -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">Featured Story</p>
+        <h2>A Journey That Inspires</h2>
+        <div class="featured-story reveal">
+          <span class="featured-badge">Scholarship Success</span>
+          <h2>Moses S. &mdash; From Monrovia to International Studies</h2>
+          <p>
+            Moses grew up in Monrovia, the son of a market trader and a schoolteacher. He was a strong student but
+            had no roadmap for how to pursue higher education beyond Liberia's borders. When he first heard about the
+            ICCR Scholarship for Indian universities, he thought it was out of reach — too many forms, too many
+            requirements, and no one in his community who had done it before.
+          </p>
+          <p>
+            He found Tolbert Innovation Hub through a friend's recommendation and came in for an eligibility assessment.
+            Our team walked him through every requirement of the ICCR application: the documents he needed, the statement
+            of purpose format, the academic transcript certification, and the language proficiency pathway. We helped him
+            register for IELTS preparation through our free classroom — and he accessed every module, completed all
+            practice tests, and logged more than 40 hours of study time on the platform.
+          </p>
+          <p>
+            When his IELTS score came back, Moses had cleared the threshold. We guided him through the final stages of
+            his ICCR application, helped him prepare his admission letter request, and supported him through the visa
+            documentation process. Eight months after walking through our doors for the first time, Moses departed
+            Monrovia for New Delhi to begin his undergraduate studies in Computer Science.
+          </p>
+          <div class="outcome-box">
+            <strong>Outcome:</strong> Moses is now in his second year of a Bachelor of Technology program in India,
+            maintaining a GPA above 3.5 and mentoring other Liberian students remotely through our classroom platform.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stories Grid -->
+    <section class="section section-alt">
+      <div class="container">
+        <p class="section-label">More Stories</p>
+        <h2>Success Across Every Program</h2>
+        <p class="section-intro">
+          From exam preparation to healthcare coordination to business transformation — here are more of the people
+          whose lives have been changed by Tolbert Innovation Hub programs.
+        </p>
+        <div class="stories-grid">
+
+          <div class="story-card reveal">
+            <div class="story-card-top">
+              <div class="story-avatar">AS</div>
+              <div>
+                <div class="story-name">Abigail S.</div>
+                <span class="story-badge">Scholarship Program</span>
+              </div>
+            </div>
+            <p class="story-text">
+              Abigail had a first-class performance in her secondary school exams but lacked guidance on applying for
+              international university scholarships. Through our scholarship program, she received structured support
+              with her Erasmus+ application, including essay guidance, document preparation, and deadline management.
+              She received an offer from a university in Germany and is now studying Public Health.
+            </p>
+            <div class="story-outcome">Outcome: Enrolled at a German university on Erasmus+ scholarship</div>
+          </div>
+
+          <div class="story-card story-red reveal">
+            <div class="story-avatar avatar-red">JK</div>
+            <div>
+              <div class="story-name">James K.</div>
+              <span class="story-badge badge-red">IELTS Preparation</span>
+            </div>
+            <p class="story-text">
+              James attempted the IELTS twice on his own, scoring 5.0 both times — below the 6.5 band required
+              by his target university. He joined our free classroom and worked through all six IELTS modules,
+              focusing especially on the Writing and Speaking sections. After three months of structured practice,
+              he took the IELTS a third time and achieved an overall band of 6.5.
+            </p>
+            <div class="story-outcome outcome-red">Outcome: Achieved 6.5 IELTS band after completing free classroom modules</div>
+          </div>
+
+          <div class="story-card story-red reveal">
+            <div class="story-card-top">
+              <div class="story-avatar avatar-red">FT</div>
+              <div>
+                <div class="story-name">Fatima T. &amp; Family</div>
+                <span class="story-badge badge-red">Healthcare Program</span>
+              </div>
+            </div>
+            <p class="story-text">
+              When Fatima's mother was diagnosed with a condition requiring specialist cardiac care not available in
+              Liberia, the family felt lost. Our Healthcare Exposure team helped them identify appropriate facilities
+              in India, coordinated with their local physician for a referral letter, assisted with medical visa
+              documentation, and provided logistical guidance. Fatima's mother received her treatment and returned home.
+            </p>
+            <div class="story-outcome outcome-red">Outcome: Successful specialist cardiac treatment secured abroad</div>
+          </div>
+
+          <div class="story-card reveal">
+            <div class="story-card-top">
+              <div class="story-avatar">EC</div>
+              <div>
+                <div class="story-name">Emmanuel C.</div>
+                <span class="story-badge">Software Program</span>
+              </div>
+            </div>
+            <p class="story-text">
+              Emmanuel had run a successful tailoring business in Monrovia for eight years entirely by word of mouth,
+              but he knew a digital presence could unlock new markets. Through a consultation with our Software
+              Innovation team, he got a professional website, a WhatsApp Business integration, and a simple
+              inventory tracking system. Within six months, his orders had doubled and he hired two additional staff.
+            </p>
+            <div class="story-outcome">Outcome: Business revenue doubled after digital transformation consultation</div>
+          </div>
+
+          <div class="story-card story-red reveal">
+            <div class="story-card-top">
+              <div class="story-avatar avatar-red">PB</div>
+              <div>
+                <div class="story-name">Princess B.</div>
+                <span class="story-badge badge-red">TOEFL Preparation</span>
+              </div>
+            </div>
+            <p class="story-text">
+              Princess needed a TOEFL score of at least 80 to apply to a US university's online MBA program.
+              She used our free TOEFL classroom, completing all six modules and the full mock exam series.
+              She particularly credited the Reading and Integrated Writing modules for her improvement.
+              Her final exam score was 87 — well above her target.
+            </p>
+            <div class="story-outcome outcome-red">Outcome: Scored 87 on TOEFL, exceeded target score for MBA application</div>
+          </div>
+
+          <div class="story-card reveal">
+            <div class="story-card-top">
+              <div class="story-avatar">DW</div>
+              <div>
+                <div class="story-name">David W.</div>
+                <span class="story-badge">Community &amp; Mentorship</span>
+              </div>
+            </div>
+            <p class="story-text">
+              David was a recent university graduate with an idea for a community agriculture data platform but no
+              technical background. He attended one of our technology consultation open days and was matched with a
+              volunteer mentor from our network. Over four months of guidance, he built the prototype, pitched it
+              to a rural development NGO, and secured a pilot project contract worth $8,000.
+            </p>
+            <div class="story-outcome">Outcome: Secured $8,000 NGO pilot contract after mentorship program</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials-section">
+      <div class="container">
+        <p class="section-label">In Their Words</p>
+        <h2>What Our Community Says</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card reveal">
+            <p class="testimonial-text">
+              "Tolbert Innovation Hub did not just help me apply for a scholarship — they believed in me when I
+              was not sure I believed in myself. Every step of the way, there was someone to guide me and answer
+              my questions. I would not be studying abroad today without them."
+            </p>
+            <div class="testimonial-author">A. Kollie</div>
+            <div class="testimonial-role">Scholarship beneficiary, now studying in India</div>
+          </div>
+          <div class="testimonial-card reveal">
+            <p class="testimonial-text">
+              "The free classroom is genuinely one of the best resources I have ever used for IELTS preparation.
+              The modules are clear, the practice tests are realistic, and the fact that it costs nothing made it
+              possible for me to study without worrying about money. I passed my exam because of this platform."
+            </p>
+            <div class="testimonial-author">M. Freeman</div>
+            <div class="testimonial-role">IELTS student, classroom graduate</div>
+          </div>
+          <div class="testimonial-card reveal">
+            <p class="testimonial-text">
+              "Our family was desperate when we could not find treatment options locally. The Healthcare team at
+              Tolbert Innovation Hub treated us with such care and dignity. They helped us understand every step,
+              never made us feel like a burden, and made something that seemed impossible feel manageable."
+            </p>
+            <div class="testimonial-author">R. Sumo</div>
+            <div class="testimonial-role">Healthcare program beneficiary, Monrovia</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container" style="text-align:center; max-width:680px; margin-left:auto; margin-right:auto;">
+        <p class="section-label">Your Story Starts Here</p>
+        <h2>Ready to Write Your Own Success Story?</h2>
+        <p>
+          Every story on this page started with someone deciding to take the first step. Whether you want to apply
+          for a scholarship, prepare for IELTS or TOEFL, access healthcare support, or grow your business — our
+          team is ready to guide you.
+        </p>
+        <div class="hero-actions" style="justify-content:center; margin-top:1.5rem;">
+          <a class="btn btn-primary" href="scholarship.html#application-form">Apply for Scholarship</a>
+          <a class="btn btn-secondary" href="classroom.html">Enter Free Classroom</a>
+          <a class="btn btn-outline-blue" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">&#x1F4AC;</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">&#x1F4E7;</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">&#x1F4DE;</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="scholarship.html">Scholarship Program</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
+            <li><a href="healthcare.html">Healthcare Exposure</a></li>
+            <li><a href="software.html">Software Innovation</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="classroom-ielts.html">IELTS Preparation</a></li>
+            <li><a href="classroom-toefl.html">TOEFL Preparation</a></li>
+            <li><a href="classroom-resource-center.html">Resource Center</a></li>
+            <li><a href="portal-login.html">Student Portal</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4E7;</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4DE;</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4AC;</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">WhatsApp Chat</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">&copy; 2026 Tolbert Innovation Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+  </a>
+  <script src="main.js"></script>
+</body>
+</html>
