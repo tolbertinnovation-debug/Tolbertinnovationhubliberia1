@@ -14,6 +14,170 @@
   <link rel="stylesheet" href="styles.css" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    .featured-article {
+      background: linear-gradient(135deg, #002868 0%, #00408a 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 2.75rem 3rem;
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .featured-article { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
+    }
+    .featured-article .fa-badge {
+      display: inline-block;
+      background: #BF0A30;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .featured-article h2 { color: #fff; margin-bottom: 0.75rem; font-size: clamp(1.4rem,2.5vw,2rem); }
+    .featured-article p { opacity: 0.9; line-height: 1.8; margin-bottom: 1rem; }
+    .featured-article .fa-meta { font-size: 0.85rem; opacity: 0.7; margin-bottom: 0.5rem; }
+    .featured-article img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      aspect-ratio: 16/10;
+    }
+    .news-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 2rem 0 0.5rem;
+    }
+    .filter-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid #002868;
+      color: #002868;
+      background: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .filter-pill:hover, .filter-pill.active {
+      background: #002868;
+      color: #fff;
+    }
+    .filter-pill.red { border-color: #BF0A30; color: #BF0A30; }
+    .filter-pill.red:hover { background: #BF0A30; color: #fff; }
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.75rem;
+      margin-top: 1.5rem;
+    }
+    .news-card-v2 {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,40,104,0.08);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .news-card-v2:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,40,104,0.14); }
+    .news-card-v2 img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    .news-card-v2-body {
+      padding: 1.4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 0.5rem;
+    }
+    .news-card-v2-meta { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+    .news-cat-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      background: #e8f0fb;
+      color: #002868;
+    }
+    .news-cat-tag.red { background: #fde8ec; color: #BF0A30; }
+    .news-cat-tag.green { background: #e6f7f0; color: #0b7444; }
+    .news-date { font-size: 0.8rem; color: #888; }
+    .news-card-v2-body h3 { margin: 0; font-size: 1.05rem; line-height: 1.4; color: #1a2b4a; }
+    .news-card-v2-body p { margin: 0; font-size: 0.9rem; color: #555; line-height: 1.65; flex: 1; }
+    .news-card-v2-body a.read-more {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #002868;
+      text-decoration: none;
+      margin-top: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.2s;
+    }
+    .news-card-v2-body a.read-more:hover { color: #BF0A30; }
+    .newsletter-band {
+      background: linear-gradient(135deg, #BF0A30 0%, #8a0020 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 2.75rem 3rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .newsletter-band h2 { color: #fff; margin-bottom: 0.75rem; }
+    .newsletter-band p { opacity: 0.92; max-width: 55ch; margin: 0 auto 1.75rem; line-height: 1.8; }
+    .newsletter-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 480px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      min-width: 220px;
+      padding: 0.75rem 1.1rem;
+      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .newsletter-form input[type="email"]::placeholder { color: rgba(255,255,255,0.65); }
+    .newsletter-form input[type="email"]:focus { border-color: #fff; background: rgba(255,255,255,0.2); }
+    .newsletter-form button {
+      padding: 0.75rem 1.5rem;
+      background: #fff;
+      color: #BF0A30;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .newsletter-form button:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+    .newsletter-feedback { font-size: 0.85rem; opacity: 0.85; margin-top: 0.75rem; min-height: 1.2em; }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -37,71 +201,204 @@
   </header>
 
   <main id="main-content">
+
     <section class="hero">
       <div class="container">
-        <p class="eyebrow">Latest News</p>
-        <h1>Tolbert Innovation Hub News & Updates</h1>
-        <p class="lead">Follow official updates, announcements, and program milestones across scholarships, study pathways, healthcare, and technology innovation.</p>
+        <p class="eyebrow">Official Newsroom</p>
+        <h1>Tolbert Innovation Hub News &amp; Updates</h1>
+        <p class="lead">Stay informed on scholarship opportunities, exam preparation milestones, healthcare referral expansions, and technology initiatives from Tolbert Innovation Hub.</p>
       </div>
     </section>
 
+    <!-- Featured Article -->
     <section class="section">
       <div class="container">
-        <p class="section-label">News Categories</p>
-        <h2>Browse by Topic</h2>
-        <div class="cards three-up">
-          <article class="card"><p class="news-category">Scholarships</p><p>Application windows, admissions guidance, and funding announcements.</p></article>
-          <article class="card"><p class="news-category">Study Abroad</p><p>IELTS/TOEFL preparation updates and international pathway notices.</p></article>
-          <article class="card"><p class="news-category">Technology Programs</p><p>Digital solutions, software initiatives, and business support announcements.</p></article>
-          <article class="card"><p class="news-category">Healthcare Programs</p><p>Medical referral opportunities and treatment coordination updates.</p></article>
-          <article class="card"><p class="news-category">Announcements</p><p>Institution-wide updates and new services from Tolbert Innovation Hub.</p></article>
+        <p class="section-label">Featured Story</p>
+        <div class="featured-article reveal">
+          <div>
+            <span class="fa-badge">Featured</span>
+            <p class="fa-meta">March 8, 2026 · Scholarships</p>
+            <h2>2026 Scholarship Intake Opens for Qualified Liberian Applicants</h2>
+            <p>Tolbert Innovation Hub has officially opened scholarship applications for 2026. Qualified students can now apply for placement support at 17 partner universities across India, Cyprus, and beyond — with full guidance on documentation, visa processing, and pre-departure orientation.</p>
+            <a href="news-scholarship-2026.html" class="btn" style="background:#BF0A30;color:#fff;margin-top:0.5rem;">Read Full Story →</a>
+          </div>
+          <img src="https://i.ibb.co/JW664n2y/Chat-GPT-Image-Mar-8-2026-12-00-34-PM.png" alt="Students celebrating scholarship opportunities" loading="lazy" />
         </div>
       </div>
     </section>
 
+    <!-- Categories -->
+    <section class="section" style="padding-bottom:0;">
+      <div class="container">
+        <p class="section-label">Browse Topics</p>
+        <h2>News Categories</h2>
+        <div class="news-filter-bar">
+          <span class="filter-pill active">All Updates</span>
+          <a class="filter-pill" href="#">Scholarships</a>
+          <a class="filter-pill" href="#">Study Abroad</a>
+          <a class="filter-pill red" href="#">Healthcare</a>
+          <a class="filter-pill red" href="#">Technology</a>
+          <a class="filter-pill" href="#">Announcements</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Grid -->
     <section class="section section-alt">
       <div class="container">
         <p class="section-label">Recent Posts</p>
-        <h2>News Articles</h2>
-        <div class="cards">
-          <article class="card news-card">
-            <img class="news-card-image" src="https://i.ibb.co/JW664n2y/Chat-GPT-Image-Mar-8-2026-12-00-34-PM.png" alt="Students celebrating scholarship opportunities" loading="lazy" />
-            <p class="news-meta">March 8, 2026</p>
-            <p class="news-category">Scholarships</p>
-            <h3>2026 Scholarship Intake Opens for Qualified Applicants</h3>
-            <p>Applications are now open with updated document requirements, guidance sessions, and admission support timelines.</p>
-            <a class="card-link" href="news-scholarship-2026.html">Read More →</a>
+        <h2>All News Articles</h2>
+        <div class="news-grid">
+
+          <article class="news-card-v2 reveal">
+            <img src="https://i.ibb.co/JW664n2y/Chat-GPT-Image-Mar-8-2026-12-00-34-PM.png" alt="2026 Scholarship intake opens" loading="lazy" />
+            <div class="news-card-v2-body">
+              <div class="news-card-v2-meta">
+                <span class="news-cat-tag">Scholarships</span>
+                <span class="news-date">March 8, 2026</span>
+              </div>
+              <h3>2026 Scholarship Intake Opens for Qualified Applicants</h3>
+              <p>Applications are now open with updated document requirements, guidance sessions, and admission support timelines for 17 partner universities.</p>
+              <a class="read-more" href="news-scholarship-2026.html">Read More →</a>
+            </div>
           </article>
 
-          <article class="card news-card">
-            <img class="news-card-image" src="https://i.ibb.co/5W4FhDnH/Chat-GPT-Image-Mar-8-2026-08-38-03-PM-1.png" alt="IELTS classroom completion and certificate announcement" loading="lazy" />
-            <p class="news-meta">March 8, 2026</p>
-            <p class="news-category">Announcements</p>
-            <h3>IELTS Mock Exam Certificate Request System Launched</h3>
-            <p>Students who complete IELTS mock exams can now request certificate processing through the new dedicated certificate workflow.</p>
-            <a class="card-link" href="news-ielts-certificate-system.html">Read More →</a>
+          <article class="news-card-v2 reveal">
+            <img src="https://i.ibb.co/5W4FhDnH/Chat-GPT-Image-Mar-8-2026-08-38-03-PM-1.png" alt="IELTS certificate system launch" loading="lazy" />
+            <div class="news-card-v2-body">
+              <div class="news-card-v2-meta">
+                <span class="news-cat-tag">Announcements</span>
+                <span class="news-date">March 8, 2026</span>
+              </div>
+              <h3>IELTS Mock Exam Certificate Request System Launched</h3>
+              <p>Students who complete IELTS mock exams can now formally request completion certificates through the new dedicated certificate workflow.</p>
+              <a class="read-more" href="news-ielts-certificate-system.html">Read More →</a>
+            </div>
           </article>
 
-          <article class="card news-card">
-            <img class="news-card-image" src="https://i.ibb.co/PZtxGS1X/Chat-GPT-Image-Mar-8-2026-01-03-34-PM.png" alt="Healthcare support and treatment coordination update" loading="lazy" />
-            <p class="news-meta">March 8, 2026</p>
-            <p class="news-category">Healthcare Programs</p>
-            <h3>Healthcare Referral Program Expansion Update</h3>
-            <p>Tolbert Innovation Hub has expanded healthcare referral support pathways for families seeking treatment coordination in India.</p>
-            <a class="card-link" href="news-healthcare-referral-expansion.html">Read More →</a>
+          <article class="news-card-v2 reveal">
+            <img src="https://i.ibb.co/PZtxGS1X/Chat-GPT-Image-Mar-8-2026-01-03-34-PM.png" alt="Healthcare referral program expansion" loading="lazy" />
+            <div class="news-card-v2-body">
+              <div class="news-card-v2-meta">
+                <span class="news-cat-tag red">Healthcare</span>
+                <span class="news-date">March 8, 2026</span>
+              </div>
+              <h3>Healthcare Referral Program Expansion Update</h3>
+              <p>Tolbert Innovation Hub has expanded healthcare referral pathways for families seeking treatment coordination to hospitals in India and beyond.</p>
+              <a class="read-more" href="news-healthcare-referral-expansion.html">Read More →</a>
+            </div>
           </article>
 
-          <article class="card news-card">
-            <img class="news-card-image" src="https://i.ibb.co/wFnGC1NQ/Chat-GPT-Image-Mar-8-2026-12-25-09-PM.png" alt="Technology innovation and software support update" loading="lazy" />
-            <p class="news-meta">March 8, 2026</p>
-            <p class="news-category">Technology Programs</p>
-            <h3>Technology Innovation Support for Liberian Businesses</h3>
-            <p>New technology consultation support helps businesses modernize operations with websites, platforms, and digital process tools.</p>
-            <a class="card-link" href="news-technology-support-2026.html">Read More →</a>
+          <article class="news-card-v2 reveal">
+            <img src="https://i.ibb.co/wFnGC1NQ/Chat-GPT-Image-Mar-8-2026-12-25-09-PM.png" alt="Technology innovation support for businesses" loading="lazy" />
+            <div class="news-card-v2-body">
+              <div class="news-card-v2-meta">
+                <span class="news-cat-tag red">Technology</span>
+                <span class="news-date">March 8, 2026</span>
+              </div>
+              <h3>Technology Innovation Support for Liberian Businesses</h3>
+              <p>New consultation support helps businesses modernize operations with custom websites, platforms, and digital process automation tools.</p>
+              <a class="read-more" href="news-technology-support-2026.html">Read More →</a>
+            </div>
+          </article>
+
+          <article class="news-card-v2 reveal">
+            <img src="https://i.ibb.co/JW664n2y/Chat-GPT-Image-Mar-8-2026-12-00-34-PM.png" alt="Study Abroad Portal launch" loading="lazy" />
+            <div class="news-card-v2-body">
+              <div class="news-card-v2-meta">
+                <span class="news-cat-tag">Study Abroad</span>
+                <span class="news-date">June 2026</span>
+              </div>
+              <h3>New Study Abroad Portal Launched with 17 University Directory</h3>
+              <p>Tolbert Innovation Hub has launched a comprehensive Study Abroad Portal featuring a full directory of 17 partner universities, an eligibility checker, and a counseling booking system.</p>
+              <a class="read-more" href="study-abroad.html">Explore Portal →</a>
+            </div>
+          </article>
+
+          <article class="news-card-v2 reveal">
+            <img src="https://i.ibb.co/5W4FhDnH/Chat-GPT-Image-Mar-8-2026-08-38-03-PM-1.png" alt="ICCR Scholarship 2026-2027" loading="lazy" />
+            <div class="news-card-v2-body">
+              <div class="news-card-v2-meta">
+                <span class="news-cat-tag">Scholarships</span>
+                <span class="news-date">April 2026</span>
+              </div>
+              <h3>ICCR Fully Funded Scholarship Applications Open for 2026–2027</h3>
+              <p>The Indian Council for Cultural Relations (ICCR) fully funded scholarship is now accepting applications for the 2026–2027 academic year. Deadline: April 21, 2026.</p>
+              <a class="read-more" href="fully-funded-scholarship.html">Apply Now →</a>
+            </div>
+          </article>
+
+          <article class="news-card-v2 reveal">
+            <img src="https://i.ibb.co/PZtxGS1X/Chat-GPT-Image-Mar-8-2026-01-03-34-PM.png" alt="Free TOEFL classroom added" loading="lazy" />
+            <div class="news-card-v2-body">
+              <div class="news-card-v2-meta">
+                <span class="news-cat-tag green">Classroom</span>
+                <span class="news-date">February 2026</span>
+              </div>
+              <h3>Free TOEFL Classroom Added Alongside IELTS Preparation Track</h3>
+              <p>Following strong demand from students targeting North American universities, a dedicated TOEFL iBT preparation classroom with 6 structured modules has been added to the platform.</p>
+              <a class="read-more" href="classroom-toefl.html">Start TOEFL →</a>
+            </div>
+          </article>
+
+          <article class="news-card-v2 reveal">
+            <img src="https://i.ibb.co/wFnGC1NQ/Chat-GPT-Image-Mar-8-2026-12-25-09-PM.png" alt="Partner universities expansion" loading="lazy" />
+            <div class="news-card-v2-body">
+              <div class="news-card-v2-meta">
+                <span class="news-cat-tag">Study Abroad</span>
+                <span class="news-date">January 2026</span>
+              </div>
+              <h3>Partnership Network Expands to 17 Universities Across India and Cyprus</h3>
+              <p>Tolbert Innovation Hub has formalized partnerships with institutions in Cyprus, expanding the total university network to 17 institutions across India and Cyprus for the 2026 intake cycle.</p>
+              <a class="read-more" href="study-abroad.html#universities">View Universities →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="newsletter-band reveal">
+          <h2>Stay Updated on Opportunities</h2>
+          <p>Get scholarship deadlines, program announcements, and success stories delivered to your inbox. Be the first to know when new opportunities open.</p>
+          <form class="newsletter-form" id="newsletter-form" novalidate>
+            <input type="email" name="email" placeholder="Enter your email address" required autocomplete="email" />
+            <button type="submit">Subscribe Free</button>
+          </form>
+          <p class="newsletter-feedback" id="newsletter-feedback" aria-live="polite"></p>
+          <p style="font-size:0.8rem;opacity:0.6;margin-top:1rem;">We respect your privacy. No spam — only important updates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="section section-alt">
+      <div class="container">
+        <p class="section-label">Explore Programs</p>
+        <h2>Get Involved Today</h2>
+        <div class="cards three-up" style="margin-top:1.5rem;">
+          <article class="card reveal">
+            <p class="news-category" style="color:#002868;font-weight:700;">Scholarships</p>
+            <p>Apply for international university placement with full guidance from Tolbert Innovation Hub's expert team.</p>
+            <a class="card-link" href="scholarship.html">Apply for Scholarship →</a>
+          </article>
+          <article class="card reveal">
+            <p class="news-category" style="color:#BF0A30;font-weight:700;">Free Classroom</p>
+            <p>Access free IELTS and TOEFL preparation modules, practice tests, and mock exams at no cost.</p>
+            <a class="card-link" href="classroom.html">Start Learning Free →</a>
+          </article>
+          <article class="card reveal">
+            <p class="news-category" style="color:#002868;font-weight:700;">Study Abroad Portal</p>
+            <p>Explore 17 partner universities, check your eligibility, and book a free counseling session.</p>
+            <a class="card-link" href="study-abroad.html">Explore Universities →</a>
           </article>
         </div>
       </div>
     </section>
+
   </main>
 
   <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
@@ -125,9 +422,9 @@
           <ul class="footer-links">
             <li><a href="scholarship.html">Scholarship Program</a></li>
             <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
+            <li><a href="study-abroad.html">Study Abroad</a></li>
             <li><a href="healthcare.html">Healthcare Exposure</a></li>
             <li><a href="software.html">Software Innovation</a></li>
-            <li><a href="entertainment.html">Entertainment</a></li>
             <li><a href="classroom.html">Free Classroom</a></li>
           </ul>
         </div>
@@ -158,6 +455,22 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value.trim();
+      const fb = document.getElementById('newsletter-feedback');
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        fb.style.color = '#ffb7bf';
+        fb.textContent = 'Please enter a valid email address.';
+        return;
+      }
+      fb.style.color = '#b8ffd0';
+      fb.textContent = '✓ Thank you! You\'ve been added to our updates list.';
+      this.querySelector('input').value = '';
+    });
+  </script>
   <script src="main.js"></script>
 </body>
 </html>
