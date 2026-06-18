@@ -23,9 +23,9 @@ def css(mc, mc_dark, mc_light):
     return f"""  <style>
     :root{{--mc:{mc};--mc-dark:{mc_dark};--mc-light:{mc_light};}}
     *,*::before,*::after{{box-sizing:border-box;}}
-    body{{font-family:'Inter','Helvetica Neue',Arial,sans-serif;color:#0f172a;background:#f8fafc;line-height:1.65;margin:0;}}
-    .skip-link{{position:absolute;left:-9999px;top:1rem;background:#002868;color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:999;text-decoration:none;}}
-    .skip-link:focus{{left:1rem;}}
+    body{{font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:1rem;color:#0f172a;background:#f8fafc;line-height:1.7;margin:0;}}
+    .skip-link{{position:absolute;left:-9999px;top:1rem;background:#002868;color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:999;text-decoration:none;font-weight:600;}}
+    .skip-link:focus{{left:1rem;outline:3px solid #fff;outline-offset:2px;}}
     .container{{max-width:1200px;margin:0 auto;padding:0 1.25rem;}}
     /* ── NAV ── */
     .site-header{{background:#0f172a;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:900;}}
@@ -34,131 +34,136 @@ def css(mc, mc_dark, mc_light):
     .brand img{{width:36px;height:36px;border-radius:8px;object-fit:cover;}}
     .brand span{{font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:#fff;white-space:nowrap;}}
     .nav-links{{display:flex;align-items:center;gap:.15rem;flex-wrap:wrap;}}
-    .nav-links a{{color:rgba(255,255,255,.72);text-decoration:none;font-size:.84rem;font-weight:500;padding:.38rem .75rem;border-radius:8px;transition:all .18s;}}
-    .nav-links a:hover,.nav-links a.active{{color:#fff;background:rgba(255,255,255,.1);}}
+    .nav-links a{{color:rgba(255,255,255,.85);text-decoration:none;font-size:.84rem;font-weight:500;padding:.38rem .75rem;border-radius:8px;transition:all .18s;}}
+    .nav-links a:hover,.nav-links a.active{{color:#fff;background:rgba(255,255,255,.12);}}
+    .nav-links a:focus-visible{{outline:2px solid rgba(255,255,255,.8);outline-offset:2px;border-radius:6px;}}
     /* ── HERO ── */
     .mod-hero{{background:linear-gradient(135deg,#001435 0%,{mc_dark} 50%,{mc} 100%);padding:clamp(3.5rem,7vw,6rem) 0 clamp(2.5rem,5vw,4.5rem);position:relative;overflow:hidden;color:#fff;}}
-    .mod-hero::before{{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.06) 0%,transparent 60%);pointer-events:none;}}
+    .mod-hero::before{{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.07) 0%,transparent 60%);pointer-events:none;}}
     .mod-hero::after{{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}}
     .mod-hero-inner{{position:relative;z-index:2;}}
-    .mod-eyebrow{{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);padding:.35rem 1rem;border-radius:100px;font-size:.74rem;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.07em;text-transform:uppercase;margin-bottom:1.3rem;}}
+    .mod-eyebrow{{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);padding:.35rem 1rem;border-radius:100px;font-size:.74rem;font-weight:700;color:#fff;letter-spacing:.07em;text-transform:uppercase;margin-bottom:1.3rem;}}
     .mod-hero h1{{font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(1.9rem,4.2vw,3.2rem);line-height:1.1;color:#fff;margin:0 0 .9rem;}}
-    .mod-hero-lead{{font-size:clamp(.9rem,1.5vw,1.05rem);color:rgba(255,255,255,.78);max-width:60ch;margin-bottom:1.5rem;line-height:1.75;}}
+    .mod-hero-lead{{font-size:clamp(.92rem,1.5vw,1.06rem);color:rgba(255,255,255,.92);max-width:60ch;margin-bottom:1.5rem;line-height:1.8;}}
     .mod-chips{{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.5rem;}}
-    .mod-chip{{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);padding:.35rem .85rem;border-radius:10px;font-size:.76rem;font-weight:600;color:rgba(255,255,255,.88);}}
-    .mod-hero-prog{{background:rgba(255,255,255,.2);border-radius:100px;height:6px;width:min(380px,100%);overflow:hidden;margin-top:1.2rem;}}
+    .mod-chip{{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);padding:.35rem .85rem;border-radius:10px;font-size:.76rem;font-weight:600;color:#fff;}}
+    .mod-hero-prog{{background:rgba(255,255,255,.25);border-radius:100px;height:6px;width:min(380px,100%);overflow:hidden;margin-top:1.2rem;}}
     .mod-hero-prog-fill{{height:100%;background:#fff;border-radius:100px;}}
-    .mod-prog-label{{font-size:.76rem;color:rgba(255,255,255,.6);margin-top:.45rem;}}
+    .mod-prog-label{{font-size:.76rem;color:rgba(255,255,255,.8);margin-top:.45rem;}}
     /* ── MAIN CONTENT ── */
     .mod-main{{padding:2.5rem 0 4rem;}}
     /* Override .card for module pages */
-    .card,.u-mb-1.card{{background:#fff;border-radius:16px;padding:1.85rem 2rem;box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04);margin-bottom:1.5rem;border:1px solid #f1f5f9;}}
+    .card,.u-mb-1.card{{background:#fff;border-radius:16px;padding:1.85rem 2rem;box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04);margin-bottom:1.5rem;border:1px solid #e2e8f0;}}
     .card h1.page-title{{font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);color:#0f172a;margin-bottom:.75rem;}}
-    .card h2{{font-family:'Poppins',sans-serif;font-weight:800;color:#0f172a;font-size:1.35rem;margin:0 0 1.1rem;padding-bottom:.65rem;border-bottom:2px solid {mc};display:block;}}
-    .card h3{{font-family:'Poppins',sans-serif;font-weight:700;color:{mc};font-size:1.05rem;margin:1.4rem 0 .5rem;}}
-    .card h4{{font-family:'Poppins',sans-serif;font-weight:600;color:#1e293b;font-size:.95rem;margin:1rem 0 .4rem;}}
-    .card p,.section-lead{{color:#334155;font-size:.97rem;line-height:1.8;margin-bottom:.9rem;}}
+    .card h2{{font-family:'Poppins',sans-serif;font-weight:800;color:#0f172a;font-size:1.35rem;margin:0 0 1.1rem;padding-bottom:.65rem;border-bottom:2px solid {mc_dark};display:block;}}
+    .card h3{{font-family:'Poppins',sans-serif;font-weight:700;color:{mc_dark};font-size:1.1rem;margin:1.5rem 0 .55rem;}}
+    .card h4{{font-family:'Poppins',sans-serif;font-weight:600;color:#1e293b;font-size:.97rem;margin:1.1rem 0 .45rem;}}
+    .card p,.section-lead{{color:#1e293b;font-size:.97rem;line-height:1.85;margin-bottom:.95rem;}}
     .card strong{{color:#0f172a;font-weight:700;}}
-    .card a{{color:{mc};text-decoration:none;font-weight:500;}}
-    .card a:hover{{text-decoration:underline;}}
+    .card em{{color:#334155;font-style:italic;}}
+    .card a{{color:{mc_dark};text-decoration:none;font-weight:600;}}
+    .card a:hover{{text-decoration:underline;color:{mc};}}
+    .card a:focus-visible{{outline:2px solid {mc_dark};outline-offset:2px;border-radius:3px;}}
     /* ── RESOURCE LIST ── */
-    .resource-list{{list-style:none;padding:0;margin:.5rem 0 1rem;}}
-    .resource-list li{{padding:.38rem 0 .38rem 1.3rem;position:relative;color:#334155;font-size:.97rem;line-height:1.75;}}
-    .resource-list li::before{{content:'•';position:absolute;left:0;color:{mc};font-weight:700;}}
+    .resource-list{{list-style:none;padding:0;margin:.55rem 0 1.1rem;}}
+    .resource-list li{{padding:.42rem 0 .42rem 1.4rem;position:relative;color:#1e293b;font-size:.97rem;line-height:1.78;}}
+    .resource-list li::before{{content:'•';position:absolute;left:0;color:{mc_dark};font-weight:900;font-size:1.1em;}}
+    .resource-list li strong{{color:#0f172a;font-weight:700;}}
     /* ── VIDEO ── */
     .video-wrap{{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#f1f5f9;margin:.9rem 0 1.1rem;}}
     .video-wrap iframe{{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px;}}
     /* ── QUIZ ── */
-    .quiz-item{{border:1px solid #e2e8f0;border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:.9rem;background:#fdfdfd;}}
-    .quiz-item legend{{font-weight:700;color:#1e293b;font-size:.92rem;line-height:1.4;padding:0 .35rem;}}
+    .quiz-item{{border:1px solid #e2e8f0;border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:.9rem;background:#fafbfc;}}
+    .quiz-item legend{{font-weight:700;color:#0f172a;font-size:.95rem;line-height:1.5;padding:0 .35rem;}}
     .quiz-option{{margin-top:.65rem;}}
-    .quiz-option label{{display:flex;align-items:center;gap:.7rem;border:1.5px solid #e2e8f0;border-radius:9px;padding:.6rem .9rem;cursor:pointer;transition:all .15s;font-size:.88rem;color:#475569;font-weight:500;}}
-    .quiz-option label:hover{{border-color:{mc};background:{mc_light};color:#1e293b;}}
-    .quiz-option input[type=radio]{{width:15px;height:15px;accent-color:{mc};flex-shrink:0;cursor:pointer;}}
+    .quiz-option label{{display:flex;align-items:center;gap:.7rem;border:1.5px solid #e2e8f0;border-radius:9px;padding:.65rem .95rem;cursor:pointer;transition:all .15s;font-size:.9rem;color:#334155;font-weight:500;}}
+    .quiz-option label:hover{{border-color:{mc_dark};background:{mc_light};color:#0f172a;}}
+    .quiz-option input[type=radio]{{width:16px;height:16px;accent-color:{mc_dark};flex-shrink:0;cursor:pointer;}}
     /* Module 2 quiz style (label wrapping input) */
-    .form-stack fieldset.quiz-item>label{{display:flex;align-items:center;gap:.7rem;border:1.5px solid #e2e8f0;border-radius:9px;padding:.6rem .9rem;cursor:pointer;transition:all .15s;font-size:.88rem;color:#475569;font-weight:500;margin-top:.55rem;}}
-    .form-stack fieldset.quiz-item>label:hover{{border-color:{mc};background:{mc_light};color:#1e293b;}}
-    .form-stack fieldset.quiz-item>label input[type=radio]{{width:15px;height:15px;accent-color:{mc};flex-shrink:0;}}
+    .form-stack fieldset.quiz-item>label{{display:flex;align-items:center;gap:.7rem;border:1.5px solid #e2e8f0;border-radius:9px;padding:.65rem .95rem;cursor:pointer;transition:all .15s;font-size:.9rem;color:#334155;font-weight:500;margin-top:.55rem;}}
+    .form-stack fieldset.quiz-item>label:hover{{border-color:{mc_dark};background:{mc_light};color:#0f172a;}}
+    .form-stack fieldset.quiz-item>label input[type=radio]{{width:16px;height:16px;accent-color:{mc_dark};flex-shrink:0;}}
     /* ── CHECKLIST ── */
-    [data-module-checklist] label{{display:flex;align-items:center;gap:.65rem;border:1.5px solid #e2e8f0;border-radius:9px;padding:.6rem .9rem;cursor:pointer;margin-bottom:.45rem;font-size:.88rem;color:#475569;transition:all .15s;}}
-    [data-module-checklist] label:hover{{border-color:{mc};background:{mc_light};}}
-    [data-module-checklist] input[type=checkbox]{{width:15px;height:15px;accent-color:{mc};flex-shrink:0;}}
+    [data-module-checklist] label{{display:flex;align-items:center;gap:.65rem;border:1.5px solid #e2e8f0;border-radius:9px;padding:.65rem .95rem;cursor:pointer;margin-bottom:.45rem;font-size:.9rem;color:#334155;font-weight:500;transition:all .15s;}}
+    [data-module-checklist] label:hover{{border-color:{mc_dark};background:{mc_light};color:#0f172a;}}
+    [data-module-checklist] input[type=checkbox]{{width:16px;height:16px;accent-color:{mc_dark};flex-shrink:0;}}
     /* ── PROGRESS ── */
     .progress-wrap{{margin:.65rem 0;}}
     .progress-bar{{background:#e2e8f0;border-radius:100px;height:8px;overflow:hidden;}}
     .progress-fill{{height:100%;background:linear-gradient(90deg,{mc_dark},{mc});border-radius:100px;transition:width .4s;}}
-    .progress-label{{font-size:.78rem;color:#64748b;margin-top:.38rem;}}
+    .progress-label{{font-size:.8rem;color:#475569;margin-top:.4rem;font-weight:500;}}
     /* ── BUTTONS ── */
-    .btn{{display:inline-flex;align-items:center;gap:.45rem;font-family:'Inter',sans-serif;font-weight:600;font-size:.88rem;padding:.68rem 1.5rem;border-radius:100px;text-decoration:none;cursor:pointer;border:none;transition:all .18s;line-height:1.3;}}
-    .btn-primary{{background:{mc};color:#fff;}}
-    .btn-primary:hover{{filter:brightness(1.12);transform:translateY(-1px);}}
+    .btn{{display:inline-flex;align-items:center;gap:.45rem;font-family:'Inter',sans-serif;font-weight:600;font-size:.9rem;padding:.7rem 1.55rem;border-radius:100px;text-decoration:none;cursor:pointer;border:none;transition:all .18s;line-height:1.3;}}
+    .btn:focus-visible{{outline:3px solid {mc_dark};outline-offset:3px;}}
+    .btn-primary{{background:{mc_dark};color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.15);}}
+    .btn-primary:hover{{background:{mc};transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18);}}
     .btn-secondary{{background:#0f172a;color:#fff;}}
     .btn-secondary:hover{{background:#1e293b;transform:translateY(-1px);}}
-    .btn-outline,.btn-outline-inline{{background:transparent;border:1.5px solid #e2e8f0;color:#64748b;padding:.65rem 1.4rem;border-radius:100px;font-size:.875rem;font-weight:600;text-decoration:none;transition:all .18s;display:inline-flex;align-items:center;cursor:pointer;}}
-    .btn-outline:hover,.btn-outline-inline:hover{{border-color:{mc};color:{mc};background:{mc_light};}}
+    .btn-outline,.btn-outline-inline{{background:transparent;border:1.5px solid #cbd5e1;color:#334155;padding:.65rem 1.4rem;border-radius:100px;font-size:.9rem;font-weight:600;text-decoration:none;transition:all .18s;display:inline-flex;align-items:center;cursor:pointer;}}
+    .btn-outline:hover,.btn-outline-inline:hover{{border-color:{mc_dark};color:{mc_dark};background:{mc_light};}}
     .lesson-toolbar,.module-pagination{{display:flex;flex-wrap:wrap;gap:.65rem;align-items:center;margin:.75rem 0;}}
     .module-pagination{{padding:1.4rem 0;border-top:1px solid #e2e8f0;margin-top:.75rem;}}
     /* ── FEEDBACK / FORM ── */
-    .form-feedback{{font-size:.86rem;font-weight:600;padding:.6rem .9rem;border-radius:8px;margin-top:.5rem;min-height:1.2em;}}
+    .form-feedback{{font-size:.88rem;font-weight:600;padding:.6rem .9rem;border-radius:8px;margin-top:.5rem;min-height:1.2em;}}
     .form-feedback:not(:empty){{background:#eff6ff;color:#1d4ed8;}}
     .form-stack{{display:flex;flex-direction:column;gap:.7rem;}}
-    .form-stack>label:not(.quiz-item label){{display:flex;flex-direction:column;gap:.3rem;font-weight:600;color:#334155;font-size:.88rem;}}
-    .form-stack input,.form-stack select,.form-stack textarea{{padding:.6rem .85rem;border:1.5px solid #e2e8f0;border-radius:8px;font-family:'Inter',sans-serif;font-size:.88rem;color:#0f172a;background:#fff;transition:border-color .15s;width:100%;}}
-    .form-stack input:focus,.form-stack select:focus,.form-stack textarea:focus{{border-color:{mc};outline:none;box-shadow:0 0 0 3px {mc_light};}}
+    .form-stack>label:not(.quiz-item label){{display:flex;flex-direction:column;gap:.3rem;font-weight:600;color:#1e293b;font-size:.9rem;}}
+    .form-stack input,.form-stack select,.form-stack textarea{{padding:.65rem .9rem;border:1.5px solid #cbd5e1;border-radius:8px;font-family:'Inter',sans-serif;font-size:.9rem;color:#0f172a;background:#fff;transition:border-color .15s;width:100%;}}
+    .form-stack input:focus,.form-stack select:focus,.form-stack textarea:focus{{border-color:{mc_dark};outline:none;box-shadow:0 0 0 3px {mc_light};}}
     /* ── DETAILS/ANSWER ── */
     details{{border:1px solid #e2e8f0;border-radius:10px;padding:.7rem .95rem;margin:.65rem 0;}}
-    details summary{{font-weight:600;cursor:pointer;color:{mc};font-size:.9rem;}}
+    details summary{{font-weight:700;cursor:pointer;color:{mc_dark};font-size:.92rem;}}
     details[open] summary{{margin-bottom:.55rem;}}
     .answer-key{{background:#f0fdf4;border-color:#86efac;}}
-    .answer-key summary{{color:#16a34a;}}
+    .answer-key summary{{color:#15803d;}}
     /* ── TABLE ── */
-    table{{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.88rem;}}
-    th,td{{border:1px solid #e2e8f0;padding:.55rem .8rem;text-align:left;}}
-    th{{background:#f8fafc;font-weight:700;color:#1e293b;}}
-    td{{color:#334155;}}
+    table{{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.9rem;}}
+    th,td{{border:1px solid #e2e8f0;padding:.6rem .85rem;text-align:left;}}
+    th{{background:#f1f5f9;font-weight:700;color:#0f172a;font-size:.85rem;letter-spacing:.03em;text-transform:uppercase;}}
+    td{{color:#1e293b;}}
     /* ── GRID ── */
     .grid-2{{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem;}}
     .do-dont-box{{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin:.75rem 0;}}
     .question-type-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem;margin-top:.65rem;}}
     .question-type-card{{background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;padding:1rem;}}
-    .question-type-card h3{{font-size:.88rem;font-weight:700;margin-bottom:.35rem;color:#1e293b;}}
-    .question-type-card p{{font-size:.82rem;color:#64748b;margin:0;}}
+    .question-type-card h3{{font-size:.88rem;font-weight:700;margin-bottom:.4rem;color:#0f172a;}}
+    .question-type-card p{{font-size:.84rem;color:#334155;margin:0;line-height:1.65;}}
     .score-grid{{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.65rem;}}
-    .score-grid div{{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:.55rem .8rem;font-size:.86rem;color:#475569;}}
+    .score-grid div{{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:.55rem .8rem;font-size:.87rem;color:#334155;}}
     /* ── BADGE ── */
-    .badge{{display:inline-block;background:{mc_light};color:{mc};border:1px solid color-mix(in srgb,{mc} 30%,transparent);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.22rem .7rem;border-radius:100px;margin-bottom:.75rem;}}
+    .badge{{display:inline-block;background:{mc_light};color:{mc_dark};border:1px solid color-mix(in srgb,{mc_dark} 25%,transparent);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.24rem .75rem;border-radius:100px;margin-bottom:.75rem;}}
     /* ── CERT FORM ── */
     .cert-form{{display:grid;gap:1rem;margin-top:1rem;}}
     .cert-form-row{{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}}
     @media(max-width:600px){{.cert-form-row{{grid-template-columns:1fr;}}}}
-    .cert-form label{{display:grid;gap:.3rem;font-weight:600;color:#334155;font-size:.88rem;}}
+    .cert-form label{{display:grid;gap:.35rem;font-weight:600;color:#1e293b;font-size:.9rem;}}
     .cert-form label.full{{grid-column:1/-1;}}
-    .cert-form input,.cert-form select,.cert-form textarea{{padding:.6rem .85rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.88rem;color:#0f172a;background:#fff;border-transition:border-color .15s;width:100%;font-family:'Inter',sans-serif;}}
-    .cert-form input:focus,.cert-form select:focus,.cert-form textarea:focus{{border-color:{mc};outline:none;box-shadow:0 0 0 3px {mc_light};}}
+    .cert-form input,.cert-form select,.cert-form textarea{{padding:.65rem .9rem;border:1.5px solid #cbd5e1;border-radius:8px;font-size:.9rem;color:#0f172a;background:#fff;transition:border-color .15s;width:100%;font-family:'Inter',sans-serif;}}
+    .cert-form input:focus,.cert-form select:focus,.cert-form textarea:focus{{border-color:{mc_dark};outline:none;box-shadow:0 0 0 3px {mc_light};}}
     .cert-form-actions{{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin-top:.5rem;}}
-    .cert-form-feedback{{font-size:.88rem;font-weight:600;padding:.7rem 1rem;border-radius:8px;display:none;}}
+    .cert-form-feedback{{font-size:.9rem;font-weight:600;padding:.7rem 1rem;border-radius:8px;display:none;}}
     .cert-form-feedback.success{{background:#e6f7f0;color:#0b7444;display:block;}}
     .cert-form-feedback.error{{background:#fde8ec;color:#9f2431;display:block;}}
     .resource-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin-top:.75rem;}}
     .resource-card{{background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;padding:1rem;}}
-    .resource-card h3{{font-size:.9rem;font-weight:700;color:#1e293b;margin-bottom:.35rem;}}
-    .resource-card p{{font-size:.83rem;color:#64748b;margin:0;}}
+    .resource-card h3{{font-size:.92rem;font-weight:700;color:#0f172a;margin-bottom:.4rem;}}
+    .resource-card p{{font-size:.85rem;color:#334155;margin:0;line-height:1.6;}}
     /* ── WHATSAPP FLOAT ── */
     .wa-float{{position:fixed;bottom:1.75rem;right:1.75rem;background:#25D366;color:#fff;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.45);z-index:800;transition:transform .2s;text-decoration:none;}}
     .wa-float:hover{{transform:scale(1.1);}}
     /* ── FOOTER ── */
-    .site-footer{{background:#0f172a;color:rgba(255,255,255,.65);padding:2.5rem 0 1.5rem;margin-top:2rem;}}
+    .site-footer{{background:#0f172a;color:rgba(255,255,255,.72);padding:2.5rem 0 1.5rem;margin-top:2rem;}}
     .footer-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem;}}
     .footer-grid p{{font-size:.84rem;margin-bottom:.28rem;}}
-    .footer-grid a{{color:rgba(255,255,255,.6);text-decoration:none;transition:color .15s;}}
+    .footer-grid a{{color:rgba(255,255,255,.72);text-decoration:none;transition:color .15s;}}
     .footer-grid a:hover{{color:#fff;}}
-    .copyright-note{{font-size:.76rem;color:rgba(255,255,255,.32);text-align:center;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);}}
+    .copyright-note{{font-size:.76rem;color:rgba(255,255,255,.48);text-align:center;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1);}}
     /* ── SKILL HUB CARDS ── */
     .skill-hub-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.3rem;margin-top:1rem;}}
-    .skill-hub-card{{background:#fff;border:1px solid #f1f5f9;border-radius:16px;padding:1.6rem;box-shadow:0 1px 3px rgba(0,0,0,.05),0 4px 12px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s;}}
+    .skill-hub-card{{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:1.6rem;box-shadow:0 1px 3px rgba(0,0,0,.05),0 4px 12px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s;}}
     .skill-hub-card:hover{{transform:translateY(-4px);box-shadow:0 12px 35px rgba(0,40,104,.1);}}
     .skill-hub-card h3{{font-family:'Poppins',sans-serif;font-weight:700;font-size:1.1rem;color:#0f172a;margin-bottom:.5rem;}}
-    .skill-hub-card p{{font-size:.86rem;color:#64748b;margin-bottom:1rem;line-height:1.65;}}
+    .skill-hub-card p{{font-size:.87rem;color:#334155;margin-bottom:1rem;line-height:1.7;}}
     /* ── AUDIO ── */
     .audio-playback{{width:100%;margin:.75rem 0;border-radius:8px;}}
     /* ── MISC ── */
@@ -175,7 +180,7 @@ def css(mc, mc_dark, mc_light):
     .u-w-83{{width:83%;}}
     .u-w-100{{width:100%;}}
     .score-goal-card,.score-grid div{{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:.55rem .8rem;}}
-    .timer-display{{font-family:'Poppins',sans-serif;font-size:2.5rem;font-weight:900;color:{mc};margin:.5rem 0;}}
+    .timer-display{{font-family:'Poppins',sans-serif;font-size:2.5rem;font-weight:900;color:{mc_dark};margin:.5rem 0;}}
     /* ── RESPONSIVE ── */
     @media(max-width:768px){{
       .nav-wrap{{flex-wrap:wrap;}}
@@ -188,21 +193,37 @@ def css(mc, mc_dark, mc_light):
     @media(prefers-color-scheme:dark){{
       body{{background:#0f172a;color:#e2e8f0;}}
       .card{{background:#1e293b;border-color:#334155;}}
-      .card h1,.card h2,.card h3,.card h4{{color:#f1f5f9;}}
-      .card p,.resource-list li{{color:#cbd5e1;}}
-      .card strong{{color:#f1f5f9;font-weight:700;}}
-      .card h3{{color:{mc};}}
-      .quiz-item{{background:#1e293b;border-color:#334155;}}
+      .card h1,.card h2,.card h4{{color:#f1f5f9;}}
+      .card h2{{border-bottom-color:{mc};}}
+      .card h3{{color:{mc_light};}}
+      .card p,.section-lead{{color:#cbd5e1;}}
+      .resource-list li{{color:#cbd5e1;}}
+      .card strong,.resource-list li strong{{color:#f1f5f9;font-weight:700;}}
+      .card a{{color:{mc_light};}}
+      .card a:hover{{color:#fff;}}
+      .quiz-item{{background:#162032;border-color:#334155;}}
       .quiz-item legend{{color:#f1f5f9;}}
-      .quiz-option label,.form-stack fieldset.quiz-item>label{{border-color:#334155;color:#94a3b8;}}
-      .quiz-option label:hover,.form-stack fieldset.quiz-item>label:hover{{background:rgba(37,99,235,.12);border-color:{mc};}}
-      [data-module-checklist] label{{border-color:#334155;color:#94a3b8;}}
-      th{{background:#1e293b;color:#e2e8f0;border-color:#334155;}}
-      td{{color:#94a3b8;border-color:#334155;}}
-      .question-type-card,.resource-card,.skill-hub-card,.score-grid div{{background:#1e293b;border-color:#334155;}}
+      .quiz-option label,.form-stack fieldset.quiz-item>label{{border-color:#334155;color:#cbd5e1;}}
+      .quiz-option label:hover,.form-stack fieldset.quiz-item>label:hover{{background:rgba(255,255,255,.06);border-color:{mc};color:#f1f5f9;}}
+      [data-module-checklist] label{{border-color:#334155;color:#cbd5e1;}}
+      [data-module-checklist] label:hover{{background:rgba(255,255,255,.06);color:#f1f5f9;}}
+      th{{background:#162032;color:#e2e8f0;border-color:#334155;}}
+      td{{color:#cbd5e1;border-color:#334155;}}
+      .question-type-card,.resource-card,.skill-hub-card{{background:#1e293b;border-color:#334155;}}
       .question-type-card h3,.resource-card h3,.skill-hub-card h3{{color:#f1f5f9;}}
-      .form-stack input,.form-stack select,.form-stack textarea,.cert-form input,.cert-form select,.cert-form textarea{{background:#1e293b;border-color:#334155;color:#e2e8f0;}}
-      details{{border-color:#334155;}}
+      .question-type-card p,.resource-card p,.skill-hub-card p{{color:#cbd5e1;}}
+      .score-grid div,.score-goal-card{{background:#162032;border-color:#334155;color:#cbd5e1;}}
+      .badge{{background:rgba(255,255,255,.08);color:{mc_light};border-color:{mc};}}
+      .progress-label{{color:#94a3b8;}}
+      .btn-outline,.btn-outline-inline{{border-color:#475569;color:#cbd5e1;}}
+      .btn-outline:hover,.btn-outline-inline:hover{{border-color:{mc};color:{mc_light};background:rgba(255,255,255,.05);}}
+      details{{border-color:#334155;background:#162032;}}
+      details summary{{color:{mc_light};}}
+      .form-stack>label:not(.quiz-item label){{color:#cbd5e1;}}
+      .form-stack input,.form-stack select,.form-stack textarea,.cert-form input,.cert-form select,.cert-form textarea{{background:#162032;border-color:#334155;color:#e2e8f0;}}
+      .form-stack input:focus,.form-stack select:focus,.form-stack textarea:focus,.cert-form input:focus,.cert-form select:focus,.cert-form textarea:focus{{border-color:{mc};box-shadow:0 0 0 3px rgba(255,255,255,.07);}}
+      .cert-form label{{color:#cbd5e1;}}
+      .mod-prog-label{{color:rgba(255,255,255,.8);}}
     }}
   </style>"""
 
