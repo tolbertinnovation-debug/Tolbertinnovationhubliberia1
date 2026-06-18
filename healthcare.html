@@ -33,6 +33,122 @@
     .form-feedback:not(:empty) { display: block; }
     .form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.5rem; }
     .form-note { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ── Partner Hospital Network ── */
+    .hospital-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .hospital-card {
+      background: #ffffff;
+      border-radius: 10px;
+      border-top: 4px solid #002868;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      padding: 1.5rem 1.4rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hospital-card:nth-child(odd) { border-top-color: #BF0A30; }
+    .hospital-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.11); }
+    .hospital-card-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #002868;
+      line-height: 1.3;
+    }
+    .hospital-card-city {
+      font-size: 0.82rem;
+      color: #6b7280;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .hospital-card-city::before { content: "📍"; font-size: 0.8rem; }
+    .hospital-badge {
+      display: inline-block;
+      background: rgba(0,40,104,0.08);
+      color: #002868;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 50px;
+      border: 1px solid rgba(0,40,104,0.18);
+      width: fit-content;
+    }
+    .hospital-card:nth-child(odd) .hospital-badge {
+      background: rgba(191,10,48,0.07);
+      color: #BF0A30;
+      border-color: rgba(191,10,48,0.18);
+    }
+    .hospital-card-desc {
+      font-size: 0.875rem;
+      color: #4b5563;
+      line-height: 1.6;
+      margin-top: 0.2rem;
+    }
+    .network-disclaimer {
+      margin-top: 1.75rem;
+      padding: 1rem 1.25rem;
+      background: #f0f4fb;
+      border-left: 3px solid #002868;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      color: #374151;
+    }
+
+    /* ── FAQ Accordion ── */
+    .faq-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.85rem; }
+    .faq-item details {
+      border: 1.5px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 0;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .faq-item details[open] { border-color: #002868; }
+    .faq-item details summary {
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1f2937;
+      padding: 1.1rem 1.3rem;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      transition: color 0.2s, background 0.2s;
+    }
+    .faq-item details summary::-webkit-details-marker { display: none; }
+    .faq-item details summary::after {
+      content: "+";
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: #002868;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-left: 1rem;
+      transition: transform 0.25s;
+    }
+    .faq-item details[open] summary::after { content: "−"; }
+    .faq-item details[open] summary {
+      color: #002868;
+      font-weight: 700;
+      background: rgba(0,40,104,0.04);
+    }
+    .faq-answer {
+      padding: 0 1.3rem 1.2rem;
+      font-size: 0.925rem;
+      color: #4b5563;
+      line-height: 1.7;
+    }
   </style>
 </head>
 <body>
@@ -142,6 +258,132 @@
               <h4>Ongoing Communication</h4>
               <p>Continued support throughout the process — from inquiry to treatment and follow-up care coordination.</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner Hospital Network -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Our Network</p>
+          <h2>Partner Hospitals &amp; Specialist Centers</h2>
+          <p class="section-intro">Tolbert Innovation Hub coordinates referrals to verified specialist hospitals across India. Our network covers a wide range of medical specialties.</p>
+        </div>
+
+        <div class="hospital-grid">
+          <div class="hospital-card reveal">
+            <div class="hospital-card-name">Apollo Hospitals</div>
+            <div class="hospital-card-city">Chennai, India</div>
+            <span class="hospital-badge">Cardiology &amp; Oncology</span>
+            <p class="hospital-card-desc">One of India's largest hospital chains with world-class cardiac and cancer treatment centers.</p>
+          </div>
+          <div class="hospital-card reveal reveal-delay-1">
+            <div class="hospital-card-name">Fortis Healthcare</div>
+            <div class="hospital-card-city">New Delhi, India</div>
+            <span class="hospital-badge">Multi-specialty</span>
+            <p class="hospital-card-desc">Premier multi-specialty hospital network offering advanced surgical and diagnostic services.</p>
+          </div>
+          <div class="hospital-card reveal reveal-delay-2">
+            <div class="hospital-card-name">Narayana Health</div>
+            <div class="hospital-card-city">Bangalore, India</div>
+            <span class="hospital-badge">Cardiac Surgery</span>
+            <p class="hospital-card-desc">Internationally recognized for affordable, high-quality cardiac surgery and pediatric care.</p>
+          </div>
+          <div class="hospital-card reveal reveal-delay-3">
+            <div class="hospital-card-name">Medanta – The Medicity</div>
+            <div class="hospital-card-city">Gurugram, India</div>
+            <span class="hospital-badge">Neurology &amp; Orthopedics</span>
+            <p class="hospital-card-desc">One of India's largest multi-specialty hospitals with dedicated international patient services.</p>
+          </div>
+          <div class="hospital-card reveal">
+            <div class="hospital-card-name">AIIMS New Delhi</div>
+            <div class="hospital-card-city">New Delhi, India</div>
+            <span class="hospital-badge">Government Specialist</span>
+            <p class="hospital-card-desc">India's premier government medical institute accepting international referrals for complex cases.</p>
+          </div>
+          <div class="hospital-card reveal reveal-delay-1">
+            <div class="hospital-card-name">Kokilaben Dhirubhai Ambani Hospital</div>
+            <div class="hospital-card-city">Mumbai, India</div>
+            <span class="hospital-badge">Cancer &amp; Robotic Surgery</span>
+            <p class="hospital-card-desc">Advanced cancer treatment center with robotic surgery capabilities.</p>
+          </div>
+          <div class="hospital-card reveal reveal-delay-2">
+            <div class="hospital-card-name">Max Healthcare</div>
+            <div class="hospital-card-city">Delhi NCR, India</div>
+            <span class="hospital-badge">Organ Transplant</span>
+            <p class="hospital-card-desc">Specialized in organ transplants, neurosurgery, and complex oncology.</p>
+          </div>
+          <div class="hospital-card reveal reveal-delay-3">
+            <div class="hospital-card-name">Manipal Hospitals</div>
+            <div class="hospital-card-city">Bangalore, India</div>
+            <span class="hospital-badge">General &amp; Specialist</span>
+            <p class="hospital-card-desc">Full-service hospital with dedicated international patient coordination desk.</p>
+          </div>
+        </div>
+
+        <div class="network-disclaimer">
+          <strong>Please note:</strong> TIH assists with referral coordination, appointment scheduling, and travel documentation. We do not directly provide medical treatment.
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header centered">
+          <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <details>
+              <summary>What types of medical cases does Tolbert Innovation Hub support?</summary>
+              <div class="faq-answer">We support a wide range of cases including cardiac conditions, cancer/oncology, neurological disorders, orthopedic issues, and complex surgeries that require specialist care not available locally in Liberia.</div>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>How long does the referral process take?</summary>
+              <div class="faq-answer">Initial case review takes 3–5 business days. Once a partner hospital confirms availability, we coordinate the appointment, typically within 2–4 weeks for elective cases and faster for urgent situations.</div>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>What are the costs involved?</summary>
+              <div class="faq-answer">Tolbert Innovation Hub charges a coordination fee for our services. Medical treatment costs are set by the partner hospitals and vary by condition, procedure, and facility. We provide a cost estimate before any commitment.</div>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>Does TIH help with visa applications for medical travel?</summary>
+              <div class="faq-answer">Yes. We assist with compiling the necessary documents for a medical visa application to India, including hospital invitation letters, case summaries, and guidance on the visa process.</div>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>What documents are required to start the referral process?</summary>
+              <div class="faq-answer">You will need: recent medical reports and test results, a referral letter from a local doctor (if available), a copy of your passport, and contact details for the primary caregiver or family liaison.</div>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>Can TIH support emergency medical cases?</summary>
+              <div class="faq-answer">For emergencies, contact us immediately via WhatsApp at +231 880 559 227. We have expedited processes for urgent cases and can provide faster coordination for life-threatening situations.</div>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>Does TIH accompany patients to India?</summary>
+              <div class="faq-answer">While TIH does not physically accompany patients, we provide detailed guidance on airport pickups, hospital arrival procedures, and maintain contact throughout your treatment journey.</div>
+            </details>
+          </div>
+          <div class="faq-item">
+            <details>
+              <summary>Are there healthcare options outside of India?</summary>
+              <div class="faq-answer">Currently, our primary partner network is in India. We are expanding to include hospitals in other countries. Contact us to discuss your specific needs.</div>
+            </details>
           </div>
         </div>
       </div>
