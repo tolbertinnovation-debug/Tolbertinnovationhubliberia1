@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOA University — Study in India | Tolbert Innovation Hub</title>
+  <meta name="description" content="Apply to SOA University in Bhubaneswar, India through Tolbert Innovation Hub. Explore programs, scholarships, and admission requirements for Liberian students." />
+  <meta property="og:title" content="SOA University | Tolbert Innovation Hub Study Abroad" />
+  <meta property="og:description" content="Discover SOA University — Where Medicine Meets Innovation on the Bay of Bengal. Apply via TIH for exclusive scholarships and guidance." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    .uni-detail-hero {
+      background: linear-gradient(135deg, #001440 0%, #002868 55%, #1a3d8a 100%);
+      padding: clamp(4rem,8vw,7rem) 0 clamp(3rem,6vw,5.5rem);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .uni-detail-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .uni-hero-inner { position: relative; z-index: 1; }
+    .uni-breadcrumb { font-size: 0.85rem; opacity: 0.75; margin-bottom: 1rem; }
+    .uni-breadcrumb a { color: #fff; text-decoration: none; }
+    .uni-breadcrumb a:hover { text-decoration: underline; }
+    .uni-abbr-hero {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px; height: 72px;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 16px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .uni-hero-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .uni-meta-chip {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 20px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #fff;
+    }
+    .uni-section {
+      padding: clamp(2.5rem,5vw,4.5rem) 0;
+    }
+    .uni-section-alt {
+      background: #f9fafb;
+      padding: clamp(2.5rem,5vw,4.5rem) 0;
+    }
+    .uni-section-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem,2.5vw,1.8rem);
+      color: #111827;
+      margin-bottom: 0.5rem;
+    }
+    .uni-section-lead {
+      font-size: 1rem;
+      color: #6b7280;
+      margin-bottom: 2rem;
+    }
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 768px) {
+      .two-col-grid { grid-template-columns: 1fr; }
+    }
+    .prog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+      gap: 1.25rem;
+    }
+    .sch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+      gap: 1.25rem;
+    }
+    .apply-section {
+      background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+      padding: clamp(3rem,6vw,5rem) 0;
+    }
+    .apply-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .apply-inner { grid-template-columns: 1fr; }
+    }
+    .apply-info-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem,2.5vw,1.9rem);
+      color: #111827;
+      margin-bottom: 0.75rem;
+    }
+    .apply-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: #374151;
+      margin-bottom: 0.6rem;
+    }
+    .apply-cta-strip {
+      margin-top: 1.75rem;
+      padding: 1.25rem;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div id="announcement-bar" style="background:#BF0A30;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
+    🎓 <strong>2026 Scholarship Applications Now Open</strong> — Deadline July 15, 2026.
+    <a href="study-abroad.html#application-form" style="color:#fff;text-decoration:underline;margin-left:0.5rem;">Apply Now →</a>
+    <button onclick="this.parentElement.style.display='none'" aria-label="Close announcement" style="position:absolute;right:0.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.2rem 0.4rem;line-height:1;">✕</button>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a class="active" aria-current="page" href="study-abroad.html">Study Abroad</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="study-abroad.html#application-form" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="uni-detail-hero">
+      <div class="container uni-hero-inner">
+        <p class="uni-breadcrumb">
+          <a href="index.html">Home</a> &rsaquo;
+          <a href="study-abroad.html">Study Abroad</a> &rsaquo;
+          SOA University
+        </p>
+        <div class="uni-abbr-hero">SOA</div>
+        <h1 style="font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(1.75rem,4vw,2.8rem);line-height:1.2;margin-bottom:0.6rem;">SOA University</h1>
+        <p style="font-size:clamp(1rem,1.8vw,1.2rem);opacity:0.88;margin:0;">Where Medicine Meets Innovation on the Bay of Bengal</p>
+        <div class="uni-hero-meta">
+          <span class="uni-meta-chip">🇮🇳 Bhubaneswar, Odisha, India</span>
+          <span class="uni-meta-chip">📅 Intake: June / January</span>
+          <span class="uni-meta-chip">💰 $3,000–$5,500/yr</span>
+          <span class="uni-meta-chip">🎓 UG · PG</span>
+          <span class="uni-meta-chip">✅ Scholarships Available</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section class="uni-section">
+      <div class="container">
+        <div class="two-col-grid">
+          <div>
+            <h2 class="uni-section-title">About SOA University</h2>
+            <p style="font-size:0.97rem;color:#374151;line-height:1.8;">Siksha 'O' Anusandhan (SOA) University is a NAAC 'A+' graded deemed university in Bhubaneswar, Odisha. It is one of Eastern India's premier research institutions and is renowned for its medical, engineering, law, and sciences programs. SOA operates a 1,000-bed teaching hospital, multiple research centres, and has produced graduates employed across the globe. Its beautiful coastal location and strong international student community make it a distinctive study destination.</p>
+            <div style="margin-top:1.5rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+              <a href="#apply-form" class="btn btn-primary">Apply Now →</a>
+              <a href="study-abroad.html" class="btn btn-outline">← All Universities</a>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.15rem;color:#111827;margin-bottom:1.25rem;">Why Choose SOA?</h3>
+            <div style="display:flex;flex-direction:column;gap:0.85rem;">
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem 1.5rem;border-left:4px solid #002868;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:600;font-size:1rem;color:#002868;margin:0 0 0.4rem;">NAAC 'A+' Accredited</p>
+            <p style="font-size:0.9rem;color:#4b5563;margin:0;">Among India's top-rated deemed universities</p>
+          </div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem 1.5rem;border-left:4px solid #002868;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:600;font-size:1rem;color:#002868;margin:0 0 0.4rem;">1,000-Bed Hospital</p>
+            <p style="font-size:0.9rem;color:#4b5563;margin:0;">Medical and nursing students receive extensive clinical training</p>
+          </div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem 1.5rem;border-left:4px solid #002868;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:600;font-size:1rem;color:#002868;margin:0 0 0.4rem;">Coastal Location</p>
+            <p style="font-size:0.9rem;color:#4b5563;margin:0;">Bhubaneswar — gateway to Puri Beach and Konark Sun Temple</p>
+          </div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem 1.5rem;border-left:4px solid #002868;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:600;font-size:1rem;color:#002868;margin:0 0 0.4rem;">Research Powerhouse</p>
+            <p style="font-size:0.9rem;color:#4b5563;margin:0;">100+ funded research projects across medicine and engineering</p>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section class="uni-section-alt">
+      <div class="container">
+        <h2 class="uni-section-title">Programs &amp; Degrees</h2>
+        <p class="uni-section-lead">Explore the range of programs available for international students at SOA University.</p>
+        <div class="prog-grid">
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem 1.5rem;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:600;font-size:0.95rem;color:#002868;margin:0 0 0.35rem;">MBBS / BDS / Nursing</p>
+            <p style="font-size:0.88rem;color:#6b7280;margin:0;">Medical and allied health programs with hospital training</p>
+          </div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem 1.5rem;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:600;font-size:0.95rem;color:#002868;margin:0 0 0.35rem;">B.Tech / M.Tech</p>
+            <p style="font-size:0.88rem;color:#6b7280;margin:0;">Engineering across 12 specialisations</p>
+          </div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem 1.5rem;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:600;font-size:0.95rem;color:#002868;margin:0 0 0.35rem;">LLB / LLM</p>
+            <p style="font-size:0.88rem;color:#6b7280;margin:0;">Law programs with moot court and legal research centres</p>
+          </div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem 1.5rem;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:600;font-size:0.95rem;color:#002868;margin:0 0 0.35rem;">B.Sc / M.Sc</p>
+            <p style="font-size:0.88rem;color:#6b7280;margin:0;">Sciences, Biotechnology, Environmental Science</p>
+          </div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem 1.5rem;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:600;font-size:0.95rem;color:#002868;margin:0 0 0.35rem;">Ph.D Research</p>
+            <p style="font-size:0.88rem;color:#6b7280;margin:0;">Fully supported research doctorates in medicine, engineering, law</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REQUIREMENTS -->
+    <section class="uni-section">
+      <div class="container">
+        <div class="two-col-grid">
+          <div>
+            <h2 class="uni-section-title">Admission Requirements</h2>
+            <p class="uni-section-lead">Meet these requirements to be eligible to apply through TIH.</p>
+            <ul style="list-style:none;padding:0;margin:0;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+            <li style="padding:0.6rem 0;border-bottom:1px solid #f3f4f6;font-size:0.92rem;color:#374151;">
+              <span style="color:#059669;margin-right:0.5rem;font-size:1rem;">✓</span>WASSCE or equivalent (MBBS: Biology, Chemistry, Physics required)
+            </li>
+            <li style="padding:0.6rem 0;border-bottom:1px solid #f3f4f6;font-size:0.92rem;color:#374151;">
+              <span style="color:#059669;margin-right:0.5rem;font-size:1rem;">✓</span>Passport valid 18+ months
+            </li>
+            <li style="padding:0.6rem 0;border-bottom:1px solid #f3f4f6;font-size:0.92rem;color:#374151;">
+              <span style="color:#059669;margin-right:0.5rem;font-size:1rem;">✓</span>IELTS 6.0 or TOEFL 70+ for medical programs
+            </li>
+            <li style="padding:0.6rem 0;border-bottom:1px solid #f3f4f6;font-size:0.92rem;color:#374151;">
+              <span style="color:#059669;margin-right:0.5rem;font-size:1rem;">✓</span>SOP
+            </li>
+            <li style="padding:0.6rem 0;border-bottom:1px solid #f3f4f6;font-size:0.92rem;color:#374151;">
+              <span style="color:#059669;margin-right:0.5rem;font-size:1rem;">✓</span>Two references
+            </li>
+            <li style="padding:0.6rem 0;border-bottom:1px solid #f3f4f6;font-size:0.92rem;color:#374151;">
+              <span style="color:#059669;margin-right:0.5rem;font-size:1rem;">✓</span>Medical screening certificate
+            </li>
+            <li style="padding:0.6rem 0;border-bottom:1px solid #f3f4f6;font-size:0.92rem;color:#374151;">
+              <span style="color:#059669;margin-right:0.5rem;font-size:1rem;">✓</span>Proof of funds ($6,000+ for medical programs)
+            </li>
+              <li style="padding:0.6rem 0;font-size:0.92rem;color:#374151;">
+                <span style="color:#059669;margin-right:0.5rem;font-size:1rem;">✓</span>TIH counseling session (free — booked after application)
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="uni-section-title">Campus Life</h2>
+            <p class="uni-section-lead">Student life at SOA University.</p>
+            <p style="font-size:0.95rem;color:#374151;line-height:1.8;">SOA University's 400-acre campus in Bhubaneswar is a green, well-planned township. It includes a teaching hospital, engineering research labs, law library, hostels, international student centre, multiple sports grounds, a gym, cafeteria, and regular city trips to Puri beach, Konark, and the tribal craft markets of Odisha.</p>
+            <div style="margin-top:1.5rem;background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:1rem 1.25rem;">
+              <p style="font-size:0.9rem;font-weight:600;color:#856404;margin:0 0 0.35rem;">🌍 TIH Student Support</p>
+              <p style="font-size:0.88rem;color:#856404;margin:0;">Tolbert Innovation Hub provides dedicated pre-departure orientation, airport pick-up coordination, visa guidance, and ongoing pastoral support throughout your studies.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHOLARSHIPS -->
+    <section class="uni-section-alt">
+      <div class="container">
+        <h2 class="uni-section-title">Scholarships &amp; Funding</h2>
+        <p class="uni-section-lead">Available financial support for students enrolling at SOA University through TIH.</p>
+        <div class="sch-grid">
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem 1.5rem;border-top:4px solid #002868;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:700;font-size:0.95rem;color:#002868;margin:0 0 0.4rem;">🏆 SOA Global Merit Scholarship</p>
+            <p style="font-size:0.88rem;color:#4b5563;margin:0;">Up to 35% tuition waiver for outstanding applicants</p>
+          </div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem 1.5rem;border-top:4px solid #002868;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:700;font-size:0.95rem;color:#002868;margin:0 0 0.4rem;">🏆 Medical Achievers Award</p>
+            <p style="font-size:0.88rem;color:#4b5563;margin:0;">Partial fee relief for MBBS students after Year 2</p>
+          </div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem 1.5rem;border-top:4px solid #002868;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:700;font-size:0.95rem;color:#002868;margin:0 0 0.4rem;">🏆 Research Fellowship</p>
+            <p style="font-size:0.88rem;color:#4b5563;margin:0;">Funded Ph.D positions including stipend and research grant</p>
+          </div>
+          <div style="background:#002868;color:#fff;border-radius:10px;padding:1.5rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:0.75rem;">
+            <p style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;margin:0;">Need More Funding?</p>
+            <p style="font-size:0.85rem;opacity:0.85;margin:0;">Our counselors can guide you through additional scholarship opportunities including Chevening, Fulbright, and DAAD.</p>
+            <a href="fully-funded-scholarship.html" style="background:#fff;color:#002868;border-radius:6px;padding:0.5rem 1rem;font-size:0.85rem;font-weight:600;text-decoration:none;">View All Scholarships →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPLY FORM -->
+    <section class="apply-section" id="apply-form">
+      <div class="container">
+        <div class="apply-inner">
+
+          <!-- Left: info -->
+          <div>
+            <p style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;color:#002868;text-transform:uppercase;margin-bottom:0.5rem;">Ready to Apply?</p>
+            <h2 class="apply-info-title">Start Your Application to SOA University</h2>
+            <p style="font-size:0.95rem;color:#6b7280;margin-bottom:1.5rem;">Fill in this short form and our team will contact you within 2 business days to guide your full application.</p>
+
+            <div class="apply-meta-row"><span>🏛️</span><strong>SOA University</strong></div>
+            <div class="apply-meta-row"><span>🇮🇳</span><span>Bhubaneswar, Odisha, India</span></div>
+            <div class="apply-meta-row"><span>📅</span><span>Next intake: <strong>June / January</strong></span></div>
+            <div class="apply-meta-row"><span>💰</span><span>Tuition: <strong>$3,000–$5,500/yr</strong></span></div>
+            <div class="apply-meta-row"><span>🏆</span><span>Scholarships: <strong style="color:#059669;">Available</strong></span></div>
+
+            <div class="apply-cta-strip">
+              <p style="font-size:0.88rem;font-weight:600;margin:0 0 0.5rem;">Questions? Talk to us directly</p>
+              <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+                <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:0.82rem;padding:0.5rem 1rem;">💬 WhatsApp</a>
+                <a href="mailto:info@tolbertinnovationhub.org" class="btn btn-outline" style="font-size:0.82rem;padding:0.5rem 1rem;">📧 Email Us</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: form -->
+          <form class="form-card"
+                data-success-message="Thank you! Your application to SOA University has been received. Our team will contact you within 2 business days."
+                novalidate>
+            <h3>Application Form</h3>
+            <p class="form-card-lead">Fields marked <span style="color:var(--brand-red)">*</span> are required.</p>
+            <input type="hidden" name="University" value="SOA University" />
+
+            <div class="form-row2">
+              <div class="fg2">
+                <label for="app-name">Full Name <span class="req">*</span></label>
+                <input type="text" id="app-name" name="fullName" placeholder="As on passport" required />
+              </div>
+              <div class="fg2">
+                <label for="app-email">Email Address <span class="req">*</span></label>
+                <input type="email" id="app-email" name="email" placeholder="your@email.com" required />
+              </div>
+            </div>
+
+            <div class="fg2" style="margin-bottom:1.1rem;">
+              <label for="app-phone">Phone / WhatsApp <span class="req">*</span></label>
+              <input type="tel" id="app-phone" name="phone" placeholder="+231 XXX XXX XXX" required />
+            </div>
+
+            <div class="form-row2">
+              <div class="fg2">
+                <label for="app-edu">Current Education Level <span class="req">*</span></label>
+                <select id="app-edu" name="currentEducation" required>
+                  <option value="">Select level</option>
+                  <option>WASSCE / Senior High School</option>
+                  <option>Diploma / Certificate</option>
+                  <option>Bachelor's Degree</option>
+                  <option>Master's Degree</option>
+                </select>
+              </div>
+              <div class="fg2">
+                <label for="app-deg">Preferred Degree Level <span class="req">*</span></label>
+                <select id="app-deg" name="degreeLevel" required>
+                  <option value="">Select degree</option>
+                  <option>Undergraduate (UG)</option>
+                  <option>Postgraduate (PG)</option>
+                  <option>MBA</option>
+                  <option>Ph.D / Research</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="fg2" style="margin-bottom:1.1rem;">
+              <label for="app-prog">Preferred Program / Field of Study <span class="req">*</span></label>
+              <input type="text" id="app-prog" name="preferredProgram" placeholder="e.g. Computer Science, Nursing, Business" required />
+            </div>
+
+            <div class="fg2" style="margin-bottom:1.1rem;">
+              <label for="app-note">Personal Note (optional)</label>
+              <textarea id="app-note" name="personalNote" rows="3" placeholder="Tell us a little about yourself and why you want to study at SOA University…" style="width:100%;padding:0.7rem 0.9rem;border:1.5px solid #d1d5db;border-radius:8px;font-size:0.92rem;font-family:'Inter',sans-serif;resize:vertical;"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;padding:0.85rem;font-size:1rem;font-weight:700;">
+              Submit Application →
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BACK CTA -->
+    <section style="padding:2rem 0;text-align:center;background:#f9fafb;">
+      <div class="container">
+        <p style="font-size:0.95rem;color:#6b7280;margin-bottom:1rem;">Explore other partner universities or browse scholarships</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="study-abroad.html" class="btn btn-outline">← All Universities</a>
+          <a href="fully-funded-scholarship.html" class="btn btn-outline-blue">View Scholarships →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation. Never Stop Innovating.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="study-abroad.html">Study Abroad</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
+            <li><a href="healthcare.html">Healthcare Exposure</a></li>
+            <li><a href="software.html">Software Innovation</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Classroom</p>
+          <ul class="footer-links">
+            <li><a href="classroom-ielts.html">IELTS Preparation</a></li>
+            <li><a href="classroom-toefl.html">TOEFL Preparation</a></li>
+            <li><a href="classroom-resource-center.html">Resource Center</a></li>
+            <li><a href="classroom-practice-tests.html">Practice Tests</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact Us</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">🌐</span><span>Liberia, West Africa</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+          <div style="margin-top:1.25rem;"><a href="contact.html" class="btn btn-outline btn-sm" style="font-size:0.82rem;">Get In Touch →</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved. | <a href="contact.html" style="color:rgba(200,216,240,0.7);">Privacy</a> | <a href="contact.html" style="color:rgba(200,216,240,0.7);">Terms</a></p>
+          <p style="font-size:0.82rem;color:rgba(200,216,240,0.55);margin:0;">Empowering Africa's Future — Never Stop Innovating 🚀</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>
