@@ -119,20 +119,41 @@
       </form>
 
       <script>
-        document.getElementById('toefl-cert-form').addEventListener('submit', function(e) {
+        document.getElementById('toefl-cert-form').addEventListener('submit', async function(e) {
           e.preventDefault();
-          const fb = document.getElementById('toefl-cert-feedback');
-          const required = this.querySelectorAll('[required]');
-          let valid = true;
+          var fb  = document.getElementById('toefl-cert-feedback');
+          var btn = this.querySelector('button[type="submit"]');
+          var required = this.querySelectorAll('[required]');
+          var valid = true;
           required.forEach(function(el) { if (!el.value.trim()) valid = false; });
           if (!valid) {
             fb.className = 'cert-form-feedback error';
             fb.textContent = 'Please fill in all required fields before submitting.';
             return;
           }
-          fb.className = 'cert-form-feedback success';
-          fb.textContent = '✓ Your certificate request has been submitted! Our team will verify your payment and prepare your TOEFL completion certificate within 24–48 hours.';
-          this.querySelectorAll('input, select, textarea').forEach(function(el) { el.value = ''; });
+          var origLabel = btn ? btn.textContent : '';
+          if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+          fb.className = ''; fb.textContent = '';
+          var data = { _subject: 'TOEFL Certificate Request — Tolbert Innovation Hub', _captcha: 'false', _template: 'table' };
+          new FormData(this).forEach(function(v, k) { data[k] = v; });
+          try {
+            var res  = await fetch('https://formsubmit.co/ajax/tolbertinnovationhub@gmail.com', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: JSON.stringify(data)
+            });
+            var json = await res.json();
+            if (json.success === true || json.success === 'true') {
+              fb.className = 'cert-form-feedback success';
+              fb.textContent = '✓ Your certificate request has been submitted! Our team will verify your payment and prepare your TOEFL completion certificate within 24–48 hours.';
+              this.querySelectorAll('input, select, textarea').forEach(function(el) { el.value = ''; });
+            } else { throw new Error(); }
+          } catch(_) {
+            fb.className = 'cert-form-feedback error';
+            fb.textContent = 'Could not send automatically. Please WhatsApp us: +231 880 559 227 or email tolbertinnovationhub@gmail.com';
+          } finally {
+            if (btn) { btn.disabled = false; btn.textContent = origLabel; }
+          }
         });
       </script>
     </article>
