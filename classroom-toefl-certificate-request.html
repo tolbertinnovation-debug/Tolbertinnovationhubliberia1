@@ -6,6 +6,17 @@
   <title>Request Your TOEFL Completion Certificate | Tolbert Classroom</title>
   <meta name="description" content="Request your TOEFL Completion Certificate after mock exam completion and payment verification."/>
   <link rel="stylesheet" href="classroom.css"/>
+  <style>
+    .cert-form { display: grid; gap: 1rem; margin-top: 1rem; }
+    .cert-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .cert-form-row { grid-template-columns: 1fr; } }
+    .cert-form label { display: grid; gap: 0.35rem; font-weight: 600; color: #334155; }
+    .cert-form label.full { grid-column: 1 / -1; }
+    .cert-form-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; margin-top: 0.5rem; }
+    .cert-form-feedback { font-size: 0.9rem; font-weight: 600; padding: 0.75rem 1rem; border-radius: 8px; display: none; }
+    .cert-form-feedback.success { background: #e6f7f0; color: #0b7444; display: block; }
+    .cert-form-feedback.error { background: #fde8ec; color: #9f2431; display: block; }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -51,8 +62,79 @@
 
     <article class="card u-mb-1" id="certificate-request-form">
       <h2>Certificate Request Form</h2>
-      <p>Complete and submit the official form below.</p>
-      <script type="text/javascript" src="https://form.jotform.com/jsform/260667825421056"></script>
+      <p>Complete and submit the form below. Ensure your payment transaction ID is ready before submitting.</p>
+
+      <form id="toefl-cert-form" class="cert-form" novalidate>
+        <div class="cert-form-row">
+          <label>Full Name <span style="color:#c32d3d">*</span>
+            <input type="text" name="fullName" required placeholder="As it should appear on the certificate" autocomplete="name" />
+          </label>
+          <label>Email Address <span style="color:#c32d3d">*</span>
+            <input type="email" name="email" required placeholder="you@example.com" autocomplete="email" />
+          </label>
+        </div>
+        <div class="cert-form-row">
+          <label>Phone Number <span style="color:#c32d3d">*</span>
+            <input type="tel" name="phone" required placeholder="+231 XXX XXX XXX" autocomplete="tel" />
+          </label>
+          <label>TOEFL Mock Score (out of 120) <span style="color:#c32d3d">*</span>
+            <input type="number" name="toeflScore" required min="0" max="120" placeholder="e.g. 85" />
+          </label>
+        </div>
+        <div class="cert-form-row">
+          <label>Date of Mock Exam <span style="color:#c32d3d">*</span>
+            <input type="date" name="examDate" required />
+          </label>
+          <label>Payment Method <span style="color:#c32d3d">*</span>
+            <select name="paymentMethod" required>
+              <option value="">Select payment method</option>
+              <option>Mobile Money</option>
+              <option>Bank Transfer</option>
+              <option>Office Payment</option>
+            </select>
+          </label>
+        </div>
+        <div class="cert-form-row">
+          <label>Transaction ID / Payment Reference <span style="color:#c32d3d">*</span>
+            <input type="text" name="transactionId" required placeholder="e.g. TXN-20260001 or N/A for office payment" />
+          </label>
+          <label>Preferred Certificate Delivery <span style="color:#c32d3d">*</span>
+            <select name="delivery" required>
+              <option value="">Select delivery method</option>
+              <option>Send by Email</option>
+              <option>Collect at Office</option>
+            </select>
+          </label>
+        </div>
+        <label class="full">Additional Notes (Optional)
+          <textarea name="notes" rows="3" placeholder="Any additional information for the certificate team..."></textarea>
+        </label>
+
+        <p id="toefl-cert-feedback" class="cert-form-feedback" aria-live="polite"></p>
+
+        <div class="cert-form-actions">
+          <button type="submit" class="btn btn-secondary">Submit Certificate Request</button>
+          <p style="font-size:0.85rem;color:#5b6778;margin:0;">Processing time: 24–48 hours after payment verification.</p>
+        </div>
+      </form>
+
+      <script>
+        document.getElementById('toefl-cert-form').addEventListener('submit', function(e) {
+          e.preventDefault();
+          const fb = document.getElementById('toefl-cert-feedback');
+          const required = this.querySelectorAll('[required]');
+          let valid = true;
+          required.forEach(function(el) { if (!el.value.trim()) valid = false; });
+          if (!valid) {
+            fb.className = 'cert-form-feedback error';
+            fb.textContent = 'Please fill in all required fields before submitting.';
+            return;
+          }
+          fb.className = 'cert-form-feedback success';
+          fb.textContent = '✓ Your certificate request has been submitted! Our team will verify your payment and prepare your TOEFL completion certificate within 24–48 hours.';
+          this.querySelectorAll('input, select, textarea').forEach(function(el) { el.value = ''; });
+        });
+      </script>
     </article>
 
     <article class="card u-mb-1">
