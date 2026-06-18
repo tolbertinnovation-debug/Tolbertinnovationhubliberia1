@@ -1037,6 +1037,7 @@ Or choose a topic below:`;
 
   // ── DOM ───────────────────────────────────────────────────────────────────────
   const LOGO_URL = 'https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg';
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
   const chatBtn = document.createElement('button');
   chatBtn.id = 'tih-chat-btn';
@@ -1082,7 +1083,6 @@ Or choose a topic below:`;
   let flow = null;
 
   // ── Helpers ───────────────────────────────────────────────────────────────────
-  const esc   = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const scroll = () => { msgsEl.scrollTop = msgsEl.scrollHeight; };
 
   function timeStr() {
