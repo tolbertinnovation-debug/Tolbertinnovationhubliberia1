@@ -473,23 +473,6 @@ Visit our News page for full articles.`,
       qr: ['🌐 View All News','📝 Apply Now','🔙 Main Menu']
     },
 
-    // ── PORTAL ──
-    {
-      id: 'portal',
-      keywords: ['portal','student portal','login','sign in','register','account','dashboard','my account','log in','student account','classroom login','username','password','create account'],
-      reply: `🔐 <strong>Student Portal</strong><br><br>
-The TIH student portal gives you access to:<br>
-• Your application status<br>
-• Classroom progress tracking<br>
-• Documents and resources<br>
-• Announcements<br><br>
-🔗 <strong>Portal links:</strong><br>
-• <a href="portal-login.html" style="color:#002868;font-weight:700;">Login to Portal →</a><br>
-• <a href="portal-register.html" style="color:#002868;font-weight:700;">Create Account →</a><br>
-• <a href="portal-dashboard.html" style="color:#002868;font-weight:700;">Dashboard →</a>`,
-      qr: ['🔐 Login to Portal','📝 Create Account','🔙 Main Menu']
-    },
-
     // ── VOLUNTEER ──
     {
       id: 'volunteer',
@@ -1184,8 +1167,6 @@ Our team is ready to answer <em>any</em> question you have!<br><br>
       'leadership page': 'leadership.html',
       'volunteer page': 'volunteer.html',
       'partner with us': 'partner-with-us.html',
-      'login to portal': 'portal-login.html',
-      'create account': 'portal-register.html',
       'full team': 'team.html',
       'full team page': 'team.html',
       'meet the team': 'team.html',
