@@ -1,13 +1,467 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Process | Tolbert Innovation Hub</title><link rel="stylesheet" href="styles.css" />  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Process | Tolbert Innovation Hub</title>
+  <meta name="description" content="Learn how Tolbert Innovation Hub guides you through our scholarship, healthcare, software, and classroom programs — clear, step-by-step processes for every service." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    /* ---- Process page styles ---- */
+    .page-hero {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, #1a3d8a 55%, #002055 100%);
+      padding: clamp(3.5rem, 7vw, 6.5rem) 0 clamp(3rem, 5vw, 5rem);
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 40%, rgba(191,10,48,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 85%, rgba(255,255,255,0.04) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    .page-hero > * { position: relative; z-index: 1; }
+    .page-hero .container { position: relative; z-index: 1; }
+
+    /* Process section block */
+    .process-section-block {
+      margin-bottom: 4rem;
+    }
+    .process-section-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .process-section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .process-section-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .icon-blue { background: var(--brand-blue-pale); }
+    .icon-red  { background: var(--brand-red-pale); }
+
+    .process-section-header h2 {
+      margin: 0 0 0.2rem;
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      color: var(--brand-blue);
+    }
+    .process-section-header p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0;
+      max-width: none;
+    }
+
+    /* Step cards grid */
+    .process-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .process-step-card {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .process-step-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent-line, var(--brand-blue));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .process-step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .process-step-card:hover::after {
+      transform: scaleX(1);
+    }
+    .process-step-card.red-accent { --accent-line: var(--brand-red); }
+
+    .step-num-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 0.95rem;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .badge-bg-blue { background: var(--brand-blue); }
+    .badge-bg-red  { background: var(--brand-red); }
+
+    .process-step-card h3 {
+      font-size: 1.05rem;
+      color: var(--brand-blue);
+      margin-bottom: 0.5rem;
+    }
+    .process-step-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* Arrow connector (desktop) */
+    @media (min-width: 768px) {
+      .process-steps-grid.steps-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .process-steps-grid.steps-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Divider */
+    .process-divider {
+      border: none;
+      border-top: 2px dashed var(--border-light);
+      margin: 3.5rem 0;
+    }
+
+    /* CTA band */
+    .cta-band {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, #1a3d8a 100%);
+      border-radius: var(--radius-xl);
+      padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem);
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(191,10,48,0.2) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-band > * { position: relative; z-index: 1; }
+    .cta-band h2 { color: #fff; margin-bottom: 0.75rem; }
+    .cta-band p { color: rgba(255,255,255,0.82); max-width: 58ch; margin: 0 auto 2rem; font-size: 1.05rem; }
+    .cta-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    /* Process nav anchors strip */
+    .process-nav-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 3rem;
+    }
+    .process-nav-strip a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-alt);
+      border: 1px solid var(--border-light);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .process-nav-strip a:hover {
+      background: var(--brand-blue-pale);
+      color: var(--brand-blue);
+      border-color: var(--brand-blue);
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
-<header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html">Tolbert Innovation Hub</a><nav class="nav-links" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a class="active" aria-current="page" href="process.html">Process</a><a href="projects.html">Projects</a><a href="team.html">Team</a><a href="entertainment.html">Entertainment</a>
-        <a href="contact.html">Contact</a><a href="classroom.html">Classroom</a></nav></div></header>
-<main id="main-content"><section class="section"><div class="container"><p class="section-label">Our Process</p><h2>How We Support Every Journey</h2><ol class="process-list"><li><h3>1. Exploration and Inquiry</h3><p>Contact us and begin with an initial consultation.</p></li><li><h3>2. Application and Assessment</h3><p>Select services and submit required applications.</p></li><li><h3>3. Participation and Ongoing Support</h3><p>Receive mentorship, progress tracking, and continuous guidance.</p></li></ol></div></section></main>
-<footer class="site-footer"><div class="container"><p><strong>Tolbert Innovation Hub</strong></p></div><p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p></footer>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="scholarship.html">Scholarship</a>
+        <a href="study-abroad.html">Study Abroad</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a class="active" aria-current="page" href="process.html">Process</a>
+        <a href="contact.html">Contact</a>
+        <a href="scholarship.html#application-form" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="page-hero" aria-label="Process hero">
+      <div class="container">
+        <p class="eyebrow">Transparent &amp; Guided</p>
+        <h1>Clear, Transparent Processes for <span style="color:#ef9090;">Every Program</span></h1>
+        <p class="lead" style="max-width:64ch;">We believe you deserve to know exactly what to expect at every stage. Whether you are applying for a scholarship, seeking healthcare abroad, launching a software project, or joining our free classroom — here is how it works.</p>
+        <div class="hero-badges">
+          <span class="hero-badge"><span class="hero-badge-icon">🎓</span> Scholarship</span>
+          <span class="hero-badge"><span class="hero-badge-icon">🏥</span> Healthcare</span>
+          <span class="hero-badge"><span class="hero-badge-icon">💻</span> Software</span>
+          <span class="hero-badge"><span class="hero-badge-icon">📚</span> Classroom</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS CONTENT -->
+    <section class="section" aria-labelledby="process-main-heading">
+      <div class="container">
+
+        <!-- Quick navigation -->
+        <nav class="process-nav-strip" aria-label="Jump to process section">
+          <a href="#scholarship-process">🎓 Scholarship</a>
+          <a href="#healthcare-process">🏥 Healthcare</a>
+          <a href="#software-process">💻 Software</a>
+          <a href="#classroom-process">📚 Classroom</a>
+        </nav>
+
+        <!-- SCHOLARSHIP PROCESS -->
+        <div class="process-section-block" id="scholarship-process">
+          <div class="process-section-header">
+            <div class="process-section-icon icon-blue">🎓</div>
+            <div>
+              <h2>Scholarship Process</h2>
+              <p>How we guide you from first inquiry to admission letter and beyond</p>
+            </div>
+          </div>
+          <div class="process-steps-grid steps-4">
+            <div class="process-step-card reveal">
+              <div class="step-num-badge badge-bg-blue">1</div>
+              <h3>Eligibility Check</h3>
+              <p>We assess your academic background, language proficiency, and target country to identify the scholarship programmes that are the right fit for your goals and qualifications.</p>
+            </div>
+            <div class="process-step-card reveal">
+              <div class="step-num-badge badge-bg-blue">2</div>
+              <h3>Document Preparation</h3>
+              <p>Our team guides you through gathering and verifying every required document — transcripts, recommendation letters, personal statements, medical certificates, and more — ensuring everything meets official standards.</p>
+            </div>
+            <div class="process-step-card reveal">
+              <div class="step-num-badge badge-bg-blue">3</div>
+              <h3>Application Submission</h3>
+              <p>We prepare and review your complete application package before submission, checking every detail and deadline to maximise your chances of a successful outcome.</p>
+            </div>
+            <div class="process-step-card reveal">
+              <div class="step-num-badge badge-bg-blue">4</div>
+              <h3>Admission Letter</h3>
+              <p>Once accepted, we assist with your official admission letter, student visa application, pre-departure orientation, and all the practical steps needed before you fly out to begin your studies.</p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="process-divider" />
+
+        <!-- HEALTHCARE PROCESS -->
+        <div class="process-section-block" id="healthcare-process">
+          <div class="process-section-header">
+            <div class="process-section-icon icon-red">🏥</div>
+            <div>
+              <h2>Healthcare Process</h2>
+              <p>How we coordinate your medical journey from case inquiry to successful treatment</p>
+            </div>
+          </div>
+          <div class="process-steps-grid steps-4">
+            <div class="process-step-card red-accent reveal">
+              <div class="step-num-badge badge-bg-red">1</div>
+              <h3>Case Inquiry</h3>
+              <p>You share your medical situation with us — diagnosis, reports, and treatment history. Our healthcare coordinator reviews your case and identifies which specialist hospitals and countries are best suited for your condition.</p>
+            </div>
+            <div class="process-step-card red-accent reveal">
+              <div class="step-num-badge badge-bg-red">2</div>
+              <h3>Medical Assessment</h3>
+              <p>We forward your medical records to our partner hospitals for a preliminary remote assessment and cost estimate. Our team explains the findings and recommendations in plain language so you can make an informed decision.</p>
+            </div>
+            <div class="process-step-card red-accent reveal">
+              <div class="step-num-badge badge-bg-red">3</div>
+              <h3>Specialist Referral</h3>
+              <p>We issue a formal referral letter to the chosen hospital and coordinate appointment scheduling, medical visa documentation, and all the administrative requirements needed for your travel clearance.</p>
+            </div>
+            <div class="process-step-card red-accent reveal">
+              <div class="step-num-badge badge-bg-red">4</div>
+              <h3>Travel &amp; Treatment</h3>
+              <p>Our team assists with travel bookings, airport pickup arrangements at the destination, and stays in regular contact throughout your treatment. We continue to follow up after your return to ensure a full recovery.</p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="process-divider" />
+
+        <!-- SOFTWARE PROCESS -->
+        <div class="process-section-block" id="software-process">
+          <div class="process-section-header">
+            <div class="process-section-icon icon-blue">💻</div>
+            <div>
+              <h2>Software &amp; IT Process</h2>
+              <p>How we turn your idea into a fully delivered digital product</p>
+            </div>
+          </div>
+          <div class="process-steps-grid steps-4">
+            <div class="process-step-card reveal">
+              <div class="step-num-badge badge-bg-blue">1</div>
+              <h3>Consultation Request</h3>
+              <p>Submit a brief description of your project — what you need, who will use it, and any deadlines. We acknowledge every request within 24 hours and schedule a discovery session at your convenience.</p>
+            </div>
+            <div class="process-step-card reveal">
+              <div class="step-num-badge badge-bg-blue">2</div>
+              <h3>Discovery Call</h3>
+              <p>In a structured 30–60 minute session, our software team digs into your requirements, existing systems, user base, and technical constraints to fully understand the scope before recommending a solution.</p>
+            </div>
+            <div class="process-step-card reveal">
+              <div class="step-num-badge badge-bg-blue">3</div>
+              <h3>Proposal</h3>
+              <p>We deliver a clear written proposal covering the recommended solution, technology stack, project timeline, milestones, pricing, and support terms. No surprises, no vague estimates.</p>
+            </div>
+            <div class="process-step-card reveal">
+              <div class="step-num-badge badge-bg-blue">4</div>
+              <h3>Development &amp; Delivery</h3>
+              <p>Our team builds your solution in agreed sprints with regular progress updates. Final delivery includes testing, handover documentation, staff training, and an agreed post-launch support period.</p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="process-divider" />
+
+        <!-- CLASSROOM PROCESS -->
+        <div class="process-section-block" id="classroom-process">
+          <div class="process-section-header">
+            <div class="process-section-icon icon-red">📚</div>
+            <div>
+              <h2>Free Classroom Process</h2>
+              <p>How to start learning IELTS, TOEFL, and more — completely free</p>
+            </div>
+          </div>
+          <div class="process-steps-grid steps-3">
+            <div class="process-step-card red-accent reveal">
+              <div class="step-num-badge badge-bg-red">1</div>
+              <h3>Choose Your Pathway</h3>
+              <p>Select either the IELTS or TOEFL preparation pathway — or explore both. Each pathway is structured into clear modules covering every exam component from orientation through advanced test strategies.</p>
+            </div>
+            <div class="process-step-card red-accent reveal">
+              <div class="step-num-badge badge-bg-red">2</div>
+              <h3>Follow the Modules</h3>
+              <p>Work through video lessons, reading materials, writing and speaking exercises, and listening practice at your own pace. Practice tests are available throughout so you can track your progress in real time.</p>
+            </div>
+            <div class="process-step-card red-accent reveal">
+              <div class="step-num-badge badge-bg-red">3</div>
+              <h3>Complete &amp; Certify</h3>
+              <p>Upon completing all required modules and assessments, request your Tolbert Innovation Hub Certificate of Completion — a recognised credential you can present alongside your scholarship or university application.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section-alt" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-band">
+          <p class="eyebrow" style="justify-content:center;margin:0 auto 1rem;">Take the First Step</p>
+          <h2>Ready to Begin Your Journey?</h2>
+          <p>Now that you know exactly how each programme works, take the next step. Apply for a scholarship, enquire about healthcare support, start our free classroom, or get a quote for your software project.</p>
+          <div class="cta-actions">
+            <a href="scholarship.html#application-form" class="btn btn-primary btn-lg">Apply for Scholarship</a>
+            <a href="contact.html" class="btn btn-outline btn-lg">Contact Us</a>
+            <a href="classroom.html" class="btn btn-outline btn-lg">Join Free Classroom</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="scholarship.html">Scholarship Program</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
+            <li><a href="healthcare.html">Healthcare Exposure</a></li>
+            <li><a href="software.html">Software Innovation</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="classroom-ielts.html">IELTS Preparation</a></li>
+            <li><a href="classroom-toefl.html">TOEFL Preparation</a></li>
+            <li><a href="impact.html">Impact Report</a></li>
+            <li><a href="success-stories.html">Success Stories</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+  </a>
+
   <script src="main.js"></script>
-</body></html>
+</body>
+</html>

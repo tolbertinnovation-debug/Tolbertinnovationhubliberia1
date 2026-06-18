@@ -14,6 +14,31 @@
   <link rel="stylesheet" href="styles.css" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    .form-card { background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: clamp(1.75rem,4vw,2.5rem); box-shadow: var(--shadow); }
+    .form-card h3 { font-size: 1.2rem; color: var(--brand-blue); margin-bottom: 0.4rem; }
+    .form-card-lead { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.75rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
+    .form-group:last-of-type { margin-bottom: 0; }
+    .form-label { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.01em; }
+    .form-label .required { color: var(--brand-red); margin-left: 2px; }
+    .form-input, .form-select, .form-textarea { width: 100%; padding: 0.72rem 0.95rem; border: 1.5px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-2); color: var(--text); font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; transition: border-color var(--transition), box-shadow var(--transition); appearance: none; -webkit-appearance: none; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--brand-blue); background: var(--surface); box-shadow: 0 0 0 3px rgba(0,40,104,0.1); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-textarea { resize: vertical; min-height: 130px; }
+    .form-select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; }
+    .form-feedback { font-size: 0.9rem; font-weight: 600; margin-top: 0.85rem; padding: 0.7rem 1rem; border-radius: var(--radius-sm); background: var(--bg-alt); display: none; }
+    .form-feedback:not(:empty) { display: block; }
+    .form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.5rem; }
+    .form-note { font-size: 0.8rem; color: var(--text-muted); }
+    .cbox-group { margin-bottom: 1.1rem; }
+    .cbox-legend { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.75rem; display: block; }
+    .cbox-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 0.5rem 1rem; }
+    .cbox-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; cursor: pointer; color: var(--text); }
+    .cbox-item input[type="checkbox"] { width:16px; height:16px; flex-shrink:0; accent-color: var(--brand-blue); }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -24,6 +49,7 @@
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="scholarship.html">Scholarship</a>
+        <a href="study-abroad.html">Study Abroad</a>
         <a href="fully-funded-scholarship.html">Fully Funded</a>
         <a href="healthcare.html">Healthcare</a>
         <a class="active" aria-current="page" href="software.html">Software</a>
@@ -147,7 +173,114 @@
           </div>
         </div>
 
-        <script type="text/javascript" src="https://form.jotform.com/jsform/260667319745063"></script>
+        <form class="form-card"
+              data-success-message="Thank you for your consultation request! Our team will review your project details and contact you within 2–3 business days."
+              novalidate>
+          <h3>Business Project Intake Form</h3>
+          <p class="form-card-lead">All fields marked <span style="color:var(--brand-red)">*</span> are required. We'll review and respond within 2–3 business days.</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="sw-org">Organization / Business Name <span class="required">*</span></label>
+              <input class="form-input" type="text" id="sw-org" name="orgName" placeholder="Your organization or business name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sw-name">Your Full Name <span class="required">*</span></label>
+              <input class="form-input" type="text" id="sw-name" name="contactName" placeholder="Your full name" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="sw-title">Job Title / Role</label>
+              <input class="form-input" type="text" id="sw-title" name="jobTitle" placeholder="e.g. CEO, IT Manager, Director" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sw-org-type">Organization Type <span class="required">*</span></label>
+              <select class="form-select" id="sw-org-type" name="orgType" required>
+                <option value="">Select type</option>
+                <option>Private Business</option>
+                <option>School / University</option>
+                <option>NGO / Non-Profit</option>
+                <option>Government Agency</option>
+                <option>Individual / Freelancer</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="sw-email">Email Address <span class="required">*</span></label>
+              <input class="form-input" type="email" id="sw-email" name="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sw-phone">Phone / WhatsApp <span class="required">*</span></label>
+              <input class="form-input" type="tel" id="sw-phone" name="phone" placeholder="+231 XXX XXX XXX" required />
+            </div>
+          </div>
+
+          <div class="cbox-group">
+            <span class="cbox-legend">Services Needed <span style="font-weight:400;color:var(--text-muted)">(select all that apply)</span></span>
+            <div class="cbox-grid">
+              <label class="cbox-item"><input type="checkbox" name="services" value="website" /> Business Website</label>
+              <label class="cbox-item"><input type="checkbox" name="services" value="custom-software" /> Custom Software</label>
+              <label class="cbox-item"><input type="checkbox" name="services" value="school-management" /> School Management System</label>
+              <label class="cbox-item"><input type="checkbox" name="services" value="dashboard" /> Business Dashboard / Analytics</label>
+              <label class="cbox-item"><input type="checkbox" name="services" value="automation" /> Process Automation</label>
+              <label class="cbox-item"><input type="checkbox" name="services" value="digital-strategy" /> Digital Strategy Consulting</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="sw-description">Project Description <span class="required">*</span></label>
+            <textarea class="form-textarea" id="sw-description" name="description" placeholder="Describe your project or business challenge. What do you want to build or improve? Who will use it? What problem does it solve?" required></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="sw-budget">Estimated Budget Range</label>
+              <select class="form-select" id="sw-budget" name="budget">
+                <option value="">Select range</option>
+                <option>Under $500</option>
+                <option>$500 – $1,000</option>
+                <option>$1,000 – $5,000</option>
+                <option>$5,000 – $10,000</option>
+                <option>$10,000+</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sw-timeline">Preferred Timeline</label>
+              <select class="form-select" id="sw-timeline" name="timeline">
+                <option value="">Select timeline</option>
+                <option>As soon as possible</option>
+                <option>Within 1–3 months</option>
+                <option>Within 3–6 months</option>
+                <option>6+ months</option>
+                <option>Flexible</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="sw-source">How did you hear about us?</label>
+            <select class="form-select" id="sw-source" name="source">
+              <option value="">Select one</option>
+              <option>Social Media</option>
+              <option>Google Search</option>
+              <option>WhatsApp</option>
+              <option>Referral / Word of Mouth</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <p class="form-feedback" aria-live="polite"></p>
+          <div class="form-submit-row">
+            <button class="btn btn-primary" type="submit">Submit Consultation Request</button>
+            <p class="form-note">We respond within 2–3 business days with a discovery call invitation.</p>
+          </div>
+        </form>
       </div>
     </section>
 

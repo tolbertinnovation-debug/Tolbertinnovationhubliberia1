@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partner With Us | Tolbert Innovation Hub</title>
+  <meta name="description" content="Partner with Tolbert Innovation Hub to empower Liberian youth through education, technology, healthcare, and innovation programs. Corporate, NGO, government, and individual partnerships welcome." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    /* ── Partnership Types ── */
+    .partner-types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+      margin-top: 2rem;
+    }
+    .partner-type-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      box-shadow: 0 2px 14px rgba(0,40,104,0.09);
+      border-top: 4px solid var(--brand-blue);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .partner-type-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 24px rgba(0,40,104,0.14);
+    }
+    .partner-type-card.red-top { border-top-color: var(--brand-red); }
+    .partner-type-icon {
+      font-size: 2.5rem;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .partner-type-card h3 {
+      color: var(--brand-blue);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    .partner-type-card.red-top h3 { color: var(--brand-red); }
+    .partner-type-card p {
+      color: #555;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ── Benefits ── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.75rem;
+      margin-top: 2rem;
+    }
+    .benefit-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      box-shadow: 0 2px 14px rgba(0,40,104,0.09);
+      text-align: center;
+      border-bottom: 4px solid var(--brand-blue);
+    }
+    .benefit-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--brand-blue-pale, #e8f0fb);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin: 0 auto 1rem;
+    }
+    .benefit-card h3 {
+      color: var(--brand-blue);
+      font-size: 1.02rem;
+      margin-bottom: 0.5rem;
+    }
+    .benefit-card p {
+      color: #555;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ── Stats bar ── */
+    .partner-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .partner-stat {
+      padding: 1.75rem 1rem;
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(0,40,104,0.08);
+    }
+    .partner-stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--brand-blue);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.1;
+    }
+    .partner-stat-label {
+      font-size: 0.88rem;
+      color: #555;
+      margin-top: 0.35rem;
+      font-weight: 500;
+    }
+
+    /* ── Form ── */
+    .form-card {
+      background: #fff;
+      border-radius: var(--radius-lg, 18px);
+      padding: 2.5rem;
+      box-shadow: 0 4px 24px rgba(0,40,104,0.11);
+      max-width: 820px;
+      margin: 2rem auto 0;
+    }
+    .form-card > h2 { color: var(--brand-blue); margin-bottom: 0.4rem; }
+    .form-card > p { color: #555; margin-bottom: 2rem; font-size: 0.95rem; }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 620px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: #333;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem 1rem;
+      border: 2px solid #dde4f0;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      color: #222;
+      outline: none;
+      transition: border-color 0.2s;
+      background: #fafbff;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--brand-blue); background: #fff; }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit-row {
+      margin-top: 1.75rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .form-note { font-size: 0.83rem; color: #888; }
+    .form-feedback {
+      margin-top: 1rem;
+      font-size: 0.93rem;
+      font-weight: 600;
+      min-height: 1.4em;
+    }
+    /* Checkboxes fieldset */
+    .checkbox-fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
+      grid-column: 1 / -1;
+    }
+    .checkbox-legend {
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 0.5rem 1.25rem;
+    }
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.9rem;
+      color: #333;
+      cursor: pointer;
+    }
+    .checkbox-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      accent-color: var(--brand-blue);
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+
+    /* ── Contact CTA ── */
+    .contact-cta-box {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, #003a8c 100%);
+      color: #fff;
+      border-radius: var(--radius-lg, 18px);
+      padding: 2.5rem 3rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .contact-cta-box h2 { color: #fff; margin-bottom: 0.5rem; }
+    .contact-cta-box p { opacity: 0.88; margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.75; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="scholarship.html">Scholarship</a>
+        <a href="study-abroad.html">Study Abroad</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="scholarship.html#application-form" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Partner With Us</p>
+        <h1>Join Us in Building Africa's Future</h1>
+        <p class="lead">
+          Tolbert Innovation Hub welcomes partnerships with corporations, NGOs, government agencies,
+          educational institutions, healthcare organizations, and international bodies committed to
+          empowering African youth.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#partnership-form">Submit Partnership Inquiry</a>
+          <a class="btn btn-secondary" href="#partnership-types">Explore Partnership Types</a>
+          <a class="btn btn-outline-blue" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Ask on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partnership Types -->
+    <section class="section section-alt" id="partnership-types">
+      <div class="container">
+        <p class="section-label">How We Can Work Together</p>
+        <h2>Partnership Types</h2>
+        <p class="section-intro">
+          We collaborate with a wide range of organizations and individuals who share our commitment to
+          education, health, technology, and community development across Africa.
+        </p>
+        <div class="partner-types-grid">
+
+          <div class="partner-type-card reveal">
+            <div class="partner-type-icon">&#x1F3E2;</div>
+            <h3>Corporate Partners</h3>
+            <p>CSR initiatives, employee skill development, technology sponsorship, and brand alignment with youth empowerment and education in Liberia.</p>
+          </div>
+
+          <div class="partner-type-card reveal">
+            <div class="partner-type-icon">&#x1F393;</div>
+            <h3>Educational Institutions</h3>
+            <p>Academic collaborations, course exchanges, joint research partnerships, and student pathway programs linking institutions globally to Liberian learners.</p>
+          </div>
+
+          <div class="partner-type-card red-top reveal">
+            <div class="partner-type-icon">&#x1F30D;</div>
+            <h3>NGOs &amp; International Organizations</h3>
+            <p>Program co-implementation, joint funding applications, technical support, and community outreach partnerships aligned with sustainable development goals.</p>
+          </div>
+
+          <div class="partner-type-card red-top reveal">
+            <div class="partner-type-icon">&#x1F3DB;&#xFE0F;</div>
+            <h3>Government Agencies</h3>
+            <p>Policy support, program endorsement, capacity building partnerships, and alignment with national education and healthcare transformation priorities.</p>
+          </div>
+
+          <div class="partner-type-card reveal">
+            <div class="partner-type-icon">&#x1F3E5;</div>
+            <h3>Healthcare Organizations</h3>
+            <p>Medical referral networks, specialist access agreements, health education program sponsorship, and collaborative healthcare delivery partnerships.</p>
+          </div>
+
+          <div class="partner-type-card reveal">
+            <div class="partner-type-icon">&#x1F4B0;</div>
+            <h3>Investors &amp; Sponsors</h3>
+            <p>Financial support for scholarships, program infrastructure, classroom technology, and innovation initiatives that deliver measurable community impact.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits of Partnership -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">Why Partner With TIH</p>
+        <h2>Benefits of Partnership</h2>
+        <p class="section-intro">
+          Partnering with Tolbert Innovation Hub means your organization contributes directly to transformative
+          impact while gaining meaningful benefits aligned with your strategic goals.
+        </p>
+        <div class="benefits-grid">
+
+          <div class="benefit-card reveal">
+            <div class="benefit-icon">&#x1F4E3;</div>
+            <h3>Brand Visibility</h3>
+            <p>Gain exposure to thousands of students, families, and businesses across Liberia and the African diaspora through our programs, website, and communications.</p>
+          </div>
+
+          <div class="benefit-card reveal">
+            <div class="benefit-icon">&#x1F331;</div>
+            <h3>Social Impact</h3>
+            <p>Make a direct, measurable contribution to youth empowerment, education access, healthcare facilitation, and sustainable community development.</p>
+          </div>
+
+          <div class="benefit-card reveal">
+            <div class="benefit-icon">&#x1F310;</div>
+            <h3>Network Access</h3>
+            <p>Connect with TIH's growing network of students, educators, healthcare professionals, technology innovators, and community leaders across Liberia and Africa.</p>
+          </div>
+
+          <div class="benefit-card reveal">
+            <div class="benefit-icon">&#x2699;&#xFE0F;</div>
+            <h3>Custom Programs</h3>
+            <p>Collaborate on programs specifically tailored to your organization's strategic priorities, CSR mandates, and community development objectives.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section section-alt">
+      <div class="container">
+        <p class="section-label">Our Reach</p>
+        <h2>Why Partner With TIH?</h2>
+        <p class="section-intro">
+          Tolbert Innovation Hub is a growing force for youth empowerment in Liberia. Your partnership
+          contributes to a mission with real, expanding impact.
+        </p>
+        <div class="partner-stats">
+          <div class="partner-stat reveal">
+            <div class="partner-stat-number">500+</div>
+            <div class="partner-stat-label">Students Reached</div>
+          </div>
+          <div class="partner-stat reveal">
+            <div class="partner-stat-number">3</div>
+            <div class="partner-stat-label">Active Programs</div>
+          </div>
+          <div class="partner-stat reveal">
+            <div class="partner-stat-number">12+</div>
+            <div class="partner-stat-label">Countries Connected</div>
+          </div>
+          <div class="partner-stat reveal">
+            <div class="partner-stat-number">100%</div>
+            <div class="partner-stat-label">Free Classroom Access</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partnership Application Form -->
+    <section class="section" id="partnership-form">
+      <div class="container">
+        <p class="section-label">Apply Today</p>
+        <h2>Partner Application Form</h2>
+        <p class="section-intro">
+          Complete the form below and our partnerships team will review your inquiry and respond within
+          3&ndash;5 business days.
+        </p>
+
+        <form class="form-card reveal"
+              data-success-message="Thank you for your partnership interest! Our team will review your inquiry and contact you within 3&ndash;5 business days."
+              novalidate>
+          <h2>Partnership Inquiry</h2>
+          <p>Fields marked with * are required. All information is kept confidential and used solely for partnership coordination.</p>
+
+          <div class="form-grid">
+
+            <!-- Organization Name -->
+            <div class="form-group">
+              <label for="org-name">Organization / Company Name *</label>
+              <input type="text" id="org-name" name="org_name" placeholder="Your organization or company name" required />
+            </div>
+
+            <!-- Contact Person -->
+            <div class="form-group">
+              <label for="contact-name">Contact Person Full Name *</label>
+              <input type="text" id="contact-name" name="contact_name" placeholder="Your full name" required autocomplete="name" />
+            </div>
+
+            <!-- Job Title -->
+            <div class="form-group">
+              <label for="job-title">Job Title / Position *</label>
+              <input type="text" id="job-title" name="job_title" placeholder="e.g. Director of Partnerships" required />
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="partner-email">Email Address *</label>
+              <input type="email" id="partner-email" name="email" placeholder="your@organization.org" required autocomplete="email" />
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+              <label for="partner-phone">Phone Number</label>
+              <input type="tel" id="partner-phone" name="phone" placeholder="+231 or your country code" autocomplete="tel" />
+            </div>
+
+            <!-- Website -->
+            <div class="form-group">
+              <label for="org-website">Organization Website</label>
+              <input type="url" id="org-website" name="website" placeholder="https://www.yourorganization.org" />
+            </div>
+
+            <!-- Organization Type -->
+            <div class="form-group">
+              <label for="org-type">Organization Type *</label>
+              <select id="org-type" name="org_type" required>
+                <option value="" disabled selected>Select organization type</option>
+                <option value="corporation">Corporation / Business</option>
+                <option value="ngo">NGO / Non-Profit</option>
+                <option value="government">Government Agency</option>
+                <option value="education">Educational Institution</option>
+                <option value="healthcare">Healthcare Organization</option>
+                <option value="international">International Organization</option>
+                <option value="individual">Individual / Investor</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <!-- Country -->
+            <div class="form-group">
+              <label for="partner-country">Country / Location *</label>
+              <input type="text" id="partner-country" name="country" placeholder="e.g. Liberia, United States, India" required />
+            </div>
+
+            <!-- Partnership Interest -->
+            <div class="form-group">
+              <label for="partnership-interest">Partnership Interest *</label>
+              <select id="partnership-interest" name="partnership_interest" required>
+                <option value="" disabled selected>Select primary partnership interest</option>
+                <option value="corporate-sponsorship">Corporate Sponsorship</option>
+                <option value="scholarship-funding">Scholarship Funding</option>
+                <option value="healthcare-collaboration">Healthcare Collaboration</option>
+                <option value="technology-partnership">Technology Partnership</option>
+                <option value="educational-partnership">Educational Partnership</option>
+                <option value="mou-general">General MOU / Collaboration</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <!-- Budget Range -->
+            <div class="form-group">
+              <label for="budget-range">Budget / Contribution Range</label>
+              <select id="budget-range" name="budget_range">
+                <option value="" disabled selected>Select approximate range</option>
+                <option value="under-1k">Under $1,000</option>
+                <option value="1k-5k">$1,000 &ndash; $5,000</option>
+                <option value="5k-20k">$5,000 &ndash; $20,000</option>
+                <option value="20k-50k">$20,000 &ndash; $50,000</option>
+                <option value="50k-plus">$50,000+</option>
+                <option value="in-kind">In-Kind Support</option>
+                <option value="volunteer-services">Volunteer Services</option>
+                <option value="tbd">TBD / To Be Discussed</option>
+              </select>
+            </div>
+
+            <!-- Program Areas (checkboxes) -->
+            <fieldset class="checkbox-fieldset">
+              <legend class="checkbox-legend">Program Area of Interest * <span style="font-weight:400;color:#888;">(select all that apply)</span></legend>
+              <div class="checkbox-grid">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="program_area" value="scholarship-programs" />
+                  Scholarship Programs
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="program_area" value="healthcare-access" />
+                  Healthcare Access
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="program_area" value="ielts-toefl-classroom" />
+                  IELTS / TOEFL Classroom
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="program_area" value="software-innovation" />
+                  Software Innovation
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="program_area" value="community-development" />
+                  Community Development
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="program_area" value="leadership-training" />
+                  Leadership Training
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="program_area" value="research-innovation" />
+                  Research &amp; Innovation
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- Partnership Description -->
+            <div class="form-group full">
+              <label for="partnership-description">Proposed Partnership Description *</label>
+              <textarea id="partnership-description" name="partnership_description" rows="5"
+                placeholder="Describe how you'd like to partner with us and what you hope to achieve. Include any specific programs, initiatives, or outcomes you have in mind..."
+                required></textarea>
+            </div>
+
+            <!-- Timeline -->
+            <div class="form-group">
+              <label for="partnership-timeline">Timeline for Partnership</label>
+              <select id="partnership-timeline" name="timeline">
+                <option value="" disabled selected>Select preferred timeline</option>
+                <option value="immediate">Immediate / ASAP</option>
+                <option value="3-months">Within 3 months</option>
+                <option value="6-months">Within 6 months</option>
+                <option value="1-year">Within 1 year</option>
+                <option value="flexible">Flexible / Ongoing</option>
+              </select>
+            </div>
+
+            <!-- How did you hear -->
+            <div class="form-group">
+              <label for="how-heard">How Did You Hear About Us?</label>
+              <select id="how-heard" name="how_heard">
+                <option value="" disabled selected>Select an option</option>
+                <option value="google">Google Search</option>
+                <option value="social-media">Social Media</option>
+                <option value="word-of-mouth">Word of Mouth</option>
+                <option value="news-article">News Article</option>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="email">Email</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <!-- Additional Notes -->
+            <div class="form-group full">
+              <label for="additional-notes">Additional Notes <span style="font-weight:400;color:#888;">(optional)</span></label>
+              <textarea id="additional-notes" name="additional_notes" rows="3"
+                placeholder="Any other information you'd like to share with our team..."></textarea>
+            </div>
+
+          </div><!-- /.form-grid -->
+
+          <div class="form-submit-row">
+            <button type="submit" class="btn btn-primary">Submit Partnership Inquiry</button>
+            <span class="form-note">We respond within 3&ndash;5 business days.</span>
+          </div>
+          <p class="form-feedback" aria-live="polite"></p>
+
+        </form>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="section section-alt">
+      <div class="container" style="max-width:720px; margin-left:auto; margin-right:auto;">
+        <div class="contact-cta-box reveal">
+          <h2>Have Questions Before Submitting?</h2>
+          <p>
+            If you'd like to speak with our partnerships team before submitting a formal inquiry, we're happy
+            to connect. Reach us via WhatsApp, email, or use our Contact page. We're always open to an
+            introductory conversation about how we can work together.
+          </p>
+          <div class="hero-actions" style="justify-content:center;">
+            <a class="btn btn-primary" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+            <a class="btn btn-secondary" href="mailto:info@tolbertinnovationhub.org">Send an Email</a>
+            <a class="btn btn-outline-blue" href="contact.html" style="color:#fff; border-color:rgba(255,255,255,0.5);">Contact Page</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link">&#x1F4AC;</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link">&#x1F4E7;</a>
+            <a href="tel:+231880559227" class="social-link">&#x1F4DE;</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="scholarship.html">Scholarship Program</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
+            <li><a href="healthcare.html">Healthcare Exposure</a></li>
+            <li><a href="software.html">Software Innovation</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Get Involved</p>
+          <ul class="footer-links">
+            <li><a href="partner-with-us.html">Partner With Us</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4E7;</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4DE;</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">&#x1F4AC;</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">&copy; 2026 Tolbert Innovation Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+  </a>
+  <script src="main.js"></script>
+</body>
+</html>
