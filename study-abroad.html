@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Study Abroad Portal — International Universities for Liberian Students | Tolbert Innovation Hub</title>
-  <meta name="description" content="Explore 17+ partner universities in India and Cyprus. Compare programs, check eligibility, discover scholarships, and apply online through the Tolbert Innovation Hub Study Abroad Portal." />
-  <meta property="og:title" content="Study Abroad Portal | Tolbert Innovation Hub" />
-  <meta property="og:description" content="Discover top international universities, compare programs and scholarships, check your eligibility, and apply online — all in one place for Liberian students." />
+  <title>University Directory — Study Abroad Portal | Tolbert Innovation Hub</title>
+  <meta name="description" content="Browse all 17 partner universities in India and Cyprus. Filter by country, program, tuition, and scholarship availability to find your perfect match." />
+  <meta property="og:title" content="University Directory | Tolbert Innovation Hub Study Abroad Portal" />
+  <meta property="og:description" content="Discover top international universities, compare programs and scholarships, and apply online — all in one place for Liberian students." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,352 +15,152 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <style>
-    /* ===========================
-       STUDY ABROAD PORTAL STYLES
-    =========================== */
-
-    /* HERO */
-    .sa-hero {
-      background: linear-gradient(135deg, #001440 0%, var(--brand-blue) 50%, #1a3d8a 100%);
-      padding: clamp(4.5rem,9vw,8rem) 0 clamp(3.5rem,7vw,6.5rem);
-      position: relative;
-      overflow: hidden;
-      color: #fff;
-    }
-    .sa-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 85% 25%, rgba(191,10,48,0.28) 0%, transparent 50%),
-                  radial-gradient(ellipse at 10% 85%, rgba(255,255,255,0.05) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    .sa-hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-      background-size: 64px 64px;
-      pointer-events: none;
-    }
-    .sa-hero-inner { position: relative; z-index: 2; }
-    .sa-pill {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
-      backdrop-filter: blur(8px); padding: 0.38rem 1.1rem; border-radius: 100px;
-      font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.92);
-      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.5rem;
-    }
-    .sa-hero h1 {
-      font-size: clamp(2.4rem,5.5vw,4.2rem); font-weight: 900; color: #fff;
-      line-height: 1.12; margin-bottom: 1.25rem; max-width: 16ch;
-    }
-    .sa-hero h1 em {
-      font-style: normal;
-      background: linear-gradient(90deg, #ffd6a0, #ffffff, #c8d8f8);
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .sa-hero-lead {
-      font-size: clamp(1rem,1.8vw,1.18rem); color: rgba(255,255,255,0.76);
-      max-width: 58ch; line-height: 1.8; margin-bottom: 2.5rem;
-    }
-    .sa-hero-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-bottom: 3rem; }
-    .btn-white { background: #fff; color: var(--brand-blue); font-weight: 700; }
-    .btn-white:hover { background: #f0f4ff; transform: translateY(-2px); }
-    .btn-glass {
-      background: rgba(255,255,255,0.12); color: #fff;
-      border: 1.5px solid rgba(255,255,255,0.28); backdrop-filter: blur(6px); font-weight: 600;
-    }
-    .btn-glass:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
-    .sa-badges { display: flex; flex-wrap: wrap; gap: 0.7rem; }
-    .sa-badge {
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.16);
-      padding: 0.32rem 0.8rem; border-radius: 100px; font-size: 0.78rem;
-      font-weight: 600; color: rgba(255,255,255,0.85);
-    }
-
-    /* STATS STRIP */
-    .stats-strip {
-      background: var(--surface); border-bottom: 1px solid var(--border-light);
-      box-shadow: 0 4px 24px rgba(0,40,104,0.07);
-    }
-    .stats-strip-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr));
-    }
-    .stats-strip-item {
-      padding: 1.75rem 1.25rem; text-align: center;
-      border-right: 1px solid var(--border-light);
-    }
-    .stats-strip-item:first-child { border-left: 1px solid var(--border-light); }
-    .stat-big {
-      font-family: var(--font-heading); font-size: clamp(1.7rem,3vw,2.5rem);
-      font-weight: 900; color: var(--brand-blue); line-height: 1; display: block;
-    }
-    .stat-small { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; margin-top: 0.3rem; }
-
-    /* HOW IT WORKS */
-    .steps-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 0;
-      position: relative;
-    }
-    .step-item { padding: 2rem 1.25rem; text-align: center; }
-    .step-num {
-      width: 50px; height: 50px; border-radius: 50%; margin: 0 auto 1rem;
-      font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem;
-      color: #fff; display: flex; align-items: center; justify-content: center;
-    }
-    .step-num.blue { background: var(--brand-blue); }
-    .step-num.red  { background: var(--brand-red); }
-    .step-item h4 { font-size: 0.95rem; color: var(--brand-blue); margin-bottom: 0.35rem; }
-    .step-item p { font-size: 0.83rem; color: var(--text-muted); margin: 0; line-height: 1.6; }
-
-    /* UNIVERSITY SECTION */
-    .uni-toolbar {
-      display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;
-      margin-bottom: 2rem;
-    }
-    .uni-search {
-      flex: 1; min-width: 220px; position: relative;
-    }
-    .uni-search input {
-      width: 100%; padding: 0.72rem 1rem 0.72rem 2.75rem;
-      border: 1.5px solid var(--border); border-radius: var(--radius-full);
-      background: var(--surface-2); color: var(--text);
-      font-family: var(--font-body); font-size: 0.94rem; outline: none;
-      transition: border-color 0.18s, box-shadow 0.18s;
-    }
-    .uni-search input:focus {
-      border-color: var(--brand-blue); background: var(--surface);
-      box-shadow: 0 0 0 3px rgba(0,40,104,0.1);
-    }
-    .uni-search svg {
-      position: absolute; left: 0.9rem; top: 50%; transform: translateY(-50%);
-      pointer-events: none; color: var(--text-muted);
-    }
-    .filter-pill {
-      padding: 0.5rem 1.1rem; border-radius: var(--radius-full);
-      border: 1.5px solid var(--border); background: var(--surface);
-      color: var(--text-secondary); font-size: 0.86rem; font-weight: 600;
-      cursor: pointer; transition: all 0.18s; font-family: var(--font-body);
-      white-space: nowrap;
-    }
-    .filter-pill:hover { border-color: var(--brand-blue); color: var(--brand-blue); }
-    .filter-pill.on-blue { background: var(--brand-blue); border-color: var(--brand-blue); color: #fff; }
-    .filter-pill.on-red  { background: var(--brand-red);  border-color: var(--brand-red);  color: #fff; }
-    .filter-sep { width: 1px; height: 28px; background: var(--border-light); flex-shrink: 0; }
-    .uni-count { font-size: 0.85rem; color: var(--text-muted); white-space: nowrap; font-weight: 500; }
-
-    /* University cards */
-    .uni-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 1.5rem;
-    }
-    .uni-card {
-      background: var(--surface); border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm);
-      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
-      display: flex; flex-direction: column;
-    }
-    .uni-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: rgba(0,40,104,0.3); }
-    .uni-card-top {
-      background: linear-gradient(135deg, var(--brand-blue) 0%, #1a3d8a 100%);
-      padding: 1.5rem; position: relative;
-    }
-    .uni-card-top.cyprus { background: linear-gradient(135deg, #8a0020 0%, var(--brand-red) 100%); }
-    .uni-abbr-box {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 54px; height: 54px; border-radius: 12px;
-      background: rgba(255,255,255,0.14); border: 1.5px solid rgba(255,255,255,0.22);
-      font-family: var(--font-heading); font-size: 0.85rem; font-weight: 800;
-      color: #fff; letter-spacing: 0.02em; margin-bottom: 0.8rem;
-    }
-    .uni-loc {
-      display: inline-flex; align-items: center; gap: 0.3rem;
-      background: rgba(255,255,255,0.13); border-radius: 100px;
-      padding: 0.18rem 0.6rem; font-size: 0.73rem; font-weight: 600;
-      color: rgba(255,255,255,0.88); margin-bottom: 0.5rem;
-    }
-    .uni-name {
-      font-family: var(--font-heading); font-size: 1rem; font-weight: 700;
-      color: #fff; line-height: 1.3;
-    }
-    .uni-featured-badge {
-      position: absolute; top: 1rem; right: 1rem;
-      background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
-      font-size: 0.65rem; font-weight: 800; color: #fff; padding: 0.18rem 0.55rem;
-      border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase;
-    }
-    .uni-card-body { padding: 1.25rem 1.5rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
-    .uni-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.9rem; }
-    .uni-tag {
-      background: var(--brand-blue-pale); color: var(--brand-blue);
-      font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 100px;
-    }
-    .uni-tag.red { background: var(--brand-red-pale); color: var(--brand-red); }
-    .uni-detail { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.25rem; }
-    .uni-detail strong { color: var(--text-secondary); font-weight: 600; }
-    .uni-actions { margin-top: auto; padding-top: 1rem; display: flex; gap: 0.5rem; }
-    .no-results {
-      grid-column: 1 / -1; text-align: center; padding: 3.5rem 1.5rem;
-      color: var(--text-muted);
-    }
-    .no-results h3 { margin-bottom: 0.5rem; color: var(--text-secondary); }
-
-    /* SCHOLARSHIPS */
-    .sch-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1.25rem;
-    }
-    .sch-card {
-      background: var(--surface); border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg); padding: 1.75rem;
-      border-top: 4px solid var(--brand-blue); box-shadow: var(--shadow-sm);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .sch-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    .sch-card.red { border-top-color: var(--brand-red); }
-    .sch-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .sch-card h3 { font-size: 1rem; color: var(--brand-blue); margin-bottom: 0.4rem; }
-    .sch-card.red h3 { color: var(--brand-red); }
-    .sch-amount { font-size: 1.55rem; font-weight: 800; font-family: var(--font-heading); color: var(--text); margin-bottom: 0.35rem; }
-    .sch-card p { font-size: 0.86rem; color: var(--text-muted); margin: 0; line-height: 1.65; }
-
-    /* ELIGIBILITY CHECKER */
-    .elig-wrap {
-      background: var(--surface); border: 1px solid var(--border-light);
-      border-radius: var(--radius-xl); padding: clamp(2rem,4vw,3rem);
-      box-shadow: var(--shadow); max-width: 720px; margin: 0 auto;
-    }
-    .elig-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    @media (max-width: 520px) { .elig-form-row { grid-template-columns: 1fr; } }
-    .elig-group { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
-    .elig-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); }
-    .elig-group select, .elig-group input {
-      padding: 0.72rem 0.95rem; border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm); background: var(--surface-2); color: var(--text);
-      font-family: var(--font-body); font-size: 0.94rem; outline: none;
-      transition: border-color 0.18s; width: 100%; appearance: none; -webkit-appearance: none;
-    }
-    .elig-group select:focus, .elig-group input:focus {
-      border-color: var(--brand-blue); box-shadow: 0 0 0 3px rgba(0,40,104,0.1);
-    }
-    .elig-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 0.9rem center;
-      padding-right: 2.4rem; cursor: pointer;
-    }
-    .elig-result {
-      margin-top: 1.5rem; padding: 1.25rem 1.5rem;
-      border-radius: var(--radius); display: none;
-    }
-    .elig-result.show { display: block; }
-    .elig-result.eligible   { background: #f0fdf4; border: 1.5px solid #86efac; }
-    .elig-result.conditional{ background: #fffbeb; border: 1.5px solid #fde68a; }
-    .elig-result.ineligible { background: #fff1f2; border: 1.5px solid #fca5a5; }
-    [data-theme="dark"] .elig-result.eligible    { background: rgba(134,239,172,0.1); border-color: rgba(134,239,172,0.3); }
-    [data-theme="dark"] .elig-result.conditional { background: rgba(253,230,138,0.1); border-color: rgba(253,230,138,0.3); }
-    [data-theme="dark"] .elig-result.ineligible  { background: rgba(252,165,165,0.1); border-color: rgba(252,165,165,0.3); }
-    .elig-result-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-    .elig-result h3 { margin-bottom: 0.4rem; font-size: 1.1rem; }
-    .elig-result p  { font-size: 0.9rem; color: var(--text-secondary); margin: 0; }
-
-    /* TESTIMONIALS */
-    .testi-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.5rem;
-    }
-    .testi-card {
-      background: var(--surface); border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm);
-      position: relative;
-    }
-    .testi-card::before {
-      content: '"'; position: absolute; top: 0.9rem; right: 1.4rem;
-      font-size: 5.5rem; font-family: Georgia, serif; color: var(--brand-blue);
-      opacity: 0.07; line-height: 1; pointer-events: none;
-    }
-    .testi-avatar {
-      width: 52px; height: 52px; border-radius: 50%; margin-bottom: 1rem;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem; color: #fff;
-    }
-    .testi-avatar.blue { background: linear-gradient(135deg, var(--brand-blue), #1a3d8a); }
-    .testi-avatar.red  { background: linear-gradient(135deg, var(--brand-red), #8a0020); }
-    .stars { color: #f59e0b; font-size: 0.85rem; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
-    .testi-text { font-size: 0.91rem; color: var(--text-secondary); line-height: 1.78; margin-bottom: 1rem; }
-    .testi-name { font-weight: 700; font-size: 0.9rem; color: var(--text); }
-    .testi-dest { font-size: 0.79rem; color: var(--text-muted); }
-
-    /* COUNSELING SECTION */
-    .counsel-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 3.5rem; align-items: start; }
-    @media (max-width: 860px) { .counsel-layout { grid-template-columns: 1fr; } }
-    .counsel-info-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
-    .counsel-icon {
-      width: 46px; height: 46px; border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0;
-    }
-    .counsel-icon.blue { background: var(--brand-blue-pale); }
-    .counsel-icon.red  { background: var(--brand-red-pale); }
-    .counsel-icon-text h4 { font-size: 0.95rem; color: var(--text); margin-bottom: 0.2rem; }
-    .counsel-icon-text p  { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
-
-    /* FORM CARD */
-    .form-card { background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: clamp(1.75rem,4vw,2.5rem); box-shadow: var(--shadow); }
-    .form-card h3 { font-size: 1.2rem; color: var(--brand-blue); margin-bottom: 0.4rem; }
-    .form-card-lead { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.75rem; }
-    .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    @media (max-width: 560px) { .form-row2 { grid-template-columns: 1fr; } }
-    .fg2 { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
-    .fg2:last-of-type { margin-bottom: 0; }
-    .fg2 label { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); }
-    .fg2 .req { color: var(--brand-red); }
-    .fg2 input, .fg2 select, .fg2 textarea {
-      width: 100%; padding: 0.72rem 0.95rem; border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm); background: var(--surface-2); color: var(--text);
-      font-family: var(--font-body); font-size: 0.95rem; outline: none;
-      transition: border-color 0.18s, box-shadow 0.18s; appearance: none; -webkit-appearance: none;
-    }
-    .fg2 input:focus, .fg2 select:focus, .fg2 textarea:focus {
-      border-color: var(--brand-blue); background: var(--surface); box-shadow: 0 0 0 3px rgba(0,40,104,0.1);
-    }
-    .fg2 input::placeholder, .fg2 textarea::placeholder { color: var(--text-muted); }
-    .fg2 textarea { resize: vertical; min-height: 100px; }
-    .fg2 select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; cursor: pointer; }
-    .form-feedback { font-size: 0.9rem; font-weight: 600; margin-top: 0.85rem; padding: 0.7rem 1rem; border-radius: var(--radius-sm); background: var(--bg-alt); display: none; }
-    .form-feedback:not(:empty) { display: block; }
-    .form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.5rem; }
-    .form-note { font-size: 0.79rem; color: var(--text-muted); }
-
-    /* CTA BAND */
-    .cta-band-sa {
-      background: linear-gradient(135deg, var(--brand-blue) 0%, #1a3d8a 100%);
-      border-radius: var(--radius-xl); padding: clamp(2.5rem,5vw,4rem) clamp(2rem,5vw,4rem);
-      text-align: center; color: #fff; position: relative; overflow: hidden;
-    }
-    .cta-band-sa::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 70% 50%, rgba(191,10,48,0.2) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .cta-band-sa > * { position: relative; z-index: 1; }
-    .cta-band-sa h2 { color: #fff; margin-bottom: 0.75rem; }
-    .cta-band-sa p { color: rgba(255,255,255,0.8); max-width: 55ch; margin: 0 auto 2rem; font-size: 1.05rem; }
-    .cta-band-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-
-    /* RESPONSIVE */
-    @media (max-width: 680px) {
-      .uni-grid { grid-template-columns: 1fr; }
-      .sch-grid  { grid-template-columns: 1fr; }
-      .testi-grid{ grid-template-columns: 1fr; }
-      .steps-grid{ grid-template-columns: repeat(2,1fr); }
-    }
-    @media (max-width: 400px) {
-      .steps-grid { grid-template-columns: 1fr; }
-    }
+    body { padding-bottom: 56px; }
+    .dir-header { background:#fff; padding:2.5rem 0 2rem; border-bottom:1px solid #e2e8f0; }
+    .dir-breadcrumb-pill { display:inline-block; background:#0f172a; color:#fff; font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:0.3rem 0.85rem; border-radius:100px; margin-bottom:1.1rem; }
+    .dir-header h1 { font-family:'Poppins',sans-serif; font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:800; color:#0f172a; margin:0 0 0.65rem; line-height:1.15; }
+    .dir-header-sub { font-size:1rem; color:#64748b; margin:0 0 1.5rem; max-width:65ch; line-height:1.65; }
+    .dir-stats-strip { display:flex; flex-wrap:wrap; gap:0.6rem; }
+    .dir-stat-chip { display:inline-flex; align-items:center; gap:0.4rem; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:100px; padding:0.35rem 0.9rem; font-size:0.82rem; font-weight:600; color:#334155; }
+    .dir-filter-bar { position:sticky; top:70px; z-index:100; background:#fff; border-bottom:1px solid #e2e8f0; padding:0.85rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
+    .dir-filter-inner { display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap; }
+    .dir-search-wrap { flex:1; min-width:220px; position:relative; }
+    .dir-search-wrap svg { position:absolute; left:0.9rem; top:50%; transform:translateY(-50%); color:#94a3b8; pointer-events:none; }
+    .dir-search-wrap input { width:100%; padding:0.65rem 1rem 0.65rem 2.6rem; border:1.5px solid #e2e8f0; border-radius:8px; font-family:'Inter',sans-serif; font-size:0.93rem; color:#0f172a; background:#f8fafc; outline:none; transition:border-color 0.18s,box-shadow 0.18s; }
+    .dir-search-wrap input:focus { border-color:#002868; background:#fff; box-shadow:0 0 0 3px rgba(0,40,104,0.09); }
+    .dir-filters-btn { display:inline-flex; align-items:center; gap:0.45rem; padding:0.65rem 1.1rem; border:1.5px solid #e2e8f0; border-radius:8px; background:#fff; font-family:'Inter',sans-serif; font-size:0.88rem; font-weight:600; color:#374151; cursor:pointer; white-space:nowrap; transition:border-color 0.18s; }
+    .dir-filters-btn:hover { border-color:#002868; color:#002868; }
+    .dir-filter-pills { display:flex; flex-wrap:wrap; gap:0.45rem; margin-top:0.5rem; }
+    .filter-pill { padding:0.42rem 1rem; border-radius:100px; border:1.5px solid #e2e8f0; background:#fff; color:#64748b; font-size:0.83rem; font-weight:600; cursor:pointer; transition:all 0.18s; font-family:'Inter',sans-serif; white-space:nowrap; }
+    .filter-pill:hover { border-color:#002868; color:#002868; }
+    .filter-pill.on { background:#002868; border-color:#002868; color:#fff; }
+    .filter-pill.on-red { background:#BF0A30; border-color:#BF0A30; color:#fff; }
+    .filter-pill.on-green { background:#059669; border-color:#059669; color:#fff; }
+    .dir-grid-section { background:#f1f5f9; padding:2rem 0 3rem; }
+    .dir-count-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; }
+    .dir-count-text { font-size:0.88rem; font-weight:600; color:#64748b; }
+    .uni-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.25rem; }
+    .uni-card { background:#fff; border-radius:16px; box-shadow:0 1px 3px rgba(0,0,0,0.08); border:1px solid #e2e8f0; overflow:hidden; transition:transform 0.22s,box-shadow 0.22s; cursor:pointer; display:flex; flex-direction:column; }
+    .uni-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,0.12); }
+    .uni-card-header { padding:1rem 1.25rem 0; display:flex; justify-content:space-between; align-items:flex-start; }
+    .uni-badge { width:44px; height:44px; border-radius:10px; color:#fff; font-weight:700; font-size:0.78rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .uni-card-rating { color:#f59e0b; font-weight:700; font-size:0.9rem; }
+    .uni-card-body { padding:0.75rem 1.25rem; flex:1; }
+    .uni-card-name { font-family:'Poppins',sans-serif; font-size:1rem; font-weight:700; color:#0f172a; margin:0 0 0.4rem; line-height:1.3; }
+    .uni-card-meta { display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-bottom:0.75rem; }
+    .uni-meta-loc { font-size:0.8rem; color:#64748b; }
+    .uni-accred { font-size:0.75rem; background:#dbeafe; color:#1d4ed8; padding:0.2rem 0.55rem; border-radius:4px; font-weight:600; }
+    .uni-card-stats { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; background:#f8fafc; border-radius:8px; padding:0.6rem 0.75rem; margin-bottom:0.75rem; }
+    .uni-stat { display:flex; align-items:center; gap:0.35rem; font-size:0.8rem; color:#374151; font-weight:500; }
+    .uni-stat-icon { font-size:0.9rem; }
+    .uni-card-programs { margin-bottom:0.75rem; }
+    .uni-prog-label { font-size:0.78rem; color:#64748b; font-weight:600; display:block; margin-bottom:0.35rem; }
+    .uni-prog-tags { display:flex; flex-wrap:wrap; gap:0.35rem; }
+    .uni-prog-tag { font-size:0.75rem; background:#f1f5f9; color:#475569; padding:0.2rem 0.55rem; border-radius:4px; }
+    .uni-card-footer { padding:0.75rem 1.25rem 1.25rem; }
+    .uni-explore-btn { display:block; text-align:center; padding:0.6rem; border:1.5px solid #002868; border-radius:8px; color:#002868; font-weight:600; font-size:0.88rem; text-decoration:none; transition:all 0.2s; font-family:'Inter',sans-serif; }
+    .uni-explore-btn:hover { background:#002868; color:#fff; }
+    .no-results { grid-column:1/-1; text-align:center; padding:3.5rem 1.5rem; color:#64748b; }
+    .no-results h3 { margin-bottom:0.5rem; color:#374151; }
+    .steps-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:0; }
+    .step-item { padding:2rem 1.25rem; text-align:center; }
+    .step-num { width:50px; height:50px; border-radius:50%; margin:0 auto 1rem; font-family:'Poppins',sans-serif; font-weight:800; font-size:1.1rem; color:#fff; display:flex; align-items:center; justify-content:center; }
+    .step-num.blue { background:#002868; }
+    .step-num.red  { background:#BF0A30; }
+    .step-item h4 { font-size:0.95rem; color:#002868; margin-bottom:0.35rem; font-family:'Poppins',sans-serif; font-weight:600; }
+    .step-item p  { font-size:0.83rem; color:#6b7280; margin:0; line-height:1.6; }
+    .elig-wrap { background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:clamp(2rem,4vw,3rem); box-shadow:0 1px 4px rgba(0,0,0,0.06); max-width:720px; margin:0 auto; }
+    .elig-form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    @media (max-width:520px) { .elig-form-row { grid-template-columns:1fr; } }
+    .elig-group { display:flex; flex-direction:column; gap:0.35rem; margin-bottom:1rem; }
+    .elig-group label { font-size:0.85rem; font-weight:600; color:#374151; }
+    .elig-group select, .elig-group input { padding:0.72rem 0.95rem; border:1.5px solid #e2e8f0; border-radius:8px; background:#f8fafc; color:#0f172a; font-family:'Inter',sans-serif; font-size:0.94rem; outline:none; transition:border-color 0.18s; width:100%; appearance:none; -webkit-appearance:none; }
+    .elig-group select:focus, .elig-group input:focus { border-color:#002868; box-shadow:0 0 0 3px rgba(0,40,104,0.1); }
+    .elig-group select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 0.9rem center; padding-right:2.4rem; cursor:pointer; }
+    .elig-result { margin-top:1.5rem; padding:1.25rem 1.5rem; border-radius:10px; display:none; }
+    .elig-result.show { display:block; }
+    .elig-result.eligible   { background:#f0fdf4; border:1.5px solid #86efac; }
+    .elig-result.conditional{ background:#fffbeb; border:1.5px solid #fde68a; }
+    .elig-result.ineligible { background:#fff1f2; border:1.5px solid #fca5a5; }
+    .elig-result-icon { font-size:2rem; margin-bottom:0.5rem; }
+    .elig-result h3 { margin-bottom:0.4rem; font-size:1.1rem; font-family:'Poppins',sans-serif; }
+    .elig-result p  { font-size:0.9rem; color:#374151; margin:0; }
+    .form-card { background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:clamp(1.75rem,4vw,2.5rem); box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+    .form-card h3 { font-size:1.2rem; color:#002868; margin-bottom:0.4rem; font-family:'Poppins',sans-serif; font-weight:700; }
+    .form-card-lead { font-size:0.92rem; color:#6b7280; margin-bottom:1.75rem; }
+    .form-row2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    @media (max-width:560px) { .form-row2 { grid-template-columns:1fr; } }
+    .fg2 { display:flex; flex-direction:column; gap:0.4rem; margin-bottom:1.1rem; }
+    .fg2:last-of-type { margin-bottom:0; }
+    .fg2 label { font-size:0.85rem; font-weight:600; color:#374151; }
+    .fg2 .req { color:#BF0A30; }
+    .fg2 input,.fg2 select,.fg2 textarea { width:100%; padding:0.72rem 0.95rem; border:1.5px solid #e2e8f0; border-radius:8px; background:#f8fafc; color:#0f172a; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:border-color 0.18s,box-shadow 0.18s; appearance:none; -webkit-appearance:none; }
+    .fg2 input:focus,.fg2 select:focus,.fg2 textarea:focus { border-color:#002868; background:#fff; box-shadow:0 0 0 3px rgba(0,40,104,0.1); }
+    .fg2 textarea { resize:vertical; min-height:100px; }
+    .fg2 select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 0.9rem center; padding-right:2.5rem; cursor:pointer; }
+    .form-feedback { font-size:0.9rem; font-weight:600; margin-top:0.85rem; padding:0.7rem 1rem; border-radius:8px; background:#f1f5f9; display:none; }
+    .form-feedback:not(:empty) { display:block; }
+    .form-submit-row { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.85rem; margin-top:1.5rem; }
+    .form-note { font-size:0.79rem; color:#6b7280; }
+    .testi-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; }
+    .testi-card { background:#fff; border:1px solid #e2e8f0; border-radius:14px; padding:1.75rem; box-shadow:0 1px 3px rgba(0,0,0,0.06); }
+    .testi-avatar { width:52px; height:52px; border-radius:50%; margin-bottom:1rem; display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:1.1rem; color:#fff; }
+    .testi-avatar.blue { background:linear-gradient(135deg,#002868,#1a3d8a); }
+    .testi-avatar.red  { background:linear-gradient(135deg,#BF0A30,#8a0020); }
+    .stars { color:#f59e0b; font-size:0.85rem; margin-bottom:0.75rem; }
+    .testi-text { font-size:0.91rem; color:#374151; line-height:1.78; margin-bottom:1rem; }
+    .testi-name { font-weight:700; font-size:0.9rem; color:#0f172a; }
+    .testi-dest { font-size:0.79rem; color:#6b7280; }
+    .counsel-layout { display:grid; grid-template-columns:1fr 1.15fr; gap:3.5rem; align-items:start; }
+    @media (max-width:860px) { .counsel-layout { grid-template-columns:1fr; } }
+    .counsel-info-item { display:flex; align-items:flex-start; gap:1rem; margin-bottom:1.5rem; }
+    .counsel-icon { width:46px; height:46px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.25rem; flex-shrink:0; }
+    .counsel-icon.blue { background:#e8f0fb; }
+    .counsel-icon.red  { background:#fce8ec; }
+    .counsel-icon-text h4 { font-size:0.95rem; color:#0f172a; margin-bottom:0.2rem; font-family:'Poppins',sans-serif; font-weight:600; }
+    .counsel-icon-text p  { font-size:0.85rem; color:#6b7280; margin:0; }
+    .bottom-nav { position:fixed; bottom:0; left:0; right:0; background:#0f172a; z-index:200; box-shadow:0 -2px 10px rgba(0,0,0,0.2); padding:0 0 env(safe-area-inset-bottom); }
+    .bottom-nav-inner { max-width:1200px; margin:auto; padding:0 1.5rem; height:56px; display:flex; align-items:center; gap:1.5rem; }
+    .bottom-nav-brand { display:flex; align-items:center; gap:0.5rem; text-decoration:none; color:#fff; font-weight:700; font-size:0.88rem; flex-shrink:0; font-family:'Poppins',sans-serif; }
+    .bottom-nav-icon { font-size:1.1rem; }
+    .bottom-nav-sub { color:rgba(255,255,255,0.55); font-weight:400; }
+    .bottom-nav-links { display:flex; gap:1.25rem; flex:1; justify-content:center; }
+    .bottom-nav-links a { color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.85rem; font-weight:500; transition:color 0.18s; font-family:'Inter',sans-serif; }
+    .bottom-nav-links a:hover,.bottom-nav-links a.active { color:#fff; }
+    .bottom-nav-cta { flex-shrink:0; }
+    .portal-footer { background:#0f172a; color:#94a3b8; padding:3rem 0 1.5rem; }
+    .portal-footer-grid { display:grid; grid-template-columns:2fr 1.2fr 1.4fr 1.5fr; gap:2.5rem; margin-bottom:2.5rem; }
+    @media (max-width:900px) { .portal-footer-grid { grid-template-columns:1fr 1fr; } }
+    @media (max-width:560px) { .portal-footer-grid { grid-template-columns:1fr; } }
+    .pf-brand-name { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.1rem; color:#fff; margin:0 0 0.5rem; }
+    .pf-tagline { font-size:0.85rem; line-height:1.65; color:#94a3b8; margin:0 0 1.25rem; }
+    .pf-social { display:flex; gap:0.6rem; }
+    .pf-social a { width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:1rem; text-decoration:none; transition:background 0.18s; }
+    .pf-social a:hover { background:rgba(255,255,255,0.15); }
+    .pf-heading { font-family:'Poppins',sans-serif; font-weight:700; font-size:0.88rem; color:#fff; margin:0 0 1rem; letter-spacing:0.04em; text-transform:uppercase; }
+    .pf-links { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.55rem; }
+    .pf-links a { color:#94a3b8; text-decoration:none; font-size:0.87rem; transition:color 0.18s; }
+    .pf-links a:hover { color:#fff; }
+    .pf-contact-item { display:flex; align-items:flex-start; gap:0.55rem; font-size:0.87rem; color:#94a3b8; margin-bottom:0.6rem; }
+    .pf-contact-item a { color:#94a3b8; text-decoration:none; }
+    .pf-contact-item a:hover { color:#fff; }
+    .pf-hours { margin-top:1rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:0.85rem 1rem; font-size:0.82rem; line-height:1.65; color:#94a3b8; }
+    .pf-hours strong { color:#e2e8f0; display:block; margin-bottom:0.3rem; }
+    .portal-footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:1.25rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; }
+    .portal-footer-bottom p { margin:0; font-size:0.82rem; color:rgba(200,216,240,0.55); }
+    .portal-footer-bottom a { color:rgba(200,216,240,0.6); }
+    @media (max-width:900px) { .dir-filter-bar { top:0; } #application-form > .container > div { grid-template-columns:1fr !important; } }
+    @media (max-width:680px) { .uni-grid { grid-template-columns:1fr; } .steps-grid { grid-template-columns:repeat(2,1fr); } .bottom-nav-brand span:not(.bottom-nav-icon) { display:none; } .bottom-nav-cta { display:none; } }
+    @media (max-width:400px) { .steps-grid { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
-
+  <div id="announcement-bar" style="background:#BF0A30;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
+    🎓 <strong>2026 Scholarship Applications Now Open</strong> — Deadline July 15, 2026.
+    <a href="study-abroad.html#application-form" style="color:#fff;text-decoration:underline;margin-left:0.5rem;">Apply Now →</a>
+    <button onclick="this.parentElement.style.display='none'" aria-label="Close announcement" style="position:absolute;right:0.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.2rem 0.4rem;line-height:1;">✕</button>
+  </div>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">Tolbert Innovation Hub</a>
@@ -374,96 +174,59 @@
         <a href="news.html">News</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
-        <a href="#application-form" class="nav-cta">Apply Now</a>
+        <a href="study-abroad.html#application-form" class="nav-cta">Apply Now</a>
       </nav>
     </div>
   </header>
-
   <main id="main-content">
-
-    <!-- ===================== HERO ===================== -->
-    <section class="sa-hero" aria-label="Study Abroad Portal hero">
-      <div class="container sa-hero-inner">
-        <div class="sa-pill">🌍 Tolbert Innovation Hub — Study Abroad Portal</div>
-        <h1>Your Gateway to <em>International Education</em></h1>
-        <p class="sa-hero-lead">Explore 17 partner universities across India and Cyprus, compare programs, discover full scholarships, check your eligibility instantly, and apply — all in one place.</p>
-        <div class="sa-hero-actions">
-          <a class="btn btn-white btn-lg" href="#universities">Explore Universities</a>
-          <a class="btn btn-glass btn-lg" href="#application-form">Apply Now</a>
-          <a class="btn btn-glass btn-lg" href="#counseling">Book Counseling</a>
-        </div>
-        <div class="sa-badges">
-          <span class="sa-badge">🏛️ 17 Partner Universities</span>
-          <span class="sa-badge">🇮🇳 India</span>
-          <span class="sa-badge">🇨🇾 North Cyprus</span>
-          <span class="sa-badge">🎓 Undergraduate · Postgraduate · PhD</span>
-          <span class="sa-badge">💰 Scholarships Available</span>
+    <!-- PAGE HEADER -->
+    <section class="dir-header">
+      <div class="container">
+        <span class="dir-breadcrumb-pill">Study Abroad Portal</span>
+        <h1>University Directory</h1>
+        <p class="dir-header-sub">Browse all 17 partner universities. Filter by country, program, tuition, and scholarship availability to find your perfect match.</p>
+        <div class="dir-stats-strip">
+          <span class="dir-stat-chip">🏛️ 17 Universities</span>
+          <span class="dir-stat-chip">🌍 2 Countries</span>
+          <span class="dir-stat-chip">🏆 100% Scholarship Available</span>
+          <span class="dir-stat-chip">💬 Free Counseling</span>
         </div>
       </div>
     </section>
-
-    <!-- ===================== STATS STRIP ===================== -->
-    <div class="stats-strip" aria-label="Key statistics">
+    <!-- STICKY SEARCH + FILTER BAR -->
+    <div class="dir-filter-bar" role="search" aria-label="Filter universities">
       <div class="container">
-        <div class="stats-strip-grid">
-          <div class="stats-strip-item">
-            <span class="stat-big counter" data-target="17" data-suffix="+">17+</span>
-            <p class="stat-small">Partner Universities</p>
-          </div>
-          <div class="stats-strip-item">
-            <span class="stat-big counter" data-target="1000" data-suffix="+">1,000+</span>
-            <p class="stat-small">Students Guided</p>
-          </div>
-          <div class="stats-strip-item">
-            <span class="stat-big counter" data-target="95" data-suffix="%">95%</span>
-            <p class="stat-small">Admission Success Rate</p>
-          </div>
-          <div class="stats-strip-item">
-            <span class="stat-big counter" data-target="5" data-suffix="">5</span>
-            <p class="stat-small">Study Destinations</p>
-          </div>
-          <div class="stats-strip-item">
-            <span class="stat-big counter" data-target="100" data-suffix="%">100%</span>
-            <p class="stat-small">Free Application Support</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===================== UNIVERSITY DIRECTORY ===================== -->
-    <section id="universities" class="section section-alt">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-label">Partner Universities</p>
-          <h2>Explore All 17 Partner Universities</h2>
-          <p class="section-intro">Search by name or program, filter by country or degree level, and find the university that's right for you.</p>
-        </div>
-
-        <!-- Toolbar -->
-        <div class="uni-toolbar">
-          <div class="uni-search">
+        <div class="dir-filter-inner">
+          <div class="dir-search-wrap">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             <input type="text" id="uniSearchInput" placeholder="Search university or program…" aria-label="Search universities" />
           </div>
-          <div class="filter-sep" aria-hidden="true"></div>
-          <button class="filter-pill on-blue" data-filter="country" data-value="all" aria-pressed="true">All Countries</button>
+          <button class="dir-filters-btn" aria-expanded="true" aria-controls="filterPillsRow">⚙ Filters</button>
+        </div>
+        <div class="dir-filter-pills" id="filterPillsRow">
+          <button class="filter-pill on" data-filter="country" data-value="all" aria-pressed="true">All Countries</button>
           <button class="filter-pill" data-filter="country" data-value="India" aria-pressed="false">🇮🇳 India</button>
-          <button class="filter-pill" data-filter="country" data-value="Cyprus" aria-pressed="false">🇨🇾 Cyprus</button>
-          <div class="filter-sep" aria-hidden="true"></div>
-          <button class="filter-pill on-blue" data-filter="degree" data-value="all" aria-pressed="true">All Levels</button>
+          <button class="filter-pill" data-filter="country" data-value="Cyprus" aria-pressed="false">🇨🇾 North Cyprus</button>
+          <button class="filter-pill" data-filter="scholarship" data-value="true" aria-pressed="false">✓ Scholarships Available</button>
+          <span style="width:1px;height:20px;background:#e2e8f0;display:inline-block;margin:0 0.25rem;align-self:center;" aria-hidden="true"></span>
+          <button class="filter-pill on" data-filter="degree" data-value="all" aria-pressed="true">All Levels</button>
           <button class="filter-pill" data-filter="degree" data-value="UG" aria-pressed="false">UG</button>
           <button class="filter-pill" data-filter="degree" data-value="PG" aria-pressed="false">PG</button>
           <button class="filter-pill" data-filter="degree" data-value="PhD" aria-pressed="false">PhD</button>
-          <span class="uni-count" id="uniCount" aria-live="polite">17 universities</span>
         </div>
-
-        <!-- University cards (rendered by JS) -->
+      </div>
+    </div>
+    <!-- UNIVERSITY GRID -->
+    <section id="universities" class="dir-grid-section">
+      <div class="container">
+        <div class="dir-count-bar">
+          <span class="dir-count-text" id="uniCount" aria-live="polite">Showing 17 universities in India &amp; North Cyprus</span>
+        </div>
         <div class="uni-grid" id="uniGrid" aria-label="University listing"></div>
       </div>
     </section>
-
-    <!-- ===================== HOW IT WORKS ===================== -->
-    <section class="section">
+    <!-- HOW IT WORKS -->
+    <section class="section" style="background:#fff;">
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">Your Journey Starts Here</p>
@@ -471,102 +234,35 @@
           <p class="section-intro">Six simple steps from your first inquiry to arriving at your chosen university campus.</p>
         </div>
         <div class="steps-grid reveal">
-          <div class="step-item">
-            <div class="step-num blue">1</div>
-            <h4>Check Eligibility</h4>
-            <p>Use our instant eligibility checker to see which universities match your grades and background.</p>
-          </div>
-          <div class="step-item">
-            <div class="step-num red">2</div>
-            <h4>Choose University</h4>
-            <p>Browse our directory of 17 partner universities, filter by country and program, and shortlist your favorites.</p>
-          </div>
-          <div class="step-item">
-            <div class="step-num blue">3</div>
-            <h4>Book Counseling</h4>
-            <p>Speak with an expert counselor to finalize your university choice and understand the full requirements.</p>
-          </div>
-          <div class="step-item">
-            <div class="step-num red">4</div>
-            <h4>Submit Application</h4>
-            <p>Complete your online application with all required documents through our guided form.</p>
-          </div>
-          <div class="step-item">
-            <div class="step-num blue">5</div>
-            <h4>Receive Offer Letter</h4>
-            <p>Our team processes your application and you receive an official admission offer letter from the university.</p>
-          </div>
-          <div class="step-item">
-            <div class="step-num red">6</div>
-            <h4>Visa &amp; Departure</h4>
-            <p>We guide you through the student visa application and help you prepare for your journey abroad.</p>
-          </div>
+          <div class="step-item"><div class="step-num blue">1</div><h4>Check Eligibility</h4><p>Use our instant eligibility checker to see which universities match your grades and background.</p></div>
+          <div class="step-item"><div class="step-num red">2</div><h4>Choose University</h4><p>Browse our directory of 17 partner universities, filter by country and program, and shortlist your favorites.</p></div>
+          <div class="step-item"><div class="step-num blue">3</div><h4>Book Counseling</h4><p>Speak with an expert counselor to finalize your university choice and understand the full requirements.</p></div>
+          <div class="step-item"><div class="step-num red">4</div><h4>Submit Application</h4><p>Complete your online application with all required documents through our guided form.</p></div>
+          <div class="step-item"><div class="step-num blue">5</div><h4>Receive Offer Letter</h4><p>Our team processes your application and you receive an official admission offer letter from the university.</p></div>
+          <div class="step-item"><div class="step-num red">6</div><h4>Visa &amp; Departure</h4><p>We guide you through the student visa application and help you prepare for your journey abroad.</p></div>
         </div>
       </div>
     </section>
-
-    <!-- ===================== ELIGIBILITY CHECKER ===================== -->
-    <section id="eligibility" class="section section-alt">
+    <!-- ELIGIBILITY CHECKER -->
+    <section id="eligibility" class="section" style="background:#f1f5f9;">
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">Instant Check</p>
           <h2>Am I Eligible to Study Abroad?</h2>
           <p class="section-intro">Enter your academic background below and we'll tell you immediately which level of universities you qualify for.</p>
         </div>
-
         <div class="elig-wrap reveal">
-          <h3 style="color:var(--brand-blue); margin-bottom:0.5rem;">Eligibility Checker</h3>
-          <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:1.75rem;">Fill in your details — takes less than 30 seconds.</p>
-
+          <h3 style="color:#002868;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;font-weight:700;">Eligibility Checker</h3>
+          <p style="color:#6b7280;font-size:0.92rem;margin-bottom:1.75rem;">Fill in your details — takes less than 30 seconds.</p>
           <div class="elig-form-row">
-            <div class="elig-group">
-              <label for="elig-level">Current Education Level *</label>
-              <select id="elig-level">
-                <option value="">Select level</option>
-                <option value="wassce">WASSCE / Senior High School</option>
-                <option value="diploma">Diploma / HND</option>
-                <option value="bachelors">Bachelor's Degree</option>
-                <option value="masters">Master's Degree</option>
-              </select>
-            </div>
-            <div class="elig-group">
-              <label for="elig-target">Target Degree *</label>
-              <select id="elig-target">
-                <option value="">Select degree</option>
-                <option value="UG">Undergraduate</option>
-                <option value="PG">Postgraduate (Master's)</option>
-                <option value="PhD">PhD</option>
-              </select>
-            </div>
+            <div class="elig-group"><label for="elig-level">Current Education Level *</label><select id="elig-level"><option value="">Select level</option><option value="wassce">WASSCE / Senior High School</option><option value="diploma">Diploma / HND</option><option value="bachelors">Bachelor's Degree</option><option value="masters">Master's Degree</option></select></div>
+            <div class="elig-group"><label for="elig-target">Target Degree *</label><select id="elig-target"><option value="">Select degree</option><option value="UG">Undergraduate</option><option value="PG">Postgraduate (Master's)</option><option value="PhD">PhD</option></select></div>
           </div>
-
           <div class="elig-form-row">
-            <div class="elig-group">
-              <label for="elig-gpa">GPA / Average Grade *</label>
-              <select id="elig-gpa">
-                <option value="">Select grade range</option>
-                <option value="high">3.5–4.0 / A / Distinction</option>
-                <option value="mid">2.5–3.4 / B / Credit</option>
-                <option value="low">1.5–2.4 / C / Pass</option>
-                <option value="below">Below 1.5 / D or below</option>
-              </select>
-            </div>
-            <div class="elig-group">
-              <label for="elig-english">English Proficiency</label>
-              <select id="elig-english">
-                <option value="">Select option</option>
-                <option value="ielts">IELTS 6.0+</option>
-                <option value="toefl">TOEFL 72+</option>
-                <option value="native">English is my native language</option>
-                <option value="none">No formal test yet</option>
-              </select>
-            </div>
+            <div class="elig-group"><label for="elig-gpa">GPA / Average Grade *</label><select id="elig-gpa"><option value="">Select grade range</option><option value="high">3.5–4.0 / A / Distinction</option><option value="mid">2.5–3.4 / B / Credit</option><option value="low">1.5–2.4 / C / Pass</option><option value="below">Below 1.5 / D or below</option></select></div>
+            <div class="elig-group"><label for="elig-english">English Proficiency</label><select id="elig-english"><option value="">Select option</option><option value="ielts">IELTS 6.0+</option><option value="toefl">TOEFL 72+</option><option value="native">English is my native language</option><option value="none">No formal test yet</option></select></div>
           </div>
-
-          <button class="btn btn-primary" onclick="checkEligibility()" type="button" style="width:100%; margin-top:0.5rem;">
-            Check My Eligibility
-          </button>
-
+          <button class="btn btn-primary" onclick="checkEligibility()" type="button" style="width:100%;margin-top:0.5rem;">Check My Eligibility</button>
           <div class="elig-result eligible" id="eligResult" role="alert" aria-live="polite">
             <div class="elig-result-icon" id="eligIcon">✅</div>
             <h3 id="eligTitle">You Are Eligible!</h3>
@@ -575,9 +271,8 @@
         </div>
       </div>
     </section>
-
-    <!-- ===================== SUCCESS STORIES ===================== -->
-    <section class="section">
+    <!-- SUCCESS STORIES -->
+    <section class="section" style="background:#fff;">
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">Student Success Stories</p>
@@ -585,561 +280,232 @@
           <p class="section-intro">Real stories from Liberian students who pursued their international education dreams through Tolbert Innovation Hub.</p>
         </div>
         <div class="testi-grid reveal">
-          <div class="testi-card">
-            <div class="testi-avatar blue">JK</div>
-            <div class="stars">★★★★★</div>
-            <p class="testi-text">"I had no idea how to apply to universities in India. The team at Tolbert walked me through every step — eligibility, documents, visa, everything. I'm now in my second year at Lovely Professional University studying Computer Science."</p>
-            <p class="testi-name">James K. Freeman</p>
-            <p class="testi-dest">Now studying at LPU, India · Computer Science</p>
-          </div>
-          <div class="testi-card">
-            <div class="testi-avatar red">AM</div>
-            <div class="stars">★★★★★</div>
-            <p class="testi-text">"Getting the ICCR fully funded scholarship changed my life. Tolbert Innovation Hub handled my application, coordinated with the Indian embassy, and I received my offer letter within two months. My tuition, hostel, and stipend are fully covered."</p>
-            <p class="testi-name">Abigail M. Saah</p>
-            <p class="testi-dest">ICCR Scholar at Sharda University · Medicine</p>
-          </div>
-          <div class="testi-card">
-            <div class="testi-avatar blue">RT</div>
-            <div class="stars">★★★★★</div>
-            <p class="testi-text">"I was worried about finding a university that matched my budget and program interest. The study abroad portal made it easy — I filtered by program and found Marwadi University. Now I'm completing my MBA in Gujarat."</p>
-            <p class="testi-name">Robert T. Kollie</p>
-            <p class="testi-dest">MBA at Marwadi University, India · Business</p>
-          </div>
+          <div class="testi-card"><div class="testi-avatar blue">JK</div><div class="stars">★★★★★</div><p class="testi-text">"I had no idea how to apply to universities in India. The team at Tolbert walked me through every step — eligibility, documents, visa, everything. I'm now in my second year at Lovely Professional University studying Computer Science."</p><p class="testi-name">James K. Freeman</p><p class="testi-dest">Now studying at LPU, India · Computer Science</p></div>
+          <div class="testi-card"><div class="testi-avatar red">AM</div><div class="stars">★★★★★</div><p class="testi-text">"Getting the ICCR fully funded scholarship changed my life. Tolbert Innovation Hub handled my application, coordinated with the Indian embassy, and I received my offer letter within two months. My tuition, hostel, and stipend are fully covered."</p><p class="testi-name">Abigail M. Saah</p><p class="testi-dest">ICCR Scholar at Sharda University · Medicine</p></div>
+          <div class="testi-card"><div class="testi-avatar blue">RT</div><div class="stars">★★★★★</div><p class="testi-text">"I was worried about finding a university that matched my budget and program interest. The study abroad portal made it easy — I filtered by program and found Marwadi University. Now I'm completing my MBA in Gujarat."</p><p class="testi-name">Robert T. Kollie</p><p class="testi-dest">MBA at Marwadi University, India · Business</p></div>
         </div>
       </div>
     </section>
-
-    <!-- ===================== BOOK COUNSELING ===================== -->
-    <section id="counseling" class="section section-alt">
+    <!-- BOOK COUNSELING -->
+    <section id="counseling" class="section" style="background:#f1f5f9;">
       <div class="container">
         <div class="counsel-layout">
           <div class="counsel-info reveal">
             <p class="section-label">Free Guidance</p>
             <h2>Book a Free Counseling Session</h2>
-            <p style="color:var(--text-secondary); margin-bottom:2rem; line-height:1.8;">Our expert counselors are available to help you choose the right university, understand visa requirements, review your documents, and answer every question before you apply.</p>
-
-            <div class="counsel-info-item">
-              <div class="counsel-icon blue">🏛️</div>
-              <div class="counsel-icon-text">
-                <h4>University Selection</h4>
-                <p>We match your academic profile and career goals with the ideal program and university.</p>
-              </div>
-            </div>
-            <div class="counsel-info-item">
-              <div class="counsel-icon red">📋</div>
-              <div class="counsel-icon-text">
-                <h4>Document Review</h4>
-                <p>Our team checks your transcripts, certificates, and supporting documents before submission.</p>
-              </div>
-            </div>
-            <div class="counsel-info-item">
-              <div class="counsel-icon blue">✈️</div>
-              <div class="counsel-icon-text">
-                <h4>Visa &amp; Travel Guidance</h4>
-                <p>Step-by-step assistance with student visa applications and pre-departure orientation.</p>
-              </div>
-            </div>
-            <div class="counsel-info-item">
-              <div class="counsel-icon red">💰</div>
-              <div class="counsel-icon-text">
-                <h4>Scholarship Matching</h4>
-                <p>We identify scholarships and discounts you qualify for and include them in your application.</p>
-              </div>
-            </div>
-
-            <div style="background:var(--brand-blue-pale); border-radius:var(--radius); padding:1.25rem; border-left:3px solid var(--brand-blue); margin-top:1rem;">
-              <p style="margin:0; font-size:0.9rem; color:var(--brand-blue); font-weight:600;">📍 In-person: Spriggs Payne Airport, Sinkor, Monrovia · Also available on WhatsApp &amp; Zoom</p>
-            </div>
+            <p style="color:#374151;margin-bottom:2rem;line-height:1.8;">Our expert counselors are available to help you choose the right university, understand visa requirements, review your documents, and answer every question before you apply.</p>
+            <div class="counsel-info-item"><div class="counsel-icon blue">🏛️</div><div class="counsel-icon-text"><h4>University Selection</h4><p>We match your academic profile and career goals with the ideal program and university.</p></div></div>
+            <div class="counsel-info-item"><div class="counsel-icon red">📋</div><div class="counsel-icon-text"><h4>Document Review</h4><p>Our team checks your transcripts, certificates, and supporting documents before submission.</p></div></div>
+            <div class="counsel-info-item"><div class="counsel-icon blue">✈️</div><div class="counsel-icon-text"><h4>Visa &amp; Travel Guidance</h4><p>Step-by-step assistance with student visa applications and pre-departure orientation.</p></div></div>
+            <div class="counsel-info-item"><div class="counsel-icon red">💰</div><div class="counsel-icon-text"><h4>Scholarship Matching</h4><p>We identify scholarships and discounts you qualify for and include them in your application.</p></div></div>
+            <div style="background:#e8f0fb;border-radius:10px;padding:1.25rem;border-left:3px solid #002868;margin-top:1rem;"><p style="margin:0;font-size:0.9rem;color:#002868;font-weight:600;">📍 In-person: Spriggs Payne Airport, Sinkor, Monrovia · Also available on WhatsApp &amp; Zoom</p></div>
           </div>
-
           <div class="reveal">
-            <form class="form-card"
-                  data-success-message="Your counseling session has been booked! Our team will contact you within 24 hours to confirm your appointment."
-                  novalidate>
+            <form class="form-card" data-success-message="Your counseling session has been booked! Our team will contact you within 24 hours to confirm your appointment." novalidate>
               <h3>Book Your Free Session</h3>
-              <p class="form-card-lead">All fields marked <span style="color:var(--brand-red)">*</span> are required.</p>
-
+              <p class="form-card-lead">All fields marked <span style="color:#BF0A30">*</span> are required.</p>
               <div class="form-row2">
-                <div class="fg2">
-                  <label for="co-name">Full Name <span class="req">*</span></label>
-                  <input type="text" id="co-name" name="name" placeholder="Your full name" required />
-                </div>
-                <div class="fg2">
-                  <label for="co-email">Email Address <span class="req">*</span></label>
-                  <input type="email" id="co-email" name="email" placeholder="your@email.com" required />
-                </div>
+                <div class="fg2"><label for="co-name">Full Name <span class="req">*</span></label><input type="text" id="co-name" name="name" placeholder="Your full name" required /></div>
+                <div class="fg2"><label for="co-email">Email Address <span class="req">*</span></label><input type="email" id="co-email" name="email" placeholder="your@email.com" required /></div>
               </div>
-
               <div class="form-row2">
-                <div class="fg2">
-                  <label for="co-phone">Phone / WhatsApp <span class="req">*</span></label>
-                  <input type="tel" id="co-phone" name="phone" placeholder="+231 XXX XXX XXX" required />
-                </div>
-                <div class="fg2">
-                  <label for="co-interest">Study Interest <span class="req">*</span></label>
-                  <select id="co-interest" name="interest" required>
-                    <option value="">Select interest</option>
-                    <option>Undergraduate in India</option>
-                    <option>Postgraduate in India</option>
-                    <option>PhD in India</option>
-                    <option>Undergraduate in Cyprus</option>
-                    <option>Postgraduate in Cyprus</option>
-                    <option>ICCR Fully Funded Scholarship</option>
-                    <option>General Scholarship</option>
-                    <option>Not sure — need guidance</option>
-                  </select>
-                </div>
+                <div class="fg2"><label for="co-phone">Phone / WhatsApp <span class="req">*</span></label><input type="tel" id="co-phone" name="phone" placeholder="+231 XXX XXX XXX" required /></div>
+                <div class="fg2"><label for="co-interest">Study Interest <span class="req">*</span></label><select id="co-interest" name="interest" required><option value="">Select interest</option><option>Undergraduate in India</option><option>Postgraduate in India</option><option>PhD in India</option><option>Undergraduate in Cyprus</option><option>Postgraduate in Cyprus</option><option>ICCR Fully Funded Scholarship</option><option>General Scholarship</option><option>Not sure — need guidance</option></select></div>
               </div>
-
               <div class="form-row2">
-                <div class="fg2">
-                  <label for="co-date">Preferred Date</label>
-                  <input type="date" id="co-date" name="preferredDate" />
-                </div>
-                <div class="fg2">
-                  <label for="co-mode">Session Mode <span class="req">*</span></label>
-                  <select id="co-mode" name="mode" required>
-                    <option value="">Select mode</option>
-                    <option>In-Person (Monrovia office)</option>
-                    <option>WhatsApp Call</option>
-                    <option>Zoom Video Call</option>
-                    <option>Phone Call</option>
-                  </select>
-                </div>
+                <div class="fg2"><label for="co-date">Preferred Date</label><input type="date" id="co-date" name="preferredDate" /></div>
+                <div class="fg2"><label for="co-mode">Session Mode <span class="req">*</span></label><select id="co-mode" name="mode" required><option value="">Select mode</option><option>In-Person (Monrovia office)</option><option>WhatsApp Call</option><option>Zoom Video Call</option><option>Phone Call</option></select></div>
               </div>
-
-              <div class="fg2">
-                <label for="co-question">Your Main Question or Concern</label>
-                <textarea id="co-question" name="question" placeholder="What would you like help with? Share any specific questions about universities, programs, scholarships, or visa requirements."></textarea>
-              </div>
-
+              <div class="fg2"><label for="co-question">Your Main Question or Concern</label><textarea id="co-question" name="question" placeholder="What would you like help with?"></textarea></div>
               <p class="form-feedback" aria-live="polite"></p>
-              <div class="form-submit-row">
-                <button class="btn btn-primary" type="submit">Book Free Session</button>
-                <p class="form-note">We confirm within 24 hours. No cost — ever.</p>
-              </div>
+              <div class="form-submit-row"><button class="btn btn-primary" type="submit">Book Free Session</button><p class="form-note">We confirm within 24 hours. No cost — ever.</p></div>
             </form>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- ===================== APPLICATION FORM ===================== -->
-    <section id="application-form" class="section section-alt">
+    <!-- APPLICATION FORM -->
+    <section id="application-form" class="section" style="background:#f8faff;">
       <div class="container">
-        <div class="sa-two-col" style="display:grid; grid-template-columns:1fr 1.6fr; gap:3rem; align-items:start;">
-
-          <!-- Left: Info panel -->
+        <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:3rem;align-items:start;">
           <div>
-            <p class="sa-section-label">Apply Now</p>
+            <p class="section-label">Apply Now</p>
             <h2>Scholarship Application Form</h2>
-            <p style="color:var(--text-muted); line-height:1.8; margin-bottom:1.5rem;">Complete this form to begin your international study journey. Our team personally reviews every application and contacts you within 3–5 business days with next steps.</p>
-
-            <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:2rem;">
-              <div style="display:flex; gap:0.75rem; align-items:flex-start;">
-                <span style="font-size:1.4rem; flex-shrink:0;">✅</span>
-                <div><strong style="color:var(--text);">Free Application</strong><br /><span style="font-size:0.88rem; color:var(--text-muted);">No fees to apply. Our guidance and placement support is 100% free for Liberian students.</span></div>
-              </div>
-              <div style="display:flex; gap:0.75rem; align-items:flex-start;">
-                <span style="font-size:1.4rem; flex-shrink:0;">🎓</span>
-                <div><strong style="color:var(--text);">17 Partner Universities</strong><br /><span style="font-size:0.88rem; color:var(--text-muted);">India and Cyprus. Undergraduate, Postgraduate, and PhD programs across all disciplines.</span></div>
-              </div>
-              <div style="display:flex; gap:0.75rem; align-items:flex-start;">
-                <span style="font-size:1.4rem; flex-shrink:0;">💰</span>
-                <div><strong style="color:var(--text);">Scholarships Available</strong><br /><span style="font-size:0.88rem; color:var(--text-muted);">Including the ICCR fully funded scholarship covering tuition, stipend, airfare, and hostel.</span></div>
-              </div>
-              <div style="display:flex; gap:0.75rem; align-items:flex-start;">
-                <span style="font-size:1.4rem; flex-shrink:0;">📋</span>
-                <div><strong style="color:var(--text);">Full Support</strong><br /><span style="font-size:0.88rem; color:var(--text-muted);">From application through visa processing, pre-departure briefing, and arrival support.</span></div>
-              </div>
+            <p style="color:#6b7280;line-height:1.8;margin-bottom:1.5rem;">Complete this form to begin your international study journey. Our team personally reviews every application and contacts you within 3–5 business days with next steps.</p>
+            <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem;">
+              <div style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="font-size:1.4rem;flex-shrink:0;">✅</span><div><strong style="color:#0f172a;">Free Application</strong><br /><span style="font-size:0.88rem;color:#6b7280;">No fees to apply. Our guidance and placement support is 100% free for Liberian students.</span></div></div>
+              <div style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="font-size:1.4rem;flex-shrink:0;">🎓</span><div><strong style="color:#0f172a;">17 Partner Universities</strong><br /><span style="font-size:0.88rem;color:#6b7280;">India and Cyprus. Undergraduate, Postgraduate, and PhD programs across all disciplines.</span></div></div>
+              <div style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="font-size:1.4rem;flex-shrink:0;">💰</span><div><strong style="color:#0f172a;">Scholarships Available</strong><br /><span style="font-size:0.88rem;color:#6b7280;">Including the ICCR fully funded scholarship covering tuition, stipend, airfare, and hostel.</span></div></div>
+              <div style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="font-size:1.4rem;flex-shrink:0;">📋</span><div><strong style="color:#0f172a;">Full Support</strong><br /><span style="font-size:0.88rem;color:#6b7280;">From application through visa processing, pre-departure briefing, and arrival support.</span></div></div>
             </div>
-
-            <div style="background:var(--brand-blue-pale); border-left:3px solid var(--brand-blue); border-radius:0 var(--radius) var(--radius) 0; padding:1rem 1.25rem;">
-              <p style="margin:0; font-size:0.88rem; color:var(--brand-blue); font-weight:600;">📧 Questions? Email <a href="mailto:info@tolbertinnovationhub.org" style="color:var(--brand-blue);">info@tolbertinnovationhub.org</a> or WhatsApp <a href="https://wa.me/231880559227" style="color:var(--brand-blue);">+231 880 559 227</a></p>
-            </div>
-
-            <div style="margin-top:1.5rem;">
-              <p style="font-size:0.9rem; font-weight:600; color:var(--text-secondary); margin-bottom:0.75rem;">Also looking for:</p>
-              <a href="fully-funded-scholarship.html#scholarship-form" class="btn btn-outline-blue" style="display:inline-flex; align-items:center; gap:0.4rem; font-size:0.9rem;">🏅 ICCR Fully Funded Scholarship Application →</a>
-            </div>
+            <div style="background:#e8f0fb;border-left:3px solid #002868;border-radius:0 8px 8px 0;padding:1rem 1.25rem;"><p style="margin:0;font-size:0.88rem;color:#002868;font-weight:600;">📧 Questions? Email <a href="mailto:info@tolbertinnovationhub.org" style="color:#002868;">info@tolbertinnovationhub.org</a> or WhatsApp <a href="https://wa.me/231880559227" style="color:#002868;">+231 880 559 227</a></p></div>
           </div>
-
-          <!-- Right: Form -->
-          <form class="form-card"
-                data-success-message="Thank you for your application! Our team will review your submission and contact you within 3–5 business days."
-                novalidate>
+          <form class="form-card" data-success-message="Thank you for your application! Our team will review your submission and contact you within 3–5 business days." novalidate>
             <h3>General Scholarship Application</h3>
-            <p class="form-card-lead">All fields marked <span style="color:var(--brand-red)">*</span> are required.</p>
-
+            <p class="form-card-lead">All fields marked <span style="color:#BF0A30">*</span> are required.</p>
             <div class="form-row2">
-              <div class="fg2">
-                <label for="sa-name">Full Legal Name <span class="req">*</span></label>
-                <input type="text" id="sa-name" name="fullName" placeholder="As on ID / passport" required />
-              </div>
-              <div class="fg2">
-                <label for="sa-email">Email Address <span class="req">*</span></label>
-                <input type="email" id="sa-email" name="email" placeholder="your@email.com" required />
-              </div>
+              <div class="fg2"><label for="sa-name">Full Legal Name <span class="req">*</span></label><input type="text" id="sa-name" name="fullName" placeholder="As on ID / passport" required /></div>
+              <div class="fg2"><label for="sa-email">Email Address <span class="req">*</span></label><input type="email" id="sa-email" name="email" placeholder="your@email.com" required /></div>
             </div>
-
             <div class="form-row2">
-              <div class="fg2">
-                <label for="sa-phone">Phone / WhatsApp <span class="req">*</span></label>
-                <input type="tel" id="sa-phone" name="phone" placeholder="+231 XXX XXX XXX" required />
-              </div>
-              <div class="fg2">
-                <label for="sa-dob">Date of Birth <span class="req">*</span></label>
-                <input type="date" id="sa-dob" name="dob" required />
-              </div>
+              <div class="fg2"><label for="sa-phone">Phone / WhatsApp <span class="req">*</span></label><input type="tel" id="sa-phone" name="phone" placeholder="+231 XXX XXX XXX" required /></div>
+              <div class="fg2"><label for="sa-dob">Date of Birth <span class="req">*</span></label><input type="date" id="sa-dob" name="dob" required /></div>
             </div>
-
             <div class="form-row2">
-              <div class="fg2">
-                <label for="sa-gender">Gender</label>
-                <select id="sa-gender" name="gender">
-                  <option value="">Select gender</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Prefer not to say</option>
-                </select>
-              </div>
-              <div class="fg2">
-                <label for="sa-nationality">Nationality <span class="req">*</span></label>
-                <input type="text" id="sa-nationality" name="nationality" value="Liberian" required />
-              </div>
+              <div class="fg2"><label for="sa-edu-current">Current Education Level <span class="req">*</span></label><select id="sa-edu-current" name="currentEducation" required><option value="">Select current level</option><option>WASSCE / Senior High School</option><option>Diploma / Certificate</option><option>Bachelor's Degree</option><option>Master's Degree</option><option>Other</option></select></div>
+              <div class="fg2"><label for="sa-edu-target">Preferred Level of Study <span class="req">*</span></label><select id="sa-edu-target" name="targetLevel" required><option value="">Select target level</option><option>Undergraduate (UG)</option><option>Postgraduate — Master's (PG)</option><option>PhD / Doctorate</option></select></div>
             </div>
-
+            <div class="fg2"><label for="sa-field">Preferred Field of Study <span class="req">*</span></label><input type="text" id="sa-field" name="fieldOfStudy" placeholder="e.g. Medicine, Engineering, Business, Law" required /></div>
             <div class="form-row2">
-              <div class="fg2">
-                <label for="sa-edu-current">Current Education Level <span class="req">*</span></label>
-                <select id="sa-edu-current" name="currentEducation" required>
-                  <option value="">Select current level</option>
-                  <option>WASSCE / Senior High School</option>
-                  <option>Diploma / Certificate</option>
-                  <option>Bachelor's Degree</option>
-                  <option>Master's Degree</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div class="fg2">
-                <label for="sa-edu-target">Preferred Level of Study <span class="req">*</span></label>
-                <select id="sa-edu-target" name="targetLevel" required>
-                  <option value="">Select target level</option>
-                  <option>Undergraduate (UG)</option>
-                  <option>Postgraduate — Master's (PG)</option>
-                  <option>PhD / Doctorate</option>
-                </select>
-              </div>
+              <div class="fg2"><label for="sa-destination">Preferred Destination <span class="req">*</span></label><select id="sa-destination" name="destination" required><option value="">Select destination</option><option>India</option><option>Cyprus</option><option>United Kingdom</option><option>Canada</option><option>United States of America</option><option>Open to Suggestions</option></select></div>
+              <div class="fg2"><label for="sa-schtype">Scholarship Type <span class="req">*</span></label><select id="sa-schtype" name="scholarshipType" required><option value="">Select type</option><option>ICCR Fully Funded Scholarship</option><option>General Scholarship</option><option>Self-Funded / Need Guidance</option></select></div>
             </div>
-
-            <div class="fg2">
-              <label for="sa-field">Preferred Field of Study <span class="req">*</span></label>
-              <input type="text" id="sa-field" name="fieldOfStudy" placeholder="e.g. Medicine, Engineering, Business, Law, Computer Science" required />
-            </div>
-
-            <div class="form-row2">
-              <div class="fg2">
-                <label for="sa-destination">Preferred Destination <span class="req">*</span></label>
-                <select id="sa-destination" name="destination" required>
-                  <option value="">Select destination</option>
-                  <option>India</option>
-                  <option>Cyprus</option>
-                  <option>United Kingdom</option>
-                  <option>Canada</option>
-                  <option>United States of America</option>
-                  <option>Open to Suggestions</option>
-                </select>
-              </div>
-              <div class="fg2">
-                <label for="sa-schtype">Scholarship Type <span class="req">*</span></label>
-                <select id="sa-schtype" name="scholarshipType" required>
-                  <option value="">Select type</option>
-                  <option>ICCR Fully Funded Scholarship</option>
-                  <option>General Scholarship</option>
-                  <option>Self-Funded / Need Guidance</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="fg2">
-              <label for="sa-statement">Personal Statement <span class="req">*</span></label>
-              <textarea id="sa-statement" name="statement" rows="4" placeholder="Describe your academic goals, why you want this scholarship, and how you plan to use your education to make a positive impact in Liberia and Africa." required></textarea>
-            </div>
-
-            <div class="fg2">
-              <label for="sa-source">How did you hear about us?</label>
-              <select id="sa-source" name="source">
-                <option value="">Select one</option>
-                <option>Social Media (Facebook, Instagram, TikTok)</option>
-                <option>Friend or Family</option>
-                <option>WhatsApp</option>
-                <option>Google Search</option>
-                <option>School / University</option>
-                <option>Other</option>
-              </select>
-            </div>
-
+            <div class="fg2"><label for="sa-statement">Personal Statement <span class="req">*</span></label><textarea id="sa-statement" name="statement" rows="4" placeholder="Describe your academic goals, why you want this scholarship, and how you plan to use your education to make a positive impact in Liberia and Africa." required></textarea></div>
+            <div class="fg2"><label for="sa-source">How did you hear about us?</label><select id="sa-source" name="source"><option value="">Select one</option><option>Social Media (Facebook, Instagram, TikTok)</option><option>Friend or Family</option><option>WhatsApp</option><option>Google Search</option><option>School / University</option><option>Other</option></select></div>
             <p class="form-feedback" aria-live="polite"></p>
-            <div class="form-submit-row">
-              <button class="btn btn-primary btn-lg" type="submit">Submit Application</button>
-              <p class="form-note">We respond within 3–5 business days.</p>
-            </div>
+            <div class="form-submit-row"><button class="btn btn-primary btn-lg" type="submit">Submit Application</button><p class="form-note">We respond within 3–5 business days.</p></div>
           </form>
-
         </div>
       </div>
     </section>
-
   </main>
-
-  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
-  </a>
-
-  <footer class="site-footer" aria-label="Site footer">
+  <!-- STICKY BOTTOM NAV -->
+  <nav class="bottom-nav" aria-label="Portal quick navigation">
+    <div class="bottom-nav-inner">
+      <a href="index.html" class="bottom-nav-brand">
+        <span class="bottom-nav-icon">🎓</span>
+        <span>Tolbert Innovation Hub <span class="bottom-nav-sub">· Study Abroad Portal</span></span>
+      </a>
+      <div class="bottom-nav-links">
+        <a href="index.html">Home</a>
+        <a href="#universities" class="active">Universities</a>
+        <a href="#application-form">Apply Now</a>
+        <a href="#counseling">Counseling</a>
+        <a href="portal-login.html">Student Portal</a>
+      </div>
+      <a href="#application-form" class="btn btn-primary bottom-nav-cta">Apply Now</a>
+    </div>
+  </nav>
+  <!-- PORTAL FOOTER -->
+  <footer class="portal-footer" aria-label="Site footer">
     <div class="container">
-      <div class="footer-grid-main">
-        <div class="footer-brand">
-          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
-          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation. Never Stop Innovating.</p>
-          <div class="footer-social">
-            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
-            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
-            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+      <div class="portal-footer-grid">
+        <div>
+          <p class="pf-brand-name">Tolbert Innovation Hub</p>
+          <p class="pf-tagline">Empowering Africa's Future through Education, Technology, and Innovation. Never Stop Innovating.</p>
+          <div class="pf-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
+            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X">🐦</a>
+            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">💼</a>
+            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📸</a>
           </div>
         </div>
         <div>
-          <p class="footer-heading">Study Abroad</p>
-          <ul class="footer-links">
-            <li><a href="study-abroad.html">Study Abroad Portal</a></li>
-            <li><a href="study-abroad.html#application-form">Scholarship Application</a></li>
-            <li><a href="fully-funded-scholarship.html">ICCR Fully Funded</a></li>
-            <li><a href="study-abroad.html#universities">University Directory</a></li>
-            <li><a href="study-abroad.html#counseling">Book Counseling</a></li>
+          <p class="pf-heading">Quick Links</p>
+          <ul class="pf-links">
+            <li><a href="#universities">University Directory</a></li>
+            <li><a href="#application-form">Apply Online</a></li>
+            <li><a href="#counseling">Book Counseling</a></li>
+            <li><a href="portal-login.html">Student Portal</a></li>
+            <li><a href="portal-login.html">Admin Dashboard</a></li>
           </ul>
         </div>
         <div>
-          <p class="footer-heading">Programs</p>
-          <ul class="footer-links">
-            <li><a href="healthcare.html">Healthcare Exposure</a></li>
-            <li><a href="software.html">Software Innovation</a></li>
-            <li><a href="classroom.html">Free Classroom</a></li>
-            <li><a href="classroom-ielts.html">IELTS Preparation</a></li>
-            <li><a href="classroom-toefl.html">TOEFL Preparation</a></li>
+          <p class="pf-heading">Partner Countries</p>
+          <ul class="pf-links" style="margin-bottom:1.25rem;">
+            <li><a href="#universities">🇮🇳 India (15 Universities)</a></li>
+            <li><a href="#universities">🇨🇾 North Cyprus (2 Universities)</a></li>
+            <li><span style="color:#475569;font-size:0.85rem;">More Coming Soon</span></li>
+          </ul>
+          <p class="pf-heading">Programs</p>
+          <ul class="pf-links">
+            <li><a href="#universities">Undergraduate</a></li>
+            <li><a href="#universities">Postgraduate</a></li>
+            <li><a href="#universities">MBA</a></li>
+            <li><a href="#universities">PhD</a></li>
+            <li><a href="#universities">Medical</a></li>
+            <li><a href="#universities">Engineering</a></li>
           </ul>
         </div>
         <div>
-          <p class="footer-heading">Contact Us</p>
-          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
-          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
-          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231778956979">+231 778 956 979</a></div>
-          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
-          <div class="footer-contact-item"><span class="footer-contact-icon">🌐</span><span>Spriggs Payne Airport, Sinkor, Monrovia</span></div>
+          <p class="pf-heading">Contact Us</p>
+          <div class="pf-contact-item"><span>📍</span><span>Monrovia, Liberia, West Africa</span></div>
+          <div class="pf-contact-item"><span>📞</span><a href="tel:+231770000000">+231 770 000 000</a></div>
+          <div class="pf-contact-item"><span>📧</span><a href="mailto:info@tolbertinnovationhub.com">info@tolbertinnovationhub.com</a></div>
+          <div class="pf-hours"><strong>Office Hours</strong>Mon–Fri 8:00AM–6:00PM<br />Saturday 9:00AM–2:00PM</div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <div class="footer-bottom-inner">
-          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
-          <p style="font-size:0.82rem; color:rgba(200,216,240,0.55); margin:0;">Empowering Africa's Future — Never Stop Innovating 🚀</p>
-        </div>
+      <div class="portal-footer-bottom">
+        <p>© 2026 Tolbert Innovation Hub. All rights reserved. | <a href="contact.html">Privacy</a> | <a href="contact.html">Terms</a></p>
+        <p>Empowering Africa's Future — Never Stop Innovating</p>
       </div>
     </div>
   </footer>
-
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" /></a>
   <script src="main.js"></script>
   <script>
-  /* === UNIVERSITY DATA === */
   const universities = [
-    { id:1,  abbr:'GE',   slug:'graphic-era-university',          name:'Graphic Era University',          city:'Dehradun',          country:'India',  programs:['Computer Science','Engineering','Business','Agriculture'], degrees:['UG','PG','PhD'], tuition:'$2,500–$4,500/yr', scholarship:true, featured:true  },
-    { id:2,  abbr:'PPSU', slug:'pp-savani-university',             name:'PP Savani University',             city:'Surat',             country:'India',  programs:['Engineering','Sciences','Business','Nursing'],             degrees:['UG','PG'],       tuition:'$2,000–$3,500/yr', scholarship:true, featured:false },
-    { id:3,  abbr:'GGI',  slug:'gulzar-group-of-institutes',       name:'Gulzar Group of Institutes',       city:'Ludhiana',          country:'India',  programs:['Engineering','IT','Management','Pharmacy'],                degrees:['UG','PG'],       tuition:'$1,800–$3,200/yr', scholarship:true, featured:false },
-    { id:4,  abbr:'MATS', slug:'mats-university',                  name:'MATS University',                  city:'Raipur',            country:'India',  programs:['Law','Management','Engineering','Agriculture'],            degrees:['UG','PG','PhD'], tuition:'$1,500–$3,000/yr', scholarship:true, featured:false },
-    { id:5,  abbr:'SRU',  slug:'sr-university',                    name:'SR University',                    city:'Warangal',          country:'India',  programs:['Engineering','Computer Science','Business','Sciences'],    degrees:['UG','PG'],       tuition:'$2,200–$3,800/yr', scholarship:true, featured:false },
-    { id:6,  abbr:'MU',   slug:'marwadi-university',               name:'Marwadi University',               city:'Rajkot',            country:'India',  programs:['Engineering','IT','Business','Sciences'],                  degrees:['UG','PG','PhD'], tuition:'$2,000–$3,500/yr', scholarship:true, featured:true  },
-    { id:7,  abbr:'DBU',  slug:'desh-bhagat-university',           name:'Desh Bhagat University',           city:'Mandi Gobindgarh',  country:'India',  programs:['Nursing','Engineering','Management','Agriculture'],        degrees:['UG','PG'],       tuition:'$1,800–$3,200/yr', scholarship:true, featured:false },
-    { id:8,  abbr:'LPU',  slug:'lovely-professional-university',   name:'Lovely Professional University',   city:'Phagwara',          country:'India',  programs:['Engineering','Business','Computing','Design'],            degrees:['UG','PG','PhD'], tuition:'$2,800–$5,000/yr', scholarship:true, featured:true  },
-    { id:9,  abbr:'RGU',  slug:'royal-global-university',          name:'Royal Global University',          city:'Guwahati',          country:'India',  programs:['Engineering','Business','Sciences','Humanities'],         degrees:['UG','PG','PhD'], tuition:'$2,000–$3,500/yr', scholarship:true, featured:false },
-    { id:10, abbr:'SU',   slug:'sharda-university',                name:'Sharda University',                city:'Greater Noida',     country:'India',  programs:['Medicine','Engineering','Law','Business'],               degrees:['UG','PG','PhD'], tuition:'$3,500–$6,000/yr', scholarship:true, featured:true  },
-    { id:11, abbr:'AU',   slug:'amity-university',                 name:'Amity University',                 city:'Noida',             country:'India',  programs:['Business','Engineering','Media','Sciences'],              degrees:['UG','PG','PhD'], tuition:'$4,000–$7,500/yr', scholarship:true, featured:true  },
-    { id:12, abbr:'KU',   slug:'khalsa-university',                name:'Khalsa University',                city:'Amritsar',          country:'India',  programs:['Engineering','Business','Agriculture','Sciences'],        degrees:['UG','PG'],       tuition:'$1,800–$3,000/yr', scholarship:true, featured:false },
-    { id:13, abbr:'IU',   slug:'invertis-university',              name:'Invertis University',              city:'Bareilly',          country:'India',  programs:['Engineering','Management','Pharmacy','IT'],               degrees:['UG','PG'],       tuition:'$1,600–$2,800/yr', scholarship:true, featured:false },
-    { id:14, abbr:'MVM',  slug:'mvm-institute',                    name:'MVM Institute',                    city:'Madhya Pradesh',    country:'India',  programs:['Engineering','Sciences','Management'],                    degrees:['UG','PG'],       tuition:'$1,400–$2,600/yr', scholarship:true, featured:false },
-    { id:15, abbr:'SOA',  slug:'soa-university',                   name:'SOA University',                   city:'Bhubaneswar',       country:'India',  programs:['Medicine','Engineering','Law','Sciences'],               degrees:['UG','PG','PhD'], tuition:'$3,000–$5,500/yr', scholarship:true, featured:true  },
-    { id:16, abbr:'CWU',  slug:'cyprus-west-university',           name:'Cyprus West University',           city:'Famagusta',         country:'Cyprus', programs:['Business','IT','Hospitality','Law'],                      degrees:['UG','PG'],       tuition:'$4,000–$6,500/yr', scholarship:true, featured:false },
-    { id:17, abbr:'CIU',  slug:'cyprus-international-university',  name:'Cyprus International University',  city:'Nicosia',           country:'Cyprus', programs:['Business','Engineering','Medicine','Law'],               degrees:['UG','PG','PhD'], tuition:'$4,500–$7,000/yr', scholarship:true, featured:true  },
+    { id:1,  abbr:'GEU',  slug:'graphic-era-university',         name:'Graphic Era University',         city:'Dehradun',        state:'Uttarakhand',   country:'India',  flag:'🇮🇳', rating:4.5, students:'18,000+', programsCount:'200+', accreditation:'NAAC A+',  badgeColor:'#3b82f6', programs:['Computer Science','Engineering','Business','Agriculture'], degrees:['UG','PG','PhD'], tuition:'$2,500–$4,500/yr', scholarship:true, featured:true  },
+    { id:2,  abbr:'PPSU', slug:'pp-savani-university',            name:'PP Savani University',            city:'Surat',           state:'Gujarat',       country:'India',  flag:'🇮🇳', rating:4.3, students:'8,000+',  programsCount:'120+', accreditation:'UGC',     badgeColor:'#8b5cf6', programs:['Engineering','Sciences','Business','Nursing'],            degrees:['UG','PG'],       tuition:'$2,000–$3,500/yr', scholarship:true, featured:false },
+    { id:3,  abbr:'GGI',  slug:'gulzar-group-of-institutes',      name:'Gulzar Group of Institutes',      city:'Ludhiana',        state:'Punjab',        country:'India',  flag:'🇮🇳', rating:4.2, students:'12,000+', programsCount:'80+',  accreditation:'AICTE',   badgeColor:'#f59e0b', programs:['Engineering','IT','Management','Pharmacy'],               degrees:['UG','PG'],       tuition:'$1,800–$3,200/yr', scholarship:true, featured:false },
+    { id:4,  abbr:'MATS', slug:'mats-university',                 name:'MATS University',                 city:'Raipur',          state:'Chhattisgarh',  country:'India',  flag:'🇮🇳', rating:4.1, students:'10,000+', programsCount:'100+', accreditation:'UGC',     badgeColor:'#10b981', programs:['Law','Management','Engineering','Agriculture'],           degrees:['UG','PG','PhD'], tuition:'$1,500–$3,000/yr', scholarship:true, featured:false },
+    { id:5,  abbr:'SRU',  slug:'sr-university',                   name:'SR University',                   city:'Warangal',        state:'Telangana',     country:'India',  flag:'🇮🇳', rating:4.4, students:'15,000+', programsCount:'140+', accreditation:'NAAC A',  badgeColor:'#ef4444', programs:['Engineering','Computer Science','Business','Sciences'],   degrees:['UG','PG'],       tuition:'$2,200–$3,800/yr', scholarship:true, featured:false },
+    { id:6,  abbr:'MU',   slug:'marwadi-university',              name:'Marwadi University',              city:'Rajkot',          state:'Gujarat',       country:'India',  flag:'🇮🇳', rating:4.5, students:'15,000+', programsCount:'180+', accreditation:'NAAC A',  badgeColor:'#f97316', programs:['Engineering','IT','Business','Sciences'],                 degrees:['UG','PG','PhD'], tuition:'$2,000–$3,500/yr', scholarship:true, featured:true  },
+    { id:7,  abbr:'DBU',  slug:'desh-bhagat-university',          name:'Desh Bhagat University',          city:'Mandi Gobindgarh',state:'Punjab',        country:'India',  flag:'🇮🇳', rating:4.3, students:'20,000+', programsCount:'150+', accreditation:'UGC',     badgeColor:'#06b6d4', programs:['Nursing','Engineering','Management','Agriculture'],       degrees:['UG','PG'],       tuition:'$1,800–$3,200/yr', scholarship:true, featured:false },
+    { id:8,  abbr:'LPU',  slug:'lovely-professional-university',  name:'Lovely Professional University',  city:'Phagwara',        state:'Punjab',        country:'India',  flag:'🇮🇳', rating:4.9, students:'30,000+', programsCount:'300+', accreditation:'NAAC A++',badgeColor:'#f97316', programs:['Engineering','Business','Computing','Design'],           degrees:['UG','PG','PhD'], tuition:'$2,800–$5,000/yr', scholarship:true, featured:true  },
+    { id:9,  abbr:'RGU',  slug:'royal-global-university',         name:'Royal Global University',         city:'Guwahati',        state:'Assam',         country:'India',  flag:'🇮🇳', rating:4.2, students:'12,000+', programsCount:'100+', accreditation:'UGC',     badgeColor:'#8b5cf6', programs:['Engineering','Business','Sciences','Humanities'],        degrees:['UG','PG','PhD'], tuition:'$2,000–$3,500/yr', scholarship:true, featured:false },
+    { id:10, abbr:'SU',   slug:'sharda-university',               name:'Sharda University',               city:'Greater Noida',   state:'Uttar Pradesh', country:'India',  flag:'🇮🇳', rating:4.7, students:'25,000+', programsCount:'250+', accreditation:'NAAC A+', badgeColor:'#3b82f6', programs:['Medicine','Engineering','Law','Business'],              degrees:['UG','PG','PhD'], tuition:'$3,500–$6,000/yr', scholarship:true, featured:true  },
+    { id:11, abbr:'AU',   slug:'amity-university',                name:'Amity University',                city:'Noida',           state:'Uttar Pradesh', country:'India',  flag:'🇮🇳', rating:4.8, students:'35,000+', programsCount:'400+', accreditation:'NAAC A+', badgeColor:'#ef4444', programs:['Business','Engineering','Media','Sciences'],             degrees:['UG','PG','PhD'], tuition:'$4,000–$7,500/yr', scholarship:true, featured:true  },
+    { id:12, abbr:'KU',   slug:'khalsa-university',               name:'Khalsa University',               city:'Amritsar',        state:'Punjab',        country:'India',  flag:'🇮🇳', rating:4.3, students:'10,000+', programsCount:'90+',  accreditation:'UGC',     badgeColor:'#f59e0b', programs:['Engineering','Business','Agriculture','Sciences'],       degrees:['UG','PG'],       tuition:'$1,800–$3,000/yr', scholarship:true, featured:false },
+    { id:13, abbr:'IU',   slug:'invertis-university',             name:'Invertis University',             city:'Bareilly',        state:'Uttar Pradesh', country:'India',  flag:'🇮🇳', rating:4.1, students:'8,000+',  programsCount:'70+',  accreditation:'UGC',     badgeColor:'#10b981', programs:['Engineering','Management','Pharmacy','IT'],              degrees:['UG','PG'],       tuition:'$1,600–$2,800/yr', scholarship:true, featured:false },
+    { id:14, abbr:'MVM',  slug:'mvm-institute',                   name:'MVM Institute',                   city:'Bhopal',          state:'Madhya Pradesh',country:'India',  flag:'🇮🇳', rating:4.0, students:'5,000+',  programsCount:'50+',  accreditation:'AICTE',   badgeColor:'#06b6d4', programs:['Engineering','Sciences','Management'],                   degrees:['UG','PG'],       tuition:'$1,400–$2,600/yr', scholarship:true, featured:false },
+    { id:15, abbr:'SOA',  slug:'soa-university',                  name:'SOA University',                  city:'Bhubaneswar',     state:'Odisha',        country:'India',  flag:'🇮🇳', rating:4.6, students:'20,000+', programsCount:'200+', accreditation:'NAAC A+', badgeColor:'#8b5cf6', programs:['Medicine','Engineering','Law','Sciences'],              degrees:['UG','PG','PhD'], tuition:'$3,000–$5,500/yr', scholarship:true, featured:true  },
+    { id:16, abbr:'CWU',  slug:'cyprus-west-university',          name:'Cyprus West University',          city:'Famagusta',       state:'North Cyprus',  country:'Cyprus', flag:'🇨🇾', rating:4.3, students:'8,000+',  programsCount:'60+',  accreditation:'YODAK',   badgeColor:'#BF0A30', programs:['Business','IT','Hospitality','Law'],                    degrees:['UG','PG'],       tuition:'$4,000–$6,500/yr', scholarship:true, featured:false },
+    { id:17, abbr:'CIU',  slug:'cyprus-international-university', name:'Cyprus International University', city:'Nicosia',         state:'North Cyprus',  country:'Cyprus', flag:'🇨🇾', rating:4.6, students:'20,000+', programsCount:'200+', accreditation:'YODAK',   badgeColor:'#BF0A30', programs:['Business','Engineering','Medicine','Law'],              degrees:['UG','PG','PhD'], tuition:'$4,500–$7,000/yr', scholarship:true, featured:true  },
   ];
-
-  /* === STATE === */
-  let filterCountry = 'all';
-  let filterDegree  = 'all';
-  let searchQuery   = '';
-
-  /* === RENDER === */
+  let filterCountry='all', filterDegree='all', filterScholarship=false, searchQuery='';
   function renderUniversities() {
-    const grid  = document.getElementById('uniGrid');
-    const count = document.getElementById('uniCount');
-    const q     = searchQuery.toLowerCase().trim();
-
-    const filtered = universities.filter(u => {
-      const matchCountry = filterCountry === 'all' || u.country === filterCountry;
-      const matchDegree  = filterDegree  === 'all' || u.degrees.includes(filterDegree);
-      const matchSearch  = !q ||
-        u.name.toLowerCase().includes(q) ||
-        u.city.toLowerCase().includes(q) ||
-        u.country.toLowerCase().includes(q) ||
-        u.programs.some(p => p.toLowerCase().includes(q)) ||
-        u.abbr.toLowerCase().includes(q);
-      return matchCountry && matchDegree && matchSearch;
+    const grid=document.getElementById('uniGrid'), count=document.getElementById('uniCount'), q=searchQuery.toLowerCase().trim();
+    const filtered=universities.filter(u=>{
+      const mc=filterCountry==='all'||u.country===filterCountry;
+      const md=filterDegree==='all'||u.degrees.includes(filterDegree);
+      const ms=!filterScholarship||u.scholarship===true;
+      const mq=!q||u.name.toLowerCase().includes(q)||u.city.toLowerCase().includes(q)||u.country.toLowerCase().includes(q)||u.programs.some(p=>p.toLowerCase().includes(q))||u.abbr.toLowerCase().includes(q);
+      return mc&&md&&ms&&mq;
     });
-
-    count.textContent = filtered.length + ' universit' + (filtered.length === 1 ? 'y' : 'ies');
-
-    if (filtered.length === 0) {
-      grid.innerHTML = `<div class="no-results"><h3>No universities found</h3><p>Try adjusting your search or filters.</p></div>`;
-      return;
-    }
-
-    grid.innerHTML = filtered.map(u => {
-      const isCyprus  = u.country === 'Cyprus';
-      const topClass  = isCyprus ? 'uni-card-top cyprus' : 'uni-card-top';
-      const flag      = isCyprus ? '🇨🇾' : '🇮🇳';
-      const progTags  = u.programs.slice(0,3).map((p,i) =>
-        `<span class="uni-tag${i % 2 === 1 ? ' red' : ''}">${p}</span>`).join('');
-      const degreePills = u.degrees.map(d =>
-        `<span class="uni-tag">${d}</span>`).join('');
-      const featured  = u.featured
-        ? `<span class="uni-featured-badge">Featured</span>` : '';
-
-      return `
-        <article class="uni-card reveal">
-          <div class="${topClass}">
-            ${featured}
-            <div class="uni-abbr-box">${u.abbr}</div>
-            <div class="uni-loc">${flag} ${u.city}, ${u.country}</div>
-            <div class="uni-name">${u.name}</div>
-          </div>
-          <div class="uni-card-body">
-            <div class="uni-tags">${progTags}</div>
-            <p class="uni-detail"><strong>Degrees:</strong> ${u.degrees.join(' · ')}</p>
-            <p class="uni-detail"><strong>Tuition:</strong> ${u.tuition}</p>
-            <p class="uni-detail"><strong>Scholarship:</strong> <span style="color:#059669; font-weight:600;">✓ Available</span></p>
-            <div class="uni-actions">
-              <a class="btn btn-primary" style="flex:1; text-align:center; font-size:0.83rem; padding:0.55rem 0.75rem;" href="university-${u.slug}.html#apply-form">Apply Now</a>
-              <a class="btn btn-outline" style="flex:1; text-align:center; font-size:0.83rem; padding:0.55rem 0.75rem;" href="university-${u.slug}.html">View Details</a>
-            </div>
-          </div>
-        </article>`;
-    }).join('');
-
-    /* re-trigger reveal for newly rendered cards */
-    if (typeof initReveal === 'function') initReveal();
+    const total=filtered.length;
+    count.textContent='Showing '+total+' universit'+(total===1?'y':'ies')+' in India & North Cyprus';
+    if(total===0){grid.innerHTML='<div class="no-results"><h3>No universities found</h3><p>Try adjusting your search or filters.</p></div>';return;}
+    grid.innerHTML=filtered.map(u=>`<article class="uni-card reveal"><div class="uni-card-header"><div class="uni-badge" style="background:${u.badgeColor}">${u.abbr}</div><div class="uni-card-rating">&#9733; ${u.rating}</div></div><div class="uni-card-body"><h3 class="uni-card-name">${u.name}</h3><div class="uni-card-meta"><span class="uni-meta-loc">${u.flag} ${u.city}, ${u.country}</span><span class="uni-accred">${u.accreditation}</span></div><div class="uni-card-stats"><div class="uni-stat"><span class="uni-stat-icon">&#127891;</span><span>${u.students} Students</span></div><div class="uni-stat"><span class="uni-stat-icon">&#128218;</span><span>${u.programsCount} Programs</span></div></div><div class="uni-card-programs"><span class="uni-prog-label">Top Programs:</span><div class="uni-prog-tags">${u.programs.slice(0,3).map(p=>`<span class="uni-prog-tag">${p}</span>`).join('')}</div></div></div><div class="uni-card-footer"><a href="university-${u.slug}.html" class="uni-explore-btn">Explore &#8594;</a></div></article>`).join('');
+    if(typeof initReveal==='function')initReveal();
   }
-
-  /* === FILTER BUTTONS === */
-  document.querySelectorAll('.filter-pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const type  = btn.dataset.filter;
-      const value = btn.dataset.value;
-
-      /* deactivate siblings of same type */
-      document.querySelectorAll(`.filter-pill[data-filter="${type}"]`).forEach(b => {
-        b.classList.remove('on-blue', 'on-red');
-        b.setAttribute('aria-pressed', 'false');
-      });
-
-      btn.setAttribute('aria-pressed', 'true');
-      btn.classList.add(value === 'Cyprus' ? 'on-red' : 'on-blue');
-
-      if (type === 'country') filterCountry = value;
-      else filterDegree = value;
-
+  document.querySelectorAll('.filter-pill').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const type=btn.dataset.filter, value=btn.dataset.value;
+      if(type==='scholarship'){filterScholarship=!filterScholarship;btn.classList.toggle('on-green',filterScholarship);btn.setAttribute('aria-pressed',String(filterScholarship));renderUniversities();return;}
+      document.querySelectorAll(`.filter-pill[data-filter="${type}"]`).forEach(b=>{b.classList.remove('on','on-red');b.setAttribute('aria-pressed','false');});
+      btn.setAttribute('aria-pressed','true');btn.classList.add(value==='Cyprus'?'on-red':'on');
+      if(type==='country')filterCountry=value;else filterDegree=value;
       renderUniversities();
     });
   });
-
-  /* === SEARCH === */
-  document.getElementById('uniSearchInput').addEventListener('input', e => {
-    searchQuery = e.target.value;
-    renderUniversities();
-  });
-
-  /* === ELIGIBILITY CHECKER === */
-  function checkEligibility() {
-    const level   = document.getElementById('elig-level').value;
-    const target  = document.getElementById('elig-target').value;
-    const gpa     = document.getElementById('elig-gpa').value;
-    const eng     = document.getElementById('elig-english').value;
-    const result  = document.getElementById('eligResult');
-    const icon    = document.getElementById('eligIcon');
-    const title   = document.getElementById('eligTitle');
-    const msg     = document.getElementById('eligMessage');
-
-    result.className = 'elig-result';
-
-    if (!level || !target || !gpa) {
-      result.className = 'elig-result conditional show';
-      icon.textContent  = '⚠️';
-      title.textContent = 'Please Complete All Fields';
-      msg.textContent   = 'Select your education level, target degree, and grade range to get your eligibility result.';
-      return;
-    }
-
-    /* Basic eligibility logic */
-    const validMap = {
-      UG:  ['wassce', 'diploma'],
-      PG:  ['bachelors'],
-      PhD: ['masters'],
-    };
-
-    const levelOk = validMap[target] && validMap[target].includes(level);
-
-    if (!levelOk) {
-      result.className = 'elig-result ineligible show';
-      icon.textContent  = '❌';
-      title.textContent = 'Qualification Level Mismatch';
-      msg.textContent   = target === 'UG'
-        ? 'Undergraduate admission requires WASSCE or a Diploma. If you already hold a degree, consider applying for Postgraduate instead.'
-        : target === 'PG'
-        ? 'Postgraduate admission requires a completed Bachelor\'s degree. Complete your undergraduate studies first.'
-        : 'PhD admission requires a completed Master\'s degree or equivalent. Consider applying for Postgraduate first.';
-      return;
-    }
-
-    if (gpa === 'below') {
-      result.className = 'elig-result ineligible show';
-      icon.textContent  = '❌';
-      title.textContent = 'Grades Below Minimum Requirement';
-      msg.textContent   = 'Most partner universities require a minimum grade of C / Pass or above. We recommend joining our free classroom to strengthen your academic profile, or speak with a counselor about alternative pathways.';
-      return;
-    }
-
-    if (gpa === 'low') {
-      result.className = 'elig-result conditional show';
-      icon.textContent  = '⚠️';
-      title.textContent = 'Conditionally Eligible';
-      msg.textContent   = 'Your grades meet the minimum threshold for several partner universities, though some require higher scores. Book a free counseling session and we\'ll identify the best options for your profile.';
-      return;
-    }
-
-    /* High or mid GPA — fully eligible */
-    const schNote = gpa === 'high'
-      ? 'Your strong grades also qualify you for merit scholarships at several universities — up to 50% tuition reduction.'
-      : 'You may also qualify for partial scholarship support. Discuss this during your free counseling session.';
-
-    const engNote = (eng === 'none' || !eng)
-      ? ' Note: consider completing an IELTS or TOEFL test to strengthen your application — join our free classroom preparation course.'
-      : '';
-
-    result.className = 'elig-result eligible show';
-    icon.textContent  = '✅';
-    title.textContent = 'You Are Eligible to Apply!';
-    msg.textContent   = `Great news! Based on your academic background, you qualify to apply for ${target} programs at our partner universities in India and Cyprus. ${schNote}${engNote} Click "Apply Now" or "Book Counseling" to take your next step.`;
+  document.getElementById('uniSearchInput').addEventListener('input',e=>{searchQuery=e.target.value;renderUniversities();});
+  function checkEligibility(){
+    const level=document.getElementById('elig-level').value,target=document.getElementById('elig-target').value,gpa=document.getElementById('elig-gpa').value,eng=document.getElementById('elig-english').value;
+    const result=document.getElementById('eligResult'),icon=document.getElementById('eligIcon'),title=document.getElementById('eligTitle'),msg=document.getElementById('eligMessage');
+    result.className='elig-result';
+    if(!level||!target||!gpa){result.className='elig-result conditional show';icon.textContent='⚠️';title.textContent='Please Complete All Fields';msg.textContent='Select your education level, target degree, and grade range to get your eligibility result.';return;}
+    const validMap={UG:['wassce','diploma'],PG:['bachelors'],PhD:['masters']};
+    const levelOk=validMap[target]&&validMap[target].includes(level);
+    if(!levelOk){result.className='elig-result ineligible show';icon.textContent='❌';title.textContent='Qualification Level Mismatch';msg.textContent=target==='UG'?'Undergraduate admission requires WASSCE or a Diploma.':target==='PG'?"Postgraduate admission requires a completed Bachelor's degree.":"PhD admission requires a completed Master's degree.";return;}
+    if(gpa==='below'){result.className='elig-result ineligible show';icon.textContent='❌';title.textContent='Grades Below Minimum Requirement';msg.textContent='Most partner universities require a minimum grade of C / Pass or above.';return;}
+    if(gpa==='low'){result.className='elig-result conditional show';icon.textContent='⚠️';title.textContent='Conditionally Eligible';msg.textContent="Your grades meet the minimum threshold for several universities. Book a free counseling session and we'll identify the best options.";return;}
+    const schNote=gpa==='high'?'Your strong grades also qualify you for merit scholarships — up to 50% tuition reduction.':'You may qualify for partial scholarship support.';
+    const engNote=(eng==='none'||!eng)?' Consider completing an IELTS or TOEFL test to strengthen your application.':'';
+    result.className='elig-result eligible show';icon.textContent='✅';title.textContent='You Are Eligible to Apply!';msg.textContent='Great news! You qualify for '+target+' programs at our partner universities in India and Cyprus. '+schNote+engNote;
   }
-
-  /* === INIT === */
   renderUniversities();
   </script>
-<script src="chatbot.js"></script>
+  <script src="chatbot.js"></script>
 </body>
 </html>
