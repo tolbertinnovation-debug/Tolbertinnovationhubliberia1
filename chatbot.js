@@ -679,6 +679,231 @@ I can collect your application right here in this chat! Which program are you ap
       qr: ['🎓 Scholarship / Study Abroad','🏥 Healthcare Request','💻 Software Consultation','📚 IELTS/TOEFL Classroom']
     },
 
+    // ── CHEVENING ──
+    {
+      id: 'chevening',
+      keywords: ['chevening','uk scholarship','british scholarship','foreign commonwealth','fcdo','study uk','master uk','uk master','uk government scholarship'],
+      reply: `🇬🇧 <strong>Chevening Scholarship (UK)</strong><br><br>
+The UK Government's flagship scholarship — <strong>Liberia is an eligible country!</strong><br><br>
+✅ <strong>What's covered:</strong><br>
+• Full tuition at any UK university<br>
+• Monthly living allowance<br>
+• Return economy airfare<br>
+• Arrival &amp; departure allowance<br>
+• Thesis / dissertation grant<br><br>
+✅ <strong>Requirements:</strong><br>
+• Liberian citizen • Bachelor's degree<br>
+• <strong>2+ years work experience</strong><br>
+• Apply to 3 UK university courses<br>
+• Commit to return to Liberia after<br><br>
+📅 Applications: <strong>August – November each year</strong>`,
+      qr: ['🌐 View All Scholarships','🏆 ICCR Scholarship','📝 Apply Now','🔙 Main Menu']
+    },
+
+    // ── FULBRIGHT ──
+    {
+      id: 'fulbright',
+      keywords: ['fulbright','us scholarship','usa scholarship','american scholarship','study usa','study america','study united states','fulbright foreign','us government scholarship'],
+      reply: `🇺🇸 <strong>Fulbright Foreign Student Program (USA)</strong><br><br>
+The US Government's premier exchange — <strong>Liberia is eligible!</strong><br><br>
+✅ <strong>What's covered:</strong><br>
+• Full tuition &amp; university fees<br>
+• Monthly living stipend<br>
+• International airfare<br>
+• Health insurance<br>
+• Research &amp; professional development funds<br><br>
+✅ <strong>Requirements:</strong><br>
+• Liberian citizen (residing in Liberia)<br>
+• Bachelor's degree with strong record<br>
+• TOEFL iBT ≥ 79 or IELTS ≥ 6.5<br>
+• Leadership potential &amp; community commitment<br><br>
+📅 Deadline: <strong>February – May (varies by year)</strong>`,
+      qr: ['🌐 View All Scholarships','📚 IELTS/TOEFL Prep','📝 Apply Now','🔙 Main Menu']
+    },
+
+    // ── MASTERCARD FOUNDATION ──
+    {
+      id: 'mastercard',
+      keywords: ['mastercard','mastercard foundation','mcf','mastercard scholar','mastercard scholarship','foundation scholarship'],
+      reply: `🌍 <strong>Mastercard Foundation Scholars Program</strong><br><br>
+One of Africa's largest scholarship networks — <strong>Liberian students are eligible!</strong><br><br>
+✅ <strong>What's covered:</strong><br>
+• Full tuition at 40+ partner universities (Africa &amp; global)<br>
+• Accommodation &amp; living stipend<br>
+• Mentorship &amp; leadership development<br>
+• Return travel allowance<br><br>
+✅ <strong>Requirements:</strong><br>
+• African citizen (Liberia ✓)<br>
+• Demonstrated financial need<br>
+• Strong leadership &amp; community service record<br>
+• Commitment to give back to Africa<br><br>
+📅 Deadlines vary by partner university`,
+      qr: ['🌐 View All Scholarships','🎓 ICCR Scholarship','📝 Apply','🔙 Main Menu']
+    },
+
+    // ── DAAD ──
+    {
+      id: 'daad',
+      keywords: ['daad','germany scholarship','german scholarship','study germany','study in germany','bmz','german academic','academic exchange service'],
+      reply: `🇩🇪 <strong>DAAD In-Country / In-Region Programme</strong><br><br>
+Funded by Germany's Federal Ministry for Economic Cooperation — <strong>Sub-Saharan Africa including Liberia!</strong><br><br>
+✅ <strong>What's covered:</strong><br>
+• Full tuition fees<br>
+• Monthly stipend up to <strong>€8,920/year</strong><br>
+• Health insurance<br>
+• Study &amp; research allowance<br>
+• Travel subsidy<br><br>
+✅ <strong>Requirements:</strong><br>
+• Sub-Saharan African citizen (Liberia ✓)<br>
+• Bachelor's degree (max. 6 years post-graduation)<br>
+• English or French proficiency<br><br>
+📅 New calls published: <strong>autumn each year</strong>`,
+      qr: ['🌐 View All Scholarships','📚 IELTS/TOEFL Prep','🔙 Main Menu']
+    },
+
+    // ── PAN AFRICAN UNIVERSITY ──
+    {
+      id: 'pau',
+      keywords: ['pan african university','pau','african union scholarship','au scholarship','pan african','continental university','african union'],
+      reply: `🌐 <strong>Pan African University (PAU) Scholarship</strong><br><br>
+An African Union initiative — full scholarships across Africa. <strong>All AU member states eligible, including Liberia!</strong><br><br>
+✅ <strong>What's covered:</strong><br>
+• Full tuition fees<br>
+• Monthly stipend<br>
+• On-campus accommodation<br>
+• Return air ticket<br>
+• Medical insurance<br><br>
+✅ <strong>Requirements:</strong><br>
+• AU member state citizen (Liberia ✓)<br>
+• Bachelor's degree with strong GPA<br>
+• Under 35 (Master's) or under 40 (PhD)<br><br>
+📅 Applications: <strong>November – December each year</strong>`,
+      qr: ['🌐 View All Scholarships','🎓 Scholarships','📝 Apply','🔙 Main Menu']
+    },
+
+    // ── VISA ──
+    {
+      id: 'visa',
+      keywords: ['visa','visa application','student visa','get visa','visa requirements','how to get visa','india visa','uk visa','us visa','visa process','visa help','visa support','travel document','study permit'],
+      reply: `✈️ <strong>Visa Support for Liberian Students</strong><br><br>
+TIH provides <strong>visa guidance and document support</strong> as part of our programs:<br><br>
+🇮🇳 <strong>India (ICCR):</strong> Indian Mission processes student visas. TIH coordinates your visa application alongside your scholarship letters.<br><br>
+🇬🇧 <strong>UK (Chevening):</strong> Chevening provides visa guidance. Note: Liberia has no UK visa center — you must travel to a neighboring country to apply.<br><br>
+🇺🇸 <strong>USA (Fulbright):</strong> US Embassy in Monrovia handles F1/J1 visas.<br><br>
+💡 TIH helps you prepare all required documents for every step of the visa process.`,
+      qr: ['🏆 ICCR Scholarship','🇬🇧 Chevening Details','📞 Contact TIH','🔙 Main Menu']
+    },
+
+    // ── PROGRAM DURATION ──
+    {
+      id: 'duration',
+      keywords: ['how long','duration','years','months','program length','how many years','study duration','length of course','time to complete','when does it start','when does it end','how long is the'],
+      reply: `⏱️ <strong>Program Durations</strong><br><br>
+• 🎓 <strong>Undergraduate (Bachelor's):</strong> 3–5 years<br>
+• 🎓 <strong>Postgraduate (Master's):</strong> 1–2 years<br>
+• 🔬 <strong>PhD:</strong> 3–5 years<br>
+• 📚 <strong>IELTS/TOEFL Classroom:</strong> Self-paced — complete any time<br>
+• 🏥 <strong>Healthcare referral:</strong> Ongoing case-by-case<br>
+• 💻 <strong>Software project:</strong> 2 weeks – 3 months (by scope)<br><br>
+📌 The <strong>ICCR Scholarship</strong> covers the full duration of your enrolled program in India.`,
+      qr: ['🎓 Apply for Scholarship','📚 Free Classroom','🔙 Main Menu']
+    },
+
+    // ── AGE REQUIREMENTS ──
+    {
+      id: 'age',
+      keywords: ['age','how old','age requirement','age limit','minimum age','maximum age','am i too old','am i too young','age criteria','over 40','age restriction','year old','years old'],
+      reply: `📅 <strong>Age Requirements</strong><br><br>
+<strong>ICCR Scholarship (India):</strong><br>
+• Undergraduate / Master's: Age <strong>18–40</strong><br>
+• PhD: up to age <strong>50</strong><br><br>
+<strong>Chevening (UK):</strong><br>
+• No official upper age limit (2+ years work experience required)<br><br>
+<strong>Fulbright (USA):</strong><br>
+• No hard age limit — typically recent graduates or early-career professionals<br><br>
+<strong>Mastercard Foundation:</strong><br>
+• Typically <strong>under 35</strong> (varies by institution)<br><br>
+<strong>Pan African University:</strong><br>
+• Master's: under <strong>35</strong> | PhD: under <strong>40</strong>`,
+      qr: ['📋 Full Requirements','🏆 ICCR Scholarship','📝 Apply Now','🔙 Main Menu']
+    },
+
+    // ── STUDY FIELDS ──
+    {
+      id: 'fields',
+      keywords: ['what can i study','study field','field of study','course','subject','discipline','what subjects','available courses','which course','study medicine','study engineering','study law','study business','study agriculture','study computer'],
+      reply: `📚 <strong>Available Fields of Study</strong><br><br>
+Through TIH's programs you can study a wide range of disciplines:<br><br>
+🔬 <strong>Sciences:</strong> Medicine, Pharmacy, Nursing, Biology, Chemistry<br>
+⚙️ <strong>Engineering:</strong> Civil, Electrical, Mechanical, Computer Science, IT<br>
+💼 <strong>Business:</strong> MBA, Accounting, Economics, Finance, Marketing<br>
+⚖️ <strong>Law &amp; Social Sciences:</strong> Law, Political Science, Public Administration<br>
+🌾 <strong>Agriculture:</strong> Agronomy, Food Science, Environmental Studies<br>
+🎨 <strong>Arts &amp; Education:</strong> Education, Literature, Journalism, History<br><br>
+The exact course list depends on your chosen country and university.`,
+      qr: ['🏆 ICCR Scholarship','📝 Apply Now','📋 Requirements','🔙 Main Menu']
+    },
+
+    // ── PERSONAL STATEMENT ──
+    {
+      id: 'statement',
+      keywords: ['personal statement','essay','motivation letter','cover letter','statement of purpose','write essay','how to write','application essay','why do you want','motivation','what to write','sop'],
+      reply: `✍️ <strong>Writing Your Personal Statement</strong><br><br>
+A strong personal statement should cover:<br><br>
+1️⃣ <strong>Who you are</strong> — background, education, experience<br>
+2️⃣ <strong>Why this program</strong> — why this scholarship, country, or field<br>
+3️⃣ <strong>Your goals</strong> — career plans and how this degree fits in<br>
+4️⃣ <strong>Your impact</strong> — how you'll contribute to Liberia after graduating<br>
+5️⃣ <strong>Why you</strong> — what makes you a strong candidate<br><br>
+📌 Aim for <strong>500–800 words</strong>. Be specific — avoid generic statements.<br><br>
+💡 <strong>TIH can review and improve your personal statement — contact us!</strong>`,
+      qr: ['📞 Get Help from TIH','💬 WhatsApp for Guidance','📋 Requirements','🔙 Main Menu']
+    },
+
+    // ── REJECTION ──
+    {
+      id: 'rejection',
+      keywords: ['rejected','rejection','not selected','failed application','what if i fail','not successful','denied','not accepted','reapply','try again','second chance','what if i dont','what if not selected'],
+      reply: `💪 <strong>What If You're Not Selected?</strong><br><br>
+Don't be discouraged — many successful scholars were rejected before winning!<br><br>
+✅ <strong>What you can do:</strong><br>
+• <strong>Reapply next year</strong> — most scholarships accept re-applications<br>
+• <strong>Strengthen weak areas</strong> — improve IELTS/TOEFL score, GPA, or personal statement<br>
+• <strong>Apply for other scholarships</strong> — Chevening, Fulbright, Mastercard, DAAD are all available<br>
+• <strong>Consult TIH</strong> — we review your application and give feedback<br><br>
+📌 TIH helps students improve applications after rejection. Contact us for a <strong>free consultation!</strong>`,
+      qr: ['📞 Get Application Feedback','🎓 Other Scholarships','📚 Improve IELTS Score','🔙 Main Menu']
+    },
+
+    // ── COST OF LIVING ──
+    {
+      id: 'cost_living',
+      keywords: ['cost of living','living cost','expenses in india','money needed','cost india','afford india','monthly expenses','india expensive','stipend enough','how much stipend','accommodation cost','food cost'],
+      reply: `💵 <strong>Cost of Living in India (for ICCR Scholars)</strong><br><br>
+The ICCR scholarship includes a <strong>monthly stipend</strong> to cover living costs:<br><br>
+• UG/PG stipend: <strong>₹15,000 – ₹18,000/month</strong> (~$180–$215 USD)<br>
+• PhD stipend: <strong>₹18,000 – ₹20,000/month</strong><br><br>
+The stipend covers food, local transport, and study materials. Hostel accommodation is provided separately by the university.<br><br>
+💡 India is generally <strong>very affordable</strong> for international students compared to Western countries.`,
+      qr: ['🏆 ICCR Full Details','📝 Apply ICCR Scholarship','🔙 Main Menu']
+    },
+
+    // ── CAN I APPLY ──
+    {
+      id: 'can_apply',
+      keywords: ['can i apply','am i eligible','can liberian apply','do you accept','can i join','can i register','is it open','open to liberians','open for liberia','is liberia included','liberia eligible','eligible for liberia'],
+      reply: `✅ <strong>Yes — Liberian Students Can Apply!</strong><br><br>
+All TIH programs are specifically designed to serve <strong>Liberian citizens</strong>.<br><br>
+• 🏆 <strong>ICCR Scholarship</strong> — Liberian citizens age 18–50<br>
+• 🇬🇧 <strong>Chevening (UK)</strong> — Liberian citizens with 2+ years work experience<br>
+• 🇺🇸 <strong>Fulbright (USA)</strong> — Liberian citizens residing in Liberia<br>
+• 🌍 <strong>Mastercard Foundation</strong> — African citizens (Liberia included)<br>
+• 📚 <strong>Free Classroom</strong> — <strong>Anyone, no restrictions!</strong><br>
+• 🏥 <strong>Healthcare Program</strong> — Open to all Liberians<br>
+• 💻 <strong>Software Services</strong> — Open to any individual or business`,
+      qr: ['📝 Apply for Scholarship','🏆 ICCR Scholarship','📚 Free Classroom','🔙 Main Menu']
+    },
+
     // ── THANK YOU ──
     {
       id: 'thanks',
@@ -687,12 +912,12 @@ I can collect your application right here in this chat! Which program are you ap
       qr: ['🎓 Scholarships','📚 Free Classroom','🏥 Healthcare','💻 Software','📝 Apply Now']
     },
 
-    // ── FALLBACK ──
+    // ── FALLBACK (keep last — used when score = 0) ──
     {
       id: 'fallback',
       keywords: [],
-      reply: `I want to make sure I give you the right answer. Could you rephrase or choose a topic below? I can answer questions about scholarships, IELTS/TOEFL prep, healthcare, software services, fees, the team, and more.`,
-      qr: ['🎓 Scholarships','📚 IELTS/TOEFL','🏥 Healthcare','💻 Software','📞 Contact','❓ FAQ']
+      reply: ``,
+      qr: ['🎓 Scholarships','📚 IELTS/TOEFL','🏥 Healthcare','💻 Software','💬 Talk to Human','📞 Contact Info']
     }
   ];
 
@@ -742,24 +967,65 @@ I can collect your application right here in this chat! Which program are you ap
     }
   };
 
-  // ── Scoring-based matching ────────────────────────────────────────────────
+  // ── Improved matching: typo correction + confidence tiers ─────────────────
+  let _fallbackIdx = 0;
+  const FALLBACK_MSGS = [
+    u => `I don't have a specific answer for "<em>${esc(u)}</em>" yet, but our team definitely can help! Here's how to get an exact answer right away:`,
+    u => `Good question! I'm still learning, so I may not have details on "<em>${esc(u)}</em>" in my knowledge base. Here's how to reach someone who does:`,
+    u => `I want to make sure you get accurate information about "<em>${esc(u)}</em>". For the best answer, contact our team directly:`,
+    u => `That's outside my current knowledge, but our team knows everything! For "<em>${esc(u)}</em>", you can reach us here:`,
+    u => `I may have misunderstood your question. For "<em>${esc(u)}</em>", here's how to get a definitive answer from our team:`,
+  ];
+
+  function normalize(raw) {
+    return raw.toLowerCase()
+      .replace(/scholarshp|scholarsip|schlarship/g, 'scholarship')
+      .replace(/helthcare|helth\b/g, 'health')
+      .replace(/softwar[^e]/g, 'software ')
+      .replace(/clasroom|classrom/g, 'classroom')
+      .replace(/liberria|libera\b/g, 'liberia')
+      .replace(/applic[ae]tion/g, 'application')
+      .replace(/univers[ia]ty/g, 'university')
+      .replace(/toelf|tefl\b/g, 'toefl')
+      .replace(/ielts?/g, 'ielts')
+      .replace(/watsapp|whatsaap/g, 'whatsapp')
+      .replace(/donat[ei]/g, 'donate');
+  }
+
   function findBestMatch(text) {
-    const t = text.toLowerCase();
-    const words = t.split(/[\s,?!.]+/).filter(w => w.length > 2);
-    let best = { score: 0, entry: KB[KB.length - 1] };
+    const t = normalize(text);
+    const words = t.split(/[\s,?!.;:'"()\[\]]+/).filter(w => w.length > 2);
+    let best = { score: 0, entry: null };
 
     for (const entry of KB) {
       if (!entry.keywords.length) continue;
       let score = 0;
       for (const kw of entry.keywords) {
-        if (t.includes(kw)) score += kw.split(' ').length * 2; // multi-word = higher score
+        if (t.includes(kw)) score += kw.split(' ').length * 3;
       }
       for (const w of words) {
-        if (entry.keywords.some(kw => kw.includes(w) || w.includes(kw.split(' ')[0]))) score += 1;
+        for (const kw of entry.keywords) {
+          const kwFirst = kw.split(' ')[0];
+          if (kw.includes(w) && w.length >= 4) score += 1;
+          if (w.includes(kwFirst) && kwFirst.length >= 4) score += 1;
+        }
       }
       if (score > best.score) best = { score, entry };
     }
-    return best.score >= 1 ? best.entry : KB[KB.length - 1];
+
+    if (best.score >= 4) return { confidence: 'high',   entry: best.entry };
+    if (best.score >= 1) return { confidence: 'medium', entry: best.entry };
+    return                       { confidence: 'low',    entry: KB[KB.length - 1] };
+  }
+
+  function smartFallback(userText) {
+    const msg = FALLBACK_MSGS[_fallbackIdx % FALLBACK_MSGS.length](userText);
+    _fallbackIdx++;
+    return msg + `<br><br>
+💬 <strong>WhatsApp (fastest):</strong> <a href="https://wa.me/231880559227" target="_blank" style="color:#002868;font-weight:700;">+231 880 559 227</a><br>
+📧 <strong>Email:</strong> tolbertinnovationhub@gmail.com<br>
+📞 <strong>Call:</strong> +231 778 956 979<br><br>
+Or choose a topic below and I'll find the answer:`;
   }
 
   // ── DOM ───────────────────────────────────────────────────────────────────
@@ -866,6 +1132,20 @@ I can collect your application right here in this chat! Which program are you ap
     if (l.includes('main menu') || l.includes('🔙')) {
       type(450, () => { const g = KB[0]; botMsg(g.reply, g.qr); }); return;
     }
+
+    // Human handoff
+    if (l.includes('talk to human') || l.includes('speak to human') || l.includes('human agent') || l.includes('real person')) {
+      type(500, () => botMsg(`👋 <strong>Connect with Our Team</strong><br><br>
+Our team is ready to answer <em>any</em> question you have!<br><br>
+💬 <strong>WhatsApp (fastest — replies in minutes):</strong><br>
+<a href="https://wa.me/231880559227" target="_blank" style="color:#002868;font-weight:700;">+231 880 559 227</a><br><br>
+📧 <strong>Email:</strong> tolbertinnovationhub@gmail.com<br>
+📞 <strong>Call:</strong> +231 778 956 979<br><br>
+🕐 Hours: Mon–Fri 8am–6pm · Sat 9am–3pm (GMT)`,
+        ['💬 Open WhatsApp Now','📧 Send Email','🔙 Main Menu']));
+      return;
+    }
+
     // External links
     const nav = {
       'open whatsapp': 'https://wa.me/231880559227',
@@ -916,6 +1196,18 @@ I can collect your application right here in this chat! Which program are you ap
       'fully funded': 'fully-funded-scholarship.html',
       'apply before deadline': 'study-abroad.html#application-form',
       'send email': 'mailto:tolbertinnovationhub@gmail.com',
+      'view all scholarships': 'fully-funded-scholarship.html#more-scholarships',
+      'all scholarships': 'fully-funded-scholarship.html#more-scholarships',
+      'other scholarships': 'fully-funded-scholarship.html#more-scholarships',
+      'more scholarships': 'fully-funded-scholarship.html#more-scholarships',
+      'chevening details': 'fully-funded-scholarship.html#more-scholarships',
+      'fulbright details': 'fully-funded-scholarship.html#more-scholarships',
+      'scholarship details': 'fully-funded-scholarship.html#more-scholarships',
+      'pau details': 'fully-funded-scholarship.html#more-scholarships',
+      'daad details': 'fully-funded-scholarship.html#more-scholarships',
+      'application feedback': 'contact.html',
+      'improve ielts': 'classroom-ielts.html',
+      'other scholarship': 'fully-funded-scholarship.html#more-scholarships',
     };
     for (const [key, url] of Object.entries(nav)) {
       if (l.includes(key)) {
@@ -935,8 +1227,14 @@ I can collect your application right here in this chat! Which program are you ap
     }
 
     // Fall through — use the knowledge base to answer
-    const entry = findBestMatch(label);
-    type(Math.min(700 + label.length * 5, 1100), () => botMsg(entry.reply, entry.qr));
+    const { confidence, entry } = findBestMatch(label);
+    type(Math.min(700 + label.length * 5, 1100), () => {
+      if (confidence !== 'low') {
+        botMsg(entry.reply, entry.qr);
+      } else {
+        botMsg(smartFallback(label), ['🎓 Scholarships','📚 IELTS/TOEFL','🏥 Healthcare','💻 Software','💬 Talk to Human','📞 Contact Info']);
+      }
+    });
   }
 
   // ── Apply flow ─────────────────────────────────────────────────────────────
@@ -1023,9 +1321,20 @@ I can collect your application right here in this chat! Which program are you ap
     inpEl.value = '';
     if (flow) { userMsg(text); return; }
     userMsg(text);
-    const entry = findBestMatch(text);
+    const { confidence, entry } = findBestMatch(text);
     const delay = Math.min(600 + text.length * 10, 1400);
-    type(delay, () => botMsg(entry.reply, entry.qr));
+    type(delay, () => {
+      if (confidence === 'high') {
+        botMsg(entry.reply, entry.qr);
+      } else if (confidence === 'medium') {
+        const note = `<span style="font-size:0.8rem;color:#64748b;display:block;margin-top:8px;border-top:1px solid #e2e8f0;padding-top:6px;">💡 Not quite what you needed? <strong>WhatsApp us at +231 880 559 227</strong> for a precise answer.</span>`;
+        const qrs = [...(entry.qr || [])];
+        if (!qrs.includes('💬 Talk to Human')) qrs.push('💬 Talk to Human');
+        botMsg(entry.reply + note, qrs);
+      } else {
+        botMsg(smartFallback(text), ['🎓 Scholarships','📚 IELTS/TOEFL','🏥 Healthcare','💻 Software','💬 Talk to Human','📞 Contact Info']);
+      }
+    });
   }
 
   sendEl.addEventListener('click', send);
