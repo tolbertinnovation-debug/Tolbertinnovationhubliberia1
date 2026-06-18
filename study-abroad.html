@@ -430,6 +430,38 @@
       </div>
     </div>
 
+    <!-- ===================== UNIVERSITY DIRECTORY ===================== -->
+    <section id="universities" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Partner Universities</p>
+          <h2>Explore All 17 Partner Universities</h2>
+          <p class="section-intro">Search by name or program, filter by country or degree level, and find the university that's right for you.</p>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="uni-toolbar">
+          <div class="uni-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" id="uniSearchInput" placeholder="Search university or program…" aria-label="Search universities" />
+          </div>
+          <div class="filter-sep" aria-hidden="true"></div>
+          <button class="filter-pill on-blue" data-filter="country" data-value="all" aria-pressed="true">All Countries</button>
+          <button class="filter-pill" data-filter="country" data-value="India" aria-pressed="false">🇮🇳 India</button>
+          <button class="filter-pill" data-filter="country" data-value="Cyprus" aria-pressed="false">🇨🇾 Cyprus</button>
+          <div class="filter-sep" aria-hidden="true"></div>
+          <button class="filter-pill on-blue" data-filter="degree" data-value="all" aria-pressed="true">All Levels</button>
+          <button class="filter-pill" data-filter="degree" data-value="UG" aria-pressed="false">UG</button>
+          <button class="filter-pill" data-filter="degree" data-value="PG" aria-pressed="false">PG</button>
+          <button class="filter-pill" data-filter="degree" data-value="PhD" aria-pressed="false">PhD</button>
+          <span class="uni-count" id="uniCount" aria-live="polite">17 universities</span>
+        </div>
+
+        <!-- University cards (rendered by JS) -->
+        <div class="uni-grid" id="uniGrid" aria-label="University listing"></div>
+      </div>
+    </section>
+
     <!-- ===================== HOW IT WORKS ===================== -->
     <section class="section">
       <div class="container">
@@ -469,91 +501,6 @@
             <h4>Visa &amp; Departure</h4>
             <p>We guide you through the student visa application and help you prepare for your journey abroad.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== UNIVERSITY DIRECTORY ===================== -->
-    <section id="universities" class="section section-alt">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-label">Partner Universities</p>
-          <h2>Explore All 17 Partner Universities</h2>
-          <p class="section-intro">Search by name or program, filter by country or degree level, and find the university that's right for you.</p>
-        </div>
-
-        <!-- Toolbar -->
-        <div class="uni-toolbar">
-          <div class="uni-search">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <input type="text" id="uniSearchInput" placeholder="Search university or program…" aria-label="Search universities" />
-          </div>
-          <div class="filter-sep" aria-hidden="true"></div>
-          <button class="filter-pill on-blue" data-filter="country" data-value="all" aria-pressed="true">All Countries</button>
-          <button class="filter-pill" data-filter="country" data-value="India" aria-pressed="false">🇮🇳 India</button>
-          <button class="filter-pill" data-filter="country" data-value="Cyprus" aria-pressed="false">🇨🇾 Cyprus</button>
-          <div class="filter-sep" aria-hidden="true"></div>
-          <button class="filter-pill on-blue" data-filter="degree" data-value="all" aria-pressed="true">All Levels</button>
-          <button class="filter-pill" data-filter="degree" data-value="UG" aria-pressed="false">UG</button>
-          <button class="filter-pill" data-filter="degree" data-value="PG" aria-pressed="false">PG</button>
-          <button class="filter-pill" data-filter="degree" data-value="PhD" aria-pressed="false">PhD</button>
-          <span class="uni-count" id="uniCount" aria-live="polite">17 universities</span>
-        </div>
-
-        <!-- University cards (rendered by JS) -->
-        <div class="uni-grid" id="uniGrid" aria-label="University listing"></div>
-      </div>
-    </section>
-
-    <!-- ===================== SCHOLARSHIP HIGHLIGHTS ===================== -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header centered">
-          <p class="section-label">Financial Support</p>
-          <h2>Scholarships &amp; Funding Opportunities</h2>
-          <p class="section-intro">Multiple funding options are available for qualified Liberian students — from full tuition waivers to merit awards.</p>
-        </div>
-        <div class="sch-grid reveal">
-          <div class="sch-card">
-            <div class="sch-icon">🏆</div>
-            <h3>Merit Scholarship</h3>
-            <div class="sch-amount">Up to 50% off</div>
-            <p>Awarded to students with strong academic records (GPA 3.0+ or distinction). Available at most partner universities in India.</p>
-          </div>
-          <div class="sch-card red">
-            <div class="sch-icon">🌍</div>
-            <h3>ICCR Fully Funded</h3>
-            <div class="sch-amount">100% Funded</div>
-            <p>Government of India scholarship covering tuition, stipend, airfare, visa, and accommodation for the India-Africa Maitri initiative.</p>
-          </div>
-          <div class="sch-card">
-            <div class="sch-icon">🏅</div>
-            <h3>Sports Scholarship</h3>
-            <div class="sch-amount">Up to 30% off</div>
-            <p>For students with outstanding achievements in football, athletics, basketball, or other recognized competitive sports.</p>
-          </div>
-          <div class="sch-card red">
-            <div class="sch-icon">💡</div>
-            <h3>Early Admission Award</h3>
-            <div class="sch-amount">Up to 25% off</div>
-            <p>Students who confirm enrollment before the early deadline receive reduced tuition rates at select partner universities.</p>
-          </div>
-          <div class="sch-card">
-            <div class="sch-icon">🎓</div>
-            <h3>Women in STEM Grant</h3>
-            <div class="sch-amount">Up to 40% off</div>
-            <p>Dedicated funding for female students pursuing Science, Technology, Engineering, or Mathematics programs.</p>
-          </div>
-          <div class="sch-card red">
-            <div class="sch-icon">🤝</div>
-            <h3>Sibling Discount</h3>
-            <div class="sch-amount">10–15% off</div>
-            <p>Where two or more siblings apply to the same partner university, both receive a loyalty tuition reduction on annual fees.</p>
-          </div>
-        </div>
-        <div style="text-align:center; margin-top:2.5rem;">
-          <a class="btn btn-primary btn-lg" href="fully-funded-scholarship.html">Apply for ICCR Fully Funded Scholarship</a>
-          <a class="btn btn-outline" href="#application-form" style="margin-left:0.75rem;">General Scholarship Application</a>
         </div>
       </div>
     </section>
@@ -1193,5 +1140,6 @@
   /* === INIT === */
   renderUniversities();
   </script>
+<script src="chatbot.js"></script>
 </body>
 </html>
