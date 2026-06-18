@@ -19,6 +19,7 @@ UNIS = [
     "requirements": ["WASSCE / Senior Secondary Certificate (minimum grade C)","Passport valid for at least 18 months","English proficiency (IELTS 5.5+ or TOEFL 60+ recommended)","Statement of Purpose (500–800 words)","Two academic / character reference letters","Medical fitness certificate","Financial sponsorship documents"],
     "scholarships": [("Merit Scholarship","Up to 30% tuition waiver for CGPA 3.5+/4.0 after first semester"),("International Student Bursary","One-time $500 settling-in grant for first-year internationals"),("Sports Excellence Award","Up to 50% fee reduction for state/national-level athletes")],
     "campus": "The Graphic Era campus sits at the foot of the Shivalik range. Students enjoy 24/7 high-speed WiFi, air-conditioned dormitories, multiple canteens serving Indian and international cuisine, a 400-seat auditorium, swimming pool, cricket grounds, and a dedicated international student office that assists with visa extensions, cultural orientation, and city trips.",
+    "videoId": "xdBHB0sF5KE",
   },
   {
     "slug": "pp-savani-university", "abbr": "PPSU", "name": "PP Savani University",
@@ -34,6 +35,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent with minimum grade C in relevant subjects","Valid passport (18+ months)","English language documents (medium of instruction certificate acceptable)","Statement of Purpose","Two reference letters","Medical certificate and vaccination records","Bank statement / sponsor letter"],
     "scholarships": [("International Welcome Scholarship","15% tuition reduction for all new international students"),("Academic Excellence Award","Up to 25% waiver for first-class academic performance"),("Nursing Dedication Grant","Partial fee support for students pursuing nursing programs")],
     "campus": "PPSU's 110-acre campus in Surat features modern hostel blocks, dedicated labs for every discipline, a library with 50,000+ volumes, a sports complex with indoor and outdoor facilities, and an international student cell that organises cultural evenings, field trips across Gujarat, and assistance with student visa processes.",
+    "videoId": "WBZb7mSkXPM",
   },
   {
     "slug": "gulzar-group-of-institutes", "abbr": "GGI", "name": "Gulzar Group of Institutes",
@@ -49,6 +51,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent (B.Tech: minimum C in Math & Science)","Passport valid for duration of study","English proficiency evidence","SOP explaining choice of program","Academic transcripts (attested)","Medical fitness certificate","Financial guarantee letter"],
     "scholarships": [("Merit-cum-Means Scholarship","Up to 20% tuition relief for high-scoring applicants"),("African Student Grant","Special $300 settling-in grant for African students"),("Industry Sponsored Awards","Partial scholarships funded by partner companies")],
     "campus": "Set across a well-maintained campus in Ludhiana city, GGI offers on-campus hostels, 24/7 internet, canteen, gym, sports courts, and a dedicated international student lounge. Ludhiana's vibrant culture and proximity to Amritsar's Golden Temple make it a memorable study destination.",
+    "videoId": "k5DyVCxJWMg",
   },
   {
     "slug": "mats-university", "abbr": "MATS", "name": "MATS University",
@@ -64,6 +67,7 @@ UNIS = [
     "requirements": ["WASSCE / Higher Secondary (minimum pass grade)","Passport with at least 2 years validity","English language documents","SOP (400–600 words)","Reference letter (one acceptable)","Medical certificate","Bank statement showing sufficient funds"],
     "scholarships": [("MATS International Grant","10–20% fee reduction for first-year international students"),("Legal Studies Award","Partial scholarship for students enrolling in LLB/LLM"),("Agricultural Excellence Bursary","Reduced fees for B.Sc Agriculture students")],
     "campus": "MATS University's campus in Raipur features modern lecture halls, a well-stocked library, computer centres, sports grounds, and comfortable hostel accommodation. Raipur is a growing smart city with good food, connectivity, and a peaceful study environment.",
+    "videoId": "P6DtDj_BSYE",
   },
   {
     "slug": "sr-university", "abbr": "SRU", "name": "SR University",
@@ -79,6 +83,7 @@ UNIS = [
     "requirements": ["WASSCE / Senior Secondary Certificate (Math/Science for engineering)","Valid passport","English proficiency (IELTS 5.5 recommended for PG)","SOP","Academic transcripts","Medical certificate","Sponsorship or financial affidavit"],
     "scholarships": [("SR Merit Scholarship","Up to 30% tuition waiver for top-ranked applicants"),("Tech Innovation Award","Full lab fees waiver for students in AI/ML programs"),("International Student Discount","Flat 15% reduction on accommodation fees")],
     "campus": "SR University's campus covers 100 acres in the heart of Warangal. Facilities include advanced computing labs, an innovation centre, well-furnished hostels, cafeteria with multicultural menu options, sports centre, and a student welfare office that proactively assists international students.",
+    "videoId": "LXb3EKWsInQ",
   },
   {
     "slug": "marwadi-university", "abbr": "MU", "name": "Marwadi University",
@@ -94,6 +99,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent with C grade minimum","Passport (valid 18+ months)","English language certificate or medium of instruction letter","Statement of Purpose","Two references","Medical certificate","Proof of funds"],
     "scholarships": [("Marwadi Global Scholarship","Up to 25% tuition waiver for international achievers"),("Entrepreneurship Excellence Award","Full incubation and mentoring support grant"),("Early Bird Discount","10% fee reduction for applications before March 31")],
     "campus": "Marwadi University's 200-acre campus is one of Gujarat's most modern. It features a dedicated innovation hub, design studios, well-equipped engineering labs, modern hostels, a sports complex with Olympic-size swimming pool, and a culturally diverse food court. The international office organises regular cultural exchange events.",
+    "videoId": "KHbRdlbTOCI",
   },
   {
     "slug": "desh-bhagat-university", "abbr": "DBU", "name": "Desh Bhagat University",
@@ -109,6 +115,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent (Biology & Chemistry required for Nursing)","Valid passport","English language medium certificate","SOP","Medical certificate (including nursing fitness test for Nursing applicants)","Reference letters","Bank statement"],
     "scholarships": [("DBU International Scholarship","15% tuition waiver for African students"),("Nursing Dedication Award","Additional hostel fee subsidy for nursing students"),("Academic Excellence Grant","25% reduction for students scoring 80%+ in Year 1")],
     "campus": "DBU's green campus in Mandi Gobindgarh provides comfortable hostels, simulation nursing labs, agricultural demonstration farms, sports grounds, and a library. The university's student services team assists with visa renewals and cultural orientation. Punjab's friendly locals and vibrant festivals make campus life memorable.",
+    "videoId": "W8gBFTVrLVk",
   },
   {
     "slug": "lovely-professional-university", "abbr": "LPU", "name": "Lovely Professional University",
@@ -124,6 +131,7 @@ UNIS = [
     "requirements": ["WASSCE / A-levels or equivalent (minimum 55% aggregate)","Passport valid 18+ months","IELTS 6.0 or TOEFL 70+ (recommended; exemption via interview)","SOP (600–1000 words)","Two academic references","Medical fitness certificate","Proof of financial support ($5,000/yr minimum)"],
     "scholarships": [("LPU Global Scholarship","Up to 50% tuition waiver for outstanding merit applicants"),("TIH Partner Discount","Exclusive 20% reduction for students applying via TIH"),("Sports & Arts Excellence","Full scholarship for national/international champions")],
     "campus": "LPU's 600-acre campus is essentially a self-sufficient city. It includes 40+ canteens, an 8-acre lake, Olympic sports facilities, 12 hostels with gym and WiFi, a mall, hospital, bank, and the award-winning LPU One App for digital campus management. International students receive a dedicated buddy, airport pick-up, and a 3-day orientation week.",
+    "videoId": "FNMxYF1JYVg",
   },
   {
     "slug": "royal-global-university", "abbr": "RGU", "name": "Royal Global University",
@@ -139,6 +147,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent (subject requirements vary by program)","Valid passport","English language certificate","Statement of Purpose","Reference letters","Medical certificate","Financial sponsorship documents"],
     "scholarships": [("RGU Merit Award","Up to 20% fee waiver for academically strong applicants"),("North-East Diversity Grant","Special bursary for students from underrepresented nations"),("Research Fellowship","Fully-funded positions for Ph.D candidates in select disciplines")],
     "campus": "RGU's peaceful campus in Guwahati features tree-lined avenues, modern hostels, well-equipped labs, a cultural centre showcasing North-East India's rich heritage, sports facilities, and an international student centre. Guwahati's vibrant food scene, river ghats, and proximity to Kaziranga National Park make student life exceptional.",
+    "videoId": "JcU0vECdFXQ",
   },
   {
     "slug": "sharda-university", "abbr": "SU", "name": "Sharda University",
@@ -154,6 +163,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent (MBBS: Biology, Chemistry, Physics with A/B grades)","Passport valid 18+ months","IELTS 6.0 / TOEFL 70+ (required for MBBS and LLB)","Detailed SOP","Two strong reference letters","Medical fitness certificate (MBBS: additional medical screening)","Proof of funds ($8,000+ for medical programs)"],
     "scholarships": [("Sharda Global Excellence Scholarship","Up to 40% tuition waiver for top applicants"),("African Achievers Award","Exclusive $1,000 grant for African students in Year 1"),("Medical Sciences Bursary","Partial fee relief for MBBS students after Year 2")],
     "campus": "Sharda University's 63-acre campus in Greater Noida is a vibrant international community. Amenities include 10 hostels with AC rooms, a teaching hospital, simulation labs, multiple restaurants serving African and Indian food, a cricket ground, basketball courts, a mosque and meditation centre, and a 24/7 medical facility. Frequent Delhi day-trips are organised by the international cell.",
+    "videoId": "q-5SQJv9eAg",
   },
   {
     "slug": "amity-university", "abbr": "AU", "name": "Amity University",
@@ -169,6 +179,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent with minimum 60% aggregate (70% for BBA/MBA)","Passport valid 18+ months","IELTS 6.5 / TOEFL 80+ (required for most programs)","Detailed SOP (700–1000 words)","Two academic references on letterhead","Medical certificate","Proof of funds ($7,000+/yr)"],
     "scholarships": [("Amity Global Merit Scholarship","Up to 50% tuition waiver for outstanding students"),("TIH Exclusive Partnership Award","15% additional reduction for TIH-referred students"),("Research Excellence Fellowship","Full Ph.D funding for research-track applicants")],
     "campus": "Amity Noida's 200-acre campus is a landmark of modern higher education. It features a 2 million-volume digital library, innovation labs, media studios, a 2,000-seat auditorium, Olympic-standard sports facilities, 15 hostels, and a food court with global cuisines. Noida's proximity to Delhi (30 min metro) gives students access to the capital's cultural, professional, and recreational resources.",
+    "videoId": "zqGwzF5JNQQ",
   },
   {
     "slug": "khalsa-university", "abbr": "KU", "name": "Khalsa University",
@@ -184,6 +195,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent","Valid passport","English language certificate","SOP","Reference letter","Medical certificate","Bank statement / sponsor letter"],
     "scholarships": [("Khalsa Heritage Scholarship","20% fee reduction for students of all faiths demonstrating service ethos"),("Academic Merit Award","Up to 25% tuition waiver for strong academic performers"),("Agricultural Talent Grant","Bursary for B.Sc Agriculture students from developing nations")],
     "campus": "Khalsa University's heritage campus in Amritsar is a beautiful blend of colonial architecture and modern facilities. Hostels, sports grounds, a heritage museum, agricultural farm, and a community service centre are available. Students regularly visit the Golden Temple, which provides a powerful and calming backdrop to academic life.",
+    "videoId": "M7LBbnvAHuQ",
   },
   {
     "slug": "invertis-university", "abbr": "IU", "name": "Invertis University",
@@ -199,6 +211,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent (B.Tech: Math + Science; B.Pharm: Bio + Chem)","Valid passport","English language documents","SOP","Medical certificate","Sponsorship letter or bank statement"],
     "scholarships": [("Invertis Merit Scholarship","Up to 20% tuition waiver for high achievers"),("Pharmacy Excellence Award","Partial fee subsidy for B.Pharm/M.Pharm students"),("African Students' Bursary","$200 book grant for first-year African students")],
     "campus": "Invertis University's campus in Bareilly provides modern hostels, well-equipped engineering and pharmaceutical labs, a library, internet zones, canteen, and sports facilities. Bareilly is a historic city with affordable living costs, good food, and easy rail connections to Delhi (3 hours) and Lucknow.",
+    "videoId": "dTyJhCjYV6A",
   },
   {
     "slug": "mvm-institute", "abbr": "MVM", "name": "MVM Institute",
@@ -214,6 +227,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent (minimum C in relevant subjects)","Valid passport","English language medium certificate","SOP","Medical certificate","Sponsor/bank statement"],
     "scholarships": [("MVM Merit Award","15% tuition reduction for academically strong students"),("International Student Grant","$150 settling-in allowance for first-year foreign students"),("Management Excellence Bursary","Partial scholarship for MBA students")],
     "campus": "MVM Institute's campus in Bhopal is compact and well-maintained. Students benefit from modern labs, a well-stocked library, hostels, a canteen, and sports grounds. Bhopal's lower cost of living means students can live comfortably on a modest budget. The nearby lakes, national parks, and Bhimbetka rock shelters offer great weekend escapes.",
+    "videoId": "9xnK5w8HRk4",
   },
   {
     "slug": "soa-university", "abbr": "SOA", "name": "SOA University",
@@ -229,6 +243,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent (MBBS: Biology, Chemistry, Physics required)","Passport valid 18+ months","IELTS 6.0 or TOEFL 70+ for medical programs","SOP","Two references","Medical screening certificate","Proof of funds ($6,000+ for medical programs)"],
     "scholarships": [("SOA Global Merit Scholarship","Up to 35% tuition waiver for outstanding applicants"),("Medical Achievers Award","Partial fee relief for MBBS students after Year 2"),("Research Fellowship","Funded Ph.D positions including stipend and research grant")],
     "campus": "SOA University's 400-acre campus in Bhubaneswar is a green, well-planned township. It includes a teaching hospital, engineering research labs, law library, hostels, international student centre, multiple sports grounds, a gym, cafeteria, and regular city trips to Puri beach, Konark, and the tribal craft markets of Odisha.",
+    "videoId": "HsL_MK_i__w",
   },
   {
     "slug": "cyprus-west-university", "abbr": "CWU", "name": "Cyprus West University",
@@ -244,6 +259,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent (minimum C average)","Passport valid throughout study period","IELTS 5.5 / TOEFL 60+ (or English-medium school certificate)","SOP","Two reference letters","Medical certificate","Proof of funds"],
     "scholarships": [("CWU International Merit Scholarship","Up to 40% tuition reduction for strong applicants"),("African Student Support Grant","$500 settling-in grant for first-year African students"),("Early Application Award","10% tuition reduction for applications 3+ months before intake")],
     "campus": "CWU's modern campus sits minutes from Famagusta's historic old city and golden beaches. Students enjoy air-conditioned classrooms, a digital library, modern hostels, a student union, beach volleyball courts, and a vibrant nightlife scene. The campus is a mix of European, Middle Eastern, and African students, creating a uniquely multicultural experience.",
+    "videoId": "qBFkUJT1a2M",
   },
   {
     "slug": "cyprus-international-university", "abbr": "CIU", "name": "Cyprus International University",
@@ -259,6 +275,7 @@ UNIS = [
     "requirements": ["WASSCE or equivalent (Medicine: A/B in Biology, Chemistry, Physics)","Passport valid throughout study period","IELTS 6.0 / TOEFL 70+ (required for medicine and law)","Detailed SOP","Two strong references","Medical fitness certificate","Proof of financial support"],
     "scholarships": [("CIU Global Merit Award","Up to 50% tuition waiver for outstanding applicants"),("Liberia & West Africa Scholarship","Dedicated TIH-partnership grant of up to $1,200/yr"),("Medical Excellence Grant","Partial tuition relief for MBBS students from Year 3")],
     "campus": "CIU's expansive campus in Nicosia features modern lecture theatres, a teaching hospital, dental clinic, innovation labs, digital library, 12 student residences, sports complex with Olympic pool, and a dedicated International Student Office. Nicosia's unique position as the world's last divided capital adds a fascinating historical dimension to student life. Regular island tours, beach trips, and cultural events are organised throughout the year.",
+    "videoId": "mOHkca3Kf-U",
   },
 ]
 
@@ -457,7 +474,11 @@ def build_page(u):
     .tab-panel.active {{ display:block; }}
     .ud-section-title {{ font-family:'Poppins',sans-serif; font-weight:700; font-size:1.2rem; color:#0f172a; margin:0 0 1rem; }}
     .ud-about-card {{ background:#fff; border:1px solid #e2e8f0; border-radius:14px; padding:1.75rem; margin-bottom:1.5rem; }}
-    .ud-highlights-card {{ background:#fff; border:1px solid #e2e8f0; border-radius:14px; padding:1.75rem; }}
+    .ud-highlights-card {{ background:#fff; border:1px solid #e2e8f0; border-radius:14px; padding:1.75rem; margin-bottom:1.5rem; }}
+    .ud-video-card {{ background:#fff; border:1px solid #e2e8f0; border-radius:14px; padding:1.75rem; }}
+    .ud-video-wrap {{ position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; background:#0f172a; margin-bottom:1rem; }}
+    .ud-video-wrap iframe {{ position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:10px; }}
+    .ud-video-caption {{ font-size:0.88rem; color:#6b7280; line-height:1.65; }}
     .ud-sidebar-card {{ background:#fff; border:1px solid #e2e8f0; border-radius:14px; padding:1.5rem; margin-bottom:1.25rem; }}
     .ud-sidebar-title {{ font-family:'Poppins',sans-serif; font-weight:700; font-size:1rem; color:#0f172a; margin:0 0 1rem; }}
     .ud-quick-row {{ display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0; border-bottom:1px solid #f1f5f9; font-size:0.85rem; }}
@@ -591,6 +612,18 @@ def build_page(u):
                 <h2 class="ud-section-title">Key Highlights</h2>
                 <div>{hi_html}
                 </div>
+              </div>
+              <div class="ud-video-card">
+                <h2 class="ud-section-title">🎬 Virtual Campus Tour</h2>
+                <div class="ud-video-wrap">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/{u['videoId']}?rel=0&modestbranding=1&showinfo=0"
+                    title="{u['name']} Virtual Campus Tour"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+                </div>
+                <p class="ud-video-caption">Take a virtual walk through {u['name']}'s campus and explore the world-class facilities, student life, and learning environment that awaits you.</p>
               </div>
             </div>
 
