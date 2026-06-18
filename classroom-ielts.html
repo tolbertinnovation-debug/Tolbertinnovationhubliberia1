@@ -3,303 +3,427 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Free IELTS Preparation Course — Band 5 to 9 | Tolbert Innovation Hub</title>
-  <meta name="description" content="Master IELTS with TIH's free, structured preparation course. 6 modules covering Listening, Reading, Writing, and Speaking — designed for Liberian students aiming for Band 6.5 and above." />
-  <meta property="og:title" content="Free IELTS Preparation | Tolbert Innovation Hub" />
-  <meta property="og:description" content="Structured, free IELTS preparation designed for Liberian students — from Band 5 foundations to Band 8+ exam-ready confidence." />
+  <title>Master IELTS — Band 5 to 9 | Tolbert Innovation Hub</title>
+  <meta name="description" content="Prepare for Academic and General IELTS with expert lessons, practice tests, score calculator, and personalized study plans. Free access for all Liberian students." />
+  <meta name="keywords" content="IELTS preparation Liberia, IELTS course, IELTS band score, IELTS practice test, free IELTS, Tolbert Innovation Hub" />
+  <meta name="author" content="Tolbert Innovation Hub" />
+  <meta property="og:title" content="Master IELTS — Tolbert Innovation Hub" />
+  <meta property="og:description" content="Expert IELTS preparation with interactive lessons, score calculator, and mock tests. Free for Liberian students." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.tolbertinnovationhub.org/classroom-ielts.html" />
+  <meta property="og:image" content="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <style>
-    /* ===========================
-       IELTS PAGE — CUSTOM STYLES
-    =========================== */
+    /* ============================================================
+       IELTS PAGE — REDESIGNED
+    ============================================================ */
+    :root {
+      --blue: #002868;
+      --blue-dark: #001440;
+      --blue-mid: #1a3d8a;
+      --red: #BF0A30;
+      --red-dark: #8b0620;
+      --gold: #f59e0b;
+      --green: #059669;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --bg-soft: #f8fafc;
+    }
     html { scroll-behavior: smooth; }
 
-    /* HERO */
+    /* ── HERO ───────────────────────────────────── */
     .ielts-hero {
-      background: linear-gradient(135deg, #001440 0%, #002868 55%, #1a3d8a 100%);
-      padding: clamp(4.5rem, 9vw, 8rem) 0 clamp(3.5rem, 7vw, 6.5rem);
-      position: relative;
-      overflow: hidden;
-      color: #fff;
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 55%, var(--blue-mid) 100%);
+      padding: clamp(5rem,10vw,9rem) 0 clamp(4rem,8vw,7rem);
+      position: relative; overflow: hidden; color: #fff;
     }
     .ielts-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 80% 20%, rgba(191,10,48,0.22) 0%, transparent 50%),
-                  radial-gradient(ellipse at 10% 90%, rgba(255,255,255,0.04) 0%, transparent 50%);
-      pointer-events: none;
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 85% 15%, rgba(191,10,48,.28) 0%, transparent 55%),
+                  radial-gradient(ellipse at 5% 85%, rgba(255,255,255,.04) 0%, transparent 50%);
     }
     .ielts-hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 55px 55px;
     }
     .ielts-hero-inner { position: relative; z-index: 2; }
-    .hero-pill {
-      display: inline-block;
-      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
-      backdrop-filter: blur(8px); padding: 0.4rem 1.1rem; border-radius: 100px;
-      font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.92);
-      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.6rem;
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(8px); padding: .38rem 1.1rem; border-radius: 100px;
+      font-size: .76rem; font-weight: 700; color: rgba(255,255,255,.92);
+      letter-spacing: .07em; text-transform: uppercase; margin-bottom: 1.7rem;
     }
+    .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: #f59e0b; animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
     .ielts-hero h1 {
-      font-family: "Poppins", sans-serif;
-      font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 900; color: #fff;
-      line-height: 1.1; margin-bottom: 1.3rem; max-width: 18ch;
+      font-family: 'Poppins', sans-serif; font-weight: 900; color: #fff;
+      font-size: clamp(2.4rem,5.5vw,4.2rem); line-height: 1.08; margin-bottom: 1.4rem; max-width: 20ch;
     }
-    .ielts-hero h1 em {
-      font-style: normal;
+    .ielts-hero h1 .accent {
       background: linear-gradient(90deg, #ffd6a0, #ffffff, #c8d8f8);
       -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
     .hero-lead {
-      font-size: clamp(1rem, 1.7vw, 1.15rem); color: rgba(255,255,255,0.76);
-      max-width: 60ch; line-height: 1.8; margin-bottom: 2rem;
+      font-size: clamp(1rem,1.8vw,1.18rem); color: rgba(255,255,255,.78);
+      max-width: 58ch; line-height: 1.82; margin-bottom: 2.2rem;
     }
-    .hero-stat-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.2rem; }
-    .stat-chip {
-      background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.22);
-      padding: 0.3rem 0.9rem; border-radius: 100px; font-size: 0.8rem;
-      font-weight: 600; color: rgba(255,255,255,0.9);
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-bottom: 2.8rem; }
+    .btn-hero-primary {
+      background: var(--red); color: #fff; font-weight: 700;
+      padding: .82rem 2rem; border-radius: 100px; text-decoration: none;
+      font-size: .96rem; transition: all .2s; display: inline-flex; align-items: center; gap: .45rem;
+      box-shadow: 0 4px 18px rgba(191,10,48,.45);
     }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-bottom: 2.5rem; }
-    .btn-white {
-      background: #fff; color: #002868; font-weight: 700;
-      padding: 0.72rem 1.7rem; border-radius: 100px; text-decoration: none;
-      font-size: 0.95rem; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.4rem;
+    .btn-hero-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(191,10,48,.5); }
+    .btn-hero-outline {
+      background: rgba(255,255,255,.12); color: #fff;
+      border: 1.5px solid rgba(255,255,255,.32); backdrop-filter: blur(6px);
+      padding: .82rem 2rem; border-radius: 100px; text-decoration: none;
+      font-size: .96rem; font-weight: 600; transition: all .2s; display: inline-flex; align-items: center; gap: .45rem;
     }
-    .btn-white:hover { background: #f0f4ff; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
-    .btn-glass {
-      background: rgba(255,255,255,0.12); color: #fff;
-      border: 1.5px solid rgba(255,255,255,0.28); backdrop-filter: blur(6px);
-      padding: 0.72rem 1.7rem; border-radius: 100px; text-decoration: none;
-      font-size: 0.95rem; font-weight: 600; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.4rem;
+    .btn-hero-outline:hover { background: rgba(255,255,255,.22); transform: translateY(-2px); }
+    .hero-trust-bar { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .trust-chip {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(10px); padding: .55rem 1.1rem; border-radius: 12px;
+      display: flex; align-items: center; gap: .5rem;
     }
-    .btn-glass:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
-    .hero-float-badges { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .float-badge {
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
-      backdrop-filter: blur(10px); padding: 0.6rem 1.1rem; border-radius: 12px;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .float-badge-icon { font-size: 1.2rem; }
-    .float-badge-text { font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.9); line-height: 1.3; }
-    .float-badge-sub { font-size: 0.7rem; color: rgba(255,255,255,0.6); font-weight: 400; }
+    .trust-chip-icon { font-size: 1.1rem; }
+    .trust-chip-label { font-size: .78rem; font-weight: 700; color: rgba(255,255,255,.9); line-height: 1.25; }
+    .trust-chip-sub { font-size: .69rem; color: rgba(255,255,255,.58); font-weight: 400; }
 
-    /* SHARED SECTION HELPERS */
-    .section-label {
-      display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: #002868; margin-bottom: 0.6rem;
+    /* ── STATS STRIP ───────────────────────────── */
+    .stats-strip { background: #fff; border-bottom: 1px solid var(--border); padding: 1.6rem 0; }
+    .stats-strip-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+    .stat-cell {
+      text-align: center; padding: .9rem 1rem;
+      border-right: 1px solid var(--border);
     }
-    .section-title {
-      font-family: "Poppins", sans-serif;
-      font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 800;
-      color: #001440; line-height: 1.2; margin-bottom: 0.7rem;
-    }
-    .section-sub {
-      font-size: 1.05rem; color: #6b7280; max-width: 52ch; line-height: 1.7; margin-bottom: 2.8rem;
-    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell-num { font-family: 'Poppins',sans-serif; font-size: 2rem; font-weight: 900; color: var(--blue); line-height: 1; }
+    .stat-cell-lbl { font-size: .78rem; color: var(--text-muted); font-weight: 500; margin-top: .25rem; }
+    @media(max-width:600px) { .stats-strip-grid { grid-template-columns: repeat(2,1fr); } .stat-cell:nth-child(2) { border-right: none; } }
 
-    /* WHY TIH */
-    .why-section { background: #fff; padding: clamp(3rem, 6vw, 5rem) 0; }
-    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    @media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; } }
-    .why-card {
-      background: #f8fafc; border: 1px solid #e4eaf4; border-radius: 16px;
-      padding: 2rem 1.75rem; transition: all 0.25s;
+    /* ── SHARED SECTION ─────────────────────────── */
+    .section-tag {
+      display: inline-block; background: #eff6ff; color: var(--blue); border: 1px solid #bfdbfe;
+      font-size: .74rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+      padding: .28rem .85rem; border-radius: 100px; margin-bottom: 1rem;
     }
-    .why-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,40,104,0.11); border-color: #c0cfe8; }
-    .why-icon { font-size: 2.4rem; margin-bottom: 1rem; }
-    .why-title { font-size: 1.1rem; font-weight: 700; color: #001440; margin-bottom: 0.5rem; }
-    .why-desc { font-size: 0.95rem; color: #6b7280; line-height: 1.65; }
+    .section-tag.red { background: #fff1f2; color: var(--red); border-color: #fecdd3; }
+    .section-tag.green { background: #f0fdf4; color: var(--green); border-color: #bbf7d0; }
+    .section-tag.gold { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+    .section-h2 { font-family: 'Poppins',sans-serif; font-size: clamp(1.8rem,3.5vw,2.7rem); font-weight: 800; color: var(--text); line-height: 1.2; margin-bottom: .9rem; }
+    .section-sub { font-size: clamp(.95rem,1.5vw,1.07rem); color: var(--text-muted); max-width: 62ch; margin: 0 auto; line-height: 1.75; }
+    .text-center { text-align: center; }
+    .section-pad { padding: 5.5rem 0; }
+    .section-pad-sm { padding: 4rem 0; }
 
-    /* 4 SKILLS */
-    .skills-section { background: #001a3e; padding: clamp(3rem, 6vw, 5rem) 0; }
-    .skills-section .section-title { color: #fff; text-align: center; margin-bottom: 0.5rem; }
-    .skills-section .section-sub { color: rgba(255,255,255,0.65); text-align: center; margin: 0 auto 3rem; }
-    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
-    @media (max-width: 900px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 500px) { .skills-grid { grid-template-columns: 1fr; } }
-    .skill-card {
-      background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.15);
-      backdrop-filter: blur(12px); border-radius: 16px; padding: 1.6rem 1.4rem; transition: all 0.25s;
-    }
-    .skill-card:hover { background: rgba(255,255,255,0.14); transform: translateY(-3px); }
-    .skill-pill {
-      display: inline-block; padding: 0.22rem 0.75rem; border-radius: 100px;
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em;
-      text-transform: uppercase; margin-bottom: 0.9rem;
-    }
-    .skill-pill-blue { background: rgba(59,130,246,0.25); color: #93c5fd; }
-    .skill-pill-green { background: rgba(34,197,94,0.2); color: #86efac; }
-    .skill-pill-orange { background: rgba(249,115,22,0.2); color: #fdba74; }
-    .skill-pill-red { background: rgba(239,68,68,0.2); color: #fca5a5; }
-    .skill-icon { font-size: 2rem; margin-bottom: 0.7rem; display: block; }
-    .skill-name { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
-    .skill-meta { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 0.7rem; line-height: 1.5; }
-    .skill-strategy { font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.55; font-style: italic; }
-
-    /* LEARNING PATH */
-    .path-section { background: #f8fafc; padding: clamp(3rem, 6vw, 5rem) 0; }
-    .path-section .section-title { text-align: center; }
-    .path-section .section-sub { text-align: center; margin: 0 auto 3rem; }
-    .modules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    @media (max-width: 768px) { .modules-grid { grid-template-columns: 1fr; } }
+    /* ── MODULES ─────────────────────────────────── */
+    .modules-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.6rem; margin-top: 3.2rem; }
     .module-card {
-      background: #fff; border: 1px solid #e4eaf4; border-radius: 16px;
-      padding: 1.75rem 1.5rem; transition: all 0.25s;
-      text-decoration: none; color: inherit; display: block;
+      background: #fff; border: 1px solid var(--border); border-radius: 18px; overflow: hidden;
+      transition: transform .22s, box-shadow .22s;
     }
-    .module-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(0,40,104,0.12); border-color: #c0cfe8; }
-    .module-num {
-      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center;
-      justify-content: center; font-weight: 800; font-size: 1rem; margin-bottom: 1rem;
-      font-family: "Poppins", sans-serif;
+    .module-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,40,104,.12); }
+    .module-card-top { height: 5px; width: 100%; }
+    .module-card-body { padding: 1.8rem; }
+    .module-icon { font-size: 2.4rem; margin-bottom: 1rem; }
+    .module-card h3 { font-family: 'Poppins',sans-serif; font-size: 1.22rem; font-weight: 800; color: var(--text); margin-bottom: .5rem; }
+    .module-card p { font-size: .88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.1rem; }
+    .module-features { list-style: none; padding: 0; margin: 0 0 1.4rem; display: flex; flex-direction: column; gap: .45rem; }
+    .module-features li { font-size: .84rem; color: var(--text); display: flex; align-items: center; gap: .5rem; }
+    .module-features li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: .9rem; }
+    .module-cta {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .86rem; font-weight: 700; text-decoration: none; color: #fff;
+      padding: .6rem 1.25rem; border-radius: 100px; transition: opacity .18s, transform .18s;
     }
-    .num-blue { background: #002868; color: #fff; }
-    .num-red { background: #BF0A30; color: #fff; }
-    .module-name { font-size: 1.05rem; font-weight: 700; color: #001440; margin-bottom: 0.4rem; }
-    .module-desc { font-size: 0.87rem; color: #6b7280; line-height: 1.6; margin-bottom: 0.9rem; }
-    .module-time { font-size: 0.78rem; color: #9ca3af; margin-bottom: 0.9rem; }
-    .module-status-open {
-      display: inline-block; background: #dcfce7; color: #16a34a; padding: 0.25rem 0.75rem;
-      border-radius: 100px; font-size: 0.76rem; font-weight: 700;
-    }
-    .module-status-locked {
-      display: inline-block; background: #f3f4f6; color: #9ca3af; padding: 0.25rem 0.75rem;
-      border-radius: 100px; font-size: 0.76rem; font-weight: 600;
-    }
+    .module-cta:hover { opacity: .88; transform: translateY(-1px); }
 
-    /* BAND SCORE GUIDE */
-    .band-section { background: #fff; padding: clamp(3rem, 6vw, 5rem) 0; }
-    .band-section .section-title { text-align: center; }
-    .band-section .section-sub { text-align: center; margin: 0 auto 2.5rem; }
-    .band-cards-wrap {
-      display: flex; gap: 1.1rem; overflow-x: auto; padding-bottom: 0.5rem; scrollbar-width: thin;
+    /* ── FEATURES GRID ───────────────────────────── */
+    .features-bg { background: var(--bg-soft); }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1.4rem; margin-top: 3rem; }
+    .feature-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.5rem 1.3rem; text-align: center; transition: box-shadow .2s, transform .2s;
     }
-    .band-card {
-      min-width: 175px; flex: 1; background: #fff; border: 1px solid #e4eaf4;
-      border-radius: 14px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,40,104,0.07);
-    }
-    .band-top { height: 6px; }
-    .band-body { padding: 1.2rem 1.1rem; }
-    .band-score { font-size: 1.4rem; font-weight: 800; font-family: "Poppins", sans-serif; margin-bottom: 0.15rem; }
-    .band-label { font-size: 0.78rem; font-weight: 700; color: #374151; margin-bottom: 0.5rem; }
-    .band-note { font-size: 0.8rem; color: #6b7280; line-height: 1.5; }
+    .feature-card:hover { box-shadow: 0 10px 35px rgba(0,40,104,.09); transform: translateY(-3px); }
+    .feature-icon { font-size: 2rem; margin-bottom: .7rem; }
+    .feature-card h4 { font-family: 'Poppins',sans-serif; font-size: .96rem; font-weight: 700; color: var(--text); margin-bottom: .35rem; }
+    .feature-card p { font-size: .8rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
 
-    /* RESOURCES */
-    .resources-section { background: #f8fafc; padding: clamp(3rem, 6vw, 5rem) 0; }
-    .resources-section .section-title { text-align: center; }
-    .resources-section .section-sub { text-align: center; margin: 0 auto 2.8rem; }
-    .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    @media (max-width: 900px) { .resources-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 500px) { .resources-grid { grid-template-columns: 1fr; } }
-    .resource-card {
-      background: #fff; border: 1px solid #e4eaf4; border-radius: 14px;
-      padding: 1.5rem; transition: all 0.22s; text-decoration: none; color: inherit; display: block;
+    /* ── SCORE CALCULATOR ────────────────────────── */
+    .calc-wrap { max-width: 780px; margin: 3rem auto 0; }
+    .calc-box {
+      background: #fff; border: 1px solid var(--border); border-radius: 20px;
+      padding: 2.5rem; box-shadow: 0 8px 40px rgba(0,40,104,.08);
     }
-    .resource-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,40,104,0.1); border-color: #c0cfe8; }
-    .resource-icon-box {
-      width: 48px; height: 48px; background: #e8f0fb; border-radius: 12px;
+    .calc-inputs { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.4rem; margin-bottom: 1.8rem; }
+    @media(max-width:500px) { .calc-inputs { grid-template-columns: 1fr; } }
+    .calc-field label { display: block; font-size: .84rem; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
+    .calc-field label span { font-size: .78rem; color: var(--text-muted); font-weight: 400; }
+    .score-slider { width: 100%; accent-color: var(--blue); cursor: pointer; }
+    .score-display {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: .4rem; font-size: .8rem; color: var(--text-muted);
+    }
+    .score-val { font-size: 1.2rem; font-weight: 900; color: var(--blue); font-family: 'Poppins',sans-serif; }
+    .calc-btn {
+      width: 100%; padding: .9rem; background: linear-gradient(135deg,var(--blue),var(--blue-mid));
+      color: #fff; font-weight: 700; font-size: 1rem; border: none; border-radius: 12px;
+      cursor: pointer; transition: opacity .2s, transform .2s; font-family: 'Poppins',sans-serif;
+    }
+    .calc-btn:hover { opacity: .9; transform: translateY(-1px); }
+    .calc-result { display: none; margin-top: 2rem; }
+    .calc-result.show { display: block; }
+    .result-band {
+      text-align: center; background: linear-gradient(135deg,var(--blue-dark),var(--blue));
+      color: #fff; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem;
+    }
+    .result-band-num { font-family: 'Poppins',sans-serif; font-size: 4rem; font-weight: 900; line-height: 1; }
+    .result-band-label { font-size: 1rem; opacity: .8; margin-top: .3rem; }
+    .result-breakdown { display: grid; grid-template-columns: repeat(4,1fr); gap: .9rem; margin-bottom: 1.4rem; }
+    @media(max-width:480px) { .result-breakdown { grid-template-columns: repeat(2,1fr); } }
+    .result-cell { background: var(--bg-soft); border-radius: 10px; padding: .9rem; text-align: center; }
+    .result-cell-name { font-size: .76rem; color: var(--text-muted); font-weight: 600; margin-bottom: .3rem; }
+    .result-cell-val { font-size: 1.5rem; font-weight: 900; font-family: 'Poppins',sans-serif; color: var(--blue); }
+    .result-suggestion { background: #eff6ff; border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 1rem 1.2rem; font-size: .88rem; color: var(--text); line-height: 1.7; }
+
+    /* ── PRACTICE TESTS ──────────────────────────── */
+    .tests-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .test-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      transition: transform .22s, box-shadow .22s;
+    }
+    .test-card:hover { transform: translateY(-5px); box-shadow: 0 18px 45px rgba(0,40,104,.11); }
+    .test-card-header { padding: 1.5rem 1.5rem 1rem; border-bottom: 1px solid var(--border); }
+    .test-type-badge {
+      display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; padding: .25rem .7rem; border-radius: 100px; margin-bottom: .8rem;
+    }
+    .badge-full { background: #eff6ff; color: var(--blue); }
+    .badge-timed { background: #fff7ed; color: #c2410c; }
+    .badge-mini { background: #f0fdf4; color: var(--green); }
+    .test-card h3 { font-family: 'Poppins',sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; }
+    .test-meta { display: flex; gap: 1rem; font-size: .8rem; color: var(--text-muted); }
+    .test-meta span::before { content: '• '; }
+    .test-card-body { padding: 1.2rem 1.5rem; }
+    .test-features-list { list-style: none; padding: 0; margin: 0 0 1.2rem; display: flex; flex-direction: column; gap: .38rem; }
+    .test-features-list li { font-size: .83rem; color: var(--text); display: flex; gap: .5rem; align-items: flex-start; }
+    .test-features-list li .tick { color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .test-card-btn {
+      display: block; text-align: center; padding: .65rem 1rem; border-radius: 10px;
+      font-weight: 700; font-size: .87rem; text-decoration: none; transition: all .18s;
+    }
+    .test-card-btn.blue { background: var(--blue); color: #fff; }
+    .test-card-btn.blue:hover { background: var(--blue-dark); }
+    .test-card-btn.outline { border: 2px solid var(--blue); color: var(--blue); }
+    .test-card-btn.outline:hover { background: var(--blue); color: #fff; }
+
+    /* ── SUCCESS STORIES ─────────────────────────── */
+    .stories-bg { background: linear-gradient(135deg,var(--blue-dark),var(--blue)); }
+    .stories-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(290px,1fr)); gap: 1.6rem; margin-top: 3rem; }
+    .story-card {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(10px); border-radius: 18px; padding: 1.8rem; color: #fff;
+      transition: transform .22s, background .22s;
+    }
+    .story-card:hover { transform: translateY(-5px); background: rgba(255,255,255,.16); }
+    .story-avatar {
+      width: 64px; height: 64px; border-radius: 50%; margin-bottom: 1rem;
+      object-fit: cover; border: 3px solid rgba(255,255,255,.35);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; margin-bottom: 1rem;
+      background: var(--red); font-size: 1.6rem; font-weight: 800; color: #fff;
     }
-    .resource-title { font-size: 1rem; font-weight: 700; color: #001440; margin-bottom: 0.4rem; }
-    .resource-desc { font-size: 0.87rem; color: #6b7280; line-height: 1.6; margin-bottom: 0.9rem; }
-    .resource-link { font-size: 0.85rem; font-weight: 700; color: #002868; }
+    .story-scores { display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; }
+    .score-before, .score-after {
+      text-align: center; padding: .4rem .7rem; border-radius: 10px;
+    }
+    .score-before { background: rgba(255,255,255,.12); }
+    .score-after { background: var(--red); }
+    .score-label { font-size: .65rem; opacity: .75; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+    .score-num { font-size: 1.4rem; font-weight: 900; font-family: 'Poppins',sans-serif; }
+    .score-arrow { font-size: 1.4rem; opacity: .6; }
+    .story-card blockquote { font-size: .9rem; opacity: .88; line-height: 1.75; margin: 0 0 1rem; font-style: italic; }
+    .story-name { font-weight: 700; font-size: .9rem; }
+    .story-dest { font-size: .8rem; opacity: .65; margin-top: .2rem; }
 
-    /* COMPARISON */
-    .compare-section { background: #002868; padding: clamp(3rem, 6vw, 5rem) 0; }
-    .compare-section .section-title { color: #fff; text-align: center; margin-bottom: 0.5rem; }
-    .compare-section .section-sub { color: rgba(255,255,255,0.65); text-align: center; margin: 0 auto 2.8rem; }
-    .compare-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 800px; margin: 0 auto;
+    /* ── VOCABULARY BUILDER ──────────────────────── */
+    .vocab-bg { background: var(--bg-soft); }
+    .vocab-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2.5rem; align-items: start; margin-top: 3rem; }
+    @media(max-width:768px) { .vocab-grid { grid-template-columns: 1fr; } }
+    .wotd-card {
+      background: linear-gradient(135deg,var(--blue-dark),var(--blue));
+      color: #fff; border-radius: 20px; padding: 2.2rem; position: relative; overflow: hidden;
     }
-    @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
-    .compare-card { border-radius: 16px; padding: 2rem 1.75rem; }
-    .compare-card-primary { background: #fff; }
-    .compare-card-secondary { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }
-    .compare-title { font-size: 1.2rem; font-weight: 800; color: #002868; margin-bottom: 1.1rem; font-family: "Poppins", sans-serif; }
-    .compare-card-secondary .compare-title { color: #fff; }
-    .compare-list { list-style: none; padding: 0; margin: 0; }
-    .compare-list li {
-      font-size: 0.9rem; color: #374151; padding: 0.35rem 0; border-bottom: 1px solid #f3f4f6;
-      display: flex; align-items: flex-start; gap: 0.5rem;
+    .wotd-card::before { content: '"'; position: absolute; top: -1rem; right: 1rem; font-size: 8rem; opacity: .07; font-family: Georgia,serif; }
+    .wotd-label { font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .7; margin-bottom: .7rem; }
+    .wotd-word { font-family: 'Poppins',sans-serif; font-size: 2.2rem; font-weight: 900; margin-bottom: .3rem; }
+    .wotd-type { font-size: .82rem; opacity: .65; font-style: italic; margin-bottom: .9rem; }
+    .wotd-def { font-size: .92rem; opacity: .88; line-height: 1.72; margin-bottom: .9rem; }
+    .wotd-example { font-size: .84rem; background: rgba(255,255,255,.12); border-left: 3px solid rgba(255,255,255,.35); padding: .7rem 1rem; border-radius: 0 8px 8px 0; font-style: italic; opacity: .85; }
+    .vocab-features { display: flex; flex-direction: column; gap: 1rem; }
+    .vocab-feature-item {
+      background: #fff; border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.2rem 1.4rem; display: flex; align-items: center; gap: 1rem;
+      transition: box-shadow .2s, transform .2s;
     }
-    .compare-list li::before { content: "✓"; color: #002868; font-weight: 700; flex-shrink: 0; margin-top: 0.05rem; }
-    .compare-card-secondary .compare-list li { color: rgba(255,255,255,0.8); border-bottom-color: rgba(255,255,255,0.1); }
-    .compare-card-secondary .compare-list li::before { color: rgba(255,255,255,0.6); }
-    .compare-cta { text-align: center; margin-top: 2rem; }
-    .compare-cta a { color: rgba(255,255,255,0.85); text-decoration: underline; font-size: 0.95rem; }
-    .compare-cta a:hover { color: #fff; }
+    .vocab-feature-item:hover { box-shadow: 0 8px 25px rgba(0,40,104,.08); transform: translateX(4px); }
+    .vocab-feat-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .vocab-feat-h4 { font-family: 'Poppins',sans-serif; font-size: .96rem; font-weight: 700; color: var(--text); margin-bottom: .2rem; }
+    .vocab-feat-p { font-size: .81rem; color: var(--text-muted); margin: 0; }
 
-    /* FAQ */
-    .faq-section { background: #fff; padding: clamp(3rem, 6vw, 5rem) 0; }
-    .faq-section .section-title { text-align: center; }
-    .faq-section .section-sub { text-align: center; margin: 0 auto 2.8rem; }
-    .faq-list { max-width: 760px; margin: 0 auto; }
-    .faq-item { border: 1px solid #e4eaf4; border-radius: 12px; margin-bottom: 0.85rem; overflow: hidden; }
-    .faq-question {
-      width: 100%; background: none; border: none; text-align: left;
-      padding: 1.1rem 1.4rem; display: flex; align-items: center; justify-content: space-between;
-      cursor: pointer; font-family: "Poppins", sans-serif; font-size: 0.97rem;
-      font-weight: 600; color: #001440; gap: 0.75rem;
+    /* ── RESOURCES ───────────────────────────────── */
+    .resources-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1.4rem; margin-top: 3rem; }
+    .resource-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.5rem; display: flex; flex-direction: column; gap: .7rem;
+      transition: transform .2s, box-shadow .2s;
     }
-    .faq-question:hover { background: #f8fafc; }
-    .faq-chevron { font-size: 0.85rem; color: #6b7280; transition: transform 0.3s ease; flex-shrink: 0; }
-    .faq-item.open .faq-chevron { transform: rotate(180deg); }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; padding: 0 1.4rem; }
-    .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 1.2rem; }
-    .faq-answer p { font-size: 0.93rem; color: #6b7280; line-height: 1.7; margin: 0; }
+    .resource-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,40,104,.09); }
+    .resource-icon { font-size: 2rem; }
+    .resource-card h4 { font-family: 'Poppins',sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0; }
+    .resource-card p { font-size: .82rem; color: var(--text-muted); margin: 0; line-height: 1.6; flex: 1; }
+    .resource-link {
+      display: inline-flex; align-items: center; gap: .4rem; font-size: .84rem; font-weight: 700;
+      color: var(--blue); text-decoration: none; transition: gap .18s;
+    }
+    .resource-link:hover { gap: .7rem; }
 
-    /* FINAL CTA */
-    .final-cta {
-      background: linear-gradient(135deg, #001440 0%, #002868 55%, #1a3d8a 100%);
-      padding: clamp(3.5rem, 7vw, 6rem) 0; text-align: center; position: relative; overflow: hidden;
+    /* ── PRICING ─────────────────────────────────── */
+    .pricing-bg { background: var(--bg-soft); }
+    .pricing-toggle-wrap { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 2rem 0 2.8rem; }
+    .pricing-toggle-label { font-size: .92rem; font-weight: 600; color: var(--text-muted); }
+    .toggle-switch { position: relative; width: 52px; height: 28px; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider {
+      position: absolute; cursor: pointer; inset: 0; background: #cbd5e1; border-radius: 100px;
+      transition: background .25s;
     }
-    .final-cta::after {
-      content: ''; position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 60px 60px; pointer-events: none;
+    .toggle-slider::before {
+      content: ''; position: absolute; width: 20px; height: 20px; background: #fff;
+      border-radius: 50%; left: 4px; top: 4px; transition: transform .25s;
+      box-shadow: 0 2px 5px rgba(0,0,0,.2);
     }
-    .final-cta-inner { position: relative; z-index: 2; }
-    .final-cta h2 {
-      font-family: "Poppins", sans-serif;
-      font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; color: #fff;
-      margin-bottom: 1rem; line-height: 1.2;
+    .toggle-switch input:checked + .toggle-slider { background: var(--blue); }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(24px); }
+    .save-badge { background: #f0fdf4; color: var(--green); border: 1px solid #bbf7d0; font-size: .75rem; font-weight: 700; padding: .2rem .6rem; border-radius: 100px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.6rem; }
+    .pricing-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 20px;
+      padding: 2rem; position: relative; transition: transform .22s, box-shadow .22s;
     }
-    .final-cta p { font-size: 1.05rem; color: rgba(255,255,255,0.72); max-width: 52ch; margin: 0 auto 2rem; line-height: 1.7; }
-    .final-cta-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; justify-content: center; margin-bottom: 1.5rem; }
-    .btn-cta-main {
-      background: #fff; color: #002868; font-weight: 700;
-      padding: 0.85rem 2rem; border-radius: 100px; text-decoration: none;
-      font-size: 1rem; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.4rem;
+    .pricing-card:hover { transform: translateY(-6px); box-shadow: 0 22px 55px rgba(0,40,104,.12); }
+    .pricing-card.featured {
+      background: linear-gradient(135deg,var(--blue-dark),var(--blue));
+      color: #fff; border-color: transparent;
+      box-shadow: 0 20px 55px rgba(0,40,104,.35);
     }
-    .btn-cta-main:hover { background: #f0f4ff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
-    .final-cta-sub { font-size: 0.9rem; color: rgba(255,255,255,0.6); }
-    .final-cta-sub a { color: rgba(255,255,255,0.8); text-decoration: underline; }
-    .final-cta-sub a:hover { color: #fff; }
+    .pricing-card.featured .pricing-price-sub,
+    .pricing-card.featured .pricing-feature { color: rgba(255,255,255,.75); }
+    .pricing-card.featured .pricing-card-name { color: rgba(255,255,255,.85); }
+    .popular-badge {
+      position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: #fff; font-size: .72rem; font-weight: 800;
+      padding: .25rem 1rem; border-radius: 0 0 10px 10px; letter-spacing: .05em; text-transform: uppercase;
+    }
+    .pricing-card-name { font-size: .82rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
+    .pricing-price { font-family: 'Poppins',sans-serif; font-size: 3rem; font-weight: 900; line-height: 1; margin-bottom: .2rem; }
+    .pricing-price-sub { font-size: .85rem; color: var(--text-muted); margin-bottom: 1.4rem; }
+    .pricing-divider { height: 1px; background: var(--border); margin: 1.2rem 0; }
+    .pricing-card.featured .pricing-divider { background: rgba(255,255,255,.15); }
+    .pricing-features-list { list-style: none; padding: 0; margin: 0 0 1.6rem; display: flex; flex-direction: column; gap: .6rem; }
+    .pricing-feature { font-size: .88rem; display: flex; align-items: flex-start; gap: .55rem; }
+    .pricing-feature .pf-icon { flex-shrink: 0; }
+    .pricing-btn {
+      display: block; text-align: center; padding: .8rem 1rem; border-radius: 12px;
+      font-weight: 700; font-size: .9rem; text-decoration: none; transition: all .2s;
+    }
+    .pricing-btn.blue { background: var(--blue); color: #fff; }
+    .pricing-btn.blue:hover { background: var(--blue-dark); }
+    .pricing-btn.white { background: #fff; color: var(--blue); }
+    .pricing-btn.white:hover { background: #f0f4ff; }
+    .pricing-btn.outline { border: 2px solid var(--border); color: var(--text-muted); }
+    .pricing-btn.outline:hover { border-color: var(--blue); color: var(--blue); }
 
-    /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
+    /* ── FAQ ─────────────────────────────────────── */
+    .faq-list { max-width: 820px; margin: 3rem auto 0; display: flex; flex-direction: column; gap: .9rem; }
+    .faq-item { background: #fff; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .faq-btn {
+      width: 100%; background: none; border: none; cursor: pointer; padding: 1.2rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      font-family: 'Poppins',sans-serif; font-size: .97rem; font-weight: 600; color: var(--text);
+      text-align: left;
+    }
+    .faq-btn:hover { background: var(--bg-soft); }
+    .faq-icon { font-size: 1.2rem; transition: transform .28s; flex-shrink: 0; color: var(--blue); }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer-inner { padding: 0 1.5rem 1.3rem; font-size: .9rem; color: var(--text-muted); line-height: 1.78; border-top: 1px solid var(--border); padding-top: 1rem; }
+
+    /* ── FINAL CTA ───────────────────────────────── */
+    .cta-section {
+      background: linear-gradient(135deg,var(--blue-dark),var(--blue));
+      padding: 5.5rem 0; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .cta-section h2 { font-family: 'Poppins',sans-serif; font-size: clamp(2rem,4vw,3rem); font-weight: 900; color: #fff; margin-bottom: 1rem; position: relative; }
+    .cta-section p { font-size: 1.05rem; color: rgba(255,255,255,.78); max-width: 55ch; margin: 0 auto 2.2rem; line-height: 1.8; position: relative; }
+    .cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; position: relative; }
+
+    /* ── WHATSAPP FLOAT ──────────────────────────── */
+    .wa-float {
+      position: fixed; bottom: 1.7rem; right: 1.7rem; z-index: 999;
+      background: #25D366; color: #fff; width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+      box-shadow: 0 6px 22px rgba(37,211,102,.45); text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(37,211,102,.55); }
+
+    /* ── DARK MODE ───────────────────────────────── */
+    @media(prefers-color-scheme:dark) {
+      body { background: #0f172a; color: #e2e8f0; }
+      .stats-strip, .module-card, .feature-card, .test-card, .resource-card, .pricing-card:not(.featured),
+      .vocab-feature-item, .faq-item { background: #1e293b; border-color: #334155; }
+      .pricing-btn.outline { border-color: #334155; color: #94a3b8; }
+      .faq-btn { color: #e2e8f0; }
+      .faq-btn:hover { background: #334155; }
+      .faq-answer-inner { border-color: #334155; }
+      .section-h2 { color: #f1f5f9; }
+      .module-card h3, .feature-card h4, .resource-card h4, .vocab-feat-h4, .test-card h3 { color: #f1f5f9; }
+      .result-cell { background: #334155; }
+      .features-bg, .pricing-bg, .vocab-bg { background: #0f172a; }
+      .calc-box { background: #1e293b; border-color: #334155; }
+      .result-suggestion { background: #1e3a5f; border-left-color: #3b82f6; color: #e2e8f0; }
+    }
+
+    /* ── ANIMATIONS ──────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.in-view { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
   </style>
 </head>
 <body>
 
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-
+  <!-- Announcement bar -->
   <div id="announcement-bar" style="background:#BF0A30;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
     🎓 <strong>2026 Scholarship Applications Now Open</strong> — Deadline July 15, 2026.
     <a href="study-abroad.html#application-form" style="color:#fff;text-decoration:underline;margin-left:0.5rem;">Apply Now →</a>
@@ -326,365 +450,667 @@
 
   <main id="main-content">
 
-    <!-- ===================== 1. HERO ===================== -->
-    <section class="ielts-hero" aria-label="IELTS course hero">
+    <!-- ════════════════ HERO ════════════════ -->
+    <section class="ielts-hero" aria-label="IELTS program overview">
       <div class="container ielts-hero-inner">
-        <div class="hero-pill">&#127468;&#127463; British Council Aligned &middot; 100% Free</div>
-        <h1>Master IELTS &mdash; Score the <em>Band You Deserve</em></h1>
-        <p class="hero-lead">Structured, free, step-by-step IELTS preparation designed for Liberian students &mdash; from Band 5 foundations to Band 8+ exam-ready confidence.</p>
-        <div class="hero-stat-chips">
-          <span class="stat-chip">100% Free</span>
-          <span class="stat-chip">6 Modules</span>
-          <span class="stat-chip">4 Skills</span>
-          <span class="stat-chip">Band 5&rarr;9 Path</span>
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          Free IELTS Preparation · Tolbert Innovation Hub
         </div>
+        <h1>Master IELTS and Achieve<br>Your <span class="accent">Dream Score</span></h1>
+        <p class="hero-lead">Prepare for Academic and General IELTS with expert lessons, timed practice tests, an interactive score calculator, and personalized study plans — completely free for all students.</p>
         <div class="hero-actions">
-          <a href="classroom-ielts-module-1.html" class="btn-white">Start Learning Free &rarr;</a>
-          <a href="#modules" class="btn-glass">View All Modules &darr;</a>
+          <a href="classroom-ielts-module-1.html" class="btn-hero-primary">🚀 Start Learning</a>
+          <a href="#score-calculator" class="btn-hero-outline">📊 Free IELTS Assessment</a>
         </div>
-        <div class="hero-float-badges">
-          <div class="float-badge">
-            <span class="float-badge-icon">&#127891;</span>
-            <div>
-              <div class="float-badge-text">500+ Students Enrolled</div>
-              <div class="float-badge-sub">Active learners on this path</div>
-            </div>
+        <div class="hero-trust-bar">
+          <div class="trust-chip">
+            <span class="trust-chip-icon">🎓</span>
+            <div><div class="trust-chip-label">1,200+ Students</div><div class="trust-chip-sub">Trained in Liberia</div></div>
           </div>
-          <div class="float-badge">
-            <span class="float-badge-icon">&#127942;</span>
-            <div>
-              <div class="float-badge-text">Proven Results</div>
-              <div class="float-badge-sub">Band improvements documented</div>
-            </div>
+          <div class="trust-chip">
+            <span class="trust-chip-icon">⭐</span>
+            <div><div class="trust-chip-label">Avg. Band 6.8</div><div class="trust-chip-sub">Among our graduates</div></div>
           </div>
-          <div class="float-badge">
-            <span class="float-badge-icon">&#9998;&#65039;</span>
-            <div>
-              <div class="float-badge-text">Expert-Crafted Content</div>
-              <div class="float-badge-sub">Aligned to official IELTS standards</div>
-            </div>
+          <div class="trust-chip">
+            <span class="trust-chip-icon">📚</span>
+            <div><div class="trust-chip-label">6 Full Modules</div><div class="trust-chip-sub">Academic &amp; General</div></div>
+          </div>
+          <div class="trust-chip">
+            <span class="trust-chip-icon">🆓</span>
+            <div><div class="trust-chip-label">100% Free</div><div class="trust-chip-sub">No credit card needed</div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===================== 2. WHY TIH ===================== -->
-    <section class="why-section" aria-labelledby="why-heading">
+    <!-- ════════════════ STATS ════════════════ -->
+    <div class="stats-strip">
       <div class="container">
-        <span class="section-label reveal">Why TIH IELTS Prep?</span>
-        <h2 class="section-title reveal" id="why-heading">Learn Smarter. Score Higher. Completely Free.</h2>
-        <p class="section-sub reveal">TIH's IELTS course is built for Liberian students &mdash; no fees, no barriers, just world-class preparation.</p>
-        <div class="why-grid">
-          <div class="why-card reveal">
-            <div class="why-icon">&#127379;</div>
-            <h3 class="why-title">Completely Free</h3>
-            <p class="why-desc">No fees, no hidden costs, no account required. Full IELTS preparation from foundation to mock exams at zero cost &mdash; forever.</p>
+        <div class="stats-strip-grid">
+          <div class="stat-cell reveal">
+            <div class="stat-cell-num">1,200+</div>
+            <div class="stat-cell-lbl">Students Trained</div>
           </div>
-          <div class="why-card reveal">
-            <div class="why-icon">&#128506;&#65039;</div>
-            <h3 class="why-title">Structured Learning Path</h3>
-            <p class="why-desc">6 sequential modules that build from IELTS format understanding all the way to full timed mock exams. Each module unlocks the next level of skill.</p>
+          <div class="stat-cell reveal reveal-delay-1">
+            <div class="stat-cell-num">6.8</div>
+            <div class="stat-cell-lbl">Average Band Achieved</div>
           </div>
-          <div class="why-card reveal">
-            <div class="why-icon">&#127942;</div>
-            <h3 class="why-title">Exam-Day Ready</h3>
-            <p class="why-desc">Real IELTS-style practice tasks, timing drills, and band-specific strategies &mdash; everything you need to walk into the test centre confident.</p>
+          <div class="stat-cell reveal reveal-delay-2">
+            <div class="stat-cell-num">50+</div>
+            <div class="stat-cell-lbl">Practice Tests</div>
+          </div>
+          <div class="stat-cell reveal reveal-delay-3">
+            <div class="stat-cell-num">100%</div>
+            <div class="stat-cell-lbl">Free Access</div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- ===================== 3. FOUR SKILLS ===================== -->
-    <section class="skills-section" aria-labelledby="skills-heading">
+    <!-- ════════════════ COURSE MODULES ════════════════ -->
+    <section class="section-pad" id="modules" aria-labelledby="modules-heading">
       <div class="container">
-        <h2 class="section-title reveal" id="skills-heading">Four Skills. One Certificate.</h2>
-        <p class="section-sub reveal">Every IELTS module tests one of these four skills. Master all four and you master the exam.</p>
-        <div class="skills-grid">
-          <div class="skill-card reveal">
-            <span class="skill-pill skill-pill-blue">Listening</span>
-            <span class="skill-icon">&#127911;</span>
-            <div class="skill-name">Listening</div>
-            <div class="skill-meta">Sections 1&ndash;4 &middot; 40 questions &middot; 30 mins</div>
-            <div class="skill-strategy">Signpost listening, distractor control, note-taking</div>
-          </div>
-          <div class="skill-card reveal">
-            <span class="skill-pill skill-pill-green">Reading</span>
-            <span class="skill-icon">&#128214;</span>
-            <div class="skill-name">Reading</div>
-            <div class="skill-meta">3 Passages &middot; 40 questions &middot; 60 mins</div>
-            <div class="skill-strategy">Skim/scan, keyword match, evidence location</div>
-          </div>
-          <div class="skill-card reveal">
-            <span class="skill-pill skill-pill-orange">Writing</span>
-            <span class="skill-icon">&#9997;&#65039;</span>
-            <div class="skill-name">Writing</div>
-            <div class="skill-meta">Task 1 + Task 2 &middot; 60 mins</div>
-            <div class="skill-strategy">Data description, essay structure, cohesion</div>
-          </div>
-          <div class="skill-card reveal">
-            <span class="skill-pill skill-pill-red">Speaking</span>
-            <span class="skill-icon">&#128483;&#65039;</span>
-            <div class="skill-name">Speaking</div>
-            <div class="skill-meta">Parts 1&ndash;3 &middot; 11&ndash;14 mins</div>
-            <div class="skill-strategy">Fluency, pronunciation, coherence, vocabulary</div>
-          </div>
+        <div class="text-center">
+          <span class="section-tag">Course Overview</span>
+          <h2 class="section-h2" id="modules-heading">Four Skills. One Goal.</h2>
+          <p class="section-sub">Master every section of the IELTS exam with structured modules designed by experienced instructors.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- ===================== 4. LEARNING PATH ===================== -->
-    <section class="path-section" id="modules" aria-labelledby="path-heading">
-      <div class="container">
-        <h2 class="section-title reveal" id="path-heading">Your 6-Module Learning Path</h2>
-        <p class="section-sub reveal">Follow the structured roadmap &mdash; each module unlocks the next.</p>
         <div class="modules-grid">
-          <a href="classroom-ielts-module-1.html" class="module-card reveal">
-            <div class="module-num num-blue">1</div>
-            <div class="module-name">Foundation</div>
-            <div class="module-desc">Test format, band scoring, vocabulary routines &mdash; everything you need before you start practicing skills.</div>
-            <div class="module-time">&#9200; Est. 3&ndash;4 hours</div>
-            <span class="module-status-open">Start Here &rarr;</span>
-          </a>
-          <a href="classroom-ielts-module-2.html" class="module-card reveal">
-            <div class="module-num num-red">2</div>
-            <div class="module-name">Listening &mdash; Sections 1&ndash;4</div>
-            <div class="module-desc">Signpost techniques, distractor training, and practice with all four section types.</div>
-            <div class="module-time">&#9200; Est. 4&ndash;5 hours</div>
-            <span class="module-status-locked">Locked &#128274;</span>
-          </a>
-          <a href="classroom-ielts-module-3.html" class="module-card reveal">
-            <div class="module-num num-blue">3</div>
-            <div class="module-name">Reading &mdash; Academic + General</div>
-            <div class="module-desc">Skim/scan strategies, question type mastery, and keyword matching techniques.</div>
-            <div class="module-time">&#9200; Est. 4&ndash;5 hours</div>
-            <span class="module-status-locked">Locked &#128274;</span>
-          </a>
-          <a href="classroom-ielts-module-4.html" class="module-card reveal">
-            <div class="module-num num-red">4</div>
-            <div class="module-name">Writing &mdash; Task 1 &amp; 2 &#127885;</div>
-            <div class="module-desc">Templates, structure, cohesion, and model answers for both task types.</div>
-            <div class="module-time">&#9200; Est. 5&ndash;6 hours</div>
-            <span class="module-status-locked">Locked &#128274;</span>
-          </a>
-          <a href="classroom-ielts-module-5.html" class="module-card reveal">
-            <div class="module-num num-blue">5</div>
-            <div class="module-name">Speaking &mdash; Parts 1&ndash;3 &#127885;</div>
-            <div class="module-desc">Fluency frameworks, pronunciation practice, and full part-by-part strategy.</div>
-            <div class="module-time">&#9200; Est. 4&ndash;5 hours</div>
-            <span class="module-status-locked">Locked &#128274;</span>
-          </a>
-          <a href="classroom-ielts-module-6.html" class="module-card reveal">
-            <div class="module-num num-red">6</div>
-            <div class="module-name">Mock Exams</div>
-            <div class="module-desc">Full timed practice tests with band analysis and improvement recommendations.</div>
-            <div class="module-time">&#9200; Est. 3&ndash;4 hours</div>
-            <span class="module-status-locked">Locked &#128274;</span>
-          </a>
+
+          <!-- Listening -->
+          <article class="module-card reveal">
+            <span class="module-card-top" style="background:linear-gradient(90deg,#3b82f6,#1d4ed8)"></span>
+            <div class="module-card-body">
+              <div class="module-icon">🎧</div>
+              <h3>Listening</h3>
+              <p>Train your ear with real-exam audio materials and structured practice across all four IELTS listening sections.</p>
+              <ul class="module-features">
+                <li>Audio lessons with transcripts</li>
+                <li>Section 1–4 practice tests</li>
+                <li>Note completion strategies</li>
+                <li>Score tracking dashboard</li>
+              </ul>
+              <a href="classroom-listening.html" class="module-cta" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">Start Listening →</a>
+            </div>
+          </article>
+
+          <!-- Reading -->
+          <article class="module-card reveal reveal-delay-1">
+            <span class="module-card-top" style="background:linear-gradient(90deg,#10b981,#059669)"></span>
+            <div class="module-card-body">
+              <div class="module-icon">📖</div>
+              <h3>Reading</h3>
+              <p>Build speed and accuracy with Academic and General reading passages plus 14 question type strategies.</p>
+              <ul class="module-features">
+                <li>Academic &amp; General Training</li>
+                <li>True / False / Not Given strategies</li>
+                <li>Time management techniques</li>
+                <li>Passage annotation methods</li>
+              </ul>
+              <a href="classroom-reading.html" class="module-cta" style="background:linear-gradient(135deg,#10b981,#059669)">Start Reading →</a>
+            </div>
+          </article>
+
+          <!-- Writing -->
+          <article class="module-card reveal reveal-delay-2">
+            <span class="module-card-top" style="background:linear-gradient(90deg,#f59e0b,#d97706)"></span>
+            <div class="module-card-body">
+              <div class="module-icon">✍️</div>
+              <h3>Writing</h3>
+              <p>Develop high-scoring essays and reports with Task 1 &amp; Task 2 frameworks, band descriptors, and model answers.</p>
+              <ul class="module-features">
+                <li>Task 1: Charts, graphs, letters</li>
+                <li>Task 2: Essay structures</li>
+                <li>Band 7+ vocabulary &amp; grammar</li>
+                <li>Model answer walkthroughs</li>
+              </ul>
+              <a href="classroom-writing.html" class="module-cta" style="background:linear-gradient(135deg,#f59e0b,#d97706)">Start Writing →</a>
+            </div>
+          </article>
+
+          <!-- Speaking -->
+          <article class="module-card reveal reveal-delay-3">
+            <span class="module-card-top" style="background:linear-gradient(90deg,#ef4444,#b91c1c)"></span>
+            <div class="module-card-body">
+              <div class="module-icon">🎤</div>
+              <h3>Speaking</h3>
+              <p>Build fluency and confidence for all three parts of the Speaking test with cue cards, mock interviews, and pronunciation drills.</p>
+              <ul class="module-features">
+                <li>Part 1, 2 &amp; 3 strategies</li>
+                <li>Cue card topic bank (200+)</li>
+                <li>Pronunciation &amp; fluency drills</li>
+                <li>Mock interview guides</li>
+              </ul>
+              <a href="classroom-speaking.html" class="module-cta" style="background:linear-gradient(135deg,#ef4444,#b91c1c)">Start Speaking →</a>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
 
-    <!-- ===================== 5. BAND SCORE GUIDE ===================== -->
-    <section class="band-section" aria-labelledby="band-heading">
+    <!-- ════════════════ LEARNING FEATURES ════════════════ -->
+    <section class="section-pad features-bg" aria-labelledby="features-heading">
       <div class="container">
-        <h2 class="section-title reveal" id="band-heading">What Band Score Do You Need?</h2>
-        <p class="section-sub reveal">Different goals require different bands &mdash; here's what to aim for.</p>
-        <div class="band-cards-wrap reveal">
-          <div class="band-card">
-            <div class="band-top" style="background:#f59e0b;"></div>
-            <div class="band-body">
-              <div class="band-score" style="color:#f59e0b;">5.0</div>
-              <div class="band-label">Modest User</div>
-              <div class="band-note">Basic communication, limited complex English. Starting point for most students.</div>
-            </div>
+        <div class="text-center">
+          <span class="section-tag red">Learning Features</span>
+          <h2 class="section-h2" id="features-heading">Everything You Need to Succeed</h2>
+          <p class="section-sub">Our platform combines the best tools from top online learning platforms into one free, accessible space.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card reveal">
+            <div class="feature-icon">🎬</div>
+            <h4>Video Tutorials</h4>
+            <p>High-quality video lessons for every topic, taught by experienced IELTS instructors.</p>
           </div>
-          <div class="band-card">
-            <div class="band-top" style="background:#84cc16;"></div>
-            <div class="band-body">
-              <div class="band-score" style="color:#84cc16;">6.0</div>
-              <div class="band-label">Competent User</div>
-              <div class="band-note">Required by many universities for undergraduate admission.</div>
-            </div>
+          <div class="feature-card reveal reveal-delay-1">
+            <div class="feature-icon">📄</div>
+            <h4>Downloadable PDFs</h4>
+            <p>Printable worksheets, grammar guides, and vocabulary lists available offline.</p>
           </div>
-          <div class="band-card">
-            <div class="band-top" style="background:#22c55e;"></div>
-            <div class="band-body">
-              <div class="band-score" style="color:#22c55e;">6.5&ndash;7.0</div>
-              <div class="band-label">Good User</div>
-              <div class="band-note">Most top universities and UK visa requirement. The common target for TIH students.</div>
-            </div>
+          <div class="feature-card reveal reveal-delay-2">
+            <div class="feature-icon">📝</div>
+            <h4>Practice Quizzes</h4>
+            <p>Short quizzes after each lesson to test and reinforce your understanding.</p>
           </div>
-          <div class="band-card">
-            <div class="band-top" style="background:#14b8a6;"></div>
-            <div class="band-body">
-              <div class="band-score" style="color:#14b8a6;">7.5&ndash;8.0</div>
-              <div class="band-label">Very Good User</div>
-              <div class="band-note">Competitive postgrad applications and professional English use.</div>
-            </div>
+          <div class="feature-card reveal reveal-delay-3">
+            <div class="feature-icon">⏱️</div>
+            <h4>Mock Examinations</h4>
+            <p>Full-length timed mock tests simulating real IELTS exam conditions.</p>
           </div>
-          <div class="band-card">
-            <div class="band-top" style="background:#3b82f6;"></div>
-            <div class="band-body">
-              <div class="band-score" style="color:#3b82f6;">8.5&ndash;9.0</div>
-              <div class="band-label">Expert User</div>
-              <div class="band-note">Academic research, native-level professional English settings.</div>
+          <div class="feature-card reveal">
+            <div class="feature-icon">📊</div>
+            <h4>Progress Dashboard</h4>
+            <p>Track completed lessons, practice scores, and study streaks in one place.</p>
+          </div>
+          <div class="feature-card reveal reveal-delay-1">
+            <div class="feature-icon">🏆</div>
+            <h4>Achievement Badges</h4>
+            <p>Earn badges as you complete modules and hit milestone scores.</p>
+          </div>
+          <div class="feature-card reveal reveal-delay-2">
+            <div class="feature-icon">📅</div>
+            <h4>Study Planner</h4>
+            <p>A personalized 4–12 week study plan based on your target band score.</p>
+          </div>
+          <div class="feature-card reveal reveal-delay-3">
+            <div class="feature-icon">📚</div>
+            <h4>Vocabulary Builder</h4>
+            <p>Daily academic word lists, flashcards, and contextual sentence practice.</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon">🔤</div>
+            <h4>Grammar Lessons</h4>
+            <p>Targeted grammar modules covering tenses, conditionals, cohesive devices and more.</p>
+          </div>
+          <div class="feature-card reveal reveal-delay-1">
+            <div class="feature-icon">🤖</div>
+            <h4>AI Study Assistant</h4>
+            <p>Get instant answers, essay feedback, and personalized tips from our AI tutor.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ SCORE CALCULATOR ════════════════ -->
+    <section class="section-pad" id="score-calculator" aria-labelledby="calc-heading">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag green">Score Calculator</span>
+          <h2 class="section-h2" id="calc-heading">Calculate Your IELTS Band Score</h2>
+          <p class="section-sub">Enter your scores for each section to instantly see your Overall Band Score and get personalized improvement suggestions.</p>
+        </div>
+        <div class="calc-wrap">
+          <div class="calc-box reveal">
+            <div class="calc-inputs">
+              <div class="calc-field">
+                <label for="sl-listening">Listening <span>(0–9 in 0.5 steps)</span></label>
+                <input type="range" class="score-slider" id="sl-listening" min="0" max="9" step="0.5" value="6" oninput="updateCalc()">
+                <div class="score-display"><span>0</span><span class="score-val" id="val-listening">6.0</span><span>9</span></div>
+              </div>
+              <div class="calc-field">
+                <label for="sl-reading">Reading <span>(0–9 in 0.5 steps)</span></label>
+                <input type="range" class="score-slider" id="sl-reading" min="0" max="9" step="0.5" value="6" oninput="updateCalc()">
+                <div class="score-display"><span>0</span><span class="score-val" id="val-reading">6.0</span><span>9</span></div>
+              </div>
+              <div class="calc-field">
+                <label for="sl-writing">Writing <span>(0–9 in 0.5 steps)</span></label>
+                <input type="range" class="score-slider" id="sl-writing" min="0" max="9" step="0.5" value="6" oninput="updateCalc()">
+                <div class="score-display"><span>0</span><span class="score-val" id="val-writing">6.0</span><span>9</span></div>
+              </div>
+              <div class="calc-field">
+                <label for="sl-speaking">Speaking <span>(0–9 in 0.5 steps)</span></label>
+                <input type="range" class="score-slider" id="sl-speaking" min="0" max="9" step="0.5" value="6" oninput="updateCalc()">
+                <div class="score-display"><span>0</span><span class="score-val" id="val-speaking">6.0</span><span>9</span></div>
+              </div>
+            </div>
+            <button class="calc-btn" onclick="showCalcResult()">Calculate My Band Score →</button>
+            <div class="calc-result" id="calc-result">
+              <div class="result-band">
+                <div class="result-band-num" id="result-overall">6.0</div>
+                <div class="result-band-label">Overall Band Score · <span id="result-descriptor">Competent User</span></div>
+              </div>
+              <div class="result-breakdown">
+                <div class="result-cell"><div class="result-cell-name">Listening</div><div class="result-cell-val" id="res-l">6.0</div></div>
+                <div class="result-cell"><div class="result-cell-name">Reading</div><div class="result-cell-val" id="res-r">6.0</div></div>
+                <div class="result-cell"><div class="result-cell-name">Writing</div><div class="result-cell-val" id="res-w">6.0</div></div>
+                <div class="result-cell"><div class="result-cell-name">Speaking</div><div class="result-cell-val" id="res-s">6.0</div></div>
+              </div>
+              <div class="result-suggestion" id="result-suggestion">You are a competent user of English. Focus on vocabulary range and task achievement in Writing to push toward Band 7. Practice speaking fluency daily with cue card topics.</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===================== 6. RESOURCES GRID ===================== -->
-    <section class="resources-section" aria-labelledby="resources-heading">
+    <!-- ════════════════ PRACTICE TESTS ════════════════ -->
+    <section class="section-pad features-bg" id="practice-tests" aria-labelledby="tests-heading">
       <div class="container">
-        <h2 class="section-title reveal" id="resources-heading">Study Resources</h2>
-        <p class="section-sub reveal">Everything you need to practice each skill &mdash; all free, all in one place.</p>
+        <div class="text-center">
+          <span class="section-tag">Practice Tests</span>
+          <h2 class="section-h2" id="tests-heading">Test Yourself Under Real Conditions</h2>
+          <p class="section-sub">From quick mini-tests to full 3-hour mock exams — all with instant results, answer explanations, and performance reports.</p>
+        </div>
+        <div class="tests-grid">
+          <article class="test-card reveal">
+            <div class="test-card-header">
+              <span class="test-type-badge badge-full">Full Mock Test</span>
+              <h3>Complete IELTS Academic Mock</h3>
+              <div class="test-meta"><span>2 hr 45 min</span><span>All 4 skills</span><span>Academic</span></div>
+            </div>
+            <div class="test-card-body">
+              <ul class="test-features-list">
+                <li><span class="tick">✓</span> Listening, Reading, Writing &amp; Speaking</li>
+                <li><span class="tick">✓</span> Exam-accurate timing per section</li>
+                <li><span class="tick">✓</span> Instant auto-graded results</li>
+                <li><span class="tick">✓</span> Detailed answer explanations</li>
+                <li><span class="tick">✓</span> Full performance band report</li>
+              </ul>
+              <a href="classroom-practice-tests.html" class="test-card-btn blue">Start Full Mock →</a>
+            </div>
+          </article>
+
+          <article class="test-card reveal reveal-delay-1">
+            <div class="test-card-header">
+              <span class="test-type-badge badge-timed">Timed Skill Test</span>
+              <h3>Reading Speed Challenge</h3>
+              <div class="test-meta"><span>60 minutes</span><span>Reading only</span><span>Academic</span></div>
+            </div>
+            <div class="test-card-body">
+              <ul class="test-features-list">
+                <li><span class="tick">✓</span> 3 passages, 40 questions</li>
+                <li><span class="tick">✓</span> Countdown timer</li>
+                <li><span class="tick">✓</span> Question-type breakdown</li>
+                <li><span class="tick">✓</span> Time-per-passage analytics</li>
+                <li><span class="tick">✓</span> Answer key with explanations</li>
+              </ul>
+              <a href="classroom-reading.html" class="test-card-btn outline">Start Reading Test →</a>
+            </div>
+          </article>
+
+          <article class="test-card reveal reveal-delay-2">
+            <div class="test-card-header">
+              <span class="test-type-badge badge-mini">Mini Test</span>
+              <h3>Listening Quick Quiz</h3>
+              <div class="test-meta"><span>30 minutes</span><span>Listening</span><span>Sections 1–2</span></div>
+            </div>
+            <div class="test-card-body">
+              <ul class="test-features-list">
+                <li><span class="tick">✓</span> Audio tracks with questions</li>
+                <li><span class="tick">✓</span> Pause and replay controls</li>
+                <li><span class="tick">✓</span> Instant score on submit</li>
+                <li><span class="tick">✓</span> Common mistake analysis</li>
+                <li><span class="tick">✓</span> Link to target revision topics</li>
+              </ul>
+              <a href="classroom-listening.html" class="test-card-btn outline">Start Listening Quiz →</a>
+            </div>
+          </article>
+
+          <article class="test-card reveal reveal-delay-3">
+            <div class="test-card-header">
+              <span class="test-type-badge badge-full">General Training</span>
+              <h3>IELTS General Mock Exam</h3>
+              <div class="test-meta"><span>2 hr 45 min</span><span>All 4 skills</span><span>General</span></div>
+            </div>
+            <div class="test-card-body">
+              <ul class="test-features-list">
+                <li><span class="tick">✓</span> GT Reading passages (letters, ads, text)</li>
+                <li><span class="tick">✓</span> Task 1 informal letter practice</li>
+                <li><span class="tick">✓</span> Full performance band report</li>
+                <li><span class="tick">✓</span> Suitable for migration &amp; work visas</li>
+                <li><span class="tick">✓</span> Official-format answer sheets</li>
+              </ul>
+              <a href="classroom-practice-tests.html" class="test-card-btn blue">Start General Mock →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ SUCCESS STORIES ════════════════ -->
+    <section class="section-pad stories-bg" id="success-stories" aria-labelledby="stories-heading">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.25);color:#fff;">Student Wins</span>
+          <h2 class="section-h2" style="color:#fff;" id="stories-heading">Real Students. Real Results.</h2>
+          <p class="section-sub" style="color:rgba(255,255,255,.75);">Hundreds of Liberian students have improved their IELTS scores with our free program. Here are just a few of their stories.</p>
+        </div>
+        <div class="stories-grid">
+
+          <article class="story-card reveal">
+            <div class="story-avatar" style="background:#3b82f6;">KJ</div>
+            <div class="story-scores">
+              <div class="score-before"><div class="score-label">Before</div><div class="score-num">5.0</div></div>
+              <div class="score-arrow">→</div>
+              <div class="score-after"><div class="score-label">After</div><div class="score-num">7.5</div></div>
+            </div>
+            <blockquote>"The structured modules and daily practice completely transformed my approach to IELTS. I went from Band 5 to 7.5 in just three months. The Writing Task 2 templates were a game-changer."</blockquote>
+            <div class="story-name">Koffa J. Kollie</div>
+            <div class="story-dest">University of Leeds · Business Management</div>
+          </article>
+
+          <article class="story-card reveal reveal-delay-1">
+            <div class="story-avatar" style="background:#10b981;">MJ</div>
+            <div class="story-scores">
+              <div class="score-before"><div class="score-label">Before</div><div class="score-num">5.5</div></div>
+              <div class="score-arrow">→</div>
+              <div class="score-after"><div class="score-label">After</div><div class="score-num">7.0</div></div>
+            </div>
+            <blockquote>"I had failed twice before finding TIH's free IELTS classroom. The listening and speaking modules helped me most. I passed with Band 7 and now I'm in Canada studying nursing."</blockquote>
+            <div class="story-name">Miatta J. Dokie</div>
+            <div class="story-dest">George Brown College, Canada · Nursing</div>
+          </article>
+
+          <article class="story-card reveal reveal-delay-2">
+            <div class="story-avatar" style="background:#f59e0b;">AM</div>
+            <div class="story-scores">
+              <div class="score-before"><div class="score-label">Before</div><div class="score-num">4.5</div></div>
+              <div class="score-arrow">→</div>
+              <div class="score-after"><div class="score-label">After</div><div class="score-num">6.5</div></div>
+            </div>
+            <blockquote>"Starting from Band 4.5, I used the study planner and completed every module. The vocabulary builder alone added two full bands to my reading score. I achieved my dream of studying medicine abroad."</blockquote>
+            <div class="story-name">Abigail M. Saah</div>
+            <div class="story-dest">Scholarship Recipient at Sharda University · Medicine</div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ VOCABULARY BUILDER ════════════════ -->
+    <section class="section-pad vocab-bg" id="vocabulary" aria-labelledby="vocab-heading">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag gold">Vocabulary Builder</span>
+          <h2 class="section-h2" id="vocab-heading">Expand Your Academic Vocabulary</h2>
+          <p class="section-sub">A rich vocabulary is the single biggest factor separating Band 6 from Band 8. Build yours daily.</p>
+        </div>
+        <div class="vocab-grid">
+          <div class="wotd-card reveal">
+            <div class="wotd-label">📘 Word of the Day</div>
+            <div class="wotd-word" id="wotd-word">Proliferate</div>
+            <div class="wotd-type" id="wotd-type">verb · /prəˈlɪfəreɪt/</div>
+            <div class="wotd-def" id="wotd-def">To increase rapidly in number or amount; to reproduce or spread quickly, especially in a way that is difficult to control.</div>
+            <div class="wotd-example" id="wotd-example">"Mobile phone usage has <strong>proliferated</strong> across the developing world over the past decade."</div>
+          </div>
+          <div class="vocab-features reveal reveal-delay-1">
+            <div class="vocab-feature-item">
+              <div class="vocab-feat-icon">🃏</div>
+              <div>
+                <div class="vocab-feat-h4">Digital Flashcards</div>
+                <div class="vocab-feat-p">500+ IELTS Academic Word List flashcards. Swipe to learn, swipe to review.</div>
+              </div>
+            </div>
+            <div class="vocab-feature-item">
+              <div class="vocab-feat-icon">🎯</div>
+              <div>
+                <div class="vocab-feat-h4">Vocabulary Quizzes</div>
+                <div class="vocab-feat-p">Daily 10-word quizzes using spaced repetition to lock words into long-term memory.</div>
+              </div>
+            </div>
+            <div class="vocab-feature-item">
+              <div class="vocab-feat-icon">🔖</div>
+              <div>
+                <div class="vocab-feat-h4">Bookmark Words</div>
+                <div class="vocab-feat-p">Save important words and review them in your personal vocabulary notebook.</div>
+              </div>
+            </div>
+            <div class="vocab-feature-item">
+              <div class="vocab-feat-icon">📈</div>
+              <div>
+                <div class="vocab-feat-h4">Topic Word Banks</div>
+                <div class="vocab-feat-p">Themed lists: Environment, Technology, Health, Education, Economics — all IELTS exam topics.</div>
+              </div>
+            </div>
+            <a href="classroom-resource-center.html" class="btn-hero-primary" style="align-self:flex-start;margin-top:.5rem;">Explore Vocabulary Center →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ LEARNING RESOURCES ════════════════ -->
+    <section class="section-pad" id="resources" aria-labelledby="resources-heading">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">Free Resources</span>
+          <h2 class="section-h2" id="resources-heading">Download &amp; Study Offline</h2>
+          <p class="section-sub">All resources are completely free. Download, print, and practice anywhere — no internet required.</p>
+        </div>
         <div class="resources-grid">
-          <a href="classroom-resource-center.html" class="resource-card reveal">
-            <div class="resource-icon-box">&#128221;</div>
-            <div class="resource-title">Vocabulary Lists</div>
-            <div class="resource-desc">1,000+ IELTS academic words with examples and collocations to build your lexical range.</div>
-            <div class="resource-link">Access &rarr;</div>
-          </a>
-          <a href="classroom-writing.html" class="resource-card reveal">
-            <div class="resource-icon-box">&#9997;&#65039;</div>
-            <div class="resource-title">Writing Templates</div>
-            <div class="resource-desc">Task 1 and Task 2 response frameworks with model answers for every essay type.</div>
-            <div class="resource-link">Access &rarr;</div>
-          </a>
-          <a href="classroom-speaking.html" class="resource-card reveal">
-            <div class="resource-icon-box">&#127897;&#65039;</div>
-            <div class="resource-title">Speaking Guides</div>
-            <div class="resource-desc">Part 1, 2, and 3 answer frameworks with sample responses and fluency tips.</div>
-            <div class="resource-link">Access &rarr;</div>
-          </a>
-          <a href="classroom-listening.html" class="resource-card reveal">
-            <div class="resource-icon-box">&#128066;</div>
-            <div class="resource-title">Listening Practice</div>
-            <div class="resource-desc">Audio exercises with answer sheets and timing drills for all four sections.</div>
-            <div class="resource-link">Access &rarr;</div>
-          </a>
-          <a href="classroom-study-materials.html" class="resource-card reveal">
-            <div class="resource-icon-box">&#128218;</div>
-            <div class="resource-title">Grammar Support</div>
-            <div class="resource-desc">Core grammar rules tested in IELTS with practice exercises and clear explanations.</div>
-            <div class="resource-link">Access &rarr;</div>
-          </a>
-          <a href="classroom-video-lessons.html" class="resource-card reveal">
-            <div class="resource-icon-box">&#127916;</div>
-            <div class="resource-title">Video Lessons</div>
-            <div class="resource-desc">Step-by-step strategy walkthroughs for each skill section with expert commentary.</div>
-            <div class="resource-link">Access &rarr;</div>
-          </a>
+          <div class="resource-card reveal">
+            <div class="resource-icon">📄</div>
+            <h4>Writing Templates Pack</h4>
+            <p>Task 1 graph, chart, diagram, and letter templates plus 10 Task 2 essay structures.</p>
+            <a href="classroom-resource-center.html" class="resource-link">Download Free PDF →</a>
+          </div>
+          <div class="resource-card reveal reveal-delay-1">
+            <div class="resource-icon">🗣️</div>
+            <h4>Speaking Cue Cards (200+)</h4>
+            <p>Complete Part 2 cue card bank with model answers and follow-up questions for Part 3.</p>
+            <a href="classroom-speaking.html" class="resource-link">Download Free PDF →</a>
+          </div>
+          <div class="resource-card reveal reveal-delay-2">
+            <div class="resource-icon">📚</div>
+            <h4>Academic Vocabulary List</h4>
+            <p>570 Academic Word List (AWL) words categorized by sublist with usage examples.</p>
+            <a href="classroom-resource-center.html" class="resource-link">Download Free PDF →</a>
+          </div>
+          <div class="resource-card reveal reveal-delay-3">
+            <div class="resource-icon">📝</div>
+            <h4>Grammar Guide for IELTS</h4>
+            <p>Covers complex sentences, tenses, passive voice, conditionals, and cohesive devices.</p>
+            <a href="classroom-resource-center.html" class="resource-link">Download Free PDF →</a>
+          </div>
+          <div class="resource-card reveal">
+            <div class="resource-icon">📅</div>
+            <h4>8-Week Study Schedule</h4>
+            <p>A day-by-day study plan taking you from first lesson to exam-ready in 8 weeks.</p>
+            <a href="classroom-mastery-plan.html" class="resource-link">View Study Plan →</a>
+          </div>
+          <div class="resource-card reveal reveal-delay-1">
+            <div class="resource-icon">🎧</div>
+            <h4>Listening Answer Sheets</h4>
+            <p>Official-style blank answer sheets for all 40 listening questions. Print and practice.</p>
+            <a href="classroom-resource-center.html" class="resource-link">Download Free PDF →</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===================== 7. IELTS VS TOEFL ===================== -->
-    <section class="compare-section" aria-labelledby="compare-heading">
+    <!-- ════════════════ PRICING ════════════════ -->
+    <section class="section-pad pricing-bg" id="pricing" aria-labelledby="pricing-heading">
       <div class="container">
-        <h2 class="section-title reveal" id="compare-heading">IELTS or TOEFL? Know the Difference.</h2>
-        <p class="section-sub reveal">Both are accepted by international universities &mdash; but for different regions and use cases.</p>
-        <div class="compare-grid">
-          <div class="compare-card compare-card-primary reveal">
-            <div class="compare-title">&#127468;&#127463; IELTS &mdash; You Are Here</div>
-            <ul class="compare-list">
-              <li>British &amp; Australian accent</li>
-              <li>Paper or computer-based</li>
-              <li>Band 0&ndash;9 scale</li>
-              <li>Accepted in UK, Australia, Canada, India</li>
-              <li>Ideal for TIH scholarship programs</li>
-            </ul>
-          </div>
-          <div class="compare-card compare-card-secondary reveal">
-            <div class="compare-title">&#127482;&#127480; TOEFL iBT</div>
-            <ul class="compare-list">
-              <li>American accent throughout</li>
-              <li>Computer-based only</li>
-              <li>Score 0&ndash;120 scale</li>
-              <li>Preferred by US universities</li>
-              <li>Integrated speaking and writing tasks</li>
-            </ul>
-          </div>
+        <div class="text-center">
+          <span class="section-tag red">Pricing Plans</span>
+          <h2 class="section-h2" id="pricing-heading">Start Free. Upgrade When Ready.</h2>
+          <p class="section-sub">Our core IELTS program is completely free. Premium plans unlock additional coaching, live sessions, and priority support.</p>
         </div>
-        <div class="compare-cta reveal">
-          <a href="classroom-toefl.html">Want TOEFL instead? View our free TOEFL preparation course &rarr;</a>
+        <div class="pricing-toggle-wrap">
+          <span class="pricing-toggle-label">Monthly</span>
+          <label class="toggle-switch" aria-label="Toggle yearly billing">
+            <input type="checkbox" id="billing-toggle" onchange="toggleBilling()">
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="pricing-toggle-label">Yearly <span class="save-badge">Save 40%</span></span>
+        </div>
+        <div class="pricing-grid">
+
+          <!-- Free -->
+          <div class="pricing-card reveal">
+            <div class="pricing-card-name">Free Plan</div>
+            <div class="pricing-price">$0</div>
+            <div class="pricing-price-sub">Forever free · No credit card</div>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features-list">
+              <li class="pricing-feature"><span class="pf-icon">✅</span> All 6 IELTS modules</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Score calculator</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> 3 practice tests per month</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Vocabulary builder</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> All PDF downloads</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Community forum access</li>
+              <li class="pricing-feature" style="color:#94a3b8;"><span class="pf-icon">✗</span> Live coaching sessions</li>
+              <li class="pricing-feature" style="color:#94a3b8;"><span class="pf-icon">✗</span> AI essay feedback</li>
+            </ul>
+            <a href="classroom-ielts-module-1.html" class="pricing-btn outline">Get Started Free</a>
+          </div>
+
+          <!-- Standard — featured -->
+          <div class="pricing-card featured reveal reveal-delay-1">
+            <div class="popular-badge">⭐ Most Popular</div>
+            <div class="pricing-card-name">Standard Plan</div>
+            <div class="pricing-price"><span id="std-price">$9</span></div>
+            <div class="pricing-price-sub" id="std-cycle">per month · billed monthly</div>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features-list">
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Everything in Free</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Unlimited practice tests</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> AI Writing essay feedback</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> AI Speaking evaluation</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Progress analytics</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Study streak rewards</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Personalized study plan</li>
+              <li class="pricing-feature" style="opacity:.75;"><span class="pf-icon">✗</span> Live coaching sessions</li>
+            </ul>
+            <a href="contact.html" class="pricing-btn white">Enroll Now →</a>
+          </div>
+
+          <!-- Premium -->
+          <div class="pricing-card reveal reveal-delay-2">
+            <div class="pricing-card-name">Premium Plan</div>
+            <div class="pricing-price"><span id="prem-price">$24</span></div>
+            <div class="pricing-price-sub" id="prem-cycle">per month · billed monthly</div>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features-list">
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Everything in Standard</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> 4 live coaching sessions/month</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> 1-on-1 Speaking mock interview</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Writing essay corrections</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> WhatsApp direct support</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Certificate of completion</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Leaderboard &amp; community</li>
+              <li class="pricing-feature"><span class="pf-icon">✅</span> Exam booking assistance</li>
+            </ul>
+            <a href="contact.html" class="pricing-btn blue">Enroll Now →</a>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ===================== 8. FAQ ===================== -->
-    <section class="faq-section" aria-labelledby="faq-heading">
+    <!-- ════════════════ FAQ ════════════════ -->
+    <section class="section-pad" id="faq" aria-labelledby="faq-heading">
       <div class="container">
-        <h2 class="section-title reveal" id="faq-heading">Frequently Asked Questions</h2>
-        <p class="section-sub reveal">Everything you need to know before you start your IELTS journey.</p>
-        <div class="faq-list">
-          <div class="faq-item reveal">
-            <button class="faq-question" aria-expanded="false">
-              Is this course really free?
-              <span class="faq-chevron" aria-hidden="true">&#9660;</span>
+        <div class="text-center">
+          <span class="section-tag">FAQ</span>
+          <h2 class="section-h2" id="faq-heading">Frequently Asked Questions</h2>
+          <p class="section-sub">Everything you need to know about IELTS and our preparation program.</p>
+        </div>
+        <div class="faq-list" role="list">
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+              What is the difference between IELTS Academic and IELTS General Training?
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer" role="region">
-              <p>Yes, completely free. No signup required, no payment, no hidden fees &mdash; ever. TIH is committed to making quality exam preparation accessible to every Liberian student regardless of financial background.</p>
-            </div>
+            <div class="faq-answer"><div class="faq-answer-inner">IELTS Academic is required for undergraduate and postgraduate university admissions. IELTS General Training is accepted for secondary education, work experience, and immigration to countries like Canada, Australia, and the UK. Both share the same Listening and Speaking sections; the Reading and Writing tasks differ in content and complexity.</div></div>
           </div>
-          <div class="faq-item reveal">
-            <button class="faq-question" aria-expanded="false">
-              What's the difference between IELTS Academic and General Training?
-              <span class="faq-chevron" aria-hidden="true">&#9660;</span>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+              What is a good IELTS band score?
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer" role="region">
-              <p>Academic IELTS is designed for students applying to universities at undergraduate or postgraduate level. General Training is used for work experience, migration, and secondary education visas. Both versions use the same Listening and Speaking tests &mdash; only Reading and Writing differ.</p>
-            </div>
+            <div class="faq-answer"><div class="faq-answer-inner">It depends on your target institution or country. Most UK and Australian universities require Band 6.0–6.5 for undergraduate programs and 6.5–7.0 for postgraduate. Canadian immigration typically requires Band 6.0. Medical and law programs usually require Band 7.0 or above. We recommend aiming for at least Band 7.0 to maximize your options.</div></div>
           </div>
-          <div class="faq-item reveal">
-            <button class="faq-question" aria-expanded="false">
-              How long does it take to complete the course?
-              <span class="faq-chevron" aria-hidden="true">&#9660;</span>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+              How long does it take to prepare for IELTS?
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer" role="region">
-              <p>Most students complete the full 6-module course in 4&ndash;6 weeks when studying 1&ndash;2 hours per day. You can go faster or slower depending on your schedule &mdash; there are no deadlines and no time limits.</p>
-            </div>
+            <div class="faq-answer"><div class="faq-answer-inner">Most students need 6–12 weeks of consistent daily study (1–2 hours per day) to improve by 0.5–1 full band. Students starting from Band 4.5 may need 3–4 months to reach Band 6.5. Our 8-week study schedule is designed for students with a current band of 5.0–6.0 who want to reach 6.5–7.5.</div></div>
           </div>
-          <div class="faq-item reveal">
-            <button class="faq-question" aria-expanded="false">
-              Do I get a certificate?
-              <span class="faq-chevron" aria-hidden="true">&#9660;</span>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+              Is Tolbert Innovation Hub's IELTS program really free?
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer" role="region">
-              <p>After completing the Mock Exam module (Module 6), you can request a TIH Course Completion Certificate. This certificate demonstrates that you have worked through the full structured preparation program.</p>
-            </div>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes — 100% free. All six structured modules, downloadable PDFs, vocabulary builder, score calculator, and our study planner are permanently free for all students with no registration required. We offer optional Premium plans for students who want live coaching, AI feedback, and direct tutor access, but everything core is free.</div></div>
           </div>
-          <div class="faq-item reveal">
-            <button class="faq-question" aria-expanded="false">
-              What band score do I need for a UK university?
-              <span class="faq-chevron" aria-hidden="true">&#9660;</span>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+              How is the Overall IELTS Band Score calculated?
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer" role="region">
-              <p>Most UK universities require a minimum of Band 6.0&ndash;6.5 for undergraduate admission and Band 6.5&ndash;7.0 for postgraduate programs. Some competitive programs and universities may require higher. Always check the specific requirements for the course you are applying to.</p>
-            </div>
+            <div class="faq-answer"><div class="faq-answer-inner">The Overall Band Score is the average of your four component scores (Listening, Reading, Writing, Speaking). The average is rounded to the nearest whole or half band: averages ending in .25 or .75 are rounded down (e.g., 6.25 → 6.0; 6.75 → 6.5). Use our score calculator above to test different combinations.</div></div>
           </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+              How many times can I take the IELTS exam?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">There is no limit on how many times you can take IELTS. You can book and sit the exam as many times as you need. Each attempt is independent, and universities or visa bodies accept your highest score. IELTS results are valid for two years. We recommend preparing thoroughly before each attempt to maximize improvement between sittings.</div></div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+              Can I access the IELTS modules on my mobile phone?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes. Our entire platform is fully responsive and works on smartphones, tablets, laptops, and desktop computers. All lessons, quizzes, and resources are mobile-optimized. The PDF downloads can be saved to your device and studied offline, which is especially useful for students with limited data access.</div></div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false">
+              What is the IELTS exam registration fee in Liberia?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">The IELTS exam fee in Liberia is approximately $200–$250 USD per sitting, payable to the British Council or IDP IELTS registration center. Tolbert Innovation Hub does not charge any fee for preparation materials. We also provide guidance on exam registration, booking dates, and test center locations through our student support team.</div></div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ===================== 9. FINAL CTA ===================== -->
-    <section class="final-cta" aria-labelledby="cta-heading">
-      <div class="container final-cta-inner">
-        <h2 id="cta-heading">Ready to Start Your IELTS Journey?</h2>
-        <p>Join 500+ Liberian students who are preparing smarter with TIH's free, structured IELTS course. Module 1 takes less than an hour to begin.</p>
-        <div class="final-cta-actions">
-          <a href="classroom-ielts-module-1.html" class="btn-cta-main">Start Module 1 &mdash; It's Free &rarr;</a>
+    <!-- ════════════════ FINAL CTA ════════════════ -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <div class="container">
+        <h2 id="cta-heading">Start Your IELTS Journey Today</h2>
+        <p>Join over 1,200 Liberian students who have already improved their IELTS scores with our free, world-class preparation program. Your dream university is waiting.</p>
+        <div class="cta-actions">
+          <a href="classroom-ielts-module-1.html" class="btn-hero-primary">🚀 Enroll Now — It's Free</a>
+          <a href="#score-calculator" class="btn-hero-outline">📊 Take Free Assessment</a>
         </div>
-        <p class="final-cta-sub">
-          Need help choosing?
-          <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat with us on WhatsApp &rarr;</a>
-        </p>
       </div>
     </section>
 
   </main>
 
+  <!-- ════════════════ FOOTER ════════════════ -->
   <footer class="site-footer" aria-label="Site footer">
     <div class="container">
       <div class="footer-grid-main">
@@ -692,18 +1118,19 @@
           <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
           <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation. Never Stop Innovating.</p>
           <div class="footer-social">
-            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">&#128172;</a>
-            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">&#128231;</a>
-            <a href="tel:+231880559227" class="social-link" aria-label="Phone">&#128222;</a>
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
           </div>
         </div>
         <div>
           <p class="footer-heading">Programs</p>
           <ul class="footer-links">
-            <li><a href="study-abroad.html">Study Abroad</a></li>
+            <li><a href="study-abroad.html#application-form">Study Abroad</a></li>
             <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
             <li><a href="healthcare.html">Healthcare Exposure</a></li>
             <li><a href="software.html">Software Innovation</a></li>
+            <li><a href="entertainment.html">Entertainment</a></li>
             <li><a href="classroom.html">Free Classroom</a></li>
           </ul>
         </div>
@@ -714,45 +1141,145 @@
             <li><a href="classroom-toefl.html">TOEFL Preparation</a></li>
             <li><a href="classroom-resource-center.html">Resource Center</a></li>
             <li><a href="classroom-practice-tests.html">Practice Tests</a></li>
+            <li><a href="portal-login.html">Student Portal</a></li>
             <li><a href="news.html">News &amp; Updates</a></li>
           </ul>
         </div>
         <div>
           <p class="footer-heading">Contact Us</p>
-          <div class="footer-contact-item"><span class="footer-contact-icon">&#128231;</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
-          <div class="footer-contact-item"><span class="footer-contact-icon">&#128222;</span><a href="tel:+231880559227">+231 880 559 227</a></div>
-          <div class="footer-contact-item"><span class="footer-contact-icon">&#127760;</span><span>Liberia, West Africa</span></div>
-          <div class="footer-contact-item"><span class="footer-contact-icon">&#128172;</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
-          <div style="margin-top:1.25rem;"><a href="contact.html" class="btn btn-outline btn-sm" style="font-size:0.82rem;">Get In Touch &rarr;</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">🌐</span><span>Liberia, West Africa</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+          <div style="margin-top:1.25rem;"><a href="contact.html" class="btn btn-outline btn-sm" style="font-size:0.82rem;">Get In Touch →</a></div>
         </div>
       </div>
       <div class="footer-bottom">
         <div class="footer-bottom-inner">
-          <p class="copyright-note">&copy; 2026 Tolbert Innovation Hub. All rights reserved. | <a href="contact.html" style="color:rgba(200,216,240,0.7);">Privacy</a> | <a href="contact.html" style="color:rgba(200,216,240,0.7);">Terms</a></p>
-          <p style="font-size:0.82rem;color:rgba(200,216,240,0.55);margin:0;">Empowering Africa's Future &mdash; Never Stop Innovating &#128640;</p>
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved. | <a href="contact.html" style="color:rgba(200,216,240,0.7);">Privacy</a> | <a href="contact.html" style="color:rgba(200,216,240,0.7);">Terms</a></p>
+          <p style="font-size:0.82rem;color:rgba(200,216,240,0.55);margin:0;">Empowering Africa's Future — Never Stop Innovating 🚀</p>
         </div>
       </div>
     </div>
   </footer>
 
-  <script>
-    // FAQ Accordion
-    document.querySelectorAll('.faq-question').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var item = this.closest('.faq-item');
-        var isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(function(el) {
-          el.classList.remove('open');
-          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-        });
-        if (!isOpen) {
-          item.classList.add('open');
-          this.setAttribute('aria-expanded', 'true');
-        }
-      });
-    });
-  </script>
+  <!-- WhatsApp float -->
+  <a href="https://wa.me/231880559227" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬</a>
+
   <script src="main.js"></script>
   <script src="chatbot.js"></script>
+  <script>
+    /* ── SCORE CALCULATOR ─────────────────────────── */
+    function updateCalc() {
+      ['listening','reading','writing','speaking'].forEach(function(k) {
+        var v = parseFloat(document.getElementById('sl-'+k).value);
+        document.getElementById('val-'+k).textContent = v.toFixed(1);
+      });
+    }
+
+    function roundBand(avg) {
+      var floor = Math.floor(avg);
+      var dec = avg - floor;
+      if (dec < 0.25) return floor;
+      if (dec < 0.75) return floor + 0.5;
+      return floor + 1;
+    }
+
+    function bandDescriptor(score) {
+      if (score >= 9)   return 'Expert User';
+      if (score >= 8)   return 'Very Good User';
+      if (score >= 7)   return 'Good User';
+      if (score >= 6)   return 'Competent User';
+      if (score >= 5)   return 'Modest User';
+      if (score >= 4)   return 'Limited User';
+      if (score >= 3)   return 'Extremely Limited User';
+      return 'Non User';
+    }
+
+    function bandSuggestion(score, l, r, w, s) {
+      var weakest = [['Listening',l],['Reading',r],['Writing',w],['Speaking',s]].sort(function(a,b){return a[1]-b[1];});
+      var tips = {
+        'Listening': 'Focus on Note Completion and Multiple Choice. Practice with TED Talks and BBC podcasts daily.',
+        'Reading':   'Work on True/False/Not Given accuracy and improve reading speed with timed passage drills.',
+        'Writing':   'Study Task 2 band descriptors (Task Achievement, Coherence, Lexical Resource, Grammar). Practice essay planning.',
+        'Speaking':  'Record yourself on cue card topics daily. Use our 200+ cue card bank and work on discourse markers.'
+      };
+      var msg = 'Your weakest skill is ' + weakest[0][0] + ' (Band ' + weakest[0][1].toFixed(1) + '). ';
+      msg += tips[weakest[0][0]];
+      if (score < 6) msg += ' We recommend starting with Module 1 (Foundations) to build core exam strategies.';
+      else if (score < 7) msg += ' You are on track for Band 7. Maintain daily study of at least 90 minutes.';
+      else msg += ' Excellent level. Focus on consistency and exam technique to achieve Band 8+.';
+      return msg;
+    }
+
+    function showCalcResult() {
+      var l = parseFloat(document.getElementById('sl-listening').value);
+      var r = parseFloat(document.getElementById('sl-reading').value);
+      var w = parseFloat(document.getElementById('sl-writing').value);
+      var s = parseFloat(document.getElementById('sl-speaking').value);
+      var avg = (l + r + w + s) / 4;
+      var overall = roundBand(avg);
+      document.getElementById('result-overall').textContent = overall.toFixed(1);
+      document.getElementById('result-descriptor').textContent = bandDescriptor(overall);
+      document.getElementById('res-l').textContent = l.toFixed(1);
+      document.getElementById('res-r').textContent = r.toFixed(1);
+      document.getElementById('res-w').textContent = w.toFixed(1);
+      document.getElementById('res-s').textContent = s.toFixed(1);
+      document.getElementById('result-suggestion').textContent = bandSuggestion(overall, l, r, w, s);
+      var res = document.getElementById('calc-result');
+      res.classList.add('show');
+      res.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    /* ── FAQ ACCORDION ────────────────────────────── */
+    function toggleFaq(btn) {
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(el) {
+        el.classList.remove('open');
+        el.querySelector('.faq-btn').setAttribute('aria-expanded','false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    }
+
+    /* ── PRICING TOGGLE ───────────────────────────── */
+    function toggleBilling() {
+      var yearly = document.getElementById('billing-toggle').checked;
+      document.getElementById('std-price').textContent  = yearly ? '$65' : '$9';
+      document.getElementById('std-cycle').textContent  = yearly ? 'per year · billed annually (save 40%)' : 'per month · billed monthly';
+      document.getElementById('prem-price').textContent = yearly ? '$172' : '$24';
+      document.getElementById('prem-cycle').textContent = yearly ? 'per year · billed annually (save 40%)' : 'per month · billed monthly';
+    }
+
+    /* ── WORD OF THE DAY ROTATION ─────────────────── */
+    var words = [
+      { word:'Proliferate', type:'verb · /prəˈlɪfəreɪt/', def:'To increase rapidly in number or amount.', ex:'Mobile phone usage has <strong>proliferated</strong> across the developing world.' },
+      { word:'Mitigate', type:'verb · /ˈmɪtɪɡeɪt/', def:'To make less severe, serious, or painful.', ex:'Governments must take action to <strong>mitigate</strong> the effects of climate change.' },
+      { word:'Inherent', type:'adjective · /ɪnˈhɪərənt/', def:'Existing as a natural, permanent feature or quality of something.', ex:'There are risks <strong>inherent</strong> in every form of investment.' },
+      { word:'Ubiquitous', type:'adjective · /juːˈbɪkwɪtəs/', def:'Present, appearing, or found everywhere.', ex:'Smartphones have become <strong>ubiquitous</strong> in modern society.' },
+      { word:'Exacerbate', type:'verb · /ɪɡˈzæsəbeɪt/', def:'To make a problem, bad situation, or negative feeling worse.', ex:'The drought was <strong>exacerbated</strong> by years of deforestation.' }
+    ];
+    var wIdx = new Date().getDay() % words.length;
+    var w = words[wIdx];
+    document.getElementById('wotd-word').textContent = w.word;
+    document.getElementById('wotd-type').textContent = w.type;
+    document.getElementById('wotd-def').textContent  = w.def;
+    document.getElementById('wotd-example').innerHTML = w.ex;
+
+    /* ── SCROLL REVEAL ────────────────────────────── */
+    (function() {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { els.forEach(function(e){e.classList.add('in-view');}); return; }
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('in-view'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function(e){ io.observe(e); });
+    })();
+  </script>
 </body>
 </html>
