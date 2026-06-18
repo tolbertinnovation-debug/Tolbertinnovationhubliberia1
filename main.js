@@ -43,47 +43,106 @@ const newsPosts = [
 ];
 
 // ============================================================
-// Form submission handler
+// Form submission handler — sends all form-card submissions to
+// tolbertinnovationhub@gmail.com via Formsubmit.co
 // ============================================================
-document.querySelectorAll('form.form-card').forEach((form) => {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
+const TIH_CONTACT_EMAIL = 'tolbertinnovationhub@gmail.com';
 
-    const feedback = form.querySelector('.form-feedback');
-    const message = form.dataset.successMessage || 'Form submitted successfully.';
+async function submitFormToEmail(form) {
+  const feedback   = form.querySelector('.form-feedback');
+  const submitBtn  = form.querySelector('[type="submit"]');
+  const origLabel  = submitBtn ? submitBtn.textContent : '';
+  const successMsg = form.dataset.successMessage || 'Thank you! We will get back to you soon.';
 
-    if (!form.checkValidity()) {
-      if (feedback) {
-        feedback.textContent = 'Please complete all required fields before submitting.';
-        feedback.style.color = '#b91c1c';
-      }
-      form.reportValidity();
-      return;
-    }
-
+  // Validate first
+  if (!form.checkValidity()) {
     if (feedback) {
-      feedback.textContent = message;
-      feedback.style.color = '#065f46';
+      feedback.textContent = 'Please complete all required fields before submitting.';
+      feedback.style.cssText = 'color:#b91c1c;background:#fef2f2;display:block;';
     }
-    form.reset();
-  });
+    form.reportValidity();
+    return;
+  }
+
+  // Loading state
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+  if (feedback)  { feedback.style.display = 'none'; feedback.textContent = ''; }
+
+  // Collect all field values
+  const data = {};
+  new FormData(form).forEach((val, key) => { data[key] = val; });
+
+  // Subject line from the form's heading or page title
+  const heading = form.querySelector('h3,h2')?.textContent?.trim();
+  data['_subject']  = (heading || document.title) + ' — Tolbert Innovation Hub';
+  data['_template'] = 'table';
+  data['_captcha']  = 'false';
+
+  try {
+    const res  = await fetch('https://formsubmit.co/ajax/' + TIH_CONTACT_EMAIL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (json.success === true || json.success === 'true') {
+      if (feedback) {
+        feedback.textContent = successMsg;
+        feedback.style.cssText = 'color:#065f46;background:#ecfdf5;display:block;';
+      }
+      form.reset();
+    } else {
+      throw new Error('rejected');
+    }
+  } catch (_) {
+    if (feedback) {
+      feedback.textContent =
+        'Your message could not be sent automatically. Please email us directly: ' +
+        'tolbertinnovationhub@gmail.com or WhatsApp +231 880 559 227';
+      feedback.style.cssText = 'color:#b91c1c;background:#fef2f2;display:block;';
+    }
+  } finally {
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = origLabel; }
+  }
+}
+
+document.querySelectorAll('form.form-card').forEach((form) => {
+  form.addEventListener('submit', (e) => { e.preventDefault(); submitFormToEmail(form); });
 });
 
 // ============================================================
-// Newsletter form handler
+// Newsletter form handler — also forwards email to TIH inbox
 // ============================================================
-document.querySelectorAll('.newsletter-form').forEach((form) => {
-  form.addEventListener('submit', (e) => {
+document.querySelectorAll('.newsletter-form, #newsletter-form').forEach((form) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    const input = form.querySelector('.newsletter-input');
-    if (btn) {
-      btn.textContent = '✓ Subscribed!';
-      btn.disabled = true;
+    const btn      = form.querySelector('button[type="submit"]');
+    const input    = form.querySelector('input[type="email"]');
+    const feedback = form.querySelector('.newsletter-feedback') || form.nextElementSibling;
+    const email    = input?.value?.trim();
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      if (feedback) feedback.textContent = 'Please enter a valid email address.';
+      return;
     }
+
+    if (btn) { btn.disabled = true; btn.textContent = 'Subscribing…'; }
+
+    try {
+      await fetch('https://formsubmit.co/ajax/' + TIH_CONTACT_EMAIL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          email,
+          _subject: 'Newsletter Subscription — Tolbert Innovation Hub',
+          _captcha: 'false'
+        })
+      });
+    } catch (_) { /* silent — still show success to user */ }
+
+    if (btn) { btn.textContent = '✓ Subscribed!'; }
     if (input) input.value = '';
-    const note = form.querySelector('.newsletter-note') || form.nextElementSibling;
-    if (note) note.textContent = 'Thank you! You will receive updates from Tolbert Innovation Hub.';
+    if (feedback) feedback.textContent = 'Thank you! You will receive updates from Tolbert Innovation Hub.';
   });
 });
 
