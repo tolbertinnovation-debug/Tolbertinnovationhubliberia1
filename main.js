@@ -429,6 +429,39 @@ function initNav() {
 }
 
 // ============================================================
+// Back-to-top button
+// ============================================================
+function initBackToTop() {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.id = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.textContent = '↑';
+  btn.style.cssText = [
+    'position:fixed', 'bottom:5.5rem', 'right:1.5rem', 'z-index:800',
+    'width:44px', 'height:44px', 'border-radius:50%',
+    'background:#002868', 'color:#fff', 'border:none',
+    'font-size:1.25rem', 'font-weight:700', 'cursor:pointer',
+    'box-shadow:0 4px 14px rgba(0,0,0,0.25)',
+    'transition:opacity 0.25s,transform 0.25s,background 0.2s',
+    'opacity:0', 'pointer-events:none', 'transform:translateY(8px)',
+    'display:flex', 'align-items:center', 'justify-content:center',
+  ].join(';');
+  document.body.appendChild(btn);
+
+  const toggle = () => {
+    const show = window.scrollY > 400;
+    btn.style.opacity = show ? '1' : '0';
+    btn.style.pointerEvents = show ? 'auto' : 'none';
+    btn.style.transform = show ? 'translateY(0)' : 'translateY(8px)';
+  };
+  window.addEventListener('scroll', toggle, { passive: true });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  btn.addEventListener('mouseenter', () => { btn.style.background = '#BF0A30'; });
+  btn.addEventListener('mouseleave', () => { btn.style.background = '#002868'; });
+}
+
+// ============================================================
 // Init
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -439,4 +472,5 @@ document.addEventListener('DOMContentLoaded', () => {
   injectFooterFeaturedNews();
   initCounters();
   initReveal();
+  initBackToTop();
 });
