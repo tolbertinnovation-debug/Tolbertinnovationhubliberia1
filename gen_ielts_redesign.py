@@ -192,7 +192,7 @@ def css(mc, mc_dark, mc_light):
     /* ── DARK MODE ── */
     @media(prefers-color-scheme:dark){{
       body{{background:#0f172a;color:#e2e8f0;}}
-      .card{{background:#1e293b;border-color:#334155;}}
+      .card,.u-mb-1.card{{background:#1e293b;border-color:#334155;}}
       .card h1,.card h2,.card h4{{color:#f1f5f9;}}
       .card h2{{border-bottom-color:{mc};}}
       .card h3{{color:{mc_light};}}
