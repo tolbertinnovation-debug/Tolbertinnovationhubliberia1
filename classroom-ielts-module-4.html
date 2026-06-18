@@ -1,38 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>IELTS Module 4 | Writing (Task 1 & Task 2)</title>
-  <link rel="stylesheet" href="classroom.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IELTS Module 4 — Writing | Tolbert Classroom</title>
+  <meta name="description" content="Master task response, organization, and language range for IELTS Writing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root{--mc:#d97706;--mc-dark:#b45309;--mc-light:#fffbeb;}
+    *,*::before,*::after{box-sizing:border-box;}
+    body{font-family:'Inter','Helvetica Neue',Arial,sans-serif;color:#0f172a;background:#f8fafc;line-height:1.65;margin:0;}
+    .skip-link{position:absolute;left:-9999px;top:1rem;background:#002868;color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:999;text-decoration:none;}
+    .skip-link:focus{left:1rem;}
+    .container{max-width:1200px;margin:0 auto;padding:0 1.25rem;}
+    /* ── NAV ── */
+    .site-header{background:#0f172a;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:900;}
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.25rem;gap:1rem;}
+    .brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;}
+    .brand img{width:36px;height:36px;border-radius:8px;object-fit:cover;}
+    .brand span{font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:#fff;white-space:nowrap;}
+    .nav-links{display:flex;align-items:center;gap:.15rem;flex-wrap:wrap;}
+    .nav-links a{color:rgba(255,255,255,.72);text-decoration:none;font-size:.84rem;font-weight:500;padding:.38rem .75rem;border-radius:8px;transition:all .18s;}
+    .nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.1);}
+    /* ── HERO ── */
+    .mod-hero{background:linear-gradient(135deg,#001435 0%,#b45309 50%,#d97706 100%);padding:clamp(3.5rem,7vw,6rem) 0 clamp(2.5rem,5vw,4.5rem);position:relative;overflow:hidden;color:#fff;}
+    .mod-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.06) 0%,transparent 60%);pointer-events:none;}
+    .mod-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+    .mod-hero-inner{position:relative;z-index:2;}
+    .mod-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);padding:.35rem 1rem;border-radius:100px;font-size:.74rem;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.07em;text-transform:uppercase;margin-bottom:1.3rem;}
+    .mod-hero h1{font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(1.9rem,4.2vw,3.2rem);line-height:1.1;color:#fff;margin:0 0 .9rem;}
+    .mod-hero-lead{font-size:clamp(.9rem,1.5vw,1.05rem);color:rgba(255,255,255,.78);max-width:60ch;margin-bottom:1.5rem;line-height:1.75;}
+    .mod-chips{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.5rem;}
+    .mod-chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);padding:.35rem .85rem;border-radius:10px;font-size:.76rem;font-weight:600;color:rgba(255,255,255,.88);}
+    .mod-hero-prog{background:rgba(255,255,255,.2);border-radius:100px;height:6px;width:min(380px,100%);overflow:hidden;margin-top:1.2rem;}
+    .mod-hero-prog-fill{height:100%;background:#fff;border-radius:100px;}
+    .mod-prog-label{font-size:.76rem;color:rgba(255,255,255,.6);margin-top:.45rem;}
+    /* ── MAIN CONTENT ── */
+    .mod-main{padding:2.5rem 0 4rem;}
+    /* Override .card for module pages */
+    .card,.u-mb-1.card{background:#fff;border-radius:16px;padding:1.85rem 2rem;box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04);margin-bottom:1.5rem;border:1px solid #f1f5f9;}
+    .card h1.page-title{font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);color:#0f172a;margin-bottom:.75rem;}
+    .card h2{font-family:'Poppins',sans-serif;font-weight:700;color:#0f172a;font-size:1.25rem;margin:0 0 1rem;padding-bottom:.6rem;border-bottom:2px solid #d97706;display:block;}
+    .card h3{font-family:'Poppins',sans-serif;font-weight:600;color:#1e293b;font-size:1rem;margin:1.1rem 0 .45rem;}
+    .card h4{font-weight:600;color:#334155;font-size:.92rem;margin:.85rem 0 .35rem;}
+    .card p,.section-lead{color:#475569;line-height:1.75;margin-bottom:.8rem;}
+    .card a{color:#d97706;text-decoration:none;font-weight:500;}
+    .card a:hover{text-decoration:underline;}
+    /* ── RESOURCE LIST ── */
+    .resource-list{list-style:none;padding:0;margin:.4rem 0 .8rem;}
+    .resource-list li{padding:.28rem 0 .28rem 1.2rem;position:relative;color:#475569;line-height:1.65;}
+    .resource-list li::before{content:'•';position:absolute;left:0;color:#d97706;font-weight:700;}
+    /* ── VIDEO ── */
+    .video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#f1f5f9;margin:.9rem 0 1.1rem;}
+    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px;}
+    /* ── QUIZ ── */
+    .quiz-item{border:1px solid #e2e8f0;border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:.9rem;background:#fdfdfd;}
+    .quiz-item legend{font-weight:700;color:#1e293b;font-size:.92rem;line-height:1.4;padding:0 .35rem;}
+    .quiz-option{margin-top:.65rem;}
+    .quiz-option label{display:flex;align-items:center;gap:.7rem;border:1.5px solid #e2e8f0;border-radius:9px;padding:.6rem .9rem;cursor:pointer;transition:all .15s;font-size:.88rem;color:#475569;font-weight:500;}
+    .quiz-option label:hover{border-color:#d97706;background:#fffbeb;color:#1e293b;}
+    .quiz-option input[type=radio]{width:15px;height:15px;accent-color:#d97706;flex-shrink:0;cursor:pointer;}
+    /* Module 2 quiz style (label wrapping input) */
+    .form-stack fieldset.quiz-item>label{display:flex;align-items:center;gap:.7rem;border:1.5px solid #e2e8f0;border-radius:9px;padding:.6rem .9rem;cursor:pointer;transition:all .15s;font-size:.88rem;color:#475569;font-weight:500;margin-top:.55rem;}
+    .form-stack fieldset.quiz-item>label:hover{border-color:#d97706;background:#fffbeb;color:#1e293b;}
+    .form-stack fieldset.quiz-item>label input[type=radio]{width:15px;height:15px;accent-color:#d97706;flex-shrink:0;}
+    /* ── CHECKLIST ── */
+    [data-module-checklist] label{display:flex;align-items:center;gap:.65rem;border:1.5px solid #e2e8f0;border-radius:9px;padding:.6rem .9rem;cursor:pointer;margin-bottom:.45rem;font-size:.88rem;color:#475569;transition:all .15s;}
+    [data-module-checklist] label:hover{border-color:#d97706;background:#fffbeb;}
+    [data-module-checklist] input[type=checkbox]{width:15px;height:15px;accent-color:#d97706;flex-shrink:0;}
+    /* ── PROGRESS ── */
+    .progress-wrap{margin:.65rem 0;}
+    .progress-bar{background:#e2e8f0;border-radius:100px;height:8px;overflow:hidden;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,#b45309,#d97706);border-radius:100px;transition:width .4s;}
+    .progress-label{font-size:.78rem;color:#64748b;margin-top:.38rem;}
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;gap:.45rem;font-family:'Inter',sans-serif;font-weight:600;font-size:.88rem;padding:.68rem 1.5rem;border-radius:100px;text-decoration:none;cursor:pointer;border:none;transition:all .18s;line-height:1.3;}
+    .btn-primary{background:#d97706;color:#fff;}
+    .btn-primary:hover{filter:brightness(1.12);transform:translateY(-1px);}
+    .btn-secondary{background:#0f172a;color:#fff;}
+    .btn-secondary:hover{background:#1e293b;transform:translateY(-1px);}
+    .btn-outline,.btn-outline-inline{background:transparent;border:1.5px solid #e2e8f0;color:#64748b;padding:.65rem 1.4rem;border-radius:100px;font-size:.875rem;font-weight:600;text-decoration:none;transition:all .18s;display:inline-flex;align-items:center;cursor:pointer;}
+    .btn-outline:hover,.btn-outline-inline:hover{border-color:#d97706;color:#d97706;background:#fffbeb;}
+    .lesson-toolbar,.module-pagination{display:flex;flex-wrap:wrap;gap:.65rem;align-items:center;margin:.75rem 0;}
+    .module-pagination{padding:1.4rem 0;border-top:1px solid #e2e8f0;margin-top:.75rem;}
+    /* ── FEEDBACK / FORM ── */
+    .form-feedback{font-size:.86rem;font-weight:600;padding:.6rem .9rem;border-radius:8px;margin-top:.5rem;min-height:1.2em;}
+    .form-feedback:not(:empty){background:#eff6ff;color:#1d4ed8;}
+    .form-stack{display:flex;flex-direction:column;gap:.7rem;}
+    .form-stack>label:not(.quiz-item label){display:flex;flex-direction:column;gap:.3rem;font-weight:600;color:#334155;font-size:.88rem;}
+    .form-stack input,.form-stack select,.form-stack textarea{padding:.6rem .85rem;border:1.5px solid #e2e8f0;border-radius:8px;font-family:'Inter',sans-serif;font-size:.88rem;color:#0f172a;background:#fff;transition:border-color .15s;width:100%;}
+    .form-stack input:focus,.form-stack select:focus,.form-stack textarea:focus{border-color:#d97706;outline:none;box-shadow:0 0 0 3px #fffbeb;}
+    /* ── DETAILS/ANSWER ── */
+    details{border:1px solid #e2e8f0;border-radius:10px;padding:.7rem .95rem;margin:.65rem 0;}
+    details summary{font-weight:600;cursor:pointer;color:#d97706;font-size:.9rem;}
+    details[open] summary{margin-bottom:.55rem;}
+    .answer-key{background:#f0fdf4;border-color:#86efac;}
+    .answer-key summary{color:#16a34a;}
+    /* ── TABLE ── */
+    table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.88rem;}
+    th,td{border:1px solid #e2e8f0;padding:.55rem .8rem;text-align:left;}
+    th{background:#f8fafc;font-weight:600;color:#334155;}
+    td{color:#475569;}
+    /* ── GRID ── */
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem;}
+    .do-dont-box{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin:.75rem 0;}
+    .question-type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem;margin-top:.65rem;}
+    .question-type-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;padding:1rem;}
+    .question-type-card h3{font-size:.88rem;font-weight:700;margin-bottom:.35rem;color:#1e293b;}
+    .question-type-card p{font-size:.82rem;color:#64748b;margin:0;}
+    .score-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.65rem;}
+    .score-grid div{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:.55rem .8rem;font-size:.86rem;color:#475569;}
+    /* ── BADGE ── */
+    .badge{display:inline-block;background:#fffbeb;color:#d97706;border:1px solid color-mix(in srgb,#d97706 30%,transparent);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.22rem .7rem;border-radius:100px;margin-bottom:.75rem;}
+    /* ── CERT FORM ── */
+    .cert-form{display:grid;gap:1rem;margin-top:1rem;}
+    .cert-form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    @media(max-width:600px){.cert-form-row{grid-template-columns:1fr;}}
+    .cert-form label{display:grid;gap:.3rem;font-weight:600;color:#334155;font-size:.88rem;}
+    .cert-form label.full{grid-column:1/-1;}
+    .cert-form input,.cert-form select,.cert-form textarea{padding:.6rem .85rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.88rem;color:#0f172a;background:#fff;border-transition:border-color .15s;width:100%;font-family:'Inter',sans-serif;}
+    .cert-form input:focus,.cert-form select:focus,.cert-form textarea:focus{border-color:#d97706;outline:none;box-shadow:0 0 0 3px #fffbeb;}
+    .cert-form-actions{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin-top:.5rem;}
+    .cert-form-feedback{font-size:.88rem;font-weight:600;padding:.7rem 1rem;border-radius:8px;display:none;}
+    .cert-form-feedback.success{background:#e6f7f0;color:#0b7444;display:block;}
+    .cert-form-feedback.error{background:#fde8ec;color:#9f2431;display:block;}
+    .resource-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin-top:.75rem;}
+    .resource-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;padding:1rem;}
+    .resource-card h3{font-size:.9rem;font-weight:700;color:#1e293b;margin-bottom:.35rem;}
+    .resource-card p{font-size:.83rem;color:#64748b;margin:0;}
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float{position:fixed;bottom:1.75rem;right:1.75rem;background:#25D366;color:#fff;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.45);z-index:800;transition:transform .2s;text-decoration:none;}
+    .wa-float:hover{transform:scale(1.1);}
+    /* ── FOOTER ── */
+    .site-footer{background:#0f172a;color:rgba(255,255,255,.65);padding:2.5rem 0 1.5rem;margin-top:2rem;}
+    .footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem;}
+    .footer-grid p{font-size:.84rem;margin-bottom:.28rem;}
+    .footer-grid a{color:rgba(255,255,255,.6);text-decoration:none;transition:color .15s;}
+    .footer-grid a:hover{color:#fff;}
+    .copyright-note{font-size:.76rem;color:rgba(255,255,255,.32);text-align:center;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);}
+    /* ── SKILL HUB CARDS ── */
+    .skill-hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.3rem;margin-top:1rem;}
+    .skill-hub-card{background:#fff;border:1px solid #f1f5f9;border-radius:16px;padding:1.6rem;box-shadow:0 1px 3px rgba(0,0,0,.05),0 4px 12px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s;}
+    .skill-hub-card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(0,40,104,.1);}
+    .skill-hub-card h3{font-family:'Poppins',sans-serif;font-weight:700;font-size:1.1rem;color:#0f172a;margin-bottom:.5rem;}
+    .skill-hub-card p{font-size:.86rem;color:#64748b;margin-bottom:1rem;line-height:1.65;}
+    /* ── AUDIO ── */
+    .audio-playback{width:100%;margin:.75rem 0;border-radius:8px;}
+    /* ── MISC ── */
+    .u-mt-1{margin-top:1rem;}
+    .u-mt-06{margin-top:.6rem;}
+    .u-mt-075{margin-top:.75rem;}
+    .u-mt-08{margin-top:.8rem;}
+    .u-w-0{width:0%;}
+    .u-w-16{width:16%;}
+    .u-w-33{width:33%;}
+    .u-w-50{width:50%;}
+    .u-w-66{width:66%;}
+    .u-w-75{width:75%;}
+    .u-w-83{width:83%;}
+    .u-w-100{width:100%;}
+    .score-goal-card,.score-grid div{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:.55rem .8rem;}
+    .timer-display{font-family:'Poppins',sans-serif;font-size:2.5rem;font-weight:900;color:#d97706;margin:.5rem 0;}
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px){
+      .nav-wrap{flex-wrap:wrap;}
+      .card{padding:1.4rem 1.1rem;}
+      .footer-grid{grid-template-columns:1fr;}
+      .module-pagination,.lesson-toolbar{flex-direction:column;align-items:flex-start;}
+      .do-dont-box{grid-template-columns:1fr;}
+    }
+    /* ── DARK MODE ── */
+    @media(prefers-color-scheme:dark){
+      body{background:#0f172a;color:#e2e8f0;}
+      .card{background:#1e293b;border-color:#334155;}
+      .card h1,.card h2,.card h3,.card h4{color:#f1f5f9;}
+      .card p,.resource-list li,.card strong{color:#94a3b8;}
+      .card strong{color:#e2e8f0;}
+      .quiz-item{background:#1e293b;border-color:#334155;}
+      .quiz-item legend{color:#f1f5f9;}
+      .quiz-option label,.form-stack fieldset.quiz-item>label{border-color:#334155;color:#94a3b8;}
+      .quiz-option label:hover,.form-stack fieldset.quiz-item>label:hover{background:rgba(37,99,235,.12);border-color:#d97706;}
+      [data-module-checklist] label{border-color:#334155;color:#94a3b8;}
+      th{background:#1e293b;color:#e2e8f0;border-color:#334155;}
+      td{color:#94a3b8;border-color:#334155;}
+      .question-type-card,.resource-card,.skill-hub-card,.score-grid div{background:#1e293b;border-color:#334155;}
+      .question-type-card h3,.resource-card h3,.skill-hub-card h3{color:#f1f5f9;}
+      .form-stack input,.form-stack select,.form-stack textarea,.cert-form input,.cert-form select,.cert-form textarea{background:#1e293b;border-color:#334155;color:#e2e8f0;}
+      details{border-color:#334155;}
+    }
+  </style>
 </head>
 <body data-ielts-module-page data-module-id="4" data-total-modules="6">
   <a class="skip-link" href="#main-content">Skip to main content</a>
 <header class="site-header">
   <div class="container nav-wrap">
-    <a class="brand" href="classroom.html"><img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="Tolbert logo"/><span>Tolbert Classroom</span></a>
+    <a class="brand" href="classroom-ielts.html"><img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="Tolbert logo"/><span>Tolbert Classroom</span></a>
     <nav class="nav-links" aria-label="Classroom navigation">
       <a href="classroom.html">Classroom</a>
       <a href="classroom-ielts.html">IELTS Path</a>
       <a href="classroom-dashboard.html">Dashboard</a>
+      <a href="classroom-resource-center.html">Resources</a>
     </nav>
   </div>
 </header>
-
-<main id="main-content" class="section">
+<section class="mod-hero">
   <div class="container">
-    <article class="card u-mb-1">
-      <p class="badge">IELTS Module 4 of 6</p>
-      <h1 class="page-title">Module 4: Writing (Task 1 & Task 2)</h1>
-      <p class="section-lead">Master task response, organization, and language range.</p>
-      <div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" id="module-progress-fill" class="u-w-66"></div></div><p class="progress-label" id="module-progress-label">Module 4 of 6</p></div>
-    </article>
-
+    <div class="mod-hero-inner">
+      <div class="mod-eyebrow">IELTS Module 4 of 6</div>
+      <h1>Module 4: Writing (Task 1 & Task 2)</h1>
+      <p class="mod-hero-lead">Master task response, organization, and language range.</p>
+      <div class="mod-chips"><span class="mod-chip">✍ Writing</span><span class="mod-chip">⏱ 90–120 min</span><span class="mod-chip">📝 15 Quiz Questions</span><span class="mod-chip">🎯 Module 4/6</span></div>
+      <div class="mod-hero-prog"><div class="mod-hero-prog-fill" id="module-progress-fill" style="width:66%"></div></div>
+      <p class="mod-prog-label" id="module-progress-label">Module 4 of 6</p>
+    </div>
+  </div>
+</section>
+<main id="main-content" class="mod-main">
+  <div class="container">
     <article class="card u-mb-1">
       <h2>Module Objectives</h2>
       <ul class="resource-list"><li>Differentiate Task 1 vs Task 2 requirements.</li><li>Use strong paragraph structure and cohesion.</li><li>Apply band descriptors for self-checking.</li></ul>
     </article>
-
     <article class="card u-mb-1">
       <h2>Module 4 Quick Start</h2>
       <ul class="resource-list">
@@ -42,246 +233,49 @@
         <li><strong>Use evidence:</strong> In Task 1 report key trends only; in Task 2 support claims with examples.</li>
       </ul>
     </article>
-
     <article class="card u-mb-1">
-      <h2>Article / Lesson Notes</h2>
+      <h2>Writing Task Guide</h2>
+      <h3>Task 1</h3>
+      <p>Write an introduction, overview, and two detail paragraphs with comparisons. Summarize the main trend from the visual data — do not add opinions.</p>
       <ul class="resource-list">
-        <li><strong>Task 1:</strong> Write an introduction, overview, and two detail paragraphs with comparisons.</li>
-        <li><strong>Task 2:</strong> State a clear position, develop two focused body paragraphs, and conclude logically.</li>
-        <li><strong>Paragraph control:</strong> Keep one main idea per paragraph with direct supporting examples.</li>
-        <li><strong>Language control:</strong> Use accurate grammar and natural linking devices without over-repetition.</li>
+        <li><strong>Pattern 1:</strong> Paraphrase + Overview — "The chart demonstrates… The data compares…"</li>
+        <li><strong>Pattern 2:</strong> Paraphrase + Context + Overview — "The diagram illustrates… Between X and Y…"</li>
       </ul>
-    </article>
-
-    <article class="card u-mb-1">
-      <h2>📄 Complete Guide: IELTS Academic Writing Task 1 Introductions (Band 9 Tips)</h2>
-      <p>Writing a strong introduction in IELTS Academic Writing Task 1 is one of the first steps to achieving a high score. The introduction sets the tone for your entire response — and if you start well, you’re already on your way to a Band 9. This lesson breaks down what makes a great introduction, common patterns you can use, and proven strategies to impress examiners.</p>
-
-      <h3>🎯 What Is Writing Task 1?</h3>
-      <p>In IELTS Academic Writing Task 1, you are given a graph, chart, table, map, or process diagram and asked to summarize the information in your own words. The goal is to:</p>
-      <ul class="resource-list">
-        <li>Present an overview of the data</li>
-        <li>Highlight important trends</li>
-        <li>Report key details accurately — all within 150 words and 20 minutes.</li>
-      </ul>
-
-      <h3>🧠 Why the Introduction Matters</h3>
-      <p>The introduction is your first chance to show the examiner that you:</p>
-      <ul class="resource-list">
-        <li>Understand the visual information</li>
-        <li>Can paraphrase accurately</li>
-        <li>Can write clear and fluent English</li>
-      </ul>
-
-      <h3>✍️ What an Effective Introduction Contains</h3>
-      <p>A Band 9 introduction should:</p>
-      <ul class="resource-list">
-        <li><strong>Paraphrase the question</strong> — rewrite the prompt using different words and structures without changing the meaning.</li>
-        <li><strong>Include all necessary information</strong> — what the chart shows, where the data is from, and the time frame (if given).</li>
-      </ul>
-
-      <h3>🧩 Common Introduction Patterns</h3>
-      <ul class="resource-list">
-        <li><strong>Pattern 1:</strong> Paraphrase + Overview — e.g. “The chart demonstrates… The data compares… Over the period shown…”</li>
-        <li><strong>Pattern 2:</strong> Paraphrase + Context + Overview — e.g. “The diagram illustrates… This represents… Between X and Y…”</li>
-      </ul>
-
-      <h3>🧠 Examples of Strong Introductions</h3>
-      <p><strong>Line Graph:</strong> “The line chart illustrates how internet usage in homes changed across five nations between 1998 and 2018.”</p>
-      <p><strong>Bar Chart:</strong> “The data highlights the tourist visits to four different areas in the year 2019.”</p>
-
-      <h3>🔎 Key Tips to Score Higher</h3>
-      <ul class="resource-list">
-        <li>Use a wide range of vocabulary — avoid repeating words from the prompt.</li>
-        <li>Avoid adding your opinion — Task 1 is factual, not argumentative.</li>
-        <li>Keep it concise and accurate — 2–3 short clear sentences.</li>
-        <li>Practice with real visuals from official IELTS materials.</li>
-      </ul>
-
-      <h3>📊 Benefits of a Great Introduction</h3>
-      <ul class="resource-list">
-        <li>Helps you organize your writing</li>
-        <li>Sets up your overall structure</li>
-        <li>Earns higher scores in Task Achievement and Coherence</li>
-      </ul>
-
-      <p>Use the patterns above repeatedly in practice until you can write them quickly on test day.</p>
-
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/1IVFRWCpNxE?si=Db8VAlf_TDdee9Og" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-    </article>
-
-    <article class="card u-mb-1">
-      <h2>Video Lesson</h2>
-      <p>Watch the playlist starter and recommended lessons for this module.</p>
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/1PfIr5trddo?si=H4ciSEdhkVD97waL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
+      <div class="video-wrap"><iframe src="https://www.youtube.com/embed/1IVFRWCpNxE?si=Db8VAlf_TDdee9Og" title="IELTS Writing Task 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      <h3>Task 2</h3>
+      <p>State a clear position, develop two focused body paragraphs, and conclude logically. Each body paragraph: topic sentence + explanation + example + link back.</p>
+      <div class="video-wrap"><iframe src="https://www.youtube.com/embed/1PfIr5trddo?si=H4ciSEdhkVD97waL" title="IELTS Writing Task 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
       <ul class="resource-list">
         <li><a href="classroom-video-lessons.html" target="_blank" rel="noopener noreferrer">Open full video lessons library</a></li>
-        <li><a href="https://ieltsliz.com/" target="_blank" rel="noopener noreferrer">IELTS Liz video guidance</a></li>
-        <li><a href="https://www.e2language.com/" target="_blank" rel="noopener noreferrer">E2 IELTS lesson recommendations</a></li>
+        <li><a href="https://ieltsliz.com/" target="_blank" rel="noopener noreferrer">IELTS Liz Writing guidance</a></li>
       </ul>
     </article>
-
     <article class="card u-mb-1">
-      <h2>Video Lessons</h2>
-      <p>🎥 IELTS Writing Masterclass – Essential Video Lessons</p>
-      <p>To help students achieve higher band scores in IELTS Writing, we have carefully selected expert video lessons that explain key strategies, common mistakes, and high-scoring techniques. These lessons are designed to strengthen your understanding of Writing Task 1 and Writing Task 2 step-by-step.</p>
-
-      <h3>📘 Video 1: IELTS Writing Task Strategy &amp; Structure</h3>
-      <p>This lesson focuses on understanding the correct structure for IELTS Writing tasks. Many students lose marks because they do not organize their ideas clearly. In this video, you will learn:</p>
-      <ul class="resource-list">
-        <li>How to structure your introduction properly</li>
-        <li>How to develop strong body paragraphs</li>
-        <li>How to write clear and logical conclusions</li>
-        <li>How examiners assess your writing</li>
-      </ul>
-
-      <h3>📊 Video 2: Common Writing Mistakes &amp; How to Avoid Them</h3>
-      <p>This lesson explains the most frequent mistakes IELTS students make in Writing.</p>
-      <ul class="resource-list">
-        <li>Why memorized essays reduce your score</li>
-        <li>How to avoid repeating vocabulary</li>
-        <li>Common grammar errors that lower band scores</li>
-        <li>How to improve Task Response</li>
-        <li>What examiners look for in high-band answers</li>
-      </ul>
-
-      <h3>✍️ Video 3: Advanced Writing Techniques for Higher Bands</h3>
-      <p>This lesson focuses on improving your writing to reach Band 7, 8, or even 9. You will discover:</p>
-      <ul class="resource-list">
-        <li>How to expand ideas effectively</li>
-        <li>How to use linking words naturally</li>
-        <li>How to demonstrate strong vocabulary range</li>
-        <li>How to write complex sentences accurately</li>
-        <li>How to present balanced arguments</li>
-      </ul>
-
-      <h3>📌 How to Use These Lessons Effectively</h3>
-      <ul class="resource-list">
-        <li>Watch each video carefully and take notes.</li>
-        <li>Practice writing using the techniques taught.</li>
-        <li>Compare your writing with model answers and rewrite weak paragraphs.</li>
-      </ul>
-
-      <h3>🎯 Recommended Study Plan</h3>
-      <p><strong>Week 1:</strong> Focus on structure and essay organization.<br/>
-      <strong>Week 2:</strong> Practice avoiding common mistakes.<br/>
-      <strong>Week 3:</strong> Apply advanced techniques in timed practice essays.</p>
-
-      <p>Repeat this cycle until you feel confident writing full essays within 40 minutes.</p>
-
-    </article>
-
-    <article class="card u-mb-1">
-      <h2>Practice</h2>
-      <ul class="resource-list">
-        <li>Write one full Task 1 response (minimum 150 words) using clear overview and comparisons.</li>
-        <li>Write one full Task 2 essay (minimum 250 words) with position, reasons, and examples.</li>
-        <li>Self-score both tasks using band criteria (task response, coherence, lexical resource, grammar).</li>
-        <li>Revise one weak paragraph and highlight exactly what you improved.</li>
-      </ul>
-    </article>
-
-    <article class="card u-mb-1">
-      <h2>IELTS Writing Task 2: How Long Should Your Paragraphs Be?</h2>
-      <p>One of the most common concerns for IELTS Writing Task 2 students is paragraph structure — especially how long each paragraph should be. Striking the right balance helps improve clarity, organization, and overall band score.</p>
-
-      <p>This guide breaks down the ideal paragraph lengths for IELTS Writing Task 2 essays and explains how to structure your writing for academic success.</p>
-
-      <h3>🧠 What Is IELTS Writing Task 2?</h3>
-      <p>In Writing Task 2, you are asked to write a formal essay in response to a question or statement. You must present a clear position, support your ideas with examples, write at least 250 words, and complete it within 40 minutes. Understanding paragraph length and structure helps you write more effectively and improves coherence and cohesion.</p>
-
-      <h3>📌 Typical Essay Structure</h3>
-      <p>A strong Task 2 essay normally has four main parts:</p>
-      <ul class="resource-list">
-        <li>Introduction</li>
-        <li>Body Paragraph 1</li>
-        <li>Body Paragraph 2</li>
-        <li>Conclusion</li>
-      </ul>
-
-      <h3>✍️ Paragraph Length Guidelines</h3>
-      <h4>Introduction</h4>
-      <p>Your introduction should be short and clear — normally 2–4 sentences. It should paraphrase the question, state your main position (if required), and briefly outline your essay. Recommended length: 30–50 words.</p>
-
-      <h4>Body Paragraphs</h4>
-      <p>Body paragraphs are the heart of your essay. Each should contain one main idea, explanation, and example. Recommended length: 80–120 words per body paragraph. This gives enough space to introduce, explain, and support the point.</p>
-
-      <h4>Conclusion</h4>
-      <p>Your conclusion should restate your position and summarize key points without adding new ideas. Recommended length: 30–60 words.</p>
-
-      <h3>🧠 Why Paragraph Length Matters</h3>
-      <p>Paragraphs that are too short may be underdeveloped and hurt your Task Response score. Paragraphs that are too long can lose focus and reduce clarity. Balanced paragraph length helps present ideas clearly and logically.</p>
-
-      <h3>🪄 Tips for Strong Paragraphs</h3>
-      <ul class="resource-list">
-        <li>Stay on topic: each paragraph should focus on one clear idea</li>
-        <li>Use linking words (furthermore, however) to improve cohesion</li>
-        <li>Avoid irrelevant details and keep sentences clear</li>
-        <li>Use examples that directly support your point</li>
-      </ul>
-
-      <h3>📊 Visual Breakdown (Example)</h3>
-      <table>
-        <tr><th>Paragraph</th><th>Approx. Words</th></tr>
-        <tr><td>Introduction</td><td>30–50</td></tr>
-        <tr><td>Body Paragraph 1</td><td>80–120</td></tr>
-        <tr><td>Body Paragraph 2</td><td>80–120</td></tr>
-        <tr><td>Conclusion</td><td>30–60</td></tr>
-      </table>
-
-      <p>Final advice: keep paragraphs focused, fully develop ideas in the body, and practice timed essays regularly.</p>
-
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/y9Gn6aVRqaI?si=SwiOOKkaBRqkkaha" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-
-    </article>
-
-    <article class="card u-mb-1">
-      <h2>Additional Video Lessons</h2>
-      <p>Further explanations and worked examples for Task 1 and Task 2.</p>
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/qjZNw5VDypM?si=5l4-xASsdJRn-KTG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="video-wrap u-mt-08">
-        <iframe src="https://www.youtube.com/embed/CD2V12xstBc?si=-LFuV_8QT_MIwoYW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="video-wrap u-mt-08">
-        <iframe src="https://www.youtube.com/embed/uGOSXlQUTT4?si=YTrsbiuzl6ihex27" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-
-    </article>
-
-    <article class="card u-mb-1">
-      <h2>Mini Quiz (Instant Feedback)</h2>
+      <h2>Interactive Quiz</h2>
       <form class="form-stack" data-ielts-quiz data-module-id="4">
         <fieldset class="quiz-item" data-explanation="Task 2 requires a clear position supported by reasons and examples.">
           <legend>1) Task 2 requires...</legend>
-          <div class="quiz-option"><input id="m4q1a" type="radio" name="q1" value="a"/><label for="m4q1a">No opinion</label></div>
-          <div class="quiz-option"><input id="m4q1b" type="radio" name="q1" value="b"/><label for="m4q1b">Clear position with support</label></div>
-          <div class="quiz-option"><input id="m4q1c" type="radio" name="q1" value="c"/><label for="m4q1c">Only bullet points</label></div>
+          <div class="quiz-option"><input id="m4q1a" type="radio" name="q1" value="a" data-correct="false"/><label for="m4q1a">No opinion</label></div>
+          <div class="quiz-option"><input id="m4q1b" type="radio" name="q1" value="b" data-correct="true"/><label for="m4q1b">Clear position with support</label></div>
+          <div class="quiz-option"><input id="m4q1c" type="radio" name="q1" value="c" data-correct="false"/><label for="m4q1c">Only bullet points</label></div>
         </fieldset>
         <fieldset class="quiz-item" data-explanation="Task 1 should summarize major trends and comparisons, not personal stories.">
           <legend>2) Task 1 should focus on...</legend>
-          <div class="quiz-option"><input id="m4q2a" type="radio" name="q2" value="a"/><label for="m4q2a">Personal stories</label></div>
-          <div class="quiz-option"><input id="m4q2b" type="radio" name="q2" value="b"/><label for="m4q2b">Trends and comparisons</label></div>
-          <div class="quiz-option"><input id="m4q2c" type="radio" name="q2" value="c"/><label for="m4q2c">Random details</label></div>
+          <div class="quiz-option"><input id="m4q2a" type="radio" name="q2" value="a" data-correct="false"/><label for="m4q2a">Personal stories</label></div>
+          <div class="quiz-option"><input id="m4q2b" type="radio" name="q2" value="b" data-correct="true"/><label for="m4q2b">Trends and comparisons</label></div>
+          <div class="quiz-option"><input id="m4q2c" type="radio" name="q2" value="c" data-correct="false"/><label for="m4q2c">Random details</label></div>
         </fieldset>
         <fieldset class="quiz-item" data-explanation="Improvement comes from feedback and revision, not memorization alone.">
           <legend>3) Band improvement comes from...</legend>
-          <div class="quiz-option"><input id="m4q3a" type="radio" name="q3" value="a"/><label for="m4q3a">Template memorization only</label></div>
-          <div class="quiz-option"><input id="m4q3b" type="radio" name="q3" value="b"/><label for="m4q3b">Feedback + revision cycle</label></div>
-          <div class="quiz-option"><input id="m4q3c" type="radio" name="q3" value="c"/><label for="m4q3c">Ignoring grammar</label></div>
+          <div class="quiz-option"><input id="m4q3a" type="radio" name="q3" value="a" data-correct="false"/><label for="m4q3a">Template memorization only</label></div>
+          <div class="quiz-option"><input id="m4q3b" type="radio" name="q3" value="b" data-correct="true"/><label for="m4q3b">Feedback + revision cycle</label></div>
+          <div class="quiz-option"><input id="m4q3c" type="radio" name="q3" value="c" data-correct="false"/><label for="m4q3c">Ignoring grammar</label></div>
         </fieldset>
         <fieldset class="quiz-item" data-explanation="A strong essay needs logical progression and clear paragraphing.">
           <legend>4) Strong IELTS Writing organization means...</legend>
-          <div class="quiz-option"><input id="m4q4a" type="radio" name="q4" value="a"/><label for="m4q4a">One long paragraph only</label></div>
-          <div class="quiz-option"><input id="m4q4b" type="radio" name="q4" value="b"/><label for="m4q4b">Clear intro, body paragraphs, and conclusion</label></div>
-          <div class="quiz-option"><input id="m4q4c" type="radio" name="q4" value="c"/><label for="m4q4c">No planning before writing</label></div>
+          <div class="quiz-option"><input id="m4q4a" type="radio" name="q4" value="a" data-correct="false"/><label for="m4q4a">One long paragraph only</label></div>
+          <div class="quiz-option"><input id="m4q4b" type="radio" name="q4" value="b" data-correct="true"/><label for="m4q4b">Clear intro, body paragraphs, and conclusion</label></div>
+          <div class="quiz-option"><input id="m4q4c" type="radio" name="q4" value="c" data-correct="false"/><label for="m4q4c">No planning before writing</label></div>
         </fieldset>
         <fieldset class="quiz-item" data-explanation="Task 1 responses highlight major trends and comparisons in data.">
           <legend>5) Task 1 should emphasize:</legend>
@@ -307,47 +301,47 @@
           <div class="quiz-option"><input id="m4q8b" type="radio" name="q8" value="b" data-correct="false"/><label for="m4q8b">Adding random facts</label></div>
           <div class="quiz-option"><input id="m4q8c" type="radio" name="q8" value="c" data-correct="false"/><label for="m4q8c">Delete the conclusion</label></div>
         </fieldset>
-        <fieldset class="quiz-item" data-explanation="Task 2 essays should usually include clear introduction, body paragraphs, and conclusion.">
+        <fieldset class="quiz-item" data-explanation="Task 2 essays should include clear introduction, body paragraphs, and conclusion.">
           <legend>9) A balanced Task 2 structure is:</legend>
-          <div class="quiz-option"><input id="m4q9a" type="radio" name="q9" value="a"/><label for="m4q9a">Introduction, body paragraphs, conclusion</label></div>
-          <div class="quiz-option"><input id="m4q9b" type="radio" name="q9" value="b"/><label for="m4q9b">Only body paragraph</label></div>
-          <div class="quiz-option"><input id="m4q9c" type="radio" name="q9" value="c"/><label for="m4q9c">Bullet points only</label></div>
+          <div class="quiz-option"><input id="m4q9a" type="radio" name="q9" value="a" data-correct="true"/><label for="m4q9a">Introduction, body paragraphs, conclusion</label></div>
+          <div class="quiz-option"><input id="m4q9b" type="radio" name="q9" value="b" data-correct="false"/><label for="m4q9b">Only body paragraph</label></div>
+          <div class="quiz-option"><input id="m4q9c" type="radio" name="q9" value="c" data-correct="false"/><label for="m4q9c">Bullet points only</label></div>
         </fieldset>
         <fieldset class="quiz-item" data-explanation="Task achievement improves when all parts of the question are addressed directly.">
           <legend>10) To avoid Task Response loss, you should:</legend>
-          <div class="quiz-option"><input id="m4q10a" type="radio" name="q10" value="a"/><label for="m4q10a">Answer all parts of the question</label></div>
-          <div class="quiz-option"><input id="m4q10b" type="radio" name="q10" value="b"/><label for="m4q10b">Write a memorized essay regardless of prompt</label></div>
-          <div class="quiz-option"><input id="m4q10c" type="radio" name="q10" value="c"/><label for="m4q10c">Ignore the essay topic</label></div>
+          <div class="quiz-option"><input id="m4q10a" type="radio" name="q10" value="a" data-correct="true"/><label for="m4q10a">Answer all parts of the question</label></div>
+          <div class="quiz-option"><input id="m4q10b" type="radio" name="q10" value="b" data-correct="false"/><label for="m4q10b">Write a memorized essay regardless of prompt</label></div>
+          <div class="quiz-option"><input id="m4q10c" type="radio" name="q10" value="c" data-correct="false"/><label for="m4q10c">Ignore the essay topic</label></div>
         </fieldset>
         <fieldset class="quiz-item" data-explanation="A topic sentence introduces the main idea of a paragraph clearly.">
           <legend>11) The first sentence in a body paragraph should:</legend>
-          <div class="quiz-option"><input id="m4q11a" type="radio" name="q11" value="a"/><label for="m4q11a">State the paragraph's key idea</label></div>
-          <div class="quiz-option"><input id="m4q11b" type="radio" name="q11" value="b"/><label for="m4q11b">Repeat the question exactly</label></div>
-          <div class="quiz-option"><input id="m4q11c" type="radio" name="q11" value="c"/><label for="m4q11c">Add unrelated facts only</label></div>
+          <div class="quiz-option"><input id="m4q11a" type="radio" name="q11" value="a" data-correct="true"/><label for="m4q11a">State the paragraph's key idea</label></div>
+          <div class="quiz-option"><input id="m4q11b" type="radio" name="q11" value="b" data-correct="false"/><label for="m4q11b">Repeat the question exactly</label></div>
+          <div class="quiz-option"><input id="m4q11c" type="radio" name="q11" value="c" data-correct="false"/><label for="m4q11c">Add unrelated facts only</label></div>
         </fieldset>
         <fieldset class="quiz-item" data-explanation="Examples should be relevant and clearly connected to your argument.">
           <legend>12) Strong supporting examples are:</legend>
-          <div class="quiz-option"><input id="m4q12a" type="radio" name="q12" value="a"/><label for="m4q12a">Specific and linked to your main point</label></div>
-          <div class="quiz-option"><input id="m4q12b" type="radio" name="q12" value="b"/><label for="m4q12b">Random and unrelated</label></div>
-          <div class="quiz-option"><input id="m4q12c" type="radio" name="q12" value="c"/><label for="m4q12c">Copied from the prompt only</label></div>
+          <div class="quiz-option"><input id="m4q12a" type="radio" name="q12" value="a" data-correct="true"/><label for="m4q12a">Specific and linked to your main point</label></div>
+          <div class="quiz-option"><input id="m4q12b" type="radio" name="q12" value="b" data-correct="false"/><label for="m4q12b">Random and unrelated</label></div>
+          <div class="quiz-option"><input id="m4q12c" type="radio" name="q12" value="c" data-correct="false"/><label for="m4q12c">Copied from the prompt only</label></div>
         </fieldset>
         <fieldset class="quiz-item" data-explanation="Lexical range and accuracy are both considered in IELTS Writing band scores.">
           <legend>13) Lexical Resource improves when you:</legend>
-          <div class="quiz-option"><input id="m4q13a" type="radio" name="q13" value="a"/><label for="m4q13a">Use varied, accurate vocabulary</label></div>
-          <div class="quiz-option"><input id="m4q13b" type="radio" name="q13" value="b"/><label for="m4q13b">Repeat basic words constantly</label></div>
-          <div class="quiz-option"><input id="m4q13c" type="radio" name="q13" value="c"/><label for="m4q13c">Avoid topic vocabulary</label></div>
+          <div class="quiz-option"><input id="m4q13a" type="radio" name="q13" value="a" data-correct="true"/><label for="m4q13a">Use varied, accurate vocabulary</label></div>
+          <div class="quiz-option"><input id="m4q13b" type="radio" name="q13" value="b" data-correct="false"/><label for="m4q13b">Repeat basic words constantly</label></div>
+          <div class="quiz-option"><input id="m4q13c" type="radio" name="q13" value="c" data-correct="false"/><label for="m4q13c">Avoid topic vocabulary</label></div>
         </fieldset>
         <fieldset class="quiz-item" data-explanation="Grammar range and control support higher scores when errors do not block meaning.">
           <legend>14) Grammar score improves with:</legend>
-          <div class="quiz-option"><input id="m4q14a" type="radio" name="q14" value="a"/><label for="m4q14a">Varied sentence structures used accurately</label></div>
-          <div class="quiz-option"><input id="m4q14b" type="radio" name="q14" value="b"/><label for="m4q14b">Only very short simple sentences</label></div>
-          <div class="quiz-option"><input id="m4q14c" type="radio" name="q14" value="c"/><label for="m4q14c">Ignoring punctuation and tense</label></div>
+          <div class="quiz-option"><input id="m4q14a" type="radio" name="q14" value="a" data-correct="true"/><label for="m4q14a">Varied sentence structures used accurately</label></div>
+          <div class="quiz-option"><input id="m4q14b" type="radio" name="q14" value="b" data-correct="false"/><label for="m4q14b">Only very short simple sentences</label></div>
+          <div class="quiz-option"><input id="m4q14c" type="radio" name="q14" value="c" data-correct="false"/><label for="m4q14c">Ignoring punctuation and tense</label></div>
         </fieldset>
         <fieldset class="quiz-item" data-explanation="Editing at the end helps catch spelling, grammar, and coherence issues.">
           <legend>15) Final 2–3 minutes are best used to:</legend>
-          <div class="quiz-option"><input id="m4q15a" type="radio" name="q15" value="a"/><label for="m4q15a">Proofread and fix key errors</label></div>
-          <div class="quiz-option"><input id="m4q15b" type="radio" name="q15" value="b"/><label for="m4q15b">Rewrite the whole essay from start</label></div>
-          <div class="quiz-option"><input id="m4q15c" type="radio" name="q15" value="c"/><label for="m4q15c">Delete examples to save space</label></div>
+          <div class="quiz-option"><input id="m4q15a" type="radio" name="q15" value="a" data-correct="true"/><label for="m4q15a">Proofread and fix key errors</label></div>
+          <div class="quiz-option"><input id="m4q15b" type="radio" name="q15" value="b" data-correct="false"/><label for="m4q15b">Rewrite the whole essay from start</label></div>
+          <div class="quiz-option"><input id="m4q15c" type="radio" name="q15" value="c" data-correct="false"/><label for="m4q15c">Delete examples to save space</label></div>
         </fieldset>
         <button class="btn btn-primary" type="button" id="checkAnswers">Check Answers</button>
       </form>
@@ -355,10 +349,8 @@
       <p class="form-feedback" data-quiz-feedback></p>
       <div class="quiz-explanations" data-quiz-explanations></div>
     </article>
-
     <article class="card u-mb-1">
       <h2>Assignment</h2>
-      <p>Submit your best Task 2 essay (minimum 250 words) plus one revised paragraph with correction notes.</p>
       <div class="form-stack" data-module-checklist>
         <label><input type="checkbox" data-complete-item/> I finished the lesson notes.</label>
         <label><input type="checkbox" data-complete-item/> I completed practice work.</label>
@@ -369,15 +361,25 @@
       </div>
       <p class="form-feedback" data-module-feedback></p>
     </article>
-
     <div class="lesson-toolbar module-pagination">
-      <a class="btn btn-secondary" href="classroom-ielts-module-3.html">← Previous Module</a>
+      <a class="btn btn-secondary" href="classroom-ielts-module-3.html">← Module 3</a>
       <a class="btn btn-primary" href="classroom-ielts-module-5.html" data-next-module="5">Next Module →</a>
     </div>
   </div>
 </main>
-
-<footer class="site-footer"><div class="container footer-grid"><div><p><strong>IELTS Learning Path</strong></p></div><div><p><a href="classroom-ielts.html">Back to IELTS Dashboard</a></p></div><div><p><a href="classroom-dashboard.html">Dashboard</a></p></div></div><p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p></footer>
+<a class="wa-float" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><p><strong style="color:#fff;">IELTS Module 4 — Writing</strong></p></div>
+      <div><p><a href="classroom-ielts.html">Back to IELTS Path</a></p></div>
+      <div><p><a href="classroom-dashboard.html">Dashboard</a></p></div>
+    </div>
+    <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+  </div>
+</footer>
 <script src="classroom.js"></script>
 <script src="chatbot.js"></script>
 </body>

@@ -1,84 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>IELTS Writing & Speaking Lesson</title>
-		<link rel="stylesheet" href="classroom.css"/>
-	</head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson: Writing & Speaking Practice | Tolbert Classroom</title>
+  <meta name="description" content="Exam-simulation practice for IELTS Writing and Speaking — task strategies, fluency drills, and scoring criteria." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root{--mc:#d97706;--mc-dark:#b45309;--mc-light:#fffbeb;}
+    *,*::before,*::after{box-sizing:border-box;}
+    body{font-family:'Inter','Helvetica Neue',Arial,sans-serif;color:#0f172a;background:#f8fafc;line-height:1.65;margin:0;}
+    .skip-link{position:absolute;left:-9999px;top:1rem;background:#002868;color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:999;text-decoration:none;}
+    .skip-link:focus{left:1rem;}
+    .container{max-width:1200px;margin:0 auto;padding:0 1.25rem;}
+    /* ── NAV ── */
+    .site-header{background:#0f172a;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:900;}
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.25rem;gap:1rem;}
+    .brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;}
+    .brand img{width:36px;height:36px;border-radius:8px;object-fit:cover;}
+    .brand span{font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:#fff;white-space:nowrap;}
+    .nav-links{display:flex;align-items:center;gap:.15rem;flex-wrap:wrap;}
+    .nav-links a{color:rgba(255,255,255,.72);text-decoration:none;font-size:.84rem;font-weight:500;padding:.38rem .75rem;border-radius:8px;transition:all .18s;}
+    .nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.1);}
+    /* ── HERO ── */
+    .mod-hero{background:linear-gradient(135deg,#001435 0%,#b45309 50%,#d97706 100%);padding:clamp(3.5rem,7vw,6rem) 0 clamp(2.5rem,5vw,4.5rem);position:relative;overflow:hidden;color:#fff;}
+    .mod-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.06) 0%,transparent 60%);pointer-events:none;}
+    .mod-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+    .mod-hero-inner{position:relative;z-index:2;}
+    .mod-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);padding:.35rem 1rem;border-radius:100px;font-size:.74rem;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.07em;text-transform:uppercase;margin-bottom:1.3rem;}
+    .mod-hero h1{font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(1.9rem,4.2vw,3.2rem);line-height:1.1;color:#fff;margin:0 0 .9rem;}
+    .mod-hero-lead{font-size:clamp(.9rem,1.5vw,1.05rem);color:rgba(255,255,255,.78);max-width:60ch;margin-bottom:1.5rem;line-height:1.75;}
+    .mod-chips{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.5rem;}
+    .mod-chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);padding:.35rem .85rem;border-radius:10px;font-size:.76rem;font-weight:600;color:rgba(255,255,255,.88);}
+    .mod-hero-prog{background:rgba(255,255,255,.2);border-radius:100px;height:6px;width:min(380px,100%);overflow:hidden;margin-top:1.2rem;}
+    .mod-hero-prog-fill{height:100%;background:#fff;border-radius:100px;}
+    .mod-prog-label{font-size:.76rem;color:rgba(255,255,255,.6);margin-top:.45rem;}
+    /* ── MAIN CONTENT ── */
+    .mod-main{padding:2.5rem 0 4rem;}
+    /* Override .card for module pages */
+    .card,.u-mb-1.card{background:#fff;border-radius:16px;padding:1.85rem 2rem;box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04);margin-bottom:1.5rem;border:1px solid #f1f5f9;}
+    .card h1.page-title{font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);color:#0f172a;margin-bottom:.75rem;}
+    .card h2{font-family:'Poppins',sans-serif;font-weight:700;color:#0f172a;font-size:1.25rem;margin:0 0 1rem;padding-bottom:.6rem;border-bottom:2px solid #d97706;display:block;}
+    .card h3{font-family:'Poppins',sans-serif;font-weight:600;color:#1e293b;font-size:1rem;margin:1.1rem 0 .45rem;}
+    .card h4{font-weight:600;color:#334155;font-size:.92rem;margin:.85rem 0 .35rem;}
+    .card p,.section-lead{color:#475569;line-height:1.75;margin-bottom:.8rem;}
+    .card a{color:#d97706;text-decoration:none;font-weight:500;}
+    .card a:hover{text-decoration:underline;}
+    /* ── RESOURCE LIST ── */
+    .resource-list{list-style:none;padding:0;margin:.4rem 0 .8rem;}
+    .resource-list li{padding:.28rem 0 .28rem 1.2rem;position:relative;color:#475569;line-height:1.65;}
+    .resource-list li::before{content:'•';position:absolute;left:0;color:#d97706;font-weight:700;}
+    /* ── VIDEO ── */
+    .video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#f1f5f9;margin:.9rem 0 1.1rem;}
+    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px;}
+    /* ── QUIZ ── */
+    .quiz-item{border:1px solid #e2e8f0;border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:.9rem;background:#fdfdfd;}
+    .quiz-item legend{font-weight:700;color:#1e293b;font-size:.92rem;line-height:1.4;padding:0 .35rem;}
+    .quiz-option{margin-top:.65rem;}
+    .quiz-option label{display:flex;align-items:center;gap:.7rem;border:1.5px solid #e2e8f0;border-radius:9px;padding:.6rem .9rem;cursor:pointer;transition:all .15s;font-size:.88rem;color:#475569;font-weight:500;}
+    .quiz-option label:hover{border-color:#d97706;background:#fffbeb;color:#1e293b;}
+    .quiz-option input[type=radio]{width:15px;height:15px;accent-color:#d97706;flex-shrink:0;cursor:pointer;}
+    /* Module 2 quiz style (label wrapping input) */
+    .form-stack fieldset.quiz-item>label{display:flex;align-items:center;gap:.7rem;border:1.5px solid #e2e8f0;border-radius:9px;padding:.6rem .9rem;cursor:pointer;transition:all .15s;font-size:.88rem;color:#475569;font-weight:500;margin-top:.55rem;}
+    .form-stack fieldset.quiz-item>label:hover{border-color:#d97706;background:#fffbeb;color:#1e293b;}
+    .form-stack fieldset.quiz-item>label input[type=radio]{width:15px;height:15px;accent-color:#d97706;flex-shrink:0;}
+    /* ── CHECKLIST ── */
+    [data-module-checklist] label{display:flex;align-items:center;gap:.65rem;border:1.5px solid #e2e8f0;border-radius:9px;padding:.6rem .9rem;cursor:pointer;margin-bottom:.45rem;font-size:.88rem;color:#475569;transition:all .15s;}
+    [data-module-checklist] label:hover{border-color:#d97706;background:#fffbeb;}
+    [data-module-checklist] input[type=checkbox]{width:15px;height:15px;accent-color:#d97706;flex-shrink:0;}
+    /* ── PROGRESS ── */
+    .progress-wrap{margin:.65rem 0;}
+    .progress-bar{background:#e2e8f0;border-radius:100px;height:8px;overflow:hidden;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,#b45309,#d97706);border-radius:100px;transition:width .4s;}
+    .progress-label{font-size:.78rem;color:#64748b;margin-top:.38rem;}
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;gap:.45rem;font-family:'Inter',sans-serif;font-weight:600;font-size:.88rem;padding:.68rem 1.5rem;border-radius:100px;text-decoration:none;cursor:pointer;border:none;transition:all .18s;line-height:1.3;}
+    .btn-primary{background:#d97706;color:#fff;}
+    .btn-primary:hover{filter:brightness(1.12);transform:translateY(-1px);}
+    .btn-secondary{background:#0f172a;color:#fff;}
+    .btn-secondary:hover{background:#1e293b;transform:translateY(-1px);}
+    .btn-outline,.btn-outline-inline{background:transparent;border:1.5px solid #e2e8f0;color:#64748b;padding:.65rem 1.4rem;border-radius:100px;font-size:.875rem;font-weight:600;text-decoration:none;transition:all .18s;display:inline-flex;align-items:center;cursor:pointer;}
+    .btn-outline:hover,.btn-outline-inline:hover{border-color:#d97706;color:#d97706;background:#fffbeb;}
+    .lesson-toolbar,.module-pagination{display:flex;flex-wrap:wrap;gap:.65rem;align-items:center;margin:.75rem 0;}
+    .module-pagination{padding:1.4rem 0;border-top:1px solid #e2e8f0;margin-top:.75rem;}
+    /* ── FEEDBACK / FORM ── */
+    .form-feedback{font-size:.86rem;font-weight:600;padding:.6rem .9rem;border-radius:8px;margin-top:.5rem;min-height:1.2em;}
+    .form-feedback:not(:empty){background:#eff6ff;color:#1d4ed8;}
+    .form-stack{display:flex;flex-direction:column;gap:.7rem;}
+    .form-stack>label:not(.quiz-item label){display:flex;flex-direction:column;gap:.3rem;font-weight:600;color:#334155;font-size:.88rem;}
+    .form-stack input,.form-stack select,.form-stack textarea{padding:.6rem .85rem;border:1.5px solid #e2e8f0;border-radius:8px;font-family:'Inter',sans-serif;font-size:.88rem;color:#0f172a;background:#fff;transition:border-color .15s;width:100%;}
+    .form-stack input:focus,.form-stack select:focus,.form-stack textarea:focus{border-color:#d97706;outline:none;box-shadow:0 0 0 3px #fffbeb;}
+    /* ── DETAILS/ANSWER ── */
+    details{border:1px solid #e2e8f0;border-radius:10px;padding:.7rem .95rem;margin:.65rem 0;}
+    details summary{font-weight:600;cursor:pointer;color:#d97706;font-size:.9rem;}
+    details[open] summary{margin-bottom:.55rem;}
+    .answer-key{background:#f0fdf4;border-color:#86efac;}
+    .answer-key summary{color:#16a34a;}
+    /* ── TABLE ── */
+    table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.88rem;}
+    th,td{border:1px solid #e2e8f0;padding:.55rem .8rem;text-align:left;}
+    th{background:#f8fafc;font-weight:600;color:#334155;}
+    td{color:#475569;}
+    /* ── GRID ── */
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem;}
+    .do-dont-box{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin:.75rem 0;}
+    .question-type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem;margin-top:.65rem;}
+    .question-type-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;padding:1rem;}
+    .question-type-card h3{font-size:.88rem;font-weight:700;margin-bottom:.35rem;color:#1e293b;}
+    .question-type-card p{font-size:.82rem;color:#64748b;margin:0;}
+    .score-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.65rem;}
+    .score-grid div{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:.55rem .8rem;font-size:.86rem;color:#475569;}
+    /* ── BADGE ── */
+    .badge{display:inline-block;background:#fffbeb;color:#d97706;border:1px solid color-mix(in srgb,#d97706 30%,transparent);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.22rem .7rem;border-radius:100px;margin-bottom:.75rem;}
+    /* ── CERT FORM ── */
+    .cert-form{display:grid;gap:1rem;margin-top:1rem;}
+    .cert-form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    @media(max-width:600px){.cert-form-row{grid-template-columns:1fr;}}
+    .cert-form label{display:grid;gap:.3rem;font-weight:600;color:#334155;font-size:.88rem;}
+    .cert-form label.full{grid-column:1/-1;}
+    .cert-form input,.cert-form select,.cert-form textarea{padding:.6rem .85rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.88rem;color:#0f172a;background:#fff;border-transition:border-color .15s;width:100%;font-family:'Inter',sans-serif;}
+    .cert-form input:focus,.cert-form select:focus,.cert-form textarea:focus{border-color:#d97706;outline:none;box-shadow:0 0 0 3px #fffbeb;}
+    .cert-form-actions{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin-top:.5rem;}
+    .cert-form-feedback{font-size:.88rem;font-weight:600;padding:.7rem 1rem;border-radius:8px;display:none;}
+    .cert-form-feedback.success{background:#e6f7f0;color:#0b7444;display:block;}
+    .cert-form-feedback.error{background:#fde8ec;color:#9f2431;display:block;}
+    .resource-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin-top:.75rem;}
+    .resource-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;padding:1rem;}
+    .resource-card h3{font-size:.9rem;font-weight:700;color:#1e293b;margin-bottom:.35rem;}
+    .resource-card p{font-size:.83rem;color:#64748b;margin:0;}
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float{position:fixed;bottom:1.75rem;right:1.75rem;background:#25D366;color:#fff;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.45);z-index:800;transition:transform .2s;text-decoration:none;}
+    .wa-float:hover{transform:scale(1.1);}
+    /* ── FOOTER ── */
+    .site-footer{background:#0f172a;color:rgba(255,255,255,.65);padding:2.5rem 0 1.5rem;margin-top:2rem;}
+    .footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem;}
+    .footer-grid p{font-size:.84rem;margin-bottom:.28rem;}
+    .footer-grid a{color:rgba(255,255,255,.6);text-decoration:none;transition:color .15s;}
+    .footer-grid a:hover{color:#fff;}
+    .copyright-note{font-size:.76rem;color:rgba(255,255,255,.32);text-align:center;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);}
+    /* ── SKILL HUB CARDS ── */
+    .skill-hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.3rem;margin-top:1rem;}
+    .skill-hub-card{background:#fff;border:1px solid #f1f5f9;border-radius:16px;padding:1.6rem;box-shadow:0 1px 3px rgba(0,0,0,.05),0 4px 12px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s;}
+    .skill-hub-card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(0,40,104,.1);}
+    .skill-hub-card h3{font-family:'Poppins',sans-serif;font-weight:700;font-size:1.1rem;color:#0f172a;margin-bottom:.5rem;}
+    .skill-hub-card p{font-size:.86rem;color:#64748b;margin-bottom:1rem;line-height:1.65;}
+    /* ── AUDIO ── */
+    .audio-playback{width:100%;margin:.75rem 0;border-radius:8px;}
+    /* ── MISC ── */
+    .u-mt-1{margin-top:1rem;}
+    .u-mt-06{margin-top:.6rem;}
+    .u-mt-075{margin-top:.75rem;}
+    .u-mt-08{margin-top:.8rem;}
+    .u-w-0{width:0%;}
+    .u-w-16{width:16%;}
+    .u-w-33{width:33%;}
+    .u-w-50{width:50%;}
+    .u-w-66{width:66%;}
+    .u-w-75{width:75%;}
+    .u-w-83{width:83%;}
+    .u-w-100{width:100%;}
+    .score-goal-card,.score-grid div{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:.55rem .8rem;}
+    .timer-display{font-family:'Poppins',sans-serif;font-size:2.5rem;font-weight:900;color:#d97706;margin:.5rem 0;}
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px){
+      .nav-wrap{flex-wrap:wrap;}
+      .card{padding:1.4rem 1.1rem;}
+      .footer-grid{grid-template-columns:1fr;}
+      .module-pagination,.lesson-toolbar{flex-direction:column;align-items:flex-start;}
+      .do-dont-box{grid-template-columns:1fr;}
+    }
+    /* ── DARK MODE ── */
+    @media(prefers-color-scheme:dark){
+      body{background:#0f172a;color:#e2e8f0;}
+      .card{background:#1e293b;border-color:#334155;}
+      .card h1,.card h2,.card h3,.card h4{color:#f1f5f9;}
+      .card p,.resource-list li,.card strong{color:#94a3b8;}
+      .card strong{color:#e2e8f0;}
+      .quiz-item{background:#1e293b;border-color:#334155;}
+      .quiz-item legend{color:#f1f5f9;}
+      .quiz-option label,.form-stack fieldset.quiz-item>label{border-color:#334155;color:#94a3b8;}
+      .quiz-option label:hover,.form-stack fieldset.quiz-item>label:hover{background:rgba(37,99,235,.12);border-color:#d97706;}
+      [data-module-checklist] label{border-color:#334155;color:#94a3b8;}
+      th{background:#1e293b;color:#e2e8f0;border-color:#334155;}
+      td{color:#94a3b8;border-color:#334155;}
+      .question-type-card,.resource-card,.skill-hub-card,.score-grid div{background:#1e293b;border-color:#334155;}
+      .question-type-card h3,.resource-card h3,.skill-hub-card h3{color:#f1f5f9;}
+      .form-stack input,.form-stack select,.form-stack textarea,.cert-form input,.cert-form select,.cert-form textarea{background:#1e293b;border-color:#334155;color:#e2e8f0;}
+      details{border-color:#334155;}
+    }
+  </style>
+</head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
-
-		<header class="site-header">
-			<div class="container nav-wrap">
-				<a class="brand" href="classroom.html"><img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="Tolbert logo"/><span>Tolbert Classroom</span></a>
-				<nav class="nav-links" aria-label="Classroom navigation">
-					<a href="classroom.html">Classroom</a>
-					<a href="classroom-dashboard.html">Dashboard</a>
-					<a class="active" href="classroom-course-ielts.html">IELTS Course</a>
-				</nav>
-			</div>
-		</header>
-
-		<main id="main-content" class="section">
-			<div class="container lesson-layout">
-				<div class="lesson-block">
-					<p class="badge">Writing & Speaking Lesson</p>
-					<h2>Submission Studio + Model Comparison</h2>
-					<h3>Introduction</h3>
-					<p>Submit written and speaking practice, then compare with model responses.</p>
-					<h3>Structured Study Content</h3>
-					<ul>
-						<li>Writing structure and coherence</li>
-						<li>Speaking fluency and answer organization</li>
-						<li>Common scoring mistakes and fixes</li>
-					</ul>
-					<h3>Embedded Video</h3>
-					<div class="video-wrap">
-						<iframe src="https://www.youtube.com/embed/7I4fKJ5Gv4U" title="Writing Speaking" allowfullscreen></iframe>
-					</div>
-					<h3>Interactive Practice</h3>
-					<label>Write your essay response<textarea rows="7"></textarea></label>
-					<label>Upload or record speaking practice<input type="file" accept="audio/*,video/*"/></label>
-					<h3>Downloads</h3>
-					<ul class="download-list">
-						<li><a href="#">Writing templates PDF</a></li>
-						<li><a href="#">Speaking cue cards</a></li>
-						<li><a href="#">Vocabulary sheets</a></li>
-					</ul>
-					<h3>Review with Model Answers</h3>
-					<details>
-						<summary>Model writing response</summary>
-						<p>High-scoring responses use a clear stance, logical structure, and accurate language control.</p>
-					</details>
-					<details>
-						<summary>Model speaking response</summary>
-						<p>Strong responses are direct, extended with examples, and delivered with confident fluency.</p>
-					</details>
-					<div class="lesson-toolbar">
-						<button class="btn btn-primary" data-mark-complete data-track="ielts">Mark Complete</button>
-						<a class="btn btn-secondary" href="classroom-dashboard.html">Return to Dashboard</a>
-					</div>
-					<p data-completion-feedback></p>
-				</div>
-				<aside class="lesson-block">
-					<h3>Fast Practice Files</h3>
-					<ul class="download-list">
-						<li><a href="#">Exam-day writing checklist</a></li>
-						<li><a href="#">Speaking timing guide</a></li>
-					</ul>
-				</aside>
-			</div>
-		</main>
-		<footer class="site-footer">
-			<div class="container footer-grid">
-				<div><p><strong>Writing/Speaking</strong></p></div>
-				<div><p><a href="classroom-dashboard.html">Dashboard</a></p></div>
-				<div><p><a href="classroom-resource-center.html">Resource Center</a></p></div>
-			</div>
-			<p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
-		</footer>
-		<script src="classroom.js"></script>
-	<script src="chatbot.js"></script>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="classroom.html"><img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="Tolbert logo"/><span>Tolbert Classroom</span></a>
+    <nav class="nav-links" aria-label="Classroom navigation">
+      <a href="index.html">Home</a>
+      <a href="classroom.html">Classroom</a>
+      <a href="classroom-dashboard.html">Dashboard</a>
+      <a class="active" href="classroom-course-ielts.html">IELTS Course</a>
+    </nav>
+  </div>
+</header>
+<style>
+  .skill-layout,.lesson-layout{display:grid;grid-template-columns:230px 1fr;gap:1.5rem;align-items:start;}
+  @media(max-width:860px){.skill-layout,.lesson-layout{grid-template-columns:1fr;}}
+  .lesson-sidebar-static{position:sticky;top:5.5rem;}
+  .lesson-large{min-width:0;}
+  .roadmap{padding-left:1.4rem;margin:.4rem 0;color:#475569;font-size:.88rem;line-height:2;}
+  .download-list{list-style:none;padding:0;margin:.35rem 0;}
+  .download-list li{padding:.3rem 0 .3rem 1.3rem;position:relative;color:#475569;font-size:.88rem;}
+  .download-list li::before{content:"93";position:absolute;left:0;color:var(--mc);}
+  .download-list a{color:var(--mc);text-decoration:none;font-weight:500;}
+  @media(prefers-color-scheme:dark){.roadmap,.download-list li{color:#94a3b8;}}
+</style>
+<section class="mod-hero">
+  <div class="container">
+    <div class="mod-hero-inner">
+      <div class="mod-eyebrow">Lesson · Writing & Speaking</div>
+      <h1>Production Skills Practice</h1>
+      <p class="mod-hero-lead">Build confident, examiner-ready Writing and Speaking performance through structured drills, model answers, and live feedback techniques.</p>
+      <div class="mod-chips"><span class="mod-chip">('Writing', '#d97706')</span><span class="mod-chip">('Speaking', '#d97706')</span><span class="mod-chip">('Fluency', '#b45309')</span></div>
+    </div>
+  </div>
+</section>
+<main class="container" style="padding-top:2.5rem;padding-bottom:3rem;">
+  <div class="lesson-layout">
+    <!-- Sidebar -->
+    <aside class="lesson-sidebar-static">
+      <div class="card" style="padding:1.25rem;">
+        <h3 style="font-size:.95rem;font-weight:700;color:#0f172a;margin:0 0 .75rem;">Downloads</h3>
+        <ul class="download-list">
+          <li><a href="#">Writing Task 1 Model Answers (PDF)</a></li>
+          <li><a href="#">Writing Task 2 Essay Templates</a></li>
+          <li><a href="#">Speaking Part 2 Cue Cards</a></li>
+          <li><a href="#">Examiner Scoring Criteria</a></li>
+        </ul>
+        <a href="classroom-ielts-writing.html" class="btn" style="display:block;text-align:center;margin-top:1rem;font-size:.85rem;">&#8592; Writing Module</a>
+        <a href="classroom-ielts-speaking.html" class="btn btn-outline" style="display:block;text-align:center;margin-top:.5rem;font-size:.85rem;">Speaking Module</a>
+      </div>
+    </aside>
+    <!-- Main content -->
+    <div class="lesson-large">
+      <div class="card" style="padding:2rem;margin-bottom:1.5rem;">
+        <h2 style="color:#0f172a;font-size:1.4rem;font-weight:800;margin:0 0 1rem;">Writing: Task Breakdown</h2>
+        <p style="color:#475569;line-height:1.8;">The Writing section is 60 minutes with two tasks. Task 2 carries twice the weight of Task 1, so manage your time accordingly: aim for ~20 min on Task 1 and ~40 min on Task 2.</p>
+        <h3 style="color:#0f172a;font-size:1.05rem;font-weight:700;margin:1.25rem 0 .5rem;">Task 1 (150+ words)</h3>
+        <ul style="color:#475569;line-height:2;padding-left:1.4rem;">
+          <li>Describe a graph, chart, table, diagram, or map objectively.</li>
+          <li>Identify overall trend and key data points — don't list every number.</li>
+          <li>Use precise vocabulary: "peaked at," "declined sharply," "remained stable."</li>
+        </ul>
+        <h3 style="color:#0f172a;font-size:1.05rem;font-weight:700;margin:1.25rem 0 .5rem;">Task 2 (250+ words)</h3>
+        <ul style="color:#475569;line-height:2;padding-left:1.4rem;">
+          <li>Structure: Introduction → Body 1 → Body 2 → Conclusion.</li>
+          <li>Address <em>all parts</em> of the prompt — partial answers drop Task Achievement.</li>
+          <li>Use cohesive devices: "Furthermore," "In contrast," "As a result."</li>
+        </ul>
+        <h3 style="color:#0f172a;font-size:1.1rem;font-weight:700;margin:1.5rem 0 .5rem;">Speaking: Part-by-Part Strategy</h3>
+        <p style="color:#475569;line-height:1.8;">The Speaking test is 11–14 minutes with a real examiner. It has three parts:</p>
+        <ul style="color:#475569;line-height:2;padding-left:1.4rem;">
+          <li><strong>Part 1</strong> (4–5 min) — Familiar topics: home, work, studies, interests. Give extended answers, not just yes/no.</li>
+          <li><strong>Part 2</strong> (3–4 min) — 1-min preparation + 2-min talk from a cue card. Use your notes fully.</li>
+          <li><strong>Part 3</strong> (4–5 min) — Abstract discussion linked to Part 2 topic. Show range: speculate, compare, evaluate.</li>
+        </ul>
+      </div>
+      <!-- Videos -->
+      <div class="card" style="padding:1.5rem;margin-bottom:1.5rem;">
+        <h3 style="color:#0f172a;font-weight:700;margin:0 0 1rem;">Writing Task 2 Masterclass</h3>
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;">
+          <iframe src="https://www.youtube.com/embed/1IVFRWCpNxE" title="IELTS Writing Task 2" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+        </div>
+      </div>
+      <div class="card" style="padding:1.5rem;margin-bottom:1.5rem;">
+        <h3 style="color:#0f172a;font-weight:700;margin:0 0 1rem;">Speaking Band 7–9 Techniques</h3>
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;">
+          <iframe src="https://www.youtube.com/embed/2oC-dXJUYqY" title="IELTS Speaking High Band" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+        </div>
+      </div>
+      <div class="card" style="padding:1.5rem;text-align:center;">
+        <p style="color:#475569;margin-bottom:1rem;">Done with this lesson? Mark it complete to track your progress.</p>
+        <button class="btn" onclick="this.textContent='&#10003; Completed!';this.style.background='#16a34a';this.disabled=true;" style="font-size:1rem;padding:.75rem 2.5rem;">Mark as Complete</button>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><p><strong style="color:#fff;">W&S Lesson</strong></p></div>
+      <div><p><a href="Writing Module">classroom-ielts-writing.html</a></p></div>
+      <div><p><a href="Speaking Module">classroom-ielts-speaking.html</a></p></div>
+    </div>
+    <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+  </div>
+</footer>
+<a class="wa-float" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<script src="classroom.js"></script>
+<script src="chatbot.js"></script>
 </body>
 </html>
