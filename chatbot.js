@@ -235,46 +235,97 @@
   function buildPageIndex() {
     if (PAGE_INDEX) return PAGE_INDEX;
     const items = [];
-    const skipSelectors = ['#tih-chat-win','#tih-chat-btn','.site-header','footer','script','style','nav'];
+    const seen = new Set();
+    const skipSel = ['#tih-chat-win','#tih-chat-btn','.site-header','footer','script','style','nav'];
 
     function shouldSkip(el) {
-      return skipSelectors.some(s => el.closest && el.closest(s));
+      return skipSel.some(s => el.closest && el.closest(s));
     }
 
-    document.querySelectorAll('h1,h2,h3,h4').forEach(el => {
+    let currentSection = '';
+
+    // Walk all content nodes in DOM order to preserve section context
+    document.querySelectorAll('h1,h2,h3,h4,h5,p,li,td,th,dt,dd,blockquote,figcaption,caption').forEach(el => {
       if (shouldSkip(el)) return;
-      const text = el.textContent.trim();
-      if (text.length > 2) items.push({ type:'heading', text, weight:4 });
+      const tag = el.tagName.toLowerCase();
+      const text = el.textContent.trim().replace(/\s+/g,' ');
+      if (!text || seen.has(text)) return;
+
+      if (['h1','h2','h3','h4','h5'].includes(tag)) {
+        if (text.length > 2) {
+          currentSection = text;
+          seen.add(text);
+          items.push({ type:'heading', text, section:text, weight:5 });
+        }
+      } else if (tag === 'th') {
+        if (text.length > 2) {
+          seen.add(text);
+          items.push({ type:'heading', text, section:currentSection, weight:3 });
+        }
+      } else {
+        if (text.length > 18 && text.length < 700) {
+          seen.add(text);
+          items.push({ type:'body', text, section:currentSection, weight:1 });
+        }
+      }
     });
 
-    document.querySelectorAll('p,li,td,dt,dd').forEach(el => {
+    // Capture semantic card/module/feature titles not caught by heading selectors
+    document.querySelectorAll('[class*="card-title"],[class*="module-title"],[class*="lesson-title"],[class*="feature-title"],[class*="section-title"]').forEach(el => {
       if (shouldSkip(el)) return;
-      const text = el.textContent.trim();
-      if (text.length > 25 && text.length < 400) items.push({ type:'body', text, weight:1 });
+      const text = el.textContent.trim().replace(/\s+/g,' ');
+      if (text.length > 2 && !seen.has(text)) {
+        seen.add(text);
+        items.push({ type:'heading', text, section:text, weight:4 });
+      }
     });
 
     PAGE_INDEX = items;
     return items;
   }
 
+  const STOP_WORDS = new Set(['what','that','this','with','from','have','will','your','they','been','were','about','which','when','where','there','their','more','also','some','then','than','into','only','over','just','does','like','tell','show','how','can','the','and','for','are','but','not','you','all','any','here','page','very','please','could','would','should','give','find']);
+
   function searchPage(query) {
     const idx = buildPageIndex();
-    const words = query.toLowerCase().split(/[\s,?!.]+/).filter(w => w.length > 3);
+    const raw = query.toLowerCase().replace(/[?!.]+$/, '');
+    const words = raw.split(/[\s,?!.;:'"()\[\]]+/).filter(w => w.length > 2 && !STOP_WORDS.has(w));
     if (!words.length) return [];
+
+    // Build bigrams for phrase matching
+    const bigrams = [];
+    for (let i = 0; i < words.length - 1; i++) bigrams.push(words[i] + ' ' + words[i+1]);
 
     const scored = idx.map(item => {
       const t = item.text.toLowerCase();
-      const score = words.reduce((s,w) => s + (t.includes(w) ? item.weight : 0), 0);
+      let score = 0;
+      bigrams.forEach(ph => { if (t.includes(ph)) score += 6 * item.weight; });
+      words.forEach(w => { if (t.includes(w)) score += item.weight; });
       return { ...item, score };
     }).filter(x => x.score > 0).sort((a,b) => b.score - a.score);
 
-    return scored.slice(0, 4).map(x => x.text);
+    return scored.slice(0, 5);
   }
 
   function buildPageSummary() {
     const idx = buildPageIndex();
-    const headings = idx.filter(x => x.type === 'heading').slice(0, 8).map(x => x.text);
-    return headings;
+    return idx.filter(x => x.type === 'heading' && x.weight >= 3).slice(0, 8).map(x => x.text);
+  }
+
+  // Returns sections with heading + first 1-2 body bullets for a rich page overview
+  function buildPageOverview() {
+    const idx = buildPageIndex();
+    const sections = [];
+    let current = null;
+    for (const item of idx) {
+      if (item.type === 'heading' && item.weight >= 4) {
+        current = { heading:item.text, bullets:[] };
+        sections.push(current);
+      } else if (current && item.type === 'body' && item.text.length < 160 && current.bullets.length < 2) {
+        current.bullets.push(item.text);
+      }
+    }
+    return sections.slice(0, 7);
   }
 
   // ── KNOWLEDGE BASE ────────────────────────────────────────────────────────────
@@ -972,7 +1023,10 @@ I can collect your application right here in this chat. Which program are you ap
     _fallbackIdx++;
     if (pageHits.length) {
       msg = `Here's what I found on this page related to "<em>${esc(userText)}</em>":<br><br>` +
-        pageHits.map(h => `• ${esc(h)}`).join('<br>') + `<br><br>For more help, reach our team:`;
+        pageHits.map(h => {
+          const sec = h.section && h.section !== h.text ? `<strong>${esc(h.section)}:</strong> ` : '';
+          return `• ${sec}${esc(h.text.slice(0,180))}${h.text.length>180?'…':''}`;
+        }).join('<br><br>') + `<br><br>For more help, reach our team:`;
     }
     return msg + `<br><br>
 💬 <strong>WhatsApp (fastest):</strong> <a href="https://wa.me/231880559227" target="_blank" style="color:#002868;font-weight:700;">+231 880 559 227</a><br>
@@ -1114,28 +1168,34 @@ Or choose a topic below:`;
 
   function buildWelcome(pageCtx) {
     const page = pageCtx.label;
+    const headings = buildPageSummary().slice(0, 4);
+    const topicsLine = headings.length >= 2
+      ? `<br><br>📋 <strong>This page covers:</strong> ${headings.map(h => esc(h)).join(' &nbsp;·&nbsp; ')}`
+      : '';
+
     if (page.includes('IELTS Module')) {
-      const num = page.match(/\d+/);
-      return `Hello! 👋 I see you're on <strong>${esc(page)}</strong>.<br><br>I can help explain the content on this page, answer IELTS questions, or assist with scholarships, certificates, and more. What would you like to know?`;
+      return `Hello! 👋 I see you're on <strong>${esc(page)}</strong>.${topicsLine}<br><br>Ask me anything about the content on this page, IELTS tips, certificates, or scholarships!`;
     }
     if (page.includes('IELTS Classroom')) {
-      return `Welcome to the <strong>TIH Free IELTS Classroom!</strong> 📚<br><br>I can guide you through the 6 modules, give study tips, explain scoring, or help with scholarship applications. What would you like to know?`;
+      return `Welcome to the <strong>TIH Free IELTS Classroom!</strong> 📚${topicsLine}<br><br>I can guide you through the 6 modules, give study tips, explain scoring, or help with scholarship applications.`;
     }
     if (page.includes('Study Abroad') || page.includes('Scholarship')) {
-      return `Welcome! 🎓 I see you're exploring <strong>${esc(page)}</strong>.<br><br>I can help with scholarship requirements, application steps, documents needed, and much more. How can I assist you today?`;
+      return `Welcome! 🎓 You're exploring <strong>${esc(page)}</strong>.${topicsLine}<br><br>I can help with requirements, application steps, documents, and much more.`;
     }
     if (page.includes('Healthcare')) {
-      return `Welcome to TIH's <strong>Healthcare Referral Program!</strong> 🏥<br><br>I can explain how the medical referral process works, describe our partner hospitals, and help you submit a request. How can I help?`;
+      return `Welcome to TIH's <strong>Healthcare Referral Program!</strong> 🏥${topicsLine}<br><br>I can explain how the referral process works, describe partner hospitals, and help you submit a request.`;
     }
     if (page.includes('Software')) {
-      return `Welcome to <strong>TIH Software &amp; Digital Innovation!</strong> 💻<br><br>I can explain our services, share pricing details, and help you start a consultation. What are you looking for?`;
+      return `Welcome to <strong>TIH Software &amp; Digital Innovation!</strong> 💻${topicsLine}<br><br>I can explain our services, share pricing, and help you start a consultation.`;
     }
     if (page.includes('University')) {
-      const headings = buildPageSummary();
       const uniName = headings.find(h => h.length > 4) || 'this university';
-      return `Hello! 👋 I can see you're exploring <strong>${esc(uniName)}</strong>.<br><br>I can help with the application process, scholarship options, requirements, and more. What would you like to know?`;
+      return `Hello! 👋 I can see you're exploring <strong>${esc(uniName)}</strong>.${topicsLine}<br><br>I can help with the application process, scholarship options, and requirements.`;
     }
-    return `Hello! 👋 Welcome to <strong>Tolbert Innovation Hub</strong>!<br><br>I'm your TIH Assistant — I can answer questions about scholarships, our free IELTS/TOEFL classroom, healthcare referrals, software services, and more.<br><br>What can I help you with today?`;
+    if (topicsLine) {
+      return `Hello! 👋 Welcome to <strong>Tolbert Innovation Hub</strong>!${topicsLine}<br><br>Ask me anything about this page, or about our scholarships, free classroom, healthcare, and software services.`;
+    }
+    return `Hello! 👋 Welcome to <strong>Tolbert Innovation Hub</strong>!<br><br>I'm your TIH Assistant — I can answer questions about scholarships, free IELTS/TOEFL prep, healthcare referrals, software services, and more.<br><br>What can I help you with today?`;
   }
 
   chatBtn.addEventListener('click', () =>
@@ -1355,15 +1415,21 @@ Our team is ready to answer any question you have!<br><br>
 
     // Check for "what is on this page" intent
     const tLow = text.toLowerCase();
-    if (tLow.includes('this page') || tLow.includes('on this page') || tLow.includes('what is here') || tLow.includes('explain this')) {
-      const headings = buildPageSummary();
-      if (headings.length) {
-        const delay = 700;
-        type(delay, () => {
-          botMsg(`📄 <strong>Here's what's covered on this page:</strong><br><br>` +
-            headings.map(h => `• ${esc(h)}`).join('<br>') +
-            `<br><br>Ask me anything about any of these topics!`,
-            getPageCtx().qr);
+    const isPageQuery = tLow.includes('this page') || tLow.includes('on this page') || tLow.includes('what is here') ||
+      tLow.includes('explain this') || tLow.includes('what will i learn') || tLow.includes('what does this') ||
+      tLow.includes('what is this about') || tLow.includes('summarize') || tLow.includes('what topic') ||
+      tLow.includes('what subject') || tLow.includes('what cover') || tLow.includes('overview of this');
+    if (isPageQuery) {
+      const overview = buildPageOverview();
+      if (overview.length) {
+        type(700, () => {
+          const lines = overview.map(s => {
+            const bullets = s.bullets.length
+              ? `<br><span style="font-size:.82rem;color:#475569;padding-left:12px;">↳ ${s.bullets.map(b => esc(b.slice(0,100))).join('<br>↳ ')}</span>`
+              : '';
+            return `<strong>${esc(s.heading)}</strong>${bullets}`;
+          }).join('<br><br>');
+          botMsg(`📄 <strong>Here's what this page covers:</strong><br><br>${lines}<br><br>Ask me anything about any of these topics!`, getPageCtx().qr);
         });
         return;
       }
@@ -1384,8 +1450,11 @@ Our team is ready to answer any question you have!<br><br>
         // Try page content as last resort
         const hits = searchPage(text);
         if (hits.length) {
-          botMsg(`Here's what I found on this page related to your question:<br><br>` +
-            hits.map(h => `• ${esc(h.slice(0,160))}${h.length>160?'…':''}`).join('<br><br>') +
+          const pageAnswer = hits.map(h => {
+            const sec = h.section && h.section !== h.text ? `<strong>${esc(h.section)}:</strong> ` : '';
+            return `• ${sec}${esc(h.text.slice(0,200))}${h.text.length>200?'…':''}`;
+          }).join('<br><br>');
+          botMsg(`📄 <strong>From this page:</strong><br><br>${pageAnswer}` +
             `<br><br><span style="font-size:.78rem;color:#64748b;">Need more help? <a href="https://wa.me/231880559227" target="_blank" style="color:#002868;font-weight:700;">WhatsApp us</a></span>`,
             getPageCtx().qr);
         } else {
