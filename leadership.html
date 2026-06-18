@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leadership | Tolbert Innovation Hub — Founded by Mr. Samuel S. Tolbert</title>
+  <meta name="description" content="Tolbert Innovation Hub was founded by Mr. Samuel S. Tolbert with a bold vision to connect Liberian youth with global education, healthcare access, and technology innovation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    .page-hero {
+      background: linear-gradient(135deg, #002868 0%, #1a3d8a 55%, #002055 100%);
+      padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 5vw, 5rem);
+      position: relative; overflow: hidden; color: #fff;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 40%, rgba(191,10,48,0.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 80%, rgba(255,255,255,0.04) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    .page-hero .container { position: relative; z-index: 1; }
+
+    /* ── Founder featured card ── */
+    .founder-section {
+      background: var(--surface);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+    .founder-top {
+      background: linear-gradient(135deg, #002868 0%, #1a3d8a 100%);
+      padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .founder-top::before {
+      content: ''; position: absolute; right: -60px; top: -60px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: rgba(191,10,48,0.15); pointer-events: none;
+    }
+    .founder-top::after {
+      content: ''; position: absolute; left: -40px; bottom: -40px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: rgba(255,255,255,0.04); pointer-events: none;
+    }
+    .founder-top > * { position: relative; z-index: 1; }
+    @media (max-width: 640px) {
+      .founder-top { grid-template-columns: 1fr; text-align: center; }
+      .founder-avatar-wrap { justify-self: center; }
+    }
+    .founder-avatar {
+      width: 130px; height: 130px; border-radius: 50%;
+      background: linear-gradient(135deg, #BF0A30 0%, #8f0822 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-size: 2.6rem; font-weight: 800;
+      color: #fff; letter-spacing: -0.02em;
+      border: 4px solid rgba(255,255,255,0.25);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      flex-shrink: 0;
+    }
+    .founder-name { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; color: #fff; margin-bottom: 0.35rem; }
+    .founder-title {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(191,10,48,0.85); color: #fff;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 0.35rem 1rem;
+      border-radius: var(--radius-full); margin-bottom: 1rem;
+    }
+    .founder-tagline { color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.7; max-width: 60ch; }
+    .founder-contact-row {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem;
+    }
+    .founder-contact-chip {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.9); font-size: 0.84rem; font-weight: 600;
+      padding: 0.4rem 1rem; border-radius: var(--radius-full);
+      text-decoration: none; transition: background 0.15s, border-color 0.15s;
+    }
+    .founder-contact-chip:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.35); }
+
+    .founder-body {
+      padding: clamp(2rem, 4vw, 3.5rem) clamp(2rem, 5vw, 4rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    @media (max-width: 768px) { .founder-body { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .founder-story p {
+      color: var(--text-secondary); line-height: 1.85;
+      font-size: 0.97rem; margin-bottom: 1.1rem; max-width: none;
+    }
+    .founder-story p:last-child { margin-bottom: 0; }
+    .founder-story h3 { color: var(--brand-blue); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem; }
+
+    .founder-vision { display: flex; flex-direction: column; gap: 1.25rem; }
+    .vision-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--brand-blue);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.25rem 1.5rem;
+    }
+    .vision-card.red-accent { border-left-color: var(--brand-red); }
+    .vision-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--brand-blue); margin-bottom: 0.5rem; }
+    .vision-card.red-accent h4 { color: var(--brand-red); }
+    .vision-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; margin: 0; max-width: none; }
+
+    /* ── Founding story timeline ── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 6px; bottom: 0;
+      width: 3px; background: linear-gradient(180deg, #002868, #BF0A30);
+      border-radius: 4px;
+    }
+    .timeline-item { position: relative; margin-bottom: 2rem; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -2.45rem; top: 4px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: #002868; border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #002868;
+    }
+    .timeline-item:nth-child(even) .timeline-dot { background: #BF0A30; box-shadow: 0 0 0 2px #BF0A30; }
+    .timeline-year {
+      font-size: 0.76rem; font-weight: 800; color: #002868;
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem;
+    }
+    .timeline-item:nth-child(even) .timeline-year { color: #BF0A30; }
+    .timeline-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+    .timeline-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; max-width: none; margin: 0; }
+
+    /* ── Pillars grid ── */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .pillar-card {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .pillar-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .pillar-card.blue::before { background: #002868; }
+    .pillar-card.red::before  { background: #BF0A30; }
+    .pillar-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .pillar-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+    .pillar-card h3 { font-size: 1rem; font-weight: 700; color: var(--brand-blue); margin-bottom: 0.6rem; }
+    .pillar-card.red h3 { color: var(--brand-red); }
+    .pillar-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin: 0; max-width: none; }
+
+    /* ── Quote block ── */
+    .founder-quote {
+      background: linear-gradient(135deg, #002868 0%, #1a3d8a 100%);
+      border-radius: var(--radius-xl);
+      padding: clamp(2.5rem, 5vw, 4rem);
+      text-align: center;
+      position: relative; overflow: hidden; color: #fff;
+    }
+    .founder-quote::before {
+      content: '"'; position: absolute; top: -20px; left: 30px;
+      font-size: 15rem; font-family: Georgia, serif; font-weight: 900;
+      color: rgba(255,255,255,0.05); line-height: 1; pointer-events: none;
+    }
+    .founder-quote blockquote {
+      position: relative; z-index: 1;
+      font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+      font-style: italic; font-weight: 500;
+      color: rgba(255,255,255,0.95); line-height: 1.75;
+      max-width: 72ch; margin: 0 auto 1.5rem;
+    }
+    .founder-quote cite {
+      display: block; font-size: 0.9rem; font-style: normal;
+      color: rgba(255,255,255,0.7); font-weight: 600; position: relative; z-index: 1;
+    }
+
+    /* ── CTA band ── */
+    .cta-band {
+      background: linear-gradient(135deg, #BF0A30 0%, #8f0822 100%);
+      border-radius: var(--radius-xl);
+      padding: clamp(2.5rem, 5vw, 4rem);
+      text-align: center; color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .cta-band::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(0,40,104,0.25) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-band > * { position: relative; z-index: 1; }
+    .cta-band h2 { color: #fff; margin-bottom: 0.75rem; }
+    .cta-band p  { color: rgba(255,255,255,0.85); max-width: 56ch; margin: 0 auto 2rem; font-size: 1.02rem; }
+    .cta-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s var(--ease, ease), transform 0.55s var(--ease, ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="study-abroad.html">Study Abroad</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a class="active" aria-current="page" href="leadership.html">Leadership</a>
+        <a href="contact.html">Contact</a>
+        <a href="study-abroad.html#application-form" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Our Leadership</p>
+        <h1>Founded on a Vision<br>Built for Liberia</h1>
+        <p class="lead" style="max-width:62ch;">
+          Tolbert Innovation Hub was founded by <strong style="color:#fff;">Mr. Samuel S. Tolbert</strong> —
+          a visionary leader committed to bridging the gap between Liberian talent and global opportunity
+          through education, healthcare access, and digital innovation.
+        </p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
+          <a class="btn btn-primary" href="#founder-profile">Meet the Founder</a>
+          <a class="btn btn-outline" href="team.html">Full Team →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER PROFILE -->
+    <section class="section" id="founder-profile" aria-labelledby="founder-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">The Founder</p>
+          <h2 id="founder-heading">Mr. Samuel S. Tolbert</h2>
+          <p class="section-intro">Founder &amp; Chief Executive Officer of Tolbert Innovation Hub</p>
+        </div>
+
+        <article class="founder-section reveal">
+          <!-- Top banner -->
+          <div class="founder-top">
+            <div class="founder-avatar-wrap">
+              <div class="founder-avatar" aria-hidden="true">SST</div>
+            </div>
+            <div>
+              <h2 class="founder-name">Mr. Samuel S. Tolbert</h2>
+              <span class="founder-title">⭐ Founder &amp; CEO — Tolbert Innovation Hub</span>
+              <p class="founder-tagline">
+                Dedicated to empowering Liberian youth through access to world-class education,
+                international healthcare, and transformative digital solutions.
+              </p>
+              <div class="founder-contact-row">
+                <a href="mailto:tolbertinnovationhub@gmail.com" class="founder-contact-chip">📧 tolbertinnovationhub@gmail.com</a>
+                <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="founder-contact-chip">💬 +231 880 559 227</a>
+                <span class="founder-contact-chip">📍 Liberia, West Africa</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Body: story + vision cards -->
+          <div class="founder-body">
+            <div class="founder-story">
+              <h3>About the Founder</h3>
+              <p>
+                Mr. Samuel S. Tolbert is the Founder and Chief Executive Officer of Tolbert Innovation Hub,
+                an organization he established with a clear and urgent purpose: to create real, measurable
+                opportunity for Liberian youth in education, healthcare, and technology.
+              </p>
+              <p>
+                Driven by the belief that every young Liberian deserves access to the same global
+                opportunities available elsewhere, Mr. Tolbert built TIH from the ground up — starting
+                with scholarship guidance and growing into a multi-program hub that serves students,
+                patients, and businesses across Liberia and beyond.
+              </p>
+              <p>
+                His leadership is rooted in direct action: personally guiding scholarship applicants
+                through complex admission processes, coordinating healthcare referrals for families in
+                need, and building digital infrastructure for Liberian businesses to modernize and grow.
+              </p>
+              <p>
+                Under Mr. Tolbert's direction, TIH has supported over 500 students with scholarship
+                guidance, referred patients to specialist hospitals in India, and delivered digital
+                solutions to businesses across Liberia — all while maintaining a free IELTS and TOEFL
+                classroom for every student who walks through TIH's doors.
+              </p>
+            </div>
+
+            <div class="founder-vision">
+              <h3 style="color:var(--brand-blue);font-size:1.1rem;font-weight:700;margin-bottom:0.25rem;">Founder's Vision &amp; Values</h3>
+
+              <div class="vision-card">
+                <h4>🎯 Mission</h4>
+                <p>To connect every Liberian with the educational, medical, and technological resources they need to build a better life — regardless of background or circumstance.</p>
+              </div>
+
+              <div class="vision-card red-accent">
+                <h4>👁️ Vision</h4>
+                <p>A Liberia where no talented young person is held back by lack of access — where innovation, education, and opportunity are available to all.</p>
+              </div>
+
+              <div class="vision-card">
+                <h4>💡 Leadership Philosophy</h4>
+                <p>Lead by example. Serve before you are served. Build systems that outlast individuals and create pathways for the next generation to rise.</p>
+              </div>
+
+              <div class="vision-card red-accent">
+                <h4>🌍 Commitment to Africa</h4>
+                <p>Inspired by the legacy of President William R. Tolbert, TIH puts Africa's development first — building local capacity while connecting Liberians to global networks.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FOUNDER QUOTE -->
+    <section class="section section-sm" aria-label="Founder's quote">
+      <div class="container">
+        <div class="founder-quote reveal">
+          <blockquote>
+            "Every Liberian student, patient, and entrepreneur deserves access to the same world-class
+            opportunities available anywhere else on earth. That belief is why Tolbert Innovation Hub
+            exists — and why we will never stop working until that access is a reality."
+          </blockquote>
+          <cite>— Mr. Samuel S. Tolbert, Founder &amp; CEO, Tolbert Innovation Hub</cite>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDING STORY TIMELINE -->
+    <section class="section section-alt" aria-labelledby="story-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Our Story</p>
+          <h2 id="story-heading">How Tolbert Innovation Hub Began</h2>
+          <p class="section-intro">From a bold idea to a multi-program organization serving thousands of Liberians — the TIH journey.</p>
+        </div>
+
+        <div style="max-width:700px; margin-top:2.5rem;">
+          <div class="timeline reveal">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <p class="timeline-year">The Vision</p>
+              <p class="timeline-title">A Problem Worth Solving</p>
+              <p class="timeline-desc">Mr. Samuel S. Tolbert observed firsthand that talented Liberian students were losing scholarship opportunities due to lack of guidance, and families were struggling to access quality healthcare abroad. He decided to build the bridge that was missing.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <p class="timeline-year">The Foundation</p>
+              <p class="timeline-title">Tolbert Innovation Hub Is Founded</p>
+              <p class="timeline-desc">Mr. Tolbert formally established Tolbert Innovation Hub in Liberia, West Africa — with a mandate to serve students, patients, and businesses through dedicated scholarship guidance, healthcare coordination, and digital innovation programs.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <p class="timeline-year">Early Growth</p>
+              <p class="timeline-title">Scholarship &amp; Healthcare Programs Launch</p>
+              <p class="timeline-desc">TIH began processing its first scholarship applications and healthcare referrals, partnering with institutions in India and supporting Liberian students with ICCR fully funded scholarship guidance and international university admissions.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <p class="timeline-year">Expansion</p>
+              <p class="timeline-title">Free IELTS &amp; TOEFL Classroom Opens</p>
+              <p class="timeline-desc">Recognizing that exam preparation was a barrier for many students, Mr. Tolbert launched TIH's free IELTS and TOEFL classroom — 6 structured modules, practice tests, and a certificate program available to every student at no cost.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <p class="timeline-year">2026</p>
+              <p class="timeline-title">Digital Innovation &amp; Full Platform Launch</p>
+              <p class="timeline-desc">TIH launched its full digital platform — study abroad portal, software innovation services, student portal, and the chatbot assistant — expanding its reach across Liberia and serving 500+ students with scholarship guidance, healthcare referrals, and business digital solutions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THREE PILLARS -->
+    <section class="section" aria-labelledby="pillars-heading">
+      <div class="container">
+        <div class="section-header centered">
+          <p class="section-label">The Three Pillars</p>
+          <h2 id="pillars-heading">Built on Three Foundations</h2>
+          <p class="section-intro">Mr. Tolbert designed TIH around three pillars that reflect the most urgent needs he observed in Liberian communities.</p>
+        </div>
+
+        <div class="pillars-grid">
+          <article class="pillar-card blue reveal">
+            <span class="pillar-icon">🎓</span>
+            <h3>Education &amp; Scholarship Access</h3>
+            <p>Providing every Liberian student with the guidance, documentation support, and exam preparation tools needed to qualify for and secure international scholarships and university admissions.</p>
+          </article>
+          <article class="pillar-card red reveal">
+            <span class="pillar-icon">🏥</span>
+            <h3>International Healthcare Access</h3>
+            <p>Connecting families to life-changing medical treatment abroad — coordinating referrals, hospital partnerships, and patient support from Liberia to specialist centers in India and beyond.</p>
+          </article>
+          <article class="pillar-card blue reveal">
+            <span class="pillar-icon">💻</span>
+            <h3>Digital Innovation &amp; Technology</h3>
+            <p>Helping Liberian businesses modernize through custom websites, business management platforms, and digital transformation consulting — building the infrastructure for a stronger Liberian economy.</p>
+          </article>
+          <article class="pillar-card red reveal">
+            <span class="pillar-icon">📚</span>
+            <h3>Free Exam Preparation</h3>
+            <p>Running a 100% free IELTS and TOEFL classroom so that no student is disadvantaged by cost when preparing for the international exams required for scholarship eligibility and university admission.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section-sm" aria-label="Learn more or apply">
+      <div class="container">
+        <div class="cta-band reveal">
+          <p class="eyebrow" style="justify-content:center;margin:0 auto 1rem;">Get Involved</p>
+          <h2>Be Part of the TIH Story</h2>
+          <p>Whether you are a student ready to apply, a family seeking healthcare support, a business looking for digital solutions, or a partner who shares our mission — there is a place for you at Tolbert Innovation Hub.</p>
+          <div class="cta-actions">
+            <a href="study-abroad.html#application-form" class="btn btn-primary btn-lg">Apply for Scholarship</a>
+            <a href="team.html" class="btn btn-outline btn-lg">Meet the Full Team</a>
+            <a href="contact.html" class="btn btn-outline btn-lg">Contact Mr. Tolbert</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:tolbertinnovationhub@gmail.com" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="study-abroad.html#application-form">Study Abroad</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
+            <li><a href="healthcare.html">Healthcare Exposure</a></li>
+            <li><a href="software.html">Software Innovation</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">About TIH</p>
+          <ul class="footer-links">
+            <li><a href="leadership.html">Leadership</a></li>
+            <li><a href="team.html">Our Team</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="impact.html">Impact Report</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:tolbertinnovationhub@gmail.com">tolbertinnovationhub@gmail.com</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📍</span><span>Liberia, West Africa</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+          <p style="font-size:0.82rem;color:rgba(200,216,240,0.55);margin:0;">Empowering Africa's Future — Never Stop Innovating 🚀</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+  </a>
+
+  <script src="main.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>
