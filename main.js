@@ -363,28 +363,6 @@ function initNav() {
     brand.append(logo, text);
   }
 
-  // Dark mode toggle injection if not already present in the DOM
-  if (!navWrap.querySelector('.dark-mode-toggle')) {
-    const toggle = document.createElement('button');
-    toggle.type = 'button';
-    toggle.className = 'dark-mode-toggle';
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    updateToggleIcon(toggle, isDark);
-    navWrap.appendChild(toggle);
-    toggle.addEventListener('click', () => {
-      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-      if (dark) {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('tih-theme', 'light');
-        document.querySelectorAll('.dark-mode-toggle').forEach((b) => updateToggleIcon(b, false));
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('tih-theme', 'dark');
-        document.querySelectorAll('.dark-mode-toggle').forEach((b) => updateToggleIcon(b, true));
-      }
-    });
-  }
-
   // Menu toggle button
   let menuButton = navWrap.querySelector('.menu-toggle');
   if (!menuButton) {
