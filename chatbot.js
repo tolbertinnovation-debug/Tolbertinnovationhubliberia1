@@ -341,7 +341,7 @@ What would you like to know today?`,
     { id:'about_tih',
       keywords:['what is tih','what is tolbert','about tolbert','tell me about','what does tih do','who is tolbert innovation','organization','ngo','nonprofit','what you do','what do you offer','what programs','overview','mission'],
       reply:`🏛️ <strong>About Tolbert Innovation Hub (TIH)</strong><br><br>
-TIH is a Liberian organization founded by <strong>Mr. Samuel S. Tolbert</strong> that empowers youth through five pillars:<br><br>
+TIH is a Liberian organization founded by <strong>Mr. Samuel S. Tolbert</strong>, inspired by the legacy of <strong>President William R. Tolbert</strong>, that empowers youth through five pillars:<br><br>
 🎓 <strong>Scholarship & Study Abroad</strong> — guidance, document prep &amp; admission support<br>
 🏥 <strong>Healthcare Referral Program</strong> — specialist referrals to India &amp; beyond<br>
 💻 <strong>Software &amp; Digital Innovation</strong> — websites, apps, business systems<br>
