@@ -377,22 +377,21 @@ Under his leadership, TIH has:<br>
 
     { id:'scholarship',
       keywords:['scholarship','study abroad','international school','university abroad','admission','study overseas','apply school','foreign university','higher education','bachelor','master','phd','postgraduate','undergraduate','degree','academic','enroll','university'],
-      reply:`🎓 <strong>TIH Study Abroad Program</strong><br><br>
-Tolbert Innovation Hub helps Liberian students study at top universities in <strong>India &amp; North Cyprus</strong> — with a <strong>50% tuition scholarship</strong> on every admission.<br><br>
+      reply:`🎓 <strong>Study Abroad with a TIH Scholarship</strong><br><br>
+The <strong>#1 way to study abroad through TIH</strong> is our own partner university program:<br><br>
 <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:12px 14px;margin:6px 0;">
 🏷️ <strong>TIH 50% Tuition Scholarship</strong><br>
-All 20 partner universities · India &amp; Cyprus<br>
-TIH negotiates directly with each university on your behalf — <em>at no cost to you.</em>
+Available at all <strong>20 partner universities</strong> in India &amp; Cyprus.<br>
+Pay <em>half the tuition</em> — TIH negotiates directly with every university on your behalf.
 </div><br>
-🇮🇳 <strong>India</strong> — 15 universities · UG, PG &amp; PhD · From <strong>$900/yr</strong> after scholarship<br>
-🇨🇾 <strong>North Cyprus</strong> — 5 universities · English-medium · From <strong>$1,750/yr</strong> after scholarship<br><br>
-✅ <strong>Everything TIH does FREE:</strong><br>
-• University selection &amp; shortlisting<br>
-• Application &amp; document review<br>
-• Offer letter processing<br>
+🇮🇳 <strong>India</strong> — 15 universities · UG, PG, PhD · From <strong>$900/yr after scholarship</strong><br>
+🇨🇾 <strong>North Cyprus</strong> — 5 universities · English-medium · From <strong>$1,750/yr after scholarship</strong><br><br>
+📋 <strong>What TIH covers for FREE:</strong><br>
+• University selection &amp; application<br>
+• Document review &amp; authentication<br>
 • Visa guidance &amp; pre-departure support<br><br>
-👇 <strong>Where would you like to study?</strong>`,
-      qr:['🎓 Browse Programs','🇮🇳 Study in India','🇨🇾 Study in Cyprus','📋 Required Documents','📞 Apply Now — Free'] },
+Also looking for a <strong>fully funded</strong> scholarship? I can show you those too.`,
+      qr:['🎓 Browse Programs','🇮🇳 Study in India','🇨🇾 Study in Cyprus','🏆 Fully Funded Scholarships','📞 Apply Now — Free'] },
 
     // ── STEP-BY-STEP PROGRAM SELECTION FLOW ──────────────────────────────────
 
