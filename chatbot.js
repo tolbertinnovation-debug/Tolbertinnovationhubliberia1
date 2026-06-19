@@ -511,27 +511,33 @@ We help Liberian businesses and organisations modernise with:<br>
 • E-commerce platforms<br>
 • Digital strategy &amp; consultation<br>
 • Process automation &amp; optimisation<br><br>
-📦 <strong>Service packages:</strong><br>
-• <strong>Starter</strong> — $150 (basic website)<br>
-• <strong>Professional</strong> — $400 (full web application)<br>
-• <strong>Enterprise</strong> — Custom quote`,
+🎉 <strong>Website packages include FREE:</strong><br>
+• <strong>1-Year Domain</strong> (your own .com or .org)<br>
+• <strong>Hosting</strong> — we host your site<br>
+• <strong>Unlimited Professional Email</strong> (you@yourbusiness.com)<br>
+• <strong>Strong Security</strong> (SSL certificate, firewall protection)<br><br>
+📦 <strong>Packages (50% OFF — limited offer):</strong><br>
+• <strong>Starter</strong> — <s>$150</s> <strong>$75</strong> (basic website)<br>
+• <strong>Professional</strong> — <s>$400</s> <strong>$200</strong> (full web application)<br>
+• <strong>Enterprise</strong> — Custom quote (contact us)`,
       qr:['📝 Request Consultation','💰 View Full Pricing','🗂️ View Portfolio','🔙 Main Menu'] },
 
     { id:'pricing',
-      keywords:['price','pricing','cost','fee','how much','payment','pay','charge','rate','package','affordable','expensive','free','discount','budget','amount','money'],
+      keywords:['price','pricing','cost','fee','how much','payment','pay','charge','rate','package','affordable','expensive','free','discount','budget','amount','money','website price','website cost','hosting','domain','email'],
       reply:`💰 <strong>TIH Fees &amp; Pricing</strong><br><br>
 <strong>Education:</strong><br>
 • Scholarship guidance — <strong>Free</strong><br>
 • IELTS/TOEFL classroom — <strong>100% Free</strong><br>
 • Completion certificate — <strong>$5 USD</strong><br><br>
-<strong>Software Services:</strong><br>
-• Starter package — <strong>$150</strong><br>
-• Professional package — <strong>$400</strong><br>
-• Enterprise — <strong>Custom quote</strong><br><br>
+<strong>Website Development (50% OFF):</strong><br>
+• Starter — <s>$150</s> → <strong>$75</strong><br>
+• Professional — <s>$400</s> → <strong>$200</strong><br>
+• Enterprise — <strong>Custom quote</strong><br>
+🎁 All website packages include: <strong>Free 1-year domain · Free hosting · Unlimited professional email · Strong security (SSL)</strong><br><br>
 <strong>Healthcare:</strong><br>
-• Program coordination — Contact us for details<br><br>
+• Program coordination — <strong>Free</strong> (you pay the hospital)<br><br>
 <strong>Donation to TIH:</strong> From $5 — any amount helps!`,
-      qr:['💻 Software Details','🎓 Apply Free','❤️ Donate','📞 Contact','🔙 Main Menu'] },
+      qr:['💻 Website 50% OFF','🎓 Apply Free','❤️ Donate','📞 Contact','🔙 Main Menu'] },
 
     { id:'contact',
       keywords:['contact','phone','email','whatsapp','reach us','get in touch','office','location','address','hours','call','where are you','how to reach','contact details','monrovia','liberia office'],
@@ -1125,8 +1131,9 @@ Typical project timelines at TIH:<br>
 • <strong>Basic website</strong> — 2–4 weeks<br>
 • <strong>Custom software / business systems</strong> — 4–12 weeks<br>
 • <strong>Mobile app</strong> — 6–12 weeks<br><br>
-Timeline depends on complexity and your feedback turnaround. We'll give you a precise estimate during your free consultation.`,
-      qr:['💻 Book Consultation','📝 Apply Now','📞 Contact TIH'] },
+🎉 <strong>Website packages are 50% OFF</strong> and include free 1-year domain, hosting, unlimited professional email, and strong security.<br><br>
+We'll give you a precise timeline estimate during your free consultation.`,
+      qr:['💻 Book Consultation','💰 View Pricing','📞 Contact TIH'] },
 
     { id:'donation_tiers',
       keywords:['donation tier','supporter','champion','transformer','monthly donation','donate tier','giving level','how much donate'],
