@@ -334,9 +334,9 @@
     { id:'greet',
       keywords:['hello','hi','hey','good morning','good evening','good afternoon','howdy','greetings','what can you do','who are you','help me','assist','start','begin'],
       reply:`Hello! 👋 Welcome to <strong>Tolbert Innovation Hub</strong>!<br><br>
-I'm the TIH Assistant — here to help with scholarships, free IELTS/TOEFL prep, healthcare referrals, software services, and more.<br><br>
-What would you like to know today?`,
-      qr:['🎓 Scholarships','📚 Free Classroom','🏥 Healthcare','💻 Software','📝 Apply Now','📞 Contact'] },
+I'm the TIH Assistant — here to help you explore programs, scholarships, free IELTS/TOEFL prep, healthcare referrals, software services, and more.<br><br>
+What would you like to do today?`,
+      qr:['🎓 Browse Programs','🏆 Fully Funded Scholarships','📚 Free Classroom','🏥 Healthcare','💻 Software','📞 Contact'] },
 
     { id:'about_tih',
       keywords:['what is tih','what is tolbert','about tolbert','tell me about','what does tih do','who is tolbert innovation','organization','ngo','nonprofit','what you do','what do you offer','what programs','overview','mission'],
@@ -391,23 +391,261 @@ TIH helps Liberian students access fully funded scholarships worldwide:<br><br>
 🌐 <strong>Pan African University (PAU)</strong> — African Union, full funding<br>
 🌍 <strong>Commonwealth Scholarship</strong> — UK, fully funded Master's<br><br>
 Ask me about any specific scholarship for full details!`,
-      qr:['👩‍🎓 SHE-CAN','🇪🇺 Erasmus Mundus','🇰🇷 Korea GKS','🇯🇵 MEXT Japan','🔙 Main Menu'] },
+      qr:['🎓 Browse Programs','👩‍🎓 SHE-CAN','🇪🇺 Erasmus Mundus','🇰🇷 Korea GKS','🔙 Main Menu'] },
+
+    // ── STEP-BY-STEP PROGRAM SELECTION FLOW ──────────────────────────────────
+
+    { id:'explore_programs',
+      keywords:['programs','courses','fields','what programs','what courses','what can i study','available programs','list programs','show programs','study options','program list','courses available','study what','what to study','fields of study','discipline','browse programs','explore programs'],
+      reply:`🎓 <strong>Step 1 of 3 — Choose Your Destination</strong><br><br>
+TIH partners with <strong>20 universities</strong> in India and Cyprus.<br>
+Where would you like to study?<br><br>
+🇮🇳 <strong>India</strong> — 15 universities · from <strong>$900/yr</strong> (after TIH 50% scholarship)<br>
+🇨🇾 <strong>Cyprus</strong> — 5 universities · European standard · Mediterranean lifestyle<br>
+🌍 <strong>Both</strong> — explore all destinations`,
+      qr:['🇮🇳 Study in India','🇨🇾 Study in Cyprus','🌍 Show All Universities','📞 Talk to an Advisor'] },
+
+    { id:'programs_india',
+      keywords:['india programs','study india','india field','india courses','programs in india','study in india','what study india'],
+      reply:`🇮🇳 <strong>Step 2 of 3 — Choose Your Field (India)</strong><br><br>
+15 partner universities in India. Select your field of study:<br><br>
+🏥 Medicine &amp; Health Sciences<br>
+⚙️ Engineering &amp; Technology<br>
+💼 Business &amp; Management<br>
+⚖️ Law &amp; Social Sciences<br>
+💻 Computer Science &amp; IT<br>
+🏗️ Architecture &amp; Design<br>
+💊 Nursing &amp; Pharmacy<br>
+🌾 Agriculture &amp; Environment<br>
+📖 Education &amp; Humanities`,
+      qr:['🏥 Medicine','⚙️ Engineering','💼 Business','⚖️ Law','💻 Computer Science','💊 Nursing & Pharmacy','🌾 Agriculture','📖 Education'] },
+
+    { id:'programs_cyprus',
+      keywords:['cyprus programs','study cyprus','cyprus field','cyprus courses','programs in cyprus','study in cyprus','what study cyprus'],
+      reply:`🇨🇾 <strong>Step 2 of 3 — Choose Your Field (Cyprus)</strong><br><br>
+5 partner universities in North Cyprus. Select your field of study:<br><br>
+⚙️ Engineering &amp; Technology<br>
+💼 Business &amp; Management<br>
+⚖️ Law &amp; Social Sciences<br>
+💻 Computer Science &amp; IT<br>
+🏗️ Architecture &amp; Design<br>
+🏨 Hospitality &amp; Tourism<br>
+🏥 Health Sciences<br>
+📖 Education &amp; Humanities`,
+      qr:['⚙️ Engineering','💼 Business','⚖️ Law','💻 Computer Science','🏗️ Architecture','🏨 Hospitality','🏥 Health Sciences','📖 Education'] },
+
+    { id:'field_medicine',
+      keywords:['medicine','medical','mbbs','doctor','health sciences','study medicine','medical school','faculty of medicine','dentistry','dental','bds'],
+      reply:`🏥 <strong>Step 3 of 3 — Medicine &amp; Health Sciences</strong><br><br>
+<strong>Programs Available:</strong><br>
+• MBBS — Bachelor of Medicine &amp; Surgery (6 years)<br>
+• BDS — Bachelor of Dental Surgery (5 years)<br>
+• B.Sc / M.Sc Medicine / Biomedical Sciences<br>
+• Master's in Public Health (MPH)<br><br>
+<strong>🇮🇳 Top India Universities:</strong><br>
+• <strong>Sharda University</strong> (NAAC A+) — from <s>$3,500</s> → <strong>$1,750/yr</strong><br>
+• <strong>SOA University</strong> (NAAC A+) — from <s>$5,500</s> → <strong>$2,750/yr</strong><br><br>
+<strong>🇨🇾 Top Cyprus Universities:</strong><br>
+• <strong>Near East University (NEU)</strong> — Full Faculty of Medicine &amp; Pharmacy<br>
+• <strong>Cyprus International University (CIU)</strong> — Health Sciences<br><br>
+📅 Deadline: <strong>July 15, 2026</strong>`,
+      qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
+
+    { id:'field_engineering',
+      keywords:['engineering','engineer','civil engineering','mechanical engineering','electrical engineering','software engineering','chemical engineering','structural','environmental engineering'],
+      reply:`⚙️ <strong>Step 3 of 3 — Engineering &amp; Technology</strong><br><br>
+<strong>Programs Available:</strong><br>
+• B.Tech / M.Tech Civil Engineering<br>
+• B.Tech / M.Tech Mechanical Engineering<br>
+• B.Tech / M.Tech Electrical &amp; Electronics<br>
+• B.Tech / M.Tech Computer Engineering<br>
+• B.Tech Environmental / Chemical Engineering<br><br>
+<strong>🇮🇳 Top India Universities:</strong><br>
+• <strong>LPU</strong> (NAAC A++) — from <s>$2,800</s> → <strong>$1,400/yr</strong><br>
+• <strong>Graphic Era University</strong> (NAAC A+) — from <s>$2,500</s> → <strong>$1,250/yr</strong><br>
+• <strong>Marwadi University</strong> (NAAC A) — from <s>$2,000</s> → <strong>$1,000/yr</strong><br><br>
+<strong>🇨🇾 Top Cyprus Universities:</strong><br>
+• <strong>EMU</strong> — Engineering, Civil, Computer, Electrical<br>
+• <strong>NEU</strong> — 200+ programs incl. all Engineering branches<br><br>
+📅 Deadline: <strong>July 15, 2026</strong>`,
+      qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
+
+    { id:'field_business',
+      keywords:['business','management','mba','bba','finance','marketing','accounting','economics','entrepreneurship','international business','human resources'],
+      reply:`💼 <strong>Step 3 of 3 — Business &amp; Management</strong><br><br>
+<strong>Programs Available:</strong><br>
+• BBA — Bachelor of Business Administration<br>
+• B.Com / B.Sc Finance &amp; Accounting<br>
+• MBA — Master of Business Administration<br>
+• M.Sc International Business / Marketing<br>
+• B.Sc / M.Sc Economics<br><br>
+<strong>🇮🇳 Top India Universities:</strong><br>
+• <strong>Amity University</strong> (NAAC A+) — from <s>$4,000</s> → <strong>$2,000/yr</strong><br>
+• <strong>LPU</strong> (NAAC A++) — from <s>$2,800</s> → <strong>$1,400/yr</strong><br>
+• <strong>Sharda University</strong> (NAAC A+) — from <s>$3,500</s> → <strong>$1,750/yr</strong><br><br>
+<strong>🇨🇾 Top Cyprus Universities:</strong><br>
+• <strong>GAU</strong> — American-style Business, Kyrenia<br>
+• <strong>NEU / CIU / EMU</strong> — Business &amp; Economics, Nicosia/Famagusta<br><br>
+📅 Deadline: <strong>July 15, 2026</strong>`,
+      qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
+
+    { id:'field_law',
+      keywords:['law','legal','llb','llm','lawyer','attorney','legal studies','international law','commercial law','human rights law'],
+      reply:`⚖️ <strong>Step 3 of 3 — Law &amp; Social Sciences</strong><br><br>
+<strong>Programs Available:</strong><br>
+• LLB — Bachelor of Laws (3–5 years)<br>
+• LLM — Master of Laws<br>
+• BA / MA International Relations<br>
+• BA / MA Political Science<br>
+• MA Human Rights &amp; International Law<br><br>
+<strong>🇮🇳 Top India Universities:</strong><br>
+• <strong>Sharda University</strong> (NAAC A+) — from <s>$3,500</s> → <strong>$1,750/yr</strong><br>
+• <strong>SOA University</strong> (NAAC A+) — from <s>$5,500</s> → <strong>$2,750/yr</strong><br>
+• <strong>MATS University</strong> — LLB specialist, from <s>$1,500</s> → <strong>$750/yr</strong><br><br>
+<strong>🇨🇾 Top Cyprus Universities:</strong><br>
+• <strong>NEU</strong> — International Law, Commercial Law<br>
+• <strong>CIU / EMU</strong> — Law, English medium<br><br>
+📅 Deadline: <strong>July 15, 2026</strong>`,
+      qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
+
+    { id:'field_cs',
+      keywords:['computer science','information technology','it','software development','cybersecurity','data science','artificial intelligence','ai','programming','coding','software'],
+      reply:`💻 <strong>Step 3 of 3 — Computer Science &amp; IT</strong><br><br>
+<strong>Programs Available:</strong><br>
+• B.Sc / M.Sc Computer Science<br>
+• B.Sc / M.Sc Information Technology<br>
+• B.Sc / M.Sc Cybersecurity<br>
+• B.Sc / M.Sc Data Science &amp; AI<br>
+• B.Sc Software Engineering<br><br>
+<strong>🇮🇳 Top India Universities:</strong><br>
+• <strong>LPU</strong> (NAAC A++) — from <s>$2,800</s> → <strong>$1,400/yr</strong><br>
+• <strong>Graphic Era University</strong> (NAAC A+) — from <s>$2,500</s> → <strong>$1,250/yr</strong><br>
+• <strong>Amity University</strong> (NAAC A+) — from <s>$4,000</s> → <strong>$2,000/yr</strong><br><br>
+<strong>🇨🇾 Top Cyprus Universities:</strong><br>
+• <strong>EMU</strong> — Computer Science, Software Engineering, Cybersecurity<br>
+• <strong>NEU / CIU</strong> — IT &amp; Computer Science, Nicosia<br><br>
+📅 Deadline: <strong>July 15, 2026</strong>`,
+      qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
+
+    { id:'field_architecture',
+      keywords:['architecture','interior design','urban planning','fine arts','design','building','construction design'],
+      reply:`🏗️ <strong>Step 3 of 3 — Architecture &amp; Design</strong><br><br>
+<strong>Programs Available:</strong><br>
+• B.Arch / M.Arch Architecture (5 years UG)<br>
+• B.Sc / M.Sc Interior Design<br>
+• B.Sc Urban &amp; Regional Planning<br>
+• BA Fine Arts &amp; Graphic Design<br><br>
+<strong>🇮🇳 Top India Universities:</strong><br>
+• <strong>LPU</strong> (NAAC A++) — B.Arch from <s>$2,800</s> → <strong>$1,400/yr</strong><br>
+• <strong>Amity University</strong> (NAAC A+) — Architecture &amp; Design<br>
+• <strong>Marwadi University</strong> (NAAC A) — Architecture programs<br><br>
+<strong>🇨🇾 Top Cyprus Universities:</strong><br>
+• <strong>NEU</strong> — Architecture, Interior Design, Fine Arts<br>
+• <strong>EMU</strong> — Architecture &amp; Urban Planning<br>
+• <strong>GAU</strong> — Architecture &amp; Interior Architecture<br><br>
+📅 Deadline: <strong>July 15, 2026</strong>`,
+      qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
+
+    { id:'field_nursing',
+      keywords:['nursing','pharmacy','pharmacist','nurse','bsc nursing','b pharm','pharmd','physiotherapy','medical lab','dietetics','nutrition'],
+      reply:`💊 <strong>Step 3 of 3 — Nursing &amp; Pharmacy</strong><br><br>
+<strong>Programs Available:</strong><br>
+• B.Sc / M.Sc Nursing (3–4 years)<br>
+• B.Pharm / M.Pharm — Bachelor/Master of Pharmacy<br>
+• Pharm.D — Doctor of Pharmacy (6 years)<br>
+• B.Sc Physiotherapy<br>
+• B.Sc Medical Lab Technology<br>
+• B.Sc Nutrition &amp; Dietetics<br><br>
+<strong>🇮🇳 Top India Universities:</strong><br>
+• <strong>Desh Bhagat University</strong> — Nursing specialist, from <s>$1,800</s> → <strong>$900/yr</strong><br>
+• <strong>SOA University</strong> (NAAC A+) — Pharmacy &amp; Nursing<br>
+• <strong>PP Savani University</strong> — Nursing &amp; Health Sciences<br><br>
+<strong>🇨🇾 Top Cyprus Universities:</strong><br>
+• <strong>NEU</strong> — Full Faculty of Pharmacy + Nursing<br>
+• <strong>CIU / EMU</strong> — Health Sciences programs<br><br>
+📅 Deadline: <strong>July 15, 2026</strong>`,
+      qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
+
+    { id:'field_agriculture',
+      keywords:['agriculture','agronomy','farming','agribusiness','food science','food technology','agricultural science','horticulture','forestry'],
+      reply:`🌾 <strong>Step 3 of 3 — Agriculture &amp; Environment</strong><br><br>
+<strong>Programs Available:</strong><br>
+• B.Sc / M.Sc Agriculture<br>
+• B.Sc Agribusiness Management<br>
+• B.Sc Food Science &amp; Technology<br>
+• B.Sc Horticulture<br>
+• B.Sc Environmental Science<br><br>
+<strong>🇮🇳 Top India Universities:</strong><br>
+• <strong>Desh Bhagat University</strong> — Agriculture specialist, from <s>$1,800</s> → <strong>$900/yr</strong><br>
+• <strong>MATS University</strong> — Agriculture &amp; Science, from <s>$1,500</s> → <strong>$750/yr</strong><br>
+• <strong>Khalsa University</strong> — Agriculture &amp; Sciences, from <s>$1,800</s> → <strong>$900/yr</strong><br><br>
+💡 India is one of the world's leading countries in agricultural research and education — ideal for Liberian students in this field.<br><br>
+📅 Deadline: <strong>July 15, 2026</strong>`,
+      qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
+
+    { id:'field_education',
+      keywords:['education','teaching','teacher','primary education','educational studies','humanities','arts','social science','counselling','guidance','english teaching'],
+      reply:`📖 <strong>Step 3 of 3 — Education &amp; Humanities</strong><br><br>
+<strong>Programs Available:</strong><br>
+• B.Ed / M.Ed — Bachelor/Master of Education<br>
+• B.A / M.A English Language Teaching (ELT)<br>
+• B.Sc / M.Sc Guidance &amp; Counselling<br>
+• B.A / M.A Social Sciences<br>
+• B.A / M.A Journalism &amp; Mass Communication<br><br>
+<strong>🇮🇳 Top India Universities:</strong><br>
+• <strong>Royal Global University</strong> — Education &amp; Humanities<br>
+• <strong>LPU</strong> (NAAC A++) — BA/MA &amp; Education programs<br>
+• <strong>Amity University</strong> (NAAC A+) — Media, Communication &amp; Education<br><br>
+<strong>🇨🇾 Top Cyprus Universities:</strong><br>
+• <strong>NEU</strong> — Primary Education, English Language Teaching<br>
+• <strong>EMU</strong> — Education Faculty, Guidance &amp; Counselling<br><br>
+📅 Deadline: <strong>July 15, 2026</strong>`,
+      qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
+
+    { id:'field_hospitality',
+      keywords:['hospitality','hotel management','tourism','travel','gastronomy','event management','hotel','resort','culinary'],
+      reply:`🏨 <strong>Step 3 of 3 — Hospitality &amp; Tourism</strong><br><br>
+<strong>Programs Available:</strong><br>
+• B.Sc Hotel Management<br>
+• B.Sc Tourism &amp; Travel Management<br>
+• B.Sc Gastronomy &amp; Culinary Arts<br>
+• MBA Hospitality Management<br>
+• B.Sc Event Management<br><br>
+<strong>🇨🇾 Top Cyprus Universities:</strong><br>
+• <strong>GAU</strong> — Hotel Management, Tourism, Gastronomy — Kyrenia seafront campus<br>
+• <strong>CWU</strong> — Specialised Hospitality School, Famagusta<br>
+• <strong>NEU / EMU</strong> — Tourism programs, Nicosia &amp; Famagusta<br><br>
+<strong>🇮🇳 India:</strong><br>
+• <strong>LPU</strong> — Hotel Management &amp; Tourism<br><br>
+💡 Cyprus is one of the Mediterranean's top tourism destinations — ideal for hospitality careers.<br><br>
+📅 Deadline: <strong>July 15, 2026</strong>`,
+      qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
+
+    { id:'choose_another_field',
+      keywords:['another field','other field','different program','other program','change field','back to fields','other course'],
+      reply:`🔄 <strong>Choose a Different Field</strong><br><br>
+No problem! Select another area of study below:`,
+      qr:['🏥 Medicine','⚙️ Engineering','💼 Business','⚖️ Law','💻 Computer Science','💊 Nursing & Pharmacy','🏗️ Architecture','🌾 Agriculture','🏨 Hospitality','📖 Education'] },
 
     { id:'requirements',
       keywords:['requirements','documents','eligible','eligibility','qualify','who can apply','criteria','passport','transcript','certificate','reference letter','personal statement','photo','what do i need','what is needed','can i apply','do i qualify'],
-      reply:`📋 <strong>Scholarship Requirements &amp; Documents</strong><br><br>
-<strong>General documents:</strong><br>
-• National ID or valid Passport<br>
-• Academic transcripts / certificates<br>
-• Personal statement (500–800 words)<br>
-• 2 recommendation / reference letters<br>
-• Passport-size photograph<br>
-• IELTS/TOEFL score (strongly recommended)<br><br>
-<strong>ICCR specific:</strong><br>
-• Liberian citizenship proof<br>
-• Age 18–40 (UG/PG) or up to 50 (PhD)<br>
-• English proficiency (IELTS, TOEFL, Duolingo, or essay)`,
-      qr:['📝 Apply Now','📚 Get IELTS/TOEFL Prep','📞 Get Help','🔙 Main Menu'] },
+      reply:`📋 <strong>Required Documents</strong><br><br>
+<strong>Undergraduate (must be authorised):</strong><br>
+• High School Diploma<br>
+• High School Transcript<br>
+• High School WAEC / WASSCE<br>
+• High School Letter of Recommendation<br>
+• Passport (valid for at least 2 years)<br>
+• Passport-size photo (white background)<br>
+• Notarized Affidavit of Support / Bank Statement<br><br>
+<strong>Graduate (all must be authorised):</strong><br>
+• College Degree / Diploma<br>
+• College Transcript<br>
+• College Letter of Recommendation<br>
+• Passport (valid for at least 2 years)<br>
+• Passport-size photo (white background)<br>
+• Updated CV`,
+      qr:['📝 Apply Now','📞 Get Help','🔙 Main Menu'] },
 
     { id:'apply_process',
       keywords:['how to apply','application process','steps to apply','how do i apply','apply online','submit application','what are the steps','how long does it take','application procedure','how to register','enrollment process','apply for'],
@@ -990,7 +1228,8 @@ You pay only <strong>half the listed tuition</strong> — TIH covers the rest!<b
 • Khalsa: <s>$1,800–$3,000</s> → <strong>$900–$1,500/yr</strong><br><br>
 🇨🇾 <strong>Cyprus universities (50% off):</strong><br>
 • Near East University (NEU) — Nicosia<br>
-• Girne American University (GAU) — Kyrenia<br><br>
+• Girne American University (GAU) — Kyrenia<br>
+• Eastern Mediterranean University (EMU) — Famagusta<br><br>
 📅 Application deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','🏛️ Partner Universities','📋 Requirements','📞 Contact TIH'] },
 
@@ -1121,12 +1360,24 @@ An excellent choice for Liberian students seeking a European-standard degree.`,
 • Full tuition: varies by program<br>
 • 🎉 <strong>TIH 50% Scholarship on tuition</strong><br><br>
 Ideal for students who want an American-style degree in a Mediterranean setting.`,
-      qr:['🎓 Apply for Scholarship','📋 Requirements','🎓 Near East University','📞 Contact TIH'] },
+      qr:['🎓 Apply for Scholarship','📋 Requirements','🎓 Near East University','🎓 EMU Cyprus','📞 Contact TIH'] },
+
+    { id:'university_emu',
+      keywords:['eastern mediterranean university','emu','eastern mediterranean','emu famagusta','state university cyprus','famagusta university'],
+      reply:`🎓 <strong>Eastern Mediterranean University (EMU)</strong> 🇨🇾<br><br>
+• Located in <strong>Famagusta, North Cyprus</strong><br>
+• North Cyprus's <strong>oldest and most prestigious state university</strong> — established 1979<br>
+• 20,000+ students from 100+ countries<br>
+• 100+ programs: Engineering, Business, Law, Architecture, Education, Health Sciences, IT &amp; more<br>
+• Full English-medium instruction<br>
+• 🎉 <strong>TIH 50% Scholarship on tuition</strong><br><br>
+The premier choice for Liberian students seeking a world-class degree in the Eastern Mediterranean.`,
+      qr:['🎓 Apply for Scholarship','📋 Requirements','🎓 Near East University','🎓 Girne American University','📞 Contact TIH'] },
 
     { id:'universities_overview',
       keywords:['partner university','which university','university list','universities in india','where can i study','study in india university','university partner','tih university','cyprus university','study in cyprus'],
       reply:`🎓 <strong>TIH Partner Universities</strong><br><br>
-We partner with 17+ universities in <strong>India &amp; Cyprus</strong>.<br>
+We partner with 20+ universities in <strong>India &amp; Cyprus</strong>.<br>
 🎉 <strong>TIH offers 50% tuition scholarship at all partner universities!</strong><br><br>
 🇮🇳 <strong>India:</strong><br>
 • <strong>Sharda University</strong> — NAAC A+, #35 India, from <strong>$1,750/yr</strong><br>
@@ -1136,9 +1387,9 @@ We partner with 17+ universities in <strong>India &amp; Cyprus</strong>.<br>
 🇨🇾 <strong>Cyprus:</strong><br>
 • <strong>Near East University (NEU)</strong> — Nicosia, 200+ programs<br>
 • <strong>Girne American University (GAU)</strong> — Kyrenia, American-style<br>
-• …and more across disciplines<br><br>
+• <strong>Eastern Mediterranean University (EMU)</strong> — Famagusta, state university<br><br>
 Tell us your field of study and we'll recommend the best match!`,
-      qr:['🎓 Apply Now','📋 Requirements','🎓 NEU Cyprus','🎓 GAU Cyprus'] },
+      qr:['🎓 Apply Now','📋 Requirements','🎓 NEU Cyprus','🎓 GAU Cyprus','🎓 EMU Cyprus'] },
 
     { id:'upcoming_events',
       keywords:['event','upcoming','schedule','workshop','session','orientation','calendar','when','next event','upcoming event','event date'],
