@@ -175,6 +175,60 @@
     @media (max-width:900px) { .dir-filter-bar { top:0; } #application-form > .container > div { grid-template-columns:1fr !important; } }
     @media (max-width:680px) { .uni-grid { grid-template-columns:1fr; } .steps-grid { grid-template-columns:repeat(2,1fr); } .bottom-nav-brand span:not(.bottom-nav-icon) { display:none; } .bottom-nav-cta { display:none; } }
     @media (max-width:400px) { .steps-grid { grid-template-columns:1fr; } }
+    /* ── WHY TIH SECTION ── */
+    .why-tih-section { background:linear-gradient(135deg,#001440 0%,#002868 55%,#1a3d8a 100%); padding:5rem 0; position:relative; overflow:hidden; }
+    .why-tih-section::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px); background-size:28px 28px; pointer-events:none; }
+    .why-tih-inner { position:relative; z-index:1; }
+    .why-tih-eyebrow { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(249,115,22,0.15); border:1px solid rgba(249,115,22,0.3); color:#fdba74; font-size:0.78rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:0.4rem 1rem; border-radius:100px; margin-bottom:1.25rem; }
+    .why-tih-title { font-family:'Poppins',sans-serif; font-size:clamp(1.7rem,3.5vw,2.6rem); font-weight:800; color:#fff; margin:0 0 0.75rem; line-height:1.15; }
+    .why-tih-sub { font-size:1rem; color:rgba(255,255,255,0.7); max-width:56ch; line-height:1.75; margin:0 0 3rem; }
+    .why-tih-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem; }
+    .why-card { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:1.75rem 1.5rem; transition:background 0.22s,transform 0.22s; }
+    .why-card:hover { background:rgba(255,255,255,0.12); transform:translateY(-3px); }
+    .why-card-icon { font-size:2rem; margin-bottom:1rem; display:block; }
+    .why-card h4 { font-family:'Poppins',sans-serif; font-weight:700; color:#fff; font-size:0.96rem; margin:0 0 0.45rem; }
+    .why-card p { font-size:0.85rem; color:rgba(255,255,255,0.68); line-height:1.72; margin:0; }
+    /* ── CTA BAND ── */
+    .cta-band { background:linear-gradient(135deg,#BF0A30 0%,#8f0820 100%); padding:4rem 0; text-align:center; position:relative; overflow:hidden; }
+    .cta-band::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px); background-size:24px 24px; pointer-events:none; }
+    .cta-band-inner { position:relative; z-index:1; max-width:640px; margin:0 auto; padding:0 1.5rem; }
+    .cta-band h2 { font-family:'Poppins',sans-serif; color:#fff; font-size:clamp(1.7rem,3vw,2.3rem); font-weight:800; margin:0 0 0.75rem; }
+    .cta-band p { color:rgba(255,255,255,0.85); font-size:1rem; margin:0 0 2rem; line-height:1.75; }
+    .cta-band-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    .cta-band-btn-w { background:#fff; color:#BF0A30; padding:0.9rem 2.25rem; border-radius:8px; font-weight:700; font-size:0.95rem; text-decoration:none; font-family:'Inter',sans-serif; transition:opacity 0.18s,transform 0.18s; display:inline-block; }
+    .cta-band-btn-w:hover { opacity:0.92; transform:translateY(-2px); }
+    .cta-band-btn-g { border:2px solid rgba(255,255,255,0.5); color:#fff; padding:0.9rem 2.25rem; border-radius:8px; font-weight:600; font-size:0.95rem; text-decoration:none; font-family:'Inter',sans-serif; transition:background 0.18s; display:inline-block; }
+    .cta-band-btn-g:hover { background:rgba(255,255,255,0.12); }
+    /* ── IMPROVED CARD ELEMENTS ── */
+    .uni-sch-ribbon { display:inline-flex; align-items:center; gap:0.3rem; background:#f0fdf4; border:1px solid #86efac; color:#059669; font-size:0.73rem; font-weight:700; padding:0.22rem 0.65rem; border-radius:4px; }
+    .uni-degrees { display:flex; gap:0.3rem; flex-wrap:wrap; margin-top:0.6rem; }
+    .uni-deg-pill { font-size:0.72rem; font-weight:700; padding:0.18rem 0.52rem; border-radius:100px; cursor:default; }
+    .uni-deg-ug  { background:#eff6ff; color:#1d4ed8; border:1.5px solid #bfdbfe; }
+    .uni-deg-pg  { background:#f5f3ff; color:#6d28d9; border:1.5px solid #ddd6fe; }
+    .uni-deg-phd { background:#fff1f2; color:#be123c; border:1.5px solid #fecdd3; }
+    .uni-card.is-featured { border-color:#f59e0b; box-shadow:0 2px 16px rgba(245,158,11,0.18); }
+    .uni-footer-btns { display:grid; grid-template-columns:1fr auto; gap:0.5rem; }
+    .uni-wa-btn { display:flex; align-items:center; justify-content:center; padding:0.68rem 0.85rem; border:1.5px solid #25d366; border-radius:8px; color:#25d366; font-size:1rem; text-decoration:none; transition:all 0.18s; }
+    .uni-wa-btn:hover { background:#25d366; color:#fff; }
+    /* ── COUNTRY SECTION HEADERS ── */
+    .country-block { margin-bottom:2.5rem; }
+    .country-sec-head { display:flex; align-items:center; gap:1.25rem; padding:1.25rem 1.5rem; background:#fff; border-radius:12px; margin-bottom:1.25rem; border:1px solid #e2e8f0; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+    .csh-flag { font-size:2.2rem; flex-shrink:0; }
+    .csh-text h3 { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.05rem; color:#002868; margin:0 0 0.15rem; }
+    .csh-text p { font-size:0.83rem; color:#64748b; margin:0; }
+    .csh-pill { margin-left:auto; font-size:0.78rem; font-weight:700; padding:0.3rem 0.9rem; border-radius:100px; color:#fff; flex-shrink:0; }
+    .csh-pill.blue { background:#002868; }
+    .csh-pill.red { background:#BF0A30; }
+    /* ── IMPROVED HOW IT WORKS ── */
+    .steps-v2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0.5rem; }
+    .step-v2 { text-align:center; padding:2rem 1rem; position:relative; }
+    .step-v2-icon { width:62px; height:62px; border-radius:50%; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0; }
+    .step-v2-icon.blue { background:linear-gradient(135deg,#002868,#1a4a9c); box-shadow:0 4px 16px rgba(0,40,104,0.25); }
+    .step-v2-icon.red  { background:linear-gradient(135deg,#BF0A30,#8f0820); box-shadow:0 4px 16px rgba(191,10,48,0.25); }
+    .step-v2 h4 { font-family:'Poppins',sans-serif; font-size:0.93rem; color:#002868; margin:0 0 0.35rem; font-weight:700; }
+    .step-v2 p  { font-size:0.82rem; color:#6b7280; margin:0; line-height:1.65; }
+    @media (max-width:640px) { .why-tih-grid { grid-template-columns:1fr 1fr; } .steps-v2 { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:400px) { .why-tih-grid { grid-template-columns:1fr; } .steps-v2 { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -219,7 +273,7 @@
         </div>
         <div class="dir-hero-stats" role="list" aria-label="Key statistics">
           <div class="dir-hero-stat" role="listitem">
-            <span class="dir-hero-stat-num">17</span>
+            <span class="dir-hero-stat-num">20</span>
             <span class="dir-hero-stat-label">Partner Universities</span>
           </div>
           <div class="dir-hero-stat" role="listitem">
@@ -234,6 +288,22 @@
             <span class="dir-hero-stat-num">500+</span>
             <span class="dir-hero-stat-label">Students Placed</span>
           </div>
+        </div>
+      </div>
+    </section>
+    <!-- WHY STUDY ABROAD WITH TIH -->
+    <section class="why-tih-section" aria-label="Why study abroad with TIH">
+      <div class="container why-tih-inner">
+        <div class="why-tih-eyebrow">🌍 Why Choose TIH</div>
+        <h2 class="why-tih-title">Everything You Need to Study Abroad<br>— Completely Free</h2>
+        <p class="why-tih-sub">Tolbert Innovation Hub handles every step of your international education journey at zero cost. From university selection to visa processing — we've got you covered.</p>
+        <div class="why-tih-grid">
+          <div class="why-card"><span class="why-card-icon">🆓</span><h4>Free Application</h4><p>No fees, no hidden charges. Our guidance, document review, and university placement are 100% free for Liberian students.</p></div>
+          <div class="why-card"><span class="why-card-icon">🎓</span><h4>50% TIH Scholarship</h4><p>We negotiate exclusive tuition reductions of up to 50% for all TIH-referred students at partner universities.</p></div>
+          <div class="why-card"><span class="why-card-icon">🛂</span><h4>Full Visa Support</h4><p>Step-by-step student visa assistance, embassy interview preparation, and pre-departure orientation included.</p></div>
+          <div class="why-card"><span class="why-card-icon">📋</span><h4>Document Review</h4><p>Our expert team personally reviews and authenticates your transcripts, certificates, and supporting documents.</p></div>
+          <div class="why-card"><span class="why-card-icon">🌐</span><h4>2 Destinations</h4><p>India and North Cyprus — 20 partner universities across two countries offering UG, PG, and PhD programs.</p></div>
+          <div class="why-card"><span class="why-card-icon">🏆</span><h4>500+ Students Placed</h4><p>Hundreds of Liberian students have successfully started their international education journey through TIH.</p></div>
         </div>
       </div>
     </section>
@@ -264,9 +334,20 @@
     <section id="universities" class="dir-grid-section">
       <div class="container">
         <div class="dir-count-bar">
-          <span class="dir-count-text" id="uniCount" aria-live="polite">Showing 17 universities in India &amp; North Cyprus</span>
+          <span class="dir-count-text" id="uniCount" aria-live="polite">Showing 20 universities in India &amp; North Cyprus</span>
         </div>
         <div class="uni-grid" id="uniGrid" aria-label="University listing"></div>
+      </div>
+    </section>
+    <!-- CTA BAND -->
+    <section class="cta-band" aria-label="Apply now call to action">
+      <div class="cta-band-inner">
+        <h2>Ready to Study Abroad?</h2>
+        <p>Join 500+ Liberian students who have already started their international education journey. Apply today — it's completely free.</p>
+        <div class="cta-band-btns">
+          <a href="#application-form" class="cta-band-btn-w">Apply Now — It's Free</a>
+          <a href="#counseling" class="cta-band-btn-g">Book Free Counseling</a>
+        </div>
       </div>
     </section>
     <!-- HOW IT WORKS -->
@@ -275,15 +356,15 @@
         <div class="section-header centered">
           <p class="section-label">Your Journey Starts Here</p>
           <h2>How the Study Abroad Process Works</h2>
-          <p class="section-intro">Six simple steps from your first inquiry to arriving at your chosen university campus.</p>
+          <p class="section-intro">Six simple steps from your first inquiry to arriving at your chosen university campus — all guided by TIH at no cost.</p>
         </div>
-        <div class="steps-grid reveal">
-          <div class="step-item"><div class="step-num blue">1</div><h4>Check Eligibility</h4><p>Use our instant eligibility checker to see which universities match your grades and background.</p></div>
-          <div class="step-item"><div class="step-num red">2</div><h4>Choose University</h4><p>Browse our directory of 17 partner universities, filter by country and program, and shortlist your favorites.</p></div>
-          <div class="step-item"><div class="step-num blue">3</div><h4>Book Counseling</h4><p>Speak with an expert counselor to finalize your university choice and understand the full requirements.</p></div>
-          <div class="step-item"><div class="step-num red">4</div><h4>Submit Application</h4><p>Complete your online application with all required documents through our guided form.</p></div>
-          <div class="step-item"><div class="step-num blue">5</div><h4>Receive Offer Letter</h4><p>Our team processes your application and you receive an official admission offer letter from the university.</p></div>
-          <div class="step-item"><div class="step-num red">6</div><h4>Visa &amp; Departure</h4><p>We guide you through the student visa application and help you prepare for your journey abroad.</p></div>
+        <div class="steps-v2 reveal">
+          <div class="step-v2"><div class="step-v2-icon blue">🔍</div><h4>Check Eligibility</h4><p>Use our instant checker to see which universities match your academic background.</p></div>
+          <div class="step-v2"><div class="step-v2-icon red">🏛️</div><h4>Choose University</h4><p>Browse 20 partner universities, filter by country, program, and shortlist your favorites.</p></div>
+          <div class="step-v2"><div class="step-v2-icon blue">💬</div><h4>Book Counseling</h4><p>Speak with an expert counselor to finalize your choice and understand full requirements.</p></div>
+          <div class="step-v2"><div class="step-v2-icon red">📝</div><h4>Submit Application</h4><p>Complete your online application with guided document support through TIH.</p></div>
+          <div class="step-v2"><div class="step-v2-icon blue">📩</div><h4>Receive Offer Letter</h4><p>We process your application and you receive an official admission offer letter.</p></div>
+          <div class="step-v2"><div class="step-v2-icon red">✈️</div><h4>Visa &amp; Departure</h4><p>We guide you through the student visa process and prepare you for departure abroad.</p></div>
         </div>
       </div>
     </section>
@@ -508,19 +589,9 @@
     { id:20, abbr:'GAU',  slug:'girne-american-university',        name:'Girne American University',        city:'Kyrenia',         state:'North Cyprus',  country:'Cyprus', flag:'🇨🇾', rating:4.4, students:'10,000+', programsCount:'90+',  accreditation:'YODAK',   badgeColor:'#BF0A30', programs:['Business','Engineering','Architecture','Hospitality'],  degrees:['UG','PG'],       tuition:'$4,000–$7,000/yr', scholarship:true, featured:false },
   ];
   let filterCountry='all', filterDegree='all', filterScholarship=false, searchQuery='';
-  function renderUniversities() {
-    const grid=document.getElementById('uniGrid'), count=document.getElementById('uniCount'), q=searchQuery.toLowerCase().trim();
-    const filtered=universities.filter(u=>{
-      const mc=filterCountry==='all'||u.country===filterCountry;
-      const md=filterDegree==='all'||u.degrees.includes(filterDegree);
-      const ms=!filterScholarship||u.scholarship===true;
-      const mq=!q||u.name.toLowerCase().includes(q)||u.city.toLowerCase().includes(q)||u.country.toLowerCase().includes(q)||u.programs.some(p=>p.toLowerCase().includes(q))||u.abbr.toLowerCase().includes(q);
-      return mc&&md&&ms&&mq;
-    });
-    const total=filtered.length;
-    count.textContent='Showing '+total+' universit'+(total===1?'y':'ies')+' in India & North Cyprus';
-    if(total===0){grid.innerHTML='<div class="no-results"><h3>No universities found</h3><p>Try adjusting your search or filters.</p></div>';return;}
-    grid.innerHTML=filtered.map(u=>`<article class="uni-card reveal">
+  const degClass={'UG':'uni-deg-ug','PG':'uni-deg-pg','PhD':'uni-deg-phd'};
+  function cardHTML(u){
+    return `<article class="uni-card${u.featured?' is-featured':''} reveal">
       <span class="uni-card-top" style="background:linear-gradient(90deg,${u.badgeColor},${u.badgeColor}99)" aria-hidden="true"></span>
       <div class="uni-card-header">
         <div class="uni-badge" style="background:${u.badgeColor};width:52px;height:52px;border-radius:12px;font-size:0.82rem;">${u.abbr}</div>
@@ -543,12 +614,44 @@
           <span class="uni-prog-label">Top Programs:</span>
           <div class="uni-prog-tags">${u.programs.slice(0,3).map(p=>`<span class="uni-prog-tag">${p}</span>`).join('')}</div>
         </div>
-        <div style="margin-top:0.5rem;"><span class="uni-tuition-tag">💰 ${u.tuition}</span></div>
+        <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.6rem;flex-wrap:wrap;">
+          <span class="uni-tuition-tag">💰 ${u.tuition}</span>
+          ${u.scholarship?'<span class="uni-sch-ribbon">✓ 50% TIH Scholarship</span>':''}
+        </div>
+        <div class="uni-degrees">${u.degrees.map(d=>`<span class="uni-deg-pill ${degClass[d]||''}">${d}</span>`).join('')}</div>
       </div>
       <div class="uni-card-footer">
-        <a href="university-${u.slug}.html" class="uni-explore-btn-v2" style="background:linear-gradient(135deg,${u.badgeColor},${u.badgeColor}cc)">Explore University &#8594;</a>
+        <div class="uni-footer-btns">
+          <a href="university-${u.slug}.html" class="uni-explore-btn-v2" style="background:linear-gradient(135deg,${u.badgeColor},${u.badgeColor}cc)">Explore University &#8594;</a>
+          <a href="https://wa.me/231880559227?text=Hi!%20I%27m%20interested%20in%20${encodeURIComponent(u.name)}" class="uni-wa-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp about ${u.name}">💬</a>
+        </div>
       </div>
-    </article>`).join('');
+    </article>`;
+  }
+  function countryBlock(unis,flag,cName,desc,pillClass){
+    if(!unis.length)return'';
+    return`<div class="country-block">
+      <div class="country-sec-head"><span class="csh-flag">${flag}</span><div class="csh-text"><h3>${cName}</h3><p>${desc}</p></div><span class="csh-pill ${pillClass}">${unis.length} Universit${unis.length===1?'y':'ies'}</span></div>
+      <div class="uni-grid">${unis.map(cardHTML).join('')}</div>
+    </div>`;
+  }
+  function renderUniversities() {
+    const grid=document.getElementById('uniGrid'), count=document.getElementById('uniCount'), q=searchQuery.toLowerCase().trim();
+    const filtered=universities.filter(u=>{
+      const mc=filterCountry==='all'||u.country===filterCountry;
+      const md=filterDegree==='all'||u.degrees.includes(filterDegree);
+      const ms=!filterScholarship||u.scholarship===true;
+      const mq=!q||u.name.toLowerCase().includes(q)||u.city.toLowerCase().includes(q)||u.country.toLowerCase().includes(q)||u.programs.some(p=>p.toLowerCase().includes(q))||u.abbr.toLowerCase().includes(q);
+      return mc&&md&&ms&&mq;
+    });
+    const total=filtered.length;
+    count.textContent='Showing '+total+' universit'+(total===1?'y':'ies')+' in India & North Cyprus';
+    if(total===0){grid.innerHTML='<div class="no-results"><h3>No universities found</h3><p>Try adjusting your search or filters.</p></div>';return;}
+    const india=filtered.filter(u=>u.country==='India');
+    const cyprus=filtered.filter(u=>u.country==='Cyprus');
+    grid.innerHTML=
+      countryBlock(india,'🇮🇳','India — Study Abroad Destination','Top-ranked universities across Punjab, Gujarat, UP, Telangana &amp; more — UG, PG and PhD programs','blue')+
+      countryBlock(cyprus,'🇨🇾','North Cyprus — Study Abroad Destination','YODAK-accredited universities with English-medium programs in the Mediterranean','red');
     if(typeof initReveal==='function')initReveal();
   }
   document.querySelectorAll('.filter-pill').forEach(btn=>{
