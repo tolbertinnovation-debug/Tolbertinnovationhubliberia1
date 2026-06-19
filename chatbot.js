@@ -328,95 +328,844 @@
     return sections.slice(0, 7);
   }
 
-  // ── GEMINI AI ─────────────────────────────────────────────────────────────────
-  const GEMINI_KEY = 'AIzaSyBSgzVMQkE6q_3CvN4WaapfQzC0WoG4NqU';
-  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_KEY}`;
+  // ── KNOWLEDGE BASE ────────────────────────────────────────────────────────────
+  const KB = [
 
-  const TIH_SYSTEM = `You are the official AI assistant for Tolbert Innovation Hub (TIH), a Liberian youth empowerment organization. Your job is to answer questions based on information available on the TIH website. Always search the page content before answering, provide accurate information, recommend relevant pages, and help users find programs, courses, events, and contact information. If information is unavailable, politely say so and offer WhatsApp contact.
+    { id:'greet',
+      keywords:['hello','hi','hey','good morning','good evening','good afternoon','howdy','greetings','what can you do','who are you','help me','assist','start','begin'],
+      reply:`Hello! 👋 Welcome to <strong>Tolbert Innovation Hub</strong>!<br><br>
+I'm the TIH Assistant — here to help with scholarships, free IELTS/TOEFL prep, healthcare referrals, software services, and more.<br><br>
+What would you like to know today?`,
+      qr:['🎓 Scholarships','📚 Free Classroom','🏥 Healthcare','💻 Software','📝 Apply Now','📞 Contact'] },
 
-ABOUT TIH:
-Tolbert Innovation Hub was founded by Mr. Samuel S. Tolbert (CEO) and is headquartered at Spriggs Payne Airport, Sinkor, Monrovia, Liberia. TIH empowers Liberian youth through four pillars: Scholarship & Study Abroad, Free IELTS/TOEFL Classroom, Healthcare Referral, and Software & Digital Innovation.
+    { id:'about_tih',
+      keywords:['what is tih','what is tolbert','about tolbert','tell me about','what does tih do','who is tolbert innovation','organization','ngo','nonprofit','what you do','what do you offer','what programs','overview','mission'],
+      reply:`🏛️ <strong>About Tolbert Innovation Hub (TIH)</strong><br><br>
+TIH is a Liberian organization founded by <strong>Mr. Samuel S. Tolbert</strong> that empowers youth through four pillars:<br><br>
+🎓 <strong>Scholarship & Study Abroad</strong> — guidance, document prep &amp; admission support<br>
+🏥 <strong>Healthcare Referral Program</strong> — specialist referrals to India &amp; beyond<br>
+💻 <strong>Software &amp; Digital Innovation</strong> — websites, apps, business systems<br>
+📚 <strong>Free IELTS/TOEFL Classroom</strong> — 6-module courses, 100% free<br><br>
+📍 Based in Monrovia, Liberia · 📞 +231 880 559 227`,
+      qr:['🎓 Scholarships','🏥 Healthcare','💻 Software','📚 Free Classroom','👤 Our Founder','📞 Contact'] },
 
-TEAM:
-- Samuel S. Tolbert — Founder & CEO
-- Esther Boakai — Chief Administrative Officer
-- Alieu Saysay — General Manager
-- Christlove P. Jaye — Financial Officer
-- Feature A. Cartee — Administrative Assistant
-- Precelia Jallah — Media & Communications Officer
+    { id:'founder',
+      keywords:['founder','founded','samuel','tolbert','samuel tolbert','who started','who created','ceo','chief executive','leadership','who runs','who is in charge','mr tolbert','mr samuel'],
+      reply:`👤 <strong>Our Founder — Mr. Samuel S. Tolbert</strong><br><br>
+Tolbert Innovation Hub was founded by <strong>Mr. Samuel S. Tolbert</strong>, who serves as CEO. He built TIH with a mission to bridge the gap between Liberian talent and global opportunity.<br><br>
+Under his leadership, TIH has:<br>
+• Supported <strong>500+</strong> students with scholarship guidance<br>
+• Coordinated healthcare referrals to specialist hospitals in India<br>
+• Delivered digital solutions to Liberian businesses<br>
+• Built a completely free IELTS/TOEFL classroom for all students`,
+      qr:['📄 Leadership Page','👥 Meet the Team','📞 Contact Us','🔙 Main Menu'] },
 
-PROGRAMS & KEY FACTS:
-Scholarship & Study Abroad: Guidance, document prep, eligibility checks, admission support. General deadline: July 15, 2026.
-• ICCR (India) — Fully funded: tuition + ₹15,000–20,000/month stipend + airfare + hostel. Liberian citizens age 18–40 (UG/PG) or up to 50 (PhD). Deadline: April 21, 2026.
-• Chevening (UK) — Full coverage, 2+ years work experience required. Applications: August–November annually.
-• Fulbright (USA) — Full coverage, IELTS ≥6.5 or TOEFL iBT ≥79. Deadline: February–May.
-• DAAD (Germany) — Up to €8,920/year. Sub-Saharan Africans, bachelor's degree required.
-• Mastercard Foundation — 40+ partner universities, African citizens, financial need + leadership.
-• Pan African University (PAU) — African Union, under 35 (Master's), under 40 (PhD). Applications: November–December.
+    { id:'team',
+      keywords:['team','staff','employees','members','who works','esther','alieu','christlove','feature cartee','precelia','administrative','officer','manager','who is on'],
+      reply:`👥 <strong>The TIH Team</strong><br><br>
+• <strong>Samuel S. Tolbert</strong> — Founder &amp; CEO<br>
+• <strong>Esther Boakai</strong> — Chief Administrative Officer<br>
+• <strong>Alieu Saysay</strong> — General Manager<br>
+• <strong>Christlove P. Jaye</strong> — Financial Officer<br>
+• <strong>Feature A. Cartee</strong> — Administrative Assistant<br>
+• <strong>Precelia Jallah</strong> — Media &amp; Communications Officer`,
+      qr:['👥 View Full Team Page','👤 Our Founder','📞 Contact','🔙 Main Menu'] },
 
-Free IELTS/TOEFL Classroom: 6 modules each (Orientation, Reading/Listening/Writing/Speaking, Mock Exam). 100% free, no sign-up required. Certificate of Completion: $5 after completing Module 6.
+    { id:'scholarship',
+      keywords:['scholarship','study abroad','international school','university abroad','admission','study overseas','apply school','foreign university','higher education','bachelor','master','phd','postgraduate','undergraduate','degree','academic','enroll','university'],
+      reply:`🎓 <strong>Scholarship &amp; Study Abroad Program</strong><br><br>
+TIH offers two main scholarship pathways:<br><br>
+<strong>1. Study Abroad Guidance</strong><br>
+Document prep, eligibility guidance, and admission letter issuance for universities worldwide.<br><br>
+<strong>2. ICCR Fully Funded Scholarship</strong> 🏆<br>
+India–Africa Maitri initiative. Covers <em>full tuition, monthly stipend, return airfare, visa support &amp; hostel</em>.<br>
+<strong>Eligibility:</strong> Liberian citizens, age 18–40 (UG/PG) or up to 50 (PhD)<br><br>
+📅 <strong>2026 deadline: July 15, 2026</strong><br><br>
+Also available: Chevening (UK), Fulbright (USA), DAAD (Germany), Mastercard Foundation, PAU.`,
+      qr:['📝 Apply for Scholarship','🏆 ICCR Details','✅ Requirements','🇬🇧 Chevening','🇺🇸 Fulbright','🔙 Main Menu'] },
 
-Healthcare Referral: Medical case assessment, referrals to partner hospitals in India (cardiology, oncology, orthopedics, neurology, fertility), travel & visa guidance.
+    { id:'iccr',
+      keywords:['iccr','fully funded','india scholarship','india africa','maitri','free scholarship','government scholarship','india government','tuition free','stipend','airfare','hostel','living allowance'],
+      reply:`🏆 <strong>ICCR Fully Funded Scholarship 2026–2027</strong><br><br>
+Offered by the <strong>Government of India</strong> under the India–Africa Maitri initiative.<br><br>
+✅ <strong>Coverage:</strong><br>
+• Full tuition fees (paid directly to university)<br>
+• Monthly living stipend (₹15,000–₹20,000)<br>
+• Return economy airfare<br>
+• Visa support through Indian Mission<br>
+• Hostel accommodation<br>
+• Personal medical insurance (arranged by student)<br><br>
+✅ <strong>Eligibility:</strong> Liberian citizen · Age 18–40 (UG/PG), up to 50 (PhD) · Strong academics<br><br>
+📅 Application deadline: <strong>April 21, 2026</strong>`,
+      qr:['📝 Apply ICCR Scholarship','📋 Documents Needed','📞 Contact TIH','🔙 Main Menu'] },
 
-Software & Digital Innovation: Custom websites, web apps, mobile apps, business management systems. Starter $150 · Professional $400 · Enterprise custom.
+    { id:'requirements',
+      keywords:['requirements','documents','eligible','eligibility','qualify','who can apply','criteria','passport','transcript','certificate','reference letter','personal statement','photo','what do i need','what is needed','can i apply','do i qualify'],
+      reply:`📋 <strong>Scholarship Requirements &amp; Documents</strong><br><br>
+<strong>General documents:</strong><br>
+• National ID or valid Passport<br>
+• Academic transcripts / certificates<br>
+• Personal statement (500–800 words)<br>
+• 2 recommendation / reference letters<br>
+• Passport-size photograph<br>
+• IELTS/TOEFL score (strongly recommended)<br><br>
+<strong>ICCR specific:</strong><br>
+• Liberian citizenship proof<br>
+• Age 18–40 (UG/PG) or up to 50 (PhD)<br>
+• English proficiency (IELTS, TOEFL, Duolingo, or essay)`,
+      qr:['📝 Apply Now','📚 Get IELTS/TOEFL Prep','📞 Get Help','🔙 Main Menu'] },
 
-CONTACT:
-Phone/WhatsApp: +231 880 559 227 · Alt: +231 778 956 979
-Email: tolbertinnovationhub@gmail.com
-Office: Spriggs Payne Airport, Sinkor, Monrovia, Liberia
-Hours: Mon–Fri 8am–6pm · Sat 9am–3pm GMT
+    { id:'apply_process',
+      keywords:['how to apply','application process','steps to apply','how do i apply','apply online','submit application','what are the steps','how long does it take','application procedure','how to register','enrollment process','apply for'],
+      reply:`📝 <strong>How to Apply — Step by Step</strong><br><br>
+<strong>Step 1:</strong> Check your eligibility (age, education, nationality)<br>
+<strong>Step 2:</strong> Prepare documents (transcripts, ID, personal statement, references)<br>
+<strong>Step 3:</strong> Prepare your IELTS/TOEFL score — use our <em>free classroom</em><br>
+<strong>Step 4:</strong> Submit your application on our website or right here in chat<br>
+<strong>Step 5:</strong> TIH reviews your application within <strong>5–7 business days</strong><br>
+<strong>Step 6:</strong> Receive admission letter or scholarship guidance<br><br>
+Ready to start? Click Apply below!`,
+      qr:['📝 Start Application in Chat','🌐 Go to Application Form','📋 Requirements','🔙 Main Menu'] },
 
-IMPACT: 500+ students supported · 12+ countries reached · 50+ healthcare cases · 30+ businesses supported.
+    { id:'ielts',
+      keywords:['ielts','ielts prep','ielts preparation','ielts class','ielts module','ielts band','ielts score','ielts test','ielts exam','band score','reading writing listening speaking','general training','academic ielts','british council'],
+      reply:`📚 <strong>Free IELTS Preparation Classroom</strong><br><br>
+Our IELTS classroom has <strong>6 structured modules</strong>:<br>
+• <strong>Module 1:</strong> Orientation &amp; IELTS Overview<br>
+• <strong>Module 2:</strong> Reading Skills<br>
+• <strong>Module 3:</strong> Writing Skills (Task 1 &amp; 2)<br>
+• <strong>Module 4:</strong> Listening Skills<br>
+• <strong>Module 5:</strong> Speaking Skills<br>
+• <strong>Module 6:</strong> Full Mock Exam<br><br>
+🆓 <strong>100% free</strong> — no signup required.<br>
+🏅 Complete Module 6 to request your <strong>Certificate of Completion</strong> ($5 fee).`,
+      qr:['📖 Go to IELTS Classroom','🏅 Request IELTS Certificate','📖 TOEFL Classroom','🔙 Main Menu'] },
 
-RESPONSE FORMATTING — CRITICAL RULES:
-• Use HTML only: <strong>bold</strong>, <br> for line breaks, • for bullet points
-• Do NOT use markdown (no **, no __, no ## headers, no - dashes for bullets)
-• Keep responses under 200 words unless detail is genuinely needed
-• Be warm, professional, and concise
-• Always offer to help further or suggest contacting TIH on WhatsApp: +231 880 559 227
-• For anything you are unsure about, say so and direct to WhatsApp`;
+    { id:'toefl',
+      keywords:['toefl','toefl prep','toefl preparation','toefl class','toefl module','toefl score','toefl test','toefl exam','ets','ibt','toefl ibt'],
+      reply:`📚 <strong>Free TOEFL Preparation Classroom</strong><br><br>
+Our TOEFL classroom has <strong>6 structured modules</strong>:<br>
+• <strong>Module 1:</strong> TOEFL Orientation<br>
+• <strong>Module 2:</strong> Reading Section<br>
+• <strong>Module 3:</strong> Listening Section<br>
+• <strong>Module 4:</strong> Speaking Section<br>
+• <strong>Module 5:</strong> Writing Section<br>
+• <strong>Module 6:</strong> Full Mock Exam<br><br>
+🆓 <strong>100% free</strong> — access instantly, no account needed.<br>
+🏅 Complete Module 6 to request your <strong>Certificate of Completion</strong> ($5 fee).`,
+      qr:['📖 Go to TOEFL Classroom','🏅 Request TOEFL Certificate','📖 IELTS Classroom','🔙 Main Menu'] },
 
-  let CHAT_HISTORY = [];
+    { id:'ielts_tips',
+      keywords:['ielts tip','study tip','how to pass ielts','improve ielts','ielts strategy','band 7','band 8','ielts trick','ace ielts','how to score','improve score','reading tip','writing tip','listening tip','speaking tip'],
+      reply:`💡 <strong>IELTS Study Tips from TIH</strong><br><br>
+📖 <strong>Reading:</strong> Practice skimming &amp; scanning. Don't read every word — locate keywords fast.<br><br>
+✍️ <strong>Writing:</strong> Task 1 — describe data clearly. Task 2 — structure with intro, 2 body paragraphs, conclusion. Aim for 250+ words.<br><br>
+🎧 <strong>Listening:</strong> Read questions before audio plays. Write answers exactly as you hear them.<br><br>
+🗣️ <strong>Speaking:</strong> Speak fluently, don't pause excessively. Use a range of vocabulary. It's OK to self-correct.<br><br>
+⏱️ <strong>General:</strong> Take a full mock exam weekly. Review every mistake.`,
+      qr:['📖 IELTS Module 2 — Reading','✍️ IELTS Module 3 — Writing','🎧 IELTS Module 4 — Listening','🗣️ IELTS Module 5 — Speaking','🔙 Main Menu'] },
 
-  async function callGemini(userMessage) {
-    const pageIdx = buildPageIndex();
-    const pageContent = pageIdx.slice(0, 60).map(i => {
-      const sec = (i.section && i.section !== i.text) ? `[${i.section}] ` : '';
-      return sec + i.text;
-    }).join('\n');
+    { id:'classroom',
+      keywords:['classroom','free class','free course','online learning','study platform','modules','lesson','practice test','mock exam','exam preparation','english exam','exam prep','language test','free training','online course'],
+      reply:`🏫 <strong>TIH Free Classroom</strong><br><br>
+We offer two completely free exam preparation tracks:<br><br>
+📗 <strong>IELTS Preparation</strong> — 6 modules covering all 4 skills + mock exam<br>
+📘 <strong>TOEFL Preparation</strong> — 6 modules covering Reading, Listening, Speaking, Writing + mock exam<br><br>
+Also available:<br>
+• Practice tests &amp; quizzes<br>
+• Video lessons<br>
+• Study materials &amp; resource center<br>
+• Certificate of Completion ($5 after mock exam)<br><br>
+🆓 <strong>Everything is free. No account needed.</strong>`,
+      qr:['📖 IELTS Classroom','📖 TOEFL Classroom','🏅 Get a Certificate','📁 Resource Center','🔙 Main Menu'] },
 
-    const systemFull = TIH_SYSTEM +
-      (pageContent ? `\n\nCURRENT PAGE CONTENT (use this to answer page-specific questions):\n${pageContent}` : '') +
-      `\n\nCURRENT PAGE: ${getPageCtx().label}`;
+    { id:'certificate',
+      keywords:['certificate','certification','completion certificate','how to get certificate','certificate request','cert request','certificate fee','get certified','proof of completion','certificate after exam'],
+      reply:`🏅 <strong>Certificate of Completion</strong><br><br>
+After completing the <strong>Mock Exam (Module 6)</strong>, you can request your TIH Certificate of Completion.<br><br>
+📋 <strong>Process:</strong><br>
+1️⃣ Complete IELTS or TOEFL Module 6 (mock exam)<br>
+2️⃣ Pay the <strong>$5 certificate processing fee</strong><br>
+3️⃣ Submit the certificate request form (on the classroom page)<br><br>
+📦 <strong>Delivery:</strong> Email or in-person pickup at TIH office<br>
+⏱️ <strong>Processing time:</strong> 24–48 hours after payment<br><br>
+Your certificate includes: name, score, course title, completion date, certificate ID &amp; official seal.`,
+      qr:['📝 Request IELTS Certificate','📝 Request TOEFL Certificate','💰 Payment Methods','🔙 Main Menu'] },
 
-    const body = {
-      system_instruction: { parts: [{ text: systemFull }] },
-      contents: CHAT_HISTORY.concat([{ role:'user', parts:[{ text:userMessage }] }]),
-      generationConfig: { temperature:0.65, maxOutputTokens:400 }
-    };
+    { id:'healthcare',
+      keywords:['healthcare','medical','hospital','treatment','doctor','patient','health','specialist','india treatment','referral','surgery','medical care','sick','illness','disease','hospital referral','medical abroad'],
+      reply:`🏥 <strong>International Healthcare Referral Program</strong><br><br>
+TIH connects Liberian patients and families to quality specialist medical treatment abroad:<br><br>
+• Medical case intake &amp; assessment<br>
+• Specialist referrals to partner hospitals in India<br>
+• Hospital coordination &amp; appointment scheduling<br>
+• Travel guidance &amp; visa assistance<br>
+• Ongoing patient follow-up support<br><br>
+🏨 <strong>Partner hospitals</strong> specialise in cardiology, oncology, orthopedics, neurology, fertility &amp; more.<br><br>
+To submit a healthcare request, contact us via WhatsApp or the application form.`,
+      qr:['📝 Submit Healthcare Request','🏨 Partner Hospitals','📞 WhatsApp Us','🔙 Main Menu'] },
 
-    const res = await fetch(GEMINI_URL, {
-      method:'POST',
-      headers:{ 'Content-Type':'application/json' },
-      body: JSON.stringify(body)
-    });
+    { id:'hospitals',
+      keywords:['hospital','partner hospital','which hospital','hospital in india','medical center','clinic','specialist','surgery in india','treatment india','cancer','heart surgery','orthopedic','neurology'],
+      reply:`🏨 <strong>Partner Hospital Network</strong><br><br>
+TIH works with leading hospitals in India offering specialist care:<br>
+• ❤️ Cardiology &amp; heart surgery<br>
+• 🔬 Oncology (cancer treatment)<br>
+• 🦴 Orthopedics &amp; joint replacement<br>
+• 🧠 Neurology &amp; neurosurgery<br>
+• 🍼 Fertility &amp; reproductive health<br>
+• 🔍 General surgery &amp; diagnostics<br><br>
+We coordinate appointments, medical records, visa support, and assistance in India.<br><br>
+Visit the <strong>Healthcare page</strong> for the full hospital network.`,
+      qr:['🌐 View Healthcare Page','📝 Submit Healthcare Request','📞 Contact Us','🔙 Main Menu'] },
 
-    if (!res.ok) {
-      const errData = await res.json().catch(() => ({}));
-      throw new Error(errData.error?.message || `HTTP ${res.status}`);
-    }
+    { id:'software',
+      keywords:['software','website','web app','web development','mobile app','digital','technology','business system','platform','it service','build website','create app','develop','programming','coding','tech solution','e-commerce','management system','pos','inventory'],
+      reply:`💻 <strong>Software &amp; Digital Innovation Services</strong><br><br>
+We help Liberian businesses and organisations modernise with:<br>
+• Custom websites &amp; web applications<br>
+• Business management systems (POS, inventory, HR)<br>
+• Mobile application development<br>
+• E-commerce platforms<br>
+• Digital strategy &amp; consultation<br>
+• Process automation &amp; optimisation<br><br>
+📦 <strong>Service packages:</strong><br>
+• <strong>Starter</strong> — $150 (basic website)<br>
+• <strong>Professional</strong> — $400 (full web application)<br>
+• <strong>Enterprise</strong> — Custom quote`,
+      qr:['📝 Request Consultation','💰 View Full Pricing','🗂️ View Portfolio','🔙 Main Menu'] },
 
-    const data = await res.json();
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    if (!reply) throw new Error('Empty response');
+    { id:'pricing',
+      keywords:['price','pricing','cost','fee','how much','payment','pay','charge','rate','package','affordable','expensive','free','discount','budget','amount','money'],
+      reply:`💰 <strong>TIH Fees &amp; Pricing</strong><br><br>
+<strong>Education:</strong><br>
+• Scholarship guidance — <strong>Free</strong><br>
+• IELTS/TOEFL classroom — <strong>100% Free</strong><br>
+• Completion certificate — <strong>$5 USD</strong><br><br>
+<strong>Software Services:</strong><br>
+• Starter package — <strong>$150</strong><br>
+• Professional package — <strong>$400</strong><br>
+• Enterprise — <strong>Custom quote</strong><br><br>
+<strong>Healthcare:</strong><br>
+• Program coordination — Contact us for details<br><br>
+<strong>Donation to TIH:</strong> From $5 — any amount helps!`,
+      qr:['💻 Software Details','🎓 Apply Free','❤️ Donate','📞 Contact','🔙 Main Menu'] },
 
-    CHAT_HISTORY.push(
-      { role:'user',  parts:[{ text:userMessage }] },
-      { role:'model', parts:[{ text:reply }] }
-    );
-    if (CHAT_HISTORY.length > 20) CHAT_HISTORY = CHAT_HISTORY.slice(-20);
-    return reply;
-  }
+    { id:'contact',
+      keywords:['contact','phone','email','whatsapp','reach us','get in touch','office','location','address','hours','call','where are you','how to reach','contact details','monrovia','liberia office'],
+      reply:`📞 <strong>Contact Tolbert Innovation Hub</strong><br><br>
+📱 <strong>Phone/WhatsApp:</strong> +231 880 559 227<br>
+📱 <strong>Alt Phone:</strong> +231 778 956 979<br>
+📧 <strong>Email:</strong> tolbertinnovationhub@gmail.com<br>
+📍 <strong>Office:</strong> Spriggs Payne Airport, Sinkor, Monrovia, Liberia<br><br>
+🕐 <strong>Office Hours:</strong><br>
+Mon–Fri: 8:00 AM – 6:00 PM (GMT)<br>
+Sat: 9:00 AM – 3:00 PM (GMT) · Sun: Closed<br><br>
+💬 <strong>WhatsApp is the fastest way to reach us!</strong>`,
+      qr:['💬 Open WhatsApp','📧 Send Email','📝 Contact Form','🔙 Main Menu'] },
+
+    { id:'whatsapp',
+      keywords:['whatsapp','chat whatsapp','message us','text us','wa','instant message','dm','direct message'],
+      reply:`💬 <strong>Chat on WhatsApp</strong><br><br>
+The fastest way to reach TIH is via WhatsApp:<br>
+📱 <strong>+231 880 559 227</strong><br><br>
+Our team monitors WhatsApp during business hours (Mon–Sat) and responds promptly to all messages.`,
+      qr:['💬 Open WhatsApp Now','📞 Contact Info','🔙 Main Menu'] },
+
+    { id:'donate',
+      keywords:['donat','donation','support tih','contribute','fund','give money','help tih','mobile money','bank transfer','western union','moneygram','how to donate','sponsor','fundraise'],
+      reply:`❤️ <strong>Support Tolbert Innovation Hub</strong><br><br>
+Your donation helps provide free education, healthcare referrals, and scholarship guidance to Liberian youth.<br><br>
+💵 <strong>Suggested amounts:</strong> $5 · $10 · $25 · $50 · $100 · Custom<br><br>
+💳 <strong>Payment methods:</strong><br>
+• Mobile Money (Orange Money / MTN)<br>
+• Bank Transfer<br>
+• WhatsApp-coordinated payment<br>
+• Western Union / MoneyGram<br><br>
+📊 <strong>Allocation:</strong> 60% Education · 20% Scholarship · 12% Healthcare · 8% Operations`,
+      qr:['💳 Go to Donate Page','📞 Donate via WhatsApp','🔙 Main Menu'] },
+
+    { id:'events',
+      keywords:['event','events','upcoming','workshop','seminar','webinar','schedule','deadline','next event','when','scholarship deadline','information session','register event','join event','calendar'],
+      reply:`📅 <strong>Upcoming Events &amp; Deadlines</strong><br><br>
+• 🏆 <strong>Apr 21, 2026</strong> — ICCR Fully Funded Scholarship deadline<br>
+• 🎓 <strong>Jul 15, 2026</strong> — General Scholarship Application Deadline<br>
+• 📚 <strong>Ongoing</strong> — IELTS/TOEFL classroom open 24/7, no deadline<br>
+• 🏥 <strong>Rolling</strong> — Healthcare referral applications open any time<br>
+• 💻 <strong>Rolling</strong> — Software consultations available any time<br><br>
+⚠️ Apply early — document preparation takes time!`,
+      qr:['📝 Apply Before Deadline','🌐 View Events Page','🎓 ICCR Scholarship','🔙 Main Menu'] },
+
+    { id:'news',
+      keywords:['news','announcement','update','latest','blog','press','article','new program','launch','expansion','what\'s new','recent'],
+      reply:`📰 <strong>Latest News from TIH</strong><br><br>
+• 🎓 <strong>2026 Scholarship Intake Now Open</strong> — updated requirements &amp; guidance sessions available<br>
+• 🏅 <strong>IELTS Certificate System Launched</strong> — students can now request certificates online<br>
+• 🏥 <strong>Healthcare Program Expanded</strong> — more pathways to specialist treatment in India<br>
+• 💻 <strong>Tech Innovation Support</strong> — new digital consultation services for Liberian businesses<br><br>
+Visit our News page for full articles and announcements.`,
+      qr:['🌐 View All News','📝 Apply Now','🔙 Main Menu'] },
+
+    { id:'volunteer',
+      keywords:['volunteer','volunteering','internship','intern','work with tih','join team','help tih','contribute time','pro bono','community service','mentor','tutor'],
+      reply:`🤝 <strong>Volunteer with TIH</strong><br><br>
+TIH welcomes passionate volunteers in:<br>
+• Academic mentors &amp; tutors (IELTS/TOEFL)<br>
+• Scholarship counselors<br>
+• Healthcare case assistants<br>
+• Digital / software volunteers<br>
+• Community outreach coordinators<br><br>
+Visit our <strong>Volunteer page</strong> or contact us directly to express interest.`,
+      qr:['🌐 Go to Volunteer Page','📞 Contact Us','🔙 Main Menu'] },
+
+    { id:'partner',
+      keywords:['partner','partnership','collaborate','collaboration','sponsor','sponsorship','corporate','ngo partner','institutional partner','work together','mou','agreement','business partner'],
+      reply:`🤝 <strong>Partner With TIH</strong><br><br>
+We welcome partnerships with organizations, institutions, and governments that share our mission.<br><br>
+<strong>Partnership types:</strong><br>
+• Academic institutions &amp; universities<br>
+• Healthcare organizations &amp; hospitals<br>
+• Technology companies<br>
+• NGOs &amp; development organizations<br>
+• Government &amp; embassy offices<br>
+• Corporate sponsors &amp; donors<br><br>
+Contact us to explore partnership opportunities.`,
+      qr:['🌐 Partner With Us Page','📞 Contact Us','💬 WhatsApp Us','🔙 Main Menu'] },
+
+    { id:'impact',
+      keywords:['impact','statistics','how many','achievement','result','beneficiary','success rate','numbers','what have you done','track record','proven','500','12 countries','50 healthcare'],
+      reply:`📊 <strong>TIH Impact at a Glance</strong><br><br>
+• 🎓 <strong>500+</strong> students supported with scholarship guidance<br>
+• 🌍 <strong>12+</strong> countries reached through our networks<br>
+• 🏥 <strong>50+</strong> healthcare cases referred to international specialists<br>
+• 💻 <strong>30+</strong> businesses supported with digital solutions<br>
+• 📚 <strong>2</strong> exam tracks (IELTS &amp; TOEFL) — 100% free<br>
+• 🎓 <strong>3</strong> core programs: Education, Healthcare &amp; Technology<br><br>
+Full report on our <strong>Impact page</strong>.`,
+      qr:['🌐 View Impact Report','📰 Success Stories','🔙 Main Menu'] },
+
+    { id:'success',
+      keywords:['success story','testimonial','success','case study','student story','beneficiary','real story','example','results','people helped','who helped','lives changed'],
+      reply:`⭐ <strong>Student &amp; Beneficiary Stories</strong><br><br>
+<em>"TIH guided me through the entire scholarship process. I am now studying abroad because of them."</em><br>— <strong>Moses S.</strong>, Scholarship Beneficiary<br><br>
+<em>"The free IELTS classroom is genuinely world-class. I prepared confidently and passed."</em><br>— <strong>Fatima K.</strong>, IELTS Student<br><br>
+<em>"When my family needed specialist treatment, TIH coordinated everything — referrals, hospital contacts, travel."</em><br>— <strong>Joseph T.</strong>, Healthcare Beneficiary`,
+      qr:['🌐 More Success Stories','🎓 Apply for Scholarship','🔙 Main Menu'] },
+
+    { id:'process',
+      keywords:['how does it work','how it works','process','procedure','what happens after','timeline','what to expect','step by step','workflow','how long','turnaround','response time','review time'],
+      reply:`⚙️ <strong>How TIH Works</strong><br><br>
+🎓 <strong>Scholarship:</strong><br>
+Submit → TIH reviews (5–7 days) → Eligibility confirmed → Document prep → Admission/scholarship confirmed<br><br>
+🏥 <strong>Healthcare:</strong><br>
+Submit inquiry → Case assessment → Specialist referral → Hospital coordination → Travel support<br><br>
+💻 <strong>Software:</strong><br>
+Consultation request → Discovery call → Proposal → Development → Delivery<br><br>
+⏱️ General response time: <strong>24–48 hours</strong>`,
+      qr:['📝 Apply Now','📞 Contact','🔙 Main Menu'] },
+
+    { id:'resources',
+      keywords:['resource','resource center','study material','material','pdf','book','guide','study guide','practice material','download','reading material','preparation material','vocab','grammar'],
+      reply:`📁 <strong>Resource Center</strong><br><br>
+The TIH Resource Center provides free study materials for IELTS &amp; TOEFL preparation:<br>
+• Vocabulary lists &amp; grammar guides<br>
+• Reading &amp; listening practice passages<br>
+• Writing templates &amp; sample essays<br>
+• Speaking topic banks<br>
+• Full practice tests<br>
+• Video lesson library<br><br>
+All resources are freely accessible — no account required.`,
+      qr:['🌐 Resource Center','📖 IELTS Classroom','📖 TOEFL Classroom','🔙 Main Menu'] },
+
+    { id:'location',
+      keywords:['where','location','address','where is tih','monrovia','sinkor','spriggs payne','liberia','office address','visit','come in person','directions','physical location','walk in'],
+      reply:`📍 <strong>TIH Office Location</strong><br><br>
+<strong>Tolbert Innovation Hub</strong><br>
+Spriggs Payne Airport, Sinkor<br>
+Monrovia, Liberia, West Africa<br><br>
+🕐 <strong>Office Hours:</strong><br>
+Mon–Fri: 8:00 AM – 6:00 PM<br>
+Sat: 9:00 AM – 3:00 PM · Sun: Closed<br><br>
+📞 Call ahead: <strong>+231 880 559 227</strong>`,
+      qr:['📞 Call Us','💬 WhatsApp Us','📧 Email Us','🔙 Main Menu'] },
+
+    { id:'social',
+      keywords:['social media','facebook','instagram','twitter','youtube','linkedin','follow','online','website','webpage','url','link','page','find online'],
+      reply:`🌐 <strong>Find TIH Online</strong><br><br>
+🖥️ <strong>Website:</strong> tolbertinnovationhub.org<br>
+📧 <strong>Email:</strong> tolbertinnovationhub@gmail.com<br>
+💬 <strong>WhatsApp:</strong> +231 880 559 227<br>
+📞 <strong>Phone:</strong> +231 880 559 227 / +231 778 956 979<br><br>
+For the fastest response, reach us on <strong>WhatsApp</strong>.`,
+      qr:['💬 Open WhatsApp','📧 Email Us','🌐 Contact Page','🔙 Main Menu'] },
+
+    { id:'language',
+      keywords:['english','language','speak english','english requirement','how good english','english level','language test','proficiency','ielts score needed','minimum band','minimum score','what score do i need'],
+      reply:`🗣️ <strong>English Language Requirements</strong><br><br>
+For international scholarships and universities:<br><br>
+• <strong>IELTS:</strong> Band 6.0–7.0 (varies by university)<br>
+• <strong>TOEFL iBT:</strong> Score 79–100+ (varies)<br>
+• <strong>Duolingo:</strong> Also accepted by some programs<br>
+• <strong>Essay test:</strong> Accepted by ICCR instead of IELTS/TOEFL<br><br>
+💡 Use TIH's <strong>free IELTS/TOEFL classroom</strong> to prepare — completely free!`,
+      qr:['📖 Start IELTS Prep','📖 Start TOEFL Prep','🎓 Scholarship Requirements','🔙 Main Menu'] },
+
+    { id:'india',
+      keywords:['india','study in india','india university','indian university','india scholarship','india student','visa india','indian college','india education','india medical'],
+      reply:`🇮🇳 <strong>India — Education &amp; Healthcare via TIH</strong><br><br>
+TIH has strong India connections for both education and healthcare:<br><br>
+🎓 <strong>Education:</strong><br>
+The <strong>ICCR Fully Funded Scholarship</strong> covers studies at top Indian universities — full tuition, stipend, airfare, and hostel.<br><br>
+🏥 <strong>Healthcare:</strong><br>
+TIH works with partner hospitals in India offering specialist treatment in cardiology, oncology, orthopedics, neurology &amp; more.<br><br>
+Both are coordinated end-to-end by TIH.`,
+      qr:['🏆 ICCR Scholarship','🏥 Healthcare in India','📝 Apply','🔙 Main Menu'] },
+
+    { id:'deadline',
+      keywords:['deadline','when to apply','last date','closing date','by when','application close','due date','expiry','how long do i have','cut off','submission date','final date'],
+      reply:`📅 <strong>Key Application Deadlines</strong><br><br>
+• 🏆 <strong>ICCR Fully Funded (India):</strong> <em>April 21, 2026</em><br>
+• 🎓 <strong>Study Abroad / General:</strong> <em>July 15, 2026</em><br>
+• 📚 <strong>IELTS/TOEFL Classroom:</strong> Open year-round — no deadline<br>
+• 🏥 <strong>Healthcare Program:</strong> Rolling — apply anytime<br>
+• 💻 <strong>Software Consultation:</strong> Rolling — apply anytime<br><br>
+⚠️ <strong>Apply early</strong> — document preparation takes time!`,
+      qr:['📝 Apply for Scholarship','🏆 ICCR Scholarship','📚 Free Classroom','🔙 Main Menu'] },
+
+    { id:'chevening',
+      keywords:['chevening','uk scholarship','british scholarship','foreign commonwealth','fcdo','study uk','master uk','uk master','uk government scholarship'],
+      reply:`🇬🇧 <strong>Chevening Scholarship (UK)</strong><br><br>
+The UK Government's flagship international scholarship — <strong>Liberia is eligible!</strong><br><br>
+✅ <strong>Coverage:</strong> Full tuition · Monthly allowance · Return airfare · Arrival/departure grant · Thesis grant<br><br>
+✅ <strong>Requirements:</strong><br>
+• Liberian citizen<br>
+• Bachelor's degree<br>
+• <strong>2+ years relevant work experience</strong><br>
+• Apply to 3 UK university courses<br>
+• Commit to return to Liberia after completion<br><br>
+📅 <strong>Applications: August – November each year</strong>`,
+      qr:['🌐 View All Scholarships','🏆 ICCR Scholarship','📝 Apply Now','🔙 Main Menu'] },
+
+    { id:'fulbright',
+      keywords:['fulbright','us scholarship','usa scholarship','american scholarship','study usa','study america','study united states','fulbright foreign','us government scholarship'],
+      reply:`🇺🇸 <strong>Fulbright Foreign Student Program (USA)</strong><br><br>
+The US Government's premier exchange program — <strong>Liberia is eligible!</strong><br><br>
+✅ <strong>Coverage:</strong> Full tuition · Monthly stipend · Airfare · Health insurance · Professional development<br><br>
+✅ <strong>Requirements:</strong><br>
+• Liberian citizen residing in Liberia<br>
+• Bachelor's degree with strong academic record<br>
+• TOEFL iBT ≥ 79 or IELTS ≥ 6.5<br>
+• Leadership potential &amp; community commitment<br><br>
+📅 Deadline: <strong>February – May (varies by year)</strong>`,
+      qr:['🌐 View All Scholarships','📚 IELTS/TOEFL Prep','📝 Apply Now','🔙 Main Menu'] },
+
+    { id:'mastercard',
+      keywords:['mastercard','mastercard foundation','mcf','mastercard scholar','mastercard scholarship','foundation scholarship'],
+      reply:`🌍 <strong>Mastercard Foundation Scholars Program</strong><br><br>
+One of Africa's largest scholarship networks — <strong>Liberian students are eligible!</strong><br><br>
+✅ <strong>Coverage:</strong> Full tuition at 40+ partner universities · Accommodation &amp; stipend · Mentorship · Return travel<br><br>
+✅ <strong>Requirements:</strong><br>
+• African citizen (Liberia ✓)<br>
+• Demonstrated financial need<br>
+• Strong leadership &amp; community service record<br>
+• Commitment to give back to Africa<br><br>
+📅 Deadlines vary by partner university.`,
+      qr:['🌐 View All Scholarships','🎓 ICCR Scholarship','📝 Apply','🔙 Main Menu'] },
+
+    { id:'daad',
+      keywords:['daad','germany scholarship','german scholarship','study germany','study in germany','bmz','german academic'],
+      reply:`🇩🇪 <strong>DAAD In-Country / In-Region Programme</strong><br><br>
+Funded by Germany's Federal Ministry — <strong>Sub-Saharan Africa including Liberia!</strong><br><br>
+✅ <strong>Coverage:</strong> Full tuition · Stipend up to €8,920/year · Health insurance · Research allowance · Travel subsidy<br><br>
+✅ <strong>Requirements:</strong><br>
+• Sub-Saharan African citizen (Liberia ✓)<br>
+• Bachelor's degree (max 6 years post-graduation)<br>
+• English or French proficiency<br><br>
+📅 New calls published each <strong>autumn</strong>`,
+      qr:['🌐 View All Scholarships','📚 IELTS/TOEFL Prep','🔙 Main Menu'] },
+
+    { id:'pau',
+      keywords:['pan african university','pau','african union scholarship','au scholarship','pan african','continental university','african union'],
+      reply:`🌐 <strong>Pan African University (PAU) Scholarship</strong><br><br>
+An African Union initiative — full scholarships across Africa. <strong>Liberia is eligible!</strong><br><br>
+✅ <strong>Coverage:</strong> Full tuition · Monthly stipend · On-campus accommodation · Return air ticket · Medical insurance<br><br>
+✅ <strong>Requirements:</strong><br>
+• AU member state citizen (Liberia ✓)<br>
+• Bachelor's degree with strong GPA<br>
+• Under 35 (Master's) or under 40 (PhD)<br><br>
+📅 Applications: <strong>November – December each year</strong>`,
+      qr:['🌐 View All Scholarships','🎓 Scholarships','📝 Apply','🔙 Main Menu'] },
+
+    { id:'visa',
+      keywords:['visa','visa application','student visa','get visa','visa requirements','how to get visa','india visa','uk visa','us visa','visa process','visa help','visa support','travel document','study permit'],
+      reply:`✈️ <strong>Visa Support for Liberian Students</strong><br><br>
+TIH provides <strong>visa guidance and document support</strong>:<br><br>
+🇮🇳 <strong>India (ICCR):</strong> Indian Mission processes student visas. TIH coordinates your visa application alongside scholarship letters.<br><br>
+🇬🇧 <strong>UK (Chevening):</strong> Chevening provides visa guidance. Note: You may need to travel to a neighboring country to apply at a UK visa center.<br><br>
+🇺🇸 <strong>USA (Fulbright):</strong> US Embassy in Monrovia handles F1/J1 visas.<br><br>
+💡 TIH helps you prepare all required documents for every visa process.`,
+      qr:['🏆 ICCR Scholarship','🇬🇧 Chevening Details','📞 Contact TIH','🔙 Main Menu'] },
+
+    { id:'duration',
+      keywords:['how long','duration','years','months','program length','how many years','study duration','length of course','time to complete','when does it start'],
+      reply:`⏱️ <strong>Program Durations</strong><br><br>
+• 🎓 <strong>Undergraduate:</strong> 3–5 years<br>
+• 🎓 <strong>Postgraduate (Master's):</strong> 1–2 years<br>
+• 🔬 <strong>PhD:</strong> 3–5 years<br>
+• 📚 <strong>IELTS/TOEFL Classroom:</strong> Self-paced — complete any time<br>
+• 🏥 <strong>Healthcare referral:</strong> Ongoing, case-by-case<br>
+• 💻 <strong>Software project:</strong> 2 weeks – 3 months (by scope)`,
+      qr:['🎓 Apply for Scholarship','📚 Free Classroom','🔙 Main Menu'] },
+
+    { id:'age',
+      keywords:['age','how old','age requirement','age limit','minimum age','maximum age','am i too old','am i too young','age criteria','over 40','year old','years old'],
+      reply:`📅 <strong>Age Requirements by Scholarship</strong><br><br>
+• 🇮🇳 <strong>ICCR:</strong> UG/PG → 18–40 · PhD → up to 50<br>
+• 🇬🇧 <strong>Chevening:</strong> No official upper age limit (2+ years work experience required)<br>
+• 🇺🇸 <strong>Fulbright:</strong> No hard limit — typically recent graduates or early career<br>
+• 🌍 <strong>Mastercard Foundation:</strong> Typically under 35<br>
+• 🌐 <strong>Pan African University:</strong> Master's → under 35 · PhD → under 40`,
+      qr:['📋 Full Requirements','🏆 ICCR Scholarship','📝 Apply Now','🔙 Main Menu'] },
+
+    { id:'fields',
+      keywords:['what can i study','study field','field of study','course','subject','discipline','available courses','which course','study medicine','study engineering','study law','study business','study agriculture','study computer'],
+      reply:`📚 <strong>Available Fields of Study</strong><br><br>
+🔬 <strong>Sciences:</strong> Medicine, Pharmacy, Nursing, Biology, Chemistry<br>
+⚙️ <strong>Engineering:</strong> Civil, Electrical, Mechanical, Computer Science, IT<br>
+💼 <strong>Business:</strong> MBA, Accounting, Economics, Finance, Marketing<br>
+⚖️ <strong>Law &amp; Social Sciences:</strong> Law, Political Science, Public Administration<br>
+🌾 <strong>Agriculture:</strong> Agronomy, Food Science, Environmental Studies<br>
+🎨 <strong>Arts &amp; Education:</strong> Education, Literature, Journalism, History<br><br>
+Exact courses depend on your chosen country and university.`,
+      qr:['🏆 ICCR Scholarship','📝 Apply Now','📋 Requirements','🔙 Main Menu'] },
+
+    { id:'statement',
+      keywords:['personal statement','essay','motivation letter','cover letter','statement of purpose','write essay','how to write','application essay','why do you want','motivation','what to write','sop'],
+      reply:`✍️ <strong>Writing Your Personal Statement</strong><br><br>
+A strong personal statement covers 5 key points:<br><br>
+1️⃣ <strong>Who you are</strong> — background, education, experience<br>
+2️⃣ <strong>Why this program</strong> — why this scholarship, country, field<br>
+3️⃣ <strong>Your goals</strong> — career plans and how this degree fits<br>
+4️⃣ <strong>Your impact</strong> — how you'll contribute to Liberia after graduating<br>
+5️⃣ <strong>Why you</strong> — what makes you the strongest candidate<br><br>
+📌 Aim for <strong>500–800 words</strong>. Be specific — avoid generic statements.<br><br>
+💡 <strong>TIH can review your personal statement — contact us!</strong>`,
+      qr:['📞 Get Help from TIH','💬 WhatsApp for Guidance','📋 Requirements','🔙 Main Menu'] },
+
+    { id:'rejection',
+      keywords:['rejected','rejection','not selected','failed application','what if i fail','not successful','denied','not accepted','reapply','try again','second chance'],
+      reply:`💪 <strong>If You're Not Selected — Don't Give Up</strong><br><br>
+Many successful scholars were rejected before winning their scholarship!<br><br>
+✅ <strong>What to do:</strong><br>
+• <strong>Reapply next cycle</strong> — most scholarships accept re-applications<br>
+• <strong>Strengthen weak areas</strong> — improve your IELTS/TOEFL score, GPA, or personal statement<br>
+• <strong>Apply for multiple scholarships</strong> simultaneously — ICCR, Chevening, Fulbright, DAAD<br>
+• <strong>Consult TIH</strong> — we review applications and give feedback<br><br>
+📌 TIH offers <strong>free application feedback</strong>. Contact us today!`,
+      qr:['📞 Get Application Feedback','🎓 Other Scholarships','📚 Improve IELTS Score','🔙 Main Menu'] },
+
+    { id:'cost_living',
+      keywords:['cost of living','living cost','expenses in india','money needed','cost india','afford india','monthly expenses','india expensive','stipend enough','how much stipend'],
+      reply:`💵 <strong>Cost of Living in India (ICCR Scholars)</strong><br><br>
+The ICCR scholarship includes a <strong>monthly stipend</strong> to cover living costs:<br><br>
+• UG/PG: <strong>₹15,000–₹18,000/month</strong> (~$180–$215 USD)<br>
+• PhD: <strong>₹18,000–₹20,000/month</strong><br><br>
+The stipend covers food, local transport, and study materials. Hostel is provided separately by the university.<br><br>
+💡 India is generally <strong>very affordable</strong> compared to Western countries.`,
+      qr:['🏆 ICCR Full Details','📝 Apply ICCR Scholarship','🔙 Main Menu'] },
+
+    { id:'can_apply',
+      keywords:['can i apply','am i eligible','can liberian apply','do you accept','can i join','can i register','is it open','open to liberians','open for liberia','is liberia included','liberia eligible'],
+      reply:`✅ <strong>Yes — Liberian Students Can Apply!</strong><br><br>
+All TIH programs are designed to serve <strong>Liberian citizens</strong>:<br><br>
+• 🏆 <strong>ICCR Scholarship</strong> — Liberian citizens age 18–50<br>
+• 🇬🇧 <strong>Chevening (UK)</strong> — Liberian citizens, 2+ years work experience<br>
+• 🇺🇸 <strong>Fulbright (USA)</strong> — Liberian citizens residing in Liberia<br>
+• 🌍 <strong>Mastercard Foundation</strong> — African citizens (Liberia ✓)<br>
+• 📚 <strong>Free Classroom</strong> — <strong>Open to everyone, no restrictions!</strong><br>
+• 🏥 <strong>Healthcare</strong> — Open to all Liberians<br>
+• 💻 <strong>Software</strong> — Open to any individual or business`,
+      qr:['📝 Apply for Scholarship','🏆 ICCR Scholarship','📚 Free Classroom','🔙 Main Menu'] },
+
+    { id:'page_info',
+      keywords:['what is on this page','what does this page','explain this page','what is this','what is here','tell me about this page','what can i find here','page content','this page','what page','summary of page'],
+      reply:``,  // handled dynamically
+      qr:[] },
+
+    { id:'faq',
+      keywords:['faq','frequently asked','common question','question and answer','general question','queries','popular question'],
+      reply:`❓ <strong>Frequently Asked Questions</strong><br><br>
+I can answer questions on:<br>
+• How to apply for a scholarship<br>
+• What documents are required<br>
+• Is the IELTS/TOEFL classroom really free?<br>
+• How much does a certificate cost?<br>
+• How does the healthcare referral work?<br>
+• What software services are offered?<br>
+• Who founded TIH? Where is TIH located?<br><br>
+Just type your question — or visit our <strong>FAQ page</strong> for full written answers.`,
+      qr:['🌐 Go to FAQ Page','🎓 Scholarship','📚 Classroom','📞 Contact','🔙 Main Menu'] },
+
+    { id:'apply_menu',
+      keywords:['apply','application','i want to apply','start application','apply now','sign up','enroll','register','join','submit form','application form','apply here','chat apply'],
+      reply:`📝 <strong>Apply with TIH</strong><br><br>
+I can collect your application right here in this chat. Which program are you applying for?`,
+      qr:['🎓 Scholarship / Study Abroad','🏥 Healthcare Request','💻 Software Consultation','📚 IELTS/TOEFL Classroom'] },
+
+    { id:'thanks',
+      keywords:['thank you','thanks','thank','appreciate','helpful','great','wonderful','awesome','nice','good job','excellent','perfect','amazing'],
+      reply:`You're very welcome! 😊 Happy to help. Is there anything else I can assist you with?`,
+      qr:['🎓 Scholarships','📚 Free Classroom','🏥 Healthcare','💻 Software','📝 Apply Now'] },
+
+    { id:'partner_hospitals',
+      keywords:['apollo','fortis','narayana','medanta','aiims','kokilaben','max healthcare','manipal','partner hospital','which hospital','hospital name','hospital list','hospital partner'],
+      reply:`🏥 <strong>TIH Partner Hospitals in India</strong><br><br>
+We work with India's top-ranked hospitals:<br>
+• <strong>Apollo Hospitals</strong> — Chennai<br>
+• <strong>Fortis Healthcare</strong> — Delhi<br>
+• <strong>Narayana Health</strong> — Bangalore<br>
+• <strong>Medanta – The Medicity</strong> — Gurugram<br>
+• <strong>AIIMS New Delhi</strong> — Government premier institute<br>
+• <strong>Kokilaben Dhirubhai Ambani Hospital</strong> — Mumbai<br>
+• <strong>Max Healthcare</strong> — Delhi<br>
+• <strong>Manipal Hospitals</strong> — Bangalore<br><br>
+TIH coordinates your referral — you pay the hospital directly.`,
+      qr:['🏥 Healthcare Process','💬 Request Consultation','📞 Contact TIH'] },
+
+    { id:'university_sharda',
+      keywords:['sharda','sharda university','sharda university india'],
+      reply:`🎓 <strong>Sharda University</strong><br><br>
+• NAAC Accredited: <strong>A+</strong><br>
+• National Ranking: <strong>#35 in India</strong><br>
+• Tuition: <strong>$3,500 – $6,000 / year</strong><br>
+• Programs: MBBS, B.Tech, LLB, MBA, PhD<br>
+• Located in Greater Noida, near Delhi<br><br>
+TIH can help you apply and secure a scholarship.`,
+      qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
+
+    { id:'university_lpu',
+      keywords:['lpu','lovely professional','lovely professional university'],
+      reply:`🎓 <strong>Lovely Professional University (LPU)</strong><br><br>
+• NAAC Accredited: <strong>A++</strong> (highest grade)<br>
+• National Ranking: <strong>#28 in India</strong><br>
+• Tuition: <strong>$2,800 – $5,000 / year</strong><br>
+• 300+ programs across all disciplines<br>
+• 600-acre mega-campus in Punjab<br><br>
+TIH can guide your application end-to-end.`,
+      qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
+
+    { id:'university_amity',
+      keywords:['amity','amity university'],
+      reply:`🎓 <strong>Amity University</strong><br><br>
+• NAAC Accredited: <strong>A+</strong><br>
+• QS World Ranking: <strong>#22 in India</strong><br>
+• Tuition: <strong>$4,000 – $7,500 / year</strong><br>
+• Campuses in <strong>10 countries</strong> worldwide<br>
+• Noida (main campus), Delhi, Mumbai + international<br><br>
+Ideal for students seeking a globally connected university.`,
+      qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
+
+    { id:'university_khalsa',
+      keywords:['khalsa','khalsa university','amritsar university','golden temple university'],
+      reply:`🎓 <strong>Khalsa University</strong><br><br>
+• Heritage institution founded in <strong>1892</strong><br>
+• Tuition: <strong>$1,800 – $3,000 / year</strong> (most affordable option)<br>
+• Located in <strong>Amritsar</strong> — home of the Golden Temple<br>
+• Strong arts, science, and commerce programs<br><br>
+A great choice for students seeking quality education at lower cost.`,
+      qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
+
+    { id:'universities_overview',
+      keywords:['partner university','which university','university list','universities in india','where can i study','study in india university','university partner','tih university'],
+      reply:`🎓 <strong>TIH Partner Universities</strong><br><br>
+We partner with 17+ universities in <strong>India & Cyprus</strong>:<br>
+• <strong>Sharda University</strong> — NAAC A+, #35 India, from $3,500/yr<br>
+• <strong>LPU</strong> — NAAC A++, #28 India, from $2,800/yr<br>
+• <strong>Amity University</strong> — QS #22 India, from $4,000/yr<br>
+• <strong>Khalsa University</strong> — Heritage 1892, from $1,800/yr<br>
+• …and 13 more across disciplines and cities<br><br>
+Tell us your field of study and we'll recommend the best match!`,
+      qr:['🎓 Apply Now','📋 Requirements','🏥 Healthcare','📞 Contact'] },
+
+    { id:'upcoming_events',
+      keywords:['event','upcoming','schedule','workshop','session','orientation','calendar','when','next event','upcoming event','event date'],
+      reply:`📅 <strong>Upcoming TIH Events (2026)</strong><br><br>
+• <strong>Jul 15</strong> — Scholarship Application Deadline<br>
+• <strong>Jul 20</strong> — IELTS Writing Workshop<br>
+• <strong>Aug 1</strong> — Tech Consultation Day<br>
+• <strong>Aug 15</strong> — Scholarship Information Session<br>
+• <strong>Sep 1</strong> — Healthcare Program Orientation<br>
+• <strong>Sep 15</strong> — TOEFL Mock Exam<br><br>
+Don't miss out — register early to secure your spot!`,
+      qr:['📝 Register Now','🎓 Scholarship Deadline','📚 IELTS Workshop','📞 Contact TIH'] },
+
+    { id:'mastery_plan',
+      keywords:['mastery plan','5 phase','five phase','study plan','ielts plan','toefl plan','120 minutes','daily plan','learning plan','phase 1','phase 2'],
+      reply:`📚 <strong>TIH Mastery Plan</strong><br><br>
+Our structured 5-phase program (~120 min/day):<br>
+<strong>Phase 1</strong> — Foundation: Core grammar & vocabulary<br>
+<strong>Phase 2</strong> — Skills Build: Listening, reading, writing, speaking<br>
+<strong>Phase 3</strong> — Practice: Timed exercises per section<br>
+<strong>Phase 4</strong> — Mock Tests: Full exam simulations<br>
+<strong>Phase 5</strong> — Review: Targeted weak-area drilling<br><br>
+Designed to get you exam-ready in 8–12 weeks.`,
+      qr:['📚 Join Free Classroom','🎓 Scholarships','📝 Apply Now'] },
+
+    { id:'video_lessons',
+      keywords:['video','youtube','lesson video','e2 language','ielts liz','magoosh','tst prep','video lesson','watch','tutorial'],
+      reply:`🎬 <strong>Free Video Lessons</strong><br><br>
+Our classroom links to the best free YouTube channels:<br>
+• <strong>E2 Language</strong> — IELTS strategies & live classes<br>
+• <strong>IELTS Liz</strong> — Tips, lessons, practice tasks<br>
+• <strong>Magoosh TOEFL</strong> — Full TOEFL prep series<br>
+• <strong>TST Prep</strong> — IELTS writing & speaking breakdown<br><br>
+All videos are free and curated by TIH instructors.`,
+      qr:['📚 Open Classroom','🎓 Scholarship','📝 Register'] },
+
+    { id:'study_materials',
+      keywords:['study material','pdf','download','vocab pack','vocabulary','notes','handout','workbook','material'],
+      reply:`📄 <strong>Downloadable Study Materials</strong><br><br>
+The TIH classroom provides:<br>
+• <strong>PDF lesson notes</strong> — Grammar, reading, writing<br>
+• <strong>Vocabulary packs</strong> — Academic Word List + IELTS/TOEFL wordlists<br>
+• <strong>Writing templates</strong> — Task 1 & Task 2 structures<br>
+• <strong>Speaking cue cards</strong> — Practice prompts<br><br>
+All materials are free to download from the classroom page.`,
+      qr:['📚 Open Classroom','📝 Register for Classroom','🎓 Scholarships'] },
+
+    { id:'practice_tests',
+      keywords:['practice test','mock test','mock exam','timed test','auto score','practice exam','simulate exam','test simulation','full test'],
+      reply:`📝 <strong>Practice Tests & Mock Exams</strong><br><br>
+TIH's classroom includes:<br>
+• <strong>Timed practice tests</strong> — Real exam conditions<br>
+• <strong>Auto-scored exercises</strong> — Instant feedback<br>
+• <strong>Full mock exams</strong> — Complete IELTS/TOEFL simulations<br>
+• <strong>Progress tracking</strong> — Monitor your improvement over time<br><br>
+Practice as many times as you need — it's completely free!`,
+      qr:['📚 Open Classroom','🎓 Scholarship','📝 Apply Now'] },
+
+    { id:'ucl_scholarship',
+      keywords:['ucl','university college london','ucl scholarship','ucl global','global undergraduate','london scholarship'],
+      reply:`🇬🇧 <strong>UCL Global Undergraduate Scholarship</strong><br><br>
+University College London (UCL) offers highly competitive scholarships for outstanding international students.<br><br>
+• One of the world's top 10 universities<br>
+• Awards cover partial to full tuition<br>
+• Requires strong academic record + personal statement<br><br>
+TIH can help you prepare a competitive application. Contact us to get started!`,
+      qr:['📝 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
+
+    { id:'entertainment',
+      keywords:['entertainment','movie','film','stream','watch movie','free movie','net22','dailymotion','moviebox','gomovies','streaming','video stream'],
+      reply:`🎬 <strong>Free Entertainment Resources</strong><br><br>
+TIH's entertainment page lists free streaming platforms:<br>
+• <strong>net22.cc</strong> — Free movies & shows<br>
+• <strong>Dailymotion</strong> — Videos & clips<br>
+• <strong>moviebox.ph</strong> — Movie streaming<br>
+• <strong>gomovies.gg</strong> — Free film library<br><br>
+Visit the Entertainment page on our website for direct links.`,
+      qr:['🌐 Visit Website','📚 Free Classroom','🎓 Scholarships'] },
+
+    { id:'volunteer_roles',
+      keywords:['volunteer role','volunteer position','what volunteer','volunteer job','education mentor','scholarship advisor','technology trainer','healthcare coordinator','content creator','community outreach','how to volunteer','volunteer hours'],
+      reply:`🤝 <strong>Volunteer Roles at TIH</strong><br><br>
+• <strong>Education Mentor</strong> — 2–4 hrs/week, guide students<br>
+• <strong>Scholarship Advisor</strong> — 3–5 hrs/week, help with applications<br>
+• <strong>Technology Trainer</strong> — 3–6 hrs/week, teach digital skills<br>
+• <strong>Healthcare Coordinator</strong> — 2–4 hrs/week, support patients<br>
+• <strong>Content Creator</strong> — Flexible, create social/web content<br>
+• <strong>Community Outreach</strong> — Flexible, spread the mission<br><br>
+All roles are remote-friendly. Apply via our website!`,
+      qr:['📝 Volunteer Now','📞 Contact TIH','🌐 Visit Website'] },
+
+    { id:'partnership_types',
+      keywords:['partnership type','types of partnership','how to partner','corporate partner','ngo partner','institutional partner','become partner','partnership program'],
+      reply:`🤝 <strong>TIH Partnership Programs</strong><br><br>
+We welcome partnerships from:<br>
+• <strong>Corporations</strong> — CSR sponsorships & co-branded programs<br>
+• <strong>NGOs & Nonprofits</strong> — Joint impact initiatives<br>
+• <strong>Universities & Schools</strong> — Academic partnerships & referrals<br>
+• <strong>Government Institutions</strong> — Policy alignment & outreach<br><br>
+Reach out to explore a collaboration that creates lasting impact.`,
+      qr:['📞 Contact TIH','📝 Partner With Us','💰 Donate'] },
+
+    { id:'software_timeline',
+      keywords:['how long','software timeline','website timeline','build time','development time','weeks','when ready','how many weeks','timeline software'],
+      reply:`💻 <strong>Software Development Timelines</strong><br><br>
+Typical project timelines at TIH:<br>
+• <strong>Basic website</strong> — 2–4 weeks<br>
+• <strong>Custom software / business systems</strong> — 4–12 weeks<br>
+• <strong>Mobile app</strong> — 6–12 weeks<br><br>
+Timeline depends on complexity and your feedback turnaround. We'll give you a precise estimate during your free consultation.`,
+      qr:['💻 Book Consultation','📝 Apply Now','📞 Contact TIH'] },
+
+    { id:'donation_tiers',
+      keywords:['donation tier','supporter','champion','transformer','monthly donation','donate tier','giving level','how much donate'],
+      reply:`💰 <strong>Donation Tiers</strong><br><br>
+Every gift — large or small — changes lives:<br>
+• <strong>Supporter</strong> — Any amount, one-time or recurring<br>
+• <strong>Champion</strong> — Monthly giving commitment<br>
+• <strong>Transformer</strong> — Partnership-level investment<br><br>
+100% of your donation supports Liberian students and patients. Thank you for making a difference!`,
+      qr:['💰 Donate Now','🤝 Become a Partner','📞 Contact TIH'] },
+
+    { id:'healthcare_countries',
+      keywords:['ghana','uae','dubai','abu dhabi','healthcare ghana','healthcare uae','which country healthcare','healthcare country','treatment abroad country'],
+      reply:`🌍 <strong>TIH Healthcare Destinations</strong><br><br>
+TIH now coordinates medical referrals to:<br>
+• 🇮🇳 <strong>India</strong> — 8 partner hospitals (primary destination)<br>
+• 🇬🇭 <strong>Ghana</strong> — Regional medical access<br>
+• 🇦🇪 <strong>UAE</strong> — Advanced specialist care<br><br>
+We find the right facility, liaise with doctors, and support your travel — you pay the hospital directly.`,
+      qr:['🏥 Request Healthcare','💬 Contact TIH','🏥 Partner Hospitals'] },
+
+    { id:'success_stories',
+      keywords:['success story','testimonial','real student','who benefited','moses','abigail','james k','fatima','emmanuel','princess','david','student story','patient story','example student'],
+      reply:`⭐ <strong>TIH Success Stories</strong><br><br>
+• <strong>Moses S.</strong> — Studying CS in India, GPA 3.5+<br>
+• <strong>Abigail S.</strong> — Erasmus+ Public Health in Germany<br>
+• <strong>James K.</strong> — Achieved IELTS 6.5 after TIH classroom<br>
+• <strong>Fatima T.</strong> — Life-changing cardiac surgery in India<br>
+• <strong>Emmanuel C.</strong> — Business revenue doubled after TIH software<br>
+• <strong>Princess B.</strong> — TOEFL 87, now pursuing MBA<br>
+• <strong>David W.</strong> — Won $8,000 NGO contract via digital skills<br><br>
+You could be next. Let us help you take the step!`,
+      qr:['🎓 Apply for Scholarship','🏥 Healthcare','💻 Software','📞 Contact TIH'] },
+
+    { id:'healthcare_cost',
+      keywords:['healthcare cost','medical cost','how much treatment','cost treatment','pay hospital','hospital payment','tih charge healthcare','free treatment','treatment cost','who pays'],
+      reply:`🏥 <strong>Healthcare Cost & Payment</strong><br><br>
+TIH <strong>does not charge for coordination services</strong>. Our role is to:<br>
+✅ Identify the right hospital & specialist<br>
+✅ Facilitate communication & logistics<br>
+✅ Support you through the process<br><br>
+<strong>You pay the hospital directly</strong> for all medical services. Treatment costs vary by hospital and condition — we help you get a cost estimate before you travel.`,
+      qr:['🏥 Request Healthcare','💬 Ask About Hospitals','📞 Contact TIH'] },
+
+    { id:'study_abroad_process',
+      keywords:['how does study abroad work','study abroad steps','study abroad process','6 step','six step','step by step scholarship','application process','what happens after apply'],
+      reply:`🎓 <strong>Study Abroad — 6-Step Process</strong><br><br>
+<strong>1.</strong> Submit your application (online or in-chat)<br>
+<strong>2.</strong> TIH reviews & contacts you within 48 hrs<br>
+<strong>3.</strong> Document preparation & verification<br>
+<strong>4.</strong> University / scholarship matching<br>
+<strong>5.</strong> Application submission to institution<br>
+<strong>6.</strong> Visa support & pre-departure orientation<br><br>
+We guide you at every step — it's completely free!`,
+      qr:['📝 Apply Now','📋 Requirements','📞 Contact TIH'] },
+
+    { id:'classroom_structure',
+      keywords:['classroom structure','how classroom works','what is in classroom','classroom content','classroom feature','free classroom overview','ielts classroom detail','toefl classroom detail'],
+      reply:`📚 <strong>TIH Free Classroom — What's Inside</strong><br><br>
+The classroom is organized into 4 sections:<br>
+• <strong>Mastery Plan</strong> — 5-phase daily study schedule (~120 min/day)<br>
+• <strong>Video Lessons</strong> — Curated YouTube channels (E2, IELTS Liz, Magoosh, TST)<br>
+• <strong>Study Materials</strong> — Downloadable PDFs, vocab packs, templates<br>
+• <strong>Practice Tests</strong> — Timed, auto-scored mock exams<br><br>
+100% free. No registration needed to browse — register to track your progress.`,
+      qr:['📚 Open Classroom','📝 Register','🎓 Scholarships','📞 Contact'] },
+
+    { id:'fallback', keywords:[], reply:``, qr:[] }
+  ];
 
   // ── APPLICATION FLOWS ─────────────────────────────────────────────────────────
   const FLOWS = {
@@ -464,6 +1213,74 @@ RESPONSE FORMATTING — CRITICAL RULES:
     }
   };
 
+  // ── MATCHING ──────────────────────────────────────────────────────────────────
+  let _fallbackIdx = 0;
+  const FALLBACK_MSGS = [
+    u => `I don't have a specific answer for "<em>${esc(u)}</em>" in my knowledge base, but our team can help immediately:`,
+    u => `Good question! For the most accurate answer on "<em>${esc(u)}</em>", please reach our team directly:`,
+    u => `I want to make sure you get accurate information on "<em>${esc(u)}</em>". Here's how to reach someone who knows:`,
+    u => `That's outside my current knowledge. For "<em>${esc(u)}</em>", contact us here:`,
+    u => `Let me connect you with a real answer for "<em>${esc(u)}</em>":`,
+  ];
+
+  function normalize(raw) {
+    return raw.toLowerCase()
+      .replace(/scholarshp|scholarsip|schlarship/g,'scholarship')
+      .replace(/helthcare|helth\b/g,'health')
+      .replace(/softwar[^e]/g,'software ')
+      .replace(/clasroom|classrom/g,'classroom')
+      .replace(/liberria|libera\b/g,'liberia')
+      .replace(/applic[ae]tion/g,'application')
+      .replace(/univers[ia]ty/g,'university')
+      .replace(/toelf|tefl\b/g,'toefl')
+      .replace(/ielts?/g,'ielts')
+      .replace(/watsapp|whatsaap/g,'whatsapp')
+      .replace(/donat[ei]/g,'donate');
+  }
+
+  function findBestMatch(text) {
+    const t = normalize(text);
+    const words = t.split(/[\s,?!.;:'"()\[\]]+/).filter(w => w.length > 2);
+    let best = { score:0, entry:null };
+
+    for (const entry of KB) {
+      if (!entry.keywords.length) continue;
+      let score = 0;
+      for (const kw of entry.keywords) {
+        if (t.includes(kw)) score += kw.split(' ').length * 3;
+      }
+      for (const w of words) {
+        for (const kw of entry.keywords) {
+          const kwFirst = kw.split(' ')[0];
+          if (kw.includes(w) && w.length >= 4) score += 1;
+          if (w.includes(kwFirst) && kwFirst.length >= 4) score += 1;
+        }
+      }
+      if (score > best.score) best = { score, entry };
+    }
+
+    if (best.score >= 4) return { confidence:'high',   entry:best.entry };
+    if (best.score >= 1) return { confidence:'medium', entry:best.entry };
+    return                       { confidence:'low',    entry:KB[KB.length-1] };
+  }
+
+  function smartFallback(userText) {
+    const pageHits = searchPage(userText);
+    let msg = FALLBACK_MSGS[_fallbackIdx % FALLBACK_MSGS.length](userText);
+    _fallbackIdx++;
+    if (pageHits.length) {
+      msg = `Here's what I found on this page related to "<em>${esc(userText)}</em>":<br><br>` +
+        pageHits.map(h => {
+          const sec = h.section && h.section !== h.text ? `<strong>${esc(h.section)}:</strong> ` : '';
+          return `• ${sec}${esc(h.text.slice(0,180))}${h.text.length>180?'…':''}`;
+        }).join('<br><br>') + `<br><br>For more help, reach our team:`;
+    }
+    return msg + `<br><br>
+💬 <strong>WhatsApp (fastest):</strong> <a href="https://wa.me/231880559227" target="_blank" style="color:#002868;font-weight:700;">+231 880 559 227</a><br>
+📧 <strong>Email:</strong> tolbertinnovationhub@gmail.com<br>
+📞 <strong>Call:</strong> +231 778 956 979<br><br>
+Or choose a topic below:`;
+  }
 
   // ── DOM ───────────────────────────────────────────────────────────────────────
   const LOGO_URL = 'https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg';
@@ -514,28 +1331,6 @@ RESPONSE FORMATTING — CRITICAL RULES:
 
   // ── Helpers ───────────────────────────────────────────────────────────────────
   const scroll = () => { msgsEl.scrollTop = msgsEl.scrollHeight; };
-
-  async function askAI(text) {
-    if (busy) return;
-    busy = true;
-    const typingEl = document.createElement('div');
-    typingEl.className = 'tih-typing';
-    typingEl.innerHTML = `<div class="tih-av bot" style="width:28px;height:28px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#001440,#002868);display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="${LOGO_URL}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span style="display:none;font-size:.58rem;font-weight:800;color:#fff;">TI</span></div><div class="tih-dots"><div class="tih-dot"></div><div class="tih-dot"></div><div class="tih-dot"></div></div>`;
-    msgsEl.appendChild(typingEl);
-    scroll();
-    try {
-      const reply = await callGemini(text);
-      typingEl.remove();
-      busy = false;
-      botMsg(reply, getPageCtx().qr);
-    } catch (err) {
-      typingEl.remove();
-      busy = false;
-      botMsg(`I'm having trouble connecting right now. Please reach us directly:<br><br>💬 <strong>WhatsApp (fastest):</strong> <a href="https://wa.me/231880559227" target="_blank" style="color:#002868;font-weight:700;">+231 880 559 227</a><br>📧 <strong>Email:</strong> tolbertinnovationhub@gmail.com`,
-        ['💬 Open WhatsApp','📞 Contact Info']);
-    }
-  }
-
 
   function timeStr() {
     const d = new Date();
@@ -769,8 +1564,15 @@ Our team is ready to answer any question you have!<br><br>
       type(500, () => botMsg('Which program are you applying for?', ['🎓 Scholarship / Study Abroad','🏥 Healthcare Request','💻 Software Consultation','📚 IELTS/TOEFL Classroom'])); return;
     }
 
-    // Fall through — ask AI
-    askAI(label);
+    // Fall through — use knowledge base
+    const { confidence, entry } = findBestMatch(label);
+    type(Math.min(700 + label.length * 5, 1100), () => {
+      if (confidence !== 'low' && entry.reply) {
+        botMsg(entry.reply, entry.qr);
+      } else {
+        botMsg(smartFallback(label), ['🎓 Scholarships','📚 IELTS/TOEFL','🏥 Healthcare','💻 Software','💬 Talk to Human','📞 Contact Info']);
+      }
+    });
   }
 
   // ── Apply flow ────────────────────────────────────────────────────────────────
@@ -857,7 +1659,56 @@ Our team is ready to answer any question you have!<br><br>
     inpEl.value = '';
     if (flow) { userMsg(text); return; }
     userMsg(text);
-    askAI(text);
+
+    // Check for "what is on this page" intent
+    const tLow = text.toLowerCase();
+    const isPageQuery = tLow.includes('this page') || tLow.includes('on this page') || tLow.includes('what is here') ||
+      tLow.includes('explain this') || tLow.includes('what will i learn') || tLow.includes('what does this') ||
+      tLow.includes('what is this about') || tLow.includes('summarize') || tLow.includes('what topic') ||
+      tLow.includes('what subject') || tLow.includes('what cover') || tLow.includes('overview of this');
+    if (isPageQuery) {
+      const overview = buildPageOverview();
+      if (overview.length) {
+        type(700, () => {
+          const lines = overview.map(s => {
+            const bullets = s.bullets.length
+              ? `<br><span style="font-size:.82rem;color:#475569;padding-left:12px;">↳ ${s.bullets.map(b => esc(b.slice(0,100))).join('<br>↳ ')}</span>`
+              : '';
+            return `<strong>${esc(s.heading)}</strong>${bullets}`;
+          }).join('<br><br>');
+          botMsg(`📄 <strong>Here's what this page covers:</strong><br><br>${lines}<br><br>Ask me anything about any of these topics!`, getPageCtx().qr);
+        });
+        return;
+      }
+    }
+
+    const { confidence, entry } = findBestMatch(text);
+    const delay = Math.min(600 + text.length * 10, 1400);
+
+    type(delay, () => {
+      if (confidence === 'high' && entry.reply) {
+        botMsg(entry.reply, entry.qr);
+      } else if (confidence === 'medium' && entry.reply) {
+        const note = `<span style="font-size:.78rem;color:#64748b;display:block;margin-top:8px;border-top:1px solid #e2e8f0;padding-top:6px;">💡 Not exactly what you needed? <a href="https://wa.me/231880559227" target="_blank" style="color:#002868;font-weight:700;">WhatsApp us</a> for a precise answer.</span>`;
+        const qrs = [...(entry.qr || [])];
+        if (!qrs.includes('💬 Talk to Human')) qrs.push('💬 Talk to Human');
+        botMsg(entry.reply + note, qrs);
+      } else {
+        // Try page content as last resort
+        const hits = searchPage(text);
+        if (hits.length) {
+          const pageAnswer = hits.map(h => {
+            const sec = h.section && h.section !== h.text ? `<strong>${esc(h.section)}:</strong> ` : '';
+            return `• ${sec}${esc(h.text.slice(0,200))}${h.text.length>200?'…':''}`;
+          }).join('<br><br>');
+          botMsg(`📄 <strong>From this page:</strong><br><br>${pageAnswer}` +
+            `<br><br><span style="font-size:.78rem;color:#64748b;">Need more help? <a href="https://wa.me/231880559227" target="_blank" style="color:#002868;font-weight:700;">WhatsApp us</a></span>`,
+            getPageCtx().qr);
+        } else {
+          botMsg(smartFallback(text), ['🎓 Scholarships','📚 IELTS/TOEFL','🏥 Healthcare','💻 Software','💬 Talk to Human','📞 Contact Info']);
+        }
+      }
+    });
   }
 
   sendEl.addEventListener('click', send);
