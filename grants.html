@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grants for Liberian NGOs, Businesses &amp; Entrepreneurs 2026 | Tolbert Innovation Hub</title>
-  <meta name="description" content="Explore international grant opportunities for Liberian NGOs, businesses, and entrepreneurs — USAID, OSIWA, Tony Elumelu Foundation, YALI, and more. Free proposal guidance from Tolbert Innovation Hub." />
-  <meta property="og:title" content="Grants for Liberian NGOs, Businesses &amp; Entrepreneurs 2026 | Tolbert Innovation Hub" />
-  <meta property="og:description" content="Tolbert Innovation Hub connects Liberian organizations, businesses, and entrepreneurs with international grant opportunities. Free guidance to help you write winning proposals." />
+  <title>Grants for Liberian Businesses &amp; Organizations 2026–2027 | Tolbert Innovation Hub</title>
+  <meta name="description" content="Discover active grants for Liberian businesses, NGOs, institutes, and organizations in 2026–2027. TIH helps you find, prepare, and apply for grants from USAID, World Bank, EU, AfDB, UN agencies, Canada Fund, Tony Elumelu Foundation, and more — free." />
+  <meta name="keywords" content="grants Liberia 2026 2027, funding NGO Liberia, EU Spotlight Liberia, World Bank WARDIP2 Liberia, AfDB YEIB Liberia, Canada Fund CFLI Liberia, Tony Elumelu Liberia, UNDP grants Liberia, MSME grants Liberia 2026" />
+  <meta name="author" content="Tolbert Innovation Hub" />
+  <meta property="og:title" content="Grants for Liberian Businesses &amp; Organizations 2026–2027 | TIH" />
+  <meta property="og:description" content="Active 2026–2027 grants for Liberian businesses, NGOs, and organizations. TIH guides you through every application — completely free." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.tolbertinnovationhub.org/grants.html" />
+  <meta property="og:image" content="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -15,28 +19,309 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <style>
+    /* ── Grants Page 2026-2027 ── */
+    .grants-hero {
+      background: linear-gradient(135deg, #001e52 0%, #002868 55%, #003a8c 100%);
+      color: #fff;
+      padding: 5rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .grants-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(191,10,48,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .grants-hero .eyebrow {
+      background: rgba(191,10,48,0.22);
+      border: 1px solid rgba(191,10,48,0.5);
+      color: #fca5a5;
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+    }
+    .grants-hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.18;
+      color: #fff;
+      margin: 0 0 1.2rem;
+    }
+    .grants-hero h1 span { color: #f97316; }
+    .grants-hero .lead {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.82);
+      max-width: 640px;
+      line-height: 1.7;
+      margin: 0 0 2rem;
+    }
+    .g-hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .g-hero-stat {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 0.85rem 1.25rem;
+      text-align: center;
+      min-width: 110px;
+    }
+    .g-hero-stat .num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #f97316;
+      display: block;
+      line-height: 1;
+    }
+    .g-hero-stat .lbl {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 0.25rem;
+      display: block;
+    }
+
+    /* Filter */
+    .filter-bar {
+      background: #fff;
+      border-bottom: 1px solid #e4eaf4;
+      padding: 0.9rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      box-shadow: 0 2px 8px rgba(0,40,104,0.07);
+    }
+    .filter-inner { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+    .filter-label { font-size: 0.8rem; font-weight: 700; color: #4b5563; text-transform: uppercase; letter-spacing: 0.06em; margin-right: 0.4rem; white-space: nowrap; }
+    .filter-btn {
+      padding: 0.38rem 0.9rem;
+      border-radius: 999px;
+      border: 1.5px solid #cdd5e2;
+      background: #f4f7fc;
+      color: #374151;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s;
+      font-family: 'Inter', sans-serif;
+    }
+    .filter-btn:hover { border-color: #002868; color: #002868; background: #e8f0fb; }
+    .filter-btn.active { background: #002868; color: #fff; border-color: #002868; }
+
+    /* Grid */
+    .grants-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* Card */
+    .grant-card {
+      background: #fff;
+      border: 1px solid #e4eaf4;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,40,104,0.07);
+      transition: box-shadow 0.22s, transform 0.22s;
+      display: flex;
+      flex-direction: column;
+    }
+    .grant-card:hover { box-shadow: 0 8px 28px rgba(0,40,104,0.14); transform: translateY(-3px); }
+    .gc-header {
+      padding: 1.2rem 1.35rem 0.85rem;
+      border-bottom: 1px solid #f0f4fa;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+    }
+    .gc-icon { width: 46px; height: 46px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .gc-title-wrap { flex: 1; min-width: 0; }
+    .gc-funder { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; margin: 0 0 0.2rem; }
+    .gc-name { font-family: 'Poppins', sans-serif; font-size: 0.98rem; font-weight: 800; color: #111827; margin: 0; line-height: 1.35; }
+    .gc-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0.7rem 1.35rem 0; }
+    .gc-tag { font-size: 0.7rem; font-weight: 700; padding: 0.22rem 0.6rem; border-radius: 999px; }
+    .t-biz   { background:#dbeafe; color:#1d4ed8; }
+    .t-ngo   { background:#d1fae5; color:#065f46; }
+    .t-youth { background:#fce7f3; color:#9d174d; }
+    .t-agri  { background:#fef3c7; color:#92400e; }
+    .t-dig   { background:#ede9fe; color:#5b21b6; }
+    .t-women { background:#fdf2f8; color:#701a75; }
+    .t-env   { background:#ecfdf5; color:#065f46; }
+    .t-open  { background:#d1fae5; color:#065f46; }
+    .t-roll  { background:#dbeafe; color:#1e40af; }
+    .t-soon  { background:#fef3c7; color:#92400e; }
+    .t-new   { background:#fee2e2; color:#991b1b; }
+
+    .gc-body { padding: 0.95rem 1.35rem; flex: 1; }
+    .gc-desc { font-size: 0.87rem; color: #374151; line-height: 1.65; margin: 0 0 0.95rem; }
+    .gc-meta { display: flex; flex-direction: column; gap: 0.4rem; }
+    .gc-row  { display: flex; align-items: flex-start; gap: 0.45rem; font-size: 0.82rem; }
+    .gc-icon-sm { font-size: 0.88rem; flex-shrink: 0; margin-top: 1px; }
+    .gc-mlabel  { font-weight: 700; color: #374151; white-space: nowrap; }
+    .gc-mval    { color: #6b7280; }
+
+    .gc-footer {
+      padding: 0.95rem 1.35rem 1.2rem;
+      border-top: 1px solid #f0f4fa;
+      display: flex;
+      gap: 0.55rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-apply {
+      background: #002868;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.52rem 1.1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.18s;
+    }
+    .btn-apply:hover { background: #003480; color: #fff; text-decoration: none; }
+    .btn-tih {
+      background: #fff;
+      color: #BF0A30;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.52rem 1rem;
+      border-radius: 8px;
+      border: 1.5px solid #BF0A30;
+      text-decoration: none;
+      transition: all 0.18s;
+    }
+    .btn-tih:hover { background: #BF0A30; color: #fff; text-decoration: none; }
+    .amount-pill {
+      margin-left: auto;
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      color: #15803d;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .new-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: #BF0A30;
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
+
+    /* TIH Helps */
+    .tih-helps {
+      background: linear-gradient(135deg, #001e52 0%, #002868 60%, #00337a 100%);
+      color: #fff;
+      padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .tih-helps::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 80%, rgba(191,10,48,0.15) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .tih-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .tih-helps h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 800; color: #fff; margin: 0 0 0.9rem; }
+    .tih-helps h2 span { color: #f97316; }
+    .tih-helps .lead { color: rgba(255,255,255,0.8); font-size: 0.98rem; line-height: 1.7; margin: 0 0 1.75rem; }
+    .tih-steps { display: flex; flex-direction: column; gap: 1rem; }
+    .tih-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 0.95rem 1.2rem;
+    }
+    .tih-step-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .tih-step h4 { font-family: 'Poppins', sans-serif; font-size: 0.92rem; font-weight: 700; color: #fff; margin: 0 0 0.2rem; }
+    .tih-step p  { font-size: 0.82rem; color: rgba(255,255,255,0.72); margin: 0; line-height: 1.5; }
+    .tih-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+    .btn-white { background: #fff; color: #002868; font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 800; padding: 0.72rem 1.6rem; border-radius: 10px; text-decoration: none; transition: all 0.18s; display: inline-block; }
+    .btn-white:hover { background: #f0f6ff; color: #002868; text-decoration: none; }
+    .btn-ow { background: transparent; color: #fff; font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 700; padding: 0.72rem 1.6rem; border: 2px solid rgba(255,255,255,0.45); border-radius: 10px; text-decoration: none; transition: all 0.18s; display: inline-block; }
+    .btn-ow:hover { border-color: #fff; background: rgba(255,255,255,0.08); color: #fff; text-decoration: none; }
+
+    /* Form */
     .form-card { background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: clamp(1.75rem,4vw,2.5rem); box-shadow: var(--shadow); }
     .form-card h3 { font-size: 1.2rem; color: var(--brand-blue); margin-bottom: 0.4rem; }
     .form-card-lead { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.75rem; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
     .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
-    .form-group:last-of-type { margin-bottom: 0; }
-    .form-label { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.01em; }
+    .form-label { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); }
     .form-label .required { color: var(--brand-red); margin-left: 2px; }
-    .form-input, .form-select, .form-textarea { width: 100%; padding: 0.72rem 0.95rem; border: 1.5px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-2); color: var(--text); font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; transition: border-color var(--transition), box-shadow var(--transition); appearance: none; -webkit-appearance: none; }
-    .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--brand-blue); background: var(--surface); box-shadow: 0 0 0 3px rgba(0,40,104,0.1); }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 0.72rem 0.95rem; border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm); background: var(--surface-2); color: var(--text);
+      font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      appearance: none; -webkit-appearance: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none; border-color: var(--brand-blue); background: var(--surface);
+      box-shadow: 0 0 0 3px rgba(0,40,104,0.1);
+    }
     .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
     .form-textarea { resize: vertical; min-height: 120px; }
-    .form-select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; }
+    .form-select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem;
+    }
     .form-feedback { font-size: 0.9rem; font-weight: 600; margin-top: 0.85rem; padding: 0.7rem 1rem; border-radius: var(--radius-sm); background: var(--bg-alt); display: none; }
     .form-feedback:not(:empty) { display: block; }
     .form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.5rem; }
     .form-note { font-size: 0.8rem; color: var(--text-muted); }
+    .no-results { text-align: center; padding: 3rem; color: #6b7280; font-size: 0.95rem; display: none; }
+    .no-results.visible { display: block; }
+
+    @media (max-width: 768px) {
+      .tih-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .grants-grid { grid-template-columns: 1fr; }
+      .gc-footer { flex-direction: column; align-items: stretch; }
+      .amount-pill { margin-left: 0; text-align: center; }
+    }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div id="announcement-bar" style="background:#BF0A30;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
+    💰 <strong>Updated: Active Grants for Liberian Businesses &amp; NGOs — 2026–2027</strong> — TIH helps you apply for free.
+    <a href="#grant-inquiry" style="color:#fff;text-decoration:underline;margin-left:0.5rem;">Register Now →</a>
+    <button onclick="this.parentElement.style.display='none'" aria-label="Close announcement" style="position:absolute;right:0.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.2rem 0.4rem;line-height:1;">✕</button>
+  </div>
+
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">Tolbert Innovation Hub</a>
@@ -47,592 +332,513 @@
         <a href="healthcare.html">Healthcare</a>
         <a href="software.html">Software</a>
         <a href="classroom.html">Classroom</a>
+        <a class="active" aria-current="page" href="grants.html">Grants</a>
         <a href="news.html">News</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
-        <a class="active" aria-current="page" href="grants.html">Grants</a>
         <a href="study-abroad.html#application-form" class="nav-cta">Apply Now</a>
       </nav>
     </div>
   </header>
 
   <main id="main-content">
-    <!-- Hero -->
-    <section class="hero" style="padding: clamp(3rem,6vw,5.5rem) 0;">
+
+    <!-- HERO -->
+    <section class="grants-hero">
       <div class="container">
-        <div class="eyebrow">💰 Funding Opportunities for Liberia — 2026</div>
-        <h1 class="page-title">Grants for Liberian NGOs, Businesses &amp; Entrepreneurs</h1>
-        <p class="lead">Tolbert Innovation Hub connects Liberian organizations, businesses, and entrepreneurs with international grant opportunities. We provide free guidance to help you write winning proposals and secure funding.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary btn-lg" href="#grant-inquiry">Get Free Grant Guidance</a>
-          <a class="btn btn-outline" href="study-abroad.html#application-form">Apply Now</a>
+        <div class="eyebrow">Grant Directory — Liberia 2026–2027 · Updated June 2026</div>
+        <h1>Access <span>2026–2027 Funding</span> for<br>Your Business, NGO &amp; Organization</h1>
+        <p class="lead">
+          Tolbert Innovation Hub curates verified active grants from the EU, World Bank, AfDB, USAID,
+          UNDP, Canada, Tony Elumelu Foundation, and more — and helps Liberian businesses, NGOs,
+          institutes, and organizations find, prepare, and apply at no cost.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+          <a href="#grants-directory" class="btn btn-primary" style="background:#BF0A30;border-color:#BF0A30;">Browse 2026–2027 Grants →</a>
+          <a href="#grant-inquiry" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.5);">Get TIH Support — Free</a>
         </div>
-        <div class="hero-badges" style="margin-top:1.5rem;">
-          <span class="hero-badge">✅ NGO Grants</span>
-          <span class="hero-badge">✅ Business Grants</span>
-          <span class="hero-badge">✅ Entrepreneur Grants</span>
-          <span class="hero-badge">✅ Free Guidance</span>
-          <span class="hero-badge">✅ US · EU · Africa</span>
+        <div class="g-hero-stats">
+          <div class="g-hero-stat"><span class="num">10+</span><span class="lbl">Active Grants</span></div>
+          <div class="g-hero-stat"><span class="num">$200M+</span><span class="lbl">Total Funding Pool</span></div>
+          <div class="g-hero-stat"><span class="num">FREE</span><span class="lbl">TIH Help</span></div>
+          <div class="g-hero-stat"><span class="num">2026</span><span class="lbl">Updated</span></div>
         </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════
-         SECTION 1 — NGO GRANTS
-         ══════════════════════════════════════════ -->
-    <section class="section" id="ngo-grants">
+    <!-- FILTER BAR -->
+    <div class="filter-bar" id="grants-directory">
       <div class="container">
-        <p class="section-label">Civil Society &amp; Nonprofits</p>
-        <h2>Grants for Liberian NGOs &amp; Civil Society Organizations</h2>
-        <p class="section-intro">Liberian nonprofits and civil society organizations can access international funding to support community programs, education, health, and development initiatives.</p>
+        <div class="filter-inner">
+          <span class="filter-label">Filter:</span>
+          <button class="filter-btn active" data-filter="all">All Grants</button>
+          <button class="filter-btn" data-filter="business">Business / MSME</button>
+          <button class="filter-btn" data-filter="ngo">NGO / CSO</button>
+          <button class="filter-btn" data-filter="youth">Youth</button>
+          <button class="filter-btn" data-filter="agri">Agriculture</button>
+          <button class="filter-btn" data-filter="digital">Digital / Tech</button>
+          <button class="filter-btn" data-filter="women">Women</button>
+          <button class="filter-btn" data-filter="env">Environment</button>
+        </div>
+      </div>
+    </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.75rem;margin-top:2.5rem;">
+    <!-- GRANTS GRID -->
+    <section class="section" style="padding-top:2rem;">
+      <div class="container">
+        <div class="section-header" style="margin-bottom:0.5rem;">
+          <p class="section-label">Active Grants 2026–2027</p>
+          <h2>Current Funding Opportunities for Liberian Entities</h2>
+          <p class="section-intro">All listings are sourced from official donor records and verified for 2026–2027. Click <strong>"Get TIH Help"</strong> on any grant to have our team assist your application — at no cost.</p>
+        </div>
 
-          <!-- USAID Liberia -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🇺🇸</span>
-              <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">United States of America</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">USAID Liberia Grants</h3>
+        <div class="grants-grid" id="grantsGrid">
+
+          <!-- 1. EU Spotlight Initiative -->
+          <article class="grant-card" data-categories="ngo women">
+            <div class="gc-header">
+              <div class="gc-icon" style="background:#ede9fe;">🇪🇺</div>
+              <div class="gc-title-wrap">
+                <p class="gc-funder">European Union — Liberia <span class="new-badge">NEW 2026</span></p>
+                <h3 class="gc-name">EU Spotlight Initiative — Women &amp; Girls Protection</h3>
               </div>
             </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eef2ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">NGO / Civil Society</span>
-              <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Open to Liberians</span>
+            <div class="gc-tags">
+              <span class="gc-tag t-ngo">NGO / CSO</span>
+              <span class="gc-tag t-women">Women</span>
+              <span class="gc-tag t-open">Signed March 2026</span>
             </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">USAID maintains an active presence in Liberia and regularly issues Requests for Applications (RFAs) for local NGOs working in education, health, governance, agriculture, and economic growth.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Funded</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Project implementation costs</li>
-                <li>Staff salaries</li>
-                <li>Training &amp; capacity building</li>
-                <li>Monitoring &amp; evaluation</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Registered Liberian NGO or CBO</li>
-                <li>Clear development mandate</li>
-                <li>Financial management capacity</li>
-                <li>Strong project proposal</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📋 grants.gov / USAID Liberia Mission</span>
-              <a href="https://www.usaid.gov/liberia" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
-            </div>
-          </div>
-
-          <!-- OSIWA -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🌍</span>
-              <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">West Africa</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">Open Society Initiative for West Africa (OSIWA)</h3>
+            <div class="gc-body">
+              <p class="gc-desc">The EU signed a $13.6M Spotlight Initiative with Liberia (March 2026) to eliminate violence against women and girls. Funds CSOs and NGOs working on legislation, policy reform, economic empowerment, service provision, and strengthening women's movements.</p>
+              <div class="gc-meta">
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$13.6 million total program</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Gender-based violence, women empowerment, policy reform</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Registered NGOs, CSOs, women's organizations</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Active 2026–2028 — call via EU Delegation Monrovia</span></div>
               </div>
             </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eef2ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">NGO / Civil Society</span>
-              <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">West Africa</span>
+            <div class="gc-footer">
+              <a href="https://www.eeas.europa.eu/delegations/liberia_en" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via EU ↗</a>
+              <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
+              <span class="amount-pill">$13.6M</span>
             </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">OSIWA funds civil society organizations working on governance, human rights, justice, and accountability in West Africa including Liberia.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Funded</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Program activities</li>
-                <li>Staff</li>
-                <li>Research</li>
-                <li>Advocacy campaigns</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Registered NGO in West Africa</li>
-                <li>Focus on open society values</li>
-                <li>Demonstrated track record</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">🌐 osiwa.org</span>
-              <a href="https://www.osiwa.org" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
-            </div>
-          </div>
+          </article>
 
-          <!-- UNDP SGP -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🌐</span>
-              <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">United Nations — Global</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">UNDP Small Grants Programme (SGP)</h3>
+          <!-- 2. EU CSO Capacity / Support Measures -->
+          <article class="grant-card" data-categories="ngo">
+            <div class="gc-header">
+              <div class="gc-icon" style="background:#dbeafe;">🇪🇺</div>
+              <div class="gc-title-wrap">
+                <p class="gc-funder">European Union — Liberia <span class="new-badge">NEW 2026</span></p>
+                <h3 class="gc-name">EU CSO Capacity &amp; Governance Support Measures</h3>
               </div>
             </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eef2ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Community Organizations</span>
-              <span style="background:#fef2f2;color:#BF0A30;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Up to $50,000</span>
-              <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Liberia Eligible</span>
+            <div class="gc-tags">
+              <span class="gc-tag t-ngo">NGO / CSO</span>
+              <span class="gc-tag t-open">Active 2026</span>
             </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">The Global Environment Facility Small Grants Programme (GEF SGP) operated by UNDP provides grants up to $50,000 to community-based organizations for environmental and sustainable development projects.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Funded</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Community conservation</li>
-                <li>Sustainable agriculture</li>
-                <li>Renewable energy</li>
-                <li>Climate resilience</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Community-based organization or NGO</li>
-                <li>Environmental / development focus</li>
-                <li>Participatory approach</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">💰 Grant amount: Up to $50,000</span>
-              <a href="https://sgp.undp.org" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
-            </div>
-          </div>
-
-          <!-- USADF -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🇺🇸</span>
-              <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">United States Government</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">Africa Development Foundation (USADF)</h3>
+            <div class="gc-body">
+              <p class="gc-desc">The EU's $7.3M Support Measures agreement (signed March 2026) builds the capacity of civil society organizations to reinforce social cohesion, public discourse, and governance oversight in Liberia. Complements the EU Spotlight Initiative.</p>
+              <div class="gc-meta">
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$7.3 million program</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Governance, social cohesion, public discourse, CSO capacity</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Liberian NGOs, CSOs, civil society coalitions</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Signed March 2026 — implementation underway</span></div>
               </div>
             </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eef2ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Grassroots Organizations</span>
-              <span style="background:#fef2f2;color:#BF0A30;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Up to $250,000</span>
+            <div class="gc-footer">
+              <a href="https://www.eeas.europa.eu/delegations/liberia_en" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via EU ↗</a>
+              <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
+              <span class="amount-pill">$7.3M</span>
             </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">A US government agency that provides direct grants to African grassroots organizations and social enterprises. Strong focus on youth, women, and underserved communities in Liberia.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Funded</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Organizational capacity</li>
-                <li>Social enterprise development</li>
-                <li>Community programs</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>African grassroots organization</li>
-                <li>Underserved community focus</li>
-                <li>Clear beneficiary impact</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">💰 Grant amount: Up to $250,000</span>
-              <a href="https://www.usadf.gov" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
-            </div>
-          </div>
+          </article>
 
+          <!-- 3. AfDB YEIB -->
+          <article class="grant-card" data-categories="business youth agri digital">
+            <div class="gc-header">
+              <div class="gc-icon" style="background:#fce7f3;">🏦</div>
+              <div class="gc-title-wrap">
+                <p class="gc-funder">African Development Bank (AfDB) <span class="new-badge">LIVE 2026</span></p>
+                <h3 class="gc-name">Youth Entrepreneurship Investment Bank (YEIB)</h3>
+              </div>
+            </div>
+            <div class="gc-tags">
+              <span class="gc-tag t-youth">Youth</span>
+              <span class="gc-tag t-biz">Business / MSME</span>
+              <span class="gc-tag t-agri">Agriculture</span>
+              <span class="gc-tag t-dig">Digital</span>
+              <span class="gc-tag t-open">Operations 2026</span>
+            </div>
+            <div class="gc-body">
+              <p class="gc-desc">Launched July 2025, the AfDB Youth Entrepreneurship Investment Bank (YEIB) begins operations in 2026. The $16M fund targets youth-led agribusinesses, digital services, mining, and tourism in Liberia — aiming to support 30,000+ youth businesses over 17 years.</p>
+              <div class="gc-meta">
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$16M total fund — individual grants vary</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Agribusiness, digital services, mining, tourism</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Liberian youth ages 18–35, MSMEs, women-led enterprises</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Full operations starting 2026 — apply via YEIB Liberia</span></div>
+              </div>
+            </div>
+            <div class="gc-footer">
+              <a href="https://www.afdb.org/en/countries/west-africa/liberia" target="_blank" rel="noopener noreferrer" class="btn-apply">Learn More ↗</a>
+              <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
+              <span class="amount-pill">$16M Fund</span>
+            </div>
+          </article>
+
+          <!-- 4. World Bank WARDIP2 -->
+          <article class="grant-card" data-categories="business digital">
+            <div class="gc-header">
+              <div class="gc-icon" style="background:#dbeafe;">🌐</div>
+              <div class="gc-title-wrap">
+                <p class="gc-funder">World Bank Group <span class="new-badge">APPROVED 2026</span></p>
+                <h3 class="gc-name">West Africa Regional Digital Integration Program (WARDIP2)</h3>
+              </div>
+            </div>
+            <div class="gc-tags">
+              <span class="gc-tag t-dig">Digital / Tech</span>
+              <span class="gc-tag t-biz">Business / MSME</span>
+              <span class="gc-tag t-open">Approved March 2026</span>
+            </div>
+            <div class="gc-body">
+              <p class="gc-desc">The World Bank approved $137M in March 2026 for Benin, Liberia &amp; Sierra Leone under WARDIP2. The Liberia component strengthens digital infrastructure, creates jobs, and supports digital businesses and startups to scale in the digital economy.</p>
+              <div class="gc-meta">
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$137M regional program — Liberia component active</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Digital infrastructure, ICT businesses, tech startups, jobs</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Digital SMEs, tech startups, digital entrepreneurs</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">2026–2028 ongoing implementation</span></div>
+              </div>
+            </div>
+            <div class="gc-footer">
+              <a href="https://www.worldbank.org/en/country/liberia" target="_blank" rel="noopener noreferrer" class="btn-apply">Learn More ↗</a>
+              <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
+              <span class="amount-pill">$137M Pool</span>
+            </div>
+          </article>
+
+          <!-- 5. UNDP MSME Growth Accelerator Cohort V -->
+          <article class="grant-card" data-categories="business youth">
+            <div class="gc-header">
+              <div class="gc-icon" style="background:#fef3c7;">🚀</div>
+              <div class="gc-title-wrap">
+                <p class="gc-funder">UNDP Liberia + Ministry of Commerce &amp; Industry</p>
+                <h3 class="gc-name">MSME Growth Accelerator Program — Cohort V</h3>
+              </div>
+            </div>
+            <div class="gc-tags">
+              <span class="gc-tag t-biz">Business / MSME</span>
+              <span class="gc-tag t-youth">Youth</span>
+              <span class="gc-tag t-open">Active 2026</span>
+            </div>
+            <div class="gc-body">
+              <p class="gc-desc">Launched July 2025, Cohort V of the UNDP + MoCI MSME Growth Accelerator selected 18 businesses (from 209 applications) for co-financing grants, mentorship, and technical assistance. The program has disbursed $2.3M+ since 2021. Watch for Cohort VI in late 2026.</p>
+              <div class="gc-meta">
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">Co-financing grants + mentorship + technical support</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Business growth, entrepreneurship, sustainable scaling</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Liberian MSMEs and cooperatives across 13 counties</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Cohort V underway — Cohort VI expected late 2026</span></div>
+              </div>
+            </div>
+            <div class="gc-footer">
+              <a href="https://www.lr.undp.org" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via UNDP ↗</a>
+              <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
+              <span class="amount-pill">Grants + Mentorship</span>
+            </div>
+          </article>
+
+          <!-- 6. Canada Fund CFLI 2026 -->
+          <article class="grant-card" data-categories="ngo business">
+            <div class="gc-header">
+              <div class="gc-icon" style="background:#fee2e2;">🍁</div>
+              <div class="gc-title-wrap">
+                <p class="gc-funder">Government of Canada <span class="new-badge">OPEN 2026</span></p>
+                <h3 class="gc-name">Canada Fund for Local Initiatives (CFLI) — Liberia 2026</h3>
+              </div>
+            </div>
+            <div class="gc-tags">
+              <span class="gc-tag t-ngo">NGO / CSO</span>
+              <span class="gc-tag t-biz">Business</span>
+              <span class="gc-tag t-open">April 2026 – March 2027</span>
+            </div>
+            <div class="gc-body">
+              <p class="gc-desc">Canada's CFLI 2026 Liberia call is officially open, funding small-to-medium projects aligned with Canadian development priorities. Thematic focus areas include governance, peace, inclusive growth, gender equality, human dignity, and climate action.</p>
+              <div class="gc-meta">
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">CAD $20,000 – $49,000 per project</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Governance, gender equality, inclusive growth, climate</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Local NGOs, academic institutions, government agencies</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Period:</span><span class="gc-mval">April 1, 2026 – March 31, 2027</span></div>
+              </div>
+            </div>
+            <div class="gc-footer">
+              <a href="https://www.international.gc.ca/world-monde/funding-financement/cfli-fcil/liberia.aspx" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via Canada ↗</a>
+              <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
+              <span class="amount-pill">CAD $20K–$49K</span>
+            </div>
+          </article>
+
+          <!-- 7. Tony Elumelu Foundation 2026 -->
+          <article class="grant-card" data-categories="business youth">
+            <div class="gc-header">
+              <div class="gc-icon" style="background:#fef3c7;">🌍</div>
+              <div class="gc-title-wrap">
+                <p class="gc-funder">Tony Elumelu Foundation (TEF)</p>
+                <h3 class="gc-name">TEF Entrepreneurship Programme 2026</h3>
+              </div>
+            </div>
+            <div class="gc-tags">
+              <span class="gc-tag t-biz">Business</span>
+              <span class="gc-tag t-youth">Youth</span>
+              <span class="gc-tag t-open">Jan – Mar 2026</span>
+            </div>
+            <div class="gc-body">
+              <p class="gc-desc">The Tony Elumelu Foundation 2026 Entrepreneurship Programme offers $5,000 non-refundable seed capital, 12 weeks of business training, and mentorship to entrepreneurs across all 54 African countries — including Liberia. Since 2015, TEF has funded 24,000+ entrepreneurs generating $4.2B+ in revenue.</p>
+              <div class="gc-meta">
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$5,000 non-refundable seed capital + mentorship</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Any sector — business idea or early-stage enterprise</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">African citizen, age 18+, business 0–3 years old</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">Annual — Jan 1 to Mar 1 each year on TEFConnect.com</span></div>
+              </div>
+            </div>
+            <div class="gc-footer">
+              <a href="https://www.tonyelumelufoundation.org" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply at TEF ↗</a>
+              <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
+              <span class="amount-pill">$5,000 Seed</span>
+            </div>
+          </article>
+
+          <!-- 8. UNDP Land Restoration CBOs -->
+          <article class="grant-card" data-categories="ngo env agri">
+            <div class="gc-header">
+              <div class="gc-icon" style="background:#ecfdf5;">🌱</div>
+              <div class="gc-title-wrap">
+                <p class="gc-funder">UNDP Liberia <span class="new-badge">OPEN 2026</span></p>
+                <h3 class="gc-name">Land Restoration Project — Grants for CSOs/CBOs</h3>
+              </div>
+            </div>
+            <div class="gc-tags">
+              <span class="gc-tag t-ngo">NGO / CSO</span>
+              <span class="gc-tag t-env">Environment</span>
+              <span class="gc-tag t-agri">Agriculture</span>
+              <span class="gc-tag t-open">Jul 2026 – Jun 2027</span>
+            </div>
+            <div class="gc-body">
+              <p class="gc-desc">UNDP Liberia is inviting Civil Society Organizations and CBOs to submit proposals for sustainable land restoration projects in Kokoya, Bong County. Selected organizations receive grants of up to $50,000 for one-year projects running July 2026 to June 2027.</p>
+              <div class="gc-meta">
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">Up to $50,000 per organization</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Sustainable land restoration, ecosystem services</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">CSOs &amp; CBOs active in environmental work</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Period:</span><span class="gc-mval">July 2026 – June 2027 (apply via UNDP Liberia)</span></div>
+              </div>
+            </div>
+            <div class="gc-footer">
+              <a href="https://www.lr.undp.org" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via UNDP ↗</a>
+              <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
+              <span class="amount-pill">Up to $50K</span>
+            </div>
+          </article>
+
+          <!-- 9. UNDP Mercury / Agriculture Safety -->
+          <article class="grant-card" data-categories="ngo agri env">
+            <div class="gc-header">
+              <div class="gc-icon" style="background:#d1fae5;">🌾</div>
+              <div class="gc-title-wrap">
+                <p class="gc-funder">UNDP Liberia / GEF <span class="new-badge">OPEN 2026</span></p>
+                <h3 class="gc-name">Mercury-Free Agriculture &amp; Ecosystem Safety Grants</h3>
+              </div>
+            </div>
+            <div class="gc-tags">
+              <span class="gc-tag t-ngo">NGO / CSO</span>
+              <span class="gc-tag t-agri">Agriculture</span>
+              <span class="gc-tag t-env">Environment</span>
+              <span class="gc-tag t-open">Open 2026</span>
+            </div>
+            <div class="gc-body">
+              <p class="gc-desc">UNDP and the Global Environment Facility (GEF) are funding CSOs and CBOs in Liberia to protect human health, ecosystems, and food systems through mercury-free mining, safer agriculture, reduced chemical contamination, and climate-resilient livelihoods. Women and youth participation prioritized.</p>
+              <div class="gc-meta">
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">Up to $40,000 per organization</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Mercury-free agriculture, food safety, climate resilience</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">CSOs, CBOs — women &amp; youth involvement preferred</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Open 2026 — apply via UNDP Liberia</span></div>
+              </div>
+            </div>
+            <div class="gc-footer">
+              <a href="https://www.lr.undp.org" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via UNDP ↗</a>
+              <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
+              <span class="amount-pill">Up to $40K</span>
+            </div>
+          </article>
+
+          <!-- 10. World Bank LIFT MSME -->
+          <article class="grant-card" data-categories="business agri">
+            <div class="gc-header">
+              <div class="gc-icon" style="background:#d1fae5;">💼</div>
+              <div class="gc-title-wrap">
+                <p class="gc-funder">World Bank / Liberia LIFT Project</p>
+                <h3 class="gc-name">MSME Line of Credit — Phase II</h3>
+              </div>
+            </div>
+            <div class="gc-tags">
+              <span class="gc-tag t-biz">Business / MSME</span>
+              <span class="gc-tag t-agri">Agriculture</span>
+              <span class="gc-tag t-open">Open</span>
+            </div>
+            <div class="gc-body">
+              <p class="gc-desc">LIFT Project Phase II provides $3.5M in accessible financing and grants to Liberian-owned businesses in agriculture, manufacturing, and technology that cannot access conventional bank financing. Applied through the Ministry of Commerce &amp; Industry.</p>
+              <div class="gc-meta">
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$3.5M total — individual amounts vary</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Agriculture, manufacturing, technology SMEs</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Liberian-owned businesses without bank access</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Phase II open — apply via MoCI</span></div>
+              </div>
+            </div>
+            <div class="gc-footer">
+              <a href="https://www.moci.gov.lr" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via MoCI ↗</a>
+              <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
+              <span class="amount-pill">$3.5M Pool</span>
+            </div>
+          </article>
+
+          <!-- 11. USADF -->
+          <article class="grant-card" data-categories="business ngo youth">
+            <div class="gc-header">
+              <div class="gc-icon" style="background:#e8f0fb;">🇺🇸</div>
+              <div class="gc-title-wrap">
+                <p class="gc-funder">U.S. Africa Development Foundation (USADF)</p>
+                <h3 class="gc-name">USADF Direct Grants — Liberian Grassroots Organizations</h3>
+              </div>
+            </div>
+            <div class="gc-tags">
+              <span class="gc-tag t-biz">Business</span>
+              <span class="gc-tag t-ngo">NGO</span>
+              <span class="gc-tag t-youth">Youth</span>
+              <span class="gc-tag t-roll">Rolling</span>
+            </div>
+            <div class="gc-body">
+              <p class="gc-desc">USADF provides direct grants of up to $250,000 to African grassroots organizations and social enterprises. Strong focus on youth, women, and underserved communities in Liberia. Funds organizational capacity, social enterprise development, and community programs.</p>
+              <div class="gc-meta">
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">Up to $250,000 per grant</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Social enterprise, community programs, youth &amp; women</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Liberian grassroots orgs, CBOs, social enterprises</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">Rolling basis — check usadf.gov for open calls</span></div>
+              </div>
+            </div>
+            <div class="gc-footer">
+              <a href="https://www.usadf.gov" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply at USADF ↗</a>
+              <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
+              <span class="amount-pill">Up to $250K</span>
+            </div>
+          </article>
+
+          <!-- 12. U.S. Embassy SSH -->
+          <article class="grant-card" data-categories="ngo">
+            <div class="gc-header">
+              <div class="gc-icon" style="background:#e8f0fb;">🇺🇸</div>
+              <div class="gc-title-wrap">
+                <p class="gc-funder">U.S. Embassy Monrovia</p>
+                <h3 class="gc-name">Self-Help &amp; Democracy Small Grants</h3>
+              </div>
+            </div>
+            <div class="gc-tags">
+              <span class="gc-tag t-ngo">NGO / CSO</span>
+              <span class="gc-tag t-open">Annual</span>
+            </div>
+            <div class="gc-body">
+              <p class="gc-desc">U.S. Embassy Self-Help (SSH) and Democracy &amp; Human Rights (DHRA) small grants for registered Liberian nonprofits and community organizations. Funds grassroots development, civic engagement, and democracy programs annually.</p>
+              <div class="gc-meta">
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$5,000 – $10,000 per grant</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Community development, democracy, human rights</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Registered Liberian NGOs &amp; community organizations</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">Annual — check lr.usembassy.gov for open calls</span></div>
+              </div>
+            </div>
+            <div class="gc-footer">
+              <a href="https://lr.usembassy.gov" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via Embassy ↗</a>
+              <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
+              <span class="amount-pill">Up to $10K</span>
+            </div>
+          </article>
+
+        </div><!-- /grantsGrid -->
+
+        <div class="no-results" id="noResults">
+          No grants match this filter. <a href="#" onclick="document.querySelectorAll('.filter-btn')[0].click();return false;">Show all grants</a>
+        </div>
+
+        <div style="text-align:center;margin-top:3rem;padding:2rem;background:#fff;border-radius:16px;border:1px solid #e4eaf4;box-shadow:0 2px 10px rgba(0,40,104,0.06);">
+          <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#BF0A30;margin-bottom:0.5rem;">Updated Monthly — June 2026</p>
+          <h3 style="font-family:'Poppins',sans-serif;font-size:1.35rem;font-weight:800;color:#111827;margin:0 0 0.65rem;">Don't See the Right Grant?</h3>
+          <p style="color:#4b5563;font-size:0.93rem;max-width:520px;margin:0 auto 1.5rem;">Register your interest and TIH will match you with grants as new opportunities open. We monitor 20+ donors including GIZ, JICA, ECOWAS, Gates Foundation, and Mastercard Foundation.</p>
+          <a href="#grant-inquiry" class="btn btn-primary" style="background:#002868;">Register for Grant Alerts →</a>
         </div>
       </div>
     </section>
-    <!-- ═══════════════════════════════════════════ -->
 
-    <!-- ══════════════════════════════════════════
-         SECTION 2 — BUSINESS GRANTS
-         ══════════════════════════════════════════ -->
-    <section class="section section-alt" id="business-grants">
+    <!-- HOW TIH HELPS -->
+    <section class="tih-helps">
       <div class="container">
-        <p class="section-label">SME &amp; Business Funding</p>
-        <h2>Grants &amp; Funding for Liberian Businesses</h2>
-        <p class="section-intro">Liberian small and medium enterprises (SMEs) can access international grants and funding programs to grow, innovate, and create jobs.</p>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.75rem;margin-top:2.5rem;">
-
-          <!-- Tony Elumelu Foundation -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🌍</span>
-              <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">Pan-Africa</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">Tony Elumelu Foundation (TEF) Entrepreneurship Programme</h3>
-              </div>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eef2ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Entrepreneurs</span>
-              <span style="background:#fef2f2;color:#BF0A30;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">$5,000 Seed Capital</span>
-              <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Non-refundable</span>
-            </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">Africa's leading philanthropy initiative empowering African entrepreneurs. Provides $5,000 non-refundable seed capital, 12 weeks of business training, and access to a network of 18,000+ African entrepreneurs.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Funded</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Business seed capital</li>
-                <li>Working capital</li>
-                <li>Equipment</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>African citizen</li>
-                <li>18+ years old</li>
-                <li>Business idea or early-stage business</li>
-                <li>Any sector</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">💰 $5,000 non-refundable + mentorship + network</span>
-              <a href="https://www.tonyelumelufoundation.org" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
+        <div class="tih-grid">
+          <div>
+            <div style="background:rgba(249,115,22,0.2);border:1px solid rgba(249,115,22,0.4);color:#fed7aa;display:inline-block;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:999px;margin-bottom:1rem;">TIH Grant Support — 100% Free</div>
+            <h2>We Help You <span>Find &amp; Win</span> Grants</h2>
+            <p class="lead">TIH has a dedicated team to help Liberian businesses, NGOs, and organizations navigate the complex world of grants. We do the heavy lifting — you focus on your mission.</p>
+            <div class="tih-cta">
+              <a href="#grant-inquiry" class="btn-white">Start Your Application</a>
+              <a href="contact.html" class="btn-ow">Talk to Our Team</a>
             </div>
           </div>
-
-          <!-- AfDB AFAWA -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🌍</span>
+          <div class="tih-steps">
+            <div class="tih-step">
+              <span class="tih-step-icon">🔍</span>
               <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">African Development Bank</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">AfDB — Affirmative Finance Action for Women in Africa (AFAWA)</h3>
+                <h4>Grant Discovery &amp; Matching</h4>
+                <p>We identify which 2026–2027 grants your organization is eligible for based on your sector, size, and goals.</p>
               </div>
             </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eef2ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Women Entrepreneurs</span>
-              <span style="background:#fef2f2;color:#BF0A30;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Business Financing</span>
-            </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">AfDB's program to unlock $3 billion in financing for women-owned businesses across Africa, with technical support and capacity building.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Funded</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Business expansion</li>
-                <li>Equipment</li>
-                <li>Working capital</li>
-                <li>Capacity building</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Women-owned or led business</li>
-                <li>Registered in Africa</li>
-                <li>Growth potential demonstrated</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">🌍 African Development Bank</span>
-              <a href="https://www.afdb.org/en/topics-and-sectors/initiatives-partnerships/afawa-affirmative-finance-action-for-women-in-africa" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
-            </div>
-          </div>
-
-          <!-- IFC/World Bank -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🌐</span>
+            <div class="tih-step">
+              <span class="tih-step-icon">📝</span>
               <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">World Bank Group</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">IFC / World Bank SME Finance</h3>
+                <h4>Proposal &amp; Business Plan Writing</h4>
+                <p>Our team helps you write compelling grant proposals, project budgets, and supporting documents.</p>
               </div>
             </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eef2ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">SMEs</span>
-              <span style="background:#fef2f2;color:#BF0A30;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Business Growth</span>
-            </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">IFC (World Bank Group) supports SME growth in developing countries including Liberia through grants, advisory services, and access to finance programs.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Funded</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Business development</li>
-                <li>Market access</li>
-                <li>Productivity</li>
-                <li>Technology adoption</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Registered SME</li>
-                <li>Growth-oriented</li>
-                <li>Sector varies by program</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">🌐 ifc.org</span>
-              <a href="https://www.ifc.org/en/about/sectors/financial-markets/sme-finance" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
-            </div>
-          </div>
-
-          <!-- GIZ Liberia -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🇩🇪</span>
+            <div class="tih-step">
+              <span class="tih-step-icon">📋</span>
               <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">Germany — GIZ</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">GIZ Liberia — Business Support Grants</h3>
+                <h4>Document &amp; Compliance Preparation</h4>
+                <p>We guide you through registrations, certifications, and all required compliance documents.</p>
               </div>
             </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eef2ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">German Funded</span>
-              <span style="background:#fef2f2;color:#BF0A30;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Business Development</span>
-            </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">Germany's GIZ implements business development programs in Liberia, offering grants and technical assistance to SMEs in agriculture, trade, and services.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Funded</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Technical assistance</li>
-                <li>Market linkages</li>
-                <li>Capacity building</li>
-                <li>Equipment</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Registered Liberian business</li>
-                <li>Priority sectors: agribusiness, services, trade</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📍 Apply through GIZ Liberia office</span>
-              <a href="https://www.giz.de/en/worldwide/373.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
+            <div class="tih-step">
+              <span class="tih-step-icon">📤</span>
+              <div>
+                <h4>Submission &amp; Follow-Up</h4>
+                <p>We review your complete application and assist with submission, donor queries, and reporting.</p>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
-    <!-- ═══════════════════════════════════════════ -->
 
-    <!-- ══════════════════════════════════════════
-         SECTION 3 — ENTREPRENEUR GRANTS
-         ══════════════════════════════════════════ -->
-    <section class="section" id="entrepreneur-grants">
-      <div class="container">
-        <p class="section-label">Innovation &amp; Startup Funding</p>
-        <h2>Grants &amp; Competitions for Liberian Entrepreneurs</h2>
-        <p class="section-intro">Young Liberian entrepreneurs and innovators can compete for international grants, prizes, and accelerator programs.</p>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.75rem;margin-top:2.5rem;">
-
-          <!-- YALI -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🇺🇸</span>
-              <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">United States Government</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">YALI — Mandela Washington Fellowship</h3>
-              </div>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eef2ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Young Leaders</span>
-              <span style="background:#fef2f2;color:#BF0A30;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">USA Exchange</span>
-              <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Fully Funded</span>
-            </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">The Young African Leaders Initiative (YALI) Mandela Washington Fellowship — funded by the US government — brings Africa's best young leaders (18–35) to the US for leadership institutes at top US universities.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Covered</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Full travel</li>
-                <li>Accommodation</li>
-                <li>Program costs</li>
-                <li>Networking with US leaders</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>African citizen</li>
-                <li>Age 18–35</li>
-                <li>Leader in business, civic, or public management</li>
-                <li>English proficiency</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">🌐 yali.state.gov</span>
-              <a href="https://yali.state.gov/washington-fellowship/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
-            </div>
-          </div>
-
-          <!-- Jack Ma / Alibaba -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🌏</span>
-              <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">Jack Ma Foundation / Alibaba</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">Africa Netpreneur Prize Initiative</h3>
-              </div>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eef2ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Digital Entrepreneurs</span>
-              <span style="background:#fef2f2;color:#BF0A30;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Up to $1,000,000 prize pool</span>
-            </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">The Africa Netpreneur Prize supports African entrepreneurs with a share of a $1 million prize pool, mentorship from Jack Ma and Alibaba Group, and a platform to scale their businesses.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">Grant Amount</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Share of $1M prize pool</li>
-                <li>Mentorship from Jack Ma &amp; Alibaba</li>
-                <li>Platform to scale business</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>African entrepreneur</li>
-                <li>Business operating for at least 1 year</li>
-                <li>Any sector</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">💰 Share of $1M prize pool</span>
-              <a href="https://www.africa-netpreneur.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
-            </div>
-          </div>
-
-          <!-- Hult Prize -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🌍</span>
-              <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">Global — Hult Prize Foundation</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">Hult Prize</h3>
-              </div>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eef2ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Students &amp; Young Entrepreneurs</span>
-              <span style="background:#fef2f2;color:#BF0A30;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">$1M Grand Prize</span>
-            </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">The world's largest student competition for social entrepreneurship, with a $1 million grant for the winning team. Open to university students and young innovators globally including Liberia.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">Grant Amount</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Up to $1,000,000 for winning team</li>
-                <li>Global mentorship &amp; network</li>
-                <li>Media exposure</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>University student or recent graduate</li>
-                <li>Social enterprise idea</li>
-                <li>Team of 2–4</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">💰 Up to $1,000,000</span>
-              <a href="https://www.hultprize.org" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
-            </div>
-          </div>
-
-          <!-- EU Horizon -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🇪🇺</span>
-              <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">European Union</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">EU Horizon / European Innovation Grants for Africa</h3>
-              </div>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eef2ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Innovation</span>
-              <span style="background:#fef2f2;color:#BF0A30;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Tech Entrepreneurs</span>
-            </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">The European Union funds innovation and tech entrepreneurship through various programs open to African startups and entrepreneurs, including partnerships with Liberian innovators.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Funded</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Innovation projects</li>
-                <li>Tech development</li>
-                <li>Research</li>
-                <li>Market validation</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Innovation / tech focus</li>
-                <li>Partnership with EU entity sometimes required</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">🇪🇺 European Commission</span>
-              <a href="https://eic.ec.europa.eu/eic-funding/eic-accelerator_en" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-    <!-- ═══════════════════════════════════════════ -->
-
-    <!-- ══════════════════════════════════════════
-         SECTION 4 — TIH GRANT GUIDANCE
-         ══════════════════════════════════════════ -->
-    <section class="section section-alt" id="grant-guidance">
-      <div class="container">
-        <p class="section-label">Free Grant Support</p>
-        <h2>How TIH Helps You Secure Funding</h2>
-        <p class="section-intro">We provide free end-to-end grant guidance for Liberian organizations and entrepreneurs.</p>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.75rem;margin-top:2.5rem;">
-
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);text-align:center;">
-            <div style="font-size:2.5rem;margin-bottom:1rem;">🔍</div>
-            <h3 style="font-size:1.1rem;color:var(--brand-blue);margin:0 0 0.75rem;">Grant Discovery</h3>
-            <p style="font-size:0.92rem;color:var(--text-secondary);line-height:1.65;margin:0;">We identify the right grants for your organization type, sector, and goals</p>
-          </div>
-
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);text-align:center;">
-            <div style="font-size:2.5rem;margin-bottom:1rem;">✍️</div>
-            <h3 style="font-size:1.1rem;color:var(--brand-blue);margin:0 0 0.75rem;">Proposal Writing Support</h3>
-            <p style="font-size:0.92rem;color:var(--text-secondary);line-height:1.65;margin:0;">We help you write compelling grant proposals that win funding</p>
-          </div>
-
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);text-align:center;">
-            <div style="font-size:2.5rem;margin-bottom:1rem;">📋</div>
-            <h3 style="font-size:1.1rem;color:var(--brand-blue);margin:0 0 0.75rem;">Document Preparation</h3>
-            <p style="font-size:0.92rem;color:var(--text-secondary);line-height:1.65;margin:0;">Budget planning, financial statements, organizational profiles</p>
-          </div>
-
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);text-align:center;">
-            <div style="font-size:2.5rem;margin-bottom:1rem;">📬</div>
-            <h3 style="font-size:1.1rem;color:var(--brand-blue);margin:0 0 0.75rem;">Submission &amp; Follow-up</h3>
-            <p style="font-size:0.92rem;color:var(--text-secondary);line-height:1.65;margin:0;">We guide you through submission and help with reporting requirements</p>
-          </div>
-
-        </div>
-
-        <!-- CTA Banner -->
-        <div class="reveal" style="margin-top:3rem;background:linear-gradient(135deg,#002868 0%,#1a3d8a 100%);border-radius:var(--radius-lg);padding:clamp(2rem,4vw,3rem);text-align:center;color:#fff;">
-          <h3 style="font-size:1.5rem;margin:0 0 0.75rem;color:#fff;">Ready to Apply for a Grant?</h3>
-          <p style="font-size:1rem;color:rgba(255,255,255,0.85);max-width:600px;margin:0 auto 1.5rem;">Tolbert Innovation Hub provides free guidance, proposal writing support, and document preparation for Liberian NGOs, businesses, and entrepreneurs seeking international grants.</p>
-          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-            <a href="#grant-inquiry" class="btn" style="background:#fff;color:var(--brand-blue);border:none;font-weight:700;">Get Free Grant Guidance</a>
-            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="btn" style="background:#25D366;color:#fff;border:none;">💬 WhatsApp Our Team</a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-    <!-- ═══════════════════════════════════════════ -->
-
-    <!-- ══════════════════════════════════════════
-         SECTION 5 — INQUIRY FORM
-         ══════════════════════════════════════════ -->
+    <!-- INQUIRY FORM -->
     <section id="grant-inquiry" class="section">
       <div class="container form-wrap scholarship-form-wrap">
         <div>
-          <p class="section-label">Free Grant Guidance</p>
-          <h2>Get Free Grant Guidance</h2>
-          <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:1.5rem;">Tell us about your organization or business and we'll match you with the right grant opportunities.</p>
+          <p class="section-label">Free Grant Support</p>
+          <h2>Register for Grant Guidance</h2>
+          <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:1.5rem;">Tell us about your organization and TIH will match you with the right 2026–2027 grant opportunities and guide you through the full application — completely free.</p>
           <div style="display:flex;flex-direction:column;gap:0.85rem;margin-bottom:2rem;">
-            <div style="display:flex;gap:0.7rem;align-items:flex-start;"><span style="font-size:1.25rem;">✅</span><div><strong style="color:var(--text);">100% Free</strong><br /><span style="font-size:0.88rem;color:var(--text-muted);">Our grant guidance service is completely free for all Liberian organizations and entrepreneurs.</span></div></div>
-            <div style="display:flex;gap:0.7rem;align-items:flex-start;"><span style="font-size:1.25rem;">🔍</span><div><strong style="color:var(--text);">Personalized Matching</strong><br /><span style="font-size:0.88rem;color:var(--text-muted);">We match you with USAID, OSIWA, TEF, YALI, and dozens of other grant programs.</span></div></div>
-            <div style="display:flex;gap:0.7rem;align-items:flex-start;"><span style="font-size:1.25rem;">📋</span><div><strong style="color:var(--text);">Full Proposal Support</strong><br /><span style="font-size:0.88rem;color:var(--text-muted);">Proposal writing, budget preparation, document review, and submission guidance included.</span></div></div>
+            <div style="display:flex;gap:0.7rem;align-items:flex-start;">
+              <span style="font-size:1.25rem;">✅</span>
+              <div><strong style="color:var(--text);">100% Free</strong><br /><span style="font-size:0.88rem;color:var(--text-muted);">Our grant guidance service is completely free for all Liberian organizations and entrepreneurs.</span></div>
+            </div>
+            <div style="display:flex;gap:0.7rem;align-items:flex-start;">
+              <span style="font-size:1.25rem;">🔍</span>
+              <div><strong style="color:var(--text);">Personalized Matching</strong><br /><span style="font-size:0.88rem;color:var(--text-muted);">We match you with EU, World Bank, AfDB, USAID, UNDP, Canada Fund, TEF, and more.</span></div>
+            </div>
+            <div style="display:flex;gap:0.7rem;align-items:flex-start;">
+              <span style="font-size:1.25rem;">📋</span>
+              <div><strong style="color:var(--text);">Full Proposal Support</strong><br /><span style="font-size:0.88rem;color:var(--text-muted);">Proposal writing, budget preparation, document review, and submission guidance included.</span></div>
+            </div>
           </div>
           <div style="background:#e8f0fb;border-left:3px solid var(--brand-blue);border-radius:0 8px 8px 0;padding:1rem 1.25rem;">
             <p style="margin:0;font-size:0.88rem;color:var(--brand-blue);font-weight:600;">📍 Visit us: Spriggs Payne Airport, Sinkor, Monrovia &nbsp;|&nbsp; 📞 +231 880 559 227</p>
@@ -649,11 +855,11 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="grant-name">Name <span class="required">*</span></label>
+              <label class="form-label" for="grant-name">Full Name <span class="required">*</span></label>
               <input class="form-input" type="text" id="grant-name" name="name" placeholder="Your full name" required />
             </div>
             <div class="form-group">
-              <label class="form-label" for="grant-email">Email <span class="required">*</span></label>
+              <label class="form-label" for="grant-email">Email Address <span class="required">*</span></label>
               <input class="form-input" type="email" id="grant-email" name="email" placeholder="your@email.com" required />
             </div>
           </div>
@@ -673,36 +879,55 @@
             <div class="form-group">
               <label class="form-label" for="grant-type">Organization Type <span class="required">*</span></label>
               <select class="form-select" id="grant-type" name="organizationType" required>
-                <option value="">Select type</option>
-                <option>NGO / Nonprofit</option>
-                <option>Small Business</option>
-                <option>Startup / Entrepreneur</option>
-                <option>Community Group</option>
+                <option value="">— Select type —</option>
+                <option>Business / MSME</option>
+                <option>NGO / CSO</option>
+                <option>Institute / Academic</option>
+                <option>Youth Group</option>
+                <option>Cooperative / Farmer Group</option>
+                <option>Women's Organization</option>
+                <option>Government Agency</option>
                 <option>Other</option>
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label" for="grant-sector">Sector / Focus Area</label>
-              <input class="form-input" type="text" id="grant-sector" name="sector" placeholder="e.g. Education, Health, Agriculture, Technology" />
+              <label class="form-label" for="grant-sector">Sector / Industry <span class="required">*</span></label>
+              <select class="form-select" id="grant-sector" name="sector" required>
+                <option value="">— Select sector —</option>
+                <option>Agriculture / Agribusiness</option>
+                <option>Technology / Digital</option>
+                <option>Health</option>
+                <option>Education</option>
+                <option>Governance / Democracy</option>
+                <option>Environment / Climate</option>
+                <option>Manufacturing</option>
+                <option>Trade / Commerce</option>
+                <option>Women &amp; Gender</option>
+                <option>Youth Development</option>
+                <option>Other</option>
+              </select>
             </div>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="grant-amount">Grant Amount Needed</label>
             <select class="form-select" id="grant-amount" name="grantAmount">
-              <option value="">Select range</option>
-              <option>Under $10,000</option>
-              <option>$10,000–$50,000</option>
-              <option>$50,000–$250,000</option>
-              <option>$250,000+</option>
+              <option value="">— Select range —</option>
+              <option>Under $5,000</option>
+              <option>$5,000 – $25,000</option>
+              <option>$25,000 – $100,000</option>
+              <option>$100,000 – $500,000</option>
+              <option>Over $500,000</option>
+              <option>Not sure yet</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="grant-description">Brief Project Description</label>
-            <textarea class="form-textarea" id="grant-description" name="projectDescription" placeholder="Briefly describe your project or business and what you would use the grant funding for."></textarea>
+            <label class="form-label" for="grant-description">Brief Project Description <span class="required">*</span></label>
+            <textarea class="form-textarea" id="grant-description" name="projectDescription" placeholder="What would you use the grant for? What problem does your organization solve?" required></textarea>
           </div>
 
+          <input type="hidden" name="_subject" value="New Grant Inquiry 2026-2027 — TIH" />
           <p class="form-feedback" aria-live="polite"></p>
           <div class="form-submit-row">
             <button class="btn btn-primary btn-lg" type="submit">Submit Grant Inquiry</button>
@@ -711,7 +936,6 @@
         </form>
       </div>
     </section>
-    <!-- ═══════════════════════════════════════════ -->
 
   </main>
 
@@ -734,9 +958,9 @@
         <div>
           <p class="footer-heading">Programs</p>
           <ul class="footer-links">
-            <li><a href="study-abroad.html#application-form">Scholarship Application</a></li>
+            <li><a href="study-abroad.html#application-form">Study Abroad</a></li>
             <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
-            <li><a href="grants.html">Grants for Liberia</a></li>
+            <li><a href="grants.html">Grants 2026–2027</a></li>
             <li><a href="healthcare.html">Healthcare Exposure</a></li>
             <li><a href="software.html">Software Innovation</a></li>
             <li><a href="classroom.html">Free Classroom</a></li>
@@ -757,11 +981,15 @@
           <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
           <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231778956979">+231 778 956 979</a></div>
           <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+          <div style="margin-top:1.25rem;">
+            <a href="contact.html" class="btn btn-outline btn-sm" style="font-size:0.82rem;">Get In Touch →</a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
         <div class="footer-bottom-inner">
-          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved. | <a href="contact.html" style="color:rgba(200,216,240,0.7);">Privacy</a> | <a href="contact.html" style="color:rgba(200,216,240,0.7);">Terms</a></p>
+          <p style="font-size:0.82rem;color:rgba(200,216,240,0.55);margin:0;">Empowering Africa's Future — Never Stop Innovating 🚀</p>
         </div>
       </div>
     </div>
@@ -769,5 +997,25 @@
 
   <script src="main.js"></script>
   <script src="chatbot.js"></script>
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.grant-card');
+    const noResults = document.getElementById('noResults');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        let visible = 0;
+        cards.forEach(card => {
+          const cats = card.dataset.categories || '';
+          const show = filter === 'all' || cats.includes(filter);
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        noResults.classList.toggle('visible', visible === 0);
+      });
+    });
+  </script>
 </body>
 </html>
