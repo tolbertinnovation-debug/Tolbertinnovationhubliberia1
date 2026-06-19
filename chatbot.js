@@ -860,11 +860,14 @@ Cyprus costs are slightly higher but still affordable vs. Western Europe.<br><br
       reply:`🎉 <strong>TIH 50% Tuition Scholarship — India &amp; Cyprus</strong><br><br>
 TIH offers a <strong>50% scholarship on tuition</strong> at all partner universities in India and Cyprus.<br><br>
 You pay only <strong>half the listed tuition</strong> — TIH covers the rest!<br><br>
-<strong>Example savings:</strong><br>
-• Sharda University: <s>$3,500–$6,000</s> → <strong>$1,750–$3,000/yr</strong><br>
+🇮🇳 <strong>India example savings:</strong><br>
+• Sharda: <s>$3,500–$6,000</s> → <strong>$1,750–$3,000/yr</strong><br>
 • LPU: <s>$2,800–$5,000</s> → <strong>$1,400–$2,500/yr</strong><br>
 • Amity: <s>$4,000–$7,500</s> → <strong>$2,000–$3,750/yr</strong><br>
 • Khalsa: <s>$1,800–$3,000</s> → <strong>$900–$1,500/yr</strong><br><br>
+🇨🇾 <strong>Cyprus universities (50% off):</strong><br>
+• Near East University (NEU) — Nicosia<br>
+• Girne American University (GAU) — Kyrenia<br><br>
 📅 Application deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','🏛️ Partner Universities','📋 Requirements','📞 Contact TIH'] },
 
@@ -973,18 +976,46 @@ Ideal for students seeking a globally connected university.`,
 The most affordable option — and even more so with TIH's 50% scholarship!`,
       qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
 
+    { id:'university_neu',
+      keywords:['near east university','neu','near east','nicosia university','cyprus university','study cyprus','university in cyprus'],
+      reply:`🎓 <strong>Near East University (NEU)</strong> 🇨🇾<br><br>
+• Located in <strong>Nicosia, North Cyprus</strong><br>
+• One of the largest and most internationally recognised universities in Cyprus<br>
+• 200+ programs: Medicine, Engineering, Law, Business, Architecture, Pharmacy & more<br>
+• Large international student community (100+ nationalities)<br>
+• Full tuition: varies by program<br>
+• 🎉 <strong>TIH 50% Scholarship on tuition</strong><br><br>
+An excellent choice for Liberian students seeking a European-standard degree.`,
+      qr:['🎓 Apply for Scholarship','📋 Requirements','🎓 Girne American University','📞 Contact TIH'] },
+
+    { id:'university_gau',
+      keywords:['girne american university','gau','girne','kyrenia university','american university cyprus','american style cyprus'],
+      reply:`🎓 <strong>Girne American University (GAU)</strong> 🇨🇾<br><br>
+• Located in <strong>Kyrenia (Girne), North Cyprus</strong><br>
+• American-style education with an international curriculum<br>
+• Programs: Business, Engineering, Architecture, Health Sciences, Hospitality & more<br>
+• English-medium instruction throughout<br>
+• Full tuition: varies by program<br>
+• 🎉 <strong>TIH 50% Scholarship on tuition</strong><br><br>
+Ideal for students who want an American-style degree in a Mediterranean setting.`,
+      qr:['🎓 Apply for Scholarship','📋 Requirements','🎓 Near East University','📞 Contact TIH'] },
+
     { id:'universities_overview',
-      keywords:['partner university','which university','university list','universities in india','where can i study','study in india university','university partner','tih university'],
+      keywords:['partner university','which university','university list','universities in india','where can i study','study in india university','university partner','tih university','cyprus university','study in cyprus'],
       reply:`🎓 <strong>TIH Partner Universities</strong><br><br>
 We partner with 17+ universities in <strong>India &amp; Cyprus</strong>.<br>
 🎉 <strong>TIH offers 50% tuition scholarship at all partner universities!</strong><br><br>
-• <strong>Sharda University</strong> — NAAC A+, #35 India, <s>$3,500</s> from <strong>$1,750/yr</strong><br>
-• <strong>LPU</strong> — NAAC A++, #28 India, <s>$2,800</s> from <strong>$1,400/yr</strong><br>
-• <strong>Amity University</strong> — QS #22 India, <s>$4,000</s> from <strong>$2,000/yr</strong><br>
-• <strong>Khalsa University</strong> — Heritage 1892, <s>$1,800</s> from <strong>$900/yr</strong><br>
-• …and 13 more across disciplines and cities<br><br>
+🇮🇳 <strong>India:</strong><br>
+• <strong>Sharda University</strong> — NAAC A+, #35 India, from <strong>$1,750/yr</strong><br>
+• <strong>LPU</strong> — NAAC A++, #28 India, from <strong>$1,400/yr</strong><br>
+• <strong>Amity University</strong> — QS #22 India, from <strong>$2,000/yr</strong><br>
+• <strong>Khalsa University</strong> — Heritage 1892, from <strong>$900/yr</strong><br><br>
+🇨🇾 <strong>Cyprus:</strong><br>
+• <strong>Near East University (NEU)</strong> — Nicosia, 200+ programs<br>
+• <strong>Girne American University (GAU)</strong> — Kyrenia, American-style<br>
+• …and more across disciplines<br><br>
 Tell us your field of study and we'll recommend the best match!`,
-      qr:['🎓 Apply Now','📋 Requirements','🏥 Healthcare','📞 Contact'] },
+      qr:['🎓 Apply Now','📋 Requirements','🎓 NEU Cyprus','🎓 GAU Cyprus'] },
 
     { id:'upcoming_events',
       keywords:['event','upcoming','schedule','workshop','session','orientation','calendar','when','next event','upcoming event','event date'],
