@@ -396,7 +396,7 @@ Offered by the <strong>Government of India</strong> under the India–Africa Mai
 • Hostel accommodation<br>
 • Personal medical insurance (arranged by student)<br><br>
 ✅ <strong>Eligibility:</strong> Liberian citizen · Age 18–40 (UG/PG), up to 50 (PhD) · Strong academics<br><br>
-📅 Application deadline: <strong>April 21, 2026</strong>`,
+📅 Application deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply ICCR Scholarship','📋 Documents Needed','📞 Contact TIH','🔙 Main Menu'] },
 
     { id:'requirements',
