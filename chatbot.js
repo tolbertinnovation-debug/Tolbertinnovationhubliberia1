@@ -1143,7 +1143,7 @@ The premier choice for Liberian students seeking a world-class degree in the Eas
     { id:'universities_overview',
       keywords:['partner university','which university','university list','universities in india','where can i study','study in india university','university partner','tih university','cyprus university','study in cyprus'],
       reply:`🎓 <strong>TIH Partner Universities</strong><br><br>
-We partner with 18+ universities in <strong>India &amp; Cyprus</strong>.<br>
+We partner with 20+ universities in <strong>India &amp; Cyprus</strong>.<br>
 🎉 <strong>TIH offers 50% tuition scholarship at all partner universities!</strong><br><br>
 🇮🇳 <strong>India:</strong><br>
 • <strong>Sharda University</strong> — NAAC A+, #35 India, from <strong>$1,750/yr</strong><br>
