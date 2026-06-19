@@ -195,9 +195,9 @@
     { match:'classroom', label:'Classroom Hub',
       qr:['📗 IELTS Prep','📘 TOEFL Prep','🏅 Certificate','📁 Resources','🎓 Scholarship'] },
     { match:'fully-funded-scholarship', label:'Fully Funded Scholarships',
-      qr:['🏆 ICCR Details','🇬🇧 Chevening','🇺🇸 Fulbright','🇩🇪 DAAD','📝 Apply Now'] },
+      qr:['🎓 India & Cyprus 50%','🇬🇧 Chevening','🇺🇸 Fulbright','🇩🇪 DAAD','📝 Apply Now'] },
     { match:'study-abroad', label:'Study Abroad',
-      qr:['🎓 How to Apply','📋 Requirements','🏆 ICCR Scholarship','📝 Apply Now','📞 Contact'] },
+      qr:['🎓 How to Apply','📋 Requirements','🎓 India & Cyprus 50%','📝 Apply Now','📞 Contact'] },
     { match:'university-', label:'University Details',
       qr:['📝 Apply to this University','🎓 Scholarship Options','📋 Requirements','📞 Contact TIH'] },
     { match:'healthcare', label:'Healthcare Program',
@@ -375,10 +375,11 @@ Under his leadership, TIH has:<br>
       keywords:['scholarship','study abroad','international school','university abroad','admission','study overseas','apply school','foreign university','higher education','bachelor','master','phd','postgraduate','undergraduate','degree','academic','enroll','university'],
       reply:`🎓 <strong>Scholarship &amp; Study Abroad Program</strong><br><br>
 TIH helps you access top international scholarships and universities:<br><br>
-<strong>Study Abroad Guidance</strong><br>
-Document prep, eligibility guidance, and admission letter issuance for universities worldwide.<br><br>
-Available scholarships: Chevening (UK), Fulbright (USA), DAAD (Germany), Mastercard Foundation, PAU, and more.`,
-      qr:['📝 Apply for Scholarship','✅ Requirements','🇬🇧 Chevening','🇺🇸 Fulbright','🔙 Main Menu'] },
+🇮🇳 <strong>India &amp; 🇨🇾 Cyprus — TIH 50% Scholarship:</strong><br>
+TIH offers a <strong>50% tuition scholarship</strong> at all our partner universities in India and Cyprus. You pay only half the listed tuition!<br><br>
+<strong>Other International Scholarships:</strong><br>
+Chevening (UK), Fulbright (USA), DAAD (Germany), Mastercard Foundation, PAU, and more.`,
+      qr:['📝 Apply for Scholarship','✅ Requirements','🏛️ Partner Universities','🇬🇧 Chevening','🔙 Main Menu'] },
 
     { id:'requirements',
       keywords:['requirements','documents','eligible','eligibility','qualify','who can apply','criteria','passport','transcript','certificate','reference letter','personal statement','photo','what do i need','what is needed','can i apply','do i qualify'],
@@ -569,13 +570,12 @@ Your donation helps provide free education, healthcare referrals, and scholarshi
     { id:'events',
       keywords:['event','events','upcoming','workshop','seminar','webinar','schedule','deadline','next event','when','scholarship deadline','information session','register event','join event','calendar'],
       reply:`📅 <strong>Upcoming Events &amp; Deadlines</strong><br><br>
-• 🏆 <strong>Apr 21, 2026</strong> — ICCR Fully Funded Scholarship deadline<br>
-• 🎓 <strong>Jul 15, 2026</strong> — General Scholarship Application Deadline<br>
+• 🎓 <strong>Jul 15, 2026</strong> — Scholarship Application Deadline (India &amp; Cyprus 50%)<br>
 • 📚 <strong>Ongoing</strong> — IELTS/TOEFL classroom open 24/7, no deadline<br>
 • 🏥 <strong>Rolling</strong> — Healthcare referral applications open any time<br>
 • 💻 <strong>Rolling</strong> — Software consultations available any time<br><br>
 ⚠️ Apply early — document preparation takes time!`,
-      qr:['📝 Apply Before Deadline','🌐 View Events Page','🎓 ICCR Scholarship','🔙 Main Menu'] },
+      qr:['📝 Apply Before Deadline','🌐 View Events Page','🎓 India & Cyprus 50%','🔙 Main Menu'] },
 
     { id:'news',
       keywords:['news','announcement','update','latest','blog','press','article','new program','launch','expansion','what\'s new','recent'],
@@ -695,23 +695,22 @@ For international scholarships and universities:<br><br>
       keywords:['india','study in india','india university','indian university','india scholarship','india student','visa india','indian college','india education','india medical'],
       reply:`🇮🇳 <strong>India — Education &amp; Healthcare via TIH</strong><br><br>
 TIH has strong India connections for both education and healthcare:<br><br>
-🎓 <strong>Education:</strong><br>
-The <strong>ICCR Fully Funded Scholarship</strong> covers studies at top Indian universities — full tuition, stipend, airfare, and hostel.<br><br>
+🎓 <strong>Education — 50% Scholarship:</strong><br>
+TIH offers a <strong>50% tuition scholarship</strong> at all partner universities in India (Sharda, LPU, Amity, Khalsa + 13 more). You pay only half the listed tuition!<br><br>
 🏥 <strong>Healthcare:</strong><br>
-TIH works with partner hospitals in India offering specialist treatment in cardiology, oncology, orthopedics, neurology &amp; more.<br><br>
+TIH works with 8 partner hospitals in India offering specialist treatment in cardiology, oncology, orthopedics, neurology &amp; more.<br><br>
 Both are coordinated end-to-end by TIH.`,
-      qr:['🏆 ICCR Scholarship','🏥 Healthcare in India','📝 Apply','🔙 Main Menu'] },
+      qr:['🎓 India 50% Scholarship','🏥 Healthcare in India','📝 Apply','🔙 Main Menu'] },
 
     { id:'deadline',
       keywords:['deadline','when to apply','last date','closing date','by when','application close','due date','expiry','how long do i have','cut off','submission date','final date'],
       reply:`📅 <strong>Key Application Deadlines</strong><br><br>
-• 🏆 <strong>ICCR Fully Funded (India):</strong> <em>April 21, 2026</em><br>
-• 🎓 <strong>Study Abroad / General:</strong> <em>July 15, 2026</em><br>
+• 🎓 <strong>India &amp; Cyprus 50% Scholarship:</strong> <em>July 15, 2026</em><br>
 • 📚 <strong>IELTS/TOEFL Classroom:</strong> Open year-round — no deadline<br>
 • 🏥 <strong>Healthcare Program:</strong> Rolling — apply anytime<br>
 • 💻 <strong>Software Consultation:</strong> Rolling — apply anytime<br><br>
 ⚠️ <strong>Apply early</strong> — document preparation takes time!`,
-      qr:['📝 Apply for Scholarship','🏆 ICCR Scholarship','📚 Free Classroom','🔙 Main Menu'] },
+      qr:['📝 Apply for Scholarship','🎓 India & Cyprus 50%','📚 Free Classroom','🔙 Main Menu'] },
 
     { id:'chevening',
       keywords:['chevening','uk scholarship','british scholarship','foreign commonwealth','fcdo','study uk','master uk','uk master','uk government scholarship'],
@@ -781,11 +780,11 @@ An African Union initiative — full scholarships across Africa. <strong>Liberia
       keywords:['visa','visa application','student visa','get visa','visa requirements','how to get visa','india visa','uk visa','us visa','visa process','visa help','visa support','travel document','study permit'],
       reply:`✈️ <strong>Visa Support for Liberian Students</strong><br><br>
 TIH provides <strong>visa guidance and document support</strong>:<br><br>
-🇮🇳 <strong>India (ICCR):</strong> Indian Mission processes student visas. TIH coordinates your visa application alongside scholarship letters.<br><br>
+🇮🇳 <strong>India:</strong> Indian Mission processes student visas. TIH coordinates your visa application alongside your admission letter.<br><br>
 🇬🇧 <strong>UK (Chevening):</strong> Chevening provides visa guidance. Note: You may need to travel to a neighboring country to apply at a UK visa center.<br><br>
 🇺🇸 <strong>USA (Fulbright):</strong> US Embassy in Monrovia handles F1/J1 visas.<br><br>
 💡 TIH helps you prepare all required documents for every visa process.`,
-      qr:['🏆 ICCR Scholarship','🇬🇧 Chevening Details','📞 Contact TIH','🔙 Main Menu'] },
+      qr:['🎓 India & Cyprus 50%','🇬🇧 Chevening Details','📞 Contact TIH','🔙 Main Menu'] },
 
     { id:'duration',
       keywords:['how long','duration','years','months','program length','how many years','study duration','length of course','time to complete','when does it start'],
@@ -801,12 +800,12 @@ TIH provides <strong>visa guidance and document support</strong>:<br><br>
     { id:'age',
       keywords:['age','how old','age requirement','age limit','minimum age','maximum age','am i too old','am i too young','age criteria','over 40','year old','years old'],
       reply:`📅 <strong>Age Requirements by Scholarship</strong><br><br>
-• 🇮🇳 <strong>ICCR:</strong> UG/PG → 18–40 · PhD → up to 50<br>
+• 🇮🇳🇨🇾 <strong>India &amp; Cyprus (TIH 50%):</strong> No strict age limit — open to all qualified applicants<br>
 • 🇬🇧 <strong>Chevening:</strong> No official upper age limit (2+ years work experience required)<br>
 • 🇺🇸 <strong>Fulbright:</strong> No hard limit — typically recent graduates or early career<br>
 • 🌍 <strong>Mastercard Foundation:</strong> Typically under 35<br>
 • 🌐 <strong>Pan African University:</strong> Master's → under 35 · PhD → under 40`,
-      qr:['📋 Full Requirements','🏆 ICCR Scholarship','📝 Apply Now','🔙 Main Menu'] },
+      qr:['📋 Full Requirements','🎓 India & Cyprus 50%','📝 Apply Now','🔙 Main Menu'] },
 
     { id:'fields',
       keywords:['what can i study','study field','field of study','course','subject','discipline','available courses','which course','study medicine','study engineering','study law','study business','study agriculture','study computer'],
@@ -818,7 +817,7 @@ TIH provides <strong>visa guidance and document support</strong>:<br><br>
 🌾 <strong>Agriculture:</strong> Agronomy, Food Science, Environmental Studies<br>
 🎨 <strong>Arts &amp; Education:</strong> Education, Literature, Journalism, History<br><br>
 Exact courses depend on your chosen country and university.`,
-      qr:['🏆 ICCR Scholarship','📝 Apply Now','📋 Requirements','🔙 Main Menu'] },
+      qr:['🎓 India & Cyprus 50%','📝 Apply Now','📋 Requirements','🔙 Main Menu'] },
 
     { id:'statement',
       keywords:['personal statement','essay','motivation letter','cover letter','statement of purpose','write essay','how to write','application essay','why do you want','motivation','what to write','sop'],
@@ -840,26 +839,40 @@ Many successful scholars were rejected before winning their scholarship!<br><br>
 ✅ <strong>What to do:</strong><br>
 • <strong>Reapply next cycle</strong> — most scholarships accept re-applications<br>
 • <strong>Strengthen weak areas</strong> — improve your IELTS/TOEFL score, GPA, or personal statement<br>
-• <strong>Apply for multiple scholarships</strong> simultaneously — ICCR, Chevening, Fulbright, DAAD<br>
+• <strong>Apply for multiple scholarships</strong> simultaneously — India/Cyprus 50%, Chevening, Fulbright, DAAD<br>
 • <strong>Consult TIH</strong> — we review applications and give feedback<br><br>
 📌 TIH offers <strong>free application feedback</strong>. Contact us today!`,
       qr:['📞 Get Application Feedback','🎓 Other Scholarships','📚 Improve IELTS Score','🔙 Main Menu'] },
 
     { id:'cost_living',
       keywords:['cost of living','living cost','expenses in india','money needed','cost india','afford india','monthly expenses','india expensive','stipend enough','how much stipend'],
-      reply:`💵 <strong>Cost of Living in India (ICCR Scholars)</strong><br><br>
-The ICCR scholarship includes a <strong>monthly stipend</strong> to cover living costs:<br><br>
-• UG/PG: <strong>₹15,000–₹18,000/month</strong> (~$180–$215 USD)<br>
-• PhD: <strong>₹18,000–₹20,000/month</strong><br><br>
-The stipend covers food, local transport, and study materials. Hostel is provided separately by the university.<br><br>
-💡 India is generally <strong>very affordable</strong> compared to Western countries.`,
-      qr:['🏆 ICCR Full Details','📝 Apply ICCR Scholarship','🔙 Main Menu'] },
+      reply:`💵 <strong>Cost of Living in India &amp; Cyprus</strong><br><br>
+India is one of the most <strong>affordable study destinations</strong> in the world:<br><br>
+• Monthly living expenses: <strong>~$200–$400 USD</strong> (food, transport, misc.)<br>
+• Hostel/accommodation: <strong>~$50–$150/month</strong> (varies by city)<br>
+• Total estimated monthly budget: <strong>~$250–$550 USD</strong><br><br>
+Cyprus costs are slightly higher but still affordable vs. Western Europe.<br><br>
+💡 With TIH's <strong>50% tuition scholarship</strong>, your total cost of education is significantly reduced.`,
+      qr:['🎓 India & Cyprus 50%','🏛️ Partner Universities','📞 Contact TIH','🔙 Main Menu'] },
+
+    { id:'india_cyprus_scholarship',
+      keywords:['india scholarship','cyprus scholarship','50 percent','50%','half tuition','india 50','cyprus 50','tih scholarship','scholarship india','scholarship cyprus','how much scholarship','what scholarship india','what scholarship cyprus','india tuition','cyprus tuition'],
+      reply:`🎉 <strong>TIH 50% Tuition Scholarship — India &amp; Cyprus</strong><br><br>
+TIH offers a <strong>50% scholarship on tuition</strong> at all partner universities in India and Cyprus.<br><br>
+You pay only <strong>half the listed tuition</strong> — TIH covers the rest!<br><br>
+<strong>Example savings:</strong><br>
+• Sharda University: <s>$3,500–$6,000</s> → <strong>$1,750–$3,000/yr</strong><br>
+• LPU: <s>$2,800–$5,000</s> → <strong>$1,400–$2,500/yr</strong><br>
+• Amity: <s>$4,000–$7,500</s> → <strong>$2,000–$3,750/yr</strong><br>
+• Khalsa: <s>$1,800–$3,000</s> → <strong>$900–$1,500/yr</strong><br><br>
+📅 Application deadline: <strong>July 15, 2026</strong>`,
+      qr:['📝 Apply Now','🏛️ Partner Universities','📋 Requirements','📞 Contact TIH'] },
 
     { id:'can_apply',
       keywords:['can i apply','am i eligible','can liberian apply','do you accept','can i join','can i register','is it open','open to liberians','open for liberia','is liberia included','liberia eligible'],
       reply:`✅ <strong>Yes — Liberian Students Can Apply!</strong><br><br>
 All TIH programs are designed to serve <strong>Liberian citizens</strong>:<br><br>
-• 🏆 <strong>ICCR Scholarship</strong> — Liberian citizens age 18–50<br>
+• 🎓 <strong>India &amp; Cyprus 50% Scholarship</strong> — Liberian citizens, all ages<br>
 • 🇬🇧 <strong>Chevening (UK)</strong> — Liberian citizens, 2+ years work experience<br>
 • 🇺🇸 <strong>Fulbright (USA)</strong> — Liberian citizens residing in Liberia<br>
 • 🌍 <strong>Mastercard Foundation</strong> — African citizens (Liberia ✓)<br>
@@ -918,10 +931,11 @@ TIH coordinates your referral — you pay the hospital directly.`,
       reply:`🎓 <strong>Sharda University</strong><br><br>
 • NAAC Accredited: <strong>A+</strong><br>
 • National Ranking: <strong>#35 in India</strong><br>
-• Tuition: <strong>$3,500 – $6,000 / year</strong><br>
+• Full tuition: $3,500 – $6,000 / year<br>
+• 🎉 <strong>TIH 50% Scholarship: $1,750 – $3,000 / year</strong><br>
 • Programs: MBBS, B.Tech, LLB, MBA, PhD<br>
 • Located in Greater Noida, near Delhi<br><br>
-TIH can help you apply and secure a scholarship.`,
+TIH covers 50% of your tuition — you pay the rest!`,
       qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
 
     { id:'university_lpu',
@@ -929,10 +943,11 @@ TIH can help you apply and secure a scholarship.`,
       reply:`🎓 <strong>Lovely Professional University (LPU)</strong><br><br>
 • NAAC Accredited: <strong>A++</strong> (highest grade)<br>
 • National Ranking: <strong>#28 in India</strong><br>
-• Tuition: <strong>$2,800 – $5,000 / year</strong><br>
+• Full tuition: $2,800 – $5,000 / year<br>
+• 🎉 <strong>TIH 50% Scholarship: $1,400 – $2,500 / year</strong><br>
 • 300+ programs across all disciplines<br>
 • 600-acre mega-campus in Punjab<br><br>
-TIH can guide your application end-to-end.`,
+TIH covers 50% of your tuition — you pay the rest!`,
       qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
 
     { id:'university_amity',
@@ -940,7 +955,8 @@ TIH can guide your application end-to-end.`,
       reply:`🎓 <strong>Amity University</strong><br><br>
 • NAAC Accredited: <strong>A+</strong><br>
 • QS World Ranking: <strong>#22 in India</strong><br>
-• Tuition: <strong>$4,000 – $7,500 / year</strong><br>
+• Full tuition: $4,000 – $7,500 / year<br>
+• 🎉 <strong>TIH 50% Scholarship: $2,000 – $3,750 / year</strong><br>
 • Campuses in <strong>10 countries</strong> worldwide<br>
 • Noida (main campus), Delhi, Mumbai + international<br><br>
 Ideal for students seeking a globally connected university.`,
@@ -950,20 +966,22 @@ Ideal for students seeking a globally connected university.`,
       keywords:['khalsa','khalsa university','amritsar university','golden temple university'],
       reply:`🎓 <strong>Khalsa University</strong><br><br>
 • Heritage institution founded in <strong>1892</strong><br>
-• Tuition: <strong>$1,800 – $3,000 / year</strong> (most affordable option)<br>
+• Full tuition: $1,800 – $3,000 / year<br>
+• 🎉 <strong>TIH 50% Scholarship: $900 – $1,500 / year</strong><br>
 • Located in <strong>Amritsar</strong> — home of the Golden Temple<br>
 • Strong arts, science, and commerce programs<br><br>
-A great choice for students seeking quality education at lower cost.`,
+The most affordable option — and even more so with TIH's 50% scholarship!`,
       qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
 
     { id:'universities_overview',
       keywords:['partner university','which university','university list','universities in india','where can i study','study in india university','university partner','tih university'],
       reply:`🎓 <strong>TIH Partner Universities</strong><br><br>
-We partner with 17+ universities in <strong>India & Cyprus</strong>:<br>
-• <strong>Sharda University</strong> — NAAC A+, #35 India, from $3,500/yr<br>
-• <strong>LPU</strong> — NAAC A++, #28 India, from $2,800/yr<br>
-• <strong>Amity University</strong> — QS #22 India, from $4,000/yr<br>
-• <strong>Khalsa University</strong> — Heritage 1892, from $1,800/yr<br>
+We partner with 17+ universities in <strong>India &amp; Cyprus</strong>.<br>
+🎉 <strong>TIH offers 50% tuition scholarship at all partner universities!</strong><br><br>
+• <strong>Sharda University</strong> — NAAC A+, #35 India, <s>$3,500</s> from <strong>$1,750/yr</strong><br>
+• <strong>LPU</strong> — NAAC A++, #28 India, <s>$2,800</s> from <strong>$1,400/yr</strong><br>
+• <strong>Amity University</strong> — QS #22 India, <s>$4,000</s> from <strong>$2,000/yr</strong><br>
+• <strong>Khalsa University</strong> — Heritage 1892, <s>$1,800</s> from <strong>$900/yr</strong><br>
 • …and 13 more across disciplines and cities<br><br>
 Tell us your field of study and we'll recommend the best match!`,
       qr:['🎓 Apply Now','📋 Requirements','🏥 Healthcare','📞 Contact'] },
