@@ -917,6 +917,253 @@ I can collect your application right here in this chat. Which program are you ap
       reply:`You're very welcome! 😊 Happy to help. Is there anything else I can assist you with?`,
       qr:['🎓 Scholarships','📚 Free Classroom','🏥 Healthcare','💻 Software','📝 Apply Now'] },
 
+    { id:'partner_hospitals',
+      keywords:['apollo','fortis','narayana','medanta','aiims','kokilaben','max healthcare','manipal','partner hospital','which hospital','hospital name','hospital list','hospital partner'],
+      reply:`🏥 <strong>TIH Partner Hospitals in India</strong><br><br>
+We work with India's top-ranked hospitals:<br>
+• <strong>Apollo Hospitals</strong> — Chennai<br>
+• <strong>Fortis Healthcare</strong> — Delhi<br>
+• <strong>Narayana Health</strong> — Bangalore<br>
+• <strong>Medanta – The Medicity</strong> — Gurugram<br>
+• <strong>AIIMS New Delhi</strong> — Government premier institute<br>
+• <strong>Kokilaben Dhirubhai Ambani Hospital</strong> — Mumbai<br>
+• <strong>Max Healthcare</strong> — Delhi<br>
+• <strong>Manipal Hospitals</strong> — Bangalore<br><br>
+TIH coordinates your referral — you pay the hospital directly.`,
+      qr:['🏥 Healthcare Process','💬 Request Consultation','📞 Contact TIH'] },
+
+    { id:'university_sharda',
+      keywords:['sharda','sharda university','sharda university india'],
+      reply:`🎓 <strong>Sharda University</strong><br><br>
+• NAAC Accredited: <strong>A+</strong><br>
+• National Ranking: <strong>#35 in India</strong><br>
+• Tuition: <strong>$3,500 – $6,000 / year</strong><br>
+• Programs: MBBS, B.Tech, LLB, MBA, PhD<br>
+• Located in Greater Noida, near Delhi<br><br>
+TIH can help you apply and secure a scholarship.`,
+      qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
+
+    { id:'university_lpu',
+      keywords:['lpu','lovely professional','lovely professional university'],
+      reply:`🎓 <strong>Lovely Professional University (LPU)</strong><br><br>
+• NAAC Accredited: <strong>A++</strong> (highest grade)<br>
+• National Ranking: <strong>#28 in India</strong><br>
+• Tuition: <strong>$2,800 – $5,000 / year</strong><br>
+• 300+ programs across all disciplines<br>
+• 600-acre mega-campus in Punjab<br><br>
+TIH can guide your application end-to-end.`,
+      qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
+
+    { id:'university_amity',
+      keywords:['amity','amity university'],
+      reply:`🎓 <strong>Amity University</strong><br><br>
+• NAAC Accredited: <strong>A+</strong><br>
+• QS World Ranking: <strong>#22 in India</strong><br>
+• Tuition: <strong>$4,000 – $7,500 / year</strong><br>
+• Campuses in <strong>10 countries</strong> worldwide<br>
+• Noida (main campus), Delhi, Mumbai + international<br><br>
+Ideal for students seeking a globally connected university.`,
+      qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
+
+    { id:'university_khalsa',
+      keywords:['khalsa','khalsa university','amritsar university','golden temple university'],
+      reply:`🎓 <strong>Khalsa University</strong><br><br>
+• Heritage institution founded in <strong>1892</strong><br>
+• Tuition: <strong>$1,800 – $3,000 / year</strong> (most affordable option)<br>
+• Located in <strong>Amritsar</strong> — home of the Golden Temple<br>
+• Strong arts, science, and commerce programs<br><br>
+A great choice for students seeking quality education at lower cost.`,
+      qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
+
+    { id:'universities_overview',
+      keywords:['partner university','which university','university list','universities in india','where can i study','study in india university','university partner','tih university'],
+      reply:`🎓 <strong>TIH Partner Universities</strong><br><br>
+We partner with 17+ universities in <strong>India & Cyprus</strong>:<br>
+• <strong>Sharda University</strong> — NAAC A+, #35 India, from $3,500/yr<br>
+• <strong>LPU</strong> — NAAC A++, #28 India, from $2,800/yr<br>
+• <strong>Amity University</strong> — QS #22 India, from $4,000/yr<br>
+• <strong>Khalsa University</strong> — Heritage 1892, from $1,800/yr<br>
+• …and 13 more across disciplines and cities<br><br>
+Tell us your field of study and we'll recommend the best match!`,
+      qr:['🎓 Apply Now','📋 Requirements','🏥 Healthcare','📞 Contact'] },
+
+    { id:'upcoming_events',
+      keywords:['event','upcoming','schedule','workshop','session','orientation','calendar','when','next event','upcoming event','event date'],
+      reply:`📅 <strong>Upcoming TIH Events (2026)</strong><br><br>
+• <strong>Jul 15</strong> — Scholarship Application Deadline<br>
+• <strong>Jul 20</strong> — IELTS Writing Workshop<br>
+• <strong>Aug 1</strong> — Tech Consultation Day<br>
+• <strong>Aug 15</strong> — Scholarship Information Session<br>
+• <strong>Sep 1</strong> — Healthcare Program Orientation<br>
+• <strong>Sep 15</strong> — TOEFL Mock Exam<br><br>
+Don't miss out — register early to secure your spot!`,
+      qr:['📝 Register Now','🎓 Scholarship Deadline','📚 IELTS Workshop','📞 Contact TIH'] },
+
+    { id:'mastery_plan',
+      keywords:['mastery plan','5 phase','five phase','study plan','ielts plan','toefl plan','120 minutes','daily plan','learning plan','phase 1','phase 2'],
+      reply:`📚 <strong>TIH Mastery Plan</strong><br><br>
+Our structured 5-phase program (~120 min/day):<br>
+<strong>Phase 1</strong> — Foundation: Core grammar & vocabulary<br>
+<strong>Phase 2</strong> — Skills Build: Listening, reading, writing, speaking<br>
+<strong>Phase 3</strong> — Practice: Timed exercises per section<br>
+<strong>Phase 4</strong> — Mock Tests: Full exam simulations<br>
+<strong>Phase 5</strong> — Review: Targeted weak-area drilling<br><br>
+Designed to get you exam-ready in 8–12 weeks.`,
+      qr:['📚 Join Free Classroom','🎓 Scholarships','📝 Apply Now'] },
+
+    { id:'video_lessons',
+      keywords:['video','youtube','lesson video','e2 language','ielts liz','magoosh','tst prep','video lesson','watch','tutorial'],
+      reply:`🎬 <strong>Free Video Lessons</strong><br><br>
+Our classroom links to the best free YouTube channels:<br>
+• <strong>E2 Language</strong> — IELTS strategies & live classes<br>
+• <strong>IELTS Liz</strong> — Tips, lessons, practice tasks<br>
+• <strong>Magoosh TOEFL</strong> — Full TOEFL prep series<br>
+• <strong>TST Prep</strong> — IELTS writing & speaking breakdown<br><br>
+All videos are free and curated by TIH instructors.`,
+      qr:['📚 Open Classroom','🎓 Scholarship','📝 Register'] },
+
+    { id:'study_materials',
+      keywords:['study material','pdf','download','vocab pack','vocabulary','notes','handout','workbook','material'],
+      reply:`📄 <strong>Downloadable Study Materials</strong><br><br>
+The TIH classroom provides:<br>
+• <strong>PDF lesson notes</strong> — Grammar, reading, writing<br>
+• <strong>Vocabulary packs</strong> — Academic Word List + IELTS/TOEFL wordlists<br>
+• <strong>Writing templates</strong> — Task 1 & Task 2 structures<br>
+• <strong>Speaking cue cards</strong> — Practice prompts<br><br>
+All materials are free to download from the classroom page.`,
+      qr:['📚 Open Classroom','📝 Register for Classroom','🎓 Scholarships'] },
+
+    { id:'practice_tests',
+      keywords:['practice test','mock test','mock exam','timed test','auto score','practice exam','simulate exam','test simulation','full test'],
+      reply:`📝 <strong>Practice Tests & Mock Exams</strong><br><br>
+TIH's classroom includes:<br>
+• <strong>Timed practice tests</strong> — Real exam conditions<br>
+• <strong>Auto-scored exercises</strong> — Instant feedback<br>
+• <strong>Full mock exams</strong> — Complete IELTS/TOEFL simulations<br>
+• <strong>Progress tracking</strong> — Monitor your improvement over time<br><br>
+Practice as many times as you need — it's completely free!`,
+      qr:['📚 Open Classroom','🎓 Scholarship','📝 Apply Now'] },
+
+    { id:'ucl_scholarship',
+      keywords:['ucl','university college london','ucl scholarship','ucl global','global undergraduate','london scholarship'],
+      reply:`🇬🇧 <strong>UCL Global Undergraduate Scholarship</strong><br><br>
+University College London (UCL) offers highly competitive scholarships for outstanding international students.<br><br>
+• One of the world's top 10 universities<br>
+• Awards cover partial to full tuition<br>
+• Requires strong academic record + personal statement<br><br>
+TIH can help you prepare a competitive application. Contact us to get started!`,
+      qr:['📝 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
+
+    { id:'entertainment',
+      keywords:['entertainment','movie','film','stream','watch movie','free movie','net22','dailymotion','moviebox','gomovies','streaming','video stream'],
+      reply:`🎬 <strong>Free Entertainment Resources</strong><br><br>
+TIH's entertainment page lists free streaming platforms:<br>
+• <strong>net22.cc</strong> — Free movies & shows<br>
+• <strong>Dailymotion</strong> — Videos & clips<br>
+• <strong>moviebox.ph</strong> — Movie streaming<br>
+• <strong>gomovies.gg</strong> — Free film library<br><br>
+Visit the Entertainment page on our website for direct links.`,
+      qr:['🌐 Visit Website','📚 Free Classroom','🎓 Scholarships'] },
+
+    { id:'volunteer_roles',
+      keywords:['volunteer role','volunteer position','what volunteer','volunteer job','education mentor','scholarship advisor','technology trainer','healthcare coordinator','content creator','community outreach','how to volunteer','volunteer hours'],
+      reply:`🤝 <strong>Volunteer Roles at TIH</strong><br><br>
+• <strong>Education Mentor</strong> — 2–4 hrs/week, guide students<br>
+• <strong>Scholarship Advisor</strong> — 3–5 hrs/week, help with applications<br>
+• <strong>Technology Trainer</strong> — 3–6 hrs/week, teach digital skills<br>
+• <strong>Healthcare Coordinator</strong> — 2–4 hrs/week, support patients<br>
+• <strong>Content Creator</strong> — Flexible, create social/web content<br>
+• <strong>Community Outreach</strong> — Flexible, spread the mission<br><br>
+All roles are remote-friendly. Apply via our website!`,
+      qr:['📝 Volunteer Now','📞 Contact TIH','🌐 Visit Website'] },
+
+    { id:'partnership_types',
+      keywords:['partnership type','types of partnership','how to partner','corporate partner','ngo partner','institutional partner','become partner','partnership program'],
+      reply:`🤝 <strong>TIH Partnership Programs</strong><br><br>
+We welcome partnerships from:<br>
+• <strong>Corporations</strong> — CSR sponsorships & co-branded programs<br>
+• <strong>NGOs & Nonprofits</strong> — Joint impact initiatives<br>
+• <strong>Universities & Schools</strong> — Academic partnerships & referrals<br>
+• <strong>Government Institutions</strong> — Policy alignment & outreach<br><br>
+Reach out to explore a collaboration that creates lasting impact.`,
+      qr:['📞 Contact TIH','📝 Partner With Us','💰 Donate'] },
+
+    { id:'software_timeline',
+      keywords:['how long','software timeline','website timeline','build time','development time','weeks','when ready','how many weeks','timeline software'],
+      reply:`💻 <strong>Software Development Timelines</strong><br><br>
+Typical project timelines at TIH:<br>
+• <strong>Basic website</strong> — 2–4 weeks<br>
+• <strong>Custom software / business systems</strong> — 4–12 weeks<br>
+• <strong>Mobile app</strong> — 6–12 weeks<br><br>
+Timeline depends on complexity and your feedback turnaround. We'll give you a precise estimate during your free consultation.`,
+      qr:['💻 Book Consultation','📝 Apply Now','📞 Contact TIH'] },
+
+    { id:'donation_tiers',
+      keywords:['donation tier','supporter','champion','transformer','monthly donation','donate tier','giving level','how much donate'],
+      reply:`💰 <strong>Donation Tiers</strong><br><br>
+Every gift — large or small — changes lives:<br>
+• <strong>Supporter</strong> — Any amount, one-time or recurring<br>
+• <strong>Champion</strong> — Monthly giving commitment<br>
+• <strong>Transformer</strong> — Partnership-level investment<br><br>
+100% of your donation supports Liberian students and patients. Thank you for making a difference!`,
+      qr:['💰 Donate Now','🤝 Become a Partner','📞 Contact TIH'] },
+
+    { id:'healthcare_countries',
+      keywords:['ghana','uae','dubai','abu dhabi','healthcare ghana','healthcare uae','which country healthcare','healthcare country','treatment abroad country'],
+      reply:`🌍 <strong>TIH Healthcare Destinations</strong><br><br>
+TIH now coordinates medical referrals to:<br>
+• 🇮🇳 <strong>India</strong> — 8 partner hospitals (primary destination)<br>
+• 🇬🇭 <strong>Ghana</strong> — Regional medical access<br>
+• 🇦🇪 <strong>UAE</strong> — Advanced specialist care<br><br>
+We find the right facility, liaise with doctors, and support your travel — you pay the hospital directly.`,
+      qr:['🏥 Request Healthcare','💬 Contact TIH','🏥 Partner Hospitals'] },
+
+    { id:'success_stories',
+      keywords:['success story','testimonial','real student','who benefited','moses','abigail','james k','fatima','emmanuel','princess','david','student story','patient story','example student'],
+      reply:`⭐ <strong>TIH Success Stories</strong><br><br>
+• <strong>Moses S.</strong> — Studying CS in India, GPA 3.5+<br>
+• <strong>Abigail S.</strong> — Erasmus+ Public Health in Germany<br>
+• <strong>James K.</strong> — Achieved IELTS 6.5 after TIH classroom<br>
+• <strong>Fatima T.</strong> — Life-changing cardiac surgery in India<br>
+• <strong>Emmanuel C.</strong> — Business revenue doubled after TIH software<br>
+• <strong>Princess B.</strong> — TOEFL 87, now pursuing MBA<br>
+• <strong>David W.</strong> — Won $8,000 NGO contract via digital skills<br><br>
+You could be next. Let us help you take the step!`,
+      qr:['🎓 Apply for Scholarship','🏥 Healthcare','💻 Software','📞 Contact TIH'] },
+
+    { id:'healthcare_cost',
+      keywords:['healthcare cost','medical cost','how much treatment','cost treatment','pay hospital','hospital payment','tih charge healthcare','free treatment','treatment cost','who pays'],
+      reply:`🏥 <strong>Healthcare Cost & Payment</strong><br><br>
+TIH <strong>does not charge for coordination services</strong>. Our role is to:<br>
+✅ Identify the right hospital & specialist<br>
+✅ Facilitate communication & logistics<br>
+✅ Support you through the process<br><br>
+<strong>You pay the hospital directly</strong> for all medical services. Treatment costs vary by hospital and condition — we help you get a cost estimate before you travel.`,
+      qr:['🏥 Request Healthcare','💬 Ask About Hospitals','📞 Contact TIH'] },
+
+    { id:'study_abroad_process',
+      keywords:['how does study abroad work','study abroad steps','study abroad process','6 step','six step','step by step scholarship','application process','what happens after apply'],
+      reply:`🎓 <strong>Study Abroad — 6-Step Process</strong><br><br>
+<strong>1.</strong> Submit your application (online or in-chat)<br>
+<strong>2.</strong> TIH reviews & contacts you within 48 hrs<br>
+<strong>3.</strong> Document preparation & verification<br>
+<strong>4.</strong> University / scholarship matching<br>
+<strong>5.</strong> Application submission to institution<br>
+<strong>6.</strong> Visa support & pre-departure orientation<br><br>
+We guide you at every step — it's completely free!`,
+      qr:['📝 Apply Now','📋 Requirements','📞 Contact TIH'] },
+
+    { id:'classroom_structure',
+      keywords:['classroom structure','how classroom works','what is in classroom','classroom content','classroom feature','free classroom overview','ielts classroom detail','toefl classroom detail'],
+      reply:`📚 <strong>TIH Free Classroom — What's Inside</strong><br><br>
+The classroom is organized into 4 sections:<br>
+• <strong>Mastery Plan</strong> — 5-phase daily study schedule (~120 min/day)<br>
+• <strong>Video Lessons</strong> — Curated YouTube channels (E2, IELTS Liz, Magoosh, TST)<br>
+• <strong>Study Materials</strong> — Downloadable PDFs, vocab packs, templates<br>
+• <strong>Practice Tests</strong> — Timed, auto-scored mock exams<br><br>
+100% free. No registration needed to browse — register to track your progress.`,
+      qr:['📚 Open Classroom','📝 Register','🎓 Scholarships','📞 Contact'] },
+
     { id:'fallback', keywords:[], reply:``, qr:[] }
   ];
 
