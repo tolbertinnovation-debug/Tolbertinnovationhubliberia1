@@ -395,15 +395,23 @@ Ask me about any specific scholarship for full details!`,
 
     { id:'requirements',
       keywords:['requirements','documents','eligible','eligibility','qualify','who can apply','criteria','passport','transcript','certificate','reference letter','personal statement','photo','what do i need','what is needed','can i apply','do i qualify'],
-      reply:`📋 <strong>Scholarship Requirements &amp; Documents</strong><br><br>
-<strong>General documents:</strong><br>
-• National ID or valid Passport<br>
-• Academic transcripts / certificates<br>
-• Personal statement (500–800 words)<br>
-• 2 recommendation / reference letters<br>
-• Passport-size photograph<br>
-• IELTS/TOEFL score (strongly recommended)`,
-      qr:['📝 Apply Now','📚 Get IELTS/TOEFL Prep','📞 Get Help','🔙 Main Menu'] },
+      reply:`📋 <strong>Required Documents</strong><br><br>
+<strong>Undergraduate (must be authorised):</strong><br>
+• High School Diploma<br>
+• High School Transcript<br>
+• High School WAEC / WASSCE<br>
+• High School Letter of Recommendation<br>
+• Passport (valid for at least 2 years)<br>
+• Passport-size photo (white background)<br>
+• Notarized Affidavit of Support / Bank Statement<br><br>
+<strong>Graduate (all must be authorised):</strong><br>
+• College Degree / Diploma<br>
+• College Transcript<br>
+• College Letter of Recommendation<br>
+• Passport (valid for at least 2 years)<br>
+• Passport-size photo (white background)<br>
+• Updated CV`,
+      qr:['📝 Apply Now','📞 Get Help','🔙 Main Menu'] },
 
     { id:'apply_process',
       keywords:['how to apply','application process','steps to apply','how do i apply','apply online','submit application','what are the steps','how long does it take','application procedure','how to register','enrollment process','apply for'],
@@ -986,7 +994,8 @@ You pay only <strong>half the listed tuition</strong> — TIH covers the rest!<b
 • Khalsa: <s>$1,800–$3,000</s> → <strong>$900–$1,500/yr</strong><br><br>
 🇨🇾 <strong>Cyprus universities (50% off):</strong><br>
 • Near East University (NEU) — Nicosia<br>
-• Girne American University (GAU) — Kyrenia<br><br>
+• Girne American University (GAU) — Kyrenia<br>
+• Eastern Mediterranean University (EMU) — Famagusta<br><br>
 📅 Application deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','🏛️ Partner Universities','📋 Requirements','📞 Contact TIH'] },
 
@@ -1117,12 +1126,24 @@ An excellent choice for Liberian students seeking a European-standard degree.`,
 • Full tuition: varies by program<br>
 • 🎉 <strong>TIH 50% Scholarship on tuition</strong><br><br>
 Ideal for students who want an American-style degree in a Mediterranean setting.`,
-      qr:['🎓 Apply for Scholarship','📋 Requirements','🎓 Near East University','📞 Contact TIH'] },
+      qr:['🎓 Apply for Scholarship','📋 Requirements','🎓 Near East University','🎓 EMU Cyprus','📞 Contact TIH'] },
+
+    { id:'university_emu',
+      keywords:['eastern mediterranean university','emu','eastern mediterranean','emu famagusta','state university cyprus','famagusta university'],
+      reply:`🎓 <strong>Eastern Mediterranean University (EMU)</strong> 🇨🇾<br><br>
+• Located in <strong>Famagusta, North Cyprus</strong><br>
+• North Cyprus's <strong>oldest and most prestigious state university</strong> — established 1979<br>
+• 20,000+ students from 100+ countries<br>
+• 100+ programs: Engineering, Business, Law, Architecture, Education, Health Sciences, IT &amp; more<br>
+• Full English-medium instruction<br>
+• 🎉 <strong>TIH 50% Scholarship on tuition</strong><br><br>
+The premier choice for Liberian students seeking a world-class degree in the Eastern Mediterranean.`,
+      qr:['🎓 Apply for Scholarship','📋 Requirements','🎓 Near East University','🎓 Girne American University','📞 Contact TIH'] },
 
     { id:'universities_overview',
       keywords:['partner university','which university','university list','universities in india','where can i study','study in india university','university partner','tih university','cyprus university','study in cyprus'],
       reply:`🎓 <strong>TIH Partner Universities</strong><br><br>
-We partner with 17+ universities in <strong>India &amp; Cyprus</strong>.<br>
+We partner with 18+ universities in <strong>India &amp; Cyprus</strong>.<br>
 🎉 <strong>TIH offers 50% tuition scholarship at all partner universities!</strong><br><br>
 🇮🇳 <strong>India:</strong><br>
 • <strong>Sharda University</strong> — NAAC A+, #35 India, from <strong>$1,750/yr</strong><br>
@@ -1132,9 +1153,9 @@ We partner with 17+ universities in <strong>India &amp; Cyprus</strong>.<br>
 🇨🇾 <strong>Cyprus:</strong><br>
 • <strong>Near East University (NEU)</strong> — Nicosia, 200+ programs<br>
 • <strong>Girne American University (GAU)</strong> — Kyrenia, American-style<br>
-• …and more across disciplines<br><br>
+• <strong>Eastern Mediterranean University (EMU)</strong> — Famagusta, state university<br><br>
 Tell us your field of study and we'll recommend the best match!`,
-      qr:['🎓 Apply Now','📋 Requirements','🎓 NEU Cyprus','🎓 GAU Cyprus'] },
+      qr:['🎓 Apply Now','📋 Requirements','🎓 NEU Cyprus','🎓 GAU Cyprus','🎓 EMU Cyprus'] },
 
     { id:'upcoming_events',
       keywords:['event','upcoming','schedule','workshop','session','orientation','calendar','when','next event','upcoming event','event date'],
