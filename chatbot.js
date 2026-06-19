@@ -341,7 +341,7 @@ What would you like to know today?`,
     { id:'about_tih',
       keywords:['what is tih','what is tolbert','about tolbert','tell me about','what does tih do','who is tolbert innovation','organization','ngo','nonprofit','what you do','what do you offer','what programs','overview','mission'],
       reply:`🏛️ <strong>About Tolbert Innovation Hub (TIH)</strong><br><br>
-TIH is a Liberian organization founded by <strong>Mr. Samuel S. Tolbert</strong> that empowers youth through five pillars:<br><br>
+TIH is a Liberian organization founded by <strong>President William R. Tolbert</strong> that empowers youth through five pillars:<br><br>
 🎓 <strong>Scholarship & Study Abroad</strong> — guidance, document prep &amp; admission support<br>
 🏥 <strong>Healthcare Referral Program</strong> — specialist referrals to India &amp; beyond<br>
 💻 <strong>Software &amp; Digital Innovation</strong> — websites, apps, business systems<br>
@@ -351,9 +351,9 @@ TIH is a Liberian organization founded by <strong>Mr. Samuel S. Tolbert</strong>
       qr:['🎓 Scholarships','🏥 Healthcare','💻 Software','📚 Free Classroom','🌟 Empowerment Training','📞 Contact'] },
 
     { id:'founder',
-      keywords:['founder','founded','samuel','tolbert','samuel tolbert','who started','who created','ceo','chief executive','leadership','who runs','who is in charge','mr tolbert','mr samuel'],
-      reply:`👤 <strong>Our Founder — Mr. Samuel S. Tolbert</strong><br><br>
-Tolbert Innovation Hub was founded by <strong>Mr. Samuel S. Tolbert</strong>, who serves as CEO. He built TIH with a mission to bridge the gap between Liberian talent and global opportunity.<br><br>
+      keywords:['founder','founded','william','tolbert','william tolbert','who started','who created','ceo','president','chief executive','leadership','who runs','who is in charge','mr tolbert','president tolbert'],
+      reply:`👤 <strong>Our Founder — President William R. Tolbert</strong><br><br>
+Tolbert Innovation Hub was founded by <strong>President William R. Tolbert</strong>, who serves as CEO. He built TIH with a mission to bridge the gap between Liberian talent and global opportunity.<br><br>
 Under his leadership, TIH has:<br>
 • Supported <strong>500+</strong> students with scholarship guidance<br>
 • Coordinated healthcare referrals to specialist hospitals in India<br>
@@ -362,9 +362,10 @@ Under his leadership, TIH has:<br>
       qr:['📄 Leadership Page','👥 Meet the Team','📞 Contact Us','🔙 Main Menu'] },
 
     { id:'team',
-      keywords:['team','staff','employees','members','who works','esther','alieu','christlove','feature cartee','precelia','administrative','officer','manager','who is on'],
+      keywords:['team','staff','employees','members','who works','eliza','jerbo','director of programs','esther','alieu','christlove','feature cartee','precelia','administrative','officer','manager','who is on'],
       reply:`👥 <strong>The TIH Team</strong><br><br>
-• <strong>Samuel S. Tolbert</strong> — Founder &amp; CEO<br>
+• <strong>President William R. Tolbert</strong> — Founder &amp; CEO<br>
+• <strong>Eliza V. Jerbo</strong> — Director of Programs<br>
 • <strong>Esther Boakai</strong> — Chief Administrative Officer<br>
 • <strong>Alieu Saysay</strong> — General Manager<br>
 • <strong>Christlove P. Jaye</strong> — Financial Officer<br>
