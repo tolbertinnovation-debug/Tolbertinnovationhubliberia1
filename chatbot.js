@@ -402,11 +402,7 @@ Ask me about any specific scholarship for full details!`,
 • Personal statement (500–800 words)<br>
 • 2 recommendation / reference letters<br>
 • Passport-size photograph<br>
-• IELTS/TOEFL score (strongly recommended)<br><br>
-<strong>ICCR specific:</strong><br>
-• Liberian citizenship proof<br>
-• Age 18–40 (UG/PG) or up to 50 (PhD)<br>
-• English proficiency (IELTS, TOEFL, Duolingo, or essay)`,
+• IELTS/TOEFL score (strongly recommended)`,
       qr:['📝 Apply Now','📚 Get IELTS/TOEFL Prep','📞 Get Help','🔙 Main Menu'] },
 
     { id:'apply_process',
