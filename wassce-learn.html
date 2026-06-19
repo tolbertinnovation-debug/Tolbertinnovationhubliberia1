@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subject — WASSCE PRO | TIH</title>
+  <meta name="description" content="Learn WASSCE subjects with lessons, practice MCQ, theory questions, past questions, and resources from Tolbert Innovation Hub Liberia." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ==========================================
+       PAGE-SPECIFIC LAYOUT
+    ========================================== */
+    .learn-layout {
+      display: flex;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    .learn-sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+    }
+    .learn-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* ==========================================
+       SUBJECT HERO
+    ========================================== */
+    .subject-hero {
+      background: linear-gradient(135deg, #001440 0%, #002868 55%, #1a3d8a 100%);
+      color: white;
+      padding: 2.5rem 2rem;
+      border-radius: 14px;
+      margin-bottom: 2rem;
+    }
+
+    /* ==========================================
+       BREADCRUMB
+    ========================================== */
+    .breadcrumb {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.65);
+    }
+    .breadcrumb a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      color: white;
+    }
+
+    /* ==========================================
+       CATEGORY PILL
+    ========================================== */
+    .category-pill {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      margin-top: 0.35rem;
+    }
+
+    /* ==========================================
+       TABS
+    ========================================== */
+    .tab-nav {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid #e5e7eb;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 0.6rem 1rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #6b7280;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+    .tab-btn:hover {
+      color: #002868;
+    }
+    .tab-btn.active {
+      color: #002868;
+      border-bottom-color: #002868;
+      font-weight: 600;
+    }
+
+    /* ==========================================
+       ACCORDION
+    ========================================== */
+    .accordion-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+    .accordion-header {
+      padding: 1rem 1.25rem;
+      background: #f9fafb;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: #1f2937;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .accordion-header:hover {
+      background: #f3f4f6;
+    }
+    .accordion-body {
+      display: none;
+      padding: 1.5rem;
+    }
+    .accordion-body.open {
+      display: block;
+    }
+
+    /* ==========================================
+       KEY POINTS / FORMULA / TIPS BOXES
+    ========================================== */
+    .key-points {
+      background: #f0fdf4;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    .formulas-box {
+      background: #001440;
+      color: #e2e8f0;
+      font-family: 'Courier New', monospace;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    .exam-tips-box {
+      border-left: 4px solid #f97316;
+      background: #fff7ed;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .mistakes-box {
+      border-left: 4px solid #BF0A30;
+      background: #fff5f5;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .lesson-notes {
+      line-height: 1.7;
+      color: #374151;
+      font-size: 0.95rem;
+    }
+    .lesson-notes h3,
+    .lesson-notes h4 {
+      color: #002868;
+      margin-top: 1.25rem;
+    }
+    .lesson-notes p {
+      margin-bottom: 0.75rem;
+    }
+
+    /* ==========================================
+       MCQ
+    ========================================== */
+    .mcq-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0.75rem 1.25rem;
+      margin: 0.5rem 0;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #374151;
+    }
+    .mcq-option:hover:not(:disabled) {
+      border-color: #002868;
+      background: #f0f4ff;
+    }
+    .mcq-option.correct {
+      background: #dcfce7;
+      border-color: #16a34a;
+      color: #15803d;
+    }
+    .mcq-option.wrong {
+      background: #fee2e2;
+      border-color: #dc2626;
+      color: #dc2626;
+    }
+    .mcq-explanation {
+      background: #f0f9ff;
+      border-left: 4px solid #0ea5e9;
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+      color: #374151;
+    }
+    .mcq-question-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      color: #111827;
+      line-height: 1.55;
+    }
+
+    /* ==========================================
+       SIDEBAR
+    ========================================== */
+    .sidebar-card {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(0,40,104,0.07);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .topic-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f3f4f6;
+      cursor: pointer;
+      font-size: 0.88rem;
+      color: #374151;
+      transition: color 0.15s;
+    }
+    .topic-item:last-child {
+      border-bottom: none;
+    }
+    .topic-item:hover {
+      color: #002868;
+    }
+    .topic-item .check {
+      color: #16a34a;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .topic-item .check.unchecked {
+      color: #9ca3af;
+    }
+    .progress-bar-wrap {
+      background: #e5e7eb;
+      border-radius: 999px;
+      height: 8px;
+      margin: 0.5rem 0;
+    }
+    .progress-bar-fill {
+      background: #002868;
+      height: 8px;
+      border-radius: 999px;
+      transition: width 0.3s;
+    }
+
+    /* ==========================================
+       THEORY CARDS
+    ========================================== */
+    .theory-card {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(0,40,104,0.07);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ==========================================
+       PAST QUESTIONS
+    ========================================== */
+    .past-q-card {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(0,40,104,0.07);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .year-badge {
+      display: inline-block;
+      background: #002868;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ==========================================
+       MARK COMPLETE BUTTON
+    ========================================== */
+    .mark-complete-btn {
+      margin-top: 1.25rem;
+      padding: 0.6rem 1.5rem;
+      background: #002868;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .mark-complete-btn:hover:not(:disabled) {
+      background: #001d4f;
+    }
+    .mark-complete-btn:disabled {
+      background: #16a34a;
+      cursor: default;
+    }
+
+    /* ==========================================
+       LOADING FALLBACK
+    ========================================== */
+    #loading-msg {
+      text-align: center;
+      padding: 3rem;
+      color: #6b7280;
+    }
+
+    /* ==========================================
+       RESPONSIVE
+    ========================================== */
+    @media (max-width: 768px) {
+      .learn-layout {
+        flex-direction: column;
+      }
+      .learn-sidebar {
+        width: 100%;
+        position: static;
+      }
+      .subject-hero {
+        border-radius: 0;
+        padding: 1.75rem 1.25rem;
+      }
+      .tab-btn {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.65rem;
+      }
+    }
+
+    /* ==========================================
+       GENERAL UTILITY
+    ========================================== */
+    .show-ans-btn {
+      transition: background 0.2s, color 0.2s;
+    }
+    .show-ans-btn:hover {
+      background: #e5e7eb !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       SITE HEADER / NAV
+  ========================================== -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="study-abroad.html">Study Abroad</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a class="active" href="wassce.html">WASSCE PRO</a>
+        <a href="grants.html">Grants</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="study-abroad.html#application-form" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       LOADING FALLBACK
+  ========================================== -->
+  <div id="loading-msg" style="display:none; text-align:center; padding:3rem;">
+    <p style="color:#6b7280; font-size:1.1rem;">Loading subject content...</p>
+    <p>If this takes more than 5 seconds, please <a href="" onclick="location.reload();return false;" style="color:#002868;">refresh the page</a> or <a href="wassce.html" style="color:#002868;">go back to WASSCE PRO</a>.</p>
+  </div>
+
+  <!-- ==========================================
+       MAIN SUBJECT CONTENT
+  ========================================== -->
+  <div id="subject-content">
+
+    <!-- Subject Hero -->
+    <div class="subject-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb" style="font-size:0.85rem; color:rgba(255,255,255,0.65);">
+          <a href="index.html">Home</a> &rsaquo; <a href="wassce.html">WASSCE PRO</a> &rsaquo; <span id="bc-subject">Subject</span>
+        </nav>
+        <div style="display:flex; align-items:center; gap:1.25rem; margin-top:1rem; flex-wrap:wrap;">
+          <span id="hero-icon" style="font-size:3rem; line-height:1;">📚</span>
+          <div>
+            <h1 id="hero-name" style="margin:0; font-size:2rem; color:white; font-family:'Poppins',sans-serif; font-weight:700; line-height:1.2;">Loading...</h1>
+            <span id="hero-category" class="category-pill">...</span>
+          </div>
+        </div>
+        <p id="hero-format" style="color:rgba(255,255,255,0.75); margin:0.75rem 0 0; font-size:0.95rem;">...</p>
+        <div style="margin-top:0.75rem;">
+          <p id="hero-progress-text" style="color:rgba(255,255,255,0.8); font-size:0.9rem; margin-bottom:0.4rem;">0 of 0 topics completed</p>
+          <div class="progress-bar-wrap" style="max-width:360px;">
+            <div id="hero-progress-fill" class="progress-bar-fill" style="width:0%; background:rgba(255,255,255,0.85);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two-Column Layout -->
+    <div class="learn-layout container">
+
+      <!-- ==========================================
+           LEFT SIDEBAR
+      ========================================== -->
+      <aside class="learn-sidebar" id="subject-sidebar" aria-label="Subject navigation">
+
+        <!-- Back link -->
+        <div class="sidebar-card">
+          <a href="wassce.html" style="color:#002868; text-decoration:none; font-size:0.88rem; font-weight:600; display:flex; align-items:center; gap:0.4rem;">
+            &#8592; Back to WASSCE PRO
+          </a>
+        </div>
+
+        <!-- Subject info + topic list -->
+        <div class="sidebar-card">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+            <span id="sidebar-subject-icon" style="font-size:1.75rem; line-height:1;">📚</span>
+            <span id="sidebar-subject-name" style="font-weight:700; color:#002868; font-size:1rem; line-height:1.3;">Loading...</span>
+          </div>
+          <div style="margin-bottom:0.75rem;">
+            <p id="sidebar-progress-text" style="font-size:0.82rem; color:#6b7280; margin:0 0 0.3rem;">0 / 0 completed</p>
+            <div class="progress-bar-wrap">
+              <div id="sidebar-progress-fill" class="progress-bar-fill" style="width:0%;"></div>
+            </div>
+          </div>
+          <p style="font-weight:700; color:#374151; font-size:0.88rem; margin:1rem 0 0.5rem; text-transform:uppercase; letter-spacing:0.04em;">Topics</p>
+          <div id="sidebar-topic-list"></div>
+        </div>
+
+      </aside>
+
+      <!-- ==========================================
+           MAIN CONTENT
+      ========================================== -->
+      <main class="learn-main" id="learn-main-content">
+
+        <!-- Tab Navigation -->
+        <nav class="tab-nav" role="tablist" aria-label="Learning tabs">
+          <button class="tab-btn active" data-tab="lessons" role="tab" aria-selected="true" aria-controls="tab-lessons">📖 Lessons</button>
+          <button class="tab-btn" data-tab="mcq" role="tab" aria-selected="false" aria-controls="tab-mcq">✅ Practice MCQ</button>
+          <button class="tab-btn" data-tab="theory" role="tab" aria-selected="false" aria-controls="tab-theory">📝 Theory</button>
+          <button class="tab-btn" data-tab="past" role="tab" aria-selected="false" aria-controls="tab-past">📋 Past Questions</button>
+          <button class="tab-btn" data-tab="resources" role="tab" aria-selected="false" aria-controls="tab-resources">📥 Resources</button>
+        </nav>
+
+        <!-- ======== LESSONS TAB ======== -->
+        <div id="tab-lessons" class="tab-pane" role="tabpanel" aria-label="Lessons">
+          <div id="lessons-accordion"></div>
+        </div>
+
+        <!-- ======== PRACTICE MCQ TAB ======== -->
+        <div id="tab-mcq" class="tab-pane" role="tabpanel" aria-label="Practice MCQ" style="display:none;">
+          <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem; padding:1rem; background:#f9fafb; border-radius:10px; border:1px solid #e5e7eb;">
+            <label for="mcq-topic-select" style="font-weight:600; color:#374151; font-size:0.9rem;">Topic:</label>
+            <select id="mcq-topic-select" style="padding:0.5rem 1rem; border:1px solid #d1d5db; border-radius:8px; background:white; font-family:'Inter',sans-serif; font-size:0.9rem; color:#374151; cursor:pointer;"></select>
+            <span id="mcq-score-display" style="font-weight:700; color:#002868; font-size:0.95rem;">Score: 0 / 0</span>
+            <button id="mcq-reset-btn" style="padding:0.4rem 1rem; background:#f3f4f6; border:1px solid #d1d5db; border-radius:8px; cursor:pointer; font-family:'Inter',sans-serif; font-size:0.88rem; font-weight:600; color:#374151;">Reset</button>
+          </div>
+          <div id="mcq-area"></div>
+        </div>
+
+        <!-- ======== THEORY TAB ======== -->
+        <div id="tab-theory" class="tab-pane" role="tabpanel" aria-label="Theory questions" style="display:none;">
+          <div id="theory-container"></div>
+        </div>
+
+        <!-- ======== PAST QUESTIONS TAB ======== -->
+        <div id="tab-past" class="tab-pane" role="tabpanel" aria-label="Past questions" style="display:none;">
+          <div style="margin-bottom:1.25rem; display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+            <label for="past-year-filter" style="font-weight:600; color:#374151; font-size:0.9rem;">Filter by Year:</label>
+            <select id="past-year-filter" style="padding:0.5rem 1rem; border:1px solid #d1d5db; border-radius:8px; background:white; font-family:'Inter',sans-serif; font-size:0.9rem; color:#374151; cursor:pointer;"></select>
+          </div>
+          <div id="past-questions-container"></div>
+        </div>
+
+        <!-- ======== RESOURCES TAB ======== -->
+        <div id="tab-resources" class="tab-pane" role="tabpanel" aria-label="Resources" style="display:none;">
+          <div id="resources-container"></div>
+        </div>
+
+      </main>
+    </div><!-- /.learn-layout -->
+
+  </div><!-- /#subject-content -->
+
+  <!-- ==========================================
+       SITE FOOTER
+  ========================================== -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation. Never Stop Innovating.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="study-abroad.html#application-form">Study Abroad</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
+            <li><a href="grants.html">Grants 2026–2027</a></li>
+            <li><a href="healthcare.html">Healthcare Exposure</a></li>
+            <li><a href="software.html">Software Innovation</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="classroom-ielts.html">IELTS Preparation</a></li>
+            <li><a href="classroom-toefl.html">TOEFL Preparation</a></li>
+            <li><a href="classroom-resource-center.html">Resource Center</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact Us</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231778956979">+231 778 956 979</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+          <div style="margin-top:1.25rem;">
+            <a href="contact.html" class="btn btn-outline btn-sm" style="font-size:0.82rem;">Get In Touch &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">&copy; 2026 Tolbert Innovation Hub. All rights reserved. | <a href="contact.html" style="color:rgba(200,216,240,0.7);">Privacy</a> | <a href="contact.html" style="color:rgba(200,216,240,0.7);">Terms</a></p>
+          <p style="font-size:0.82rem; color:rgba(200,216,240,0.55); margin:0;">Empowering Africa's Future — Never Stop Innovating 🚀</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" style="position:fixed; bottom:1.5rem; right:1.5rem; z-index:999; background:#25D366; color:#fff; border-radius:50%; width:3.5rem; height:3.5rem; display:flex; align-items:center; justify-content:center; font-size:1.6rem; box-shadow:0 4px 18px rgba(0,0,0,0.18); text-decoration:none;">💬</a>
+
+  <!-- Data + Scripts -->
+  <script src="wassce-data.js"></script>
+  <script src="main.js"></script>
+  <script src="chatbot.js"></script>
+
+  <!-- ==========================================
+       INLINE PAGE SCRIPT
+  ========================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- State ---- */
+      var params = new URLSearchParams(window.location.search);
+      var sid = params.get('s') || 'mathematics';
+
+      var subjectData = null;
+      var currentTopicForMCQ = null;
+      var mcqIndex = 0;
+      var mcqScore = 0;
+      var mcqAnswered = false;
+
+      /* ---- Helpers ---- */
+      function getCompletedTopics(subjectId) {
+        var completed = new Set();
+        if (!subjectData) return completed;
+        subjectData.topics.forEach(function (t) {
+          if (localStorage.getItem('tih_topic_' + subjectId + '_' + t.id) === 'complete') {
+            completed.add(t.id);
+          }
+        });
+        return completed;
+      }
+
+      /* ---- Load subject ---- */
+      function loadSubject() {
+        if (!window.WASSCE_SUBJECTS) {
+          document.getElementById('loading-msg').style.display = 'block';
+          document.getElementById('subject-content').style.display = 'none';
+          setTimeout(function () {
+            if (window.WASSCE_SUBJECTS) {
+              document.getElementById('loading-msg').style.display = 'none';
+              document.getElementById('subject-content').style.display = 'block';
+              loadSubject();
+            }
+          }, 2000);
+          return;
+        }
+        var subject = window.WASSCE_SUBJECTS[sid];
+        if (!subject) {
+          window.location.href = 'wassce.html';
+          return;
+        }
+        subjectData = subject;
+        document.getElementById('loading-msg').style.display = 'none';
+        document.getElementById('subject-content').style.display = 'block';
+        renderSubject(subject);
+      }
+
+      /* ---- Render full subject ---- */
+      function renderSubject(subject) {
+        document.title = subject.name + ' — WASSCE PRO | TIH';
+
+        var bcSubject = document.getElementById('bc-subject');
+        if (bcSubject) bcSubject.textContent = subject.name;
+
+        var heroIcon = document.getElementById('hero-icon');
+        if (heroIcon) heroIcon.textContent = subject.icon || '📚';
+
+        var heroName = document.getElementById('hero-name');
+        if (heroName) heroName.textContent = subject.name;
+
+        var heroCat = document.getElementById('hero-category');
+        if (heroCat) heroCat.textContent = subject.category || 'Core Subject';
+
+        var heroFmt = document.getElementById('hero-format');
+        if (heroFmt) heroFmt.textContent = subject.examFormat || 'Paper 1 (MCQ) + Paper 2 (Theory)';
+
+        var sideIcon = document.getElementById('sidebar-subject-icon');
+        if (sideIcon) sideIcon.textContent = subject.icon || '📚';
+
+        var sideName = document.getElementById('sidebar-subject-name');
+        if (sideName) sideName.textContent = subject.name;
+
+        renderSidebarTopics(subject);
+        renderLessons(subject);
+        renderMCQTopicDropdown(subject);
+        renderTheory(subject);
+        renderPastQuestions(subject);
+        renderResources(subject);
+        updateHeroProgress();
+      }
+
+      /* ---- Sidebar topic list ---- */
+      function renderSidebarTopics(subject) {
+        var completed = getCompletedTopics(sid);
+        var list = document.getElementById('sidebar-topic-list');
+        if (!list) return;
+        list.innerHTML = '';
+        if (!subject.topics) return;
+        subject.topics.forEach(function (t) {
+          var div = document.createElement('div');
+          div.className = 'topic-item';
+          var isDone = completed.has(t.id);
+          div.innerHTML =
+            '<span class="check' + (isDone ? '' : ' unchecked') + '">' + (isDone ? '✓' : '○') + '</span>' +
+            '<span>' + escapeHTML(t.name) + '</span>';
+          div.addEventListener('click', function () {
+            switchTab('lessons');
+            var acc = document.getElementById('acc-' + t.id);
+            if (acc) {
+              acc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              var body = acc.querySelector('.accordion-body');
+              if (body && !body.classList.contains('open')) {
+                acc.querySelector('.accordion-header').click();
+              }
+            }
+          });
+          list.appendChild(div);
+        });
+      }
+
+      /* ---- Hero + sidebar progress ---- */
+      function updateHeroProgress() {
+        if (!subjectData || !subjectData.topics) return;
+        var completed = getCompletedTopics(sid);
+        var total = subjectData.topics.length;
+        var done = completed.size;
+        var pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+        var progText = document.getElementById('hero-progress-text');
+        if (progText) progText.textContent = done + ' of ' + total + ' topics completed';
+
+        var progFill = document.getElementById('hero-progress-fill');
+        if (progFill) progFill.style.width = pct + '%';
+
+        var sideProgText = document.getElementById('sidebar-progress-text');
+        if (sideProgText) sideProgText.textContent = done + ' / ' + total + ' completed';
+
+        var sideFill = document.getElementById('sidebar-progress-fill');
+        if (sideFill) sideFill.style.width = pct + '%';
+      }
+
+      /* ---- Lessons accordion ---- */
+      function renderLessons(subject) {
+        var container = document.getElementById('lessons-accordion');
+        if (!container || !subject.topics) return;
+        container.innerHTML = '';
+
+        var completed = getCompletedTopics(sid);
+
+        subject.topics.forEach(function (t, i) {
+          var isCompleted = completed.has(t.id);
+          var item = document.createElement('div');
+          item.className = 'accordion-item';
+          item.id = 'acc-' + t.id;
+
+          var bodyHTML = '';
+
+          if (t.lessonNotes) {
+            bodyHTML += '<div class="lesson-notes">' + t.lessonNotes + '</div>';
+          }
+
+          if (t.keyPoints && t.keyPoints.length > 0) {
+            bodyHTML += '<div class="key-points"><strong style="color:#15803d;">&#x2705; Key Points</strong><ul style="margin:0.5rem 0 0 0; padding-left:1.25rem;">';
+            t.keyPoints.forEach(function (kp) {
+              bodyHTML += '<li style="margin-bottom:0.3rem;">' + kp + '</li>';
+            });
+            bodyHTML += '</ul></div>';
+          }
+
+          if (t.formulas && t.formulas.length > 0) {
+            bodyHTML += '<div class="formulas-box"><strong style="color:#93c5fd;">&#x1F4D0; Formulas</strong><ul style="margin:0.5rem 0 0 0; padding-left:1.25rem;">';
+            t.formulas.forEach(function (f) {
+              bodyHTML += '<li style="margin-bottom:0.3rem;">' + f + '</li>';
+            });
+            bodyHTML += '</ul></div>';
+          }
+
+          if (t.examTips && t.examTips.length > 0) {
+            bodyHTML += '<div class="exam-tips-box"><strong style="color:#c2410c;">&#x1F4A1; Exam Tips</strong><ul style="margin:0.5rem 0 0 0; padding-left:1.25rem;">';
+            t.examTips.forEach(function (tip) {
+              bodyHTML += '<li style="margin-bottom:0.3rem;">' + tip + '</li>';
+            });
+            bodyHTML += '</ul></div>';
+          }
+
+          if (t.commonMistakes && t.commonMistakes.length > 0) {
+            bodyHTML += '<div class="mistakes-box"><strong style="color:#991b1b;">&#x26A0;&#xFE0F; Common Mistakes</strong><ul style="margin:0.5rem 0 0 0; padding-left:1.25rem;">';
+            t.commonMistakes.forEach(function (m) {
+              bodyHTML += '<li style="margin-bottom:0.3rem;">' + m + '</li>';
+            });
+            bodyHTML += '</ul></div>';
+          }
+
+          bodyHTML +=
+            '<button class="mark-complete-btn" id="complete-btn-' + t.id + '"' +
+            (isCompleted ? ' disabled' : '') +
+            ' onclick="window._tih.markTopicComplete(\'' + sid + '\',\'' + t.id + '\')">' +
+            (isCompleted ? '&#x2713; Completed!' : '&#x2713; Mark Topic Complete') +
+            '</button>';
+
+          item.innerHTML =
+            '<div class="accordion-header" onclick="window._tih.toggleAccordion(this)">' +
+            '<span>' + (i + 1) + '. ' + escapeHTML(t.name) + '</span>' +
+            '<span class="chevron" style="transition:transform 0.2s; font-size:0.85rem;">' + (isCompleted ? '&#x2713;' : '&#x25BC;') + '</span>' +
+            '</div>' +
+            '<div class="accordion-body">' + bodyHTML + '</div>';
+
+          container.appendChild(item);
+        });
+      }
+
+      /* ---- Accordion toggle ---- */
+      function toggleAccordion(header) {
+        var item = header.parentElement;
+        var body = item.querySelector('.accordion-body');
+        var chevron = header.querySelector('.chevron');
+        var isOpen = body.classList.contains('open');
+
+        document.querySelectorAll('.accordion-body.open').forEach(function (b) {
+          b.classList.remove('open');
+          var ch = b.parentElement.querySelector('.chevron');
+          if (ch && ch.textContent.trim() === '▲') ch.innerHTML = '&#x25BC;';
+        });
+
+        if (!isOpen) {
+          body.classList.add('open');
+          if (chevron) chevron.innerHTML = '&#x25B2;';
+        }
+      }
+
+      /* ---- Mark topic complete ---- */
+      function markTopicComplete(subjectId, topicId) {
+        localStorage.setItem('tih_topic_' + subjectId + '_' + topicId, 'complete');
+        var lessons = parseInt(localStorage.getItem('tih_lessons') || '0', 10);
+        localStorage.setItem('tih_lessons', lessons + 1);
+
+        var btn = document.getElementById('complete-btn-' + topicId);
+        if (btn) {
+          btn.textContent = '✓ Completed!';
+          btn.disabled = true;
+        }
+
+        updateHeroProgress();
+        renderSidebarTopics(subjectData);
+        checkBadges();
+      }
+
+      /* ---- Badge check ---- */
+      function checkBadges() {
+        var lessons = parseInt(localStorage.getItem('tih_lessons') || '0', 10);
+        if (lessons === 1) localStorage.setItem('tih_badge_first_lesson', 'true');
+        if (lessons >= 10) localStorage.setItem('tih_badge_10_lessons', 'true');
+      }
+
+      /* ---- MCQ topic dropdown ---- */
+      function renderMCQTopicDropdown(subject) {
+        var select = document.getElementById('mcq-topic-select');
+        if (!select || !subject.topics) return;
+        select.innerHTML = '';
+
+        subject.topics.forEach(function (t) {
+          if (t.mcq && t.mcq.length > 0) {
+            var opt = document.createElement('option');
+            opt.value = t.id;
+            opt.textContent = t.name;
+            select.appendChild(opt);
+          }
+        });
+
+        if (select.options.length > 0) {
+          loadMCQTopic(select.options[0].value);
+        } else {
+          var area = document.getElementById('mcq-area');
+          if (area) {
+            area.innerHTML = '<p style="text-align:center; color:#6b7280; padding:2rem;">No practice questions available yet for this subject. Check back soon!</p>';
+          }
+        }
+      }
+
+      /* ---- Load MCQ for a topic ---- */
+      function loadMCQTopic(topicId) {
+        if (!subjectData) return;
+        var topic = subjectData.topics.find(function (t) { return t.id === topicId; });
+        if (!topic || !topic.mcq || topic.mcq.length === 0) return;
+
+        currentTopicForMCQ = topic;
+        mcqIndex = 0;
+        mcqScore = 0;
+        mcqAnswered = false;
+        updateMCQScore();
+        renderMCQQuestion();
+      }
+
+      /* ---- MCQ score display ---- */
+      function updateMCQScore() {
+        var el = document.getElementById('mcq-score-display');
+        if (el && currentTopicForMCQ) {
+          el.textContent = 'Score: ' + mcqScore + ' / ' + (currentTopicForMCQ.mcq ? currentTopicForMCQ.mcq.length : 0);
+        }
+      }
+
+      /* ---- Render single MCQ question ---- */
+      function renderMCQQuestion() {
+        var area = document.getElementById('mcq-area');
+        if (!area || !currentTopicForMCQ) return;
+
+        var questions = currentTopicForMCQ.mcq;
+
+        if (mcqIndex >= questions.length) {
+          var pct = Math.round((mcqScore / questions.length) * 100);
+          area.innerHTML =
+            '<div style="text-align:center; padding:2rem;">' +
+            '<div style="font-size:3rem; margin-bottom:1rem;">🎉</div>' +
+            '<h3 style="color:#002868; font-family:\'Poppins\',sans-serif;">Quiz Complete!</h3>' +
+            '<p style="font-size:1.3rem; font-weight:700; color:#16a34a;">Score: ' + mcqScore + ' / ' + questions.length + ' (' + pct + '%)</p>' +
+            '<div style="display:flex; gap:1rem; justify-content:center; margin-top:1.5rem;">' +
+            '<button onclick="window._tih.loadMCQTopic(\'' + currentTopicForMCQ.id + '\')" style="padding:0.75rem 1.5rem; background:#002868; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:600; font-family:\'Inter\',sans-serif;">Try Again</button>' +
+            '</div></div>';
+          localStorage.setItem('tih_mcq_' + sid + '_' + currentTopicForMCQ.id, mcqScore);
+          return;
+        }
+
+        var q = questions[mcqIndex];
+        area.innerHTML =
+          '<div id="mcq-question-wrap">' +
+          '<p style="font-size:0.85rem; color:#6b7280; margin-bottom:0.5rem;">Question ' + (mcqIndex + 1) + ' of ' + questions.length + '</p>' +
+          '<p class="mcq-question-text">' + escapeHTML(q.q) + '</p>' +
+          '<div id="mcq-options"></div>' +
+          '<div id="mcq-explanation-box" style="display:none;"></div>' +
+          '<div id="mcq-next-wrap" style="display:none; margin-top:1rem;">' +
+          '<button onclick="window._tih.nextMCQ()" style="padding:0.6rem 1.5rem; background:#002868; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:600; font-family:\'Inter\',sans-serif;">Next Question &rarr;</button>' +
+          '</div>' +
+          '</div>';
+
+        var optContainer = document.getElementById('mcq-options');
+        var labels = ['A', 'B', 'C', 'D'];
+        q.options.forEach(function (opt, i) {
+          var btn = document.createElement('button');
+          btn.className = 'mcq-option';
+          btn.textContent = labels[i] + '. ' + opt;
+          btn.setAttribute('data-idx', i);
+          btn.addEventListener('click', function () { handleMCQAnswer(i, q); });
+          optContainer.appendChild(btn);
+        });
+      }
+
+      /* ---- Handle MCQ answer selection ---- */
+      function handleMCQAnswer(selectedIdx, q) {
+        if (mcqAnswered) return;
+        mcqAnswered = true;
+
+        var opts = document.querySelectorAll('.mcq-option');
+        opts.forEach(function (btn, i) {
+          btn.disabled = true;
+          if (i === q.answer) btn.classList.add('correct');
+          if (i === selectedIdx && selectedIdx !== q.answer) btn.classList.add('wrong');
+        });
+
+        if (selectedIdx === q.answer) {
+          mcqScore++;
+          updateMCQScore();
+          var questions = parseInt(localStorage.getItem('tih_questions') || '0', 10);
+          localStorage.setItem('tih_questions', questions + 1);
+        }
+
+        var expBox = document.getElementById('mcq-explanation-box');
+        if (expBox) {
+          expBox.style.display = 'block';
+          expBox.className = 'mcq-explanation';
+          expBox.innerHTML =
+            '<strong>' + (selectedIdx === q.answer ? '&#x2705; Correct!' : '&#x274C; Incorrect') + '</strong><br>' +
+            (q.explanation ? escapeHTML(q.explanation) : '');
+        }
+
+        var nextWrap = document.getElementById('mcq-next-wrap');
+        if (nextWrap) nextWrap.style.display = 'block';
+      }
+
+      /* ---- Advance to next MCQ ---- */
+      function nextMCQ() {
+        mcqIndex++;
+        mcqAnswered = false;
+        renderMCQQuestion();
+      }
+
+      /* ---- Theory tab ---- */
+      function renderTheory(subject) {
+        var container = document.getElementById('theory-container');
+        if (!container) return;
+        container.innerHTML = '';
+
+        var hasTheory = false;
+        if (subject.topics) {
+          subject.topics.forEach(function (t) {
+            if (t.theory && t.theory.length > 0) {
+              hasTheory = true;
+
+              var heading = document.createElement('h3');
+              heading.style.cssText = 'color:#002868; margin:1.5rem 0 0.75rem; font-family:\'Poppins\',sans-serif;';
+              heading.textContent = t.name;
+              container.appendChild(heading);
+
+              t.theory.forEach(function (q) {
+                var card = document.createElement('div');
+                card.className = 'theory-card';
+                card.innerHTML =
+                  '<div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1rem;">' +
+                  '<p style="font-weight:600; margin:0; flex:1; line-height:1.5; color:#111827;">' + q.question + '</p>' +
+                  '<span style="background:#002868; color:white; font-size:0.78rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:999px; white-space:nowrap;">' + (q.marks || 5) + ' marks</span>' +
+                  '</div>' +
+                  '<button class="show-ans-btn" onclick="window._tih.toggleTheoryAnswer(this)" style="margin-top:1rem; padding:0.5rem 1.25rem; background:#f3f4f6; border:1px solid #d1d5db; border-radius:8px; cursor:pointer; font-weight:600; color:#374151; font-family:\'Inter\',sans-serif;">Show Answer</button>' +
+                  '<div class="theory-answer" style="display:none; margin-top:1rem; padding:1rem; background:#f9fafb; border-radius:8px; border:1px solid #e5e7eb;">' +
+                  '<p style="font-weight:700; color:#002868; margin:0 0 0.5rem;"><strong>Answer:</strong></p>' +
+                  '<div style="color:#374151; line-height:1.6;">' + (q.answer || '') + '</div>' +
+                  (q.markingGuide
+                    ? '<div style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid #e5e7eb;">' +
+                      '<strong style="color:#374151;">Marking Guide:</strong>' +
+                      '<p style="margin:0.5rem 0 0; color:#4b5563;">' + q.markingGuide + '</p></div>'
+                    : '') +
+                  '</div>';
+                container.appendChild(card);
+              });
+            }
+          });
+        }
+
+        if (!hasTheory) {
+          container.innerHTML = '<p style="text-align:center; color:#6b7280; padding:2rem;">Theory questions coming soon for this subject!</p>';
+        }
+      }
+
+      /* ---- Theory show/hide answer ---- */
+      function toggleTheoryAnswer(btn) {
+        var ansDiv = btn.nextElementSibling;
+        if (ansDiv.style.display === 'none') {
+          ansDiv.style.display = 'block';
+          btn.textContent = 'Hide Answer';
+        } else {
+          ansDiv.style.display = 'none';
+          btn.textContent = 'Show Answer';
+        }
+      }
+
+      /* ---- Past questions tab ---- */
+      function renderPastQuestions(subject) {
+        var container = document.getElementById('past-questions-container');
+        var yearFilter = document.getElementById('past-year-filter');
+        if (!container) return;
+
+        var pqs = subject.pastQuestions || [];
+
+        if (yearFilter) {
+          var years = Array.from(new Set(pqs.map(function (q) { return q.year; }))).sort(function (a, b) { return b - a; });
+          yearFilter.innerHTML = '<option value="">All Years</option>';
+          years.forEach(function (y) {
+            var opt = document.createElement('option');
+            opt.value = y;
+            opt.textContent = y;
+            yearFilter.appendChild(opt);
+          });
+          yearFilter.addEventListener('change', function () {
+            renderPastQuestionsFiltered(pqs, yearFilter.value);
+          });
+        }
+
+        renderPastQuestionsFiltered(pqs, '');
+      }
+
+      function renderPastQuestionsFiltered(pqs, yearFilterVal) {
+        var container = document.getElementById('past-questions-container');
+        if (!container) return;
+        container.innerHTML = '';
+
+        var filtered = yearFilterVal
+          ? pqs.filter(function (q) { return String(q.year) === String(yearFilterVal); })
+          : pqs;
+
+        if (filtered.length === 0) {
+          container.innerHTML = '<p style="text-align:center; color:#6b7280; padding:2rem;">No past questions available yet. Check back soon!</p>';
+          return;
+        }
+
+        filtered.forEach(function (q) {
+          var card = document.createElement('div');
+          card.className = 'past-q-card';
+
+          var optHTML = '';
+          if (q.options && q.options.length > 0) {
+            var optLabels = ['A', 'B', 'C', 'D'];
+            optHTML = '<div style="margin:0.75rem 0;">' +
+              q.options.map(function (o, i) {
+                return '<div style="padding:0.4rem 0; color:#374151;">' + (optLabels[i] || (i + 1)) + '. ' + escapeHTML(o) + '</div>';
+              }).join('') +
+              '</div>';
+          }
+
+          card.innerHTML =
+            '<span class="year-badge">' + q.year + '</span>' +
+            '<p style="font-weight:600; margin:0 0 0.75rem; color:#111827; line-height:1.5;">' + q.question + '</p>' +
+            optHTML +
+            '<button class="show-ans-btn" onclick="window._tih.togglePastAnswer(this)" style="padding:0.5rem 1.25rem; background:#f3f4f6; border:1px solid #d1d5db; border-radius:8px; cursor:pointer; font-weight:600; color:#374151; font-family:\'Inter\',sans-serif;">Show Answer</button>' +
+            '<div class="past-answer" style="display:none; margin-top:1rem; padding:1rem; background:#f0fdf4; border-radius:8px; border-left:4px solid #16a34a;">' +
+            '<strong style="color:#15803d;">&#x2705; Answer: ' + escapeHTML(String(q.answer || '')) + '</strong>' +
+            (q.explanation ? '<p style="margin:0.5rem 0 0; color:#374151;">' + escapeHTML(q.explanation) + '</p>' : '') +
+            '</div>';
+
+          container.appendChild(card);
+        });
+      }
+
+      /* ---- Past question show/hide ---- */
+      function togglePastAnswer(btn) {
+        var ansDiv = btn.nextElementSibling;
+        if (ansDiv.style.display === 'none') {
+          ansDiv.style.display = 'block';
+          btn.textContent = 'Hide Answer';
+        } else {
+          ansDiv.style.display = 'none';
+          btn.textContent = 'Show Answer';
+        }
+      }
+
+      /* ---- Resources tab ---- */
+      function renderResources(subject) {
+        var container = document.getElementById('resources-container');
+        if (!container) return;
+
+        var subjectName = subject.name || 'This Subject';
+        var ytSearch = 'https://www.youtube.com/results?search_query=WAEC+' + encodeURIComponent(subjectName) + '+past+questions';
+
+        container.innerHTML =
+          '<div style="display:grid; gap:1.5rem;">' +
+
+          /* Video Lessons */
+          '<div style="background:white; border-radius:14px; box-shadow:0 2px 10px rgba(0,40,104,0.07); padding:1.5rem;">' +
+          '<h3 style="color:#002868; margin-top:0; font-family:\'Poppins\',sans-serif;">&#x1F4FA; Video Lessons</h3>' +
+          '<p style="color:#6b7280; margin:0 0 0.75rem;">Watch free WAEC-style video lessons and past question walkthroughs on YouTube.</p>' +
+          '<a href="' + ytSearch + '" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:0.65rem 1.5rem; background:#BF0A30; color:white; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.95rem;">&#x25B6; Watch on YouTube</a>' +
+          '</div>' +
+
+          /* Download Notes */
+          '<div style="background:white; border-radius:14px; box-shadow:0 2px 10px rgba(0,40,104,0.07); padding:1.5rem;">' +
+          '<h3 style="color:#002868; margin-top:0; font-family:\'Poppins\',sans-serif;">&#x1F4C4; Download Notes</h3>' +
+          '<p style="color:#6b7280; margin:0 0 0.75rem;">Access TIH curated study materials and downloadable notes for ' + escapeHTML(subjectName) + '. Enroll in WASSCE PRO to unlock all materials.</p>' +
+          '<a href="wassce.html#wassce-enroll" style="display:inline-block; padding:0.65rem 1.5rem; background:#002868; color:white; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.95rem;">Download Materials</a>' +
+          '</div>' +
+
+          /* Get TIH Help */
+          '<div style="background:white; border-radius:14px; box-shadow:0 2px 10px rgba(0,40,104,0.07); padding:1.5rem;">' +
+          '<h3 style="color:#002868; margin-top:0; font-family:\'Poppins\',sans-serif;">&#x1F4DE; Get TIH Help</h3>' +
+          '<p style="color:#6b7280; margin:0 0 0.75rem;">Need help? Our tutors are ready to assist you with ' + escapeHTML(subjectName) + '. Reach us through any of the channels below.</p>' +
+          '<div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:0.75rem;">' +
+          '<a href="tel:+231880559227" style="color:#002868; text-decoration:none; font-weight:600; font-size:0.95rem;">&#x1F4DE; +231 880 559 227</a>' +
+          '<a href="tel:+231778956979" style="color:#002868; text-decoration:none; font-weight:600; font-size:0.95rem;">&#x1F4DE; +231 778 956 979</a>' +
+          '<a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:0.5rem; padding:0.65rem 1.5rem; background:#25D366; color:white; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.95rem;">&#x1F4AC; Chat on WhatsApp</a>' +
+          '</div>' +
+          '</div>' +
+
+          '</div>'; /* end grid */
+      }
+
+      /* ---- Tab switching ---- */
+      function switchTab(tabName) {
+        document.querySelectorAll('.tab-btn').forEach(function (btn) {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.tab-pane').forEach(function (pane) {
+          pane.style.display = 'none';
+        });
+
+        var activeBtn = document.querySelector('[data-tab="' + tabName + '"]');
+        var activePane = document.getElementById('tab-' + tabName);
+        if (activeBtn) {
+          activeBtn.classList.add('active');
+          activeBtn.setAttribute('aria-selected', 'true');
+        }
+        if (activePane) activePane.style.display = 'block';
+      }
+
+      /* ---- HTML escape helper ---- */
+      function escapeHTML(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      /* ---- Expose public API for inline onclick handlers ---- */
+      window._tih = {
+        toggleAccordion: toggleAccordion,
+        markTopicComplete: markTopicComplete,
+        loadMCQTopic: loadMCQTopic,
+        nextMCQ: nextMCQ,
+        toggleTheoryAnswer: toggleTheoryAnswer,
+        togglePastAnswer: togglePastAnswer,
+        switchTab: switchTab
+      };
+
+      /* ---- DOM ready ---- */
+      document.addEventListener('DOMContentLoaded', function () {
+
+        /* Tab buttons */
+        document.querySelectorAll('.tab-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            switchTab(btn.getAttribute('data-tab'));
+          });
+        });
+
+        /* MCQ topic select */
+        var mcqSelect = document.getElementById('mcq-topic-select');
+        if (mcqSelect) {
+          mcqSelect.addEventListener('change', function () {
+            loadMCQTopic(mcqSelect.value);
+          });
+        }
+
+        /* MCQ reset */
+        var resetBtn = document.getElementById('mcq-reset-btn');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function () {
+            if (currentTopicForMCQ) loadMCQTopic(currentTopicForMCQ.id);
+          });
+        }
+
+        /* Load subject (small delay to allow wassce-data.js to initialise) */
+        setTimeout(loadSubject, 100);
+      });
+
+    }()); /* end IIFE */
+  </script>
+
+</body>
+</html>
