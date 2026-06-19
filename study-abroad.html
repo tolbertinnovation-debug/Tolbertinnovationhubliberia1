@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>University Directory — Study Abroad Portal | Tolbert Innovation Hub</title>
   <meta name="description" content="Browse all 20 partner universities in India and Cyprus. Filter by country, program, tuition, and scholarship availability to find your perfect match." />
+  <meta name="keywords" content="study abroad Liberia, universities India, universities Cyprus, TIH scholarship, international education" />
   <meta property="og:title" content="University Directory | Tolbert Innovation Hub Study Abroad Portal" />
   <meta property="og:description" content="Discover top international universities, compare programs and scholarships, and apply online — all in one place for Liberian students." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.tolbertinnovationhub.org/study-abroad.html" />
+  <meta property="og:image" content="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Study Abroad Portal | Tolbert Innovation Hub" />
+  <meta name="twitter:description" content="Browse 20 partner universities in India and North Cyprus. Apply free with TIH scholarship support." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -15,230 +21,262 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <style>
+    /* ── BASE ── */
     body { padding-bottom: 56px; }
+
     /* ── HERO ── */
-    .dir-hero { background:linear-gradient(135deg,#001440 0%,#002868 55%,#1a3d8a 100%); padding:5rem 0 4rem; position:relative; overflow:hidden; }
-    .dir-hero::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,0.07) 1px,transparent 1px); background-size:30px 30px; pointer-events:none; }
-    .dir-hero::after { content:''; position:absolute; bottom:0; left:0; right:0; height:70px; background:linear-gradient(to bottom,transparent,#fff); pointer-events:none; }
-    .dir-hero-inner { position:relative; z-index:1; }
-    .dir-hero-breadcrumb { display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; margin-bottom:1.75rem; }
-    .dir-hero-breadcrumb a { color:rgba(255,255,255,0.55); text-decoration:none; transition:color 0.18s; }
-    .dir-hero-breadcrumb a:hover { color:#fff; }
-    .dir-hero-breadcrumb span { color:rgba(255,255,255,0.35); }
-    .dir-hero-breadcrumb strong { color:rgba(255,255,255,0.85); }
-    .dir-hero-eyebrow { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(249,115,22,0.15); border:1px solid rgba(249,115,22,0.3); color:#fdba74; font-size:0.78rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:0.4rem 1rem; border-radius:100px; margin-bottom:1.5rem; }
-    .dir-hero h1 { font-family:'Poppins',sans-serif; font-size:clamp(2rem,4.5vw,3.4rem); font-weight:900; color:#fff; margin:0 0 1.25rem; line-height:1.08; }
-    .dir-hero-accent { background:linear-gradient(90deg,#f97316,#ef4444); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .dir-hero-sub { font-size:1.05rem; color:rgba(255,255,255,0.72); margin:0 0 2.25rem; max-width:58ch; line-height:1.75; }
-    .dir-hero-ctas { display:flex; gap:0.85rem; flex-wrap:wrap; margin-bottom:3.5rem; }
-    .dir-hero-btn-primary { display:inline-flex; align-items:center; gap:0.4rem; background:#BF0A30; color:#fff; padding:0.9rem 2rem; border-radius:8px; font-weight:700; font-size:0.95rem; text-decoration:none; transition:background 0.2s,transform 0.18s; font-family:'Inter',sans-serif; }
-    .dir-hero-btn-primary:hover { background:#a00828; transform:translateY(-2px); }
-    .dir-hero-btn-ghost { display:inline-flex; align-items:center; gap:0.4rem; background:rgba(255,255,255,0.08); border:1.5px solid rgba(255,255,255,0.22); color:#fff; padding:0.9rem 2rem; border-radius:8px; font-weight:600; font-size:0.95rem; text-decoration:none; transition:background 0.2s; font-family:'Inter',sans-serif; }
-    .dir-hero-btn-ghost:hover { background:rgba(255,255,255,0.15); }
-    .dir-hero-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,0.1); border-radius:14px; overflow:hidden; }
-    .dir-hero-stat { background:rgba(255,255,255,0.06); padding:1.25rem 1rem; text-align:center; }
-    .dir-hero-stat-num { display:block; font-family:'Poppins',sans-serif; font-size:2.2rem; font-weight:900; color:#fff; line-height:1; }
-    .dir-hero-stat-label { display:block; font-size:0.77rem; color:rgba(255,255,255,0.55); margin-top:0.45rem; font-weight:500; letter-spacing:0.02em; }
-    @media (max-width:640px) { .dir-hero-stats { grid-template-columns:repeat(2,1fr); } }
-    .dir-filter-bar { position:sticky; top:70px; z-index:100; background:#fff; border-bottom:1px solid #e2e8f0; padding:0.85rem 0; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
-    .dir-filter-inner { display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap; }
-    .dir-search-wrap { flex:1; min-width:220px; position:relative; }
-    .dir-search-wrap svg { position:absolute; left:0.9rem; top:50%; transform:translateY(-50%); color:#94a3b8; pointer-events:none; }
-    .dir-search-wrap input { width:100%; padding:0.65rem 1rem 0.65rem 2.6rem; border:1.5px solid #e2e8f0; border-radius:8px; font-family:'Inter',sans-serif; font-size:0.93rem; color:#0f172a; background:#f8fafc; outline:none; transition:border-color 0.18s,box-shadow 0.18s; }
-    .dir-search-wrap input:focus { border-color:#002868; background:#fff; box-shadow:0 0 0 3px rgba(0,40,104,0.09); }
-    .dir-filters-btn { display:inline-flex; align-items:center; gap:0.45rem; padding:0.65rem 1.1rem; border:1.5px solid #e2e8f0; border-radius:8px; background:#fff; font-family:'Inter',sans-serif; font-size:0.88rem; font-weight:600; color:#374151; cursor:pointer; white-space:nowrap; transition:border-color 0.18s; }
-    .dir-filters-btn:hover { border-color:#002868; color:#002868; }
-    .dir-filter-pills { display:flex; flex-wrap:wrap; gap:0.45rem; margin-top:0.5rem; }
-    .filter-pill { padding:0.42rem 1rem; border-radius:100px; border:1.5px solid #cbd5e1; background:#fff; color:#334155; font-size:0.83rem; font-weight:600; cursor:pointer; transition:all 0.18s; font-family:'Inter',sans-serif; white-space:nowrap; }
-    .filter-pill:hover { border-color:#002868; color:#002868; background:#f0f5ff; }
-    .filter-pill.on { background:#002868; border-color:#002868; color:#fff; }
-    .filter-pill.on-red { background:#BF0A30; border-color:#BF0A30; color:#fff; }
-    .filter-pill.on-green { background:#059669; border-color:#059669; color:#fff; }
-    .dir-grid-section { background:#f1f5f9; padding:2rem 0 3rem; }
-    .dir-count-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; }
-    .dir-count-text { font-size:0.88rem; font-weight:600; color:#64748b; }
-    .uni-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.25rem; }
-    .uni-card { background:#fff; border-radius:16px; box-shadow:0 1px 3px rgba(0,0,0,0.08); border:1px solid #e2e8f0; overflow:hidden; transition:transform 0.22s,box-shadow 0.22s; cursor:pointer; display:flex; flex-direction:column; }
-    .uni-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,0.12); }
-    .uni-card-header { padding:1rem 1.25rem 0; display:flex; justify-content:space-between; align-items:flex-start; }
-    .uni-badge { width:44px; height:44px; border-radius:10px; color:#fff; font-weight:700; font-size:0.78rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .uni-card-rating { color:#f59e0b; font-weight:700; font-size:0.9rem; }
-    .uni-card-body { padding:0.75rem 1.25rem; flex:1; }
-    .uni-card-name { font-family:'Poppins',sans-serif; font-size:1.05rem !important; font-weight:800 !important; color:#0f172a !important; margin:0 0 0.4rem; line-height:1.3; }
-    .uni-card-meta { display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-bottom:0.75rem; }
-    .uni-meta-loc { font-size:0.81rem; color:#334155; font-weight:500; }
-    .uni-accred { font-size:0.75rem; background:#dbeafe; color:#1e40af; padding:0.2rem 0.55rem; border-radius:4px; font-weight:700; }
-    .uni-card-stats { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; background:#f8fafc; border-radius:8px; padding:0.6rem 0.75rem; margin-bottom:0.75rem; border:1px solid #e2e8f0; }
-    .uni-stat { display:flex; align-items:center; gap:0.35rem; font-size:0.8rem; color:#1e293b; font-weight:600; }
-    .uni-stat-icon { font-size:0.9rem; }
-    .uni-card-programs { margin-bottom:0.75rem; }
-    .uni-prog-label { font-size:0.78rem; color:#374151; font-weight:700; display:block; margin-bottom:0.35rem; }
-    .uni-prog-tags { display:flex; flex-wrap:wrap; gap:0.35rem; }
-    .uni-prog-tag { font-size:0.75rem; background:#f1f5f9; color:#334155; font-weight:600; padding:0.2rem 0.55rem; border-radius:4px; border:1px solid #e2e8f0; }
-    .uni-card-footer { padding:0.75rem 1.25rem 1.25rem; }
-    .uni-explore-btn { display:block; text-align:center; padding:0.6rem; border:1.5px solid #002868; border-radius:8px; color:#002868; font-weight:600; font-size:0.88rem; text-decoration:none; transition:all 0.2s; font-family:'Inter',sans-serif; }
-    .uni-explore-btn:hover { background:#002868; color:#fff; }
-    .uni-card-top { height:4px; width:100%; display:block; border-radius:0; }
-    .uni-featured-badge { display:inline-flex; align-items:center; gap:0.25rem; background:linear-gradient(90deg,#f59e0b,#f97316); color:#fff; font-size:0.68rem; font-weight:700; padding:0.18rem 0.5rem; border-radius:4px; letter-spacing:0.03em; }
-    .uni-explore-btn-v2 { display:block; text-align:center; padding:0.68rem 1rem; border-radius:8px; color:#fff; font-weight:700; font-size:0.88rem; text-decoration:none; transition:opacity 0.18s,transform 0.18s; font-family:'Inter',sans-serif; }
-    .uni-explore-btn-v2:hover { opacity:0.88; transform:translateY(-1px); }
-    .uni-tuition-tag { font-size:0.78rem; color:#059669; font-weight:600; background:#f0fdf4; border:1px solid #86efac; padding:0.2rem 0.55rem; border-radius:4px; }
-    .no-results { grid-column:1/-1; text-align:center; padding:3.5rem 1.5rem; color:#64748b; }
-    .no-results h3 { margin-bottom:0.5rem; color:#374151; }
-    .steps-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:0; }
-    .step-item { padding:2rem 1.25rem; text-align:center; }
-    .step-num { width:50px; height:50px; border-radius:50%; margin:0 auto 1rem; font-family:'Poppins',sans-serif; font-weight:800; font-size:1.1rem; color:#fff; display:flex; align-items:center; justify-content:center; }
-    .step-num.blue { background:#002868; }
-    .step-num.red  { background:#BF0A30; }
-    .step-item h4 { font-size:0.95rem; color:#002868; margin-bottom:0.35rem; font-family:'Poppins',sans-serif; font-weight:600; }
-    .step-item p  { font-size:0.83rem; color:#6b7280; margin:0; line-height:1.6; }
-    .elig-wrap { background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:clamp(2rem,4vw,3rem); box-shadow:0 1px 4px rgba(0,0,0,0.06); max-width:720px; margin:0 auto; }
-    .elig-form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-    @media (max-width:520px) { .elig-form-row { grid-template-columns:1fr; } }
-    .elig-group { display:flex; flex-direction:column; gap:0.35rem; margin-bottom:1rem; }
-    .elig-group label { font-size:0.85rem; font-weight:600; color:#374151; }
-    .elig-group select, .elig-group input { padding:0.72rem 0.95rem; border:1.5px solid #e2e8f0; border-radius:8px; background:#f8fafc; color:#0f172a; font-family:'Inter',sans-serif; font-size:0.94rem; outline:none; transition:border-color 0.18s; width:100%; appearance:none; -webkit-appearance:none; }
-    .elig-group select:focus, .elig-group input:focus { border-color:#002868; box-shadow:0 0 0 3px rgba(0,40,104,0.1); }
-    .elig-group select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 0.9rem center; padding-right:2.4rem; cursor:pointer; }
-    .elig-result { margin-top:1.5rem; padding:1.25rem 1.5rem; border-radius:10px; display:none; }
-    .elig-result.show { display:block; }
-    .elig-result.eligible   { background:#f0fdf4; border:1.5px solid #86efac; }
-    .elig-result.conditional{ background:#fffbeb; border:1.5px solid #fde68a; }
-    .elig-result.ineligible { background:#fff1f2; border:1.5px solid #fca5a5; }
-    .elig-result-icon { font-size:2rem; margin-bottom:0.5rem; }
-    .elig-result h3 { margin-bottom:0.4rem; font-size:1.1rem; font-family:'Poppins',sans-serif; }
-    .elig-result p  { font-size:0.9rem; color:#374151; margin:0; }
-    .form-card { background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:clamp(1.75rem,4vw,2.5rem); box-shadow:0 1px 4px rgba(0,0,0,0.06); }
-    .form-card h3 { font-size:1.2rem; color:#002868; margin-bottom:0.4rem; font-family:'Poppins',sans-serif; font-weight:700; }
-    .form-card-lead { font-size:0.92rem; color:#6b7280; margin-bottom:1.75rem; }
-    .form-row2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-    @media (max-width:560px) { .form-row2 { grid-template-columns:1fr; } }
-    .fg2 { display:flex; flex-direction:column; gap:0.4rem; margin-bottom:1.1rem; }
-    .fg2:last-of-type { margin-bottom:0; }
-    .fg2 label { font-size:0.85rem; font-weight:600; color:#374151; }
-    .fg2 .req { color:#BF0A30; }
-    .fg2 input,.fg2 select,.fg2 textarea { width:100%; padding:0.72rem 0.95rem; border:1.5px solid #e2e8f0; border-radius:8px; background:#f8fafc; color:#0f172a; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:border-color 0.18s,box-shadow 0.18s; appearance:none; -webkit-appearance:none; }
-    .fg2 input:focus,.fg2 select:focus,.fg2 textarea:focus { border-color:#002868; background:#fff; box-shadow:0 0 0 3px rgba(0,40,104,0.1); }
-    .fg2 textarea { resize:vertical; min-height:100px; }
-    .fg2 select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 0.9rem center; padding-right:2.5rem; cursor:pointer; }
-    .form-feedback { font-size:0.9rem; font-weight:600; margin-top:0.85rem; padding:0.7rem 1rem; border-radius:8px; background:#f1f5f9; display:none; }
-    .form-feedback:not(:empty) { display:block; }
-    .form-submit-row { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.85rem; margin-top:1.5rem; }
-    .form-note { font-size:0.79rem; color:#6b7280; }
-    .testi-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; }
-    .testi-card { background:#fff; border:1px solid #e2e8f0; border-radius:14px; padding:1.75rem; box-shadow:0 1px 3px rgba(0,0,0,0.06); }
-    .testi-avatar { width:52px; height:52px; border-radius:50%; margin-bottom:1rem; display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:1.1rem; color:#fff; }
-    .testi-avatar.blue { background:linear-gradient(135deg,#002868,#1a3d8a); }
-    .testi-avatar.red  { background:linear-gradient(135deg,#BF0A30,#8a0020); }
-    .stars { color:#f59e0b; font-size:0.85rem; margin-bottom:0.75rem; }
-    .testi-text { font-size:0.91rem; color:#374151; line-height:1.78; margin-bottom:1rem; }
-    .testi-name { font-weight:700; font-size:0.9rem; color:#0f172a; }
-    .testi-dest { font-size:0.79rem; color:#6b7280; }
-    .counsel-layout { display:grid; grid-template-columns:1fr 1.15fr; gap:3.5rem; align-items:start; }
-    @media (max-width:860px) { .counsel-layout { grid-template-columns:1fr; } }
-    .counsel-info-item { display:flex; align-items:flex-start; gap:1rem; margin-bottom:1.5rem; }
-    .counsel-icon { width:46px; height:46px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.25rem; flex-shrink:0; }
-    .counsel-icon.blue { background:#e8f0fb; }
-    .counsel-icon.red  { background:#fce8ec; }
-    .counsel-icon-text h4 { font-size:0.95rem; color:#0f172a; margin-bottom:0.2rem; font-family:'Poppins',sans-serif; font-weight:600; }
-    .counsel-icon-text p  { font-size:0.85rem; color:#6b7280; margin:0; }
-    .bottom-nav { position:fixed; bottom:0; left:0; right:0; background:#0f172a; z-index:200; box-shadow:0 -2px 10px rgba(0,0,0,0.2); padding:0 0 env(safe-area-inset-bottom); }
-    .bottom-nav-inner { max-width:1200px; margin:auto; padding:0 1.5rem; height:56px; display:flex; align-items:center; gap:1.5rem; }
-    .bottom-nav-brand { display:flex; align-items:center; gap:0.5rem; text-decoration:none; color:#fff; font-weight:700; font-size:0.88rem; flex-shrink:0; font-family:'Poppins',sans-serif; }
-    .bottom-nav-icon { font-size:1.1rem; }
-    .bottom-nav-sub { color:rgba(255,255,255,0.55); font-weight:400; }
-    .bottom-nav-links { display:flex; gap:1.25rem; flex:1; justify-content:center; }
-    .bottom-nav-links a { color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.85rem; font-weight:500; transition:color 0.18s; font-family:'Inter',sans-serif; }
-    .bottom-nav-links a:hover,.bottom-nav-links a.active { color:#fff; }
-    .bottom-nav-cta { flex-shrink:0; }
-    .portal-footer { background:#0f172a; color:#94a3b8; padding:3rem 0 1.5rem; }
-    .portal-footer-grid { display:grid; grid-template-columns:2fr 1.2fr 1.4fr 1.5fr; gap:2.5rem; margin-bottom:2.5rem; }
-    @media (max-width:900px) { .portal-footer-grid { grid-template-columns:1fr 1fr; } }
-    @media (max-width:560px) { .portal-footer-grid { grid-template-columns:1fr; } }
-    .pf-brand-name { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.1rem; color:#fff; margin:0 0 0.5rem; }
-    .pf-tagline { font-size:0.85rem; line-height:1.65; color:#94a3b8; margin:0 0 1.25rem; }
-    .pf-social { display:flex; gap:0.6rem; }
-    .pf-social a { width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:1rem; text-decoration:none; transition:background 0.18s; }
-    .pf-social a:hover { background:rgba(255,255,255,0.15); }
-    .pf-heading { font-family:'Poppins',sans-serif; font-weight:700; font-size:0.88rem; color:#fff; margin:0 0 1rem; letter-spacing:0.04em; text-transform:uppercase; }
-    .pf-links { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.55rem; }
-    .pf-links a { color:#94a3b8; text-decoration:none; font-size:0.87rem; transition:color 0.18s; }
-    .pf-links a:hover { color:#fff; }
-    .pf-contact-item { display:flex; align-items:flex-start; gap:0.55rem; font-size:0.87rem; color:#94a3b8; margin-bottom:0.6rem; }
-    .pf-contact-item a { color:#94a3b8; text-decoration:none; }
-    .pf-contact-item a:hover { color:#fff; }
-    .pf-hours { margin-top:1rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:0.85rem 1rem; font-size:0.82rem; line-height:1.65; color:#94a3b8; }
-    .pf-hours strong { color:#e2e8f0; display:block; margin-bottom:0.3rem; }
-    .portal-footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:1.25rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; }
-    .portal-footer-bottom p { margin:0; font-size:0.82rem; color:rgba(200,216,240,0.55); }
-    .portal-footer-bottom a { color:rgba(200,216,240,0.6); }
-    @media (max-width:900px) { .dir-filter-bar { top:0; } #application-form > .container > div { grid-template-columns:1fr !important; } }
-    @media (max-width:680px) { .uni-grid { grid-template-columns:1fr; } .steps-grid { grid-template-columns:repeat(2,1fr); } .bottom-nav-brand span:not(.bottom-nav-icon) { display:none; } .bottom-nav-cta { display:none; } }
-    @media (max-width:400px) { .steps-grid { grid-template-columns:1fr; } }
+    .dir-hero { background: linear-gradient(135deg, #001440 0%, #002868 55%, #1a3d8a 100%); padding: 5rem 0 4rem; position: relative; overflow: hidden; }
+    .dir-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px); background-size: 30px 30px; pointer-events: none; }
+    .dir-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 70px; background: linear-gradient(to bottom, transparent, #fff); pointer-events: none; }
+    .dir-hero-inner { position: relative; z-index: 1; }
+    .dir-hero-breadcrumb { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; margin-bottom: 1.75rem; }
+    .dir-hero-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.18s; }
+    .dir-hero-breadcrumb a:hover { color: #fff; }
+    .dir-hero-breadcrumb span { color: rgba(255,255,255,0.35); }
+    .dir-hero-breadcrumb strong { color: rgba(255,255,255,0.85); }
+    .dir-hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.3); color: #fdba74; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; }
+    .dir-hero h1 { font-family: 'Poppins', sans-serif; font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 900; color: #fff; margin: 0 0 1.25rem; line-height: 1.08; }
+    .dir-hero-accent { background: linear-gradient(90deg, #f97316, #ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .dir-hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.72); margin: 0 0 2.25rem; max-width: 58ch; line-height: 1.75; }
+    .dir-hero-ctas { display: flex; gap: 0.85rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+    .dir-hero-btn-primary { display: inline-flex; align-items: center; gap: 0.4rem; background: #BF0A30; color: #fff; padding: 0.9rem 2rem; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: background 0.2s, transform 0.18s; font-family: 'Inter', sans-serif; }
+    .dir-hero-btn-primary:hover { background: #a00828; transform: translateY(-2px); }
+    .dir-hero-btn-ghost { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.22); color: #fff; padding: 0.9rem 2rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: background 0.2s; font-family: 'Inter', sans-serif; }
+    .dir-hero-btn-ghost:hover { background: rgba(255,255,255,0.15); }
+    .dir-hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; }
+    .dir-hero-stat { background: rgba(255,255,255,0.06); padding: 1.25rem 1rem; text-align: center; }
+    .dir-hero-stat-num { display: block; font-family: 'Poppins', sans-serif; font-size: 2.2rem; font-weight: 900; color: #fff; line-height: 1; }
+    .dir-hero-stat-label { display: block; font-size: 0.77rem; color: rgba(255,255,255,0.55); margin-top: 0.45rem; font-weight: 500; letter-spacing: 0.02em; }
+    @media (max-width: 640px) { .dir-hero-stats { grid-template-columns: repeat(2, 1fr); } }
+
     /* ── WHY TIH SECTION ── */
-    .why-tih-section { background:linear-gradient(135deg,#001440 0%,#002868 55%,#1a3d8a 100%); padding:5rem 0; position:relative; overflow:hidden; }
-    .why-tih-section::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px); background-size:28px 28px; pointer-events:none; }
-    .why-tih-inner { position:relative; z-index:1; }
-    .why-tih-eyebrow { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(249,115,22,0.15); border:1px solid rgba(249,115,22,0.3); color:#fdba74; font-size:0.78rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:0.4rem 1rem; border-radius:100px; margin-bottom:1.25rem; }
-    .why-tih-title { font-family:'Poppins',sans-serif; font-size:clamp(1.7rem,3.5vw,2.6rem); font-weight:800; color:#fff; margin:0 0 0.75rem; line-height:1.15; }
-    .why-tih-sub { font-size:1rem; color:rgba(255,255,255,0.7); max-width:56ch; line-height:1.75; margin:0 0 3rem; }
-    .why-tih-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem; }
-    .why-card { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:1.75rem 1.5rem; transition:background 0.22s,transform 0.22s; }
-    .why-card:hover { background:rgba(255,255,255,0.12); transform:translateY(-3px); }
-    .why-card-icon { font-size:2rem; margin-bottom:1rem; display:block; }
-    .why-card h4 { font-family:'Poppins',sans-serif; font-weight:700; color:#fff; font-size:0.96rem; margin:0 0 0.45rem; }
-    .why-card p { font-size:0.85rem; color:rgba(255,255,255,0.68); line-height:1.72; margin:0; }
-    /* ── CTA BAND ── */
-    .cta-band { background:linear-gradient(135deg,#BF0A30 0%,#8f0820 100%); padding:4rem 0; text-align:center; position:relative; overflow:hidden; }
-    .cta-band::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px); background-size:24px 24px; pointer-events:none; }
-    .cta-band-inner { position:relative; z-index:1; max-width:640px; margin:0 auto; padding:0 1.5rem; }
-    .cta-band h2 { font-family:'Poppins',sans-serif; color:#fff; font-size:clamp(1.7rem,3vw,2.3rem); font-weight:800; margin:0 0 0.75rem; }
-    .cta-band p { color:rgba(255,255,255,0.85); font-size:1rem; margin:0 0 2rem; line-height:1.75; }
-    .cta-band-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-    .cta-band-btn-w { background:#fff; color:#BF0A30; padding:0.9rem 2.25rem; border-radius:8px; font-weight:700; font-size:0.95rem; text-decoration:none; font-family:'Inter',sans-serif; transition:opacity 0.18s,transform 0.18s; display:inline-block; }
-    .cta-band-btn-w:hover { opacity:0.92; transform:translateY(-2px); }
-    .cta-band-btn-g { border:2px solid rgba(255,255,255,0.5); color:#fff; padding:0.9rem 2.25rem; border-radius:8px; font-weight:600; font-size:0.95rem; text-decoration:none; font-family:'Inter',sans-serif; transition:background 0.18s; display:inline-block; }
-    .cta-band-btn-g:hover { background:rgba(255,255,255,0.12); }
-    /* ── IMPROVED CARD ELEMENTS ── */
-    .uni-sch-ribbon { display:inline-flex; align-items:center; gap:0.3rem; background:#059669; border:none; color:#fff; font-size:0.73rem; font-weight:700; padding:0.25rem 0.7rem; border-radius:4px; }
-    .uni-tuition-tag { font-size:0.8rem; color:#047857; font-weight:700; background:#ecfdf5; border:1.5px solid #6ee7b7; padding:0.25rem 0.65rem; border-radius:4px; }
-    .uni-degrees { display:flex; gap:0.3rem; flex-wrap:wrap; margin-top:0.6rem; }
-    .uni-deg-pill { font-size:0.73rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:100px; cursor:default; }
-    .uni-deg-ug  { background:#1d4ed8; color:#fff; border:none; }
-    .uni-deg-pg  { background:#7c3aed; color:#fff; border:none; }
-    .uni-deg-phd { background:#be123c; color:#fff; border:none; }
-    .uni-card.is-featured { border-color:#f59e0b; box-shadow:0 2px 16px rgba(245,158,11,0.18); }
-    .uni-footer-btns { display:grid; grid-template-columns:1fr auto; gap:0.5rem; }
-    .uni-wa-btn { display:flex; align-items:center; justify-content:center; padding:0.68rem 0.85rem; border:1.5px solid #25d366; border-radius:8px; color:#25d366; font-size:1rem; text-decoration:none; transition:all 0.18s; }
-    .uni-wa-btn:hover { background:#25d366; color:#fff; }
+    .why-tih-section { background: linear-gradient(135deg, #001440 0%, #002868 55%, #1a3d8a 100%); padding: 5rem 0; position: relative; overflow: hidden; }
+    .why-tih-section::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; }
+    .why-tih-inner { position: relative; z-index: 1; }
+    .why-tih-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.3); color: #fdba74; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.25rem; }
+    .why-tih-title { font-family: 'Poppins', sans-serif; font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 800; color: #fff; margin: 0 0 0.75rem; line-height: 1.15; }
+    .why-tih-sub { font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 56ch; line-height: 1.75; margin: 0 0 3rem; }
+    .why-tih-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+    .why-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 1.75rem 1.5rem; transition: background 0.22s, transform 0.22s; }
+    .why-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-3px); }
+    .why-card-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .why-card h4 { font-family: 'Poppins', sans-serif; font-weight: 700; color: #fff; font-size: 0.96rem; margin: 0 0 0.45rem; }
+    .why-card p { font-size: 0.85rem; color: rgba(255,255,255,0.68); line-height: 1.72; margin: 0; }
+
+    /* ── STICKY FILTER BAR ── */
+    .dir-filter-bar { position: sticky; top: 70px; z-index: 100; background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0.85rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .dir-filter-inner { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+    .dir-search-wrap { flex: 1; min-width: 220px; position: relative; }
+    .dir-search-wrap svg { position: absolute; left: 0.9rem; top: 50%; transform: translateY(-50%); color: #94a3b8; pointer-events: none; }
+    .dir-search-wrap input { width: 100%; padding: 0.65rem 1rem 0.65rem 2.6rem; border: 1.5px solid #e2e8f0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.93rem; color: #0f172a; background: #f8fafc; outline: none; transition: border-color 0.18s, box-shadow 0.18s; }
+    .dir-search-wrap input:focus { border-color: #002868; background: #fff; box-shadow: 0 0 0 3px rgba(0,40,104,0.09); }
+    .dir-filters-btn { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.65rem 1.1rem; border: 1.5px solid #e2e8f0; border-radius: 8px; background: #fff; font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 600; color: #374151; cursor: pointer; white-space: nowrap; transition: border-color 0.18s; }
+    .dir-filters-btn:hover { border-color: #002868; color: #002868; }
+    .dir-filter-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.5rem; }
+    .filter-pill { padding: 0.42rem 1rem; border-radius: 100px; border: 1.5px solid #cbd5e1; background: #fff; color: #334155; font-size: 0.83rem; font-weight: 600; cursor: pointer; transition: all 0.18s; font-family: 'Inter', sans-serif; white-space: nowrap; }
+    .filter-pill:hover { border-color: #002868; color: #002868; background: #f0f5ff; }
+    .filter-pill.on { background: #002868; border-color: #002868; color: #fff; }
+    .filter-pill.on-red { background: #BF0A30; border-color: #BF0A30; color: #fff; }
+    .filter-pill.on-green { background: #059669; border-color: #059669; color: #fff; }
+
+    /* ── UNIVERSITY GRID SECTION ── */
+    .dir-grid-section { background: #f1f5f9; padding: 2rem 0 3rem; }
+    .dir-count-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+    .dir-count-text { font-size: 0.88rem; font-weight: 600; color: #64748b; }
+
     /* ── COUNTRY SECTION HEADERS ── */
-    .country-block { margin-bottom:2.5rem; }
-    .country-sec-head { display:flex; align-items:center; gap:1.25rem; padding:1.25rem 1.5rem; background:#fff; border-radius:12px; margin-bottom:1.25rem; border:1px solid #e2e8f0; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
-    .csh-flag { font-size:2.2rem; flex-shrink:0; }
-    .csh-text h3 { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.05rem; color:#002868; margin:0 0 0.15rem; }
-    .csh-text p { font-size:0.83rem; color:#64748b; margin:0; }
-    .csh-pill { margin-left:auto; font-size:0.78rem; font-weight:700; padding:0.3rem 0.9rem; border-radius:100px; color:#fff; flex-shrink:0; }
-    .csh-pill.blue { background:#002868; }
-    .csh-pill.red { background:#BF0A30; }
-    /* ── IMPROVED HOW IT WORKS ── */
-    .steps-v2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0.5rem; }
-    .step-v2 { text-align:center; padding:2rem 1rem; position:relative; }
-    .step-v2-icon { width:62px; height:62px; border-radius:50%; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0; }
-    .step-v2-icon.blue { background:linear-gradient(135deg,#002868,#1a4a9c); box-shadow:0 4px 16px rgba(0,40,104,0.25); }
-    .step-v2-icon.red  { background:linear-gradient(135deg,#BF0A30,#8f0820); box-shadow:0 4px 16px rgba(191,10,48,0.25); }
-    .step-v2 h4 { font-family:'Poppins',sans-serif; font-size:0.93rem; color:#002868; margin:0 0 0.35rem; font-weight:700; }
-    .step-v2 p  { font-size:0.82rem; color:#6b7280; margin:0; line-height:1.65; }
-    @media (max-width:640px) { .why-tih-grid { grid-template-columns:1fr 1fr; } .steps-v2 { grid-template-columns:repeat(2,1fr); } }
-    @media (max-width:400px) { .why-tih-grid { grid-template-columns:1fr; } .steps-v2 { grid-template-columns:1fr; } }
+    .country-block { margin-bottom: 2.5rem; }
+    .country-sec-head { display: flex; align-items: center; gap: 1.25rem; padding: 1.25rem 1.5rem; background: #fff; border-radius: 12px; margin-bottom: 1.25rem; border: 1px solid #e2e8f0; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+    .csh-flag { font-size: 2.2rem; flex-shrink: 0; }
+    .csh-text h3 { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.05rem; color: #002868; margin: 0 0 0.15rem; }
+    .csh-text p { font-size: 0.83rem; color: #64748b; margin: 0; }
+    .csh-pill { margin-left: auto; font-size: 0.78rem; font-weight: 700; padding: 0.3rem 0.9rem; border-radius: 100px; color: #fff; flex-shrink: 0; }
+    .csh-pill.blue { background: #002868; }
+    .csh-pill.red { background: #BF0A30; }
+
+    /* ── UNIVERSITY CARDS ── */
+    .uni-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .uni-card { background: #fff; border-radius: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; overflow: hidden; transition: transform 0.22s, box-shadow 0.22s; cursor: pointer; display: flex; flex-direction: column; }
+    .uni-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .uni-card.is-featured { border-color: #f59e0b; box-shadow: 0 2px 16px rgba(245,158,11,0.18); }
+    .uni-card-top { height: 4px; width: 100%; display: block; }
+    .uni-card-header { padding: 1rem 1.25rem 0; display: flex; justify-content: space-between; align-items: flex-start; }
+    .uni-badge { width: 52px; height: 52px; border-radius: 12px; color: #fff; font-weight: 700; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .uni-card-rating { color: #f59e0b; font-weight: 700; font-size: 0.9rem; }
+    .uni-featured-badge { display: inline-flex; align-items: center; gap: 0.25rem; background: linear-gradient(90deg, #f59e0b, #f97316); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 0.18rem 0.5rem; border-radius: 4px; letter-spacing: 0.03em; }
+    .uni-card-body { padding: 0.75rem 1.25rem; flex: 1; }
+    /* NOTE: We rely on inline style on the h3 element in JS — no CSS rule for uni-name color here */
+    .uni-card-meta { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.75rem; }
+    .uni-meta-loc { font-size: 0.81rem; color: #334155; font-weight: 500; }
+    .uni-accred { font-size: 0.75rem; background: #dbeafe; color: #1e40af; padding: 0.2rem 0.55rem; border-radius: 4px; font-weight: 700; }
+    .uni-card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; background: #f8fafc; border-radius: 8px; padding: 0.6rem 0.75rem; margin-bottom: 0.75rem; border: 1px solid #e2e8f0; }
+    .uni-stat { display: flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; color: #1e293b; font-weight: 600; }
+    .uni-stat-icon { font-size: 0.9rem; }
+    .uni-card-programs { margin-bottom: 0.75rem; }
+    .uni-prog-label { font-size: 0.78rem; color: #374151; font-weight: 700; display: block; margin-bottom: 0.35rem; }
+    .uni-prog-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .uni-prog-tag { font-size: 0.75rem; background: #f1f5f9; color: #334155; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 4px; border: 1px solid #e2e8f0; }
+    .uni-tuition-tag { font-size: 0.8rem; color: #047857; font-weight: 700; background: #ecfdf5; border: 1.5px solid #6ee7b7; padding: 0.25rem 0.65rem; border-radius: 4px; }
+    .uni-sch-ribbon { display: inline-flex; align-items: center; gap: 0.3rem; background: #059669; border: none; color: #fff; font-size: 0.73rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 4px; }
+    .uni-degrees { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.6rem; }
+    .uni-deg-pill { font-size: 0.73rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 100px; cursor: default; }
+    .uni-deg-ug  { background: #1d4ed8; color: #fff; border: none; }
+    .uni-deg-pg  { background: #7c3aed; color: #fff; border: none; }
+    .uni-deg-phd { background: #be123c; color: #fff; border: none; }
+    .uni-card-footer { padding: 0.75rem 1.25rem 1.25rem; }
+    .uni-footer-btns { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; }
+    .uni-explore-btn-v2 { display: block; text-align: center; padding: 0.68rem 1rem; border-radius: 8px; color: #fff; font-weight: 700; font-size: 0.88rem; text-decoration: none; transition: opacity 0.18s, transform 0.18s; font-family: 'Inter', sans-serif; }
+    .uni-explore-btn-v2:hover { opacity: 0.88; transform: translateY(-1px); }
+    .uni-wa-btn { display: flex; align-items: center; justify-content: center; padding: 0.68rem 0.85rem; border: 1.5px solid #25d366; border-radius: 8px; color: #25d366; font-size: 1rem; text-decoration: none; transition: all 0.18s; }
+    .uni-wa-btn:hover { background: #25d366; color: #fff; }
+    .no-results { grid-column: 1 / -1; text-align: center; padding: 3.5rem 1.5rem; color: #64748b; }
+    .no-results h3 { margin-bottom: 0.5rem; color: #374151; }
+
+    /* ── CTA BAND ── */
+    .cta-band { background: linear-gradient(135deg, #BF0A30 0%, #8f0820 100%); padding: 4rem 0; text-align: center; position: relative; overflow: hidden; }
+    .cta-band::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
+    .cta-band-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; padding: 0 1.5rem; }
+    .cta-band h2 { font-family: 'Poppins', sans-serif; color: #fff; font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 800; margin: 0 0 0.75rem; }
+    .cta-band p { color: rgba(255,255,255,0.85); font-size: 1rem; margin: 0 0 2rem; line-height: 1.75; }
+    .cta-band-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-band-btn-w { background: #fff; color: #BF0A30; padding: 0.9rem 2.25rem; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; font-family: 'Inter', sans-serif; transition: opacity 0.18s, transform 0.18s; display: inline-block; }
+    .cta-band-btn-w:hover { opacity: 0.92; transform: translateY(-2px); }
+    .cta-band-btn-g { border: 2px solid rgba(255,255,255,0.5); color: #fff; padding: 0.9rem 2.25rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; font-family: 'Inter', sans-serif; transition: background 0.18s; display: inline-block; }
+    .cta-band-btn-g:hover { background: rgba(255,255,255,0.12); }
+
+    /* ── HOW IT WORKS ── */
+    .steps-v2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; }
+    .step-v2 { text-align: center; padding: 2rem 1rem; position: relative; }
+    .step-v2-icon { width: 62px; height: 62px; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .step-v2-icon.blue { background: linear-gradient(135deg, #002868, #1a4a9c); box-shadow: 0 4px 16px rgba(0,40,104,0.25); }
+    .step-v2-icon.red  { background: linear-gradient(135deg, #BF0A30, #8f0820); box-shadow: 0 4px 16px rgba(191,10,48,0.25); }
+    .step-v2 h4 { font-family: 'Poppins', sans-serif; font-size: 0.93rem; color: #002868; margin: 0 0 0.35rem; font-weight: 700; }
+    .step-v2 p  { font-size: 0.82rem; color: #6b7280; margin: 0; line-height: 1.65; }
+
+    /* ── ELIGIBILITY CHECKER ── */
+    .elig-wrap { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: clamp(2rem,4vw,3rem); box-shadow: 0 1px 4px rgba(0,0,0,0.06); max-width: 720px; margin: 0 auto; }
+    .elig-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 520px) { .elig-form-row { grid-template-columns: 1fr; } }
+    .elig-group { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+    .elig-group label { font-size: 0.85rem; font-weight: 600; color: #374151; }
+    .elig-group select, .elig-group input { padding: 0.72rem 0.95rem; border: 1.5px solid #e2e8f0; border-radius: 8px; background: #f8fafc; color: #0f172a; font-family: 'Inter', sans-serif; font-size: 0.94rem; outline: none; transition: border-color 0.18s; width: 100%; appearance: none; -webkit-appearance: none; }
+    .elig-group select:focus, .elig-group input:focus { border-color: #002868; box-shadow: 0 0 0 3px rgba(0,40,104,0.1); }
+    .elig-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.4rem; cursor: pointer; }
+    .elig-result { margin-top: 1.5rem; padding: 1.25rem 1.5rem; border-radius: 10px; display: none; }
+    .elig-result.show { display: block; }
+    .elig-result.eligible   { background: #f0fdf4; border: 1.5px solid #86efac; }
+    .elig-result.conditional{ background: #fffbeb; border: 1.5px solid #fde68a; }
+    .elig-result.ineligible { background: #fff1f2; border: 1.5px solid #fca5a5; }
+    .elig-result-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .elig-result h3 { margin-bottom: 0.4rem; font-size: 1.1rem; font-family: 'Poppins', sans-serif; color: #0f172a; }
+    .elig-result p  { font-size: 0.9rem; color: #374151; margin: 0; }
+
+    /* ── TESTIMONIALS ── */
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+    .testi-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .testi-avatar { width: 52px; height: 52px; border-radius: 50%; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff; }
+    .testi-avatar.blue { background: linear-gradient(135deg, #002868, #1a3d8a); }
+    .testi-avatar.red  { background: linear-gradient(135deg, #BF0A30, #8a0020); }
+    .stars { color: #f59e0b; font-size: 0.85rem; margin-bottom: 0.75rem; }
+    .testi-text { font-size: 0.91rem; color: #374151; line-height: 1.78; margin-bottom: 1rem; }
+    .testi-name { font-weight: 700; font-size: 0.9rem; color: #0f172a; }
+    .testi-dest { font-size: 0.79rem; color: #6b7280; }
+
+    /* ── FORMS ── */
+    .form-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: clamp(1.75rem,4vw,2.5rem); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .form-card h3 { font-size: 1.2rem; color: #002868; margin-bottom: 0.4rem; font-family: 'Poppins', sans-serif; font-weight: 700; }
+    .form-card-lead { font-size: 0.92rem; color: #6b7280; margin-bottom: 1.75rem; }
+    .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 560px) { .form-row2 { grid-template-columns: 1fr; } }
+    .fg2 { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
+    .fg2:last-of-type { margin-bottom: 0; }
+    .fg2 label { font-size: 0.85rem; font-weight: 600; color: #374151; }
+    .fg2 .req { color: #BF0A30; }
+    .fg2 input, .fg2 select, .fg2 textarea { width: 100%; padding: 0.72rem 0.95rem; border: 1.5px solid #e2e8f0; border-radius: 8px; background: #f8fafc; color: #0f172a; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.18s, box-shadow 0.18s; appearance: none; -webkit-appearance: none; }
+    .fg2 input:focus, .fg2 select:focus, .fg2 textarea:focus { border-color: #002868; background: #fff; box-shadow: 0 0 0 3px rgba(0,40,104,0.1); }
+    .fg2 textarea { resize: vertical; min-height: 100px; }
+    .fg2 select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; cursor: pointer; }
+    .form-feedback { font-size: 0.9rem; font-weight: 600; margin-top: 0.85rem; padding: 0.7rem 1rem; border-radius: 8px; background: #f1f5f9; display: none; }
+    .form-feedback:not(:empty) { display: block; }
+    .form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.5rem; }
+    .form-note { font-size: 0.79rem; color: #6b7280; }
+
+    /* ── COUNSELING LAYOUT ── */
+    .counsel-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 3.5rem; align-items: start; }
+    @media (max-width: 860px) { .counsel-layout { grid-template-columns: 1fr; } }
+    .counsel-info-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+    .counsel-icon { width: 46px; height: 46px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
+    .counsel-icon.blue { background: #e8f0fb; }
+    .counsel-icon.red  { background: #fce8ec; }
+    .counsel-icon-text h4 { font-size: 0.95rem; color: #0f172a; margin-bottom: 0.2rem; font-family: 'Poppins', sans-serif; font-weight: 600; }
+    .counsel-icon-text p  { font-size: 0.85rem; color: #6b7280; margin: 0; }
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #0f172a; z-index: 200; box-shadow: 0 -2px 10px rgba(0,0,0,0.2); padding: 0 0 env(safe-area-inset-bottom); }
+    .bottom-nav-inner { max-width: 1200px; margin: auto; padding: 0 1.5rem; height: 56px; display: flex; align-items: center; gap: 1.5rem; }
+    .bottom-nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: #fff; font-weight: 700; font-size: 0.88rem; flex-shrink: 0; font-family: 'Poppins', sans-serif; }
+    .bottom-nav-icon { font-size: 1.1rem; }
+    .bottom-nav-sub { color: rgba(255,255,255,0.55); font-weight: 400; }
+    .bottom-nav-links { display: flex; gap: 1.25rem; flex: 1; justify-content: center; }
+    .bottom-nav-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.18s; font-family: 'Inter', sans-serif; }
+    .bottom-nav-links a:hover, .bottom-nav-links a.active { color: #fff; }
+    .bottom-nav-cta { flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    .portal-footer { background: #0f172a; color: #94a3b8; padding: 3rem 0 1.5rem; }
+    .portal-footer-grid { display: grid; grid-template-columns: 2fr 1.2fr 1.4fr 1.5fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+    @media (max-width: 900px) { .portal-footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .portal-footer-grid { grid-template-columns: 1fr; } }
+    .pf-brand-name { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff; margin: 0 0 0.5rem; }
+    .pf-tagline { font-size: 0.85rem; line-height: 1.65; color: #94a3b8; margin: 0 0 1.25rem; }
+    .pf-social { display: flex; gap: 0.6rem; }
+    .pf-social a { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; transition: background 0.18s; }
+    .pf-social a:hover { background: rgba(255,255,255,0.15); }
+    .pf-heading { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.88rem; color: #fff; margin: 0 0 1rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .pf-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+    .pf-links a { color: #94a3b8; text-decoration: none; font-size: 0.87rem; transition: color 0.18s; }
+    .pf-links a:hover { color: #fff; }
+    .pf-contact-item { display: flex; align-items: flex-start; gap: 0.55rem; font-size: 0.87rem; color: #94a3b8; margin-bottom: 0.6rem; }
+    .pf-contact-item a { color: #94a3b8; text-decoration: none; }
+    .pf-contact-item a:hover { color: #fff; }
+    .pf-hours { margin-top: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.85rem 1rem; font-size: 0.82rem; line-height: 1.65; color: #94a3b8; }
+    .pf-hours strong { color: #e2e8f0; display: block; margin-bottom: 0.3rem; }
+    .portal-footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+    .portal-footer-bottom p { margin: 0; font-size: 0.82rem; color: rgba(200,216,240,0.55); }
+    .portal-footer-bottom a { color: rgba(200,216,240,0.6); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .dir-filter-bar { top: 0; }
+      #application-form > .container > div { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 680px) {
+      .uni-grid { grid-template-columns: 1fr; }
+      .steps-v2 { grid-template-columns: repeat(2, 1fr); }
+      .bottom-nav-brand span:not(.bottom-nav-icon) { display: none; }
+      .bottom-nav-cta { display: none; }
+    }
+    @media (max-width: 640px) {
+      .why-tih-grid { grid-template-columns: 1fr 1fr; }
+      .steps-v2 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 400px) {
+      .why-tih-grid { grid-template-columns: 1fr; }
+      .steps-v2 { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- ANNOUNCEMENT BAR -->
   <div id="announcement-bar" style="background:#BF0A30;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
     🎓 <strong>2026 Scholarship Applications Now Open</strong> — Deadline July 15, 2026.
     <a href="study-abroad.html#application-form" style="color:#fff;text-decoration:underline;margin-left:0.5rem;">Apply Now →</a>
     <button onclick="this.parentElement.style.display='none'" aria-label="Close announcement" style="position:absolute;right:0.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.2rem 0.4rem;line-height:1;">✕</button>
   </div>
+
+  <!-- HEADER -->
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">Tolbert Innovation Hub</a>
@@ -256,8 +294,10 @@
       </nav>
     </div>
   </header>
+
   <main id="main-content">
-    <!-- HERO -->
+
+    <!-- HERO SECTION -->
     <section class="dir-hero" aria-label="Study Abroad Portal Hero">
       <div class="container dir-hero-inner">
         <nav class="dir-hero-breadcrumb" aria-label="Breadcrumb">
@@ -282,8 +322,8 @@
             <span class="dir-hero-stat-label">Countries</span>
           </div>
           <div class="dir-hero-stat" role="listitem">
-            <span class="dir-hero-stat-num">100%</span>
-            <span class="dir-hero-stat-label">Scholarship Available</span>
+            <span class="dir-hero-stat-num">50%</span>
+            <span class="dir-hero-stat-label">TIH Scholarship</span>
           </div>
           <div class="dir-hero-stat" role="listitem">
             <span class="dir-hero-stat-num">500+</span>
@@ -292,6 +332,7 @@
         </div>
       </div>
     </section>
+
     <!-- WHY STUDY ABROAD WITH TIH -->
     <section class="why-tih-section" aria-label="Why study abroad with TIH">
       <div class="container why-tih-inner">
@@ -299,15 +340,40 @@
         <h2 class="why-tih-title">Everything You Need to Study Abroad<br>— Completely Free</h2>
         <p class="why-tih-sub">Tolbert Innovation Hub handles every step of your international education journey at zero cost. From university selection to visa processing — we've got you covered.</p>
         <div class="why-tih-grid">
-          <div class="why-card"><span class="why-card-icon">🆓</span><h4>Free Application</h4><p>No fees, no hidden charges. Our guidance, document review, and university placement are 100% free for Liberian students.</p></div>
-          <div class="why-card"><span class="why-card-icon">🎓</span><h4>50% TIH Scholarship</h4><p>We negotiate exclusive tuition reductions of up to 50% for all TIH-referred students at partner universities.</p></div>
-          <div class="why-card"><span class="why-card-icon">🛂</span><h4>Full Visa Support</h4><p>Step-by-step student visa assistance, embassy interview preparation, and pre-departure orientation included.</p></div>
-          <div class="why-card"><span class="why-card-icon">📋</span><h4>Document Review</h4><p>Our expert team personally reviews and authenticates your transcripts, certificates, and supporting documents.</p></div>
-          <div class="why-card"><span class="why-card-icon">🌐</span><h4>2 Destinations</h4><p>India and North Cyprus — 20 partner universities across two countries offering UG, PG, and PhD programs.</p></div>
-          <div class="why-card"><span class="why-card-icon">🏆</span><h4>500+ Students Placed</h4><p>Hundreds of Liberian students have successfully started their international education journey through TIH.</p></div>
+          <div class="why-card">
+            <span class="why-card-icon">🆓</span>
+            <h4>Free Application</h4>
+            <p>No fees, no hidden charges. Our guidance, document review, and university placement are 100% free for Liberian students.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-card-icon">🎓</span>
+            <h4>50% TIH Scholarship</h4>
+            <p>We negotiate exclusive tuition reductions of up to 50% for all TIH-referred students at partner universities.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-card-icon">🛂</span>
+            <h4>Full Visa Support</h4>
+            <p>Step-by-step student visa assistance, embassy interview preparation, and pre-departure orientation included.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-card-icon">📋</span>
+            <h4>Document Review</h4>
+            <p>Our expert team personally reviews and authenticates your transcripts, certificates, and supporting documents.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-card-icon">🌐</span>
+            <h4>2 Destinations</h4>
+            <p>India and North Cyprus — 20 partner universities across two countries offering UG, PG, and PhD programs.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-card-icon">🏆</span>
+            <h4>500+ Students Placed</h4>
+            <p>Hundreds of Liberian students have successfully started their international education journey through TIH.</p>
+          </div>
         </div>
       </div>
     </section>
+
     <!-- STICKY SEARCH + FILTER BAR -->
     <div class="dir-filter-bar" role="search" aria-label="Filter universities">
       <div class="container">
@@ -331,15 +397,17 @@
         </div>
       </div>
     </div>
+
     <!-- UNIVERSITY GRID -->
     <section id="universities" class="dir-grid-section">
       <div class="container">
         <div class="dir-count-bar">
           <span class="dir-count-text" id="uniCount" aria-live="polite">Showing 20 universities in India &amp; North Cyprus</span>
         </div>
-        <div class="uni-grid" id="uniGrid" aria-label="University listing"></div>
+        <div id="uniGrid" aria-label="University listing"></div>
       </div>
     </section>
+
     <!-- CTA BAND -->
     <section class="cta-band" aria-label="Apply now call to action">
       <div class="cta-band-inner">
@@ -351,6 +419,7 @@
         </div>
       </div>
     </section>
+
     <!-- HOW IT WORKS -->
     <section class="section" style="background:#fff;">
       <div class="container">
@@ -360,15 +429,40 @@
           <p class="section-intro">Six simple steps from your first inquiry to arriving at your chosen university campus — all guided by TIH at no cost.</p>
         </div>
         <div class="steps-v2 reveal">
-          <div class="step-v2"><div class="step-v2-icon blue">🔍</div><h4>Check Eligibility</h4><p>Use our instant checker to see which universities match your academic background.</p></div>
-          <div class="step-v2"><div class="step-v2-icon red">🏛️</div><h4>Choose University</h4><p>Browse 20 partner universities, filter by country, program, and shortlist your favorites.</p></div>
-          <div class="step-v2"><div class="step-v2-icon blue">💬</div><h4>Book Counseling</h4><p>Speak with an expert counselor to finalize your choice and understand full requirements.</p></div>
-          <div class="step-v2"><div class="step-v2-icon red">📝</div><h4>Submit Application</h4><p>Complete your online application with guided document support through TIH.</p></div>
-          <div class="step-v2"><div class="step-v2-icon blue">📩</div><h4>Receive Offer Letter</h4><p>We process your application and you receive an official admission offer letter.</p></div>
-          <div class="step-v2"><div class="step-v2-icon red">✈️</div><h4>Visa &amp; Departure</h4><p>We guide you through the student visa process and prepare you for departure abroad.</p></div>
+          <div class="step-v2">
+            <div class="step-v2-icon blue">🔍</div>
+            <h4>Check Eligibility</h4>
+            <p>Use our instant checker to see which universities match your academic background.</p>
+          </div>
+          <div class="step-v2">
+            <div class="step-v2-icon red">🏛️</div>
+            <h4>Choose University</h4>
+            <p>Browse 20 partner universities, filter by country, program, and shortlist your favorites.</p>
+          </div>
+          <div class="step-v2">
+            <div class="step-v2-icon blue">💬</div>
+            <h4>Book Counseling</h4>
+            <p>Speak with an expert counselor to finalize your choice and understand full requirements.</p>
+          </div>
+          <div class="step-v2">
+            <div class="step-v2-icon red">📝</div>
+            <h4>Submit Application</h4>
+            <p>Complete your online application with guided document support through TIH.</p>
+          </div>
+          <div class="step-v2">
+            <div class="step-v2-icon blue">📩</div>
+            <h4>Receive Offer Letter</h4>
+            <p>We process your application and you receive an official admission offer letter.</p>
+          </div>
+          <div class="step-v2">
+            <div class="step-v2-icon red">✈️</div>
+            <h4>Visa &amp; Departure</h4>
+            <p>We guide you through the student visa process and prepare you for departure abroad.</p>
+          </div>
         </div>
       </div>
     </section>
+
     <!-- ELIGIBILITY CHECKER -->
     <section id="eligibility" class="section" style="background:#f1f5f9;">
       <div class="container">
@@ -381,12 +475,47 @@
           <h3 style="color:#002868;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;font-weight:700;">Eligibility Checker</h3>
           <p style="color:#6b7280;font-size:0.92rem;margin-bottom:1.75rem;">Fill in your details — takes less than 30 seconds.</p>
           <div class="elig-form-row">
-            <div class="elig-group"><label for="elig-level">Current Education Level *</label><select id="elig-level"><option value="">Select level</option><option value="wassce">WASSCE / Senior High School</option><option value="diploma">Diploma / HND</option><option value="bachelors">Bachelor's Degree</option><option value="masters">Master's Degree</option></select></div>
-            <div class="elig-group"><label for="elig-target">Target Degree *</label><select id="elig-target"><option value="">Select degree</option><option value="UG">Undergraduate</option><option value="PG">Postgraduate (Master's)</option><option value="PhD">PhD</option></select></div>
+            <div class="elig-group">
+              <label for="elig-level">Current Education Level *</label>
+              <select id="elig-level">
+                <option value="">Select level</option>
+                <option value="wassce">WASSCE / Senior High School</option>
+                <option value="diploma">Diploma / HND</option>
+                <option value="bachelors">Bachelor's Degree</option>
+                <option value="masters">Master's Degree</option>
+              </select>
+            </div>
+            <div class="elig-group">
+              <label for="elig-target">Target Degree *</label>
+              <select id="elig-target">
+                <option value="">Select degree</option>
+                <option value="UG">Undergraduate</option>
+                <option value="PG">Postgraduate (Master's)</option>
+                <option value="PhD">PhD</option>
+              </select>
+            </div>
           </div>
           <div class="elig-form-row">
-            <div class="elig-group"><label for="elig-gpa">GPA / Average Grade *</label><select id="elig-gpa"><option value="">Select grade range</option><option value="high">3.5–4.0 / A / Distinction</option><option value="mid">2.5–3.4 / B / Credit</option><option value="low">1.5–2.4 / C / Pass</option><option value="below">Below 1.5 / D or below</option></select></div>
-            <div class="elig-group"><label for="elig-english">English Proficiency</label><select id="elig-english"><option value="">Select option</option><option value="ielts">IELTS 6.0+</option><option value="toefl">TOEFL 72+</option><option value="native">English is my native language</option><option value="none">No formal test yet</option></select></div>
+            <div class="elig-group">
+              <label for="elig-gpa">GPA / Average Grade *</label>
+              <select id="elig-gpa">
+                <option value="">Select grade range</option>
+                <option value="high">3.5–4.0 / A / Distinction</option>
+                <option value="mid">2.5–3.4 / B / Credit</option>
+                <option value="low">1.5–2.4 / C / Pass</option>
+                <option value="below">Below 1.5 / D or below</option>
+              </select>
+            </div>
+            <div class="elig-group">
+              <label for="elig-english">English Proficiency</label>
+              <select id="elig-english">
+                <option value="">Select option</option>
+                <option value="ielts">IELTS 6.0+</option>
+                <option value="toefl">TOEFL 72+</option>
+                <option value="native">English is my native language</option>
+                <option value="none">No formal test yet</option>
+              </select>
+            </div>
           </div>
           <button class="btn btn-primary" onclick="checkEligibility()" type="button" style="width:100%;margin-top:0.5rem;">Check My Eligibility</button>
           <div class="elig-result eligible" id="eligResult" role="alert" aria-live="polite">
@@ -397,6 +526,7 @@
         </div>
       </div>
     </section>
+
     <!-- SUCCESS STORIES -->
     <section class="section" style="background:#fff;">
       <div class="container">
@@ -406,12 +536,31 @@
           <p class="section-intro">Real stories from Liberian students who pursued their international education dreams through Tolbert Innovation Hub.</p>
         </div>
         <div class="testi-grid reveal">
-          <div class="testi-card"><div class="testi-avatar blue">JK</div><div class="stars">★★★★★</div><p class="testi-text">"I had no idea how to apply to universities in India. The team at Tolbert walked me through every step — eligibility, documents, visa, everything. I'm now in my second year at Lovely Professional University studying Computer Science."</p><p class="testi-name">James K. Freeman</p><p class="testi-dest">Now studying at LPU, India · Computer Science</p></div>
-          <div class="testi-card"><div class="testi-avatar red">AM</div><div class="stars">★★★★★</div><p class="testi-text">"Getting a fully funded scholarship changed my life. Tolbert Innovation Hub handled my application, coordinated with the embassy, and I received my offer letter within two months. My tuition, hostel, and stipend are fully covered."</p><p class="testi-name">Abigail M. Saah</p><p class="testi-dest">Scholarship Recipient at Sharda University · Medicine</p></div>
-          <div class="testi-card"><div class="testi-avatar blue">RT</div><div class="stars">★★★★★</div><p class="testi-text">"I was worried about finding a university that matched my budget and program interest. The study abroad portal made it easy — I filtered by program and found Marwadi University. Now I'm completing my MBA in Gujarat."</p><p class="testi-name">Robert T. Kollie</p><p class="testi-dest">MBA at Marwadi University, India · Business</p></div>
+          <div class="testi-card">
+            <div class="testi-avatar blue">JK</div>
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"I had no idea how to apply to universities in India. The team at Tolbert walked me through every step — eligibility, documents, visa, everything. I'm now in my second year at Lovely Professional University studying Computer Science."</p>
+            <p class="testi-name">James K. Freeman</p>
+            <p class="testi-dest">Now studying at LPU, India · Computer Science</p>
+          </div>
+          <div class="testi-card">
+            <div class="testi-avatar red">AM</div>
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"Getting a fully funded scholarship changed my life. Tolbert Innovation Hub handled my application, coordinated with the embassy, and I received my offer letter within two months. My tuition, hostel, and stipend are fully covered."</p>
+            <p class="testi-name">Abigail M. Saah</p>
+            <p class="testi-dest">Scholarship Recipient at Sharda University · Medicine</p>
+          </div>
+          <div class="testi-card">
+            <div class="testi-avatar blue">RT</div>
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"I was worried about finding a university that matched my budget and program interest. The study abroad portal made it easy — I filtered by program and found Marwadi University. Now I'm completing my MBA in Gujarat."</p>
+            <p class="testi-name">Robert T. Kollie</p>
+            <p class="testi-dest">MBA at Marwadi University, India · Business</p>
+          </div>
         </div>
       </div>
     </section>
+
     <!-- BOOK COUNSELING -->
     <section id="counseling" class="section" style="background:#f1f5f9;">
       <div class="container">
@@ -420,36 +569,103 @@
             <p class="section-label">Free Guidance</p>
             <h2>Book a Free Counseling Session</h2>
             <p style="color:#374151;margin-bottom:2rem;line-height:1.8;">Our expert counselors are available to help you choose the right university, understand visa requirements, review your documents, and answer every question before you apply.</p>
-            <div class="counsel-info-item"><div class="counsel-icon blue">🏛️</div><div class="counsel-icon-text"><h4>University Selection</h4><p>We match your academic profile and career goals with the ideal program and university.</p></div></div>
-            <div class="counsel-info-item"><div class="counsel-icon red">📋</div><div class="counsel-icon-text"><h4>Document Review</h4><p>Our team checks your transcripts, certificates, and supporting documents before submission.</p></div></div>
-            <div class="counsel-info-item"><div class="counsel-icon blue">✈️</div><div class="counsel-icon-text"><h4>Visa &amp; Travel Guidance</h4><p>Step-by-step assistance with student visa applications and pre-departure orientation.</p></div></div>
-            <div class="counsel-info-item"><div class="counsel-icon red">💰</div><div class="counsel-icon-text"><h4>Scholarship Matching</h4><p>We identify scholarships and discounts you qualify for and include them in your application.</p></div></div>
-            <div style="background:#e8f0fb;border-radius:10px;padding:1.25rem;border-left:3px solid #002868;margin-top:1rem;"><p style="margin:0;font-size:0.9rem;color:#002868;font-weight:600;">📍 In-person: Spriggs Payne Airport, Sinkor, Monrovia · Also available on WhatsApp &amp; Zoom</p></div>
+            <div class="counsel-info-item">
+              <div class="counsel-icon blue">🏛️</div>
+              <div class="counsel-icon-text">
+                <h4>University Selection</h4>
+                <p>We match your academic profile and career goals with the ideal program and university.</p>
+              </div>
+            </div>
+            <div class="counsel-info-item">
+              <div class="counsel-icon red">📋</div>
+              <div class="counsel-icon-text">
+                <h4>Document Review</h4>
+                <p>Our team checks your transcripts, certificates, and supporting documents before submission.</p>
+              </div>
+            </div>
+            <div class="counsel-info-item">
+              <div class="counsel-icon blue">✈️</div>
+              <div class="counsel-icon-text">
+                <h4>Visa &amp; Travel Guidance</h4>
+                <p>Step-by-step assistance with student visa applications and pre-departure orientation.</p>
+              </div>
+            </div>
+            <div class="counsel-info-item">
+              <div class="counsel-icon red">💰</div>
+              <div class="counsel-icon-text">
+                <h4>Scholarship Matching</h4>
+                <p>We identify scholarships and discounts you qualify for and include them in your application.</p>
+              </div>
+            </div>
+            <div style="background:#e8f0fb;border-radius:10px;padding:1.25rem;border-left:3px solid #002868;margin-top:1rem;">
+              <p style="margin:0;font-size:0.9rem;color:#002868;font-weight:600;">📍 In-person: Spriggs Payne Airport, Sinkor, Monrovia · Also available on WhatsApp &amp; Zoom</p>
+            </div>
           </div>
           <div class="reveal">
             <form class="form-card" data-success-message="Your counseling session has been booked! Our team will contact you within 24 hours to confirm your appointment." novalidate>
               <h3>Book Your Free Session</h3>
               <p class="form-card-lead">All fields marked <span style="color:#BF0A30">*</span> are required.</p>
               <div class="form-row2">
-                <div class="fg2"><label for="co-name">Full Name <span class="req">*</span></label><input type="text" id="co-name" name="name" placeholder="Your full name" required /></div>
-                <div class="fg2"><label for="co-email">Email Address <span class="req">*</span></label><input type="email" id="co-email" name="email" placeholder="your@email.com" required /></div>
+                <div class="fg2">
+                  <label for="co-name">Full Name <span class="req">*</span></label>
+                  <input type="text" id="co-name" name="name" placeholder="Your full name" required />
+                </div>
+                <div class="fg2">
+                  <label for="co-email">Email Address <span class="req">*</span></label>
+                  <input type="email" id="co-email" name="email" placeholder="your@email.com" required />
+                </div>
               </div>
               <div class="form-row2">
-                <div class="fg2"><label for="co-phone">Phone / WhatsApp <span class="req">*</span></label><input type="tel" id="co-phone" name="phone" placeholder="+231 XXX XXX XXX" required /></div>
-                <div class="fg2"><label for="co-interest">Study Interest <span class="req">*</span></label><select id="co-interest" name="interest" required><option value="">Select interest</option><option>Undergraduate in India</option><option>Postgraduate in India</option><option>PhD in India</option><option>Undergraduate in Cyprus</option><option>Postgraduate in Cyprus</option><option>Fully Funded Scholarship</option><option>General Scholarship</option><option>Not sure — need guidance</option></select></div>
+                <div class="fg2">
+                  <label for="co-phone">Phone / WhatsApp <span class="req">*</span></label>
+                  <input type="tel" id="co-phone" name="phone" placeholder="+231 XXX XXX XXX" required />
+                </div>
+                <div class="fg2">
+                  <label for="co-interest">Study Interest <span class="req">*</span></label>
+                  <select id="co-interest" name="interest" required>
+                    <option value="">Select interest</option>
+                    <option>Undergraduate in India</option>
+                    <option>Postgraduate in India</option>
+                    <option>PhD in India</option>
+                    <option>Undergraduate in Cyprus</option>
+                    <option>Postgraduate in Cyprus</option>
+                    <option>Fully Funded Scholarship</option>
+                    <option>General Scholarship</option>
+                    <option>Not sure — need guidance</option>
+                  </select>
+                </div>
               </div>
               <div class="form-row2">
-                <div class="fg2"><label for="co-date">Preferred Date</label><input type="date" id="co-date" name="preferredDate" /></div>
-                <div class="fg2"><label for="co-mode">Session Mode <span class="req">*</span></label><select id="co-mode" name="mode" required><option value="">Select mode</option><option>In-Person (Monrovia office)</option><option>WhatsApp Call</option><option>Zoom Video Call</option><option>Phone Call</option></select></div>
+                <div class="fg2">
+                  <label for="co-date">Preferred Date</label>
+                  <input type="date" id="co-date" name="preferredDate" />
+                </div>
+                <div class="fg2">
+                  <label for="co-mode">Session Mode <span class="req">*</span></label>
+                  <select id="co-mode" name="mode" required>
+                    <option value="">Select mode</option>
+                    <option>In-Person (Monrovia office)</option>
+                    <option>WhatsApp Call</option>
+                    <option>Zoom Video Call</option>
+                    <option>Phone Call</option>
+                  </select>
+                </div>
               </div>
-              <div class="fg2"><label for="co-question">Your Main Question or Concern</label><textarea id="co-question" name="question" placeholder="What would you like help with?"></textarea></div>
+              <div class="fg2">
+                <label for="co-question">Your Main Question or Concern</label>
+                <textarea id="co-question" name="question" placeholder="What would you like help with?"></textarea>
+              </div>
               <p class="form-feedback" aria-live="polite"></p>
-              <div class="form-submit-row"><button class="btn btn-primary" type="submit">Book Free Session</button><p class="form-note">We confirm within 24 hours. No cost — ever.</p></div>
+              <div class="form-submit-row">
+                <button class="btn btn-primary" type="submit">Book Free Session</button>
+                <p class="form-note">We confirm within 24 hours. No cost — ever.</p>
+              </div>
             </form>
           </div>
         </div>
       </div>
     </section>
+
     <!-- APPLICATION FORM -->
     <section id="application-form" class="section" style="background:#f8faff;">
       <div class="container">
@@ -459,42 +675,127 @@
             <h2>Scholarship Application Form</h2>
             <p style="color:#6b7280;line-height:1.8;margin-bottom:1.5rem;">Complete this form to begin your international study journey. Our team personally reviews every application and contacts you within 3–5 business days with next steps.</p>
             <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem;">
-              <div style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="font-size:1.4rem;flex-shrink:0;">✅</span><div><strong style="color:#0f172a;">Free Application</strong><br /><span style="font-size:0.88rem;color:#6b7280;">No fees to apply. Our guidance and placement support is 100% free for Liberian students.</span></div></div>
-              <div style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="font-size:1.4rem;flex-shrink:0;">🎓</span><div><strong style="color:#0f172a;">20 Partner Universities</strong><br /><span style="font-size:0.88rem;color:#6b7280;">India and Cyprus. Undergraduate, Postgraduate, and PhD programs across all disciplines.</span></div></div>
-              <div style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="font-size:1.4rem;flex-shrink:0;">💰</span><div><strong style="color:#0f172a;">Scholarships Available</strong><br /><span style="font-size:0.88rem;color:#6b7280;">Including fully funded scholarships covering tuition, stipend, airfare, and accommodation.</span></div></div>
-              <div style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="font-size:1.4rem;flex-shrink:0;">📋</span><div><strong style="color:#0f172a;">Full Support</strong><br /><span style="font-size:0.88rem;color:#6b7280;">From application through visa processing, pre-departure briefing, and arrival support.</span></div></div>
+              <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+                <span style="font-size:1.4rem;flex-shrink:0;">✅</span>
+                <div><strong style="color:#0f172a;">Free Application</strong><br /><span style="font-size:0.88rem;color:#6b7280;">No fees to apply. Our guidance and placement support is 100% free for Liberian students.</span></div>
+              </div>
+              <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+                <span style="font-size:1.4rem;flex-shrink:0;">🎓</span>
+                <div><strong style="color:#0f172a;">20 Partner Universities</strong><br /><span style="font-size:0.88rem;color:#6b7280;">India and Cyprus. Undergraduate, Postgraduate, and PhD programs across all disciplines.</span></div>
+              </div>
+              <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+                <span style="font-size:1.4rem;flex-shrink:0;">💰</span>
+                <div><strong style="color:#0f172a;">Scholarships Available</strong><br /><span style="font-size:0.88rem;color:#6b7280;">Including fully funded scholarships covering tuition, stipend, airfare, and accommodation.</span></div>
+              </div>
+              <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+                <span style="font-size:1.4rem;flex-shrink:0;">📋</span>
+                <div><strong style="color:#0f172a;">Full Support</strong><br /><span style="font-size:0.88rem;color:#6b7280;">From application through visa processing, pre-departure briefing, and arrival support.</span></div>
+              </div>
             </div>
-            <div style="background:#e8f0fb;border-left:3px solid #002868;border-radius:0 8px 8px 0;padding:1rem 1.25rem;"><p style="margin:0;font-size:0.88rem;color:#002868;font-weight:600;">📧 Questions? Email <a href="mailto:info@tolbertinnovationhub.org" style="color:#002868;">info@tolbertinnovationhub.org</a> or WhatsApp <a href="https://wa.me/231880559227" style="color:#002868;">+231 880 559 227</a></p></div>
+            <div style="background:#e8f0fb;border-left:3px solid #002868;border-radius:0 8px 8px 0;padding:1rem 1.25rem;">
+              <p style="margin:0;font-size:0.88rem;color:#002868;font-weight:600;">📧 Questions? Email <a href="mailto:info@tolbertinnovationhub.org" style="color:#002868;">info@tolbertinnovationhub.org</a> or WhatsApp <a href="https://wa.me/231880559227" style="color:#002868;">+231 880 559 227</a></p>
+            </div>
           </div>
           <form class="form-card" data-success-message="Thank you for your application! Our team will review your submission and contact you within 3–5 business days." novalidate>
             <h3>General Scholarship Application</h3>
             <p class="form-card-lead">All fields marked <span style="color:#BF0A30">*</span> are required.</p>
             <div class="form-row2">
-              <div class="fg2"><label for="sa-name">Full Legal Name <span class="req">*</span></label><input type="text" id="sa-name" name="fullName" placeholder="As on ID / passport" required /></div>
-              <div class="fg2"><label for="sa-email">Email Address <span class="req">*</span></label><input type="email" id="sa-email" name="email" placeholder="your@email.com" required /></div>
+              <div class="fg2">
+                <label for="sa-name">Full Legal Name <span class="req">*</span></label>
+                <input type="text" id="sa-name" name="fullName" placeholder="As on ID / passport" required />
+              </div>
+              <div class="fg2">
+                <label for="sa-email">Email Address <span class="req">*</span></label>
+                <input type="email" id="sa-email" name="email" placeholder="your@email.com" required />
+              </div>
             </div>
             <div class="form-row2">
-              <div class="fg2"><label for="sa-phone">Phone / WhatsApp <span class="req">*</span></label><input type="tel" id="sa-phone" name="phone" placeholder="+231 XXX XXX XXX" required /></div>
-              <div class="fg2"><label for="sa-dob">Date of Birth <span class="req">*</span></label><input type="date" id="sa-dob" name="dob" required /></div>
+              <div class="fg2">
+                <label for="sa-phone">Phone / WhatsApp <span class="req">*</span></label>
+                <input type="tel" id="sa-phone" name="phone" placeholder="+231 XXX XXX XXX" required />
+              </div>
+              <div class="fg2">
+                <label for="sa-dob">Date of Birth <span class="req">*</span></label>
+                <input type="date" id="sa-dob" name="dob" required />
+              </div>
             </div>
             <div class="form-row2">
-              <div class="fg2"><label for="sa-edu-current">Current Education Level <span class="req">*</span></label><select id="sa-edu-current" name="currentEducation" required><option value="">Select current level</option><option>WASSCE / Senior High School</option><option>Diploma / Certificate</option><option>Bachelor's Degree</option><option>Master's Degree</option><option>Other</option></select></div>
-              <div class="fg2"><label for="sa-edu-target">Preferred Level of Study <span class="req">*</span></label><select id="sa-edu-target" name="targetLevel" required><option value="">Select target level</option><option>Undergraduate (UG)</option><option>Postgraduate — Master's (PG)</option><option>PhD / Doctorate</option></select></div>
+              <div class="fg2">
+                <label for="sa-edu-current">Current Education Level <span class="req">*</span></label>
+                <select id="sa-edu-current" name="currentEducation" required>
+                  <option value="">Select current level</option>
+                  <option>WASSCE / Senior High School</option>
+                  <option>Diploma / Certificate</option>
+                  <option>Bachelor's Degree</option>
+                  <option>Master's Degree</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="fg2">
+                <label for="sa-edu-target">Preferred Level of Study <span class="req">*</span></label>
+                <select id="sa-edu-target" name="targetLevel" required>
+                  <option value="">Select target level</option>
+                  <option>Undergraduate (UG)</option>
+                  <option>Postgraduate — Master's (PG)</option>
+                  <option>PhD / Doctorate</option>
+                </select>
+              </div>
             </div>
-            <div class="fg2"><label for="sa-field">Preferred Field of Study <span class="req">*</span></label><input type="text" id="sa-field" name="fieldOfStudy" placeholder="e.g. Medicine, Engineering, Business, Law" required /></div>
+            <div class="fg2">
+              <label for="sa-field">Preferred Field of Study <span class="req">*</span></label>
+              <input type="text" id="sa-field" name="fieldOfStudy" placeholder="e.g. Medicine, Engineering, Business, Law" required />
+            </div>
             <div class="form-row2">
-              <div class="fg2"><label for="sa-destination">Preferred Destination <span class="req">*</span></label><select id="sa-destination" name="destination" required><option value="">Select destination</option><option>India</option><option>Cyprus</option><option>United Kingdom</option><option>Canada</option><option>United States of America</option><option>Open to Suggestions</option></select></div>
-              <div class="fg2"><label for="sa-schtype">Scholarship Type <span class="req">*</span></label><select id="sa-schtype" name="scholarshipType" required><option value="">Select type</option><option>Fully Funded Scholarship</option><option>General Scholarship</option><option>Self-Funded / Need Guidance</option></select></div>
+              <div class="fg2">
+                <label for="sa-destination">Preferred Destination <span class="req">*</span></label>
+                <select id="sa-destination" name="destination" required>
+                  <option value="">Select destination</option>
+                  <option>India</option>
+                  <option>Cyprus</option>
+                  <option>United Kingdom</option>
+                  <option>Canada</option>
+                  <option>United States of America</option>
+                  <option>Open to Suggestions</option>
+                </select>
+              </div>
+              <div class="fg2">
+                <label for="sa-schtype">Scholarship Type <span class="req">*</span></label>
+                <select id="sa-schtype" name="scholarshipType" required>
+                  <option value="">Select type</option>
+                  <option>Fully Funded Scholarship</option>
+                  <option>General Scholarship</option>
+                  <option>Self-Funded / Need Guidance</option>
+                </select>
+              </div>
             </div>
-            <div class="fg2"><label for="sa-statement">Personal Statement <span class="req">*</span></label><textarea id="sa-statement" name="statement" rows="4" placeholder="Describe your academic goals, why you want this scholarship, and how you plan to use your education to make a positive impact in Liberia and Africa." required></textarea></div>
-            <div class="fg2"><label for="sa-source">How did you hear about us?</label><select id="sa-source" name="source"><option value="">Select one</option><option>Social Media (Facebook, Instagram, TikTok)</option><option>Friend or Family</option><option>WhatsApp</option><option>Google Search</option><option>School / University</option><option>Other</option></select></div>
+            <div class="fg2">
+              <label for="sa-statement">Personal Statement <span class="req">*</span></label>
+              <textarea id="sa-statement" name="statement" rows="4" placeholder="Describe your academic goals, why you want this scholarship, and how you plan to use your education to make a positive impact in Liberia and Africa." required></textarea>
+            </div>
+            <div class="fg2">
+              <label for="sa-source">How did you hear about us?</label>
+              <select id="sa-source" name="source">
+                <option value="">Select one</option>
+                <option>Social Media (Facebook, Instagram, TikTok)</option>
+                <option>Friend or Family</option>
+                <option>WhatsApp</option>
+                <option>Google Search</option>
+                <option>School / University</option>
+                <option>Other</option>
+              </select>
+            </div>
             <p class="form-feedback" aria-live="polite"></p>
-            <div class="form-submit-row"><button class="btn btn-primary btn-lg" type="submit">Submit Application</button><p class="form-note">We respond within 3–5 business days.</p></div>
+            <div class="form-submit-row">
+              <button class="btn btn-primary btn-lg" type="submit">Submit Application</button>
+              <p class="form-note">We respond within 3–5 business days.</p>
+            </div>
           </form>
         </div>
       </div>
     </section>
+
   </main>
+
   <!-- STICKY BOTTOM NAV -->
   <nav class="bottom-nav" aria-label="Portal quick navigation">
     <div class="bottom-nav-inner">
@@ -511,6 +812,7 @@
       <a href="#application-form" class="btn btn-primary bottom-nav-cta">Apply Now</a>
     </div>
   </nav>
+
   <!-- PORTAL FOOTER -->
   <footer class="portal-footer" aria-label="Site footer">
     <div class="container">
@@ -531,6 +833,8 @@
             <li><a href="#universities">University Directory</a></li>
             <li><a href="#application-form">Apply Online</a></li>
             <li><a href="#counseling">Book Counseling</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
           </ul>
         </div>
         <div>
@@ -553,9 +857,12 @@
         <div>
           <p class="pf-heading">Contact Us</p>
           <div class="pf-contact-item"><span>📍</span><span>Monrovia, Liberia, West Africa</span></div>
-          <div class="pf-contact-item"><span>📞</span><a href="tel:+231770000000">+231 770 000 000</a></div>
-          <div class="pf-contact-item"><span>📧</span><a href="mailto:info@tolbertinnovationhub.com">info@tolbertinnovationhub.com</a></div>
-          <div class="pf-hours"><strong>Office Hours</strong>Mon–Fri 8:00AM–6:00PM<br />Saturday 9:00AM–2:00PM</div>
+          <div class="pf-contact-item"><span>📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="pf-contact-item"><span>📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="pf-hours">
+            <strong>Office Hours</strong>
+            Mon–Fri 8:00AM–6:00PM<br />Saturday 9:00AM–2:00PM
+          </div>
         </div>
       </div>
       <div class="portal-footer-bottom">
@@ -564,7 +871,12 @@
       </div>
     </div>
   </footer>
-  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" /></a>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+  </a>
+
   <script src="main.js"></script>
   <script>
   const universities = [
@@ -589,20 +901,22 @@
     { id:19, abbr:'NEU',  slug:'near-east-university',             name:'Near East University',             city:'Nicosia',         state:'North Cyprus',  country:'Cyprus', flag:'🇨🇾', rating:4.7, students:'20,000+', programsCount:'200+', accreditation:'YODAK',   badgeColor:'#BF0A30', programs:['Medicine','Engineering','Business','Law'],              degrees:['UG','PG','PhD'], tuition:'$4,500–$8,000/yr', scholarship:true, featured:true  },
     { id:20, abbr:'GAU',  slug:'girne-american-university',        name:'Girne American University',        city:'Kyrenia',         state:'North Cyprus',  country:'Cyprus', flag:'🇨🇾', rating:4.4, students:'10,000+', programsCount:'90+',  accreditation:'YODAK',   badgeColor:'#BF0A30', programs:['Business','Engineering','Architecture','Hospitality'],  degrees:['UG','PG'],       tuition:'$4,000–$7,000/yr', scholarship:true, featured:false },
   ];
-  let filterCountry='all', filterDegree='all', filterScholarship=false, searchQuery='';
-  const degClass={'UG':'uni-deg-ug','PG':'uni-deg-pg','PhD':'uni-deg-phd'};
-  function cardHTML(u){
-    return `<article class="uni-card${u.featured?' is-featured':''} reveal">
-      <span class="uni-card-top" style="background:linear-gradient(90deg,${u.badgeColor},${u.badgeColor}99)" aria-hidden="true"></span>
+
+  let filterCountry = 'all', filterDegree = 'all', filterScholarship = false, searchQuery = '';
+  const degClass = { 'UG': 'uni-deg-ug', 'PG': 'uni-deg-pg', 'PhD': 'uni-deg-phd' };
+
+  function cardHTML(u) {
+    return `<article class="uni-card${u.featured ? ' is-featured' : ''} reveal">
+      <span class="uni-card-top" style="background:linear-gradient(90deg,${u.badgeColor},${u.badgeColor}99);" aria-hidden="true"></span>
       <div class="uni-card-header">
-        <div class="uni-badge" style="background:${u.badgeColor};width:52px;height:52px;border-radius:12px;font-size:0.82rem;">${u.abbr}</div>
+        <div class="uni-badge" style="background:${u.badgeColor};">${u.abbr}</div>
         <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.4rem;">
-          ${u.featured?'<span class="uni-featured-badge">⭐ Featured</span>':''}
+          ${u.featured ? '<span class="uni-featured-badge">⭐ Featured</span>' : ''}
           <div class="uni-card-rating">&#9733; ${u.rating}</div>
         </div>
       </div>
       <div class="uni-card-body">
-        <h3 class="uni-card-name" style="font-family:'Poppins',sans-serif;font-size:1.08rem;font-weight:800;color:#0f172a;margin:0 0 0.4rem;line-height:1.3;">${u.name}</h3>
+        <h3 style="font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:800;color:#111827;line-height:1.3;margin:0 0 6px 0;">${u.name}</h3>
         <div class="uni-card-meta">
           <span class="uni-meta-loc">${u.flag} ${u.city}, ${u.country}</span>
           <span class="uni-accred">${u.accreditation}</span>
@@ -613,73 +927,141 @@
         </div>
         <div class="uni-card-programs">
           <span class="uni-prog-label">Top Programs:</span>
-          <div class="uni-prog-tags">${u.programs.slice(0,3).map(p=>`<span class="uni-prog-tag">${p}</span>`).join('')}</div>
+          <div class="uni-prog-tags">${u.programs.slice(0, 3).map(p => `<span class="uni-prog-tag">${p}</span>`).join('')}</div>
         </div>
         <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.6rem;flex-wrap:wrap;">
           <span class="uni-tuition-tag">💰 ${u.tuition}</span>
-          ${u.scholarship?'<span class="uni-sch-ribbon">✓ 50% TIH Scholarship</span>':''}
+          ${u.scholarship ? '<span class="uni-sch-ribbon">✓ 50% TIH Scholarship</span>' : ''}
         </div>
-        <div class="uni-degrees">${u.degrees.map(d=>`<span class="uni-deg-pill ${degClass[d]||''}">${d}</span>`).join('')}</div>
+        <div class="uni-degrees">${u.degrees.map(d => `<span class="uni-deg-pill ${degClass[d] || ''}">${d}</span>`).join('')}</div>
       </div>
       <div class="uni-card-footer">
         <div class="uni-footer-btns">
-          <a href="university-${u.slug}.html" class="uni-explore-btn-v2" style="background:linear-gradient(135deg,${u.badgeColor},${u.badgeColor}cc)">Explore University &#8594;</a>
+          <a href="university-${u.slug}.html" class="uni-explore-btn-v2" style="background:linear-gradient(135deg,${u.badgeColor},${u.badgeColor}cc);">Explore University &#8594;</a>
           <a href="https://wa.me/231880559227?text=Hi!%20I%27m%20interested%20in%20${encodeURIComponent(u.name)}" class="uni-wa-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp about ${u.name}">💬</a>
         </div>
       </div>
     </article>`;
   }
-  function countryBlock(unis,flag,cName,desc,pillClass){
-    if(!unis.length)return'';
-    return`<div class="country-block">
-      <div class="country-sec-head"><span class="csh-flag">${flag}</span><div class="csh-text"><h3>${cName}</h3><p>${desc}</p></div><span class="csh-pill ${pillClass}">${unis.length} Universit${unis.length===1?'y':'ies'}</span></div>
+
+  function countryBlock(unis, flag, cName, desc, pillClass) {
+    if (!unis.length) return '';
+    return `<div class="country-block">
+      <div class="country-sec-head">
+        <span class="csh-flag">${flag}</span>
+        <div class="csh-text"><h3>${cName}</h3><p>${desc}</p></div>
+        <span class="csh-pill ${pillClass}">${unis.length} Universit${unis.length === 1 ? 'y' : 'ies'}</span>
+      </div>
       <div class="uni-grid">${unis.map(cardHTML).join('')}</div>
     </div>`;
   }
+
   function renderUniversities() {
-    const grid=document.getElementById('uniGrid'), count=document.getElementById('uniCount'), q=searchQuery.toLowerCase().trim();
-    const filtered=universities.filter(u=>{
-      const mc=filterCountry==='all'||u.country===filterCountry;
-      const md=filterDegree==='all'||u.degrees.includes(filterDegree);
-      const ms=!filterScholarship||u.scholarship===true;
-      const mq=!q||u.name.toLowerCase().includes(q)||u.city.toLowerCase().includes(q)||u.country.toLowerCase().includes(q)||u.programs.some(p=>p.toLowerCase().includes(q))||u.abbr.toLowerCase().includes(q);
-      return mc&&md&&ms&&mq;
+    const grid = document.getElementById('uniGrid');
+    const count = document.getElementById('uniCount');
+    const q = searchQuery.toLowerCase().trim();
+    const filtered = universities.filter(u => {
+      const mc = filterCountry === 'all' || u.country === filterCountry;
+      const md = filterDegree === 'all' || u.degrees.includes(filterDegree);
+      const ms = !filterScholarship || u.scholarship === true;
+      const mq = !q || u.name.toLowerCase().includes(q) || u.city.toLowerCase().includes(q) || u.country.toLowerCase().includes(q) || u.programs.some(p => p.toLowerCase().includes(q)) || u.abbr.toLowerCase().includes(q);
+      return mc && md && ms && mq;
     });
-    const total=filtered.length;
-    count.textContent='Showing '+total+' universit'+(total===1?'y':'ies')+' in India & North Cyprus';
-    if(total===0){grid.innerHTML='<div class="no-results"><h3>No universities found</h3><p>Try adjusting your search or filters.</p></div>';return;}
-    const india=filtered.filter(u=>u.country==='India');
-    const cyprus=filtered.filter(u=>u.country==='Cyprus');
-    grid.innerHTML=
-      countryBlock(india,'🇮🇳','India — Study Abroad Destination','Top-ranked universities across Punjab, Gujarat, UP, Telangana &amp; more — UG, PG and PhD programs','blue')+
-      countryBlock(cyprus,'🇨🇾','North Cyprus — Study Abroad Destination','YODAK-accredited universities with English-medium programs in the Mediterranean','red');
-    if(typeof initReveal==='function')initReveal();
+    const total = filtered.length;
+    count.textContent = 'Showing ' + total + ' universit' + (total === 1 ? 'y' : 'ies') + ' in India & North Cyprus';
+    if (total === 0) {
+      grid.innerHTML = '<div class="no-results"><h3>No universities found</h3><p>Try adjusting your search or filters.</p></div>';
+      return;
+    }
+    const india  = filtered.filter(u => u.country === 'India');
+    const cyprus = filtered.filter(u => u.country === 'Cyprus');
+    grid.innerHTML =
+      countryBlock(india,  '🇮🇳', 'India — Study Abroad Destination',      'Top-ranked universities across Punjab, Gujarat, UP, Telangana &amp; more — UG, PG and PhD programs', 'blue') +
+      countryBlock(cyprus, '🇨🇾', 'North Cyprus — Study Abroad Destination', 'YODAK-accredited universities with English-medium programs in the Mediterranean', 'red');
+    if (typeof initReveal === 'function') initReveal();
   }
-  document.querySelectorAll('.filter-pill').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const type=btn.dataset.filter, value=btn.dataset.value;
-      if(type==='scholarship'){filterScholarship=!filterScholarship;btn.classList.toggle('on-green',filterScholarship);btn.setAttribute('aria-pressed',String(filterScholarship));renderUniversities();return;}
-      document.querySelectorAll(`.filter-pill[data-filter="${type}"]`).forEach(b=>{b.classList.remove('on','on-red');b.setAttribute('aria-pressed','false');});
-      btn.setAttribute('aria-pressed','true');btn.classList.add(value==='Cyprus'?'on-red':'on');
-      if(type==='country')filterCountry=value;else filterDegree=value;
+
+  document.querySelectorAll('.filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = btn.dataset.filter, value = btn.dataset.value;
+      if (type === 'scholarship') {
+        filterScholarship = !filterScholarship;
+        btn.classList.toggle('on-green', filterScholarship);
+        btn.setAttribute('aria-pressed', String(filterScholarship));
+        renderUniversities();
+        return;
+      }
+      document.querySelectorAll(`.filter-pill[data-filter="${type}"]`).forEach(b => {
+        b.classList.remove('on', 'on-red');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.setAttribute('aria-pressed', 'true');
+      btn.classList.add(value === 'Cyprus' ? 'on-red' : 'on');
+      if (type === 'country') filterCountry = value;
+      else filterDegree = value;
       renderUniversities();
     });
   });
-  document.getElementById('uniSearchInput').addEventListener('input',e=>{searchQuery=e.target.value;renderUniversities();});
-  function checkEligibility(){
-    const level=document.getElementById('elig-level').value,target=document.getElementById('elig-target').value,gpa=document.getElementById('elig-gpa').value,eng=document.getElementById('elig-english').value;
-    const result=document.getElementById('eligResult'),icon=document.getElementById('eligIcon'),title=document.getElementById('eligTitle'),msg=document.getElementById('eligMessage');
-    result.className='elig-result';
-    if(!level||!target||!gpa){result.className='elig-result conditional show';icon.textContent='⚠️';title.textContent='Please Complete All Fields';msg.textContent='Select your education level, target degree, and grade range to get your eligibility result.';return;}
-    const validMap={UG:['wassce','diploma'],PG:['bachelors'],PhD:['masters']};
-    const levelOk=validMap[target]&&validMap[target].includes(level);
-    if(!levelOk){result.className='elig-result ineligible show';icon.textContent='❌';title.textContent='Qualification Level Mismatch';msg.textContent=target==='UG'?'Undergraduate admission requires WASSCE or a Diploma.':target==='PG'?"Postgraduate admission requires a completed Bachelor's degree.":"PhD admission requires a completed Master's degree.";return;}
-    if(gpa==='below'){result.className='elig-result ineligible show';icon.textContent='❌';title.textContent='Grades Below Minimum Requirement';msg.textContent='Most partner universities require a minimum grade of C / Pass or above.';return;}
-    if(gpa==='low'){result.className='elig-result conditional show';icon.textContent='⚠️';title.textContent='Conditionally Eligible';msg.textContent="Your grades meet the minimum threshold for several universities. Book a free counseling session and we'll identify the best options.";return;}
-    const schNote=gpa==='high'?'Your strong grades also qualify you for merit scholarships — up to 50% tuition reduction.':'You may qualify for partial scholarship support.';
-    const engNote=(eng==='none'||!eng)?' Consider completing an IELTS or TOEFL test to strengthen your application.':'';
-    result.className='elig-result eligible show';icon.textContent='✅';title.textContent='You Are Eligible to Apply!';msg.textContent='Great news! You qualify for '+target+' programs at our partner universities in India and Cyprus. '+schNote+engNote;
+
+  document.getElementById('uniSearchInput').addEventListener('input', e => {
+    searchQuery = e.target.value;
+    renderUniversities();
+  });
+
+  function checkEligibility() {
+    const level  = document.getElementById('elig-level').value;
+    const target = document.getElementById('elig-target').value;
+    const gpa    = document.getElementById('elig-gpa').value;
+    const eng    = document.getElementById('elig-english').value;
+    const result = document.getElementById('eligResult');
+    const icon   = document.getElementById('eligIcon');
+    const title  = document.getElementById('eligTitle');
+    const msg    = document.getElementById('eligMessage');
+    result.className = 'elig-result';
+    if (!level || !target || !gpa) {
+      result.className = 'elig-result conditional show';
+      icon.textContent  = '⚠️';
+      title.textContent = 'Please Complete All Fields';
+      msg.textContent   = 'Select your education level, target degree, and grade range to get your eligibility result.';
+      return;
+    }
+    const validMap = { UG: ['wassce', 'diploma'], PG: ['bachelors'], PhD: ['masters'] };
+    const levelOk  = validMap[target] && validMap[target].includes(level);
+    if (!levelOk) {
+      result.className = 'elig-result ineligible show';
+      icon.textContent  = '❌';
+      title.textContent = 'Qualification Level Mismatch';
+      msg.textContent   = target === 'UG'
+        ? 'Undergraduate admission requires WASSCE or a Diploma.'
+        : target === 'PG'
+          ? "Postgraduate admission requires a completed Bachelor's degree."
+          : "PhD admission requires a completed Master's degree.";
+      return;
+    }
+    if (gpa === 'below') {
+      result.className = 'elig-result ineligible show';
+      icon.textContent  = '❌';
+      title.textContent = 'Grades Below Minimum Requirement';
+      msg.textContent   = 'Most partner universities require a minimum grade of C / Pass or above.';
+      return;
+    }
+    if (gpa === 'low') {
+      result.className = 'elig-result conditional show';
+      icon.textContent  = '⚠️';
+      title.textContent = 'Conditionally Eligible';
+      msg.textContent   = "Your grades meet the minimum threshold for several universities. Book a free counseling session and we'll identify the best options.";
+      return;
+    }
+    const schNote = gpa === 'high'
+      ? 'Your strong grades also qualify you for merit scholarships — up to 50% tuition reduction.'
+      : 'You may qualify for partial scholarship support.';
+    const engNote = (eng === 'none' || !eng) ? ' Consider completing an IELTS or TOEFL test to strengthen your application.' : '';
+    result.className = 'elig-result eligible show';
+    icon.textContent  = '✅';
+    title.textContent = 'You Are Eligible to Apply!';
+    msg.textContent   = 'Great news! You qualify for ' + target + ' programs at our partner universities in India and Cyprus. ' + schNote + engNote;
   }
+
   renderUniversities();
   </script>
   <script src="chatbot.js"></script>
