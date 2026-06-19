@@ -374,30 +374,11 @@ Under his leadership, TIH has:<br>
     { id:'scholarship',
       keywords:['scholarship','study abroad','international school','university abroad','admission','study overseas','apply school','foreign university','higher education','bachelor','master','phd','postgraduate','undergraduate','degree','academic','enroll','university'],
       reply:`🎓 <strong>Scholarship &amp; Study Abroad Program</strong><br><br>
-TIH offers two main scholarship pathways:<br><br>
-<strong>1. Study Abroad Guidance</strong><br>
+TIH helps you access top international scholarships and universities:<br><br>
+<strong>Study Abroad Guidance</strong><br>
 Document prep, eligibility guidance, and admission letter issuance for universities worldwide.<br><br>
-<strong>2. ICCR Fully Funded Scholarship</strong> 🏆<br>
-India–Africa Maitri initiative. Covers <em>full tuition, monthly stipend, return airfare, visa support &amp; hostel</em>.<br>
-<strong>Eligibility:</strong> Liberian citizens, age 18–40 (UG/PG) or up to 50 (PhD)<br><br>
-📅 <strong>2026 deadline: July 15, 2026</strong><br><br>
-Also available: Chevening (UK), Fulbright (USA), DAAD (Germany), Mastercard Foundation, PAU.`,
-      qr:['📝 Apply for Scholarship','🏆 ICCR Details','✅ Requirements','🇬🇧 Chevening','🇺🇸 Fulbright','🔙 Main Menu'] },
-
-    { id:'iccr',
-      keywords:['iccr','fully funded','india scholarship','india africa','maitri','free scholarship','government scholarship','india government','tuition free','stipend','airfare','hostel','living allowance'],
-      reply:`🏆 <strong>ICCR Fully Funded Scholarship 2026–2027</strong><br><br>
-Offered by the <strong>Government of India</strong> under the India–Africa Maitri initiative.<br><br>
-✅ <strong>Coverage:</strong><br>
-• Full tuition fees (paid directly to university)<br>
-• Monthly living stipend (₹15,000–₹20,000)<br>
-• Return economy airfare<br>
-• Visa support through Indian Mission<br>
-• Hostel accommodation<br>
-• Personal medical insurance (arranged by student)<br><br>
-✅ <strong>Eligibility:</strong> Liberian citizen · Age 18–40 (UG/PG), up to 50 (PhD) · Strong academics<br><br>
-📅 Application deadline: <strong>July 15, 2026</strong>`,
-      qr:['📝 Apply ICCR Scholarship','📋 Documents Needed','📞 Contact TIH','🔙 Main Menu'] },
+Available scholarships: Chevening (UK), Fulbright (USA), DAAD (Germany), Mastercard Foundation, PAU, and more.`,
+      qr:['📝 Apply for Scholarship','✅ Requirements','🇬🇧 Chevening','🇺🇸 Fulbright','🔙 Main Menu'] },
 
     { id:'requirements',
       keywords:['requirements','documents','eligible','eligibility','qualify','who can apply','criteria','passport','transcript','certificate','reference letter','personal statement','photo','what do i need','what is needed','can i apply','do i qualify'],
