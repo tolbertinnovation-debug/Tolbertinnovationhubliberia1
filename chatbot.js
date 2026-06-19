@@ -341,13 +341,14 @@ What would you like to know today?`,
     { id:'about_tih',
       keywords:['what is tih','what is tolbert','about tolbert','tell me about','what does tih do','who is tolbert innovation','organization','ngo','nonprofit','what you do','what do you offer','what programs','overview','mission'],
       reply:`🏛️ <strong>About Tolbert Innovation Hub (TIH)</strong><br><br>
-TIH is a Liberian organization founded by <strong>Mr. Samuel S. Tolbert</strong> that empowers youth through four pillars:<br><br>
+TIH is a Liberian organization founded by <strong>Mr. Samuel S. Tolbert</strong> that empowers youth through five pillars:<br><br>
 🎓 <strong>Scholarship & Study Abroad</strong> — guidance, document prep &amp; admission support<br>
 🏥 <strong>Healthcare Referral Program</strong> — specialist referrals to India &amp; beyond<br>
 💻 <strong>Software &amp; Digital Innovation</strong> — websites, apps, business systems<br>
-📚 <strong>Free IELTS/TOEFL Classroom</strong> — 6-module courses, 100% free<br><br>
+📚 <strong>Free IELTS/TOEFL Classroom</strong> — 6-module courses, 100% free<br>
+🌟 <strong>Empowerment Training</strong> — for youth, students, business owners &amp; innovators<br><br>
 📍 Based in Monrovia, Liberia · 📞 +231 880 559 227`,
-      qr:['🎓 Scholarships','🏥 Healthcare','💻 Software','📚 Free Classroom','👤 Our Founder','📞 Contact'] },
+      qr:['🎓 Scholarships','🏥 Healthcare','💻 Software','📚 Free Classroom','🌟 Empowerment Training','📞 Contact'] },
 
     { id:'founder',
       keywords:['founder','founded','samuel','tolbert','samuel tolbert','who started','who created','ceo','chief executive','leadership','who runs','who is in charge','mr tolbert','mr samuel'],
@@ -618,6 +619,23 @@ We welcome partnerships with organizations, institutions, and governments that s
 • Corporate sponsors &amp; donors<br><br>
 Contact us to explore partnership opportunities.`,
       qr:['🌐 Partner With Us Page','📞 Contact Us','💬 WhatsApp Us','🔙 Main Menu'] },
+
+    { id:'empowerment_training',
+      keywords:['empowerment','training','empowerment training','youth training','student training','business training','innovator training','workshop training','leadership','skills training','capacity building','personal development','entrepreneurship training','tih training','youth empowerment','business empowerment'],
+      reply:`🌟 <strong>TIH Empowerment Training Program</strong><br><br>
+TIH conducts empowerment training designed to unlock potential and build real-world skills.<br><br>
+<strong>Who we train:</strong><br>
+• 🧑‍🎓 <strong>Students</strong> — Academic excellence, goal-setting &amp; career readiness<br>
+• 👩‍💼 <strong>Youth</strong> — Leadership, confidence &amp; life skills development<br>
+• 🏢 <strong>Business Owners</strong> — Growth strategies, digital tools &amp; management skills<br>
+• 💡 <strong>Innovators</strong> — Entrepreneurship, tech adoption &amp; startup mindset<br><br>
+<strong>Training covers:</strong><br>
+• Personal development &amp; leadership<br>
+• Digital skills &amp; technology<br>
+• Business &amp; financial literacy<br>
+• Innovation &amp; problem-solving<br><br>
+📞 Contact TIH to register or schedule a training session for your group.`,
+      qr:['📝 Register for Training','📞 Contact TIH','🤝 Partner With Us','🎓 Scholarships'] },
 
     { id:'impact',
       keywords:['impact','statistics','how many','achievement','result','beneficiary','success rate','numbers','what have you done','track record','proven','500','12 countries','50 healthcare'],
