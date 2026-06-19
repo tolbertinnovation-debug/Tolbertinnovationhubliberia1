@@ -377,21 +377,22 @@ Under his leadership, TIH has:<br>
 
     { id:'scholarship',
       keywords:['scholarship','study abroad','international school','university abroad','admission','study overseas','apply school','foreign university','higher education','bachelor','master','phd','postgraduate','undergraduate','degree','academic','enroll','university'],
-      reply:`🎓 <strong>Scholarship &amp; Study Abroad Program</strong><br><br>
-TIH helps Liberian students access fully funded scholarships worldwide:<br><br>
-🇮🇳🇨🇾 <strong>India &amp; Cyprus</strong> — TIH <strong>50% tuition scholarship</strong> at partner universities<br>
-👩‍🎓 <strong>SHE-CAN</strong> — Full ride to top US colleges (young women, 17–20)<br>
-🇬🇧 <strong>Chevening</strong> — UK government, full Master's funding<br>
-🇺🇸 <strong>Fulbright</strong> — US government, full graduate funding<br>
-🇩🇪 <strong>DAAD</strong> — German government, full funding<br>
-🇪🇺 <strong>Erasmus Mundus</strong> — EU, fully funded Master's in Europe<br>
-🇰🇷 <strong>Global Korea Scholarship</strong> — South Korea government, full funding<br>
-🇯🇵 <strong>MEXT Japan</strong> — Japanese government, full funding<br>
-🌍 <strong>Mastercard Foundation</strong> — Full funding at 40+ African universities<br>
-🌐 <strong>Pan African University (PAU)</strong> — African Union, full funding<br>
-🌍 <strong>Commonwealth Scholarship</strong> — UK, fully funded Master's<br><br>
-Ask me about any specific scholarship for full details!`,
-      qr:['🎓 Browse Programs','👩‍🎓 SHE-CAN','🇪🇺 Erasmus Mundus','🇰🇷 Korea GKS','🔙 Main Menu'] },
+      reply:`🎓 <strong>TIH Study Abroad Program</strong><br><br>
+Tolbert Innovation Hub helps Liberian students study at top universities in <strong>India &amp; North Cyprus</strong> — with a <strong>50% tuition scholarship</strong> on every admission.<br><br>
+<div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:12px 14px;margin:6px 0;">
+🏷️ <strong>TIH 50% Tuition Scholarship</strong><br>
+All 20 partner universities · India &amp; Cyprus<br>
+TIH negotiates directly with each university on your behalf — <em>at no cost to you.</em>
+</div><br>
+🇮🇳 <strong>India</strong> — 15 universities · UG, PG &amp; PhD · From <strong>$900/yr</strong> after scholarship<br>
+🇨🇾 <strong>North Cyprus</strong> — 5 universities · English-medium · From <strong>$1,750/yr</strong> after scholarship<br><br>
+✅ <strong>Everything TIH does FREE:</strong><br>
+• University selection &amp; shortlisting<br>
+• Application &amp; document review<br>
+• Offer letter processing<br>
+• Visa guidance &amp; pre-departure support<br><br>
+👇 <strong>Where would you like to study?</strong>`,
+      qr:['🎓 Browse Programs','🇮🇳 Study in India','🇨🇾 Study in Cyprus','📋 Required Documents','📞 Apply Now — Free'] },
 
     // ── STEP-BY-STEP PROGRAM SELECTION FLOW ──────────────────────────────────
 
