@@ -375,12 +375,20 @@ Under his leadership, TIH has:<br>
     { id:'scholarship',
       keywords:['scholarship','study abroad','international school','university abroad','admission','study overseas','apply school','foreign university','higher education','bachelor','master','phd','postgraduate','undergraduate','degree','academic','enroll','university'],
       reply:`🎓 <strong>Scholarship &amp; Study Abroad Program</strong><br><br>
-TIH helps you access top international scholarships and universities:<br><br>
-🇮🇳 <strong>India &amp; 🇨🇾 Cyprus — TIH 50% Scholarship:</strong><br>
-TIH offers a <strong>50% tuition scholarship</strong> at all our partner universities in India and Cyprus. You pay only half the listed tuition!<br><br>
-<strong>Other International Scholarships:</strong><br>
-Chevening (UK), Fulbright (USA), DAAD (Germany), Mastercard Foundation, PAU, and more.`,
-      qr:['📝 Apply for Scholarship','✅ Requirements','🏛️ Partner Universities','🇬🇧 Chevening','🔙 Main Menu'] },
+TIH helps Liberian students access fully funded scholarships worldwide:<br><br>
+🇮🇳🇨🇾 <strong>India &amp; Cyprus</strong> — TIH <strong>50% tuition scholarship</strong> at partner universities<br>
+👩‍🎓 <strong>SHE-CAN</strong> — Full ride to top US colleges (young women, 17–20)<br>
+🇬🇧 <strong>Chevening</strong> — UK government, full Master's funding<br>
+🇺🇸 <strong>Fulbright</strong> — US government, full graduate funding<br>
+🇩🇪 <strong>DAAD</strong> — German government, full funding<br>
+🇪🇺 <strong>Erasmus Mundus</strong> — EU, fully funded Master's in Europe<br>
+🇰🇷 <strong>Global Korea Scholarship</strong> — South Korea government, full funding<br>
+🇯🇵 <strong>MEXT Japan</strong> — Japanese government, full funding<br>
+🌍 <strong>Mastercard Foundation</strong> — Full funding at 40+ African universities<br>
+🌐 <strong>Pan African University (PAU)</strong> — African Union, full funding<br>
+🌍 <strong>Commonwealth Scholarship</strong> — UK, fully funded Master's<br><br>
+Ask me about any specific scholarship for full details!`,
+      qr:['👩‍🎓 SHE-CAN','🇪🇺 Erasmus Mundus','🇰🇷 Korea GKS','🇯🇵 MEXT Japan','🔙 Main Menu'] },
 
     { id:'requirements',
       keywords:['requirements','documents','eligible','eligibility','qualify','who can apply','criteria','passport','transcript','certificate','reference letter','personal statement','photo','what do i need','what is needed','can i apply','do i qualify'],
@@ -800,6 +808,94 @@ An African Union initiative — full scholarships across Africa. <strong>Liberia
 📅 Applications: <strong>November – December each year</strong>`,
       qr:['🌐 View All Scholarships','🎓 Scholarships','📝 Apply','🔙 Main Menu'] },
 
+    { id:'she_can',
+      keywords:['she can','shecan','she-can','she can scholarship','women scholarship','girls scholarship','female scholarship','women leadership','young women','liberia women scholarship','woman scholarship usa'],
+      reply:`👩‍🎓 <strong>SHE-CAN Scholarship Program</strong><br><br>
+SHE-CAN empowers young Liberian women to earn <strong>full-ride scholarships</strong> at top U.S. colleges.<br><br>
+✅ <strong>Coverage (Full Ride):</strong><br>
+• Full tuition, housing &amp; meals (paid by U.S. college)<br>
+• Test preparation classes &amp; costs<br>
+• Passport &amp; visa fees<br>
+• Round-trip flights<br>
+• Textbooks &amp; health insurance<br><br>
+✅ <strong>Eligibility:</strong><br>
+• Young <strong>Liberian women</strong>, aged <strong>17–20</strong><br>
+• Strong academic record &amp; demonstrated leadership<br>
+• From a low-opportunity background<br><br>
+📌 <strong>Return Commitment:</strong> Scholars must return to Liberia within 1 year of graduating and work in Liberia for at least 3 years.<br><br>
+📅 Applications open annually — contact TIH for guidance!`,
+      qr:['📝 Apply with TIH Help','📋 Requirements','📞 Contact TIH','🔙 More Scholarships'] },
+
+    { id:'erasmus_mundus',
+      keywords:['erasmus','erasmus mundus','erasmus scholarship','study europe','european scholarship','eu scholarship','europe masters','erasmus masters','europe fully funded'],
+      reply:`🇪🇺 <strong>Erasmus Mundus Scholarship</strong><br><br>
+A prestigious EU-funded scholarship for <strong>fully funded Master's degrees</strong> across multiple European universities. <strong>Liberian students are eligible!</strong><br><br>
+✅ <strong>Coverage:</strong><br>
+• Full tuition fees<br>
+• Monthly living allowance (~€1,300/month)<br>
+• Travel &amp; installation allowances<br>
+• Health insurance<br><br>
+✅ <strong>Requirements:</strong><br>
+• Bachelor's degree (any field matching the program)<br>
+• Strong academic record<br>
+• English proficiency (IELTS/TOEFL)<br>
+• Open to all nationalities — no country restriction<br><br>
+📅 Applications: <strong>Varies by program — typically Oct – Jan</strong>`,
+      qr:['📝 Apply with TIH Help','📋 Requirements','📞 Contact TIH','🔙 More Scholarships'] },
+
+    { id:'gks_korea',
+      keywords:['korea scholarship','korean scholarship','gks','kgsp','global korea scholarship','study korea','south korea scholarship','korean government scholarship'],
+      reply:`🇰🇷 <strong>Global Korea Scholarship (GKS / KGSP)</strong><br><br>
+The South Korean Government's flagship scholarship for international students. <strong>Liberia is eligible!</strong><br><br>
+✅ <strong>Coverage (Fully Funded):</strong><br>
+• Full tuition (up to KRW 5,000,000/semester)<br>
+• Monthly stipend<br>
+• Round-trip airfare<br>
+• Korean language training (1 year, free)<br>
+• Accommodation &amp; health insurance<br><br>
+✅ <strong>Requirements:</strong><br>
+• Under 25 (UG) or under 40 (Graduate)<br>
+• Good academic record<br>
+• No restrictions on field of study<br><br>
+📅 Applications: <strong>February – March each year</strong> (Embassy track)`,
+      qr:['📝 Apply with TIH Help','📋 Requirements','📞 Contact TIH','🔙 More Scholarships'] },
+
+    { id:'mext_japan',
+      keywords:['japan scholarship','japanese scholarship','mext','monbukagakusho','study japan','japan government scholarship','japanese government scholarship'],
+      reply:`🇯🇵 <strong>Japanese Government (MEXT) Scholarship</strong><br><br>
+Funded by Japan's Ministry of Education — one of the most prestigious government scholarships. <strong>Liberia is eligible</strong> (processed through the Embassy of Japan in Ghana).<br><br>
+✅ <strong>Coverage (Fully Funded):</strong><br>
+• Full tuition fees<br>
+• Monthly living allowance<br>
+• Round-trip airfare<br>
+• Accommodation support<br><br>
+✅ <strong>Requirements:</strong><br>
+• Bachelor's degree or equivalent<br>
+• Under 35 (Research students)<br>
+• Strong academic record<br>
+• Apply via Japanese Embassy Recommendation track<br><br>
+📅 Deadlines: <strong>Check with Embassy of Japan in Ghana (accredited to Liberia)</strong>`,
+      qr:['📝 Apply with TIH Help','📋 Requirements','📞 Contact TIH','🔙 More Scholarships'] },
+
+    { id:'commonwealth_scholarship',
+      keywords:['commonwealth scholarship','csc scholarship','commonwealth','commonwealth masters','uk commonwealth','commonwealth distance','commonwealth learning'],
+      reply:`🌍 <strong>Commonwealth Scholarship (UK)</strong><br><br>
+Funded by the UK government for students from Commonwealth countries to study in the UK.<br><br>
+✅ <strong>Coverage (Fully Funded):</strong><br>
+• Full tuition fees<br>
+• Monthly living allowance<br>
+• Return airfare to UK<br>
+• Thesis &amp; study grants<br><br>
+✅ <strong>Levels:</strong> Master's (taught) · Distance Learning · PhD<br><br>
+✅ <strong>Requirements:</strong><br>
+• Citizen of a Commonwealth member country<br>
+• Strong academic record<br>
+• Clear development impact plan for Liberia<br><br>
+📅 Master's: <strong>Typically opens August – October</strong><br>
+📅 Distance Learning: <strong>Opens February each year</strong><br><br>
+💡 TIH can help you craft a strong application!`,
+      qr:['📝 Apply with TIH Help','📋 Requirements','📞 Contact TIH','🇬🇧 Chevening (UK)'] },
+
     { id:'visa',
       keywords:['visa','visa application','student visa','get visa','visa requirements','how to get visa','india visa','uk visa','us visa','visa process','visa help','visa support','travel document','study permit'],
       reply:`✈️ <strong>Visa Support for Liberian Students</strong><br><br>
@@ -863,7 +959,7 @@ Many successful scholars were rejected before winning their scholarship!<br><br>
 ✅ <strong>What to do:</strong><br>
 • <strong>Reapply next cycle</strong> — most scholarships accept re-applications<br>
 • <strong>Strengthen weak areas</strong> — improve your IELTS/TOEFL score, GPA, or personal statement<br>
-• <strong>Apply for multiple scholarships</strong> simultaneously — India/Cyprus 50%, Chevening, Fulbright, DAAD<br>
+• <strong>Apply for multiple scholarships</strong> simultaneously — Chevening, Fulbright, DAAD, Erasmus, GKS, MEXT, SHE-CAN<br>
 • <strong>Consult TIH</strong> — we review applications and give feedback<br><br>
 📌 TIH offers <strong>free application feedback</strong>. Contact us today!`,
       qr:['📞 Get Application Feedback','🎓 Other Scholarships','📚 Improve IELTS Score','🔙 Main Menu'] },
