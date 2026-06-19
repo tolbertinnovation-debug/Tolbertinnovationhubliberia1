@@ -362,11 +362,12 @@ Under his leadership, TIH has:<br>
       qr:['📄 Leadership Page','👥 Meet the Team','📞 Contact Us','🔙 Main Menu'] },
 
     { id:'team',
-      keywords:['team','staff','employees','members','who works','eliza','jerbo','director of programs','angeline','wilah','educational referral','esther','alieu','christlove','feature cartee','precelia','administrative','officer','manager','who is on'],
+      keywords:['team','staff','employees','members','who works','eliza','jerbo','director of programs','angeline','wilah','educational referral','joseph','smith','software','technology lead','esther','alieu','christlove','feature cartee','precelia','administrative','officer','manager','who is on'],
       reply:`👥 <strong>The TIH Team</strong><br><br>
 • <strong>Mr. Samuel S. Tolbert</strong> — Founder &amp; CEO<br>
 • <strong>Eliza V. Jerbo</strong> — Director of Programs<br>
 • <strong>Angeline Wilah</strong> — Educational Referral Manager<br>
+• <strong>Joseph Smith</strong> — Head of Software &amp; Innovation<br>
 • <strong>Esther Boakai</strong> — Chief Administrative Officer<br>
 • <strong>Alieu Saysay</strong> — General Manager<br>
 • <strong>Christlove P. Jaye</strong> — Financial Officer<br>
