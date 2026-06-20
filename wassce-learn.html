@@ -377,6 +377,88 @@
     .show-ans-btn:hover {
       background: #e5e7eb !important;
     }
+
+    /* ==========================================
+       VIDEOS TAB
+    ========================================== */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1rem;
+    }
+    .video-search-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .video-search-card:hover {
+      box-shadow: 0 4px 18px rgba(0,40,104,0.1);
+      border-color: #c7d2fe;
+    }
+    .video-card-topic {
+      font-weight: 700;
+      color: #1f2937;
+      font-size: 0.93rem;
+      line-height: 1.4;
+    }
+    .video-search-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .video-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.85rem;
+      background: #f0f4ff;
+      border: 1px solid #c7d2fe;
+      border-radius: 8px;
+      color: #002868;
+      font-size: 0.83rem;
+      font-weight: 600;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .video-btn:hover {
+      background: #002868;
+      color: white;
+      border-color: #002868;
+    }
+    .video-btn .yt-dot {
+      width: 8px;
+      height: 8px;
+      background: #FF0000;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .video-btn:hover .yt-dot {
+      background: #ffaaaa;
+    }
+    .video-inline-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.83rem;
+      color: #DC2626;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.3rem 0.7rem;
+      background: #fff5f5;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      transition: background 0.15s;
+      margin-top: 0.5rem;
+    }
+    .video-inline-link:hover {
+      background: #fee2e2;
+    }
   </style>
 </head>
 <body>
@@ -485,6 +567,7 @@
           <button class="tab-btn" data-tab="theory" role="tab" aria-selected="false" aria-controls="tab-theory">📝 Theory</button>
           <button class="tab-btn" data-tab="past" role="tab" aria-selected="false" aria-controls="tab-past">📋 Past Questions</button>
           <button class="tab-btn" data-tab="resources" role="tab" aria-selected="false" aria-controls="tab-resources">📥 Resources</button>
+          <button class="tab-btn" data-tab="videos" role="tab" aria-selected="false" aria-controls="tab-videos">📺 Videos</button>
         </nav>
 
         <!-- ======== LESSONS TAB ======== -->
@@ -520,6 +603,18 @@
         <!-- ======== RESOURCES TAB ======== -->
         <div id="tab-resources" class="tab-pane" role="tabpanel" aria-label="Resources" style="display:none;">
           <div id="resources-container"></div>
+        </div>
+
+        <!-- ======== VIDEOS TAB ======== -->
+        <div id="tab-videos" class="tab-pane" role="tabpanel" aria-label="Videos" style="display:none;">
+          <div style="margin-bottom:1.5rem; padding:1rem 1.25rem; background:linear-gradient(135deg,#fff5f5,#fff0f0); border:1px solid #fecaca; border-radius:12px; display:flex; align-items:flex-start; gap:0.75rem;">
+            <span style="font-size:1.5rem; flex-shrink:0;">📺</span>
+            <div>
+              <p style="margin:0 0 0.2rem; font-weight:700; color:#991b1b; font-size:0.97rem;">Watch &amp; Learn — YouTube Video Search</p>
+              <p style="margin:0; color:#7f1d1d; font-size:0.85rem;">Click any button to search YouTube for that topic. Videos open in a new tab — free, no login needed.</p>
+            </div>
+          </div>
+          <div id="videos-grid" class="video-grid"></div>
         </div>
 
       </main>
@@ -675,6 +770,7 @@
         renderTheory(subject);
         renderPastQuestions(subject);
         renderResources(subject);
+        renderVideos(subject);
         updateHeroProgress();
       }
 
@@ -780,6 +876,12 @@
             bodyHTML += '</ul></div>';
           }
 
+          var ytQ = encodeURIComponent('WASSCE ' + subject.name + ' ' + t.name + ' lesson');
+          bodyHTML +=
+            '<a href="https://www.youtube.com/results?search_query=' + ytQ + '" target="_blank" rel="noopener noreferrer" class="video-inline-link">' +
+            '<span style="color:#FF0000; font-size:1rem;">&#9654;</span> Watch on YouTube' +
+            '</a>';
+
           bodyHTML +=
             '<button class="mark-complete-btn" id="complete-btn-' + t.id + '"' +
             (isCompleted ? ' disabled' : '') +
@@ -815,6 +917,30 @@
           body.classList.add('open');
           if (chevron) chevron.innerHTML = '&#x25B2;';
         }
+      }
+
+      /* ---- Videos tab ---- */
+      function renderVideos(subject) {
+        var grid = document.getElementById('videos-grid');
+        if (!grid || !subject || !subject.topics) return;
+        var sName = subject.name;
+        var html = '';
+        subject.topics.forEach(function (t) {
+          var base = 'WASSCE ' + sName + ' ' + t.name;
+          var q1 = encodeURIComponent(base + ' lesson explained');
+          var q2 = encodeURIComponent(base + ' past questions solved');
+          var q3 = encodeURIComponent(base + ' full tutorial');
+          html +=
+            '<div class="video-search-card">' +
+            '<div class="video-card-topic">' + (t.icon || '📚') + ' ' + escapeHTML(t.name) + '</div>' +
+            '<div class="video-search-btns">' +
+            '<a href="https://www.youtube.com/results?search_query=' + q1 + '" target="_blank" rel="noopener noreferrer" class="video-btn"><span class="yt-dot"></span> Lesson Explained</a>' +
+            '<a href="https://www.youtube.com/results?search_query=' + q2 + '" target="_blank" rel="noopener noreferrer" class="video-btn"><span class="yt-dot"></span> Past Questions Solved</a>' +
+            '<a href="https://www.youtube.com/results?search_query=' + q3 + '" target="_blank" rel="noopener noreferrer" class="video-btn"><span class="yt-dot"></span> Full Tutorial</a>' +
+            '</div>' +
+            '</div>';
+        });
+        grid.innerHTML = html;
       }
 
       /* ---- Mark topic complete ---- */
