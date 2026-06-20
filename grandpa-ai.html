@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grandpa AI — Ancestral Wisdom, Modern Innovation | Tolbert Innovation Hub Liberia</title>
+  <meta name="description" content="Grandpa AI is an African-centered AI chatbot that speaks local languages, preserves cultural knowledge, and expands education for Liberians and Africans everywhere." />
+  <meta property="og:title" content="Grandpa AI — Ancestral Wisdom, Modern Innovation" />
+  <meta property="og:description" content="The first AI built for Liberia — speaking your language, honoring your culture, empowering your community." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="grandpa-ai-banner.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* =============================================
+       GRANDPA AI — PAGE-SPECIFIC STYLES
+    ============================================= */
+
+    /* Hero */
+    .gai-hero {
+      background: linear-gradient(135deg, #000d1a 0%, #001433 40%, #002868 75%, #003580 100%);
+      color: white;
+      padding: clamp(3rem, 8vw, 6rem) 0 clamp(2.5rem, 6vw, 5rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .gai-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(249,115,22,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(191,10,48,0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .gai-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 768px) {
+      .gai-hero-inner { grid-template-columns: 1fr; }
+      .gai-hero-image { order: -1; }
+    }
+    .gai-coming-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(249,115,22,0.2);
+      border: 1px solid rgba(249,115,22,0.5);
+      color: #fdba74;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+    .gai-coming-soon::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #f97316;
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+    .gai-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 0 0 0.75rem;
+      color: white;
+    }
+    .gai-hero h1 span {
+      color: #f97316;
+    }
+    .gai-tagline {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      margin: 0 0 1.75rem;
+      line-height: 1.6;
+    }
+    .gai-hero-image img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+    .gai-stats-strip {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+    }
+    .gai-stat { text-align: center; }
+    .gai-stat-num { font-size: 1.6rem; font-weight: 800; color: #f97316; display: block; }
+    .gai-stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* Section: Problem */
+    .gai-problem {
+      background: #fff8f3;
+      padding: clamp(3rem, 6vw, 5rem) 0;
+    }
+    .gai-problem-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .gai-problem-inner { grid-template-columns: 1fr; } }
+    .gai-problem-quote {
+      background: linear-gradient(135deg, #002868, #001433);
+      color: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+    .gai-problem-quote blockquote {
+      font-size: 1.25rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.92);
+      margin: 0;
+      font-style: italic;
+    }
+    .gai-problem-quote blockquote::before {
+      content: '"';
+      font-size: 4rem;
+      color: #f97316;
+      line-height: 0;
+      vertical-align: -1.5rem;
+      margin-right: 0.25rem;
+    }
+    .problem-tag {
+      display: inline-block;
+      background: rgba(191,10,48,0.12);
+      color: #BF0A30;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .problem-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.25rem 0 0;
+    }
+    .problem-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(0,40,104,0.08);
+      font-size: 0.95rem;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-list li::before {
+      content: '⚠️';
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    /* Features grid */
+    .gai-features {
+      padding: clamp(3rem, 6vw, 5rem) 0;
+    }
+    .gai-features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .gai-feature-card {
+      background: white;
+      border-radius: 14px;
+      padding: 1.75rem;
+      box-shadow: 0 2px 12px rgba(0,40,104,0.07);
+      border: 1px solid rgba(0,40,104,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .gai-feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,40,104,0.12);
+    }
+    .gai-feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .gai-feature-card h4 {
+      color: #002868;
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+    }
+    .gai-feature-card p {
+      color: #6b7280;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Languages section */
+    .gai-languages {
+      background: linear-gradient(135deg, #002868 0%, #001433 100%);
+      color: white;
+      padding: clamp(3rem, 6vw, 5rem) 0;
+    }
+    .gai-languages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .gai-lang-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .gai-lang-card:hover { background: rgba(255,255,255,0.14); }
+    .gai-lang-card .lang-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .gai-lang-card .lang-name { font-weight: 700; color: white; font-size: 0.95rem; }
+    .gai-lang-card .lang-status {
+      font-size: 0.75rem;
+      margin-top: 0.3rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .lang-active { background: rgba(22,163,74,0.3); color: #86efac; }
+    .lang-coming { background: rgba(249,115,22,0.25); color: #fdba74; }
+
+    /* Use cases */
+    .gai-usecases {
+      padding: clamp(3rem, 6vw, 5rem) 0;
+      background: #f9fafb;
+    }
+    .gai-usecase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .gai-usecase-card {
+      background: white;
+      border-radius: 14px;
+      padding: 1.75rem;
+      box-shadow: 0 2px 10px rgba(0,40,104,0.06);
+      border-left: 4px solid #002868;
+    }
+    .gai-usecase-card h4 {
+      color: #002868;
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .gai-usecase-card p {
+      color: #6b7280;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Founder section */
+    .gai-founder {
+      padding: clamp(3rem, 6vw, 5rem) 0;
+    }
+    .gai-founder-inner {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 24px rgba(0,40,104,0.1);
+      border: 1px solid rgba(0,40,104,0.06);
+    }
+    @media (max-width: 640px) { .gai-founder-inner { grid-template-columns: 1fr; } }
+    .founder-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #002868, #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      flex-shrink: 0;
+    }
+    .founder-info h3 { color: #002868; font-size: 1.3rem; margin: 0 0 0.25rem; }
+    .founder-title { color: #f97316; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.75rem; }
+    .founder-info p { color: #6b7280; font-size: 0.95rem; line-height: 1.7; margin: 0; }
+    .founder-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(0,40,104,0.08);
+      color: #002868;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      margin-top: 0.75rem;
+      margin-right: 0.5rem;
+    }
+
+    /* CTA */
+    .gai-cta {
+      background: linear-gradient(135deg, #BF0A30, #8b0521);
+      color: white;
+      padding: clamp(3rem, 6vw, 5rem) 0;
+      text-align: center;
+    }
+    .gai-cta h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); margin: 0 0 1rem; color: white; }
+    .gai-cta p { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; }
+    .gai-cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: white;
+      color: #BF0A30;
+      padding: 0.85rem 2rem;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .btn-white:hover { background: #fff5f5; transform: translateY(-2px); }
+    .btn-ghost-white {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.6);
+      padding: 0.85rem 2rem;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .btn-ghost-white:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    /* Notify form */
+    .gai-notify {
+      padding: clamp(2.5rem, 5vw, 4rem) 0;
+      background: #f9fafb;
+    }
+    .gai-notify-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 18px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 24px rgba(0,40,104,0.1);
+      text-align: center;
+    }
+    .gai-notify-card h2 { color: #002868; margin: 0 0 0.5rem; }
+    .gai-notify-card p { color: #6b7280; margin: 0 0 1.5rem; }
+    .notify-form {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .notify-form input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.8rem 1rem;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .notify-form input:focus {
+      outline: none;
+      border-color: #002868;
+    }
+    .notify-form button {
+      padding: 0.8rem 1.5rem;
+      background: #002868;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .notify-form button:hover { background: #001a4d; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="study-abroad.html">Study Abroad</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="wassce.html">WASSCE PRO</a>
+        <a href="grants.html">Grants</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="study-abroad.html#application-form" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="gai-hero">
+      <div class="container">
+        <div class="gai-hero-inner">
+          <div class="gai-hero-content">
+            <div class="gai-coming-soon">Coming Soon — Register Your Interest</div>
+            <h1>Grandpa <span>AI</span></h1>
+            <p class="gai-tagline">Ancestral Wisdom &bull; Modern Innovation<br>The first AI that speaks your language, knows your culture, and empowers your community.</p>
+            <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+              <a href="#notify" class="btn btn-primary btn-lg" style="background:#f97316; border-color:#f97316;">Get Early Access</a>
+              <a href="#about-grandpa-ai" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4); color:white;">Learn More</a>
+            </div>
+            <div class="gai-stats-strip">
+              <div class="gai-stat">
+                <span class="gai-stat-num">5+</span>
+                <span class="gai-stat-label">Languages</span>
+              </div>
+              <div class="gai-stat">
+                <span class="gai-stat-num">6</span>
+                <span class="gai-stat-label">Use Sectors</span>
+              </div>
+              <div class="gai-stat">
+                <span class="gai-stat-num">2024</span>
+                <span class="gai-stat-label">Founded</span>
+              </div>
+              <div class="gai-stat">
+                <span class="gai-stat-num">Liberia</span>
+                <span class="gai-stat-label">First Market</span>
+              </div>
+            </div>
+          </div>
+          <div class="gai-hero-image">
+            <img src="grandpa-ai-banner.jpg" alt="Grandpa AI — Tolbert Innovation Hub Liberia, founded by Samuel S. Tolbert. Ancestral Wisdom, Modern Innovation." />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="gai-problem" id="about-grandpa-ai">
+      <div class="container">
+        <div class="gai-problem-inner">
+          <div>
+            <span class="problem-tag">The Problem</span>
+            <h2 style="color:#002868; font-size:clamp(1.5rem,3vw,2rem); margin:0 0 1rem;">Millions of Africans Are Left Behind by Global AI</h2>
+            <p style="color:#4b5563; line-height:1.7; margin-bottom:1rem;">Most AI tools are built in English and other global languages, leaving millions of Liberians and Africans unable to fully benefit from digital innovation. Cultural knowledge — oral histories, traditions, indigenous wisdom — is disappearing as it is never captured in digital formats.</p>
+            <ul class="problem-list">
+              <li>AI assistants don't understand Liberian English or local dialects</li>
+              <li>Cultural knowledge and oral traditions are rapidly disappearing</li>
+              <li>Students, farmers, and entrepreneurs lack AI tools they can use</li>
+              <li>Language barriers block access to education, health, and business information</li>
+              <li>Africa's unique heritage is not represented in global AI training data</li>
+            </ul>
+          </div>
+          <div class="gai-problem-quote">
+            <blockquote>
+              Grandpa AI solves language exclusion and cultural knowledge loss by giving Africans — especially Liberians — AI access in local languages, preserving traditions, and expanding education.
+            </blockquote>
+            <div style="margin-top:1.5rem; font-size:0.85rem; color:rgba(255,255,255,0.6);">
+              — Samuel S. Tolbert, Founder & CEO, Tolbert Innovation Hub Liberia
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="gai-features">
+      <div class="container">
+        <div class="section-header centered">
+          <p class="section-label">What Grandpa AI Does</p>
+          <h2>A Culturally Intelligent AI for Every Liberian</h2>
+          <p class="section-intro">Grandpa AI carries the wisdom of the village elder — patient, knowledgeable, trustworthy — combined with the power of modern artificial intelligence.</p>
+        </div>
+        <div class="gai-features-grid">
+          <div class="gai-feature-card">
+            <div class="gai-feature-icon">🗣️</div>
+            <h4>Speaks Your Language</h4>
+            <p>Communicates in simple Liberian English, colloquial speech, and will support indigenous Liberian languages. AI that understands how you actually talk.</p>
+          </div>
+          <div class="gai-feature-card">
+            <div class="gai-feature-icon">📖</div>
+            <h4>Preserves Cultural Heritage</h4>
+            <p>Stores and shares African stories, oral histories, traditions, and values. Every conversation keeps our culture alive for younger generations.</p>
+          </div>
+          <div class="gai-feature-card">
+            <div class="gai-feature-icon">🎓</div>
+            <h4>Education Support</h4>
+            <p>Helps students with homework, explains concepts in simple terms, and provides WAEC and school preparation support in a familiar, friendly way.</p>
+          </div>
+          <div class="gai-feature-card">
+            <div class="gai-feature-icon">🌾</div>
+            <h4>Agriculture & Livelihoods</h4>
+            <p>Guides farmers on crop care, weather patterns, market prices, and best practices in a language they understand and trust.</p>
+          </div>
+          <div class="gai-feature-card">
+            <div class="gai-feature-icon">💼</div>
+            <h4>Business Training</h4>
+            <p>Provides practical business advice — from writing a business plan to pricing products and accessing grants — for entrepreneurs and market traders.</p>
+          </div>
+          <div class="gai-feature-card">
+            <div class="gai-feature-icon">🏥</div>
+            <h4>Health Awareness</h4>
+            <p>Answers basic health questions, explains symptoms, promotes preventive care, and guides users to appropriate services in their community.</p>
+          </div>
+          <div class="gai-feature-card">
+            <div class="gai-feature-icon">💡</div>
+            <h4>Digital Literacy</h4>
+            <p>Teaches people how to use smartphones, the internet, and digital tools in a step-by-step, judgment-free way that builds real digital confidence.</p>
+          </div>
+          <div class="gai-feature-card">
+            <div class="gai-feature-icon">🌍</div>
+            <h4>Pan-African Vision</h4>
+            <p>Designed to scale across Africa — adapting to local languages and cultures in each country. Built in Liberia, built for the continent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section class="gai-languages">
+      <div class="container">
+        <div class="section-header centered">
+          <p class="section-label" style="color:rgba(255,255,255,0.6);">Language Support</p>
+          <h2 style="color:white;">Bridging the Language Gap in AI</h2>
+          <p style="color:rgba(255,255,255,0.7); max-width:600px; margin:0 auto;">Grandpa AI is being built from the ground up to speak the way Liberians actually communicate — not just formal English, but real, everyday speech.</p>
+        </div>
+        <div class="gai-languages-grid">
+          <div class="gai-lang-card">
+            <div class="lang-icon">🇱🇷</div>
+            <div class="lang-name">Liberian English</div>
+            <span class="lang-status lang-active">In Development</span>
+          </div>
+          <div class="gai-lang-card">
+            <div class="lang-icon">💬</div>
+            <div class="lang-name">Colloquial Speech</div>
+            <span class="lang-status lang-active">In Development</span>
+          </div>
+          <div class="gai-lang-card">
+            <div class="lang-icon">🗺️</div>
+            <div class="lang-name">Kpelle</div>
+            <span class="lang-status lang-coming">Coming Soon</span>
+          </div>
+          <div class="gai-lang-card">
+            <div class="lang-icon">🗺️</div>
+            <div class="lang-name">Bassa</div>
+            <span class="lang-status lang-coming">Coming Soon</span>
+          </div>
+          <div class="gai-lang-card">
+            <div class="lang-icon">🗺️</div>
+            <div class="lang-name">Grebo</div>
+            <span class="lang-status lang-coming">Coming Soon</span>
+          </div>
+          <div class="gai-lang-card">
+            <div class="lang-icon">🌍</div>
+            <div class="lang-name">Other African Languages</div>
+            <span class="lang-status lang-coming">Planned</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section class="gai-usecases">
+      <div class="container">
+        <div class="section-header centered">
+          <p class="section-label">Who Grandpa AI Serves</p>
+          <h2>Built for Every Liberian Community</h2>
+          <p class="section-intro">From the classroom to the farm, from market stalls to healthcare clinics — Grandpa AI meets people where they are.</p>
+        </div>
+        <div class="gai-usecase-grid">
+          <div class="gai-usecase-card">
+            <h4>📚 Students & Youth</h4>
+            <p>Get homework help, WAEC prep, scholarship guidance, and career advice in plain Liberian English. No judgment, no barriers — just answers when you need them.</p>
+          </div>
+          <div class="gai-usecase-card">
+            <h4>🌾 Farmers & Agricultural Workers</h4>
+            <p>Ask about planting seasons, pest control, fertilizers, and how to access markets — all without needing to read complex agricultural manuals.</p>
+          </div>
+          <div class="gai-usecase-card">
+            <h4>🛍️ Market Women & Entrepreneurs</h4>
+            <p>Get business tips, pricing strategies, record-keeping help, and information about grants and loans available to small businesses in Liberia.</p>
+          </div>
+          <div class="gai-usecase-card">
+            <h4>🏘️ Community Leaders & Elders</h4>
+            <p>Preserve your community's stories, traditions, and oral history. Grandpa AI helps record and protect cultural knowledge for future generations.</p>
+          </div>
+          <div class="gai-usecase-card">
+            <h4>🏥 Health Workers & Citizens</h4>
+            <p>Provide community health education, symptom awareness, and referral guidance in simple language that everyone can understand and act on.</p>
+          </div>
+          <div class="gai-usecase-card">
+            <h4>🏢 NGOs & Development Organizations</h4>
+            <p>Deploy Grandpa AI as a field tool for community outreach, data collection, and information sharing without requiring technical expertise from staff.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER -->
+    <section class="gai-founder">
+      <div class="container">
+        <div class="section-header centered" style="margin-bottom:2rem;">
+          <p class="section-label">The Team Behind Grandpa AI</p>
+          <h2>Vision Born in Liberia, Built for Africa</h2>
+        </div>
+        <div class="gai-founder-inner">
+          <div class="founder-avatar">👨🏾‍💼</div>
+          <div class="founder-info">
+            <h3>Samuel S. Tolbert</h3>
+            <p class="founder-title">Founder & CEO — Tolbert Innovation Hub Liberia</p>
+            <p>Samuel Tolbert is a Liberian entrepreneur and technology innovator committed to using digital tools to empower African communities. Founded in February 2024, Grandpa AI is his vision to bridge the gap between Africa's rich cultural heritage and the power of modern artificial intelligence — making AI truly accessible, relevant, and empowering for every Liberian.</p>
+            <p style="margin-top:0.75rem;">Tolbert Innovation Hub (TIH) is already helping Liberian students access study abroad opportunities, WAEC preparation, healthcare referrals, and technology solutions. Grandpa AI is the next frontier — an AI that Africa can truly call its own.</p>
+            <div style="margin-top:1rem;">
+              <span class="founder-badge">🏛️ God Fearing</span>
+              <span class="founder-badge">🌍 Pan-African</span>
+              <span class="founder-badge">💡 AI Innovator</span>
+              <span class="founder-badge">✅ Prototype Ready</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Info -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.25rem; margin-top:2.5rem;">
+          <div style="background:white; border-radius:12px; padding:1.25rem; box-shadow:0 2px 10px rgba(0,40,104,0.07); text-align:center;">
+            <div style="font-size:1.5rem; margin-bottom:0.4rem;">🗓️</div>
+            <div style="font-weight:700; color:#002868; font-size:0.9rem;">Founded</div>
+            <div style="color:#6b7280; font-size:0.85rem;">February 20, 2024</div>
+          </div>
+          <div style="background:white; border-radius:12px; padding:1.25rem; box-shadow:0 2px 10px rgba(0,40,104,0.07); text-align:center;">
+            <div style="font-size:1.5rem; margin-bottom:0.4rem;">🤖</div>
+            <div style="font-weight:700; color:#002868; font-size:0.9rem;">Sector</div>
+            <div style="color:#6b7280; font-size:0.85rem;">Artificial Intelligence &amp; Big Data</div>
+          </div>
+          <div style="background:white; border-radius:12px; padding:1.25rem; box-shadow:0 2px 10px rgba(0,40,104,0.07); text-align:center;">
+            <div style="font-size:1.5rem; margin-bottom:0.4rem;">🇱🇷</div>
+            <div style="font-weight:700; color:#002868; font-size:0.9rem;">First Market</div>
+            <div style="color:#6b7280; font-size:0.85rem;">Liberia, West Africa</div>
+          </div>
+          <div style="background:white; border-radius:12px; padding:1.25rem; box-shadow:0 2px 10px rgba(0,40,104,0.07); text-align:center;">
+            <div style="font-size:1.5rem; margin-bottom:0.4rem;">✅</div>
+            <div style="font-weight:700; color:#002868; font-size:0.9rem;">Status</div>
+            <div style="color:#6b7280; font-size:0.85rem;">Working Prototype</div>
+          </div>
+          <div style="background:white; border-radius:12px; padding:1.25rem; box-shadow:0 2px 10px rgba(0,40,104,0.07); text-align:center;">
+            <div style="font-size:1.5rem; margin-bottom:0.4rem;">🌍</div>
+            <div style="font-weight:700; color:#002868; font-size:0.9rem;">Vision</div>
+            <div style="color:#6b7280; font-size:0.85rem;">Pan-African Scale</div>
+          </div>
+          <div style="background:white; border-radius:12px; padding:1.25rem; box-shadow:0 2px 10px rgba(0,40,104,0.07); text-align:center;">
+            <div style="font-size:1.5rem; margin-bottom:0.4rem;">📋</div>
+            <div style="font-weight:700; color:#002868; font-size:0.9rem;">Project ID</div>
+            <div style="color:#6b7280; font-size:0.85rem;">2026-poesam-1287</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTIFY FORM -->
+    <section class="gai-notify" id="notify">
+      <div class="container">
+        <div class="gai-notify-card">
+          <div style="font-size:2.5rem; margin-bottom:0.75rem;">🔔</div>
+          <h2>Be First to Experience Grandpa AI</h2>
+          <p>Register your interest and we'll notify you the moment Grandpa AI launches. Early registrants get priority access.</p>
+          <form class="notify-form" action="https://formspree.io/f/xpzgkwjy" method="POST">
+            <input type="hidden" name="_subject" value="Grandpa AI — Early Access Registration" />
+            <input type="email" name="email" placeholder="Your email address" required />
+            <button type="submit">Notify Me</button>
+          </form>
+          <p style="font-size:0.8rem; color:#9ca3af; margin-top:1rem;">No spam. Just a launch notification. Unsubscribe anytime.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="gai-cta">
+      <div class="container">
+        <h2>Ready to Partner or Invest in Grandpa AI?</h2>
+        <p>We are actively seeking partnerships with NGOs, development organizations, telecoms, and impact investors who believe in African AI. Let's build the future together.</p>
+        <div class="gai-cta-buttons">
+          <a href="mailto:info@tolbertinnovationhub.org?subject=Grandpa AI Partnership Inquiry" class="btn-white">Partnership Inquiry</a>
+          <a href="https://wa.me/231880559227?text=Hello%2C%20I'm%20interested%20in%20Grandpa%20AI" target="_blank" rel="noopener noreferrer" class="btn-ghost-white">💬 WhatsApp Us</a>
+          <a href="contact.html" class="btn-ghost-white">Contact TIH</a>
+        </div>
+        <div style="margin-top:2rem; font-size:0.85rem; color:rgba(255,255,255,0.6);">
+          📧 info@tolbertinnovationhub.org &nbsp;|&nbsp; 📞 +231 880 559 227 &nbsp;|&nbsp; 🌐 Monrovia, Liberia
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- WhatsApp float -->
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;background:#25D366;color:#fff;border-radius:50%;width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 4px 18px rgba(0,0,0,0.18);text-decoration:none;">💬</a>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a href="index.html" class="brand footer-logo-link">Tolbert Innovation Hub</a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation. Never Stop Innovating.</p>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="study-abroad.html">Study Abroad</a></li>
+            <li><a href="wassce.html">WASSCE PRO</a></li>
+            <li><a href="grants.html">Grants 2026–2027</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+            <li><a href="grandpa-ai.html">Grandpa AI</a></li>
+            <li><a href="software.html">Software Solutions</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact Us</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231778956979">+231 778 956 979</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">🌐</span><span>Airfield, Sinkor, Monrovia, Liberia</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p>&copy; 2026 Tolbert Innovation Hub Liberia. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

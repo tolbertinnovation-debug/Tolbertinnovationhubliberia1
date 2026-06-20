@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mock Exam Center | WASSCE PRO | TIH Liberia</title>
+  <meta name="description" content="Simulate real WAEC exam conditions with timed mock exams in Mathematics, English, Biology, Chemistry, Physics, and Economics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Page-specific variables ── */
+    :root {
+      --navy: #002868;
+      --red: #BF0A30;
+      --orange: #f97316;
+      --green: #16a34a;
+      --blue: #2563eb;
+      --light-bg: #f1f5f9;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --muted: #64748b;
+    }
+
+    /* ── General resets for this page ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--light-bg); margin: 0; }
+
+    /* ── Screen toggling ── */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* ── Hero ── */
+    .mock-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #004080 100%);
+      color: #fff;
+      padding: 64px 16px 48px;
+      text-align: center;
+    }
+    .mock-hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 800;
+      margin: 0 0 12px;
+    }
+    .mock-hero p {
+      font-size: 1.1rem;
+      opacity: .85;
+      margin: 0;
+    }
+    .mock-hero .hero-badge {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    /* ── Container ── */
+    .mock-container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* ── Setup Screen ── */
+    .setup-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+      padding: 36px;
+      margin: -28px auto 32px;
+      position: relative;
+      z-index: 2;
+    }
+    .setup-card h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--border);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 580px) { .form-grid { grid-template-columns: 1fr; } }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .form-group select {
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: #fff;
+      cursor: pointer;
+      transition: border-color .2s;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--navy);
+    }
+
+    .instructions {
+      margin: 24px 0;
+      background: #eff6ff;
+      border-left: 4px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+    }
+    .instructions h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 0 0 10px;
+    }
+    .instructions ul {
+      margin: 0;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .instructions ul li {
+      font-size: .88rem;
+      color: #1e40af;
+    }
+
+    .btn-start {
+      display: block;
+      width: 100%;
+      background: var(--navy);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+      letter-spacing: .02em;
+    }
+    .btn-start:hover { background: #003580; transform: translateY(-1px); }
+    .btn-start:active { transform: translateY(0); }
+
+    /* ── Stats strip ── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      border-top: 3px solid var(--navy);
+    }
+    .stat-card .stat-value {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .stat-card .stat-label {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* ── Recent results ── */
+    .section-heading {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0 0 16px;
+    }
+    .results-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .result-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      gap: 12px;
+    }
+    .result-card .rc-subject {
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--text);
+      text-transform: capitalize;
+    }
+    .result-card .rc-date {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .result-card .rc-grade {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      min-width: 40px;
+      text-align: center;
+    }
+    .result-card .rc-score {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .no-results {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    /* ── EXAM SCREEN ── */
+    .exam-topbar {
+      background: var(--navy);
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.2);
+    }
+    .exam-subject-badge {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+      background: rgba(255,255,255,.15);
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+    .exam-timer {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      background: var(--red);
+      padding: 6px 16px;
+      border-radius: 8px;
+      letter-spacing: .06em;
+      min-width: 90px;
+      text-align: center;
+      transition: background .3s;
+    }
+    .exam-timer.warning { background: var(--orange); }
+    .exam-timer.danger { background: #dc2626; animation: pulse 1s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.7} }
+
+    .exam-qcounter {
+      font-size: .85rem;
+      opacity: .8;
+      flex: 1;
+    }
+    .topbar-actions {
+      display: flex;
+      gap: 8px;
+      margin-left: auto;
+    }
+    .btn-flag {
+      background: transparent;
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      font-family: 'Poppins', sans-serif;
+      font-size: .82rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-flag.flagged { background: var(--orange); color: #fff; }
+    .btn-flag:hover { background: var(--orange); color: #fff; }
+    .btn-submit-exam {
+      background: var(--red);
+      border: none;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: .82rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-submit-exam:hover { background: #9a0826; }
+
+    .exam-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
+
+    .question-panel {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    }
+    .question-number {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: 10px;
+    }
+    .question-text {
+      font-size: 1.08rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #f8fafc;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 18px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: .97rem;
+      color: var(--text);
+      text-align: left;
+      transition: all .15s;
+      width: 100%;
+    }
+    .option-btn:hover { border-color: var(--navy); background: #eff6ff; }
+    .option-btn.selected { border-color: var(--blue); background: #dbeafe; color: #1e40af; }
+    .option-btn.selected .option-letter { background: var(--blue); color: #fff; }
+    .option-letter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
+      border-radius: 50%;
+      background: var(--border);
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--muted);
+      transition: all .15s;
+    }
+
+    /* Question grid */
+    .question-grid-wrap {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 20px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      margin-bottom: 24px;
+    }
+    .qgrid-heading {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 12px;
+    }
+    .question-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .qgrid-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      border: 2px solid var(--border);
+      background: #f8fafc;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .qgrid-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .qgrid-btn.answered { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .qgrid-btn.flagged-q { background: var(--orange); border-color: var(--orange); color: #fff; }
+    .qgrid-btn.current { border-color: var(--navy); border-width: 3px; }
+    .qgrid-legend {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .75rem;
+      color: var(--muted);
+    }
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+    .modal-overlay.hidden { display: none; }
+    .modal-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+    .modal-box h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0 0 12px;
+    }
+    .modal-box p { font-size: .95rem; color: var(--muted); margin: 0 0 20px; line-height: 1.5; }
+    .modal-actions { display: flex; gap: 10px; }
+    .btn-cancel {
+      flex: 1;
+      padding: 11px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      background: transparent;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      transition: border-color .2s;
+    }
+    .btn-cancel:hover { border-color: var(--navy); }
+    .btn-confirm {
+      flex: 1;
+      padding: 11px;
+      background: var(--red);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-confirm:hover { background: #9a0826; }
+
+    /* ── RESULTS SCREEN ── */
+    .results-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #004080 100%);
+      color: #fff;
+      padding: 48px 16px 64px;
+      text-align: center;
+    }
+    .grade-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      border: 4px solid rgba(255,255,255,.4);
+      margin-bottom: 16px;
+      background: rgba(255,255,255,.15);
+    }
+    .score-pct {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      margin: 0 0 8px;
+    }
+    .results-hero .subject-label {
+      font-size: .9rem;
+      opacity: .7;
+      margin-bottom: 8px;
+      text-transform: capitalize;
+    }
+    .grade-message {
+      font-size: 1rem;
+      opacity: .9;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .results-container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+    .results-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: -32px auto 32px;
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 580px) { .results-stats { grid-template-columns: repeat(2, 1fr); } }
+    .rstat-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 18px 12px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,.1);
+    }
+    .rstat-card .rstat-val {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+    .rstat-card .rstat-lbl {
+      font-size: .72rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .rstat-card.correct .rstat-val { color: var(--green); }
+    .rstat-card.wrong .rstat-val { color: var(--red); }
+    .rstat-card.unanswered .rstat-val { color: var(--muted); }
+    .rstat-card.time .rstat-val { color: var(--navy); }
+
+    .results-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .btn-retry {
+      flex: 1;
+      min-width: 160px;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 13px 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-retry:hover { background: #003580; }
+    .btn-study {
+      flex: 1;
+      min-width: 160px;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 13px 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+    }
+    .btn-study:hover { background: #15803d; }
+    .btn-view-results {
+      flex: 1;
+      min-width: 160px;
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+      border-radius: 8px;
+      padding: 11px 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-view-results:hover { background: var(--navy); color: #fff; }
+
+    /* Answer review */
+    .review-section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0 0 20px;
+    }
+    .review-item {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-bottom: 14px;
+      border-left: 4px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    }
+    .review-item.ri-correct { border-left-color: var(--green); }
+    .review-item.ri-wrong { border-left-color: var(--red); }
+    .review-item.ri-unanswered { border-left-color: var(--muted); }
+
+    .ri-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .ri-status-icon {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+    .ri-correct .ri-status-icon { background: #dcfce7; color: var(--green); }
+    .ri-wrong .ri-status-icon { background: #fee2e2; color: var(--red); }
+    .ri-unanswered .ri-status-icon { background: #f1f5f9; color: var(--muted); }
+
+    .ri-question {
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .ri-options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .ri-option {
+      font-size: .88rem;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1.5px solid transparent;
+      background: #f8fafc;
+    }
+    .ri-option.correct-opt { background: #dcfce7; border-color: var(--green); color: #14532d; font-weight: 600; }
+    .ri-option.wrong-opt { background: #fee2e2; border-color: var(--red); color: #7f1d1d; }
+    .ri-explanation {
+      margin-top: 10px;
+      font-size: .82rem;
+      color: #1e40af;
+      background: #eff6ff;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-style: italic;
+    }
+
+    /* ── WhatsApp float ── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 54px;
+      height: 54px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+      text-decoration: none;
+      z-index: 500;
+      transition: transform .2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+
+    /* ── Progress bar inside exam ── */
+    .exam-progress-bar {
+      height: 4px;
+      background: rgba(255,255,255,.2);
+      position: relative;
+    }
+    .exam-progress-bar .bar-fill {
+      height: 100%;
+      background: var(--orange);
+      transition: width .3s;
+    }
+
+    /* ── Responsive topbar adjustments ── */
+    @media (max-width: 600px) {
+      .exam-topbar { gap: 8px; }
+      .exam-timer { font-size: 1.1rem; padding: 5px 10px; }
+      .setup-card { padding: 22px 18px; }
+      .question-panel { padding: 20px 18px; }
+      .results-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="logo" aria-label="TIH Home">
+      <span class="logo-tih">TIH</span><span class="logo-lib">Liberia</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="study-abroad.html">Study Abroad</a>
+      <a href="classroom.html">Classroom</a>
+      <a class="active" href="wassce.html">WASSCE PRO</a>
+      <a href="grants.html">Grants</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="study-abroad.html#application-form" class="nav-cta">Apply Now</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN 1: SETUP
+════════════════════════════════════════════════ -->
+<div id="setup-screen" class="screen active">
+
+  <div class="mock-hero">
+    <span class="hero-badge">Mock Exam Center</span>
+    <h1>Test Your WAEC Readiness</h1>
+    <p>Simulate real exam conditions with timed mock tests</p>
+  </div>
+
+  <div class="mock-container">
+
+    <div class="setup-card">
+      <h2>Configure Your Mock Exam</h2>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="sel-subject">Subject</label>
+          <select id="sel-subject">
+            <option value="mathematics">Mathematics</option>
+            <option value="english">English Language</option>
+            <option value="biology">Biology</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="physics">Physics</option>
+            <option value="economics">Economics</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="sel-duration">Duration</label>
+          <select id="sel-duration">
+            <option value="30">30 min (15 Questions)</option>
+            <option value="45" selected>45 min (25 Questions)</option>
+            <option value="60">60 min (40 Questions)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="sel-difficulty">Difficulty</label>
+          <select id="sel-difficulty">
+            <option value="mixed" selected>Mixed</option>
+            <option value="foundation">Foundation</option>
+            <option value="core">Core</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="instructions">
+        <h3>Exam Instructions</h3>
+        <ul>
+          <li>A countdown timer will start as soon as you begin. The exam auto-submits when time runs out.</li>
+          <li>Click any option to select your answer. You may change answers before submitting.</li>
+          <li>Use the <strong>Flag</strong> button to mark questions you want to review later.</li>
+          <li>Use the question grid at the bottom to navigate between questions quickly.</li>
+        </ul>
+      </div>
+
+      <button class="btn-start" id="btn-start-exam" onclick="startExam()">
+        Start Exam &rarr;
+      </button>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-strip" id="stats-strip">
+      <div class="stat-card">
+        <div class="stat-value" id="stat-best">—</div>
+        <div class="stat-label">Best Score</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-total">0</div>
+        <div class="stat-label">Mocks Taken</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-avg">—</div>
+        <div class="stat-label">Average Score</div>
+      </div>
+    </div>
+
+    <!-- Recent Results -->
+    <div id="recent-results-section">
+      <h2 class="section-heading">Recent Results</h2>
+      <div id="recent-results-list" class="results-list"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN 2: EXAM
+════════════════════════════════════════════════ -->
+<div id="exam-screen" class="screen">
+
+  <div class="exam-topbar" id="exam-topbar">
+    <span class="exam-subject-badge" id="exam-subject-label">Mathematics</span>
+    <div class="exam-timer" id="exam-timer">45:00</div>
+    <span class="exam-qcounter" id="exam-qcounter">Q 1 of 25</span>
+    <div class="topbar-actions">
+      <button class="btn-flag" id="btn-flag" onclick="toggleFlag()">&#9873; Flag</button>
+      <button class="btn-submit-exam" onclick="requestSubmit()">Submit Exam</button>
+    </div>
+  </div>
+  <div class="exam-progress-bar"><div class="bar-fill" id="progress-bar" style="width:0%"></div></div>
+
+  <div class="exam-body">
+    <div class="question-panel" id="question-panel">
+      <div class="question-number" id="question-number">Question 1</div>
+      <div class="question-text" id="question-text">Loading question...</div>
+      <div class="options-list" id="options-list"></div>
+    </div>
+
+    <div class="question-grid-wrap">
+      <div class="qgrid-heading">Question Navigator</div>
+      <div class="question-grid" id="question-grid"></div>
+      <div class="qgrid-legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#dbeafe;border:1.5px solid #2563eb;"></div>
+          <span>Answered</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#fed7aa;border:1.5px solid #f97316;"></div>
+          <span>Flagged</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#f8fafc;border:2px solid #002868;"></div>
+          <span>Current</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#f8fafc;border:1.5px solid #e2e8f0;"></div>
+          <span>Unanswered</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN 3: RESULTS
+════════════════════════════════════════════════ -->
+<div id="results-screen" class="screen">
+
+  <div class="results-hero" id="results-hero">
+    <div class="grade-badge" id="grade-badge">A1</div>
+    <div class="subject-label" id="results-subject-label">Mathematics</div>
+    <div class="score-pct" id="results-score-pct">80%</div>
+    <div class="grade-message" id="grade-message">Distinction! Excellent performance.</div>
+  </div>
+
+  <div class="results-container">
+    <div class="results-stats" id="results-stats">
+      <div class="rstat-card correct">
+        <div class="rstat-val" id="rstat-correct">0</div>
+        <div class="rstat-lbl">Correct</div>
+      </div>
+      <div class="rstat-card wrong">
+        <div class="rstat-val" id="rstat-wrong">0</div>
+        <div class="rstat-lbl">Wrong</div>
+      </div>
+      <div class="rstat-card unanswered">
+        <div class="rstat-val" id="rstat-unanswered">0</div>
+        <div class="rstat-lbl">Unanswered</div>
+      </div>
+      <div class="rstat-card time">
+        <div class="rstat-val" id="rstat-time">—</div>
+        <div class="rstat-lbl">Time Taken</div>
+      </div>
+    </div>
+
+    <div class="results-actions">
+      <button class="btn-retry" onclick="resetExam()">Try Another Mock</button>
+      <a class="btn-study" id="btn-study-weak" href="wassce-learn.html">Study Weak Topics</a>
+      <button class="btn-view-results" onclick="scrollToReview()">View Answer Review</button>
+    </div>
+
+    <div class="review-section" id="review-section">
+      <h2>Full Answer Review</h2>
+      <div id="review-list"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Submit Confirmation Modal -->
+<div class="modal-overlay hidden" id="submit-modal">
+  <div class="modal-box">
+    <h3>Submit Exam?</h3>
+    <p id="modal-summary-text">Are you sure you want to submit? You have unanswered questions.</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Continue Exam</button>
+      <button class="btn-confirm" onclick="submitExam()">Yes, Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-logo"><span class="logo-tih">TIH</span><span class="logo-lib">Liberia</span></div>
+      <p class="footer-tagline">Empowering Liberian students and innovators to reach global opportunities.</p>
+    </div>
+    <div>
+      <h4 class="footer-heading">Programs</h4>
+      <ul class="footer-links">
+        <li><a href="study-abroad.html">Study Abroad</a></li>
+        <li><a href="wassce.html">WASSCE PRO</a></li>
+        <li><a href="grants.html">Grants 2026&ndash;2027</a></li>
+        <li><a href="classroom.html">Free Classroom</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="footer-heading">Contact</h4>
+      <ul class="footer-links">
+        <li><a href="tel:+231880559227">+231 880 559 227</a></li>
+        <li><a href="tel:+231778956979">+231 778 956 979</a></li>
+        <li><a href="mailto:tolbertinnovationhub@gmail.com">tolbertinnovationhub@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Tolbert Innovation Hub Liberia. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<!-- ═══════════════════════════════════════════════
+     INLINE MOCK EXAM QUESTIONS
+════════════════════════════════════════════════ -->
+<script>
+const MOCK_QUESTIONS = {
+  mathematics: [
+    { q: "If 2x + 5 = 13, find x.", opts: ["3","4","5","6"], ans: 1, exp: "2x = 13 − 5 = 8, so x = 4." },
+    { q: "Find the LCM of 12 and 18.", opts: ["6","24","36","72"], ans: 2, exp: "12 = 2²×3, 18 = 2×3². LCM = 2²×3² = 36." },
+    { q: "Simplify: 3/4 + 1/6.", opts: ["11/12","5/6","7/12","2/3"], ans: 0, exp: "3/4 = 9/12, 1/6 = 2/12. Sum = 11/12." },
+    { q: "A rectangle has length 8 cm and width 5 cm. Find its area.", opts: ["26 cm²","40 cm²","13 cm²","45 cm²"], ans: 1, exp: "Area = length × width = 8 × 5 = 40 cm²." },
+    { q: "What is 15% of 200?", opts: ["20","25","30","35"], ans: 2, exp: "15/100 × 200 = 30." },
+    { q: "Solve: x² − 5x + 6 = 0.", opts: ["x = 1, 6","x = 2, 3","x = −2, −3","x = 3, 4"], ans: 1, exp: "Factorise: (x−2)(x−3) = 0, so x = 2 or x = 3." },
+    { q: "Convert 110₂ to base 10.", opts: ["4","5","6","7"], ans: 2, exp: "1×4 + 1×2 + 0×1 = 6." },
+    { q: "The mean of 4, 7, 9, 10, and y is 8. Find y.", opts: ["8","9","10","11"], ans: 2, exp: "(4+7+9+10+y)/5 = 8 → 30+y = 40 → y = 10." },
+    { q: "Find the gradient of the line passing through (2, 3) and (4, 7).", opts: ["1","2","3","4"], ans: 1, exp: "Gradient = (7−3)/(4−2) = 4/2 = 2." },
+    { q: "Simplify: √48", opts: ["4√3","6√2","3√4","2√12"], ans: 0, exp: "√48 = √(16×3) = 4√3." },
+    { q: "A triangle has base 6 cm and height 8 cm. Find its area.", opts: ["14 cm²","24 cm²","48 cm²","12 cm²"], ans: 1, exp: "Area = ½ × base × height = ½ × 6 × 8 = 24 cm²." },
+    { q: "If log₂ 8 = x, find x.", opts: ["2","3","4","8"], ans: 1, exp: "2³ = 8, so log₂ 8 = 3." },
+    { q: "Express 0.00045 in standard form.", opts: ["4.5 × 10⁻⁴","4.5 × 10⁻³","45 × 10⁻⁵","4.5 × 10⁴"], ans: 0, exp: "0.00045 = 4.5 × 10⁻⁴." },
+    { q: "P(A) = 0.4, P(B) = 0.3 and the events are independent. Find P(A∩B).", opts: ["0.7","0.12","0.1","0.04"], ans: 1, exp: "P(A∩B) = P(A) × P(B) = 0.4 × 0.3 = 0.12." },
+    { q: "A car travels 180 km in 3 hours. Find its speed in km/h.", opts: ["50","60","70","80"], ans: 1, exp: "Speed = Distance/Time = 180/3 = 60 km/h." },
+    { q: "Find the next term in the sequence: 3, 7, 11, 15, ...", opts: ["17","18","19","20"], ans: 2, exp: "Common difference = 4. Next term = 15 + 4 = 19." },
+    { q: "What is the circumference of a circle with radius 7 cm? (Use π = 22/7)", opts: ["22 cm","44 cm","66 cm","88 cm"], ans: 1, exp: "C = 2πr = 2 × (22/7) × 7 = 44 cm." },
+    { q: "Factorize: x² − 9", opts: ["(x − 3)²","(x + 3)(x − 3)","(x − 9)(x + 1)","(x + 9)(x − 1)"], ans: 1, exp: "Difference of two squares: x² − 9 = (x+3)(x−3)." },
+    { q: "If 3 : 5 = x : 20, find x.", opts: ["10","12","15","8"], ans: 1, exp: "x = (3 × 20)/5 = 12." },
+    { q: "Convert 35°C to Fahrenheit. (F = 9/5 × C + 32)", opts: ["93°F","95°F","97°F","99°F"], ans: 1, exp: "F = (9/5 × 35) + 32 = 63 + 32 = 95°F." },
+    { q: "Find the median of: 5, 3, 8, 1, 7, 4, 6", opts: ["4","5","6","7"], ans: 1, exp: "Arranged: 1,3,4,5,6,7,8. Middle value (4th) = 5." },
+    { q: "A bag has 3 red and 5 blue balls. What is P(red)?", opts: ["3/8","5/8","3/5","5/3"], ans: 0, exp: "P(red) = 3/(3+5) = 3/8." },
+    { q: "Solve: 2(3x − 1) = 4(x + 2)", opts: ["x = 3","x = 4","x = 5","x = 6"], ans: 2, exp: "6x − 2 = 4x + 8 → 2x = 10 → x = 5." },
+    { q: "Find angle x if the angles of a triangle are 50°, 70°, and x°.", opts: ["50°","55°","60°","65°"], ans: 2, exp: "Sum of angles = 180°. x = 180 − 50 − 70 = 60°." },
+    { q: "What is the volume of a cube with side 4 cm?", opts: ["16 cm³","48 cm³","64 cm³","96 cm³"], ans: 2, exp: "Volume = side³ = 4³ = 64 cm³." }
+  ],
+  english: [
+    { q: "Choose the correct spelling:", opts: ["Accomodation","Accommodation","Acomodation","Acommodation"], ans: 1, exp: "'Accommodation' has double c and double m." },
+    { q: "\"The children _____ playing.\" — Choose the correct verb form.", opts: ["is","are","was","were"], ans: 1, exp: "'Children' is plural, so the present tense verb is 'are'." },
+    { q: "Identify the clause type in: \"Although it rained, we played.\"", opts: ["Adverbial","Adjectival","Noun","Relative"], ans: 0, exp: "'Although it rained' modifies the verb 'played', making it an adverbial clause." },
+    { q: "What figure of speech is used in: \"The sun smiled down on us\"?", opts: ["Simile","Metaphor","Personification","Hyperbole"], ans: 2, exp: "Giving the sun a human quality (smiling) is personification." },
+    { q: "Choose the antonym of 'benevolent':", opts: ["Kind","Malevolent","Generous","Charitable"], ans: 1, exp: "'Benevolent' means kind/generous; its antonym 'malevolent' means wishing harm." },
+    { q: "\"He is the boy _____ father is a teacher.\"", opts: ["which","who","whom","whose"], ans: 3, exp: "'Whose' is the possessive relative pronoun used for people." },
+    { q: "A formal letter must include:", opts: ["Salutation only","Date, address, salutation, body, closing","Body and signature","Subject only"], ans: 1, exp: "A complete formal letter requires all key components: date, address, salutation, body, and closing." },
+    { q: "\"Neither John nor his friends _____ present.\"", opts: ["is","are","was","were"], ans: 1, exp: "When 'neither...nor' is used, the verb agrees with the nearest subject ('friends' = plural), so 'are'." },
+    { q: "Synonym of 'meticulous':", opts: ["Careless","Thorough","Hasty","Simple"], ans: 1, exp: "'Meticulous' means showing great attention to detail, same as 'thorough'." },
+    { q: "Identify the passive voice:", opts: ["She wrote the letter","The letter was written by her","She is writing","She will write"], ans: 1, exp: "Passive voice: subject receives the action. 'The letter was written by her' is passive." },
+    { q: "A speech that praises someone who has died is called:", opts: ["Eulogy","Elegy","Ode","Sonnet"], ans: 0, exp: "A eulogy is a speech or piece of writing praising someone who has recently died." },
+    { q: "\"Give me liberty ___ give me death.\"", opts: ["but","or","and","nor"], ans: 1, exp: "The famous quote by Patrick Henry uses 'or' to present two alternatives." },
+    { q: "Prefix meaning 'against':", opts: ["pre-","anti-","pro-","bi-"], ans: 1, exp: "'Anti-' means against (e.g., antisocial, antibody)." },
+    { q: "A book of synonyms and antonyms is called:", opts: ["Dictionary","Thesaurus","Encyclopedia","Atlas"], ans: 1, exp: "A thesaurus lists words grouped by similarity of meaning (synonyms) and contrast (antonyms)." },
+    { q: "Identify the tense: \"By tomorrow, I will have finished.\"", opts: ["Future Simple","Future Perfect","Present Perfect","Past Perfect"], ans: 1, exp: "'Will have finished' = Future Perfect, indicating an action completed before a future point." },
+    { q: "\"Bite the bullet\" means:", opts: ["Shoot a gun","Eat something hard","Endure a painful situation","Be aggressive"], ans: 2, exp: "This idiom means to endure a painful or difficult situation." },
+    { q: "In a summary, you should:", opts: ["Add your opinions","Paraphrase the key points","Copy sentences verbatim","Include all details"], ans: 1, exp: "A summary requires you to restate the main ideas in your own words (paraphrase)." },
+    { q: "Which sentence has correct punctuation?", opts: ["\"Its raining\"","\"It's raining.\"","\"It's raining\"","\"Its' raining.\""], ans: 1, exp: "'It's' is the contraction of 'it is'. A sentence ends with a period." },
+    { q: "The subject in \"The tall tree fell\" is:", opts: ["tall","tree","tall tree","The tall tree"], ans: 3, exp: "The complete subject includes all words modifying the noun: 'The tall tree'." },
+    { q: "Suffix that means 'state of being':", opts: ["-tion","-ly","-ness","-ful"], ans: 2, exp: "'-ness' indicates a state or quality (e.g., happiness, sadness)." },
+    { q: "A narrative essay should have:", opts: ["Introduction, body, conclusion","Only body paragraphs","Only arguments","Lists of facts"], ans: 0, exp: "All essays, including narrative ones, follow the three-part structure." },
+    { q: "\"He ran as fast as the wind\" — figure of speech?", opts: ["Metaphor","Simile","Personification","Alliteration"], ans: 1, exp: "A comparison using 'as...as' is a simile." },
+    { q: "Oral English: The word 'debt' — the silent letter is:", opts: ["e","b","d","t"], ans: 1, exp: "In 'debt', the letter 'b' is silent. It is pronounced 'det'." },
+    { q: "Choose the correct plural:", opts: ["Childs","Childrens","Children","Childes"], ans: 2, exp: "'Child' has an irregular plural: 'children'." },
+    { q: "A word that joins two clauses of equal importance:", opts: ["Subordinating conjunction","Coordinating conjunction","Preposition","Interjection"], ans: 1, exp: "Coordinating conjunctions (FANBOYS: for, and, nor, but, or, yet, so) join equal clauses." }
+  ],
+  biology: [
+    { q: "The powerhouse of the cell is the:", opts: ["Nucleus","Ribosome","Mitochondria","Golgi body"], ans: 2, exp: "The mitochondria produces ATP (energy) through cellular respiration, earning it the 'powerhouse' title." },
+    { q: "Photosynthesis occurs in the:", opts: ["Mitochondria","Chloroplast","Nucleus","Cytoplasm"], ans: 1, exp: "Chloroplasts contain chlorophyll and are the sites of photosynthesis in plant cells." },
+    { q: "DNA stands for:", opts: ["Deoxyribose Nucleic Acid","Deoxyribonucleic Acid","Deoxynucleic Acid","Deoxyribose Nitrogen Acid"], ans: 1, exp: "DNA = Deoxyribonucleic Acid — the molecule carrying genetic information." },
+    { q: "Osmosis is:", opts: ["Movement of solutes","Movement of water from low to high concentration","Movement of water from high to low concentration through a semi-permeable membrane","Active transport"], ans: 2, exp: "Osmosis is the passive movement of water across a semi-permeable membrane from high to low water potential (low to high solute concentration)." },
+    { q: "Which blood type is the universal donor?", opts: ["AB","B","A","O"], ans: 3, exp: "Blood type O negative has no A, B, or Rh antigens, so it can be donated to any blood type." },
+    { q: "The part of the brain that controls balance:", opts: ["Cerebrum","Cerebellum","Medulla","Hypothalamus"], ans: 1, exp: "The cerebellum coordinates muscle movement and maintains balance and posture." },
+    { q: "The enzyme that breaks down starch:", opts: ["Lipase","Pepsin","Amylase","Trypsin"], ans: 2, exp: "Amylase (found in saliva and pancreatic juice) catalyses the hydrolysis of starch into sugars." },
+    { q: "Chromosomes are found in the:", opts: ["Cytoplasm","Ribosome","Nucleus","Cell wall"], ans: 2, exp: "Chromosomes are located in the nucleus of eukaryotic cells." },
+    { q: "Gregor Mendel is known as the father of:", opts: ["Evolution","Genetics","Ecology","Taxonomy"], ans: 1, exp: "Mendel's pea plant experiments established the laws of inheritance, founding the science of genetics." },
+    { q: "The process by which plants lose water through leaves:", opts: ["Transpiration","Respiration","Photosynthesis","Absorption"], ans: 0, exp: "Transpiration is the evaporation of water from plant leaves through stomata." },
+    { q: "The unit of classification below genus is:", opts: ["Family","Order","Species","Phylum"], ans: 2, exp: "Taxonomic hierarchy: Kingdom > Phylum > Class > Order > Family > Genus > Species." },
+    { q: "Malaria is caused by:", opts: ["Virus","Bacteria","Plasmodium","Fungus"], ans: 2, exp: "Malaria is caused by Plasmodium parasites, transmitted by female Anopheles mosquitoes." },
+    { q: "Which blood cells fight infection?", opts: ["Red blood cells","Platelets","White blood cells","Plasma"], ans: 2, exp: "White blood cells (leukocytes) are part of the immune system and fight infections." },
+    { q: "A food chain starts with:", opts: ["Consumer","Decomposer","Producer","Carnivore"], ans: 2, exp: "Producers (plants) capture solar energy and form the base of every food chain." },
+    { q: "Mitosis produces:", opts: ["4 haploid cells","2 identical diploid cells","4 diploid cells","2 haploid cells"], ans: 1, exp: "Mitosis results in two genetically identical daughter cells with the same chromosome number as the parent." },
+    { q: "The heart chamber that pumps blood to the body:", opts: ["Right atrium","Left atrium","Right ventricle","Left ventricle"], ans: 3, exp: "The left ventricle pumps oxygenated blood through the aorta to the rest of the body." },
+    { q: "Vitamin C deficiency causes:", opts: ["Rickets","Scurvy","Anaemia","Pellagra"], ans: 1, exp: "Scurvy is caused by vitamin C deficiency, leading to bleeding gums and poor wound healing." },
+    { q: "The process of converting glucose to energy in the absence of oxygen:", opts: ["Aerobic respiration","Fermentation","Photosynthesis","Anaerobic respiration"], ans: 3, exp: "Anaerobic respiration breaks down glucose without oxygen, producing lactic acid (in animals) or ethanol (in yeast)." },
+    { q: "Which organism performs binary fission?", opts: ["Amoeba","Earthworm","Frog","Mushroom"], ans: 0, exp: "Amoeba reproduces asexually by binary fission — splitting into two equal halves." },
+    { q: "The human skin is an organ of:", opts: ["Respiration only","Excretion only","Both excretion and protection","Digestion"], ans: 2, exp: "The skin excretes waste through sweat and provides a protective barrier against pathogens." },
+    { q: "Chlorophyll is found in:", opts: ["Chromoplast","Leucoplast","Chloroplast","Ribosome"], ans: 2, exp: "Chlorophyll pigments are located in the thylakoid membranes of chloroplasts." },
+    { q: "The pH of human blood is approximately:", opts: ["6.5","7.0","7.4","8.0"], ans: 2, exp: "Normal human blood pH is maintained between 7.35 and 7.45, approximately 7.4." },
+    { q: "Meiosis results in:", opts: ["2 cells with same chromosome number","4 cells with half chromosome number","2 cells with half chromosome number","4 cells with same chromosome number"], ans: 1, exp: "Meiosis produces 4 genetically unique haploid cells (half the chromosome number of the parent)." },
+    { q: "Which nutrient provides the most energy per gram?", opts: ["Protein","Carbohydrate","Vitamin","Fat"], ans: 3, exp: "Fats provide 9 kcal/g, compared to 4 kcal/g for carbohydrates and proteins." },
+    { q: "The functional unit of the kidney is the:", opts: ["Ureter","Nephron","Glomerulus","Bowman's capsule"], ans: 1, exp: "The nephron is the basic structural and functional unit of the kidney, responsible for filtration." }
+  ],
+  chemistry: [
+    { q: "The atomic number of Carbon is:", opts: ["6","12","14","8"], ans: 0, exp: "Carbon (C) has 6 protons, so its atomic number is 6." },
+    { q: "Formula of sulfuric acid:", opts: ["HCl","HNO₃","H₂SO₄","H₃PO₄"], ans: 2, exp: "Sulfuric acid = H₂SO₄ (2 hydrogen, 1 sulfur, 4 oxygen)." },
+    { q: "A neutral atom has equal numbers of:", opts: ["Protons and neutrons","Electrons and neutrons","Protons and electrons","Neutrons and electrons"], ans: 2, exp: "A neutral atom has no overall charge because the number of protons equals the number of electrons." },
+    { q: "The pH of a strong acid is:", opts: ["Above 7","Exactly 7","Below 7","14"], ans: 2, exp: "Acids have pH below 7; strong acids have very low pH values (close to 0)." },
+    { q: "The process of converting liquid to gas:", opts: ["Condensation","Sublimation","Evaporation","Melting"], ans: 2, exp: "Evaporation is the phase change from liquid to gas at or below the boiling point." },
+    { q: "Covalent bond is formed by:", opts: ["Transfer of electrons","Sharing of electrons","Attraction between ions","Metallic bonding"], ans: 1, exp: "Covalent bonds form when two atoms share one or more pairs of electrons." },
+    { q: "Which gas is produced when zinc reacts with HCl?", opts: ["Oxygen","Carbon dioxide","Hydrogen","Nitrogen"], ans: 2, exp: "Zn + 2HCl → ZnCl₂ + H₂↑. Hydrogen gas is evolved." },
+    { q: "The relative atomic mass of Oxygen is:", opts: ["8","12","14","16"], ans: 3, exp: "Oxygen (O) has a relative atomic mass of 16 (8 protons + 8 neutrons)." },
+    { q: "An oxidizing agent:", opts: ["Loses electrons","Gains electrons","Shares electrons","Neither gains nor loses"], ans: 1, exp: "An oxidizing agent gains electrons (is reduced) while causing another substance to be oxidized." },
+    { q: "Ethanol is an example of:", opts: ["Alkane","Alkene","Alcohol","Ester"], ans: 2, exp: "Ethanol (C₂H₅OH) belongs to the alcohol homologous series, characterized by the –OH group." },
+    { q: "NaCl is formed by:", opts: ["Metallic bond","Covalent bond","Ionic bond","Hydrogen bond"], ans: 2, exp: "NaCl (sodium chloride) is an ionic compound formed by electron transfer from Na to Cl." },
+    { q: "Alloys are:", opts: ["Pure metals","Mixtures of metals","Metal compounds","Metal salts"], ans: 1, exp: "Alloys are mixtures of two or more metals (or a metal and non-metal) e.g. brass = copper + zinc." },
+    { q: "Rusting of iron requires:", opts: ["Water only","Oxygen only","Both water and oxygen","Carbon dioxide"], ans: 2, exp: "Iron rusts (forms iron oxide) only when both water and oxygen are present." },
+    { q: "The chemical formula of glucose is:", opts: ["C₆H₁₂O₆","C₁₂H₂₂O₁₁","CH₄","C₂H₅OH"], ans: 0, exp: "Glucose is C₆H₁₂O₆ — a monosaccharide with 6 carbons." },
+    { q: "Which metal is most reactive?", opts: ["Gold","Silver","Copper","Potassium"], ans: 3, exp: "Potassium is at the top of the reactivity series, far above copper, silver, and gold." },
+    { q: "Neutralization reaction produces:", opts: ["Only salt","Only water","Salt and water","Acid and base"], ans: 2, exp: "Acid + Base → Salt + Water. This is the neutralization reaction." },
+    { q: "Avogadro's number is approximately:", opts: ["6.02 × 10²³","6.02 × 10²²","3.01 × 10²³","1.2 × 10²³"], ans: 0, exp: "Avogadro's constant = 6.02 × 10²³ mol⁻¹, the number of particles in one mole." },
+    { q: "The polymer made from ethene is:", opts: ["Nylon","Polyethylene","PVC","Polystyrene"], ans: 1, exp: "Polyethylene (polyethene) is made by the addition polymerization of ethene (CH₂=CH₂)." },
+    { q: "Rate of reaction increases when:", opts: ["Temperature decreases","Concentration decreases","Temperature increases","Catalyst is removed"], ans: 2, exp: "Increasing temperature gives particles more kinetic energy, leading to more frequent and energetic collisions." },
+    { q: "Which gas has a characteristic smell of rotten eggs?", opts: ["Chlorine","Ammonia","Hydrogen sulfide","Nitrogen dioxide"], ans: 2, exp: "Hydrogen sulfide (H₂S) has a distinctive rotten egg odour." },
+    { q: "Sublimation occurs when:", opts: ["Solid → Liquid","Liquid → Gas","Solid → Gas directly","Gas → Liquid"], ans: 2, exp: "Sublimation is the direct phase change from solid to gas without passing through the liquid phase (e.g., dry ice)." },
+    { q: "Molar mass of H₂O is:", opts: ["16 g/mol","18 g/mol","20 g/mol","12 g/mol"], ans: 1, exp: "H₂O: 2×1 (H) + 16 (O) = 18 g/mol." },
+    { q: "Electrolysis requires:", opts: ["Only an acid","An ionic compound or solution","A covalent compound","A neutral solution"], ans: 1, exp: "Electrolysis requires ions that are free to move — found in molten ionic compounds or their aqueous solutions." },
+    { q: "The indicator that turns red in acid is:", opts: ["Phenolphthalein","Litmus","Universal indicator","Methyl orange"], ans: 1, exp: "Litmus turns red in acid and blue in alkali — it is a common acid-base indicator." },
+    { q: "Carbon dating is used to:", opts: ["Find purity of metals","Determine age of fossils","Purify water","Make alloys"], ans: 1, exp: "Radiocarbon (¹⁴C) dating measures decay of carbon-14 in organic matter to estimate age of fossils." }
+  ],
+  physics: [
+    { q: "A car travels 120 km in 2 hours. What is its speed?", opts: ["40 km/h","50 km/h","60 km/h","70 km/h"], ans: 2, exp: "Speed = Distance/Time = 120/2 = 60 km/h." },
+    { q: "The SI unit of force:", opts: ["Joule","Watt","Newton","Pascal"], ans: 2, exp: "Force is measured in Newtons (N), named after Sir Isaac Newton." },
+    { q: "Light travels at approximately:", opts: ["3 × 10⁸ m/s","3 × 10⁶ m/s","3 × 10⁴ m/s","3 × 10¹⁰ m/s"], ans: 0, exp: "The speed of light in vacuum is approximately 3 × 10⁸ m/s." },
+    { q: "Ohm's Law: V = IR. If V = 12 V and R = 3 Ω, find I.", opts: ["4 A","36 A","9 A","0.25 A"], ans: 0, exp: "I = V/R = 12/3 = 4 A." },
+    { q: "The law of conservation of energy states:", opts: ["Energy can be created","Energy cannot be destroyed","Energy cannot be created or destroyed","Energy can be destroyed"], ans: 2, exp: "Energy cannot be created or destroyed, only transformed from one form to another." },
+    { q: "Sound frequency above 20,000 Hz is called:", opts: ["Infrasound","Ultrasound","Echo","Noise"], ans: 1, exp: "Ultrasound has frequencies above the human hearing range (>20,000 Hz)." },
+    { q: "A convex lens is used to correct:", opts: ["Myopia","Astigmatism","Hypermetropia","Presbyopia"], ans: 2, exp: "Hypermetropia (long-sightedness) is corrected by a converging (convex) lens." },
+    { q: "Work done = Force × Distance. Force = 10 N, Distance = 5 m. Work = ?", opts: ["2 J","50 J","15 J","0.5 J"], ans: 1, exp: "Work = F × d = 10 × 5 = 50 J." },
+    { q: "The nucleus of an atom contains:", opts: ["Electrons and neutrons","Protons and electrons","Protons and neutrons","Only protons"], ans: 2, exp: "The nucleus contains protons and neutrons; electrons orbit outside the nucleus." },
+    { q: "Magnetic field lines run:", opts: ["From South to North (outside magnet)","From North to South (outside magnet)","Horizontally","Vertically"], ans: 1, exp: "Outside a magnet, field lines run from North pole to South pole." },
+    { q: "Power = Work/Time. Work = 200 J, Time = 10 s. Power = ?", opts: ["20 W","2000 W","210 W","190 W"], ans: 0, exp: "P = W/t = 200/10 = 20 W." },
+    { q: "Sound travels fastest through:", opts: ["Air","Water","Vacuum","Solid"], ans: 3, exp: "Sound is a mechanical wave and travels fastest through solids due to closer particle spacing." },
+    { q: "Total internal reflection occurs when light:", opts: ["Passes from dense to less dense medium at or beyond the critical angle","Passes from air to glass","Reflects off a mirror","Refracts"], ans: 0, exp: "Total internal reflection happens when light hits the boundary from a denser medium at ≥ critical angle." },
+    { q: "An object at rest remains at rest unless acted upon by a net force — this is Newton's:", opts: ["Second law","Third law","First law","Fourth law"], ans: 2, exp: "Newton's First Law (Law of Inertia): an object stays at rest or in uniform motion unless acted upon by a net force." },
+    { q: "The SI unit of electric charge:", opts: ["Ampere","Volt","Coulomb","Ohm"], ans: 2, exp: "Electric charge is measured in Coulombs (C). The ampere is the unit of current (charge per second)." },
+    { q: "Density = Mass/Volume. Mass = 200 g, Volume = 50 cm³. Density = ?", opts: ["4 g/cm³","250 g/cm³","10000 g/cm³","0.25 g/cm³"], ans: 0, exp: "Density = 200/50 = 4 g/cm³." },
+    { q: "Radioactive decay that emits a helium nucleus:", opts: ["Beta","Gamma","Alpha","X-ray"], ans: 2, exp: "Alpha decay emits an alpha particle (²He⁴ nucleus: 2 protons + 2 neutrons)." },
+    { q: "Potential difference is measured with:", opts: ["Ammeter","Voltmeter","Galvanometer","Thermometer"], ans: 1, exp: "A voltmeter measures potential difference (voltage) and is connected in parallel." },
+    { q: "A concave mirror forms a real, inverted, magnified image when the object is:", opts: ["At focus","Between focus and pole","Between center of curvature and focus","Beyond center of curvature"], ans: 2, exp: "When the object is between F and C (focus and centre of curvature), the image is real, inverted, and magnified." },
+    { q: "A transformer works on the principle of:", opts: ["Mutual induction","Self induction","Electromagnetic effect","Photoelectric effect"], ans: 0, exp: "A transformer uses mutual electromagnetic induction to transfer energy between two coils." },
+    { q: "Period T = 1/f. If f = 50 Hz, find T.", opts: ["0.02 s","0.2 s","2 s","50 s"], ans: 0, exp: "T = 1/f = 1/50 = 0.02 s." },
+    { q: "Atmospheric pressure at sea level is approximately:", opts: ["101,325 Pa","10,000 Pa","1,000 Pa","1,000,000 Pa"], ans: 0, exp: "Standard atmospheric pressure = 101,325 Pa (approximately 101.3 kPa)." },
+    { q: "The specific heat capacity of water is:", opts: ["4200 J/kg°C","420 J/kg°C","42,000 J/kg°C","42 J/kg°C"], ans: 0, exp: "Water has a specific heat capacity of 4,200 J/kg°C (or 4.2 kJ/kg°C)." },
+    { q: "Electromagnetic spectrum in order of increasing frequency:", opts: ["Radio, Infrared, Visible, UV, X-ray, Gamma","Gamma, X-ray, UV, Visible, Infrared, Radio","Visible, UV, X-ray, Radio, Gamma","UV, Visible, X-ray, Gamma, Radio"], ans: 0, exp: "Increasing frequency (and energy): Radio < Microwave < Infrared < Visible < UV < X-ray < Gamma." },
+    { q: "What type of motion does a pendulum exhibit?", opts: ["Linear","Circular","Simple harmonic","Random"], ans: 2, exp: "A pendulum undergoes simple harmonic motion (SHM) — oscillating about an equilibrium position." }
+  ],
+  economics: [
+    { q: "The law of demand states:", opts: ["As price rises, demand rises","As price rises, demand falls","Price and demand are unrelated","Demand always equals supply"], ans: 1, exp: "The law of demand: ceteris paribus, as price increases, quantity demanded decreases (inverse relationship)." },
+    { q: "GDP stands for:", opts: ["General Domestic Product","Gross Domestic Product","Gross Demand Product","General Demand Productivity"], ans: 1, exp: "GDP = Gross Domestic Product — total monetary value of all goods and services produced in a country in a year." },
+    { q: "Inflation means:", opts: ["Decrease in money supply","General rise in price levels","Decrease in employment","Rise in exchange rate"], ans: 1, exp: "Inflation is a sustained general increase in the price level of goods and services in an economy." },
+    { q: "A monopoly is:", opts: ["Two sellers in a market","Many sellers","Single seller controlling the market","Perfect competition"], ans: 2, exp: "A monopoly exists when a single firm is the sole producer/seller of a product with no close substitutes." },
+    { q: "Opportunity cost is:", opts: ["The price of a good","The cost of production","The next best alternative foregone","Total cost of all alternatives"], ans: 2, exp: "Opportunity cost = the value of the next best alternative given up when making a choice." },
+    { q: "The Central Bank of Liberia controls:", opts: ["Prices of goods","Money supply and monetary policy","Tax collection","Government spending"], ans: 1, exp: "Central banks manage monetary policy, including money supply, interest rates, and currency stability." },
+    { q: "Elasticity of demand measures:", opts: ["Total demand","Responsiveness of demand to price change","Supply changes","Income changes"], ans: 1, exp: "Price elasticity of demand (PED) measures how responsive quantity demanded is to a change in price." },
+    { q: "Balance of trade is:", opts: ["Bank balance","Difference between exports and imports","Government budget","Exchange rate"], ans: 1, exp: "Balance of trade = value of exports minus value of imports of goods." },
+    { q: "A budget deficit occurs when:", opts: ["Revenue exceeds expenditure","Expenditure exceeds revenue","Revenue equals expenditure","Taxes increase"], ans: 1, exp: "A budget deficit occurs when government spending exceeds government revenue in a given period." },
+    { q: "Fiscal policy involves:", opts: ["Central bank interest rates","Government spending and taxation","Exchange rate management","Money supply"], ans: 1, exp: "Fiscal policy uses government spending and taxation to influence the economy." },
+    { q: "Division of labor means:", opts: ["Workers in different countries","Breaking production into specialized tasks","Management hierarchy","Paying workers different wages"], ans: 1, exp: "Division of labor involves dividing production into specialized tasks performed by different workers, increasing efficiency." },
+    { q: "Capital in economics refers to:", opts: ["Money only","Man-made resources used in production","Land","Human labor"], ans: 1, exp: "In economics, capital = man-made resources (machinery, buildings, tools) used in production, not money per se." },
+    { q: "A shift in the supply curve is caused by:", opts: ["A price change","A change in technology or input costs","A demand change","Consumer preference"], ans: 1, exp: "Changes in factors other than price (technology, input costs, taxes) cause the supply curve to shift." },
+    { q: "Comparative advantage means:", opts: ["Being the absolute lowest-cost producer","Producing goods at a lower opportunity cost than others","Having the largest economy","Being cheapest in all goods"], ans: 1, exp: "Comparative advantage: a country should produce goods it can make at lower opportunity cost than other countries." },
+    { q: "The multiplier effect:", opts: ["Government raises taxes","Initial spending leads to a greater total increase in income","Interest rates double","Prices multiply"], ans: 1, exp: "The multiplier effect: an initial injection of spending leads to a larger final increase in national income." },
+    { q: "A price ceiling is:", opts: ["A maximum price set above equilibrium","A minimum price","A maximum price set below equilibrium","The market price"], ans: 2, exp: "A price ceiling set below equilibrium prevents prices from rising to market level, causing shortages." },
+    { q: "A subsidy is:", opts: ["A tax on production","A government payment to producers to reduce costs","An import restriction","A price control"], ans: 1, exp: "A subsidy is a government grant to producers, lowering their costs and encouraging increased production." },
+    { q: "Aggregate demand =", opts: ["C + I + G + (X − M)","C + S + T","Y − T","GDP − Depreciation"], ans: 0, exp: "AD = Consumption + Investment + Government spending + Net exports (X−M)." },
+    { q: "The type of unemployment where workers are between jobs:", opts: ["Cyclical","Structural","Frictional","Seasonal"], ans: 2, exp: "Frictional unemployment occurs when workers are temporarily between jobs as they search for new employment." },
+    { q: "The Liberian currency is:", opts: ["Leone","Cedi","Naira","Liberian Dollar"], ans: 3, exp: "The official currency of Liberia is the Liberian Dollar (LRD)." },
+    { q: "Economic development differs from economic growth in that it:", opts: ["Only measures GDP","Includes improvements in living standards and quality of life","Only measures exports","Focuses on inflation"], ans: 1, exp: "Economic development is a broader concept including improvements in HDI, education, health, and living standards." },
+    { q: "Perfect competition has:", opts: ["One seller","Few sellers","Many sellers and buyers with identical products","Differentiated products"], ans: 2, exp: "Perfect competition: many buyers and sellers, identical products, free entry/exit, and perfect information." },
+    { q: "Devaluation of currency makes:", opts: ["Exports more expensive","Imports cheaper","Exports cheaper and imports more expensive","No change to trade"], ans: 2, exp: "Devaluation lowers the exchange rate — exports become cheaper for foreigners, imports become dearer at home." },
+    { q: "A command economy is one where:", opts: ["Market forces determine everything","The government controls production and distribution","Consumers decide all production","Private firms control all resources"], ans: 1, exp: "In a command (planned) economy, the state owns resources and decides what, how, and for whom to produce." },
+    { q: "The Human Development Index (HDI) measures:", opts: ["GDP only","Trade balance","Life expectancy, education, and income","Population growth"], ans: 2, exp: "HDI is a composite statistic of life expectancy, education level, and per capita income." }
+  ]
+};
+
+/* ═══════════════════════════════════════════════
+   EXAM STATE
+════════════════════════════════════════════════ */
+let examState = {
+  subject: 'mathematics',
+  questions: [],
+  answers: {},       // { qIndex: optionIndex (0-3) }
+  flagged: new Set(),
+  currentQ: 0,
+  startTime: null,
+  duration: 45 * 60, // seconds
+  timeRemaining: 45 * 60,
+  timerInterval: null,
+  timeTaken: 0
+};
+
+/* ═══════════════════════════════════════════════
+   GRADE FUNCTION
+════════════════════════════════════════════════ */
+function getGrade(pct) {
+  if (pct >= 75) return { grade: 'A1', color: '#16a34a', message: 'Distinction! Excellent performance.' };
+  if (pct >= 70) return { grade: 'B2', color: '#2563eb', message: 'Very Good! You passed with merit.' };
+  if (pct >= 65) return { grade: 'B3', color: '#2563eb', message: 'Good performance.' };
+  if (pct >= 60) return { grade: 'C4', color: '#f97316', message: 'Credit. You passed!' };
+  if (pct >= 55) return { grade: 'C5', color: '#f97316', message: 'Credit.' };
+  if (pct >= 50) return { grade: 'C6', color: '#f97316', message: 'Credit.' };
+  if (pct >= 45) return { grade: 'D7', color: '#dc2626', message: 'Below average.' };
+  if (pct >= 40) return { grade: 'E8', color: '#dc2626', message: 'Poor. Needs improvement.' };
+  return { grade: 'F9', color: '#991b1b', message: 'Fail. More study needed.' };
+}
+
+/* ═══════════════════════════════════════════════
+   UTILS
+════════════════════════════════════════════════ */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function formatTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+}
+
+function subjectLabel(key) {
+  const map = {
+    mathematics: 'Mathematics', english: 'English Language',
+    biology: 'Biology', chemistry: 'Chemistry',
+    physics: 'Physics', economics: 'Economics'
+  };
+  return map[key] || key;
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* ═══════════════════════════════════════════════
+   SETUP SCREEN — load stats + recent results
+════════════════════════════════════════════════ */
+function loadSetupStats() {
+  const results = JSON.parse(localStorage.getItem('tih_mock_results') || '[]');
+  const total = parseInt(localStorage.getItem('tih_mocks') || '0');
+  const best = localStorage.getItem('tih_best_score');
+
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-best').textContent = best ? best + '%' : '—';
+
+  if (results.length > 0) {
+    const avg = Math.round(results.reduce((s, r) => s + r.score, 0) / results.length);
+    document.getElementById('stat-avg').textContent = avg + '%';
+  } else {
+    document.getElementById('stat-avg').textContent = '—';
+  }
+
+  const list = document.getElementById('recent-results-list');
+  const last5 = results.slice(-5).reverse();
+
+  if (last5.length === 0) {
+    list.innerHTML = '<div class="no-results">No mock exams taken yet. Start your first mock above!</div>';
+    return;
+  }
+
+  list.innerHTML = last5.map(r => {
+    const grade = getGrade(r.score);
+    return `
+      <div class="result-card">
+        <div>
+          <div class="rc-subject">${subjectLabel(r.subject)}</div>
+          <div class="rc-date">${r.date}</div>
+        </div>
+        <div class="rc-score">${r.score}%</div>
+        <div class="rc-grade" style="color:${grade.color}">${grade.grade}</div>
+      </div>`;
+  }).join('');
+}
+
+/* ═══════════════════════════════════════════════
+   START EXAM
+════════════════════════════════════════════════ */
+function startExam() {
+  const subject = document.getElementById('sel-subject').value;
+  const durationMin = parseInt(document.getElementById('sel-duration').value);
+
+  // Determine question count by duration
+  let count = 25;
+  if (durationMin === 30) count = 15;
+  else if (durationMin === 45) count = 25;
+  else if (durationMin === 60) count = 40;
+
+  const allQ = MOCK_QUESTIONS[subject];
+  // Shuffle and pick up to count (cap at available)
+  const picked = shuffle(allQ).slice(0, Math.min(count, allQ.length));
+
+  examState = {
+    subject,
+    questions: picked,
+    answers: {},
+    flagged: new Set(),
+    currentQ: 0,
+    startTime: Date.now(),
+    duration: durationMin * 60,
+    timeRemaining: durationMin * 60,
+    timerInterval: null,
+    timeTaken: 0
+  };
+
+  // Update top bar labels
+  document.getElementById('exam-subject-label').textContent = subjectLabel(subject);
+  document.getElementById('exam-timer').textContent = formatTime(examState.timeRemaining);
+  document.getElementById('exam-timer').className = 'exam-timer';
+
+  // Build question grid
+  buildGrid();
+  renderQuestion(0);
+  showScreen('exam-screen');
+
+  // Start timer
+  examState.timerInterval = setInterval(updateTimer, 1000);
+}
+
+/* ═══════════════════════════════════════════════
+   RENDER QUESTION
+════════════════════════════════════════════════ */
+function renderQuestion(index) {
+  const q = examState.questions[index];
+  if (!q) return;
+
+  examState.currentQ = index;
+
+  document.getElementById('question-number').textContent = `Question ${index + 1}`;
+  document.getElementById('question-text').textContent = q.q;
+  document.getElementById('exam-qcounter').textContent = `Q ${index + 1} of ${examState.questions.length}`;
+
+  // Progress bar
+  const pct = ((Object.keys(examState.answers).length) / examState.questions.length) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+
+  // Render options
+  const optionLetters = ['A', 'B', 'C', 'D'];
+  const optList = document.getElementById('options-list');
+  optList.innerHTML = q.opts.map((opt, i) => {
+    const isSelected = examState.answers[index] === i;
+    return `
+      <button class="option-btn${isSelected ? ' selected' : ''}" onclick="selectAnswer(${i})">
+        <span class="option-letter">${optionLetters[i]}</span>
+        <span>${opt}</span>
+      </button>`;
+  }).join('');
+
+  // Update flag button
+  const flagBtn = document.getElementById('btn-flag');
+  if (examState.flagged.has(index)) {
+    flagBtn.classList.add('flagged');
+    flagBtn.textContent = '⚑ Flagged';
+  } else {
+    flagBtn.classList.remove('flagged');
+    flagBtn.textContent = '⚐ Flag';
+  }
+
+  updateGrid();
+}
+
+/* ═══════════════════════════════════════════════
+   SELECT ANSWER
+════════════════════════════════════════════════ */
+function selectAnswer(optionIndex) {
+  const idx = examState.currentQ;
+  examState.answers[idx] = optionIndex;
+
+  // Update option UI
+  document.querySelectorAll('.option-btn').forEach((btn, i) => {
+    btn.classList.toggle('selected', i === optionIndex);
+    const letter = btn.querySelector('.option-letter');
+    letter.style.background = i === optionIndex ? '#2563eb' : '';
+    letter.style.color = i === optionIndex ? '#fff' : '';
+  });
+
+  // Update grid
+  updateGrid();
+
+  // Update progress
+  const pct = (Object.keys(examState.answers).length / examState.questions.length) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+
+  // Auto-advance to next unanswered question (after short delay)
+  setTimeout(() => {
+    let nextUnanswered = -1;
+    for (let i = idx + 1; i < examState.questions.length; i++) {
+      if (examState.answers[i] === undefined) { nextUnanswered = i; break; }
+    }
+    if (nextUnanswered === -1) {
+      for (let i = 0; i < idx; i++) {
+        if (examState.answers[i] === undefined) { nextUnanswered = i; break; }
+      }
+    }
+    if (nextUnanswered !== -1) renderQuestion(nextUnanswered);
+  }, 350);
+}
+
+/* ═══════════════════════════════════════════════
+   TOGGLE FLAG
+════════════════════════════════════════════════ */
+function toggleFlag() {
+  const idx = examState.currentQ;
+  if (examState.flagged.has(idx)) {
+    examState.flagged.delete(idx);
+    document.getElementById('btn-flag').classList.remove('flagged');
+    document.getElementById('btn-flag').textContent = '⚐ Flag';
+  } else {
+    examState.flagged.add(idx);
+    document.getElementById('btn-flag').classList.add('flagged');
+    document.getElementById('btn-flag').textContent = '⚑ Flagged';
+  }
+  updateGrid();
+}
+
+/* ═══════════════════════════════════════════════
+   QUESTION GRID
+════════════════════════════════════════════════ */
+function buildGrid() {
+  const grid = document.getElementById('question-grid');
+  grid.innerHTML = examState.questions.map((_, i) =>
+    `<button class="qgrid-btn" id="qgbtn-${i}" onclick="goToQuestion(${i})">${i + 1}</button>`
+  ).join('');
+}
+
+function updateGrid() {
+  examState.questions.forEach((_, i) => {
+    const btn = document.getElementById(`qgbtn-${i}`);
+    if (!btn) return;
+    btn.className = 'qgrid-btn';
+    if (examState.flagged.has(i)) btn.classList.add('flagged-q');
+    else if (examState.answers[i] !== undefined) btn.classList.add('answered');
+    if (i === examState.currentQ) btn.classList.add('current');
+  });
+}
+
+function goToQuestion(index) {
+  renderQuestion(index);
+}
+
+/* ═══════════════════════════════════════════════
+   TIMER
+════════════════════════════════════════════════ */
+function updateTimer() {
+  examState.timeRemaining--;
+  if (examState.timeRemaining < 0) examState.timeRemaining = 0;
+
+  const timerEl = document.getElementById('exam-timer');
+  timerEl.textContent = formatTime(examState.timeRemaining);
+
+  // Visual warning states
+  if (examState.timeRemaining <= 60) {
+    timerEl.className = 'exam-timer danger';
+  } else if (examState.timeRemaining <= 5 * 60) {
+    timerEl.className = 'exam-timer warning';
+  }
+
+  if (examState.timeRemaining <= 0) {
+    clearInterval(examState.timerInterval);
+    submitExam();
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   SUBMIT FLOW
+════════════════════════════════════════════════ */
+function requestSubmit() {
+  const answered = Object.keys(examState.answers).length;
+  const total = examState.questions.length;
+  const unanswered = total - answered;
+  const modal = document.getElementById('submit-modal');
+  const summary = document.getElementById('modal-summary-text');
+
+  if (unanswered > 0) {
+    summary.textContent = `You have ${unanswered} unanswered question${unanswered > 1 ? 's' : ''}. Are you sure you want to submit?`;
+  } else {
+    summary.textContent = `All ${total} questions answered. Ready to submit your exam?`;
+  }
+  modal.classList.remove('hidden');
+}
+
+function closeModal() {
+  document.getElementById('submit-modal').classList.add('hidden');
+}
+
+function submitExam() {
+  document.getElementById('submit-modal').classList.add('hidden');
+  clearInterval(examState.timerInterval);
+  examState.timeTaken = examState.duration - examState.timeRemaining;
+  showResults();
+}
+
+/* ═══════════════════════════════════════════════
+   SHOW RESULTS
+════════════════════════════════════════════════ */
+function showResults() {
+  const qs = examState.questions;
+  let correct = 0, wrong = 0, unanswered = 0;
+
+  qs.forEach((q, i) => {
+    if (examState.answers[i] === undefined) { unanswered++; }
+    else if (examState.answers[i] === q.ans) { correct++; }
+    else { wrong++; }
+  });
+
+  const pct = Math.round((correct / qs.length) * 100);
+  const grade = getGrade(pct);
+  const timeTakenStr = formatTime(examState.timeTaken);
+
+  // Hero
+  const badgeEl = document.getElementById('grade-badge');
+  badgeEl.textContent = grade.grade;
+  badgeEl.style.background = grade.color + '33';
+  badgeEl.style.borderColor = grade.color + '88';
+  badgeEl.style.color = '#fff';
+
+  document.getElementById('results-score-pct').textContent = pct + '%';
+  document.getElementById('results-subject-label').textContent = subjectLabel(examState.subject);
+  document.getElementById('grade-message').textContent = grade.message;
+
+  // Stats
+  document.getElementById('rstat-correct').textContent = correct;
+  document.getElementById('rstat-wrong').textContent = wrong;
+  document.getElementById('rstat-unanswered').textContent = unanswered;
+  document.getElementById('rstat-time').textContent = timeTakenStr;
+
+  // Study weak topics link
+  document.getElementById('btn-study-weak').href = `wassce-learn.html?s=${examState.subject}`;
+
+  // Answer review
+  const reviewList = document.getElementById('review-list');
+  const optLetters = ['A', 'B', 'C', 'D'];
+  reviewList.innerHTML = qs.map((q, i) => {
+    const userAns = examState.answers[i];
+    const isCorrect = userAns === q.ans;
+    const isUnanswered = userAns === undefined;
+
+    let itemClass = 'ri-unanswered';
+    let iconChar = '—';
+    if (!isUnanswered && isCorrect) { itemClass = 'ri-correct'; iconChar = '✓'; }
+    if (!isUnanswered && !isCorrect) { itemClass = 'ri-wrong'; iconChar = '✗'; }
+
+    const optsHtml = q.opts.map((opt, oi) => {
+      let cls = 'ri-option';
+      if (oi === q.ans) cls += ' correct-opt';
+      else if (oi === userAns && !isCorrect) cls += ' wrong-opt';
+      return `<div class="${cls}">${optLetters[oi]}. ${opt}</div>`;
+    }).join('');
+
+    return `
+      <div class="review-item ${itemClass}">
+        <div class="ri-header">
+          <div class="ri-status-icon">${iconChar}</div>
+          <div class="ri-question"><strong>Q${i + 1}.</strong> ${q.q}</div>
+        </div>
+        <div class="ri-options">${optsHtml}</div>
+        <div class="ri-explanation">Explanation: ${q.exp}</div>
+      </div>`;
+  }).join('');
+
+  // Save to localStorage
+  saveResults(pct, correct, qs.length);
+
+  showScreen('results-screen');
+}
+
+/* ═══════════════════════════════════════════════
+   SAVE RESULTS
+════════════════════════════════════════════════ */
+function saveResults(pct, correct, total) {
+  const results = JSON.parse(localStorage.getItem('tih_mock_results') || '[]');
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+  results.push({
+    subject: examState.subject,
+    score: pct,
+    correct,
+    total,
+    date: dateStr
+  });
+
+  // Keep last 50 results
+  if (results.length > 50) results.splice(0, results.length - 50);
+  localStorage.setItem('tih_mock_results', JSON.stringify(results));
+
+  // Update total mocks taken
+  const prevTotal = parseInt(localStorage.getItem('tih_mocks') || '0');
+  localStorage.setItem('tih_mocks', prevTotal + 1);
+
+  // Update best score
+  const prevBest = parseInt(localStorage.getItem('tih_best_score') || '0');
+  if (pct > prevBest) localStorage.setItem('tih_best_score', pct);
+}
+
+/* ═══════════════════════════════════════════════
+   RESET / BACK TO SETUP
+════════════════════════════════════════════════ */
+function resetExam() {
+  if (examState.timerInterval) clearInterval(examState.timerInterval);
+  loadSetupStats();
+  showScreen('setup-screen');
+}
+
+function scrollToReview() {
+  document.getElementById('review-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ═══════════════════════════════════════════════
+   NAV TOGGLE (mobile)
+════════════════════════════════════════════════ */
+const navToggle = document.getElementById('navToggle');
+if (navToggle) {
+  navToggle.addEventListener('click', function () {
+    const nav = document.querySelector('.nav-links');
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !expanded);
+    if (nav) nav.classList.toggle('open');
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', function () {
+  loadSetupStats();
+});
+</script>
+
+<script src="main.js"></script>
+<script src="chatbot.js"></script>
+</body>
+</html>
