@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verify Certificate | TIH Academy</title>
+  <meta name="description" content="Instantly verify the authenticity of a TIH Academy certificate. Verify by certificate ID, name and email, or QR code scan." />
+  <meta name="keywords" content="verify certificate TIH Academy, certificate verification Liberia, online certificate check" />
+  <meta property="og:title" content="Verify Certificate | TIH Academy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tolbertinnovationhub.org/certificate-verify.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --ac-gold: #f59e0b;
+      --ac-teal: #0d9488;
+      --ac-purple: #7c3aed;
+    }
+    /* NAV */
+    .academy-header { background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:1000; }
+    .nav-wrap { display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.5rem;max-width:1280px;margin:0 auto;gap:1rem; }
+    .brand { font-family:'Poppins',sans-serif;font-weight:800;color:#002868;font-size:1.18rem;text-decoration:none;flex-shrink:0; }
+    .brand span { color:#BF0A30; }
+    .nav-links { display:flex;gap:0.15rem;align-items:center;list-style:none;margin:0;padding:0;flex-wrap:wrap; }
+    .nav-links a { color:#374151;font-size:0.87rem;font-weight:500;text-decoration:none;padding:0.35rem 0.6rem;border-radius:6px;transition:all .2s; }
+    .nav-links a:hover { color:#002868;background:#f0f4ff; }
+    .nav-auth { display:flex;gap:0.6rem;align-items:center;flex-shrink:0; }
+    .btn-ghost { background:transparent;border:1.5px solid #002868;color:#002868;padding:0.45rem 1.1rem;border-radius:50px;font-size:0.87rem;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none; }
+    .btn-ghost:hover { background:#002868;color:#fff; }
+    .btn-enroll { background:#BF0A30;color:#fff;padding:0.5rem 1.3rem;border-radius:50px;font-size:0.87rem;font-weight:700;text-decoration:none;transition:all .2s; }
+    .btn-enroll:hover { background:#a00827;transform:translateY(-1px); }
+    .hamburger { display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px; }
+    .hamburger span { display:block;width:22px;height:2px;background:#002868;border-radius:2px; }
+    @media(max-width:900px) {
+      .hamburger { display:flex; }
+      .nav-links { display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:1rem 1.5rem;box-shadow:0 8px 32px rgba(0,0,0,.12);z-index:999; }
+      .nav-links.open { display:flex; }
+      .nav-auth { display:none; }
+    }
+    .container { max-width:1280px;margin:0 auto;padding:0 1.5rem; }
+
+    /* HERO */
+    .verify-hero { background:linear-gradient(135deg,#000d24,#001a45,#002868); padding:4rem 0 3.5rem;color:#fff;text-align:center; }
+    .hero-eyebrow { font-size:0.75rem;font-weight:700;letter-spacing:.15em;color:#f59e0b;text-transform:uppercase;margin-bottom:0.6rem; }
+    .verify-hero h1 { font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;margin-bottom:0.8rem; }
+    .verify-hero h1 span { color:#f59e0b; }
+    .verify-hero p { color:rgba(255,255,255,.8);font-size:1.05rem;max-width:55ch;margin:0 auto; }
+
+    /* BREADCRUMB */
+    .breadcrumb { padding:0.9rem 0;border-bottom:1px solid #e5e7eb;background:#f9fafb; }
+    .breadcrumb .bc-inner { max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;color:#6b7280; }
+    .breadcrumb a { color:#002868;text-decoration:none; }
+    .breadcrumb a:hover { text-decoration:underline; }
+
+    /* VERIFY CARD */
+    .verify-main { padding:4rem 0; }
+    .verify-box { max-width:760px;margin:0 auto;background:#fff;border-radius:24px;box-shadow:0 8px 48px rgba(0,40,104,.12);overflow:hidden; }
+
+    /* TABS */
+    .verify-tabs { display:flex;background:#f9fafb;border-bottom:1px solid #e5e7eb; }
+    .verify-tab { flex:1;padding:1.2rem;text-align:center;font-size:0.9rem;font-weight:600;cursor:pointer;color:#6b7280;transition:all .2s;border-bottom:3px solid transparent; }
+    .verify-tab.active { color:#002868;border-bottom-color:#002868;background:#fff; }
+    .verify-tab:hover:not(.active) { color:#374151;background:#f3f4f6; }
+
+    /* TAB PANELS */
+    .verify-panel { display:none;padding:2.5rem; }
+    .verify-panel.active { display:block; }
+    .panel-title { font-size:1.2rem;font-weight:700;color:#111827;margin-bottom:0.4rem; }
+    .panel-sub { font-size:0.92rem;color:#6b7280;margin-bottom:2rem; }
+    .form-group { margin-bottom:1.2rem; }
+    .form-group label { display:block;font-size:0.87rem;font-weight:600;color:#374151;margin-bottom:0.4rem; }
+    .form-group input { width:100%;padding:0.85rem 1rem;border:1.5px solid #e5e7eb;border-radius:10px;font-size:0.95rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;box-sizing:border-box; }
+    .form-group input:focus { border-color:#002868; }
+    .verify-btn { display:block;width:100%;padding:0.9rem;background:#002868;color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s;margin-top:0.5rem; }
+    .verify-btn:hover { background:#001a45;transform:translateY(-1px); }
+    .verify-btn:disabled { background:#9ca3af;cursor:not-allowed;transform:none; }
+
+    /* RESULT */
+    .verify-result { display:none;margin-top:1.5rem;border-radius:14px;overflow:hidden; }
+    .verify-result.show { display:block; }
+    .result-header { background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:1px solid #6ee7b7;padding:1.5rem;display:flex;align-items:center;gap:1rem; }
+    .result-icon { width:50px;height:50px;background:#10b981;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0; }
+    .result-status strong { font-size:1.05rem;color:#065f46; }
+    .result-status span { font-size:0.85rem;color:#047857;display:block; }
+    .result-body { background:#fff;border:1px solid #6ee7b7;border-top:none;padding:1.5rem; }
+    .result-grid { display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem; }
+    @media(max-width:560px) { .result-grid { grid-template-columns:1fr; } }
+    .result-field label { font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#9ca3af;display:block;margin-bottom:0.2rem; }
+    .result-field span { font-size:0.95rem;font-weight:600;color:#111827; }
+    .result-actions { display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1rem;padding-top:1rem;border-top:1px solid #e5e7eb; }
+    .btn-result-action { padding:0.55rem 1.1rem;border-radius:8px;font-size:0.87rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;border:1.5px solid; }
+    .btn-result-primary { background:#002868;color:#fff;border-color:#002868; }
+    .btn-result-primary:hover { background:#001a45; }
+    .btn-result-secondary { background:#fff;color:#002868;border-color:#002868; }
+    .btn-result-secondary:hover { background:#f0f4ff; }
+
+    /* FAILED RESULT */
+    .result-fail { display:none;margin-top:1.5rem;background:#fef2f2;border:1px solid #fca5a5;border-radius:14px;padding:1.5rem;text-align:center; }
+    .result-fail.show { display:block; }
+    .result-fail h4 { color:#b91c1c;font-size:1.05rem;margin-bottom:0.5rem; }
+    .result-fail p { color:#7f1d1d;font-size:0.9rem; }
+
+    /* QR PANEL */
+    .qr-upload-area { border:2px dashed #d1d5db;border-radius:14px;padding:3rem 2rem;text-align:center;cursor:pointer;transition:all .2s;background:#f9fafb; }
+    .qr-upload-area:hover { border-color:#002868;background:#f0f4ff; }
+    .qr-icon { font-size:3.5rem;margin-bottom:0.8rem; }
+    .qr-upload-area h4 { font-size:1rem;font-weight:700;color:#374151;margin-bottom:0.3rem; }
+    .qr-upload-area p { font-size:0.87rem;color:#9ca3af; }
+    .qr-alt { text-align:center;margin-top:1.5rem;color:#6b7280;font-size:0.9rem; }
+
+    /* SAMPLE CERT PREVIEW */
+    .sample-section { padding:4rem 0;background:#f8faff; }
+    .sample-grid { display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:center; }
+    @media(max-width:900px) { .sample-grid { grid-template-columns:1fr; } }
+    .sample-cert { background:#fff;border-radius:16px;padding:2rem 1.8rem;box-shadow:0 20px 60px rgba(0,40,104,.15);position:relative;text-align:center; }
+    .sample-cert::before { content:'';position:absolute;inset:8px;border:1.5px solid #f59e0b;border-radius:10px;pointer-events:none; }
+    .sc-corner { position:absolute;width:16px;height:16px;border-color:#f59e0b;border-style:solid; }
+    .sc-corner.tl { top:4px;left:4px;border-width:2.5px 0 0 2.5px;border-radius:5px 0 0 0; }
+    .sc-corner.tr { top:4px;right:4px;border-width:2.5px 2.5px 0 0;border-radius:0 5px 0 0; }
+    .sc-corner.bl { bottom:4px;left:4px;border-width:0 0 2.5px 2.5px;border-radius:0 0 0 5px; }
+    .sc-corner.br { bottom:4px;right:4px;border-width:0 2.5px 2.5px 0;border-radius:0 0 5px 0; }
+    .sc-seal { width:60px;height:60px;background:linear-gradient(135deg,#002868,#004080);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 0.8rem;border:3px solid #f59e0b;font-size:1.2rem; }
+    .sc-org { font-size:0.6rem;font-weight:800;letter-spacing:.14em;color:#002868;text-transform:uppercase; }
+    .sc-type { font-size:0.65rem;color:#9ca3af;margin-bottom:1rem; }
+    .sc-presents { font-size:0.68rem;color:#9ca3af;margin-bottom:0.2rem; }
+    .sc-name { font-family:Georgia,serif;font-style:italic;font-size:1.5rem;color:#002868;margin-bottom:0.4rem; }
+    .sc-course-label { font-size:0.7rem;color:#9ca3af; }
+    .sc-course { font-size:0.9rem;font-weight:700;color:#111827;margin-bottom:1rem; }
+    .sc-footer { display:flex;justify-content:space-between;align-items:flex-end;padding-top:1rem;border-top:1px solid #e5e7eb; }
+    .sc-sig-name { font-family:Georgia,serif;font-style:italic;font-size:1rem;color:#002868; }
+    .sc-sig-role { font-size:0.6rem;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em; }
+    .sc-id { font-size:0.65rem;color:#d97706;font-weight:700;background:#fffbeb;border:1px solid #fcd34d;border-radius:5px;padding:0.15rem 0.4rem; }
+    .sample-callout { display:flex;align-items:center;gap:0.75rem;background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:0.8rem 1rem;margin-top:1rem;font-size:0.83rem;color:#92400e; }
+
+    /* EMPLOYER INFO */
+    .employer-section { padding:4rem 0;background:#fff; }
+    .employer-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem; }
+    @media(max-width:900px) { .employer-grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:560px) { .employer-grid { grid-template-columns:1fr; } }
+    .employer-card { background:#f9fafb;border-radius:16px;padding:2rem;border:1px solid #e5e7eb;text-align:center; }
+    .employer-card .ec-icon { font-size:2.5rem;margin-bottom:1rem; }
+    .employer-card h4 { font-size:1rem;font-weight:700;color:#111827;margin-bottom:0.5rem; }
+    .employer-card p { font-size:0.87rem;color:#6b7280;line-height:1.6; }
+
+    /* FOOTER */
+    .academy-footer { background:#0a1628;color:rgba(255,255,255,.75);padding:3rem 0 1.5rem; }
+    .footer-inner { max-width:1280px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:2fr repeat(3,1fr);gap:2.5rem;margin-bottom:2rem; }
+    .footer-brand-name { font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:0.6rem; }
+    .footer-brand-name span { color:#f59e0b; }
+    .footer-tagline { font-size:0.85rem;line-height:1.6;margin-bottom:1rem; }
+    .footer-social { display:flex;gap:0.5rem; }
+    .social-icon { width:34px;height:34px;background:rgba(255,255,255,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:all .2s;text-decoration:none;color:#fff; }
+    .social-icon:hover { background:#f59e0b; }
+    .footer-col h5 { font-size:0.88rem;font-weight:700;color:#fff;margin-bottom:0.8rem; }
+    .footer-col ul { list-style:none;padding:0;margin:0; }
+    .footer-col ul li { margin-bottom:0.4rem; }
+    .footer-col ul li a { color:rgba(255,255,255,.65);font-size:0.85rem;text-decoration:none;transition:color .2s; }
+    .footer-col ul li a:hover { color:#f59e0b; }
+    .footer-bottom { max-width:1280px;margin:0 auto;padding:1rem 1.5rem 0;border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;font-size:0.82rem;color:rgba(255,255,255,.45); }
+    .footer-bottom a { color:rgba(255,255,255,.6);text-decoration:none; }
+    .footer-bottom a:hover { color:#f59e0b; }
+    @media(max-width:900px) { .footer-inner { grid-template-columns:1fr 1fr; } }
+    @media(max-width:600px) { .footer-inner { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="academy-header">
+    <div class="nav-wrap">
+      <a class="brand" href="academy.html">TIH <span>Academy</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="academy.html">Academy</a>
+        <a href="courses.html">Courses</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="instructors.html">Instructors</a>
+        <a href="academy-blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-auth">
+        <a href="student-dashboard.html" class="btn-ghost">Log In</a>
+        <a href="academy.html#enroll" class="btn-enroll">Enroll Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="verify-hero">
+    <div class="container">
+      <div class="hero-eyebrow">Instant Authentication</div>
+      <h1>Verify a <span>TIH Academy</span> Certificate</h1>
+      <p>Employers, institutions, and individuals can instantly verify the authenticity of any TIH Academy certificate. No account required — completely free.</p>
+    </div>
+  </section>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="bc-inner">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="academy.html">Academy</a>
+      <span>›</span>
+      <a href="certifications.html">Certifications</a>
+      <span>›</span>
+      <span>Verify Certificate</span>
+    </div>
+  </div>
+
+  <!-- VERIFY CARD -->
+  <section class="verify-main">
+    <div class="container">
+      <div class="verify-box">
+
+        <!-- TABS -->
+        <div class="verify-tabs" role="tablist">
+          <div class="verify-tab active" role="tab" onclick="switchTab('id')" id="tab-id">🔢 By Certificate ID</div>
+          <div class="verify-tab" role="tab" onclick="switchTab('name')" id="tab-name">👤 By Name &amp; Email</div>
+          <div class="verify-tab" role="tab" onclick="switchTab('qr')" id="tab-qr">📱 By QR Code</div>
+        </div>
+
+        <!-- TAB: Certificate ID -->
+        <div class="verify-panel active" id="panel-id">
+          <h3 class="panel-title">Verify by Certificate ID</h3>
+          <p class="panel-sub">Enter the unique certificate ID printed on the certificate (e.g., TIH-2026-001234).</p>
+          <div class="form-group">
+            <label for="cert-id">Certificate ID</label>
+            <input type="text" id="cert-id" placeholder="TIH-2026-001234" aria-label="Certificate ID" />
+          </div>
+          <div class="form-group">
+            <label for="captcha-id">Security Check — Type the result: 7 + 4 = ?</label>
+            <input type="text" id="captcha-id" placeholder="Enter answer" aria-label="Captcha answer" />
+          </div>
+          <button class="verify-btn" id="btnVerifyId" onclick="verifyById()">Verify Certificate</button>
+
+          <!-- RESULT: SUCCESS -->
+          <div class="verify-result" id="result-success">
+            <div class="result-header">
+              <div class="result-icon">✓</div>
+              <div class="result-status">
+                <strong>Certificate Verified Successfully</strong>
+                <span>This certificate is authentic and was issued by TIH Academy.</span>
+              </div>
+            </div>
+            <div class="result-body">
+              <div class="result-grid">
+                <div class="result-field"><label>Certificate Holder</label><span id="res-name">Amara Koroma</span></div>
+                <div class="result-field"><label>Certificate ID</label><span id="res-id">TIH-2026-001234</span></div>
+                <div class="result-field"><label>Program Completed</label><span>AI &amp; Data Analytics Professional</span></div>
+                <div class="result-field"><label>Issue Date</label><span>March 15, 2026</span></div>
+                <div class="result-field"><label>Certificate Status</label><span style="color:#10b981;font-weight:700;">✅ Active &amp; Valid</span></div>
+                <div class="result-field"><label>Institution</label><span>Tolbert Innovation Hub Academy</span></div>
+              </div>
+              <div class="result-actions">
+                <a href="#" class="btn-result-action btn-result-primary" onclick="printResult(event)">🖨 Print Verification</a>
+                <a href="#" class="btn-result-action btn-result-secondary" onclick="shareResult(event)">🔗 Share Verification</a>
+                <a href="certifications.html" class="btn-result-action btn-result-secondary">📜 View All Programs</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- RESULT: FAIL -->
+          <div class="result-fail" id="result-fail">
+            <h4>❌ Certificate Not Found</h4>
+            <p>We couldn't verify this certificate. Please check the ID and try again. If you believe this is an error, contact <a href="mailto:academy@tolbertinnovationhub.org" style="color:#b91c1c;">academy@tolbertinnovationhub.org</a></p>
+          </div>
+        </div>
+
+        <!-- TAB: Name & Email -->
+        <div class="verify-panel" id="panel-name">
+          <h3 class="panel-title">Verify by Name &amp; Email</h3>
+          <p class="panel-sub">Search for certificates using the graduate's full name and the email address used during enrollment.</p>
+          <div class="form-group">
+            <label for="v-fullname">Full Name (as on certificate)</label>
+            <input type="text" id="v-fullname" placeholder="e.g. Amara Koroma" />
+          </div>
+          <div class="form-group">
+            <label for="v-email">Email Address</label>
+            <input type="email" id="v-email" placeholder="e.g. amara.koroma@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="captcha-name">Security Check — Type the result: 12 − 5 = ?</label>
+            <input type="text" id="captcha-name" placeholder="Enter answer" />
+          </div>
+          <button class="verify-btn" onclick="verifyByName()">Search &amp; Verify</button>
+
+          <div class="verify-result" id="result-name-success">
+            <div class="result-header">
+              <div class="result-icon">✓</div>
+              <div class="result-status">
+                <strong>1 Certificate Found &amp; Verified</strong>
+                <span>This certificate is authentic and was issued by TIH Academy.</span>
+              </div>
+            </div>
+            <div class="result-body">
+              <div class="result-grid">
+                <div class="result-field"><label>Certificate Holder</label><span>Amara Koroma</span></div>
+                <div class="result-field"><label>Certificate ID</label><span>TIH-2026-001234</span></div>
+                <div class="result-field"><label>Program Completed</label><span>AI &amp; Data Analytics Professional</span></div>
+                <div class="result-field"><label>Issue Date</label><span>March 15, 2026</span></div>
+                <div class="result-field"><label>Certificate Status</label><span style="color:#10b981;font-weight:700;">✅ Active &amp; Valid</span></div>
+                <div class="result-field"><label>Institution</label><span>Tolbert Innovation Hub Academy</span></div>
+              </div>
+              <div class="result-actions">
+                <a href="#" class="btn-result-action btn-result-primary" onclick="printResult(event)">🖨 Print Verification</a>
+                <a href="#" class="btn-result-action btn-result-secondary" onclick="shareResult(event)">🔗 Share Verification</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB: QR Code -->
+        <div class="verify-panel" id="panel-qr">
+          <h3 class="panel-title">Verify by QR Code</h3>
+          <p class="panel-sub">Upload a photo or scan of the QR code on the certificate to instantly verify its authenticity.</p>
+          <div class="qr-upload-area" onclick="document.getElementById('qrFile').click()">
+            <div class="qr-icon">📱</div>
+            <h4>Upload QR Code Image</h4>
+            <p>Click to upload or drag &amp; drop a PNG, JPG, or PDF file</p>
+            <input type="file" id="qrFile" accept="image/*,.pdf" style="display:none" onchange="handleQrUpload(this)" />
+          </div>
+          <p class="qr-alt">Or, if you're on a mobile device, <a href="#" style="color:#002868;font-weight:600;">use your camera to scan the QR code directly →</a></p>
+          <div class="verify-result" id="result-qr-success" style="margin-top:1.5rem;">
+            <div class="result-header">
+              <div class="result-icon">✓</div>
+              <div class="result-status">
+                <strong>QR Code Verified Successfully</strong>
+                <span>This certificate is authentic.</span>
+              </div>
+            </div>
+            <div class="result-body">
+              <div class="result-grid">
+                <div class="result-field"><label>Certificate Holder</label><span>James Togba</span></div>
+                <div class="result-field"><label>Certificate ID</label><span>TIH-2025-008821</span></div>
+                <div class="result-field"><label>Program Completed</label><span>Full-Stack Web Development</span></div>
+                <div class="result-field"><label>Issue Date</label><span>November 3, 2025</span></div>
+                <div class="result-field"><label>Status</label><span style="color:#10b981;font-weight:700;">✅ Active &amp; Valid</span></div>
+                <div class="result-field"><label>Institution</label><span>Tolbert Innovation Hub Academy</span></div>
+              </div>
+              <div class="result-actions">
+                <a href="#" class="btn-result-action btn-result-primary" onclick="printResult(event)">🖨 Print Verification</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /verify-box -->
+    </div>
+  </section>
+
+  <!-- SAMPLE CERT SECTION -->
+  <section class="sample-section">
+    <div class="container">
+      <div class="sample-grid">
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;letter-spacing:.15em;color:#f59e0b;text-transform:uppercase;margin-bottom:0.5rem;">What to Look For</div>
+          <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);font-weight:800;color:#111827;margin-bottom:1rem;">Finding the Certificate ID &amp; QR Code</h2>
+          <p style="color:#6b7280;font-size:0.97rem;line-height:1.7;margin-bottom:1.5rem;">Every TIH Academy certificate has two verification features: a unique alphanumeric Certificate ID in the lower section, and a QR code that links directly to this verification portal.</p>
+          <ul style="list-style:none;padding:0;margin:0 0 1.5rem;">
+            <li style="display:flex;gap:0.6rem;padding:0.5rem 0;font-size:0.92rem;color:#374151;border-bottom:1px solid #f3f4f6;"><span>1️⃣</span><span><strong>Certificate ID</strong> — Found in the bottom section, formatted as <code style="background:#f3f4f6;padding:0.1rem 0.4rem;border-radius:4px;font-size:0.85rem;">TIH-YYYY-XXXXXX</code></span></li>
+            <li style="display:flex;gap:0.6rem;padding:0.5rem 0;font-size:0.92rem;color:#374151;border-bottom:1px solid #f3f4f6;"><span>2️⃣</span><span><strong>QR Code</strong> — Located at the bottom-right corner of the certificate</span></li>
+            <li style="display:flex;gap:0.6rem;padding:0.5rem 0;font-size:0.92rem;color:#374151;"><span>3️⃣</span><span><strong>Verification Stamp</strong> — A gold "VERIFIED" badge with the institution seal</span></li>
+          </ul>
+          <a href="certifications.html" style="display:inline-block;background:#002868;color:#fff;padding:0.7rem 1.6rem;border-radius:50px;font-weight:700;text-decoration:none;font-size:0.95rem;transition:all .2s;" onmouseover="this.style.background='#001a45'" onmouseout="this.style.background='#002868'">View Certification Programs →</a>
+        </div>
+        <div>
+          <div class="sample-cert">
+            <div class="sc-corner tl"></div>
+            <div class="sc-corner tr"></div>
+            <div class="sc-corner bl"></div>
+            <div class="sc-corner br"></div>
+            <div class="sc-seal">🎓</div>
+            <div class="sc-org">Tolbert Innovation Hub Academy</div>
+            <div class="sc-type">Certificate of Professional Achievement</div>
+            <div class="sc-presents">This is to certify that</div>
+            <div class="sc-name">Your Name Here</div>
+            <div class="sc-course-label">has successfully completed</div>
+            <div class="sc-course">Digital Technology Professional</div>
+            <div class="sc-footer">
+              <div>
+                <div class="sc-sig-name">Samuel Tolbert</div>
+                <div class="sc-sig-role">Executive Director</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:0.6rem;color:#9ca3af;margin-bottom:0.2rem;">Certificate ID</div>
+                <div class="sc-id">TIH-2026-XXXXXX</div>
+                <div style="font-size:1.4rem;margin-top:0.4rem;">&#9638;</div>
+              </div>
+            </div>
+          </div>
+          <div class="sample-callout">
+            <span>💡</span>
+            <span>The QR code (bottom-right) links directly to this verification page with the certificate pre-filled.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR EMPLOYERS -->
+  <section class="employer-section">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <div style="font-size:0.75rem;font-weight:700;letter-spacing:.15em;color:#f59e0b;text-transform:uppercase;margin-bottom:0.5rem;">For Employers &amp; Institutions</div>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;color:#111827;margin-bottom:0.6rem;">Why Employers Trust TIH Academy Certificates</h2>
+        <p style="color:#6b7280;font-size:1rem;max-width:54ch;margin:0 auto;">Our verification system gives you confidence when reviewing candidate credentials.</p>
+      </div>
+      <div class="employer-grid">
+        <div class="employer-card">
+          <div class="ec-icon">🔒</div>
+          <h4>Tamper-Proof Records</h4>
+          <p>All certificates are stored in our secure database. Any alteration to the physical or digital certificate will fail verification.</p>
+        </div>
+        <div class="employer-card">
+          <div class="ec-icon">⚡</div>
+          <h4>Instant Verification</h4>
+          <p>Verify in under 5 seconds. No account needed, no fee, no registration. Just enter the ID and see the result.</p>
+        </div>
+        <div class="employer-card">
+          <div class="ec-icon">📊</div>
+          <h4>Complete Details Shown</h4>
+          <p>See the graduate's name, program completed, issue date, and current status — all in one place.</p>
+        </div>
+        <div class="employer-card">
+          <div class="ec-icon">🌍</div>
+          <h4>Recognized Across Africa</h4>
+          <p>TIH Academy is recognized by government agencies, NGOs, and private sector employers across West Africa and beyond.</p>
+        </div>
+        <div class="employer-card">
+          <div class="ec-icon">📞</div>
+          <h4>Employer Support</h4>
+          <p>Have questions about a certificate? Our team is available to assist employers and institutions at no cost.</p>
+        </div>
+        <div class="employer-card">
+          <div class="ec-icon">🔗</div>
+          <h4>Bulk Verification API</h4>
+          <p>HR teams processing multiple candidates can use our API for bulk certificate verification. Contact us for access.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="contact.html" style="display:inline-block;background:#002868;color:#fff;padding:0.8rem 2rem;border-radius:50px;font-weight:700;text-decoration:none;font-size:1rem;transition:all .2s;" onmouseover="this.style.background='#001a45'" onmouseout="this.style.background='#002868'">Contact Employer Support →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="academy-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">TIH <span>Academy</span></div>
+        <p class="footer-tagline">Empowering Africa through digital skills, innovation, technology, leadership, and entrepreneurship.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon" aria-label="Facebook">f</a>
+          <a href="#" class="social-icon" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+          <a href="#" class="social-icon" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Learn</h5>
+        <ul>
+          <li><a href="courses.html">All Courses</a></li>
+          <li><a href="certifications.html">Certifications</a></li>
+          <li><a href="academy.html#pathways">Learning Paths</a></li>
+          <li><a href="student-dashboard.html">My Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About TIH</a></li>
+          <li><a href="instructors.html">Instructors</a></li>
+          <li><a href="academy-blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="academy.html#faq">FAQ</a></li>
+          <li><a href="certificate-verify.html">Verify Certificate</a></li>
+          <li><a href="contact.html">Help Center</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tolbert Innovation Hub Academy. All rights reserved.</span>
+      <span>Monrovia, Liberia · <a href="mailto:academy@tolbertinnovationhub.org">academy@tolbertinnovationhub.org</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    function switchTab(tab) {
+      document.querySelectorAll('.verify-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.verify-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      document.getElementById('panel-' + tab).classList.add('active');
+    }
+
+    function verifyById() {
+      const id = document.getElementById('cert-id').value.trim();
+      const captcha = document.getElementById('captcha-id').value.trim();
+      const successEl = document.getElementById('result-success');
+      const failEl = document.getElementById('result-fail');
+      successEl.classList.remove('show');
+      failEl.classList.remove('show');
+      if (!id) { alert('Please enter a certificate ID.'); return; }
+      if (captcha !== '11') { alert('Security check failed. 7 + 4 = 11'); return; }
+      // Demo: any ID starting with TIH- succeeds
+      if (id.toUpperCase().startsWith('TIH-')) {
+        document.getElementById('res-name').textContent = 'Amara Koroma';
+        document.getElementById('res-id').textContent = id.toUpperCase();
+        successEl.classList.add('show');
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        failEl.classList.add('show');
+      }
+    }
+
+    function verifyByName() {
+      const name = document.getElementById('v-fullname').value.trim();
+      const email = document.getElementById('v-email').value.trim();
+      const captcha = document.getElementById('captcha-name').value.trim();
+      const el = document.getElementById('result-name-success');
+      el.classList.remove('show');
+      if (!name || !email) { alert('Please enter both name and email.'); return; }
+      if (captcha !== '7') { alert('Security check failed. 12 − 5 = 7'); return; }
+      el.classList.add('show');
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function handleQrUpload(input) {
+      if (input.files && input.files[0]) {
+        const el = document.getElementById('result-qr-success');
+        el.classList.add('show');
+        el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function printResult(e) {
+      e.preventDefault();
+      window.print();
+    }
+
+    function shareResult(e) {
+      e.preventDefault();
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(window.location.href).then(() => alert('Verification link copied to clipboard!'));
+      } else {
+        alert('Copy this URL to share: ' + window.location.href);
+      }
+    }
+
+    // Allow Enter key on cert-id field
+    document.getElementById('cert-id').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') verifyById();
+    });
+  </script>
+</body>
+</html>

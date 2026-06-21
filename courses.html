@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses | TIH Academy — Online Learning Platform</title>
+  <meta name="description" content="Browse 150+ professional courses in technology, business, AI, digital marketing, cybersecurity, and entrepreneurship. Learn at your own pace and earn recognized certificates." />
+  <meta name="keywords" content="online courses Liberia, digital skills courses Africa, technology training, professional development courses" />
+  <meta property="og:title" content="Courses | TIH Academy" />
+  <meta property="og:description" content="Browse 150+ courses in technology, business, AI, and entrepreneurship." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tolbertinnovationhub.org/courses.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --ac-gold: #f59e0b;
+      --ac-gold-dark: #d97706;
+      --ac-gold-pale: #fffbeb;
+      --ac-teal: #0d9488;
+      --ac-purple: #7c3aed;
+    }
+
+    /* NAV */
+    .academy-header { background: #fff; border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 1000; }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 1.5rem; max-width: 1280px; margin: 0 auto; gap: 1rem; }
+    .brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: #002868; font-size: 1.18rem; text-decoration: none; display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0; }
+    .brand span { color: #BF0A30; }
+    .nav-links { display: flex; gap: 0.15rem; align-items: center; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+    .nav-links a { color: #374151; font-size: 0.87rem; font-weight: 500; text-decoration: none; padding: 0.35rem 0.6rem; border-radius: 6px; transition: all .2s; }
+    .nav-links a:hover { color: #002868; background: #f0f4ff; }
+    .nav-links a.active { color: #002868; font-weight: 700; }
+    .nav-auth { display: flex; gap: 0.6rem; align-items: center; flex-shrink: 0; }
+    .btn-ghost { background: transparent; border: 1.5px solid #002868; color: #002868; padding: 0.45rem 1.1rem; border-radius: 50px; font-size: 0.87rem; font-weight: 600; cursor: pointer; transition: all .2s; text-decoration: none; }
+    .btn-ghost:hover { background: #002868; color: #fff; }
+    .btn-enroll { background: #BF0A30; color: #fff; padding: 0.5rem 1.3rem; border-radius: 50px; font-size: 0.87rem; font-weight: 700; text-decoration: none; transition: all .2s; }
+    .btn-enroll:hover { background: #a00827; transform: translateY(-1px); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #002868; border-radius: 2px; transition: all .2s; }
+    @media(max-width: 900px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; padding: 1rem 1.5rem; box-shadow: 0 8px 32px rgba(0,0,0,.12); z-index: 999; }
+      .nav-links.open { display: flex; }
+      .nav-auth { display: none; }
+    }
+
+    /* PAGE HERO */
+    .courses-hero { background: linear-gradient(135deg, #001a45 0%, #002868 60%, #003399 100%); padding: 3.5rem 0 3rem; color: #fff; }
+    .courses-hero .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+    .courses-hero h1 { font-size: clamp(1.9rem, 3.5vw, 2.7rem); font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
+    .courses-hero h1 span { color: #f59e0b; }
+    .courses-hero p { color: rgba(255,255,255,.8); font-size: 1.05rem; max-width: 56ch; margin-bottom: 1.8rem; }
+    .search-bar-wrap { display: flex; gap: 0.75rem; max-width: 560px; }
+    .search-bar-wrap input { flex: 1; padding: 0.8rem 1.2rem; border-radius: 50px; border: none; font-size: 0.95rem; font-family: 'Inter', sans-serif; outline: none; }
+    .search-bar-wrap button { background: #f59e0b; color: #fff; border: none; padding: 0.8rem 1.6rem; border-radius: 50px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all .2s; }
+    .search-bar-wrap button:hover { background: #d97706; }
+
+    /* BREADCRUMB */
+    .breadcrumb { padding: 0.9rem 0; border-bottom: 1px solid #e5e7eb; background: #f9fafb; }
+    .breadcrumb .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: #6b7280; }
+    .breadcrumb a { color: #002868; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb .sep { color: #d1d5db; }
+
+    /* LAYOUT */
+    .courses-layout { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; display: grid; grid-template-columns: 260px 1fr; gap: 2rem; }
+    @media(max-width: 900px) { .courses-layout { grid-template-columns: 1fr; } }
+
+    /* SIDEBAR */
+    .filter-sidebar { position: sticky; top: 80px; height: fit-content; }
+    .filter-card { background: #fff; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,.08); padding: 1.5rem; margin-bottom: 1rem; }
+    .filter-card h4 { font-size: 0.95rem; font-weight: 700; color: #111827; margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 2px solid #f3f4f6; display: flex; justify-content: space-between; align-items: center; }
+    .filter-card h4 button { background: none; border: none; color: #002868; font-size: 0.78rem; font-weight: 600; cursor: pointer; }
+    .filter-option { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.35rem 0; cursor: pointer; }
+    .filter-option label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.88rem; color: #374151; }
+    .filter-option input[type="checkbox"] { accent-color: #002868; width: 15px; height: 15px; cursor: pointer; }
+    .filter-count { font-size: 0.75rem; color: #9ca3af; background: #f3f4f6; padding: 0.1rem 0.45rem; border-radius: 50px; }
+    .rating-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0; cursor: pointer; font-size: 0.88rem; color: #374151; }
+    .stars { color: #f59e0b; font-size: 0.9rem; }
+    .price-range { margin-top: 0.5rem; }
+    .price-range input[type="range"] { width: 100%; accent-color: #002868; }
+    .price-labels { display: flex; justify-content: space-between; font-size: 0.8rem; color: #6b7280; margin-top: 0.3rem; }
+    .apply-filters { display: block; width: 100%; padding: 0.7rem; background: #002868; color: #fff; border: none; border-radius: 10px; font-weight: 700; font-size: 0.9rem; cursor: pointer; margin-top: 0.5rem; transition: all .2s; }
+    .apply-filters:hover { background: #001a45; }
+    .clear-filters { display: block; width: 100%; padding: 0.5rem; background: none; border: 1.5px solid #e5e7eb; border-radius: 10px; font-size: 0.85rem; color: #6b7280; cursor: pointer; margin-top: 0.4rem; transition: all .2s; }
+    .clear-filters:hover { border-color: #002868; color: #002868; }
+
+    /* MAIN CONTENT */
+    .courses-main {}
+    .results-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem; }
+    .results-info { font-size: 0.95rem; color: #374151; }
+    .results-info strong { color: #111827; }
+    .results-controls { display: flex; align-items: center; gap: 0.75rem; }
+    .sort-select { padding: 0.5rem 1rem; border: 1.5px solid #e5e7eb; border-radius: 8px; font-size: 0.88rem; color: #374151; background: #fff; cursor: pointer; outline: none; }
+    .sort-select:focus { border-color: #002868; }
+    .view-toggle { display: flex; border: 1.5px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    .view-btn { background: #fff; border: none; padding: 0.5rem 0.7rem; cursor: pointer; color: #9ca3af; transition: all .2s; font-size: 1rem; }
+    .view-btn.active { background: #002868; color: #fff; }
+
+    /* COURSE CARDS GRID */
+    .courses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    @media(max-width: 1100px) { .courses-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width: 600px) { .courses-grid { grid-template-columns: 1fr; } }
+
+    /* LIST VIEW */
+    .courses-grid.list-view { grid-template-columns: 1fr; }
+    .courses-grid.list-view .course-card { display: grid; grid-template-columns: 200px 1fr; gap: 0; border-radius: 14px; }
+    .courses-grid.list-view .course-card .course-thumb { border-radius: 14px 0 0 14px; min-height: 150px; }
+    .courses-grid.list-view .course-card .course-body { padding: 1.2rem 1.4rem; }
+    @media(max-width: 600px) {
+      .courses-grid.list-view .course-card { grid-template-columns: 1fr; }
+      .courses-grid.list-view .course-card .course-thumb { border-radius: 14px 14px 0 0; min-height: 120px; }
+    }
+
+    .course-card { background: #fff; border-radius: 14px; box-shadow: 0 2px 12px rgba(0,0,0,.08); transition: all .25s; overflow: hidden; display: flex; flex-direction: column; }
+    .course-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,.14); }
+    .course-thumb { padding: 2.2rem 1.5rem; display: flex; align-items: center; justify-content: center; min-height: 140px; position: relative; }
+    .course-badge { position: absolute; top: 0.8rem; left: 0.8rem; background: #f59e0b; color: #fff; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .course-badge.new { background: #10b981; }
+    .course-badge.bestseller { background: #f59e0b; }
+    .course-badge.popular { background: #6366f1; }
+    .course-badge.free { background: #BF0A30; }
+    .thumb-icon { font-size: 3rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,.2)); }
+    .course-body { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; }
+    .course-cat { font-size: 0.73rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #002868; margin-bottom: 0.35rem; }
+    .course-card h3 { font-size: 0.98rem; font-weight: 700; color: #111827; margin-bottom: 0.4rem; line-height: 1.4; }
+    .course-instructor { font-size: 0.82rem; color: #6b7280; margin-bottom: 0.5rem; }
+    .course-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.7rem; flex-wrap: wrap; }
+    .course-rating { display: flex; align-items: center; gap: 0.25rem; font-size: 0.82rem; }
+    .rating-num { font-weight: 700; color: #111827; }
+    .rating-stars { color: #f59e0b; font-size: 0.82rem; }
+    .rating-count { color: #9ca3af; }
+    .course-duration { font-size: 0.8rem; color: #6b7280; display: flex; align-items: center; gap: 0.25rem; }
+    .course-level { font-size: 0.78rem; padding: 0.15rem 0.55rem; border-radius: 50px; font-weight: 600; }
+    .level-beginner { background: #ecfdf5; color: #065f46; }
+    .level-intermediate { background: #eff6ff; color: #1e40af; }
+    .level-advanced { background: #fdf4ff; color: #6b21a8; }
+    .course-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 0.8rem; border-top: 1px solid #f3f4f6; }
+    .course-price { font-size: 1.05rem; font-weight: 800; color: #002868; }
+    .course-price .original { font-size: 0.82rem; font-weight: 400; color: #9ca3af; text-decoration: line-through; margin-left: 0.3rem; }
+    .course-price.free-tag { color: #10b981; }
+    .btn-view { background: #002868; color: #fff; border: none; padding: 0.45rem 1rem; border-radius: 8px; font-size: 0.83rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: all .2s; }
+    .btn-view:hover { background: #001a45; }
+
+    /* PAGINATION */
+    .pagination { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 2.5rem; }
+    .page-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 1.5px solid #e5e7eb; background: #fff; font-size: 0.9rem; font-weight: 600; cursor: pointer; color: #374151; transition: all .2s; text-decoration: none; }
+    .page-btn:hover { border-color: #002868; color: #002868; }
+    .page-btn.active { background: #002868; color: #fff; border-color: #002868; }
+    .page-btn.prev, .page-btn.next { width: auto; padding: 0 1rem; font-size: 0.85rem; }
+
+    /* ACTIVE FILTER TAGS */
+    .active-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+    .filter-tag { display: flex; align-items: center; gap: 0.35rem; background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; font-size: 0.8rem; padding: 0.25rem 0.7rem; border-radius: 50px; }
+    .filter-tag button { background: none; border: none; cursor: pointer; color: #1e40af; font-size: 0.9rem; line-height: 1; padding: 0; }
+
+    /* PROMO */
+    .courses-promo { background: linear-gradient(135deg, #002868, #003399); border-radius: 16px; padding: 2rem; color: #fff; margin-top: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .courses-promo h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .courses-promo p { color: rgba(255,255,255,.8); font-size: 0.95rem; }
+    .btn-promo { background: #f59e0b; color: #fff; padding: 0.7rem 1.6rem; border-radius: 50px; font-weight: 700; text-decoration: none; font-size: 0.95rem; transition: all .2s; }
+    .btn-promo:hover { background: #d97706; transform: translateY(-2px); }
+
+    /* FOOTER */
+    .academy-footer { background: #0a1628; color: rgba(255,255,255,.75); padding: 3rem 0 1.5rem; margin-top: 4rem; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 2.5rem; margin-bottom: 2rem; }
+    .footer-brand-name { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 0.6rem; }
+    .footer-brand-name span { color: #f59e0b; }
+    .footer-tagline { font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem; }
+    .footer-social { display: flex; gap: 0.5rem; }
+    .social-icon { width: 34px; height: 34px; background: rgba(255,255,255,.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: all .2s; text-decoration: none; color: #fff; }
+    .social-icon:hover { background: #f59e0b; }
+    .footer-col h5 { font-size: 0.88rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col ul li { margin-bottom: 0.4rem; }
+    .footer-col ul li a { color: rgba(255,255,255,.65); font-size: 0.85rem; text-decoration: none; transition: color .2s; }
+    .footer-col ul li a:hover { color: #f59e0b; }
+    .footer-bottom { max-width: 1280px; margin: 0 auto; padding: 1rem 1.5rem 0; border-top: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; font-size: 0.82rem; color: rgba(255,255,255,.45); }
+    .footer-bottom a { color: rgba(255,255,255,.6); text-decoration: none; }
+    .footer-bottom a:hover { color: #f59e0b; }
+    @media(max-width: 900px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width: 600px) {
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="academy-header">
+    <div class="nav-wrap">
+      <a class="brand" href="academy.html">TIH <span>Academy</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="academy.html">Academy</a>
+        <a href="courses.html" class="active">Courses</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="instructors.html">Instructors</a>
+        <a href="academy-blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-auth">
+        <a href="student-dashboard.html" class="btn-ghost">Log In</a>
+        <a href="academy.html#enroll" class="btn-enroll">Enroll Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="courses-hero">
+    <div class="container">
+      <h1>Explore <span>150+ Courses</span></h1>
+      <p>Master in-demand skills from industry experts. Learn at your own pace with lifetime access, project-based learning, and professional certificates.</p>
+      <div class="search-bar-wrap">
+        <input type="search" id="courseSearch" placeholder="Search courses, topics, instructors..." aria-label="Search courses" />
+        <button onclick="doSearch()">Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="container">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="academy.html">Academy</a>
+      <span class="sep">›</span>
+      <span>Courses</span>
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="courses-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="filter-sidebar">
+
+      <div class="filter-card">
+        <h4>Category <button onclick="clearSection('cat')">Clear</button></h4>
+        <div class="filter-option"><label><input type="checkbox" class="f-cat" checked /> Computer Fundamentals</label><span class="filter-count">14</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-cat" /> Microsoft Office</label><span class="filter-count">10</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-cat" /> Artificial Intelligence</label><span class="filter-count">12</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-cat" /> Data Analytics</label><span class="filter-count">9</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-cat" /> Web Development</label><span class="filter-count">18</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-cat" /> Mobile App Dev</label><span class="filter-count">11</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-cat" /> Graphic Design</label><span class="filter-count">8</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-cat" /> Digital Marketing</label><span class="filter-count">13</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-cat" /> Cybersecurity</label><span class="filter-count">10</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-cat" /> Entrepreneurship</label><span class="filter-count">15</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-cat" /> Leadership</label><span class="filter-count">9</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-cat" /> Financial Literacy</label><span class="filter-count">7</span></div>
+      </div>
+
+      <div class="filter-card">
+        <h4>Level <button onclick="clearSection('level')">Clear</button></h4>
+        <div class="filter-option"><label><input type="checkbox" class="f-level" checked /> Beginner</label><span class="filter-count">62</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-level" /> Intermediate</label><span class="filter-count">54</span></div>
+        <div class="filter-option"><label><input type="checkbox" class="f-level" /> Advanced</label><span class="filter-count">34</span></div>
+      </div>
+
+      <div class="filter-card">
+        <h4>Duration</h4>
+        <div class="filter-option"><label><input type="checkbox" /> Under 2 hours</label><span class="filter-count">22</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> 2–5 hours</label><span class="filter-count">45</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> 5–10 hours</label><span class="filter-count">51</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> 10–20 hours</label><span class="filter-count">28</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> 20+ hours</label><span class="filter-count">14</span></div>
+      </div>
+
+      <div class="filter-card">
+        <h4>Rating</h4>
+        <label class="rating-row"><input type="radio" name="rating" /> <span class="stars">★★★★★</span> 4.5 &amp; up</label>
+        <label class="rating-row"><input type="radio" name="rating" checked /> <span class="stars">★★★★☆</span> 4.0 &amp; up</label>
+        <label class="rating-row"><input type="radio" name="rating" /> <span class="stars">★★★☆☆</span> 3.0 &amp; up</label>
+      </div>
+
+      <div class="filter-card">
+        <h4>Price</h4>
+        <div class="filter-option"><label><input type="checkbox" checked /> Free</label><span class="filter-count">18</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Paid</label><span class="filter-count">132</span></div>
+        <div class="price-range">
+          <input type="range" id="priceRange" min="0" max="200" value="100" oninput="document.getElementById('priceVal').textContent='$'+this.value" />
+          <div class="price-labels"><span>$0</span><span id="priceVal">$100</span><span>$200</span></div>
+        </div>
+      </div>
+
+      <button class="apply-filters" onclick="applyFilters()">Apply Filters</button>
+      <button class="clear-filters" onclick="clearAll()">Clear All Filters</button>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+
+      <!-- ACTIVE FILTER TAGS -->
+      <div class="active-filters">
+        <span class="filter-tag">Computer Fundamentals <button onclick="removeTag(this)">✕</button></span>
+        <span class="filter-tag">Beginner <button onclick="removeTag(this)">✕</button></span>
+        <span class="filter-tag">4.0+ Rating <button onclick="removeTag(this)">✕</button></span>
+      </div>
+
+      <!-- RESULTS BAR -->
+      <div class="results-bar">
+        <div class="results-info">Showing <strong>1–12</strong> of <strong>150</strong> courses</div>
+        <div class="results-controls">
+          <select class="sort-select" aria-label="Sort courses">
+            <option>Most Popular</option>
+            <option>Highest Rated</option>
+            <option>Newest</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+          </select>
+          <div class="view-toggle">
+            <button class="view-btn active" id="gridBtn" onclick="setView('grid')" aria-label="Grid view">⊞</button>
+            <button class="view-btn" id="listBtn" onclick="setView('list')" aria-label="List view">☰</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- COURSE GRID -->
+      <div class="courses-grid" id="coursesGrid">
+
+        <!-- Card 1 -->
+        <article class="course-card reveal">
+          <div class="course-thumb" style="background: linear-gradient(135deg,#1e3a5f,#002868);">
+            <span class="course-badge bestseller">Bestseller</span>
+            <span class="thumb-icon">💻</span>
+          </div>
+          <div class="course-body">
+            <div class="course-cat">Computer Fundamentals</div>
+            <h3>Complete Computer Literacy: From Zero to Professional</h3>
+            <div class="course-instructor">Samuel Tolbert</div>
+            <div class="course-meta">
+              <div class="course-rating"><span class="rating-num">4.9</span><span class="rating-stars">★★★★★</span><span class="rating-count">(1,247)</span></div>
+              <span class="course-duration">⏱ 24h</span>
+              <span class="course-level level-beginner">Beginner</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-price">$49 <span class="original">$120</span></div>
+              <a href="#" class="btn-view">Enroll</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="course-card reveal">
+          <div class="course-thumb" style="background: linear-gradient(135deg,#7c3aed,#5b21b6);">
+            <span class="course-badge new">New</span>
+            <span class="thumb-icon">🤖</span>
+          </div>
+          <div class="course-body">
+            <div class="course-cat">Artificial Intelligence</div>
+            <h3>AI Fundamentals: ChatGPT, Gemini &amp; Practical AI Tools</h3>
+            <div class="course-instructor">Dr. Mariama Koroma</div>
+            <div class="course-meta">
+              <div class="course-rating"><span class="rating-num">4.8</span><span class="rating-stars">★★★★★</span><span class="rating-count">(832)</span></div>
+              <span class="course-duration">⏱ 18h</span>
+              <span class="course-level level-beginner">Beginner</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-price">$59 <span class="original">$150</span></div>
+              <a href="#" class="btn-view">Enroll</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="course-card reveal">
+          <div class="course-thumb" style="background: linear-gradient(135deg,#0d9488,#065f46);">
+            <span class="course-badge popular">Popular</span>
+            <span class="thumb-icon">📊</span>
+          </div>
+          <div class="course-body">
+            <div class="course-cat">Data Analytics</div>
+            <h3>Data Analysis with Excel, Power BI &amp; Google Sheets</h3>
+            <div class="course-instructor">Emmanuel Kamara</div>
+            <div class="course-meta">
+              <div class="course-rating"><span class="rating-num">4.7</span><span class="rating-stars">★★★★★</span><span class="rating-count">(645)</span></div>
+              <span class="course-duration">⏱ 30h</span>
+              <span class="course-level level-intermediate">Intermediate</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-price">$69 <span class="original">$180</span></div>
+              <a href="#" class="btn-view">Enroll</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="course-card reveal">
+          <div class="course-thumb" style="background: linear-gradient(135deg,#f59e0b,#d97706);">
+            <span class="course-badge free">Free</span>
+            <span class="thumb-icon">🌐</span>
+          </div>
+          <div class="course-body">
+            <div class="course-cat">Web Development</div>
+            <h3>HTML &amp; CSS Fundamentals: Build Your First Website</h3>
+            <div class="course-instructor">Faith Kollie</div>
+            <div class="course-meta">
+              <div class="course-rating"><span class="rating-num">4.8</span><span class="rating-stars">★★★★★</span><span class="rating-count">(2,103)</span></div>
+              <span class="course-duration">⏱ 12h</span>
+              <span class="course-level level-beginner">Beginner</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-price free-tag">Free</div>
+              <a href="#" class="btn-view">Start Free</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="course-card reveal">
+          <div class="course-thumb" style="background: linear-gradient(135deg,#ec4899,#be185d);">
+            <span class="course-badge bestseller">Bestseller</span>
+            <span class="thumb-icon">🎨</span>
+          </div>
+          <div class="course-body">
+            <div class="course-cat">Graphic Design</div>
+            <h3>Graphic Design Mastery: Canva, Figma &amp; Adobe Basics</h3>
+            <div class="course-instructor">Aminata Darboe</div>
+            <div class="course-meta">
+              <div class="course-rating"><span class="rating-num">4.9</span><span class="rating-stars">★★★★★</span><span class="rating-count">(978)</span></div>
+              <span class="course-duration">⏱ 22h</span>
+              <span class="course-level level-beginner">Beginner</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-price">$55 <span class="original">$140</span></div>
+              <a href="#" class="btn-view">Enroll</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="course-card reveal">
+          <div class="course-thumb" style="background: linear-gradient(135deg,#3b82f6,#1d4ed8);">
+            <span class="course-badge new">New</span>
+            <span class="thumb-icon">📱</span>
+          </div>
+          <div class="course-body">
+            <div class="course-cat">Mobile App Development</div>
+            <h3>Android App Development with Kotlin — Zero to App</h3>
+            <div class="course-instructor">James Togba</div>
+            <div class="course-meta">
+              <div class="course-rating"><span class="rating-num">4.6</span><span class="rating-stars">★★★★★</span><span class="rating-count">(412)</span></div>
+              <span class="course-duration">⏱ 36h</span>
+              <span class="course-level level-intermediate">Intermediate</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-price">$79 <span class="original">$200</span></div>
+              <a href="#" class="btn-view">Enroll</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 7 -->
+        <article class="course-card reveal">
+          <div class="course-thumb" style="background: linear-gradient(135deg,#10b981,#047857);">
+            <span class="course-badge popular">Popular</span>
+            <span class="thumb-icon">📣</span>
+          </div>
+          <div class="course-body">
+            <div class="course-cat">Digital Marketing</div>
+            <h3>Digital Marketing: Social Media, SEO &amp; Google Ads</h3>
+            <div class="course-instructor">Blessing Nyarko</div>
+            <div class="course-meta">
+              <div class="course-rating"><span class="rating-num">4.7</span><span class="rating-stars">★★★★★</span><span class="rating-count">(1,056)</span></div>
+              <span class="course-duration">⏱ 28h</span>
+              <span class="course-level level-beginner">Beginner</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-price">$65 <span class="original">$160</span></div>
+              <a href="#" class="btn-view">Enroll</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 8 -->
+        <article class="course-card reveal">
+          <div class="course-thumb" style="background: linear-gradient(135deg,#BF0A30,#800020);">
+            <span class="course-badge bestseller">Bestseller</span>
+            <span class="thumb-icon">🔒</span>
+          </div>
+          <div class="course-body">
+            <div class="course-cat">Cybersecurity</div>
+            <h3>Cybersecurity Essentials: Protect Yourself &amp; Your Business</h3>
+            <div class="course-instructor">Michael Varney</div>
+            <div class="course-meta">
+              <div class="course-rating"><span class="rating-num">4.8</span><span class="rating-stars">★★★★★</span><span class="rating-count">(743)</span></div>
+              <span class="course-duration">⏱ 20h</span>
+              <span class="course-level level-intermediate">Intermediate</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-price">$69 <span class="original">$175</span></div>
+              <a href="#" class="btn-view">Enroll</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 9 -->
+        <article class="course-card reveal">
+          <div class="course-thumb" style="background: linear-gradient(135deg,#f97316,#c2410c);">
+            <span class="course-badge new">New</span>
+            <span class="thumb-icon">🚀</span>
+          </div>
+          <div class="course-body">
+            <div class="course-cat">Entrepreneurship</div>
+            <h3>Start Your Business: Entrepreneurship from Idea to Launch</h3>
+            <div class="course-instructor">Dr. Clara Mensah</div>
+            <div class="course-meta">
+              <div class="course-rating"><span class="rating-num">4.9</span><span class="rating-stars">★★★★★</span><span class="rating-count">(1,342)</span></div>
+              <span class="course-duration">⏱ 26h</span>
+              <span class="course-level level-beginner">Beginner</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-price">$55 <span class="original">$140</span></div>
+              <a href="#" class="btn-view">Enroll</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 10 -->
+        <article class="course-card reveal">
+          <div class="course-thumb" style="background: linear-gradient(135deg,#6366f1,#4338ca);">
+            <span class="course-badge popular">Popular</span>
+            <span class="thumb-icon">📋</span>
+          </div>
+          <div class="course-body">
+            <div class="course-cat">Project Management</div>
+            <h3>Project Management Professional: PMP Prep &amp; Agile Methods</h3>
+            <div class="course-instructor">Emmanuel Kamara</div>
+            <div class="course-meta">
+              <div class="course-rating"><span class="rating-num">4.7</span><span class="rating-stars">★★★★★</span><span class="rating-count">(589)</span></div>
+              <span class="course-duration">⏱ 32h</span>
+              <span class="course-level level-advanced">Advanced</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-price">$89 <span class="original">$220</span></div>
+              <a href="#" class="btn-view">Enroll</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 11 -->
+        <article class="course-card reveal">
+          <div class="course-thumb" style="background: linear-gradient(135deg,#002868,#004080);">
+            <span class="course-badge free">Free</span>
+            <span class="thumb-icon">🏢</span>
+          </div>
+          <div class="course-body">
+            <div class="course-cat">Microsoft Office</div>
+            <h3>Microsoft Office Complete: Word, Excel, PowerPoint &amp; Teams</h3>
+            <div class="course-instructor">Samuel Tolbert</div>
+            <div class="course-meta">
+              <div class="course-rating"><span class="rating-num">4.6</span><span class="rating-stars">★★★★★</span><span class="rating-count">(3,421)</span></div>
+              <span class="course-duration">⏱ 15h</span>
+              <span class="course-level level-beginner">Beginner</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-price free-tag">Free</div>
+              <a href="#" class="btn-view">Start Free</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 12 -->
+        <article class="course-card reveal">
+          <div class="course-thumb" style="background: linear-gradient(135deg,#0891b2,#0e7490);">
+            <span class="course-badge bestseller">Bestseller</span>
+            <span class="thumb-icon">👑</span>
+          </div>
+          <div class="course-body">
+            <div class="course-cat">Leadership</div>
+            <h3>Leadership Excellence: Lead Teams, Drive Change &amp; Inspire</h3>
+            <div class="course-instructor">Prof. Amara Sesay</div>
+            <div class="course-meta">
+              <div class="course-rating"><span class="rating-num">4.9</span><span class="rating-stars">★★★★★</span><span class="rating-count">(2,187)</span></div>
+              <span class="course-duration">⏱ 20h</span>
+              <span class="course-level level-intermediate">Intermediate</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-price">$59 <span class="original">$150</span></div>
+              <a href="#" class="btn-view">Enroll</a>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /courses-grid -->
+
+      <!-- PROMO BANNER -->
+      <div class="courses-promo reveal">
+        <div>
+          <h3>Not sure where to start?</h3>
+          <p>Take our free skills assessment and get a personalized learning path tailored to your goals and experience level.</p>
+        </div>
+        <a href="academy.html#pathways" class="btn-promo">Take Free Assessment</a>
+      </div>
+
+      <!-- PAGINATION -->
+      <nav class="pagination" aria-label="Course pages">
+        <a href="#" class="page-btn prev">← Prev</a>
+        <a href="#" class="page-btn active">1</a>
+        <a href="#" class="page-btn">2</a>
+        <a href="#" class="page-btn">3</a>
+        <span class="page-btn" style="border:none;color:#9ca3af;">…</span>
+        <a href="#" class="page-btn">13</a>
+        <a href="#" class="page-btn next">Next →</a>
+      </nav>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="academy-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">TIH <span>Academy</span></div>
+        <p class="footer-tagline">Empowering Africa through digital skills, innovation, technology, leadership, and entrepreneurship.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon" aria-label="Facebook">f</a>
+          <a href="#" class="social-icon" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+          <a href="#" class="social-icon" aria-label="YouTube">▶</a>
+          <a href="#" class="social-icon" aria-label="Instagram">◉</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Learn</h5>
+        <ul>
+          <li><a href="courses.html">All Courses</a></li>
+          <li><a href="certifications.html">Certifications</a></li>
+          <li><a href="academy.html#pathways">Learning Paths</a></li>
+          <li><a href="academy.html#categories">Categories</a></li>
+          <li><a href="student-dashboard.html">My Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About TIH</a></li>
+          <li><a href="instructors.html">Instructors</a></li>
+          <li><a href="academy-blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="grants.html">Grants</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="academy.html#faq">FAQ</a></li>
+          <li><a href="certificate-verify.html">Verify Certificate</a></li>
+          <li><a href="contact.html">Help Center</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tolbert Innovation Hub Academy. All rights reserved.</span>
+      <span>Monrovia, Liberia · <a href="mailto:academy@tolbertinnovationhub.org">academy@tolbertinnovationhub.org</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // View toggle
+    function setView(v) {
+      const grid = document.getElementById('coursesGrid');
+      const gb = document.getElementById('gridBtn');
+      const lb = document.getElementById('listBtn');
+      if (v === 'list') {
+        grid.classList.add('list-view');
+        lb.classList.add('active');
+        gb.classList.remove('active');
+      } else {
+        grid.classList.remove('list-view');
+        gb.classList.add('active');
+        lb.classList.remove('active');
+      }
+    }
+
+    // Search
+    function doSearch() {
+      const q = document.getElementById('courseSearch').value.trim();
+      if (q) window.location.href = 'courses.html?q=' + encodeURIComponent(q);
+    }
+    document.getElementById('courseSearch').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    // Filter tag removal
+    function removeTag(btn) { btn.closest('.filter-tag').remove(); }
+    function clearSection() {}
+    function clearAll() { document.querySelectorAll('.active-filters .filter-tag').forEach(t => t.remove()); }
+    function applyFilters() {}
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
