@@ -4,616 +4,222 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Complete Computer Literacy — Course Player | TIH Academy</title>
-  <meta name="description" content="Learn computer literacy with TIH Academy. Watch lessons, take quizzes, and earn your certificate." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --blue: #002868;
-      --blue-dark: #001a45;
-      --blue-light: #eff6ff;
-      --red: #BF0A30;
-      --gold: #f59e0b;
-      --green: #10b981;
-      --green-light: #d1fae5;
-      --text: #111827;
-      --text-muted: #6b7280;
-      --border: #e5e7eb;
-      --bg: #f9fafb;
-      --white: #fff;
-      --sidebar-w: 280px;
-      --topbar-h: 60px;
+      --blue: #002868; --blue-dark: #001a45; --blue-light: #eff6ff;
+      --red: #BF0A30; --gold: #f59e0b; --green: #10b981; --green-light: #d1fae5;
+      --text: #111827; --text-muted: #6b7280; --border: #e5e7eb;
+      --bg: #f9fafb; --white: #fff; --sidebar-w: 280px; --topbar-h: 60px;
     }
     html, body { height: 100%; overflow: hidden; }
     body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); display: flex; flex-direction: column; }
     a { text-decoration: none; color: inherit; }
 
-    /* ===== TOP BAR ===== */
-    .topbar {
-      height: var(--topbar-h);
-      background: #fff;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      padding: 0 1rem;
-      gap: 1rem;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      flex-shrink: 0;
-    }
-    .topbar-left {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-shrink: 0;
-    }
-    .topbar-back {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      color: var(--text-muted);
-      font-size: 0.83rem;
-      font-weight: 500;
-      transition: color .2s;
-      padding: 0.35rem 0.5rem;
-      border-radius: 6px;
-      white-space: nowrap;
-    }
+    /* TOP BAR */
+    .topbar { height: var(--topbar-h); background: #fff; border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 1rem; gap: 1rem; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
+    .topbar-left { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+    .topbar-back { display: flex; align-items: center; gap: 0.35rem; color: var(--text-muted); font-size: 0.83rem; font-weight: 500; transition: color .2s; padding: 0.35rem 0.5rem; border-radius: 6px; white-space: nowrap; }
     .topbar-back:hover { color: var(--blue); background: var(--blue-light); }
     .topbar-divider { width: 1px; height: 20px; background: var(--border); }
     .topbar-brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--blue); font-size: 1rem; white-space: nowrap; }
     .topbar-brand span { color: var(--red); }
-    .topbar-center {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      min-width: 0;
-    }
-    .topbar-course-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      flex: 1;
-      min-width: 0;
-    }
-    .progress-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-shrink: 0;
-    }
-    .progress-bar-track {
-      width: 140px;
-      height: 6px;
-      background: var(--border);
-      border-radius: 50px;
-      overflow: hidden;
-    }
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--green);
-      border-radius: 50px;
-      transition: width .5s ease;
-    }
-    .progress-pct {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--green);
-      white-space: nowrap;
-    }
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-shrink: 0;
-    }
-    .topbar-avatar {
-      width: 32px;
-      height: 32px;
-      background: var(--blue);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    /* Sidebar toggle button for mobile */
-    .btn-contents {
-      display: none;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.35rem 0.7rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text);
-      cursor: pointer;
-      transition: all .2s;
-      font-family: 'Inter', sans-serif;
-    }
+    .topbar-center { flex: 1; display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
+    .topbar-course-title { font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
+    .progress-wrap { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .progress-bar-track { width: 140px; height: 6px; background: var(--border); border-radius: 50px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: var(--green); border-radius: 50px; transition: width .5s ease; }
+    .progress-pct { font-size: 0.78rem; font-weight: 600; color: var(--green); white-space: nowrap; }
+    .topbar-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+    .topbar-avatar { width: 32px; height: 32px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
+    .btn-contents { display: none; align-items: center; gap: 0.4rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.35rem 0.7rem; font-size: 0.82rem; font-weight: 600; color: var(--text); cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
     .btn-contents:hover { background: var(--blue-light); color: var(--blue); }
 
-    /* ===== MAIN LAYOUT ===== */
-    .player-layout {
-      display: flex;
-      height: 100vh;
-      padding-top: var(--topbar-h);
-      overflow: hidden;
-    }
+    /* LAYOUT */
+    .player-layout { display: flex; height: 100vh; padding-top: var(--topbar-h); overflow: hidden; }
 
-    /* ===== SIDEBAR ===== */
-    .sidebar {
-      width: var(--sidebar-w);
-      flex-shrink: 0;
-      background: #fff;
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transition: transform .3s ease;
-    }
-    .sidebar-header {
-      padding: 1rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-shrink: 0;
-    }
-    .sidebar-header h3 {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .sidebar-header-right {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .sidebar-lesson-count {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      background: var(--bg);
-      padding: 0.15rem 0.5rem;
-      border-radius: 50px;
-    }
-    .btn-close-sidebar {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      padding: 0.2rem;
-      line-height: 1;
-    }
-    .sidebar-scroll {
-      flex: 1;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: var(--border) transparent;
-    }
-
-    /* Module sections in sidebar */
+    /* SIDEBAR */
+    .sidebar { width: var(--sidebar-w); flex-shrink: 0; background: #fff; border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: transform .3s ease; }
+    .sidebar-header { padding: 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+    .sidebar-header h3 { font-size: 0.9rem; font-weight: 700; }
+    .sidebar-header-right { display: flex; align-items: center; gap: 0.5rem; }
+    .sidebar-lesson-count { font-size: 0.75rem; color: var(--text-muted); background: var(--bg); padding: 0.15rem 0.5rem; border-radius: 50px; }
+    .btn-close-sidebar { display: none; background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; padding: 0.2rem; line-height: 1; }
+    .sidebar-scroll { flex: 1; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
     .sidebar-module {}
-    .sidebar-module-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1rem;
-      background: var(--bg);
-      cursor: pointer;
-      border-bottom: 1px solid var(--border);
-      user-select: none;
-      transition: background .2s;
-    }
+    .sidebar-module-header { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg); cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background .2s; }
     .sidebar-module-header:hover { background: #f0f4ff; }
-    .sidebar-module-title {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1.35;
-    }
-    .sidebar-module-meta {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-top: 0.1rem;
-    }
+    .sidebar-module-title { font-size: 0.82rem; font-weight: 700; color: var(--text); line-height: 1.35; }
+    .sidebar-module-meta { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.1rem; }
     .sidebar-module-chevron { font-size: 0.7rem; color: var(--text-muted); transition: transform .2s; }
     .sidebar-module-header.open .sidebar-module-chevron { transform: rotate(180deg); }
     .sidebar-lessons { display: none; }
     .sidebar-lessons.open { display: block; }
-
-    /* Lesson items */
-    .sidebar-lesson {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.65rem 1rem;
-      border-bottom: 1px solid #f3f4f6;
-      cursor: pointer;
-      transition: background .2s;
-    }
-    .sidebar-lesson:hover { background: #fafafa; }
+    .sidebar-lesson { display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1rem; border-bottom: 1px solid #f3f4f6; cursor: pointer; transition: background .2s; }
+    .sidebar-lesson:hover:not(.locked) { background: #fafafa; }
     .sidebar-lesson.active { background: var(--blue-light); border-left: 3px solid var(--blue); }
     .sidebar-lesson.completed .lesson-status { color: var(--green); }
     .sidebar-lesson.locked { opacity: 0.55; cursor: not-allowed; }
     .lesson-status { font-size: 0.85rem; flex-shrink: 0; width: 16px; text-align: center; }
     .lesson-info { flex: 1; min-width: 0; }
-    .lesson-info-title {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    .lesson-info-title { font-size: 0.8rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .sidebar-lesson.active .lesson-info-title { color: var(--blue); font-weight: 600; }
     .lesson-info-dur { font-size: 0.72rem; color: var(--text-muted); }
 
-    /* ===== MAIN VIDEO AREA ===== */
-    .main-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .video-scroll {
-      flex: 1;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: var(--border) transparent;
-    }
-
-    /* Video embed */
-    .video-container {
-      background: #000;
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16/9;
-      max-height: calc(100vh - var(--topbar-h) - 120px);
-    }
-    .video-container iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* Video info bar */
-    .video-info-bar {
-      padding: 1rem 1.5rem 0.75rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .video-lesson-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.25rem;
-      font-family: 'Poppins', sans-serif;
-    }
-    .video-lesson-meta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.83rem;
-      color: var(--text-muted);
-    }
+    /* MAIN AREA */
+    .main-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .video-scroll { flex: 1; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+    .video-container { background: #000; position: relative; width: 100%; aspect-ratio: 16/9; max-height: calc(100vh - var(--topbar-h) - 120px); }
+    .video-container iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .video-info-bar { padding: 1rem 1.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+    .video-lesson-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.25rem; font-family: 'Poppins', sans-serif; }
+    .video-lesson-meta { display: flex; align-items: center; gap: 1rem; font-size: 0.83rem; color: var(--text-muted); }
     .video-lesson-meta span { display: flex; align-items: center; gap: 0.3rem; }
 
-    /* Tabs */
-    .tabs-bar {
-      display: flex;
-      border-bottom: 1px solid var(--border);
-      padding: 0 1.5rem;
-      gap: 0;
-    }
-    .tab-btn {
-      padding: 0.75rem 1.1rem;
-      border: none;
-      background: none;
-      font-size: 0.87rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      transition: all .2s;
-      font-family: 'Inter', sans-serif;
-    }
+    /* TABS */
+    .tabs-bar { display: flex; border-bottom: 1px solid var(--border); padding: 0 1.5rem; }
+    .tab-btn { padding: 0.75rem 1.1rem; border: none; background: none; font-size: 0.87rem; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; font-family: 'Inter', sans-serif; }
     .tab-btn:hover { color: var(--blue); }
     .tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
-
-    /* Tab panels */
     .tab-panel { display: none; padding: 1.5rem; }
     .tab-panel.active { display: block; }
-
-    /* Overview */
     .overview-text p { font-size: 0.9rem; color: #374151; line-height: 1.8; margin-bottom: 0.9rem; }
-
-    /* Resources */
-    .resource-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.9rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 0.6rem;
-      transition: all .2s;
-    }
+    .overview-text p:last-child { margin-bottom: 0; }
+    .resource-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.9rem 1rem; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; transition: all .2s; }
     .resource-item:hover { border-color: var(--blue); background: var(--blue-light); }
     .resource-icon { font-size: 1.5rem; flex-shrink: 0; }
     .resource-info { flex: 1; }
-    .resource-name { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+    .resource-name { font-size: 0.88rem; font-weight: 600; }
     .resource-size { font-size: 0.77rem; color: var(--text-muted); }
-    .btn-download {
-      background: var(--blue);
-      color: #fff;
-      border: none;
-      padding: 0.4rem 0.9rem;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all .2s;
-      font-family: 'Inter', sans-serif;
-    }
+    .btn-download { background: var(--blue); color: #fff; border: none; padding: 0.4rem 0.9rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
     .btn-download:hover { background: var(--blue-dark); }
-
-    /* Q&A */
-    .qa-item {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 0.75rem;
-    }
-    .qa-question { font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; display: flex; gap: 0.5rem; }
+    .qa-item { border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 0.75rem; }
+    .qa-question { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.5rem; display: flex; gap: 0.5rem; }
     .qa-question::before { content: 'Q:'; color: var(--blue); flex-shrink: 0; }
     .qa-answer { font-size: 0.87rem; color: #374151; line-height: 1.75; display: flex; gap: 0.5rem; }
     .qa-answer::before { content: 'A:'; color: var(--green); font-weight: 700; flex-shrink: 0; }
-
-    /* Notes */
-    .notes-label { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
-    .notes-textarea {
-      width: 100%;
-      min-height: 140px;
-      padding: 0.75rem 1rem;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.88rem;
-      font-family: 'Inter', sans-serif;
-      color: var(--text);
-      resize: vertical;
-      transition: border-color .2s;
-      line-height: 1.6;
-    }
+    .notes-label { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .notes-textarea { width: 100%; min-height: 140px; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.88rem; font-family: 'Inter', sans-serif; resize: vertical; transition: border-color .2s; line-height: 1.6; }
     .notes-textarea:focus { outline: none; border-color: var(--blue); }
     .notes-actions { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
-    .btn-save-notes {
-      background: var(--blue);
-      color: #fff;
-      border: none;
-      padding: 0.55rem 1.4rem;
-      border-radius: 8px;
-      font-size: 0.87rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all .2s;
-      font-family: 'Inter', sans-serif;
-    }
+    .btn-save-notes { background: var(--blue); color: #fff; border: none; padding: 0.55rem 1.4rem; border-radius: 8px; font-size: 0.87rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
     .btn-save-notes:hover { background: var(--blue-dark); }
     .notes-saved-msg { font-size: 0.82rem; color: var(--green); font-weight: 500; opacity: 0; transition: opacity .3s; }
     .notes-saved-msg.show { opacity: 1; }
 
-    /* Lesson nav / progress */
-    .lesson-nav-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 1.5rem;
-      border-top: 1px solid var(--border);
-      background: #fff;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-    .btn-mark-complete {
-      background: var(--blue);
-      color: #fff;
-      border: none;
-      padding: 0.6rem 1.4rem;
-      border-radius: 8px;
-      font-size: 0.87rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all .2s;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
+    /* LESSON NAV BAR */
+    .lesson-nav-bar { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; border-top: 1px solid var(--border); background: #fff; flex-wrap: wrap; gap: 0.75rem; flex-shrink: 0; }
+    .btn-mark-complete { background: var(--blue); color: #fff; border: none; padding: 0.6rem 1.4rem; border-radius: 8px; font-size: 0.87rem; font-weight: 700; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 0.4rem; }
     .btn-mark-complete:hover { background: var(--blue-dark); }
-    .btn-mark-complete.completed { background: var(--green); cursor: default; }
-    .lesson-progress-dots {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .progress-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--border);
-      transition: background .2s;
-    }
-    .progress-dot.completed { background: var(--green); }
-    .progress-dot.active { background: var(--blue); }
-    .btn-next-lesson, .btn-prev-lesson {
-      background: #fff;
-      color: var(--blue);
-      border: 1.5px solid var(--blue);
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
-      font-size: 0.87rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all .2s;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
+    .btn-mark-complete.done { background: var(--green); cursor: default; }
+    .lesson-progress-dots { display: flex; align-items: center; gap: 0.4rem; }
+    .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); transition: background .2s; }
+    .progress-dot.done { background: var(--green); }
+    .progress-dot.active { background: var(--blue); width: 12px; height: 12px; }
+    .btn-next-lesson, .btn-prev-lesson { background: #fff; color: var(--blue); border: 1.5px solid var(--blue); padding: 0.6rem 1.2rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .btn-next-lesson:hover { background: var(--blue); color: #fff; }
     .btn-prev-lesson:hover { background: var(--blue-light); }
+    .btn-next-lesson:disabled, .btn-prev-lesson:disabled { opacity: 0.3; cursor: default; border-color: var(--border); color: var(--text-muted); background: #fff; }
 
-    /* ===== QUIZ MODAL ===== */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.6);
-      z-index: 9000;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
+    /* QUIZ MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 9000; align-items: center; justify-content: center; padding: 1rem; }
     .modal-overlay.open { display: flex; }
-    .quiz-modal {
-      background: #fff;
-      border-radius: 16px;
-      padding: 2rem;
-      max-width: 520px;
-      width: 100%;
-      box-shadow: 0 20px 60px rgba(0,0,0,.3);
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-    }
-    .modal-title { font-size: 1.1rem; font-weight: 700; color: var(--text); font-family: 'Poppins', sans-serif; }
-    .btn-close-modal {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-muted);
-      font-size: 1.4rem;
-      line-height: 1;
-      padding: 0.2rem;
-      transition: color .2s;
-    }
+    .quiz-modal { background: #fff; border-radius: 16px; padding: 2rem; max-width: 540px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.3); max-height: 90vh; overflow-y: auto; }
+    .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .modal-title { font-size: 1.1rem; font-weight: 700; font-family: 'Poppins', sans-serif; }
+    .btn-close-modal { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.4rem; line-height: 1; padding: 0.2rem; transition: color .2s; }
     .btn-close-modal:hover { color: var(--red); }
-    .quiz-question-num { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; }
-    .quiz-question-text { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 1.25rem; line-height: 1.5; }
-    .quiz-options { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
-    .quiz-option {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all .2s;
-      font-size: 0.9rem;
-      color: var(--text);
-    }
-    .quiz-option:hover { border-color: var(--blue); background: var(--blue-light); }
+    .quiz-prog-wrap { height: 6px; background: var(--border); border-radius: 50px; margin-bottom: 1.25rem; overflow: hidden; }
+    .quiz-prog-bar { height: 100%; background: linear-gradient(90deg, var(--blue), var(--green)); border-radius: 50px; transition: width .4s ease; }
+    .quiz-question-num { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .quiz-question-text { font-size: 1rem; font-weight: 600; margin-bottom: 1.25rem; line-height: 1.5; }
+    .quiz-options { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem; }
+    .quiz-option { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer; transition: all .2s; font-size: 0.9rem; }
+    .quiz-option:hover:not(.locked-opt) { border-color: var(--blue); background: var(--blue-light); }
     .quiz-option.selected { border-color: var(--blue); background: var(--blue-light); }
     .quiz-option.correct { border-color: var(--green); background: var(--green-light); color: #065f46; }
     .quiz-option.wrong { border-color: var(--red); background: #fee2e2; color: #991b1b; }
-    .quiz-option-letter {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.78rem;
-      font-weight: 700;
-      flex-shrink: 0;
-      transition: all .2s;
-    }
+    .quiz-option-letter { width: 28px; height: 28px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; flex-shrink: 0; transition: all .2s; }
     .quiz-option.selected .quiz-option-letter { background: var(--blue); color: #fff; }
     .quiz-option.correct .quiz-option-letter { background: var(--green); color: #fff; }
     .quiz-option.wrong .quiz-option-letter { background: var(--red); color: #fff; }
-    .quiz-feedback { font-size: 0.88rem; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; display: none; }
-    .quiz-feedback.correct { background: var(--green-light); color: #065f46; display: block; }
-    .quiz-feedback.wrong { background: #fee2e2; color: #991b1b; display: block; }
-    .btn-submit-quiz {
-      display: block;
-      width: 100%;
-      padding: 0.8rem;
-      background: var(--blue);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all .2s;
-      font-family: 'Poppins', sans-serif;
-    }
-    .btn-submit-quiz:hover { background: var(--blue-dark); }
-    .btn-submit-quiz:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
+    .quiz-feedback { font-size: 0.88rem; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; display: none; line-height: 1.6; }
+    .quiz-feedback.show-correct { background: var(--green-light); color: #065f46; display: block; }
+    .quiz-feedback.show-wrong { background: #fee2e2; color: #991b1b; display: block; }
+    .btn-quiz-action { display: block; width: 100%; padding: 0.8rem; background: var(--blue); color: #fff; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all .2s; font-family: 'Poppins', sans-serif; }
+    .btn-quiz-action:hover { background: var(--blue-dark); }
+    .btn-quiz-action:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
+    /* Quiz Result Screen */
+    .quiz-result { text-align: center; padding: 0.5rem 0 1rem; }
+    .quiz-result-icon { font-size: 4rem; margin-bottom: 0.75rem; }
+    .quiz-result-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif; }
+    .quiz-result-title.pass { color: var(--green); }
+    .quiz-result-title.fail { color: var(--red); }
+    .quiz-result-score { font-size: 3rem; font-weight: 800; color: var(--blue); line-height: 1; }
+    .quiz-result-score-sub { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .quiz-result-msg { font-size: 0.9rem; color: #374151; line-height: 1.7; margin-bottom: 1.5rem; padding: 0.9rem 1rem; background: var(--bg); border-radius: 10px; text-align: left; }
 
-    /* ===== SIDEBAR OVERLAY (mobile) ===== */
-    .sidebar-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.5);
-      z-index: 998;
-    }
+    /* COMPLETION MODAL */
+    .completion-modal { background: #fff; border-radius: 20px; max-width: 580px; width: 100%; max-height: 92vh; overflow-y: auto; box-shadow: 0 24px 80px rgba(0,0,0,.35); }
+    .completion-header { background: linear-gradient(135deg, #001a45, #002868); padding: 2.5rem 2rem; text-align: center; color: #fff; border-radius: 20px 20px 0 0; }
+    .completion-icon { font-size: 4rem; margin-bottom: 0.75rem; }
+    .completion-header h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif; }
+    .completion-header p { color: rgba(255,255,255,.85); font-size: 0.95rem; }
+    .certificate-preview { margin: 1.5rem; border: 3px solid var(--gold); border-radius: 12px; padding: 1.5rem; background: #fffdf5; }
+    .cert-top { text-align: center; margin-bottom: 1rem; border-bottom: 1px dashed var(--gold); padding-bottom: 1rem; }
+    .cert-logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--blue); }
+    .cert-logo span { color: var(--red); }
+    .cert-subtitle { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-top: 0.2rem; }
+    .cert-body { text-align: center; margin-bottom: 1.25rem; }
+    .cert-awarded { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+    .cert-name { font-family: 'Poppins', sans-serif; font-size: 1.7rem; font-weight: 700; color: var(--blue); border-bottom: 1.5px solid var(--gold); display: inline-block; padding-bottom: 0.3rem; margin-bottom: 0.75rem; }
+    .cert-for { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+    .cert-course-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .cert-date { font-size: 0.78rem; color: var(--text-muted); }
+    .cert-footer-row { display: flex; align-items: flex-end; justify-content: space-between; }
+    .cert-sig { }
+    .cert-sig-line { width: 100px; border-bottom: 1.5px solid var(--text); margin-bottom: 0.2rem; }
+    .cert-sig-name { font-size: 0.78rem; font-weight: 700; }
+    .cert-sig-role { font-size: 0.7rem; color: var(--text-muted); }
+    .cert-verified { background: var(--green); color: #fff; font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.75rem; border-radius: 50px; }
+    .completion-actions { padding: 0 1.5rem 0.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .btn-cert-primary { background: var(--blue); color: #fff; border: none; padding: 0.9rem; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer; width: 100%; font-family: 'Poppins', sans-serif; transition: all .2s; }
+    .btn-cert-primary:hover { background: var(--blue-dark); }
+    .cert-row { display: flex; gap: 0.75rem; }
+    .btn-cert-sec { flex: 1; background: #fff; border: 1.5px solid var(--border); padding: 0.7rem; border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; color: var(--text); text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.35rem; }
+    .btn-cert-sec:hover { border-color: var(--blue); color: var(--blue); }
+    .btn-close-completion { display: block; margin: 0.75rem 1.5rem 1.5rem; padding: 0.6rem; border: 1.5px solid var(--border); background: transparent; border-radius: 10px; color: var(--text-muted); font-size: 0.85rem; cursor: pointer; width: calc(100% - 3rem); font-family: 'Inter', sans-serif; transition: all .2s; }
+    .btn-close-completion:hover { border-color: var(--red); color: var(--red); }
+
+    /* SIDEBAR OVERLAY (mobile) */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 998; }
     .sidebar-overlay.open { display: block; }
 
-    /* ===== MOBILE ===== */
+    /* CONFETTI */
+    #confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 10001; display: none; }
+
+    /* MOBILE */
     @media(max-width: 768px) {
-      .sidebar {
-        position: fixed;
-        top: var(--topbar-h);
-        left: 0;
-        bottom: 0;
-        z-index: 999;
-        transform: translateX(-100%);
-      }
+      .sidebar { position: fixed; top: var(--topbar-h); left: 0; bottom: 0; z-index: 999; transform: translateX(-100%); }
       .sidebar.open { transform: translateX(0); }
       .btn-close-sidebar { display: block; }
       .btn-contents { display: flex; }
       .topbar-course-title { display: none; }
       .progress-wrap { display: none; }
-      .video-container { aspect-ratio: 16/9; max-height: none; }
       .tabs-bar { overflow-x: auto; }
       .tab-btn { white-space: nowrap; }
-      .lesson-nav-bar { padding: 0.75rem 1rem; }
     }
     @media(max-width: 480px) {
       .topbar { padding: 0 0.75rem; gap: 0.6rem; }
       .topbar-back span { display: none; }
-      .topbar-brand { font-size: 0.9rem; }
       .video-info-bar { padding: 0.75rem 1rem 0.6rem; }
       .video-lesson-title { font-size: 1rem; }
       .tab-panel { padding: 1rem; }
-      .lesson-nav-bar { flex-direction: column; align-items: stretch; }
-      .btn-mark-complete, .btn-next-lesson, .btn-prev-lesson { justify-content: center; }
+      .lesson-nav-bar { flex-direction: column; align-items: stretch; padding: 0.75rem 1rem; }
+      .btn-mark-complete, .btn-next-lesson, .btn-prev-lesson { justify-content: center; max-width: 100%; }
     }
   </style>
 </head>
@@ -622,9 +228,7 @@
   <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-left">
-      <a href="course-detail.html" class="topbar-back">
-        ← <span>Back to Course</span>
-      </a>
+      <a href="course-detail.html" class="topbar-back">← <span>Back to Course</span></a>
       <div class="topbar-divider"></div>
       <div class="topbar-brand">TIH <span>Academy</span></div>
     </div>
@@ -632,10 +236,8 @@
       <button class="btn-contents" id="btnContents" onclick="toggleSidebar()">☰ Contents</button>
       <span class="topbar-course-title">Complete Computer Literacy: From Zero to Professional</span>
       <div class="progress-wrap">
-        <div class="progress-bar-track">
-          <div class="progress-bar-fill" id="progressFill" style="width:25%"></div>
-        </div>
-        <span class="progress-pct" id="progressPct">25% complete</span>
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <span class="progress-pct" id="progressPct"></span>
       </div>
     </div>
     <div class="topbar-right">
@@ -645,8 +247,6 @@
 
   <!-- PLAYER LAYOUT -->
   <div class="player-layout">
-
-    <!-- SIDEBAR OVERLAY (mobile) -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
     <!-- SIDEBAR -->
@@ -654,90 +254,66 @@
       <div class="sidebar-header">
         <h3>Course Content</h3>
         <div class="sidebar-header-right">
-          <span class="sidebar-lesson-count" id="lessonCounter">4/16 lessons</span>
-          <button class="btn-close-sidebar" onclick="closeSidebar()" aria-label="Close sidebar">✕</button>
+          <span class="sidebar-lesson-count" id="lessonCounter"></span>
+          <button class="btn-close-sidebar" onclick="closeSidebar()">✕</button>
         </div>
       </div>
       <div class="sidebar-scroll">
 
-        <!-- Module 1 — completed, expanded -->
+        <!-- Module 1 -->
         <div class="sidebar-module">
           <div class="sidebar-module-header open" onclick="toggleSidebarModule(this)">
             <div>
               <div class="sidebar-module-title">Module 1: Getting Started</div>
-              <div class="sidebar-module-meta">4 lessons · 35 min · ✅ Complete</div>
+              <div class="sidebar-module-meta" id="modMeta1">4 lessons · 35 min · ✅ Complete</div>
             </div>
             <span class="sidebar-module-chevron">▼</span>
           </div>
           <div class="sidebar-lessons open">
-            <div class="sidebar-lesson completed" onclick="selectLesson(this, 0)" data-title="1.1 What is a Computer?" data-dur="5:20" data-tab="overview">
+            <div class="sidebar-lesson completed" onclick="selectLesson(this,0)">
               <span class="lesson-status">✓</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">1.1 What is a Computer?</div>
-                <div class="lesson-info-dur">5:20</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">1.1 What is a Computer?</div><div class="lesson-info-dur">5:20</div></div>
             </div>
-            <div class="sidebar-lesson completed" onclick="selectLesson(this, 1)" data-title="1.2 Parts of a Computer" data-dur="8:45" data-tab="overview">
+            <div class="sidebar-lesson completed" onclick="selectLesson(this,1)">
               <span class="lesson-status">✓</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">1.2 Parts of a Computer</div>
-                <div class="lesson-info-dur">8:45</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">1.2 Parts of a Computer</div><div class="lesson-info-dur">8:45</div></div>
             </div>
-            <div class="sidebar-lesson completed" onclick="selectLesson(this, 2)" data-title="1.3 Understanding Operating Systems" data-dur="10:12" data-tab="overview">
+            <div class="sidebar-lesson completed" onclick="selectLesson(this,2)">
               <span class="lesson-status">✓</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">1.3 Understanding Operating Systems</div>
-                <div class="lesson-info-dur">10:12</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">1.3 Understanding Operating Systems</div><div class="lesson-info-dur">10:12</div></div>
             </div>
-            <div class="sidebar-lesson completed" onclick="selectLesson(this, 3)" data-title="Quiz: Computer Basics" data-dur="10 questions" data-tab="overview" data-quiz="true">
+            <div class="sidebar-lesson completed" onclick="selectLesson(this,3)">
               <span class="lesson-status">✓</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">📝 Quiz: Computer Basics</div>
-                <div class="lesson-info-dur">10 questions</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">📝 Quiz: Computer Basics</div><div class="lesson-info-dur">5 questions</div></div>
             </div>
           </div>
         </div>
 
-        <!-- Module 2 — in progress, expanded -->
+        <!-- Module 2 -->
         <div class="sidebar-module">
           <div class="sidebar-module-header open" onclick="toggleSidebarModule(this)">
             <div>
               <div class="sidebar-module-title">Module 2: Internet &amp; Digital Communication</div>
-              <div class="sidebar-module-meta">4 lessons · 29 min · In Progress</div>
+              <div class="sidebar-module-meta" id="modMeta2">4 lessons · 29 min · In Progress</div>
             </div>
             <span class="sidebar-module-chevron">▼</span>
           </div>
           <div class="sidebar-lessons open">
-            <div class="sidebar-lesson active" id="activeLesson" onclick="selectLesson(this, 4)" data-title="2.1 Using the Internet Safely" data-dur="7:15" data-tab="overview">
+            <div class="sidebar-lesson active" onclick="selectLesson(this,4)">
               <span class="lesson-status">▶</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">2.1 Using the Internet Safely</div>
-                <div class="lesson-info-dur">7:15</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">2.1 Using the Internet Safely</div><div class="lesson-info-dur">7:15</div></div>
             </div>
-            <div class="sidebar-lesson" onclick="selectLesson(this, 5)" data-title="2.2 Email &amp; Communication Tools" data-dur="8:30" data-tab="overview">
+            <div class="sidebar-lesson" onclick="selectLesson(this,5)">
               <span class="lesson-status">○</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">2.2 Email &amp; Communication Tools</div>
-                <div class="lesson-info-dur">8:30</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">2.2 Email &amp; Communication Tools</div><div class="lesson-info-dur">8:30</div></div>
             </div>
-            <div class="sidebar-lesson" onclick="selectLesson(this, 6)" data-title="2.3 Social Media for Professionals" data-dur="6:20" data-tab="overview">
+            <div class="sidebar-lesson" onclick="selectLesson(this,6)">
               <span class="lesson-status">○</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">2.3 Social Media for Professionals</div>
-                <div class="lesson-info-dur">6:20</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">2.3 Social Media for Professionals</div><div class="lesson-info-dur">6:20</div></div>
             </div>
-            <div class="sidebar-lesson" onclick="openQuizModal()" data-title="Quiz: Internet &amp; Digital Skills" data-dur="10 questions" data-quiz="true">
+            <div class="sidebar-lesson" onclick="selectLesson(this,7)">
               <span class="lesson-status">📝</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">📝 Quiz: Internet &amp; Digital Skills</div>
-                <div class="lesson-info-dur">10 questions</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">📝 Quiz: Internet &amp; Digital Skills</div><div class="lesson-info-dur">5 questions</div></div>
             </div>
           </div>
         </div>
@@ -747,38 +323,26 @@
           <div class="sidebar-module-header" onclick="toggleSidebarModule(this)">
             <div>
               <div class="sidebar-module-title">Module 3: Microsoft Office Productivity</div>
-              <div class="sidebar-module-meta">4 lessons · 47 min · 🔒 Locked</div>
+              <div class="sidebar-module-meta" id="modMeta3">4 lessons · 47 min · 🔒 Locked</div>
             </div>
             <span class="sidebar-module-chevron">▼</span>
           </div>
           <div class="sidebar-lessons">
-            <div class="sidebar-lesson locked">
+            <div class="sidebar-lesson locked" onclick="selectLesson(this,8)">
               <span class="lesson-status">🔒</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">3.1 Introduction to Microsoft Word</div>
-                <div class="lesson-info-dur">12:00</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">3.1 Introduction to Microsoft Word</div><div class="lesson-info-dur">12:00</div></div>
             </div>
-            <div class="sidebar-lesson locked">
+            <div class="sidebar-lesson locked" onclick="selectLesson(this,9)">
               <span class="lesson-status">🔒</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">3.2 Excel Basics for Business</div>
-                <div class="lesson-info-dur">15:30</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">3.2 Excel Basics for Business</div><div class="lesson-info-dur">15:30</div></div>
             </div>
-            <div class="sidebar-lesson locked">
+            <div class="sidebar-lesson locked" onclick="selectLesson(this,10)">
               <span class="lesson-status">🔒</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">3.3 Creating PowerPoint Presentations</div>
-                <div class="lesson-info-dur">10:45</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">3.3 Creating PowerPoint Presentations</div><div class="lesson-info-dur">10:45</div></div>
             </div>
-            <div class="sidebar-lesson locked">
+            <div class="sidebar-lesson locked" onclick="selectLesson(this,11)">
               <span class="lesson-status">🔒</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">📁 Project: Build a Professional CV</div>
-                <div class="lesson-info-dur">Project</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">📁 Project: Build a Professional CV</div><div class="lesson-info-dur">Project</div></div>
             </div>
           </div>
         </div>
@@ -788,57 +352,44 @@
           <div class="sidebar-module-header" onclick="toggleSidebarModule(this)">
             <div>
               <div class="sidebar-module-title">Module 4: Digital Safety &amp; Career Readiness</div>
-              <div class="sidebar-module-meta">4 lessons · 38 min · 🔒 Locked</div>
+              <div class="sidebar-module-meta" id="modMeta4">4 lessons · 38 min · 🔒 Locked</div>
             </div>
             <span class="sidebar-module-chevron">▼</span>
           </div>
           <div class="sidebar-lessons">
-            <div class="sidebar-lesson locked">
+            <div class="sidebar-lesson locked" onclick="selectLesson(this,12)">
               <span class="lesson-status">🔒</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">4.1 Cybersecurity Essentials</div>
-                <div class="lesson-info-dur">8:10</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">4.1 Cybersecurity Essentials</div><div class="lesson-info-dur">8:10</div></div>
             </div>
-            <div class="sidebar-lesson locked">
+            <div class="sidebar-lesson locked" onclick="selectLesson(this,13)">
               <span class="lesson-status">🔒</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">4.2 File Management &amp; Cloud Storage</div>
-                <div class="lesson-info-dur">7:50</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">4.2 File Management &amp; Cloud Storage</div><div class="lesson-info-dur">7:50</div></div>
             </div>
-            <div class="sidebar-lesson locked">
+            <div class="sidebar-lesson locked" onclick="selectLesson(this,14)">
               <span class="lesson-status">🔒</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">4.3 Career-Ready Digital Portfolio</div>
-                <div class="lesson-info-dur">10:20</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">4.3 Career-Ready Digital Portfolio</div><div class="lesson-info-dur">10:20</div></div>
             </div>
-            <div class="sidebar-lesson locked">
+            <div class="sidebar-lesson locked" onclick="selectLesson(this,15)">
               <span class="lesson-status">🔒</span>
-              <div class="lesson-info">
-                <div class="lesson-info-title">🏆 Final Assessment &amp; Certificate</div>
-                <div class="lesson-info-dur">Assessment</div>
-              </div>
+              <div class="lesson-info"><div class="lesson-info-title">🏆 Final Assessment &amp; Certificate</div><div class="lesson-info-dur">Assessment</div></div>
             </div>
           </div>
         </div>
 
-      </div><!-- /sidebar-scroll -->
+      </div>
     </aside>
 
-    <!-- MAIN VIDEO + CONTENT -->
+    <!-- MAIN CONTENT -->
     <div class="main-area">
-      <div class="video-scroll">
+      <div class="video-scroll" id="videoScroll">
 
         <!-- VIDEO -->
         <div class="video-container">
-          <iframe
+          <iframe id="videoIframe"
             src="https://www.youtube.com/embed/Tn6-PIqc4UM?rel=0&modestbranding=1"
-            title="2.1 Using the Internet Safely"
+            title="Course Lesson"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen></iframe>
         </div>
 
         <!-- VIDEO INFO -->
@@ -846,58 +397,24 @@
           <div class="video-lesson-title" id="lessonTitle">2.1 Using the Internet Safely</div>
           <div class="video-lesson-meta">
             <span>⏱ <span id="lessonDur">7:15</span></span>
-            <span>📶 Module 2 · Lesson 5 of 16</span>
+            <span id="lessonMeta">📶 Module 2 · Lesson 5 of 16</span>
           </div>
         </div>
 
         <!-- TABS -->
         <div class="tabs-bar">
-          <button class="tab-btn active" onclick="switchTab(this, 'overview')">Overview</button>
-          <button class="tab-btn" onclick="switchTab(this, 'resources')">Resources</button>
-          <button class="tab-btn" onclick="switchTab(this, 'qa')">Q&amp;A</button>
-          <button class="tab-btn" onclick="switchTab(this, 'notes')">Notes</button>
+          <button class="tab-btn active" onclick="switchTab(this,'overview')">Overview</button>
+          <button class="tab-btn" onclick="switchTab(this,'resources')">Resources</button>
+          <button class="tab-btn" onclick="switchTab(this,'qa')">Q&amp;A</button>
+          <button class="tab-btn" onclick="switchTab(this,'notes')">Notes</button>
         </div>
 
-        <!-- TAB: OVERVIEW -->
-        <div class="tab-panel active" id="tab-overview">
-          <div class="overview-text">
-            <p>In this lesson, you will learn how to navigate the internet safely and responsibly. We cover the difference between secure (HTTPS) and unsecure websites, how to recognize phishing emails and scams, and best practices for creating strong passwords that protect your personal information online.</p>
-            <p>By the end of this lesson, you will be able to identify trustworthy websites, safely conduct online transactions, and use two-factor authentication to add an extra layer of security to your accounts. These skills are essential for anyone who uses the internet for banking, communication, job searching, or running a business in today's digital world.</p>
-          </div>
-        </div>
-
-        <!-- TAB: RESOURCES -->
-        <div class="tab-panel" id="tab-resources">
-          <div class="resource-item">
-            <span class="resource-icon">📄</span>
-            <div class="resource-info">
-              <div class="resource-name">Internet Safety Checklist.pdf</div>
-              <div class="resource-size">PDF · 1.2 MB · 8 pages</div>
-            </div>
-            <button class="btn-download">↓ Download</button>
-          </div>
-          <div class="resource-item">
-            <span class="resource-icon">📊</span>
-            <div class="resource-info">
-              <div class="resource-name">Password Manager Comparison Chart.pdf</div>
-              <div class="resource-size">PDF · 0.8 MB · 4 pages</div>
-            </div>
-            <button class="btn-download">↓ Download</button>
-          </div>
-        </div>
-
-        <!-- TAB: Q&A -->
-        <div class="tab-panel" id="tab-qa">
-          <div class="qa-item">
-            <div class="qa-question">Is it safe to use public Wi-Fi for internet banking?</div>
-            <div class="qa-answer">It is generally not recommended to conduct banking transactions over public Wi-Fi. If you must, always ensure the website uses HTTPS and consider using a VPN (Virtual Private Network) to encrypt your connection. Samuel Tolbert — Module 2 Notes</div>
-          </div>
-        </div>
-
-        <!-- TAB: NOTES -->
+        <div class="tab-panel active" id="tab-overview"><div class="overview-text" id="overviewContent"></div></div>
+        <div class="tab-panel" id="tab-resources"><div id="resourcesContent"></div></div>
+        <div class="tab-panel" id="tab-qa"><div id="qaContent"></div></div>
         <div class="tab-panel" id="tab-notes">
-          <div class="notes-label">Your Personal Notes — Lesson 2.1</div>
-          <textarea class="notes-textarea" id="notesArea" placeholder="Type your notes here... They are saved automatically." oninput="scheduleNoteSave()"></textarea>
+          <div class="notes-label" id="notesLabel">Your Notes — Lesson 2.1</div>
+          <textarea class="notes-textarea" id="notesArea" placeholder="Type your notes here… They are saved automatically." oninput="scheduleNoteSave()"></textarea>
           <div class="notes-actions">
             <button class="btn-save-notes" onclick="saveNotes()">Save Notes</button>
             <span class="notes-saved-msg" id="noteSavedMsg">✓ Saved</span>
@@ -906,251 +423,647 @@
 
         <!-- LESSON NAV -->
         <div class="lesson-nav-bar">
-          <button class="btn-prev-lesson" onclick="prevLesson()">← Previous: Module 1 Quiz</button>
-          <div class="lesson-progress-dots">
-            <div class="progress-dot completed" title="2.1 Using the Internet Safely"></div>
-            <div class="progress-dot active" title="2.2 Email &amp; Communication Tools"></div>
-            <div class="progress-dot" title="2.3 Social Media for Professionals"></div>
-            <div class="progress-dot" title="Quiz: Internet &amp; Digital Skills"></div>
-          </div>
+          <button class="btn-prev-lesson" id="btnPrev" onclick="prevLesson()"></button>
+          <div class="lesson-progress-dots" id="progressDots"></div>
           <button class="btn-mark-complete" id="markCompleteBtn" onclick="markComplete()">✓ Mark as Complete</button>
-          <button class="btn-next-lesson" onclick="nextLesson()">Next: Email Tools →</button>
+          <button class="btn-next-lesson" id="btnNext" onclick="nextLesson()"></button>
         </div>
 
-      </div><!-- /video-scroll -->
-    </div><!-- /main-area -->
-  </div><!-- /player-layout -->
+      </div>
+    </div>
+  </div>
 
   <!-- QUIZ MODAL -->
   <div class="modal-overlay" id="quizModal">
     <div class="quiz-modal">
-      <div class="modal-header">
-        <div class="modal-title">📝 Quiz: Computer Basics</div>
-        <button class="btn-close-modal" onclick="closeQuizModal()" aria-label="Close quiz">✕</button>
+      <!-- Active Quiz -->
+      <div id="quizActive">
+        <div class="modal-header">
+          <div class="modal-title" id="quizTitle">📝 Quiz</div>
+          <button class="btn-close-modal" onclick="closeQuizModal()">✕</button>
+        </div>
+        <div class="quiz-prog-wrap"><div class="quiz-prog-bar" id="quizProgBar" style="width:0%"></div></div>
+        <div class="quiz-question-num" id="quizQuestionNum">Question 1 of 5</div>
+        <div class="quiz-question-text" id="quizQuestionText"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <button class="btn-quiz-action" id="quizActionBtn" onclick="handleQuizAction()" disabled>Submit Answer</button>
       </div>
-      <div class="quiz-question-num">Question 1 of 10</div>
-      <div class="quiz-question-text">What does CPU stand for?</div>
-      <div class="quiz-options" id="quizOptions">
-        <div class="quiz-option" onclick="selectOption(this, true)">
-          <span class="quiz-option-letter">A</span>
-          Central Processing Unit
+      <!-- Results -->
+      <div id="quizResult" style="display:none">
+        <div class="modal-header">
+          <div class="modal-title" id="quizResultHeader">📝 Quiz Results</div>
+          <button class="btn-close-modal" onclick="closeQuizModal()">✕</button>
         </div>
-        <div class="quiz-option" onclick="selectOption(this, false)">
-          <span class="quiz-option-letter">B</span>
-          Computer Personal Unit
+        <div class="quiz-result" id="quizResultBody">
+          <div class="quiz-result-icon" id="quizResultIcon">🎉</div>
+          <div class="quiz-result-title" id="quizResultTitle"></div>
+          <div class="quiz-result-score" id="quizResultScore"></div>
+          <div class="quiz-result-score-sub" id="quizResultScoreSub"></div>
+          <div class="quiz-result-msg" id="quizResultMsg"></div>
         </div>
-        <div class="quiz-option" onclick="selectOption(this, false)">
-          <span class="quiz-option-letter">C</span>
-          Central Peripheral Unit
-        </div>
-        <div class="quiz-option" onclick="selectOption(this, false)">
-          <span class="quiz-option-letter">D</span>
-          Control Processing Unit
-        </div>
+        <button class="btn-quiz-action" id="quizResultBtn" onclick="handleQuizResultAction()"></button>
       </div>
-      <div class="quiz-feedback" id="quizFeedback"></div>
-      <button class="btn-submit-quiz" id="submitQuizBtn" onclick="submitQuiz()" disabled>Submit Answer</button>
     </div>
   </div>
 
+  <!-- COMPLETION MODAL -->
+  <div class="modal-overlay" id="completionModal">
+    <div class="completion-modal">
+      <div class="completion-header">
+        <div class="completion-icon">🏆</div>
+        <h2>Course Complete!</h2>
+        <p>Congratulations! You've mastered Complete Computer Literacy.</p>
+      </div>
+      <div class="certificate-preview">
+        <div class="cert-top">
+          <div class="cert-logo">TIH <span>Academy</span></div>
+          <div class="cert-subtitle">Certificate of Completion</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-awarded">This certifies that</div>
+          <div class="cert-name">Samuel Tolbert</div>
+          <div class="cert-for">has successfully completed</div>
+          <div class="cert-course-title">Complete Computer Literacy: From Zero to Professional</div>
+          <div class="cert-date">Issued: <span id="certDate"></span> &nbsp;·&nbsp; Certificate ID: TIH-2026-CCL-0042</div>
+        </div>
+        <div class="cert-footer-row">
+          <div class="cert-sig">
+            <div class="cert-sig-line"></div>
+            <div class="cert-sig-name">Samuel Tolbert</div>
+            <div class="cert-sig-role">Founder &amp; CEO, TIH Academy</div>
+          </div>
+          <div class="cert-verified">✓ Verified</div>
+        </div>
+      </div>
+      <div class="completion-actions">
+        <button class="btn-cert-primary" onclick="printCertificate()">⬇ Download / Print Certificate</button>
+        <div class="cert-row">
+          <a href="certificate-verify.html" class="btn-cert-sec">🔍 Verify</a>
+          <button class="btn-cert-sec" onclick="shareCompletion()">🔗 Share</button>
+          <a href="courses.html" class="btn-cert-sec">📚 More Courses</a>
+        </div>
+      </div>
+      <button class="btn-close-completion" onclick="closeCompletionModal()">✕ Close</button>
+    </div>
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+
   <script>
-    // ===== STATE =====
-    var completedCount = 4; // 4 of 16 done initially (all of module 1)
-    var totalLessons = 16;
-    var currentLessonIndex = 4; // lesson 2.1 (0-indexed)
-    var currentLessonCompleted = false;
-    var noteSaveTimer = null;
+  // ===== LESSON METADATA =====
+  var lessons = [
+    { title:'1.1 What is a Computer?',              dur:'5:20',       module:1, videoId:'Tn6-PIqc4UM' },
+    { title:'1.2 Parts of a Computer',              dur:'8:45',       module:1, videoId:'Tn6-PIqc4UM' },
+    { title:'1.3 Understanding Operating Systems',  dur:'10:12',      module:1, videoId:'Tn6-PIqc4UM' },
+    { title:'Quiz: Computer Basics',                dur:'5 questions',module:1, isQuiz:true, quizId:'mod1' },
+    { title:'2.1 Using the Internet Safely',        dur:'7:15',       module:2, videoId:'Tn6-PIqc4UM' },
+    { title:'2.2 Email & Communication Tools',      dur:'8:30',       module:2, videoId:'Tn6-PIqc4UM' },
+    { title:'2.3 Social Media for Professionals',   dur:'6:20',       module:2, videoId:'Tn6-PIqc4UM' },
+    { title:'Quiz: Internet & Digital Skills',      dur:'5 questions',module:2, isQuiz:true, quizId:'mod2' },
+    { title:'3.1 Introduction to Microsoft Word',   dur:'12:00',      module:3, videoId:'Tn6-PIqc4UM' },
+    { title:'3.2 Excel Basics for Business',        dur:'15:30',      module:3, videoId:'Tn6-PIqc4UM' },
+    { title:'3.3 Creating PowerPoint Presentations',dur:'10:45',      module:3, videoId:'Tn6-PIqc4UM' },
+    { title:'Project: Build a Professional CV',     dur:'Project',    module:3, videoId:'Tn6-PIqc4UM' },
+    { title:'4.1 Cybersecurity Essentials',         dur:'8:10',       module:4, videoId:'Tn6-PIqc4UM' },
+    { title:'4.2 File Management & Cloud Storage',  dur:'7:50',       module:4, videoId:'Tn6-PIqc4UM' },
+    { title:'4.3 Career-Ready Digital Portfolio',   dur:'10:20',      module:4, videoId:'Tn6-PIqc4UM' },
+    { title:'Final Assessment & Certificate',       dur:'Assessment', module:4, isQuiz:true, quizId:'final', isFinal:true }
+  ];
 
-    // Lesson data for navigation
-    var lessons = [
-      { title: '1.1 What is a Computer?', dur: '5:20', module: 1 },
-      { title: '1.2 Parts of a Computer', dur: '8:45', module: 1 },
-      { title: '1.3 Understanding Operating Systems', dur: '10:12', module: 1 },
-      { title: 'Quiz: Computer Basics', dur: '10 questions', module: 1 },
-      { title: '2.1 Using the Internet Safely', dur: '7:15', module: 2 },
-      { title: '2.2 Email & Communication Tools', dur: '8:30', module: 2 },
-      { title: '2.3 Social Media for Professionals', dur: '6:20', module: 2 },
-      { title: 'Quiz: Internet & Digital Skills', dur: '10 questions', module: 2 },
-      { title: '3.1 Introduction to Microsoft Word', dur: '12:00', module: 3 },
-      { title: '3.2 Excel Basics for Business', dur: '15:30', module: 3 },
-      { title: '3.3 Creating PowerPoint Presentations', dur: '10:45', module: 3 },
-      { title: 'Project: Build a Professional CV', dur: 'Project', module: 3 },
-      { title: '4.1 Cybersecurity Essentials', dur: '8:10', module: 4 },
-      { title: '4.2 File Management & Cloud Storage', dur: '7:50', module: 4 },
-      { title: '4.3 Career-Ready Digital Portfolio', dur: '10:20', module: 4 },
-      { title: 'Final Assessment & Certificate', dur: 'Assessment', module: 4 }
-    ];
+  // ===== PER-LESSON CONTENT =====
+  var lessonContent = {
+    0: {
+      overview:'<p>In this foundational lesson, you will discover what a computer is, how it works, and why it has become the most transformative tool of the modern age. We cover the difference between hardware and software, how a computer processes information, and the key types of computers you will encounter in everyday life — desktops, laptops, tablets, and smartphones.</p><p>By the end of this lesson, you will be able to explain in simple terms how a computer works and why digital skills are essential for every career and business in Liberia today.</p>',
+      resources:[{icon:'📄',name:'Computer Basics Glossary.pdf',size:'PDF · 0.9 MB · 6 pages'},{icon:'📊',name:'Types of Computers Comparison.pdf',size:'PDF · 0.6 MB · 3 pages'}],
+      qa:[{q:'Do I need an expensive computer to take this course?',a:'Not at all. Any working computer, laptop, or even a modern smartphone with a web browser is sufficient for this course. The skills you will learn apply to all types of devices.'}]
+    },
+    1: {
+      overview:'<p>This lesson dives into the physical components of a computer — what we call hardware. You will learn the function of each key part: the CPU (Central Processing Unit), RAM, hard drive, motherboard, keyboard, mouse, and monitor. Understanding hardware helps you make smart decisions when buying, troubleshooting, or upgrading a computer.</p><p>We also cover the difference between input devices (keyboard, mouse) and output devices (monitor, printer), and explain how they work together to let you interact with your computer.</p>',
+      resources:[{icon:'📊',name:'Hardware Components Diagram.pdf',size:'PDF · 1.2 MB · 4 pages'},{icon:'📄',name:'Computer Buying Guide for Beginners.pdf',size:'PDF · 0.8 MB · 5 pages'}],
+      qa:[{q:'What is the most important component in a computer?',a:"While all components work together, the CPU and RAM are most critical for performance. The CPU processes all instructions, while RAM determines how many programs you can run simultaneously without slowdown."}]
+    },
+    2: {
+      overview:'<p>An Operating System (OS) is the core software that manages everything on your computer — from running applications to managing files and connecting to the internet. In this lesson, you will learn the key differences between the most popular operating systems: Windows, macOS, Android, and iOS.</p><p>You will navigate the Windows interface, understand the desktop, taskbar, and Start menu, and learn essential keyboard shortcuts that will dramatically speed up your work. This is the lesson that helps computers stop feeling foreign and start feeling familiar.</p>',
+      resources:[{icon:'📄',name:'Windows Keyboard Shortcuts Cheatsheet.pdf',size:'PDF · 0.5 MB · 2 pages'},{icon:'📄',name:'Operating Systems Comparison Guide.pdf',size:'PDF · 0.7 MB · 4 pages'}],
+      qa:[{q:'Which operating system should I learn first?',a:'Windows is the most widely used operating system in Liberia and across Africa, so it is the best starting point. The skills you learn in Windows transfer easily to other systems.'}]
+    },
+    3: { overview:'', resources:[], qa:[] },
+    4: {
+      overview:'<p>In this lesson, you will learn how to navigate the internet safely and responsibly. We cover the difference between secure (HTTPS) and unsecure websites, how to recognize phishing emails and scams, and best practices for creating strong passwords that protect your personal information online.</p><p>By the end of this lesson, you will be able to identify trustworthy websites, safely conduct online transactions, and use two-factor authentication to add an extra layer of security to your accounts — essential skills for banking, communication, and running a business digitally.</p>',
+      resources:[{icon:'📄',name:'Internet Safety Checklist.pdf',size:'PDF · 1.2 MB · 8 pages'},{icon:'📊',name:'Password Manager Comparison Chart.pdf',size:'PDF · 0.8 MB · 4 pages'}],
+      qa:[{q:'Is it safe to use public Wi-Fi for internet banking?',a:'It is generally not recommended to conduct banking transactions over public Wi-Fi. If you must, always ensure the website uses HTTPS and consider using a VPN (Virtual Private Network) to encrypt your connection.'}]
+    },
+    5: {
+      overview:'<p>Email remains the most professional and widely used communication tool in business. This lesson teaches you how to set up a professional Gmail or Outlook account, write effective emails using proper business language, organize your inbox with labels and folders, and use Google Meet or Zoom for video calls.</p><p>You will also discover tools like WhatsApp Business, Slack, and Google Workspace that Liberian businesses and organizations are increasingly using to collaborate professionally and efficiently.</p>',
+      resources:[{icon:'📄',name:'Professional Email Writing Templates.pdf',size:'PDF · 0.9 MB · 6 pages'},{icon:'📊',name:'Communication Tools Comparison.pdf',size:'PDF · 0.7 MB · 3 pages'}],
+      qa:[{q:'Should I use my personal email for job applications?',a:'It is strongly recommended to create a professional email address using your name (e.g., firstname.lastname@gmail.com). Employers take professional email addresses more seriously than informal ones.'}]
+    },
+    6: {
+      overview:'<p>Social media is no longer just for personal connections — it is a powerful professional tool. In this lesson, you will learn how to build a professional LinkedIn profile that attracts job opportunities, use Facebook Pages and Instagram for business promotion, and understand the difference between personal and professional social media conduct.</p><p>We also cover how to use social media safely, protect your privacy, and build a positive digital reputation that employers and clients will respect and trust.</p>',
+      resources:[{icon:'📄',name:'LinkedIn Profile Optimization Guide.pdf',size:'PDF · 1.0 MB · 7 pages'},{icon:'📄',name:'Social Media for Small Business.pdf',size:'PDF · 0.8 MB · 5 pages'}],
+      qa:[{q:'Can social media help me find a job in Liberia?',a:'Absolutely. LinkedIn in particular is used by NGOs, international organizations, and companies in Liberia for recruitment. A complete, professional LinkedIn profile significantly increases your visibility to potential employers.'}]
+    },
+    7: { overview:'', resources:[], qa:[] },
+    8: {
+      overview:'<p>Microsoft Word is the most widely used word processing application in the world — and a required skill for virtually every office job. This lesson takes you from creating your first document to advanced formatting: fonts, headings, paragraphs, tables, images, and page layouts.</p><p>You will learn to use Word templates, add headers and footers, insert page numbers, and use spell-check and grammar tools to produce polished, professional documents — including the CV you will build in the module project.</p>',
+      resources:[{icon:'📄',name:'Microsoft Word Quick Reference Guide.pdf',size:'PDF · 1.1 MB · 6 pages'},{icon:'📁',name:'CV Template — Word Format.docx',size:'Word · 0.3 MB'}],
+      qa:[{q:'Can I use Google Docs instead of Microsoft Word?',a:'Yes — Google Docs is a free alternative that works very similarly to Word. However, since most employers and organizations in Liberia use Microsoft Office, learning Word specifically gives you a direct advantage.'}]
+    },
+    9: {
+      overview:'<p>Microsoft Excel is the world\'s most powerful spreadsheet tool and is used extensively in business, finance, NGOs, and government across Liberia. This lesson teaches you the fundamentals: entering data, creating formulas, using SUM/AVERAGE/COUNT functions, and formatting cells for professional presentation.</p><p>You will build a practical budget tracker and an inventory spreadsheet by the end of this lesson — real tools you can immediately use for your business or workplace.</p>',
+      resources:[{icon:'📊',name:'Excel Formula Cheatsheet.pdf',size:'PDF · 0.9 MB · 4 pages'},{icon:'📊',name:'Budget Tracker Template.xlsx',size:'Excel · 0.4 MB'}],
+      qa:[{q:'Is Excel difficult to learn for beginners?',a:'Excel can seem intimidating, but this lesson starts from the very basics. You will be surprised how quickly you can build useful spreadsheets — most day-to-day Excel work uses just a handful of functions.'}]
+    },
+    10: {
+      overview:'<p>PowerPoint presentations are used in every professional setting — job interviews, business pitches, NGO proposals, and classroom teaching. This lesson teaches you to create slides from scratch, use design themes, add images and charts, apply animations, and present confidently using Presenter View.</p><p>By the end, you will create a 5-slide professional presentation using everything you have learned — a skill that immediately sets you apart in any professional environment.</p>',
+      resources:[{icon:'📊',name:'Presentation Design Principles.pdf',size:'PDF · 1.0 MB · 8 pages'},{icon:'📊',name:'PowerPoint Presentation Template.pptx',size:'PowerPoint · 1.2 MB'}],
+      qa:[{q:'What makes a presentation look professional?',a:'Consistency is key: use 2-3 colors, one or two fonts, plenty of white space, and limit each slide to one key idea. Avoid reading text off slides — let the visuals support your spoken words.'}]
+    },
+    11: {
+      overview:'<p>In this hands-on project, you will apply everything learned in Module 3 to build a complete, professional CV in Microsoft Word. Your CV will include a header with contact information, a professional summary, work experience, education, skills section, and references — formatted to international standards.</p><p>This is not just a lesson — this is a deliverable. By the end you will have a real, ready-to-submit CV that you can use for job applications, internship programs, and professional opportunities across Liberia and beyond.</p>',
+      resources:[{icon:'📁',name:'CV Writing Guidelines — Liberia.pdf',size:'PDF · 1.1 MB · 9 pages'},{icon:'📁',name:'Sample Professional CV.docx',size:'Word · 0.4 MB'}],
+      qa:[{q:'What format do Liberian employers prefer for a CV?',a:'Most Liberian employers, NGOs, and international organizations prefer a clean, 1-2 page Word document CV. A clear heading, bullet-pointed experience, and a professional email are the most critical elements.'}]
+    },
+    12: {
+      overview:'<p>Cybersecurity is no longer just an IT topic — it is a life skill. This lesson covers the most common threats Liberians face online: account hacking, mobile money scams, fake job offers, and identity theft. You will learn how attackers think, and more importantly, how to stop them.</p><p>We cover how to secure your email, Facebook, and mobile money accounts with strong passwords and two-factor authentication, how to spot and avoid scams, and what to do if you suspect your account has been compromised.</p>',
+      resources:[{icon:'📄',name:'Cybersecurity Essentials Handbook.pdf',size:'PDF · 1.3 MB · 10 pages'},{icon:'📄',name:'Common Liberia Online Scams — Warning Signs.pdf',size:'PDF · 0.7 MB · 5 pages'}],
+      qa:[{q:'How can I tell if a job offer I received online is a scam?',a:'Watch for these red flags: unusually high salary, request for upfront payment, poor grammar, no verifiable company address, and requests for personal banking information. Always verify the company exists independently before responding.'}]
+    },
+    13: {
+      overview:'<p>Poor file management is one of the biggest productivity killers. This lesson teaches you how to organize your computer files logically using folders and subfolders, use consistent naming conventions, and find files quickly with search tools — skills that will save you hours every week.</p><p>We also cover cloud storage: Google Drive, Dropbox, and OneDrive. You will learn to upload, share, and collaborate on documents from any device, anywhere — and understand why backing up your files is critical to protecting your work.</p>',
+      resources:[{icon:'📄',name:'File Organization Best Practices.pdf',size:'PDF · 0.8 MB · 5 pages'},{icon:'📊',name:'Cloud Storage Services Comparison.pdf',size:'PDF · 0.6 MB · 3 pages'}],
+      qa:[{q:'Is Google Drive safe to store important documents?',a:"Google Drive uses industry-standard encryption and is safe for most documents. However, avoid storing highly sensitive documents (national ID scans, banking details) without an additional layer of protection like password-protected PDFs."}]
+    },
+    14: {
+      overview:'<p>Your digital portfolio is your professional identity in the online world. In this lesson, you will learn to build a simple but powerful online presence: a LinkedIn profile that showcases your skills, a Google Sites portfolio page displaying your projects, and a professional email signature that communicates credibility.</p><p>We also discuss how to document your TIH Academy certificate and present it to employers, how to write a compelling professional summary, and strategies for using your new digital skills to find opportunities and grow your career in Liberia\'s expanding digital economy.</p>',
+      resources:[{icon:'📄',name:'Digital Portfolio Building Guide.pdf',size:'PDF · 1.1 MB · 8 pages'},{icon:'🌐',name:'Google Sites Portfolio Tutorial.pdf',size:'PDF · 0.9 MB · 6 pages'}],
+      qa:[{q:'Do I need a website to have a professional digital portfolio?',a:'No. A well-completed LinkedIn profile is often sufficient. But combining LinkedIn with a simple Google Sites page significantly strengthens your professional presence and shows technical initiative.'}]
+    },
+    15: { overview:'', resources:[], qa:[] }
+  };
 
-    // ===== PROGRESS =====
-    function updateProgress() {
-      var pct = Math.round((completedCount / totalLessons) * 100);
-      document.getElementById('progressFill').style.width = pct + '%';
-      document.getElementById('progressPct').textContent = pct + '% complete';
-      document.getElementById('lessonCounter').textContent = completedCount + '/16 lessons';
+  // ===== QUIZ DATA =====
+  var quizData = {
+    mod1: {
+      title:'Quiz: Computer Basics', moduleNum:1, unlocks:3,
+      questions:[
+        { q:'What does CPU stand for?', opts:['Central Processing Unit','Computer Personal Unit','Central Peripheral Unit','Control Processing Unit'], correct:0, exp:'CPU stands for Central Processing Unit — the brain of the computer that processes all instructions.' },
+        { q:'Which of the following is an INPUT device?', opts:['Monitor','Speaker','Keyboard','Printer'], correct:2, exp:'A keyboard is an input device because it sends data INTO the computer. A monitor is an output device — it receives data FROM the computer.' },
+        { q:'What is the main purpose of an Operating System?', opts:['To browse the internet','To manage computer hardware and software','To store files permanently','To display graphics on the screen'], correct:1, exp:'The Operating System (e.g. Windows, macOS) manages all hardware and software resources, allowing programs to run and users to interact with the computer.' },
+        { q:'RAM stands for:', opts:['Remote Access Memory','Random Access Memory','Read-After Memory','Rapid Access Module'], correct:1, exp:'RAM (Random Access Memory) is your computer\'s temporary working memory. More RAM means you can run more programs at the same time without slowdown.' },
+        { q:'Which of these is a permanent STORAGE device?', opts:['RAM','CPU','Hard Drive (HDD/SSD)','Monitor'], correct:2, exp:'A Hard Drive (HDD or SSD) stores data permanently, even when the computer is turned off. RAM loses its data when power is removed.' }
+      ]
+    },
+    mod2: {
+      title:'Quiz: Internet & Digital Skills', moduleNum:2, unlocks:3,
+      questions:[
+        { q:'What does HTTPS indicate about a website?', opts:['The website is very popular','The connection is encrypted and secure','The website loads faster','The website is free to use'], correct:1, exp:'HTTPS (HyperText Transfer Protocol Secure) means your connection to the website is encrypted — protecting your passwords, banking details, and personal information from being intercepted.' },
+        { q:'Which of these is a sign of a PHISHING email?', opts:['It is sent from a known colleague\'s verified email','It contains a company logo you recognize','It creates urgency and asks for passwords or banking info via a suspicious link','It has a professional email signature with a phone number'], correct:2, exp:'Phishing emails use urgency and fear to trick you into clicking links or revealing sensitive information. Always verify the sender\'s actual email address before acting.' },
+        { q:'A strong password should:', opts:['Be your name or date of birth','Be short and easy to remember','Mix letters, numbers, and special characters','Be shared with a trusted family member for safety'], correct:2, exp:'Strong passwords use uppercase and lowercase letters, numbers, and symbols (e.g. T!h@2026). Never use personal information and never share passwords with anyone.' },
+        { q:'Two-factor authentication (2FA) means:', opts:['Having two different passwords for one account','Using two separate devices to browse','Verifying your identity with two separate methods','Sharing your account with two trusted people'], correct:2, exp:'2FA adds a second verification step beyond your password — typically a code sent to your phone. This means even if someone steals your password, they still cannot access your account.' },
+        { q:'Which situation is SAFEST for online banking?', opts:['Public Wi-Fi at a café or restaurant','A neighbour\'s shared Wi-Fi network','Your private home network while the site shows HTTPS','Incognito mode on any public computer'], correct:2, exp:'Your private home network combined with HTTPS encryption is the safest option. Public Wi-Fi can be monitored by attackers. Incognito mode does not encrypt your connection.' }
+      ]
+    },
+    final: {
+      title:'Final Assessment', moduleNum:4, unlocks:null, isFinal:true,
+      questions:[
+        { q:'Which Microsoft Office application is best for creating a professional CV?', opts:['Microsoft Excel','Microsoft PowerPoint','Microsoft Word','Microsoft Outlook'], correct:2, exp:'Microsoft Word is the standard application for creating CVs, letters, and text-based documents. Excel is for data, PowerPoint for presentations.' },
+        { q:'What is the safest way to back up important files?', opts:['Save them only on your desktop','Email them to yourself','Use cloud storage like Google Drive AND keep a local copy','Print them out'], correct:2, exp:'The best practice is the "3-2-1 rule": 3 copies of data, on 2 different types of storage, with 1 copy offsite (like cloud storage). Combining Google Drive with a local backup is ideal.' },
+        { q:'Which of these is NOT a cybersecurity best practice?', opts:['Using different passwords for different accounts','Enabling two-factor authentication','Clicking links in emails to verify if they are real','Keeping your software and antivirus updated'], correct:2, exp:'You should NEVER click unknown links to "test" them. This is exactly how malware and phishing attacks succeed. Verify links by going directly to the website address instead.' },
+        { q:'What does a verifiable digital certificate mean?', opts:['It was printed on special paper','It can be independently confirmed as genuine using a verification code or link','It was issued by the government','It cost money to obtain'], correct:1, exp:'A verifiable digital certificate includes a unique ID or QR code that employers and institutions can use to independently confirm the certificate is genuine — preventing fraud.' },
+        { q:'Completing this course means you can now:', opts:['Become a software programmer immediately','Use computers professionally, stay safe online, and create digital documents confidently','Repair any computer hardware problem','Build a professional website from scratch'], correct:1, exp:'This course gives you practical computer literacy skills for professional and personal use. You can now work confidently with computers, communicate professionally online, use Office tools, and stay safe in the digital world.' }
+      ]
     }
+  };
 
-    // ===== SIDEBAR =====
-    function toggleSidebar() {
-      var sidebar = document.getElementById('sidebar');
-      var overlay = document.getElementById('sidebarOverlay');
-      sidebar.classList.toggle('open');
-      overlay.classList.toggle('open');
-    }
-    function closeSidebar() {
-      document.getElementById('sidebar').classList.remove('open');
-      document.getElementById('sidebarOverlay').classList.remove('open');
-    }
-    function toggleSidebarModule(header) {
-      var lessons = header.nextElementSibling;
-      var isOpen = header.classList.contains('open');
-      header.classList.toggle('open', !isOpen);
-      lessons.classList.toggle('open', !isOpen);
-    }
+  // ===== STATE =====
+  var completedLessons = [0,1,2,3]; // lessons completed by index
+  var totalLessons = 16;
+  var currentLessonIndex = 4;
+  var noteSaveTimer = null;
+  var quizCurrentQ = 0;
+  var quizScore = 0;
+  var quizAnswered = false;
+  var quizSelectedIdx = null;
+  var currentQuizData = null;
+  var currentQuizLessonIndex = -1;
+  var quizLastPassed = false;
 
-    // ===== LESSON SELECTION =====
-    function selectLesson(el, index) {
-      if (el.classList.contains('locked')) return;
-      // Remove active from all
-      document.querySelectorAll('.sidebar-lesson').forEach(function(l) { l.classList.remove('active'); });
-      el.classList.add('active');
-      currentLessonIndex = index;
-      currentLessonCompleted = el.classList.contains('completed');
-      var lesson = lessons[index];
-      document.getElementById('lessonTitle').textContent = lesson.title;
-      document.getElementById('lessonDur').textContent = lesson.dur;
-      // Update mark complete button
-      var btn = document.getElementById('markCompleteBtn');
-      if (currentLessonCompleted) {
-        btn.textContent = '✓ Completed';
-        btn.classList.add('completed');
-      } else {
-        btn.textContent = '✓ Mark as Complete';
-        btn.classList.remove('completed');
-      }
-      // Scroll lesson into view in sidebar
-      el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-      // Close sidebar on mobile
-      if (window.innerWidth < 768) closeSidebar();
+  // ===== INIT =====
+  (function init() {
+    var params = new URLSearchParams(window.location.search);
+    var startLesson = parseInt(params.get('lesson'));
+    if (!isNaN(startLesson) && startLesson >= 0 && startLesson < totalLessons) {
+      currentLessonIndex = startLesson;
     }
-
-    // ===== MARK COMPLETE =====
-    function markComplete() {
-      if (currentLessonCompleted) return;
-      currentLessonCompleted = true;
-      completedCount++;
-      var activeLessons = document.querySelectorAll('.sidebar-lesson.active');
-      activeLessons.forEach(function(l) {
-        l.classList.add('completed');
-        var statusEl = l.querySelector('.lesson-status');
-        if (statusEl) statusEl.textContent = '✓';
-      });
-      var btn = document.getElementById('markCompleteBtn');
-      btn.textContent = '✓ Completed';
-      btn.classList.add('completed');
-      updateProgress();
+    var allLessonEls = document.querySelectorAll('.sidebar-lesson');
+    // Reset active states
+    allLessonEls.forEach(function(el) { el.classList.remove('active'); });
+    allLessonEls[currentLessonIndex].classList.add('active');
+    // Set active status icon if not completed
+    if (!completedLessons.includes(currentLessonIndex)) {
+      allLessonEls[currentLessonIndex].querySelector('.lesson-status').textContent = '▶';
     }
-
-    // ===== NEXT / PREV LESSON =====
-    function nextLesson() {
-      var next = currentLessonIndex + 1;
-      if (next >= totalLessons) return;
-      var lessonEls = document.querySelectorAll('.sidebar-lesson');
-      if (lessonEls[next] && !lessonEls[next].classList.contains('locked')) {
-        selectLesson(lessonEls[next], next);
-      }
-    }
-    function prevLesson() {
-      var prev = currentLessonIndex - 1;
-      if (prev < 0) return;
-      var lessonEls = document.querySelectorAll('.sidebar-lesson');
-      if (lessonEls[prev]) selectLesson(lessonEls[prev], prev);
-    }
-
-    // ===== TAB SWITCHING =====
-    function switchTab(btn, tabId) {
-      document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-      document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
-      btn.classList.add('active');
-      document.getElementById('tab-' + tabId).classList.add('active');
-    }
-
-    // ===== NOTES =====
-    function loadNotes() {
-      var saved = localStorage.getItem('tih_notes_lesson21');
-      if (saved) document.getElementById('notesArea').value = saved;
-    }
-    function saveNotes() {
-      var text = document.getElementById('notesArea').value;
-      localStorage.setItem('tih_notes_lesson21', text);
-      var msg = document.getElementById('noteSavedMsg');
-      msg.classList.add('show');
-      setTimeout(function() { msg.classList.remove('show'); }, 2000);
-    }
-    function scheduleNoteSave() {
-      clearTimeout(noteSaveTimer);
-      noteSaveTimer = setTimeout(saveNotes, 1200);
-    }
-
-    // ===== QUIZ MODAL =====
-    var selectedOption = null;
-    var quizAnswered = false;
-
-    function openQuizModal() {
-      document.getElementById('quizModal').classList.add('open');
-      // Reset state
-      selectedOption = null;
-      quizAnswered = false;
-      document.querySelectorAll('.quiz-option').forEach(function(o) {
-        o.classList.remove('selected', 'correct', 'wrong');
-      });
-      document.getElementById('quizFeedback').className = 'quiz-feedback';
-      document.getElementById('quizFeedback').textContent = '';
-      document.getElementById('submitQuizBtn').disabled = true;
-      document.getElementById('submitQuizBtn').textContent = 'Submit Answer';
-    }
-    function closeQuizModal() {
-      document.getElementById('quizModal').classList.remove('open');
-    }
-    function selectOption(el, isCorrect) {
-      if (quizAnswered) return;
-      document.querySelectorAll('.quiz-option').forEach(function(o) { o.classList.remove('selected'); });
-      el.classList.add('selected');
-      selectedOption = isCorrect;
-      document.getElementById('submitQuizBtn').disabled = false;
-    }
-    function submitQuiz() {
-      if (selectedOption === null || quizAnswered) return;
-      quizAnswered = true;
-      var feedback = document.getElementById('quizFeedback');
-      var options = document.querySelectorAll('.quiz-option');
-      if (selectedOption) {
-        options[0].classList.add('correct');
-        feedback.className = 'quiz-feedback correct';
-        feedback.textContent = '✓ Correct! CPU stands for Central Processing Unit — the brain of the computer.';
-      } else {
-        document.querySelectorAll('.quiz-option.selected').forEach(function(o) { o.classList.add('wrong'); });
-        options[0].classList.add('correct');
-        feedback.className = 'quiz-feedback wrong';
-        feedback.textContent = '✗ Not quite. The correct answer is A — Central Processing Unit. The CPU processes all instructions your computer receives.';
-      }
-      var submitBtn = document.getElementById('submitQuizBtn');
-      submitBtn.textContent = 'Close Quiz';
-      submitBtn.onclick = closeQuizModal;
-    }
-
-    // Close modal on overlay click
-    document.getElementById('quizModal').addEventListener('click', function(e) {
-      if (e.target === this) closeQuizModal();
-    });
-
-    // Close modal on ESC
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeQuizModal();
-    });
-
-    // ===== INIT =====
-    loadNotes();
+    document.getElementById('certDate').textContent = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+    renderLesson(currentLessonIndex);
     updateProgress();
+  })();
+
+  // ===== RENDER LESSON =====
+  function renderLesson(index) {
+    var lesson = lessons[index];
+    var content = lessonContent[index] || { overview:'', resources:[], qa:[] };
+    // Update title/meta
+    document.getElementById('lessonTitle').textContent = lesson.title;
+    document.getElementById('lessonDur').textContent = lesson.dur;
+    document.getElementById('lessonMeta').textContent = '📶 Module ' + lesson.module + ' · Lesson ' + (index+1) + ' of ' + totalLessons;
+    // Update video
+    if (lesson.videoId) {
+      document.getElementById('videoIframe').src = 'https://www.youtube.com/embed/' + lesson.videoId + '?rel=0&modestbranding=1';
+    }
+    document.getElementById('videoScroll').scrollTop = 0;
+    // Overview
+    document.getElementById('overviewContent').innerHTML = content.overview || '<p>Select a topic from the sidebar to begin.</p>';
+    // Resources
+    var rHtml = '';
+    if (content.resources && content.resources.length) {
+      content.resources.forEach(function(r) {
+        rHtml += '<div class="resource-item"><span class="resource-icon">'+r.icon+'</span><div class="resource-info"><div class="resource-name">'+r.name+'</div><div class="resource-size">'+r.size+'</div></div><button class="btn-download">↓ Download</button></div>';
+      });
+    } else {
+      rHtml = '<p style="color:var(--text-muted);font-size:0.9rem;">No downloadable resources for this lesson.</p>';
+    }
+    document.getElementById('resourcesContent').innerHTML = rHtml;
+    // Q&A
+    var qaHtml = '';
+    if (content.qa && content.qa.length) {
+      content.qa.forEach(function(item) {
+        qaHtml += '<div class="qa-item"><div class="qa-question">'+item.q+'</div><div class="qa-answer">'+item.a+'</div></div>';
+      });
+    } else {
+      qaHtml = '<p style="color:var(--text-muted);font-size:0.9rem;">No Q&amp;A for this lesson yet.</p>';
+    }
+    document.getElementById('qaContent').innerHTML = qaHtml;
+    // Notes
+    document.getElementById('notesLabel').textContent = 'Your Notes — ' + lesson.title;
+    var saved = localStorage.getItem('tih_notes_' + index);
+    document.getElementById('notesArea').value = saved || '';
+    // Mark complete button
+    var isDone = completedLessons.includes(index);
+    var btn = document.getElementById('markCompleteBtn');
+    if (lesson.isQuiz) {
+      btn.textContent = isDone ? '✓ Quiz Passed' : '📝 Take Quiz';
+      btn.onclick = isDone ? null : function() { openQuizModal(index); };
+      btn.className = 'btn-mark-complete' + (isDone ? ' done' : '');
+    } else {
+      btn.textContent = isDone ? '✓ Completed' : '✓ Mark as Complete';
+      btn.onclick = isDone ? null : markComplete;
+      btn.className = 'btn-mark-complete' + (isDone ? ' done' : '');
+    }
+    updateNavButtons();
+    updateProgressDots();
+  }
+
+  // ===== PROGRESS =====
+  function updateProgress() {
+    var pct = Math.round((completedLessons.length / totalLessons) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '% complete';
+    document.getElementById('lessonCounter').textContent = completedLessons.length + '/16 lessons';
+  }
+
+  // ===== NAV BUTTONS =====
+  function updateNavButtons() {
+    var prev = currentLessonIndex - 1;
+    var next = currentLessonIndex + 1;
+    var btnP = document.getElementById('btnPrev');
+    var btnN = document.getElementById('btnNext');
+    if (prev < 0) {
+      btnP.disabled = true; btnP.textContent = '← Previous';
+    } else {
+      btnP.disabled = false;
+      btnP.textContent = '← ' + truncTitle(lessons[prev].title, 22);
+    }
+    if (next >= totalLessons) {
+      btnN.disabled = true; btnN.textContent = 'Next →';
+    } else {
+      btnN.disabled = false;
+      btnN.textContent = truncTitle(lessons[next].title, 22) + ' →';
+    }
+  }
+  function truncTitle(t, len) { return t.length > len ? t.substring(0, len) + '…' : t; }
+
+  // ===== PROGRESS DOTS =====
+  function updateProgressDots() {
+    var mod = lessons[currentLessonIndex].module;
+    var start = lessons.findIndex(function(l) { return l.module === mod; });
+    var end = start;
+    while (end < lessons.length - 1 && lessons[end+1].module === mod) end++;
+    var html = '';
+    for (var i = start; i <= end; i++) {
+      var cls = 'progress-dot';
+      if (i === currentLessonIndex) cls += ' active';
+      else if (completedLessons.includes(i)) cls += ' done';
+      html += '<div class="'+cls+'" title="'+lessons[i].title+'"></div>';
+    }
+    document.getElementById('progressDots').innerHTML = html;
+  }
+
+  // ===== SIDEBAR =====
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sidebarOverlay').classList.toggle('open');
+  }
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('open');
+  }
+  function toggleSidebarModule(header) {
+    var ls = header.nextElementSibling;
+    var open = header.classList.contains('open');
+    header.classList.toggle('open', !open);
+    ls.classList.toggle('open', !open);
+  }
+
+  // ===== LESSON SELECTION =====
+  function selectLesson(el, index) {
+    if (el.classList.contains('locked')) {
+      el.style.transform = 'translateX(6px)';
+      setTimeout(function() { el.style.transform = ''; }, 300);
+      return;
+    }
+    document.querySelectorAll('.sidebar-lesson').forEach(function(l) { l.classList.remove('active'); });
+    el.classList.add('active');
+    if (!el.classList.contains('completed')) {
+      el.querySelector('.lesson-status').textContent = '▶';
+    }
+    currentLessonIndex = index;
+    if (lessons[index].isQuiz && !completedLessons.includes(index)) {
+      openQuizModal(index);
+    } else {
+      renderLesson(index);
+    }
+    if (window.innerWidth < 768) closeSidebar();
+  }
+
+  // ===== MARK COMPLETE =====
+  function markComplete() {
+    if (completedLessons.includes(currentLessonIndex)) return;
+    completedLessons.push(currentLessonIndex);
+    var allLessonEls = document.querySelectorAll('.sidebar-lesson');
+    var el = allLessonEls[currentLessonIndex];
+    el.classList.add('completed');
+    el.querySelector('.lesson-status').textContent = '✓';
+    renderLesson(currentLessonIndex);
+    updateProgress();
+    if (completedLessons.length === totalLessons) {
+      setTimeout(showCompletionModal, 800);
+    }
+  }
+
+  // ===== NEXT / PREV =====
+  function nextLesson() {
+    var next = currentLessonIndex + 1;
+    if (next >= totalLessons) return;
+    var els = document.querySelectorAll('.sidebar-lesson');
+    if (!els[next].classList.contains('locked')) selectLesson(els[next], next);
+  }
+  function prevLesson() {
+    var prev = currentLessonIndex - 1;
+    if (prev < 0) return;
+    var els = document.querySelectorAll('.sidebar-lesson');
+    selectLesson(els[prev], prev);
+  }
+
+  // ===== MODULE UNLOCK =====
+  function unlockModule(moduleNum) {
+    var modules = document.querySelectorAll('.sidebar-module');
+    var idx = moduleNum - 1;
+    if (!modules[idx]) return;
+    modules[idx].querySelectorAll('.sidebar-lesson.locked').forEach(function(l) {
+      l.classList.remove('locked');
+      var st = l.querySelector('.lesson-status');
+      if (st && (st.textContent === '🔒' || st.textContent.trim() === '🔒')) st.textContent = '○';
+    });
+    var meta = modules[idx].querySelector('.sidebar-module-meta');
+    if (meta) meta.textContent = meta.textContent.replace('🔒 Locked','Unlocked — Ready');
+    // Open module accordion
+    var header = modules[idx].querySelector('.sidebar-module-header');
+    var lessonsList = modules[idx].querySelector('.sidebar-lessons');
+    if (header && !header.classList.contains('open')) {
+      header.classList.add('open');
+      if (lessonsList) lessonsList.classList.add('open');
+    }
+  }
+
+  // ===== TAB SWITCHING =====
+  function switchTab(btn, tabId) {
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById('tab-' + tabId).classList.add('active');
+  }
+
+  // ===== NOTES =====
+  function saveNotes() {
+    localStorage.setItem('tih_notes_' + currentLessonIndex, document.getElementById('notesArea').value);
+    var msg = document.getElementById('noteSavedMsg');
+    msg.classList.add('show');
+    setTimeout(function() { msg.classList.remove('show'); }, 2000);
+  }
+  function scheduleNoteSave() {
+    clearTimeout(noteSaveTimer);
+    noteSaveTimer = setTimeout(saveNotes, 1200);
+  }
+
+  // ===== QUIZ ENGINE =====
+  function openQuizModal(lessonIndex) {
+    currentQuizLessonIndex = (typeof lessonIndex === 'number') ? lessonIndex : currentLessonIndex;
+    var lesson = lessons[currentQuizLessonIndex];
+    currentQuizData = quizData[lesson.quizId];
+    if (!currentQuizData) return;
+    quizCurrentQ = 0; quizScore = 0; quizAnswered = false; quizSelectedIdx = null; quizLastPassed = false;
+    document.getElementById('quizActive').style.display = '';
+    document.getElementById('quizResult').style.display = 'none';
+    document.getElementById('quizModal').classList.add('open');
+    renderQuizQuestion();
+  }
+
+  function renderQuizQuestion() {
+    var q = currentQuizData.questions[quizCurrentQ];
+    var letters = ['A','B','C','D'];
+    document.getElementById('quizTitle').textContent = '📝 ' + currentQuizData.title;
+    document.getElementById('quizQuestionNum').textContent = 'Question ' + (quizCurrentQ+1) + ' of ' + currentQuizData.questions.length;
+    document.getElementById('quizQuestionText').textContent = q.q;
+    document.getElementById('quizProgBar').style.width = (quizCurrentQ / currentQuizData.questions.length * 100) + '%';
+    var html = '';
+    q.opts.forEach(function(opt, i) {
+      html += '<div class="quiz-option" onclick="selectQuizOption(this,'+i+')">' +
+        '<span class="quiz-option-letter">'+letters[i]+'</span>'+opt+'</div>';
+    });
+    document.getElementById('quizOptions').innerHTML = html;
+    var fb = document.getElementById('quizFeedback');
+    fb.className = 'quiz-feedback'; fb.textContent = '';
+    var btn = document.getElementById('quizActionBtn');
+    btn.textContent = 'Submit Answer'; btn.disabled = true;
+    quizAnswered = false; quizSelectedIdx = null;
+  }
+
+  function selectQuizOption(el, idx) {
+    if (quizAnswered) return;
+    document.querySelectorAll('.quiz-option').forEach(function(o) { o.classList.remove('selected'); });
+    el.classList.add('selected');
+    quizSelectedIdx = idx;
+    document.getElementById('quizActionBtn').disabled = false;
+  }
+
+  function handleQuizAction() {
+    if (!quizAnswered) {
+      submitQuizAnswer();
+    } else {
+      quizCurrentQ++;
+      if (quizCurrentQ < currentQuizData.questions.length) {
+        renderQuizQuestion();
+      } else {
+        showQuizResults();
+      }
+    }
+  }
+
+  function submitQuizAnswer() {
+    if (quizSelectedIdx === null) return;
+    quizAnswered = true;
+    var q = currentQuizData.questions[quizCurrentQ];
+    var isCorrect = (quizSelectedIdx === q.correct);
+    if (isCorrect) quizScore++;
+    var opts = document.querySelectorAll('.quiz-option');
+    opts.forEach(function(o, i) {
+      o.classList.add('locked-opt');
+      if (i === q.correct) o.classList.add('correct');
+      else if (i === quizSelectedIdx && !isCorrect) o.classList.add('wrong');
+    });
+    var fb = document.getElementById('quizFeedback');
+    fb.className = 'quiz-feedback ' + (isCorrect ? 'show-correct' : 'show-wrong');
+    fb.textContent = (isCorrect ? '✓ Correct! ' : '✗ Not quite. ') + q.exp;
+    var isLast = (quizCurrentQ === currentQuizData.questions.length - 1);
+    var btn = document.getElementById('quizActionBtn');
+    btn.textContent = isLast ? 'See Results' : 'Next Question →';
+    btn.disabled = false;
+  }
+
+  function showQuizResults() {
+    document.getElementById('quizProgBar').style.width = '100%';
+    var total = currentQuizData.questions.length;
+    var passThreshold = Math.ceil(total * 0.6);
+    quizLastPassed = (quizScore >= passThreshold);
+    document.getElementById('quizActive').style.display = 'none';
+    document.getElementById('quizResult').style.display = '';
+    document.getElementById('quizResultIcon').textContent = quizLastPassed ? '🎉' : '😔';
+    var titleEl = document.getElementById('quizResultTitle');
+    titleEl.textContent = quizLastPassed ? 'Congratulations! You Passed!' : 'Keep Practicing!';
+    titleEl.className = 'quiz-result-title ' + (quizLastPassed ? 'pass' : 'fail');
+    document.getElementById('quizResultScore').textContent = quizScore + '/' + total;
+    document.getElementById('quizResultScoreSub').textContent = 'correct answers · ' + Math.round(quizScore/total*100) + '%';
+    document.getElementById('quizResultMsg').textContent = quizLastPassed
+      ? 'Excellent work! You scored ' + quizScore + ' out of ' + total + '. Module ' + currentQuizData.moduleNum + ' is now complete. ' + (currentQuizData.unlocks ? 'Module ' + currentQuizData.unlocks + ' has been unlocked!' : 'The final course certificate is ready!')
+      : 'You scored ' + quizScore + ' out of ' + total + '. You need at least ' + passThreshold + ' correct to pass. Review the lessons and try again — you\'ve got this!';
+    document.getElementById('quizResultBtn').textContent = quizLastPassed ? (currentQuizData.isFinal ? '🏆 Claim Certificate' : 'Continue to Next Module →') : '↺ Retry Quiz';
+    if (quizLastPassed) completeQuizLesson();
+  }
+
+  function completeQuizLesson() {
+    if (!completedLessons.includes(currentQuizLessonIndex)) {
+      completedLessons.push(currentQuizLessonIndex);
+    }
+    var allLessonEls = document.querySelectorAll('.sidebar-lesson');
+    var el = allLessonEls[currentQuizLessonIndex];
+    el.classList.add('completed');
+    el.querySelector('.lesson-status').textContent = '✓';
+    if (currentQuizData.unlocks) unlockModule(currentQuizData.unlocks);
+    updateProgress();
+  }
+
+  function handleQuizResultAction() {
+    if (quizLastPassed) {
+      closeQuizModal();
+      if (currentQuizData.isFinal) {
+        setTimeout(showCompletionModal, 300);
+      } else {
+        renderLesson(currentQuizLessonIndex);
+        if (currentQuizLessonIndex + 1 < totalLessons) {
+          setTimeout(function() { nextLesson(); }, 300);
+        }
+      }
+    } else {
+      quizCurrentQ = 0; quizScore = 0; quizAnswered = false; quizSelectedIdx = null;
+      document.getElementById('quizActive').style.display = '';
+      document.getElementById('quizResult').style.display = 'none';
+      renderQuizQuestion();
+    }
+  }
+
+  function closeQuizModal() {
+    document.getElementById('quizModal').classList.remove('open');
+    renderLesson(currentLessonIndex);
+  }
+
+  // ===== COMPLETION MODAL =====
+  function showCompletionModal() {
+    document.getElementById('completionModal').classList.add('open');
+    launchConfetti();
+  }
+  function closeCompletionModal() {
+    document.getElementById('completionModal').classList.remove('open');
+  }
+  function printCertificate() {
+    window.print();
+  }
+  function shareCompletion() {
+    var text = 'I just completed "Complete Computer Literacy: From Zero to Professional" at TIH Academy! Certificate ID: TIH-2026-CCL-0042';
+    if (navigator.share) {
+      navigator.share({ title: 'TIH Academy Certificate', text: text, url: window.location.href });
+    } else {
+      navigator.clipboard.writeText(text).then(function() { alert('Share text copied to clipboard!'); });
+    }
+  }
+
+  // ===== CONFETTI =====
+  function launchConfetti() {
+    var canvas = document.getElementById('confettiCanvas');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    canvas.style.display = 'block';
+    var ctx = canvas.getContext('2d');
+    var colors = ['#002868','#BF0A30','#f59e0b','#10b981','#6366f1','#fff'];
+    var particles = [];
+    for (var i = 0; i < 120; i++) {
+      particles.push({ x: Math.random()*canvas.width, y: -20, w: Math.random()*10+5, h: Math.random()*6+3,
+        color: colors[Math.floor(Math.random()*colors.length)], speed: Math.random()*4+2,
+        angle: Math.random()*360, spin: (Math.random()-0.5)*8, drift: (Math.random()-0.5)*2 });
+    }
+    var frame = 0;
+    function draw() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particles.forEach(function(p) {
+        p.y += p.speed; p.x += p.drift; p.angle += p.spin;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.angle*Math.PI/180);
+        ctx.fillStyle = p.color; ctx.globalAlpha = Math.max(0, 1-(frame/220));
+        ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+        ctx.restore();
+      });
+      frame++;
+      if (frame < 240) requestAnimationFrame(draw);
+      else { ctx.clearRect(0,0,canvas.width,canvas.height); canvas.style.display = 'none'; }
+    }
+    draw();
+  }
+
+  // ===== MODAL CLOSE (overlay click & ESC) =====
+  document.getElementById('quizModal').addEventListener('click', function(e) { if (e.target===this) closeQuizModal(); });
+  document.getElementById('completionModal').addEventListener('click', function(e) { if (e.target===this) closeCompletionModal(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeQuizModal(); closeCompletionModal(); }
+  });
   </script>
 </body>
 </html>
