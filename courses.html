@@ -64,12 +64,33 @@
     .breadcrumb a:hover { text-decoration: underline; }
     .breadcrumb .sep { color: #d1d5db; }
 
-    /* LAYOUT */
-    .courses-layout { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; display: grid; grid-template-columns: 260px 1fr; gap: 2rem; }
-    @media(max-width: 900px) { .courses-layout { grid-template-columns: 1fr; } }
+    /* LAYOUT — desktop: sidebar + main; mobile: stacked */
+    .courses-layout { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; display: grid; grid-template-columns: 260px 1fr; gap: 2rem; align-items: start; }
 
-    /* SIDEBAR */
+    /* MOBILE FILTER BAR (shown only on mobile) */
+    .mobile-filter-bar { display: none; padding: 0.8rem 1rem; background: #fff; border-bottom: 1px solid #e5e7eb; }
+    .mobile-filter-inner { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+    .btn-mobile-filter { display: flex; align-items: center; gap: 0.5rem; background: #002868; color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: 10px; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all .2s; }
+    .btn-mobile-filter:hover { background: #001a45; }
+    .filter-badge { background: #BF0A30; color: #fff; font-size: 0.7rem; font-weight: 700; padding: 0.1rem 0.45rem; border-radius: 50px; margin-left: 0.2rem; }
+    .mobile-sort { padding: 0.55rem 0.8rem; border: 1.5px solid #e5e7eb; border-radius: 8px; font-size: 0.85rem; color: #374151; background: #fff; cursor: pointer; outline: none; }
+
+    /* FILTER DRAWER OVERLAY */
+    .filter-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 2998; }
+    .filter-overlay.open { display: block; }
+
+    /* FILTER DRAWER (mobile slide-in) */
+    .filter-drawer { position: fixed; top: 0; left: 0; bottom: 0; width: min(320px, 92vw); background: #fff; z-index: 2999; overflow-y: auto; box-shadow: 8px 0 32px rgba(0,0,0,.25); transform: translateX(-100%); transition: transform .3s cubic-bezier(.4,0,.2,1); display: block; }
+    .filter-drawer.open { transform: translateX(0); }
+    .drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; background: #002868; color: #fff; position: sticky; top: 0; z-index: 10; }
+    .drawer-header h3 { font-size: 1rem; font-weight: 700; color: #fff; margin: 0; }
+    .btn-close-drawer { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; line-height: 1; padding: 0.2rem; }
+    .drawer-body { padding: 1rem; }
+    .drawer-footer { padding: 1rem; border-top: 1px solid #e5e7eb; position: sticky; bottom: 0; background: #fff; display: flex; flex-direction: column; gap: 0.5rem; }
+
+    /* DESKTOP SIDEBAR */
     .filter-sidebar { position: sticky; top: 80px; height: fit-content; }
+
     .filter-card { background: #fff; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,.08); padding: 1.5rem; margin-bottom: 1rem; }
     .filter-card h4 { font-size: 0.95rem; font-weight: 700; color: #111827; margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 2px solid #f3f4f6; display: flex; justify-content: space-between; align-items: center; }
     .filter-card h4 button { background: none; border: none; color: #002868; font-size: 0.78rem; font-weight: 600; cursor: pointer; }
@@ -86,6 +107,29 @@
     .apply-filters:hover { background: #001a45; }
     .clear-filters { display: block; width: 100%; padding: 0.5rem; background: none; border: 1.5px solid #e5e7eb; border-radius: 10px; font-size: 0.85rem; color: #6b7280; cursor: pointer; margin-top: 0.4rem; transition: all .2s; }
     .clear-filters:hover { border-color: #002868; color: #002868; }
+
+    /* MOBILE OVERRIDES — hide desktop sidebar, show drawer trigger */
+    @media(max-width: 900px) {
+      .courses-layout { grid-template-columns: 1fr; padding: 1rem; gap: 1rem; }
+      .filter-sidebar { display: none; } /* completely hidden on mobile — use drawer instead */
+      .mobile-filter-bar { display: block; }
+      /* On mobile the grid takes full width — allow 2 cols on tablets */
+      .courses-grid { grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+      /* Hide sort/toggle that's in results bar — redundant with mobile-filter-bar */
+      .results-controls .sort-select { display: none; }
+    }
+    @media(max-width: 540px) {
+      .courses-grid { grid-template-columns: 1fr; }
+      .course-thumb { min-height: 120px; padding: 1.5rem 1rem; }
+      .thumb-icon { font-size: 2.5rem; }
+      .courses-hero { padding: 2.5rem 0 2rem; }
+      .courses-hero p { font-size: 0.95rem; }
+      .search-bar-wrap { flex-direction: column; gap: 0.5rem; max-width: 100%; }
+      .search-bar-wrap input { border-radius: 10px; }
+      .search-bar-wrap button { border-radius: 10px; }
+      .results-bar { flex-direction: column; align-items: flex-start; }
+      .active-filters { gap: 0.4rem; }
+    }
 
     /* MAIN CONTENT */
     .courses-main {}
@@ -238,6 +282,79 @@
       <a href="academy.html">Academy</a>
       <span class="sep">›</span>
       <span>Courses</span>
+    </div>
+  </div>
+
+  <!-- MOBILE FILTER BAR (visible only on mobile) -->
+  <div class="mobile-filter-bar">
+    <div class="mobile-filter-inner">
+      <button class="btn-mobile-filter" onclick="openFilterDrawer()">
+        &#9776; Filters <span class="filter-badge" id="filterBadge">3</span>
+      </button>
+      <select class="mobile-sort" aria-label="Sort courses">
+        <option>Most Popular</option>
+        <option>Highest Rated</option>
+        <option>Newest</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- FILTER DRAWER OVERLAY -->
+  <div class="filter-overlay" id="filterOverlay" onclick="closeFilterDrawer()"></div>
+
+  <!-- FILTER DRAWER (mobile) -->
+  <div class="filter-drawer" id="filterDrawer" role="dialog" aria-label="Course filters">
+    <div class="drawer-header">
+      <h3>&#9776; Filter Courses</h3>
+      <button class="btn-close-drawer" onclick="closeFilterDrawer()" aria-label="Close filters">&#10005;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="filter-card">
+        <h4>Category <button onclick="clearSection('cat')">Clear</button></h4>
+        <div class="filter-option"><label><input type="checkbox" checked /> Computer Fundamentals</label><span class="filter-count">14</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Microsoft Office</label><span class="filter-count">10</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Artificial Intelligence</label><span class="filter-count">12</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Data Analytics</label><span class="filter-count">9</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Web Development</label><span class="filter-count">18</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Mobile App Dev</label><span class="filter-count">11</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Graphic Design</label><span class="filter-count">8</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Digital Marketing</label><span class="filter-count">13</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Cybersecurity</label><span class="filter-count">10</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Entrepreneurship</label><span class="filter-count">15</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Leadership</label><span class="filter-count">9</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Financial Literacy</label><span class="filter-count">7</span></div>
+      </div>
+      <div class="filter-card">
+        <h4>Level</h4>
+        <div class="filter-option"><label><input type="checkbox" checked /> Beginner</label><span class="filter-count">62</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Intermediate</label><span class="filter-count">54</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Advanced</label><span class="filter-count">34</span></div>
+      </div>
+      <div class="filter-card">
+        <h4>Duration</h4>
+        <div class="filter-option"><label><input type="checkbox" /> Under 2 hours</label><span class="filter-count">22</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> 2–5 hours</label><span class="filter-count">45</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> 5–10 hours</label><span class="filter-count">51</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> 10–20 hours</label><span class="filter-count">28</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> 20+ hours</label><span class="filter-count">14</span></div>
+      </div>
+      <div class="filter-card">
+        <h4>Rating</h4>
+        <label class="rating-row"><input type="radio" name="rating-d" /> <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.5 &amp; up</label>
+        <label class="rating-row"><input type="radio" name="rating-d" checked /> <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.0 &amp; up</label>
+        <label class="rating-row"><input type="radio" name="rating-d" /> <span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span> 3.0 &amp; up</label>
+      </div>
+      <div class="filter-card">
+        <h4>Price</h4>
+        <div class="filter-option"><label><input type="checkbox" checked /> Free</label><span class="filter-count">18</span></div>
+        <div class="filter-option"><label><input type="checkbox" /> Paid</label><span class="filter-count">132</span></div>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <button class="apply-filters" onclick="closeFilterDrawer()">Apply Filters</button>
+      <button class="clear-filters">Clear All</button>
     </div>
   </div>
 
@@ -673,12 +790,28 @@
   </footer>
 
   <script>
-    // Hamburger
+    // Hamburger nav
     document.getElementById('hamburger').addEventListener('click', function() {
       document.getElementById('navLinks').classList.toggle('open');
     });
 
-    // View toggle
+    // Mobile filter drawer
+    function openFilterDrawer() {
+      document.getElementById('filterDrawer').classList.add('open');
+      document.getElementById('filterOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeFilterDrawer() {
+      document.getElementById('filterDrawer').classList.remove('open');
+      document.getElementById('filterOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    // Close drawer on ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeFilterDrawer();
+    });
+
+    // View toggle (grid / list)
     function setView(v) {
       const grid = document.getElementById('coursesGrid');
       const gb = document.getElementById('gridBtn');
