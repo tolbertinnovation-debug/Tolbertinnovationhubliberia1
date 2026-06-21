@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complete Computer Literacy: From Zero to Professional | TIH Academy</title>
+  <meta name="description" content="Master computer skills from scratch. Learn hardware, software, Microsoft Office, internet safety, and more. FREE course with certificate by Samuel Tolbert." />
+  <meta name="keywords" content="computer literacy course, free computer course Liberia, learn computers Africa, Microsoft Office course, digital skills" />
+  <meta property="og:title" content="Complete Computer Literacy: From Zero to Professional | TIH Academy" />
+  <meta property="og:description" content="FREE course. 24 hours of content, 16 lessons, professional certificate. Taught by Samuel Tolbert." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #002868;
+      --blue-dark: #001a45;
+      --blue-mid: #003399;
+      --red: #BF0A30;
+      --red-dark: #a00827;
+      --gold: #f59e0b;
+      --gold-dark: #d97706;
+      --green: #10b981;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #f9fafb;
+      --white: #fff;
+      --shadow: 0 4px 24px rgba(0,0,0,.10);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,.16);
+      --radius: 12px;
+      --radius-lg: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+    h1,h2,h3,h4,h5 { font-family: 'Poppins', sans-serif; line-height: 1.25; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { max-width: 100%; }
+
+    /* ===== NAVIGATION ===== */
+    .academy-header { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 1.5rem; max-width: 1280px; margin: 0 auto; gap: 1rem; }
+    .brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--blue); font-size: 1.18rem; text-decoration: none; display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0; }
+    .brand span { color: var(--red); }
+    .nav-links { display: flex; gap: 0.15rem; align-items: center; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+    .nav-links a { color: #374151; font-size: 0.87rem; font-weight: 500; text-decoration: none; padding: 0.35rem 0.6rem; border-radius: 6px; transition: all .2s; }
+    .nav-links a:hover { color: var(--blue); background: #f0f4ff; }
+    .nav-links a.active { color: var(--blue); font-weight: 700; }
+    .nav-auth { display: flex; gap: 0.6rem; align-items: center; flex-shrink: 0; }
+    .btn-ghost { background: transparent; border: 1.5px solid var(--blue); color: var(--blue); padding: 0.45rem 1.1rem; border-radius: 50px; font-size: 0.87rem; font-weight: 600; cursor: pointer; transition: all .2s; text-decoration: none; }
+    .btn-ghost:hover { background: var(--blue); color: #fff; }
+    .btn-enroll-nav { background: var(--red); color: #fff; padding: 0.5rem 1.3rem; border-radius: 50px; font-size: 0.87rem; font-weight: 700; text-decoration: none; transition: all .2s; }
+    .btn-enroll-nav:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--blue); border-radius: 2px; transition: all .2s; }
+    @media(max-width: 900px) {
+      .hamburger { display: flex; }
+      .nav-wrap { flex-wrap: wrap; padding-bottom: 0; }
+      .nav-links { display: none; width: 100%; order: 3; flex-direction: column; padding: 0.25rem 0 0.75rem; gap: 0; border-top: 1px solid #e5e7eb; margin: 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 0.75rem 1.5rem; border-radius: 0; font-size: 0.95rem; border-bottom: 1px solid #f3f4f6; }
+      .nav-auth { display: none; }
+    }
+
+    /* ===== BREADCRUMB ===== */
+    .breadcrumb { background: rgba(255,255,255,.08); padding: 0.75rem 0; }
+    .breadcrumb .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; gap: 0.4rem; font-size: 0.83rem; color: rgba(255,255,255,.7); flex-wrap: wrap; }
+    .breadcrumb a { color: rgba(255,255,255,.8); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb .sep { color: rgba(255,255,255,.4); }
+    .breadcrumb .current { color: #fff; }
+
+    /* ===== COURSE HERO ===== */
+    .course-hero { background: linear-gradient(135deg, #000d24 0%, #001a45 40%, #002868 75%, #003399 100%); padding: 2.5rem 0 3rem; color: #fff; position: relative; }
+    .hero-layout { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1fr 380px; gap: 3rem; align-items: start; }
+    .hero-content { padding-right: 0; }
+    .course-category-tag { display: inline-block; background: rgba(245,158,11,.2); color: var(--gold); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; border: 1px solid rgba(245,158,11,.3); }
+    .course-hero h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+    .course-short-desc { color: rgba(255,255,255,.82); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.25rem; max-width: 65ch; }
+    .hero-meta-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .hero-rating { display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; }
+    .hero-rating .stars { color: var(--gold); font-size: 1rem; letter-spacing: -1px; }
+    .hero-rating .rating-num { font-weight: 800; color: var(--gold); }
+    .hero-rating .rating-count { color: rgba(255,255,255,.65); font-size: 0.85rem; }
+    .hero-students { color: rgba(255,255,255,.75); font-size: 0.88rem; display: flex; align-items: center; gap: 0.3rem; }
+    .hero-students::before { content: '·'; color: rgba(255,255,255,.4); }
+    .hero-instructor-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.25rem; }
+    .instr-avatar { width: 36px; height: 36px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .instr-info { font-size: 0.87rem; color: rgba(255,255,255,.8); }
+    .instr-info strong { color: #fff; font-weight: 600; }
+    .hero-details-row { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; font-size: 0.85rem; color: rgba(255,255,255,.7); margin-bottom: 1.75rem; }
+    .hero-detail { display: flex; align-items: center; gap: 0.35rem; }
+    .hero-detail-icon { font-size: 0.9rem; }
+    .hero-cta-group { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .free-badge { background: var(--green); color: #fff; font-size: 1rem; font-weight: 800; padding: 0.5rem 1.2rem; border-radius: 50px; letter-spacing: 0.03em; }
+    .btn-enroll-hero { background: var(--red); color: #fff; padding: 0.85rem 2.2rem; border-radius: 50px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: all .25s; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 20px rgba(191,10,48,.4); }
+    .btn-enroll-hero:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(191,10,48,.5); }
+    .price-crossed { color: rgba(255,255,255,.5); font-size: 0.9rem; text-decoration: line-through; }
+
+    /* ===== ENROLLMENT WIDGET (floats in hero on desktop) ===== */
+    .enroll-widget { background: #fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; position: sticky; top: 90px; }
+    .widget-thumb { background: linear-gradient(135deg, #001a45, #002868); padding: 2.5rem 1.5rem; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; min-height: 160px; }
+    .widget-thumb-icon { font-size: 3.5rem; }
+    .widget-thumb-text { color: rgba(255,255,255,.7); font-size: 0.8rem; font-weight: 500; }
+    .widget-body { padding: 1.5rem; }
+    .widget-price-row { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .widget-free { font-size: 2rem; font-weight: 800; color: var(--green); }
+    .widget-orig { font-size: 1rem; color: var(--text-muted); text-decoration: line-through; }
+    .btn-enroll-widget { display: block; width: 100%; padding: 0.9rem; background: var(--red); color: #fff; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; transition: all .25s; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; }
+    .btn-enroll-widget:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .widget-includes { border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 0.5rem; }
+    .widget-includes h4 { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 0.75rem; }
+    .widget-include-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; color: #374151; padding: 0.3rem 0; }
+    .widget-include-item::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .widget-actions { display: flex; gap: 0.75rem; margin-top: 1.25rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+    .widget-action-btn { flex: 1; padding: 0.5rem; border: 1.5px solid var(--border); background: #fff; border-radius: 8px; font-size: 0.82rem; font-weight: 600; color: #374151; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
+    .widget-action-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ===== MAIN CONTENT AREA ===== */
+    .course-content-wrap { max-width: 1280px; margin: 0 auto; padding: 2.5rem 1.5rem; display: grid; grid-template-columns: 1fr 380px; gap: 3rem; align-items: start; }
+    .course-main { min-width: 0; }
+    .course-sidebar { position: sticky; top: 90px; }
+
+    /* Section common */
+    .content-section { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 1.75rem; }
+    .section-title { font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+    .section-title span { font-size: 1.3rem; }
+
+    /* ===== WHAT YOU'LL LEARN ===== */
+    .learn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem 1.5rem; }
+    .learn-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; color: #374151; padding: 0.3rem 0; }
+    .learn-check { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+
+    /* ===== REQUIREMENTS ===== */
+    .req-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; color: #374151; padding: 0.35rem 0; }
+    .req-list li::before { content: '▸'; color: var(--blue); flex-shrink: 0; }
+
+    /* ===== ABOUT COURSE ===== */
+    .about-text p { font-size: 0.95rem; color: #374151; line-height: 1.8; margin-bottom: 1rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+
+    /* ===== CURRICULUM ===== */
+    .curriculum-summary { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; font-size: 0.88rem; color: var(--text-muted); background: var(--bg); padding: 0.75rem 1rem; border-radius: 8px; }
+    .curriculum-summary strong { color: var(--text); }
+    .module-accordion { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 0.5rem; }
+    .module-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: var(--bg); cursor: pointer; user-select: none; transition: background .2s; }
+    .module-header:hover { background: #f0f4ff; }
+    .module-header.open { background: #eff6ff; border-bottom: 1px solid var(--border); }
+    .module-left { display: flex; align-items: center; gap: 0.75rem; }
+    .module-icon { font-size: 1.1rem; }
+    .module-title { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+    .module-meta { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.1rem; }
+    .module-chevron { color: var(--text-muted); font-size: 0.9rem; transition: transform .2s; }
+    .module-header.open .module-chevron { transform: rotate(180deg); }
+    .module-lessons { display: none; }
+    .module-lessons.open { display: block; }
+    .lesson-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.25rem; border-bottom: 1px solid #f3f4f6; transition: background .2s; }
+    .lesson-item:last-child { border-bottom: none; }
+    .lesson-item:hover { background: #fafafa; }
+    .lesson-icon { font-size: 0.85rem; color: var(--text-muted); flex-shrink: 0; width: 18px; text-align: center; }
+    .lesson-title { flex: 1; font-size: 0.88rem; color: #374151; }
+    .lesson-preview { font-size: 0.75rem; color: var(--blue); font-weight: 600; background: #eff6ff; padding: 0.15rem 0.5rem; border-radius: 50px; }
+    .lesson-duration { font-size: 0.8rem; color: var(--text-muted); flex-shrink: 0; }
+
+    /* ===== INSTRUCTOR ===== */
+    .instructor-card { display: flex; gap: 1.5rem; align-items: flex-start; }
+    .instr-avatar-lg { width: 80px; height: 80px; background: linear-gradient(135deg, var(--blue), var(--blue-mid)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; flex-shrink: 0; }
+    .instr-details { flex: 1; }
+    .instr-name { font-size: 1.2rem; font-weight: 700; color: var(--blue); margin-bottom: 0.2rem; }
+    .instr-title { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .instr-stats { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .instr-stat { display: flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; color: #374151; }
+    .instr-stat-icon { color: var(--gold); }
+    .instr-bio p { font-size: 0.9rem; color: #374151; line-height: 1.8; margin-bottom: 0.75rem; }
+
+    /* ===== REVIEWS ===== */
+    .reviews-overview { display: flex; align-items: center; gap: 2.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .overall-score { text-align: center; }
+    .score-num { font-size: 4rem; font-weight: 800; color: var(--blue); line-height: 1; }
+    .score-stars { color: var(--gold); font-size: 1.4rem; margin: 0.25rem 0; }
+    .score-label { font-size: 0.82rem; color: var(--text-muted); }
+    .rating-bars { flex: 1; min-width: 200px; }
+    .rating-bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; font-size: 0.83rem; }
+    .bar-label { width: 30px; text-align: right; color: #374151; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 8px; background: #e5e7eb; border-radius: 50px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--gold); border-radius: 50px; transition: width 1s ease; }
+    .bar-pct { width: 35px; color: var(--text-muted); flex-shrink: 0; }
+    .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .review-card { border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+    .reviewer-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .reviewer-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .reviewer-info h5 { font-size: 0.88rem; font-weight: 700; color: var(--text); }
+    .reviewer-info span { font-size: 0.78rem; color: var(--text-muted); }
+    .review-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .review-text { font-size: 0.87rem; color: #374151; line-height: 1.7; }
+
+    /* ===== FAQ ===== */
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-question { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; cursor: pointer; user-select: none; font-size: 0.95rem; font-weight: 600; color: var(--text); transition: background .2s; }
+    .faq-question:hover { background: var(--bg); }
+    .faq-question.open { background: #eff6ff; color: var(--blue); border-bottom: 1px solid var(--border); }
+    .faq-chevron { font-size: 0.8rem; transition: transform .2s; color: var(--text-muted); }
+    .faq-question.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer { display: none; padding: 1rem 1.25rem; font-size: 0.9rem; color: #374151; line-height: 1.75; background: #fafafa; }
+    .faq-answer.open { display: block; }
+
+    /* ===== CTA BANNER ===== */
+    .cta-banner { background: linear-gradient(135deg, var(--blue-dark), var(--blue)); border-radius: var(--radius-lg); padding: 3rem 2.5rem; text-align: center; color: #fff; margin-bottom: 2rem; }
+    .cta-banner h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; margin-bottom: 0.75rem; }
+    .cta-banner p { color: rgba(255,255,255,.8); font-size: 1rem; margin-bottom: 1.75rem; }
+    .btn-enroll-cta { background: var(--gold); color: #fff; padding: 0.9rem 2.5rem; border-radius: 50px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: all .25s; display: inline-block; box-shadow: 0 4px 20px rgba(245,158,11,.4); }
+    .btn-enroll-cta:hover { background: var(--gold-dark); transform: translateY(-2px); }
+
+    /* ===== FOOTER ===== */
+    .academy-footer { background: #0a1628; color: rgba(255,255,255,.75); padding: 3rem 0 1.5rem; margin-top: 2rem; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 2.5rem; margin-bottom: 2rem; }
+    .footer-brand-name { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 0.6rem; font-family: 'Poppins', sans-serif; }
+    .footer-brand-name span { color: var(--gold); }
+    .footer-tagline { font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem; }
+    .footer-social { display: flex; gap: 0.5rem; }
+    .social-icon { width: 34px; height: 34px; background: rgba(255,255,255,.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: all .2s; text-decoration: none; color: #fff; }
+    .social-icon:hover { background: var(--gold); }
+    .footer-col h5 { font-size: 0.88rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col ul li { margin-bottom: 0.4rem; }
+    .footer-col ul li a { color: rgba(255,255,255,.65); font-size: 0.85rem; text-decoration: none; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-bottom { max-width: 1280px; margin: 0 auto; padding: 1rem 1.5rem 0; border-top: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; font-size: 0.82rem; color: rgba(255,255,255,.45); }
+    .footer-bottom a { color: rgba(255,255,255,.6); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* ===== MOBILE BOTTOM BAR ===== */
+    .mobile-enroll-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid var(--border); padding: 0.75rem 1.25rem; z-index: 9000; box-shadow: 0 -4px 20px rgba(0,0,0,.12); align-items: center; justify-content: space-between; gap: 0.75rem; }
+    .mobile-enroll-price { font-size: 1.1rem; font-weight: 800; color: var(--green); }
+    .mobile-enroll-price small { font-size: 0.82rem; color: var(--text-muted); text-decoration: line-through; font-weight: 400; margin-left: 0.3rem; }
+    .mobile-enroll-btn { background: var(--red); color: #fff; border: none; padding: 0.7rem 1.75rem; border-radius: 50px; font-size: 0.95rem; font-weight: 700; cursor: pointer; text-decoration: none; transition: all .2s; font-family: 'Poppins', sans-serif; }
+    .mobile-enroll-btn:hover { background: var(--red-dark); }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width: 1024px) {
+      .hero-layout { grid-template-columns: 1fr; }
+      .enroll-widget { display: none; }
+      .course-content-wrap { grid-template-columns: 1fr; }
+      .course-sidebar { display: none; }
+      .mobile-enroll-bar { display: flex; }
+      body { padding-bottom: 80px; }
+    }
+    @media(max-width: 768px) {
+      .learn-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .instructor-card { flex-direction: column; }
+      .reviews-overview { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width: 540px) {
+      .footer-inner { grid-template-columns: 1fr; }
+      .hero-cta-group { flex-direction: column; align-items: flex-start; }
+      .cta-banner { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="academy-header">
+    <div class="nav-wrap">
+      <a class="brand" href="academy.html">TIH <span>Academy</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="academy.html">Academy</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="certifications.html">Certifications</a></li>
+          <li><a href="instructors.html">Instructors</a></li>
+          <li><a href="academy-blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-auth">
+        <a href="student-dashboard.html" class="btn-ghost">Log In</a>
+        <a href="academy.html#enroll" class="btn-enroll-nav">Enroll Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- COURSE HERO -->
+  <section class="course-hero">
+    <!-- Breadcrumb inside hero -->
+    <div class="breadcrumb">
+      <div class="container">
+        <a href="index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="academy.html">Academy</a>
+        <span class="sep">›</span>
+        <a href="courses.html">Courses</a>
+        <span class="sep">›</span>
+        <span class="current">Computer Fundamentals</span>
+      </div>
+    </div>
+
+    <div class="hero-layout">
+      <div class="hero-content">
+        <span class="course-category-tag">Computer Fundamentals</span>
+        <h1>Complete Computer Literacy:<br>From Zero to Professional</h1>
+        <p class="course-short-desc">Master every essential computer skill from hardware basics to professional productivity tools. Designed for absolute beginners — no experience required, just bring your curiosity.</p>
+
+        <div class="hero-meta-row">
+          <div class="hero-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-num">4.9</span>
+            <span class="rating-count">(1,247 reviews)</span>
+          </div>
+          <span class="hero-students">8,400+ students enrolled</span>
+        </div>
+
+        <div class="hero-instructor-row">
+          <div class="instr-avatar">🧑‍💻</div>
+          <div class="instr-info">Created by <strong>Samuel Tolbert</strong> — Founder &amp; CEO, Tolbert Innovation Hub</div>
+        </div>
+
+        <div class="hero-details-row">
+          <span class="hero-detail"><span class="hero-detail-icon">🗓</span> Last updated: June 2026</span>
+          <span class="hero-detail"><span class="hero-detail-icon">🎥</span> 16 lessons</span>
+          <span class="hero-detail"><span class="hero-detail-icon">⏱</span> 24 hours total</span>
+          <span class="hero-detail"><span class="hero-detail-icon">📶</span> Beginner</span>
+          <span class="hero-detail"><span class="hero-detail-icon">🏆</span> Certificate included</span>
+        </div>
+
+        <div class="hero-cta-group">
+          <span class="free-badge">FREE</span>
+          <a href="course-player.html" class="btn-enroll-hero">
+            Enroll for Free →
+          </a>
+          <span class="price-crossed">was $99</span>
+        </div>
+      </div>
+
+      <!-- Enrollment widget (desktop only, shows in hero area via sticky) -->
+      <div class="enroll-widget">
+        <div class="widget-thumb">
+          <span class="widget-thumb-icon">💻</span>
+          <span class="widget-thumb-text">Preview this course</span>
+        </div>
+        <div class="widget-body">
+          <div class="widget-price-row">
+            <span class="widget-free">FREE</span>
+            <span class="widget-orig">$99</span>
+          </div>
+          <a href="course-player.html" class="btn-enroll-widget">Enroll for Free</a>
+          <div class="widget-includes">
+            <h4>This course includes:</h4>
+            <div class="widget-include-item">24 hours on-demand video</div>
+            <div class="widget-include-item">Verifiable digital certificate</div>
+            <div class="widget-include-item">Lifetime access</div>
+            <div class="widget-include-item">Access on mobile &amp; desktop</div>
+            <div class="widget-include-item">4 projects &amp; 2 quizzes</div>
+          </div>
+          <div class="widget-actions">
+            <button class="widget-action-btn">🔗 Share</button>
+            <button class="widget-action-btn">♡ Wishlist</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <div class="course-content-wrap">
+    <main class="course-main">
+
+      <!-- WHAT YOU'LL LEARN -->
+      <section class="content-section reveal">
+        <h2 class="section-title"><span>✅</span> What You'll Learn</h2>
+        <div class="learn-grid">
+          <div class="learn-item"><span class="learn-check">✓</span>Master computer hardware and software components</div>
+          <div class="learn-item"><span class="learn-check">✓</span>Navigate Windows and macOS confidently</div>
+          <div class="learn-item"><span class="learn-check">✓</span>Use Microsoft Office: Word, Excel &amp; PowerPoint</div>
+          <div class="learn-item"><span class="learn-check">✓</span>Browse the internet safely and securely</div>
+          <div class="learn-item"><span class="learn-check">✓</span>Send professional emails and manage files efficiently</div>
+          <div class="learn-item"><span class="learn-check">✓</span>Protect yourself from cyber threats and scams</div>
+          <div class="learn-item"><span class="learn-check">✓</span>Use cloud storage with Google Drive &amp; Dropbox</div>
+          <div class="learn-item"><span class="learn-check">✓</span>Build a professional digital CV and portfolio</div>
+        </div>
+      </section>
+
+      <!-- REQUIREMENTS -->
+      <section class="content-section reveal">
+        <h2 class="section-title"><span>📋</span> Requirements</h2>
+        <ul class="req-list">
+          <li>No prior computer knowledge needed — this course starts from absolute zero</li>
+          <li>A computer, laptop, or tablet with internet access</li>
+          <li>Willingness to learn, practice, and apply new skills</li>
+        </ul>
+      </section>
+
+      <!-- ABOUT THIS COURSE -->
+      <section class="content-section reveal">
+        <h2 class="section-title"><span>📖</span> About This Course</h2>
+        <div class="about-text">
+          <p>In today's digital world, computer literacy is no longer optional — it is the foundation of every professional career. Whether you are a student, a job seeker, a small business owner, or someone who simply wants to keep up with the modern world, this course gives you everything you need to use a computer confidently, professionally, and safely.</p>
+          <p>This course was designed specifically for learners in Liberia and across Africa who may be encountering computers, smartphones, and digital tools for the first time. Instructor Samuel Tolbert — founder of Tolbert Innovation Hub — built this curriculum from years of teaching technology to beginners in Monrovia, understanding the exact gaps and challenges African learners face. Every lesson is practical, step-by-step, and immediately applicable to real life.</p>
+          <p>By the end of this course, you will be able to set up a professional email, write a CV in Microsoft Word, use Excel for basic data tracking, navigate the web safely, and present your ideas in PowerPoint. You will also earn a digitally verifiable TIH Academy certificate to showcase your new skills to employers, universities, and clients.</p>
+        </div>
+      </section>
+
+      <!-- CURRICULUM -->
+      <section class="content-section reveal">
+        <h2 class="section-title"><span>📚</span> Course Curriculum</h2>
+        <div class="curriculum-summary">
+          <span><strong>4</strong> modules</span>
+          <span><strong>16</strong> lessons</span>
+          <span><strong>2h 29min</strong> total length</span>
+        </div>
+
+        <!-- Module 1 — expanded by default -->
+        <div class="module-accordion">
+          <div class="module-header open" onclick="toggleModule(this)" aria-expanded="true">
+            <div class="module-left">
+              <span class="module-icon">💻</span>
+              <div>
+                <div class="module-title">Module 1: Getting Started with Computers</div>
+                <div class="module-meta">4 lessons · 35 min</div>
+              </div>
+            </div>
+            <span class="module-chevron">▼</span>
+          </div>
+          <div class="module-lessons open">
+            <div class="lesson-item">
+              <span class="lesson-icon">▶</span>
+              <span class="lesson-title">1.1 What is a Computer?</span>
+              <span class="lesson-preview">Preview</span>
+              <span class="lesson-duration">5:20</span>
+            </div>
+            <div class="lesson-item">
+              <span class="lesson-icon">▶</span>
+              <span class="lesson-title">1.2 Parts of a Computer</span>
+              <span class="lesson-duration">8:45</span>
+            </div>
+            <div class="lesson-item">
+              <span class="lesson-icon">▶</span>
+              <span class="lesson-title">1.3 Understanding Operating Systems</span>
+              <span class="lesson-duration">10:12</span>
+            </div>
+            <div class="lesson-item">
+              <span class="lesson-icon">📝</span>
+              <span class="lesson-title">Quiz: Computer Basics</span>
+              <span class="lesson-duration">10 questions</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="module-accordion">
+          <div class="module-header" onclick="toggleModule(this)" aria-expanded="false">
+            <div class="module-left">
+              <span class="module-icon">🌐</span>
+              <div>
+                <div class="module-title">Module 2: Internet &amp; Digital Communication</div>
+                <div class="module-meta">4 lessons · 29 min</div>
+              </div>
+            </div>
+            <span class="module-chevron">▼</span>
+          </div>
+          <div class="module-lessons">
+            <div class="lesson-item">
+              <span class="lesson-icon">▶</span>
+              <span class="lesson-title">2.1 Using the Internet Safely</span>
+              <span class="lesson-duration">7:15</span>
+            </div>
+            <div class="lesson-item">
+              <span class="lesson-icon">▶</span>
+              <span class="lesson-title">2.2 Email &amp; Communication Tools</span>
+              <span class="lesson-duration">8:30</span>
+            </div>
+            <div class="lesson-item">
+              <span class="lesson-icon">▶</span>
+              <span class="lesson-title">2.3 Social Media for Professionals</span>
+              <span class="lesson-duration">6:20</span>
+            </div>
+            <div class="lesson-item">
+              <span class="lesson-icon">📝</span>
+              <span class="lesson-title">Quiz: Internet &amp; Digital Skills</span>
+              <span class="lesson-duration">10 questions</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="module-accordion">
+          <div class="module-header" onclick="toggleModule(this)" aria-expanded="false">
+            <div class="module-left">
+              <span class="module-icon">📊</span>
+              <div>
+                <div class="module-title">Module 3: Microsoft Office Productivity</div>
+                <div class="module-meta">4 lessons · 47 min</div>
+              </div>
+            </div>
+            <span class="module-chevron">▼</span>
+          </div>
+          <div class="module-lessons">
+            <div class="lesson-item">
+              <span class="lesson-icon">▶</span>
+              <span class="lesson-title">3.1 Introduction to Microsoft Word</span>
+              <span class="lesson-duration">12:00</span>
+            </div>
+            <div class="lesson-item">
+              <span class="lesson-icon">▶</span>
+              <span class="lesson-title">3.2 Excel Basics for Business</span>
+              <span class="lesson-duration">15:30</span>
+            </div>
+            <div class="lesson-item">
+              <span class="lesson-icon">▶</span>
+              <span class="lesson-title">3.3 Creating PowerPoint Presentations</span>
+              <span class="lesson-duration">10:45</span>
+            </div>
+            <div class="lesson-item">
+              <span class="lesson-icon">📁</span>
+              <span class="lesson-title">Project: Build a Professional CV in Word</span>
+              <span class="lesson-duration">Project</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 4 -->
+        <div class="module-accordion">
+          <div class="module-header" onclick="toggleModule(this)" aria-expanded="false">
+            <div class="module-left">
+              <span class="module-icon">🔒</span>
+              <div>
+                <div class="module-title">Module 4: Digital Safety &amp; Career Readiness</div>
+                <div class="module-meta">4 lessons · 38 min</div>
+              </div>
+            </div>
+            <span class="module-chevron">▼</span>
+          </div>
+          <div class="module-lessons">
+            <div class="lesson-item">
+              <span class="lesson-icon">▶</span>
+              <span class="lesson-title">4.1 Cybersecurity Essentials</span>
+              <span class="lesson-duration">8:10</span>
+            </div>
+            <div class="lesson-item">
+              <span class="lesson-icon">▶</span>
+              <span class="lesson-title">4.2 File Management &amp; Cloud Storage</span>
+              <span class="lesson-duration">7:50</span>
+            </div>
+            <div class="lesson-item">
+              <span class="lesson-icon">▶</span>
+              <span class="lesson-title">4.3 Career-Ready Digital Portfolio</span>
+              <span class="lesson-duration">10:20</span>
+            </div>
+            <div class="lesson-item">
+              <span class="lesson-icon">🏆</span>
+              <span class="lesson-title">Final Assessment &amp; Certificate</span>
+              <span class="lesson-duration">Assessment</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INSTRUCTOR -->
+      <section class="content-section reveal">
+        <h2 class="section-title"><span>🧑‍💻</span> Your Instructor</h2>
+        <div class="instructor-card">
+          <div class="instr-avatar-lg">🧑‍💻</div>
+          <div class="instr-details">
+            <div class="instr-name">Samuel Tolbert</div>
+            <div class="instr-title">Founder &amp; CEO — Tolbert Innovation Hub (TIH)</div>
+            <div class="instr-stats">
+              <span class="instr-stat"><span class="instr-stat-icon">⭐</span> 4.9 Instructor Rating</span>
+              <span class="instr-stat"><span class="instr-stat-icon">👥</span> 8,400 Students</span>
+              <span class="instr-stat"><span class="instr-stat-icon">📚</span> 3 Courses</span>
+            </div>
+            <div class="instr-bio">
+              <p>Samuel Tolbert is a technology entrepreneur, educator, and digital inclusion advocate based in Monrovia, Liberia. He founded Tolbert Innovation Hub — TIH — with a singular mission: to bridge the digital divide in Liberia and across West Africa by providing world-class technology education that is accessible, affordable, and contextually relevant.</p>
+              <p>With over a decade of experience teaching technology from grassroots community centers to professional training institutions, Samuel has developed a teaching style that breaks complex concepts down into simple, memorable lessons. He is passionate about empowering young Liberians to compete in the global digital economy — and this course reflects that passion in every lesson.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STUDENT REVIEWS -->
+      <section class="content-section reveal">
+        <h2 class="section-title"><span>⭐</span> Student Reviews</h2>
+        <div class="reviews-overview">
+          <div class="overall-score">
+            <div class="score-num">4.9</div>
+            <div class="score-stars">★★★★★</div>
+            <div class="score-label">Course Rating</div>
+          </div>
+          <div class="rating-bars">
+            <div class="rating-bar-row">
+              <span class="bar-label">5★</span>
+              <div class="bar-track"><div class="bar-fill" style="width:89%"></div></div>
+              <span class="bar-pct">89%</span>
+            </div>
+            <div class="rating-bar-row">
+              <span class="bar-label">4★</span>
+              <div class="bar-track"><div class="bar-fill" style="width:9%"></div></div>
+              <span class="bar-pct">9%</span>
+            </div>
+            <div class="rating-bar-row">
+              <span class="bar-label">3★</span>
+              <div class="bar-track"><div class="bar-fill" style="width:2%"></div></div>
+              <span class="bar-pct">2%</span>
+            </div>
+            <div class="rating-bar-row">
+              <span class="bar-label">2★</span>
+              <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+              <span class="bar-pct">0%</span>
+            </div>
+            <div class="rating-bar-row">
+              <span class="bar-label">1★</span>
+              <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+              <span class="bar-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="reviewer-row">
+              <div class="reviewer-avatar" style="background:#002868;">FK</div>
+              <div class="reviewer-info">
+                <h5>Fatima Kamara</h5>
+                <span>Monrovia, Liberia · May 2026</span>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">This course changed my life. I had never used a computer before, and now I can write a CV, send professional emails, and use Excel for my small business. The lessons are short and very easy to follow. Samuel explains everything so clearly!</p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer-row">
+              <div class="reviewer-avatar" style="background:#BF0A30;">JB</div>
+              <div class="reviewer-info">
+                <h5>Joseph Blamo</h5>
+                <span>Buchanan, Liberia · April 2026</span>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">I enrolled because I needed to learn Microsoft Word for my job application. Not only did I learn Word — I learned everything! The cybersecurity module alone was worth it. I already shared this course with 5 friends.</p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer-row">
+              <div class="reviewer-avatar" style="background:#10b981;">MK</div>
+              <div class="reviewer-info">
+                <h5>Mary Kolie</h5>
+                <span>Gbarnga, Liberia · March 2026</span>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Perfect for absolute beginners. I was scared of computers but this course made it easy and fun. The certificate I received is professional and I was able to add it to my job application. Got the job!</p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer-row">
+              <div class="reviewer-avatar" style="background:#7c3aed;">TS</div>
+              <div class="reviewer-info">
+                <h5>Thomas Sirleaf</h5>
+                <span>Harper, Maryland County · June 2026</span>
+              </div>
+            </div>
+            <div class="review-stars">★★★★☆</div>
+            <p class="review-text">Very well structured course. I already had some basic computer knowledge, so some parts were review for me, but the Microsoft Office module and digital portfolio project were excellent. Great value — especially at FREE!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="content-section reveal">
+        <h2 class="section-title"><span>❓</span> Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Is this course really free?
+            <span class="faq-chevron">▼</span>
+          </div>
+          <div class="faq-answer">
+            Yes — 100% free, forever. TIH Academy believes education should be accessible to every Liberian and African regardless of economic background. You pay nothing to enroll, complete the course, and earn your certificate. No hidden fees, no credit card required.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            How long do I have access to the course?
+            <span class="faq-chevron">▼</span>
+          </div>
+          <div class="faq-answer">
+            Once enrolled, you have lifetime access to all course materials including videos, quizzes, and project files. We regularly update the content to keep it current — and you'll get those updates automatically at no extra cost.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Will I receive a certificate?
+            <span class="faq-chevron">▼</span>
+          </div>
+          <div class="faq-answer">
+            Yes! Upon completing all lessons and passing the final assessment, you'll receive a digitally verifiable TIH Academy certificate. You can share it on LinkedIn, include it in job applications, and employers can verify its authenticity using our certificate verification tool.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Can I access the course on my phone?
+            <span class="faq-chevron">▼</span>
+          </div>
+          <div class="faq-answer">
+            Absolutely. The TIH Academy platform is fully mobile-optimized. You can watch lessons, complete quizzes, and track your progress from any smartphone, tablet, laptop, or desktop computer — as long as you have an internet connection.
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA BANNER -->
+      <div class="cta-banner reveal">
+        <h2>Ready to Start Your Tech Journey?</h2>
+        <p>Join 8,400+ students who have already transformed their careers with this free course. No experience needed — just your desire to learn.</p>
+        <a href="course-player.html" class="btn-enroll-cta">Enroll for Free Today →</a>
+      </div>
+
+    </main>
+
+    <!-- SIDEBAR (desktop, sticky) -->
+    <aside class="course-sidebar">
+      <div class="enroll-widget">
+        <div class="widget-thumb">
+          <span class="widget-thumb-icon">💻</span>
+          <span class="widget-thumb-text">Start watching today</span>
+        </div>
+        <div class="widget-body">
+          <div class="widget-price-row">
+            <span class="widget-free">FREE</span>
+            <span class="widget-orig">$99</span>
+          </div>
+          <a href="course-player.html" class="btn-enroll-widget">Enroll for Free</a>
+          <div class="widget-includes">
+            <h4>This course includes:</h4>
+            <div class="widget-include-item">24 hours on-demand video</div>
+            <div class="widget-include-item">Verifiable digital certificate</div>
+            <div class="widget-include-item">Lifetime access</div>
+            <div class="widget-include-item">Access on mobile &amp; desktop</div>
+            <div class="widget-include-item">4 projects &amp; 2 quizzes</div>
+          </div>
+          <div class="widget-actions">
+            <button class="widget-action-btn">🔗 Share</button>
+            <button class="widget-action-btn">♡ Wishlist</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- MOBILE BOTTOM BAR -->
+  <div class="mobile-enroll-bar">
+    <div>
+      <div class="mobile-enroll-price">FREE <small>$99</small></div>
+    </div>
+    <a href="course-player.html" class="mobile-enroll-btn">Enroll for Free</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="academy-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">TIH <span>Academy</span></div>
+        <p class="footer-tagline">Empowering Africa through digital skills, innovation, technology, leadership, and entrepreneurship.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon" aria-label="Facebook">f</a>
+          <a href="#" class="social-icon" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+          <a href="#" class="social-icon" aria-label="YouTube">▶</a>
+          <a href="#" class="social-icon" aria-label="Instagram">◉</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Learn</h5>
+        <ul>
+          <li><a href="courses.html">All Courses</a></li>
+          <li><a href="certifications.html">Certifications</a></li>
+          <li><a href="academy.html#pathways">Learning Paths</a></li>
+          <li><a href="academy.html#categories">Categories</a></li>
+          <li><a href="student-dashboard.html">My Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About TIH</a></li>
+          <li><a href="instructors.html">Instructors</a></li>
+          <li><a href="academy-blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="grants.html">Grants</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="academy.html#faq">FAQ</a></li>
+          <li><a href="certificate-verify.html">Verify Certificate</a></li>
+          <li><a href="contact.html">Help Center</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tolbert Innovation Hub Academy. All rights reserved.</span>
+      <span>Monrovia, Liberia · <a href="mailto:academy@tolbertinnovationhub.org">academy@tolbertinnovationhub.org</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Module accordion
+    function toggleModule(header) {
+      const lessons = header.nextElementSibling;
+      const isOpen = header.classList.contains('open');
+      header.classList.toggle('open', !isOpen);
+      header.setAttribute('aria-expanded', !isOpen);
+      lessons.classList.toggle('open', !isOpen);
+    }
+
+    // FAQ accordion
+    function toggleFaq(question) {
+      const answer = question.nextElementSibling;
+      const isOpen = question.classList.contains('open');
+      // Close all other FAQs
+      document.querySelectorAll('.faq-question.open').forEach(function(q) {
+        q.classList.remove('open');
+        q.nextElementSibling.classList.remove('open');
+      });
+      if (!isOpen) {
+        question.classList.add('open');
+        answer.classList.add('open');
+      }
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  </script>
+</body>
+</html>
