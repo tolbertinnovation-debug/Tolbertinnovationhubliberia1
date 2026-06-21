@@ -814,6 +814,12 @@
       document.getElementById('navLinks').classList.toggle('open');
     });
 
+    // Back to top
+    window.addEventListener('scroll', function() {
+      var btn = document.getElementById('backToTop');
+      if (btn) btn.classList.toggle('show', window.scrollY > 400);
+    });
+
     // Mobile filter drawer
     // Back to top
     window.addEventListener('scroll', function() {
