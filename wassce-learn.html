@@ -379,85 +379,114 @@
     }
 
     /* ==========================================
-       VIDEOS TAB
+       VIDEOS TAB — EMBEDDED PLAYERS
     ========================================== */
     .video-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
     }
-    .video-search-card {
+    .video-embed-card {
       background: white;
       border: 1px solid #e5e7eb;
       border-radius: 12px;
-      padding: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-      transition: box-shadow 0.2s, border-color 0.2s;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
     }
-    .video-search-card:hover {
+    .video-embed-card:hover {
       box-shadow: 0 4px 18px rgba(0,40,104,0.1);
-      border-color: #c7d2fe;
     }
-    .video-card-topic {
-      font-weight: 700;
-      color: #1f2937;
-      font-size: 0.93rem;
-      line-height: 1.4;
-    }
-    .video-search-btns {
+    .video-placeholder {
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 1.5rem 1rem;
+      background: linear-gradient(135deg, #001440, #002868);
+      color: white;
+      cursor: pointer;
+      min-height: 160px;
+      transition: background 0.2s;
     }
-    .video-btn {
+    .video-placeholder:hover {
+      background: linear-gradient(135deg, #002868, #1a3d8a);
+    }
+    .video-play-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.5);
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 0.85rem;
-      background: #f0f4ff;
-      border: 1px solid #c7d2fe;
-      border-radius: 8px;
-      color: #002868;
-      font-size: 0.83rem;
-      font-weight: 600;
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      justify-content: center;
+      font-size: 1.3rem;
+      transition: background 0.2s;
     }
-    .video-btn:hover {
-      background: #002868;
-      color: white;
-      border-color: #002868;
-    }
-    .video-btn .yt-dot {
-      width: 8px;
-      height: 8px;
+    .video-placeholder:hover .video-play-icon {
       background: #FF0000;
-      border-radius: 2px;
-      flex-shrink: 0;
+      border-color: #FF0000;
     }
-    .video-btn:hover .yt-dot {
-      background: #ffaaaa;
+    .video-topic-label {
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-align: center;
+      margin: 0;
+      line-height: 1.4;
     }
-    .video-inline-link {
+    .video-load-hint {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.65);
+      margin: 0;
+    }
+    .video-iframe-wrap {
+      padding: 0.75rem;
+    }
+    .video-iframe-wrap p {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin: 0 0 0.5rem;
+    }
+    .video-iframe-wrap iframe {
+      width: 100%;
+      height: 195px;
+      border: none;
+      border-radius: 8px;
+      display: block;
+    }
+    .video-inline-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      font-size: 0.83rem;
+      font-size: 0.82rem;
       color: #DC2626;
       font-weight: 600;
       text-decoration: none;
-      padding: 0.3rem 0.7rem;
+      padding: 0.35rem 0.75rem;
       background: #fff5f5;
       border: 1px solid #fecaca;
       border-radius: 6px;
+      cursor: pointer;
       transition: background 0.15s;
       margin-top: 0.5rem;
+      font-family: 'Inter', sans-serif;
     }
-    .video-inline-link:hover {
+    .video-inline-btn:hover {
       background: #fee2e2;
+    }
+    .accordion-inline-video {
+      margin-top: 0.75rem;
+      border-radius: 8px;
+      overflow: hidden;
+      display: none;
+    }
+    .accordion-inline-video iframe {
+      width: 100%;
+      height: 215px;
+      border: none;
+      display: block;
     }
   </style>
 </head>
@@ -878,9 +907,10 @@
 
           var ytQ = encodeURIComponent('WASSCE ' + subject.name + ' ' + t.name + ' lesson');
           bodyHTML +=
-            '<a href="https://www.youtube.com/results?search_query=' + ytQ + '" target="_blank" rel="noopener noreferrer" class="video-inline-link">' +
-            '<span style="color:#FF0000; font-size:1rem;">&#9654;</span> Watch on YouTube' +
-            '</a>';
+            '<button class="video-inline-btn" onclick="window._tih.toggleInlineVideo(this,\'' + ytQ + '\')">' +
+            '&#9654; Watch Lesson Video' +
+            '</button>' +
+            '<div class="accordion-inline-video"></div>';
 
           bodyHTML +=
             '<button class="mark-complete-btn" id="complete-btn-' + t.id + '"' +
@@ -919,28 +949,53 @@
         }
       }
 
-      /* ---- Videos tab ---- */
+      /* ---- Videos tab — embedded YouTube players ---- */
       function renderVideos(subject) {
         var grid = document.getElementById('videos-grid');
         if (!grid || !subject || !subject.topics) return;
         var sName = subject.name;
         var html = '';
-        subject.topics.forEach(function (t) {
-          var base = 'WASSCE ' + sName + ' ' + t.name;
-          var q1 = encodeURIComponent(base + ' lesson explained');
-          var q2 = encodeURIComponent(base + ' past questions solved');
-          var q3 = encodeURIComponent(base + ' full tutorial');
+        subject.topics.forEach(function (t, i) {
+          var query = encodeURIComponent('WASSCE ' + sName + ' ' + t.name + ' lesson');
           html +=
-            '<div class="video-search-card">' +
-            '<div class="video-card-topic">' + (t.icon || '📚') + ' ' + escapeHTML(t.name) + '</div>' +
-            '<div class="video-search-btns">' +
-            '<a href="https://www.youtube.com/results?search_query=' + q1 + '" target="_blank" rel="noopener noreferrer" class="video-btn"><span class="yt-dot"></span> Lesson Explained</a>' +
-            '<a href="https://www.youtube.com/results?search_query=' + q2 + '" target="_blank" rel="noopener noreferrer" class="video-btn"><span class="yt-dot"></span> Past Questions Solved</a>' +
-            '<a href="https://www.youtube.com/results?search_query=' + q3 + '" target="_blank" rel="noopener noreferrer" class="video-btn"><span class="yt-dot"></span> Full Tutorial</a>' +
+            '<div class="video-embed-card" id="vcard-' + i + '">' +
+            '<div class="video-placeholder" onclick="window._tih.loadEmbedVideo(' + i + ',\'' + query + '\',\'' + escapeHTML(t.name) + '\')">' +
+            '<div class="video-play-icon">&#9654;</div>' +
+            '<p class="video-topic-label">' + (t.icon || '📚') + ' ' + escapeHTML(t.name) + '</p>' +
+            '<p class="video-load-hint">Tap to watch lesson video</p>' +
             '</div>' +
             '</div>';
         });
         grid.innerHTML = html;
+      }
+
+      /* ---- Load embedded YouTube video on click ---- */
+      function loadEmbedVideo(idx, query, label) {
+        var card = document.getElementById('vcard-' + idx);
+        if (!card) return;
+        card.innerHTML =
+          '<div class="video-iframe-wrap">' +
+          '<p>' + label + '</p>' +
+          '<iframe src="https://www.youtube.com/embed?listType=search&list=' + query + '&controls=1&rel=0" ' +
+          'allowfullscreen allow="autoplay; encrypted-media" loading="lazy"></iframe>' +
+          '</div>';
+      }
+
+      /* ---- Toggle inline video in accordion ---- */
+      function toggleInlineVideo(btn, query) {
+        var wrap = btn.nextElementSibling;
+        if (!wrap) return;
+        if (wrap.style.display === 'block') {
+          wrap.style.display = 'none';
+          btn.innerHTML = '&#9654; Watch Lesson Video';
+        } else {
+          if (!wrap.querySelector('iframe')) {
+            wrap.innerHTML = '<iframe src="https://www.youtube.com/embed?listType=search&list=' + query + '&controls=1&rel=0" ' +
+              'allowfullscreen allow="autoplay; encrypted-media" loading="lazy"></iframe>';
+          }
+          wrap.style.display = 'block';
+          btn.innerHTML = '&#9650; Hide Video';
+        }
       }
 
       /* ---- Mark topic complete ---- */
@@ -1311,7 +1366,9 @@
         nextMCQ: nextMCQ,
         toggleTheoryAnswer: toggleTheoryAnswer,
         togglePastAnswer: togglePastAnswer,
-        switchTab: switchTab
+        switchTab: switchTab,
+        loadEmbedVideo: loadEmbedVideo,
+        toggleInlineVideo: toggleInlineVideo
       };
 
       /* ---- DOM ready ---- */
