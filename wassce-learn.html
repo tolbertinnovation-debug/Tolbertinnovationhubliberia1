@@ -906,8 +906,9 @@
           }
 
           var ytQ = encodeURIComponent('WASSCE ' + subject.name + ' ' + t.name + ' lesson');
+          var ytId = t.videoId || '';
           bodyHTML +=
-            '<button class="video-inline-btn" onclick="window._tih.toggleInlineVideo(this,\'' + ytQ + '\')">' +
+            '<button class="video-inline-btn" onclick="window._tih.toggleInlineVideo(this,\'' + ytQ + '\',\'' + ytId + '\')">' +
             '&#9654; Watch Lesson Video' +
             '</button>' +
             '<div class="accordion-inline-video"></div>';
@@ -957,9 +958,10 @@
         var html = '';
         subject.topics.forEach(function (t, i) {
           var query = encodeURIComponent('WASSCE ' + sName + ' ' + t.name + ' lesson');
+          var vid = t.videoId || '';
           html +=
             '<div class="video-embed-card" id="vcard-' + i + '">' +
-            '<div class="video-placeholder" onclick="window._tih.loadEmbedVideo(' + i + ',\'' + query + '\',\'' + escapeHTML(t.name) + '\')">' +
+            '<div class="video-placeholder" onclick="window._tih.loadEmbedVideo(' + i + ',\'' + query + '\',\'' + escapeHTML(t.name) + '\',\'' + vid + '\')">' +
             '<div class="video-play-icon">&#9654;</div>' +
             '<p class="video-topic-label">' + (t.icon || '📚') + ' ' + escapeHTML(t.name) + '</p>' +
             '<p class="video-load-hint">Tap to watch lesson video</p>' +
@@ -970,19 +972,22 @@
       }
 
       /* ---- Load embedded YouTube video on click ---- */
-      function loadEmbedVideo(idx, query, label) {
+      function loadEmbedVideo(idx, query, label, videoId) {
         var card = document.getElementById('vcard-' + idx);
         if (!card) return;
+        var src = videoId
+          ? 'https://www.youtube.com/embed/' + videoId + '?controls=1&rel=0'
+          : 'https://www.youtube.com/embed?listType=search&list=' + query + '&controls=1&rel=0';
         card.innerHTML =
           '<div class="video-iframe-wrap">' +
           '<p>' + label + '</p>' +
-          '<iframe src="https://www.youtube.com/embed?listType=search&list=' + query + '&controls=1&rel=0" ' +
+          '<iframe src="' + src + '" ' +
           'allowfullscreen allow="autoplay; encrypted-media" loading="lazy"></iframe>' +
           '</div>';
       }
 
       /* ---- Toggle inline video in accordion ---- */
-      function toggleInlineVideo(btn, query) {
+      function toggleInlineVideo(btn, query, videoId) {
         var wrap = btn.nextElementSibling;
         if (!wrap) return;
         if (wrap.style.display === 'block') {
@@ -990,7 +995,10 @@
           btn.innerHTML = '&#9654; Watch Lesson Video';
         } else {
           if (!wrap.querySelector('iframe')) {
-            wrap.innerHTML = '<iframe src="https://www.youtube.com/embed?listType=search&list=' + query + '&controls=1&rel=0" ' +
+            var src = videoId
+              ? 'https://www.youtube.com/embed/' + videoId + '?controls=1&rel=0'
+              : 'https://www.youtube.com/embed?listType=search&list=' + query + '&controls=1&rel=0';
+            wrap.innerHTML = '<iframe src="' + src + '" ' +
               'allowfullscreen allow="autoplay; encrypted-media" loading="lazy"></iframe>';
           }
           wrap.style.display = 'block';
