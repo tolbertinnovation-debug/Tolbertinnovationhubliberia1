@@ -309,15 +309,47 @@ window.WASSCE_SUBJECTS = {
         name: 'Comprehension & Summary',
         icon: '📖',
         lessonNotes: `<h4>Reading Comprehension</h4>
-<p>Comprehension tests your ability to read a passage carefully and answer questions based on it. Key strategies: read the passage fully before answering, identify the main idea of each paragraph, note key words in questions, and always refer back to the passage for support.</p>
-<p><strong>Types of questions:</strong></p>
+<p>Comprehension tests your ability to understand a written passage and respond accurately to questions based on it. In WASSCE English Language, the comprehension section carries significant marks and assesses whether you can read critically, extract meaning, identify tone, and summarise ideas clearly. Strong comprehension skills are built through consistent practice and a disciplined reading strategy.</p>
+
+<h4>Step-by-Step Reading Strategy</h4>
 <ul>
-  <li><strong>Literal questions:</strong> answers are directly stated in the passage. Find the exact sentence or phrase.</li>
-  <li><strong>Inferential questions:</strong> answers require reading between the lines — understanding what is implied but not directly stated.</li>
-  <li><strong>Vocabulary questions:</strong> finding the meaning of words as used in context.</li>
+  <li><strong>Step 1 - Skim first:</strong> Read the passage quickly to get a general idea of the topic, structure, and tone. Do not stop at difficult words during this phase.</li>
+  <li><strong>Step 2 - Read the questions:</strong> Before your careful reading, go through all the questions so you know what information to look for.</li>
+  <li><strong>Step 3 - Read carefully:</strong> Now read the passage slowly and attentively. Underline or note key ideas, names, dates, and opinions.</li>
+  <li><strong>Step 4 - Locate evidence:</strong> When answering, return to the specific paragraph or sentence that contains your answer. Never answer from memory alone.</li>
 </ul>
-<h4>Summary Writing</h4>
-<p>In summary questions, you are asked to re-state the key ideas of a passage (or part of it) in your own words, within a specified word limit. Steps: (1) Read the passage and identify points relevant to the question. (2) List the main points only — no examples, quotations or irrelevant details. (3) Write in continuous prose (not bullet points unless asked). (4) Use your own words as much as possible. (5) Count your words and stay within the limit. Penalties apply for exceeding the word limit. Do not begin with "The passage says..." — begin directly.</p>`,
+
+<h4>Types of Questions and How to Answer Them</h4>
+<p><strong>Literal questions</strong> ask for information stated directly in the passage. The answer is clearly written in the text. You simply need to identify and restate it in your own words. Avoid copying word-for-word; rephrase the answer while keeping the meaning.</p>
+<p><strong>Inferential questions</strong> require you to read between the lines. The answer is not stated directly but can be deduced from clues in the text. Look at what the writer implies, what is suggested by the choice of words, or what logically follows from the information given.</p>
+<p><strong>Vocabulary-in-context questions</strong> ask for the meaning of a word or phrase as it is used in the passage. Do not give a general dictionary definition. Consider how the word functions in its sentence and test your answer by substituting it back into the sentence.</p>
+<p><strong>Evaluative and critical questions</strong> ask about the writer's purpose, tone, attitude, or the effectiveness of an argument or expression. These require you to think beyond the content. Ask yourself: Why did the writer write this? What feeling does the passage create? Support your evaluation with specific examples from the text.</p>
+
+<h4>Identifying Tone and Mood</h4>
+<p><strong>Tone</strong> refers to the writer's attitude toward the subject or audience. It can be described as formal, informal, sarcastic, humorous, critical, sympathetic, persuasive, or neutral. Identify tone by looking at word choice (diction), sentence structure, and the overall message.</p>
+<p><strong>Mood</strong> refers to the atmosphere or feeling the passage creates in the reader. A passage might have a tense, cheerful, melancholic, or suspenseful mood. To identify tone, ask: "How does the writer feel about this topic?" To identify mood, ask: "How does this passage make me feel as a reader?"</p>
+
+<h4>Summary Writing: Step-by-Step Process</h4>
+<p>Summary writing is one of the most marks-rich sections. It tests your ability to identify the most important points in a passage and present them concisely.</p>
+<ul>
+  <li><strong>Step 1 - Identify relevant points:</strong> Read the passage and underline key ideas that relate directly to the summary question. Ignore illustrative examples, repetitions, and minor details.</li>
+  <li><strong>Step 2 - List your points:</strong> Write out the main points in note form before drafting. Aim for the number of points the question specifies.</li>
+  <li><strong>Step 3 - Write in continuous prose:</strong> Your summary must be written in full sentences and flowing paragraphs, not bullet points. Each point should connect smoothly to the next.</li>
+  <li><strong>Step 4 - Use your own words:</strong> Do not lift sentences directly from the passage. Paraphrase every point. Copying attracts penalties in WASSCE marking.</li>
+  <li><strong>Step 5 - Stay within the word limit:</strong> Most WASSCE summaries specify a word limit (e.g. "in not more than 120 words"). Count your words carefully. Write your word count at the end. Exceeding the limit leads to deductions.</li>
+  <li><strong>Step 6 - No personal opinions:</strong> A summary reflects only the writer's ideas. Avoid phrases like "I think" or "In my opinion."</li>
+</ul>
+
+<h4>Common Pitfalls to Avoid</h4>
+<ul>
+  <li>Copying sentences directly from the passage without paraphrasing.</li>
+  <li>Answering vocabulary questions with a general definition instead of a context-specific meaning.</li>
+  <li>Writing personal opinions in a summary instead of sticking to the writer's ideas.</li>
+  <li>Ignoring the word limit and writing excessively.</li>
+  <li>Misidentifying tone by confusing the subject matter with the writer's attitude (a passage about violence can still have a calm, analytical tone).</li>
+  <li>Failing to use evidence from the text when answering evaluative questions.</li>
+  <li>Rushing the reading stage and missing key details essential for accurate answers.</li>
+</ul>`,
         keyPoints: [
           'Read the whole passage before answering; always refer back to the text for evidence',
           'Literal questions have direct answers in the text; inferential questions require deduction from context',
@@ -358,23 +390,59 @@ window.WASSCE_SUBJECTS = {
         id: 'essay_writing', videoId: 'Z9AqetXxkRA',
         name: 'Essay Writing',
         icon: '✍️',
-        lessonNotes: `<h4>Types of Essays</h4>
-<p>WASSCE Paper 2 requires you to write a formal composition. Common types include:</p>
-<ul>
-  <li><strong>Argumentative/discursive essay:</strong> presents a point of view supported by reasons and evidence; may consider both sides before reaching a conclusion.</li>
-  <li><strong>Expository essay:</strong> explains a topic, gives information or how-to instructions.</li>
-  <li><strong>Narrative essay:</strong> tells a story — personal, imaginative or creative.</li>
-  <li><strong>Descriptive essay:</strong> describes a person, place, event or thing vividly.</li>
-</ul>
+        lessonNotes: `<h4>Types of Essays in WASSCE</h4>
+<p>Essay writing is a major component of WASSCE English Language. Understanding the different types of essays you may be asked to write is the first step to scoring high marks. Each type has its own purpose, structure, and language style.</p>
+
+<p><strong>Argumentative or Discursive Essay:</strong> This type requires you to present an argument on a given topic. In a discursive essay, you present both sides of an argument fairly before reaching a balanced conclusion. In a one-sided argumentative essay, you defend a particular position throughout. Always state your position clearly in the introduction and support each point with logical reasoning and examples. Avoid emotional language; rely on facts and structured reasoning.</p>
+
+<p><strong>Expository Essay:</strong> An expository essay explains, informs, or analyses a topic. You are not arguing for or against; you are presenting information clearly and objectively. Use facts, definitions, examples, and explanations. This type is common in questions that begin with "Explain the causes of..." or "Discuss the effects of..."</p>
+
+<p><strong>Narrative Essay:</strong> A narrative essay tells a story, often based on a real or imagined personal experience. It should have a clear beginning, middle, and end. Use descriptive language to bring events to life. Include dialogue where appropriate, and ensure there is a point or lesson that emerges. Maintain a consistent point of view (usually first person: "I").</p>
+
+<p><strong>Descriptive Essay:</strong> A descriptive essay paints a detailed picture of a person, place, object, or event. The goal is to engage the reader's senses. Use vivid adjectives, precise verbs, and figurative language (similes, metaphors) to create a strong mental image. Organise your description logically, for example, from general to specific, or from one end of a scene to another.</p>
+
+<p><strong>Informal vs Formal Register:</strong> Register refers to the level of formality in your language. <strong>Formal register</strong> uses complete sentences, standard grammar, no slang, and polished vocabulary. It is used for argumentative, expository, and most discursive essays. <strong>Informal register</strong> may use a more conversational tone and is sometimes appropriate in narrative and personal essays.</p>
+
 <h4>Essay Structure</h4>
-<p>Every essay needs three main sections:</p>
+<p>Every well-written WASSCE essay must have three clear sections: an introduction, a body, and a conclusion. A disorganised essay loses marks even when the ideas are good.</p>
+
+<p><strong>Introduction:</strong> Begin with a hook that grabs the reader's attention - a striking statement, a relevant question, a short anecdote, or a thought-provoking fact. Follow with a brief background to the topic, then end with a clear <strong>thesis statement</strong> that states your main argument or purpose.</p>
+
+<p><strong>Body Paragraphs:</strong> Each paragraph must deal with one main idea only. The structure of a strong body paragraph is: <strong>topic sentence</strong> (states the main idea) + <strong>supporting details</strong> (explanation, evidence) + <strong>example</strong> (a specific illustration) + <strong>link</strong> (connecting back to the thesis or leading to the next point). Avoid stuffing multiple unrelated ideas into one paragraph.</p>
+
+<p><strong>Conclusion:</strong> Do not introduce new ideas in the conclusion. Restate your thesis in different words, briefly summarise the key points, and end with a memorable closing statement. The closing sentence should leave a strong impression on the examiner.</p>
+
+<h4>Planning Your Essay</h4>
+<p>Spending even 30 to 60 seconds planning before you write leads to a more organised and higher-scoring essay. Jot down your main points, decide on the order, and identify any examples you want to use. A plan prevents going off-topic, forgetting important points, or running out of ideas halfway through.</p>
+
+<h4>Language Features to Use</h4>
 <ul>
-  <li><strong>Introduction:</strong> engage the reader, introduce the topic, state your thesis/main point. Avoid starting with "I am going to write about..."</li>
-  <li><strong>Body:</strong> develop your points in separate paragraphs. Each paragraph should have one main idea (topic sentence), supporting details/examples, and a link to the next paragraph.</li>
-  <li><strong>Conclusion:</strong> summarise your main points and give a final thought or call to action. Do not introduce new points.</li>
+  <li><strong>Sentence variety:</strong> Mix short, punchy sentences with longer, more complex ones. This creates rhythm and shows grammatical range.</li>
+  <li><strong>Transition words:</strong> Use linking words to connect ideas smoothly. Examples: <strong>however, furthermore, in addition, consequently, on the other hand, therefore, as a result, nevertheless, in conclusion.</strong></li>
+  <li><strong>Varied vocabulary:</strong> Avoid repeating the same words. Use synonyms and precise vocabulary to demonstrate language richness.</li>
+  <li><strong>Active voice:</strong> Prefer active voice ("The government launched a programme") over passive voice where possible for directness and clarity.</li>
 </ul>
-<h4>Language and Style</h4>
-<p>Use varied vocabulary and sentence structures. Avoid repetition. Maintain the appropriate register (formal for argumentative/expository, may be informal for narrative). Punctuate correctly and spell carefully. Target: at least 450 words for a WASSCE essay question.</p>`,
+
+<h4>Dos and Don'ts for WASSCE Essays</h4>
+<ul>
+  <li><strong>Do</strong> read the essay question carefully and answer exactly what is asked.</li>
+  <li><strong>Do</strong> write a clear, distinct introduction and conclusion.</li>
+  <li><strong>Do</strong> use paragraphs consistently throughout your essay.</li>
+  <li><strong>Do</strong> support every argument with a reason or example.</li>
+  <li><strong>Do not</strong> write in bullet points in an essay (unless it is a report or letter).</li>
+  <li><strong>Do not</strong> use slang, abbreviations (like "cos", "b/c"), or text-message language.</li>
+  <li><strong>Do not</strong> go off-topic by discussing issues not related to the question.</li>
+  <li><strong>Do not</strong> write a very long introduction that leaves little space for the body and conclusion.</li>
+</ul>
+
+<h4>Common Mistakes to Avoid</h4>
+<ul>
+  <li><strong>Weak or missing introduction:</strong> Starting the essay with "This essay is about..." is uninspiring. Take the opportunity to impress the examiner from the first line.</li>
+  <li><strong>No conclusion:</strong> Many students run out of time or forget the conclusion. It is essential. Even two or three strong sentences are better than none.</li>
+  <li><strong>Going off-topic:</strong> Stay focused on the question throughout. Re-read the question after every paragraph if necessary.</li>
+  <li><strong>One-paragraph essays:</strong> Writing everything in one long block of text shows poor organisation and loses marks for structure.</li>
+  <li><strong>Tense inconsistency:</strong> Choose a tense and maintain it throughout. Switching between past and present tense randomly is a common error.</li>
+</ul>`,
         keyPoints: [
           'Argumentative: take a position and support it with reasons/evidence; expository: inform and explain',
           'Essay structure: Introduction (thesis) → Body paragraphs (one idea each) → Conclusion (no new points)',
@@ -415,22 +483,65 @@ window.WASSCE_SUBJECTS = {
         id: 'letter_report_writing', videoId: 'U_c-ZkV460E',
         name: 'Letter & Report Writing',
         icon: '✉️',
-        lessonNotes: `<h4>Formal Letters</h4>
-<p>A formal letter is written to an official, institution or stranger in a professional context. Layout:</p>
+        lessonNotes: `<h4>Formal Letter Writing</h4>
+<p>Formal letters are written to people in official capacities: employers, government officials, school authorities, newspaper editors, or organisations. They follow a strict format and must use formal, polished language throughout. In WASSCE, marks are awarded for both format and content, so every part of the letter structure matters.</p>
+
+<h4>The Eight Parts of a Formal Letter</h4>
 <ul>
-  <li>Writer's address (top right)</li>
-  <li>Date (below writer's address)</li>
-  <li>Recipient's name/title and address (left)</li>
-  <li>Salutation: "Dear Sir/Madam," or "Dear Mr/Mrs [Name],"</li>
-  <li>Heading/subject (optional but recommended): underlined or in capitals</li>
-  <li>Body: formal language, well-structured paragraphs</li>
-  <li>Complimentary close: "Yours faithfully," (if salutation was Dear Sir/Madam) or "Yours sincerely," (if named)</li>
-  <li>Writer's signature and printed name</li>
+  <li><strong>1. Writer's address:</strong> Written at the top right-hand corner of the page. Include the house number, street name, town/city, and state or country. Do not write your name here.</li>
+  <li><strong>2. Date:</strong> Written below the writer's address, still on the right side. Write the date in full: for example, 15th June, 2025 or June 15, 2025. Do not abbreviate.</li>
+  <li><strong>3. Receiver's address:</strong> Written on the left side of the page, below the date. Include the recipient's title, name (if known), and full official address.</li>
+  <li><strong>4. Salutation:</strong> Use <strong>Dear Sir</strong> or <strong>Dear Madam</strong> if you do not know the recipient's name. Use <strong>Dear Mr. [Surname]</strong> or <strong>Dear Mrs./Ms. [Surname]</strong> if you know the name. Never use first names in a formal letter salutation.</li>
+  <li><strong>5. Subject heading:</strong> A brief, clear title that summarises the purpose of the letter. It is written after the salutation and must be <strong>underlined</strong>. For example: Application for the Post of Senior Accountant.</li>
+  <li><strong>6. Body of the letter:</strong> Three sections: the <strong>introduction</strong> states who you are and the purpose of writing; the <strong>main body</strong> elaborates on your points clearly, using separate paragraphs for each main idea; the <strong>conclusion</strong> summarises your request and may include a polite call to action.</li>
+  <li><strong>7. Complimentary close:</strong> Use <strong>Yours faithfully</strong> when you opened with "Dear Sir/Madam." Use <strong>Yours sincerely</strong> when you opened with the recipient's name. Only the first word is capitalised.</li>
+  <li><strong>8. Signature and full name:</strong> Sign above your full name. In WASSCE, write a fictitious name; do not use your real name.</li>
 </ul>
-<h4>Informal Letters</h4>
-<p>Written to a friend or family member. Include: writer's address (top right), date, salutation ("Dear [First Name],"), conversational body paragraphs, closing ("Your friend," or "With love,"), and signature.</p>
-<h4>Reports</h4>
-<p>A report presents factual information in an organized manner. Structure: (1) Title/Heading, (2) Introduction (purpose, scope), (3) Findings (body — use numbered sections or subheadings), (4) Conclusion/Recommendations, (5) Name and date. Use formal, objective language. Avoid first-person opinion unless it is a personal report.</p>`,
+
+<h4>Types of Formal Letters</h4>
+<ul>
+  <li><strong>Letter of application:</strong> Written to apply for a job, scholarship, or admission. State the position you are applying for, your qualifications, and why you are suitable. Mention any supporting documents.</li>
+  <li><strong>Complaint letter:</strong> Written to report a problem or express dissatisfaction. Be firm but polite. State the problem clearly, provide relevant details, and request a resolution.</li>
+  <li><strong>Request letter:</strong> Written to ask for something, such as a transfer, information, or permission. Be specific about what you are requesting and give valid reasons.</li>
+  <li><strong>Formal invitation:</strong> Written to officially invite an individual or organisation to an event. Include the event name, date, time, venue, and dress code if applicable.</li>
+</ul>
+
+<h4>Informal Letter Writing</h4>
+<p>An informal letter is written to someone you know personally, such as a friend or relative. The format is less rigid, but there is still a standard structure to follow in WASSCE.</p>
+<ul>
+  <li><strong>Writer's address:</strong> Top right corner, as in formal letters.</li>
+  <li><strong>Date:</strong> Below the address.</li>
+  <li><strong>Greeting:</strong> Use "Dear [First name]," for example, "Dear Amara," or "Dear Uncle Kofi,"</li>
+  <li><strong>Body:</strong> Begin by acknowledging the recipient (for example, "I hope this letter meets you in good health"). Write in a warm, conversational tone. Use paragraphs but the language may be less formal.</li>
+  <li><strong>Closing:</strong> Use phrases like "Your friend," "Yours affectionately," "With love," or simply "Yours." Sign with your first name only.</li>
+</ul>
+<p>Even in informal letters, avoid slang, spelling errors, and grammatical mistakes. WASSCE markers reward correct grammar in all letter types.</p>
+
+<h4>Report Writing</h4>
+<p>A report is a formal document that presents findings, analysis, and recommendations on a specific topic. In WASSCE, you may be asked to write a committee report, a club report, or an official report for an organisation.</p>
+<ul>
+  <li><strong>Heading:</strong> Write "REPORT ON [TOPIC IN CAPITALS]" at the top, centred. For example: REPORT ON THE END-OF-YEAR SCHOOL CELEBRATION.</li>
+  <li><strong>Preamble:</strong> Below the heading, include: <strong>To:</strong> [the recipient], <strong>From:</strong> [the writer's name and title], <strong>Date:</strong> [the date of the report].</li>
+  <li><strong>Introduction:</strong> State the purpose of the report and the scope of your investigation or findings.</li>
+  <li><strong>Findings:</strong> Present the information gathered. Use subheadings and numbered points for clarity. This is the main body of the report.</li>
+  <li><strong>Recommendations:</strong> Suggest practical actions based on the findings. Use clear, concise language.</li>
+  <li><strong>Conclusion:</strong> Briefly summarise the key points and reinforce the main recommendation.</li>
+</ul>
+<p>Reports use <strong>subheadings</strong> for each section. The language is formal, objective, and impersonal. Avoid personal opinions unless specifically asked.</p>
+
+<h4>Memo Writing</h4>
+<p>A <strong>memorandum</strong> (memo) is used for internal communication within an organisation. It is shorter and less formal than a letter but still structured.</p>
+<ul>
+  <li><strong>MEMORANDUM</strong> (written in capitals at the top)</li>
+  <li><strong>To:</strong> [name and position of recipient]</li>
+  <li><strong>From:</strong> [name and position of sender]</li>
+  <li><strong>Date:</strong> [date of the memo]</li>
+  <li><strong>Subject:</strong> [brief title of the message]</li>
+  <li><strong>Body:</strong> The message, written in clear paragraphs. Memos do not require a salutation or complimentary close.</li>
+</ul>
+
+<h4>Register in Letters and Reports</h4>
+<p><strong>Register</strong> is the level of formality in language. Formal letters, reports, and memos must use <strong>formal register</strong>: complete sentences, no contractions (use "do not" not "don't"), polished vocabulary, and a professional tone. Informal letters allow a <strong>conversational register</strong>: warmer language, personal references, and a relaxed style. Mixing registers in a formal letter (for example, using slang or overly casual expressions) is a common error that lowers marks.</p>`,
         keyPoints: [
           'Formal letter: writer\'s address, date, recipient\'s address, salutation, body, complimentary close, signature',
           '"Yours faithfully" goes with "Dear Sir/Madam"; "Yours sincerely" goes with a named salutation',
@@ -472,14 +583,76 @@ window.WASSCE_SUBJECTS = {
         name: 'Language Usage & Grammar',
         icon: '📚',
         lessonNotes: `<h4>Parts of Speech</h4>
-<p><strong>Noun:</strong> name of a person, place, thing or idea. <strong>Pronoun:</strong> replaces a noun (I, you, he, she, it, we, they). <strong>Verb:</strong> action or state of being. <strong>Adjective:</strong> describes a noun. <strong>Adverb:</strong> modifies a verb, adjective or another adverb. <strong>Preposition:</strong> shows relationship (in, on, at, under). <strong>Conjunction:</strong> joins words or clauses (and, but, because, although). <strong>Interjection:</strong> expresses emotion (Oh! Wow!).</p>
-<h4>Tenses</h4>
-<p>Simple present (He runs), present continuous (He is running), simple past (He ran), past continuous (He was running), simple future (He will run), present perfect (He has run), past perfect (He had run).</p>
-<h4>Subject-Verb Agreement</h4>
-<p>The verb must agree with the subject in number: singular subject → singular verb; plural subject → plural verb. "Everyone," "each," "either," "neither," and "none" take singular verbs. Collective nouns (team, committee) take singular verbs when acting as one unit.</p>
-<h4>Common Grammatical Structures</h4>
-<p><strong>Conditional sentences:</strong> Type 1 (possible): If + present simple, will + infinitive. Type 2 (hypothetical): If + past simple, would + infinitive. Type 3 (past/impossible): If + past perfect, would have + past participle.</p>
-<p><strong>Active vs passive voice:</strong> Active: subject performs the action. Passive: subject receives the action (Object + is/was + past participle + by + agent).</p>`,
+<p>Every word in English belongs to a category called a <strong>part of speech</strong>. Understanding these categories helps you construct correct sentences and avoid grammatical errors in WASSCE.</p>
+<ul>
+  <li><strong>Noun:</strong> Names a person, place, thing, or idea. Examples: Lagos, teacher, freedom, water.</li>
+  <li><strong>Pronoun:</strong> Replaces a noun to avoid repetition. Examples: he, she, they, it, we, who, which.</li>
+  <li><strong>Verb:</strong> Expresses action or a state of being. Examples: run, think, is, become, write.</li>
+  <li><strong>Adjective:</strong> Describes or modifies a noun. Examples: tall, beautiful, ancient, several.</li>
+  <li><strong>Adverb:</strong> Modifies a verb, adjective, or another adverb. Examples: quickly, very, often, here, carefully.</li>
+  <li><strong>Preposition:</strong> Shows the relationship between a noun/pronoun and other words. Examples: in, on, at, between, beside, through.</li>
+  <li><strong>Conjunction:</strong> Joins words, phrases, or clauses. Examples: and, but, or, because, although, so.</li>
+  <li><strong>Interjection:</strong> Expresses strong emotion. Examples: Oh! Wow! Alas! Hurray!</li>
+</ul>
+
+<h4>Verb Tenses</h4>
+<p>Tenses tell us when an action takes place. WASSCE tests your ability to use tenses accurately and consistently.</p>
+<ul>
+  <li><strong>Simple tenses:</strong> Simple present (He writes.), Simple past (He wrote.), Simple future (He will write.)</li>
+  <li><strong>Progressive (continuous) tenses:</strong> Present progressive (He is writing.), Past progressive (He was writing.) - used for ongoing actions.</li>
+  <li><strong>Perfect tenses:</strong> Present perfect (He has written.) - completed action with present relevance. Past perfect (He had written.) - completed before another past action. Future perfect (He will have written.) - completed before a future point.</li>
+</ul>
+
+<h4>Subject-Verb Agreement (Concord)</h4>
+<p><strong>Concord</strong> means that the subject and verb must agree in number. This is one of the most tested grammar areas in WASSCE.</p>
+<ul>
+  <li>A <strong>singular subject</strong> takes a singular verb: "The boy <strong>runs</strong> fast." A <strong>plural subject</strong> takes a plural verb: "The boys <strong>run</strong> fast."</li>
+  <li><strong>"Either...or" and "Neither...nor":</strong> The verb agrees with the subject closest to it. "Neither the teacher nor the students <strong>are</strong> ready." "Neither the students nor the teacher <strong>is</strong> ready."</li>
+  <li><strong>Collective nouns</strong> such as committee, government, family, team take singular verbs when acting as a unit: "The committee <strong>has</strong> reached a decision."</li>
+  <li>Words like <strong>each, every, either, neither, someone, anyone, nobody</strong> always take singular verbs: "Each of the girls <strong>has</strong> a pen." "Everyone <strong>is</strong> present."</li>
+  <li>Subjects joined by <strong>"and"</strong> take a plural verb: "Ama and Kofi <strong>are</strong> friends." Exception: when both nouns refer to the same person or thing: "The principal and chairman <strong>is</strong> present."</li>
+</ul>
+
+<h4>Sentence Types</h4>
+<ul>
+  <li><strong>Simple sentence:</strong> Contains one independent clause. "She sang a song."</li>
+  <li><strong>Compound sentence:</strong> Two or more independent clauses joined by a coordinating conjunction. "She sang a song, and the audience applauded."</li>
+  <li><strong>Complex sentence:</strong> One independent clause and at least one dependent (subordinate) clause. "Although she was nervous, she sang beautifully."</li>
+  <li><strong>Compound-complex sentence:</strong> At least two independent clauses and one or more dependent clauses. "Although she was nervous, she sang beautifully, and the audience gave her a standing ovation."</li>
+</ul>
+
+<h4>Common Grammatical Errors in WASSCE</h4>
+<ul>
+  <li><strong>Wrong tense consistency:</strong> Shifting between past and present tense randomly within the same piece of writing.</li>
+  <li><strong>Pronoun-antecedent disagreement:</strong> Using a plural pronoun for a singular noun. Wrong: "Every student must bring their book." Correct: "Every student must bring his or her book."</li>
+  <li><strong>Misplaced modifiers:</strong> A modifier placed too far from the word it describes. Wrong: "She almost drove her children to school every day." Correct: "She drove her children to school almost every day."</li>
+  <li><strong>Double negatives:</strong> Using two negative words together. Wrong: "I didn't see nobody." Correct: "I didn't see anybody."</li>
+</ul>
+
+<h4>Figures of Speech</h4>
+<ul>
+  <li><strong>Simile:</strong> Comparison using "like" or "as." "She is as brave as a lion."</li>
+  <li><strong>Metaphor:</strong> Direct comparison without "like" or "as." "Life is a journey."</li>
+  <li><strong>Personification:</strong> Giving human qualities to non-human things. "The wind whispered through the trees."</li>
+  <li><strong>Hyperbole:</strong> Deliberate exaggeration for effect. "I have told you a million times."</li>
+  <li><strong>Irony:</strong> Saying the opposite of what is meant, often for humorous or critical effect.</li>
+  <li><strong>Euphemism:</strong> A mild or polite word used in place of a harsh one. "He passed away" instead of "He died."</li>
+  <li><strong>Oxymoron:</strong> Two contradictory words placed together. "Deafening silence," "bittersweet."</li>
+  <li><strong>Alliteration:</strong> Repetition of the same consonant sound at the beginning of nearby words. "Peter Piper picked a peck of pickled peppers."</li>
+</ul>
+
+<h4>Phrasal Verbs and Idiomatic Expressions</h4>
+<p>A <strong>phrasal verb</strong> is a verb combined with a preposition or adverb that creates a new meaning. Examples: <em>give up</em> (to stop trying), <em>break down</em> (to stop functioning or to cry), <em>look into</em> (to investigate), <em>put off</em> (to postpone), <em>call off</em> (to cancel), <em>bring up</em> (to raise a child or introduce a topic).</p>
+<p>An <strong>idiomatic expression</strong> is a phrase whose meaning cannot be understood from the literal meanings of its words. Examples: "bite the bullet" (endure something painful), "hit the nail on the head" (be exactly correct), "spill the beans" (reveal a secret), "bite off more than you can chew" (take on more than you can handle).</p>
+
+<h4>Direct and Indirect (Reported) Speech</h4>
+<p><strong>Direct speech</strong> reports the exact words spoken and places them in quotation marks. "I will come tomorrow," she said.</p>
+<p><strong>Indirect (reported) speech</strong> conveys the meaning without quoting exact words. Three changes occur:</p>
+<ul>
+  <li><strong>Tense change:</strong> Present tense shifts back to past. "I will come" becomes "she said she would come."</li>
+  <li><strong>Pronoun change:</strong> First and second person pronouns shift to third person. "I" becomes "she/he"; "you" becomes "him/her."</li>
+  <li><strong>Time expression change:</strong> "tomorrow" becomes "the following day"; "yesterday" becomes "the previous day"; "now" becomes "then"; "today" becomes "that day."</li>
+</ul>`,
         keyPoints: [
           'Subject-verb agreement: singular subject takes singular verb; "everyone/each/either" always take singular verbs',
           'Active voice: "The dog bit the man"; Passive voice: "The man was bitten by the dog"',
@@ -522,13 +695,96 @@ window.WASSCE_SUBJECTS = {
         id: 'oral_english_phonetics', videoId: 'Pnc3OUGufRk',
         name: 'Oral English & Phonetics',
         icon: '🗣️',
-        lessonNotes: `<h4>Phonetics and Phonology</h4>
-<p>English has <strong>44 sounds (phonemes)</strong>: 20 vowel sounds and 24 consonant sounds, though only 26 letters are used to write them. A <strong>phoneme</strong> is the smallest unit of sound that can change meaning (e.g. /p/ in pin vs /t/ in tin).</p>
-<p><strong>Vowel sounds</strong> are produced with an open vocal tract. They include <strong>short vowels</strong> (/ɪ/ as in bit, /e/ as in bed, /æ/ as in cat, /ɒ/ as in hot, /ʌ/ as in cup, /ʊ/ as in foot), <strong>long vowels</strong> (/iː/ as in see, /ɑː/ as in far, /ɔː/ as in saw, /uː/ as in too, /ɜː/ as in bird), and <strong>diphthongs</strong> — gliding vowels moving between two positions (e.g. /eɪ/ as in day, /aɪ/ as in my, /ɔɪ/ as in boy, /aʊ/ as in now, /əʊ/ as in go, /ɪə/ as in here, /eə/ as in there, /ʊə/ as in tour).</p>
-<h4>Word Stress</h4>
-<p><strong>Word stress</strong> is the emphasis placed on one syllable in a word. In two-syllable nouns and adjectives, the stress is usually on the first syllable (PREsent, TAble). In two-syllable verbs, stress is often on the second syllable (preSENT, reCORD). Changing stress changes meaning: RECord (noun) vs reCORD (verb). Stress rules for longer words also depend on suffixes.</p>
-<h4>Intonation</h4>
-<p><strong>Intonation</strong> is the rise and fall of pitch across an utterance. Rising intonation (↑) is used for yes/no questions and to show the sentence is unfinished. Falling intonation (↓) is used for statements, commands, and wh-questions. Tone groups divide speech into meaningful chunks.</p>`,
+        lessonNotes: `<h4>What Is Phonetics?</h4>
+<p><strong>Phonetics</strong> is the scientific study of the sounds of human speech. It examines how sounds are produced, transmitted, and received. In WASSCE English Language, the Oral English section tests your knowledge of how English words are actually pronounced, not how they are spelled. This is important because English spelling and pronunciation are often very different. For example, the word "though" is pronounced to rhyme with "go", and "through" rhymes with "blue".</p>
+<p>The purpose of testing phonetics in WASSCE is to ensure that students can communicate clearly in spoken English, understand accent and stress patterns, and distinguish between similar sounds that can change meaning entirely.</p>
+
+<h4>The International Phonetic Alphabet (IPA)</h4>
+<p>The <strong>International Phonetic Alphabet (IPA)</strong> is a system of symbols used to represent speech sounds in any language. Each symbol represents one specific sound, regardless of spelling. Knowing the IPA allows you to read pronunciation guides in dictionaries and answer WASSCE questions on vowel and consonant sounds accurately. In the exam, you may be asked to identify the phonetic symbol that represents a given sound in a word, or to group words that share the same vowel or consonant sound.</p>
+
+<h4>Vowel Sounds: Monophthongs (Pure Vowels)</h4>
+<p><strong>Monophthongs</strong> are vowel sounds in which the mouth position remains steady throughout. There are 12 monophthongs in standard British English (Received Pronunciation), which is the model used in WASSCE.</p>
+<ul>
+  <li><strong>/iː/</strong> - long "ee" sound: beat, seen, machine, people</li>
+  <li><strong>/I/</strong> - short "i" sound: bit, sit, women, village</li>
+  <li><strong>/e/</strong> - mid-front vowel: bed, said, any, friend</li>
+  <li><strong>/ae/</strong> - low front vowel: cat, man, back, laugh</li>
+  <li><strong>/aa/</strong> - long "ah" sound: car, father, calm, heart</li>
+  <li><strong>/o/</strong> - short "o" sound: hot, dog, want, wash</li>
+  <li><strong>/oo/</strong> - long "aw" sound: door, more, thought, walk</li>
+  <li><strong>/U/</strong> - short "oo" sound: book, put, could, woman</li>
+  <li><strong>/uː/</strong> - long "oo" sound: moon, food, through, shoe</li>
+  <li><strong>/^/</strong> - short "uh" sound: cup, love, blood, enough</li>
+  <li><strong>/3:/</strong> - long mid-central vowel: bird, word, hurt, early</li>
+  <li><strong>/e/ (schwa)</strong> - the most common vowel in English, always unstressed: about, butter, teacher, sofa</li>
+</ul>
+
+<h4>Vowel Sounds: Diphthongs (Gliding Vowels)</h4>
+<p><strong>Diphthongs</strong> are gliding vowels where the mouth moves from one position to another during the single sound. There are 8 diphthongs in standard English.</p>
+<ul>
+  <li><strong>/eI/</strong> - day, make, steak, they, great</li>
+  <li><strong>/aI/</strong> - my, night, try, high, buy</li>
+  <li><strong>/OI/</strong> - boy, coin, noise, enjoy</li>
+  <li><strong>/eU/</strong> - go, home, know, boat, though</li>
+  <li><strong>/aU/</strong> - now, out, cow, found, house</li>
+  <li><strong>/Ie/</strong> - ear, here, fear, beard</li>
+  <li><strong>/ee/</strong> - air, there, care, square, wear</li>
+  <li><strong>/Ue/</strong> - tour, poor, sure, cure</li>
+</ul>
+
+<h4>Consonant Sounds: Voiced and Voiceless Pairs</h4>
+<p>English consonants come in <strong>voiced</strong> (vocal cords vibrate) and <strong>voiceless</strong> (vocal cords do not vibrate) pairs. Many consonants share the same place and manner of articulation but differ only in voicing.</p>
+<ul>
+  <li><strong>/p/</strong> (voiceless) vs <strong>/b/</strong> (voiced): pat/bat, cup/cub, rope/robe</li>
+  <li><strong>/t/</strong> (voiceless) vs <strong>/d/</strong> (voiced): tin/din, coat/code, wrote/road</li>
+  <li><strong>/k/</strong> (voiceless) vs <strong>/g/</strong> (voiced): coat/goat, back/bag, cold/gold</li>
+  <li><strong>/f/</strong> (voiceless) vs <strong>/v/</strong> (voiced): fan/van, leaf/leave, safe/save</li>
+  <li><strong>/s/</strong> (voiceless) vs <strong>/z/</strong> (voiced): sip/zip, price/prize, use(noun)/use(verb)</li>
+  <li><strong>/ch/</strong> (voiceless) vs <strong>/dj/</strong> (voiced): chain/Jane, church/judge, rich/ridge</li>
+  <li><strong>/sh/</strong> (voiceless) vs <strong>/zh/</strong> (voiced): shoe/measure, ship/genre</li>
+  <li><strong>/th/ voiceless</strong> vs <strong>/th/ voiced</strong>: thin/then, three/the, teeth/teethe</li>
+</ul>
+
+<h4>Word Stress Rules</h4>
+<p><strong>Word stress</strong> refers to the syllable within a word that is pronounced with greater force or emphasis. Stressing the wrong syllable can make a word difficult to understand or even change its meaning entirely (as in the noun/verb pair "REcord" vs "reCORD").</p>
+<ul>
+  <li><strong>Two-syllable nouns and adjectives</strong> usually have stress on the <strong>first syllable</strong>: <strong>PRE</strong>sent, <strong>RE</strong>cord, <strong>TA</strong>ble, <strong>HAP</strong>py, <strong>PUR</strong>pose, <strong>AN</strong>swer.</li>
+  <li><strong>Two-syllable verbs</strong> usually have stress on the <strong>second syllable</strong>: pre<strong>SENT</strong>, re<strong>CORD</strong>, de<strong>CIDE</strong>, be<strong>GIN</strong>, al<strong>LOW</strong>, re<strong>PEAT</strong>.</li>
+  <li><strong>Three-syllable words</strong> vary, but stress commonly falls on the first or second syllable: <strong>IM</strong>portant, de<strong>SCRIP</strong>tion, <strong>VI</strong>olence, ca<strong>REER</strong>.</li>
+  <li><strong>Suffixes that shift stress:</strong> The suffixes <strong>-tion, -sion, -ic, -ical, -ity</strong> cause the stress to fall on the syllable immediately before them: pho<strong>TO</strong>graphy - photographic; na<strong>TION</strong> - na<strong>TION</strong>al; e<strong>LEC</strong>tricity.</li>
+</ul>
+
+<h4>Sentence Stress and Intonation</h4>
+<p><strong>Sentence stress</strong> is the pattern of stressed and unstressed words within a sentence. <strong>Content words</strong> carry the main meaning and are typically stressed: nouns, main verbs, adjectives, adverbs, and question words (who, what, where). <strong>Function words</strong> are usually unstressed: articles (a, the), prepositions (in, on, at), conjunctions (and, but, or), and auxiliary verbs (is, are, have).</p>
+<p><strong>Intonation</strong> refers to the rise and fall of pitch across a sentence.</p>
+<ul>
+  <li><strong>Falling intonation</strong> is used for statements ("She went to the market."), commands ("Sit down."), and wh-questions ("Where do you live?").</li>
+  <li><strong>Rising intonation</strong> is used for yes/no questions ("Did you call him?") and to show that a speaker has not finished speaking.</li>
+</ul>
+
+<h4>Minimal Pairs</h4>
+<p><strong>Minimal pairs</strong> are pairs of words that differ by only one sound yet have completely different meanings. Recognising minimal pairs is essential for answering WASSCE questions on vowel and consonant discrimination.</p>
+<ul>
+  <li>ship /I/ vs sheep /iː/</li>
+  <li>bet /e/ vs bat /ae/</li>
+  <li>full /U/ vs fool /uː/</li>
+  <li>coat /k/ vs goat /g/</li>
+  <li>pin /p/ vs bin /b/</li>
+  <li>then /voiced th/ vs ten /t/</li>
+  <li>hat /ae/ vs heart /aa/</li>
+  <li>seat /iː/ vs set /e/</li>
+</ul>
+
+<h4>The WASSCE Oral English Test Sections</h4>
+<p>The WASSCE Oral English paper is divided into clearly defined sections. Understanding the format helps you prepare strategically.</p>
+<ul>
+  <li><strong>Vowel sounds:</strong> Questions test your ability to identify words containing specific vowel sounds or to group words that share the same vowel phoneme.</li>
+  <li><strong>Consonant sounds:</strong> You may be asked to identify the odd word out based on a specific consonant sound, or to select the word with a particular consonant feature.</li>
+  <li><strong>Word stress:</strong> You identify the syllable that carries the primary stress in a given word, often choosing from four options.</li>
+  <li><strong>Rhymes:</strong> You identify which word rhymes with a given word, testing knowledge of vowel sounds regardless of spelling differences.</li>
+  <li><strong>Word interpretation:</strong> You identify the word that best fits a phonetic description or matches the stress pattern described.</li>
+</ul>
+<p>The key to excelling in Oral English is to practise using a good dictionary with IPA transcriptions, listen carefully to standard spoken English, and drill yourself on minimal pairs, stress patterns, and the IPA vowel and consonant charts regularly.</p>`,
         keyPoints: [
           'English has 44 phonemes (20 vowels + 24 consonants) but only 26 letters',
           'A diphthong is a gliding vowel sound that moves from one position to another (e.g. /aɪ/ in "my")',
