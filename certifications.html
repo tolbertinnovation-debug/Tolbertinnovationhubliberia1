@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certifications | TIH Academy — Professional Certificates</title>
+  <meta name="description" content="Earn professionally recognized certificates from TIH Academy. Our certificates are valued by employers across Africa and internationally. Verify your certificate instantly." />
+  <meta name="keywords" content="professional certificates Liberia, online certifications Africa, TIH Academy certificate, digital skills certification" />
+  <meta property="og:title" content="Certifications | TIH Academy" />
+  <meta property="og:description" content="Earn professionally recognized certificates in technology, business, AI, and entrepreneurship." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tolbertinnovationhub.org/certifications.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --ac-gold: #f59e0b;
+      --ac-gold-dark: #d97706;
+      --ac-teal: #0d9488;
+      --ac-purple: #7c3aed;
+    }
+
+    /* NAV */
+    .academy-header { background: #fff; border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 1000; }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 1.5rem; max-width: 1280px; margin: 0 auto; gap: 1rem; }
+    .brand { font-family: 'Poppins',sans-serif; font-weight: 800; color: #002868; font-size: 1.18rem; text-decoration: none; flex-shrink: 0; }
+    .brand span { color: #BF0A30; }
+    .nav-links { display: flex; gap: 0.15rem; align-items: center; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+    .nav-links a { color: #374151; font-size: 0.87rem; font-weight: 500; text-decoration: none; padding: 0.35rem 0.6rem; border-radius: 6px; transition: all .2s; }
+    .nav-links a:hover { color: #002868; background: #f0f4ff; }
+    .nav-links a.active { color: #002868; font-weight: 700; }
+    .nav-auth { display: flex; gap: 0.6rem; align-items: center; flex-shrink: 0; }
+    .btn-ghost { background: transparent; border: 1.5px solid #002868; color: #002868; padding: 0.45rem 1.1rem; border-radius: 50px; font-size: 0.87rem; font-weight: 600; cursor: pointer; transition: all .2s; text-decoration: none; }
+    .btn-ghost:hover { background: #002868; color: #fff; }
+    .btn-enroll { background: #BF0A30; color: #fff; padding: 0.5rem 1.3rem; border-radius: 50px; font-size: 0.87rem; font-weight: 700; text-decoration: none; transition: all .2s; }
+    .btn-enroll:hover { background: #a00827; transform: translateY(-1px); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #002868; border-radius: 2px; }
+    @media(max-width:900px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; padding: 1rem 1.5rem; box-shadow: 0 8px 32px rgba(0,0,0,.12); z-index: 999; }
+      .nav-links.open { display: flex; }
+      .nav-auth { display: none; }
+    }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HERO */
+    .cert-hero { background: linear-gradient(135deg, #000d24 0%, #001a45 40%, #002868 75%, #003580 100%); padding: 5rem 0 4rem; color: #fff; position: relative; overflow: hidden; }
+    .cert-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 50% at 60% 50%, rgba(245,158,11,.08), transparent); }
+    .cert-hero-inner { display: grid; grid-template-columns: 1fr 460px; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+    .hero-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: .15em; color: #f59e0b; text-transform: uppercase; margin-bottom: 1rem; }
+    .cert-hero h1 { color: #fff; font-size: clamp(2rem,4.5vw,3rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.2rem; }
+    .cert-hero h1 span { color: #f59e0b; }
+    .cert-hero p.lead { color: rgba(255,255,255,.82); font-size: 1.05rem; line-height: 1.75; max-width: 55ch; margin-bottom: 2rem; }
+    .hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .btn-white { background: #fff; color: #002868; padding: 0.75rem 1.8rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: all .2s; }
+    .btn-white:hover { background: #f59e0b; color: #fff; transform: translateY(-2px); }
+    .btn-outline-gold { background: transparent; border: 2px solid #f59e0b; color: #f59e0b; padding: 0.75rem 1.8rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: all .2s; }
+    .btn-outline-gold:hover { background: #f59e0b; color: #fff; transform: translateY(-2px); }
+    .hero-trust-badges { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .trust-badge { display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,.8); font-size: 0.9rem; }
+    .trust-badge span:first-child { color: #f59e0b; font-size: 1.1rem; }
+
+    /* Hero cert visual */
+    .cert-hero-visual { display: flex; justify-content: center; align-items: center; }
+    .cert-frame { background: #fff; border-radius: 20px; padding: 2.5rem 2rem; box-shadow: 0 40px 100px rgba(0,0,0,.5); max-width: 360px; width: 100%; position: relative; animation: floatCert 4s ease-in-out infinite; text-align: center; }
+    @keyframes floatCert { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    .cert-frame::before { content:''; position:absolute; inset:8px; border:1.5px solid #f59e0b; border-radius:14px; pointer-events:none; }
+    .cert-corner { position:absolute; width:18px; height:18px; border-color:#f59e0b; border-style:solid; }
+    .cert-corner.tl { top:4px; left:4px; border-width:3px 0 0 3px; border-radius:6px 0 0 0; }
+    .cert-corner.tr { top:4px; right:4px; border-width:3px 3px 0 0; border-radius:0 6px 0 0; }
+    .cert-corner.bl { bottom:4px; left:4px; border-width:0 0 3px 3px; border-radius:0 0 0 6px; }
+    .cert-corner.br { bottom:4px; right:4px; border-width:0 3px 3px 0; border-radius:0 0 6px 0; }
+    .cert-seal { width: 70px; height: 70px; background: linear-gradient(135deg,#002868,#004080); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; border: 4px solid #f59e0b; }
+    .cert-seal-text { font-size: 1.4rem; }
+    .cert-org-label { font-size: 0.6rem; font-weight: 800; letter-spacing: .14em; color: #002868; text-transform: uppercase; margin-bottom: 0.2rem; }
+    .cert-title-label { font-size: 0.7rem; color: #6b7280; margin-bottom: 1rem; }
+    .cert-presents { font-size: 0.68rem; color: #9ca3af; margin-bottom: 0.3rem; }
+    .cert-recipient { font-family: Georgia, serif; font-style: italic; font-size: 1.4rem; color: #002868; margin-bottom: 0.8rem; }
+    .cert-course-label { font-size: 0.72rem; color: #6b7280; }
+    .cert-course-name { font-size: 0.88rem; font-weight: 700; color: #111827; margin-bottom: 1.2rem; }
+    .cert-footer-row { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 1rem; border-top: 1px solid #e5e7eb; }
+    .sig-area { text-align: center; }
+    .sig-name { font-family: Georgia, serif; font-style: italic; font-size: 0.95rem; color: #002868; }
+    .sig-role { font-size: 0.6rem; color: #9ca3af; text-transform: uppercase; letter-spacing: .08em; }
+    .cert-stamp { font-size: 0.65rem; color: #d97706; font-weight: 700; background: #fffbeb; border: 1px solid #fcd34d; border-radius: 6px; padding: 0.2rem 0.5rem; }
+
+    @media(max-width:900px) { .cert-hero-inner { grid-template-columns: 1fr; } .cert-hero-visual { display:none; } }
+
+    /* TRUST BAR */
+    .cert-trust { background: #f9fafb; padding: 1.5rem 0; border-bottom: 1px solid #e5e7eb; }
+    .trust-row { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+    .trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: #374151; font-weight: 500; }
+    .trust-icon { font-size: 1.2rem; }
+
+    /* CERT PROGRAMS */
+    .cert-programs { padding: 5rem 0; background: #fff; }
+    .section-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: .15em; color: #f59e0b; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .section-title { font-size: clamp(1.7rem,3vw,2.4rem); font-weight: 800; color: #111827; margin-bottom: 0.7rem; line-height: 1.2; }
+    .section-sub { font-size: 1rem; color: #6b7280; max-width: 55ch; margin-bottom: 2.5rem; }
+    .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media(max-width:1100px) { .cert-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:640px) { .cert-grid { grid-template-columns: 1fr; } }
+
+    .cert-card { background: #fff; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,.08); overflow: hidden; transition: all .25s; display: flex; flex-direction: column; border: 1px solid #f3f4f6; }
+    .cert-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.14); }
+    .cert-card-banner { padding: 2rem 1.5rem 1.5rem; position: relative; }
+    .cert-card-icon { font-size: 2.8rem; margin-bottom: 0.8rem; }
+    .cert-type-badge { position: absolute; top: 1rem; right: 1rem; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.7rem; border-radius: 50px; text-transform: uppercase; }
+    .type-professional { background: rgba(255,255,255,.25); color: #fff; border: 1px solid rgba(255,255,255,.4); }
+    .type-expert { background: #f59e0b; color: #fff; }
+    .cert-card-banner h3 { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 0.3rem; }
+    .cert-card-banner p { color: rgba(255,255,255,.8); font-size: 0.85rem; }
+    .cert-card-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
+    .cert-details { list-style: none; padding: 0; margin: 0 0 1.2rem; }
+    .cert-details li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.87rem; color: #374151; padding: 0.3rem 0; border-bottom: 1px solid #f3f4f6; }
+    .cert-details li:last-child { border: none; }
+    .cert-details li .di { font-size: 0.95rem; flex-shrink: 0; }
+    .cert-skills-wrap { margin-bottom: 1.2rem; }
+    .cert-skills-label { font-size: 0.75rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 0.5rem; }
+    .cert-skills { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .skill-tag { font-size: 0.75rem; background: #f0f4ff; color: #002868; padding: 0.2rem 0.6rem; border-radius: 50px; font-weight: 600; }
+    .cert-card-footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid #f3f4f6; }
+    .cert-price { font-size: 1.1rem; font-weight: 800; color: #002868; }
+    .cert-price small { font-size: 0.75rem; font-weight: 400; color: #9ca3af; display: block; }
+    .btn-cert { background: #002868; color: #fff; padding: 0.5rem 1.2rem; border-radius: 10px; font-size: 0.87rem; font-weight: 700; text-decoration: none; transition: all .2s; }
+    .btn-cert:hover { background: #001a45; transform: translateY(-1px); }
+
+    /* VERIFY SECTION */
+    .verify-section { padding: 5rem 0; background: linear-gradient(135deg,#f8faff,#eff6ff); }
+    .verify-inner { display: grid; grid-template-columns: 1fr 480px; gap: 4rem; align-items: center; }
+    @media(max-width:900px) { .verify-inner { grid-template-columns: 1fr; } }
+    .verify-card { background: #fff; border-radius: 24px; padding: 2.5rem; box-shadow: 0 8px 40px rgba(0,40,104,.12); }
+    .verify-card h3 { font-size: 1.3rem; font-weight: 800; color: #111827; margin-bottom: 0.5rem; }
+    .verify-card p { color: #6b7280; font-size: 0.95rem; margin-bottom: 1.5rem; }
+    .verify-input-group { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .verify-input-group input { flex: 1; padding: 0.8rem 1rem; border: 1.5px solid #e5e7eb; border-radius: 10px; font-size: 0.95rem; outline: none; transition: border-color .2s; font-family: 'Inter',sans-serif; }
+    .verify-input-group input:focus { border-color: #002868; }
+    .btn-verify { background: #002868; color: #fff; border: none; padding: 0.8rem 1.5rem; border-radius: 10px; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all .2s; white-space: nowrap; }
+    .btn-verify:hover { background: #001a45; }
+    .verify-divider { display: flex; align-items: center; gap: 1rem; color: #9ca3af; font-size: 0.85rem; margin: 1.2rem 0; }
+    .verify-divider::before, .verify-divider::after { content:''; flex:1; height:1px; background:#e5e7eb; }
+    .verify-alt-link { display: block; text-align: center; color: #002868; font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+    .verify-alt-link:hover { text-decoration: underline; }
+    .verify-demo { background: #ecfdf5; border: 1px solid #6ee7b7; border-radius: 10px; padding: 1rem; display: none; }
+    .verify-demo.shown { display: block; }
+    .verify-demo strong { color: #065f46; }
+
+    /* HOW IT WORKS */
+    .cert-how { padding: 5rem 0; background: #fff; }
+    .how-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+    @media(max-width:900px) { .how-steps { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:560px) { .how-steps { grid-template-columns: 1fr; } }
+    .how-step { text-align: center; }
+    .step-num { width: 60px; height: 60px; background: linear-gradient(135deg,#002868,#0045b0); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; margin: 0 auto 1rem; box-shadow: 0 8px 24px rgba(0,40,104,.3); }
+    .how-step h4 { font-size: 1rem; font-weight: 700; color: #111827; margin-bottom: 0.4rem; }
+    .how-step p { font-size: 0.87rem; color: #6b7280; line-height: 1.6; }
+
+    /* EMPLOYERS */
+    .cert-employers { padding: 4rem 0; background: #f9fafb; }
+    .employer-logos { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: center; margin-top: 2rem; }
+    .employer-logo { background: #fff; border-radius: 12px; padding: 1rem 2rem; font-size: 0.9rem; font-weight: 700; color: #374151; border: 1px solid #e5e7eb; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+
+    /* FAQ */
+    .cert-faq { padding: 5rem 0; background: #fff; }
+    .faq-list { max-width: 760px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid #e5e7eb; }
+    .faq-question { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 0; cursor: pointer; font-size: 0.98rem; font-weight: 600; color: #111827; gap: 1rem; }
+    .faq-question:hover { color: #002868; }
+    .faq-icon { font-size: 1.3rem; font-weight: 400; color: #002868; transition: transform .3s; flex-shrink: 0; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { display: none; padding-bottom: 1.2rem; color: #6b7280; font-size: 0.93rem; line-height: 1.7; }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* CTA */
+    .cert-cta { padding: 5rem 0; background: linear-gradient(135deg,#001a45,#002868,#003399); color: #fff; text-align: center; }
+    .cert-cta h2 { font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 800; margin-bottom: 1rem; }
+    .cert-cta h2 span { color: #f59e0b; }
+    .cert-cta p { color: rgba(255,255,255,.8); font-size: 1.05rem; max-width: 52ch; margin: 0 auto 2rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    .academy-footer { background: #0a1628; color: rgba(255,255,255,.75); padding: 3rem 0 1.5rem; margin-top: 0; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 2fr repeat(3,1fr); gap: 2.5rem; margin-bottom: 2rem; }
+    .footer-brand-name { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 0.6rem; }
+    .footer-brand-name span { color: #f59e0b; }
+    .footer-tagline { font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem; }
+    .footer-social { display: flex; gap: 0.5rem; }
+    .social-icon { width:34px;height:34px;background:rgba(255,255,255,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:all .2s;text-decoration:none;color:#fff; }
+    .social-icon:hover { background:#f59e0b; }
+    .footer-col h5 { font-size:0.88rem;font-weight:700;color:#fff;margin-bottom:0.8rem; }
+    .footer-col ul { list-style:none;padding:0;margin:0; }
+    .footer-col ul li { margin-bottom:0.4rem; }
+    .footer-col ul li a { color:rgba(255,255,255,.65);font-size:0.85rem;text-decoration:none;transition:color .2s; }
+    .footer-col ul li a:hover { color:#f59e0b; }
+    .footer-bottom { max-width:1280px;margin:0 auto;padding:1rem 1.5rem 0;border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;font-size:0.82rem;color:rgba(255,255,255,.45); }
+    .footer-bottom a { color:rgba(255,255,255,.6);text-decoration:none; }
+    .footer-bottom a:hover { color:#f59e0b; }
+    @media(max-width:900px) { .footer-inner { grid-template-columns:1fr 1fr; } }
+    @media(max-width:600px) { .footer-inner { grid-template-columns:1fr; } }
+
+    /* REVEAL */
+    .reveal { opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease; }
+    .reveal.visible { opacity:1;transform:none; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="academy-header">
+    <div class="nav-wrap">
+      <a class="brand" href="academy.html">TIH <span>Academy</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="academy.html">Academy</a>
+        <a href="courses.html">Courses</a>
+        <a href="certifications.html" class="active">Certifications</a>
+        <a href="instructors.html">Instructors</a>
+        <a href="academy-blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-auth">
+        <a href="student-dashboard.html" class="btn-ghost">Log In</a>
+        <a href="academy.html#enroll" class="btn-enroll">Enroll Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="cert-hero">
+    <div class="container">
+      <div class="cert-hero-inner">
+        <div>
+          <div class="hero-eyebrow">Recognized Credentials</div>
+          <h1>Earn Certificates That<br/><span>Open Doors Across Africa</span></h1>
+          <p class="lead">TIH Academy certificates are professionally designed and employer-recognized credentials that validate your skills, boost your career, and set you apart in today's competitive job market.</p>
+          <div class="hero-ctas">
+            <a href="#programs" class="btn-white">View All Programs</a>
+            <a href="certificate-verify.html" class="btn-outline-gold">Verify a Certificate</a>
+          </div>
+          <div class="hero-trust-badges">
+            <div class="trust-badge"><span>🏆</span><span>Industry Recognized</span></div>
+            <div class="trust-badge"><span>🔒</span><span>Secure Verification</span></div>
+            <div class="trust-badge"><span>🌍</span><span>Pan-African Validity</span></div>
+            <div class="trust-badge"><span>📄</span><span>PDF &amp; Physical Options</span></div>
+          </div>
+        </div>
+        <div class="cert-hero-visual">
+          <div class="cert-frame">
+            <div class="cert-corner tl"></div>
+            <div class="cert-corner tr"></div>
+            <div class="cert-corner bl"></div>
+            <div class="cert-corner br"></div>
+            <div class="cert-seal"><span class="cert-seal-text">🎓</span></div>
+            <div class="cert-org-label">Tolbert Innovation Hub Academy</div>
+            <div class="cert-title-label">Certificate of Professional Achievement</div>
+            <div class="cert-presents">This is to certify that</div>
+            <div class="cert-recipient">Amara Koroma</div>
+            <div class="cert-course-label">has successfully completed</div>
+            <div class="cert-course-name">Artificial Intelligence Fundamentals</div>
+            <div class="cert-footer-row">
+              <div class="sig-area">
+                <div class="sig-name">Samuel Tolbert</div>
+                <div class="sig-role">Executive Director</div>
+              </div>
+              <div class="cert-stamp">VERIFIED ✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="cert-trust">
+    <div class="container">
+      <div class="trust-row">
+        <div class="trust-item"><span class="trust-icon">👩‍🎓</span><span><strong>10,000+</strong> Certificates Issued</span></div>
+        <div class="trust-item"><span class="trust-icon">🏢</span><span><strong>500+</strong> Employer Partners</span></div>
+        <div class="trust-item"><span class="trust-icon">🌍</span><span>Valid in <strong>25+ Countries</strong></span></div>
+        <div class="trust-item"><span class="trust-icon">⚡</span><span>Instant Digital Delivery</span></div>
+        <div class="trust-item"><span class="trust-icon">♾</span><span>Lifetime Validity</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERT PROGRAMS -->
+  <section class="cert-programs" id="programs">
+    <div class="container">
+      <div class="section-eyebrow">Certification Programs</div>
+      <h2 class="section-title">7 Professional Certificate Programs</h2>
+      <p class="section-sub">Choose from our flagship certification tracks designed with input from industry leaders and employers across Africa.</p>
+
+      <div class="cert-grid">
+
+        <div class="cert-card reveal">
+          <div class="cert-card-banner" style="background:linear-gradient(135deg,#002868,#004080);">
+            <span class="cert-type-badge type-professional">Professional</span>
+            <div class="cert-card-icon">💻</div>
+            <h3>Digital Technology Professional</h3>
+            <p>Master computers, networking, cybersecurity &amp; cloud computing</p>
+          </div>
+          <div class="cert-card-body">
+            <ul class="cert-details">
+              <li><span class="di">📚</span> 8 courses · 120+ hours</li>
+              <li><span class="di">⏱</span> 6–8 months at your own pace</li>
+              <li><span class="di">🎯</span> Final capstone project required</li>
+              <li><span class="di">👥</span> 3,420 enrolled</li>
+            </ul>
+            <div class="cert-skills-wrap">
+              <div class="cert-skills-label">Skills you'll gain</div>
+              <div class="cert-skills">
+                <span class="skill-tag">Networking</span>
+                <span class="skill-tag">Cloud Computing</span>
+                <span class="skill-tag">Cybersecurity</span>
+                <span class="skill-tag">Linux</span>
+              </div>
+            </div>
+            <div class="cert-card-footer">
+              <div class="cert-price">$299 <small>or $49/month</small></div>
+              <a href="courses.html" class="btn-cert">Enroll Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-card-banner" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);">
+            <span class="cert-type-badge type-expert">Expert Track</span>
+            <div class="cert-card-icon">🤖</div>
+            <h3>AI &amp; Data Analytics Professional</h3>
+            <p>Artificial intelligence, machine learning, data visualization &amp; insights</p>
+          </div>
+          <div class="cert-card-body">
+            <ul class="cert-details">
+              <li><span class="di">📚</span> 7 courses · 100+ hours</li>
+              <li><span class="di">⏱</span> 5–7 months</li>
+              <li><span class="di">🎯</span> Industry project + presentation</li>
+              <li><span class="di">👥</span> 2,187 enrolled</li>
+            </ul>
+            <div class="cert-skills-wrap">
+              <div class="cert-skills-label">Skills you'll gain</div>
+              <div class="cert-skills">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Machine Learning</span>
+                <span class="skill-tag">Power BI</span>
+                <span class="skill-tag">SQL</span>
+              </div>
+            </div>
+            <div class="cert-card-footer">
+              <div class="cert-price">$349 <small>or $55/month</small></div>
+              <a href="courses.html" class="btn-cert">Enroll Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-card-banner" style="background:linear-gradient(135deg,#0d9488,#065f46);">
+            <span class="cert-type-badge type-professional">Professional</span>
+            <div class="cert-card-icon">🌐</div>
+            <h3>Full-Stack Web Development</h3>
+            <p>HTML, CSS, JavaScript, React, Node.js and deploy real applications</p>
+          </div>
+          <div class="cert-card-body">
+            <ul class="cert-details">
+              <li><span class="di">📚</span> 10 courses · 160+ hours</li>
+              <li><span class="di">⏱</span> 8–12 months</li>
+              <li><span class="di">🎯</span> Portfolio of 5 live projects</li>
+              <li><span class="di">👥</span> 4,521 enrolled</li>
+            </ul>
+            <div class="cert-skills-wrap">
+              <div class="cert-skills-label">Skills you'll gain</div>
+              <div class="cert-skills">
+                <span class="skill-tag">HTML/CSS</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Node.js</span>
+              </div>
+            </div>
+            <div class="cert-card-footer">
+              <div class="cert-price">$399 <small>or $65/month</small></div>
+              <a href="courses.html" class="btn-cert">Enroll Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-card-banner" style="background:linear-gradient(135deg,#f97316,#c2410c);">
+            <span class="cert-type-badge type-professional">Professional</span>
+            <div class="cert-card-icon">🚀</div>
+            <h3>Business &amp; Entrepreneurship</h3>
+            <p>Start, manage, and scale a successful business in the African market</p>
+          </div>
+          <div class="cert-card-body">
+            <ul class="cert-details">
+              <li><span class="di">📚</span> 6 courses · 90+ hours</li>
+              <li><span class="di">⏱</span> 4–6 months</li>
+              <li><span class="di">🎯</span> Business plan final project</li>
+              <li><span class="di">👥</span> 5,832 enrolled</li>
+            </ul>
+            <div class="cert-skills-wrap">
+              <div class="cert-skills-label">Skills you'll gain</div>
+              <div class="cert-skills">
+                <span class="skill-tag">Business Planning</span>
+                <span class="skill-tag">Finance</span>
+                <span class="skill-tag">Marketing</span>
+                <span class="skill-tag">Leadership</span>
+              </div>
+            </div>
+            <div class="cert-card-footer">
+              <div class="cert-price">$249 <small>or $39/month</small></div>
+              <a href="courses.html" class="btn-cert">Enroll Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-card-banner" style="background:linear-gradient(135deg,#ec4899,#be185d);">
+            <span class="cert-type-badge type-professional">Professional</span>
+            <div class="cert-card-icon">🎨</div>
+            <h3>Creative Design &amp; Digital Media</h3>
+            <p>Graphic design, UI/UX, video production and brand identity creation</p>
+          </div>
+          <div class="cert-card-body">
+            <ul class="cert-details">
+              <li><span class="di">📚</span> 7 courses · 110+ hours</li>
+              <li><span class="di">⏱</span> 5–8 months</li>
+              <li><span class="di">🎯</span> Creative portfolio project</li>
+              <li><span class="di">👥</span> 2,945 enrolled</li>
+            </ul>
+            <div class="cert-skills-wrap">
+              <div class="cert-skills-label">Skills you'll gain</div>
+              <div class="cert-skills">
+                <span class="skill-tag">Canva</span>
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">Adobe</span>
+                <span class="skill-tag">UI/UX</span>
+              </div>
+            </div>
+            <div class="cert-card-footer">
+              <div class="cert-price">$279 <small>or $45/month</small></div>
+              <a href="courses.html" class="btn-cert">Enroll Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-card-banner" style="background:linear-gradient(135deg,#10b981,#047857);">
+            <span class="cert-type-badge type-professional">Professional</span>
+            <div class="cert-card-icon">📣</div>
+            <h3>Digital Marketing &amp; E-Commerce</h3>
+            <p>SEO, social media marketing, email campaigns, and online selling</p>
+          </div>
+          <div class="cert-card-body">
+            <ul class="cert-details">
+              <li><span class="di">📚</span> 6 courses · 85+ hours</li>
+              <li><span class="di">⏱</span> 4–5 months</li>
+              <li><span class="di">🎯</span> Live marketing campaign project</li>
+              <li><span class="di">👥</span> 3,671 enrolled</li>
+            </ul>
+            <div class="cert-skills-wrap">
+              <div class="cert-skills-label">Skills you'll gain</div>
+              <div class="cert-skills">
+                <span class="skill-tag">SEO</span>
+                <span class="skill-tag">Social Media</span>
+                <span class="skill-tag">Google Ads</span>
+                <span class="skill-tag">Analytics</span>
+              </div>
+            </div>
+            <div class="cert-card-footer">
+              <div class="cert-price">$229 <small>or $36/month</small></div>
+              <a href="courses.html" class="btn-cert">Enroll Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-card-banner" style="background:linear-gradient(135deg,#0891b2,#0e7490);">
+            <span class="cert-type-badge type-expert">Expert Track</span>
+            <div class="cert-card-icon">👑</div>
+            <h3>Leadership &amp; Public Administration</h3>
+            <p>Servant leadership, team management, governance, and policy development</p>
+          </div>
+          <div class="cert-card-body">
+            <ul class="cert-details">
+              <li><span class="di">📚</span> 5 courses · 75+ hours</li>
+              <li><span class="di">⏱</span> 3–5 months</li>
+              <li><span class="di">🎯</span> Leadership case study project</li>
+              <li><span class="di">👥</span> 1,893 enrolled</li>
+            </ul>
+            <div class="cert-skills-wrap">
+              <div class="cert-skills-label">Skills you'll gain</div>
+              <div class="cert-skills">
+                <span class="skill-tag">Team Leadership</span>
+                <span class="skill-tag">Governance</span>
+                <span class="skill-tag">Strategy</span>
+                <span class="skill-tag">Communication</span>
+              </div>
+            </div>
+            <div class="cert-card-footer">
+              <div class="cert-price">$199 <small>or $32/month</small></div>
+              <a href="courses.html" class="btn-cert">Enroll Now</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="cert-how">
+    <div class="container">
+      <div class="section-eyebrow" style="text-align:center;">The Process</div>
+      <h2 class="section-title" style="text-align:center;">How to Earn Your Certificate</h2>
+      <p class="section-sub" style="text-align:center;margin-left:auto;margin-right:auto;">A clear, structured path from enrollment to certified professional.</p>
+      <div class="how-steps">
+        <div class="how-step reveal">
+          <div class="step-num">1</div>
+          <h4>Enroll in a Program</h4>
+          <p>Choose your certification track based on your career goals. Enroll and get instant access to all course materials.</p>
+        </div>
+        <div class="how-step reveal">
+          <div class="step-num">2</div>
+          <h4>Complete Courses</h4>
+          <p>Work through video lessons, readings, quizzes, and hands-on exercises at your own pace. No deadlines.</p>
+        </div>
+        <div class="how-step reveal">
+          <div class="step-num">3</div>
+          <h4>Pass Assessments</h4>
+          <p>Demonstrate your knowledge through graded quizzes, assignments, and a final capstone project with peer review.</p>
+        </div>
+        <div class="how-step reveal">
+          <div class="step-num">4</div>
+          <h4>Receive Your Certificate</h4>
+          <p>Download your verified digital certificate instantly. Share on LinkedIn, print, or embed in your portfolio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERIFY SECTION -->
+  <section class="verify-section">
+    <div class="container">
+      <div class="verify-inner">
+        <div>
+          <div class="section-eyebrow">Instant Verification</div>
+          <h2 class="section-title">Certificates Employers Can Trust</h2>
+          <p style="color:#6b7280;font-size:1rem;line-height:1.7;margin-bottom:1.5rem;">Every TIH Academy certificate includes a unique verification ID and QR code. Employers can verify any certificate instantly using our secure verification portal — ensuring complete authenticity.</p>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0;font-size:0.95rem;color:#374151;"><span style="color:#10b981;font-size:1.1rem;">✓</span> Unique certificate ID for every graduate</li>
+            <li style="display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0;font-size:0.95rem;color:#374151;"><span style="color:#10b981;font-size:1.1rem;">✓</span> QR code links to live verification page</li>
+            <li style="display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0;font-size:0.95rem;color:#374151;"><span style="color:#10b981;font-size:1.1rem;">✓</span> Verify by ID, name, or QR scan</li>
+            <li style="display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0;font-size:0.95rem;color:#374151;"><span style="color:#10b981;font-size:1.1rem;">✓</span> Tamper-proof digital records</li>
+            <li style="display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0;font-size:0.95rem;color:#374151;"><span style="color:#10b981;font-size:1.1rem;">✓</span> Available 24/7 with no login required</li>
+          </ul>
+        </div>
+        <div class="verify-card">
+          <h3>🔍 Verify a Certificate</h3>
+          <p>Enter a certificate ID to instantly confirm its authenticity.</p>
+          <div class="verify-input-group">
+            <input type="text" id="certIdInput" placeholder="e.g. TIH-2026-001234" aria-label="Certificate ID" />
+            <button class="btn-verify" onclick="verifyDemo()">Verify</button>
+          </div>
+          <div class="verify-demo" id="verifyResult">
+            <strong>✅ Certificate Verified!</strong><br/>
+            <span style="font-size:0.88rem;color:#374151;">Amara Koroma — AI &amp; Data Analytics Professional</span><br/>
+            <span style="font-size:0.82rem;color:#6b7280;">Issued: March 15, 2026 · Status: Active &amp; Valid</span>
+          </div>
+          <div class="verify-divider">or</div>
+          <a href="certificate-verify.html" class="verify-alt-link">Go to Full Verification Portal →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPLOYERS -->
+  <section class="cert-employers">
+    <div class="container">
+      <div class="section-eyebrow" style="text-align:center;">Employer Recognition</div>
+      <h2 class="section-title" style="text-align:center;">Recognized by Leading Organizations</h2>
+      <div class="employer-logos">
+        <div class="employer-logo">🏛️ Government of Liberia</div>
+        <div class="employer-logo">🌍 ECOWAS</div>
+        <div class="employer-logo">💼 Liberian Banks Association</div>
+        <div class="employer-logo">🏥 MOH Liberia</div>
+        <div class="employer-logo">📡 LTA</div>
+        <div class="employer-logo">🏗️ LPRC</div>
+        <div class="employer-logo">🎓 University of Liberia</div>
+        <div class="employer-logo">🌐 UN Agencies Liberia</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="cert-faq">
+    <div class="container">
+      <div class="section-eyebrow" style="text-align:center;">Questions Answered</div>
+      <h2 class="section-title" style="text-align:center;">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item open">
+          <div class="faq-question" onclick="toggleFaq(this)">Are TIH Academy certificates recognized by employers?<span class="faq-icon">+</span></div>
+          <div class="faq-answer">Yes. TIH Academy certificates are recognized by government agencies, NGOs, private-sector employers, and international organizations across Liberia and the broader West Africa region. We partner with 500+ employers to ensure our certifications meet real-world standards.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">How long does it take to earn a certificate?<span class="faq-icon">+</span></div>
+          <div class="faq-answer">Program duration varies from 3 to 12 months depending on the program track. Since you learn at your own pace, some learners complete programs faster. There are no strict deadlines — you have lifetime access to all materials.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What format is the certificate delivered in?<span class="faq-icon">+</span></div>
+          <div class="faq-answer">You receive a high-quality digital certificate (PDF) immediately upon completion. Each certificate includes a unique verification QR code and certificate ID. Physical printed certificates are also available for an additional fee and can be shipped to your address.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Do certificates expire?<span class="faq-icon">+</span></div>
+          <div class="faq-answer">TIH Academy certificates do not expire. Once earned, your certificate remains valid and verifiable for life. Your employer can verify it at any time using our online verification portal at no cost.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Can I share my certificate on LinkedIn?<span class="faq-icon">+</span></div>
+          <div class="faq-answer">Absolutely. Each certificate includes a LinkedIn share button that automatically populates your credential details. You can also manually add it to your LinkedIn profile using the certificate name, organization, and issue date provided in your certificate PDF.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Is financial aid available for certificate programs?<span class="faq-icon">+</span></div>
+          <div class="faq-answer">Yes. TIH Academy offers scholarships, payment plans, and financial aid for eligible learners who demonstrate financial need. Apply through our scholarship page or contact our support team. We believe cost should never be a barrier to education.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cert-cta">
+    <div class="container">
+      <h2>Ready to Earn Your <span>Professional Certificate?</span></h2>
+      <p>Join 10,000+ learners who have advanced their careers with TIH Academy credentials. Enroll today and start your journey.</p>
+      <div class="cta-buttons">
+        <a href="courses.html" class="btn-white">Browse Programs</a>
+        <a href="certificate-verify.html" class="btn-outline-gold">Verify a Certificate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="academy-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">TIH <span>Academy</span></div>
+        <p class="footer-tagline">Empowering Africa through digital skills, innovation, technology, leadership, and entrepreneurship.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon" aria-label="Facebook">f</a>
+          <a href="#" class="social-icon" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+          <a href="#" class="social-icon" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Learn</h5>
+        <ul>
+          <li><a href="courses.html">All Courses</a></li>
+          <li><a href="certifications.html">Certifications</a></li>
+          <li><a href="academy.html#pathways">Learning Paths</a></li>
+          <li><a href="student-dashboard.html">My Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About TIH</a></li>
+          <li><a href="instructors.html">Instructors</a></li>
+          <li><a href="academy-blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="academy.html#faq">FAQ</a></li>
+          <li><a href="certificate-verify.html">Verify Certificate</a></li>
+          <li><a href="contact.html">Help Center</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tolbert Innovation Hub Academy. All rights reserved.</span>
+      <span>Monrovia, Liberia · <a href="mailto:academy@tolbertinnovationhub.org">academy@tolbertinnovationhub.org</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    function toggleFaq(el) {
+      const item = el.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    }
+
+    function verifyDemo() {
+      const v = document.getElementById('certIdInput').value.trim();
+      const result = document.getElementById('verifyResult');
+      if (v) {
+        result.classList.add('shown');
+      }
+    }
+    document.getElementById('certIdInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') verifyDemo();
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

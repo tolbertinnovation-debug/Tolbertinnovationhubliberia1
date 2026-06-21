@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | TIH Academy — Tech, Education &amp; Innovation</title>
+  <meta name="description" content="Read expert articles on technology, entrepreneurship, digital skills, AI, career development, and education trends from TIH Academy's faculty and contributors." />
+  <meta name="keywords" content="TIH Academy blog, technology articles Africa, digital skills tips, entrepreneurship Liberia, education innovation" />
+  <meta property="og:title" content="Blog | TIH Academy" />
+  <meta property="og:description" content="Expert articles on technology, entrepreneurship, AI, digital skills, and career development." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tolbertinnovationhub.org/academy-blog.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root { --ac-gold:#f59e0b; --ac-teal:#0d9488; --ac-purple:#7c3aed; }
+    .academy-header { background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:1000; }
+    .nav-wrap { display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.5rem;max-width:1280px;margin:0 auto;gap:1rem; }
+    .brand { font-family:'Poppins',sans-serif;font-weight:800;color:#002868;font-size:1.18rem;text-decoration:none;flex-shrink:0; }
+    .brand span { color:#BF0A30; }
+    .nav-links { display:flex;gap:0.15rem;align-items:center;list-style:none;margin:0;padding:0;flex-wrap:wrap; }
+    .nav-links a { color:#374151;font-size:0.87rem;font-weight:500;text-decoration:none;padding:0.35rem 0.6rem;border-radius:6px;transition:all .2s; }
+    .nav-links a:hover { color:#002868;background:#f0f4ff; }
+    .nav-links a.active { color:#002868;font-weight:700; }
+    .nav-auth { display:flex;gap:0.6rem;align-items:center;flex-shrink:0; }
+    .btn-ghost { background:transparent;border:1.5px solid #002868;color:#002868;padding:0.45rem 1.1rem;border-radius:50px;font-size:0.87rem;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none; }
+    .btn-ghost:hover { background:#002868;color:#fff; }
+    .btn-enroll { background:#BF0A30;color:#fff;padding:0.5rem 1.3rem;border-radius:50px;font-size:0.87rem;font-weight:700;text-decoration:none;transition:all .2s; }
+    .btn-enroll:hover { background:#a00827; }
+    .hamburger { display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px; }
+    .hamburger span { display:block;width:22px;height:2px;background:#002868;border-radius:2px; }
+    @media(max-width:900px) {
+      .hamburger { display:flex; }
+      .nav-links { display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:1rem 1.5rem;box-shadow:0 8px 32px rgba(0,0,0,.12);z-index:999; }
+      .nav-links.open { display:flex; }
+      .nav-auth { display:none; }
+    }
+    .container { max-width:1280px;margin:0 auto;padding:0 1.5rem; }
+
+    /* HERO */
+    .blog-hero { background:linear-gradient(135deg,#000d24,#001a45,#002868);padding:4rem 0 3rem;color:#fff;text-align:center; }
+    .hero-eyebrow { font-size:0.75rem;font-weight:700;letter-spacing:.15em;color:#f59e0b;text-transform:uppercase;margin-bottom:0.6rem; }
+    .blog-hero h1 { font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;margin-bottom:0.8rem; }
+    .blog-hero h1 span { color:#f59e0b; }
+    .blog-hero p { color:rgba(255,255,255,.8);font-size:1.05rem;max-width:55ch;margin:0 auto 2rem; }
+    .blog-search-wrap { display:flex;gap:0.6rem;max-width:440px;margin:0 auto; }
+    .blog-search-wrap input { flex:1;padding:0.75rem 1.1rem;border-radius:50px;border:none;font-size:0.95rem;font-family:'Inter',sans-serif;outline:none; }
+    .blog-search-wrap button { background:#f59e0b;color:#fff;border:none;padding:0.75rem 1.5rem;border-radius:50px;font-weight:700;cursor:pointer;transition:all .2s; }
+    .blog-search-wrap button:hover { background:#d97706; }
+
+    /* CATEGORY TABS */
+    .cat-tabs-wrap { background:#f9fafb;border-bottom:1px solid #e5e7eb;padding:0.1rem 0; }
+    .cat-tabs { display:flex;gap:0.3rem;overflow-x:auto;scrollbar-width:none;padding:0.7rem 1.5rem;max-width:1280px;margin:0 auto; }
+    .cat-tabs::-webkit-scrollbar { display:none; }
+    .cat-tab { padding:0.45rem 1.1rem;border-radius:50px;border:1.5px solid #e5e7eb;background:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;color:#374151;transition:all .2s;white-space:nowrap;flex-shrink:0; }
+    .cat-tab.active, .cat-tab:hover { background:#002868;color:#fff;border-color:#002868; }
+
+    /* BLOG LAYOUT */
+    .blog-layout { padding:3rem 0; }
+    .blog-inner { display:grid;grid-template-columns:1fr 320px;gap:3rem; }
+    @media(max-width:1000px) { .blog-inner { grid-template-columns:1fr; } }
+
+    /* FEATURED ARTICLE */
+    .featured-article { background:#fff;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,.08);overflow:hidden;margin-bottom:2rem;display:grid;grid-template-columns:1fr 1fr;transition:all .25s; }
+    .featured-article:hover { box-shadow:0 16px 48px rgba(0,0,0,.14); }
+    @media(max-width:700px) { .featured-article { grid-template-columns:1fr; } }
+    .fa-thumb { min-height:300px;display:flex;align-items:center;justify-content:center;font-size:5rem; }
+    .fa-body { padding:2.5rem; }
+    .fa-eyebrow { display:flex;align-items:center;gap:0.75rem;margin-bottom:0.8rem; }
+    .article-cat { font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:0.2rem 0.7rem;border-radius:50px; }
+    .cat-ai { background:#f5f3ff;color:#6b21a8; }
+    .cat-tech { background:#eff6ff;color:#1e40af; }
+    .cat-biz { background:#fff7ed;color:#92400e; }
+    .cat-design { background:#fdf2f8;color:#86198f; }
+    .cat-career { background:#ecfdf5;color:#065f46; }
+    .cat-africa { background:#fefce8;color:#854d0e; }
+    .article-featured-tag { background:#f59e0b;color:#fff;font-size:0.72rem;font-weight:700;padding:0.2rem 0.7rem;border-radius:50px; }
+    .fa-body h2 { font-size:1.5rem;font-weight:800;color:#111827;margin-bottom:0.7rem;line-height:1.3; }
+    .fa-body p { font-size:0.95rem;color:#6b7280;line-height:1.7;margin-bottom:1.2rem; }
+    .article-meta { display:flex;align-items:center;gap:1rem;font-size:0.83rem;color:#9ca3af;flex-wrap:wrap; }
+    .author-mini { display:flex;align-items:center;gap:0.4rem; }
+    .author-avatar-mini { width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#002868,#0045b0);display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#fff;font-weight:700; }
+    .read-more { display:inline-block;margin-top:1.2rem;background:#002868;color:#fff;padding:0.6rem 1.3rem;border-radius:8px;font-weight:700;font-size:0.87rem;text-decoration:none;transition:all .2s; }
+    .read-more:hover { background:#001a45; }
+
+    /* ARTICLE GRID */
+    .section-head { display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem; }
+    .section-head h3 { font-size:1.1rem;font-weight:800;color:#111827; }
+    .section-head a { font-size:0.85rem;color:#002868;font-weight:600;text-decoration:none; }
+    .articles-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2.5rem; }
+    @media(max-width:900px) { .articles-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:560px) { .articles-grid { grid-template-columns:1fr; } }
+
+    .article-card { background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.07);overflow:hidden;transition:all .25s;display:flex;flex-direction:column; }
+    .article-card:hover { transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.12); }
+    .art-thumb { height:120px;display:flex;align-items:center;justify-content:center;font-size:2.5rem; }
+    .art-body { padding:1.2rem;flex:1;display:flex;flex-direction:column; }
+    .art-cat { margin-bottom:0.5rem; }
+    .art-body h3 { font-size:0.95rem;font-weight:700;color:#111827;margin-bottom:0.5rem;line-height:1.4; }
+    .art-excerpt { font-size:0.83rem;color:#6b7280;line-height:1.55;margin-bottom:0.8rem;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden; }
+    .art-footer { display:flex;align-items:center;justify-content:space-between;padding-top:0.7rem;border-top:1px solid #f3f4f6;font-size:0.78rem;color:#9ca3af;margin-top:auto; }
+    .art-footer a { color:#002868;font-weight:600;text-decoration:none; }
+    .art-footer a:hover { text-decoration:underline; }
+
+    /* LOAD MORE */
+    .load-more-wrap { text-align:center;margin-top:1rem; }
+    .btn-load-more { background:#fff;color:#002868;border:2px solid #002868;padding:0.7rem 2rem;border-radius:50px;font-weight:700;font-size:0.95rem;cursor:pointer;transition:all .2s; }
+    .btn-load-more:hover { background:#002868;color:#fff; }
+
+    /* SIDEBAR */
+    .blog-sidebar { display:flex;flex-direction:column;gap:1.5rem; }
+    .side-card { background:#fff;border-radius:16px;padding:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,.07); }
+    .side-card h4 { font-size:0.97rem;font-weight:800;color:#111827;margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:2px solid #f3f4f6; }
+
+    /* NEWSLETTER */
+    .newsletter-card { background:linear-gradient(135deg,#002868,#003399);border-radius:16px;padding:1.5rem;color:#fff; }
+    .newsletter-card h4 { color:#fff;margin-bottom:0.4rem;font-size:1rem; }
+    .newsletter-card p { font-size:0.85rem;color:rgba(255,255,255,.8);margin-bottom:1.2rem; }
+    .newsletter-form { display:flex;flex-direction:column;gap:0.6rem; }
+    .newsletter-form input { padding:0.7rem 1rem;border-radius:10px;border:none;font-size:0.88rem;font-family:'Inter',sans-serif;outline:none; }
+    .newsletter-form button { background:#f59e0b;color:#fff;border:none;padding:0.7rem;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.9rem;transition:all .2s; }
+    .newsletter-form button:hover { background:#d97706; }
+    .newsletter-note { font-size:0.73rem;color:rgba(255,255,255,.55);margin-top:0.4rem; }
+
+    /* POPULAR POSTS */
+    .popular-list { display:flex;flex-direction:column;gap:0.9rem; }
+    .popular-item { display:flex;gap:0.8rem;align-items:flex-start; }
+    .popular-num { font-size:1.3rem;font-weight:800;color:#e5e7eb;flex-shrink:0;line-height:1;margin-top:2px; }
+    .popular-info h5 { font-size:0.87rem;font-weight:700;color:#111827;margin-bottom:0.2rem;line-height:1.3; }
+    .popular-info span { font-size:0.75rem;color:#9ca3af; }
+
+    /* TAGS */
+    .tag-cloud { display:flex;flex-wrap:wrap;gap:0.4rem; }
+    .tag-pill { font-size:0.78rem;background:#f3f4f6;color:#374151;padding:0.25rem 0.7rem;border-radius:50px;text-decoration:none;transition:all .2s;cursor:pointer; }
+    .tag-pill:hover { background:#002868;color:#fff; }
+
+    /* CATEGORIES SIDE */
+    .cat-list { list-style:none;padding:0;margin:0; }
+    .cat-list li { display:flex;justify-content:space-between;padding:0.45rem 0;border-bottom:1px solid #f3f4f6;font-size:0.88rem; }
+    .cat-list li:last-child { border:none; }
+    .cat-list li a { color:#374151;text-decoration:none;transition:color .2s; }
+    .cat-list li a:hover { color:#002868; }
+    .cat-list li span { background:#f3f4f6;font-size:0.75rem;color:#6b7280;padding:0.1rem 0.5rem;border-radius:50px; }
+
+    /* CTA BANNER */
+    .blog-cta { background:linear-gradient(135deg,#001a45,#002868,#003399);padding:4rem 0;color:#fff;text-align:center;margin-top:0; }
+    .blog-cta h2 { font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;margin-bottom:1rem; }
+    .blog-cta h2 span { color:#f59e0b; }
+    .blog-cta p { color:rgba(255,255,255,.8);max-width:52ch;margin:0 auto 2rem;font-size:1rem; }
+    .cta-btns { display:flex;gap:1rem;justify-content:center;flex-wrap:wrap; }
+    .btn-white { background:#fff;color:#002868;padding:0.75rem 1.8rem;border-radius:50px;font-weight:700;font-size:1rem;text-decoration:none;transition:all .2s; }
+    .btn-white:hover { background:#f59e0b;color:#fff; }
+    .btn-outline-gold { background:transparent;border:2px solid #f59e0b;color:#f59e0b;padding:0.75rem 1.8rem;border-radius:50px;font-weight:700;font-size:1rem;text-decoration:none;transition:all .2s; }
+    .btn-outline-gold:hover { background:#f59e0b;color:#fff; }
+
+    /* FOOTER */
+    .academy-footer { background:#0a1628;color:rgba(255,255,255,.75);padding:3rem 0 1.5rem; }
+    .footer-inner { max-width:1280px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:2fr repeat(3,1fr);gap:2.5rem;margin-bottom:2rem; }
+    .footer-brand-name { font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:0.6rem; }
+    .footer-brand-name span { color:#f59e0b; }
+    .footer-tagline { font-size:0.85rem;line-height:1.6;margin-bottom:1rem; }
+    .footer-social { display:flex;gap:0.5rem; }
+    .social-icon { width:34px;height:34px;background:rgba(255,255,255,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:all .2s;text-decoration:none;color:#fff; }
+    .social-icon:hover { background:#f59e0b; }
+    .footer-col h5 { font-size:0.88rem;font-weight:700;color:#fff;margin-bottom:0.8rem; }
+    .footer-col ul { list-style:none;padding:0;margin:0; }
+    .footer-col ul li { margin-bottom:0.4rem; }
+    .footer-col ul li a { color:rgba(255,255,255,.65);font-size:0.85rem;text-decoration:none;transition:color .2s; }
+    .footer-col ul li a:hover { color:#f59e0b; }
+    .footer-bottom { max-width:1280px;margin:0 auto;padding:1rem 1.5rem 0;border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;font-size:0.82rem;color:rgba(255,255,255,.45); }
+    .footer-bottom a { color:rgba(255,255,255,.6);text-decoration:none; }
+    .footer-bottom a:hover { color:#f59e0b; }
+    @media(max-width:900px) { .footer-inner { grid-template-columns:1fr 1fr; } }
+    @media(max-width:600px) { .footer-inner { grid-template-columns:1fr; } }
+    .reveal { opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease; }
+    .reveal.visible { opacity:1;transform:none; }
+  </style>
+</head>
+<body>
+
+  <header class="academy-header">
+    <div class="nav-wrap">
+      <a class="brand" href="academy.html">TIH <span>Academy</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="academy.html">Academy</a>
+        <a href="courses.html">Courses</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="instructors.html">Instructors</a>
+        <a href="academy-blog.html" class="active">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-auth">
+        <a href="student-dashboard.html" class="btn-ghost">Log In</a>
+        <a href="academy.html#enroll" class="btn-enroll">Enroll Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="hero-eyebrow">Insights &amp; Ideas</div>
+      <h1>The TIH Academy <span>Blog</span></h1>
+      <p>Expert articles on technology, entrepreneurship, AI, digital skills, career development, and innovation in Africa — written by our instructors and contributors.</p>
+      <div class="blog-search-wrap">
+        <input type="search" placeholder="Search articles…" aria-label="Search blog" />
+        <button>Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY TABS -->
+  <div class="cat-tabs-wrap">
+    <div class="cat-tabs">
+      <span class="cat-tab active" onclick="filterBlog(this,'all')">All Articles</span>
+      <span class="cat-tab" onclick="filterBlog(this,'ai')">AI &amp; Technology</span>
+      <span class="cat-tab" onclick="filterBlog(this,'biz')">Business &amp; Entrepreneurship</span>
+      <span class="cat-tab" onclick="filterBlog(this,'career')">Career &amp; Skills</span>
+      <span class="cat-tab" onclick="filterBlog(this,'design')">Design &amp; Creative</span>
+      <span class="cat-tab" onclick="filterBlog(this,'africa')">Africa &amp; Innovation</span>
+      <span class="cat-tab" onclick="filterBlog(this,'edu')">Education</span>
+    </div>
+  </div>
+
+  <!-- BLOG LAYOUT -->
+  <section class="blog-layout">
+    <div class="container">
+      <div class="blog-inner">
+
+        <!-- MAIN CONTENT -->
+        <div>
+
+          <!-- FEATURED ARTICLE -->
+          <div class="featured-article reveal">
+            <div class="fa-thumb" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);">🤖</div>
+            <div class="fa-body">
+              <div class="fa-eyebrow">
+                <span class="article-cat cat-ai">AI &amp; Technology</span>
+                <span class="article-featured-tag">Featured</span>
+              </div>
+              <h2>How AI is Reshaping Jobs Across Africa — And What You Can Do About It</h2>
+              <p>Artificial intelligence is automating repetitive tasks across industries, from banking to agriculture. But rather than fear job displacement, forward-thinking Africans are using AI as a superpower. Here's what the research says and what skills will matter most by 2030.</p>
+              <div class="article-meta">
+                <div class="author-mini"><div class="author-avatar-mini">MK</div><span>Dr. Mariama Koroma</span></div>
+                <span>June 18, 2026</span>
+                <span>8 min read</span>
+                <span>👁 4,821 views</span>
+              </div>
+              <a href="#" class="read-more">Read Full Article →</a>
+            </div>
+          </div>
+
+          <!-- LATEST ARTICLES -->
+          <div class="section-head">
+            <h3>Latest Articles</h3>
+            <a href="#">See all →</a>
+          </div>
+          <div class="articles-grid">
+
+            <div class="article-card reveal">
+              <div class="art-thumb" style="background:linear-gradient(135deg,#002868,#0045b0);">💻</div>
+              <div class="art-body">
+                <div class="art-cat"><span class="article-cat cat-tech">Technology</span></div>
+                <h3>10 Free Digital Tools Every Small Business Owner in Liberia Should Be Using</h3>
+                <p class="art-excerpt">From Google Workspace to Canva, these free tools can help you manage your business, market your products, and grow your customer base — no tech background required.</p>
+                <div class="art-footer">
+                  <span>Jun 20 · 5 min</span>
+                  <a href="#">Read →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card reveal">
+              <div class="art-thumb" style="background:linear-gradient(135deg,#f97316,#c2410c);">🚀</div>
+              <div class="art-body">
+                <div class="art-cat"><span class="article-cat cat-biz">Business</span></div>
+                <h3>Starting a Business in Liberia: A Step-by-Step Guide for First-Time Entrepreneurs</h3>
+                <p class="art-excerpt">Registration, funding, marketing, and survival — everything you need to know to go from business idea to operating business in Liberia's current market.</p>
+                <div class="art-footer">
+                  <span>Jun 17 · 12 min</span>
+                  <a href="#">Read →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card reveal">
+              <div class="art-thumb" style="background:linear-gradient(135deg,#10b981,#047857);">📣</div>
+              <div class="art-body">
+                <div class="art-cat"><span class="article-cat cat-career">Career</span></div>
+                <h3>5 High-Demand Digital Skills You Can Learn in Under 3 Months</h3>
+                <p class="art-excerpt">Want to boost your income or land a better job? These five skills are in high demand across Africa — and you can learn any one of them in under 90 days with focused effort.</p>
+                <div class="art-footer">
+                  <span>Jun 15 · 7 min</span>
+                  <a href="#">Read →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card reveal">
+              <div class="art-thumb" style="background:linear-gradient(135deg,#ec4899,#be185d);">🎨</div>
+              <div class="art-body">
+                <div class="art-cat"><span class="article-cat cat-design">Design</span></div>
+                <h3>How to Design a Professional Brand Identity on a Zero Budget</h3>
+                <p class="art-excerpt">Great branding doesn't require an expensive agency. With free tools like Canva and Google Fonts, even solo entrepreneurs can build a brand that looks worth millions.</p>
+                <div class="art-footer">
+                  <span>Jun 12 · 9 min</span>
+                  <a href="#">Read →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card reveal">
+              <div class="art-thumb" style="background:linear-gradient(135deg,#f59e0b,#d97706);">🌍</div>
+              <div class="art-body">
+                <div class="art-cat"><span class="article-cat cat-africa">Africa &amp; Innovation</span></div>
+                <h3>The African Tech Startup Ecosystem in 2026: Who's Winning and Why</h3>
+                <p class="art-excerpt">From Lagos to Nairobi to Accra, Africa's tech startup scene is booming. We break down which sectors are attracting the most investment and what it means for aspiring entrepreneurs.</p>
+                <div class="art-footer">
+                  <span>Jun 10 · 10 min</span>
+                  <a href="#">Read →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card reveal">
+              <div class="art-thumb" style="background:linear-gradient(135deg,#0891b2,#0e7490);">📊</div>
+              <div class="art-body">
+                <div class="art-cat"><span class="article-cat cat-tech">Technology</span></div>
+                <h3>Introduction to Data Analytics: What It Is and Why Every Professional Needs It</h3>
+                <p class="art-excerpt">Data is now the world's most valuable resource. But you don't need to be a data scientist to benefit — here's how basic analytics skills can transform any career.</p>
+                <div class="art-footer">
+                  <span>Jun 8 · 8 min</span>
+                  <a href="#">Read →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card reveal">
+              <div class="art-thumb" style="background:linear-gradient(135deg,#BF0A30,#800020);">🔒</div>
+              <div class="art-body">
+                <div class="art-cat"><span class="article-cat cat-tech">Technology</span></div>
+                <h3>Cybersecurity for Non-Technical Professionals: 7 Simple Habits That Protect You</h3>
+                <p class="art-excerpt">You don't need to be a hacker to stay safe online. These seven easy habits can dramatically reduce your risk of cyberattack — even if you're not tech-savvy.</p>
+                <div class="art-footer">
+                  <span>Jun 5 · 6 min</span>
+                  <a href="#">Read →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card reveal">
+              <div class="art-thumb" style="background:linear-gradient(135deg,#6366f1,#4338ca);">👑</div>
+              <div class="art-body">
+                <div class="art-cat"><span class="article-cat cat-career">Leadership</span></div>
+                <h3>Servant Leadership in African Organizations: Lessons from Liberia's Top Managers</h3>
+                <p class="art-excerpt">The best leaders in Africa's growing organizations share a common trait: they serve before they lead. We spoke with six leaders to understand what servant leadership looks like in practice.</p>
+                <div class="art-footer">
+                  <span>Jun 2 · 11 min</span>
+                  <a href="#">Read →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-card reveal">
+              <div class="art-thumb" style="background:linear-gradient(135deg,#0d9488,#065f46);">🎓</div>
+              <div class="art-body">
+                <div class="art-cat"><span class="article-cat cat-africa">Education</span></div>
+                <h3>Why Online Learning is the Future of Education in West Africa</h3>
+                <p class="art-excerpt">Internet access is growing, smartphones are everywhere, and traditional education can't keep up with demand. We make the case for why digital learning is Africa's best educational bet.</p>
+                <div class="art-footer">
+                  <span>May 29 · 9 min</span>
+                  <a href="#">Read →</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="load-more-wrap">
+            <button class="btn-load-more" onclick="this.textContent='Loading…';setTimeout(()=>this.textContent='Load More Articles',1500)">Load More Articles</button>
+          </div>
+
+        </div><!-- /main -->
+
+        <!-- SIDEBAR -->
+        <div class="blog-sidebar">
+
+          <!-- NEWSLETTER -->
+          <div class="newsletter-card">
+            <h4>📬 Weekly Digest</h4>
+            <p>Get our best articles on tech, entrepreneurship, and digital skills delivered to your inbox every week.</p>
+            <div class="newsletter-form">
+              <input type="text" placeholder="Your full name" />
+              <input type="email" placeholder="your@email.com" />
+              <button onclick="subscribeNewsletter(this)">Subscribe Free</button>
+            </div>
+            <div class="newsletter-note">No spam. Unsubscribe any time. 6,200+ subscribers.</div>
+          </div>
+
+          <!-- POPULAR POSTS -->
+          <div class="side-card">
+            <h4>🔥 Most Popular</h4>
+            <div class="popular-list">
+              <div class="popular-item">
+                <div class="popular-num">01</div>
+                <div class="popular-info">
+                  <h5>How AI is Reshaping Jobs Across Africa</h5>
+                  <span>4,821 views</span>
+                </div>
+              </div>
+              <div class="popular-item">
+                <div class="popular-num">02</div>
+                <div class="popular-info">
+                  <h5>10 Free Digital Tools Every Business Owner Needs</h5>
+                  <span>3,654 views</span>
+                </div>
+              </div>
+              <div class="popular-item">
+                <div class="popular-num">03</div>
+                <div class="popular-info">
+                  <h5>5 High-Demand Digital Skills to Learn in 3 Months</h5>
+                  <span>3,102 views</span>
+                </div>
+              </div>
+              <div class="popular-item">
+                <div class="popular-num">04</div>
+                <div class="popular-info">
+                  <h5>Starting a Business in Liberia: Step-by-Step Guide</h5>
+                  <span>2,891 views</span>
+                </div>
+              </div>
+              <div class="popular-item">
+                <div class="popular-num">05</div>
+                <div class="popular-info">
+                  <h5>The African Tech Startup Ecosystem in 2026</h5>
+                  <span>2,543 views</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CATEGORIES -->
+          <div class="side-card">
+            <h4>📁 Categories</h4>
+            <ul class="cat-list">
+              <li><a href="#">AI &amp; Technology</a><span>28</span></li>
+              <li><a href="#">Business &amp; Entrepreneurship</a><span>22</span></li>
+              <li><a href="#">Career &amp; Skills</a><span>19</span></li>
+              <li><a href="#">Design &amp; Creative</a><span>14</span></li>
+              <li><a href="#">Africa &amp; Innovation</a><span>18</span></li>
+              <li><a href="#">Education</a><span>12</span></li>
+              <li><a href="#">Cybersecurity</a><span>9</span></li>
+              <li><a href="#">Leadership</a><span>11</span></li>
+            </ul>
+          </div>
+
+          <!-- TAG CLOUD -->
+          <div class="side-card">
+            <h4>🏷 Popular Tags</h4>
+            <div class="tag-cloud">
+              <span class="tag-pill">AI</span>
+              <span class="tag-pill">Entrepreneurship</span>
+              <span class="tag-pill">Liberia</span>
+              <span class="tag-pill">Digital Skills</span>
+              <span class="tag-pill">Web Development</span>
+              <span class="tag-pill">Data Analytics</span>
+              <span class="tag-pill">Cybersecurity</span>
+              <span class="tag-pill">Career Tips</span>
+              <span class="tag-pill">Africa Tech</span>
+              <span class="tag-pill">Leadership</span>
+              <span class="tag-pill">Canva</span>
+              <span class="tag-pill">Marketing</span>
+              <span class="tag-pill">Startup</span>
+              <span class="tag-pill">Free Courses</span>
+            </div>
+          </div>
+
+          <!-- ABOUT THE BLOG -->
+          <div class="side-card" style="background:linear-gradient(135deg,#f8faff,#eff6ff);">
+            <h4>About This Blog</h4>
+            <p style="font-size:0.87rem;color:#6b7280;line-height:1.65;margin-bottom:1rem;">The TIH Academy Blog is written by our instructors, graduates, and industry contributors. All articles are reviewed for accuracy and practical relevance.</p>
+            <a href="instructors.html" style="display:block;text-align:center;background:#002868;color:#fff;padding:0.6rem;border-radius:10px;font-weight:700;font-size:0.87rem;text-decoration:none;">Meet Our Contributors →</a>
+          </div>
+
+        </div><!-- /sidebar -->
+      </div><!-- /blog-inner -->
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="blog-cta">
+    <div class="container">
+      <h2>Turn These Insights Into <span>Certified Skills</span></h2>
+      <p>Reading about digital skills is a great start. Taking a course and earning a certificate is even better. Join TIH Academy and put your knowledge to work.</p>
+      <div class="cta-btns">
+        <a href="courses.html" class="btn-white">Browse Courses</a>
+        <a href="certifications.html" class="btn-outline-gold">View Certificates</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="academy-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">TIH <span>Academy</span></div>
+        <p class="footer-tagline">Empowering Africa through digital skills, innovation, technology, leadership, and entrepreneurship.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon">f</a><a href="#" class="social-icon">𝕏</a>
+          <a href="#" class="social-icon">in</a><a href="#" class="social-icon">▶</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Learn</h5><ul>
+        <li><a href="courses.html">All Courses</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="academy.html#pathways">Learning Paths</a></li>
+        <li><a href="student-dashboard.html">My Dashboard</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="about.html">About TIH</a></li>
+        <li><a href="instructors.html">Instructors</a></li>
+        <li><a href="academy-blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Support</h5><ul>
+        <li><a href="academy.html#faq">FAQ</a></li>
+        <li><a href="certificate-verify.html">Verify Certificate</a></li>
+        <li><a href="contact.html">Help Center</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tolbert Innovation Hub Academy. All rights reserved.</span>
+      <span>Monrovia, Liberia · <a href="mailto:academy@tolbertinnovationhub.org">academy@tolbertinnovationhub.org</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open');});
+    function filterBlog(el,cat){document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
+    function subscribeNewsletter(btn){btn.textContent='Subscribed! ✓';btn.style.background='#10b981';}
+    const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>

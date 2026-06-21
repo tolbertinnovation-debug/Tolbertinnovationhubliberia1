@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instructors | TIH Academy — Expert Faculty</title>
+  <meta name="description" content="Meet TIH Academy's world-class instructors — industry experts, practitioners, and academics committed to empowering Africa's next generation of digital professionals." />
+  <meta name="keywords" content="TIH Academy instructors, online course teachers Africa, expert faculty Liberia" />
+  <meta property="og:title" content="Instructors | TIH Academy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tolbertinnovationhub.org/instructors.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root { --ac-gold:#f59e0b; --ac-teal:#0d9488; --ac-purple:#7c3aed; }
+    .academy-header { background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:1000; }
+    .nav-wrap { display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.5rem;max-width:1280px;margin:0 auto;gap:1rem; }
+    .brand { font-family:'Poppins',sans-serif;font-weight:800;color:#002868;font-size:1.18rem;text-decoration:none;flex-shrink:0; }
+    .brand span { color:#BF0A30; }
+    .nav-links { display:flex;gap:0.15rem;align-items:center;list-style:none;margin:0;padding:0;flex-wrap:wrap; }
+    .nav-links a { color:#374151;font-size:0.87rem;font-weight:500;text-decoration:none;padding:0.35rem 0.6rem;border-radius:6px;transition:all .2s; }
+    .nav-links a:hover { color:#002868;background:#f0f4ff; }
+    .nav-links a.active { color:#002868;font-weight:700; }
+    .nav-auth { display:flex;gap:0.6rem;align-items:center;flex-shrink:0; }
+    .btn-ghost { background:transparent;border:1.5px solid #002868;color:#002868;padding:0.45rem 1.1rem;border-radius:50px;font-size:0.87rem;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none; }
+    .btn-ghost:hover { background:#002868;color:#fff; }
+    .btn-enroll { background:#BF0A30;color:#fff;padding:0.5rem 1.3rem;border-radius:50px;font-size:0.87rem;font-weight:700;text-decoration:none;transition:all .2s; }
+    .btn-enroll:hover { background:#a00827;transform:translateY(-1px); }
+    .hamburger { display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px; }
+    .hamburger span { display:block;width:22px;height:2px;background:#002868;border-radius:2px; }
+    @media(max-width:900px) {
+      .hamburger { display:flex; }
+      .nav-links { display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:1rem 1.5rem;box-shadow:0 8px 32px rgba(0,0,0,.12);z-index:999; }
+      .nav-links.open { display:flex; }
+      .nav-auth { display:none; }
+    }
+    .container { max-width:1280px;margin:0 auto;padding:0 1.5rem; }
+
+    /* HERO */
+    .instr-hero { background:linear-gradient(135deg,#000d24,#001a45,#002868);padding:4.5rem 0 3.5rem;color:#fff;text-align:center; }
+    .hero-eyebrow { font-size:0.75rem;font-weight:700;letter-spacing:.15em;color:#f59e0b;text-transform:uppercase;margin-bottom:0.6rem; }
+    .instr-hero h1 { font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;margin-bottom:0.8rem; }
+    .instr-hero h1 span { color:#f59e0b; }
+    .instr-hero p { color:rgba(255,255,255,.8);font-size:1.05rem;max-width:55ch;margin:0 auto 2rem; }
+    .hero-stats { display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap; }
+    .hero-stat { text-align:center; }
+    .hero-stat-num { font-size:2rem;font-weight:800;color:#f59e0b; }
+    .hero-stat-label { font-size:0.83rem;color:rgba(255,255,255,.7); }
+
+    /* FILTER BAR */
+    .filter-bar { background:#f9fafb;border-bottom:1px solid #e5e7eb;padding:1.2rem 0; }
+    .filter-bar-inner { display:flex;align-items:center;gap:1rem;flex-wrap:wrap; }
+    .filter-search { flex:1;min-width:200px;max-width:300px; }
+    .filter-search input { width:100%;padding:0.7rem 1rem;border:1.5px solid #e5e7eb;border-radius:10px;font-size:0.9rem;outline:none;transition:border-color .2s;font-family:'Inter',sans-serif;box-sizing:border-box; }
+    .filter-search input:focus { border-color:#002868; }
+    .filter-chips { display:flex;gap:0.5rem;flex-wrap:wrap; }
+    .chip { padding:0.45rem 1rem;border-radius:50px;border:1.5px solid #e5e7eb;background:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;color:#374151;transition:all .2s; }
+    .chip.active, .chip:hover { background:#002868;color:#fff;border-color:#002868; }
+    .results-count { margin-left:auto;font-size:0.88rem;color:#6b7280; }
+
+    /* INSTRUCTORS GRID */
+    .instructors-section { padding:4rem 0; }
+    .instructors-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem; }
+    @media(max-width:1100px) { .instructors-grid { grid-template-columns:repeat(3,1fr); } }
+    @media(max-width:800px) { .instructors-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:500px) { .instructors-grid { grid-template-columns:1fr; } }
+
+    .instr-card { background:#fff;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,.08);overflow:hidden;transition:all .25s;border:1px solid #f3f4f6; }
+    .instr-card:hover { transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.14); }
+    .instr-banner { height:80px;position:relative; }
+    .instr-avatar-wrap { position:absolute;bottom:-40px;left:50%;transform:translateX(-50%); }
+    .instr-avatar { width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#002868,#0045b0);display:flex;align-items:center;justify-content:center;font-size:2rem;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.15); }
+    .instr-body { padding:3.5rem 1.5rem 1.5rem;text-align:center; }
+    .instr-name { font-size:1.05rem;font-weight:800;color:#111827;margin-bottom:0.2rem; }
+    .instr-title { font-size:0.82rem;color:#002868;font-weight:600;margin-bottom:0.6rem; }
+    .instr-bio { font-size:0.83rem;color:#6b7280;line-height:1.55;margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden; }
+    .instr-stats { display:flex;justify-content:center;gap:1.5rem;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid #f3f4f6; }
+    .i-stat { text-align:center; }
+    .i-stat-num { font-size:1rem;font-weight:800;color:#002868; }
+    .i-stat-label { font-size:0.7rem;color:#9ca3af; }
+    .instr-tags { display:flex;flex-wrap:wrap;gap:0.3rem;justify-content:center;margin-bottom:1rem; }
+    .instr-tag { font-size:0.72rem;background:#f0f4ff;color:#002868;padding:0.18rem 0.55rem;border-radius:50px;font-weight:600; }
+    .instr-rating { display:flex;align-items:center;justify-content:center;gap:0.3rem;font-size:0.85rem;margin-bottom:1rem; }
+    .instr-rating .stars { color:#f59e0b; }
+    .instr-rating strong { color:#111827; }
+    .instr-rating span { color:#9ca3af; }
+    .btn-view-profile { display:block;width:100%;padding:0.6rem;background:#002868;color:#fff;border:none;border-radius:10px;font-size:0.87rem;font-weight:700;cursor:pointer;text-decoration:none;transition:all .2s;text-align:center; }
+    .btn-view-profile:hover { background:#001a45; }
+
+    /* FEATURED INSTRUCTOR */
+    .featured-instr { padding:4rem 0;background:linear-gradient(135deg,#f8faff,#eff6ff); }
+    .fi-inner { display:grid;grid-template-columns:340px 1fr;gap:4rem;align-items:center; }
+    @media(max-width:900px) { .fi-inner { grid-template-columns:1fr; } }
+    .fi-card { background:#fff;border-radius:24px;padding:2.5rem;box-shadow:0 12px 48px rgba(0,40,104,.12);text-align:center; }
+    .fi-avatar { width:120px;height:120px;background:linear-gradient(135deg,#002868,#0045b0);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3.5rem;margin:0 auto 1.2rem;border:4px solid #f59e0b; }
+    .fi-name { font-size:1.4rem;font-weight:800;color:#002868;margin-bottom:0.3rem; }
+    .fi-role { font-size:0.9rem;color:#f59e0b;font-weight:700;margin-bottom:1rem; }
+    .fi-stats-row { display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:1.2rem; }
+    .fi-stat-box { background:#f0f4ff;border-radius:10px;padding:0.7rem; }
+    .fi-stat-num { font-size:1.1rem;font-weight:800;color:#002868; }
+    .fi-stat-lbl { font-size:0.68rem;color:#6b7280; }
+    .fi-social { display:flex;justify-content:center;gap:0.5rem; }
+    .fi-social a { width:36px;height:36px;background:#f3f4f6;border-radius:8px;display:flex;align-items:center;justify-content:center;text-decoration:none;color:#374151;font-size:0.9rem;transition:all .2s; }
+    .fi-social a:hover { background:#002868;color:#fff; }
+    .fi-content h2 { font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;color:#111827;margin-bottom:1rem; }
+    .fi-content p { font-size:0.97rem;color:#6b7280;line-height:1.7;margin-bottom:1.2rem; }
+    .fi-quote { background:#f0f4ff;border-left:4px solid #002868;border-radius:0 12px 12px 0;padding:1.2rem 1.5rem;font-style:italic;color:#374151;font-size:0.95rem;margin-bottom:1.5rem; }
+    .btn-primary { display:inline-block;background:#002868;color:#fff;padding:0.7rem 1.8rem;border-radius:50px;font-weight:700;text-decoration:none;font-size:0.95rem;transition:all .2s; }
+    .btn-primary:hover { background:#001a45;transform:translateY(-2px); }
+
+    /* BECOME INSTRUCTOR */
+    .become-instr { padding:5rem 0;background:linear-gradient(135deg,#001a45,#002868,#003399);color:#fff; }
+    .bi-inner { display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center; }
+    @media(max-width:900px) { .bi-inner { grid-template-columns:1fr; } }
+    .become-instr h2 { font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;margin-bottom:1rem; }
+    .become-instr h2 span { color:#f59e0b; }
+    .become-instr p { color:rgba(255,255,255,.8);font-size:1rem;line-height:1.7;margin-bottom:1.5rem; }
+    .bi-perks { list-style:none;padding:0;margin:0 0 2rem; }
+    .bi-perks li { display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0;color:rgba(255,255,255,.9);font-size:0.95rem; }
+    .bi-perks li span:first-child { color:#f59e0b;font-size:1.1rem; }
+    .btn-become { display:inline-block;background:#f59e0b;color:#fff;padding:0.8rem 2rem;border-radius:50px;font-weight:700;text-decoration:none;font-size:1rem;transition:all .2s; }
+    .btn-become:hover { background:#d97706;transform:translateY(-2px); }
+    .bi-form { background:rgba(255,255,255,.05);border-radius:20px;padding:2rem;border:1px solid rgba(255,255,255,.1); }
+    .bi-form h3 { font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:1.2rem; }
+    .bi-field { margin-bottom:1rem; }
+    .bi-field label { display:block;font-size:0.83rem;color:rgba(255,255,255,.7);margin-bottom:0.3rem; }
+    .bi-field input, .bi-field select, .bi-field textarea { width:100%;padding:0.75rem 1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:10px;color:#fff;font-size:0.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;box-sizing:border-box; }
+    .bi-field input::placeholder, .bi-field textarea::placeholder { color:rgba(255,255,255,.4); }
+    .bi-field input:focus, .bi-field select:focus, .bi-field textarea:focus { border-color:#f59e0b; }
+    .bi-field select option { color:#111827;background:#fff; }
+    .bi-submit { width:100%;padding:0.85rem;background:#f59e0b;color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s; }
+    .bi-submit:hover { background:#d97706; }
+
+    /* FOOTER */
+    .academy-footer { background:#0a1628;color:rgba(255,255,255,.75);padding:3rem 0 1.5rem; }
+    .footer-inner { max-width:1280px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:2fr repeat(3,1fr);gap:2.5rem;margin-bottom:2rem; }
+    .footer-brand-name { font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:0.6rem; }
+    .footer-brand-name span { color:#f59e0b; }
+    .footer-tagline { font-size:0.85rem;line-height:1.6;margin-bottom:1rem; }
+    .footer-social { display:flex;gap:0.5rem; }
+    .social-icon { width:34px;height:34px;background:rgba(255,255,255,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:all .2s;text-decoration:none;color:#fff; }
+    .social-icon:hover { background:#f59e0b; }
+    .footer-col h5 { font-size:0.88rem;font-weight:700;color:#fff;margin-bottom:0.8rem; }
+    .footer-col ul { list-style:none;padding:0;margin:0; }
+    .footer-col ul li { margin-bottom:0.4rem; }
+    .footer-col ul li a { color:rgba(255,255,255,.65);font-size:0.85rem;text-decoration:none;transition:color .2s; }
+    .footer-col ul li a:hover { color:#f59e0b; }
+    .footer-bottom { max-width:1280px;margin:0 auto;padding:1rem 1.5rem 0;border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;font-size:0.82rem;color:rgba(255,255,255,.45); }
+    .footer-bottom a { color:rgba(255,255,255,.6);text-decoration:none; }
+    .footer-bottom a:hover { color:#f59e0b; }
+    @media(max-width:900px) { .footer-inner { grid-template-columns:1fr 1fr; } }
+    @media(max-width:600px) { .footer-inner { grid-template-columns:1fr; } }
+    .reveal { opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease; }
+    .reveal.visible { opacity:1;transform:none; }
+  </style>
+</head>
+<body>
+
+  <header class="academy-header">
+    <div class="nav-wrap">
+      <a class="brand" href="academy.html">TIH <span>Academy</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="academy.html">Academy</a>
+        <a href="courses.html">Courses</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="instructors.html" class="active">Instructors</a>
+        <a href="academy-blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-auth">
+        <a href="student-dashboard.html" class="btn-ghost">Log In</a>
+        <a href="academy.html#enroll" class="btn-enroll">Enroll Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="instr-hero">
+    <div class="container">
+      <div class="hero-eyebrow">World-Class Faculty</div>
+      <h1>Learn From <span>Industry Experts</span></h1>
+      <p>Our instructors are practicing professionals, academics, and entrepreneurs with deep expertise and a passion for teaching. Every course is crafted by someone who's done the work.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">48</div><div class="hero-stat-label">Expert Instructors</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">4.8★</div><div class="hero-stat-label">Avg. Rating</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">150+</div><div class="hero-stat-label">Courses Taught</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">10K+</div><div class="hero-stat-label">Students Taught</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="container">
+      <div class="filter-bar-inner">
+        <div class="filter-search">
+          <input type="search" id="instrSearch" placeholder="Search instructors..." aria-label="Search instructors" />
+        </div>
+        <div class="filter-chips">
+          <span class="chip active" onclick="filterCategory(this,'all')">All</span>
+          <span class="chip" onclick="filterCategory(this,'tech')">Technology</span>
+          <span class="chip" onclick="filterCategory(this,'business')">Business</span>
+          <span class="chip" onclick="filterCategory(this,'design')">Design</span>
+          <span class="chip" onclick="filterCategory(this,'leadership')">Leadership</span>
+          <span class="chip" onclick="filterCategory(this,'data')">Data &amp; AI</span>
+        </div>
+        <div class="results-count">Showing <strong>12</strong> of <strong>48</strong> instructors</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTRUCTORS GRID -->
+  <section class="instructors-section">
+    <div class="container">
+      <div class="instructors-grid" id="instrGrid">
+
+        <!-- 1 -->
+        <div class="instr-card reveal" data-cat="tech">
+          <div class="instr-banner" style="background:linear-gradient(135deg,#002868,#0045b0);">
+            <div class="instr-avatar-wrap"><div class="instr-avatar">👨‍💼</div></div>
+          </div>
+          <div class="instr-body">
+            <div class="instr-name">Samuel Tolbert</div>
+            <div class="instr-title">Founder &amp; Executive Director</div>
+            <p class="instr-bio">Technology entrepreneur, software developer, and education advocate with 12+ years transforming digital access across Liberia and West Africa.</p>
+            <div class="instr-stats">
+              <div class="i-stat"><div class="i-stat-num">8</div><div class="i-stat-label">Courses</div></div>
+              <div class="i-stat"><div class="i-stat-num">4,821</div><div class="i-stat-label">Students</div></div>
+            </div>
+            <div class="instr-tags"><span class="instr-tag">Web Dev</span><span class="instr-tag">Computer Skills</span><span class="instr-tag">Leadership</span></div>
+            <div class="instr-rating"><span class="stars">★★★★★</span><strong>4.9</strong><span>(2,187 reviews)</span></div>
+            <a href="courses.html" class="btn-view-profile">View Courses</a>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="instr-card reveal" data-cat="data">
+          <div class="instr-banner" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);">
+            <div class="instr-avatar-wrap"><div class="instr-avatar">👩‍🔬</div></div>
+          </div>
+          <div class="instr-body">
+            <div class="instr-name">Dr. Mariama Koroma</div>
+            <div class="instr-title">AI &amp; Data Science Lead</div>
+            <p class="instr-bio">PhD in Computer Science from University of Ghana. Former data scientist at a global tech firm, specializing in machine learning applications for emerging markets.</p>
+            <div class="instr-stats">
+              <div class="i-stat"><div class="i-stat-num">6</div><div class="i-stat-label">Courses</div></div>
+              <div class="i-stat"><div class="i-stat-num">3,241</div><div class="i-stat-label">Students</div></div>
+            </div>
+            <div class="instr-tags"><span class="instr-tag">AI/ML</span><span class="instr-tag">Python</span><span class="instr-tag">Data Science</span></div>
+            <div class="instr-rating"><span class="stars">★★★★★</span><strong>4.8</strong><span>(1,432 reviews)</span></div>
+            <a href="courses.html" class="btn-view-profile">View Courses</a>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="instr-card reveal" data-cat="data">
+          <div class="instr-banner" style="background:linear-gradient(135deg,#0d9488,#065f46);">
+            <div class="instr-avatar-wrap"><div class="instr-avatar">👨‍💻</div></div>
+          </div>
+          <div class="instr-body">
+            <div class="instr-name">Emmanuel Kamara</div>
+            <div class="instr-title">Data Analytics &amp; Business Intelligence</div>
+            <p class="instr-bio">Certified Microsoft Power BI expert and project management professional. 10 years building data solutions for NGOs and government agencies.</p>
+            <div class="instr-stats">
+              <div class="i-stat"><div class="i-stat-num">7</div><div class="i-stat-label">Courses</div></div>
+              <div class="i-stat"><div class="i-stat-num">2,890</div><div class="i-stat-label">Students</div></div>
+            </div>
+            <div class="instr-tags"><span class="instr-tag">Power BI</span><span class="instr-tag">Excel</span><span class="instr-tag">SQL</span></div>
+            <div class="instr-rating"><span class="stars">★★★★★</span><strong>4.7</strong><span>(1,056 reviews)</span></div>
+            <a href="courses.html" class="btn-view-profile">View Courses</a>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="instr-card reveal" data-cat="design">
+          <div class="instr-banner" style="background:linear-gradient(135deg,#ec4899,#be185d);">
+            <div class="instr-avatar-wrap"><div class="instr-avatar">👩‍🎨</div></div>
+          </div>
+          <div class="instr-body">
+            <div class="instr-name">Aminata Darboe</div>
+            <div class="instr-title">Creative Design &amp; Brand Strategist</div>
+            <p class="instr-bio">Award-winning graphic designer with clients across 15 African countries. Expert in Canva, Figma, Adobe Suite, and visual brand identity development.</p>
+            <div class="instr-stats">
+              <div class="i-stat"><div class="i-stat-num">5</div><div class="i-stat-label">Courses</div></div>
+              <div class="i-stat"><div class="i-stat-num">2,104</div><div class="i-stat-label">Students</div></div>
+            </div>
+            <div class="instr-tags"><span class="instr-tag">Canva</span><span class="instr-tag">Figma</span><span class="instr-tag">UI/UX</span></div>
+            <div class="instr-rating"><span class="stars">★★★★★</span><strong>4.9</strong><span>(978 reviews)</span></div>
+            <a href="courses.html" class="btn-view-profile">View Courses</a>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="instr-card reveal" data-cat="tech">
+          <div class="instr-banner" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);">
+            <div class="instr-avatar-wrap"><div class="instr-avatar">👨‍💻</div></div>
+          </div>
+          <div class="instr-body">
+            <div class="instr-name">James Togba</div>
+            <div class="instr-title">Mobile &amp; Web Developer</div>
+            <p class="instr-bio">Full-stack developer and app builder with 8 years of experience shipping apps used by thousands. Kotlin, React Native, and Node.js expert.</p>
+            <div class="instr-stats">
+              <div class="i-stat"><div class="i-stat-num">5</div><div class="i-stat-label">Courses</div></div>
+              <div class="i-stat"><div class="i-stat-num">1,872</div><div class="i-stat-label">Students</div></div>
+            </div>
+            <div class="instr-tags"><span class="instr-tag">Kotlin</span><span class="instr-tag">React Native</span><span class="instr-tag">Node.js</span></div>
+            <div class="instr-rating"><span class="stars">★★★★★</span><strong>4.6</strong><span>(645 reviews)</span></div>
+            <a href="courses.html" class="btn-view-profile">View Courses</a>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="instr-card reveal" data-cat="business">
+          <div class="instr-banner" style="background:linear-gradient(135deg,#f97316,#c2410c);">
+            <div class="instr-avatar-wrap"><div class="instr-avatar">👩‍💼</div></div>
+          </div>
+          <div class="instr-body">
+            <div class="instr-name">Dr. Clara Mensah</div>
+            <div class="instr-title">Entrepreneurship &amp; Business Development</div>
+            <p class="instr-bio">Serial entrepreneur and business coach who has helped launch 200+ small businesses across West Africa. Author of "Startup Africa" and MBA from KNUST.</p>
+            <div class="instr-stats">
+              <div class="i-stat"><div class="i-stat-num">6</div><div class="i-stat-label">Courses</div></div>
+              <div class="i-stat"><div class="i-stat-num">4,312</div><div class="i-stat-label">Students</div></div>
+            </div>
+            <div class="instr-tags"><span class="instr-tag">Entrepreneurship</span><span class="instr-tag">Finance</span><span class="instr-tag">Strategy</span></div>
+            <div class="instr-rating"><span class="stars">★★★★★</span><strong>4.9</strong><span>(1,342 reviews)</span></div>
+            <a href="courses.html" class="btn-view-profile">View Courses</a>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="instr-card reveal" data-cat="business">
+          <div class="instr-banner" style="background:linear-gradient(135deg,#10b981,#047857);">
+            <div class="instr-avatar-wrap"><div class="instr-avatar">👩‍💻</div></div>
+          </div>
+          <div class="instr-body">
+            <div class="instr-name">Blessing Nyarko</div>
+            <div class="instr-title">Digital Marketing Specialist</div>
+            <p class="instr-bio">Google-certified digital marketer with $2M+ managed in ad campaigns across Africa. SEO strategist and social media growth expert.</p>
+            <div class="instr-stats">
+              <div class="i-stat"><div class="i-stat-num">4</div><div class="i-stat-label">Courses</div></div>
+              <div class="i-stat"><div class="i-stat-num">2,561</div><div class="i-stat-label">Students</div></div>
+            </div>
+            <div class="instr-tags"><span class="instr-tag">SEO</span><span class="instr-tag">Google Ads</span><span class="instr-tag">Social Media</span></div>
+            <div class="instr-rating"><span class="stars">★★★★★</span><strong>4.7</strong><span>(1,056 reviews)</span></div>
+            <a href="courses.html" class="btn-view-profile">View Courses</a>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="instr-card reveal" data-cat="tech">
+          <div class="instr-banner" style="background:linear-gradient(135deg,#BF0A30,#800020);">
+            <div class="instr-avatar-wrap"><div class="instr-avatar">👨‍🔒</div></div>
+          </div>
+          <div class="instr-body">
+            <div class="instr-name">Michael Varney</div>
+            <div class="instr-title">Cybersecurity Expert</div>
+            <p class="instr-bio">Certified Ethical Hacker (CEH) and CISSP with 15 years protecting government and financial systems in Africa. Cybersecurity consultant to multiple banks.</p>
+            <div class="instr-stats">
+              <div class="i-stat"><div class="i-stat-num">4</div><div class="i-stat-label">Courses</div></div>
+              <div class="i-stat"><div class="i-stat-num">1,892</div><div class="i-stat-label">Students</div></div>
+            </div>
+            <div class="instr-tags"><span class="instr-tag">Cybersecurity</span><span class="instr-tag">Ethical Hacking</span><span class="instr-tag">Networks</span></div>
+            <div class="instr-rating"><span class="stars">★★★★★</span><strong>4.8</strong><span>(743 reviews)</span></div>
+            <a href="courses.html" class="btn-view-profile">View Courses</a>
+          </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="instr-card reveal" data-cat="leadership">
+          <div class="instr-banner" style="background:linear-gradient(135deg,#0891b2,#0e7490);">
+            <div class="instr-avatar-wrap"><div class="instr-avatar">👨‍🏫</div></div>
+          </div>
+          <div class="instr-body">
+            <div class="instr-name">Prof. Amara Sesay</div>
+            <div class="instr-title">Leadership &amp; Public Administration</div>
+            <p class="instr-bio">Former government official and professor of public administration. 20 years training civil servants and NGO leaders across West Africa.</p>
+            <div class="instr-stats">
+              <div class="i-stat"><div class="i-stat-num">5</div><div class="i-stat-label">Courses</div></div>
+              <div class="i-stat"><div class="i-stat-num">3,104</div><div class="i-stat-label">Students</div></div>
+            </div>
+            <div class="instr-tags"><span class="instr-tag">Leadership</span><span class="instr-tag">Governance</span><span class="instr-tag">Policy</span></div>
+            <div class="instr-rating"><span class="stars">★★★★★</span><strong>4.9</strong><span>(2,187 reviews)</span></div>
+            <a href="courses.html" class="btn-view-profile">View Courses</a>
+          </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="instr-card reveal" data-cat="tech">
+          <div class="instr-banner" style="background:linear-gradient(135deg,#6366f1,#4338ca);">
+            <div class="instr-avatar-wrap"><div class="instr-avatar">👩‍💻</div></div>
+          </div>
+          <div class="instr-body">
+            <div class="instr-name">Faith Kollie</div>
+            <div class="instr-title">Web Developer &amp; Coding Instructor</div>
+            <p class="instr-bio">Self-taught web developer turned educator. Built 30+ websites for Liberian NGOs and businesses. Passionate about making coding accessible to young Africans.</p>
+            <div class="instr-stats">
+              <div class="i-stat"><div class="i-stat-num">6</div><div class="i-stat-label">Courses</div></div>
+              <div class="i-stat"><div class="i-stat-num">4,712</div><div class="i-stat-label">Students</div></div>
+            </div>
+            <div class="instr-tags"><span class="instr-tag">HTML/CSS</span><span class="instr-tag">JavaScript</span><span class="instr-tag">React</span></div>
+            <div class="instr-rating"><span class="stars">★★★★★</span><strong>4.8</strong><span>(2,103 reviews)</span></div>
+            <a href="courses.html" class="btn-view-profile">View Courses</a>
+          </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="instr-card reveal" data-cat="business">
+          <div class="instr-banner" style="background:linear-gradient(135deg,#f59e0b,#d97706);">
+            <div class="instr-avatar-wrap"><div class="instr-avatar">👨‍💰</div></div>
+          </div>
+          <div class="instr-body">
+            <div class="instr-name">Daniel Kpahn</div>
+            <div class="instr-title">Financial Literacy &amp; Business Finance</div>
+            <p class="instr-bio">Certified accountant and financial advisor who has guided 500+ entrepreneurs in building sustainable financial practices for their businesses.</p>
+            <div class="instr-stats">
+              <div class="i-stat"><div class="i-stat-num">4</div><div class="i-stat-label">Courses</div></div>
+              <div class="i-stat"><div class="i-stat-num">1,654</div><div class="i-stat-label">Students</div></div>
+            </div>
+            <div class="instr-tags"><span class="instr-tag">Finance</span><span class="instr-tag">Accounting</span><span class="instr-tag">Budgeting</span></div>
+            <div class="instr-rating"><span class="stars">★★★★★</span><strong>4.7</strong><span>(589 reviews)</span></div>
+            <a href="courses.html" class="btn-view-profile">View Courses</a>
+          </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="instr-card reveal" data-cat="leadership">
+          <div class="instr-banner" style="background:linear-gradient(135deg,#64748b,#334155);">
+            <div class="instr-avatar-wrap"><div class="instr-avatar">👩‍🎓</div></div>
+          </div>
+          <div class="instr-body">
+            <div class="instr-name">Dr. Grace Boateng</div>
+            <div class="instr-title">Communication &amp; Professional Development</div>
+            <p class="instr-bio">Executive communication coach, TEDx speaker, and PhD in Applied Linguistics. Helps professionals communicate with clarity, confidence, and impact.</p>
+            <div class="instr-stats">
+              <div class="i-stat"><div class="i-stat-num">3</div><div class="i-stat-label">Courses</div></div>
+              <div class="i-stat"><div class="i-stat-num">2,287</div><div class="i-stat-label">Students</div></div>
+            </div>
+            <div class="instr-tags"><span class="instr-tag">Communication</span><span class="instr-tag">Public Speaking</span><span class="instr-tag">Writing</span></div>
+            <div class="instr-rating"><span class="stars">★★★★★</span><strong>4.9</strong><span>(892 reviews)</span></div>
+            <a href="courses.html" class="btn-view-profile">View Courses</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED INSTRUCTOR -->
+  <section class="featured-instr">
+    <div class="container">
+      <div class="fi-inner">
+        <div class="fi-card">
+          <div class="fi-avatar">👨‍💼</div>
+          <div class="fi-name">Samuel Tolbert</div>
+          <div class="fi-role">Founder &amp; Executive Director, TIH Academy</div>
+          <div class="fi-stats-row">
+            <div class="fi-stat-box"><div class="fi-stat-num">8</div><div class="fi-stat-lbl">Courses</div></div>
+            <div class="fi-stat-box"><div class="fi-stat-num">4,821</div><div class="fi-stat-lbl">Students</div></div>
+            <div class="fi-stat-box"><div class="fi-stat-num">4.9★</div><div class="fi-stat-lbl">Rating</div></div>
+          </div>
+          <div class="fi-social">
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Email">✉</a>
+          </div>
+        </div>
+        <div class="fi-content">
+          <div style="font-size:0.75rem;font-weight:700;letter-spacing:.15em;color:#f59e0b;text-transform:uppercase;margin-bottom:0.5rem;">Featured Instructor</div>
+          <h2>Empowering Africa One Learner at a Time</h2>
+          <p>Samuel Tolbert is the founder of Tolbert Innovation Hub, a technology and education non-profit based in Monrovia, Liberia. With over 12 years of experience in software development, digital education, and community empowerment, Samuel has helped thousands of Liberians access world-class digital skills training.</p>
+          <p>His flagship courses on Computer Literacy and Web Development have been completed by learners in 18 African countries, earning near-perfect student ratings for their clarity, depth, and practical focus.</p>
+          <div class="fi-quote">"My mission is simple: no one in Africa should be left behind because they didn't have access to quality education. TIH Academy is how we make that real."</div>
+          <a href="courses.html" class="btn-primary">Explore His Courses →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BECOME AN INSTRUCTOR -->
+  <section class="become-instr">
+    <div class="container">
+      <div class="bi-inner">
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;letter-spacing:.15em;color:#f59e0b;text-transform:uppercase;margin-bottom:0.5rem;">Teach With Us</div>
+          <h2>Become a <span>TIH Academy Instructor</span></h2>
+          <p>Share your expertise with 10,000+ learners across Africa. Join our community of instructors and make a lasting impact while earning from your knowledge.</p>
+          <ul class="bi-perks">
+            <li><span>💰</span><span>Earn revenue share on every enrollment</span></li>
+            <li><span>🌍</span><span>Reach learners across Africa and beyond</span></li>
+            <li><span>🎓</span><span>Receive a verified "TIH Certified Instructor" badge</span></li>
+            <li><span>🛠</span><span>Free course creation tools and production support</span></li>
+            <li><span>📊</span><span>Real-time analytics on student progress and engagement</span></li>
+            <li><span>🤝</span><span>Join a community of expert educators</span></li>
+          </ul>
+          <a href="contact.html" class="btn-become">Apply to Teach →</a>
+        </div>
+        <div class="bi-form">
+          <h3>Express Interest</h3>
+          <div class="bi-field">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your full name" />
+          </div>
+          <div class="bi-field">
+            <label>Email Address</label>
+            <input type="email" placeholder="your@email.com" />
+          </div>
+          <div class="bi-field">
+            <label>Area of Expertise</label>
+            <select>
+              <option>Select your specialization…</option>
+              <option>Technology &amp; Programming</option>
+              <option>Data Science &amp; AI</option>
+              <option>Business &amp; Entrepreneurship</option>
+              <option>Design &amp; Creative</option>
+              <option>Digital Marketing</option>
+              <option>Cybersecurity</option>
+              <option>Leadership &amp; Management</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="bi-field">
+            <label>Brief Message</label>
+            <textarea placeholder="Tell us about your experience and what you'd like to teach…" rows="3"></textarea>
+          </div>
+          <button class="bi-submit" onclick="submitInstrForm(event)">Submit Application</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="academy-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">TIH <span>Academy</span></div>
+        <p class="footer-tagline">Empowering Africa through digital skills, innovation, technology, leadership, and entrepreneurship.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon">f</a><a href="#" class="social-icon">𝕏</a>
+          <a href="#" class="social-icon">in</a><a href="#" class="social-icon">▶</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Learn</h5><ul>
+        <li><a href="courses.html">All Courses</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="academy.html#pathways">Learning Paths</a></li>
+        <li><a href="student-dashboard.html">My Dashboard</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="about.html">About TIH</a></li>
+        <li><a href="instructors.html">Instructors</a></li>
+        <li><a href="academy-blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Support</h5><ul>
+        <li><a href="academy.html#faq">FAQ</a></li>
+        <li><a href="certificate-verify.html">Verify Certificate</a></li>
+        <li><a href="contact.html">Help Center</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tolbert Innovation Hub Academy. All rights reserved.</span>
+      <span>Monrovia, Liberia · <a href="mailto:academy@tolbertinnovationhub.org">academy@tolbertinnovationhub.org</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open');});
+    function filterCategory(el, cat) {
+      document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      el.classList.add('active');
+      const cards = document.querySelectorAll('#instrGrid .instr-card');
+      cards.forEach(card => {
+        if (cat==='all' || card.dataset.cat===cat) {
+          card.style.display='';
+        } else {
+          card.style.display='none';
+        }
+      });
+    }
+    function submitInstrForm(e){e.preventDefault();alert('Thank you for your interest! We will be in touch within 3 business days.');}
+    const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
