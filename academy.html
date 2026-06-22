@@ -317,6 +317,100 @@
     .fab-top.show { opacity:1; pointer-events:auto; }
     .fab-top:hover { background:#001a45; transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,40,104,.45); }
     @media(max-width:600px) { .floating-actions { right:1rem; bottom:1.5rem; } .fab-whatsapp { width:48px; height:48px; } .fab-top { width:38px; height:38px; } }
+
+    /* =============================================
+       RESPONSIVE POLISH — Mobile & Tablet
+       ============================================= */
+
+    /* Allow header height to expand when mobile nav is open */
+    @media(max-width: 900px) {
+      .nav-wrap { height: auto; min-height: 68px; }
+    }
+
+    /* ---- Tablet (≤ 768px) — trim section spacing ---- */
+    @media(max-width: 768px) {
+      .ac-hero { padding: 3.5rem 0 3rem; }
+      .section-py { padding: 3.5rem 0; }
+      .why-section, .cert-showcase, .testimonials-section,
+      .faq-section, .final-cta { padding: 3.5rem 0; }
+      .search-section { padding: 2.5rem 0; }
+      .academy-footer { padding: 2.5rem 0 1.5rem; }
+      .cert-showcase-inner { gap: 2.5rem; }
+      .footer-grid { gap: 2rem; }
+    }
+
+    /* ---- Mobile (≤ 600px) ---- */
+    @media(max-width: 600px) {
+      .container { padding: 0 1rem; }
+      /* Hero */
+      .ac-hero { padding: 2.5rem 0 2rem; }
+      .ac-hero p.lead { font-size: 0.97rem; }
+      .hero-stats { gap: 1rem; }
+      .hero-stat-sep { display: none; }
+      .hero-stat-num { font-size: 1.25rem; }
+      .hero-stat-label { font-size: 0.75rem; }
+      /* Trust bar */
+      .trust-divider { display: none; }
+      .trust-bar-inner { gap: 0.75rem; }
+      .trust-badge { font-size: 0.77rem; }
+      /* Search */
+      .search-section { padding: 2rem 0; }
+      .search-heading h2 { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+      .search-input-big { padding-right: 105px; font-size: 0.95rem; }
+      .search-btn { padding: 0.6rem 1rem; font-size: 0.82rem; }
+      .search-filter-select { padding: 0.45rem 0.7rem; font-size: 0.82rem; }
+      /* Section spacing */
+      .section-py { padding: 3rem 0; }
+      .why-section, .cert-showcase, .testimonials-section,
+      .faq-section { padding: 3rem 0; }
+      .final-cta { padding: 3rem 0; }
+      .section-header-flex { margin-bottom: 2rem; }
+      /* Certificate */
+      .cert-big-preview { padding: 1.8rem 1.5rem; max-width: 100%; }
+      .cert-big-name-area h3 { font-size: 1.3rem; }
+      .cert-big-course { font-size: 0.85rem; }
+      .cert-showcase-inner { gap: 2rem; }
+      /* Final CTA */
+      .final-ctas { flex-direction: column; align-items: center; gap: 0.65rem; }
+      .btn-cta-gold, .btn-cta-outline, .btn-cta-red {
+        min-width: 200px; text-align: center;
+      }
+      .cta-mini-stats { gap: 0.6rem; }
+      .cta-mini-stat { font-size: 0.79rem; }
+      /* FAQ */
+      .faq-question { padding: 1rem 1.2rem; font-size: 0.92rem; }
+      .faq-answer { padding: 0 1.2rem 1rem; font-size: 0.88rem; }
+      /* Footer */
+      .academy-footer { padding: 2rem 0 1.2rem; }
+      .footer-grid { gap: 1.5rem; }
+      /* Why grid cards — tighter padding on mobile */
+      .why-card { padding: 1.2rem 1rem; }
+      /* Pathway card tighter padding */
+      .pathway-card { padding: 1.4rem 1.2rem; }
+      /* Instructor card */
+      .instructor-card { padding: 1.2rem 1rem; }
+    }
+
+    /* ---- Small mobile (≤ 400px) ---- */
+    @media(max-width: 400px) {
+      .ac-hero { padding: 2rem 0 1.5rem; }
+      .hero-ctas { flex-direction: column; }
+      .btn-hero-white, .btn-hero-gold, .btn-hero-red {
+        text-align: center; padding: 0.7rem 1.3rem; font-size: 0.9rem;
+      }
+      .hero-stats { flex-direction: column; gap: 0.4rem; }
+      .hero-stat { gap: 0.6rem; }
+      .search-input-big { padding-right: 90px; }
+      .search-btn { padding: 0.55rem 0.7rem; font-size: 0.78rem; }
+      .trust-badge { font-size: 0.7rem; }
+      .trust-badge-icon { font-size: 0.95rem; }
+      .cat-name { font-size: 0.88rem; }
+      .cat-desc { font-size: 0.72rem; }
+      .course-meta { gap: 0.4rem; font-size: 0.72rem; }
+      .faq-question { padding: 0.9rem 1rem; font-size: 0.88rem; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 0.5rem; }
+      .pathway-meta { flex-direction: column; gap: 0.2rem; }
+    }
   </style>
 </head>
 <body>
