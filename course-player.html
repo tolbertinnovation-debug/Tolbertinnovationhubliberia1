@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>Course Player | TIH Academy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -904,6 +907,18 @@
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') { closeQuizModal(); closeCompletionModal(); }
   });
+
+  // ===== FORCE UNLOCK (removes any stale locked state from browser cache) =====
+  (function forceUnlock() {
+    document.querySelectorAll('.sidebar-lesson.locked').forEach(function(el) {
+      el.classList.remove('locked');
+      var st = el.querySelector('.lesson-status');
+      if (st && st.textContent.indexOf('🔒') !== -1) st.textContent = '○';
+    });
+    document.querySelectorAll('.sidebar-module-meta').forEach(function(el) {
+      el.textContent = el.textContent.replace(/\s*·?\s*🔒\s*Locked/g, '').trim();
+    });
+  })();
   </script>
 </body>
 </html>
