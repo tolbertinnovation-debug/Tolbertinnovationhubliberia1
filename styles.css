@@ -1837,6 +1837,18 @@ textarea {
   }
 }
 
+/* Programs grid responsive */
+@media (max-width: 1024px) {
+  .programs-all-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 640px) {
+  .programs-all-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation: none !important;
