@@ -1,1 +1,3 @@
 .claude/
+!.claude/workflows/
+!.claude/workflows/*.js
