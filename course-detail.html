@@ -3,15 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Complete Computer Literacy: From Zero to Professional | TIH Academy</title>
-  <meta name="description" content="Master computer skills from scratch. Learn hardware, software, Microsoft Office, internet safety, and more. FREE course with certificate by Samuel Tolbert." />
-  <meta name="keywords" content="computer literacy course, free computer course Liberia, learn computers Africa, Microsoft Office course, digital skills" />
-  <meta property="og:title" content="Complete Computer Literacy: From Zero to Professional | TIH Academy" />
-  <meta property="og:description" content="FREE course. 24 hours of content, 16 lessons, professional certificate. Taught by Samuel Tolbert." />
-  <meta property="og:type" content="website" />
+  <title>Course Detail | TIH Academy</title>
+  <meta name="description" content="TIH Academy course — learn in-demand digital skills with Liberia's leading technology training platform." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="courses-db.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -100,7 +97,7 @@
     .btn-enroll-hero:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(191,10,48,.5); }
     .price-crossed { color: rgba(255,255,255,.5); font-size: 0.9rem; text-decoration: line-through; }
 
-    /* ===== ENROLLMENT WIDGET (floats in hero on desktop) ===== */
+    /* ===== ENROLLMENT WIDGET ===== */
     .enroll-widget { background: #fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; position: sticky; top: 90px; }
     .widget-thumb { background: linear-gradient(135deg, #001a45, #002868); padding: 2.5rem 1.5rem; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; min-height: 160px; }
     .widget-thumb-icon { font-size: 3.5rem; }
@@ -279,7 +276,7 @@
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html">Home</a></li>
           <li><a href="academy.html">Academy</a></li>
-          <li><a href="courses.html">Courses</a></li>
+          <li><a href="courses.html" class="active">Courses</a></li>
           <li><a href="certifications.html">Certifications</a></li>
           <li><a href="instructors.html">Instructors</a></li>
           <li><a href="academy-blog.html">Blog</a></li>
@@ -296,7 +293,6 @@
 
   <!-- COURSE HERO -->
   <section class="course-hero">
-    <!-- Breadcrumb inside hero -->
     <div class="breadcrumb">
       <div class="container">
         <a href="index.html">Home</a>
@@ -305,66 +301,49 @@
         <span class="sep">›</span>
         <a href="courses.html">Courses</a>
         <span class="sep">›</span>
-        <span class="current">Computer Fundamentals</span>
+        <span class="current" id="cdBreadcrumb">Loading...</span>
       </div>
     </div>
 
     <div class="hero-layout">
       <div class="hero-content">
-        <span class="course-category-tag">Computer Fundamentals</span>
-        <h1>Complete Computer Literacy:<br>From Zero to Professional</h1>
-        <p class="course-short-desc">Master every essential computer skill from hardware basics to professional productivity tools. Designed for absolute beginners — no experience required, just bring your curiosity.</p>
+        <span class="course-category-tag" id="cdCategory"></span>
+        <h1 id="cdTitle"></h1>
+        <p class="course-short-desc" id="cdShortDesc"></p>
 
         <div class="hero-meta-row">
           <div class="hero-rating">
-            <span class="stars">★★★★★</span>
-            <span class="rating-num">4.9</span>
-            <span class="rating-count">(1,247 reviews)</span>
+            <span class="stars" id="cdStars"></span>
+            <span class="rating-num" id="cdRatingNum"></span>
+            <span class="rating-count" id="cdReviewCount"></span>
           </div>
-          <span class="hero-students">8,400+ students enrolled</span>
+          <span class="hero-students" id="cdStudents"></span>
         </div>
 
         <div class="hero-instructor-row">
-          <div class="instr-avatar">🧑‍💻</div>
-          <div class="instr-info">Created by <strong>Samuel Tolbert</strong> — Founder &amp; CEO, Tolbert Innovation Hub</div>
+          <div class="instr-avatar" id="cdInstrIcon"></div>
+          <div class="instr-info">Created by <strong id="cdInstructor"></strong> — <span id="cdInstrTitle"></span></div>
         </div>
 
-        <div class="hero-details-row">
-          <span class="hero-detail"><span class="hero-detail-icon">🗓</span> Last updated: June 2026</span>
-          <span class="hero-detail"><span class="hero-detail-icon">🎥</span> 16 lessons</span>
-          <span class="hero-detail"><span class="hero-detail-icon">⏱</span> 24 hours total</span>
-          <span class="hero-detail"><span class="hero-detail-icon">📶</span> Beginner</span>
-          <span class="hero-detail"><span class="hero-detail-icon">🏆</span> Certificate included</span>
-        </div>
-
-        <div class="hero-cta-group">
-          <span class="free-badge">FREE</span>
-          <a href="course-player.html" class="btn-enroll-hero">
-            Enroll for Free →
-          </a>
-          <span class="price-crossed">was $99</span>
-        </div>
+        <div class="hero-details-row" id="cdDetailsRow"></div>
+        <div class="hero-cta-group" id="cdCtaGroup"></div>
       </div>
 
       <!-- Enrollment widget (desktop only, shows in hero area via sticky) -->
       <div class="enroll-widget">
         <div class="widget-thumb">
-          <span class="widget-thumb-icon">💻</span>
+          <span class="widget-thumb-icon" id="wIcon1"></span>
           <span class="widget-thumb-text">Preview this course</span>
         </div>
         <div class="widget-body">
-          <div class="widget-price-row">
-            <span class="widget-free">FREE</span>
-            <span class="widget-orig">$99</span>
-          </div>
-          <a href="course-player.html" class="btn-enroll-widget">Enroll for Free</a>
+          <div class="widget-price-row" id="wPrice1"></div>
+          <a href="#" class="btn-enroll-widget" id="wBtn1">Enroll Now</a>
           <div class="widget-includes">
             <h4>This course includes:</h4>
-            <div class="widget-include-item">24 hours on-demand video</div>
+            <div class="widget-include-item" id="wDuration1"></div>
             <div class="widget-include-item">Verifiable digital certificate</div>
             <div class="widget-include-item">Lifetime access</div>
             <div class="widget-include-item">Access on mobile &amp; desktop</div>
-            <div class="widget-include-item">4 projects &amp; 2 quizzes</div>
           </div>
           <div class="widget-actions">
             <button class="widget-action-btn">🔗 Share</button>
@@ -382,210 +361,37 @@
       <!-- WHAT YOU'LL LEARN -->
       <section class="content-section reveal">
         <h2 class="section-title"><span>✅</span> What You'll Learn</h2>
-        <div class="learn-grid">
-          <div class="learn-item"><span class="learn-check">✓</span>Master computer hardware and software components</div>
-          <div class="learn-item"><span class="learn-check">✓</span>Navigate Windows and macOS confidently</div>
-          <div class="learn-item"><span class="learn-check">✓</span>Use Microsoft Office: Word, Excel &amp; PowerPoint</div>
-          <div class="learn-item"><span class="learn-check">✓</span>Browse the internet safely and securely</div>
-          <div class="learn-item"><span class="learn-check">✓</span>Send professional emails and manage files efficiently</div>
-          <div class="learn-item"><span class="learn-check">✓</span>Protect yourself from cyber threats and scams</div>
-          <div class="learn-item"><span class="learn-check">✓</span>Use cloud storage with Google Drive &amp; Dropbox</div>
-          <div class="learn-item"><span class="learn-check">✓</span>Build a professional digital CV and portfolio</div>
-        </div>
+        <div class="learn-grid" id="cdLearnGrid"></div>
       </section>
 
       <!-- REQUIREMENTS -->
       <section class="content-section reveal">
         <h2 class="section-title"><span>📋</span> Requirements</h2>
-        <ul class="req-list">
-          <li>No prior computer knowledge needed — this course starts from absolute zero</li>
-          <li>A computer, laptop, or tablet with internet access</li>
-          <li>Willingness to learn, practice, and apply new skills</li>
-        </ul>
+        <ul class="req-list" id="cdRequirements"></ul>
       </section>
 
       <!-- ABOUT THIS COURSE -->
       <section class="content-section reveal">
         <h2 class="section-title"><span>📖</span> About This Course</h2>
-        <div class="about-text">
-          <p>In today's digital world, computer literacy is no longer optional — it is the foundation of every professional career. Whether you are a student, a job seeker, a small business owner, or someone who simply wants to keep up with the modern world, this course gives you everything you need to use a computer confidently, professionally, and safely.</p>
-          <p>This course was designed specifically for learners in Liberia and across Africa who may be encountering computers, smartphones, and digital tools for the first time. Instructor Samuel Tolbert — founder of Tolbert Innovation Hub — built this curriculum from years of teaching technology to beginners in Monrovia, understanding the exact gaps and challenges African learners face. Every lesson is practical, step-by-step, and immediately applicable to real life.</p>
-          <p>By the end of this course, you will be able to set up a professional email, write a CV in Microsoft Word, use Excel for basic data tracking, navigate the web safely, and present your ideas in PowerPoint. You will also earn a digitally verifiable TIH Academy certificate to showcase your new skills to employers, universities, and clients.</p>
-        </div>
+        <div class="about-text" id="cdAbout"></div>
       </section>
 
       <!-- CURRICULUM -->
       <section class="content-section reveal">
         <h2 class="section-title"><span>📚</span> Course Curriculum</h2>
-        <div class="curriculum-summary">
-          <span><strong>4</strong> modules</span>
-          <span><strong>16</strong> lessons</span>
-          <span><strong>2h 29min</strong> total length</span>
-        </div>
-
-        <!-- Module 1 — expanded by default -->
-        <div class="module-accordion">
-          <div class="module-header open" onclick="toggleModule(this)" aria-expanded="true">
-            <div class="module-left">
-              <span class="module-icon">💻</span>
-              <div>
-                <div class="module-title">Module 1: Getting Started with Computers</div>
-                <div class="module-meta">4 lessons · 35 min</div>
-              </div>
-            </div>
-            <span class="module-chevron">▼</span>
-          </div>
-          <div class="module-lessons open">
-            <a class="lesson-item" href="course-player.html?lesson=0">
-              <span class="lesson-icon">▶</span>
-              <span class="lesson-title">1.1 What is a Computer?</span>
-              <span class="lesson-preview">Preview</span>
-              <span class="lesson-duration">5:20</span>
-            </a>
-            <a class="lesson-item" href="course-player.html?lesson=1">
-              <span class="lesson-icon">▶</span>
-              <span class="lesson-title">1.2 Parts of a Computer</span>
-              <span class="lesson-duration">8:45</span>
-            </a>
-            <a class="lesson-item" href="course-player.html?lesson=2">
-              <span class="lesson-icon">▶</span>
-              <span class="lesson-title">1.3 Understanding Operating Systems</span>
-              <span class="lesson-duration">10:12</span>
-            </a>
-            <a class="lesson-item" href="course-player.html?lesson=3">
-              <span class="lesson-icon">📝</span>
-              <span class="lesson-title">Quiz: Computer Basics</span>
-              <span class="lesson-duration">5 questions</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Module 2 -->
-        <div class="module-accordion">
-          <div class="module-header" onclick="toggleModule(this)" aria-expanded="false">
-            <div class="module-left">
-              <span class="module-icon">🌐</span>
-              <div>
-                <div class="module-title">Module 2: Internet &amp; Digital Communication</div>
-                <div class="module-meta">4 lessons · 29 min</div>
-              </div>
-            </div>
-            <span class="module-chevron">▼</span>
-          </div>
-          <div class="module-lessons">
-            <a class="lesson-item" href="course-player.html?lesson=4">
-              <span class="lesson-icon">▶</span>
-              <span class="lesson-title">2.1 Using the Internet Safely</span>
-              <span class="lesson-duration">7:15</span>
-            </a>
-            <a class="lesson-item" href="course-player.html?lesson=5">
-              <span class="lesson-icon">▶</span>
-              <span class="lesson-title">2.2 Email &amp; Communication Tools</span>
-              <span class="lesson-duration">8:30</span>
-            </a>
-            <a class="lesson-item" href="course-player.html?lesson=6">
-              <span class="lesson-icon">▶</span>
-              <span class="lesson-title">2.3 Social Media for Professionals</span>
-              <span class="lesson-duration">6:20</span>
-            </a>
-            <a class="lesson-item" href="course-player.html?lesson=7">
-              <span class="lesson-icon">📝</span>
-              <span class="lesson-title">Quiz: Internet &amp; Digital Skills</span>
-              <span class="lesson-duration">5 questions</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Module 3 -->
-        <div class="module-accordion">
-          <div class="module-header" onclick="toggleModule(this)" aria-expanded="false">
-            <div class="module-left">
-              <span class="module-icon">📊</span>
-              <div>
-                <div class="module-title">Module 3: Microsoft Office Productivity</div>
-                <div class="module-meta">4 lessons · 47 min</div>
-              </div>
-            </div>
-            <span class="module-chevron">▼</span>
-          </div>
-          <div class="module-lessons">
-            <a class="lesson-item" href="course-player.html?lesson=8">
-              <span class="lesson-icon">▶</span>
-              <span class="lesson-title">3.1 Introduction to Microsoft Word</span>
-              <span class="lesson-duration">12:00</span>
-            </a>
-            <a class="lesson-item" href="course-player.html?lesson=9">
-              <span class="lesson-icon">▶</span>
-              <span class="lesson-title">3.2 Excel Basics for Business</span>
-              <span class="lesson-duration">15:30</span>
-            </a>
-            <a class="lesson-item" href="course-player.html?lesson=10">
-              <span class="lesson-icon">▶</span>
-              <span class="lesson-title">3.3 Creating PowerPoint Presentations</span>
-              <span class="lesson-duration">10:45</span>
-            </a>
-            <a class="lesson-item" href="course-player.html?lesson=11">
-              <span class="lesson-icon">📁</span>
-              <span class="lesson-title">Project: Build a Professional CV in Word</span>
-              <span class="lesson-duration">Project</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Module 4 -->
-        <div class="module-accordion">
-          <div class="module-header" onclick="toggleModule(this)" aria-expanded="false">
-            <div class="module-left">
-              <span class="module-icon">🔒</span>
-              <div>
-                <div class="module-title">Module 4: Digital Safety &amp; Career Readiness</div>
-                <div class="module-meta">4 lessons · 38 min</div>
-              </div>
-            </div>
-            <span class="module-chevron">▼</span>
-          </div>
-          <div class="module-lessons">
-            <a class="lesson-item" href="course-player.html?lesson=12">
-              <span class="lesson-icon">▶</span>
-              <span class="lesson-title">4.1 Cybersecurity Essentials</span>
-              <span class="lesson-duration">8:10</span>
-            </a>
-            <a class="lesson-item" href="course-player.html?lesson=13">
-              <span class="lesson-icon">▶</span>
-              <span class="lesson-title">4.2 File Management &amp; Cloud Storage</span>
-              <span class="lesson-duration">7:50</span>
-            </a>
-            <a class="lesson-item" href="course-player.html?lesson=14">
-              <span class="lesson-icon">▶</span>
-              <span class="lesson-title">4.3 Career-Ready Digital Portfolio</span>
-              <span class="lesson-duration">10:20</span>
-            </a>
-            <a class="lesson-item" href="course-player.html?lesson=15">
-              <span class="lesson-icon">🏆</span>
-              <span class="lesson-title">Final Assessment &amp; Certificate</span>
-              <span class="lesson-duration">Assessment</span>
-            </a>
-          </div>
-        </div>
+        <div id="cdCurriculum"></div>
       </section>
 
       <!-- INSTRUCTOR -->
       <section class="content-section reveal">
         <h2 class="section-title"><span>🧑‍💻</span> Your Instructor</h2>
         <div class="instructor-card">
-          <div class="instr-avatar-lg">🧑‍💻</div>
+          <div class="instr-avatar-lg" id="cdInstrAvatar"></div>
           <div class="instr-details">
-            <div class="instr-name">Samuel Tolbert</div>
-            <div class="instr-title">Founder &amp; CEO — Tolbert Innovation Hub (TIH)</div>
-            <div class="instr-stats">
-              <span class="instr-stat"><span class="instr-stat-icon">⭐</span> 4.9 Instructor Rating</span>
-              <span class="instr-stat"><span class="instr-stat-icon">👥</span> 8,400 Students</span>
-              <span class="instr-stat"><span class="instr-stat-icon">📚</span> 3 Courses</span>
-            </div>
-            <div class="instr-bio">
-              <p>Samuel Tolbert is a technology entrepreneur, educator, and digital inclusion advocate based in Monrovia, Liberia. He founded Tolbert Innovation Hub — TIH — with a singular mission: to bridge the digital divide in Liberia and across West Africa by providing world-class technology education that is accessible, affordable, and contextually relevant.</p>
-              <p>With over a decade of experience teaching technology from grassroots community centers to professional training institutions, Samuel has developed a teaching style that breaks complex concepts down into simple, memorable lessons. He is passionate about empowering young Liberians to compete in the global digital economy — and this course reflects that passion in every lesson.</p>
-            </div>
+            <div class="instr-name" id="cdInstrName"></div>
+            <div class="instr-title" id="cdInstrTitle2"></div>
+            <div class="instr-stats" id="cdInstrStats"></div>
+            <div class="instr-bio" id="cdInstrBio"></div>
           </div>
         </div>
       </section>
@@ -595,137 +401,26 @@
         <h2 class="section-title"><span>⭐</span> Student Reviews</h2>
         <div class="reviews-overview">
           <div class="overall-score">
-            <div class="score-num">4.9</div>
-            <div class="score-stars">★★★★★</div>
+            <div class="score-num" id="cdScoreNum"></div>
+            <div class="score-stars" id="cdScoreStars"></div>
             <div class="score-label">Course Rating</div>
           </div>
-          <div class="rating-bars">
-            <div class="rating-bar-row">
-              <span class="bar-label">5★</span>
-              <div class="bar-track"><div class="bar-fill" style="width:89%"></div></div>
-              <span class="bar-pct">89%</span>
-            </div>
-            <div class="rating-bar-row">
-              <span class="bar-label">4★</span>
-              <div class="bar-track"><div class="bar-fill" style="width:9%"></div></div>
-              <span class="bar-pct">9%</span>
-            </div>
-            <div class="rating-bar-row">
-              <span class="bar-label">3★</span>
-              <div class="bar-track"><div class="bar-fill" style="width:2%"></div></div>
-              <span class="bar-pct">2%</span>
-            </div>
-            <div class="rating-bar-row">
-              <span class="bar-label">2★</span>
-              <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
-              <span class="bar-pct">0%</span>
-            </div>
-            <div class="rating-bar-row">
-              <span class="bar-label">1★</span>
-              <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
-              <span class="bar-pct">0%</span>
-            </div>
-          </div>
+          <div class="rating-bars" id="cdRatingBars"></div>
         </div>
-
-        <div class="reviews-grid">
-          <div class="review-card">
-            <div class="reviewer-row">
-              <div class="reviewer-avatar" style="background:#002868;">FK</div>
-              <div class="reviewer-info">
-                <h5>Fatima Kamara</h5>
-                <span>Monrovia, Liberia · May 2026</span>
-              </div>
-            </div>
-            <div class="review-stars">★★★★★</div>
-            <p class="review-text">This course changed my life. I had never used a computer before, and now I can write a CV, send professional emails, and use Excel for my small business. The lessons are short and very easy to follow. Samuel explains everything so clearly!</p>
-          </div>
-          <div class="review-card">
-            <div class="reviewer-row">
-              <div class="reviewer-avatar" style="background:#BF0A30;">JB</div>
-              <div class="reviewer-info">
-                <h5>Joseph Blamo</h5>
-                <span>Buchanan, Liberia · April 2026</span>
-              </div>
-            </div>
-            <div class="review-stars">★★★★★</div>
-            <p class="review-text">I enrolled because I needed to learn Microsoft Word for my job application. Not only did I learn Word — I learned everything! The cybersecurity module alone was worth it. I already shared this course with 5 friends.</p>
-          </div>
-          <div class="review-card">
-            <div class="reviewer-row">
-              <div class="reviewer-avatar" style="background:#10b981;">MK</div>
-              <div class="reviewer-info">
-                <h5>Mary Kolie</h5>
-                <span>Gbarnga, Liberia · March 2026</span>
-              </div>
-            </div>
-            <div class="review-stars">★★★★★</div>
-            <p class="review-text">Perfect for absolute beginners. I was scared of computers but this course made it easy and fun. The certificate I received is professional and I was able to add it to my job application. Got the job!</p>
-          </div>
-          <div class="review-card">
-            <div class="reviewer-row">
-              <div class="reviewer-avatar" style="background:#7c3aed;">TS</div>
-              <div class="reviewer-info">
-                <h5>Thomas Sirleaf</h5>
-                <span>Harper, Maryland County · June 2026</span>
-              </div>
-            </div>
-            <div class="review-stars">★★★★☆</div>
-            <p class="review-text">Very well structured course. I already had some basic computer knowledge, so some parts were review for me, but the Microsoft Office module and digital portfolio project were excellent. Great value — especially at FREE!</p>
-          </div>
-        </div>
+        <div class="reviews-grid" id="cdReviewsGrid"></div>
       </section>
 
       <!-- FAQ -->
       <section class="content-section reveal">
         <h2 class="section-title"><span>❓</span> Frequently Asked Questions</h2>
-
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            Is this course really free?
-            <span class="faq-chevron">▼</span>
-          </div>
-          <div class="faq-answer">
-            Yes — 100% free, forever. TIH Academy believes education should be accessible to every Liberian and African regardless of economic background. You pay nothing to enroll, complete the course, and earn your certificate. No hidden fees, no credit card required.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            How long do I have access to the course?
-            <span class="faq-chevron">▼</span>
-          </div>
-          <div class="faq-answer">
-            Once enrolled, you have lifetime access to all course materials including videos, quizzes, and project files. We regularly update the content to keep it current — and you'll get those updates automatically at no extra cost.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            Will I receive a certificate?
-            <span class="faq-chevron">▼</span>
-          </div>
-          <div class="faq-answer">
-            Yes! Upon completing all lessons and passing the final assessment, you'll receive a digitally verifiable TIH Academy certificate. You can share it on LinkedIn, include it in job applications, and employers can verify its authenticity using our certificate verification tool.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            Can I access the course on my phone?
-            <span class="faq-chevron">▼</span>
-          </div>
-          <div class="faq-answer">
-            Absolutely. The TIH Academy platform is fully mobile-optimized. You can watch lessons, complete quizzes, and track your progress from any smartphone, tablet, laptop, or desktop computer — as long as you have an internet connection.
-          </div>
-        </div>
+        <div id="cdFaqs"></div>
       </section>
 
       <!-- CTA BANNER -->
       <div class="cta-banner reveal">
-        <h2>Ready to Start Your Tech Journey?</h2>
-        <p>Join 8,400+ students who have already transformed their careers with this free course. No experience needed — just your desire to learn.</p>
-        <a href="course-player.html" class="btn-enroll-cta">Enroll for Free Today →</a>
+        <h2 id="cdCtaTitle"></h2>
+        <p id="cdCtaText"></p>
+        <a href="#" class="btn-enroll-cta" id="cdCtaBtn"></a>
       </div>
 
     </main>
@@ -734,22 +429,18 @@
     <aside class="course-sidebar">
       <div class="enroll-widget">
         <div class="widget-thumb">
-          <span class="widget-thumb-icon">💻</span>
+          <span class="widget-thumb-icon" id="wIcon2"></span>
           <span class="widget-thumb-text">Start watching today</span>
         </div>
         <div class="widget-body">
-          <div class="widget-price-row">
-            <span class="widget-free">FREE</span>
-            <span class="widget-orig">$99</span>
-          </div>
-          <a href="course-player.html" class="btn-enroll-widget">Enroll for Free</a>
+          <div class="widget-price-row" id="wPrice2"></div>
+          <a href="#" class="btn-enroll-widget" id="wBtn2">Enroll Now</a>
           <div class="widget-includes">
             <h4>This course includes:</h4>
-            <div class="widget-include-item">24 hours on-demand video</div>
+            <div class="widget-include-item" id="wDuration2"></div>
             <div class="widget-include-item">Verifiable digital certificate</div>
             <div class="widget-include-item">Lifetime access</div>
             <div class="widget-include-item">Access on mobile &amp; desktop</div>
-            <div class="widget-include-item">4 projects &amp; 2 quizzes</div>
           </div>
           <div class="widget-actions">
             <button class="widget-action-btn">🔗 Share</button>
@@ -763,9 +454,9 @@
   <!-- MOBILE BOTTOM BAR -->
   <div class="mobile-enroll-bar">
     <div>
-      <div class="mobile-enroll-price">FREE <small>$99</small></div>
+      <div class="mobile-enroll-price" id="mbPrice"></div>
     </div>
-    <a href="course-player.html" class="mobile-enroll-btn">Enroll for Free</a>
+    <a href="#" class="mobile-enroll-btn" id="mbBtn">Enroll</a>
   </div>
 
   <!-- FOOTER -->
@@ -827,8 +518,8 @@
 
     // Module accordion
     function toggleModule(header) {
-      const lessons = header.nextElementSibling;
-      const isOpen = header.classList.contains('open');
+      var lessons = header.nextElementSibling;
+      var isOpen = header.classList.contains('open');
       header.classList.toggle('open', !isOpen);
       header.setAttribute('aria-expanded', !isOpen);
       lessons.classList.toggle('open', !isOpen);
@@ -836,9 +527,8 @@
 
     // FAQ accordion
     function toggleFaq(question) {
-      const answer = question.nextElementSibling;
-      const isOpen = question.classList.contains('open');
-      // Close all other FAQs
+      var answer = question.nextElementSibling;
+      var isOpen = question.classList.contains('open');
       document.querySelectorAll('.faq-question.open').forEach(function(q) {
         q.classList.remove('open');
         q.nextElementSibling.classList.remove('open');
@@ -850,15 +540,183 @@
     }
 
     // Scroll reveal
-    const observer = new IntersectionObserver(function(entries) {
+    var _revealObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('visible'); _revealObserver.unobserve(e.target); }
       });
     }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+    function initReveal() {
+      document.querySelectorAll('.reveal').forEach(function(el) { _revealObserver.observe(el); });
+    }
+    initReveal();
+
+    // ===== DATA-DRIVEN INIT =====
+    (function() {
+      var p = new URLSearchParams(window.location.search);
+      var id = p.get('id') || 'computer-literacy';
+      var c = COURSES_DB[id];
+      if (!c) {
+        document.querySelector('.course-hero').innerHTML = '<div style="padding:3rem 1.5rem;text-align:center;color:#fff"><h2>Course not found</h2><p style="margin:1rem 0 2rem;opacity:.8">The course you are looking for does not exist.</p><a href="courses.html" style="color:var(--gold);font-weight:700;font-size:1.1rem;">← Back to All Courses</a></div>';
+        return;
+      }
+
+      document.title = c.title + ' | TIH Academy';
+
+      var totalLessons = c.modules.reduce(function(s, m) { return s + m.lessons.length; }, 0);
+      var playerBase = 'course-player.html?id=' + encodeURIComponent(c.id);
+      var enrollHref = playerBase + '&lesson=0';
+
+      function g(id) { return document.getElementById(id); }
+      function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+      function stars(r) { var n = Math.round(r); return '★'.repeat(n) + '☆'.repeat(5 - n); }
+
+      // BREADCRUMB + META
+      g('cdBreadcrumb').textContent = c.category;
+      g('cdCategory').textContent = c.category;
+      g('cdTitle').textContent = c.title;
+      g('cdShortDesc').textContent = c.shortDesc;
+
+      // HERO RATING
+      g('cdStars').textContent = stars(c.rating);
+      g('cdRatingNum').textContent = c.rating;
+      g('cdReviewCount').textContent = '(' + c.reviews.toLocaleString() + ' reviews)';
+      g('cdStudents').textContent = c.students + ' students enrolled';
+
+      // INSTRUCTOR ROW
+      g('cdInstrIcon').textContent = c.icon;
+      g('cdInstructor').textContent = c.instructor;
+      g('cdInstrTitle').textContent = c.instructorTitle;
+
+      // DETAILS ROW
+      g('cdDetailsRow').innerHTML =
+        '<span class="hero-detail"><span class="hero-detail-icon">🗓</span> Updated June 2026</span>' +
+        '<span class="hero-detail"><span class="hero-detail-icon">🎥</span> ' + totalLessons + ' lessons</span>' +
+        '<span class="hero-detail"><span class="hero-detail-icon">⏱</span> ' + esc(c.duration) + ' total</span>' +
+        '<span class="hero-detail"><span class="hero-detail-icon">📶</span> ' + esc(c.level) + '</span>' +
+        '<span class="hero-detail"><span class="hero-detail-icon">🏆</span> Certificate included</span>';
+
+      // CTA GROUP
+      g('cdCtaGroup').innerHTML = c.isFree
+        ? '<span class="free-badge">FREE</span><a href="' + enrollHref + '" class="btn-enroll-hero">Enroll for Free →</a><span class="price-crossed">was ' + esc(c.origPrice) + '</span>'
+        : '<span style="font-size:1.8rem;font-weight:800;color:var(--gold)">' + esc(c.price) + '</span><span class="price-crossed">' + esc(c.origPrice) + '</span><a href="' + enrollHref + '" class="btn-enroll-hero">Enroll Now →</a>';
+
+      // WIDGETS
+      function fillWidget(iconId, priceId, btnId, durId) {
+        g(iconId).textContent = c.icon;
+        g(priceId).innerHTML = c.isFree
+          ? '<span class="widget-free">FREE</span><span class="widget-orig">' + esc(c.origPrice) + '</span>'
+          : '<span style="font-size:2rem;font-weight:800;color:var(--blue)">' + esc(c.price) + '</span><span class="widget-orig">' + esc(c.origPrice) + '</span>';
+        g(btnId).href = enrollHref;
+        g(btnId).textContent = c.isFree ? 'Enroll for Free' : 'Enroll Now';
+        g(durId).textContent = c.duration + ' on-demand video';
+      }
+      fillWidget('wIcon1', 'wPrice1', 'wBtn1', 'wDuration1');
+      fillWidget('wIcon2', 'wPrice2', 'wBtn2', 'wDuration2');
+
+      // MOBILE BAR
+      g('mbPrice').innerHTML = c.isFree
+        ? 'FREE <small>' + esc(c.origPrice) + '</small>'
+        : esc(c.price) + ' <small>' + esc(c.origPrice) + '</small>';
+      g('mbBtn').href = enrollHref;
+      g('mbBtn').textContent = c.isFree ? 'Enroll for Free' : 'Enroll Now';
+
+      // LEARN GRID
+      var lh = '';
+      c.learn.forEach(function(x) { lh += '<div class="learn-item"><span class="learn-check">✓</span>' + esc(x) + '</div>'; });
+      g('cdLearnGrid').innerHTML = lh;
+
+      // REQUIREMENTS
+      var rh = '';
+      c.requirements.forEach(function(x) { rh += '<li>' + esc(x) + '</li>'; });
+      g('cdRequirements').innerHTML = rh;
+
+      // ABOUT
+      var ah = '';
+      c.about.forEach(function(x) { ah += '<p>' + esc(x) + '</p>'; });
+      g('cdAbout').innerHTML = ah;
+
+      // CURRICULUM
+      var ch = '<div class="curriculum-summary">'
+        + '<span><strong>' + c.modules.length + '</strong> modules</span>'
+        + '<span><strong>' + totalLessons + '</strong> lessons</span>'
+        + '<span><strong>' + esc(c.duration) + '</strong> total length</span>'
+        + '</div>';
+      var li = 0;
+      c.modules.forEach(function(mod, mi) {
+        var first = mi === 0;
+        ch += '<div class="module-accordion">'
+          + '<div class="module-header' + (first ? ' open' : '') + '" onclick="toggleModule(this)" aria-expanded="' + first + '">'
+          + '<div class="module-left"><span class="module-icon">' + mod.icon + '</span><div>'
+          + '<div class="module-title">' + esc(mod.title) + '</div>'
+          + '<div class="module-meta">' + esc(mod.meta) + '</div>'
+          + '</div></div><span class="module-chevron">▼</span></div>'
+          + '<div class="module-lessons' + (first ? ' open' : '') + '">';
+        mod.lessons.forEach(function(l, lj) {
+          var icon = l.isQuiz ? '📝' : l.isProject ? '📁' : '▶';
+          var href = playerBase + '&lesson=' + li;
+          var preview = (mi === 0 && lj === 0) ? '<span class="lesson-preview">Preview</span>' : '';
+          ch += '<a class="lesson-item" href="' + href + '">'
+            + '<span class="lesson-icon">' + icon + '</span>'
+            + '<span class="lesson-title">' + esc(l.t) + '</span>'
+            + preview
+            + '<span class="lesson-duration">' + esc(l.d) + '</span></a>';
+          li++;
+        });
+        ch += '</div></div>';
+      });
+      g('cdCurriculum').innerHTML = ch;
+
+      // INSTRUCTOR
+      g('cdInstrAvatar').textContent = c.icon;
+      g('cdInstrName').textContent = c.instructor;
+      g('cdInstrTitle2').textContent = c.instructorTitle;
+      g('cdInstrStats').innerHTML =
+        '<span class="instr-stat"><span class="instr-stat-icon">⭐</span> ' + c.rating + ' Instructor Rating</span>' +
+        '<span class="instr-stat"><span class="instr-stat-icon">👥</span> ' + esc(c.students) + ' Students</span>' +
+        '<span class="instr-stat"><span class="instr-stat-icon">📚</span> 1 Course</span>';
+      g('cdInstrBio').innerHTML = '<p>' + esc(c.instructorBio) + '</p>';
+
+      // REVIEWS
+      var r5 = 0, r4 = 0, r3 = 0;
+      c.reviews.forEach(function(r) { if (r.rating === 5) r5++; else if (r.rating === 4) r4++; else r3++; });
+      var tot = c.reviews.length;
+      function pct(n) { return Math.round(n / tot * 100); }
+      function barRow(lbl, pt) {
+        return '<div class="rating-bar-row"><span class="bar-label">' + lbl + '</span>'
+          + '<div class="bar-track"><div class="bar-fill" style="width:' + pt + '%"></div></div>'
+          + '<span class="bar-pct">' + pt + '%</span></div>';
+      }
+      g('cdScoreNum').textContent = c.rating;
+      g('cdScoreStars').textContent = stars(c.rating);
+      g('cdRatingBars').innerHTML = barRow('5★', pct(r5)) + barRow('4★', pct(r4)) + barRow('3★', pct(r3)) + barRow('2★', 0) + barRow('1★', 0);
+      var rvh = '';
+      c.reviews.forEach(function(r) {
+        rvh += '<div class="review-card"><div class="reviewer-row">'
+          + '<div class="reviewer-avatar" style="background:' + r.bg + ';">' + r.init + '</div>'
+          + '<div class="reviewer-info"><h5>' + esc(r.name) + '</h5><span>' + esc(r.loc) + ' · ' + esc(r.date) + '</span></div>'
+          + '</div><div class="review-stars">' + stars(r.rating) + '</div>'
+          + '<p class="review-text">' + esc(r.text) + '</p></div>';
+      });
+      g('cdReviewsGrid').innerHTML = rvh;
+
+      // FAQ
+      var fh = '';
+      c.faqs.forEach(function(f) {
+        fh += '<div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">' + esc(f.q)
+          + '<span class="faq-chevron">▼</span></div><div class="faq-answer">' + esc(f.a) + '</div></div>';
+      });
+      g('cdFaqs').innerHTML = fh;
+
+      // CTA BANNER
+      g('cdCtaTitle').textContent = 'Ready to Start? Enroll in ' + c.title.split(':')[0];
+      g('cdCtaText').textContent = 'Join ' + c.students + ' students learning with TIH Academy. '
+        + (c.isFree ? 'This course is completely free — no credit card required.' : 'Invest in your future today.');
+      g('cdCtaBtn').href = enrollHref;
+      g('cdCtaBtn').textContent = c.isFree ? 'Enroll for Free Today →' : 'Enroll Now →';
+
+      // Re-observe any reveals that were empty during first pass
+      document.querySelectorAll('.reveal:not(.visible)').forEach(function(el) { _revealObserver.observe(el); });
+    })();
   </script>
 </body>
 </html>

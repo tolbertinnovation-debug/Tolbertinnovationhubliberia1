@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Complete Computer Literacy — Course Player | TIH Academy</title>
+  <title>Course Player | TIH Academy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="courses-db.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -152,7 +153,6 @@
     .btn-quiz-action { display: block; width: 100%; padding: 0.8rem; background: var(--blue); color: #fff; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all .2s; font-family: 'Poppins', sans-serif; }
     .btn-quiz-action:hover { background: var(--blue-dark); }
     .btn-quiz-action:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
-    /* Quiz Result Screen */
     .quiz-result { text-align: center; padding: 0.5rem 0 1rem; }
     .quiz-result-icon { font-size: 4rem; margin-bottom: 0.75rem; }
     .quiz-result-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif; }
@@ -180,7 +180,6 @@
     .cert-course-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
     .cert-date { font-size: 0.78rem; color: var(--text-muted); }
     .cert-footer-row { display: flex; align-items: flex-end; justify-content: space-between; }
-    .cert-sig { }
     .cert-sig-line { width: 100px; border-bottom: 1.5px solid var(--text); margin-bottom: 0.2rem; }
     .cert-sig-name { font-size: 0.78rem; font-weight: 700; }
     .cert-sig-role { font-size: 0.7rem; color: var(--text-muted); }
@@ -228,13 +227,13 @@
   <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-left">
-      <a href="course-detail.html" class="topbar-back">← <span>Back to Course</span></a>
+      <a href="#" class="topbar-back" id="topbarBack">← <span>Back to Course</span></a>
       <div class="topbar-divider"></div>
       <div class="topbar-brand">TIH <span>Academy</span></div>
     </div>
     <div class="topbar-center">
       <button class="btn-contents" id="btnContents" onclick="toggleSidebar()">☰ Contents</button>
-      <span class="topbar-course-title">Complete Computer Literacy: From Zero to Professional</span>
+      <span class="topbar-course-title" id="topbarTitle">Loading…</span>
       <div class="progress-wrap">
         <div class="progress-bar-track"><div class="progress-bar-fill" id="progressFill"></div></div>
         <span class="progress-pct" id="progressPct"></span>
@@ -258,124 +257,8 @@
           <button class="btn-close-sidebar" onclick="closeSidebar()">✕</button>
         </div>
       </div>
-      <div class="sidebar-scroll">
-
-        <!-- Module 1 -->
-        <div class="sidebar-module">
-          <div class="sidebar-module-header open" onclick="toggleSidebarModule(this)">
-            <div>
-              <div class="sidebar-module-title">Module 1: Getting Started</div>
-              <div class="sidebar-module-meta" id="modMeta1">4 lessons · 35 min · ✅ Complete</div>
-            </div>
-            <span class="sidebar-module-chevron">▼</span>
-          </div>
-          <div class="sidebar-lessons open">
-            <div class="sidebar-lesson completed" onclick="selectLesson(this,0)">
-              <span class="lesson-status">✓</span>
-              <div class="lesson-info"><div class="lesson-info-title">1.1 What is a Computer?</div><div class="lesson-info-dur">5:20</div></div>
-            </div>
-            <div class="sidebar-lesson completed" onclick="selectLesson(this,1)">
-              <span class="lesson-status">✓</span>
-              <div class="lesson-info"><div class="lesson-info-title">1.2 Parts of a Computer</div><div class="lesson-info-dur">8:45</div></div>
-            </div>
-            <div class="sidebar-lesson completed" onclick="selectLesson(this,2)">
-              <span class="lesson-status">✓</span>
-              <div class="lesson-info"><div class="lesson-info-title">1.3 Understanding Operating Systems</div><div class="lesson-info-dur">10:12</div></div>
-            </div>
-            <div class="sidebar-lesson completed" onclick="selectLesson(this,3)">
-              <span class="lesson-status">✓</span>
-              <div class="lesson-info"><div class="lesson-info-title">📝 Quiz: Computer Basics</div><div class="lesson-info-dur">5 questions</div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 2 -->
-        <div class="sidebar-module">
-          <div class="sidebar-module-header open" onclick="toggleSidebarModule(this)">
-            <div>
-              <div class="sidebar-module-title">Module 2: Internet &amp; Digital Communication</div>
-              <div class="sidebar-module-meta" id="modMeta2">4 lessons · 29 min · In Progress</div>
-            </div>
-            <span class="sidebar-module-chevron">▼</span>
-          </div>
-          <div class="sidebar-lessons open">
-            <div class="sidebar-lesson active" onclick="selectLesson(this,4)">
-              <span class="lesson-status">▶</span>
-              <div class="lesson-info"><div class="lesson-info-title">2.1 Using the Internet Safely</div><div class="lesson-info-dur">7:15</div></div>
-            </div>
-            <div class="sidebar-lesson" onclick="selectLesson(this,5)">
-              <span class="lesson-status">○</span>
-              <div class="lesson-info"><div class="lesson-info-title">2.2 Email &amp; Communication Tools</div><div class="lesson-info-dur">8:30</div></div>
-            </div>
-            <div class="sidebar-lesson" onclick="selectLesson(this,6)">
-              <span class="lesson-status">○</span>
-              <div class="lesson-info"><div class="lesson-info-title">2.3 Social Media for Professionals</div><div class="lesson-info-dur">6:20</div></div>
-            </div>
-            <div class="sidebar-lesson" onclick="selectLesson(this,7)">
-              <span class="lesson-status">📝</span>
-              <div class="lesson-info"><div class="lesson-info-title">📝 Quiz: Internet &amp; Digital Skills</div><div class="lesson-info-dur">5 questions</div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 3 — locked -->
-        <div class="sidebar-module">
-          <div class="sidebar-module-header" onclick="toggleSidebarModule(this)">
-            <div>
-              <div class="sidebar-module-title">Module 3: Microsoft Office Productivity</div>
-              <div class="sidebar-module-meta" id="modMeta3">4 lessons · 47 min · 🔒 Locked</div>
-            </div>
-            <span class="sidebar-module-chevron">▼</span>
-          </div>
-          <div class="sidebar-lessons">
-            <div class="sidebar-lesson locked" onclick="selectLesson(this,8)">
-              <span class="lesson-status">🔒</span>
-              <div class="lesson-info"><div class="lesson-info-title">3.1 Introduction to Microsoft Word</div><div class="lesson-info-dur">12:00</div></div>
-            </div>
-            <div class="sidebar-lesson locked" onclick="selectLesson(this,9)">
-              <span class="lesson-status">🔒</span>
-              <div class="lesson-info"><div class="lesson-info-title">3.2 Excel Basics for Business</div><div class="lesson-info-dur">15:30</div></div>
-            </div>
-            <div class="sidebar-lesson locked" onclick="selectLesson(this,10)">
-              <span class="lesson-status">🔒</span>
-              <div class="lesson-info"><div class="lesson-info-title">3.3 Creating PowerPoint Presentations</div><div class="lesson-info-dur">10:45</div></div>
-            </div>
-            <div class="sidebar-lesson locked" onclick="selectLesson(this,11)">
-              <span class="lesson-status">🔒</span>
-              <div class="lesson-info"><div class="lesson-info-title">📁 Project: Build a Professional CV</div><div class="lesson-info-dur">Project</div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Module 4 — locked -->
-        <div class="sidebar-module">
-          <div class="sidebar-module-header" onclick="toggleSidebarModule(this)">
-            <div>
-              <div class="sidebar-module-title">Module 4: Digital Safety &amp; Career Readiness</div>
-              <div class="sidebar-module-meta" id="modMeta4">4 lessons · 38 min · 🔒 Locked</div>
-            </div>
-            <span class="sidebar-module-chevron">▼</span>
-          </div>
-          <div class="sidebar-lessons">
-            <div class="sidebar-lesson locked" onclick="selectLesson(this,12)">
-              <span class="lesson-status">🔒</span>
-              <div class="lesson-info"><div class="lesson-info-title">4.1 Cybersecurity Essentials</div><div class="lesson-info-dur">8:10</div></div>
-            </div>
-            <div class="sidebar-lesson locked" onclick="selectLesson(this,13)">
-              <span class="lesson-status">🔒</span>
-              <div class="lesson-info"><div class="lesson-info-title">4.2 File Management &amp; Cloud Storage</div><div class="lesson-info-dur">7:50</div></div>
-            </div>
-            <div class="sidebar-lesson locked" onclick="selectLesson(this,14)">
-              <span class="lesson-status">🔒</span>
-              <div class="lesson-info"><div class="lesson-info-title">4.3 Career-Ready Digital Portfolio</div><div class="lesson-info-dur">10:20</div></div>
-            </div>
-            <div class="sidebar-lesson locked" onclick="selectLesson(this,15)">
-              <span class="lesson-status">🔒</span>
-              <div class="lesson-info"><div class="lesson-info-title">🏆 Final Assessment &amp; Certificate</div><div class="lesson-info-dur">Assessment</div></div>
-            </div>
-          </div>
-        </div>
-
+      <div class="sidebar-scroll" id="sidebarScroll">
+        <!-- Built dynamically from courses-db.js -->
       </div>
     </aside>
 
@@ -394,10 +277,10 @@
 
         <!-- VIDEO INFO -->
         <div class="video-info-bar">
-          <div class="video-lesson-title" id="lessonTitle">2.1 Using the Internet Safely</div>
+          <div class="video-lesson-title" id="lessonTitle">Loading…</div>
           <div class="video-lesson-meta">
-            <span>⏱ <span id="lessonDur">7:15</span></span>
-            <span id="lessonMeta">📶 Module 2 · Lesson 5 of 16</span>
+            <span>⏱ <span id="lessonDur"></span></span>
+            <span id="lessonMeta"></span>
           </div>
         </div>
 
@@ -413,7 +296,7 @@
         <div class="tab-panel" id="tab-resources"><div id="resourcesContent"></div></div>
         <div class="tab-panel" id="tab-qa"><div id="qaContent"></div></div>
         <div class="tab-panel" id="tab-notes">
-          <div class="notes-label" id="notesLabel">Your Notes — Lesson 2.1</div>
+          <div class="notes-label" id="notesLabel">Your Notes</div>
           <textarea class="notes-textarea" id="notesArea" placeholder="Type your notes here… They are saved automatically." oninput="scheduleNoteSave()"></textarea>
           <div class="notes-actions">
             <button class="btn-save-notes" onclick="saveNotes()">Save Notes</button>
@@ -436,7 +319,6 @@
   <!-- QUIZ MODAL -->
   <div class="modal-overlay" id="quizModal">
     <div class="quiz-modal">
-      <!-- Active Quiz -->
       <div id="quizActive">
         <div class="modal-header">
           <div class="modal-title" id="quizTitle">📝 Quiz</div>
@@ -449,7 +331,6 @@
         <div class="quiz-feedback" id="quizFeedback"></div>
         <button class="btn-quiz-action" id="quizActionBtn" onclick="handleQuizAction()" disabled>Submit Answer</button>
       </div>
-      <!-- Results -->
       <div id="quizResult" style="display:none">
         <div class="modal-header">
           <div class="modal-title" id="quizResultHeader">📝 Quiz Results</div>
@@ -473,7 +354,7 @@
       <div class="completion-header">
         <div class="completion-icon">🏆</div>
         <h2>Course Complete!</h2>
-        <p>Congratulations! You've mastered Complete Computer Literacy.</p>
+        <p id="completionSubtitle">Congratulations — you've mastered the course!</p>
       </div>
       <div class="certificate-preview">
         <div class="cert-top">
@@ -482,15 +363,15 @@
         </div>
         <div class="cert-body">
           <div class="cert-awarded">This certifies that</div>
-          <div class="cert-name">Samuel Tolbert</div>
+          <div class="cert-name">Your Name</div>
           <div class="cert-for">has successfully completed</div>
-          <div class="cert-course-title">Complete Computer Literacy: From Zero to Professional</div>
-          <div class="cert-date">Issued: <span id="certDate"></span> &nbsp;·&nbsp; Certificate ID: TIH-2026-CCL-0042</div>
+          <div class="cert-course-title" id="certCourseTitle"></div>
+          <div class="cert-date">Issued: <span id="certDate"></span> &nbsp;·&nbsp; Certificate ID: <span id="certId"></span></div>
         </div>
         <div class="cert-footer-row">
-          <div class="cert-sig">
+          <div>
             <div class="cert-sig-line"></div>
-            <div class="cert-sig-name">Samuel Tolbert</div>
+            <div class="cert-sig-name" id="certSigName">Samuel Tolbert</div>
             <div class="cert-sig-role">Founder &amp; CEO, TIH Academy</div>
           </div>
           <div class="cert-verified">✓ Verified</div>
@@ -511,136 +392,54 @@
   <canvas id="confettiCanvas"></canvas>
 
   <script>
-  // ===== LESSON METADATA =====
-  var lessons = [
-    { title:'1.1 What is a Computer?',              dur:'5:20',       module:1, videoId:'Tn6-PIqc4UM' },
-    { title:'1.2 Parts of a Computer',              dur:'8:45',       module:1, videoId:'Tn6-PIqc4UM' },
-    { title:'1.3 Understanding Operating Systems',  dur:'10:12',      module:1, videoId:'Tn6-PIqc4UM' },
-    { title:'Quiz: Computer Basics',                dur:'5 questions',module:1, isQuiz:true, quizId:'mod1' },
-    { title:'2.1 Using the Internet Safely',        dur:'7:15',       module:2, videoId:'Tn6-PIqc4UM' },
-    { title:'2.2 Email & Communication Tools',      dur:'8:30',       module:2, videoId:'Tn6-PIqc4UM' },
-    { title:'2.3 Social Media for Professionals',   dur:'6:20',       module:2, videoId:'Tn6-PIqc4UM' },
-    { title:'Quiz: Internet & Digital Skills',      dur:'5 questions',module:2, isQuiz:true, quizId:'mod2' },
-    { title:'3.1 Introduction to Microsoft Word',   dur:'12:00',      module:3, videoId:'Tn6-PIqc4UM' },
-    { title:'3.2 Excel Basics for Business',        dur:'15:30',      module:3, videoId:'Tn6-PIqc4UM' },
-    { title:'3.3 Creating PowerPoint Presentations',dur:'10:45',      module:3, videoId:'Tn6-PIqc4UM' },
-    { title:'Project: Build a Professional CV',     dur:'Project',    module:3, videoId:'Tn6-PIqc4UM' },
-    { title:'4.1 Cybersecurity Essentials',         dur:'8:10',       module:4, videoId:'Tn6-PIqc4UM' },
-    { title:'4.2 File Management & Cloud Storage',  dur:'7:50',       module:4, videoId:'Tn6-PIqc4UM' },
-    { title:'4.3 Career-Ready Digital Portfolio',   dur:'10:20',      module:4, videoId:'Tn6-PIqc4UM' },
-    { title:'Final Assessment & Certificate',       dur:'Assessment', module:4, isQuiz:true, quizId:'final', isFinal:true }
-  ];
+  // ===== LOAD COURSE FROM DB =====
+  var courseId, course, lessons, quizData, totalLessons;
 
-  // ===== PER-LESSON CONTENT =====
-  var lessonContent = {
-    0: {
-      overview:'<p>In this foundational lesson, you will discover what a computer is, how it works, and why it has become the most transformative tool of the modern age. We cover the difference between hardware and software, how a computer processes information, and the key types of computers you will encounter in everyday life — desktops, laptops, tablets, and smartphones.</p><p>By the end of this lesson, you will be able to explain in simple terms how a computer works and why digital skills are essential for every career and business in Liberia today.</p>',
-      resources:[{icon:'📄',name:'Computer Basics Glossary.pdf',size:'PDF · 0.9 MB · 6 pages'},{icon:'📊',name:'Types of Computers Comparison.pdf',size:'PDF · 0.6 MB · 3 pages'}],
-      qa:[{q:'Do I need an expensive computer to take this course?',a:'Not at all. Any working computer, laptop, or even a modern smartphone with a web browser is sufficient for this course. The skills you will learn apply to all types of devices.'}]
-    },
-    1: {
-      overview:'<p>This lesson dives into the physical components of a computer — what we call hardware. You will learn the function of each key part: the CPU (Central Processing Unit), RAM, hard drive, motherboard, keyboard, mouse, and monitor. Understanding hardware helps you make smart decisions when buying, troubleshooting, or upgrading a computer.</p><p>We also cover the difference between input devices (keyboard, mouse) and output devices (monitor, printer), and explain how they work together to let you interact with your computer.</p>',
-      resources:[{icon:'📊',name:'Hardware Components Diagram.pdf',size:'PDF · 1.2 MB · 4 pages'},{icon:'📄',name:'Computer Buying Guide for Beginners.pdf',size:'PDF · 0.8 MB · 5 pages'}],
-      qa:[{q:'What is the most important component in a computer?',a:"While all components work together, the CPU and RAM are most critical for performance. The CPU processes all instructions, while RAM determines how many programs you can run simultaneously without slowdown."}]
-    },
-    2: {
-      overview:'<p>An Operating System (OS) is the core software that manages everything on your computer — from running applications to managing files and connecting to the internet. In this lesson, you will learn the key differences between the most popular operating systems: Windows, macOS, Android, and iOS.</p><p>You will navigate the Windows interface, understand the desktop, taskbar, and Start menu, and learn essential keyboard shortcuts that will dramatically speed up your work. This is the lesson that helps computers stop feeling foreign and start feeling familiar.</p>',
-      resources:[{icon:'📄',name:'Windows Keyboard Shortcuts Cheatsheet.pdf',size:'PDF · 0.5 MB · 2 pages'},{icon:'📄',name:'Operating Systems Comparison Guide.pdf',size:'PDF · 0.7 MB · 4 pages'}],
-      qa:[{q:'Which operating system should I learn first?',a:'Windows is the most widely used operating system in Liberia and across Africa, so it is the best starting point. The skills you learn in Windows transfer easily to other systems.'}]
-    },
-    3: { overview:'', resources:[], qa:[] },
-    4: {
-      overview:'<p>In this lesson, you will learn how to navigate the internet safely and responsibly. We cover the difference between secure (HTTPS) and unsecure websites, how to recognize phishing emails and scams, and best practices for creating strong passwords that protect your personal information online.</p><p>By the end of this lesson, you will be able to identify trustworthy websites, safely conduct online transactions, and use two-factor authentication to add an extra layer of security to your accounts — essential skills for banking, communication, and running a business digitally.</p>',
-      resources:[{icon:'📄',name:'Internet Safety Checklist.pdf',size:'PDF · 1.2 MB · 8 pages'},{icon:'📊',name:'Password Manager Comparison Chart.pdf',size:'PDF · 0.8 MB · 4 pages'}],
-      qa:[{q:'Is it safe to use public Wi-Fi for internet banking?',a:'It is generally not recommended to conduct banking transactions over public Wi-Fi. If you must, always ensure the website uses HTTPS and consider using a VPN (Virtual Private Network) to encrypt your connection.'}]
-    },
-    5: {
-      overview:'<p>Email remains the most professional and widely used communication tool in business. This lesson teaches you how to set up a professional Gmail or Outlook account, write effective emails using proper business language, organize your inbox with labels and folders, and use Google Meet or Zoom for video calls.</p><p>You will also discover tools like WhatsApp Business, Slack, and Google Workspace that Liberian businesses and organizations are increasingly using to collaborate professionally and efficiently.</p>',
-      resources:[{icon:'📄',name:'Professional Email Writing Templates.pdf',size:'PDF · 0.9 MB · 6 pages'},{icon:'📊',name:'Communication Tools Comparison.pdf',size:'PDF · 0.7 MB · 3 pages'}],
-      qa:[{q:'Should I use my personal email for job applications?',a:'It is strongly recommended to create a professional email address using your name (e.g., firstname.lastname@gmail.com). Employers take professional email addresses more seriously than informal ones.'}]
-    },
-    6: {
-      overview:'<p>Social media is no longer just for personal connections — it is a powerful professional tool. In this lesson, you will learn how to build a professional LinkedIn profile that attracts job opportunities, use Facebook Pages and Instagram for business promotion, and understand the difference between personal and professional social media conduct.</p><p>We also cover how to use social media safely, protect your privacy, and build a positive digital reputation that employers and clients will respect and trust.</p>',
-      resources:[{icon:'📄',name:'LinkedIn Profile Optimization Guide.pdf',size:'PDF · 1.0 MB · 7 pages'},{icon:'📄',name:'Social Media for Small Business.pdf',size:'PDF · 0.8 MB · 5 pages'}],
-      qa:[{q:'Can social media help me find a job in Liberia?',a:'Absolutely. LinkedIn in particular is used by NGOs, international organizations, and companies in Liberia for recruitment. A complete, professional LinkedIn profile significantly increases your visibility to potential employers.'}]
-    },
-    7: { overview:'', resources:[], qa:[] },
-    8: {
-      overview:'<p>Microsoft Word is the most widely used word processing application in the world — and a required skill for virtually every office job. This lesson takes you from creating your first document to advanced formatting: fonts, headings, paragraphs, tables, images, and page layouts.</p><p>You will learn to use Word templates, add headers and footers, insert page numbers, and use spell-check and grammar tools to produce polished, professional documents — including the CV you will build in the module project.</p>',
-      resources:[{icon:'📄',name:'Microsoft Word Quick Reference Guide.pdf',size:'PDF · 1.1 MB · 6 pages'},{icon:'📁',name:'CV Template — Word Format.docx',size:'Word · 0.3 MB'}],
-      qa:[{q:'Can I use Google Docs instead of Microsoft Word?',a:'Yes — Google Docs is a free alternative that works very similarly to Word. However, since most employers and organizations in Liberia use Microsoft Office, learning Word specifically gives you a direct advantage.'}]
-    },
-    9: {
-      overview:'<p>Microsoft Excel is the world\'s most powerful spreadsheet tool and is used extensively in business, finance, NGOs, and government across Liberia. This lesson teaches you the fundamentals: entering data, creating formulas, using SUM/AVERAGE/COUNT functions, and formatting cells for professional presentation.</p><p>You will build a practical budget tracker and an inventory spreadsheet by the end of this lesson — real tools you can immediately use for your business or workplace.</p>',
-      resources:[{icon:'📊',name:'Excel Formula Cheatsheet.pdf',size:'PDF · 0.9 MB · 4 pages'},{icon:'📊',name:'Budget Tracker Template.xlsx',size:'Excel · 0.4 MB'}],
-      qa:[{q:'Is Excel difficult to learn for beginners?',a:'Excel can seem intimidating, but this lesson starts from the very basics. You will be surprised how quickly you can build useful spreadsheets — most day-to-day Excel work uses just a handful of functions.'}]
-    },
-    10: {
-      overview:'<p>PowerPoint presentations are used in every professional setting — job interviews, business pitches, NGO proposals, and classroom teaching. This lesson teaches you to create slides from scratch, use design themes, add images and charts, apply animations, and present confidently using Presenter View.</p><p>By the end, you will create a 5-slide professional presentation using everything you have learned — a skill that immediately sets you apart in any professional environment.</p>',
-      resources:[{icon:'📊',name:'Presentation Design Principles.pdf',size:'PDF · 1.0 MB · 8 pages'},{icon:'📊',name:'PowerPoint Presentation Template.pptx',size:'PowerPoint · 1.2 MB'}],
-      qa:[{q:'What makes a presentation look professional?',a:'Consistency is key: use 2-3 colors, one or two fonts, plenty of white space, and limit each slide to one key idea. Avoid reading text off slides — let the visuals support your spoken words.'}]
-    },
-    11: {
-      overview:'<p>In this hands-on project, you will apply everything learned in Module 3 to build a complete, professional CV in Microsoft Word. Your CV will include a header with contact information, a professional summary, work experience, education, skills section, and references — formatted to international standards.</p><p>This is not just a lesson — this is a deliverable. By the end you will have a real, ready-to-submit CV that you can use for job applications, internship programs, and professional opportunities across Liberia and beyond.</p>',
-      resources:[{icon:'📁',name:'CV Writing Guidelines — Liberia.pdf',size:'PDF · 1.1 MB · 9 pages'},{icon:'📁',name:'Sample Professional CV.docx',size:'Word · 0.4 MB'}],
-      qa:[{q:'What format do Liberian employers prefer for a CV?',a:'Most Liberian employers, NGOs, and international organizations prefer a clean, 1-2 page Word document CV. A clear heading, bullet-pointed experience, and a professional email are the most critical elements.'}]
-    },
-    12: {
-      overview:'<p>Cybersecurity is no longer just an IT topic — it is a life skill. This lesson covers the most common threats Liberians face online: account hacking, mobile money scams, fake job offers, and identity theft. You will learn how attackers think, and more importantly, how to stop them.</p><p>We cover how to secure your email, Facebook, and mobile money accounts with strong passwords and two-factor authentication, how to spot and avoid scams, and what to do if you suspect your account has been compromised.</p>',
-      resources:[{icon:'📄',name:'Cybersecurity Essentials Handbook.pdf',size:'PDF · 1.3 MB · 10 pages'},{icon:'📄',name:'Common Liberia Online Scams — Warning Signs.pdf',size:'PDF · 0.7 MB · 5 pages'}],
-      qa:[{q:'How can I tell if a job offer I received online is a scam?',a:'Watch for these red flags: unusually high salary, request for upfront payment, poor grammar, no verifiable company address, and requests for personal banking information. Always verify the company exists independently before responding.'}]
-    },
-    13: {
-      overview:'<p>Poor file management is one of the biggest productivity killers. This lesson teaches you how to organize your computer files logically using folders and subfolders, use consistent naming conventions, and find files quickly with search tools — skills that will save you hours every week.</p><p>We also cover cloud storage: Google Drive, Dropbox, and OneDrive. You will learn to upload, share, and collaborate on documents from any device, anywhere — and understand why backing up your files is critical to protecting your work.</p>',
-      resources:[{icon:'📄',name:'File Organization Best Practices.pdf',size:'PDF · 0.8 MB · 5 pages'},{icon:'📊',name:'Cloud Storage Services Comparison.pdf',size:'PDF · 0.6 MB · 3 pages'}],
-      qa:[{q:'Is Google Drive safe to store important documents?',a:"Google Drive uses industry-standard encryption and is safe for most documents. However, avoid storing highly sensitive documents (national ID scans, banking details) without an additional layer of protection like password-protected PDFs."}]
-    },
-    14: {
-      overview:'<p>Your digital portfolio is your professional identity in the online world. In this lesson, you will learn to build a simple but powerful online presence: a LinkedIn profile that showcases your skills, a Google Sites portfolio page displaying your projects, and a professional email signature that communicates credibility.</p><p>We also discuss how to document your TIH Academy certificate and present it to employers, how to write a compelling professional summary, and strategies for using your new digital skills to find opportunities and grow your career in Liberia\'s expanding digital economy.</p>',
-      resources:[{icon:'📄',name:'Digital Portfolio Building Guide.pdf',size:'PDF · 1.1 MB · 8 pages'},{icon:'🌐',name:'Google Sites Portfolio Tutorial.pdf',size:'PDF · 0.9 MB · 6 pages'}],
-      qa:[{q:'Do I need a website to have a professional digital portfolio?',a:'No. A well-completed LinkedIn profile is often sufficient. But combining LinkedIn with a simple Google Sites page significantly strengthens your professional presence and shows technical initiative.'}]
-    },
-    15: { overview:'', resources:[], qa:[] }
-  };
-
-  // ===== QUIZ DATA =====
-  var quizData = {
-    mod1: {
-      title:'Quiz: Computer Basics', moduleNum:1, unlocks:3,
-      questions:[
-        { q:'What does CPU stand for?', opts:['Central Processing Unit','Computer Personal Unit','Central Peripheral Unit','Control Processing Unit'], correct:0, exp:'CPU stands for Central Processing Unit — the brain of the computer that processes all instructions.' },
-        { q:'Which of the following is an INPUT device?', opts:['Monitor','Speaker','Keyboard','Printer'], correct:2, exp:'A keyboard is an input device because it sends data INTO the computer. A monitor is an output device — it receives data FROM the computer.' },
-        { q:'What is the main purpose of an Operating System?', opts:['To browse the internet','To manage computer hardware and software','To store files permanently','To display graphics on the screen'], correct:1, exp:'The Operating System (e.g. Windows, macOS) manages all hardware and software resources, allowing programs to run and users to interact with the computer.' },
-        { q:'RAM stands for:', opts:['Remote Access Memory','Random Access Memory','Read-After Memory','Rapid Access Module'], correct:1, exp:'RAM (Random Access Memory) is your computer\'s temporary working memory. More RAM means you can run more programs at the same time without slowdown.' },
-        { q:'Which of these is a permanent STORAGE device?', opts:['RAM','CPU','Hard Drive (HDD/SSD)','Monitor'], correct:2, exp:'A Hard Drive (HDD or SSD) stores data permanently, even when the computer is turned off. RAM loses its data when power is removed.' }
-      ]
-    },
-    mod2: {
-      title:'Quiz: Internet & Digital Skills', moduleNum:2, unlocks:3,
-      questions:[
-        { q:'What does HTTPS indicate about a website?', opts:['The website is very popular','The connection is encrypted and secure','The website loads faster','The website is free to use'], correct:1, exp:'HTTPS (HyperText Transfer Protocol Secure) means your connection to the website is encrypted — protecting your passwords, banking details, and personal information from being intercepted.' },
-        { q:'Which of these is a sign of a PHISHING email?', opts:['It is sent from a known colleague\'s verified email','It contains a company logo you recognize','It creates urgency and asks for passwords or banking info via a suspicious link','It has a professional email signature with a phone number'], correct:2, exp:'Phishing emails use urgency and fear to trick you into clicking links or revealing sensitive information. Always verify the sender\'s actual email address before acting.' },
-        { q:'A strong password should:', opts:['Be your name or date of birth','Be short and easy to remember','Mix letters, numbers, and special characters','Be shared with a trusted family member for safety'], correct:2, exp:'Strong passwords use uppercase and lowercase letters, numbers, and symbols (e.g. T!h@2026). Never use personal information and never share passwords with anyone.' },
-        { q:'Two-factor authentication (2FA) means:', opts:['Having two different passwords for one account','Using two separate devices to browse','Verifying your identity with two separate methods','Sharing your account with two trusted people'], correct:2, exp:'2FA adds a second verification step beyond your password — typically a code sent to your phone. This means even if someone steals your password, they still cannot access your account.' },
-        { q:'Which situation is SAFEST for online banking?', opts:['Public Wi-Fi at a café or restaurant','A neighbour\'s shared Wi-Fi network','Your private home network while the site shows HTTPS','Incognito mode on any public computer'], correct:2, exp:'Your private home network combined with HTTPS encryption is the safest option. Public Wi-Fi can be monitored by attackers. Incognito mode does not encrypt your connection.' }
-      ]
-    },
-    final: {
-      title:'Final Assessment', moduleNum:4, unlocks:null, isFinal:true,
-      questions:[
-        { q:'Which Microsoft Office application is best for creating a professional CV?', opts:['Microsoft Excel','Microsoft PowerPoint','Microsoft Word','Microsoft Outlook'], correct:2, exp:'Microsoft Word is the standard application for creating CVs, letters, and text-based documents. Excel is for data, PowerPoint for presentations.' },
-        { q:'What is the safest way to back up important files?', opts:['Save them only on your desktop','Email them to yourself','Use cloud storage like Google Drive AND keep a local copy','Print them out'], correct:2, exp:'The best practice is the "3-2-1 rule": 3 copies of data, on 2 different types of storage, with 1 copy offsite (like cloud storage). Combining Google Drive with a local backup is ideal.' },
-        { q:'Which of these is NOT a cybersecurity best practice?', opts:['Using different passwords for different accounts','Enabling two-factor authentication','Clicking links in emails to verify if they are real','Keeping your software and antivirus updated'], correct:2, exp:'You should NEVER click unknown links to "test" them. This is exactly how malware and phishing attacks succeed. Verify links by going directly to the website address instead.' },
-        { q:'What does a verifiable digital certificate mean?', opts:['It was printed on special paper','It can be independently confirmed as genuine using a verification code or link','It was issued by the government','It cost money to obtain'], correct:1, exp:'A verifiable digital certificate includes a unique ID or QR code that employers and institutions can use to independently confirm the certificate is genuine — preventing fraud.' },
-        { q:'Completing this course means you can now:', opts:['Become a software programmer immediately','Use computers professionally, stay safe online, and create digital documents confidently','Repair any computer hardware problem','Build a professional website from scratch'], correct:1, exp:'This course gives you practical computer literacy skills for professional and personal use. You can now work confidently with computers, communicate professionally online, use Office tools, and stay safe in the digital world.' }
-      ]
+  (function loadCourse() {
+    var params = new URLSearchParams(window.location.search);
+    courseId = params.get('id') || 'computer-literacy';
+    course = COURSES_DB[courseId];
+    if (!course) {
+      document.body.innerHTML = '<div style="padding:3rem;text-align:center;font-family:Inter,sans-serif"><h2 style="color:#002868">Course not found</h2><p style="margin:1rem 0 2rem;color:#6b7280">This course does not exist.</p><a href="courses.html" style="color:#002868;font-weight:700">← Back to Courses</a></div>';
+      return;
     }
-  };
+
+    // Build flat lessons array from modules
+    lessons = [];
+    course.modules.forEach(function(mod, mi) {
+      mod.lessons.forEach(function(l) {
+        lessons.push({
+          title: l.t,
+          dur: l.d,
+          module: mi + 1,
+          videoId: 'Tn6-PIqc4UM',
+          isQuiz: l.isQuiz || false,
+          isProject: l.isProject || false,
+          quizId: l.quizId || null,
+          isFinal: l.isFinal || false
+        });
+      });
+    });
+    totalLessons = lessons.length;
+
+    // Copy quiz data from DB
+    quizData = course.quizzes || {};
+
+    // Update topbar
+    document.getElementById('topbarTitle').textContent = course.title;
+    document.getElementById('topbarBack').href = 'course-detail.html?id=' + encodeURIComponent(courseId);
+
+    // Completion modal cert details
+    document.getElementById('certCourseTitle').textContent = course.title;
+    document.getElementById('certId').textContent = course.certId || ('TIH-2026-' + courseId.toUpperCase().substring(0,4) + '-0001');
+    document.getElementById('certSigName').textContent = course.instructor;
+    document.getElementById('completionSubtitle').textContent = 'Congratulations — you\'ve mastered ' + course.title.split(':')[0] + '!';
+    document.getElementById('certDate').textContent = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+  })();
 
   // ===== STATE =====
-  var completedLessons = [0,1,2,3]; // lessons completed by index
-  var totalLessons = 16;
-  var currentLessonIndex = 4;
+  var completedLessons = [];
+  var currentLessonIndex = 0;
   var noteSaveTimer = null;
   var quizCurrentQ = 0;
   var quizScore = 0;
@@ -650,22 +449,58 @@
   var currentQuizLessonIndex = -1;
   var quizLastPassed = false;
 
+  // ===== BUILD SIDEBAR =====
+  function buildSidebar() {
+    var html = '';
+    var li = 0;
+    course.modules.forEach(function(mod, mi) {
+      var isFirst = mi === 0;
+      html += '<div class="sidebar-module">'
+        + '<div class="sidebar-module-header' + (isFirst ? ' open' : '') + '" onclick="toggleSidebarModule(this)">'
+        + '<div><div class="sidebar-module-title">' + escSide(mod.title) + '</div>'
+        + '<div class="sidebar-module-meta" id="modMeta' + (mi + 1) + '">' + escSide(mod.meta) + (isFirst ? '' : ' · 🔒 Locked') + '</div></div>'
+        + '<span class="sidebar-module-chevron">▼</span></div>'
+        + '<div class="sidebar-lessons' + (isFirst ? ' open' : '') + '">';
+      mod.lessons.forEach(function(l) {
+        var idx = li;
+        var isActive = idx === currentLessonIndex;
+        var isLocked = mi > 0;
+        var statusIcon = isActive ? '▶' : (isLocked ? '🔒' : '○');
+        var cls = 'sidebar-lesson' + (isActive ? ' active' : '') + (isLocked ? ' locked' : '');
+        html += '<div class="' + cls + '" data-lesson-index="' + idx + '" onclick="selectLessonByIndex(' + idx + ')">'
+          + '<span class="lesson-status">' + statusIcon + '</span>'
+          + '<div class="lesson-info">'
+          + '<div class="lesson-info-title">' + escSide(l.t) + '</div>'
+          + '<div class="lesson-info-dur">' + escSide(l.d) + '</div>'
+          + '</div></div>';
+        li++;
+      });
+      html += '</div></div>';
+    });
+    document.getElementById('sidebarScroll').innerHTML = html;
+  }
+  function escSide(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
   // ===== INIT =====
   (function init() {
+    if (!course) return;
     var params = new URLSearchParams(window.location.search);
     var startLesson = parseInt(params.get('lesson'));
     if (!isNaN(startLesson) && startLesson >= 0 && startLesson < totalLessons) {
       currentLessonIndex = startLesson;
     }
-    var allLessonEls = document.querySelectorAll('.sidebar-lesson');
-    // Reset active states
-    allLessonEls.forEach(function(el) { el.classList.remove('active'); });
-    allLessonEls[currentLessonIndex].classList.add('active');
-    // Set active status icon if not completed
-    if (!completedLessons.includes(currentLessonIndex)) {
-      allLessonEls[currentLessonIndex].querySelector('.lesson-status').textContent = '▶';
+    buildSidebar();
+    // Mark active lesson in sidebar
+    var allEls = document.querySelectorAll('.sidebar-lesson');
+    allEls.forEach(function(el) { el.classList.remove('active'); });
+    var activeEl = document.querySelector('[data-lesson-index="' + currentLessonIndex + '"]');
+    if (activeEl) {
+      activeEl.classList.add('active');
+      if (!activeEl.classList.contains('completed')) {
+        var st = activeEl.querySelector('.lesson-status');
+        if (st) st.textContent = '▶';
+      }
     }
-    document.getElementById('certDate').textContent = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
     renderLesson(currentLessonIndex);
     updateProgress();
   })();
@@ -673,44 +508,33 @@
   // ===== RENDER LESSON =====
   function renderLesson(index) {
     var lesson = lessons[index];
-    var content = lessonContent[index] || { overview:'', resources:[], qa:[] };
     // Update title/meta
     document.getElementById('lessonTitle').textContent = lesson.title;
     document.getElementById('lessonDur').textContent = lesson.dur;
-    document.getElementById('lessonMeta').textContent = '📶 Module ' + lesson.module + ' · Lesson ' + (index+1) + ' of ' + totalLessons;
-    // Update video
-    if (lesson.videoId) {
-      document.getElementById('videoIframe').src = 'https://www.youtube.com/embed/' + lesson.videoId + '?rel=0&modestbranding=1';
-    }
+    document.getElementById('lessonMeta').textContent = '📶 Module ' + lesson.module + ' · Lesson ' + (index + 1) + ' of ' + totalLessons;
+    // Update video (use placeholder for all lessons)
+    document.getElementById('videoIframe').src = 'https://www.youtube.com/embed/' + (lesson.videoId || 'Tn6-PIqc4UM') + '?rel=0&modestbranding=1';
     document.getElementById('videoScroll').scrollTop = 0;
     // Overview
-    document.getElementById('overviewContent').innerHTML = content.overview || '<p>Select a topic from the sidebar to begin.</p>';
+    var overviewHtml;
+    if (lesson.isQuiz) {
+      overviewHtml = '<p>This is the quiz for Module ' + lesson.module + '. Complete all previous lessons before taking the quiz. You need 60% or higher to pass and unlock the next module.</p>';
+    } else if (lesson.isProject) {
+      overviewHtml = '<p>This is the hands-on project for Module ' + lesson.module + '. Apply what you have learned so far to complete the project as described in the video. Take your time and refer back to previous lessons as needed.</p>';
+    } else {
+      overviewHtml = '<p>In this lesson, you will explore <strong>' + escSide(lesson.title) + '</strong>. Follow along with the video for step-by-step instruction covering all key concepts and practical applications relevant to learners in Liberia and across Africa.</p><p>Take notes using the Notes tab, and review the Q&amp;A tab for common questions. When you are ready, click <strong>Mark as Complete</strong> to progress to the next lesson.</p>';
+    }
+    document.getElementById('overviewContent').innerHTML = overviewHtml;
     // Resources
-    var rHtml = '';
-    if (content.resources && content.resources.length) {
-      content.resources.forEach(function(r) {
-        rHtml += '<div class="resource-item"><span class="resource-icon">'+r.icon+'</span><div class="resource-info"><div class="resource-name">'+r.name+'</div><div class="resource-size">'+r.size+'</div></div><button class="btn-download">↓ Download</button></div>';
-      });
-    } else {
-      rHtml = '<p style="color:var(--text-muted);font-size:0.9rem;">No downloadable resources for this lesson.</p>';
-    }
-    document.getElementById('resourcesContent').innerHTML = rHtml;
+    document.getElementById('resourcesContent').innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">Downloadable resources for this lesson will be available soon.</p>';
     // Q&A
-    var qaHtml = '';
-    if (content.qa && content.qa.length) {
-      content.qa.forEach(function(item) {
-        qaHtml += '<div class="qa-item"><div class="qa-question">'+item.q+'</div><div class="qa-answer">'+item.a+'</div></div>';
-      });
-    } else {
-      qaHtml = '<p style="color:var(--text-muted);font-size:0.9rem;">No Q&amp;A for this lesson yet.</p>';
-    }
-    document.getElementById('qaContent').innerHTML = qaHtml;
+    document.getElementById('qaContent').innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No Q&amp;A for this lesson yet. Check back after enrollment.</p>';
     // Notes
     document.getElementById('notesLabel').textContent = 'Your Notes — ' + lesson.title;
-    var saved = localStorage.getItem('tih_notes_' + index);
+    var saved = localStorage.getItem('tih_notes_' + courseId + '_' + index);
     document.getElementById('notesArea').value = saved || '';
     // Mark complete button
-    var isDone = completedLessons.includes(index);
+    var isDone = completedLessons.indexOf(index) !== -1;
     var btn = document.getElementById('markCompleteBtn');
     if (lesson.isQuiz) {
       btn.textContent = isDone ? '✓ Quiz Passed' : '📝 Take Quiz';
@@ -730,7 +554,7 @@
     var pct = Math.round((completedLessons.length / totalLessons) * 100);
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressPct').textContent = pct + '% complete';
-    document.getElementById('lessonCounter').textContent = completedLessons.length + '/16 lessons';
+    document.getElementById('lessonCounter').textContent = completedLessons.length + '/' + totalLessons + ' lessons';
   }
 
   // ===== NAV BUTTONS =====
@@ -757,15 +581,16 @@
   // ===== PROGRESS DOTS =====
   function updateProgressDots() {
     var mod = lessons[currentLessonIndex].module;
-    var start = lessons.findIndex(function(l) { return l.module === mod; });
-    var end = start;
-    while (end < lessons.length - 1 && lessons[end+1].module === mod) end++;
+    var start = -1, end = -1;
+    for (var i = 0; i < lessons.length; i++) {
+      if (lessons[i].module === mod) { if (start === -1) start = i; end = i; }
+    }
     var html = '';
-    for (var i = start; i <= end; i++) {
+    for (var j = start; j <= end; j++) {
       var cls = 'progress-dot';
-      if (i === currentLessonIndex) cls += ' active';
-      else if (completedLessons.includes(i)) cls += ' done';
-      html += '<div class="'+cls+'" title="'+lessons[i].title+'"></div>';
+      if (j === currentLessonIndex) cls += ' active';
+      else if (completedLessons.indexOf(j) !== -1) cls += ' done';
+      html += '<div class="' + cls + '" title="' + lessons[j].title + '"></div>';
     }
     document.getElementById('progressDots').innerHTML = html;
   }
@@ -787,7 +612,9 @@
   }
 
   // ===== LESSON SELECTION =====
-  function selectLesson(el, index) {
+  function selectLessonByIndex(index) {
+    var el = document.querySelector('[data-lesson-index="' + index + '"]');
+    if (!el) return;
     if (el.classList.contains('locked')) {
       el.style.transform = 'translateX(6px)';
       setTimeout(function() { el.style.transform = ''; }, 300);
@@ -795,11 +622,12 @@
     }
     document.querySelectorAll('.sidebar-lesson').forEach(function(l) { l.classList.remove('active'); });
     el.classList.add('active');
-    if (!el.classList.contains('completed')) {
-      el.querySelector('.lesson-status').textContent = '▶';
+    if (completedLessons.indexOf(index) === -1) {
+      var st = el.querySelector('.lesson-status');
+      if (st) st.textContent = '▶';
     }
     currentLessonIndex = index;
-    if (lessons[index].isQuiz && !completedLessons.includes(index)) {
+    if (lessons[index].isQuiz && completedLessons.indexOf(index) === -1) {
       openQuizModal(index);
     } else {
       renderLesson(index);
@@ -809,31 +637,30 @@
 
   // ===== MARK COMPLETE =====
   function markComplete() {
-    if (completedLessons.includes(currentLessonIndex)) return;
+    if (completedLessons.indexOf(currentLessonIndex) !== -1) return;
     completedLessons.push(currentLessonIndex);
-    var allLessonEls = document.querySelectorAll('.sidebar-lesson');
-    var el = allLessonEls[currentLessonIndex];
-    el.classList.add('completed');
-    el.querySelector('.lesson-status').textContent = '✓';
+    var el = document.querySelector('[data-lesson-index="' + currentLessonIndex + '"]');
+    if (el) { el.classList.add('completed'); var st = el.querySelector('.lesson-status'); if (st) st.textContent = '✓'; }
+    // Project completion unlocks next module
+    if (lessons[currentLessonIndex].isProject) {
+      unlockModule(lessons[currentLessonIndex].module + 1);
+    }
     renderLesson(currentLessonIndex);
     updateProgress();
-    if (completedLessons.length === totalLessons) {
-      setTimeout(showCompletionModal, 800);
-    }
+    if (completedLessons.length === totalLessons) setTimeout(showCompletionModal, 800);
   }
 
   // ===== NEXT / PREV =====
   function nextLesson() {
     var next = currentLessonIndex + 1;
     if (next >= totalLessons) return;
-    var els = document.querySelectorAll('.sidebar-lesson');
-    if (!els[next].classList.contains('locked')) selectLesson(els[next], next);
+    var el = document.querySelector('[data-lesson-index="' + next + '"]');
+    if (el && !el.classList.contains('locked')) selectLessonByIndex(next);
   }
   function prevLesson() {
     var prev = currentLessonIndex - 1;
     if (prev < 0) return;
-    var els = document.querySelectorAll('.sidebar-lesson');
-    selectLesson(els[prev], prev);
+    selectLessonByIndex(prev);
   }
 
   // ===== MODULE UNLOCK =====
@@ -846,9 +673,8 @@
       var st = l.querySelector('.lesson-status');
       if (st && (st.textContent === '🔒' || st.textContent.trim() === '🔒')) st.textContent = '○';
     });
-    var meta = modules[idx].querySelector('.sidebar-module-meta');
-    if (meta) meta.textContent = meta.textContent.replace('🔒 Locked','Unlocked — Ready');
-    // Open module accordion
+    var meta = document.getElementById('modMeta' + moduleNum);
+    if (meta) meta.textContent = meta.textContent.replace('🔒 Locked', 'Unlocked — Ready');
     var header = modules[idx].querySelector('.sidebar-module-header');
     var lessonsList = modules[idx].querySelector('.sidebar-lessons');
     if (header && !header.classList.contains('open')) {
@@ -867,7 +693,7 @@
 
   // ===== NOTES =====
   function saveNotes() {
-    localStorage.setItem('tih_notes_' + currentLessonIndex, document.getElementById('notesArea').value);
+    localStorage.setItem('tih_notes_' + courseId + '_' + currentLessonIndex, document.getElementById('notesArea').value);
     var msg = document.getElementById('noteSavedMsg');
     msg.classList.add('show');
     setTimeout(function() { msg.classList.remove('show'); }, 2000);
@@ -892,15 +718,15 @@
 
   function renderQuizQuestion() {
     var q = currentQuizData.questions[quizCurrentQ];
-    var letters = ['A','B','C','D'];
+    var letters = ['A', 'B', 'C', 'D'];
     document.getElementById('quizTitle').textContent = '📝 ' + currentQuizData.title;
-    document.getElementById('quizQuestionNum').textContent = 'Question ' + (quizCurrentQ+1) + ' of ' + currentQuizData.questions.length;
+    document.getElementById('quizQuestionNum').textContent = 'Question ' + (quizCurrentQ + 1) + ' of ' + currentQuizData.questions.length;
     document.getElementById('quizQuestionText').textContent = q.q;
     document.getElementById('quizProgBar').style.width = (quizCurrentQ / currentQuizData.questions.length * 100) + '%';
     var html = '';
     q.opts.forEach(function(opt, i) {
-      html += '<div class="quiz-option" onclick="selectQuizOption(this,'+i+')">' +
-        '<span class="quiz-option-letter">'+letters[i]+'</span>'+opt+'</div>';
+      html += '<div class="quiz-option" onclick="selectQuizOption(this,' + i + ')">'
+        + '<span class="quiz-option-letter">' + letters[i] + '</span>' + escSide(opt) + '</div>';
     });
     document.getElementById('quizOptions').innerHTML = html;
     var fb = document.getElementById('quizFeedback');
@@ -964,23 +790,28 @@
     titleEl.textContent = quizLastPassed ? 'Congratulations! You Passed!' : 'Keep Practicing!';
     titleEl.className = 'quiz-result-title ' + (quizLastPassed ? 'pass' : 'fail');
     document.getElementById('quizResultScore').textContent = quizScore + '/' + total;
-    document.getElementById('quizResultScoreSub').textContent = 'correct answers · ' + Math.round(quizScore/total*100) + '%';
+    document.getElementById('quizResultScoreSub').textContent = 'correct answers · ' + Math.round(quizScore / total * 100) + '%';
+    var nextModNum = currentQuizData.moduleNum + 1;
     document.getElementById('quizResultMsg').textContent = quizLastPassed
-      ? 'Excellent work! You scored ' + quizScore + ' out of ' + total + '. Module ' + currentQuizData.moduleNum + ' is now complete. ' + (currentQuizData.unlocks ? 'Module ' + currentQuizData.unlocks + ' has been unlocked!' : 'The final course certificate is ready!')
+      ? 'Excellent work! You scored ' + quizScore + ' out of ' + total + '. Module ' + currentQuizData.moduleNum + ' is now complete. '
+        + (currentQuizData.isFinal ? 'Your course certificate is ready!' : 'Module ' + nextModNum + ' has been unlocked!')
       : 'You scored ' + quizScore + ' out of ' + total + '. You need at least ' + passThreshold + ' correct to pass. Review the lessons and try again — you\'ve got this!';
-    document.getElementById('quizResultBtn').textContent = quizLastPassed ? (currentQuizData.isFinal ? '🏆 Claim Certificate' : 'Continue to Next Module →') : '↺ Retry Quiz';
+    document.getElementById('quizResultBtn').textContent = quizLastPassed
+      ? (currentQuizData.isFinal ? '🏆 Claim Certificate' : 'Continue to Next Module →')
+      : '↺ Retry Quiz';
     if (quizLastPassed) completeQuizLesson();
   }
 
   function completeQuizLesson() {
-    if (!completedLessons.includes(currentQuizLessonIndex)) {
+    if (completedLessons.indexOf(currentQuizLessonIndex) === -1) {
       completedLessons.push(currentQuizLessonIndex);
     }
-    var allLessonEls = document.querySelectorAll('.sidebar-lesson');
-    var el = allLessonEls[currentQuizLessonIndex];
-    el.classList.add('completed');
-    el.querySelector('.lesson-status').textContent = '✓';
-    if (currentQuizData.unlocks) unlockModule(currentQuizData.unlocks);
+    var el = document.querySelector('[data-lesson-index="' + currentQuizLessonIndex + '"]');
+    if (el) { el.classList.add('completed'); var st = el.querySelector('.lesson-status'); if (st) st.textContent = '✓'; }
+    // Unlock next module sequentially
+    if (!currentQuizData.isFinal) {
+      unlockModule(currentQuizData.moduleNum + 1);
+    }
     updateProgress();
   }
 
@@ -1016,11 +847,9 @@
   function closeCompletionModal() {
     document.getElementById('completionModal').classList.remove('open');
   }
-  function printCertificate() {
-    window.print();
-  }
+  function printCertificate() { window.print(); }
   function shareCompletion() {
-    var text = 'I just completed "Complete Computer Literacy: From Zero to Professional" at TIH Academy! Certificate ID: TIH-2026-CCL-0042';
+    var text = 'I just completed "' + course.title + '" at TIH Academy! Certificate ID: ' + (course.certId || 'TIH-2026');
     if (navigator.share) {
       navigator.share({ title: 'TIH Academy Certificate', text: text, url: window.location.href });
     } else {
@@ -1034,33 +863,33 @@
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
     canvas.style.display = 'block';
     var ctx = canvas.getContext('2d');
-    var colors = ['#002868','#BF0A30','#f59e0b','#10b981','#6366f1','#fff'];
+    var colors = ['#002868', '#BF0A30', '#f59e0b', '#10b981', '#6366f1', '#fff'];
     var particles = [];
     for (var i = 0; i < 120; i++) {
-      particles.push({ x: Math.random()*canvas.width, y: -20, w: Math.random()*10+5, h: Math.random()*6+3,
-        color: colors[Math.floor(Math.random()*colors.length)], speed: Math.random()*4+2,
-        angle: Math.random()*360, spin: (Math.random()-0.5)*8, drift: (Math.random()-0.5)*2 });
+      particles.push({ x: Math.random() * canvas.width, y: -20, w: Math.random() * 10 + 5, h: Math.random() * 6 + 3,
+        color: colors[Math.floor(Math.random() * colors.length)], speed: Math.random() * 4 + 2,
+        angle: Math.random() * 360, spin: (Math.random() - 0.5) * 8, drift: (Math.random() - 0.5) * 2 });
     }
     var frame = 0;
     function draw() {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(function(p) {
         p.y += p.speed; p.x += p.drift; p.angle += p.spin;
-        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.angle*Math.PI/180);
-        ctx.fillStyle = p.color; ctx.globalAlpha = Math.max(0, 1-(frame/220));
-        ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.angle * Math.PI / 180);
+        ctx.fillStyle = p.color; ctx.globalAlpha = Math.max(0, 1 - (frame / 220));
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
         ctx.restore();
       });
       frame++;
       if (frame < 240) requestAnimationFrame(draw);
-      else { ctx.clearRect(0,0,canvas.width,canvas.height); canvas.style.display = 'none'; }
+      else { ctx.clearRect(0, 0, canvas.width, canvas.height); canvas.style.display = 'none'; }
     }
     draw();
   }
 
   // ===== MODAL CLOSE (overlay click & ESC) =====
-  document.getElementById('quizModal').addEventListener('click', function(e) { if (e.target===this) closeQuizModal(); });
-  document.getElementById('completionModal').addEventListener('click', function(e) { if (e.target===this) closeCompletionModal(); });
+  document.getElementById('quizModal').addEventListener('click', function(e) { if (e.target === this) closeQuizModal(); });
+  document.getElementById('completionModal').addEventListener('click', function(e) { if (e.target === this) closeCompletionModal(); });
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') { closeQuizModal(); closeCompletionModal(); }
   });
