@@ -282,11 +282,13 @@ textarea:focus-visible {
   font-family: var(--font-heading);
 }
 
+/* Issue 18 fix: prevent double-row nav on mid-size screens by using nowrap and smaller gap */
 .nav-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
+  flex-wrap: nowrap;
+  gap: 0.15rem;
   align-items: center;
+  overflow: hidden;
 }
 
 .nav-links a {
@@ -423,6 +425,20 @@ textarea:focus-visible {
 }
 
 @media (max-width: 768px) {
+  .home-hero {
+    background-attachment: scroll;
+  }
+}
+
+/* Issue 27 fix: disable fixed background-attachment on Android/Chrome where it causes image to disappear */
+@supports (-webkit-overflow-scrolling: touch) {
+  .home-hero {
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 1024px) and (hover: none) {
+  /* Touch devices (Android, iOS) — fixed background causes rendering bugs */
   .home-hero {
     background-attachment: scroll;
   }
@@ -1109,18 +1125,19 @@ h4 {
   margin-top: 2rem;
 }
 
+/* Issue 21 fix: partner items as flex row with logo mark + name */
 .partner-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
+  justify-content: flex-start;
+  padding: 0.75rem 1rem;
   background: var(--surface);
   border: 1px solid var(--border-light);
   border-radius: var(--radius);
   color: var(--text-muted);
   font-weight: 700;
   font-size: 0.9rem;
-  min-width: 120px;
+  min-width: 180px;
   transition: all var(--transition);
   box-shadow: var(--shadow-sm);
 }
@@ -1756,12 +1773,17 @@ textarea {
     grid-template-columns: 1fr 1fr;
   }
 
+  /* Issue 25 fix: event card CTAs visible on mobile — restructure to stack below content */
   .event-card {
     grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
   }
 
   .event-card .btn {
-    display: none;
+    display: inline-flex;
+    grid-column: 1 / -1;
+    justify-self: start;
+    min-height: 44px;
   }
 }
 
@@ -1843,6 +1865,21 @@ textarea {
   .newsletter-input {
     min-width: 0;
   }
+}
+
+/* Issue 20 fix: program card icons use a styled icon box for cross-OS consistency */
+.program-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 0.85rem;
+  flex-shrink: 0;
+  background: var(--brand-blue-pale);
+  border: 2px solid var(--border-light);
 }
 
 /* Programs grid */

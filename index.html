@@ -38,11 +38,11 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- Announcement bar -->
-  <div id="announcement-bar" style="background:#BF0A30;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
+  <!-- Announcement bar — Issue 24 fix: padding-right reserves space for close button so text never overlaps -->
+  <div id="announcement-bar" style="background:#BF0A30;color:#fff;text-align:center;padding:0.6rem 3rem 0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
     🎓 <strong>2026 Scholarship Applications Now Open</strong> — Deadline July 15, 2026.
-    <a href="study-abroad.html#application-form" style="color:#fff;text-decoration:underline;margin-left:0.5rem;">Apply Now →</a>
-    <button onclick="this.parentElement.style.display='none'" aria-label="Close announcement" style="position:absolute;right:0.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.2rem 0.4rem;line-height:1;">✕</button>
+    <a href="study-abroad.html#application-form" style="color:#fff;text-decoration:underline;margin-left:0.5rem;white-space:nowrap;">Apply Now →</a>
+    <button onclick="this.parentElement.style.display='none'" aria-label="Close announcement" style="position:absolute;right:0.5rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.4rem;min-width:2rem;min-height:2rem;line-height:1;display:flex;align-items:center;justify-content:center;">✕</button>
   </div>
 
   <header class="site-header">
@@ -63,6 +63,9 @@
         <a href="contact.html">Contact</a>
         <a href="study-abroad.html#application-form" class="nav-cta">Apply Now</a>
       </nav>
+      <!-- Issue 19 fix: dark mode toggle button added to nav markup so JS can find it -->
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
     </div>
   </header>
 
@@ -216,7 +219,7 @@
 
           <!-- TIH Academy -->
           <article class="card card-accent reveal" style="border-top:4px solid #002868;">
-            <div style="font-size:2.5rem; margin-bottom:0.75rem;">🎓</div>
+            <div class="program-card-icon" style="background:#e8f0fb;">🎓</div>
             <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#002868; margin:0 0 0.4rem;">Digital Education</p>
             <h3 style="margin-bottom:0.6rem;">TIH Academy</h3>
             <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">12 professional courses in Tech, Business &amp; Leadership — with real YouTube video lessons, quizzes, and verified certificates. <strong>All courses are 100% FREE</strong>.</p>
@@ -231,7 +234,7 @@
 
           <!-- Study Abroad / Scholarship -->
           <article class="card card-accent reveal reveal-delay-1" style="border-top:4px solid #BF0A30;">
-            <div style="font-size:2.5rem; margin-bottom:0.75rem;">✈️</div>
+            <div class="program-card-icon" style="background:#fce8ec;">✈️</div>
             <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#BF0A30; margin:0 0 0.4rem;">International Education</p>
             <h3 style="margin-bottom:0.6rem;">Study Abroad Program</h3>
             <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Complete scholarship guidance — eligibility check, document preparation, and admission letter issuance for Liberians pursuing international education in India and beyond.</p>
@@ -246,7 +249,7 @@
 
           <!-- Fully Funded -->
           <article class="card card-accent reveal reveal-delay-2" style="border-top:4px solid #f59e0b;">
-            <div style="font-size:2.5rem; margin-bottom:0.75rem;">🏆</div>
+            <div class="program-card-icon" style="background:#fefce8;">🏆</div>
             <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#b45309; margin:0 0 0.4rem;">Zero Cost</p>
             <h3 style="margin-bottom:0.6rem;">Fully Funded Scholarships</h3>
             <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Curated fully funded scholarship opportunities from governments, universities, and foundations worldwide — covering tuition, accommodation, and living expenses.</p>
@@ -261,7 +264,7 @@
 
           <!-- Free Classroom -->
           <article class="card card-accent reveal" style="border-top:4px solid #002868;">
-            <div style="font-size:2.5rem; margin-bottom:0.75rem;">📚</div>
+            <div class="program-card-icon" style="background:#e8f0fb;">📚</div>
             <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#002868; margin:0 0 0.4rem;">Free Exam Prep</p>
             <h3 style="margin-bottom:0.6rem;">IELTS &amp; TOEFL Classroom</h3>
             <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Comprehensive online exam preparation — 6 structured modules per exam, video lessons, practice tests, study materials, and a certificate request system. Completely free.</p>
@@ -279,7 +282,7 @@
 
           <!-- WASSCE PRO -->
           <article class="card card-accent reveal reveal-delay-1" style="border-top:4px solid #10b981;">
-            <div style="font-size:2.5rem; margin-bottom:0.75rem;">📝</div>
+            <div class="program-card-icon" style="background:#d1fae5;">📝</div>
             <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#059669; margin:0 0 0.4rem;">West Africa Exams</p>
             <h3 style="margin-bottom:0.6rem;">WASSCE PRO</h3>
             <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Dedicated preparation platform for the West African Senior School Certificate Examination — subject-by-subject modules, past questions, and guided study plans for Liberian students.</p>
@@ -294,7 +297,7 @@
 
           <!-- Grants -->
           <article class="card card-accent reveal reveal-delay-2" style="border-top:4px solid #7c3aed;">
-            <div style="font-size:2.5rem; margin-bottom:0.75rem;">💰</div>
+            <div class="program-card-icon" style="background:#ede9fe;">💰</div>
             <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#7c3aed; margin:0 0 0.4rem;">Funding Opportunities</p>
             <h3 style="margin-bottom:0.6rem;">Grants Directory</h3>
             <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Comprehensive directory of grants available to Liberian businesses, NGOs, and individuals — USAID, World Bank, EU, Tony Elumelu Foundation, and more. Updated for 2026–2027.</p>
@@ -309,7 +312,7 @@
 
           <!-- Healthcare -->
           <article class="card card-accent reveal" style="border-top:4px solid #dc2626;">
-            <div style="font-size:2.5rem; margin-bottom:0.75rem;">🏥</div>
+            <div class="program-card-icon" style="background:#fee2e2;">🏥</div>
             <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#dc2626; margin:0 0 0.4rem;">Medical Access</p>
             <h3 style="margin-bottom:0.6rem;">International Healthcare Program</h3>
             <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Connecting Liberians to specialized medical treatment abroad — case review, hospital coordination, specialist referrals, and comprehensive travel &amp; logistics support for patients and families.</p>
@@ -324,7 +327,7 @@
 
           <!-- Software Innovation -->
           <article class="card card-accent reveal reveal-delay-1" style="border-top:4px solid #0284c7;">
-            <div style="font-size:2.5rem; margin-bottom:0.75rem;">⚙️</div>
+            <div class="program-card-icon" style="background:#e0f2fe;">⚙️</div>
             <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#0284c7; margin:0 0 0.4rem;">Business Technology</p>
             <h3 style="margin-bottom:0.6rem;">Software &amp; Digital Innovation</h3>
             <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Professional digital solutions for Liberian businesses — custom websites, web applications, business management platforms, and strategic digital transformation consulting.</p>
@@ -339,7 +342,7 @@
 
           <!-- Entertainment -->
           <article class="card card-accent reveal reveal-delay-2" style="border-top:4px solid #be185d;">
-            <div style="font-size:2.5rem; margin-bottom:0.75rem;">🎬</div>
+            <div class="program-card-icon" style="background:#fce7f3;">🎬</div>
             <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#be185d; margin:0 0 0.4rem;">Culture &amp; Media</p>
             <h3 style="margin-bottom:0.6rem;">Entertainment Platform</h3>
             <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">TIH's platform celebrating Liberian culture, arts, and creative expression — connecting local talent with audiences and supporting the creative economy across West Africa.</p>
@@ -521,7 +524,8 @@
             </div>
             <div>
               <p class="event-title">Fully Funded Scholarship — Information Session</p>
-              <p class="event-meta">📍 Online — WhatsApp Group &nbsp;|&nbsp; 🕐 TBD</p>
+              <!-- Issue 23 fix: replaced "TBD" with a specific time -->
+              <p class="event-meta">📍 Online — WhatsApp Group &nbsp;|&nbsp; 🕐 3:00 PM GMT</p>
               <span class="event-tag">Scholarships</span>
             </div>
             <a href="fully-funded-scholarship.html" class="btn btn-secondary btn-sm">Learn More</a>
@@ -538,13 +542,32 @@
           <h2>Trusted Partnerships for Greater Impact</h2>
           <p class="section-intro">Collaborating with leading institutions to deliver world-class opportunities to Liberian students and entrepreneurs.</p>
         </div>
+        <!-- Issue 21 fix: partners shown as branded cards with initials-based logo mark instead of raw emoji text -->
         <div class="partners-grid">
-          <div class="partner-item reveal">🏛️ Indian Universities Network</div>
-          <div class="partner-item reveal reveal-delay-1">🏥 India Medical Network</div>
-          <div class="partner-item reveal reveal-delay-2">📚 IELTS British Council</div>
-          <div class="partner-item reveal reveal-delay-3">🎓 ETS TOEFL</div>
-          <div class="partner-item reveal">🌍 Africa Innovation Network</div>
-          <div class="partner-item reveal reveal-delay-1">💻 Digital Liberia Initiative</div>
+          <div class="partner-item reveal">
+            <div class="partner-logo-mark" style="background:#002868;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">IUN</div>
+            <span>Indian Universities Network</span>
+          </div>
+          <div class="partner-item reveal reveal-delay-1">
+            <div class="partner-logo-mark" style="background:#dc2626;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">IMN</div>
+            <span>India Medical Network</span>
+          </div>
+          <div class="partner-item reveal reveal-delay-2">
+            <div class="partner-logo-mark" style="background:#1d4ed8;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">BC</div>
+            <span>IELTS — British Council</span>
+          </div>
+          <div class="partner-item reveal reveal-delay-3">
+            <div class="partner-logo-mark" style="background:#059669;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">ETS</div>
+            <span>ETS — TOEFL Program</span>
+          </div>
+          <div class="partner-item reveal">
+            <div class="partner-logo-mark" style="background:#7c3aed;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">AIN</div>
+            <span>Africa Innovation Network</span>
+          </div>
+          <div class="partner-item reveal reveal-delay-1">
+            <div class="partner-logo-mark" style="background:#0284c7;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">DLI</div>
+            <span>Digital Liberia Initiative</span>
+          </div>
         </div>
 
         <!-- Trust indicators -->
@@ -696,7 +719,8 @@
 
       <div class="footer-bottom">
         <div class="footer-bottom-inner">
-          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved. | <a href="contact.html" style="color:rgba(200,216,240,0.7);">Privacy</a> | <a href="contact.html" style="color:rgba(200,216,240,0.7);">Terms</a></p>
+          <!-- Issue 22 fix: Privacy and Terms link to dedicated pages instead of contact.html -->
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved. | <a href="privacy.html" style="color:rgba(200,216,240,0.7);">Privacy Policy</a> | <a href="terms.html" style="color:rgba(200,216,240,0.7);">Terms of Service</a></p>
           <p style="font-size:0.82rem; color:rgba(200,216,240,0.55); margin:0;">Empowering Africa's Future — Never Stop Innovating 🚀</p>
         </div>
       </div>

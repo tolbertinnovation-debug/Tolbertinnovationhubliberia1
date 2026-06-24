@@ -978,7 +978,8 @@ COURSES_DB['project-mgmt'] = {
   shortDesc: 'Plan, execute, and deliver projects on time and within budget using proven PM frameworks.',
   category: 'Project Management',
   icon: '📋',
-  gradient: 'linear-gradient(135deg,#1e3a5f,#002868)',
+  /* Issue 28 fix: unique gradient distinguishes project-mgmt from computer-literacy */
+  gradient: 'linear-gradient(135deg,#064e3b,#047857)',
   instructor: 'Dr. Mary Weah',
   instructorTitle: 'Certified PMP & Organizational Strategy Consultant',
   instructorBio: 'Dr. Mary Weah holds PMP and PRINCE2 certifications with 18 years managing large-scale projects for UN agencies, World Bank programs, and Liberian government ministries. She is TIH\'s Business & Management curriculum lead.',
@@ -1194,7 +1195,8 @@ COURSES_DB['leadership'] = {
   shortDesc: 'Develop the leadership skills to inspire teams, lead change, and deliver organizational results.',
   category: 'Leadership',
   icon: '🎯',
-  gradient: 'linear-gradient(135deg,#1e3a5f,#002868)',
+  /* Issue 28 fix: unique gradient distinguishes leadership from computer-literacy and project-mgmt */
+  gradient: 'linear-gradient(135deg,#78350f,#b45309)',
   instructor: 'Dr. Mary Weah',
   instructorTitle: 'Business Strategy Consultant & Executive Coach',
   instructorBio: 'Dr. Mary Weah holds an MBA and PhD in Organizational Leadership with 20 years advising C-suite executives, government ministers, and NGO directors across West Africa. She is TIH\'s highest-rated instructor and a leading voice on African leadership.',
