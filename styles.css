@@ -1845,15 +1845,24 @@ textarea {
   }
 }
 
-/* Programs grid responsive */
+/* Programs grid */
+.programs-all-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 @media (max-width: 1024px) {
   .programs-all-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media (max-width: 640px) {
   .programs-all-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
