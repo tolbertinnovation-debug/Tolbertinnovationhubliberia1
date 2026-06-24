@@ -120,7 +120,7 @@ COURSES_DB['ai'] = {
   instructorBio: 'Dr. Mariama Koroma holds a PhD in Computer Science with specialization in machine learning and has led AI literacy programs across West Africa. She is passionate about democratizing AI knowledge for African professionals.',
   rating: 4.8, reviews: 832, students: '5,200+',
   duration: '18h', level: 'Beginner',
-  price: '$59', origPrice: '$150', isFree: false, badge: 'new',
+  price: 'FREE', origPrice: '$150', isFree: true, badge: 'free',
   certId: 'TIH-2026-AI-0088',
   learn: [
     'Understand how AI and machine learning actually work behind the scenes',
@@ -226,7 +226,7 @@ COURSES_DB['data'] = {
   instructorBio: 'Emmanuel Kamara has over 8 years of experience in business intelligence and data analytics, having worked with NGOs, government agencies, and private firms across West Africa. He specializes in making data analysis accessible to non-technical professionals.',
   rating: 4.7, reviews: 645, students: '3,800+',
   duration: '30h', level: 'Intermediate',
-  price: '$69', origPrice: '$180', isFree: false, badge: 'popular',
+  price: 'FREE', origPrice: '$180', isFree: true, badge: 'free',
   certId: 'TIH-2026-DA-0109',
   learn: [
     'Master essential Excel functions: SUM, VLOOKUP, COUNTIF, SUMIF, and more',
@@ -336,7 +336,7 @@ COURSES_DB['webdev'] = {
   instructorBio: 'David Weah is a full-stack developer with 9 years building web applications for businesses across Africa and Europe. He has taught web development to over 2,000 students and runs a thriving tech agency in Monrovia.',
   rating: 4.8, reviews: 712, students: '4,300+',
   duration: '32h', level: 'Beginner',
-  price: '$79', origPrice: '$200', isFree: false, badge: 'popular',
+  price: 'FREE', origPrice: '$200', isFree: true, badge: 'free',
   certId: 'TIH-2026-WD-0074',
   learn: [
     'Write clean, semantic HTML5 to structure any web page',
@@ -444,7 +444,7 @@ COURSES_DB['design'] = {
   instructorBio: 'Patricia Sumo is a creative director with over 10 years of design experience working with brands across Liberia, Ghana, and Nigeria. She founded Sumo Creative Studio and has trained hundreds of designers at TIH Academy.',
   rating: 4.6, reviews: 634, students: '2,800+',
   duration: '20h', level: 'Beginner',
-  price: '$59', origPrice: '$150', isFree: false, badge: '',
+  price: 'FREE', origPrice: '$150', isFree: true, badge: 'free',
   certId: 'TIH-2026-GD-0062',
   learn: [
     'Apply fundamental design principles: layout, color theory, and typography',
@@ -552,7 +552,7 @@ COURSES_DB['android'] = {
   instructorBio: 'Emmanuel Roberts has 8 years of Android development experience and has published 12 apps on the Google Play Store. He leads TIH\'s mobile development curriculum and has mentored over 800 app developers across West Africa.',
   rating: 4.7, reviews: 421, students: '1,650+',
   duration: '30h', level: 'Intermediate',
-  price: '$89', origPrice: '$220', isFree: false, badge: '',
+  price: 'FREE', origPrice: '$220', isFree: true, badge: 'free',
   certId: 'TIH-2026-AD-0031',
   learn: [
     'Set up Android Studio and understand the Android development environment',
@@ -660,7 +660,7 @@ COURSES_DB['marketing'] = {
   instructorBio: 'Grace Johnson has led digital marketing for brands in Liberia, Ghana, and Nigeria for over 12 years. She has generated over $5M in client revenue through digital campaigns and trained over 2,100 marketers at TIH Academy.',
   rating: 4.9, reviews: 890, students: '2,100+',
   duration: '24h', level: 'Intermediate',
-  price: '$69', origPrice: '$180', isFree: false, badge: 'bestseller',
+  price: 'FREE', origPrice: '$180', isFree: true, badge: 'free',
   certId: 'TIH-2026-DM-0095',
   learn: [
     'Develop a comprehensive digital marketing strategy for any business',
@@ -768,7 +768,7 @@ COURSES_DB['cybersecurity'] = {
   instructorBio: 'Emmanuel Duo holds a CEH (Certified Ethical Hacker) and CISSP certification with 10 years in cybersecurity consulting for banks, government agencies, and NGOs across West Africa. He has secured over 50 organizations from cyber threats.',
   rating: 4.8, reviews: 389, students: '1,100+',
   duration: '26h', level: 'Intermediate',
-  price: '$79', origPrice: '$200', isFree: false, badge: '',
+  price: 'FREE', origPrice: '$200', isFree: true, badge: 'free',
   certId: 'TIH-2026-CS-0038',
   learn: [
     'Understand the cybersecurity landscape and common threat types',
@@ -876,7 +876,7 @@ COURSES_DB['entrepreneurship'] = {
   instructorBio: 'Thomas Bility has founded 4 businesses in Liberia and trained entrepreneurs across West Africa for over 15 years. He has helped secure over $2M in funding for Liberian startups and is a regular advisor at startup competitions regionally.',
   rating: 4.8, reviews: 598, students: '2,400+',
   duration: '20h', level: 'All Levels',
-  price: '$59', origPrice: '$150', isFree: false, badge: '',
+  price: 'FREE', origPrice: '$150', isFree: true, badge: 'free',
   certId: 'TIH-2026-EP-0083',
   learn: [
     'Validate business ideas quickly and cheaply before investing resources',
@@ -984,7 +984,7 @@ COURSES_DB['project-mgmt'] = {
   instructorBio: 'Dr. Mary Weah holds PMP and PRINCE2 certifications with 18 years managing large-scale projects for UN agencies, World Bank programs, and Liberian government ministries. She is TIH\'s Business & Management curriculum lead.',
   rating: 4.9, reviews: 712, students: '3,200+',
   duration: '22h', level: 'All Levels',
-  price: '$79', origPrice: '$200', isFree: false, badge: 'bestseller',
+  price: 'FREE', origPrice: '$200', isFree: true, badge: 'free',
   certId: 'TIH-2026-PM-0127',
   learn: [
     'Understand the 5 project management process groups and 10 knowledge areas',
@@ -1092,7 +1092,7 @@ COURSES_DB['office'] = {
   instructorBio: 'Samuel Doe is a Microsoft Certified Trainer (MCT) with 15 years teaching Office productivity to businesses, government agencies, and NGOs across Liberia. He has helped over 5,000 professionals master the Microsoft Office suite.',
   rating: 4.8, reviews: 943, students: '4,800+',
   duration: '18h', level: 'Beginner',
-  price: '$49', origPrice: '$120', isFree: false, badge: 'bestseller',
+  price: 'FREE', origPrice: '$120', isFree: true, badge: 'free',
   certId: 'TIH-2026-MO-0156',
   learn: [
     'Create professional documents, reports, and CVs in Microsoft Word',
@@ -1200,7 +1200,7 @@ COURSES_DB['leadership'] = {
   instructorBio: 'Dr. Mary Weah holds an MBA and PhD in Organizational Leadership with 20 years advising C-suite executives, government ministers, and NGO directors across West Africa. She is TIH\'s highest-rated instructor and a leading voice on African leadership.',
   rating: 4.9, reviews: 712, students: '3,200+',
   duration: '18h', level: 'All Levels',
-  price: '$69', origPrice: '$180', isFree: false, badge: 'bestseller',
+  price: 'FREE', origPrice: '$180', isFree: true, badge: 'free',
   certId: 'TIH-2026-LD-0099',
   learn: [
     'Understand your personal leadership style and how to develop it intentionally',
