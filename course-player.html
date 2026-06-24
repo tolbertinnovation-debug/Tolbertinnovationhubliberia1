@@ -35,9 +35,9 @@
     .topbar-center { flex: 1; display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
     .topbar-course-title { font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
     .progress-wrap { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
-    .progress-bar-track { width: 140px; height: 6px; background: var(--border); border-radius: 50px; overflow: hidden; }
-    .progress-bar-fill { height: 100%; background: var(--green); border-radius: 50px; transition: width .5s ease; }
-    .progress-pct { font-size: 0.78rem; font-weight: 600; color: var(--green); white-space: nowrap; }
+    .progress-bar-track { width: 140px; height: 6px; background: #e5e7eb; border-radius: 50px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #059669, #10b981); border-radius: 50px; transition: width .5s ease; }
+    .progress-pct { font-size: 0.78rem; font-weight: 700; color: #059669; white-space: nowrap; }
     .topbar-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
     .topbar-avatar { width: 32px; height: 32px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
     .btn-contents { display: none; align-items: center; gap: 0.4rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.35rem 0.7rem; font-size: 0.82rem; font-weight: 600; color: var(--text); cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
@@ -55,40 +55,43 @@
     .btn-close-sidebar { display: none; background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; padding: 0.2rem; line-height: 1; }
     .sidebar-scroll { flex: 1; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
     .sidebar-module {}
-    .sidebar-module-header { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg); cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background .2s; }
-    .sidebar-module-header:hover { background: #f0f4ff; }
-    .sidebar-module-title { font-size: 0.82rem; font-weight: 700; color: var(--text); line-height: 1.35; }
-    .sidebar-module-meta { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.1rem; }
-    .sidebar-module-chevron { font-size: 0.7rem; color: var(--text-muted); transition: transform .2s; }
+    .sidebar-module-header { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 1rem; background: #f0f4ff; cursor: pointer; border-bottom: 1px solid #dce7ff; border-left: 3px solid transparent; user-select: none; transition: all .2s; }
+    .sidebar-module-header:hover { background: #e6eeff; border-left-color: var(--blue); }
+    .sidebar-module-header.open { background: #e6eeff; border-left-color: var(--blue); }
+    .sidebar-module-title { font-size: 0.81rem; font-weight: 700; color: var(--blue); line-height: 1.35; }
+    .sidebar-module-meta { font-size: 0.71rem; color: #5b7ab0; margin-top: 0.1rem; }
+    .sidebar-module-chevron { font-size: 0.65rem; color: var(--blue); transition: transform .2s; opacity: 0.7; }
     .sidebar-module-header.open .sidebar-module-chevron { transform: rotate(180deg); }
     .sidebar-lessons { display: none; }
     .sidebar-lessons.open { display: block; }
-    .sidebar-lesson { display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1rem; border-bottom: 1px solid #f3f4f6; cursor: pointer; transition: background .2s; }
-    .sidebar-lesson:hover:not(.locked) { background: #fafafa; }
-    .sidebar-lesson.active { background: var(--blue-light); border-left: 3px solid var(--blue); }
-    .sidebar-lesson.completed .lesson-status { color: var(--green); }
-    .sidebar-lesson.locked { opacity: 0.55; cursor: not-allowed; }
-    .lesson-status { font-size: 0.85rem; flex-shrink: 0; width: 16px; text-align: center; }
+    .sidebar-lesson { display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 1rem; border-bottom: 1px solid #f3f4f6; cursor: pointer; transition: background .15s; border-left: 3px solid transparent; }
+    .sidebar-lesson:hover:not(.locked) { background: #f5f8ff; }
+    .sidebar-lesson.active { background: #eff6ff; border-left-color: var(--blue); }
+    .sidebar-lesson.completed { background: #f0fdf7; border-left-color: #a7f3d0; }
+    .sidebar-lesson.completed .lesson-status { color: var(--green); font-weight: 700; }
+    .sidebar-lesson.locked { opacity: 0.5; cursor: not-allowed; }
+    .lesson-status { font-size: 0.82rem; flex-shrink: 0; width: 16px; text-align: center; }
     .lesson-info { flex: 1; min-width: 0; }
-    .lesson-info-title { font-size: 0.8rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .sidebar-lesson.active .lesson-info-title { color: var(--blue); font-weight: 600; }
-    .lesson-info-dur { font-size: 0.72rem; color: var(--text-muted); }
+    .lesson-info-title { font-size: 0.79rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sidebar-lesson.active .lesson-info-title { color: var(--blue); font-weight: 700; }
+    .sidebar-lesson.completed .lesson-info-title { color: #065f46; }
+    .lesson-info-dur { font-size: 0.7rem; color: var(--text-muted); }
 
     /* MAIN AREA */
     .main-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
     .video-scroll { flex: 1; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
     .video-container { background: #000; position: relative; width: 100%; aspect-ratio: 16/9; max-height: calc(100vh - var(--topbar-h) - 120px); }
     .video-container iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-    .video-info-bar { padding: 1rem 1.5rem 0.75rem; border-bottom: 1px solid var(--border); }
-    .video-lesson-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.25rem; font-family: 'Poppins', sans-serif; }
-    .video-lesson-meta { display: flex; align-items: center; gap: 1rem; font-size: 0.83rem; color: var(--text-muted); }
+    .video-info-bar { padding: 0.85rem 1.5rem 0.7rem; border-bottom: 1px solid var(--border); background: #fff; }
+    .video-lesson-title { font-size: 1.08rem; font-weight: 700; margin-bottom: 0.2rem; font-family: 'Poppins', sans-serif; color: #111827; line-height: 1.35; }
+    .video-lesson-meta { display: flex; align-items: center; gap: 0.85rem; font-size: 0.8rem; color: var(--text-muted); flex-wrap: wrap; }
     .video-lesson-meta span { display: flex; align-items: center; gap: 0.3rem; }
 
     /* TABS */
-    .tabs-bar { display: flex; border-bottom: 1px solid var(--border); padding: 0 1.5rem; }
-    .tab-btn { padding: 0.75rem 1.1rem; border: none; background: none; font-size: 0.87rem; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; font-family: 'Inter', sans-serif; }
+    .tabs-bar { display: flex; border-bottom: 2px solid #f1f5f9; padding: 0 1rem; background: #fff; }
+    .tab-btn { padding: 0.7rem 0.9rem; border: none; background: none; font-size: 0.84rem; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 2.5px solid transparent; margin-bottom: -2px; transition: all .18s; font-family: 'Inter', sans-serif; }
     .tab-btn:hover { color: var(--blue); }
-    .tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); background: linear-gradient(180deg, transparent 70%, #eff6ff 100%); }
     .tab-panel { display: none; padding: 1.5rem; }
     .tab-panel.active { display: block; }
     .overview-text p { font-size: 0.9rem; color: #374151; line-height: 1.8; margin-bottom: 0.9rem; }
@@ -138,17 +141,17 @@
     .all-notes-empty p { margin-top: 0.5rem; font-size: 0.9rem; }
 
     /* LESSON NAV BAR */
-    .lesson-nav-bar { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; border-top: 1px solid var(--border); background: #fff; flex-wrap: wrap; gap: 0.75rem; flex-shrink: 0; }
-    .btn-mark-complete { background: var(--blue); color: #fff; border: none; padding: 0.6rem 1.4rem; border-radius: 8px; font-size: 0.87rem; font-weight: 700; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 0.4rem; }
-    .btn-mark-complete:hover { background: var(--blue-dark); }
-    .btn-mark-complete.done { background: var(--green); cursor: default; }
-    .lesson-progress-dots { display: flex; align-items: center; gap: 0.4rem; }
-    .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); transition: background .2s; }
+    .lesson-nav-bar { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1.5rem; border-top: 1px solid var(--border); background: #fff; flex-wrap: nowrap; gap: 0.5rem; flex-shrink: 0; }
+    .btn-mark-complete { background: linear-gradient(135deg, #002868, #0040a8); color: #fff; border: none; padding: 0.55rem 1.1rem; border-radius: 8px; font-size: 0.84rem; font-weight: 700; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 0.35rem; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,40,104,.25); flex-shrink: 0; }
+    .btn-mark-complete:hover { background: linear-gradient(135deg, #001a45, #002868); box-shadow: 0 4px 12px rgba(0,40,104,.35); }
+    .btn-mark-complete.done { background: linear-gradient(135deg, #059669, #10b981); box-shadow: 0 2px 8px rgba(16,185,129,.3); cursor: default; }
+    .lesson-progress-dots { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+    .progress-dot { width: 8px; height: 8px; border-radius: 50%; background: #e5e7eb; transition: all .25s; }
     .progress-dot.done { background: var(--green); }
-    .progress-dot.active { background: var(--blue); width: 12px; height: 12px; }
-    .btn-next-lesson, .btn-prev-lesson { background: #fff; color: var(--blue); border: 1.5px solid var(--blue); padding: 0.6rem 1.2rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .btn-next-lesson:hover { background: var(--blue); color: #fff; }
-    .btn-prev-lesson:hover { background: var(--blue-light); }
+    .progress-dot.active { background: var(--blue); width: 22px; border-radius: 4px; }
+    .btn-next-lesson, .btn-prev-lesson { background: #fff; color: var(--blue); border: 1.5px solid #bfdbfe; padding: 0.55rem 1rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; max-width: 170px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 1; min-width: 0; }
+    .btn-next-lesson:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .btn-prev-lesson:hover { background: #eff6ff; }
     .btn-next-lesson:disabled, .btn-prev-lesson:disabled { opacity: 0.3; cursor: default; border-color: var(--border); color: var(--text-muted); background: #fff; }
 
     /* QUIZ MODAL */
@@ -189,35 +192,44 @@
     .quiz-result-msg { font-size: 0.9rem; color: #374151; line-height: 1.7; margin-bottom: 1.5rem; padding: 0.9rem 1rem; background: var(--bg); border-radius: 10px; text-align: left; }
 
     /* COMPLETION MODAL */
-    .completion-modal { background: #fff; border-radius: 20px; max-width: 580px; width: 100%; max-height: 92vh; overflow-y: auto; box-shadow: 0 24px 80px rgba(0,0,0,.35); }
-    .completion-header { background: linear-gradient(135deg, #001a45, #002868); padding: 2.5rem 2rem; text-align: center; color: #fff; border-radius: 20px 20px 0 0; }
-    .completion-icon { font-size: 4rem; margin-bottom: 0.75rem; }
-    .completion-header h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif; }
-    .completion-header p { color: rgba(255,255,255,.85); font-size: 0.95rem; }
-    .certificate-preview { margin: 1.5rem; border: 3px solid var(--gold); border-radius: 12px; padding: 1.5rem; background: #fffdf5; }
-    .cert-top { text-align: center; margin-bottom: 1rem; border-bottom: 1px dashed var(--gold); padding-bottom: 1rem; }
-    .cert-logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--blue); }
-    .cert-logo span { color: var(--red); }
-    .cert-subtitle { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-top: 0.2rem; }
-    .cert-body { text-align: center; margin-bottom: 1.25rem; }
-    .cert-awarded { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.3rem; }
-    .cert-name { font-family: 'Poppins', sans-serif; font-size: 1.7rem; font-weight: 700; color: var(--blue); border-bottom: 1.5px solid var(--gold); display: inline-block; padding-bottom: 0.3rem; margin-bottom: 0.75rem; }
-    .cert-for { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.3rem; }
-    .cert-course-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
-    .cert-date { font-size: 0.78rem; color: var(--text-muted); }
-    .cert-footer-row { display: flex; align-items: flex-end; justify-content: space-between; }
-    .cert-sig-line { width: 100px; border-bottom: 1.5px solid var(--text); margin-bottom: 0.2rem; }
-    .cert-sig-name { font-size: 0.78rem; font-weight: 700; }
-    .cert-sig-role { font-size: 0.7rem; color: var(--text-muted); }
-    .cert-verified { background: var(--green); color: #fff; font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.75rem; border-radius: 50px; }
-    .completion-actions { padding: 0 1.5rem 0.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
-    .btn-cert-primary { background: var(--blue); color: #fff; border: none; padding: 0.9rem; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer; width: 100%; font-family: 'Poppins', sans-serif; transition: all .2s; }
-    .btn-cert-primary:hover { background: var(--blue-dark); }
-    .cert-row { display: flex; gap: 0.75rem; }
-    .btn-cert-sec { flex: 1; background: #fff; border: 1.5px solid var(--border); padding: 0.7rem; border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; color: var(--text); text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.35rem; }
-    .btn-cert-sec:hover { border-color: var(--blue); color: var(--blue); }
-    .btn-close-completion { display: block; margin: 0.75rem 1.5rem 1.5rem; padding: 0.6rem; border: 1.5px solid var(--border); background: transparent; border-radius: 10px; color: var(--text-muted); font-size: 0.85rem; cursor: pointer; width: calc(100% - 3rem); font-family: 'Inter', sans-serif; transition: all .2s; }
-    .btn-close-completion:hover { border-color: var(--red); color: var(--red); }
+    .completion-modal { background: #fff; border-radius: 20px; max-width: 560px; width: 100%; max-height: 94vh; overflow-y: auto; box-shadow: 0 32px 100px rgba(0,0,0,.5); }
+    .completion-header { background: linear-gradient(150deg, #001535 0%, #002868 60%, #003580 100%); padding: 2rem 2rem 1.5rem; text-align: center; color: #fff; border-radius: 20px 20px 0 0; position: relative; overflow: hidden; }
+    .completion-header::before { content: ''; position: absolute; top: -40px; left: 50%; transform: translateX(-50%); width: 220px; height: 220px; background: radial-gradient(circle, rgba(245,158,11,.22) 0%, transparent 70%); pointer-events: none; }
+    .completion-header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #f59e0b 30%, #f59e0b 70%, transparent); }
+    .completion-icon { font-size: 3.5rem; margin-bottom: 0.5rem; position: relative; z-index: 1; filter: drop-shadow(0 4px 12px rgba(245,158,11,.5)); }
+    .completion-header h2 { font-size: 1.65rem; font-weight: 800; margin-bottom: 0.3rem; font-family: 'Poppins', sans-serif; position: relative; z-index: 1; }
+    .completion-header p { color: rgba(255,255,255,.82); font-size: 0.9rem; position: relative; z-index: 1; }
+    /* ---- CERTIFICATE ---- */
+    .certificate-preview { margin: 1.25rem 1.25rem 0; border: 2.5px solid #c8960c; border-radius: 10px; padding: 0; background: linear-gradient(160deg, #fffef7 0%, #fffceb 100%); overflow: hidden; box-shadow: inset 0 0 0 4px rgba(200,150,12,.12); }
+    .cert-header-band { background: linear-gradient(135deg, #001a45, #002868); padding: 0.85rem 1.25rem; display: flex; align-items: center; justify-content: center; gap: 0.7rem; }
+    .cert-header-icon { font-size: 1.6rem; filter: drop-shadow(0 2px 6px rgba(245,158,11,.4)); }
+    .cert-header-text { text-align: left; }
+    .cert-logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff; line-height: 1.2; }
+    .cert-logo span { color: #f59e0b; }
+    .cert-subtitle { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,.75); margin-top: 0.1rem; }
+    .cert-body { text-align: center; padding: 1rem 1.25rem 0.5rem; }
+    .cert-divider { display: flex; align-items: center; gap: 0.5rem; margin: 0.55rem 0; color: #c8960c; font-size: 0.6rem; letter-spacing: 0.1em; }
+    .cert-divider::before, .cert-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #c8960c 40%, #c8960c 60%, transparent); }
+    .cert-awarded { font-size: 0.78rem; color: #6b7280; margin-bottom: 0.15rem; font-style: italic; }
+    .cert-name { font-family: 'Poppins', sans-serif; font-size: 1.55rem; font-weight: 700; color: #002868; display: block; margin-bottom: 0.5rem; line-height: 1.2; }
+    .cert-for { font-size: 0.78rem; color: #6b7280; margin-bottom: 0.2rem; }
+    .cert-course-title { font-size: 0.92rem; font-weight: 700; color: #111827; margin-bottom: 0.45rem; line-height: 1.4; }
+    .cert-date { font-size: 0.7rem; color: #9ca3af; }
+    .cert-footer-row { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 1.25rem 0.9rem; border-top: 1px solid rgba(200,150,12,.25); margin-top: 0.5rem; }
+    .cert-sig-line { width: 85px; border-bottom: 1.5px solid #374151; margin-bottom: 0.2rem; }
+    .cert-sig-name { font-size: 0.74rem; font-weight: 700; color: #111827; }
+    .cert-sig-role { font-size: 0.66rem; color: #6b7280; }
+    .cert-verified { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #059669, #10b981); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2.5px solid #fff; box-shadow: 0 3px 12px rgba(16,185,129,.4); font-size: 0.55rem; font-weight: 700; letter-spacing: 0.06em; text-align: center; line-height: 1.3; flex-shrink: 0; }
+    .cert-verified-check { font-size: 1.15rem; display: block; line-height: 1; margin-bottom: 2px; }
+    /* ---- ACTIONS ---- */
+    .completion-actions { padding: 1rem 1.25rem 0.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+    .btn-cert-primary { background: linear-gradient(135deg, #002868, #0040a8); color: #fff; border: none; padding: 0.85rem; border-radius: 10px; font-size: 0.92rem; font-weight: 700; cursor: pointer; width: 100%; font-family: 'Poppins', sans-serif; transition: all .2s; letter-spacing: 0.01em; box-shadow: 0 4px 14px rgba(0,40,104,.3); }
+    .btn-cert-primary:hover { background: linear-gradient(135deg, #001a45, #002868); box-shadow: 0 6px 20px rgba(0,40,104,.4); }
+    .cert-row { display: flex; gap: 0.6rem; }
+    .btn-cert-sec { flex: 1; background: #f9fafb; border: 1.5px solid #e5e7eb; padding: 0.65rem 0.5rem; border-radius: 10px; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; color: #374151; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.3rem; }
+    .btn-cert-sec:hover { border-color: var(--blue); color: var(--blue); background: #eff6ff; }
+    .btn-close-completion { display: block; margin: 0.6rem 1.25rem 1.25rem; padding: 0.55rem; border: 1.5px solid #e5e7eb; background: transparent; border-radius: 10px; color: #9ca3af; font-size: 0.82rem; cursor: pointer; width: calc(100% - 2.5rem); font-family: 'Inter', sans-serif; transition: all .2s; }
+    .btn-close-completion:hover { border-color: var(--red); color: var(--red); background: #fff1f2; }
 
     /* SIDEBAR OVERLAY (mobile) */
     .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 998; }
@@ -400,16 +412,21 @@
         <p id="completionSubtitle">Congratulations — you've mastered the course!</p>
       </div>
       <div class="certificate-preview">
-        <div class="cert-top">
-          <div class="cert-logo">TIH <span>Academy</span></div>
-          <div class="cert-subtitle">Certificate of Completion</div>
+        <div class="cert-header-band">
+          <span class="cert-header-icon">🎓</span>
+          <div class="cert-header-text">
+            <div class="cert-logo">TIH <span>Academy</span></div>
+            <div class="cert-subtitle">Certificate of Completion</div>
+          </div>
         </div>
         <div class="cert-body">
+          <div class="cert-divider">✦ &nbsp; AWARDED TO &nbsp; ✦</div>
           <div class="cert-awarded">This certifies that</div>
           <div class="cert-name" id="certNameDisplay">Your Name</div>
           <div class="cert-for">has successfully completed</div>
           <div class="cert-course-title" id="certCourseTitle"></div>
-          <div class="cert-date">Issued: <span id="certDate"></span> &nbsp;·&nbsp; Certificate ID: <span id="certId"></span></div>
+          <div class="cert-divider"></div>
+          <div class="cert-date">Issued: <span id="certDate"></span> &nbsp;·&nbsp; ID: <span id="certId"></span></div>
         </div>
         <div class="cert-footer-row">
           <div>
@@ -417,7 +434,10 @@
             <div class="cert-sig-name" id="certSigName">Samuel Tolbert</div>
             <div class="cert-sig-role">Founder &amp; CEO, TIH Academy</div>
           </div>
-          <div class="cert-verified">✓ Verified</div>
+          <div class="cert-verified">
+            <span class="cert-verified-check">✓</span>
+            VERIFIED
+          </div>
         </div>
       </div>
       <div class="cert-name-row" id="certNameRow" style="margin:0.75rem 0 0.25rem; text-align:center;">
