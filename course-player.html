@@ -363,7 +363,7 @@
         </div>
         <div class="cert-body">
           <div class="cert-awarded">This certifies that</div>
-          <div class="cert-name">Your Name</div>
+          <div class="cert-name" id="certNameDisplay">Your Name</div>
           <div class="cert-for">has successfully completed</div>
           <div class="cert-course-title" id="certCourseTitle"></div>
           <div class="cert-date">Issued: <span id="certDate"></span> &nbsp;·&nbsp; Certificate ID: <span id="certId"></span></div>
@@ -376,6 +376,11 @@
           </div>
           <div class="cert-verified">✓ Verified</div>
         </div>
+      </div>
+      <div class="cert-name-row" id="certNameRow" style="margin:0.75rem 0 0.25rem; text-align:center;">
+        <label style="font-size:0.82rem; color:#6b7280; display:block; margin-bottom:0.3rem;">Enter your full name for the certificate:</label>
+        <input id="certNameInput" type="text" placeholder="Your Full Name" oninput="updateCertName(this.value)"
+          style="border:1.5px solid #d1d5db; border-radius:8px; padding:0.45rem 0.9rem; font-size:0.97rem; width:100%; max-width:320px; outline:none; text-align:center; font-family:inherit;" />
       </div>
       <div class="completion-actions">
         <button class="btn-cert-primary" onclick="printCertificate()">⬇ Download / Print Certificate</button>
@@ -458,15 +463,15 @@
       html += '<div class="sidebar-module">'
         + '<div class="sidebar-module-header' + (isFirst ? ' open' : '') + '" onclick="toggleSidebarModule(this)">'
         + '<div><div class="sidebar-module-title">' + escSide(mod.title) + '</div>'
-        + '<div class="sidebar-module-meta" id="modMeta' + (mi + 1) + '">' + escSide(mod.meta) + (isFirst ? '' : ' · 🔒 Locked') + '</div></div>'
+        + '<div class="sidebar-module-meta" id="modMeta' + (mi + 1) + '">' + escSide(mod.meta) + '</div></div>'
         + '<span class="sidebar-module-chevron">▼</span></div>'
         + '<div class="sidebar-lessons' + (isFirst ? ' open' : '') + '">';
       mod.lessons.forEach(function(l) {
         var idx = li;
         var isActive = idx === currentLessonIndex;
-        var isLocked = mi > 0;
-        var statusIcon = isActive ? '▶' : (isLocked ? '🔒' : '○');
-        var cls = 'sidebar-lesson' + (isActive ? ' active' : '') + (isLocked ? ' locked' : '');
+        var isCompleted = completedLessons.indexOf(idx) !== -1;
+        var statusIcon = isActive ? '▶' : (isCompleted ? '✓' : '○');
+        var cls = 'sidebar-lesson' + (isActive ? ' active' : '') + (isCompleted ? ' completed' : '');
         html += '<div class="' + cls + '" data-lesson-index="' + idx + '" onclick="selectLessonByIndex(' + idx + ')">'
           + '<span class="lesson-status">' + statusIcon + '</span>'
           + '<div class="lesson-info">'
@@ -489,6 +494,9 @@
     if (!isNaN(startLesson) && startLesson >= 0 && startLesson < totalLessons) {
       currentLessonIndex = startLesson;
     }
+    // Restore saved progress
+    var savedProgress = localStorage.getItem('tih_progress_' + courseId);
+    if (savedProgress) { try { completedLessons = JSON.parse(savedProgress); } catch(e) {} }
     buildSidebar();
     // Mark active lesson in sidebar
     var allEls = document.querySelectorAll('.sidebar-lesson');
@@ -518,9 +526,9 @@
     // Overview
     var overviewHtml;
     if (lesson.isQuiz) {
-      overviewHtml = '<p>This is the quiz for Module ' + lesson.module + '. Complete all previous lessons before taking the quiz. You need 60% or higher to pass and unlock the next module.</p>';
+      overviewHtml = '<p>This is the quiz for Module ' + lesson.module + '. You need 60% or higher to pass. Review the lessons if needed — you can retry as many times as you like.</p>';
     } else if (lesson.isProject) {
-      overviewHtml = '<p>This is the hands-on project for Module ' + lesson.module + '. Apply what you have learned so far to complete the project as described in the video. Take your time and refer back to previous lessons as needed.</p>';
+      overviewHtml = '<p>This is the hands-on project for Module ' + lesson.module + '. Apply what you have learned to complete the project as described in the video. Mark it complete when you are done.</p>';
     } else {
       overviewHtml = '<p>In this lesson, you will explore <strong>' + escSide(lesson.title) + '</strong>. Follow along with the video for step-by-step instruction covering all key concepts and practical applications relevant to learners in Liberia and across Africa.</p><p>Take notes using the Notes tab, and review the Q&amp;A tab for common questions. When you are ready, click <strong>Mark as Complete</strong> to progress to the next lesson.</p>';
     }
@@ -639,12 +647,9 @@
   function markComplete() {
     if (completedLessons.indexOf(currentLessonIndex) !== -1) return;
     completedLessons.push(currentLessonIndex);
+    localStorage.setItem('tih_progress_' + courseId, JSON.stringify(completedLessons));
     var el = document.querySelector('[data-lesson-index="' + currentLessonIndex + '"]');
     if (el) { el.classList.add('completed'); var st = el.querySelector('.lesson-status'); if (st) st.textContent = '✓'; }
-    // Project completion unlocks next module
-    if (lessons[currentLessonIndex].isProject) {
-      unlockModule(lessons[currentLessonIndex].module + 1);
-    }
     renderLesson(currentLessonIndex);
     updateProgress();
     if (completedLessons.length === totalLessons) setTimeout(showCompletionModal, 800);
@@ -793,8 +798,8 @@
     document.getElementById('quizResultScoreSub').textContent = 'correct answers · ' + Math.round(quizScore / total * 100) + '%';
     var nextModNum = currentQuizData.moduleNum + 1;
     document.getElementById('quizResultMsg').textContent = quizLastPassed
-      ? 'Excellent work! You scored ' + quizScore + ' out of ' + total + '. Module ' + currentQuizData.moduleNum + ' is now complete. '
-        + (currentQuizData.isFinal ? 'Your course certificate is ready!' : 'Module ' + nextModNum + ' has been unlocked!')
+      ? 'Excellent work! You scored ' + quizScore + ' out of ' + total + '. Module ' + currentQuizData.moduleNum + ' quiz is complete. '
+        + (currentQuizData.isFinal ? 'Your course certificate is ready!' : 'Keep going — you\'re making great progress!')
       : 'You scored ' + quizScore + ' out of ' + total + '. You need at least ' + passThreshold + ' correct to pass. Review the lessons and try again — you\'ve got this!';
     document.getElementById('quizResultBtn').textContent = quizLastPassed
       ? (currentQuizData.isFinal ? '🏆 Claim Certificate' : 'Continue to Next Module →')
@@ -805,13 +810,10 @@
   function completeQuizLesson() {
     if (completedLessons.indexOf(currentQuizLessonIndex) === -1) {
       completedLessons.push(currentQuizLessonIndex);
+      localStorage.setItem('tih_progress_' + courseId, JSON.stringify(completedLessons));
     }
     var el = document.querySelector('[data-lesson-index="' + currentQuizLessonIndex + '"]');
     if (el) { el.classList.add('completed'); var st = el.querySelector('.lesson-status'); if (st) st.textContent = '✓'; }
-    // Unlock next module sequentially
-    if (!currentQuizData.isFinal) {
-      unlockModule(currentQuizData.moduleNum + 1);
-    }
     updateProgress();
   }
 
@@ -841,8 +843,17 @@
 
   // ===== COMPLETION MODAL =====
   function showCompletionModal() {
+    var savedName = localStorage.getItem('tih_student_name') || '';
+    var inp = document.getElementById('certNameInput');
+    if (inp) inp.value = savedName;
+    document.getElementById('certNameDisplay').textContent = savedName || 'Your Name';
     document.getElementById('completionModal').classList.add('open');
     launchConfetti();
+  }
+  function updateCertName(val) {
+    var trimmed = val.trim();
+    document.getElementById('certNameDisplay').textContent = trimmed || 'Your Name';
+    if (trimmed) localStorage.setItem('tih_student_name', trimmed);
   }
   function closeCompletionModal() {
     document.getElementById('completionModal').classList.remove('open');
