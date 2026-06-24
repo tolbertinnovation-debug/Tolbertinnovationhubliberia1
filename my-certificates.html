@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Certificates | TIH Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #002868; --blue-dark: #001a45; --blue-light: #eff6ff;
+      --red: #BF0A30; --gold: #f59e0b; --green: #10b981;
+      --text: #111827; --muted: #6b7280; --border: #e5e7eb;
+      --bg: #f9fafb; --white: #fff;
+    }
+    html, body { min-height: 100%; font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); }
+    a { text-decoration: none; color: inherit; }
+
+    /* ---- TOPBAR ---- */
+    .topbar { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 1.5rem; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .topbar-left { display: flex; align-items: center; gap: 0.75rem; }
+    .topbar-back { display: flex; align-items: center; gap: 0.4rem; color: var(--muted); font-size: 0.85rem; font-weight: 500; padding: 0.35rem 0.6rem; border-radius: 6px; transition: all .2s; min-height: 36px; }
+    .topbar-back:hover { color: var(--blue); background: var(--blue-light); }
+    .topbar-divider { width: 1px; height: 20px; background: var(--border); }
+    .topbar-brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--blue); font-size: 1rem; }
+    .topbar-brand span { color: var(--red); }
+    .topbar-right { display: flex; align-items: center; gap: 0.75rem; }
+    .btn-browse { background: var(--blue); color: var(--white); border: none; border-radius: 8px; padding: 0.45rem 1rem; font-size: 0.83rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; }
+    .btn-browse:hover { background: var(--blue-dark); }
+
+    /* ---- PAGE HERO ---- */
+    .page-hero { background: linear-gradient(135deg, #001535, #002868 60%, #003080); padding: 3rem 1.5rem 2.5rem; text-align: center; color: var(--white); position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 320px; height: 320px; background: radial-gradient(circle, rgba(245,158,11,.15) 0%, transparent 70%); pointer-events: none; }
+    .hero-icon { font-size: 3rem; margin-bottom: 0.6rem; position: relative; z-index: 1; filter: drop-shadow(0 4px 12px rgba(245,158,11,.5)); }
+    .page-hero h1 { font-family: 'Poppins', sans-serif; font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; margin-bottom: 0.4rem; position: relative; z-index: 1; }
+    .page-hero p { color: rgba(255,255,255,.78); font-size: 0.95rem; position: relative; z-index: 1; max-width: 480px; margin: 0 auto; }
+
+    /* ---- PROGRESS SUMMARY BAR ---- */
+    .summary-bar { background: var(--white); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; }
+    .summary-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; justify-content: space-between; }
+    .summary-stat { display: flex; align-items: center; gap: 0.5rem; }
+    .summary-num { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--blue); }
+    .summary-label { font-size: 0.82rem; color: var(--muted); line-height: 1.3; }
+    .summary-progress-wrap { flex: 1; max-width: 320px; min-width: 200px; }
+    .summary-progress-label { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; color: var(--muted); margin-bottom: 0.35rem; }
+    .summary-track { height: 8px; background: #e5e7eb; border-radius: 50px; overflow: hidden; }
+    .summary-fill { height: 100%; background: linear-gradient(90deg, #059669, #10b981); border-radius: 50px; transition: width .6s ease; }
+
+    /* ---- MAIN CONTENT ---- */
+    .main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+    /* ---- SECTION TITLE ---- */
+    .section-title { font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; color: var(--blue); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ---- CERTIFICATE CARDS GRID ---- */
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+
+    /* ---- EARNED CERTIFICATE CARD ---- */
+    .cert-card { background: var(--white); border-radius: 14px; overflow: hidden; border: 1.5px solid #e5e7eb; transition: all .2s; display: flex; flex-direction: column; }
+    .cert-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,40,104,.1); border-color: #c8960c; }
+    .cert-card-header { background: linear-gradient(135deg, #001a45, #002868); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.7rem; }
+    .cert-card-icon { font-size: 1.5rem; filter: drop-shadow(0 2px 4px rgba(245,158,11,.4)); flex-shrink: 0; }
+    .cert-card-org { color: var(--white); }
+    .cert-card-org-name { font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 800; }
+    .cert-card-org-name span { color: #f59e0b; }
+    .cert-card-org-sub { font-size: 0.62rem; color: rgba(255,255,255,.65); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 1px; }
+    .cert-card-body { padding: 1rem 1.25rem; flex: 1; border-bottom: 1px solid rgba(200,150,12,.2); background: linear-gradient(160deg, #fffef7, #fffceb); }
+    .cert-card-divider { display: flex; align-items: center; gap: 0.35rem; color: #c8960c; font-size: 0.6rem; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+    .cert-card-divider::before, .cert-card-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #c8960c 50%, transparent); }
+    .cert-card-certifies { font-size: 0.7rem; color: var(--muted); text-align: center; font-style: italic; }
+    .cert-card-name { font-family: 'Poppins', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--blue); text-align: center; margin: 0.3rem 0; line-height: 1.3; }
+    .cert-card-for { font-size: 0.7rem; color: var(--muted); text-align: center; margin-bottom: 0.35rem; }
+    .cert-card-course { font-size: 0.82rem; font-weight: 700; color: #111827; text-align: center; line-height: 1.4; }
+    .cert-card-meta { display: flex; justify-content: center; gap: 0.5rem; align-items: center; margin-top: 0.7rem; font-size: 0.68rem; color: var(--muted); flex-wrap: wrap; }
+    .cert-card-verified { display: inline-flex; align-items: center; gap: 0.25rem; background: #d1fae5; color: #065f46; font-size: 0.65rem; font-weight: 700; padding: 0.18rem 0.5rem; border-radius: 50px; }
+    .cert-card-footer { padding: 0.85rem 1.25rem; display: flex; gap: 0.5rem; background: var(--white); }
+    .btn-dl { flex: 1; background: linear-gradient(135deg, #002868, #0040a8); color: var(--white); border: none; border-radius: 8px; padding: 0.6rem 0.5rem; font-size: 0.82rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; display: flex; align-items: center; justify-content: center; gap: 0.3rem; }
+    .btn-dl:hover { background: linear-gradient(135deg, var(--blue-dark), #002868); box-shadow: 0 4px 12px rgba(0,40,104,.3); }
+    .btn-view { background: #f9fafb; color: var(--blue); border: 1.5px solid #dce7ff; border-radius: 8px; padding: 0.6rem 0.75rem; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; white-space: nowrap; }
+    .btn-view:hover { background: var(--blue-light); border-color: var(--blue); }
+
+    /* ---- LOCKED (NOT YET EARNED) COURSE CARD ---- */
+    .locked-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.85rem; margin-bottom: 3rem; }
+    .locked-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 1rem 1rem 0.9rem; display: flex; align-items: center; gap: 0.75rem; transition: all .2s; cursor: pointer; }
+    .locked-card:hover { border-color: var(--blue); background: var(--blue-light); transform: translateY(-2px); }
+    .locked-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; background: #f3f4f6; }
+    .locked-info { flex: 1; min-width: 0; }
+    .locked-title { font-size: 0.8rem; font-weight: 700; color: var(--text); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .locked-status { font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; }
+    .locked-badge { font-size: 0.6rem; background: #f3f4f6; color: var(--muted); padding: 0.15rem 0.45rem; border-radius: 50px; font-weight: 600; flex-shrink: 0; }
+
+    /* ---- EMPTY STATE ---- */
+    .empty-state { text-align: center; padding: 3.5rem 1.5rem; background: var(--white); border-radius: 16px; border: 1.5px dashed var(--border); }
+    .empty-icon { font-size: 4rem; margin-bottom: 1rem; }
+    .empty-state h2 { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .empty-state p { font-size: 0.9rem; color: var(--muted); max-width: 380px; margin: 0 auto 1.5rem; line-height: 1.7; }
+    .btn-start { background: var(--blue); color: var(--white); border: none; border-radius: 10px; padding: 0.75rem 1.8rem; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: 'Poppins', sans-serif; transition: all .2s; }
+    .btn-start:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,40,104,.25); }
+
+    /* ---- NAME EDIT MODAL ---- */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 9000; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .name-modal { background: var(--white); border-radius: 16px; padding: 2rem; max-width: 420px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+    .name-modal h3 { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--blue); }
+    .name-modal p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.6; }
+    .name-modal input { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 1rem; font-family: 'Inter', sans-serif; transition: border-color .2s; }
+    .name-modal input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,40,104,.1); }
+    .name-modal-btns { display: flex; gap: 0.6rem; margin-top: 1rem; }
+    .btn-save-name { flex: 1; background: var(--blue); color: var(--white); border: none; border-radius: 8px; padding: 0.65rem; font-size: 0.9rem; font-weight: 700; cursor: pointer; font-family: 'Poppins', sans-serif; transition: all .2s; }
+    .btn-save-name:hover { background: var(--blue-dark); }
+    .btn-cancel-name { background: #f9fafb; color: var(--muted); border: 1.5px solid var(--border); border-radius: 8px; padding: 0.65rem 1rem; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; }
+    .btn-cancel-name:hover { border-color: var(--muted); }
+
+    /* ---- FLOATING CTA ---- */
+    .fab { position: fixed; right: 1.5rem; bottom: 2rem; z-index: 99; }
+    .fab-btn { width: 52px; height: 52px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.3rem; border: none; cursor: pointer; box-shadow: 0 4px 16px rgba(0,40,104,.35); transition: all .2s; }
+    .fab-btn:hover { background: var(--blue-dark); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,40,104,.45); }
+
+    /* ---- RESPONSIVE ---- */
+    @media(max-width: 600px) {
+      .summary-inner { gap: 1rem; }
+      .summary-progress-wrap { min-width: 100%; }
+      .topbar { padding: 0 1rem; }
+      .main { padding: 1.5rem 1rem 3rem; }
+      .certs-grid { grid-template-columns: 1fr; }
+      .locked-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width: 380px) {
+      .locked-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <a href="academy.html" class="topbar-back">← <span>Academy</span></a>
+      <div class="topbar-divider"></div>
+      <div class="topbar-brand">TIH <span>Academy</span></div>
+    </div>
+    <div class="topbar-right">
+      <a href="courses.html" class="btn-browse">Browse Courses</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="hero-icon">🏆</div>
+    <h1>My Certificates</h1>
+    <p>All your earned TIH Academy certificates in one place — download, share, or verify at any time.</p>
+  </div>
+
+  <!-- SUMMARY BAR -->
+  <div class="summary-bar">
+    <div class="summary-inner">
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+        <div class="summary-stat">
+          <div class="summary-num" id="earnedCount">0</div>
+          <div class="summary-label">Certificates<br>Earned</div>
+        </div>
+        <div class="summary-stat">
+          <div class="summary-num" id="totalCount">12</div>
+          <div class="summary-label">Total<br>Courses</div>
+        </div>
+      </div>
+      <div class="summary-progress-wrap">
+        <div class="summary-progress-label">
+          <span>Course Completion</span>
+          <span id="progressLabel">0 of 12</span>
+        </div>
+        <div class="summary-track">
+          <div class="summary-fill" id="summaryFill" style="width:0%"></div>
+        </div>
+      </div>
+      <div>
+        <button class="btn-browse" onclick="openNameModal()" style="background:#f59e0b;border-radius:8px;padding:.45rem 1rem;font-size:.82rem;">✏️ Edit My Name</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- EARNED CERTS -->
+    <div id="earnedSection" style="display:none;">
+      <div class="section-title">✓ Earned Certificates</div>
+      <div class="certs-grid" id="certsGrid"></div>
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div id="emptyState" style="display:none;">
+      <div class="empty-state">
+        <div class="empty-icon">📜</div>
+        <h2>No Certificates Yet</h2>
+        <p>Complete a course to earn your first TIH Academy certificate. Each certificate is professionally verified and shareable with employers.</p>
+        <a href="courses.html"><button class="btn-start">🚀 Start Learning Now</button></a>
+      </div>
+    </div>
+
+    <!-- COURSES NOT YET COMPLETED -->
+    <div id="lockedSection" style="display:none;">
+      <div class="section-title" style="margin-top:2rem;">○ Courses In Progress or Not Started</div>
+      <div class="locked-grid" id="lockedGrid"></div>
+    </div>
+
+  </div>
+
+  <!-- NAME EDIT MODAL -->
+  <div class="modal-overlay" id="nameModal" onclick="if(event.target===this)closeNameModal()">
+    <div class="name-modal">
+      <h3>✏️ Update Certificate Name</h3>
+      <p>This name will appear on all your certificates. Use your official full name exactly as you want it to appear.</p>
+      <input type="text" id="nameInput" placeholder="Your Full Name" maxlength="80" />
+      <div class="name-modal-btns">
+        <button class="btn-save-name" onclick="saveName()">Save Name</button>
+        <button class="btn-cancel-name" onclick="closeNameModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAB -->
+  <div class="fab">
+    <button class="fab-btn" title="Browse more courses" onclick="window.location.href='courses.html'">+</button>
+  </div>
+
+  <script src="courses-db.js?v=2"></script>
+  <script>
+  // ===== COURSE METADATA (icons + colors for display) =====
+  var COURSE_META = {
+    'computer-literacy': { icon: '💻', color: '#e8f0fb', accent: '#002868' },
+    'ai': { icon: '🤖', color: '#f3e8ff', accent: '#7c3aed' },
+    'data': { icon: '📊', color: '#ecfdf5', accent: '#065f46' },
+    'webdev': { icon: '🌐', color: '#e0f2fe', accent: '#0d9488' },
+    'design': { icon: '🎨', color: '#fce7f3', accent: '#be185d' },
+    'android': { icon: '📱', color: '#fef3c7', accent: '#b45309' },
+    'marketing': { icon: '📢', color: '#fef9ec', accent: '#b45309' },
+    'cybersecurity': { icon: '🔒', color: '#fee2e2', accent: '#7f1d1d' },
+    'entrepreneurship': { icon: '💡', color: '#fffbeb', accent: '#92400e' },
+    'project-mgmt': { icon: '📋', color: '#e8f0fb', accent: '#002868' },
+    'office': { icon: '📝', color: '#f0fdf4', accent: '#065f46' },
+    'leadership': { icon: '🎯', color: '#f0fdf4', accent: '#047857' }
+  };
+
+  // ===== LOAD DATA =====
+  var studentName = localStorage.getItem('tih_student_name') || '';
+  var COURSE_IDS = Object.keys(COURSES_DB || {});
+  if (!COURSE_IDS.length) {
+    COURSE_IDS = ['computer-literacy','ai','data','webdev','design','android','marketing','cybersecurity','entrepreneurship','project-mgmt','office','leadership'];
+  }
+
+  var earned = [];
+  var locked = [];
+  COURSE_IDS.forEach(function(id) {
+    var cert = localStorage.getItem('tih_cert_' + id);
+    if (cert) {
+      try { earned.push(JSON.parse(cert)); } catch(e) {}
+    } else {
+      locked.push(id);
+    }
+  });
+
+  // ===== UPDATE SUMMARY =====
+  document.getElementById('earnedCount').textContent = earned.length;
+  document.getElementById('totalCount').textContent = COURSE_IDS.length;
+  document.getElementById('progressLabel').textContent = earned.length + ' of ' + COURSE_IDS.length;
+  document.getElementById('summaryFill').style.width = (COURSE_IDS.length ? Math.round(earned.length / COURSE_IDS.length * 100) : 0) + '%';
+
+  // ===== RENDER EARNED CERTIFICATES =====
+  function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  if (earned.length > 0) {
+    document.getElementById('earnedSection').style.display = 'block';
+    var gridHtml = '';
+    earned.forEach(function(cert) {
+      var meta = COURSE_META[cert.courseId] || { icon: '🎓', color: '#e8f0fb', accent: '#002868' };
+      var displayName = cert.studentName || studentName || 'Graduate';
+      gridHtml += '<div class="cert-card">' +
+        '<div class="cert-card-header">' +
+        '<span class="cert-card-icon">' + meta.icon + '</span>' +
+        '<div class="cert-card-org">' +
+        '<div class="cert-card-org-name">TIH <span>Academy</span></div>' +
+        '<div class="cert-card-org-sub">Certificate of Completion</div>' +
+        '</div></div>' +
+        '<div class="cert-card-body">' +
+        '<div class="cert-card-divider">✦ AWARDED TO ✦</div>' +
+        '<div class="cert-card-certifies">This certifies that</div>' +
+        '<div class="cert-card-name">' + esc(displayName) + '</div>' +
+        '<div class="cert-card-for">has successfully completed</div>' +
+        '<div class="cert-card-course">' + esc(cert.courseTitle) + '</div>' +
+        '<div class="cert-card-meta">' +
+        '<span>📅 ' + esc(cert.date) + '</span>' +
+        '<span>·</span>' +
+        '<span class="cert-card-verified">✓ Verified</span>' +
+        '</div>' +
+        '<div style="text-align:center;font-size:0.65rem;color:var(--muted);margin-top:0.4rem;">ID: ' + esc(cert.certId) + '</div>' +
+        '</div>' +
+        '<div class="cert-card-footer">' +
+        '<button class="btn-dl" onclick="downloadCert(' + "'" + cert.courseId + "'" + ')">⬇ Download</button>' +
+        '<a href="course-player.html?id=' + esc(cert.courseId) + '" class="btn-view">View Course</a>' +
+        '</div></div>';
+    });
+    document.getElementById('certsGrid').innerHTML = gridHtml;
+  } else {
+    document.getElementById('emptyState').style.display = 'block';
+  }
+
+  // ===== RENDER LOCKED COURSES =====
+  if (locked.length > 0) {
+    document.getElementById('lockedSection').style.display = 'block';
+    var lockedHtml = '';
+    locked.forEach(function(id) {
+      var course = (typeof COURSES_DB !== 'undefined') ? COURSES_DB[id] : null;
+      var meta = COURSE_META[id] || { icon: '🎓', color: '#f3f4f6', accent: '#6b7280' };
+      var title = course ? course.title : id;
+      lockedHtml += '<a href="course-player.html?id=' + esc(id) + '" class="locked-card">' +
+        '<div class="locked-icon" style="background:' + meta.color + '">' + meta.icon + '</div>' +
+        '<div class="locked-info">' +
+        '<div class="locked-title">' + esc(title) + '</div>' +
+        '<div class="locked-status">Not yet completed</div>' +
+        '</div>' +
+        '<span class="locked-badge">→</span>' +
+        '</a>';
+    });
+    document.getElementById('lockedGrid').innerHTML = lockedHtml;
+  }
+
+  // ===== DOWNLOAD CERTIFICATE =====
+  function downloadCert(courseId) {
+    var certJson = localStorage.getItem('tih_cert_' + courseId);
+    if (!certJson) { alert('Certificate not found. Complete the course first.'); return; }
+    var cert;
+    try { cert = JSON.parse(certJson); } catch(e) { alert('Error reading certificate data.'); return; }
+    var name = cert.studentName || studentName || 'Graduate';
+    var html = buildCertHTML(name, cert.courseTitle, cert.certId, cert.date, cert.instructor || 'Samuel Tolbert');
+    var win = window.open('', '_blank', 'width=1200,height=900');
+    if (!win) { alert('Please allow pop-ups for this site to download your certificate.\n\nClick the pop-up blocked icon in your browser address bar and select "Allow".'); return; }
+    win.document.open();
+    win.document.write(html);
+    win.document.close();
+  }
+
+  // ===== BUILD CERTIFICATE HTML (A4 LANDSCAPE) =====
+  function buildCertHTML(name, title, certId, certDate, sigName) {
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>' +
+      '<title>Certificate — ' + esc(title) + ' — TIH Academy</title>' +
+      '<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>' +
+      '<style>' +
+      '@page{size:A4 landscape;margin:0}' +
+      '*{box-sizing:border-box;margin:0;padding:0}' +
+      'html,body{width:297mm;height:210mm;background:#fffef7;display:flex;align-items:center;justify-content:center;font-family:Inter,sans-serif}' +
+      '.cert{width:275mm;height:192mm;border:3px solid #c8960c;position:relative;background:linear-gradient(160deg,#fffef7 0%,#fffceb 100%);box-shadow:inset 0 0 0 8px rgba(200,150,12,.07);overflow:hidden;display:flex;flex-direction:column}' +
+      '.corner{position:absolute;width:22mm;height:22mm}' +
+      '.tl{top:5mm;left:5mm;border-top:2px solid #c8960c;border-left:2px solid #c8960c}' +
+      '.tr{top:5mm;right:5mm;border-top:2px solid #c8960c;border-right:2px solid #c8960c}' +
+      '.bl{bottom:5mm;left:5mm;border-bottom:2px solid #c8960c;border-left:2px solid #c8960c}' +
+      '.br{bottom:5mm;right:5mm;border-bottom:2px solid #c8960c;border-right:2px solid #c8960c}' +
+      '.hd{background:linear-gradient(135deg,#001a45,#002868);padding:7mm 18mm 6mm;display:flex;align-items:center;gap:7mm;flex-shrink:0}' +
+      '.hd-icon{font-size:26pt;line-height:1;filter:drop-shadow(0 2px 6px rgba(245,158,11,.5))}' +
+      '.org-name{font-family:Poppins,sans-serif;font-size:20pt;font-weight:800;color:#fff;line-height:1.15}' +
+      '.org-name span{color:#f59e0b}' +
+      '.org-sub{font-size:7pt;letter-spacing:.18em;color:rgba(255,255,255,.7);text-transform:uppercase;margin-top:1.5mm}' +
+      '.body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5mm 18mm 3mm;text-align:center}' +
+      '.divider{display:flex;align-items:center;gap:4mm;margin:3mm 0 2mm;color:#c8960c;font-size:7pt;letter-spacing:.1em;width:100%}' +
+      '.divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#c8960c 40%,#c8960c 60%,transparent)}' +
+      '.certifies{font-size:9pt;color:#6b7280;font-style:italic;margin-bottom:2mm}' +
+      '.student-name{font-family:Georgia,serif;font-size:36pt;color:#002868;font-style:italic;margin:1.5mm 0 1.5mm;line-height:1.2}' +
+      '.completed{font-size:9pt;color:#6b7280;margin-bottom:2.5mm}' +
+      '.course-title{font-size:13pt;font-weight:700;color:#111827;background:linear-gradient(135deg,#e8f0fb,#f0f5ff);padding:2.5mm 10mm;border-radius:3mm;display:inline-block;font-family:Poppins,sans-serif;border:1px solid #dce7ff}' +
+      '.cert-id-row{font-size:7pt;color:#9ca3af;margin-top:3mm}' +
+      '.cert-id-row strong{color:#002868;background:rgba(0,40,104,.08);padding:.8mm 2.5mm;border-radius:2mm;margin-left:1mm;font-size:7.5pt}' +
+      '.footer{display:flex;align-items:flex-end;justify-content:space-between;padding:3mm 18mm 5mm;border-top:1px solid rgba(200,150,12,.3);flex-shrink:0}' +
+      '.sig{text-align:center}.sig-line{width:45mm;border-bottom:1.5px solid #374151;margin-bottom:1.5mm}' +
+      '.sig-name{font-size:8.5pt;font-weight:700;color:#111827;font-family:Poppins,sans-serif}' +
+      '.sig-role{font-size:7pt;color:#6b7280;margin-top:.5mm}' +
+      '.seal{width:22mm;height:22mm;border-radius:50%;background:linear-gradient(135deg,#059669,#10b981);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2.5px solid rgba(255,255,255,.8);box-shadow:0 2px 8px rgba(16,185,129,.4)}' +
+      '.seal-check{font-size:13pt;display:block;line-height:1;margin-bottom:1mm}' +
+      '.seal-text{font-size:5.5pt;font-weight:800;letter-spacing:.05em}' +
+      '.print-btn{position:fixed;top:15px;right:15px;background:#002868;color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:Poppins,sans-serif;box-shadow:0 4px 12px rgba(0,40,104,.3);z-index:9999;transition:all .2s}' +
+      '.print-btn:hover{background:#001a45;transform:translateY(-1px)}' +
+      '.print-note{position:fixed;top:60px;right:15px;background:#fffbeb;border:1px solid #f59e0b;color:#92400e;padding:8px 14px;border-radius:8px;font-size:12px;font-family:Inter,sans-serif;max-width:240px;line-height:1.5;z-index:9999}' +
+      '@media print{.print-btn,.print-note{display:none!important}html,body{width:297mm;height:210mm}}' +
+      '</style></head><body>' +
+      '<button class="print-btn" onclick="window.print()">⬇ Save as PDF / Print</button>' +
+      '<div class="print-note">💡 To save as PDF: click the button above, then choose "Save as PDF" as the printer destination.</div>' +
+      '<div class="cert">' +
+      '<div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>' +
+      '<div class="hd"><span class="hd-icon">🎓</span>' +
+      '<div><div class="org-name">TIH <span>Academy</span></div>' +
+      '<div class="org-sub">Tolbert Innovation Hub &middot; Certificate of Completion</div></div></div>' +
+      '<div class="body">' +
+      '<div class="divider">✶ &nbsp; AWARDED TO &nbsp; ✶</div>' +
+      '<div class="certifies">This is to certify that</div>' +
+      '<div class="student-name">' + esc(name) + '</div>' +
+      '<div class="completed">has successfully completed the following course</div>' +
+      '<div class="course-title">' + esc(title) + '</div>' +
+      '<div class="divider" style="margin-top:3mm"></div>' +
+      '<div class="cert-id-row">Issued: ' + esc(certDate) + ' &nbsp;&middot;&nbsp; Credential ID: <strong>' + esc(certId) + '</strong></div>' +
+      '</div>' +
+      '<div class="footer">' +
+      '<div class="sig"><div class="sig-line"></div><div class="sig-name">' + esc(sigName) + '</div><div class="sig-role">Founder &amp; CEO, TIH Academy</div></div>' +
+      '<div class="seal"><span class="seal-check">✓</span><span class="seal-text">VERIFIED</span></div>' +
+      '<div class="sig"><div class="sig-line"></div><div class="sig-name">TIH Academy</div><div class="sig-role">Authorized Certification Body</div></div>' +
+      '</div></div>' +
+      '<script>window.onload=function(){setTimeout(function(){window.print();},900)};<\/script>' +
+      '</body></html>';
+  }
+
+  // ===== NAME MODAL =====
+  function openNameModal() {
+    document.getElementById('nameInput').value = localStorage.getItem('tih_student_name') || '';
+    document.getElementById('nameModal').classList.add('open');
+    setTimeout(function() { document.getElementById('nameInput').focus(); }, 100);
+  }
+  function closeNameModal() {
+    document.getElementById('nameModal').classList.remove('open');
+  }
+  function saveName() {
+    var val = document.getElementById('nameInput').value.trim();
+    if (!val) { document.getElementById('nameInput').focus(); return; }
+    localStorage.setItem('tih_student_name', val);
+    // Update all saved certificates with new name
+    COURSE_IDS.forEach(function(id) {
+      var certJson = localStorage.getItem('tih_cert_' + id);
+      if (certJson) {
+        try {
+          var cert = JSON.parse(certJson);
+          cert.studentName = val;
+          localStorage.setItem('tih_cert_' + id, JSON.stringify(cert));
+        } catch(e) {}
+      }
+    });
+    closeNameModal();
+    location.reload(); // refresh to show updated names
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeNameModal();
+    if (e.key === 'Enter' && document.getElementById('nameModal').classList.contains('open')) saveName();
+  });
+  </script>
+
+</body>
+</html>

@@ -18,16 +18,20 @@
       --blue: #002868; --blue-dark: #001a45; --blue-light: #eff6ff;
       --red: #BF0A30; --gold: #f59e0b; --green: #10b981; --green-light: #d1fae5;
       --text: #111827; --text-muted: #6b7280; --border: #e5e7eb;
-      --bg: #f9fafb; --white: #fff; --sidebar-w: 280px; --topbar-h: 60px;
+      --bg: #f9fafb; --bg-alt: #f0f4ff; --white: #fff; --sidebar-w: 280px; --topbar-h: 60px;
     }
     html, body { height: 100%; overflow: hidden; }
     body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); display: flex; flex-direction: column; }
+    /* Issue 1 fix: overflow safety nets so no horizontal scroll strip appears */
+    .player-layout { overflow-x: hidden; }
+    .main-area { overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
 
     /* TOP BAR */
     .topbar { height: var(--topbar-h); background: #fff; border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 1rem; gap: 1rem; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
     .topbar-left { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-    .topbar-back { display: flex; align-items: center; gap: 0.35rem; color: var(--text-muted); font-size: 0.83rem; font-weight: 500; transition: color .2s; padding: 0.35rem 0.5rem; border-radius: 6px; white-space: nowrap; }
+    /* Issue 2 fix: topbar-back minimum 44px tap target */
+    .topbar-back { display: flex; align-items: center; gap: 0.35rem; color: var(--text-muted); font-size: 0.83rem; font-weight: 500; transition: color .2s; padding: 0.35rem 0.5rem; border-radius: 6px; white-space: nowrap; min-height: 44px; }
     .topbar-back:hover { color: var(--blue); background: var(--blue-light); }
     .topbar-divider { width: 1px; height: 20px; background: var(--border); }
     .topbar-brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--blue); font-size: 1rem; white-space: nowrap; }
@@ -39,9 +43,14 @@
     .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #059669, #10b981); border-radius: 50px; transition: width .5s ease; }
     .progress-pct { font-size: 0.78rem; font-weight: 700; color: #059669; white-space: nowrap; }
     .topbar-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-    .topbar-avatar { width: 32px; height: 32px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
+    /* Issue 6 fix: topbar-avatar hover state */
+    .topbar-avatar { width: 32px; height: 32px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: background .2s, transform .2s; }
+    .topbar-avatar:hover { background: var(--blue-dark); transform: scale(1.08); }
     .btn-contents { display: none; align-items: center; gap: 0.4rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.35rem 0.7rem; font-size: 0.82rem; font-weight: 600; color: var(--text); cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
     .btn-contents:hover { background: var(--blue-light); color: var(--blue); }
+    .topbar-cert-btn { display: none; align-items: center; gap: 0.35rem; background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; border: none; border-radius: 6px; padding: 0.35rem 0.8rem; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; white-space: nowrap; min-height: 32px; }
+    .topbar-cert-btn:hover { background: linear-gradient(135deg, #d97706, #b45309); box-shadow: 0 2px 8px rgba(245,158,11,.4); transform: translateY(-1px); }
+    .topbar-cert-btn.show { display: flex; }
 
     /* LAYOUT */
     .player-layout { display: flex; height: 100vh; padding-top: var(--topbar-h); overflow: hidden; }
@@ -49,18 +58,22 @@
     /* SIDEBAR */
     .sidebar { width: var(--sidebar-w); flex-shrink: 0; background: #fff; border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: transform .3s ease; }
     .sidebar-header { padding: 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-    .sidebar-header h3 { font-size: 0.9rem; font-weight: 700; }
+    /* Issue 11 fix: consolidated sidebar font sizes — 3 clear tiers */
+    .sidebar-header h3 { font-size: 0.88rem; font-weight: 700; }
     .sidebar-header-right { display: flex; align-items: center; gap: 0.5rem; }
     .sidebar-lesson-count { font-size: 0.75rem; color: var(--text-muted); background: var(--bg); padding: 0.15rem 0.5rem; border-radius: 50px; }
-    .btn-close-sidebar { display: none; background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; padding: 0.2rem; line-height: 1; }
+    /* Issue 3 fix: btn-close-sidebar minimum 44px tap target + hover state */
+    .btn-close-sidebar { display: none; background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; padding: 0.2rem; line-height: 1; min-width: 44px; min-height: 44px; border-radius: 6px; transition: color .2s, background .2s; }
+    .btn-close-sidebar:hover { color: var(--red); background: #fee2e2; }
     .sidebar-scroll { flex: 1; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
     .sidebar-module {}
     .sidebar-module-header { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 1rem; background: #f0f4ff; cursor: pointer; border-bottom: 1px solid #dce7ff; border-left: 3px solid transparent; user-select: none; transition: all .2s; }
     .sidebar-module-header:hover { background: #e6eeff; border-left-color: var(--blue); }
     .sidebar-module-header.open { background: #e6eeff; border-left-color: var(--blue); }
-    .sidebar-module-title { font-size: 0.81rem; font-weight: 700; color: var(--blue); line-height: 1.35; }
-    .sidebar-module-meta { font-size: 0.71rem; color: #5b7ab0; margin-top: 0.1rem; }
-    .sidebar-module-chevron { font-size: 0.65rem; color: var(--blue); transition: transform .2s; opacity: 0.7; }
+    /* Issue 11 fix: sidebar module title tier-1 (0.83rem), meta tier-2 (0.76rem), chevron consistent */
+    .sidebar-module-title { font-size: 0.83rem; font-weight: 700; color: var(--blue); line-height: 1.35; }
+    .sidebar-module-meta { font-size: 0.76rem; color: #5b7ab0; margin-top: 0.1rem; }
+    .sidebar-module-chevron { font-size: 0.76rem; color: var(--blue); transition: transform .2s; opacity: 0.7; }
     .sidebar-module-header.open .sidebar-module-chevron { transform: rotate(180deg); }
     .sidebar-lessons { display: none; }
     .sidebar-lessons.open { display: block; }
@@ -70,12 +83,13 @@
     .sidebar-lesson.completed { background: #f0fdf7; border-left-color: #a7f3d0; }
     .sidebar-lesson.completed .lesson-status { color: var(--green); font-weight: 700; }
     .sidebar-lesson.locked { opacity: 0.5; cursor: not-allowed; }
-    .lesson-status { font-size: 0.82rem; flex-shrink: 0; width: 16px; text-align: center; }
+    /* Issue 11 fix: lesson items use tier-2 (0.83rem) title and tier-3 (0.76rem) duration */
+    .lesson-status { font-size: 0.83rem; flex-shrink: 0; width: 16px; text-align: center; }
     .lesson-info { flex: 1; min-width: 0; }
-    .lesson-info-title { font-size: 0.79rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lesson-info-title { font-size: 0.83rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .sidebar-lesson.active .lesson-info-title { color: var(--blue); font-weight: 700; }
     .sidebar-lesson.completed .lesson-info-title { color: #065f46; }
-    .lesson-info-dur { font-size: 0.7rem; color: var(--text-muted); }
+    .lesson-info-dur { font-size: 0.76rem; color: var(--text-muted); }
 
     /* MAIN AREA */
     .main-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
@@ -105,7 +119,8 @@
     .resource-info { flex: 1; }
     .resource-name { font-size: 0.88rem; font-weight: 600; }
     .resource-size { font-size: 0.77rem; color: var(--text-muted); }
-    .btn-download { background: var(--blue); color: #fff; border: none; padding: 0.4rem 0.9rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
+    /* Issue 5 fix: btn-download minimum 44px tap target */
+    .btn-download { background: var(--blue); color: #fff; border: none; padding: 0.4rem 0.9rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; min-height: 44px; display: inline-flex; align-items: center; }
     .btn-download:hover { background: var(--blue-dark); }
     .qa-item { border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 0.75rem; }
     .qa-question { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.5rem; display: flex; gap: 0.5rem; }
@@ -146,9 +161,13 @@
     .btn-mark-complete:hover { background: linear-gradient(135deg, #001a45, #002868); box-shadow: 0 4px 12px rgba(0,40,104,.35); }
     .btn-mark-complete.done { background: linear-gradient(135deg, #059669, #10b981); box-shadow: 0 2px 8px rgba(16,185,129,.3); cursor: default; }
     .lesson-progress-dots { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
-    .progress-dot { width: 8px; height: 8px; border-radius: 50%; background: #e5e7eb; transition: all .25s; }
+    /* Issue 7 fix: progress-dot hover state */
+    .progress-dot { width: 8px; height: 8px; border-radius: 50%; background: #e5e7eb; transition: all .25s; cursor: default; }
+    .progress-dot:hover { background: #9ca3af; transform: scale(1.4); }
     .progress-dot.done { background: var(--green); }
+    .progress-dot.done:hover { background: #059669; }
     .progress-dot.active { background: var(--blue); width: 22px; border-radius: 4px; }
+    .progress-dot.active:hover { background: var(--blue-dark); }
     .btn-next-lesson, .btn-prev-lesson { background: #fff; color: var(--blue); border: 1.5px solid #bfdbfe; padding: 0.55rem 1rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; max-width: 170px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 1; min-width: 0; }
     .btn-next-lesson:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
     .btn-prev-lesson:hover { background: #eff6ff; }
@@ -160,8 +179,9 @@
     .quiz-modal { background: #fff; border-radius: 16px; padding: 2rem; max-width: 540px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.3); max-height: 90vh; overflow-y: auto; }
     .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
     .modal-title { font-size: 1.1rem; font-weight: 700; font-family: 'Poppins', sans-serif; }
-    .btn-close-modal { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.4rem; line-height: 1; padding: 0.2rem; transition: color .2s; }
-    .btn-close-modal:hover { color: var(--red); }
+    /* Issue 4 fix: btn-close-modal minimum 44px tap target */
+    .btn-close-modal { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.4rem; line-height: 1; padding: 0.2rem; transition: color .2s, background .2s; min-width: 44px; min-height: 44px; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+    .btn-close-modal:hover { color: var(--red); background: #fee2e2; }
     .quiz-prog-wrap { height: 6px; background: var(--border); border-radius: 50px; margin-bottom: 1.25rem; overflow: hidden; }
     .quiz-prog-bar { height: 100%; background: linear-gradient(90deg, var(--blue), var(--green)); border-radius: 50px; transition: width .4s ease; }
     .quiz-question-num { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem; }
@@ -214,7 +234,10 @@
     .cert-name { font-family: 'Poppins', sans-serif; font-size: 1.55rem; font-weight: 700; color: #002868; display: block; margin-bottom: 0.5rem; line-height: 1.2; }
     .cert-for { font-size: 0.78rem; color: #6b7280; margin-bottom: 0.2rem; }
     .cert-course-title { font-size: 0.92rem; font-weight: 700; color: #111827; margin-bottom: 0.45rem; line-height: 1.4; }
-    .cert-date { font-size: 0.7rem; color: #9ca3af; }
+    /* Issue 10 fix: cert date remains for date display */
+    .cert-date { font-size: 0.7rem; color: #9ca3af; margin-bottom: 0.35rem; }
+    /* Issue 10 fix: cert ID displayed prominently */
+    .cert-credential-id { display: inline-block; background: #002868; color: #f59e0b; font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; padding: 0.3rem 0.75rem; border-radius: 6px; margin-top: 0.35rem; }
     .cert-footer-row { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 1.25rem 0.9rem; border-top: 1px solid rgba(200,150,12,.25); margin-top: 0.5rem; }
     .cert-sig-line { width: 85px; border-bottom: 1.5px solid #374151; margin-bottom: 0.2rem; }
     .cert-sig-name { font-size: 0.74rem; font-weight: 700; color: #111827; }
@@ -230,6 +253,11 @@
     .btn-cert-sec:hover { border-color: var(--blue); color: var(--blue); background: #eff6ff; }
     .btn-close-completion { display: block; margin: 0.6rem 1.25rem 1.25rem; padding: 0.55rem; border: 1.5px solid #e5e7eb; background: transparent; border-radius: 10px; color: #9ca3af; font-size: 0.82rem; cursor: pointer; width: calc(100% - 2.5rem); font-family: 'Inter', sans-serif; transition: all .2s; }
     .btn-close-completion:hover { border-color: var(--red); color: var(--red); background: #fff1f2; }
+    /* Issue 15 fix: cert-name-row as CSS class instead of inline styles */
+    .cert-name-row { margin: 0.75rem 0 0.25rem; text-align: center; padding: 0 1.25rem; }
+    .cert-name-row label { display: block; font-size: 0.82rem; color: #6b7280; font-weight: 500; margin-bottom: 0.4rem; }
+    .cert-name-row input { border: 1.5px solid #d1d5db; border-radius: 8px; padding: 0.45rem 0.9rem; font-size: 0.97rem; width: 100%; max-width: 320px; outline: none; text-align: center; font-family: inherit; transition: border-color .2s, box-shadow .2s; }
+    .cert-name-row input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,40,104,.12); }
 
     /* SIDEBAR OVERLAY (mobile) */
     .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 998; }
@@ -245,7 +273,10 @@
       .btn-close-sidebar { display: block; }
       .btn-contents { display: flex; }
       .topbar-course-title { display: none; }
-      .progress-wrap { display: none; }
+      /* Issue 14 fix: show compact progress on mobile instead of hiding it entirely */
+      .progress-wrap { display: flex; }
+      .progress-bar-track { width: 80px; }
+      .progress-pct { font-size: 0.72rem; }
       .tabs-bar { overflow-x: auto; }
       .tab-btn { white-space: nowrap; }
     }
@@ -278,7 +309,9 @@
       </div>
     </div>
     <div class="topbar-right">
-      <div class="topbar-avatar" title="My Account">S</div>
+      <button class="topbar-cert-btn" id="topbarCertBtn" onclick="showCompletionModal()" title="View &amp; download your certificate">🏆 Certificate</button>
+      <a href="my-certificates.html" class="topbar-cert-btn" id="topbarMyCertsBtn" style="text-decoration:none;display:none;" title="All my certificates">📜 My Certs</a>
+      <div class="topbar-avatar" title="My Account" id="topbarAvatar">?</div>
     </div>
   </div>
 
@@ -317,7 +350,7 @@
         <div class="video-info-bar">
           <div class="video-lesson-title" id="lessonTitle">Loading…</div>
           <div class="video-lesson-meta">
-            <span>⏱ <span id="lessonDur"></span></span>
+            <span>⏱ <span id="lessonDur">–</span></span>
             <span id="lessonMeta"></span>
           </div>
         </div>
@@ -347,7 +380,8 @@
 
         <!-- LESSON NAV -->
         <div class="lesson-nav-bar">
-          <button class="btn-prev-lesson" id="btnPrev" onclick="prevLesson()"></button>
+          <!-- Issue 16 fix: default label prevents empty button on slow JS load -->
+          <button class="btn-prev-lesson" id="btnPrev" onclick="prevLesson()">← Previous</button>
           <div class="lesson-progress-dots" id="progressDots"></div>
           <button class="btn-mark-complete" id="markCompleteBtn" onclick="markComplete()">✓ Mark as Complete</button>
           <button class="btn-next-lesson" id="btnNext" onclick="nextLesson()"></button>
@@ -422,11 +456,12 @@
         <div class="cert-body">
           <div class="cert-divider">✦ &nbsp; AWARDED TO &nbsp; ✦</div>
           <div class="cert-awarded">This certifies that</div>
-          <div class="cert-name" id="certNameDisplay">Your Name</div>
+          <div class="cert-name" id="certNameDisplay">Enter Your Name Below</div>
           <div class="cert-for">has successfully completed</div>
           <div class="cert-course-title" id="certCourseTitle"></div>
           <div class="cert-divider"></div>
-          <div class="cert-date">Issued: <span id="certDate"></span> &nbsp;·&nbsp; ID: <span id="certId"></span></div>
+          <div class="cert-date">Issued: <span id="certDate"></span></div>
+          <div class="cert-credential-id">CREDENTIAL ID: <span id="certId"></span></div>
         </div>
         <div class="cert-footer-row">
           <div>
@@ -440,17 +475,16 @@
           </div>
         </div>
       </div>
-      <div class="cert-name-row" id="certNameRow" style="margin:0.75rem 0 0.25rem; text-align:center;">
-        <label style="font-size:0.82rem; color:#6b7280; display:block; margin-bottom:0.3rem;">Enter your full name for the certificate:</label>
-        <input id="certNameInput" type="text" placeholder="Your Full Name" oninput="updateCertName(this.value)"
-          style="border:1.5px solid #d1d5db; border-radius:8px; padding:0.45rem 0.9rem; font-size:0.97rem; width:100%; max-width:320px; outline:none; text-align:center; font-family:inherit;" />
+      <div class="cert-name-row" id="certNameRow">
+        <label for="certNameInput">Enter your full name for the certificate:</label>
+        <input id="certNameInput" type="text" placeholder="Your Full Name" oninput="updateCertName(this.value)" />
       </div>
       <div class="completion-actions">
         <button class="btn-cert-primary" onclick="printCertificate()">⬇ Download / Print Certificate</button>
         <div class="cert-row">
-          <a href="certificate-verify.html" class="btn-cert-sec">🔍 Verify</a>
+          <a href="my-certificates.html" class="btn-cert-sec">🏆 My Certs</a>
           <button class="btn-cert-sec" onclick="shareCompletion()">🔗 Share</button>
-          <a href="courses.html" class="btn-cert-sec">📚 More Courses</a>
+          <a href="certificate-verify.html" class="btn-cert-sec">🔍 Verify</a>
         </div>
       </div>
       <button class="btn-close-completion" onclick="closeCompletionModal()">✕ Close</button>
@@ -496,6 +530,15 @@
     // Update topbar
     document.getElementById('topbarTitle').textContent = course.title;
     document.getElementById('topbarBack').href = 'course-detail.html?id=' + encodeURIComponent(courseId);
+    // Populate avatar with first letter of logged-in student's name
+    (function() {
+      var avatarEl = document.getElementById('topbarAvatar');
+      if (!avatarEl) return;
+      var session = null;
+      try { session = JSON.parse(localStorage.getItem('classroom_student_session') || localStorage.getItem('tih_student_session') || 'null'); } catch(e) {}
+      var name = (session && session.name) ? String(session.name).trim() : '';
+      avatarEl.textContent = name ? name.charAt(0).toUpperCase() : 'A';
+    })();
 
     // Completion modal cert details
     document.getElementById('certCourseTitle').textContent = course.title;
@@ -598,14 +641,14 @@
       if (courseContent[String(index)]) {
         overviewHtml = courseContent[String(index)];
       } else {
-        overviewHtml = '<p>In this lesson, you will explore <strong>' + escSide(lesson.title) + '</strong>. Follow along with the video for step-by-step instruction covering all key concepts and practical applications relevant to learners in Liberia and across Africa.</p><p>Take notes using the Notes tab, and review the Q&amp;A tab for common questions. When you are ready, click <strong>Mark as Complete</strong> to progress to the next lesson.</p>';
+        overviewHtml = '<p>Watch the video carefully and take notes as you go. This lesson builds on what you have learned so far and prepares you for the next stage of the course.</p><p>Use the <strong>Notes</strong> tab to write down key points, questions, or ideas from the video. When you have finished watching and feel confident with the material, click <strong>Mark as Complete</strong> to unlock the next lesson.</p>';
       }
     }
     document.getElementById('overviewContent').innerHTML = overviewHtml;
-    // Resources
-    document.getElementById('resourcesContent').innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">Downloadable resources for this lesson will be available soon.</p>';
-    // Q&A
-    document.getElementById('qaContent').innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No Q&amp;A for this lesson yet. Check back after enrollment.</p>';
+    // Resources — Issue 12 fix: styled empty state instead of bare placeholder
+    document.getElementById('resourcesContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">📂</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">Resources Coming Soon</p><p style="font-size:0.85rem;">Downloadable materials for this lesson are being prepared. Check back shortly or use the Notes tab to capture key points from the video.</p></div>';
+    // Q&A — Issue 13 fix: styled empty state with engagement prompt instead of bare placeholder
+    document.getElementById('qaContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">💬</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">No Questions Yet</p><p style="font-size:0.85rem;">Have a question about this lesson? Reach out on WhatsApp or send us a message — we will add the most helpful Q&amp;As here.</p><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;background:#25D366;color:#fff;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px;text-decoration:none;">💬 Ask on WhatsApp</a></div>';
     // Notes
     document.getElementById('notesLabel').textContent = '📝 ' + lesson.title;
     var notePrompts = {
@@ -645,6 +688,16 @@
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressPct').textContent = pct + '% complete';
     document.getElementById('lessonCounter').textContent = completedLessons.length + '/' + totalLessons + ' lessons';
+    // Show certificate button in topbar when course is 100% complete
+    var certBtn = document.getElementById('topbarCertBtn');
+    var myCertsBtn = document.getElementById('topbarMyCertsBtn');
+    if (pct === 100) {
+      if (certBtn) certBtn.classList.add('show');
+      if (myCertsBtn) myCertsBtn.style.display = 'flex';
+    } else {
+      if (certBtn) certBtn.classList.remove('show');
+      if (myCertsBtn) myCertsBtn.style.display = 'none';
+    }
   }
 
   // ===== NAV BUTTONS =====
@@ -993,19 +1046,131 @@
     var savedName = localStorage.getItem('tih_student_name') || '';
     var inp = document.getElementById('certNameInput');
     if (inp) inp.value = savedName;
-    document.getElementById('certNameDisplay').textContent = savedName || 'Your Name';
+    document.getElementById('certNameDisplay').textContent = savedName || 'Enter Your Name Below';
+    if (savedName) saveCertificate(savedName);
     document.getElementById('completionModal').classList.add('open');
     launchConfetti();
   }
   function updateCertName(val) {
     var trimmed = val.trim();
-    document.getElementById('certNameDisplay').textContent = trimmed || 'Your Name';
-    if (trimmed) localStorage.setItem('tih_student_name', trimmed);
+    document.getElementById('certNameDisplay').textContent = trimmed || 'Enter Your Name Below';
+    if (trimmed) {
+      localStorage.setItem('tih_student_name', trimmed);
+      saveCertificate(trimmed);
+    }
   }
   function closeCompletionModal() {
     document.getElementById('completionModal').classList.remove('open');
   }
-  function printCertificate() { window.print(); }
+
+  // ===== SAVE CERTIFICATE TO LOCALSTORAGE =====
+  function saveCertificate(studentName) {
+    if (!course) return;
+    var certId = course.certId || ('TIH-2026-' + courseId.toUpperCase().substring(0,4) + '-0001');
+    var date = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+    localStorage.setItem('tih_cert_' + courseId, JSON.stringify({
+      courseId: courseId,
+      courseTitle: course.title,
+      studentName: studentName || '',
+      certId: certId,
+      date: date,
+      completedAt: Date.now(),
+      instructor: course.instructor || 'Samuel Tolbert',
+      category: course.category || ''
+    }));
+  }
+
+  // ===== DOWNLOAD CERTIFICATE (A4 LANDSCAPE IN NEW WINDOW) =====
+  function printCertificate() {
+    var name = (document.getElementById('certNameInput').value.trim()) || (localStorage.getItem('tih_student_name') || 'Graduate');
+    if (!name || name === 'Graduate') {
+      var entered = prompt('Please enter your full name for the certificate:');
+      if (entered && entered.trim()) {
+        name = entered.trim();
+        localStorage.setItem('tih_student_name', name);
+        document.getElementById('certNameInput').value = name;
+        document.getElementById('certNameDisplay').textContent = name;
+      }
+    }
+    var certId = document.getElementById('certId').textContent;
+    var certDate = document.getElementById('certDate').textContent;
+    var sigName = document.getElementById('certSigName').textContent;
+    saveCertificate(name);
+    var html = buildCertHTML(name, course.title, certId, certDate, sigName);
+    var win = window.open('', '_blank', 'width=1200,height=900');
+    if (!win) { alert('Please allow pop-ups for this site to download your certificate.\n\nIn your browser, look for a pop-up blocked icon in the address bar and click "Allow".'); return; }
+    win.document.open();
+    win.document.write(html);
+    win.document.close();
+  }
+
+  function buildCertHTML(name, title, certId, certDate, sigName) {
+    var esc = function(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>' +
+      '<title>Certificate — ' + esc(title) + ' — TIH Academy</title>' +
+      '<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>' +
+      '<style>' +
+      '@page{size:A4 landscape;margin:0}' +
+      '*{box-sizing:border-box;margin:0;padding:0}' +
+      'html,body{width:297mm;height:210mm;background:#fffef7;display:flex;align-items:center;justify-content:center;font-family:Inter,sans-serif}' +
+      '.cert{width:275mm;height:192mm;border:3px solid #c8960c;position:relative;background:linear-gradient(160deg,#fffef7 0%,#fffceb 100%);box-shadow:inset 0 0 0 8px rgba(200,150,12,.07);overflow:hidden;display:flex;flex-direction:column}' +
+      '.corner{position:absolute;width:22mm;height:22mm}' +
+      '.tl{top:5mm;left:5mm;border-top:2px solid #c8960c;border-left:2px solid #c8960c}' +
+      '.tr{top:5mm;right:5mm;border-top:2px solid #c8960c;border-right:2px solid #c8960c}' +
+      '.bl{bottom:5mm;left:5mm;border-bottom:2px solid #c8960c;border-left:2px solid #c8960c}' +
+      '.br{bottom:5mm;right:5mm;border-bottom:2px solid #c8960c;border-right:2px solid #c8960c}' +
+      '.hd{background:linear-gradient(135deg,#001a45,#002868);padding:7mm 18mm 6mm;display:flex;align-items:center;gap:7mm;flex-shrink:0}' +
+      '.hd-icon{font-size:26pt;line-height:1;filter:drop-shadow(0 2px 6px rgba(245,158,11,.5))}' +
+      '.org-name{font-family:Poppins,sans-serif;font-size:20pt;font-weight:800;color:#fff;line-height:1.15}' +
+      '.org-name span{color:#f59e0b}' +
+      '.org-sub{font-size:7pt;letter-spacing:.18em;color:rgba(255,255,255,.7);text-transform:uppercase;margin-top:1.5mm}' +
+      '.body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5mm 18mm 3mm;text-align:center}' +
+      '.divider{display:flex;align-items:center;gap:4mm;margin:3mm 0 2mm;color:#c8960c;font-size:7pt;letter-spacing:.1em;width:100%}' +
+      '.divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#c8960c 40%,#c8960c 60%,transparent)}' +
+      '.certifies{font-size:9pt;color:#6b7280;font-style:italic;margin-bottom:2mm}' +
+      '.student-name{font-family:Georgia,serif;font-size:36pt;color:#002868;font-style:italic;margin:1.5mm 0 1.5mm;line-height:1.2}' +
+      '.completed{font-size:9pt;color:#6b7280;margin-bottom:2.5mm}' +
+      '.course-title{font-size:13pt;font-weight:700;color:#111827;background:linear-gradient(135deg,#e8f0fb,#f0f5ff);padding:2.5mm 10mm;border-radius:3mm;display:inline-block;font-family:Poppins,sans-serif;border:1px solid #dce7ff}' +
+      '.cert-id-row{font-size:7pt;color:#9ca3af;margin-top:3mm}' +
+      '.cert-id-row strong{color:#002868;background:rgba(0,40,104,.08);padding:.8mm 2.5mm;border-radius:2mm;margin-left:1mm;font-size:7.5pt}' +
+      '.footer{display:flex;align-items:flex-end;justify-content:space-between;padding:3mm 18mm 5mm;border-top:1px solid rgba(200,150,12,.3);flex-shrink:0}' +
+      '.sig{text-align:center}' +
+      '.sig-line{width:45mm;border-bottom:1.5px solid #374151;margin-bottom:1.5mm}' +
+      '.sig-name{font-size:8.5pt;font-weight:700;color:#111827;font-family:Poppins,sans-serif}' +
+      '.sig-role{font-size:7pt;color:#6b7280;margin-top:.5mm}' +
+      '.seal{width:22mm;height:22mm;border-radius:50%;background:linear-gradient(135deg,#059669,#10b981);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2.5px solid rgba(255,255,255,.8);box-shadow:0 2px 8px rgba(16,185,129,.4)}' +
+      '.seal-check{font-size:13pt;display:block;line-height:1;margin-bottom:1mm}' +
+      '.seal-text{font-size:5.5pt;font-weight:800;letter-spacing:.05em}' +
+      '.print-btn{position:fixed;top:15px;right:15px;background:#002868;color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:Poppins,sans-serif;box-shadow:0 4px 12px rgba(0,40,104,.3);z-index:9999;transition:all .2s}' +
+      '.print-btn:hover{background:#001a45;transform:translateY(-1px)}' +
+      '.print-note{position:fixed;top:60px;right:15px;background:#fffbeb;border:1px solid #f59e0b;color:#92400e;padding:8px 14px;border-radius:8px;font-size:12px;font-family:Inter,sans-serif;max-width:240px;line-height:1.5;z-index:9999}' +
+      '@media print{.print-btn,.print-note{display:none!important}html,body{width:297mm;height:210mm}}' +
+      '</style></head><body>' +
+      '<button class="print-btn" onclick="window.print()">⬇ Save as PDF / Print</button>' +
+      '<div class="print-note">💡 To save as PDF: click the button, then choose "Save as PDF" as the printer.</div>' +
+      '<div class="cert">' +
+      '<div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>' +
+      '<div class="hd"><span class="hd-icon">🎓</span>' +
+      '<div><div class="org-name">TIH <span>Academy</span></div>' +
+      '<div class="org-sub">Tolbert Innovation Hub &middot; Certificate of Completion</div></div></div>' +
+      '<div class="body">' +
+      '<div class="divider">✶ &nbsp; AWARDED TO &nbsp; ✶</div>' +
+      '<div class="certifies">This is to certify that</div>' +
+      '<div class="student-name">' + esc(name) + '</div>' +
+      '<div class="completed">has successfully completed the following course</div>' +
+      '<div class="course-title">' + esc(title) + '</div>' +
+      '<div class="divider" style="margin-top:3mm"></div>' +
+      '<div class="cert-id-row">Issued: ' + esc(certDate) + ' &nbsp;&middot;&nbsp; Credential ID: <strong>' + esc(certId) + '</strong></div>' +
+      '</div>' +
+      '<div class="footer">' +
+      '<div class="sig"><div class="sig-line"></div><div class="sig-name">' + esc(sigName) + '</div><div class="sig-role">Founder &amp; CEO, TIH Academy</div></div>' +
+      '<div class="seal"><span class="seal-check">✓</span><span class="seal-text">VERIFIED</span></div>' +
+      '<div class="sig"><div class="sig-line"></div><div class="sig-name">TIH Academy</div><div class="sig-role">Authorized Certification Body</div></div>' +
+      '</div></div>' +
+      '<script>window.onload=function(){setTimeout(function(){window.print();},900)};<\/script>' +
+      '</body></html>';
+  }
+
   function shareCompletion() {
     var text = 'I just completed "' + course.title + '" at TIH Academy! Certificate ID: ' + (course.certId || 'TIH-2026');
     if (navigator.share) {
