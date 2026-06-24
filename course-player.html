@@ -105,14 +105,33 @@
     .qa-question::before { content: 'Q:'; color: var(--blue); flex-shrink: 0; }
     .qa-answer { font-size: 0.87rem; color: #374151; line-height: 1.75; display: flex; gap: 0.5rem; }
     .qa-answer::before { content: 'A:'; color: var(--green); font-weight: 700; flex-shrink: 0; }
-    .notes-label { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .notes-textarea { width: 100%; min-height: 140px; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.88rem; font-family: 'Inter', sans-serif; resize: vertical; transition: border-color .2s; line-height: 1.6; }
+    .notes-label { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem; color: var(--blue); }
+    .notes-prompt { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.6rem; font-style: italic; }
+    .notes-textarea { width: 100%; min-height: 160px; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.88rem; font-family: 'Inter', sans-serif; resize: vertical; transition: border-color .2s; line-height: 1.7; }
     .notes-textarea:focus { outline: none; border-color: var(--blue); }
-    .notes-actions { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
-    .btn-save-notes { background: var(--blue); color: #fff; border: none; padding: 0.55rem 1.4rem; border-radius: 8px; font-size: 0.87rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
+    .notes-actions { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.75rem; flex-wrap: wrap; }
+    .btn-save-notes { background: var(--blue); color: #fff; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
     .btn-save-notes:hover { background: var(--blue-dark); }
+    .btn-all-notes { background: #fff; color: var(--blue); border: 1.5px solid var(--blue); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; }
+    .btn-all-notes:hover { background: var(--blue-light); }
+    .btn-export-notes { background: #fff; color: #374151; border: 1.5px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; }
+    .btn-export-notes:hover { border-color: #6b7280; }
     .notes-saved-msg { font-size: 0.82rem; color: var(--green); font-weight: 500; opacity: 0; transition: opacity .3s; }
     .notes-saved-msg.show { opacity: 1; }
+    .note-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); margin-left: 5px; flex-shrink: 0; vertical-align: middle; }
+    /* All Notes Modal */
+    .all-notes-panel { background: #fff; border-radius: 16px; width: min(680px, 95vw); max-height: 85vh; display: flex; flex-direction: column; overflow: hidden; }
+    .all-notes-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .all-notes-title { font-size: 1.05rem; font-weight: 700; color: var(--blue); }
+    .all-notes-header-btns { display: flex; align-items: center; gap: 0.5rem; }
+    .all-notes-content { overflow-y: auto; padding: 1rem 1.25rem; flex: 1; }
+    .note-entry { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 1rem; overflow: hidden; }
+    .note-entry-header { background: var(--bg-alt); padding: 0.6rem 1rem; display: flex; align-items: center; justify-content: space-between; }
+    .note-entry-title { font-size: 0.85rem; font-weight: 600; color: var(--blue); }
+    .note-entry-meta { font-size: 0.75rem; color: var(--text-muted); }
+    .note-entry-body { padding: 0.75rem 1rem; font-size: 0.87rem; line-height: 1.7; color: #374151; white-space: pre-wrap; word-break: break-word; }
+    .all-notes-empty { text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); }
+    .all-notes-empty p { margin-top: 0.5rem; font-size: 0.9rem; }
 
     /* LESSON NAV BAR */
     .lesson-nav-bar { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; border-top: 1px solid var(--border); background: #fff; flex-wrap: wrap; gap: 0.75rem; flex-shrink: 0; }
@@ -290,22 +309,25 @@
         <!-- TABS -->
         <div class="tabs-bar">
           <button class="tab-btn active" onclick="switchTab(this,'overview')">Overview</button>
-          <button class="tab-btn" onclick="switchTab(this,'resources')">Resources</button>
+          <button class="tab-btn" onclick="switchTab(this,'notes')" id="notesTabBtn">📝 Notes</button>
           <button class="tab-btn" onclick="switchTab(this,'qa')">Q&amp;A</button>
-          <button class="tab-btn" onclick="switchTab(this,'notes')">Notes</button>
+          <button class="tab-btn" onclick="switchTab(this,'resources')">Resources</button>
         </div>
 
         <div class="tab-panel active" id="tab-overview"><div class="overview-text" id="overviewContent"></div></div>
-        <div class="tab-panel" id="tab-resources"><div id="resourcesContent"></div></div>
-        <div class="tab-panel" id="tab-qa"><div id="qaContent"></div></div>
         <div class="tab-panel" id="tab-notes">
-          <div class="notes-label" id="notesLabel">Your Notes</div>
-          <textarea class="notes-textarea" id="notesArea" placeholder="Type your notes here… They are saved automatically." oninput="scheduleNoteSave()"></textarea>
+          <div class="notes-label" id="notesLabel">📝 Lesson Notes</div>
+          <div class="notes-prompt" id="notesPrompt"></div>
+          <textarea class="notes-textarea" id="notesArea" placeholder="Type your notes for this lesson — key points, questions, ideas…&#10;&#10;Notes are saved automatically." oninput="scheduleNoteSave()"></textarea>
           <div class="notes-actions">
-            <button class="btn-save-notes" onclick="saveNotes()">Save Notes</button>
+            <button class="btn-save-notes" onclick="saveNotes()">💾 Save</button>
             <span class="notes-saved-msg" id="noteSavedMsg">✓ Saved</span>
+            <button class="btn-all-notes" onclick="openAllNotes()">📓 All Notes</button>
+            <button class="btn-export-notes" onclick="downloadNotes()">⬇ Export</button>
           </div>
         </div>
+        <div class="tab-panel" id="tab-qa"><div id="qaContent"></div></div>
+        <div class="tab-panel" id="tab-resources"><div id="resourcesContent"></div></div>
 
         <!-- LESSON NAV -->
         <div class="lesson-nav-bar">
@@ -316,6 +338,20 @@
         </div>
 
       </div>
+    </div>
+  </div>
+
+  <!-- ALL NOTES MODAL -->
+  <div class="modal-overlay" id="allNotesModal" onclick="if(event.target===this)closeAllNotes()">
+    <div class="all-notes-panel">
+      <div class="all-notes-header">
+        <div class="all-notes-title">📓 All Course Notes</div>
+        <div class="all-notes-header-btns">
+          <button class="btn-export-notes" onclick="downloadNotes()">⬇ Export</button>
+          <button class="btn-close-modal" onclick="closeAllNotes()">✕</button>
+        </div>
+      </div>
+      <div class="all-notes-content" id="allNotesContent"></div>
     </div>
   </div>
 
@@ -473,12 +509,13 @@
         var idx = li;
         var isActive = idx === currentLessonIndex;
         var isCompleted = completedLessons.indexOf(idx) !== -1;
+        var hasNote = !!(localStorage.getItem('tih_notes_' + courseId + '_' + idx) || '').trim();
         var statusIcon = isActive ? '▶' : (isCompleted ? '✓' : '○');
         var cls = 'sidebar-lesson' + (isActive ? ' active' : '') + (isCompleted ? ' completed' : '');
         html += '<div class="' + cls + '" data-lesson-index="' + idx + '" onclick="selectLessonByIndex(' + idx + ')">'
           + '<span class="lesson-status">' + statusIcon + '</span>'
           + '<div class="lesson-info">'
-          + '<div class="lesson-info-title">' + escSide(l.t) + '</div>'
+          + '<div class="lesson-info-title">' + escSide(l.t) + (hasNote ? '<span class="note-dot" title="You have notes"></span>' : '') + '</div>'
           + '<div class="lesson-info-dur">' + escSide(l.d) + '</div>'
           + '</div></div>';
         li++;
@@ -541,9 +578,22 @@
     // Q&A
     document.getElementById('qaContent').innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No Q&amp;A for this lesson yet. Check back after enrollment.</p>';
     // Notes
-    document.getElementById('notesLabel').textContent = 'Your Notes — ' + lesson.title;
+    document.getElementById('notesLabel').textContent = '📝 ' + lesson.title;
+    var notePrompts = {
+      quiz: 'Review your notes from this module before starting the quiz.',
+      project: 'Note down your project approach, steps, and what you built.',
+      lesson: 'Key takeaways, questions, or ideas from this lesson:'
+    };
+    var promptType = lesson.isQuiz ? 'quiz' : (lesson.isProject ? 'project' : 'lesson');
+    document.getElementById('notesPrompt').textContent = notePrompts[promptType];
     var saved = localStorage.getItem('tih_notes_' + courseId + '_' + index);
     document.getElementById('notesArea').value = saved || '';
+    // Update Notes tab badge
+    var notesTabBtn = document.getElementById('notesTabBtn');
+    if (notesTabBtn) {
+      var hasNote = !!(saved || '').trim();
+      notesTabBtn.textContent = hasNote ? '📝 Notes ●' : '📝 Notes';
+    }
     // Mark complete button
     var isDone = completedLessons.indexOf(index) !== -1;
     var btn = document.getElementById('markCompleteBtn');
@@ -701,14 +751,79 @@
 
   // ===== NOTES =====
   function saveNotes() {
-    localStorage.setItem('tih_notes_' + courseId + '_' + currentLessonIndex, document.getElementById('notesArea').value);
+    var val = document.getElementById('notesArea').value;
+    localStorage.setItem('tih_notes_' + courseId + '_' + currentLessonIndex, val);
     var msg = document.getElementById('noteSavedMsg');
     msg.classList.add('show');
     setTimeout(function() { msg.classList.remove('show'); }, 2000);
+    // Refresh sidebar note dot for this lesson
+    var sidebarEl = document.querySelector('[data-lesson-index="' + currentLessonIndex + '"] .lesson-info-title');
+    if (sidebarEl) {
+      var hasNote = !!val.trim();
+      var existingDot = sidebarEl.querySelector('.note-dot');
+      if (hasNote && !existingDot) {
+        var dot = document.createElement('span');
+        dot.className = 'note-dot'; dot.title = 'You have notes';
+        sidebarEl.appendChild(dot);
+      } else if (!hasNote && existingDot) {
+        existingDot.remove();
+      }
+    }
+    // Update notes tab badge
+    var notesTabBtn = document.getElementById('notesTabBtn');
+    if (notesTabBtn) notesTabBtn.textContent = val.trim() ? '📝 Notes ●' : '📝 Notes';
   }
   function scheduleNoteSave() {
     clearTimeout(noteSaveTimer);
     noteSaveTimer = setTimeout(saveNotes, 1200);
+  }
+
+  // ===== ALL NOTES =====
+  function openAllNotes() {
+    var html = '';
+    var count = 0;
+    lessons.forEach(function(lesson, idx) {
+      var note = (localStorage.getItem('tih_notes_' + courseId + '_' + idx) || '').trim();
+      if (!note) return;
+      count++;
+      html += '<div class="note-entry">'
+        + '<div class="note-entry-header">'
+        + '<div class="note-entry-title">' + escSide(lesson.title) + '</div>'
+        + '<div class="note-entry-meta">Lesson ' + (idx + 1) + ' · Module ' + lesson.module + '</div>'
+        + '</div>'
+        + '<div class="note-entry-body">' + escSide(note) + '</div>'
+        + '</div>';
+    });
+    if (count === 0) {
+      html = '<div class="all-notes-empty"><div style="font-size:2.5rem;">📝</div><p>No notes yet.<br>Open any lesson, click the Notes tab, and start writing!</p></div>';
+    }
+    document.getElementById('allNotesContent').innerHTML = html;
+    document.getElementById('allNotesModal').classList.add('open');
+  }
+  function closeAllNotes() {
+    document.getElementById('allNotesModal').classList.remove('open');
+  }
+
+  // ===== DOWNLOAD / EXPORT NOTES =====
+  function downloadNotes() {
+    var lines = ['TIH Academy — ' + course.title + ' — My Notes', '='.repeat(50), ''];
+    var hasAny = false;
+    lessons.forEach(function(lesson, idx) {
+      var note = (localStorage.getItem('tih_notes_' + courseId + '_' + idx) || '').trim();
+      if (!note) return;
+      hasAny = true;
+      lines.push('--- Lesson ' + (idx + 1) + ': ' + lesson.title + ' ---');
+      lines.push(note);
+      lines.push('');
+    });
+    if (!hasAny) { alert('No notes to export yet. Start by writing notes on any lesson.'); return; }
+    var text = lines.join('\n');
+    var blob = new Blob([text], { type: 'text/plain' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'TIH-Notes-' + courseId + '.txt';
+    a.click();
+    URL.revokeObjectURL(a.href);
   }
 
   // ===== QUIZ ENGINE =====
@@ -905,7 +1020,7 @@
   document.getElementById('quizModal').addEventListener('click', function(e) { if (e.target === this) closeQuizModal(); });
   document.getElementById('completionModal').addEventListener('click', function(e) { if (e.target === this) closeCompletionModal(); });
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeQuizModal(); closeCompletionModal(); }
+    if (e.key === 'Escape') { closeQuizModal(); closeCompletionModal(); closeAllNotes(); }
   });
 
   // ===== FORCE UNLOCK (removes any stale locked state from browser cache) =====
