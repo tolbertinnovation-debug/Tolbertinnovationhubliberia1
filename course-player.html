@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="courses-db.js?v=2"></script>
+  <script src="lesson-content.js?v=1"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -92,6 +93,9 @@
     .tab-panel.active { display: block; }
     .overview-text p { font-size: 0.9rem; color: #374151; line-height: 1.8; margin-bottom: 0.9rem; }
     .overview-text p:last-child { margin-bottom: 0; }
+    .overview-text h4 { font-size: 0.92rem; font-weight: 700; color: var(--blue); margin: 1.1rem 0 0.35rem; }
+    .overview-text ul { margin: 0.3rem 0 0.9rem 1.3rem; }
+    .overview-text li { font-size: 0.88rem; color: #374151; line-height: 1.75; margin-bottom: 0.3rem; }
     .resource-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.9rem 1rem; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; transition: all .2s; }
     .resource-item:hover { border-color: var(--blue); background: var(--blue-light); }
     .resource-icon { font-size: 1.5rem; flex-shrink: 0; }
@@ -570,7 +574,12 @@
     } else if (lesson.isProject) {
       overviewHtml = '<p>This is the hands-on project for Module ' + lesson.module + '. Apply what you have learned to complete the project as described in the video. Mark it complete when you are done.</p>';
     } else {
-      overviewHtml = '<p>In this lesson, you will explore <strong>' + escSide(lesson.title) + '</strong>. Follow along with the video for step-by-step instruction covering all key concepts and practical applications relevant to learners in Liberia and across Africa.</p><p>Take notes using the Notes tab, and review the Q&amp;A tab for common questions. When you are ready, click <strong>Mark as Complete</strong> to progress to the next lesson.</p>';
+      var courseContent = (typeof LESSON_CONTENT !== 'undefined' && LESSON_CONTENT[courseId]) ? LESSON_CONTENT[courseId] : {};
+      if (courseContent[String(index)]) {
+        overviewHtml = courseContent[String(index)];
+      } else {
+        overviewHtml = '<p>In this lesson, you will explore <strong>' + escSide(lesson.title) + '</strong>. Follow along with the video for step-by-step instruction covering all key concepts and practical applications relevant to learners in Liberia and across Africa.</p><p>Take notes using the Notes tab, and review the Q&amp;A tab for common questions. When you are ready, click <strong>Mark as Complete</strong> to progress to the next lesson.</p>';
+      }
     }
     document.getElementById('overviewContent').innerHTML = overviewHtml;
     // Resources
