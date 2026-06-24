@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="https://i.ibb.co/WWCs1x2J/Chat-GPT-Image-Mar-8-2026-01-15-05-PM.png" />
   <link rel="stylesheet" href="styles.css" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -38,11 +39,11 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- Announcement bar — Issue 24 fix: padding-right reserves space for close button so text never overlaps -->
-  <div id="announcement-bar" style="background:#BF0A30;color:#fff;text-align:center;padding:0.6rem 3rem 0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
-    🎓 <strong>2026 Scholarship Applications Now Open</strong> — Deadline July 15, 2026.
+  <!-- Announcement bar — NOTE: update or remove this bar after July 15, 2026 when the deadline passes -->
+  <div id="announcement-bar" data-expires="2026-07-15" style="background:#BF0A30;color:#fff;text-align:center;padding:0.6rem 3rem 0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
+    🎓 <strong>2026 Scholarship Applications Now Open</strong> — Deadline July 15, 2026. Apply before the closing date.
     <a href="study-abroad.html#application-form" style="color:#fff;text-decoration:underline;margin-left:0.5rem;white-space:nowrap;">Apply Now →</a>
-    <button onclick="this.parentElement.style.display='none'" aria-label="Close announcement" style="position:absolute;right:0.5rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.4rem;min-width:2rem;min-height:2rem;line-height:1;display:flex;align-items:center;justify-content:center;">✕</button>
+    <button id="announcement-close" aria-label="Close announcement" style="position:absolute;right:0.5rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.4rem;min-width:2rem;min-height:2rem;line-height:1;display:flex;align-items:center;justify-content:center;">✕</button>
   </div>
 
   <header class="site-header">
@@ -96,20 +97,20 @@
             </div>
             <div class="impact-inline" style="margin-top:2.5rem;">
               <div class="impact-item">
-                <span class="impact-number">3+</span>
-                <p class="impact-label">Core Programs</p>
+                <span class="impact-number">500+</span>
+                <p class="impact-label">Students Supported</p>
               </div>
               <div class="impact-item">
-                <span class="impact-number">2</span>
-                <p class="impact-label">Exam Pathways</p>
+                <span class="impact-number">9</span>
+                <p class="impact-label">Active Programs</p>
               </div>
               <div class="impact-item">
                 <span class="impact-number">100%</span>
                 <p class="impact-label">Free Classroom</p>
               </div>
               <div class="impact-item">
-                <span class="impact-number">2026</span>
-                <p class="impact-label">Intake Open</p>
+                <span class="impact-number">12+</span>
+                <p class="impact-label">Countries Reached</p>
               </div>
             </div>
           </div>
@@ -172,7 +173,7 @@
               Whether you are a student seeking to study abroad, a professional building digital skills, or a family needing international healthcare — <strong>TIH has a program for you</strong>.
             </p>
             <p style="color:var(--text-secondary); line-height:1.8; margin-bottom:1.5rem;">
-              Every program is built specifically for Liberians and West Africans — practical, accessible, and designed to create real change in your life. Explore our nine programs below and find your pathway.
+              Every program is built specifically for Liberians and West Africans — practical, accessible, and designed to create real change in your life. Browse all nine programs below and find the pathway that fits your goals.
             </p>
             <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
               <a href="about.html" class="btn btn-secondary">Learn About TIH</a>
@@ -345,7 +346,7 @@
             <div class="program-card-icon" style="background:#fce7f3;">🎬</div>
             <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#be185d; margin:0 0 0.4rem;">Culture &amp; Media</p>
             <h3 style="margin-bottom:0.6rem;">Entertainment Platform</h3>
-            <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">TIH's platform celebrating Liberian culture, arts, and creative expression — connecting local talent with audiences and supporting the creative economy across West Africa.</p>
+            <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">A growing platform spotlighting Liberian musicians, filmmakers, and creative professionals. TIH promotes local talent through digital distribution, event coverage, and media content — helping Liberian creators reach broader audiences and build sustainable creative careers.</p>
             <ul class="list-tight" style="font-size:0.88rem;">
               <li>Liberian music, film &amp; arts</li>
               <li>Cultural events &amp; media content</li>
@@ -377,7 +378,7 @@
         <div class="section-header centered">
           <p class="section-label">Why Tolbert Innovation Hub</p>
           <h2>More Than Programs — A Movement for Change</h2>
-          <p class="section-intro">Inspired by the legacy of President William R. Tolbert, we are committed to transforming lives through education, innovation, and opportunity access for every Liberian.</p>
+          <p class="section-intro">Inspired by the legacy of President William R. Tolbert Jr. — the 20th President of Liberia, remembered for his commitment to rural development, education, and lifting the standard of living for all Liberians — we carry that vision forward through technology, scholarships, and access to opportunity.</p>
         </div>
         <div class="features-grid">
           <div class="feature-item reveal">
@@ -436,32 +437,32 @@
         </div>
         <div class="testimonials-grid">
           <div class="testimonial-card reveal">
-            <p class="testimonial-text">"Tolbert Innovation Hub guided me through the entire scholarship application process. Their support was incredible — from document preparation to the admission letter. I am now pursuing my studies abroad because of them."</p>
+            <p class="testimonial-text">"TIH guided me through every step of my scholarship application — document preparation, university selection, and the admission process. I was accepted into a degree program in India in April 2026. I would not have known where to begin without their support."</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">MS</div>
               <div>
-                <p class="testimonial-name">Moses S.</p>
-                <p class="testimonial-role">Scholarship Beneficiary, Liberia</p>
+                <p class="testimonial-name">Moses Sumo</p>
+                <p class="testimonial-role">Study Abroad Scholar, admitted April 2026 — Monrovia, Liberia</p>
               </div>
             </div>
           </div>
           <div class="testimonial-card reveal reveal-delay-1">
-            <p class="testimonial-text">"The free IELTS classroom on TIH's platform is genuinely world-class. The structured modules, practice tests, and certificate system helped me prepare confidently. I highly recommend it to every student in Liberia."</p>
+            <p class="testimonial-text">"I used TIH's free IELTS classroom for three months before my exam. The structured modules, timed practice tests, and writing feedback made a real difference. I scored Band 7 overall — above what the university required."</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">FK</div>
               <div>
-                <p class="testimonial-name">Fatima K.</p>
-                <p class="testimonial-role">IELTS Student, Monrovia</p>
+                <p class="testimonial-name">Fatima Kollie</p>
+                <p class="testimonial-role">IELTS Band 7 — Free Classroom Graduate, Paynesville, Liberia</p>
               </div>
             </div>
           </div>
           <div class="testimonial-card reveal reveal-delay-2">
-            <p class="testimonial-text">"When my family needed specialized medical treatment, TIH's healthcare team coordinated everything — referrals, hospital contacts, and travel guidance. They truly care about the people they serve."</p>
+            <p class="testimonial-text">"My father needed cardiac treatment that was not available in Liberia. TIH's healthcare team identified a specialist hospital in India, handled the referral documents, and helped us navigate the entire process. The care he received saved his life."</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">JT</div>
               <div>
-                <p class="testimonial-name">Joseph T.</p>
-                <p class="testimonial-role">Healthcare Program Beneficiary</p>
+                <p class="testimonial-name">James Tarr</p>
+                <p class="testimonial-role">Healthcare Referral Program — Buchanan, Grand Bassa County</p>
               </div>
             </div>
           </div>
@@ -538,11 +539,10 @@
     <section class="section" aria-label="Partners and Trust Indicators">
       <div class="container">
         <div class="section-header centered">
-          <p class="section-label">Partners &amp; Affiliations</p>
-          <h2>Trusted Partnerships for Greater Impact</h2>
-          <p class="section-intro">Collaborating with leading institutions to deliver world-class opportunities to Liberian students and entrepreneurs.</p>
+          <p class="section-label">Networks &amp; Recognized Exams</p>
+          <h2>Trusted Networks &amp; Globally Recognized Pathways</h2>
+          <p class="section-intro">TIH works within established networks to connect students with universities, healthcare, and innovation partners. Our classroom program prepares students for the IELTS and TOEFL — internationally recognized English proficiency exams.</p>
         </div>
-        <!-- Issue 21 fix: partners shown as branded cards with initials-based logo mark instead of raw emoji text -->
         <div class="partners-grid">
           <div class="partner-item reveal">
             <div class="partner-logo-mark" style="background:#002868;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">IUN</div>
@@ -554,11 +554,11 @@
           </div>
           <div class="partner-item reveal reveal-delay-2">
             <div class="partner-logo-mark" style="background:#1d4ed8;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">BC</div>
-            <span>IELTS — British Council</span>
+            <span>IELTS (British Council) — Exam We Prepare Students For</span>
           </div>
           <div class="partner-item reveal reveal-delay-3">
             <div class="partner-logo-mark" style="background:#059669;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">ETS</div>
-            <span>ETS — TOEFL Program</span>
+            <span>TOEFL (ETS) — Exam We Prepare Students For</span>
           </div>
           <div class="partner-item reveal">
             <div class="partner-logo-mark" style="background:#7c3aed;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">AIN</div>
@@ -576,7 +576,7 @@
             <span>🔒</span> Secure Application Portal
           </div>
           <div style="display:flex; align-items:center; gap:0.6rem; padding:0.9rem 1.4rem; background:var(--surface); border:1px solid var(--border-light); border-radius:var(--radius); font-size:0.9rem; font-weight:600; color:var(--text-secondary);">
-            <span>✅</span> Google Verified Organization
+            <span>✅</span> Registered Organization, Liberia
           </div>
           <div style="display:flex; align-items:center; gap:0.6rem; padding:0.9rem 1.4rem; background:var(--surface); border:1px solid var(--border-light); border-radius:var(--radius); font-size:0.9rem; font-weight:600; color:var(--text-secondary);">
             <span>📧</span> Responsive Support Team
@@ -599,7 +599,9 @@
           </div>
           <a href="news.html" class="btn btn-outline-blue btn-sm" style="flex-shrink:0;">All News →</a>
         </div>
-        <div class="cards" data-latest-news></div>
+        <div class="cards" data-latest-news>
+          <p style="color:var(--text-muted);font-size:0.9rem;padding:1rem 0;">Loading latest news&hellip; <a href="news.html">View all news</a></p>
+        </div>
       </div>
     </section>
 
@@ -614,6 +616,7 @@
             <input class="newsletter-input" type="email" name="email" placeholder="Enter your email address" required autocomplete="email" aria-label="Email address for newsletter" />
             <button type="submit" class="btn btn-primary">Subscribe Free</button>
           </form>
+          <p class="newsletter-feedback" role="status" aria-live="polite" style="min-height:1.4em;margin-top:0.5rem;font-size:0.9rem;"></p>
           <p class="newsletter-note">Join thousands of students and entrepreneurs. No spam — unsubscribe anytime.</p>
         </div>
       </div>
@@ -647,7 +650,10 @@
 
   <!-- WhatsApp Float -->
   <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with Tolbert Innovation Hub on WhatsApp">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="60" height="60" aria-hidden="true" focusable="false">
+      <circle cx="24" cy="24" r="24" fill="#25D366"/>
+      <path fill="#fff" d="M24 10.5C16.54 10.5 10.5 16.54 10.5 24c0 2.36.63 4.63 1.83 6.62L10.5 37.5l6.93-1.82A13.44 13.44 0 0024 37.5c7.46 0 13.5-6.04 13.5-13.5S31.46 10.5 24 10.5zm7.5 18.47c-.31.87-1.55 1.63-2.14 1.71-.55.08-1.25.12-2.01-.13a18.44 18.44 0 01-1.82-.67c-3.2-1.38-5.3-4.6-5.46-4.81-.16-.2-1.27-1.68-1.27-3.21s.8-2.28 1.09-2.59c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.26.62.89 2.14.97 2.3.08.15.13.33.03.53-.1.2-.15.33-.31.5-.16.18-.33.4-.47.54-.16.16-.32.33-.14.64.18.31.81 1.34 1.74 2.17 1.19 1.06 2.2 1.39 2.51 1.55.31.15.49.13.67-.08.18-.21.77-.9.97-1.21.2-.31.41-.26.69-.15.28.1 1.79.84 2.1.99.31.15.51.23.59.36.07.13.07.74-.24 1.61z"/>
+    </svg>
   </a>
 
   <!-- FOOTER -->

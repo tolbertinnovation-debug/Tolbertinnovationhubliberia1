@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="courses-db.js?v=2"></script>
-  <script src="lesson-content.js?v=1"></script>
+  <script src="lesson-content.js?v=2"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -66,6 +66,9 @@
     .btn-close-sidebar { display: none; background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; padding: 0.2rem; line-height: 1; min-width: 44px; min-height: 44px; border-radius: 6px; transition: color .2s, background .2s; }
     .btn-close-sidebar:hover { color: var(--red); background: #fee2e2; }
     .sidebar-scroll { flex: 1; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+    .sidebar-scroll::-webkit-scrollbar { width: 6px; }
+    .sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+    .sidebar-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
     .sidebar-module {}
     .sidebar-module-header { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 1rem; background: #f0f4ff; cursor: pointer; border-bottom: 1px solid #dce7ff; border-left: 3px solid transparent; user-select: none; transition: all .2s; }
     .sidebar-module-header:hover { background: #e6eeff; border-left-color: var(--blue); }
@@ -94,8 +97,14 @@
     /* MAIN AREA */
     .main-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
     .video-scroll { flex: 1; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
-    .video-container { background: #000; position: relative; width: 100%; aspect-ratio: 16/9; max-height: calc(100vh - var(--topbar-h) - 120px); }
-    .video-container iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .video-scroll::-webkit-scrollbar { width: 6px; }
+    .video-scroll::-webkit-scrollbar-track { background: transparent; }
+    .video-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    .video-container { background: #000; position: relative; width: 100%; padding-top: 56.25%; max-height: calc(100vh - var(--topbar-h) - 120px); }
+    @supports (aspect-ratio: 16/9) {
+      .video-container { aspect-ratio: 16/9; padding-top: 0; }
+    }
+    .video-container iframe { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; border: none; }
     .video-info-bar { padding: 0.85rem 1.5rem 0.7rem; border-bottom: 1px solid var(--border); background: #fff; }
     .video-lesson-title { font-size: 1.08rem; font-weight: 700; margin-bottom: 0.2rem; font-family: 'Poppins', sans-serif; color: #111827; line-height: 1.35; }
     .video-lesson-meta { display: flex; align-items: center; gap: 0.85rem; font-size: 0.8rem; color: var(--text-muted); flex-wrap: wrap; }
@@ -174,7 +183,7 @@
     .btn-next-lesson:disabled, .btn-prev-lesson:disabled { opacity: 0.3; cursor: default; border-color: var(--border); color: var(--text-muted); background: #fff; }
 
     /* QUIZ MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 9000; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.6); z-index: 9000; align-items: center; justify-content: center; padding: 1rem; }
     .modal-overlay.open { display: flex; }
     .quiz-modal { background: #fff; border-radius: 16px; padding: 2rem; max-width: 540px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.3); max-height: 90vh; overflow-y: auto; }
     .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
@@ -260,11 +269,11 @@
     .cert-name-row input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,40,104,.12); }
 
     /* SIDEBAR OVERLAY (mobile) */
-    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 998; }
+    .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.5); z-index: 998; }
     .sidebar-overlay.open { display: block; }
 
     /* CONFETTI */
-    #confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 10001; display: none; }
+    #confettiCanvas { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 10001; display: none; }
 
     /* MOBILE */
     @media(max-width: 768px) {
@@ -383,7 +392,7 @@
           <!-- Issue 16 fix: default label prevents empty button on slow JS load -->
           <button class="btn-prev-lesson" id="btnPrev" onclick="prevLesson()">← Previous</button>
           <div class="lesson-progress-dots" id="progressDots"></div>
-          <button class="btn-mark-complete" id="markCompleteBtn" onclick="markComplete()">✓ Mark as Complete</button>
+          <button class="btn-mark-complete" id="markCompleteBtn">✓ Mark as Complete</button>
           <button class="btn-next-lesson" id="btnNext" onclick="nextLesson()"></button>
         </div>
 
@@ -562,6 +571,7 @@
 
   // ===== BUILD SIDEBAR =====
   function buildSidebar() {
+    if (!course || !lessons) return;
     var html = '';
     var li = 0;
     course.modules.forEach(function(mod, mi) {
@@ -622,6 +632,7 @@
 
   // ===== RENDER LESSON =====
   function renderLesson(index) {
+    if (!course || !lessons || !lessons[index]) return;
     var lesson = lessons[index];
     // Update title/meta
     document.getElementById('lessonTitle').textContent = lesson.title;
@@ -1211,8 +1222,10 @@
   }
 
   // ===== MODAL CLOSE (overlay click & ESC) =====
-  document.getElementById('quizModal').addEventListener('click', function(e) { if (e.target === this) closeQuizModal(); });
-  document.getElementById('completionModal').addEventListener('click', function(e) { if (e.target === this) closeCompletionModal(); });
+  var _quizModal = document.getElementById('quizModal');
+  if (_quizModal) _quizModal.addEventListener('click', function(e) { if (e.target === this) closeQuizModal(); });
+  var _completionModal = document.getElementById('completionModal');
+  if (_completionModal) _completionModal.addEventListener('click', function(e) { if (e.target === this) closeCompletionModal(); });
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') { closeQuizModal(); closeCompletionModal(); closeAllNotes(); }
   });
@@ -1222,7 +1235,13 @@
     document.querySelectorAll('.sidebar-lesson.locked').forEach(function(el) {
       el.classList.remove('locked');
       var st = el.querySelector('.lesson-status');
-      if (st && st.textContent.indexOf('🔒') !== -1) st.textContent = '○';
+      if (st) {
+        var t = st.textContent.trim();
+        // Replace lock indicator regardless of emoji normalization variance
+        if (t === '🔒' || t === '\u{1F512}' || t.indexOf('🔒') !== -1) {
+          st.textContent = '○';
+        }
+      }
     });
     document.querySelectorAll('.sidebar-module-meta').forEach(function(el) {
       el.textContent = el.textContent.replace(/\s*·?\s*🔒\s*Locked/g, '').trim();

@@ -579,7 +579,7 @@
       // HERO RATING
       g('cdStars').textContent = stars(c.rating);
       g('cdRatingNum').textContent = c.rating;
-      g('cdReviewCount').textContent = '(' + c.reviews.toLocaleString() + ' reviews)';
+      g('cdReviewCount').textContent = '(' + (c.reviewCount || c.reviews.length).toLocaleString() + ' reviews)';
       g('cdStudents').textContent = c.students + ' students enrolled';
 
       // INSTRUCTOR ROW

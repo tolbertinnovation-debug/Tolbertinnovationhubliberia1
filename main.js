@@ -262,7 +262,7 @@ function renderLatestUpdates() {
 function injectFooterFeaturedNews() {
   const footer = document.querySelector('.site-footer');
   if (!footer || footer.querySelector('[data-featured-news-footer]')) return;
-  const footerGrid = footer.querySelector('.footer-grid');
+  const footerGrid = footer.querySelector('.footer-grid-main');
   if (footerGrid) {
     const card = document.createElement('div');
     card.setAttribute('data-featured-news-footer', 'true');
@@ -451,4 +451,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initReveal();
   initBackToTop();
+
+  // Announcement bar close button
+  const announcementClose = document.getElementById('announcement-close');
+  if (announcementClose) {
+    announcementClose.addEventListener('click', function() {
+      const bar = document.getElementById('announcement-bar');
+      if (bar) bar.style.display = 'none';
+    });
+  }
 });
