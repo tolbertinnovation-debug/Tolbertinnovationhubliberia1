@@ -37,36 +37,36 @@ COURSES_DB['computer-literacy'] = {
   modules: [
     { title: 'Module 1: Getting Started with Computers', icon: '💻', meta: '5 lessons · 45 min',
       lessons: [
-        {t:'1.1 What is a Computer? Hardware vs Software', d:'8:30'},
-        {t:'1.2 Navigating Windows: Desktop, Files & Folders', d:'12:00'},
-        {t:'1.3 Typing Skills & Keyboard Shortcuts', d:'10:00'},
-        {t:'1.4 Managing Files: Save, Copy, Move & Delete', d:'9:00'},
+        {t:'1.1 What is a Computer? Hardware vs Software', d:'8:30', v:'NARrnGza4kA'},
+        {t:'1.2 Navigating Windows: Desktop, Files & Folders', d:'12:00', v:'qIRRiM6Ibno'},
+        {t:'1.3 Typing Skills & Keyboard Shortcuts', d:'10:00', v:'QTeX0Za2Ur8'},
+        {t:'1.4 Managing Files: Save, Copy, Move & Delete', d:'9:00', v:'k-EID5_2D9U'},
         {t:'📝 Quiz: Computer Basics', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Internet & Digital Communication', icon: '🌐', meta: '5 lessons · 42 min',
       lessons: [
-        {t:'2.1 How the Internet Works & Staying Safe Online', d:'10:00'},
-        {t:'2.2 Effective Google Search & Evaluating Sources', d:'8:00'},
-        {t:'2.3 Setting Up & Using Gmail Professionally', d:'9:30'},
-        {t:'2.4 Google Drive, Docs & Cloud Storage', d:'9:30'},
+        {t:'2.1 How the Internet Works & Staying Safe Online', d:'10:00', v:'bSBLF66cCN0'},
+        {t:'2.2 Effective Google Search & Evaluating Sources', d:'8:00', v:'iLMUrr0C_0c'},
+        {t:'2.3 Setting Up & Using Gmail Professionally', d:'9:30', v:'PEB9jEXh0X4'},
+        {t:'2.4 Google Drive, Docs & Cloud Storage', d:'9:30', v:'NZlemQPeo0Q'},
         {t:'📝 Quiz: Internet & Digital Safety', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Microsoft Office Productivity', icon: '📄', meta: '5 lessons · 55 min',
       lessons: [
-        {t:'3.1 Microsoft Word: Documents, CVs & Letters', d:'12:00'},
-        {t:'3.2 Microsoft Excel: Spreadsheets & Basic Formulas', d:'14:00'},
-        {t:'3.3 Microsoft PowerPoint: Creating Presentations', d:'10:00'},
-        {t:'3.4 Printing, Formatting & Professional Documents', d:'9:00'},
+        {t:'3.1 Microsoft Word: Documents, CVs & Letters', d:'12:00', v:'EuWTrvT_YyY'},
+        {t:'3.2 Microsoft Excel: Spreadsheets & Basic Formulas', d:'14:00', v:'Vl0H-qTclOg'},
+        {t:'3.3 Microsoft PowerPoint: Creating Presentations', d:'10:00', v:'DzPhjLPLLeg'},
+        {t:'3.4 Printing, Formatting & Professional Documents', d:'9:00', v:'CBPe_IFxJWc'},
         {t:'🛠️ Project: Create a Professional CV & Cover Letter', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 4: Digital Safety & Career Readiness', icon: '🏆', meta: '4 lessons · 38 min',
       lessons: [
-        {t:'4.1 Cybersecurity Basics: Passwords, Viruses & Scams', d:'10:00'},
-        {t:'4.2 Online Job Searching & LinkedIn Basics', d:'9:00'},
-        {t:'4.3 Digital Payments & Mobile Money Safety', d:'9:30'},
+        {t:'4.1 Cybersecurity Basics: Passwords, Viruses & Scams', d:'10:00', v:'ey4dXseAODE'},
+        {t:'4.2 Online Job Searching & LinkedIn Basics', d:'9:00', v:'dOZDQpulyCQ'},
+        {t:'4.3 Digital Payments & Mobile Money Safety', d:'9:30', v:'CQFXF6bbeI8'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -145,34 +145,34 @@ COURSES_DB['ai'] = {
   modules: [
     { title: 'Module 1: Understanding AI & Machine Learning', icon: '🤖', meta: '4 lessons · 38 min',
       lessons: [
-        {t:'1.1 What is AI? How Machines Learn from Data', d:'10:00'},
-        {t:'1.2 Types of AI: Narrow, Generative & Agentic AI', d:'9:00'},
-        {t:'1.3 AI Tools Landscape: ChatGPT, Gemini, Claude & More', d:'10:00'},
+        {t:'1.1 What is AI? How Machines Learn from Data', d:'10:00', v:'Yq0QkCxoTHM'},
+        {t:'1.2 Types of AI: Narrow, Generative & Agentic AI', d:'9:00', v:'xvpeMdAs9pE'},
+        {t:'1.3 AI Tools Landscape: ChatGPT, Gemini, Claude & More', d:'10:00', v:'1PaJ28oVOAI'},
         {t:'📝 Quiz: AI Fundamentals', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Working with ChatGPT & Gemini', icon: '💬', meta: '5 lessons · 48 min',
       lessons: [
-        {t:'2.1 Prompt Engineering: The Art of Asking AI the Right Way', d:'12:00'},
-        {t:'2.2 ChatGPT for Writing: Emails, Reports & Proposals', d:'11:00'},
-        {t:'2.3 Gemini for Research, Analysis & Summaries', d:'10:00'},
-        {t:'2.4 Advanced Prompting: Role, Context, Format & Examples', d:'10:00'},
+        {t:'2.1 Prompt Engineering: The Art of Asking AI the Right Way', d:'12:00', v:'mTzZod7cBj4'},
+        {t:'2.2 ChatGPT for Writing: Emails, Reports & Proposals', d:'11:00', v:'89EPPtzZHxE'},
+        {t:'2.3 Gemini for Research, Analysis & Summaries', d:'10:00', v:'YPOsbQzAPiI'},
+        {t:'2.4 Advanced Prompting: Role, Context, Format & Examples', d:'10:00', v:'V2Gmt1fEue4'},
         {t:'📝 Quiz: Prompting & AI Tools', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: AI Creative & Productivity Tools', icon: '🎨', meta: '4 lessons · 42 min',
       lessons: [
-        {t:'3.1 AI Image Generation: DALL-E, Midjourney & Canva AI', d:'11:00'},
-        {t:'3.2 AI for Video, Audio & Content Creation', d:'10:00'},
-        {t:'3.3 Building AI Workflows to Automate Your Work', d:'11:00'},
+        {t:'3.1 AI Image Generation: DALL-E, Midjourney & Canva AI', d:'11:00', v:'qDtif1zxbkY'},
+        {t:'3.2 AI for Video, Audio & Content Creation', d:'10:00', v:'REqOxDfw914'},
+        {t:'3.3 Building AI Workflows to Automate Your Work', d:'11:00', v:'OA4UP4O1hz0'},
         {t:'🛠️ Project: Build an AI-Powered Content Calendar', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 4: AI for Business & Ethics', icon: '🏆', meta: '4 lessons · 36 min',
       lessons: [
-        {t:'4.1 AI for Small Business: Customer Service & Marketing', d:'10:00'},
-        {t:'4.2 AI Ethics: Bias, Privacy & Responsible Use', d:'9:00'},
-        {t:'4.3 The Future of AI: Careers, Opportunities & Risks', d:'8:00'},
+        {t:'4.1 AI for Small Business: Customer Service & Marketing', d:'10:00', v:'sAhIne0U1Os'},
+        {t:'4.2 AI Ethics: Bias, Privacy & Responsible Use', d:'9:00', v:'qpp1G0iEL_c'},
+        {t:'4.3 The Future of AI: Careers, Opportunities & Risks', d:'8:00', v:'fWuzA77Mvzw'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -251,35 +251,35 @@ COURSES_DB['data'] = {
   modules: [
     { title: 'Module 1: Excel Fundamentals', icon: '📊', meta: '5 lessons · 52 min',
       lessons: [
-        {t:'1.1 Excel Interface, Navigation & Essential Shortcuts', d:'10:00'},
-        {t:'1.2 Core Functions: SUM, AVERAGE, COUNT, IF, ROUND', d:'12:00'},
-        {t:'1.3 Sorting, Filtering & Conditional Formatting', d:'11:00'},
-        {t:'1.4 Charts & Basic Visualizations', d:'9:00'},
+        {t:'1.1 Excel Interface, Navigation & Essential Shortcuts', d:'10:00', v:'Nf6S6tUHOXw'},
+        {t:'1.2 Core Functions: SUM, AVERAGE, COUNT, IF, ROUND', d:'12:00', v:'Yov488pacDc'},
+        {t:'1.3 Sorting, Filtering & Conditional Formatting', d:'11:00', v:'kIZkNDKllws'},
+        {t:'1.4 Charts & Basic Visualizations', d:'9:00', v:'sVZiU9QHdB4'},
         {t:'📝 Quiz: Excel Fundamentals', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Advanced Excel & Pivot Tables', icon: '🔢', meta: '5 lessons · 55 min',
       lessons: [
-        {t:'2.1 VLOOKUP, HLOOKUP & the New XLOOKUP', d:'13:00'},
-        {t:'2.2 Pivot Tables: Summarize Thousands of Rows Instantly', d:'14:00'},
-        {t:'2.3 Advanced Formulas: SUMIF, COUNTIF, INDEX-MATCH', d:'12:00'},
-        {t:'2.4 Data Validation & Protecting Spreadsheets', d:'9:00'},
+        {t:'2.1 VLOOKUP, HLOOKUP & the New XLOOKUP', d:'13:00', v:'2s-zPZKERP4'},
+        {t:'2.2 Pivot Tables: Summarize Thousands of Rows Instantly', d:'14:00', v:'dvbLrwD2SpA'},
+        {t:'2.3 Advanced Formulas: SUMIF, COUNTIF, INDEX-MATCH', d:'12:00', v:'nGQfc0V3NXk'},
+        {t:'2.4 Data Validation & Protecting Spreadsheets', d:'9:00', v:'gPHzXAncp5I'},
         {t:'📝 Quiz: Advanced Excel & Data Analysis', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Power BI & Data Visualization', icon: '📈', meta: '4 lessons · 48 min',
       lessons: [
-        {t:'3.1 Introduction to Power BI: Interface & Data Import', d:'12:00'},
-        {t:'3.2 Building Interactive Dashboards in Power BI', d:'14:00'},
-        {t:'3.3 DAX Basics: Writing Measures & Calculated Columns', d:'12:00'},
+        {t:'3.1 Introduction to Power BI: Interface & Data Import', d:'12:00', v:'VaOhNqNtGGE'},
+        {t:'3.2 Building Interactive Dashboards in Power BI', d:'14:00', v:'kp_Mb4E-nig'},
+        {t:'3.3 DAX Basics: Writing Measures & Calculated Columns', d:'12:00', v:'lGhxfC0_g9c'},
         {t:'🛠️ Project: NGO Donor Report Dashboard', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 4: Real-World Data Projects', icon: '🏆', meta: '4 lessons · 44 min',
       lessons: [
-        {t:'4.1 Google Sheets for Team Collaboration & Analysis', d:'10:00'},
-        {t:'4.2 Data Storytelling: Presenting Insights to Decision Makers', d:'11:00'},
-        {t:'4.3 Building Your Data Analysis Portfolio', d:'12:00'},
+        {t:'4.1 Google Sheets for Team Collaboration & Analysis', d:'10:00', v:'cjjAJM1o5E8'},
+        {t:'4.2 Data Storytelling: Presenting Insights to Decision Makers', d:'11:00', v:'H79S8YDuYUU'},
+        {t:'4.3 Building Your Data Analysis Portfolio', d:'12:00', v:'n9LNj8IEyQs'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -361,33 +361,33 @@ COURSES_DB['webdev'] = {
   modules: [
     { title: 'Module 1: HTML5 — Structure of the Web', icon: '🌐', meta: '4 lessons · 40 min',
       lessons: [
-        {t:'1.1 How the Web Works: Browsers, Servers & HTML', d:'9:00'},
-        {t:'1.2 HTML Tags, Semantic Structure & Page Layout', d:'11:00'},
-        {t:'1.3 Forms, Tables, Links, Images & Multimedia', d:'11:30'},
+        {t:'1.1 How the Web Works: Browsers, Servers & HTML', d:'9:00', v:'pfYQz5pnFmo'},
+        {t:'1.2 HTML Tags, Semantic Structure & Page Layout', d:'11:00', v:'kX3TfdUqpuU'},
+        {t:'1.3 Forms, Tables, Links, Images & Multimedia', d:'11:30', v:'AJrkz0pzRV4'},
         {t:'📝 Quiz: HTML5 Fundamentals', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: CSS3 & Responsive Design', icon: '🎨', meta: '4 lessons · 46 min',
       lessons: [
-        {t:'2.1 CSS Selectors, the Box Model & Typography', d:'11:00'},
-        {t:'2.2 Flexbox Layouts: Build Any UI Component', d:'12:00'},
-        {t:'2.3 CSS Grid & Media Queries for Responsive Design', d:'13:00'},
+        {t:'2.1 CSS Selectors, the Box Model & Typography', d:'11:00', v:'YhoK5y0HgPk'},
+        {t:'2.2 Flexbox Layouts: Build Any UI Component', d:'12:00', v:'fYq5PXgSsbE'},
+        {t:'2.3 CSS Grid & Media Queries for Responsive Design', d:'13:00', v:'dT3aujtzBe4'},
         {t:'📝 Quiz: CSS3 & Layouts', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: JavaScript Interactivity', icon: '⚡', meta: '4 lessons · 44 min',
       lessons: [
-        {t:'3.1 JavaScript Variables, Functions & Logic', d:'11:00'},
-        {t:'3.2 DOM Manipulation: Change Pages Dynamically', d:'11:30'},
-        {t:'3.3 Events, Forms & Input Validation', d:'11:30'},
+        {t:'3.1 JavaScript Variables, Functions & Logic', d:'11:00', v:'dJvPTRXyc6s'},
+        {t:'3.2 DOM Manipulation: Change Pages Dynamically', d:'11:30', v:'5fb2aPlgoys'},
+        {t:'3.3 Events, Forms & Input Validation', d:'11:30', v:'RjtarcWFc6A'},
         {t:'🛠️ Project: Build an Interactive Business Landing Page', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 4: Professional Workflows & Deployment', icon: '🏆', meta: '4 lessons · 38 min',
       lessons: [
-        {t:'4.1 Git & GitHub: Version Control for Developers', d:'10:00'},
-        {t:'4.2 Browser DevTools: Debugging & Inspecting Code', d:'9:30'},
-        {t:'4.3 Deploy Live with GitHub Pages & Custom Domains', d:'9:00'},
+        {t:'4.1 Git & GitHub: Version Control for Developers', d:'10:00', v:'PWqS4NBhEY8'},
+        {t:'4.2 Browser DevTools: Debugging & Inspecting Code', d:'9:30', v:'H0XScE08hy8'},
+        {t:'4.3 Deploy Live with GitHub Pages & Custom Domains', d:'9:00', v:'e5AwNU3Y2es'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -469,33 +469,33 @@ COURSES_DB['design'] = {
   modules: [
     { title: 'Module 1: Design Principles & Foundations', icon: '🎨', meta: '4 lessons · 36 min',
       lessons: [
-        {t:'1.1 Design Principles: Balance, Contrast & Hierarchy', d:'9:30'},
-        {t:'1.2 Color Theory: Psychology & Palette Creation', d:'10:00'},
-        {t:'1.3 Typography: Fonts, Pairing & Text Design', d:'9:00'},
+        {t:'1.1 Design Principles: Balance, Contrast & Hierarchy', d:'9:30', v:'FpwZTl3dCZE'},
+        {t:'1.2 Color Theory: Psychology & Palette Creation', d:'10:00', v:'BMDDGuUBO94'},
+        {t:'1.3 Typography: Fonts, Pairing & Text Design', d:'9:00', v:'HFVTZ7J0W1E'},
         {t:'📝 Quiz: Design Principles', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Canva — Professional Design Made Easy', icon: '✏️', meta: '4 lessons · 44 min',
       lessons: [
-        {t:'2.1 Canva Interface, Templates & Brand Kit Setup', d:'10:00'},
-        {t:'2.2 Logos, Flyers & Print Materials in Canva', d:'12:00'},
-        {t:'2.3 Social Media Graphics & Animated Posts', d:'11:00'},
+        {t:'2.1 Canva Interface, Templates & Brand Kit Setup', d:'10:00', v:'_ApwkN8BVsc'},
+        {t:'2.2 Logos, Flyers & Print Materials in Canva', d:'12:00', v:'ZB_LneYCkPU'},
+        {t:'2.3 Social Media Graphics & Animated Posts', d:'11:00', v:'DSbGwruIcfc'},
         {t:'📝 Quiz: Canva Design', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Adobe Photoshop Essentials', icon: '🖼️', meta: '4 lessons · 46 min',
       lessons: [
-        {t:'3.1 Photoshop Interface & Essential Tools', d:'11:00'},
-        {t:'3.2 Photo Retouching, Color Correction & Filters', d:'12:00'},
-        {t:'3.3 Creating Composites & Advanced Selections', d:'12:00'},
+        {t:'3.1 Photoshop Interface & Essential Tools', d:'11:00', v:'OKkWRpoIFuw'},
+        {t:'3.2 Photo Retouching, Color Correction & Filters', d:'12:00', v:'0jzrqhsXwLo'},
+        {t:'3.3 Creating Composites & Advanced Selections', d:'12:00', v:'2R5fH8iKAXc'},
         {t:'🛠️ Project: Full Brand Identity Package', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 4: Professional Design & Portfolio', icon: '🏆', meta: '4 lessons · 36 min',
       lessons: [
-        {t:'4.1 Designing for Print: Resolution, Bleed & CMYK', d:'9:30'},
-        {t:'4.2 Designing for Digital: Web, Email & Social Media', d:'9:00'},
-        {t:'4.3 Building & Presenting Your Design Portfolio', d:'9:00'},
+        {t:'4.1 Designing for Print: Resolution, Bleed & CMYK', d:'9:30', v:'A4VePn0CAl4'},
+        {t:'4.2 Designing for Digital: Web, Email & Social Media', d:'9:00', v:'9CnrknQsg5E'},
+        {t:'4.3 Building & Presenting Your Design Portfolio', d:'9:00', v:'qelg3fYlxAE'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -577,33 +577,33 @@ COURSES_DB['android'] = {
   modules: [
     { title: 'Module 1: Android & Kotlin Foundations', icon: '📱', meta: '4 lessons · 44 min',
       lessons: [
-        {t:'1.1 Android Ecosystem & Setting Up Android Studio', d:'11:00'},
-        {t:'1.2 Kotlin Basics: Variables, Types, Functions & Logic', d:'12:00'},
-        {t:'1.3 Your First App: Hello Liberia! UI & Activities', d:'12:00'},
+        {t:'1.1 Android Ecosystem & Setting Up Android Studio', d:'11:00', v:'2lwmKjkz-DE'},
+        {t:'1.2 Kotlin Basics: Variables, Types, Functions & Logic', d:'12:00', v:'wCwCsJSCy8Y'},
+        {t:'1.3 Your First App: Hello Liberia! UI & Activities', d:'12:00', v:'2LWSxWsPUCY'},
         {t:'📝 Quiz: Android & Kotlin Foundations', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Building Android UIs', icon: '🖼️', meta: '4 lessons · 46 min',
       lessons: [
-        {t:'2.1 XML Layouts: Views, Buttons, TextViews & EditTexts', d:'12:00'},
-        {t:'2.2 Navigation: Multiple Screens & Intent Passing Data', d:'11:30'},
-        {t:'2.3 RecyclerView: Lists, Grids & Custom Adapters', d:'13:00'},
+        {t:'2.1 XML Layouts: Views, Buttons, TextViews & EditTexts', d:'12:00', v:'ISbyj5nFIUk'},
+        {t:'2.2 Navigation: Multiple Screens & Intent Passing Data', d:'11:30', v:'TwVzuHhQfbk'},
+        {t:'2.3 RecyclerView: Lists, Grids & Custom Adapters', d:'13:00', v:'Oc4MDMHRzwY'},
         {t:'📝 Quiz: Android UI Development', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Data, APIs & Functionality', icon: '🔌', meta: '4 lessons · 48 min',
       lessons: [
-        {t:'3.1 Local Data Storage with SharedPreferences & SQLite', d:'12:00'},
-        {t:'3.2 Connecting to the Internet: APIs, Retrofit & JSON', d:'13:00'},
-        {t:'3.3 Permissions, Notifications & Background Tasks', d:'12:00'},
+        {t:'3.1 Local Data Storage with SharedPreferences & SQLite', d:'12:00', v:'l9ui4Lfgr-E'},
+        {t:'3.2 Connecting to the Internet: APIs, Retrofit & JSON', d:'13:00', v:'gaPoV4z5wng'},
+        {t:'3.3 Permissions, Notifications & Background Tasks', d:'12:00', v:'bHlLYhSrXvc'},
         {t:'🛠️ Project: Build a News Reader App', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 4: Publishing & Professional Android', icon: '🏆', meta: '4 lessons · 42 min',
       lessons: [
-        {t:'4.1 Testing, Debugging & Performance Optimization', d:'11:00'},
-        {t:'4.2 Material Design: Beautiful, Professional Android UI', d:'10:30'},
-        {t:'4.3 Publishing Your App to Google Play Store', d:'11:00'},
+        {t:'4.1 Testing, Debugging & Performance Optimization', d:'11:00', v:'_5LgIrd4O5g'},
+        {t:'4.2 Material Design: Beautiful, Professional Android UI', d:'10:30', v:'BEvOBTaYUm0'},
+        {t:'4.3 Publishing Your App to Google Play Store', d:'11:00', v:'WOKrelHPefc'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -685,33 +685,33 @@ COURSES_DB['marketing'] = {
   modules: [
     { title: 'Module 1: Digital Marketing Strategy & Content', icon: '📢', meta: '4 lessons · 40 min',
       lessons: [
-        {t:'1.1 Digital Marketing Fundamentals & the Customer Journey', d:'10:00'},
-        {t:'1.2 Content Marketing: Creating Content That Converts', d:'11:00'},
-        {t:'1.3 Social Media Strategy: Platform Selection & Brand Voice', d:'10:30'},
+        {t:'1.1 Digital Marketing Fundamentals & the Customer Journey', d:'10:00', v:'iRjXccj4yRo'},
+        {t:'1.2 Content Marketing: Creating Content That Converts', d:'11:00', v:'gqRdIEIlzNs'},
+        {t:'1.3 Social Media Strategy: Platform Selection & Brand Voice', d:'10:30', v:'8LX60gToxrM'},
         {t:'📝 Quiz: Digital Marketing Strategy', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: SEO & Organic Growth', icon: '🔍', meta: '4 lessons · 42 min',
       lessons: [
-        {t:'2.1 SEO Foundations: How Google Ranks Websites', d:'10:30'},
-        {t:'2.2 Keyword Research & On-Page SEO', d:'11:30'},
-        {t:'2.3 Link Building & Technical SEO Essentials', d:'10:30'},
+        {t:'2.1 SEO Foundations: How Google Ranks Websites', d:'10:30', v:'WR_5_gJVA2c'},
+        {t:'2.2 Keyword Research & On-Page SEO', d:'11:30', v:'VPDe8XL7Mh8'},
+        {t:'2.3 Link Building & Technical SEO Essentials', d:'10:30', v:'C5ddo63kHHI'},
         {t:'📝 Quiz: SEO & Organic Marketing', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Paid Advertising & Email Marketing', icon: '💰', meta: '4 lessons · 46 min',
       lessons: [
-        {t:'3.1 Facebook & Instagram Ads: Audience Targeting & Campaigns', d:'13:00'},
-        {t:'3.2 Google Ads: Search, Display & Performance Max', d:'12:00'},
-        {t:'3.3 Email Marketing: List Building, Automation & Sequences', d:'11:30'},
+        {t:'3.1 Facebook & Instagram Ads: Audience Targeting & Campaigns', d:'13:00', v:'-CsBl3tv-X0'},
+        {t:'3.2 Google Ads: Search, Display & Performance Max', d:'12:00', v:'u0r3y1q0fLQ'},
+        {t:'3.3 Email Marketing: List Building, Automation & Sequences', d:'11:30', v:'2fBxrhV3Nk0'},
         {t:'🛠️ Project: Full Digital Marketing Campaign', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 4: Analytics, Optimization & Career', icon: '🏆', meta: '4 lessons · 38 min',
       lessons: [
-        {t:'4.1 Google Analytics 4: Measuring What Matters', d:'11:00'},
-        {t:'4.2 A/B Testing & Conversion Rate Optimization', d:'9:30'},
-        {t:'4.3 Digital Marketing Career & Freelancing in Africa', d:'9:00'},
+        {t:'4.1 Google Analytics 4: Measuring What Matters', d:'11:00', v:'mKu6FI53BxE'},
+        {t:'4.2 A/B Testing & Conversion Rate Optimization', d:'9:30', v:'xGpwhYiDCSg'},
+        {t:'4.3 Digital Marketing Career & Freelancing in Africa', d:'9:00', v:'1pejHrRIzAY'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -793,33 +793,33 @@ COURSES_DB['cybersecurity'] = {
   modules: [
     { title: 'Module 1: Cybersecurity Fundamentals', icon: '🔒', meta: '4 lessons · 42 min',
       lessons: [
-        {t:'1.1 Cybersecurity Landscape: Threats, Actors & Attack Vectors', d:'11:00'},
-        {t:'1.2 Networking Fundamentals for Security: TCP/IP, DNS & Ports', d:'12:00'},
-        {t:'1.3 Cryptography, Passwords & Authentication Security', d:'11:00'},
+        {t:'1.1 Cybersecurity Landscape: Threats, Actors & Attack Vectors', d:'11:00', v:'4lwiQ5hXwCo'},
+        {t:'1.2 Networking Fundamentals for Security: TCP/IP, DNS & Ports', d:'12:00', v:'ltBWJIhcjpA'},
+        {t:'1.3 Cryptography, Passwords & Authentication Security', d:'11:00', v:'kb_scuDUHls'},
         {t:'📝 Quiz: Cybersecurity Fundamentals', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Network & System Security', icon: '🛡️', meta: '4 lessons · 46 min',
       lessons: [
-        {t:'2.1 Setting Up Kali Linux & Security Lab Environment', d:'12:00'},
-        {t:'2.2 Network Scanning & Reconnaissance with Nmap', d:'12:00'},
-        {t:'2.3 Firewalls, IDS/IPS & Network Defense Strategies', d:'12:30'},
+        {t:'2.1 Setting Up Kali Linux & Security Lab Environment', d:'12:00', v:'wX75Z-4MEoM'},
+        {t:'2.2 Network Scanning & Reconnaissance with Nmap', d:'12:00', v:'HPDgPg4aWqs'},
+        {t:'2.3 Firewalls, IDS/IPS & Network Defense Strategies', d:'12:30', v:'AwEZP2KQPJ8'},
         {t:'📝 Quiz: Network Security', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Ethical Hacking & Penetration Testing', icon: '⚔️', meta: '4 lessons · 48 min',
       lessons: [
-        {t:'3.1 Ethical Hacking Methodology & Legal Framework', d:'11:00'},
-        {t:'3.2 Vulnerability Assessment & Exploitation Basics', d:'13:00'},
-        {t:'3.3 Web Application Security: OWASP Top 10', d:'13:00'},
+        {t:'3.1 Ethical Hacking Methodology & Legal Framework', d:'11:00', v:'9DrnMjs5UVA'},
+        {t:'3.2 Vulnerability Assessment & Exploitation Basics', d:'13:00', v:'x43N_p0QGXU'},
+        {t:'3.3 Web Application Security: OWASP Top 10', d:'13:00', v:'Jzr0Jdnq_EI'},
         {t:'🛠️ Project: Penetration Test Report on a Lab Environment', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 4: Incident Response & Career', icon: '🏆', meta: '4 lessons · 40 min',
       lessons: [
-        {t:'4.1 Security Incident Response & Digital Forensics Basics', d:'11:00'},
-        {t:'4.2 Security Compliance: GDPR, ISO 27001 & African Data Laws', d:'10:00'},
-        {t:'4.3 Cybersecurity Certifications & Career Pathways (CEH, Security+)', d:'9:30'},
+        {t:'4.1 Security Incident Response & Digital Forensics Basics', d:'11:00', v:'Is2RcF0FJL4'},
+        {t:'4.2 Security Compliance: GDPR, ISO 27001 & African Data Laws', d:'10:00', v:'V7qVZD1z9pA'},
+        {t:'4.3 Cybersecurity Certifications & Career Pathways (CEH, Security+)', d:'9:30', v:'pOfCmL1YRIQ'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -901,33 +901,33 @@ COURSES_DB['entrepreneurship'] = {
   modules: [
     { title: 'Module 1: Idea to Business Opportunity', icon: '💡', meta: '4 lessons · 38 min',
       lessons: [
-        {t:'1.1 Entrepreneurial Mindset & Opportunity Recognition', d:'9:00'},
-        {t:'1.2 Idea Validation: Testing Before You Invest', d:'10:30'},
-        {t:'1.3 Market Research & the African Consumer', d:'10:00'},
+        {t:'1.1 Entrepreneurial Mindset & Opportunity Recognition', d:'9:00', v:'4hshq-o0vSI'},
+        {t:'1.2 Idea Validation: Testing Before You Invest', d:'10:30', v:'Th8JoIan4dg'},
+        {t:'1.3 Market Research & the African Consumer', d:'10:00', v:'KCEWgq8S9gM'},
         {t:'📝 Quiz: Entrepreneurship Foundations', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Business Planning & Legal Setup', icon: '📋', meta: '4 lessons · 42 min',
       lessons: [
-        {t:'2.1 Business Model Canvas & Value Proposition', d:'11:00'},
-        {t:'2.2 Writing a Compelling Business Plan', d:'12:00'},
-        {t:'2.3 Legal Structures & Business Registration in Liberia', d:'11:00'},
+        {t:'2.1 Business Model Canvas & Value Proposition', d:'11:00', v:'ReM1uqmVfP0'},
+        {t:'2.2 Writing a Compelling Business Plan', d:'12:00', v:'XK9XYa5-MCw'},
+        {t:'2.3 Legal Structures & Business Registration in Liberia', d:'11:00', v:'fj6zbwAXpzE'},
         {t:'📝 Quiz: Business Planning & Models', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Funding & Financial Management', icon: '💰', meta: '4 lessons · 44 min',
       lessons: [
-        {t:'3.1 Startup Funding Options: Grants, Loans, Angels & VC', d:'11:30'},
-        {t:'3.2 Financial Projections, Cash Flow & Break-Even Analysis', d:'12:00'},
-        {t:'3.3 Grant Writing & Investor Pitch Preparation', d:'11:30'},
+        {t:'3.1 Startup Funding Options: Grants, Loans, Angels & VC', d:'11:30', v:'Cw58F0k8BDg'},
+        {t:'3.2 Financial Projections, Cash Flow & Break-Even Analysis', d:'12:00', v:'7Ljc6NoNg6M'},
+        {t:'3.3 Grant Writing & Investor Pitch Preparation', d:'11:30', v:'Tk-RdCFSrKU'},
         {t:'🛠️ Project: Complete Business Plan & Pitch Deck', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 4: Launch, Growth & Scale', icon: '🏆', meta: '4 lessons · 38 min',
       lessons: [
-        {t:'4.1 Go-to-Market Strategy & First Customers', d:'10:00'},
-        {t:'4.2 Growth Hacking & Scaling Strategies for African Markets', d:'10:00'},
-        {t:'4.3 Building a Team & Leadership for Entrepreneurs', d:'9:00'},
+        {t:'4.1 Go-to-Market Strategy & First Customers', d:'10:00', v:'UWqzT95Lkno'},
+        {t:'4.2 Growth Hacking & Scaling Strategies for African Markets', d:'10:00', v:'8_6uU6KgexE'},
+        {t:'4.3 Building a Team & Leadership for Entrepreneurs', d:'9:00', v:'HL80lXafRL0'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -1009,33 +1009,33 @@ COURSES_DB['project-mgmt'] = {
   modules: [
     { title: 'Module 1: PM Fundamentals & Project Initiation', icon: '📋', meta: '4 lessons · 40 min',
       lessons: [
-        {t:'1.1 What is Project Management? Processes & Knowledge Areas', d:'10:30'},
-        {t:'1.2 Project Charter & Stakeholder Identification', d:'10:30'},
-        {t:'1.3 Scope Management: WBS & Requirements', d:'11:00'},
+        {t:'1.1 What is Project Management? Processes & Knowledge Areas', d:'10:30', v:'iopMMoHstJM'},
+        {t:'1.2 Project Charter & Stakeholder Identification', d:'10:30', v:'SPj-Luod9tI'},
+        {t:'1.3 Scope Management: WBS & Requirements', d:'11:00', v:'PyR2VLP3xnA'},
         {t:'📝 Quiz: PM Fundamentals & Initiation', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Planning — Schedule, Budget & Risk', icon: '📅', meta: '4 lessons · 46 min',
       lessons: [
-        {t:'2.1 Project Scheduling: Gantt Charts & Critical Path Method', d:'12:00'},
-        {t:'2.2 Budget Estimation & Cost Management', d:'11:30'},
-        {t:'2.3 Risk Management: Identification, Assessment & Response', d:'12:00'},
+        {t:'2.1 Project Scheduling: Gantt Charts & Critical Path Method', d:'12:00', v:'YDxAKKVdMVM'},
+        {t:'2.2 Budget Estimation & Cost Management', d:'11:30', v:'EyPFi0YO32M'},
+        {t:'2.3 Risk Management: Identification, Assessment & Response', d:'12:00', v:'r1szmmkUPH8'},
         {t:'📝 Quiz: Project Planning', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Execution, Monitoring & Agile', icon: '⚡', meta: '4 lessons · 44 min',
       lessons: [
-        {t:'3.1 Project Execution: Leading Teams & Managing Quality', d:'11:00'},
-        {t:'3.2 Monitoring & Controlling: EVM, KPIs & Status Reporting', d:'12:00'},
-        {t:'3.3 Agile & Scrum: Sprints, Backlogs & Stand-ups', d:'12:00'},
+        {t:'3.1 Project Execution: Leading Teams & Managing Quality', d:'11:00', v:'1rQT1R3S2BQ'},
+        {t:'3.2 Monitoring & Controlling: EVM, KPIs & Status Reporting', d:'12:00', v:'boIRGwGJ-Ds'},
+        {t:'3.3 Agile & Scrum: Sprints, Backlogs & Stand-ups', d:'12:00', v:'KmEMtUzMlIk'},
         {t:'🛠️ Project: Full Project Plan for a Real Initiative', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 4: Closure, Communication & PMP Prep', icon: '🏆', meta: '4 lessons · 38 min',
       lessons: [
-        {t:'4.1 Project Closure & Lessons Learned', d:'9:30'},
-        {t:'4.2 Stakeholder Communication & Change Management', d:'10:00'},
-        {t:'4.3 PMP Exam Preparation & Professional Development', d:'10:00'},
+        {t:'4.1 Project Closure & Lessons Learned', d:'9:30', v:'gSOdc2Y5tTk'},
+        {t:'4.2 Stakeholder Communication & Change Management', d:'10:00', v:'bV9yUQV6D60'},
+        {t:'4.3 PMP Exam Preparation & Professional Development', d:'10:00', v:'vzqDTSZOTic'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -1117,33 +1117,33 @@ COURSES_DB['office'] = {
   modules: [
     { title: 'Module 1: Microsoft Word — Professional Documents', icon: '📄', meta: '4 lessons · 42 min',
       lessons: [
-        {t:'1.1 Word Interface, Formatting & Document Structure', d:'10:30'},
-        {t:'1.2 Professional CVs, Letters & Reports with Styles', d:'12:00'},
-        {t:'1.3 Tables, Images, Mail Merge & Advanced Features', d:'12:00'},
+        {t:'1.1 Word Interface, Formatting & Document Structure', d:'10:30', v:'EuWTrvT_YyY'},
+        {t:'1.2 Professional CVs, Letters & Reports with Styles', d:'12:00', v:'3eIlHtHDGDs'},
+        {t:'1.3 Tables, Images, Mail Merge & Advanced Features', d:'12:00', v:'rGG-In7PAEk'},
         {t:'📝 Quiz: Microsoft Word', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Microsoft Excel — Data & Analysis', icon: '📊', meta: '4 lessons · 46 min',
       lessons: [
-        {t:'2.1 Excel Essentials: Formulas, Functions & Formatting', d:'12:00'},
-        {t:'2.2 VLOOKUP, IF Statements & Essential Data Functions', d:'12:30'},
-        {t:'2.3 Pivot Tables, Charts & Dashboard Creation', d:'13:00'},
+        {t:'2.1 Excel Essentials: Formulas, Functions & Formatting', d:'12:00', v:'7_vMFvnGTlc'},
+        {t:'2.2 VLOOKUP, IF Statements & Essential Data Functions', d:'12:30', v:'bsuP2dD3rec'},
+        {t:'2.3 Pivot Tables, Charts & Dashboard Creation', d:'13:00', v:'9NUjHBNWe9M'},
         {t:'📝 Quiz: Microsoft Excel', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Microsoft PowerPoint — Presentations', icon: '📊', meta: '4 lessons · 40 min',
       lessons: [
-        {t:'3.1 PowerPoint Fundamentals: Layouts, Themes & Master Slides', d:'10:00'},
-        {t:'3.2 Advanced Animations, Transitions & Multimedia', d:'11:00'},
-        {t:'3.3 Data Visualization & Charts in PowerPoint', d:'10:00'},
+        {t:'3.1 PowerPoint Fundamentals: Layouts, Themes & Master Slides', d:'10:00', v:'QiVSIvB1xis'},
+        {t:'3.2 Advanced Animations, Transitions & Multimedia', d:'11:00', v:'cwPaqUC1jT4'},
+        {t:'3.3 Data Visualization & Charts in PowerPoint', d:'10:00', v:'ycyySK5bdRg'},
         {t:'🛠️ Project: Professional Business Presentation', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 4: Microsoft 365 & Productivity Mastery', icon: '🏆', meta: '4 lessons · 36 min',
       lessons: [
-        {t:'4.1 Microsoft 365: OneDrive, Teams & SharePoint Collaboration', d:'10:00'},
-        {t:'4.2 Keyboard Shortcuts & Productivity Optimization', d:'9:00'},
-        {t:'4.3 Microsoft Outlook: Professional Email & Calendar Management', d:'9:00'},
+        {t:'4.1 Microsoft 365: OneDrive, Teams & SharePoint Collaboration', d:'10:00', v:'nbhZE_mza2g'},
+        {t:'4.2 Keyboard Shortcuts & Productivity Optimization', d:'9:00', v:'u0--Ye7bUP4'},
+        {t:'4.3 Microsoft Outlook: Professional Email & Calendar Management', d:'9:00', v:'TzNQkMTHKuM'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -1225,33 +1225,33 @@ COURSES_DB['leadership'] = {
   modules: [
     { title: 'Module 1: Leadership Foundations & Self-Awareness', icon: '🎯', meta: '4 lessons · 38 min',
       lessons: [
-        {t:'1.1 What is Leadership? Styles, Theories & the African Context', d:'9:30'},
-        {t:'1.2 Self-Assessment: Your Leadership Strengths & Gaps', d:'10:00'},
-        {t:'1.3 Emotional Intelligence: The Foundation of Effective Leadership', d:'10:00'},
+        {t:'1.1 What is Leadership? Styles, Theories & the African Context', d:'9:30', v:'tYW6X5qwnMw'},
+        {t:'1.2 Self-Assessment: Your Leadership Strengths & Gaps', d:'10:00', v:'Q-JClqIR5a4'},
+        {t:'1.3 Emotional Intelligence: The Foundation of Effective Leadership', d:'10:00', v:'kKbTi9_1lTg'},
         {t:'📝 Quiz: Leadership Foundations', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Team Leadership & People Management', icon: '👥', meta: '4 lessons · 42 min',
       lessons: [
-        {t:'2.1 Building High-Performing Teams: Selection, Trust & Culture', d:'11:00'},
-        {t:'2.2 Motivation, Delegation & Accountability', d:'11:30'},
-        {t:'2.3 Managing Conflict & Building Consensus', d:'11:00'},
+        {t:'2.1 Building High-Performing Teams: Selection, Trust & Culture', d:'11:00', v:'L4UTybPoyn4'},
+        {t:'2.2 Motivation, Delegation & Accountability', d:'11:30', v:'SI6cOkDOoyE'},
+        {t:'2.3 Managing Conflict & Building Consensus', d:'11:00', v:'o0w1941xkjY'},
         {t:'📝 Quiz: Team Leadership', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Strategic Leadership & Communication', icon: '📡', meta: '4 lessons · 44 min',
       lessons: [
-        {t:'3.1 Strategic Thinking & Decision-Making Frameworks', d:'11:30'},
-        {t:'3.2 Executive Communication & Stakeholder Influence', d:'11:30'},
-        {t:'3.3 Leading Change & Organizational Transformation', d:'12:00'},
+        {t:'3.1 Strategic Thinking & Decision-Making Frameworks', d:'11:30', v:'LerIITWNgvI'},
+        {t:'3.2 Executive Communication & Stakeholder Influence', d:'11:30', v:'0X1FiNxlHh0'},
+        {t:'3.3 Leading Change & Organizational Transformation', d:'12:00', v:'AAZgoKAqGE0'},
         {t:'🛠️ Project: Personal Leadership Development Plan', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 4: Advanced Leadership & Legacy', icon: '🏆', meta: '4 lessons · 36 min',
       lessons: [
-        {t:'4.1 Ethical Leadership & Corporate Governance', d:'9:30'},
-        {t:'4.2 Leading Across Cultures & Generations', d:'9:00'},
-        {t:'4.3 Building Leadership Legacy & Developing Future Leaders', d:'9:00'},
+        {t:'4.1 Ethical Leadership & Corporate Governance', d:'9:30', v:'XjiRF_6cvcA'},
+        {t:'4.2 Leading Across Cultures & Generations', d:'9:00', v:'cyGuic7_ivo'},
+        {t:'4.3 Building Leadership Legacy & Developing Future Leaders', d:'9:00', v:'f8uw94S-yc4'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
