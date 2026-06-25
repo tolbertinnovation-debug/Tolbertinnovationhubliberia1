@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow admin/system paths
+Disallow: /.claude/
+Disallow: /google*/
+
+# Sitemap location
+Sitemap: https://www.tolbertinnovationhub.org/sitemap.xml

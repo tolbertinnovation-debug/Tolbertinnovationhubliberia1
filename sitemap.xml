@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- CORE PAGES -->
+  <url><loc>https://www.tolbertinnovationhub.org/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/contact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/apply.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/faq.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- EDUCATION PROGRAMS -->
+  <url><loc>https://www.tolbertinnovationhub.org/academy.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/classroom.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/wassce.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/courses.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/certifications.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/instructors.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- SCHOLARSHIP & STUDY ABROAD -->
+  <url><loc>https://www.tolbertinnovationhub.org/study-abroad.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/fully-funded-scholarship.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/scholarship.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- SERVICES -->
+  <url><loc>https://www.tolbertinnovationhub.org/healthcare.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/software.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/grants.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/entertainment.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- INFORMATION -->
+  <url><loc>https://www.tolbertinnovationhub.org/news.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/events.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/impact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/success-stories.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/team.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/leadership.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/partner-with-us.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/donate.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/volunteer.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/projects.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/services.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- LEGAL -->
+  <url><loc>https://www.tolbertinnovationhub.org/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.tolbertinnovationhub.org/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
+</urlset>

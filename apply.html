@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply | Tolbert Innovation Hub</title>
+  <meta name="description" content="Apply to TIH programs — Study Abroad Scholarship, IELTS/TOEFL Classroom, WASSCE PRO, Healthcare Referral, and more. Free to apply." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── APPLY PAGE ── */
+    .apply-hero {
+      background: linear-gradient(135deg, #000d2e 0%, #002868 60%, #1a3d8a 100%);
+      padding: 5rem 0 4rem; position: relative; overflow: hidden;
+    }
+    .apply-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none;
+    }
+    .apply-hero-inner { position: relative; z-index: 1; }
+    .apply-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(249,115,22,0.18); border: 1px solid rgba(249,115,22,0.4);
+      color: #fdba74; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.45rem 1.1rem; border-radius: 100px; margin-bottom: 1.25rem;
+    }
+    .apply-hero h1 {
+      font-family: 'Poppins', sans-serif; font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; color: #fff; margin: 0 0 1rem; line-height: 1.1;
+    }
+    .apply-hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 56ch;
+      line-height: 1.78; margin: 0 0 2rem;
+    }
+    .apply-trust-row {
+      display: flex; gap: 1.75rem; flex-wrap: wrap;
+    }
+    .apply-trust-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.88rem; color: rgba(255,255,255,0.8); font-weight: 600;
+    }
+    .apply-trust-item span { font-size: 1.1rem; }
+
+    /* ── STEPPER ── */
+    .apply-main { background: #f1f5f9; padding: 3rem 0 5rem; }
+    .apply-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 2.5rem; align-items: start; }
+    @media (max-width: 860px) { .apply-layout { grid-template-columns: 1fr; } }
+
+    .step-nav { background: #fff; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; position: sticky; top: 90px; }
+    .step-nav-header { background: #002868; padding: 1.25rem 1.5rem; }
+    .step-nav-header h3 { color: #fff; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem; margin: 0 0 0.2rem; }
+    .step-nav-header p { color: rgba(255,255,255,0.65); font-size: 0.82rem; margin: 0; }
+    .step-nav-list { list-style: none; padding: 0.75rem 0; margin: 0; }
+    .step-nav-item {
+      display: flex; align-items: center; gap: 0.85rem;
+      padding: 0.75rem 1.25rem; cursor: pointer;
+      border-left: 3px solid transparent; transition: all 0.18s;
+    }
+    .step-nav-item:hover { background: #f8fafc; }
+    .step-nav-item.active { background: #eff6ff; border-left-color: #002868; }
+    .step-nav-item.done { border-left-color: #10b981; }
+    .step-nav-num {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: #e2e8f0; color: #64748b;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 800; transition: all 0.18s;
+    }
+    .step-nav-item.active .step-nav-num { background: #002868; color: #fff; }
+    .step-nav-item.done .step-nav-num { background: #10b981; color: #fff; }
+    .step-nav-label { font-size: 0.88rem; font-weight: 600; color: #374151; }
+    .step-nav-item.active .step-nav-label { color: #002868; }
+    .step-nav-item.done .step-nav-label { color: #047857; }
+
+    /* ── FORM CARD ── */
+    .apply-card {
+      background: #fff; border-radius: 20px; border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+    .apply-card-header { padding: 2rem 2.25rem 0; border-bottom: 1px solid #f1f5f9; padding-bottom: 1.5rem; }
+    .apply-step-label { font-size: 0.78rem; font-weight: 700; color: #002868; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.4rem; }
+    .apply-card-header h2 { font-family: 'Poppins', sans-serif; font-size: 1.35rem; font-weight: 800; color: #0f172a; margin: 0 0 0.35rem; }
+    .apply-card-header p { font-size: 0.9rem; color: #64748b; margin: 0; }
+    .apply-card-body { padding: 2rem 2.25rem; }
+
+    /* ── PROGRAM SELECTOR ── */
+    .program-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .program-option { position: relative; }
+    .program-option input[type="radio"] {
+      position: absolute; opacity: 0; width: 0; height: 0;
+    }
+    .program-option label {
+      display: flex; flex-direction: column; gap: 0.5rem;
+      padding: 1.1rem 1.25rem; border: 2px solid #e2e8f0;
+      border-radius: 12px; cursor: pointer; transition: all 0.18s;
+      background: #fff;
+    }
+    .program-option label:hover { border-color: #93c5fd; background: #f8fbff; }
+    .program-option input:checked + label {
+      border-color: #002868; background: #eff6ff;
+      box-shadow: 0 0 0 3px rgba(0,40,104,0.1);
+    }
+    .prog-opt-icon { font-size: 1.6rem; }
+    .prog-opt-name { font-weight: 700; font-size: 0.91rem; color: #0f172a; }
+    .prog-opt-desc { font-size: 0.79rem; color: #6b7280; line-height: 1.5; }
+    .program-option input:checked + label .prog-opt-name { color: #002868; }
+
+    /* ── FORM FIELDS ── */
+    .fg { display: flex; flex-direction: column; gap: 0.42rem; margin-bottom: 1.1rem; }
+    .fg label { font-size: 0.86rem; font-weight: 700; color: #374151; }
+    .fg .req { color: #BF0A30; }
+    .fg input, .fg select, .fg textarea {
+      width: 100%; padding: 0.78rem 1rem; border: 1.5px solid #e2e8f0;
+      border-radius: 10px; background: #f8fafc; color: #0f172a;
+      font-family: 'Inter', sans-serif; font-size: 0.95rem;
+      outline: none; transition: border-color 0.18s, box-shadow 0.18s;
+      appearance: none; -webkit-appearance: none;
+    }
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      border-color: #002868; background: #fff; box-shadow: 0 0 0 3px rgba(0,40,104,0.1);
+    }
+    .fg textarea { resize: vertical; min-height: 100px; }
+    .fg select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; cursor: pointer;
+    }
+    .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 560px) { .fg-row { grid-template-columns: 1fr; } }
+
+    /* ── CONDITIONAL SECTIONS ── */
+    .conditional-block { display: none; }
+    .conditional-block.show { display: block; }
+    .cond-divider { border: 0; border-top: 1px solid #f1f5f9; margin: 1.5rem 0; }
+    .cond-label { font-size: 0.8rem; font-weight: 700; color: #002868; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; padding: 0.55rem 0.85rem; background: #eff6ff; border-radius: 6px; display: inline-block; }
+
+    /* ── NAVIGATION BUTTONS ── */
+    .apply-card-footer {
+      padding: 1.25rem 2.25rem 2rem; border-top: 1px solid #f1f5f9;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .apply-progress-text { font-size: 0.83rem; color: #94a3b8; font-weight: 500; }
+    .apply-btn-row { display: flex; gap: 0.75rem; }
+    .apply-btn-back {
+      padding: 0.75rem 1.5rem; border: 1.5px solid #e2e8f0; border-radius: 10px;
+      background: #fff; color: #374151; font-weight: 600; font-size: 0.92rem;
+      cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.18s;
+    }
+    .apply-btn-back:hover { border-color: #002868; color: #002868; }
+    .apply-btn-next {
+      padding: 0.75rem 1.75rem; background: #002868; color: #fff;
+      border: none; border-radius: 10px; font-weight: 700; font-size: 0.92rem;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all 0.2s; box-shadow: 0 3px 12px rgba(0,40,104,0.3);
+    }
+    .apply-btn-next:hover { background: #1a3d8a; box-shadow: 0 5px 18px rgba(0,40,104,0.4); }
+    .apply-btn-submit {
+      padding: 0.75rem 2rem; background: #BF0A30; color: #fff;
+      border: none; border-radius: 10px; font-weight: 700; font-size: 0.95rem;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all 0.2s; box-shadow: 0 3px 12px rgba(191,10,48,0.3);
+    }
+    .apply-btn-submit:hover { background: #a00828; }
+
+    /* ── REVIEW SECTION ── */
+    .review-block { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+    .review-block h4 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.88rem; color: #002868; margin: 0 0 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .review-row { display: flex; gap: 0.75rem; margin-bottom: 0.5rem; font-size: 0.88rem; }
+    .review-key { color: #6b7280; font-weight: 600; min-width: 140px; flex-shrink: 0; }
+    .review-val { color: #0f172a; font-weight: 500; }
+
+    /* ── SUCCESS STATE ── */
+    .apply-success {
+      text-align: center; padding: 3.5rem 2rem;
+      display: none;
+    }
+    .apply-success.show { display: block; }
+    .success-icon { font-size: 4rem; margin-bottom: 1rem; }
+    .apply-success h2 { font-family: 'Poppins', sans-serif; font-size: 1.6rem; color: #002868; margin-bottom: 0.75rem; }
+    .apply-success p { color: #374151; font-size: 1rem; line-height: 1.78; max-width: 48ch; margin: 0 auto 1.5rem; }
+    .apply-success-steps { display: flex; flex-direction: column; gap: 0.65rem; max-width: 440px; margin: 0 auto 2rem; text-align: left; }
+    .apply-success-step { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: #374151; background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; padding: 0.85rem 1rem; }
+    .apply-success-step span { flex-shrink: 0; }
+
+    /* ── FORM ERROR ── */
+    .field-error { color: #BF0A30; font-size: 0.8rem; font-weight: 600; margin-top: 0.25rem; display: none; }
+    .field-error.show { display: block; }
+    .fg input.invalid, .fg select.invalid, .fg textarea.invalid { border-color: #BF0A30; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="study-abroad.html">Study Abroad</a>
+        <a href="academy.html">Academy</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="grants.html">Grants</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="apply.html" class="nav-cta active" aria-current="page">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="apply-hero" aria-label="Apply to TIH Programs">
+      <div class="container apply-hero-inner">
+        <div class="apply-eyebrow">🎓 Free Applications Open — 2026</div>
+        <h1>Apply to TIH Programs</h1>
+        <p class="apply-hero-sub">Start your application in minutes. Our team reviews every submission and contacts you within 3–5 business days with your personalized next steps.</p>
+        <div class="apply-trust-row">
+          <div class="apply-trust-item"><span>✅</span> 100% Free to Apply</div>
+          <div class="apply-trust-item"><span>⚡</span> Response in 3–5 Days</div>
+          <div class="apply-trust-item"><span>🔒</span> Your Data is Secure</div>
+          <div class="apply-trust-item"><span>🌍</span> Open to All Liberians</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPLICATION FORM -->
+    <section class="apply-main" id="main-content-form" aria-label="Application form">
+      <div class="container">
+        <div class="apply-layout">
+
+          <!-- STEP NAVIGATION -->
+          <aside aria-label="Application steps">
+            <nav class="step-nav">
+              <div class="step-nav-header">
+                <h3>Application Progress</h3>
+                <p>Complete all 4 steps</p>
+              </div>
+              <ul class="step-nav-list" id="stepNavList">
+                <li class="step-nav-item active" data-step="1">
+                  <div class="step-nav-num">1</div>
+                  <span class="step-nav-label">Choose Program</span>
+                </li>
+                <li class="step-nav-item" data-step="2">
+                  <div class="step-nav-num">2</div>
+                  <span class="step-nav-label">Personal Info</span>
+                </li>
+                <li class="step-nav-item" data-step="3">
+                  <div class="step-nav-num">3</div>
+                  <span class="step-nav-label">Program Details</span>
+                </li>
+                <li class="step-nav-item" data-step="4">
+                  <div class="step-nav-num">4</div>
+                  <span class="step-nav-label">Review & Submit</span>
+                </li>
+              </ul>
+            </nav>
+          </aside>
+
+          <!-- FORM CARD -->
+          <div>
+            <form class="apply-card" id="applyForm" novalidate
+                  action="https://formsubmit.co/ajax/tolbertinnovationhub@gmail.com"
+                  method="POST">
+              <input type="hidden" name="_subject" value="TIH Program Application" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+
+              <!-- ═══ STEP 1: CHOOSE PROGRAM ═══ -->
+              <div class="apply-step" id="step1">
+                <div class="apply-card-header">
+                  <p class="apply-step-label">Step 1 of 4</p>
+                  <h2>Which Program Are You Applying For?</h2>
+                  <p>Select the TIH program you want to join. You can apply for more than one in a follow-up message.</p>
+                </div>
+                <div class="apply-card-body">
+                  <div class="program-grid" role="radiogroup" aria-label="Select a program">
+
+                    <div class="program-option">
+                      <input type="radio" name="program" id="prog-study-abroad" value="Study Abroad Scholarship" />
+                      <label for="prog-study-abroad">
+                        <span class="prog-opt-icon">🌍</span>
+                        <span class="prog-opt-name">Study Abroad Scholarship</span>
+                        <span class="prog-opt-desc">University placement in India or Cyprus with 50% TIH scholarship</span>
+                      </label>
+                    </div>
+
+                    <div class="program-option">
+                      <input type="radio" name="program" id="prog-fully-funded" value="Fully Funded Scholarship" />
+                      <label for="prog-fully-funded">
+                        <span class="prog-opt-icon">🎓</span>
+                        <span class="prog-opt-name">Fully Funded Scholarship</span>
+                        <span class="prog-opt-desc">Government & university scholarships covering tuition, accommodation & living</span>
+                      </label>
+                    </div>
+
+                    <div class="program-option">
+                      <input type="radio" name="program" id="prog-ielts" value="IELTS/TOEFL Classroom" />
+                      <label for="prog-ielts">
+                        <span class="prog-opt-icon">📚</span>
+                        <span class="prog-opt-name">IELTS / TOEFL Classroom</span>
+                        <span class="prog-opt-desc">Free structured exam prep with certificate on completion</span>
+                      </label>
+                    </div>
+
+                    <div class="program-option">
+                      <input type="radio" name="program" id="prog-wassce" value="WASSCE PRO" />
+                      <label for="prog-wassce">
+                        <span class="prog-opt-icon">✏️</span>
+                        <span class="prog-opt-name">WASSCE PRO</span>
+                        <span class="prog-opt-desc">Past questions, model answers, and structured revision plans</span>
+                      </label>
+                    </div>
+
+                    <div class="program-option">
+                      <input type="radio" name="program" id="prog-academy" value="TIH Academy" />
+                      <label for="prog-academy">
+                        <span class="prog-opt-icon">💻</span>
+                        <span class="prog-opt-name">TIH Academy</span>
+                        <span class="prog-opt-desc">12 free professional courses in tech, business & creative skills</span>
+                      </label>
+                    </div>
+
+                    <div class="program-option">
+                      <input type="radio" name="program" id="prog-healthcare" value="Healthcare Referral" />
+                      <label for="prog-healthcare">
+                        <span class="prog-opt-icon">🏥</span>
+                        <span class="prog-opt-name">Healthcare Referral</span>
+                        <span class="prog-opt-desc">Specialist medical referral and coordination for treatment abroad</span>
+                      </label>
+                    </div>
+
+                    <div class="program-option">
+                      <input type="radio" name="program" id="prog-tech" value="Business Technology Services" />
+                      <label for="prog-tech">
+                        <span class="prog-opt-icon">⚙️</span>
+                        <span class="prog-opt-name">Business Technology</span>
+                        <span class="prog-opt-desc">Website, web app, or digital strategy for your business</span>
+                      </label>
+                    </div>
+
+                    <div class="program-option">
+                      <input type="radio" name="program" id="prog-grants" value="Grants Assistance" />
+                      <label for="prog-grants">
+                        <span class="prog-opt-icon">💰</span>
+                        <span class="prog-opt-name">Grants Assistance</span>
+                        <span class="prog-opt-desc">Help finding and applying for business or NGO grants</span>
+                      </label>
+                    </div>
+                  </div>
+                  <p class="field-error show" id="prog-error" style="margin-top:1rem;display:none;">Please select a program to continue.</p>
+                </div>
+                <div class="apply-card-footer">
+                  <span class="apply-progress-text">Step 1 of 4</span>
+                  <div class="apply-btn-row">
+                    <button type="button" class="apply-btn-next" onclick="nextStep(1)">Continue →</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ═══ STEP 2: PERSONAL INFO ═══ -->
+              <div class="apply-step" id="step2" style="display:none;">
+                <div class="apply-card-header">
+                  <p class="apply-step-label">Step 2 of 4</p>
+                  <h2>Your Personal Information</h2>
+                  <p>All information is kept strictly confidential and used only for processing your application.</p>
+                </div>
+                <div class="apply-card-body">
+                  <div class="fg-row">
+                    <div class="fg">
+                      <label for="a-firstname">First Name <span class="req">*</span></label>
+                      <input type="text" id="a-firstname" name="firstName" placeholder="Your first name" required autocomplete="given-name" />
+                      <span class="field-error" id="err-firstname">Please enter your first name.</span>
+                    </div>
+                    <div class="fg">
+                      <label for="a-lastname">Last Name <span class="req">*</span></label>
+                      <input type="text" id="a-lastname" name="lastName" placeholder="Your last name" required autocomplete="family-name" />
+                      <span class="field-error" id="err-lastname">Please enter your last name.</span>
+                    </div>
+                  </div>
+                  <div class="fg-row">
+                    <div class="fg">
+                      <label for="a-email">Email Address <span class="req">*</span></label>
+                      <input type="email" id="a-email" name="email" placeholder="your@email.com" required autocomplete="email" />
+                      <span class="field-error" id="err-email">Please enter a valid email address.</span>
+                    </div>
+                    <div class="fg">
+                      <label for="a-phone">Phone / WhatsApp <span class="req">*</span></label>
+                      <input type="tel" id="a-phone" name="phone" placeholder="+231 XXX XXX XXX" required autocomplete="tel" />
+                      <span class="field-error" id="err-phone">Please enter your phone number.</span>
+                    </div>
+                  </div>
+                  <div class="fg-row">
+                    <div class="fg">
+                      <label for="a-dob">Date of Birth <span class="req">*</span></label>
+                      <input type="date" id="a-dob" name="dateOfBirth" required />
+                      <span class="field-error" id="err-dob">Please enter your date of birth.</span>
+                    </div>
+                    <div class="fg">
+                      <label for="a-county">County / City in Liberia <span class="req">*</span></label>
+                      <select id="a-county" name="county" required>
+                        <option value="">Select county</option>
+                        <option>Montserrado (Monrovia)</option>
+                        <option>Nimba</option>
+                        <option>Bong</option>
+                        <option>Lofa</option>
+                        <option>Margibi</option>
+                        <option>Grand Bassa</option>
+                        <option>Grand Kru</option>
+                        <option>Maryland</option>
+                        <option>Sinoe</option>
+                        <option>Bomi</option>
+                        <option>Cape Mount</option>
+                        <option>Gbarpolu</option>
+                        <option>River Gee</option>
+                        <option>River Cess</option>
+                        <option>Outside Liberia</option>
+                      </select>
+                      <span class="field-error" id="err-county">Please select your county.</span>
+                    </div>
+                  </div>
+                  <div class="fg">
+                    <label for="a-edu">Current Education Level <span class="req">*</span></label>
+                    <select id="a-edu" name="educationLevel" required>
+                      <option value="">Select level</option>
+                      <option>Junior High School</option>
+                      <option>Senior High School (enrolled)</option>
+                      <option>WASSCE Graduate</option>
+                      <option>Diploma / Certificate</option>
+                      <option>Bachelor's Degree (enrolled)</option>
+                      <option>Bachelor's Degree (completed)</option>
+                      <option>Master's Degree (completed)</option>
+                      <option>Other</option>
+                    </select>
+                    <span class="field-error" id="err-edu">Please select your education level.</span>
+                  </div>
+                </div>
+                <div class="apply-card-footer">
+                  <span class="apply-progress-text">Step 2 of 4</span>
+                  <div class="apply-btn-row">
+                    <button type="button" class="apply-btn-back" onclick="prevStep(2)">← Back</button>
+                    <button type="button" class="apply-btn-next" onclick="nextStep(2)">Continue →</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ═══ STEP 3: PROGRAM DETAILS ═══ -->
+              <div class="apply-step" id="step3" style="display:none;">
+                <div class="apply-card-header">
+                  <p class="apply-step-label">Step 3 of 4</p>
+                  <h2>Program-Specific Details</h2>
+                  <p>A few more details about your goals and background for the program you selected.</p>
+                </div>
+                <div class="apply-card-body">
+
+                  <!-- Scholarship / Study Abroad -->
+                  <div class="conditional-block" id="cond-scholarship">
+                    <span class="cond-label">🌍 Study Abroad / Scholarship Details</span>
+                    <div class="fg">
+                      <label for="a-target-degree">Target Degree Level <span class="req">*</span></label>
+                      <select id="a-target-degree" name="targetDegree">
+                        <option value="">Select level</option>
+                        <option>Undergraduate (UG)</option>
+                        <option>Postgraduate — Master's (PG)</option>
+                        <option>PhD / Doctorate</option>
+                      </select>
+                    </div>
+                    <div class="fg">
+                      <label for="a-field">Preferred Field of Study <span class="req">*</span></label>
+                      <input type="text" id="a-field" name="fieldOfStudy" placeholder="e.g. Computer Science, Medicine, Business, Law" />
+                    </div>
+                    <div class="fg">
+                      <label for="a-dest">Preferred Destination</label>
+                      <select id="a-dest" name="destination">
+                        <option value="">Select destination</option>
+                        <option>India</option>
+                        <option>Cyprus (North Cyprus)</option>
+                        <option>Open to suggestions</option>
+                      </select>
+                    </div>
+                    <div class="fg">
+                      <label for="a-passport">Do you have a valid passport?</label>
+                      <select id="a-passport" name="passport">
+                        <option value="">Select</option>
+                        <option>Yes — valid for 2+ years</option>
+                        <option>Yes — but expiring within 1 year</option>
+                        <option>No — applying for one</option>
+                        <option>No — need help with this</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Healthcare -->
+                  <div class="conditional-block" id="cond-healthcare">
+                    <span class="cond-label">🏥 Healthcare Referral Details</span>
+                    <div class="fg">
+                      <label for="a-patient">Who is the Patient?</label>
+                      <select id="a-patient" name="patientRelation">
+                        <option value="">Select</option>
+                        <option>Myself</option>
+                        <option>My child</option>
+                        <option>My spouse / partner</option>
+                        <option>Another family member</option>
+                      </select>
+                    </div>
+                    <div class="fg">
+                      <label for="a-condition">Medical Condition / Specialty Needed <span class="req">*</span></label>
+                      <textarea id="a-condition" name="medicalCondition" placeholder="Briefly describe the medical condition and what type of specialist or treatment is needed." rows="4"></textarea>
+                    </div>
+                    <div class="fg">
+                      <label for="a-urgency">Urgency</label>
+                      <select id="a-urgency" name="urgency">
+                        <option value="">Select urgency</option>
+                        <option>Urgent — within 1 month</option>
+                        <option>Soon — within 3 months</option>
+                        <option>Planning ahead — 3–6 months</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Technology -->
+                  <div class="conditional-block" id="cond-tech">
+                    <span class="cond-label">⚙️ Business Technology Details</span>
+                    <div class="fg">
+                      <label for="a-biz-name">Business / Organization Name</label>
+                      <input type="text" id="a-biz-name" name="businessName" placeholder="Your business or organization name" />
+                    </div>
+                    <div class="fg">
+                      <label for="a-service">Service Needed <span class="req">*</span></label>
+                      <select id="a-service" name="serviceNeeded">
+                        <option value="">Select service</option>
+                        <option>Professional Website</option>
+                        <option>Web Application / System</option>
+                        <option>Business Management System</option>
+                        <option>Digital Strategy Consultation</option>
+                        <option>Mobile App</option>
+                        <option>Not sure — need consultation</option>
+                      </select>
+                    </div>
+                    <div class="fg">
+                      <label for="a-budget">Estimated Budget</label>
+                      <select id="a-budget" name="budget">
+                        <option value="">Select range</option>
+                        <option>Under $500</option>
+                        <option>$500 – $1,500</option>
+                        <option>$1,500 – $5,000</option>
+                        <option>$5,000+</option>
+                        <option>To be discussed</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- General (Academy, WASSCE, Grants, IELTS) -->
+                  <div class="conditional-block" id="cond-general">
+                    <span class="cond-label">📋 Additional Information</span>
+                  </div>
+
+                  <!-- Personal Statement (all programs) -->
+                  <hr class="cond-divider" />
+                  <div class="fg">
+                    <label for="a-statement">Tell Us About Yourself &amp; Your Goals <span class="req">*</span></label>
+                    <textarea id="a-statement" name="personalStatement" placeholder="Briefly describe your background, what you hope to achieve through this program, and how it will benefit you and your community." rows="5" required></textarea>
+                    <span class="field-error" id="err-statement">Please tell us about yourself and your goals (min. 20 characters).</span>
+                  </div>
+                  <div class="fg">
+                    <label for="a-source">How did you hear about TIH?</label>
+                    <select id="a-source" name="source">
+                      <option value="">Select</option>
+                      <option>Facebook</option>
+                      <option>WhatsApp</option>
+                      <option>Friend or Family</option>
+                      <option>Google Search</option>
+                      <option>School or University</option>
+                      <option>LinkedIn</option>
+                      <option>YouTube</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="apply-card-footer">
+                  <span class="apply-progress-text">Step 3 of 4</span>
+                  <div class="apply-btn-row">
+                    <button type="button" class="apply-btn-back" onclick="prevStep(3)">← Back</button>
+                    <button type="button" class="apply-btn-next" onclick="nextStep(3)">Review Application →</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ═══ STEP 4: REVIEW & SUBMIT ═══ -->
+              <div class="apply-step" id="step4" style="display:none;">
+                <div class="apply-card-header">
+                  <p class="apply-step-label">Step 4 of 4</p>
+                  <h2>Review Your Application</h2>
+                  <p>Please review your details before submitting. Click any section below to go back and edit.</p>
+                </div>
+                <div class="apply-card-body">
+                  <div class="review-block">
+                    <h4>Program</h4>
+                    <div class="review-row"><span class="review-key">Selected Program</span><span class="review-val" id="rv-program">—</span></div>
+                  </div>
+                  <div class="review-block">
+                    <h4>Personal Information</h4>
+                    <div class="review-row"><span class="review-key">Full Name</span><span class="review-val" id="rv-name">—</span></div>
+                    <div class="review-row"><span class="review-key">Email</span><span class="review-val" id="rv-email">—</span></div>
+                    <div class="review-row"><span class="review-key">Phone</span><span class="review-val" id="rv-phone">—</span></div>
+                    <div class="review-row"><span class="review-key">County</span><span class="review-val" id="rv-county">—</span></div>
+                    <div class="review-row"><span class="review-key">Education Level</span><span class="review-val" id="rv-edu">—</span></div>
+                  </div>
+                  <div style="background:#fffbeb;border:1.5px solid #fde68a;border-radius:10px;padding:1rem 1.25rem;font-size:0.88rem;color:#78350f;margin-bottom:0.5rem;">
+                    <strong>⚠️ Document Note:</strong> After submitting, you'll receive an email within 3–5 business days with instructions on which documents to send and how to upload them.
+                  </div>
+                  <div style="font-size:0.83rem;color:#6b7280;margin-top:0.75rem;">
+                    By submitting this application, you confirm that all information provided is accurate, and you agree to TIH's
+                    <a href="privacy.html" style="color:#002868;">Privacy Policy</a> and <a href="terms.html" style="color:#002868;">Terms of Service</a>.
+                  </div>
+                  <p class="field-error" id="submit-error" style="margin-top:1rem;"></p>
+                </div>
+                <div class="apply-card-footer">
+                  <span class="apply-progress-text">Final step</span>
+                  <div class="apply-btn-row">
+                    <button type="button" class="apply-btn-back" onclick="prevStep(4)">← Edit</button>
+                    <button type="button" class="apply-btn-submit" onclick="submitApplication()">Submit Application ✓</button>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+
+            <!-- SUCCESS STATE -->
+            <div class="apply-card apply-success" id="applySuccess" aria-live="polite">
+              <div class="success-icon">🎉</div>
+              <h2>Application Submitted!</h2>
+              <p>Thank you for applying to Tolbert Innovation Hub. Our team has received your application and will review it carefully.</p>
+              <div class="apply-success-steps">
+                <div class="apply-success-step"><span>📧</span>Check your email — we'll send a confirmation and your reference number.</div>
+                <div class="apply-success-step"><span>⏱️</span>Our team will contact you within 3–5 business days with your next steps.</div>
+                <div class="apply-success-step"><span>📋</span>You'll receive a document checklist specific to your program via email.</div>
+              </div>
+              <a href="index.html" class="btn btn-primary">Return to Homepage</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="main.js"></script>
+  <script>
+    var currentStep = 1;
+    var selectedProgram = '';
+
+    // Save draft to localStorage
+    function saveDraft() {
+      var draft = { program: selectedProgram, step: currentStep };
+      var fields = ['a-firstname','a-lastname','a-email','a-phone','a-dob','a-county','a-edu','a-statement','a-source'];
+      fields.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) draft[id] = el.value;
+      });
+      localStorage.setItem('tih_apply_draft', JSON.stringify(draft));
+    }
+
+    // Restore draft
+    function restoreDraft() {
+      try {
+        var draft = JSON.parse(localStorage.getItem('tih_apply_draft') || '{}');
+        if (!draft.program) return;
+        var fields = ['a-firstname','a-lastname','a-email','a-phone','a-dob','a-county','a-edu','a-statement','a-source'];
+        fields.forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el && draft[id]) el.value = draft[id];
+        });
+        // restore program radio
+        var radio = document.querySelector('input[name="program"][value="' + draft.program + '"]');
+        if (radio) { radio.checked = true; selectedProgram = draft.program; }
+      } catch(e) {}
+    }
+
+    // Program selection
+    document.querySelectorAll('input[name="program"]').forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        selectedProgram = this.value;
+        saveDraft();
+      });
+    });
+
+    // Auto-save on field change
+    document.getElementById('applyForm').addEventListener('change', saveDraft);
+
+    function showStep(n) {
+      document.querySelectorAll('.apply-step').forEach(function(el) { el.style.display = 'none'; });
+      var step = document.getElementById('step' + n);
+      if (step) step.style.display = '';
+      // update sidebar
+      document.querySelectorAll('.step-nav-item').forEach(function(item) {
+        var s = parseInt(item.dataset.step);
+        item.classList.remove('active', 'done');
+        if (s === n) item.classList.add('active');
+        else if (s < n) item.classList.add('done');
+      });
+      // Scroll to top of card
+      var card = document.getElementById('applyForm');
+      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function nextStep(from) {
+      if (from === 1) {
+        if (!selectedProgram) {
+          document.getElementById('prog-error').style.display = 'block';
+          return;
+        }
+        document.getElementById('prog-error').style.display = 'none';
+        updateConditionalBlocks();
+        currentStep = 2;
+        showStep(2);
+      } else if (from === 2) {
+        if (!validateStep2()) return;
+        currentStep = 3;
+        showStep(3);
+      } else if (from === 3) {
+        if (!validateStep3()) return;
+        populateReview();
+        currentStep = 4;
+        showStep(4);
+      }
+      saveDraft();
+    }
+
+    function prevStep(from) {
+      currentStep = from - 1;
+      showStep(from - 1);
+    }
+
+    function updateConditionalBlocks() {
+      var blocks = { 'cond-scholarship': false, 'cond-healthcare': false, 'cond-tech': false, 'cond-general': false };
+      if (selectedProgram === 'Study Abroad Scholarship' || selectedProgram === 'Fully Funded Scholarship') blocks['cond-scholarship'] = true;
+      else if (selectedProgram === 'Healthcare Referral') blocks['cond-healthcare'] = true;
+      else if (selectedProgram === 'Business Technology Services') blocks['cond-tech'] = true;
+      else blocks['cond-general'] = true;
+      Object.keys(blocks).forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show', blocks[id]);
+      });
+    }
+
+    function validateStep2() {
+      var valid = true;
+      var required = [
+        { id: 'a-firstname', err: 'err-firstname' },
+        { id: 'a-lastname',  err: 'err-lastname'  },
+        { id: 'a-email',     err: 'err-email'     },
+        { id: 'a-phone',     err: 'err-phone'     },
+        { id: 'a-dob',       err: 'err-dob'       },
+        { id: 'a-county',    err: 'err-county'    },
+        { id: 'a-edu',       err: 'err-edu'       },
+      ];
+      required.forEach(function(f) {
+        var el = document.getElementById(f.id);
+        var err = document.getElementById(f.err);
+        if (!el.value.trim()) {
+          el.classList.add('invalid'); if (err) err.classList.add('show'); valid = false;
+        } else {
+          el.classList.remove('invalid'); if (err) err.classList.remove('show');
+        }
+      });
+      // Email format check
+      var email = document.getElementById('a-email');
+      if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        email.classList.add('invalid');
+        document.getElementById('err-email').textContent = 'Please enter a valid email address.';
+        document.getElementById('err-email').classList.add('show');
+        valid = false;
+      }
+      return valid;
+    }
+
+    function validateStep3() {
+      var valid = true;
+      var stmt = document.getElementById('a-statement');
+      var err = document.getElementById('err-statement');
+      if (!stmt.value.trim() || stmt.value.trim().length < 20) {
+        stmt.classList.add('invalid'); err.classList.add('show'); valid = false;
+      } else {
+        stmt.classList.remove('invalid'); err.classList.remove('show');
+      }
+      return valid;
+    }
+
+    function populateReview() {
+      var fn = document.getElementById('a-firstname').value.trim();
+      var ln = document.getElementById('a-lastname').value.trim();
+      document.getElementById('rv-program').textContent = selectedProgram;
+      document.getElementById('rv-name').textContent    = fn + ' ' + ln;
+      document.getElementById('rv-email').textContent   = document.getElementById('a-email').value.trim();
+      document.getElementById('rv-phone').textContent   = document.getElementById('a-phone').value.trim();
+      document.getElementById('rv-county').textContent  = document.getElementById('a-county').value;
+      document.getElementById('rv-edu').textContent     = document.getElementById('a-edu').value;
+    }
+
+    function submitApplication() {
+      var btn = document.querySelector('.apply-btn-submit');
+      btn.disabled = true; btn.textContent = 'Submitting…';
+
+      var form = document.getElementById('applyForm');
+      var data = new FormData(form);
+
+      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(function(r) { return r.json(); })
+        .then(function() {
+          localStorage.removeItem('tih_apply_draft');
+          form.style.display = 'none';
+          document.getElementById('applySuccess').classList.add('show');
+        })
+        .catch(function() {
+          var err = document.getElementById('submit-error');
+          err.textContent = 'Submission failed. Please try again or email us directly at tolbertinnovationhub@gmail.com';
+          err.classList.add('show');
+          btn.disabled = false; btn.textContent = 'Submit Application ✓';
+        });
+    }
+
+    // Init
+    restoreDraft();
+    if (selectedProgram) { updateConditionalBlocks(); }
+  </script>
+</body>
+</html>

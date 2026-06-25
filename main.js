@@ -460,4 +460,44 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bar) bar.style.display = 'none';
     });
   }
+
+  initCookieConsent();
 });
+
+// ============================================================
+// Cookie Consent
+// ============================================================
+function initCookieConsent() {
+  if (localStorage.getItem('tih_cookie_consent')) return;
+
+  const banner = document.createElement('div');
+  banner.className = 'cookie-banner';
+  banner.setAttribute('role', 'dialog');
+  banner.setAttribute('aria-label', 'Cookie consent');
+  banner.innerHTML = `
+    <div class="cookie-banner-text">
+      <strong>🍪 We use cookies</strong> to improve your experience and analyze site traffic.
+      By continuing to use this site, you agree to our
+      <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.
+    </div>
+    <div class="cookie-banner-actions">
+      <button class="cookie-btn-reject" id="cookieReject">Decline</button>
+      <button class="cookie-btn-accept" id="cookieAccept">Accept All</button>
+    </div>
+  `;
+  document.body.appendChild(banner);
+
+  // Trigger visible state after paint
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { banner.classList.add('visible'); });
+  });
+
+  function dismiss(accepted) {
+    localStorage.setItem('tih_cookie_consent', accepted ? 'accepted' : 'declined');
+    banner.classList.remove('visible');
+    setTimeout(() => banner.remove(), 400);
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', () => dismiss(true));
+  document.getElementById('cookieReject').addEventListener('click', () => dismiss(false));
+}
