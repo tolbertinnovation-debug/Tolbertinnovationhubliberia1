@@ -85,7 +85,15 @@
     .sidebar-lesson.active { background: #eff6ff; border-left-color: var(--blue); }
     .sidebar-lesson.completed { background: #f0fdf7; border-left-color: #a7f3d0; }
     .sidebar-lesson.completed .lesson-status { color: var(--green); font-weight: 700; }
-    .sidebar-lesson.locked { opacity: 0.5; cursor: not-allowed; }
+    .sidebar-lesson.locked { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+    .sidebar-lesson.locked .lesson-status { color: #9ca3af; }
+    .sidebar-lesson.locked .lesson-info-title { color: #9ca3af; }
+    /* Lock toast notification */
+    .lock-toast { position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%) translateY(20px); background: #1e293b; color: #fff; padding: 0.7rem 1.2rem; border-radius: 8px; font-size: 0.88rem; font-weight: 500; opacity: 0; transition: opacity .3s, transform .3s; z-index: 9999; pointer-events: none; white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,.3); }
+    .lock-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    /* Pulse animation for Mark Complete button */
+    @keyframes pulse-btn { 0%,100%{box-shadow:0 0 0 0 rgba(0,40,104,.4)} 50%{box-shadow:0 0 0 8px rgba(0,40,104,0)} }
+    .pulse-cta { animation: pulse-btn 1s ease 3; }
     /* Issue 11 fix: lesson items use tier-2 (0.83rem) title and tier-3 (0.76rem) duration */
     .lesson-status { font-size: 0.83rem; flex-shrink: 0; width: 16px; text-align: center; }
     .lesson-info { flex: 1; min-width: 0; }
@@ -569,27 +577,61 @@
   var currentQuizLessonIndex = -1;
   var quizLastPassed = false;
 
+  // ===== LOCKING HELPERS =====
+  function isLessonLocked(index) {
+    if (index <= 0) return false;
+    return completedLessons.indexOf(index - 1) === -1;
+  }
+
+  var _lockToastTimer = null;
+  function showLockToast(msg) {
+    var t = document.getElementById('lockToast');
+    if (!t) return;
+    t.textContent = msg || '🔒 Complete the previous lesson first';
+    t.classList.add('show');
+    clearTimeout(_lockToastTimer);
+    _lockToastTimer = setTimeout(function() { t.classList.remove('show'); }, 3000);
+  }
+
   // ===== BUILD SIDEBAR =====
   function buildSidebar() {
     if (!course || !lessons) return;
     var html = '';
     var li = 0;
     course.modules.forEach(function(mod, mi) {
-      var isFirst = mi === 0;
+      // A module is "open by default" if it contains the current lesson or is first
+      var modStart = li;
+      var modLessonsCount = mod.lessons.length;
+      var containsCurrent = (currentLessonIndex >= modStart && currentLessonIndex < modStart + modLessonsCount);
+      var isFirstModule = mi === 0;
+      var shouldOpen = containsCurrent || isFirstModule;
+
       html += '<div class="sidebar-module">'
-        + '<div class="sidebar-module-header' + (isFirst ? ' open' : '') + '" onclick="toggleSidebarModule(this)">'
+        + '<div class="sidebar-module-header' + (shouldOpen ? ' open' : '') + '" onclick="toggleSidebarModule(this)">'
         + '<div><div class="sidebar-module-title">' + escSide(mod.title) + '</div>'
         + '<div class="sidebar-module-meta" id="modMeta' + (mi + 1) + '">' + escSide(mod.meta) + '</div></div>'
         + '<span class="sidebar-module-chevron">▼</span></div>'
-        + '<div class="sidebar-lessons' + (isFirst ? ' open' : '') + '">';
+        + '<div class="sidebar-lessons' + (shouldOpen ? ' open' : '') + '">';
+
       mod.lessons.forEach(function(l) {
         var idx = li;
         var isActive = idx === currentLessonIndex;
         var isCompleted = completedLessons.indexOf(idx) !== -1;
+        var isLocked = isLessonLocked(idx);
         var hasNote = !!(localStorage.getItem('tih_notes_' + courseId + '_' + idx) || '').trim();
-        var statusIcon = isActive ? '▶' : (isCompleted ? '✓' : '○');
-        var cls = 'sidebar-lesson' + (isActive ? ' active' : '') + (isCompleted ? ' completed' : '');
-        html += '<div class="' + cls + '" data-lesson-index="' + idx + '" onclick="selectLessonByIndex(' + idx + ')">'
+
+        var statusIcon = isLocked ? '🔒' : (isActive ? '▶' : (isCompleted ? '✓' : '○'));
+        var cls = 'sidebar-lesson'
+          + (isActive ? ' active' : '')
+          + (isCompleted ? ' completed' : '')
+          + (isLocked ? ' locked' : '');
+
+        // Locked lessons don't fire onclick
+        var clickAttr = isLocked
+          ? 'onclick="showLockToast(\'🔒 Complete lesson ' + idx + ' first\')"'
+          : 'onclick="selectLessonByIndex(' + idx + ')"';
+
+        html += '<div class="' + cls + '" data-lesson-index="' + idx + '" ' + clickAttr + '>'
           + '<span class="lesson-status">' + statusIcon + '</span>'
           + '<div class="lesson-info">'
           + '<div class="lesson-info-title">' + escSide(l.t) + (hasNote ? '<span class="note-dot" title="You have notes"></span>' : '') + '</div>'
@@ -606,26 +648,27 @@
   // ===== INIT =====
   (function init() {
     if (!course) return;
+    // Restore saved progress FIRST so isLessonLocked() is accurate from the start
+    var savedProgress = localStorage.getItem('tih_progress_' + courseId);
+    if (savedProgress) { try { completedLessons = JSON.parse(savedProgress); } catch(e) {} }
+
+    // Determine starting lesson: URL param → first incomplete → 0
     var params = new URLSearchParams(window.location.search);
     var startLesson = parseInt(params.get('lesson'));
     if (!isNaN(startLesson) && startLesson >= 0 && startLesson < totalLessons) {
-      currentLessonIndex = startLesson;
-    }
-    // Restore saved progress
-    var savedProgress = localStorage.getItem('tih_progress_' + courseId);
-    if (savedProgress) { try { completedLessons = JSON.parse(savedProgress); } catch(e) {} }
-    buildSidebar();
-    // Mark active lesson in sidebar
-    var allEls = document.querySelectorAll('.sidebar-lesson');
-    allEls.forEach(function(el) { el.classList.remove('active'); });
-    var activeEl = document.querySelector('[data-lesson-index="' + currentLessonIndex + '"]');
-    if (activeEl) {
-      activeEl.classList.add('active');
-      if (!activeEl.classList.contains('completed')) {
-        var st = activeEl.querySelector('.lesson-status');
-        if (st) st.textContent = '▶';
+      // Only honour URL param if the lesson is actually unlocked
+      currentLessonIndex = isLessonLocked(startLesson) ? 0 : startLesson;
+    } else {
+      // Resume at the first lesson not yet completed
+      var firstIncomplete = 0;
+      for (var i = 0; i < totalLessons; i++) {
+        if (completedLessons.indexOf(i) === -1) { firstIncomplete = i; break; }
+        firstIncomplete = totalLessons - 1; // all done → stay on last
       }
+      currentLessonIndex = firstIncomplete;
     }
+
+    buildSidebar();
     renderLesson(currentLessonIndex);
     updateProgress();
   })();
@@ -769,7 +812,8 @@
   function selectLessonByIndex(index) {
     var el = document.querySelector('[data-lesson-index="' + index + '"]');
     if (!el) return;
-    if (el.classList.contains('locked')) {
+    if (isLessonLocked(index)) {
+      showLockToast('🔒 Complete lesson ' + index + ' first to unlock this one');
       el.style.transform = 'translateX(6px)';
       setTimeout(function() { el.style.transform = ''; }, 300);
       return;
@@ -794,8 +838,15 @@
     if (completedLessons.indexOf(currentLessonIndex) !== -1) return;
     completedLessons.push(currentLessonIndex);
     localStorage.setItem('tih_progress_' + courseId, JSON.stringify(completedLessons));
-    var el = document.querySelector('[data-lesson-index="' + currentLessonIndex + '"]');
-    if (el) { el.classList.add('completed'); var st = el.querySelector('.lesson-status'); if (st) st.textContent = '✓'; }
+    // Rebuild sidebar so the next lesson visibly unlocks
+    buildSidebar();
+    var nextIdx = currentLessonIndex + 1;
+    if (nextIdx < totalLessons) {
+      showLockToast('✅ Lesson complete! Next lesson unlocked →');
+      // Pulse the Next button to guide the learner
+      var nextBtn = document.getElementById('btnNext');
+      if (nextBtn) { nextBtn.classList.add('pulse-cta'); setTimeout(function() { nextBtn.classList.remove('pulse-cta'); }, 3500); }
+    }
     renderLesson(currentLessonIndex);
     updateProgress();
     if (completedLessons.length === totalLessons) setTimeout(showCompletionModal, 800);
@@ -805,8 +856,13 @@
   function nextLesson() {
     var next = currentLessonIndex + 1;
     if (next >= totalLessons) return;
-    var el = document.querySelector('[data-lesson-index="' + next + '"]');
-    if (el && !el.classList.contains('locked')) selectLessonByIndex(next);
+    if (isLessonLocked(next)) {
+      showLockToast('🔒 Mark this lesson complete to unlock the next one');
+      var markBtn = document.getElementById('markCompleteBtn');
+      if (markBtn) { markBtn.classList.add('pulse-cta'); setTimeout(function() { markBtn.classList.remove('pulse-cta'); }, 3500); }
+      return;
+    }
+    selectLessonByIndex(next);
   }
   function prevLesson() {
     var prev = currentLessonIndex - 1;
@@ -1023,9 +1079,12 @@
       completedLessons.push(currentQuizLessonIndex);
       localStorage.setItem('tih_progress_' + courseId, JSON.stringify(completedLessons));
     }
-    var el = document.querySelector('[data-lesson-index="' + currentQuizLessonIndex + '"]');
-    if (el) { el.classList.add('completed'); var st = el.querySelector('.lesson-status'); if (st) st.textContent = '✓'; }
+    // Rebuild sidebar so the next lesson unlocks immediately after quiz pass
+    buildSidebar();
     updateProgress();
+    if (currentQuizLessonIndex + 1 < totalLessons) {
+      showLockToast('✅ Quiz passed! Next lesson unlocked →');
+    }
   }
 
   function handleQuizResultAction() {
@@ -1230,23 +1289,7 @@
     if (e.key === 'Escape') { closeQuizModal(); closeCompletionModal(); closeAllNotes(); }
   });
 
-  // ===== FORCE UNLOCK (removes any stale locked state from browser cache) =====
-  (function forceUnlock() {
-    document.querySelectorAll('.sidebar-lesson.locked').forEach(function(el) {
-      el.classList.remove('locked');
-      var st = el.querySelector('.lesson-status');
-      if (st) {
-        var t = st.textContent.trim();
-        // Replace lock indicator regardless of emoji normalization variance
-        if (t === '🔒' || t === '\u{1F512}' || t.indexOf('🔒') !== -1) {
-          st.textContent = '○';
-        }
-      }
-    });
-    document.querySelectorAll('.sidebar-module-meta').forEach(function(el) {
-      el.textContent = el.textContent.replace(/\s*·?\s*🔒\s*Locked/g, '').trim();
-    });
-  })();
   </script>
+  <div class="lock-toast" id="lockToast"></div>
 </body>
 </html>
