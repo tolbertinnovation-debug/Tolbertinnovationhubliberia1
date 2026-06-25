@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microsoft Office Suite | TIH Classroom</title>
+  <meta name="description" content="Master the three most-used office tools in Liberian workplaces — Word, Excel, and PowerPoint." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="classroom.css" />
+  <style>
+    .track-hero{background:linear-gradient(135deg,#000d24,#002868 60%,#16a34a 100%);color:#fff;padding:4.5rem 0 3.5rem;}
+    .track-hero .badge{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);margin-bottom:.75rem;}
+    .track-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin:0 0 1rem;}
+    .track-hero p{opacity:.9;max-width:60ch;line-height:1.75;}
+    .track-hero-icon{font-size:4rem;margin-bottom:1rem;display:block;}
+    .lessons-list{display:grid;gap:1.25rem;margin-top:2rem;}
+    .lesson-row{background:#fff;border:1px solid #e4eaf4;border-radius:14px;padding:1.5rem;display:flex;align-items:center;gap:1.25rem;box-shadow:0 2px 8px rgba(0,40,104,.06);transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;}
+    .lesson-row:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,40,104,.12);border-color:#16a34a;}
+    .lesson-num{width:48px;height:48px;border-radius:12px;background:#dcfce7;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;color:#16a34a;flex-shrink:0;}
+    .lesson-info h3{margin:0 0 .25rem;font-size:1rem;color:#0d1520;}
+    .lesson-info p{margin:0;font-size:.88rem;color:#6b7280;line-height:1.5;}
+    .lesson-meta{margin-top:.4rem;font-size:.8rem;color:#9ca3af;}
+    .lesson-arrow{margin-left:auto;font-size:1.2rem;color:#16a34a;flex-shrink:0;}
+    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-top:2rem;}
+    .feat-card{background:#fff;border:1px solid #e4eaf4;border-radius:14px;padding:1.5rem;box-shadow:0 2px 8px rgba(0,40,104,.05);}
+    .feat-icon{font-size:1.8rem;margin-bottom:.75rem;display:block;}
+    .feat-card h3{margin:0 0 .4rem;font-size:1rem;color:#0d1520;}
+    .feat-card p{margin:0;font-size:.9rem;color:#4b5563;line-height:1.6;}
+    .cert-cta{background:linear-gradient(135deg,#16a34a,#007b22);color:#fff;border-radius:16px;padding:2.5rem;text-align:center;margin-top:2rem;}
+    .cert-cta h3{color:#fff;font-size:1.3rem;margin:0 0 .75rem;}
+    .cert-cta p{color:rgba(255,255,255,.88);max-width:50ch;margin:0 auto 1.5rem;font-size:.95rem;line-height:1.6;}
+    .btn-white{background:#fff;color:#16a34a;font-weight:700;border-radius:10px;padding:.75rem 1.75rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;transition:transform .2s;}
+    .btn-white:hover{transform:translateY(-2px);}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="classroom.html">
+        <img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="TIH logo" />
+        <span>TIH Classroom</span>
+      </a>
+      <nav class="nav-links" aria-label="Classroom navigation">
+        <a href="index.html">Main Site</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="#lessons" class="active">Microsoft Office Suite</a>
+        <a href="classroom-dashboard.html">Dashboard</a>
+        <a href="classroom-resource-center.html">Resources</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="track-hero">
+      <div class="container">
+        <span class="track-hero-icon">📊</span>
+        <p class="badge">Beginner · 3 Lessons · Free</p>
+        <h1>Microsoft Office Suite</h1>
+        <p>Master the three most-used office tools in Liberian workplaces — Word, Excel, and PowerPoint.</p>
+        <div class="lesson-toolbar" style="margin-top:1.5rem;">
+          <a class="btn btn-primary" href="classroom-lesson-microsoft-word.html">📊 Start First Lesson</a>
+          <a class="btn btn-outline" href="classroom.html">← All Tracks</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lessons">
+      <div class="container">
+        <h2>Lessons in This Track</h2>
+        <p style="color:#4b5563;max-width:64ch;">Complete all three lessons in order to earn your track certificate. Each lesson takes 40–55 minutes and includes a quiz and assignment.</p>
+        <div class="lessons-list">
+          <a class="lesson-row" href="classroom-lesson-microsoft-word.html">
+            <div class="lesson-num">1</div>
+            <div class="lesson-info">
+              <h3>Lesson 1: Microsoft Word Essentials</h3>
+              <p>Create, format, and print professional documents using Microsoft Word.</p>
+              <p class="lesson-meta">⏱ 50 min &nbsp;·&nbsp; Beginner</p>
+            </div>
+            <span class="lesson-arrow">→</span>
+          </a>
+          <a class="lesson-row" href="classroom-lesson-excel-basics.html">
+            <div class="lesson-num">2</div>
+            <div class="lesson-info">
+              <h3>Lesson 2: Excel Spreadsheet Basics</h3>
+              <p>Enter data, apply formulas, and create simple budgets and tables in Excel.</p>
+              <p class="lesson-meta">⏱ 55 min &nbsp;·&nbsp; Beginner</p>
+            </div>
+            <span class="lesson-arrow">→</span>
+          </a>
+          <a class="lesson-row" href="classroom-lesson-powerpoint-basics.html">
+            <div class="lesson-num">3</div>
+            <div class="lesson-info">
+              <h3>Lesson 3: PowerPoint Presentations</h3>
+              <p>Design clear, professional slide decks that communicate your ideas effectively.</p>
+              <p class="lesson-meta">⏱ 50 min &nbsp;·&nbsp; Beginner</p>
+            </div>
+            <span class="lesson-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <h2>What You Will Learn</h2>
+        <div class="features-grid">
+          <div class="feat-card">
+            <span class="feat-icon">📝</span>
+            <h3>Microsoft Word</h3>
+            <p>Format reports, letters, and CVs like a professional.</p>
+          </div>
+          <div class="feat-card">
+            <span class="feat-icon">📊</span>
+            <h3>Microsoft Excel</h3>
+            <p>Manage data, budgets, and simple calculations with ease.</p>
+          </div>
+          <div class="feat-card">
+            <span class="feat-icon">🎨</span>
+            <h3>PowerPoint</h3>
+            <p>Create visually compelling presentations for work or school.</p>
+          </div>
+          <div class="feat-card">
+            <span class="feat-icon">💼</span>
+            <h3>Workplace Ready</h3>
+            <p>These are the top three tools requested in Liberian job ads.</p>
+          </div>
+        </div>
+        <div class="cert-cta">
+          <h3>🏅 Earn Your Certificate</h3>
+          <p>Complete all 3 lessons in this track and request your free TIH completion certificate. Add it to your CV, share it on LinkedIn, or print it out.</p>
+          <a class="btn-white" href="apply.html">Request Certificate</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container" style="text-align:center;">
+        <h2>Continue Exploring</h2>
+        <p style="color:#4b5563;margin-bottom:1.5rem;">Browse other tracks and expand your skill set.</p>
+        <a class="btn btn-secondary" href="classroom.html">View All Tracks →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><p><strong>TIH Classroom</strong></p><p style="opacity:.8;font-size:.9rem;">Free skills platform for Liberian learners.</p></div>
+        <div>
+          <p><strong>All Tracks</strong></p>
+          <p><a href="classroom-computer-skills.html">Computer &amp; Internet</a></p>
+          <p><a href="classroom-office-suite.html">Microsoft Office</a></p>
+          <p><a href="classroom-communication.html">Communication</a></p>
+          <p><a href="classroom-career-readiness.html">Career Readiness</a></p>
+          <p><a href="classroom-entrepreneurship.html">Entrepreneurship</a></p>
+          <p><a href="classroom-leadership.html">Leadership</a></p>
+        </div>
+        <div><p><strong>My Learning</strong></p><p><a href="classroom-dashboard.html">Dashboard</a></p><p><a href="classroom-resource-center.html">Resources</a></p></div>
+        <div><p><strong>Main Site</strong></p><p><a href="index.html">Home</a></p><p><a href="contact.html">Contact</a></p></div>
+      </div>
+      <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 4px 20px rgba(0,0,0,.2);">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="34" height="34" alt="WhatsApp" />
+  </a>
+
+  <script src="classroom.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

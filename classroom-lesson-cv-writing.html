@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building a Standout CV | TIH Classroom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="classroom.css" />
+  <style>
+    .lesson-hero{background:linear-gradient(135deg,#000d24,#002868 60%,#ea580c 100%);color:#fff;padding:3.5rem 0 2.5rem;}
+    .lesson-hero .badge{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);margin:.25rem .25rem .25rem 0;}
+    .lesson-hero h1{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin:.75rem 0 .75rem;line-height:1.2;}
+    .prog-bar{height:8px;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden;max-width:280px;margin-top:.75rem;}
+    .prog-fill{height:100%;background:#ea580c;border-radius:999px;}
+    .lesson-body{max-width:760px;margin:0 auto;}
+    .obj-card{background:#ffedd5;border-left:4px solid #ea580c;border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .obj-card h3{color:#ea580c;margin:0 0 .75rem;font-size:.9rem;text-transform:uppercase;}
+    .obj-card li{color:#374151;font-size:.95rem;line-height:1.7;margin-bottom:.3rem;}
+    .ls h2{font-size:1.15rem;color:#0d1520;margin:0 0 .7rem;padding-bottom:.4rem;border-bottom:2px solid #ea580c33;}
+    .ls{margin-bottom:1.75rem;}
+    .ls p,.ls li{color:#374151;line-height:1.8;font-size:.96rem;}
+    .tip-box{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:10px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .tip-box h3{color:#92400e;margin:0 0 .6rem;font-size:.9rem;}
+    .tip-box li{color:#78350f;font-size:.9rem;line-height:1.7;margin-bottom:.3rem;}
+    .vid-box{background:#f0f9ff;border:1px solid #0ea5e9;border-radius:12px;padding:1.5rem;margin:2rem 0;text-align:center;}
+    .vid-box h3{color:#0369a1;margin:0 0 .4rem;}
+    .vid-box p{color:#0c4a6e;font-size:.9rem;margin:0 0 1rem;}
+    .qi{background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;}
+    .qi strong{color:#0d1520;display:block;margin-bottom:.6rem;font-size:.96rem;}
+    .qo label{display:flex;align-items:center;gap:.6rem;padding:.45rem .7rem;border-radius:8px;cursor:pointer;font-size:.9rem;color:#374151;}
+    .qo label:hover{background:#f8fafd;}
+    .qo input{accent-color:#ea580c;}
+    .qbtn{margin-top:.75rem;background:#ea580c;color:#fff;border:none;border-radius:8px;padding:.55rem 1.3rem;font-weight:700;cursor:pointer;font-size:.88rem;}
+    .qfb{display:none;margin-top:.6rem;padding:.65rem .9rem;border-radius:8px;font-size:.88rem;font-weight:600;}
+    .asgn{background:#f0fdf4;border-left:4px solid #16a34a;border-radius:12px;padding:1.5rem;margin:2rem 0;}
+    .asgn h3{color:#166534;margin:0 0 .6rem;}
+    .asgn p{color:#14532d;font-size:.94rem;line-height:1.75;margin:0;}
+    .lnav{display:flex;gap:1rem;flex-wrap:wrap;margin:2.5rem 0;padding-top:2rem;border-top:1px solid #e4eaf4;}
+    .lnav a{flex:1;min-width:180px;background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1rem 1.1rem;text-decoration:none;color:#374151;font-size:.9rem;transition:border-color .2s;}
+    .lnav a:hover{border-color:#ea580c;}
+    .nd{font-size:.76rem;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem;}
+    .nt{font-weight:700;color:#0d1520;}
+    .mc-btn{width:100%;background:#ea580c;color:#fff;border:none;border-radius:12px;padding:.9rem;font-size:.97rem;font-weight:700;cursor:pointer;margin-top:1rem;}
+    .mc-btn:disabled{background:#16a34a;}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="classroom.html"><img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="TIH" /><span>TIH Classroom</span></a>
+      <nav class="nav-links" aria-label="Classroom navigation">
+        <a href="index.html">Main Site</a><a href="classroom.html">Classroom</a>
+        <a href="classroom-career-readiness.html">Career & Job Readiness</a><a href="classroom-dashboard.html">Dashboard</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode">&#127769;</button>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false">&#9776; Menu</button>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="lesson-hero">
+      <div class="container">
+        <span class="badge">Lesson 1 of 3</span>
+        <span class="badge">Intermediate</span>
+        <span class="badge">&#9201; 55 min</span>
+        <h1>&#128196; Building a Standout CV</h1>
+        <p style="opacity:.88;max-width:60ch;font-size:.96rem;line-height:1.7;">A CV is a written summary of your education, work experience, skills, and achievements. It is the most important document in your job search. In Liberia, most e...</p>
+        <div class="prog-bar"><div class="prog-fill" style="width:33%;"></div></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container"><div class="lesson-body">
+        <div class="obj-card"><h3>Learning Objectives</h3><ul><li>Understand: <strong>What Is a CV and Why Does It Matter?</strong></li><li>Understand: <strong>CV Structure and Sections</strong></li><li>Understand: <strong>Writing Strong Achievement Bullets</strong></li><li>Understand: <strong>CV Formatting and Common Mistakes</strong></li></ul></div>
+        <div class="ls"><h2>What Is a CV and Why Does It Matter?</h2><p>A CV is a written summary of your education, work experience, skills, and achievements. It is the most important document in your job search. In Liberia, most employers receive dozens of applications for every position. A strong CV gets you to the interview stage. A weak one goes straight to the rejection pile. Your CV is your first impression before employers ever meet you.</p></div><div class="ls"><h2>CV Structure and Sections</h2><p>A professional CV includes: (1) Personal Information: name, phone, professional email, city. Do NOT include your photo unless specifically requested. (2) Personal Profile: 2-3 sentences summarizing who you are, tailored to the specific job. (3) Work Experience: reverse chronological order with achievement-focused bullets. (4) Education: reverse chronological. (5) Skills: relevant hard and soft skills. (6) References: "Available on request" saves space.</p></div><div class="ls"><h2>Writing Strong Achievement Bullets</h2><p>Weak: "Responsible for managing social media." Strong: "Grew Facebook page from 500 to 4,200 followers in 6 months through daily content and community engagement." Use the Action + Result format. Start each bullet with a strong verb: Managed, Developed, Increased, Designed, Trained, Coordinated, Reduced, Launched. Include numbers whenever possible. Volunteer work and school projects count if you have limited paid experience.</p></div><div class="ls"><h2>CV Formatting and Common Mistakes</h2><p>Rules: Keep to 1-2 pages maximum. Use a clean font (Calibri or Arial) at 10-12pt. Save and send as PDF - never .docx. Common mistakes: spelling errors (a single typo can eliminate your application), using one generic CV for every job (tailor it each time), listing job duties instead of achievements, including irrelevant personal details like height or religion.</p></div>
+        <div class="tip-box"><h3>&#128161; Key Tips</h3><ul><li>Tailor your CV for every job - adjust the summary and skills to match each job description.</li><li>Have at least 2 people proofread your CV before submitting.</li><li>If you have no paid work experience, include volunteer work, school leadership, and projects.</li><li>Keep a master CV with all your experience, then cut it down for each specific application.</li></ul></div>
+        <div class="vid-box">
+          <h3>&#128250; Watch &amp; Learn</h3>
+          <p>Find a curated video on this topic on YouTube.</p>
+          <a href="https://www.youtube.com/results?search_query=Building%20a%20Standout%20CV%20tutorial%20beginners" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:inline-flex;">Search "Building a Standout CV" on YouTube &#8594;</a>
+        </div>
+        <div style="margin:2rem 0;"><h2 style="font-size:1.15rem;color:#0d1520;margin:0 0 1rem;">&#9989; Quick Knowledge Check</h2><div class="qi"><strong>Q1. In what order should work experience appear on a CV?</strong><div class="qo"><label><input type="radio" name="q0" value="a" /> Alphabetical by employer name</label></div><div class="qo"><label><input type="radio" name="q0" value="b" /> Oldest job first</label></div><div class="qo"><label><input type="radio" name="q0" value="c" /> Most recent job first (reverse chronological)</label></div><div class="qo"><label><input type="radio" name="q0" value="d" /> By salary, highest first</label></div><button class="qbtn" onclick="checkQ(0,'c')">Check Answer</button><div class="qfb" id="qf0"></div></div><div class="qi"><strong>Q2. Which CV bullet is stronger?</strong><div class="qo"><label><input type="radio" name="q1" value="a" /> Responsible for social media</label></div><div class="qo"><label><input type="radio" name="q1" value="b" /> Grew Instagram from 800 to 5,000 followers in 4 months through daily posts and engagement</label></div><div class="qo"><label><input type="radio" name="q1" value="c" /> Did social media work for the company</label></div><div class="qo"><label><input type="radio" name="q1" value="d" /> Posted content on platforms</label></div><button class="qbtn" onclick="checkQ(1,'b')">Check Answer</button><div class="qfb" id="qf1"></div></div><div class="qi"><strong>Q3. What file format should you use when sending your CV?</strong><div class="qo"><label><input type="radio" name="q2" value="a" /> Microsoft Word .docx</label></div><div class="qo"><label><input type="radio" name="q2" value="b" /> PDF</label></div><div class="qo"><label><input type="radio" name="q2" value="c" /> Plain text .txt</label></div><div class="qo"><label><input type="radio" name="q2" value="d" /> JPEG image</label></div><button class="qbtn" onclick="checkQ(2,'b')">Check Answer</button><div class="qfb" id="qf2"></div></div></div>
+        <div class="asgn"><h3>&#128221; Practice Assignment</h3><p>Write or update your CV using the structure from this lesson. Include at minimum: Personal Information, Career Summary (2-3 sentences tailored to a specific job), Work Experience with achievement-focused bullets, Education, and Skills. Save it as a PDF. Ask one trusted person to review it and give feedback on: Is it clear? Are there any errors? Does it look professional?</p></div>
+        <button class="mc-btn" onclick="this.textContent='&#10003; Lesson Marked Complete!';this.disabled=true;this.style.background='#16a34a';">Mark Lesson as Complete</button>
+        <div class="lnav"><a href="classroom-career-readiness.html"><div class="nd">&#8592; Track Overview</div><div class="nt">Career & Job Readiness</div></a><a href="classroom-lesson-job-interview.html" style="text-align:right"><div class="nd">Next &#8594;</div><div class="nt">Job Interview Mastery</div></a></div>
+      </div></div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container">
+    <div class="footer-grid">
+      <div><p><strong>TIH Classroom</strong></p><p style="opacity:.8;font-size:.9rem;">Free skills platform for Liberian learners.</p></div>
+      <div><p><strong>This Track</strong></p><p><a href="classroom-career-readiness.html">Career & Job Readiness</a></p></div>
+      <div><p><strong>All Tracks</strong></p><p><a href="classroom.html">Browse All Courses</a></p></div>
+      <div><p><strong>Main Site</strong></p><p><a href="index.html">Home</a></p></div>
+    </div>
+    <p class="copyright-note">&#169; 2026 Tolbert Innovation Hub. All rights reserved.</p>
+  </div></footer>
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 4px 20px rgba(0,0,0,.2);"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="34" height="34" alt="WhatsApp" /></a>
+  
+  <script>
+  function checkQ(idx, correct) {
+    var sel = document.querySelector('input[name="q'+idx+'"]:checked');
+    var fb = document.getElementById('qf'+idx);
+    if (!sel) { fb.style.display='block'; fb.style.background='#fef3c7'; fb.style.color='#92400e'; fb.textContent='Please select an answer first.'; return; }
+    if (sel.value === correct) {
+      fb.style.display='block'; fb.style.background='#f0fdf4'; fb.style.color='#166534'; fb.textContent='Correct! Well done.';
+    } else {
+      fb.style.display='block'; fb.style.background='#fef2f2'; fb.style.color='#991b1b'; fb.textContent='Not quite. Review the lesson and try again.';
+    }
+  }
+  </script>
+  <script src="classroom.js"></script><script src="chatbot.js"></script>
+</body></html>

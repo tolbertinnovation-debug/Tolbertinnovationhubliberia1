@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Public Speaking &amp; Presentations | TIH Classroom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="classroom.css" />
+  <style>
+    .lesson-hero{background:linear-gradient(135deg,#000d24,#002868 60%,#7c3aed 100%);color:#fff;padding:3.5rem 0 2.5rem;}
+    .lesson-hero .badge{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);margin:.25rem .25rem .25rem 0;}
+    .lesson-hero h1{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin:.75rem 0 .75rem;line-height:1.2;}
+    .prog-bar{height:8px;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden;max-width:280px;margin-top:.75rem;}
+    .prog-fill{height:100%;background:#7c3aed;border-radius:999px;}
+    .lesson-body{max-width:760px;margin:0 auto;}
+    .obj-card{background:#ede9fe;border-left:4px solid #7c3aed;border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .obj-card h3{color:#7c3aed;margin:0 0 .75rem;font-size:.9rem;text-transform:uppercase;}
+    .obj-card li{color:#374151;font-size:.95rem;line-height:1.7;margin-bottom:.3rem;}
+    .ls h2{font-size:1.15rem;color:#0d1520;margin:0 0 .7rem;padding-bottom:.4rem;border-bottom:2px solid #7c3aed33;}
+    .ls{margin-bottom:1.75rem;}
+    .ls p,.ls li{color:#374151;line-height:1.8;font-size:.96rem;}
+    .tip-box{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:10px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .tip-box h3{color:#92400e;margin:0 0 .6rem;font-size:.9rem;}
+    .tip-box li{color:#78350f;font-size:.9rem;line-height:1.7;margin-bottom:.3rem;}
+    .vid-box{background:#f0f9ff;border:1px solid #0ea5e9;border-radius:12px;padding:1.5rem;margin:2rem 0;text-align:center;}
+    .vid-box h3{color:#0369a1;margin:0 0 .4rem;}
+    .vid-box p{color:#0c4a6e;font-size:.9rem;margin:0 0 1rem;}
+    .qi{background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;}
+    .qi strong{color:#0d1520;display:block;margin-bottom:.6rem;font-size:.96rem;}
+    .qo label{display:flex;align-items:center;gap:.6rem;padding:.45rem .7rem;border-radius:8px;cursor:pointer;font-size:.9rem;color:#374151;}
+    .qo label:hover{background:#f8fafd;}
+    .qo input{accent-color:#7c3aed;}
+    .qbtn{margin-top:.75rem;background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:.55rem 1.3rem;font-weight:700;cursor:pointer;font-size:.88rem;}
+    .qfb{display:none;margin-top:.6rem;padding:.65rem .9rem;border-radius:8px;font-size:.88rem;font-weight:600;}
+    .asgn{background:#f0fdf4;border-left:4px solid #16a34a;border-radius:12px;padding:1.5rem;margin:2rem 0;}
+    .asgn h3{color:#166534;margin:0 0 .6rem;}
+    .asgn p{color:#14532d;font-size:.94rem;line-height:1.75;margin:0;}
+    .lnav{display:flex;gap:1rem;flex-wrap:wrap;margin:2.5rem 0;padding-top:2rem;border-top:1px solid #e4eaf4;}
+    .lnav a{flex:1;min-width:180px;background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1rem 1.1rem;text-decoration:none;color:#374151;font-size:.9rem;transition:border-color .2s;}
+    .lnav a:hover{border-color:#7c3aed;}
+    .nd{font-size:.76rem;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem;}
+    .nt{font-weight:700;color:#0d1520;}
+    .mc-btn{width:100%;background:#7c3aed;color:#fff;border:none;border-radius:12px;padding:.9rem;font-size:.97rem;font-weight:700;cursor:pointer;margin-top:1rem;}
+    .mc-btn:disabled{background:#16a34a;}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="classroom.html"><img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="TIH" /><span>TIH Classroom</span></a>
+      <nav class="nav-links" aria-label="Classroom navigation">
+        <a href="index.html">Main Site</a><a href="classroom.html">Classroom</a>
+        <a href="classroom-communication.html">Professional Communication</a><a href="classroom-dashboard.html">Dashboard</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode">&#127769;</button>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false">&#9776; Menu</button>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="lesson-hero">
+      <div class="container">
+        <span class="badge">Lesson 3 of 3</span>
+        <span class="badge">Intermediate</span>
+        <span class="badge">&#9201; 45 min</span>
+        <h1>&#127908; Public Speaking &amp; Presentations</h1>
+        <p style="opacity:.88;max-width:60ch;font-size:.96rem;line-height:1.7;">Public speaking is one of the highest-value skills you can develop. Whether presenting to a team of 3 or an audience of 300, the ability to communicate clearly ...</p>
+        <div class="prog-bar"><div class="prog-fill" style="width:100%;"></div></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container"><div class="lesson-body">
+        <div class="obj-card"><h3>Learning Objectives</h3><ul><li>Understand: <strong>Why Public Speaking Matters</strong></li><li>Understand: <strong>Preparing Your Presentation</strong></li><li>Understand: <strong>Delivery: Voice, Body, and Eye Contact</strong></li><li>Understand: <strong>Handling Nerves and Questions</strong></li></ul></div>
+        <div class="ls"><h2>Why Public Speaking Matters</h2><p>Public speaking is one of the highest-value skills you can develop. Whether presenting to a team of 3 or an audience of 300, the ability to communicate clearly and confidently sets professionals apart from their peers. Fear of public speaking is one of the most common fears in the world, but like any skill it can be learned and improved with practice.</p></div><div class="ls"><h2>Preparing Your Presentation</h2><p>Know your audience: What do they already know? What do they need to learn? Structure your content in three parts: Opening (hook with a question, fact, or bold statement - tell them what you will cover), Body (2-3 main points with examples), Closing (summarize key points and end with a clear call to action). Practice out loud, not just in your head. Time yourself.</p></div><div class="ls"><h2>Delivery: Voice, Body, and Eye Contact</h2><p>Voice: Speak slowly - anxiety makes us rush. Pause after key points to let the audience absorb information. Vary your pitch and pace. Body language: Stand tall, use natural hand gestures, move purposefully. Eye contact: Look at individuals for 2-3 seconds at a time, moving around the room. This builds connection and makes the audience feel you are speaking directly to them.</p></div><div class="ls"><h2>Handling Nerves and Questions</h2><p>To manage nerves: take 3 slow deep breaths before you begin, remember the audience wants you to succeed, focus on your message not yourself. For questions: listen to the full question before responding. It is professional to say "That is a great question - I will need to look into that and get back to you." Keep answers to 30-60 seconds each.</p></div>
+        <div class="tip-box"><h3>&#128161; Key Tips</h3><ul><li>Record yourself practicing on your phone and watch it back - uncomfortable but extremely effective.</li><li>Join a local community group or church meeting where you can practice speaking regularly.</li><li>The more you practice, the less nervous you will feel - exposure is the cure for speech anxiety.</li><li>Never apologize at the start of a presentation ("Sorry for wasting your time") - it undermines your authority.</li></ul></div>
+        <div class="vid-box">
+          <h3>&#128250; Watch &amp; Learn</h3>
+          <p>Find a curated video on this topic on YouTube.</p>
+          <a href="https://www.youtube.com/results?search_query=Public%20Speaking%20%26%20Presentations%20tutorial%20beginners" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:inline-flex;">Search "Public Speaking & Presentations" on YouTube &#8594;</a>
+        </div>
+        <div style="margin:2rem 0;"><h2 style="font-size:1.15rem;color:#0d1520;margin:0 0 1rem;">&#9989; Quick Knowledge Check</h2><div class="qi"><strong>Q1. What is the recommended structure for a public presentation?</strong><div class="qo"><label><input type="radio" name="q0" value="a" /> Question, Answer, Summary</label></div><div class="qo"><label><input type="radio" name="q0" value="b" /> Opening Hook, Body with 2-3 main points, Closing with call to action</label></div><div class="qo"><label><input type="radio" name="q0" value="c" /> Introduction, Middle, End with no specific content format</label></div><div class="qo"><label><input type="radio" name="q0" value="d" /> Data, Charts, Conclusion</label></div><button class="qbtn" onclick="checkQ(0,'b')">Check Answer</button><div class="qfb" id="qf0"></div></div><div class="qi"><strong>Q2. What should you do if you do not know the answer to an audience question?</strong><div class="qo"><label><input type="radio" name="q1" value="a" /> Guess confidently</label></div><div class="qo"><label><input type="radio" name="q1" value="b" /> Make up an answer and move on</label></div><div class="qo"><label><input type="radio" name="q1" value="c" /> Honestly say you will look into it and follow up</label></div><div class="qo"><label><input type="radio" name="q1" value="d" /> Ignore the question</label></div><button class="qbtn" onclick="checkQ(1,'c')">Check Answer</button><div class="qfb" id="qf1"></div></div><div class="qi"><strong>Q3. How long should you hold eye contact with one person before moving on?</strong><div class="qo"><label><input type="radio" name="q2" value="a" /> 10-15 seconds</label></div><div class="qo"><label><input type="radio" name="q2" value="b" /> Under 0.5 seconds</label></div><div class="qo"><label><input type="radio" name="q2" value="c" /> 2-3 seconds</label></div><div class="qo"><label><input type="radio" name="q2" value="d" /> As long as they hold your gaze</label></div><button class="qbtn" onclick="checkQ(2,'c')">Check Answer</button><div class="qfb" id="qf2"></div></div></div>
+        <div class="asgn"><h3>&#128221; Practice Assignment</h3><p>Prepare and deliver a 3-minute speech on a topic you care about - a community issue, a skill you have learned, or a change you want to see in Liberia. Record yourself on your phone. Watch the recording and note: Did you speak too fast? Did you make eye contact? Was your structure clear? Practice again and record a second improved version.</p></div>
+        <button class="mc-btn" onclick="this.textContent='&#10003; Lesson Marked Complete!';this.disabled=true;this.style.background='#16a34a';">Mark Lesson as Complete</button>
+        <div class="lnav"><a href="classroom-lesson-business-writing.html"><div class="nd">&#8592; Previous</div><div class="nt">Business Report Writing</div></a><a href="classroom-communication.html" style="text-align:right"><div class="nd">Track Complete &#8594;</div><div class="nt">Return to Professional Communication</div></a></div>
+      </div></div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container">
+    <div class="footer-grid">
+      <div><p><strong>TIH Classroom</strong></p><p style="opacity:.8;font-size:.9rem;">Free skills platform for Liberian learners.</p></div>
+      <div><p><strong>This Track</strong></p><p><a href="classroom-communication.html">Professional Communication</a></p></div>
+      <div><p><strong>All Tracks</strong></p><p><a href="classroom.html">Browse All Courses</a></p></div>
+      <div><p><strong>Main Site</strong></p><p><a href="index.html">Home</a></p></div>
+    </div>
+    <p class="copyright-note">&#169; 2026 Tolbert Innovation Hub. All rights reserved.</p>
+  </div></footer>
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 4px 20px rgba(0,0,0,.2);"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="34" height="34" alt="WhatsApp" /></a>
+  
+  <script>
+  function checkQ(idx, correct) {
+    var sel = document.querySelector('input[name="q'+idx+'"]:checked');
+    var fb = document.getElementById('qf'+idx);
+    if (!sel) { fb.style.display='block'; fb.style.background='#fef3c7'; fb.style.color='#92400e'; fb.textContent='Please select an answer first.'; return; }
+    if (sel.value === correct) {
+      fb.style.display='block'; fb.style.background='#f0fdf4'; fb.style.color='#166534'; fb.textContent='Correct! Well done.';
+    } else {
+      fb.style.display='block'; fb.style.background='#fef2f2'; fb.style.color='#991b1b'; fb.textContent='Not quite. Review the lesson and try again.';
+    }
+  }
+  </script>
+  <script src="classroom.js"></script><script src="chatbot.js"></script>
+</body></html>

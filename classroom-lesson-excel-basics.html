@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excel Spreadsheet Basics | TIH Classroom</title>
+  <meta name="description" content="Free lesson: Excel Spreadsheet Basics. Part of the Microsoft Office Suite track on TIH Classroom." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="classroom.css" />
+  <style>
+    .lesson-hero{background:linear-gradient(135deg,#000d24,#002868 60%,#16a34a 100%);color:#fff;padding:3.5rem 0 2.5rem;}
+    .lesson-hero .badge{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);margin:.25rem .25rem .25rem 0;}
+    .lesson-hero h1{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin:.75rem 0 .75rem;line-height:1.2;}
+    .lesson-progress{margin-top:1.5rem;}
+    .lesson-progress-label{font-size:.85rem;opacity:.8;margin-bottom:.4rem;}
+    .prog-bar{height:8px;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden;max-width:280px;}
+    .prog-fill{height:100%;background:#16a34a;border-radius:999px;}
+    .lesson-body{max-width:760px;margin:0 auto;}
+    .objectives-card{background:#dcfce7;border:1px solid #16a34a33;border-left:4px solid #16a34a;border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .objectives-card h3{color:#16a34a;margin:0 0 .75rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em;}
+    .objectives-card ul{margin:0;padding-left:1.3rem;}
+    .objectives-card ul li{margin-bottom:.35rem;color:#374151;font-size:.95rem;line-height:1.6;}
+    .lesson-section{margin-bottom:2rem;}
+    .lesson-section h2{font-size:1.2rem;color:#0d1520;margin:0 0 .75rem;padding-bottom:.5rem;border-bottom:2px solid #16a34a33;}
+    .lesson-section p,.lesson-section li{color:#374151;line-height:1.8;font-size:.97rem;}
+    .tip-box{background:#fffbeb;border:1px solid #f59e0b;border-left:4px solid #f59e0b;border-radius:10px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .tip-box h3{color:#92400e;margin:0 0 .75rem;font-size:.95rem;}
+    .tip-box ul{margin:0;padding-left:1.3rem;}
+    .tip-box ul li{color:#78350f;font-size:.9rem;line-height:1.7;margin-bottom:.3rem;}
+    .video-resource{background:#f0f9ff;border:1px solid #0ea5e9;border-radius:12px;padding:1.5rem;margin:2rem 0;text-align:center;}
+    .video-resource h3{color:#0369a1;margin:0 0 .5rem;}
+    .video-resource p{color:#0c4a6e;font-size:.9rem;margin:0 0 1rem;}
+    .quiz-section{margin:2.5rem 0;}
+    .quiz-section h2{font-size:1.2rem;color:#0d1520;margin:0 0 1.25rem;}
+    .quiz-item{background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;}
+    .quiz-item p{font-weight:600;color:#0d1520;margin:0 0 .75rem;font-size:.97rem;}
+    .quiz-options{display:grid;gap:.4rem;}
+    .quiz-option label{display:flex;align-items:center;gap:.6rem;padding:.5rem .75rem;border-radius:8px;cursor:pointer;font-size:.92rem;color:#374151;transition:background .15s;}
+    .quiz-option label:hover{background:#f8fafd;}
+    .quiz-option input{accent-color:#16a34a;flex-shrink:0;}
+    .quiz-check-btn{margin-top:1rem;background:#16a34a;color:#fff;border:none;border-radius:8px;padding:.6rem 1.4rem;font-weight:700;cursor:pointer;font-size:.9rem;transition:opacity .2s;}
+    .quiz-check-btn:hover{opacity:.88;}
+    .quiz-feedback{display:none;margin-top:.75rem;padding:.75rem 1rem;border-radius:8px;font-size:.9rem;font-weight:600;}
+    .assignment-card{background:#f0fdf4;border:1px solid #16a34a;border-left:4px solid #16a34a;border-radius:12px;padding:1.5rem;margin:2rem 0;}
+    .assignment-card h3{color:#166534;margin:0 0 .75rem;}
+    .assignment-card p{color:#14532d;font-size:.95rem;line-height:1.75;margin:0;}
+    .lesson-nav{display:flex;gap:1rem;flex-wrap:wrap;margin:2.5rem 0;padding-top:2rem;border-top:1px solid #e4eaf4;}
+    .lesson-nav a{flex:1;min-width:200px;background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1rem 1.25rem;text-decoration:none;color:#374151;font-size:.92rem;transition:border-color .2s,box-shadow .2s;}
+    .lesson-nav a:hover{border-color:#16a34a;box-shadow:0 4px 12px rgba(0,40,104,.1);}
+    .nav-dir{font-size:.78rem;color:#9ca3af;margin-bottom:.25rem;text-transform:uppercase;letter-spacing:.05em;}
+    .nav-title{font-weight:700;color:#0d1520;}
+    .mark-complete-btn{width:100%;background:#16a34a;color:#fff;border:none;border-radius:12px;padding:1rem;font-size:1rem;font-weight:700;cursor:pointer;margin-top:1rem;transition:background .2s,transform .15s;}
+    .mark-complete-btn:hover{transform:translateY(-1px);}
+    .mark-complete-btn:disabled{background:#16a34a;cursor:default;}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="classroom.html">
+        <img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="TIH logo" />
+        <span>TIH Classroom</span>
+      </a>
+      <nav class="nav-links" aria-label="Classroom navigation">
+        <a href="index.html">Main Site</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="classroom-office-suite.html">Microsoft Office Suite</a>
+        <a href="classroom-dashboard.html">Dashboard</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="lesson-hero">
+      <div class="container">
+        <div>
+          <span class="badge">Lesson 2 of 3</span>
+          <span class="badge">Beginner</span>
+          <span class="badge">⏱ 55 min</span>
+        </div>
+        <h1>📊 Excel Spreadsheet Basics</h1>
+        <p style="opacity:.88;max-width:60ch;font-size:.97rem;line-height:1.7;">Part of the Microsoft Office Suite track. Microsoft Excel is a spreadsheet program used to organize, calculate, and analyze data. A spreadsheet is made up of <str...</p>
+        <div class="lesson-progress">
+          <p class="lesson-progress-label">Track progress: Lesson 2 of 3</p>
+          <div class="prog-bar"><div class="prog-fill" style="width:67%;"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="lesson-body">
+
+          <div class="objectives-card">
+            <h3>Learning Objectives</h3>
+            <ul>
+              <li>Understand and explain: <strong>What Is a Spreadsheet?</strong></li>
+              <li>Understand and explain: <strong>Entering and Formatting Data</strong></li>
+              <li>Understand and explain: <strong>Basic Formulas and Functions</strong></li>
+              <li>Understand and explain: <strong>Creating a Simple Budget</strong></li>
+            </ul>
+          </div>
+
+          <div class="lesson-section">
+            <h2>What Is a Spreadsheet?</h2>
+            <p>Microsoft Excel is a spreadsheet program used to organize, calculate, and analyze data. A spreadsheet is made up of <strong>cells</strong> arranged in rows (numbered 1, 2, 3…) and columns (lettered A, B, C…). Each cell has an address like A1, B3, or C12.<br><br>Excel is used for: personal budgets, business finances, tracking sales, managing inventories, student grade books, project timelines, and much more.</p>
+          </div>
+          <div class="lesson-section">
+            <h2>Entering and Formatting Data</h2>
+            <p>Click any cell and start typing to enter data. Press Enter to move to the next row, or Tab to move to the next column.<br><br><strong>Data types:</strong><ul style="line-height:2;padding-left:1.5rem;"><li><strong>Text:</strong> Names, labels, headings — left-aligned by default.</li><li><strong>Numbers:</strong> Quantities, prices, scores — right-aligned by default.</li><li><strong>Dates:</strong> Excel recognizes formats like 25/06/2026 and can calculate with them.</li></ul><br>Format cells using the Home tab: bold headers, change font size, add borders, or apply number formats (currency, percentage, date).</p>
+          </div>
+          <div class="lesson-section">
+            <h2>Basic Formulas and Functions</h2>
+            <p>Formulas always start with an <strong>= (equals sign)</strong>.<br><br><strong>Essential formulas:</strong><ul style="line-height:2;padding-left:1.5rem;"><li><code>=A1+B1</code> — Adds two cells</li><li><code>=SUM(A1:A10)</code> — Adds a range of cells</li><li><code>=AVERAGE(B1:B5)</code> — Calculates the average</li><li><code>=MAX(C1:C20)</code> — Finds the highest value</li><li><code>=MIN(C1:C20)</code> — Finds the lowest value</li><li><code>=COUNT(D1:D50)</code> — Counts how many cells have numbers</li></ul><br>To apply a formula to many rows at once, type it in the first row, then drag the small square at the bottom-right corner of the cell downward.</p>
+          </div>
+          <div class="lesson-section">
+            <h2>Creating a Simple Budget</h2>
+            <p>A basic personal budget in Excel has four columns: Category, Budgeted Amount, Actual Amount, Difference.<br><br>Steps:<ol style="line-height:2;padding-left:1.5rem;"><li>List your income sources and expense categories in column A.</li><li>Enter your planned amounts in column B.</li><li>Track actual spending in column C.</li><li>In column D, use a formula like <code>=B2-C2</code> to see if you are over or under budget.</li><li>Use a SUM formula at the bottom of each column for totals.</li></ol>Color-coding cells (red for over budget, green for under) makes the spreadsheet easier to read at a glance.</p>
+          </div>
+
+          <div class="tip-box">
+            <h3>💡 Key Tips</h3>
+            <ul>
+              <li>Press F2 to edit a cell without retyping everything.</li>
+              <li>Use Ctrl+1 to open the Format Cells dialog for detailed formatting options.</li>
+              <li>Freeze the top row (View → Freeze Panes) so headers stay visible when you scroll down a long spreadsheet.</li>
+              <li>Use filters (Data → Filter) to quickly sort and search large datasets.</li>
+            </ul>
+          </div>
+
+          <div class="video-resource">
+            <h3>📺 Watch &amp; Learn</h3>
+            <p>Search YouTube for a curated video on this topic to reinforce your understanding.</p>
+            <a href="https://www.youtube.com/results?search_query=Excel%20Spreadsheet%20Basics%20tutorial%20for%20beginners" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:inline-flex;">Search YouTube for "Excel Spreadsheet Basics" →</a>
+          </div>
+
+          <div class="quiz-section">
+            <h2>✅ Quick Knowledge Check</h2>
+            <div class="quiz-item" id="qi0">
+              <p>Q1. In Excel, what does a cell address like "C5" refer to?</p>
+              <div class="quiz-options">
+              <div class="quiz-option"><label><input type="radio" name="q0" value="a" /> Column 5, Row C</label></div>
+              <div class="quiz-option"><label><input type="radio" name="q0" value="b" /> Column C, Row 5</label></div>
+              <div class="quiz-option"><label><input type="radio" name="q0" value="c" /> The 5th cell in the spreadsheet</label></div>
+              <div class="quiz-option"><label><input type="radio" name="q0" value="d" /> A named range called C5</label></div>
+              </div>
+              <button class="quiz-check-btn" onclick="checkQ(0,'b')">Check Answer</button>
+              <div class="quiz-feedback" id="qf0"></div>
+            </div>
+            <div class="quiz-item" id="qi1">
+              <p>Q2. Which formula would add up all values from cell B1 to B20?</p>
+              <div class="quiz-options">
+              <div class="quiz-option"><label><input type="radio" name="q1" value="a" /> =ADD(B1,B20)</label></div>
+              <div class="quiz-option"><label><input type="radio" name="q1" value="b" /> =TOTAL(B1:B20)</label></div>
+              <div class="quiz-option"><label><input type="radio" name="q1" value="c" /> =SUM(B1:B20)</label></div>
+              <div class="quiz-option"><label><input type="radio" name="q1" value="d" /> =B1+B20</label></div>
+              </div>
+              <button class="quiz-check-btn" onclick="checkQ(1,'c')">Check Answer</button>
+              <div class="quiz-feedback" id="qf1"></div>
+            </div>
+            <div class="quiz-item" id="qi2">
+              <p>Q3. What must every formula in Excel start with?</p>
+              <div class="quiz-options">
+              <div class="quiz-option"><label><input type="radio" name="q2" value="a" /> A letter</label></div>
+              <div class="quiz-option"><label><input type="radio" name="q2" value="b" /> A number</label></div>
+              <div class="quiz-option"><label><input type="radio" name="q2" value="c" /> An equals sign (=)</label></div>
+              <div class="quiz-option"><label><input type="radio" name="q2" value="d" /> A plus sign (+)</label></div>
+              </div>
+              <button class="quiz-check-btn" onclick="checkQ(2,'c')">Check Answer</button>
+              <div class="quiz-feedback" id="qf2"></div>
+            </div>
+          </div>
+
+          <div class="assignment-card">
+            <h3>📝 Practice Assignment</h3>
+            <p>Create a monthly budget spreadsheet in Excel or Google Sheets. Include: (1) At least 5 expense categories (food, transport, phone, etc.). (2) A "Budgeted" column and an "Actual" column. (3) A "Difference" column with formulas. (4) Total rows at the bottom using SUM. (5) Color-code cells: red if you are over budget, green if under.</p>
+          </div>
+
+          <button class="mark-complete-btn" onclick="this.textContent='✓ Lesson Marked Complete!';this.disabled=true;this.style.background='#16a34a';">Mark Lesson as Complete</button>
+
+          <div class="lesson-nav">
+            <a href="classroom-lesson-microsoft-word.html">
+              <div class="nav-dir">← Previous</div>
+              <div class="nav-title">Microsoft Word Essentials</div>
+            </a>
+            <a href="classroom-lesson-powerpoint-basics.html" style="text-align:right;">
+              <div class="nav-dir">Next Lesson →</div>
+              <div class="nav-title">PowerPoint Presentations</div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><p><strong>TIH Classroom</strong></p><p style="opacity:.8;font-size:.9rem;">Free skills platform for Liberian learners.</p></div>
+        <div><p><strong>This Track</strong></p><p><a href="classroom-office-suite.html">Microsoft Office Suite</a></p></div>
+        <div><p><strong>All Tracks</strong></p><p><a href="classroom.html">Browse All Courses</a></p></div>
+        <div><p><strong>Main Site</strong></p><p><a href="index.html">Home</a></p><p><a href="contact.html">Contact</a></p></div>
+      </div>
+      <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 4px 20px rgba(0,0,0,.2);">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="34" height="34" alt="WhatsApp" />
+  </a>
+
+
+  <script>
+  function checkQ(idx, correct) {
+    var sel = document.querySelector('input[name="q'+idx+'"]:checked');
+    var fb = document.getElementById('qf'+idx);
+    if (!sel) { fb.style.display='block'; fb.style.background='#fef3c7'; fb.style.color='#92400e'; fb.textContent='Please select an answer first.'; return; }
+    if (sel.value === correct) {
+      fb.style.display='block'; fb.style.background='#f0fdf4'; fb.style.color='#166534'; fb.textContent='✓ Correct! Well done.';
+    } else {
+      fb.style.display='block'; fb.style.background='#fef2f2'; fb.style.color='#991b1b'; fb.textContent='✗ Not quite. Review the lesson content and try again.';
+    }
+  }
+  </script>
+  <script src="classroom.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>
