@@ -4,11 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms of Service | Tolbert Innovation Hub</title>
-  <meta name="description" content="Terms of Service for Tolbert Innovation Hub — the terms and conditions governing your use of our programs and services." />
+  <meta name="description" content="Terms of Service for Tolbert Innovation Hub — the terms and conditions governing your use of our programs, classroom, scholarship services, and website." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    .policy-doc { max-width: 780px; margin: 0 auto; }
+    .policy-doc h2 { font-size: 1.25rem; color: var(--brand-blue); margin: 2.5rem 0 0.75rem; padding-top: 2rem; border-top: 1px solid var(--border-light); }
+    .policy-doc h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+    .policy-doc h3 { font-size: 1rem; color: var(--text-primary); margin: 1.5rem 0 0.5rem; font-weight: 600; }
+    .policy-doc p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+    .policy-doc ul, .policy-doc ol { color: var(--text-secondary); line-height: 1.8; padding-left: 1.5rem; margin-bottom: 1rem; }
+    .policy-doc li { margin-bottom: 0.4rem; }
+    .policy-doc a { color: var(--brand-blue); font-weight: 600; text-decoration: underline; }
+    .policy-doc a:hover { color: var(--brand-red); }
+    .policy-meta { background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 1rem 1.5rem; margin-bottom: 2.5rem; display: flex; flex-wrap: wrap; gap: 1.5rem; }
+    .policy-meta-item { font-size: 0.88rem; color: var(--text-muted); }
+    .policy-meta-item strong { color: var(--text-primary); font-weight: 600; }
+    .policy-toc { background: var(--brand-blue-pale, #e8f0fb); border-left: 4px solid var(--brand-blue); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.25rem 1.5rem; margin-bottom: 2.5rem; }
+    .policy-toc h3 { color: var(--brand-blue); font-size: 0.95rem; margin: 0 0 0.75rem; }
+    .policy-toc ol { padding-left: 1.25rem; margin: 0; }
+    .policy-toc ol li { font-size: 0.9rem; color: var(--brand-blue); margin-bottom: 0.3rem; }
+    .policy-toc ol li a { color: var(--brand-blue); text-decoration: none; font-weight: 500; }
+    .policy-toc ol li a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -18,49 +40,242 @@
       <a class="brand" href="index.html">Tolbert Innovation Hub</a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html">Home</a>
+        <a href="study-abroad.html">Study Abroad</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
+        <a href="apply.html" class="nav-cta">Apply Now</a>
       </nav>
       <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
-      <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
     </div>
   </header>
 
   <main id="main-content">
-    <section class="hero">
+    <section class="hero" style="padding-bottom:2rem;">
       <div class="container">
+        <p class="eyebrow">Legal</p>
         <h1>Terms of Service</h1>
-        <p class="lead">The terms and conditions governing your use of Tolbert Innovation Hub programs and services.</p>
+        <p class="lead">The terms and conditions governing your use of Tolbert Innovation Hub programs, classroom, and services.</p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container container-sm">
-        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:2rem;">Last updated: June 2026</p>
+      <div class="container">
+        <div class="policy-doc">
 
-        <h2>Acceptance of Terms</h2>
-        <p>By accessing and using Tolbert Innovation Hub's website, classroom, and services, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+          <div class="policy-meta">
+            <div class="policy-meta-item"><strong>Last Updated:</strong> June 25, 2026</div>
+            <div class="policy-meta-item"><strong>Effective Date:</strong> January 1, 2026</div>
+            <div class="policy-meta-item"><strong>Organization:</strong> Tolbert Innovation Hub, Liberia</div>
+          </div>
 
-        <h2 style="margin-top:2rem;">Use of Services</h2>
-        <p>Tolbert Innovation Hub provides free educational programs, scholarship guidance, healthcare referrals, and digital services to Liberian students and families. You agree to use these services only for lawful purposes and in accordance with these terms.</p>
+          <div class="policy-toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              <li><a href="#acceptance">Acceptance of Terms</a></li>
+              <li><a href="#use-of-services">Use of Services</a></li>
+              <li><a href="#free-classroom">Free Classroom</a></li>
+              <li><a href="#scholarship">Scholarship &amp; Study Abroad Services</a></li>
+              <li><a href="#healthcare">Healthcare Referral Services</a></li>
+              <li><a href="#software">Software &amp; Digital Services</a></li>
+              <li><a href="#accounts">User Accounts &amp; Local Storage</a></li>
+              <li><a href="#intellectual-property">Intellectual Property</a></li>
+              <li><a href="#prohibited">Prohibited Conduct</a></li>
+              <li><a href="#disclaimers">Disclaimers</a></li>
+              <li><a href="#limitation">Limitation of Liability</a></li>
+              <li><a href="#changes">Changes to Terms</a></li>
+              <li><a href="#governing-law">Governing Law</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ol>
+          </div>
 
-        <h2 style="margin-top:2rem;">Free Classroom</h2>
-        <p>Our IELTS, TOEFL, and WASSCE classroom content is provided free of charge. Completion certificates are issued for program completion and are for personal educational documentation purposes. TIH Academy certificates reflect completion of our structured coursework.</p>
+          <p>
+            Please read these Terms of Service ("Terms") carefully before using the Tolbert Innovation Hub website
+            located at <strong>www.tolbertinnovationhub.org</strong> (the "Site") and accessing any programs, content,
+            or services offered by Tolbert Innovation Hub ("TIH", "we", "our", or "us").
+          </p>
+          <p>
+            By accessing or using our Site and services, you agree to be bound by these Terms and our
+            <a href="privacy.html">Privacy Policy</a>. If you do not agree to these Terms, please do not use our Site.
+          </p>
 
-        <h2 style="margin-top:2rem;">Scholarship Applications</h2>
-        <p>TIH assists with scholarship application guidance and document preparation. We do not guarantee admission to any university or scholarship award. All applications are subject to the policies and decisions of the receiving institutions.</p>
+          <h2 id="acceptance">1. Acceptance of Terms</h2>
+          <p>
+            By visiting our website, submitting an application, using our free classroom, or engaging with any TIH
+            service, you confirm that you have read, understood, and agreed to these Terms. If you are under 18 years
+            of age, you confirm that you have parental or guardian consent to use our services.
+          </p>
 
-        <h2 style="margin-top:2rem;">Intellectual Property</h2>
-        <p>All content on this website — including text, graphics, logos, and course materials — is the property of Tolbert Innovation Hub and may not be reproduced without written permission.</p>
+          <h2 id="use-of-services">2. Use of Services</h2>
+          <p>
+            Tolbert Innovation Hub provides a range of free and fee-based programs for Liberian students, families,
+            and organizations, including education, scholarship guidance, healthcare referrals, and digital services.
+            You agree to use these services:
+          </p>
+          <ul>
+            <li>Only for lawful purposes and in accordance with these Terms</li>
+            <li>In a way that does not infringe the rights of others</li>
+            <li>Without transmitting unsolicited, misleading, or harmful content</li>
+            <li>Without attempting to gain unauthorized access to any part of our systems</li>
+            <li>In good faith, providing accurate and truthful information in all applications and inquiries</li>
+          </ul>
 
-        <h2 style="margin-top:2rem;">Limitation of Liability</h2>
-        <p>Tolbert Innovation Hub is not liable for any indirect, incidental, or consequential damages arising from the use of our services. We make no warranties about the completeness or accuracy of information provided.</p>
+          <h2 id="free-classroom">3. Free Classroom</h2>
+          <p>
+            Our IELTS, TOEFL, and WASSCE classroom content is provided free of charge as a public educational
+            resource. By using the free classroom:
+          </p>
+          <ul>
+            <li>You acknowledge that course materials are for personal educational use only and may not be redistributed or resold</li>
+            <li>Completion certificates issued by TIH (including IELTS Preparation, TOEFL Preparation, and TIH Academy certificates) are records of course completion within our platform — they are not official examination scores or academic credentials from external certification bodies</li>
+            <li>Progress data is stored in your browser's localStorage on your device — clearing your browser storage will delete this progress, and TIH is not responsible for lost progress</li>
+            <li>TIH reserves the right to update, modify, or discontinue course content at any time without prior notice</li>
+          </ul>
 
-        <h2 style="margin-top:2rem;">Contact Us</h2>
-        <p>If you have questions about these Terms of Service, please contact us at <a href="mailto:info@tolbertinnovationhub.org" style="color:var(--brand-blue);font-weight:600;">info@tolbertinnovationhub.org</a> or visit our <a href="contact.html" style="color:var(--brand-blue);font-weight:600;">Contact page</a>.</p>
+          <h2 id="scholarship">4. Scholarship &amp; Study Abroad Services</h2>
+          <p>
+            TIH provides scholarship guidance, application support, eligibility assessment, and university placement
+            facilitation. By using these services, you acknowledge and agree that:
+          </p>
+          <ul>
+            <li>TIH does not guarantee admission to any university or scholarship program. All admission decisions are made by the receiving institutions according to their own criteria and policies</li>
+            <li>Application fees, tuition, accommodation costs, and other expenses are determined by partner universities and are not controlled by TIH</li>
+            <li>You are responsible for the accuracy and completeness of all information submitted in applications</li>
+            <li>Providing false, misleading, or fraudulent information may result in immediate disqualification from TIH programs and reporting to relevant institutions</li>
+            <li>TIH acts as a facilitator — the legal relationship for enrollment is between you and the receiving university</li>
+            <li>Scholarship guidance from TIH regarding deadlines, eligibility requirements, and application processes is provided in good faith but should be verified against official scholarship sources</li>
+          </ul>
 
-        <div style="margin-top:2.5rem;">
-          <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+          <h2 id="healthcare">5. Healthcare Referral Services</h2>
+          <p>
+            TIH facilitates access to international medical institutions and helps coordinate healthcare referrals.
+            By using our healthcare services, you acknowledge and agree that:
+          </p>
+          <ul>
+            <li>TIH is a coordination service, not a medical provider. We do not diagnose, treat, or prescribe medications</li>
+            <li>Medical decisions should always be made in consultation with qualified healthcare professionals</li>
+            <li>TIH is not responsible for the quality, outcomes, or costs of medical treatment provided by partner institutions</li>
+            <li>Medical costs are solely the responsibility of the patient and/or their family, and are determined by the treating institutions</li>
+            <li>Sharing accurate, complete medical information in your inquiry form is your responsibility — inaccurate information may delay or prevent appropriate referral</li>
+            <li>For life-threatening emergencies, contact local emergency services immediately — do not rely solely on TIH coordination</li>
+          </ul>
+
+          <h2 id="software">6. Software &amp; Digital Services</h2>
+          <p>
+            TIH offers software development, website builds, and digital consultation services to businesses and
+            organizations. When engaging TIH for software or digital services:
+          </p>
+          <ul>
+            <li>Project scope, timelines, and fees will be agreed upon in writing before work begins via a project proposal or agreement</li>
+            <li>TIH retains ownership of all code, designs, and materials until full payment is received as agreed</li>
+            <li>Clients are responsible for providing accurate project requirements and timely feedback during development</li>
+            <li>TIH provides a reasonable post-delivery support period as specified in the project agreement — ongoing maintenance, updates, and feature additions are separate engagements</li>
+            <li>TIH is not liable for lost revenue, data loss, or other consequential damages arising from software delivered</li>
+          </ul>
+
+          <h2 id="accounts">7. User Accounts &amp; Local Storage</h2>
+          <p>
+            Some features of our platform use browser localStorage to store user preferences, application drafts,
+            and course progress. This data:
+          </p>
+          <ul>
+            <li>Is stored entirely on your device and is not accessible by TIH</li>
+            <li>May be lost if you clear your browser storage or use a different device/browser</li>
+            <li>Should not be relied upon as a permanent record of your applications or progress</li>
+          </ul>
+          <p>
+            TIH is not responsible for data loss due to browser storage clearing, device changes, or technical issues
+            affecting local storage.
+          </p>
+
+          <h2 id="intellectual-property">8. Intellectual Property</h2>
+          <p>
+            All content on this Site — including text, graphics, logos, icons, course materials, videos, audio,
+            software, and design — is the intellectual property of Tolbert Innovation Hub or its content providers
+            and is protected by applicable copyright and intellectual property laws.
+          </p>
+          <p>You may:</p>
+          <ul>
+            <li>Access and use our content for personal, non-commercial educational purposes</li>
+            <li>Share links to our pages on social media</li>
+          </ul>
+          <p>You may not, without written permission from TIH:</p>
+          <ul>
+            <li>Reproduce, republish, or distribute our content for commercial purposes</li>
+            <li>Create derivative works based on our course materials</li>
+            <li>Remove or alter any copyright or proprietary notices</li>
+            <li>Use our name, logo, or branding in a way that implies endorsement without written consent</li>
+          </ul>
+
+          <h2 id="prohibited">9. Prohibited Conduct</h2>
+          <p>You agree not to use our Site or services to:</p>
+          <ul>
+            <li>Submit false or misleading information in applications or inquiries</li>
+            <li>Impersonate any person or organization</li>
+            <li>Transmit spam, viruses, malware, or other harmful content</li>
+            <li>Attempt to hack, probe, or test the security of our systems</li>
+            <li>Scrape, crawl, or collect data from our Site using automated tools</li>
+            <li>Engage in any activity that disrupts or interferes with our services</li>
+            <li>Use our services for any unlawful purpose or in violation of Liberian law</li>
+          </ul>
+
+          <h2 id="disclaimers">10. Disclaimers</h2>
+          <p>
+            OUR SITE AND SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER
+            EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+            PURPOSE, OR NON-INFRINGEMENT.
+          </p>
+          <p>
+            TIH does not warrant that our Site will be uninterrupted, error-free, or secure; that defects will be
+            corrected; or that information provided is completely accurate, current, or reliable. Course completion
+            certificates and scholarship guidance do not guarantee employment, admission, or any specific outcome.
+          </p>
+
+          <h2 id="limitation">11. Limitation of Liability</h2>
+          <p>
+            TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, TOLBERT INNOVATION HUB AND ITS OFFICERS, DIRECTORS,
+            EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR
+            PUNITIVE DAMAGES — INCLUDING LOSS OF PROFITS, DATA, OR OPPORTUNITIES — ARISING OUT OF YOUR USE OR
+            INABILITY TO USE OUR SERVICES.
+          </p>
+          <p>
+            Our total liability for any claim arising from your use of our services shall not exceed the amount you
+            paid to TIH in the twelve (12) months preceding the claim (or USD $100 if no payments were made).
+          </p>
+
+          <h2 id="changes">12. Changes to Terms</h2>
+          <p>
+            TIH reserves the right to update these Terms of Service at any time. We will update the "Last Updated"
+            date at the top of this page when changes are made. For significant changes, we will provide notice via
+            email or a prominent banner on our website. Continued use of our services after changes are posted
+            constitutes your acceptance of the revised Terms.
+          </p>
+
+          <h2 id="governing-law">13. Governing Law</h2>
+          <p>
+            These Terms shall be governed by and construed in accordance with the laws of the Republic of Liberia.
+            Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the courts
+            located in Monrovia, Liberia, unless otherwise agreed in writing.
+          </p>
+
+          <h2 id="contact">14. Contact Us</h2>
+          <p>If you have questions about these Terms of Service, please contact us:</p>
+          <ul>
+            <li><strong>Email:</strong> <a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></li>
+            <li><strong>Phone / WhatsApp:</strong> <a href="tel:+231880559227">+231 880 559 227</a></li>
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat directly on WhatsApp</a></li>
+            <li><strong>Website:</strong> <a href="contact.html">Contact Form</a></li>
+            <li><strong>Address:</strong> Sinkor, Monrovia, Liberia, West Africa</li>
+          </ul>
+
+          <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border-light); display:flex; gap:1rem; flex-wrap:wrap;">
+            <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+            <a href="privacy.html" class="btn btn-ghost">Privacy Policy →</a>
+          </div>
+
         </div>
       </div>
     </section>
@@ -80,6 +295,10 @@
     </div>
   </footer>
 
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+  </a>
   <script src="main.js"></script>
+<script src="chatbot.js"></script>
 </body>
 </html>
