@@ -84,6 +84,68 @@
     .btn-outline-white:hover{background:rgba(255,255,255,.12);border-color:#fff;}
     @media(max-width:600px){.platform-stats{gap:1.5rem;}.steps-row{grid-template-columns:1fr 1fr;}}
     .section-intro{color:#4b5563;max-width:64ch;margin:0 0 .5rem;}
+    /* SEARCH */
+    .search-section{background:linear-gradient(135deg,#f0f4fc,#e8edf8);border-bottom:1px solid #dde6f5;padding:2rem 0;}
+    .search-wrap{position:relative;max-width:680px;margin:0 auto;}
+    .search-icon{position:absolute;left:1.1rem;top:50%;transform:translateY(-50%);font-size:1.1rem;pointer-events:none;z-index:1;}
+    .search-input{width:100%;padding:.95rem 3.2rem .95rem 3rem;border:2px solid #d1daf4;border-radius:14px;font-size:1.02rem;font-family:'Inter',sans-serif;outline:none;background:#fff;transition:border-color .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(0,40,104,.08);}
+    .search-input:focus{border-color:#002868;box-shadow:0 0 0 3px rgba(0,40,104,.12);}
+    .search-clear{position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.2rem;color:#9ca3af;padding:.3rem;display:none;line-height:1;}
+    .search-clear.visible{display:block;}
+    .search-hint{text-align:center;margin-top:.65rem;font-size:.83rem;color:#6b7280;}
+    .search-tag-row{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-top:.75rem;}
+    .search-tag{background:#fff;border:1px solid #d1daf4;border-radius:999px;padding:.28rem .85rem;font-size:.8rem;font-weight:600;color:#002868;cursor:pointer;transition:all .15s;}
+    .search-tag:hover{background:#002868;color:#fff;border-color:#002868;}
+    .search-results-section{padding:2rem 0;background:#f8fafd;display:none;}
+    .search-results-title{font-size:1rem;font-weight:700;color:#002868;margin-bottom:1.1rem;}
+    .search-results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;}
+    .search-result-item{background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1.1rem;display:flex;gap:.85rem;align-items:flex-start;text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s;}
+    .search-result-item:hover{border-color:#002868;box-shadow:0 4px 16px rgba(0,40,104,.1);}
+    .sri-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+    .sri-body{flex:1;min-width:0;}
+    .sri-tag{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem;display:block;}
+    .sri-name{font-size:.95rem;font-weight:700;color:#0d1520;margin:0 0 .2rem;}
+    .sri-desc{font-size:.83rem;color:#6b7280;line-height:1.5;margin:0;}
+    .no-results-box{text-align:center;padding:2.5rem 1rem;color:#6b7280;}
+    .no-results-box h3{font-size:1.1rem;margin:0 0 .5rem;}
+    .no-results-box p{font-size:.9rem;margin:0;}
+    /* VIDEO LESSON CARDS */
+    .video-lessons-section{background:#f8fafd;padding:4rem 0;}
+    .video-lessons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.25rem;margin-top:2rem;}
+    .video-lesson-card{background:#fff;border:1px solid #e4eaf4;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,40,104,.07);transition:transform .2s,box-shadow .2s;cursor:pointer;}
+    .video-lesson-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,40,104,.15);}
+    .vlc-thumb{position:relative;overflow:hidden;aspect-ratio:16/9;}
+    .vlc-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s;}
+    .video-lesson-card:hover .vlc-thumb img{transform:scale(1.05);}
+    .vlc-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.32);transition:background .2s;}
+    .video-lesson-card:hover .vlc-play{background:rgba(0,0,0,.48);}
+    .vlc-play-btn{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:transform .2s;}
+    .video-lesson-card:hover .vlc-play-btn{transform:scale(1.12);}
+    .vlc-duration{position:absolute;bottom:.5rem;right:.5rem;background:rgba(0,0,0,.8);color:#fff;font-size:.75rem;font-weight:700;padding:.2rem .5rem;border-radius:5px;}
+    .vlc-body{padding:1rem 1.15rem 1.2rem;}
+    .vlc-tag{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:.4rem;}
+    .vlc-title{font-size:.97rem;font-weight:700;color:#0d1520;margin:0 0 .3rem;line-height:1.4;}
+    .vlc-meta{font-size:.8rem;color:#9ca3af;display:flex;gap:.75rem;}
+    /* VIDEO MODAL */
+    .video-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9000;align-items:center;justify-content:center;padding:1rem;}
+    .video-modal-overlay.open{display:flex;}
+    .video-modal-inner{width:100%;max-width:960px;position:relative;}
+    .video-modal-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;color:#fff;}
+    .video-modal-title{font-size:1rem;font-weight:700;opacity:.9;}
+    .video-modal-close{background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:.45rem .85rem;border-radius:8px;transition:background .2s;}
+    .video-modal-close:hover{background:rgba(255,255,255,.25);}
+    .video-modal-frame{position:relative;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;}
+    .video-modal-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+    /* TRACK VIDEO THUMB */
+    .track-video-wrap{height:145px;position:relative;overflow:hidden;border-radius:12px;margin-bottom:.85rem;flex-shrink:0;}
+    .track-video-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s;}
+    .track-card:hover .track-video-wrap img{transform:scale(1.05);}
+    .track-video-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,rgba(0,0,0,.1) 70%,transparent 100%);display:flex;align-items:center;justify-content:center;}
+    .track-video-play{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:.95rem;box-shadow:0 2px 10px rgba(0,0,0,.3);transition:transform .2s;}
+    .track-card:hover .track-video-play{transform:scale(1.1);}
+    /* TRACKS COUNT BADGE */
+    .tracks-header-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.25rem;}
+    .tracks-count-badge{background:#dbeafe;color:#002868;font-size:.83rem;font-weight:700;padding:.3rem .85rem;border-radius:999px;}
   </style>
 </head>
 <body>
@@ -152,14 +214,52 @@
       </div>
     </div>
 
+    <!-- SEARCH -->
+    <section class="search-section">
+      <div class="container">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input class="search-input" id="siteSearch" type="search" placeholder="Search lessons, topics, skills — e.g. Excel, CV, interview…" autocomplete="off" aria-label="Search lessons and tracks" />
+          <button class="search-clear" id="searchClear" aria-label="Clear search">✕</button>
+        </div>
+        <p class="search-hint">Search across 18 lessons and 6 learning tracks</p>
+        <div class="search-tag-row">
+          <span class="search-tag" onclick="doSearch('computer basics')">Computer Basics</span>
+          <span class="search-tag" onclick="doSearch('excel')">Excel</span>
+          <span class="search-tag" onclick="doSearch('CV writing')">CV Writing</span>
+          <span class="search-tag" onclick="doSearch('email')">Email Writing</span>
+          <span class="search-tag" onclick="doSearch('business plan')">Business Plan</span>
+          <span class="search-tag" onclick="doSearch('interview')">Job Interview</span>
+          <span class="search-tag" onclick="doSearch('leadership')">Leadership</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEARCH RESULTS -->
+    <section class="search-results-section" id="searchResults">
+      <div class="container">
+        <p class="search-results-title" id="searchResultsTitle"></p>
+        <div class="search-results-grid" id="searchResultsGrid"></div>
+      </div>
+    </section>
+
     <!-- COURSE TRACKS -->
     <section class="section" id="tracks">
       <div class="container">
-        <h2>Choose Your Learning Track</h2>
-        <p class="section-intro">Start with any track that fits your goals. Each track has 3 structured lessons, practical exercises, a mini quiz, and a completion certificate.</p>
-        <div class="tracks-grid">
+        <div class="tracks-header-row">
+          <div>
+            <h2 style="margin:0 0 .35rem;">Choose Your Learning Track</h2>
+            <p class="section-intro" style="margin:0;">Each track has 3 lessons, a quiz, an assignment, and a free certificate.</p>
+          </div>
+          <span class="tracks-count-badge" id="tracksCountBadge">6 Tracks Available</span>
+        </div>
+        <div class="tracks-grid" id="tracksGrid">
 
-          <a class="track-card" href="classroom-computer-skills.html">
+          <a class="track-card" href="classroom-computer-skills.html" data-keywords="computer internet hardware software windows files keyboard typing google gmail drive safety scam browsing">
+            <div class="track-video-wrap" onclick="openVideoModal('NARrnGza4kA','Computer &amp; Internet Skills — Intro Video');return false;">
+              <img src="https://img.youtube.com/vi/NARrnGza4kA/hqdefault.jpg" alt="Computer Skills preview" loading="lazy" />
+              <div class="track-video-overlay"><div class="track-video-play">▶</div></div>
+            </div>
             <div class="track-icon" style="background:#dbeafe;">💻</div>
             <h3>Computer &amp; Internet Skills</h3>
             <p>Master computer hardware, internet navigation, online safety, and Google Workspace tools from scratch.</p>
@@ -169,7 +269,11 @@
             </div>
           </a>
 
-          <a class="track-card" href="classroom-office-suite.html">
+          <a class="track-card" href="classroom-office-suite.html" data-keywords="microsoft office word excel powerpoint spreadsheet document presentation cv letter formatting">
+            <div class="track-video-wrap" onclick="openVideoModal('EuWTrvT_YyY','Microsoft Office Suite — Word Essentials');return false;">
+              <img src="https://img.youtube.com/vi/EuWTrvT_YyY/hqdefault.jpg" alt="Microsoft Office preview" loading="lazy" />
+              <div class="track-video-overlay"><div class="track-video-play">▶</div></div>
+            </div>
             <div class="track-icon" style="background:#dcfce7;">📊</div>
             <h3>Microsoft Office Suite</h3>
             <p>Learn Microsoft Word, Excel, and PowerPoint — the three workplace tools every professional must know.</p>
@@ -179,7 +283,11 @@
             </div>
           </a>
 
-          <a class="track-card" href="classroom-communication.html">
+          <a class="track-card" href="classroom-communication.html" data-keywords="email writing communication professional business report public speaking presentation writing letter">
+            <div class="track-video-wrap" onclick="openVideoModal('PEB9jEXh0X4','Professional Communication — Email Writing');return false;">
+              <img src="https://img.youtube.com/vi/PEB9jEXh0X4/hqdefault.jpg" alt="Professional Communication preview" loading="lazy" />
+              <div class="track-video-overlay"><div class="track-video-play">▶</div></div>
+            </div>
             <div class="track-icon" style="background:#ede9fe;">✉️</div>
             <h3>Professional Communication</h3>
             <p>Write professional emails and business reports, and develop the confidence to speak in front of others.</p>
@@ -189,7 +297,11 @@
             </div>
           </a>
 
-          <a class="track-card" href="classroom-career-readiness.html">
+          <a class="track-card" href="classroom-career-readiness.html" data-keywords="cv resume job interview linkedin career personal branding employment work application">
+            <div class="track-video-wrap" onclick="openVideoModal('3eIlHtHDGDs','Career Readiness — Professional CV Writing');return false;">
+              <img src="https://img.youtube.com/vi/3eIlHtHDGDs/hqdefault.jpg" alt="Career Readiness preview" loading="lazy" />
+              <div class="track-video-overlay"><div class="track-video-play">▶</div></div>
+            </div>
             <div class="track-icon" style="background:#ffedd5;">🎯</div>
             <h3>Career &amp; Job Readiness</h3>
             <p>Build a standout CV, ace job interviews, and create a professional online presence to land your dream job.</p>
@@ -199,7 +311,11 @@
             </div>
           </a>
 
-          <a class="track-card" href="classroom-entrepreneurship.html">
+          <a class="track-card" href="classroom-entrepreneurship.html" data-keywords="entrepreneurship business plan marketing startup idea liberia opportunity customer sales revenue">
+            <div class="track-video-wrap" onclick="openVideoModal('4hshq-o0vSI','Entrepreneurship — Entrepreneurial Mindset');return false;">
+              <img src="https://img.youtube.com/vi/4hshq-o0vSI/hqdefault.jpg" alt="Entrepreneurship preview" loading="lazy" />
+              <div class="track-video-overlay"><div class="track-video-play">▶</div></div>
+            </div>
             <div class="track-icon" style="background:#fee2e2;">🚀</div>
             <h3>Entrepreneurship &amp; Business</h3>
             <p>Discover the entrepreneurial mindset, write a business plan, and learn low-cost marketing strategies for Liberia.</p>
@@ -209,7 +325,11 @@
             </div>
           </a>
 
-          <a class="track-card" href="classroom-leadership.html">
+          <a class="track-card" href="classroom-leadership.html" data-keywords="leadership life skills time management teamwork critical thinking conflict decision productivity soft skills">
+            <div class="track-video-wrap" onclick="openVideoModal('tYW6X5qwnMw','Leadership &amp; Life Skills — What is Leadership?');return false;">
+              <img src="https://img.youtube.com/vi/tYW6X5qwnMw/hqdefault.jpg" alt="Leadership preview" loading="lazy" />
+              <div class="track-video-overlay"><div class="track-video-play">▶</div></div>
+            </div>
             <div class="track-icon" style="background:#ccfbf1;">🌟</div>
             <h3>Leadership &amp; Life Skills</h3>
             <p>Develop essential soft skills: time management, teamwork, conflict resolution, and critical thinking.</p>
@@ -218,6 +338,95 @@
               <span class="track-cta">Start →</span>
             </div>
           </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED VIDEO LESSONS -->
+    <section class="video-lessons-section">
+      <div class="container">
+        <h2>Watch Free Video Lessons</h2>
+        <p class="section-intro">Preview lessons directly — click any video to watch it now. All lessons are free, structured, and relevant to Liberian learners.</p>
+        <div class="video-lessons-grid">
+
+          <div class="video-lesson-card" onclick="openVideoModal('NARrnGza4kA','What is a Computer? Hardware vs Software')">
+            <div class="vlc-thumb">
+              <img src="https://img.youtube.com/vi/NARrnGza4kA/hqdefault.jpg" alt="What is a Computer?" loading="lazy" />
+              <div class="vlc-play"><div class="vlc-play-btn">▶</div></div>
+              <span class="vlc-duration">8:30</span>
+            </div>
+            <div class="vlc-body">
+              <span class="vlc-tag" style="color:#2563eb;">💻 Computer &amp; Internet Skills</span>
+              <p class="vlc-title">What is a Computer? Hardware vs Software</p>
+              <div class="vlc-meta"><span>⏱ 8 min</span><span>📖 Beginner</span></div>
+            </div>
+          </div>
+
+          <div class="video-lesson-card" onclick="openVideoModal('EuWTrvT_YyY','Microsoft Word: Documents, CVs &amp; Letters')">
+            <div class="vlc-thumb">
+              <img src="https://img.youtube.com/vi/EuWTrvT_YyY/hqdefault.jpg" alt="Microsoft Word" loading="lazy" />
+              <div class="vlc-play"><div class="vlc-play-btn">▶</div></div>
+              <span class="vlc-duration">12:00</span>
+            </div>
+            <div class="vlc-body">
+              <span class="vlc-tag" style="color:#16a34a;">📊 Microsoft Office Suite</span>
+              <p class="vlc-title">Microsoft Word: Documents, CVs &amp; Letters</p>
+              <div class="vlc-meta"><span>⏱ 12 min</span><span>📖 Beginner</span></div>
+            </div>
+          </div>
+
+          <div class="video-lesson-card" onclick="openVideoModal('Vl0H-qTclOg','Microsoft Excel: Spreadsheets &amp; Formulas')">
+            <div class="vlc-thumb">
+              <img src="https://img.youtube.com/vi/Vl0H-qTclOg/hqdefault.jpg" alt="Excel Spreadsheets" loading="lazy" />
+              <div class="vlc-play"><div class="vlc-play-btn">▶</div></div>
+              <span class="vlc-duration">14:00</span>
+            </div>
+            <div class="vlc-body">
+              <span class="vlc-tag" style="color:#16a34a;">📊 Microsoft Office Suite</span>
+              <p class="vlc-title">Microsoft Excel: Spreadsheets &amp; Basic Formulas</p>
+              <div class="vlc-meta"><span>⏱ 14 min</span><span>📖 Beginner</span></div>
+            </div>
+          </div>
+
+          <div class="video-lesson-card" onclick="openVideoModal('3eIlHtHDGDs','Professional CVs, Letters &amp; Reports')">
+            <div class="vlc-thumb">
+              <img src="https://img.youtube.com/vi/3eIlHtHDGDs/hqdefault.jpg" alt="CV Writing" loading="lazy" />
+              <div class="vlc-play"><div class="vlc-play-btn">▶</div></div>
+              <span class="vlc-duration">12:00</span>
+            </div>
+            <div class="vlc-body">
+              <span class="vlc-tag" style="color:#ea580c;">🎯 Career &amp; Job Readiness</span>
+              <p class="vlc-title">Professional CVs, Letters &amp; Reports</p>
+              <div class="vlc-meta"><span>⏱ 12 min</span><span>📖 Intermediate</span></div>
+            </div>
+          </div>
+
+          <div class="video-lesson-card" onclick="openVideoModal('4hshq-o0vSI','Entrepreneurial Mindset &amp; Opportunity Recognition')">
+            <div class="vlc-thumb">
+              <img src="https://img.youtube.com/vi/4hshq-o0vSI/hqdefault.jpg" alt="Entrepreneurship" loading="lazy" />
+              <div class="vlc-play"><div class="vlc-play-btn">▶</div></div>
+              <span class="vlc-duration">9:00</span>
+            </div>
+            <div class="vlc-body">
+              <span class="vlc-tag" style="color:#dc2626;">🚀 Entrepreneurship &amp; Business</span>
+              <p class="vlc-title">Entrepreneurial Mindset &amp; Opportunity Recognition</p>
+              <div class="vlc-meta"><span>⏱ 9 min</span><span>📖 Beginner</span></div>
+            </div>
+          </div>
+
+          <div class="video-lesson-card" onclick="openVideoModal('tYW6X5qwnMw','What is Leadership? Styles &amp; the African Context')">
+            <div class="vlc-thumb">
+              <img src="https://img.youtube.com/vi/tYW6X5qwnMw/hqdefault.jpg" alt="Leadership" loading="lazy" />
+              <div class="vlc-play"><div class="vlc-play-btn">▶</div></div>
+              <span class="vlc-duration">9:30</span>
+            </div>
+            <div class="vlc-body">
+              <span class="vlc-tag" style="color:#0d9488;">🌟 Leadership &amp; Life Skills</span>
+              <p class="vlc-title">What is Leadership? Styles &amp; the African Context</p>
+              <div class="vlc-meta"><span>⏱ 9 min</span><span>📖 All Levels</span></div>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -512,7 +721,165 @@
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="34" height="34" alt="WhatsApp" />
   </a>
 
+  <!-- VIDEO MODAL -->
+  <div class="video-modal-overlay" id="videoModal" role="dialog" aria-modal="true">
+    <div class="video-modal-inner">
+      <div class="video-modal-topbar">
+        <span class="video-modal-title" id="videoModalTitle"></span>
+        <button class="video-modal-close" id="videoModalClose" aria-label="Close video">✕ Close</button>
+      </div>
+      <div class="video-modal-frame">
+        <iframe id="videoModalIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Lesson Video"></iframe>
+      </div>
+    </div>
+  </div>
+
   <script src="classroom.js"></script>
   <script src="chatbot.js"></script>
+  <script>
+  // ── VIDEO MODAL ──────────────────────────────────────────────────────────────
+  function openVideoModal(videoId, title) {
+    var modal = document.getElementById('videoModal');
+    var iframe = document.getElementById('videoModalIframe');
+    var titleEl = document.getElementById('videoModalTitle');
+    iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+    if (titleEl) titleEl.textContent = title || '';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVideoModal() {
+    var modal = document.getElementById('videoModal');
+    var iframe = document.getElementById('videoModalIframe');
+    modal.classList.remove('open');
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('videoModalClose').addEventListener('click', closeVideoModal);
+  document.getElementById('videoModal').addEventListener('click', function(e){ if(e.target===this) closeVideoModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeVideoModal(); });
+
+  // ── SEARCH ───────────────────────────────────────────────────────────────────
+  var SEARCH_DATA = [
+    // Track 1: Computer & Internet Skills
+    {name:'Introduction to Computers',track:'Computer & Internet Skills',icon:'💻',color:'#dbeafe',tagColor:'#2563eb',url:'classroom-lesson-intro-to-computers.html',desc:'Hardware vs software, parts of a PC, how computers work.',kw:'computer hardware software cpu ram keyboard monitor windows'},
+    {name:'Internet Safety & Navigation',track:'Computer & Internet Skills',icon:'🌐',color:'#dbeafe',tagColor:'#2563eb',url:'classroom-lesson-internet-basics.html',desc:'Browse safely, search effectively, and avoid online scams.',kw:'internet safety scam password phishing browsing security online'},
+    {name:'Google Workspace Basics',track:'Computer & Internet Skills',icon:'📧',color:'#dbeafe',tagColor:'#2563eb',url:'classroom-lesson-google-tools.html',desc:'Gmail, Google Drive, Docs, and cloud storage essentials.',kw:'google gmail drive docs cloud storage google workspace email'},
+    // Track 2: Microsoft Office Suite
+    {name:'Microsoft Word Essentials',track:'Microsoft Office Suite',icon:'📝',color:'#dcfce7',tagColor:'#16a34a',url:'classroom-lesson-microsoft-word.html',desc:'Create, format, and print professional Word documents.',kw:'word microsoft document cv letter formatting styles heading'},
+    {name:'Excel Basics',track:'Microsoft Office Suite',icon:'📊',color:'#dcfce7',tagColor:'#16a34a',url:'classroom-lesson-excel-basics.html',desc:'Spreadsheets, formulas (SUM, AVERAGE), and data tables.',kw:'excel spreadsheet formula sum average count pivot table data'},
+    {name:'PowerPoint Basics',track:'Microsoft Office Suite',icon:'📽',color:'#dcfce7',tagColor:'#16a34a',url:'classroom-lesson-powerpoint-basics.html',desc:'Design slide presentations that communicate with impact.',kw:'powerpoint presentation slides theme animation design'},
+    // Track 3: Professional Communication
+    {name:'Professional Email Writing',track:'Professional Communication',icon:'✉️',color:'#ede9fe',tagColor:'#7c3aed',url:'classroom-lesson-professional-emails.html',desc:'Subject lines, greetings, body structure, and sign-offs.',kw:'email professional writing communication gmail subject tone'},
+    {name:'Business Writing & Reports',track:'Professional Communication',icon:'📋',color:'#ede9fe',tagColor:'#7c3aed',url:'classroom-lesson-business-writing.html',desc:'Write clear reports, proposals, and business documents.',kw:'business writing report proposal memo professional document'},
+    {name:'Public Speaking & Presentations',track:'Professional Communication',icon:'🎤',color:'#ede9fe',tagColor:'#7c3aed',url:'classroom-lesson-public-speaking.html',desc:'Speak confidently in meetings, interviews, and events.',kw:'public speaking presentation confidence speech communication'},
+    // Track 4: Career & Job Readiness
+    {name:'Building a Standout CV',track:'Career & Job Readiness',icon:'📄',color:'#ffedd5',tagColor:'#ea580c',url:'classroom-lesson-cv-writing.html',desc:'Format and write a CV that gets you noticed by employers.',kw:'cv resume curriculum vitae job application writing employment'},
+    {name:'Job Interview Skills',track:'Career & Job Readiness',icon:'🤝',color:'#ffedd5',tagColor:'#ea580c',url:'classroom-lesson-job-interview.html',desc:'Prepare for interviews, answer tough questions, impress.',kw:'interview job questions answers preparation employer hiring'},
+    {name:'Personal Branding Online',track:'Career & Job Readiness',icon:'🌟',color:'#ffedd5',tagColor:'#ea580c',url:'classroom-lesson-personal-branding.html',desc:'Build your LinkedIn profile and professional online presence.',kw:'personal branding linkedin online profile digital career'},
+    // Track 5: Entrepreneurship & Business
+    {name:'Introduction to Entrepreneurship',track:'Entrepreneurship & Business',icon:'🚀',color:'#fee2e2',tagColor:'#dc2626',url:'classroom-lesson-what-is-entrepreneurship.html',desc:'Entrepreneurial mindset and opportunity recognition in Liberia.',kw:'entrepreneurship business startup idea opportunity mindset liberia'},
+    {name:'Writing a Business Plan',track:'Entrepreneurship & Business',icon:'📑',color:'#fee2e2',tagColor:'#dc2626',url:'classroom-lesson-business-plan.html',desc:'Structure a complete business plan from idea to funding.',kw:'business plan startup funding revenue expenses market analysis'},
+    {name:'Marketing Basics for Small Business',track:'Entrepreneurship & Business',icon:'📣',color:'#fee2e2',tagColor:'#dc2626',url:'classroom-lesson-marketing-basics.html',desc:'Attract customers with low-cost marketing strategies.',kw:'marketing social media facebook instagram advertising customers sales'},
+    // Track 6: Leadership & Life Skills
+    {name:'Time Management & Productivity',track:'Leadership & Life Skills',icon:'⏰',color:'#ccfbf1',tagColor:'#0d9488',url:'classroom-lesson-time-management.html',desc:'Plan your day, prioritize tasks, and beat procrastination.',kw:'time management productivity planning schedule priority procrastination'},
+    {name:'Teamwork & Collaboration',track:'Leadership & Life Skills',icon:'🤝',color:'#ccfbf1',tagColor:'#0d9488',url:'classroom-lesson-teamwork.html',desc:'Work effectively in teams, resolve conflict, build trust.',kw:'teamwork collaboration team conflict communication cooperation'},
+    {name:'Critical Thinking & Problem Solving',track:'Leadership & Life Skills',icon:'🧠',color:'#ccfbf1',tagColor:'#0d9488',url:'classroom-lesson-critical-thinking.html',desc:'Analyze information, make better decisions, solve problems.',kw:'critical thinking problem solving decision analysis logic reasoning'},
+  ];
+
+  var TRACK_DATA = [
+    {name:'Computer & Internet Skills',icon:'💻',color:'#dbeafe',tagColor:'#2563eb',url:'classroom-computer-skills.html',kw:'computer internet hardware software windows files keyboard'},
+    {name:'Microsoft Office Suite',icon:'📊',color:'#dcfce7',tagColor:'#16a34a',url:'classroom-office-suite.html',kw:'microsoft office word excel powerpoint spreadsheet document'},
+    {name:'Professional Communication',icon:'✉️',color:'#ede9fe',tagColor:'#7c3aed',url:'classroom-communication.html',kw:'email communication professional business report speaking'},
+    {name:'Career & Job Readiness',icon:'🎯',color:'#ffedd5',tagColor:'#ea580c',url:'classroom-career-readiness.html',kw:'cv resume job interview career personal branding employment'},
+    {name:'Entrepreneurship & Business',icon:'🚀',color:'#fee2e2',tagColor:'#dc2626',url:'classroom-entrepreneurship.html',kw:'entrepreneurship business plan marketing startup idea'},
+    {name:'Leadership & Life Skills',icon:'🌟',color:'#ccfbf1',tagColor:'#0d9488',url:'classroom-leadership.html',kw:'leadership time management teamwork critical thinking soft skills'},
+  ];
+
+  var searchInput = document.getElementById('siteSearch');
+  var searchClear = document.getElementById('searchClear');
+  var searchResults = document.getElementById('searchResults');
+  var searchResultsGrid = document.getElementById('searchResultsGrid');
+  var searchResultsTitle = document.getElementById('searchResultsTitle');
+  var tracksGrid = document.getElementById('tracksGrid');
+  var tracksCountBadge = document.getElementById('tracksCountBadge');
+
+  function doSearch(val) {
+    searchInput.value = val;
+    runSearch(val);
+  }
+
+  function runSearch(q) {
+    q = (q || '').toLowerCase().trim();
+    searchClear.classList.toggle('visible', q.length > 0);
+
+    if (!q) {
+      searchResults.style.display = 'none';
+      // Show all track cards
+      if (tracksGrid) {
+        var cards = tracksGrid.querySelectorAll('.track-card');
+        cards.forEach(function(c){ c.style.display = ''; });
+        if (tracksCountBadge) tracksCountBadge.textContent = '6 Tracks Available';
+      }
+      return;
+    }
+
+    // Filter track cards
+    var visibleTracks = 0;
+    if (tracksGrid) {
+      var cards = tracksGrid.querySelectorAll('.track-card');
+      cards.forEach(function(c){
+        var kw = (c.dataset.keywords || '') + ' ' + (c.textContent || '');
+        var match = kw.toLowerCase().indexOf(q) !== -1;
+        c.style.display = match ? '' : 'none';
+        if (match) visibleTracks++;
+      });
+      if (tracksCountBadge) tracksCountBadge.textContent = visibleTracks + ' Track' + (visibleTracks!==1?'s':'') + ' Found';
+    }
+
+    // Filter lessons
+    var lessonMatches = SEARCH_DATA.filter(function(l){
+      return (l.name+' '+l.track+' '+l.kw+' '+l.desc).toLowerCase().indexOf(q) !== -1;
+    });
+    var trackMatches = TRACK_DATA.filter(function(t){
+      return (t.name+' '+t.kw).toLowerCase().indexOf(q) !== -1;
+    });
+
+    var totalMatches = lessonMatches.length;
+    searchResultsTitle.textContent = totalMatches + ' lesson' + (totalMatches!==1?'s':'') + ' found for "' + q + '"';
+
+    var html = '';
+    if (lessonMatches.length === 0) {
+      html = '<div class="no-results-box"><h3>No lessons found for "' + q + '"</h3><p>Try different keywords, or browse the tracks above.</p></div>';
+    } else {
+      lessonMatches.forEach(function(l){
+        html += '<a class="search-result-item" href="'+l.url+'">' +
+          '<div class="sri-icon" style="background:'+l.color+'">'+l.icon+'</div>' +
+          '<div class="sri-body">' +
+            '<span class="sri-tag" style="color:'+l.tagColor+'">'+l.track+'</span>' +
+            '<p class="sri-name">'+l.name+'</p>' +
+            '<p class="sri-desc">'+l.desc+'</p>' +
+          '</div></a>';
+      });
+    }
+    searchResultsGrid.innerHTML = html;
+    searchResults.style.display = 'block';
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', function(){ runSearch(this.value); });
+    searchInput.addEventListener('keydown', function(e){
+      if (e.key==='Enter' && searchResultsGrid.querySelector('a')) {
+        searchResultsGrid.querySelector('a').click();
+      }
+    });
+  }
+  if (searchClear) {
+    searchClear.addEventListener('click', function(){
+      searchInput.value = '';
+      runSearch('');
+      searchInput.focus();
+    });
+  }
+  </script>
 </body>
 </html>
