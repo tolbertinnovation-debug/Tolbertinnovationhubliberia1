@@ -656,7 +656,7 @@
     var params = new URLSearchParams(window.location.search);
     var startLesson = parseInt(params.get('lesson'));
     if (!isNaN(startLesson) && startLesson >= 0 && startLesson < totalLessons) {
-      // Only honour URL param if the lesson is actually unlocked
+      // Only honor URL param if the lesson is actually unlocked
       currentLessonIndex = isLessonLocked(startLesson) ? 0 : startLesson;
     } else {
       // Resume at the first lesson not yet completed
