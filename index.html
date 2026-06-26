@@ -20,6 +20,75 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="https://i.ibb.co/WWCs1x2J/Chat-GPT-Image-Mar-8-2026-01-15-05-PM.png" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    /* ── Programs Carousel ── */
+    .programs-carousel {
+      overflow: hidden;
+      padding-bottom: 3.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .programs-carousel .swiper-slide {
+      height: auto;
+    }
+    /* Equal-height cards inside the carousel */
+    .programs-carousel .swiper-slide .card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .programs-carousel .swiper-slide .card .card-link,
+    .programs-carousel .swiper-slide .card .prog-btn-row {
+      margin-top: auto;
+    }
+    /* Pagination pill dots */
+    .programs-carousel .swiper-pagination {
+      bottom: 0.5rem;
+    }
+    .programs-carousel .swiper-pagination-bullet {
+      width: 8px;
+      height: 8px;
+      background: var(--brand-blue);
+      opacity: 0.28;
+      transition: width 0.3s ease, opacity 0.3s ease;
+      border-radius: 4px;
+    }
+    .programs-carousel .swiper-pagination-bullet-active {
+      opacity: 1;
+      width: 24px;
+    }
+    /* Navigation arrows */
+    .programs-carousel .swiper-button-prev,
+    .programs-carousel .swiper-button-next {
+      top: 50%;
+      transform: translateY(calc(-50% - 1.5rem));
+      width: 40px;
+      height: 40px;
+      background: var(--surface, #fff);
+      border: 1px solid var(--border-light, #e2e8f0);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      color: var(--brand-blue, #002868);
+    }
+    .programs-carousel .swiper-button-prev::after,
+    .programs-carousel .swiper-button-next::after {
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .programs-carousel .swiper-button-prev:hover,
+    .programs-carousel .swiper-button-next:hover {
+      background: var(--brand-blue, #002868);
+      color: #fff;
+      border-color: var(--brand-blue, #002868);
+    }
+    /* Hide arrows on mobile, show on tablet+ */
+    @media (max-width: 639px) {
+      .programs-carousel .swiper-button-prev,
+      .programs-carousel .swiper-button-next {
+        display: none;
+      }
+    }
+  </style>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <script type="application/ld+json">
@@ -219,148 +288,171 @@
           <p class="section-intro">Nine programs built for Liberians and West Africans — from digital skills and exam prep to scholarships, healthcare, and business innovation. Find your program and take the next step.</p>
         </div>
 
-        <!-- Programs grid: 3 columns -->
-        <div class="programs-all-grid">
+        <!-- Programs carousel (Swiper.js — 1 card mobile / 2 tablet / 3 desktop, autoplay 4.5s) -->
+        <div class="swiper programs-carousel" role="region" aria-label="All Programs" aria-roledescription="carousel">
+          <div class="swiper-wrapper">
 
-          <!-- TIH Academy -->
-          <article class="card card-accent reveal" style="border-top:4px solid #002868;">
-            <div class="program-card-icon" style="background:#e8f0fb;">🎓</div>
-            <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#002868; margin:0 0 0.4rem;">Digital Education</p>
-            <h3 style="margin-bottom:0.6rem;">TIH Academy</h3>
-            <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">12 professional courses in Tech, Business &amp; Leadership — with real YouTube video lessons, quizzes, and verified certificates. <strong>All courses are 100% FREE</strong>.</p>
-            <ul class="list-tight" style="font-size:0.88rem;">
-              <li>Computer Literacy, AI, Web Dev &amp; Data</li>
-              <li>Android, Design, Cybersecurity &amp; Marketing</li>
-              <li>Entrepreneurship, PM, Office &amp; Leadership</li>
-              <li>Free certificates for every course</li>
-            </ul>
-            <a class="card-link" href="academy.html">Explore TIH Academy →</a>
-          </article>
-
-          <!-- Study Abroad / Scholarship -->
-          <article class="card card-accent reveal reveal-delay-1" style="border-top:4px solid #BF0A30;">
-            <div class="program-card-icon" style="background:#fce8ec;">✈️</div>
-            <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#BF0A30; margin:0 0 0.4rem;">International Education</p>
-            <h3 style="margin-bottom:0.6rem;">Study Abroad Program</h3>
-            <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Complete scholarship guidance — eligibility check, document preparation, and admission letter issuance for Liberians pursuing international education in India and beyond.</p>
-            <ul class="list-tight" style="font-size:0.88rem;">
-              <li>University selection &amp; eligibility review</li>
-              <li>Application &amp; document support</li>
-              <li>Official admission letter issuance</li>
-              <li>2026 applications now open</li>
-            </ul>
-            <a class="card-link" href="apply.html">Apply for Scholarship →</a>
-          </article>
-
-          <!-- Fully Funded -->
-          <article class="card card-accent reveal reveal-delay-2" style="border-top:4px solid #f59e0b;">
-            <div class="program-card-icon" style="background:#fefce8;">🏆</div>
-            <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#b45309; margin:0 0 0.4rem;">Zero Cost</p>
-            <h3 style="margin-bottom:0.6rem;">Fully Funded Scholarships</h3>
-            <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Curated fully funded scholarship opportunities from governments, universities, and foundations worldwide — covering tuition, accommodation, and living expenses.</p>
-            <ul class="list-tight" style="font-size:0.88rem;">
-              <li>Government &amp; university scholarships</li>
-              <li>Application guidance &amp; deadlines</li>
-              <li>Eligibility matching for Liberians</li>
-              <li>No cost — 100% covered programs</li>
-            </ul>
-            <a class="card-link" href="fully-funded-scholarship.html">Explore Fully Funded →</a>
-          </article>
-
-          <!-- Free Classroom -->
-          <article class="card card-accent reveal" style="border-top:4px solid #002868;">
-            <div class="program-card-icon" style="background:#e8f0fb;">📚</div>
-            <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#002868; margin:0 0 0.4rem;">Free Exam Prep</p>
-            <h3 style="margin-bottom:0.6rem;">IELTS &amp; TOEFL Classroom</h3>
-            <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Comprehensive online exam preparation — 6 structured modules per exam, video lessons, practice tests, study materials, and a certificate request system. Completely free.</p>
-            <ul class="list-tight" style="font-size:0.88rem;">
-              <li>IELTS: Listening, Reading, Writing, Speaking</li>
-              <li>TOEFL: Full 6-module pathway</li>
-              <li>Practice tests &amp; mock exams</li>
-              <li>Certificate request on completion</li>
-            </ul>
-            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:auto; padding-top:1rem;">
-              <a class="btn btn-secondary btn-sm" href="classroom-ielts.html">IELTS Prep</a>
-              <a class="btn btn-ghost btn-sm" href="classroom-toefl.html">TOEFL Prep</a>
+            <!-- TIH Academy -->
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="1 of 9">
+              <article class="card card-accent" style="border-top:4px solid #002868;">
+                <div class="program-card-icon" style="background:#e8f0fb;">🎓</div>
+                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#002868; margin:0 0 0.4rem;">Digital Education</p>
+                <h3 style="margin-bottom:0.6rem;">TIH Academy</h3>
+                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">12 professional courses in Tech, Business &amp; Leadership — with real YouTube video lessons, quizzes, and verified certificates. <strong>All courses are 100% FREE</strong>.</p>
+                <ul class="list-tight" style="font-size:0.88rem;">
+                  <li>Computer Literacy, AI, Web Dev &amp; Data</li>
+                  <li>Android, Design, Cybersecurity &amp; Marketing</li>
+                  <li>Entrepreneurship, PM, Office &amp; Leadership</li>
+                  <li>Free certificates for every course</li>
+                </ul>
+                <a class="card-link" href="academy.html">Explore TIH Academy →</a>
+              </article>
             </div>
-          </article>
 
-          <!-- WASSCE PRO -->
-          <article class="card card-accent reveal reveal-delay-1" style="border-top:4px solid #10b981;">
-            <div class="program-card-icon" style="background:#d1fae5;">📝</div>
-            <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#059669; margin:0 0 0.4rem;">West Africa Exams</p>
-            <h3 style="margin-bottom:0.6rem;">WASSCE PRO</h3>
-            <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Dedicated preparation platform for the West African Senior School Certificate Examination — subject-by-subject modules, past questions, and guided study plans for Liberian students.</p>
-            <ul class="list-tight" style="font-size:0.88rem;">
-              <li>Core subject modules &amp; study guides</li>
-              <li>Past questions &amp; model answers</li>
-              <li>Math, English, Science &amp; more</li>
-              <li>Structured revision plans</li>
-            </ul>
-            <a class="card-link" href="wassce.html">Start WASSCE Prep →</a>
-          </article>
+            <!-- Study Abroad / Scholarship -->
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="2 of 9">
+              <article class="card card-accent" style="border-top:4px solid #BF0A30;">
+                <div class="program-card-icon" style="background:#fce8ec;">✈️</div>
+                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#BF0A30; margin:0 0 0.4rem;">International Education</p>
+                <h3 style="margin-bottom:0.6rem;">Study Abroad Program</h3>
+                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Complete scholarship guidance — eligibility check, document preparation, and admission letter issuance for Liberians pursuing international education in India and beyond.</p>
+                <ul class="list-tight" style="font-size:0.88rem;">
+                  <li>University selection &amp; eligibility review</li>
+                  <li>Application &amp; document support</li>
+                  <li>Official admission letter issuance</li>
+                  <li>2026 applications now open</li>
+                </ul>
+                <a class="card-link" href="apply.html">Apply for Scholarship →</a>
+              </article>
+            </div>
 
-          <!-- Grants -->
-          <article class="card card-accent reveal reveal-delay-2" style="border-top:4px solid #7c3aed;">
-            <div class="program-card-icon" style="background:#ede9fe;">💰</div>
-            <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#7c3aed; margin:0 0 0.4rem;">Funding Opportunities</p>
-            <h3 style="margin-bottom:0.6rem;">Grants Directory</h3>
-            <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Comprehensive directory of grants available to Liberian businesses, NGOs, and individuals — USAID, World Bank, EU, Tony Elumelu Foundation, and more. Updated for 2026–2027.</p>
-            <ul class="list-tight" style="font-size:0.88rem;">
-              <li>USAID, EU &amp; World Bank grants</li>
-              <li>Tony Elumelu &amp; Gates Foundation</li>
-              <li>NGO, business &amp; research funding</li>
-              <li>Application links &amp; deadlines</li>
-            </ul>
-            <a class="card-link" href="grants.html">Browse Grants Directory →</a>
-          </article>
+            <!-- Fully Funded -->
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="3 of 9">
+              <article class="card card-accent" style="border-top:4px solid #f59e0b;">
+                <div class="program-card-icon" style="background:#fefce8;">🏆</div>
+                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#b45309; margin:0 0 0.4rem;">Zero Cost</p>
+                <h3 style="margin-bottom:0.6rem;">Fully Funded Scholarships</h3>
+                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Curated fully funded scholarship opportunities from governments, universities, and foundations worldwide — covering tuition, accommodation, and living expenses.</p>
+                <ul class="list-tight" style="font-size:0.88rem;">
+                  <li>Government &amp; university scholarships</li>
+                  <li>Application guidance &amp; deadlines</li>
+                  <li>Eligibility matching for Liberians</li>
+                  <li>No cost — 100% covered programs</li>
+                </ul>
+                <a class="card-link" href="fully-funded-scholarship.html">Explore Fully Funded →</a>
+              </article>
+            </div>
 
-          <!-- Healthcare -->
-          <article class="card card-accent reveal" style="border-top:4px solid #dc2626;">
-            <div class="program-card-icon" style="background:#fee2e2;">🏥</div>
-            <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#dc2626; margin:0 0 0.4rem;">Medical Access</p>
-            <h3 style="margin-bottom:0.6rem;">International Healthcare Program</h3>
-            <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Connecting Liberians to specialized medical treatment abroad — case review, hospital coordination, specialist referrals, and comprehensive travel &amp; logistics support for patients and families.</p>
-            <ul class="list-tight" style="font-size:0.88rem;">
-              <li>Medical case intake &amp; specialist matching</li>
-              <li>Hospital coordination in India</li>
-              <li>Visa, travel &amp; accommodation guidance</li>
-              <li>Ongoing patient support</li>
-            </ul>
-            <a class="card-link" href="healthcare.html">Explore Healthcare Program →</a>
-          </article>
+            <!-- TIH Skills Classroom -->
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="4 of 9">
+              <article class="card card-accent" style="border-top:4px solid #002868;">
+                <div class="program-card-icon" style="background:#e8f0fb;">📚</div>
+                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#002868; margin:0 0 0.4rem;">Free Skills Training</p>
+                <h3 style="margin-bottom:0.6rem;">TIH Skills Classroom</h3>
+                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">6 career tracks, 18 structured lessons in Computer Skills, Office Suite, Communication, Career Readiness, Entrepreneurship, and Leadership. 100% free with certificates.</p>
+                <ul class="list-tight" style="font-size:0.88rem;">
+                  <li>Computer &amp; internet skills</li>
+                  <li>Microsoft Office &amp; professional writing</li>
+                  <li>CV writing, job interviews &amp; branding</li>
+                  <li>Certificate on track completion</li>
+                </ul>
+                <a class="card-link" href="classroom.html">Enter Skills Classroom →</a>
+              </article>
+            </div>
 
-          <!-- Software Innovation -->
-          <article class="card card-accent reveal reveal-delay-1" style="border-top:4px solid #0284c7;">
-            <div class="program-card-icon" style="background:#e0f2fe;">⚙️</div>
-            <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#0284c7; margin:0 0 0.4rem;">Business Technology</p>
-            <h3 style="margin-bottom:0.6rem;">Software &amp; Digital Innovation</h3>
-            <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Professional digital solutions for Liberian businesses — custom websites, web applications, business management platforms, and strategic digital transformation consulting.</p>
-            <ul class="list-tight" style="font-size:0.88rem;">
-              <li>Custom websites &amp; web applications</li>
-              <li>Business management systems</li>
-              <li>Digital strategy &amp; consultation</li>
-              <li>Process automation solutions</li>
-            </ul>
-            <a class="card-link" href="software.html">Explore Software Platform →</a>
-          </article>
+            <!-- WASSCE PRO -->
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="5 of 9">
+              <article class="card card-accent" style="border-top:4px solid #10b981;">
+                <div class="program-card-icon" style="background:#d1fae5;">📝</div>
+                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#059669; margin:0 0 0.4rem;">West Africa Exams</p>
+                <h3 style="margin-bottom:0.6rem;">WASSCE PRO</h3>
+                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Dedicated preparation platform for the West African Senior School Certificate Examination — subject-by-subject modules, past questions, and guided study plans for Liberian students.</p>
+                <ul class="list-tight" style="font-size:0.88rem;">
+                  <li>Core subject modules &amp; study guides</li>
+                  <li>Past questions &amp; model answers</li>
+                  <li>Math, English, Science &amp; more</li>
+                  <li>Structured revision plans</li>
+                </ul>
+                <a class="card-link" href="wassce.html">Start WASSCE Prep →</a>
+              </article>
+            </div>
 
-          <!-- Entertainment -->
-          <article class="card card-accent reveal reveal-delay-2" style="border-top:4px solid #be185d;">
-            <div class="program-card-icon" style="background:#fce7f3;">🎬</div>
-            <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#be185d; margin:0 0 0.4rem;">Culture &amp; Media</p>
-            <h3 style="margin-bottom:0.6rem;">Entertainment Platform</h3>
-            <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">A growing platform spotlighting Liberian musicians, filmmakers, and creative professionals. TIH promotes local talent through digital distribution, event coverage, and media content — helping Liberian creators reach broader audiences and build sustainable creative careers.</p>
-            <ul class="list-tight" style="font-size:0.88rem;">
-              <li>Liberian music, film &amp; arts</li>
-              <li>Cultural events &amp; media content</li>
-              <li>Creator support &amp; promotion</li>
-              <li>Community &amp; youth engagement</li>
-            </ul>
-            <a class="card-link" href="entertainment.html">Explore Entertainment →</a>
-          </article>
+            <!-- Grants -->
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="6 of 9">
+              <article class="card card-accent" style="border-top:4px solid #7c3aed;">
+                <div class="program-card-icon" style="background:#ede9fe;">💰</div>
+                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#7c3aed; margin:0 0 0.4rem;">Funding Opportunities</p>
+                <h3 style="margin-bottom:0.6rem;">Grants Directory</h3>
+                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Comprehensive directory of grants available to Liberian businesses, NGOs, and individuals — USAID, World Bank, EU, Tony Elumelu Foundation, and more. Updated for 2026–2027.</p>
+                <ul class="list-tight" style="font-size:0.88rem;">
+                  <li>USAID, EU &amp; World Bank grants</li>
+                  <li>Tony Elumelu &amp; Gates Foundation</li>
+                  <li>NGO, business &amp; research funding</li>
+                  <li>Application links &amp; deadlines</li>
+                </ul>
+                <a class="card-link" href="grants.html">Browse Grants Directory →</a>
+              </article>
+            </div>
 
-        </div>
+            <!-- Healthcare -->
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="7 of 9">
+              <article class="card card-accent" style="border-top:4px solid #dc2626;">
+                <div class="program-card-icon" style="background:#fee2e2;">🏥</div>
+                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#dc2626; margin:0 0 0.4rem;">Medical Access</p>
+                <h3 style="margin-bottom:0.6rem;">International Healthcare Program</h3>
+                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Connecting Liberians to specialized medical treatment abroad — case review, hospital coordination, specialist referrals, and comprehensive travel &amp; logistics support for patients and families.</p>
+                <ul class="list-tight" style="font-size:0.88rem;">
+                  <li>Medical case intake &amp; specialist matching</li>
+                  <li>Hospital coordination in India</li>
+                  <li>Visa, travel &amp; accommodation guidance</li>
+                  <li>Ongoing patient support</li>
+                </ul>
+                <a class="card-link" href="healthcare.html">Explore Healthcare Program →</a>
+              </article>
+            </div>
+
+            <!-- Software Innovation -->
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="8 of 9">
+              <article class="card card-accent" style="border-top:4px solid #0284c7;">
+                <div class="program-card-icon" style="background:#e0f2fe;">⚙️</div>
+                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#0284c7; margin:0 0 0.4rem;">Business Technology</p>
+                <h3 style="margin-bottom:0.6rem;">Software &amp; Digital Innovation</h3>
+                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Professional digital solutions for Liberian businesses — custom websites, web applications, business management platforms, and strategic digital transformation consulting.</p>
+                <ul class="list-tight" style="font-size:0.88rem;">
+                  <li>Custom websites &amp; web applications</li>
+                  <li>Business management systems</li>
+                  <li>Digital strategy &amp; consultation</li>
+                  <li>Process automation solutions</li>
+                </ul>
+                <a class="card-link" href="software.html">Explore Software Platform →</a>
+              </article>
+            </div>
+
+            <!-- Entertainment -->
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="9 of 9">
+              <article class="card card-accent" style="border-top:4px solid #be185d;">
+                <div class="program-card-icon" style="background:#fce7f3;">🎬</div>
+                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#be185d; margin:0 0 0.4rem;">Culture &amp; Media</p>
+                <h3 style="margin-bottom:0.6rem;">Entertainment Platform</h3>
+                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">A growing platform spotlighting Liberian musicians, filmmakers, and creative professionals. TIH promotes local talent through digital distribution, event coverage, and media content — helping Liberian creators reach broader audiences and build sustainable creative careers.</p>
+                <ul class="list-tight" style="font-size:0.88rem;">
+                  <li>Liberian music, film &amp; arts</li>
+                  <li>Cultural events &amp; media content</li>
+                  <li>Creator support &amp; promotion</li>
+                  <li>Community &amp; youth engagement</li>
+                </ul>
+                <a class="card-link" href="entertainment.html">Explore Entertainment →</a>
+              </article>
+            </div>
+
+          </div><!-- /.swiper-wrapper -->
+
+          <!-- Pagination dots -->
+          <div class="swiper-pagination" role="tablist" aria-label="Select a program slide"></div>
+          <!-- Navigation arrows (hidden on mobile via CSS) -->
+          <button class="swiper-button-prev" aria-label="Previous program"></button>
+          <button class="swiper-button-next" aria-label="Next program"></button>
+        </div><!-- /.programs-carousel -->
 
         <!-- All programs CTA bar -->
         <div style="background:linear-gradient(135deg,#002868,#1a3d8a); border-radius:var(--radius-xl); padding:2rem 2.5rem; display:flex; justify-content:space-between; align-items:center; gap:1.5rem; flex-wrap:wrap;" class="reveal">
@@ -741,6 +833,45 @@
   </footer>
 
   <script src="main.js"></script>
-<script src="chatbot.js"></script>
+  <script src="chatbot.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    (function () {
+      var swiper = new Swiper('.programs-carousel', {
+        loop: true,
+        speed: 600,
+        slidesPerView: 1,
+        spaceBetween: 16,
+        autoplay: {
+          delay: 4500,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
+        pagination: {
+          el: '.programs-carousel .swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.programs-carousel .swiper-button-next',
+          prevEl: '.programs-carousel .swiper-button-prev',
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 24,
+          },
+        },
+        a11y: {
+          prevSlideMessage: 'Previous program',
+          nextSlideMessage: 'Next program',
+          paginationBulletMessage: 'Go to slide {{index}}',
+        },
+      });
+    })();
+  </script>
 </body>
 </html>
