@@ -36,10 +36,10 @@
     .quiz-section h2{font-size:1.2rem;color:#0d1520;margin:0 0 1.25rem;}
     .quiz-item{background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;}
     .quiz-item p{font-weight:600;color:#0d1520;margin:0 0 .75rem;font-size:.97rem;}
-    .quiz-options{display:grid;gap:.4rem;}
-    .quiz-option label{display:flex;align-items:center;gap:.6rem;padding:.5rem .75rem;border-radius:8px;cursor:pointer;font-size:.92rem;color:#374151;transition:background .15s;}
+    .quiz-options{display:block;}
+    .quiz-option{margin-bottom:.35rem;} .quiz-option label{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:.75rem!important;padding:.55rem .9rem;border-radius:8px;cursor:pointer;font-size:.95rem;color:#374151;transition:background .15s;flex-wrap:nowrap!important;width:100%;box-sizing:border-box;}
     .quiz-option label:hover{background:#f8fafd;}
-    .quiz-option input{accent-color:#2563eb;flex-shrink:0;}
+    .quiz-option input[type="radio"]{flex:0 0 auto!important;width:18px!important;height:18px!important;margin:0!important;accent-color:#2563eb;cursor:pointer;}
     .quiz-check-btn{margin-top:1rem;background:#2563eb;color:#fff;border:none;border-radius:8px;padding:.6rem 1.4rem;font-weight:700;cursor:pointer;font-size:.9rem;transition:opacity .2s;}
     .quiz-check-btn:hover{opacity:.88;}
     .quiz-feedback{display:none;margin-top:.75rem;padding:.75rem 1rem;border-radius:8px;font-size:.9rem;font-weight:600;}
@@ -81,15 +81,15 @@
     <section class="lesson-hero">
       <div class="container">
         <div>
-          <span class="badge">Lesson 2 of 3</span>
+          <span class="badge">Lesson 2 of 6</span>
           <span class="badge">Beginner</span>
           <span class="badge">⏱ 40 min</span>
         </div>
         <h1>🌐 Internet Safety &amp; Navigation</h1>
         <p style="opacity:.88;max-width:60ch;font-size:.97rem;line-height:1.7;">Part of the Computer & Internet Skills track. The internet is a global network of computers and devices connected together. It allows people to share information, com...</p>
         <div class="lesson-progress">
-          <p class="lesson-progress-label">Track progress: Lesson 2 of 3</p>
-          <div class="prog-bar"><div class="prog-fill" style="width:67%;"></div></div>
+          <p class="lesson-progress-label">Track progress: Lesson 2 of 6</p>
+          <div class="prog-bar"><div class="prog-fill" style="width:33%;"></div></div>
         </div>
       </div>
     </section>
