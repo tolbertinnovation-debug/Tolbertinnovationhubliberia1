@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microsoft 365 &amp; Cloud Collaboration | TIH Classroom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="classroom.css" />
+  <style>
+    .lesson-hero{background:linear-gradient(135deg,#000d24,#002868 60%,#16a34a 100%);color:#fff;padding:3.5rem 0 2.5rem;}
+    .lesson-hero .badge{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);margin:.25rem .25rem .25rem 0;}
+    .lesson-hero h1{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin:.75rem 0 .75rem;}
+    .prog-bar{height:8px;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden;max-width:280px;margin-top:.75rem;}
+    .prog-fill{height:100%;background:#16a34a;border-radius:999px;}
+    .lesson-body{max-width:760px;margin:0 auto;}
+    .obj-card{background:#dcfce7;border-left:4px solid #16a34a;border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .obj-card h3{color:#16a34a;margin:0 0 .75rem;font-size:.9rem;text-transform:uppercase;}
+    .obj-card li{color:#374151;font-size:.95rem;line-height:1.7;margin-bottom:.3rem;}
+    .ls{margin-bottom:1.75rem;}.ls h2{font-size:1.15rem;color:#0d1520;margin:0 0 .7rem;padding-bottom:.4rem;border-bottom:2px solid #16a34a33;}
+    .ls p,.ls li{color:#374151;line-height:1.8;font-size:.96rem;}
+    .tip-box{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:10px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .tip-box h3{color:#92400e;margin:0 0 .6rem;font-size:.9rem;}.tip-box li{color:#78350f;font-size:.9rem;line-height:1.7;margin-bottom:.3rem;}
+    .vid-box{background:#f0fdf4;border:1px solid #16a34a;border-radius:12px;padding:1.5rem;margin:2rem 0;text-align:center;}
+    .vid-box h3{color:#166534;margin:0 0 .4rem;}.vid-box p{color:#14532d;font-size:.9rem;margin:0 0 1rem;}
+    .qi{background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;}
+    .qi strong{color:#0d1520;display:block;margin-bottom:.6rem;font-size:.96rem;}
+    .qo label{display:flex;align-items:center;gap:.6rem;padding:.45rem .7rem;border-radius:8px;cursor:pointer;font-size:.9rem;color:#374151;}
+    .qo label:hover{background:#f8fafd;}.qo input{accent-color:#16a34a;}
+    .qbtn{margin-top:.75rem;background:#16a34a;color:#fff;border:none;border-radius:8px;padding:.55rem 1.3rem;font-weight:700;cursor:pointer;font-size:.88rem;}
+    .qfb{display:none;margin-top:.6rem;padding:.65rem .9rem;border-radius:8px;font-size:.88rem;font-weight:600;}
+    .asgn{background:#f0fdf4;border-left:4px solid #16a34a;border-radius:12px;padding:1.5rem;margin:2rem 0;}
+    .asgn h3{color:#166534;margin:0 0 .6rem;}.asgn p{color:#14532d;font-size:.94rem;line-height:1.75;margin:0;}
+    .lnav{display:flex;gap:1rem;flex-wrap:wrap;margin:2.5rem 0;padding-top:2rem;border-top:1px solid #e4eaf4;}
+    .lnav a{flex:1;min-width:180px;background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1rem 1.1rem;text-decoration:none;color:#374151;font-size:.9rem;transition:border-color .2s;}
+    .lnav a:hover{border-color:#16a34a;}.nd{font-size:.76rem;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem;}
+    .nt{font-weight:700;color:#0d1520;}
+    .mc-btn{width:100%;background:#16a34a;color:#fff;border:none;border-radius:12px;padding:.9rem;font-size:.97rem;font-weight:700;cursor:pointer;margin-top:1rem;}
+    .mc-btn:disabled{background:#15803d;}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header"><div class="container nav-wrap">
+    <a class="brand" href="classroom.html"><img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="TIH" /><span>TIH Classroom</span></a>
+    <nav class="nav-links" aria-label="Classroom navigation">
+      <a href="index.html">Main Site</a><a href="classroom.html">Classroom</a>
+      <a href="classroom-office-suite.html">Microsoft Office</a><a href="classroom-dashboard.html">Dashboard</a>
+    </nav>
+    <button class="dark-mode-toggle" aria-label="Toggle dark mode">&#127769;</button>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false">&#9776; Menu</button>
+  </div></header>
+  <main id="main-content">
+    <section class="lesson-hero"><div class="container">
+      <span class="badge">Lesson 6 of 6</span><span class="badge">Intermediate</span><span class="badge">&#9201; 50 min</span>
+      <h1>&#9729;&#65039; Microsoft 365 &amp; Cloud Collaboration</h1>
+      <p style="opacity:.88;max-width:60ch;font-size:.96rem;line-height:1.7;">Harness the cloud to collaborate in real time, access your work from any device, and use Microsoft Teams and SharePoint like a modern professional.</p>
+      <div class="prog-bar"><div class="prog-fill" style="width:100%;"></div></div>
+    </div></section>
+    <section class="section"><div class="container"><div class="lesson-body">
+      <div class="obj-card"><h3>Learning Objectives</h3><ul>
+        <li>Understand: <strong>Microsoft 365 vs Classic Office — What Changed</strong></li>
+        <li>Understand: <strong>OneDrive and Real-Time Co-Authoring</strong></li>
+        <li>Understand: <strong>Microsoft Teams for Communication and Meetings</strong></li>
+        <li>Understand: <strong>Microsoft Forms and Power Automate Basics</strong></li>
+      </ul></div>
+
+      <div class="ls"><h2>Microsoft 365 vs Classic Office</h2>
+        <p>Microsoft 365 (formerly Office 365) is a subscription-based service that gives you the latest versions of Word, Excel, PowerPoint, Outlook, Teams, OneDrive, and more — all updated automatically. Classic Office (2016, 2019) is a one-time purchase that does not receive new features. Microsoft 365 is the standard in most modern organizations, NGOs, and international companies operating in Liberia.</p>
+        <p>Key advantages of Microsoft 365: Work from any device (laptop, tablet, phone) — your documents are in the cloud via OneDrive. Collaborate in real time — multiple people can edit the same document simultaneously. Always have the latest features — new tools are added monthly. Access 1TB of OneDrive storage, Teams, Forms, and Power Automate included. Personal plans start free for students via Office 365 Education if your institution participates.</p>
+        <p>To access Microsoft 365 for free: check if your school or employer has an Office 365 Education or Business subscription — you may already have an account. Alternatively, Microsoft 365 Personal is available for paid subscription, but free tools like Google Workspace can serve as an alternative for many tasks.</p>
+      </div>
+
+      <div class="ls"><h2>OneDrive and Real-Time Co-Authoring</h2>
+        <p>OneDrive is Microsoft's cloud storage — like Google Drive but for Microsoft files. Save any Word, Excel, or PowerPoint file to OneDrive (File &gt; Save &gt; OneDrive) and it becomes accessible from any device with your Microsoft account. Files saved to OneDrive auto-save every few seconds — no more losing work from crashes.</p>
+        <p>Co-authoring allows multiple people to edit a document at the same time. Open a OneDrive document, click "Share", enter colleagues' email addresses, and choose whether they can edit or only view. You can see other users' cursors as colored indicators moving through the document. Changes appear in real time. This replaces the old workflow of emailing document versions back and forth — a major productivity improvement for team projects.</p>
+        <p>Version History: right-click any OneDrive file &gt; Version History to see every saved version and restore any previous state. This is your safety net — you can recover accidental deletions or changes from up to 30 days ago. OneDrive also syncs a copy to your computer so you can work offline; it syncs changes when reconnected.</p>
+      </div>
+
+      <div class="ls"><h2>Microsoft Teams</h2>
+        <p>Microsoft Teams is an all-in-one communication platform — instant messaging, video calls, file sharing, and project organization. It is the standard collaboration tool for most international NGOs and corporations in Liberia. Teams is organized into channels — dedicated spaces for each project or department. You can chat, share files, schedule meetings, and make video calls from within each channel.</p>
+        <p>Key Teams features: Chat — direct messages to individuals or groups, similar to WhatsApp. Meetings — schedule video calls with internal or external participants; share your screen to present documents. Files — every Team has built-in file storage where you can co-edit documents directly in the browser. Teams also integrates with Outlook calendar for scheduling.</p>
+        <p>For virtual meetings: use the camera and microphone settings before joining (look at your appearance in the preview screen). Use the Blur Background feature to hide a messy background. Mute yourself when not speaking to reduce noise for others. Record meetings for absent colleagues (requires permission). The Chat tab lets you share links and files during a call without interrupting the speaker.</p>
+      </div>
+
+      <div class="ls"><h2>Microsoft Forms and Power Automate</h2>
+        <p>Microsoft Forms (forms.microsoft.com) lets you create surveys, quizzes, and registration forms in minutes. Responses are automatically collected in an Excel spreadsheet for analysis. Use it for: collecting feedback from workshop participants, creating exam quizzes that auto-grade, registering event attendees, or running staff polls. Forms generates a shareable link or QR code that anyone can complete from their phone.</p>
+        <p>Power Automate (powerautomate.microsoft.com) lets you automate repetitive tasks without coding. Examples of what it can do: automatically send a welcome email when someone completes a Form, save email attachments to a OneDrive folder automatically, get a daily weather notification in Teams, or copy new Excel rows to a SharePoint list. It connects over 400 apps (Gmail, WhatsApp Business, Twitter, Dropbox, etc.).</p>
+        <p>Even basic Power Automate knowledge separates you from most job applicants. Knowing how to connect Forms → Excel → Email saves hours per week in administrative work. Start with the built-in templates — they require no coding and can be set up in 10 minutes.</p>
+      </div>
+
+      <div class="tip-box"><h3>&#128161; Key Tips</h3><ul>
+        <li>Always save important work to OneDrive rather than just your local computer — cloud storage is more reliable than any single device.</li>
+        <li>In Teams meetings, press Ctrl+Shift+M to mute/unmute quickly without taking your hands off the keyboard.</li>
+        <li>Use @mentions in Teams chat (@Samuel) to notify specific people — without @mention, messages may be missed in busy channels.</li>
+        <li>Microsoft 365 is often available free through schools, universities, and NGOs — check with your institution before paying for it.</li>
+        <li>A shared OneDrive folder is a simple, free alternative to buying Dropbox or Google Drive Business for small teams.</li>
+      </ul></div>
+
+      <div class="vid-box">
+        <h3>&#128250; Watch &amp; Learn</h3><p>See Microsoft 365 and cloud collaboration tools in a real work scenario.</p>
+        <div style="position:relative;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;margin-top:.75rem;box-shadow:0 4px 20px rgba(0,0,0,.2);"><iframe src="https://www.youtube.com/embed/nbhZE_mza2g?rel=0" title="Microsoft 365 &amp; Cloud Collaboration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe></div>
+      </div>
+
+      <div style="margin:2rem 0;"><h2 style="font-size:1.15rem;color:#0d1520;margin:0 0 1rem;">&#9989; Quick Knowledge Check</h2>
+        <div class="qi"><strong>Q1. What is the main advantage of saving documents to OneDrive?</strong>
+          <div class="qo"><label><input type="radio" name="q0" value="a" /> Files become password protected automatically</label></div>
+          <div class="qo"><label><input type="radio" name="q0" value="b" /> Documents are accessible from any device and multiple users can co-edit in real time</label></div>
+          <div class="qo"><label><input type="radio" name="q0" value="c" /> Files are converted to PDF format for security</label></div>
+          <div class="qo"><label><input type="radio" name="q0" value="d" /> OneDrive compresses files to save hard drive space</label></div>
+          <button class="qbtn" onclick="checkQ(0,'b')">Check Answer</button><div class="qfb" id="qf0"></div>
+        </div>
+        <div class="qi"><strong>Q2. What is Microsoft Teams primarily used for?</strong>
+          <div class="qo"><label><input type="radio" name="q1" value="a" /> Creating professional spreadsheets and charts</label></div>
+          <div class="qo"><label><input type="radio" name="q1" value="b" /> Team communication — instant messaging, video meetings, and file collaboration</label></div>
+          <div class="qo"><label><input type="radio" name="q1" value="c" /> Building websites and web applications</label></div>
+          <div class="qo"><label><input type="radio" name="q1" value="d" /> Running automated email campaigns</label></div>
+          <button class="qbtn" onclick="checkQ(1,'b')">Check Answer</button><div class="qfb" id="qf1"></div>
+        </div>
+        <div class="qi"><strong>Q3. What does Microsoft Forms automatically do with responses?</strong>
+          <div class="qo"><label><input type="radio" name="q2" value="a" /> Sends each response as a separate email</label></div>
+          <div class="qo"><label><input type="radio" name="q2" value="b" /> Collects them in an Excel spreadsheet for easy analysis</label></div>
+          <div class="qo"><label><input type="radio" name="q2" value="c" /> Prints each form response as a PDF report</label></div>
+          <div class="qo"><label><input type="radio" name="q2" value="d" /> Requires manual data entry after each submission</label></div>
+          <button class="qbtn" onclick="checkQ(2,'b')">Check Answer</button><div class="qfb" id="qf2"></div>
+        </div>
+      </div>
+
+      <div class="asgn"><h3>&#128221; Practice Assignment</h3><p>If you have access to Microsoft 365: 1) Save an existing Word or Excel document to OneDrive and share it with a friend or family member with "Edit" permission. Ask them to make one change — observe real-time co-authoring. 2) Create a Microsoft Form with 5 questions (include at least one multiple-choice and one rating question). Share the form link and collect at least 3 responses. Open the Excel responses summary and create a chart from the data. If you do not have Microsoft 365, complete this exercise using Google Forms and Google Drive — the concepts are identical. Write a short reflection on how cloud collaboration changes how teams work together.</p></div>
+
+      <button class="mc-btn" onclick="this.textContent='&#10003; Lesson Complete!';this.disabled=true;">Mark Lesson as Complete</button>
+      <div class="lnav">
+        <a href="classroom-lesson-excel-functions.html"><div class="nd">&#8592; Previous</div><div class="nt">Excel Functions &amp; Lookup Formulas</div></a>
+        <a href="classroom-office-suite.html" style="text-align:right"><div class="nd">&#127941; Track Complete</div><div class="nt">Microsoft Office Suite</div></a>
+      </div>
+    </div></div></section>
+  </main>
+  <footer class="site-footer"><div class="container">
+    <div class="footer-grid">
+      <div><p><strong>TIH Classroom</strong></p><p style="opacity:.8;font-size:.9rem;">Free skills for Liberian learners.</p></div>
+      <div><p><strong>This Track</strong></p><p><a href="classroom-office-suite.html">Microsoft Office Suite</a></p></div>
+      <div><p><strong>All Tracks</strong></p><p><a href="classroom.html">Browse Courses</a></p></div>
+      <div><p><strong>Main Site</strong></p><p><a href="index.html">Home</a></p></div>
+    </div>
+    <p class="copyright-note">&#169; 2026 Tolbert Innovation Hub. All rights reserved.</p>
+  </div></footer>
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 4px 20px rgba(0,0,0,.2);"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="34" height="34" alt="WA" /></a>
+  <script>
+  function checkQ(idx, correct) {
+    var sel = document.querySelector('input[name="q'+idx+'"]:checked');
+    var fb = document.getElementById('qf'+idx);
+    if (!sel) { fb.style.display='block'; fb.style.background='#fef3c7'; fb.style.color='#92400e'; fb.textContent='Please select an answer first.'; return; }
+    if (sel.value === correct) { fb.style.display='block'; fb.style.background='#f0fdf4'; fb.style.color='#166534'; fb.textContent='Correct! Well done.'; }
+    else { fb.style.display='block'; fb.style.background='#fef2f2'; fb.style.color='#991b1b'; fb.textContent='Not quite. Review the lesson and try again.'; }
+  }
+  </script><script src="classroom.js"></script><script src="chatbot.js"></script>
+</body></html>
