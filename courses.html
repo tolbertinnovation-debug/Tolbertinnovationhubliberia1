@@ -138,6 +138,7 @@
     .results-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem; }
     .results-info { font-size: 0.95rem; color: #374151; }
     .results-info strong { color: #111827; }
+    @keyframes livePulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(1.4); } }
     .results-controls { display: flex; align-items: center; gap: 0.75rem; }
     .sort-select { padding: 0.5rem 1rem; border: 1.5px solid #e5e7eb; border-radius: 8px; font-size: 0.88rem; color: #374151; background: #fff; cursor: pointer; outline: none; }
     .sort-select:focus { border-color: #002868; }
@@ -441,7 +442,7 @@
 
       <!-- RESULTS BAR -->
       <div class="results-bar">
-        <div class="results-info">Showing <strong>1–12</strong> of <strong>150</strong> courses</div>
+        <div class="results-info">Showing <strong>1–12</strong> of <strong>150</strong> courses &nbsp;<span style="display:inline-flex;align-items:center;gap:0.3rem;font-size:0.78rem;color:#10b981;font-weight:600;"><span style="width:7px;height:7px;border-radius:50%;background:#10b981;display:inline-block;animation:livePulse 2s ease-in-out infinite;"></span>All free to enroll</span></div>
         <div class="results-controls">
           <select class="sort-select" aria-label="Sort courses">
             <option>Most Popular</option>

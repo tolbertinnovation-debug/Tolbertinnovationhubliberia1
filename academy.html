@@ -69,6 +69,10 @@
     .hero-stat-num { font-size: 1.5rem; font-weight: 800; color: var(--ac-gold); }
     .hero-stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.3; }
     .hero-stat-sep { width: 1px; height: 32px; background: rgba(255,255,255,0.2); }
+    /* Live learner pulse badge */
+    .hero-live-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(16,185,129,.15); border: 1px solid rgba(16,185,129,.4); color: rgba(255,255,255,.9); font-size: 0.82rem; font-weight: 500; padding: 0.35rem 0.9rem; border-radius: var(--radius-full); margin-bottom: 1.2rem; }
+    .hero-live-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; flex-shrink: 0; animation: livePulse 2s ease-in-out infinite; }
+    @keyframes livePulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.4); } }
 
     /* Certificate card floating in hero */
     .hero-cert-card { background: #fff; border-radius: 20px; padding: 2rem 1.8rem; box-shadow: 0 30px 80px rgba(0,0,0,0.4); animation: floatCard 4s ease-in-out infinite; position: relative; }
@@ -89,6 +93,15 @@
     .cert-qr span:nth-child(even) { background: transparent; }
     .cert-badge { position: absolute; top: -12px; right: 20px; background: var(--ac-gold); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 0.3rem 0.7rem; border-radius: var(--radius-full); letter-spacing: 0.08em; text-transform: uppercase; }
     @media(max-width: 960px) { .hero-inner { grid-template-columns: 1fr; } .hero-cert-card { display: none; } }
+
+    /* ---- SOCIAL PROOF TICKER ---- */
+    .social-proof-bar { background: linear-gradient(90deg, #001a45, #002868, #001a45); padding: 0.6rem 0; overflow: hidden; }
+    .social-proof-inner { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .sp-item { font-size: 0.8rem; color: rgba(255,255,255,.88); display: flex; align-items: center; gap: 0.35rem; white-space: nowrap; }
+    .sp-item strong { color: var(--ac-gold); }
+    .sp-icon { font-size: 0.9rem; }
+    .sp-sep { color: rgba(255,255,255,.3); font-size: 1.2rem; line-height: 1; }
+    @media(max-width: 600px) { .sp-sep { display: none; } .social-proof-inner { gap: 0.6rem; flex-direction: column; } .sp-item { white-space: normal; text-align: center; } }
 
     /* ---- TRUST BAR ---- */
     .trust-bar { background: #fff; border-bottom: 1px solid var(--border-light); padding: 1.2rem 0; }
@@ -151,7 +164,11 @@
     .course-rating { color: var(--ac-gold); font-weight: 700; }
     .course-rating span { color: var(--text-muted); font-weight: 400; }
     .course-enroll-btn { display: block; text-align: center; background: var(--brand-red); color: #fff; padding: 0.65rem; border-radius: var(--radius); font-weight: 700; font-size: 0.88rem; text-decoration: none; transition: var(--transition); }
-    .course-enroll-btn:hover { background: var(--brand-red-hover); }
+    .course-enroll-btn:hover { background: var(--brand-red-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(191,10,48,.3); }
+    /* FREE badge on course thumb */
+    .course-free-badge { position: absolute; top: 0.8rem; left: 0.8rem; background: #10b981; color: #fff; font-size: 0.63rem; font-weight: 800; padding: 0.2rem 0.55rem; border-radius: var(--radius-full); text-transform: uppercase; letter-spacing: 0.1em; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+    /* Popular ribbon */
+    .ac-popular-ribbon { position: absolute; top: 0; left: 0; background: var(--ac-gold); color: #fff; font-size: 0.68rem; font-weight: 800; padding: 0.28rem 0.8rem 0.28rem 0.7rem; border-radius: var(--radius-lg) 0 var(--radius-lg) 0; z-index: 10; letter-spacing: 0.04em; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
 
     /* ---- PATHWAYS ---- */
     .pathways-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
@@ -448,10 +465,14 @@
           <p class="hero-eyebrow">Tolbert Innovation Hub Academy</p>
           <h1>Learn In-Demand Digital Skills and Earn <span class="highlight">Professional Certificates</span> Online</h1>
           <p class="lead">Join thousands of learners developing practical skills in technology, business, entrepreneurship, artificial intelligence, leadership, innovation, and digital transformation across Africa and beyond.</p>
+          <div class="hero-live-badge">
+            <span class="hero-live-dot"></span>
+            <span id="liveLearnerCount">2,847</span> students learning right now across Africa
+          </div>
           <div class="hero-ctas">
             <a href="courses.html" class="btn-hero-white">Explore Courses</a>
             <a href="certifications.html" class="btn-hero-gold">Get Certified</a>
-            <a href="#enroll-section" class="btn-hero-red">Start Learning Today</a>
+            <a href="#featured-courses" class="btn-hero-red">Start Learning Today</a>
           </div>
           <div class="hero-stats">
             <div class="hero-stat">
@@ -512,7 +533,7 @@
                 Academy Director
               </div>
             </div>
-            <p style="text-align:center;font-size:0.6rem;color:#9ca3af;margin-top:0.8rem;">ID: TIH-2024-WD-001234 | Dec 15, 2024</p>
+            <p style="text-align:center;font-size:0.6rem;color:#9ca3af;margin-top:0.8rem;">ID: TIH-2026-WD-008840 | June 15, 2026</p>
           </div>
         </div>
       </div>
@@ -532,6 +553,19 @@
         <div class="trust-badge"><span class="trust-badge-icon">💼</span> Job-Ready Skills</div>
         <div class="trust-badge"><span class="trust-badge-icon">✅</span> Verified Certificates</div>
       </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL PROOF TICKER -->
+  <div class="social-proof-bar">
+    <div class="container social-proof-inner">
+      <div class="sp-item"><span class="sp-icon">🎓</span> <strong>Fatima K.</strong> from Monrovia just enrolled in Computer Literacy</div>
+      <div class="sp-sep">·</div>
+      <div class="sp-item"><span class="sp-icon">🏆</span> <strong>Joseph B.</strong> earned his AI Fundamentals certificate today</div>
+      <div class="sp-sep">·</div>
+      <div class="sp-item"><span class="sp-icon">📈</span> <strong>8,400+</strong> students enrolled this month</div>
+      <div class="sp-sep">·</div>
+      <div class="sp-item"><span class="sp-icon">⭐</span> Average rating across all courses: <strong>4.8 / 5.0</strong></div>
     </div>
   </div>
 
@@ -714,193 +748,203 @@
         <a href="courses.html" class="link-arrow">View All 150+ Courses →</a>
       </div>
       <div class="courses-grid">
-        <!-- Course 1 -->
-        <div class="course-card reveal">
+        <!-- Course 1 — MOST POPULAR -->
+        <div class="course-card reveal" style="position:relative;">
+          <div class="ac-popular-ribbon">🔥 Most Popular</div>
           <div class="course-thumb" style="background:linear-gradient(135deg,#002868,#1a4a9c);">
+            <span class="course-free-badge">FREE</span>
             <span class="course-level-badge">Beginner</span>
             <span class="course-cert-badge">🏆 Certificate</span>
           </div>
           <div class="course-body">
             <span class="course-cat-tag" style="background:#e8f0fb;color:#002868;">Computer Fundamentals</span>
-            <div class="course-title">Introduction to Computer Applications</div>
+            <div class="course-title">Computer Literacy: From Zero to Confident Digital User</div>
             <div class="course-instructor">
-              <div class="instructor-avatar-sm" style="background:#002868;">SD</div>
-              <span class="instructor-name">Mr. Samuel Doe</span>
+              <div class="instructor-avatar-sm" style="background:#002868;">ST</div>
+              <span class="instructor-name">Samuel Tolbert</span>
             </div>
             <div class="course-meta">
-              <span class="course-rating">★★★★★ <span>4.8 (1,240)</span></span>
-              <span>⏱ 6 weeks</span>
-              <span>👤 3,420 enrolled</span>
+              <span class="course-rating">★★★★★ <span>4.9 (1,247)</span></span>
+              <span>⏱ 24h</span>
+              <span>👤 8,400+ enrolled</span>
             </div>
-            <a href="courses.html" class="course-enroll-btn">Enroll Now</a>
+            <a href="course-detail.html?id=computer-literacy" class="course-enroll-btn">Start Free →</a>
           </div>
         </div>
         <!-- Course 2 -->
         <div class="course-card reveal">
           <div class="course-thumb" style="background:linear-gradient(135deg,#b45309,#f59e0b);">
-            <span class="course-level-badge">Intermediate</span>
+            <span class="course-free-badge">FREE</span>
+            <span class="course-level-badge">Beginner</span>
             <span class="course-cert-badge">🏆 Certificate</span>
           </div>
           <div class="course-body">
             <span class="course-cat-tag" style="background:#fef9ec;color:#b45309;">Digital Marketing</span>
-            <div class="course-title">Digital Marketing Professional Certificate</div>
+            <div class="course-title">Digital Marketing: Social Media, SEO &amp; Google Ads</div>
             <div class="course-instructor">
-              <div class="instructor-avatar-sm" style="background:#b45309;">GJ</div>
-              <span class="instructor-name">Ms. Grace Johnson</span>
+              <div class="instructor-avatar-sm" style="background:#b45309;">BN</div>
+              <span class="instructor-name">Blessing Nyarko</span>
             </div>
             <div class="course-meta">
-              <span class="course-rating">★★★★★ <span>4.9 (890)</span></span>
-              <span>⏱ 8 weeks</span>
-              <span>👤 2,100 enrolled</span>
+              <span class="course-rating">★★★★★ <span>4.7 (1,056)</span></span>
+              <span>⏱ 28h</span>
+              <span>👤 4,200 enrolled</span>
             </div>
-            <a href="courses.html" class="course-enroll-btn">Enroll Now</a>
+            <a href="course-detail.html?id=marketing" class="course-enroll-btn">Start Free →</a>
           </div>
         </div>
         <!-- Course 3 -->
         <div class="course-card reveal">
           <div class="course-thumb" style="background:linear-gradient(135deg,#4c1d95,#7c3aed);">
+            <span class="course-free-badge">FREE</span>
             <span class="course-level-badge">Beginner</span>
             <span class="course-cert-badge">🏆 Certificate</span>
           </div>
           <div class="course-body">
             <span class="course-cat-tag" style="background:#f3e8ff;color:#4c1d95;">Artificial Intelligence</span>
-            <div class="course-title">AI Fundamentals for Beginners</div>
+            <div class="course-title">AI Fundamentals: ChatGPT, Gemini &amp; Practical AI Tools</div>
             <div class="course-instructor">
-              <div class="instructor-avatar-sm" style="background:#4c1d95;">JK</div>
-              <span class="instructor-name">Dr. James Kollie</span>
+              <div class="instructor-avatar-sm" style="background:#4c1d95;">MK</div>
+              <span class="instructor-name">Dr. Mariama Koroma</span>
             </div>
             <div class="course-meta">
-              <span class="course-rating">★★★★☆ <span>4.7 (756)</span></span>
-              <span>⏱ 10 weeks</span>
-              <span>👤 1,890 enrolled</span>
+              <span class="course-rating">★★★★★ <span>4.8 (832)</span></span>
+              <span>⏱ 18h</span>
+              <span>👤 5,200+ enrolled</span>
             </div>
-            <a href="courses.html" class="course-enroll-btn">Enroll Now</a>
+            <a href="course-detail.html?id=ai" class="course-enroll-btn">Start Free →</a>
           </div>
         </div>
         <!-- Course 4 -->
         <div class="course-card reveal">
           <div class="course-thumb" style="background:linear-gradient(135deg,#0d9488,#06b6d4);">
-            <span class="course-level-badge">Advanced</span>
+            <span class="course-free-badge">FREE</span>
+            <span class="course-level-badge">Beginner</span>
             <span class="course-cert-badge">🏆 Certificate</span>
           </div>
           <div class="course-body">
             <span class="course-cat-tag" style="background:#e0f2fe;color:#0d9488;">Web Development</span>
-            <div class="course-title">Advanced Web Development with React</div>
+            <div class="course-title">Web Development with HTML, CSS &amp; JavaScript</div>
             <div class="course-instructor">
-              <div class="instructor-avatar-sm" style="background:#0d9488;">DW</div>
-              <span class="instructor-name">Mr. David Williams</span>
+              <div class="instructor-avatar-sm" style="background:#0d9488;">FK</div>
+              <span class="instructor-name">Faith Kollie</span>
             </div>
             <div class="course-meta">
-              <span class="course-rating">★★★★★ <span>4.8 (445)</span></span>
-              <span>⏱ 12 weeks</span>
-              <span>👤 1,230 enrolled</span>
+              <span class="course-rating">★★★★★ <span>4.8 (2,103)</span></span>
+              <span>⏱ 12h</span>
+              <span>👤 6,800 enrolled</span>
             </div>
-            <a href="courses.html" class="course-enroll-btn">Enroll Now</a>
+            <a href="course-detail.html?id=webdev" class="course-enroll-btn">Start Free →</a>
           </div>
         </div>
         <!-- Course 5 -->
         <div class="course-card reveal">
           <div class="course-thumb" style="background:linear-gradient(135deg,#be185d,#ec4899);">
+            <span class="course-free-badge">FREE</span>
             <span class="course-level-badge">Beginner</span>
             <span class="course-cert-badge">🏆 Certificate</span>
           </div>
           <div class="course-body">
             <span class="course-cat-tag" style="background:#fce7f3;color:#be185d;">Graphic Design</span>
-            <div class="course-title">Graphic Design Essentials with Canva</div>
+            <div class="course-title">Graphic Design Mastery: Canva, Figma &amp; Adobe Basics</div>
             <div class="course-instructor">
-              <div class="instructor-avatar-sm" style="background:#be185d;">PS</div>
-              <span class="instructor-name">Ms. Patricia Sumo</span>
+              <div class="instructor-avatar-sm" style="background:#be185d;">AD</div>
+              <span class="instructor-name">Aminata Darboe</span>
             </div>
             <div class="course-meta">
-              <span class="course-rating">★★★★☆ <span>4.6 (634)</span></span>
-              <span>⏱ 6 weeks</span>
-              <span>👤 2,800 enrolled</span>
+              <span class="course-rating">★★★★★ <span>4.9 (978)</span></span>
+              <span>⏱ 22h</span>
+              <span>👤 3,900 enrolled</span>
             </div>
-            <a href="courses.html" class="course-enroll-btn">Enroll Now</a>
+            <a href="course-detail.html?id=design" class="course-enroll-btn">Start Free →</a>
           </div>
         </div>
         <!-- Course 6 -->
         <div class="course-card reveal">
           <div class="course-thumb" style="background:linear-gradient(135deg,#065f46,#10b981);">
+            <span class="course-free-badge">FREE</span>
             <span class="course-level-badge">Intermediate</span>
             <span class="course-cert-badge">🏆 Certificate</span>
           </div>
           <div class="course-body">
             <span class="course-cat-tag" style="background:#ecfdf5;color:#065f46;">Data Analytics</span>
-            <div class="course-title">Data Analytics with Excel &amp; Power BI</div>
+            <div class="course-title">Data Analytics &amp; Business Intelligence with Excel &amp; Power BI</div>
             <div class="course-instructor">
-              <div class="instructor-avatar-sm" style="background:#065f46;">RT</div>
-              <span class="instructor-name">Mr. Robert Tarr</span>
+              <div class="instructor-avatar-sm" style="background:#065f46;">EK</div>
+              <span class="instructor-name">Emmanuel Kamara</span>
             </div>
             <div class="course-meta">
-              <span class="course-rating">★★★★☆ <span>4.7 (521)</span></span>
-              <span>⏱ 8 weeks</span>
-              <span>👤 1,560 enrolled</span>
+              <span class="course-rating">★★★★★ <span>4.9 (1,567)</span></span>
+              <span>⏱ 30h</span>
+              <span>👤 4,100 enrolled</span>
             </div>
-            <a href="courses.html" class="course-enroll-btn">Enroll Now</a>
+            <a href="course-detail.html?id=data" class="course-enroll-btn">Start Free →</a>
           </div>
         </div>
         <!-- Course 7 -->
         <div class="course-card reveal">
           <div class="course-thumb" style="background:linear-gradient(135deg,#7f1d1d,#dc2626);">
+            <span class="course-free-badge">FREE</span>
             <span class="course-level-badge">Intermediate</span>
             <span class="course-cert-badge">🏆 Certificate</span>
           </div>
           <div class="course-body">
             <span class="course-cat-tag" style="background:#fee2e2;color:#7f1d1d;">Cybersecurity</span>
-            <div class="course-title">Cybersecurity Fundamentals &amp; Ethical Hacking</div>
+            <div class="course-title">Cybersecurity Essentials: Protect Yourself &amp; Your Business</div>
             <div class="course-instructor">
-              <div class="instructor-avatar-sm" style="background:#7f1d1d;">ED</div>
-              <span class="instructor-name">Mr. Emmanuel Duo</span>
+              <div class="instructor-avatar-sm" style="background:#7f1d1d;">MV</div>
+              <span class="instructor-name">Michael Varney</span>
             </div>
             <div class="course-meta">
-              <span class="course-rating">★★★★★ <span>4.8 (389)</span></span>
-              <span>⏱ 10 weeks</span>
-              <span>👤 1,100 enrolled</span>
+              <span class="course-rating">★★★★★ <span>4.8 (743)</span></span>
+              <span>⏱ 20h</span>
+              <span>👤 2,900 enrolled</span>
             </div>
-            <a href="courses.html" class="course-enroll-btn">Enroll Now</a>
+            <a href="course-detail.html?id=cybersecurity" class="course-enroll-btn">Start Free →</a>
           </div>
         </div>
         <!-- Course 8 -->
         <div class="course-card reveal">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#1e3a5f,#002868);">
-            <span class="course-level-badge">All Levels</span>
+          <div class="course-thumb" style="background:linear-gradient(135deg,#0891b2,#0e7490);">
+            <span class="course-free-badge">FREE</span>
+            <span class="course-level-badge">Intermediate</span>
             <span class="course-cert-badge">🏆 Certificate</span>
           </div>
           <div class="course-body">
-            <span class="course-cat-tag" style="background:#e8f0fb;color:#002868;">Leadership</span>
-            <div class="course-title">Business Leadership Masterclass</div>
+            <span class="course-cat-tag" style="background:#e0f2fe;color:#0891b2;">Leadership</span>
+            <div class="course-title">Leadership Excellence: Lead Teams, Drive Change &amp; Inspire</div>
             <div class="course-instructor">
-              <div class="instructor-avatar-sm" style="background:#002868;">MW</div>
-              <span class="instructor-name">Dr. Mary Weah</span>
+              <div class="instructor-avatar-sm" style="background:#0891b2;">AS</div>
+              <span class="instructor-name">Prof. Amara Sesay</span>
             </div>
             <div class="course-meta">
-              <span class="course-rating">★★★★★ <span>4.9 (712)</span></span>
-              <span>⏱ 8 weeks</span>
-              <span>👤 3,200 enrolled</span>
+              <span class="course-rating">★★★★★ <span>4.9 (2,187)</span></span>
+              <span>⏱ 20h</span>
+              <span>👤 5,600 enrolled</span>
             </div>
-            <a href="courses.html" class="course-enroll-btn">Enroll Now</a>
+            <a href="course-detail.html?id=leadership" class="course-enroll-btn">Start Free →</a>
           </div>
         </div>
         <!-- Course 9 -->
         <div class="course-card reveal">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#92400e,#f59e0b);">
-            <span class="course-level-badge">All Levels</span>
+          <div class="course-thumb" style="background:linear-gradient(135deg,#f97316,#c2410c);">
+            <span class="course-free-badge">FREE</span>
+            <span class="course-level-badge">Beginner</span>
             <span class="course-cert-badge">🏆 Certificate</span>
           </div>
           <div class="course-body">
-            <span class="course-cat-tag" style="background:#fef3c7;color:#92400e;">Entrepreneurship</span>
-            <div class="course-title">Entrepreneurship &amp; Startup Launch Program</div>
+            <span class="course-cat-tag" style="background:#fff7ed;color:#c2410c;">Entrepreneurship</span>
+            <div class="course-title">Start Your Business: Entrepreneurship from Idea to Launch</div>
             <div class="course-instructor">
-              <div class="instructor-avatar-sm" style="background:#92400e;">TB</div>
-              <span class="instructor-name">Mr. Thomas Bility</span>
+              <div class="instructor-avatar-sm" style="background:#c2410c;">CM</div>
+              <span class="instructor-name">Dr. Clara Mensah</span>
             </div>
             <div class="course-meta">
-              <span class="course-rating">★★★★★ <span>4.8 (598)</span></span>
-              <span>⏱ 6 weeks</span>
-              <span>👤 2,400 enrolled</span>
+              <span class="course-rating">★★★★★ <span>4.9 (1,342)</span></span>
+              <span>⏱ 26h</span>
+              <span>👤 4,700 enrolled</span>
             </div>
-            <a href="courses.html" class="course-enroll-btn">Enroll Now</a>
+            <a href="course-detail.html?id=entrepreneurship" class="course-enroll-btn">Start Free →</a>
           </div>
         </div>
       </div>
@@ -1402,7 +1446,7 @@
 
   <!-- FLOATING: WhatsApp + Back to Top -->
   <div class="floating-actions">
-    <a class="fab-whatsapp" href="https://wa.me/231770000000?text=Hi%2C%20I%27m%20interested%20in%20TIH%20Academy%20courses!" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat with us on WhatsApp">
+    <a class="fab-whatsapp" href="https://wa.me/231880559227?text=Hi%2C%20I%27m%20interested%20in%20TIH%20Academy%20courses!" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat with us on WhatsApp">
       <svg viewBox="0 0 24 24" width="26" height="26" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
     <button class="fab-top" id="backToTop" aria-label="Back to top" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#9650;</button>

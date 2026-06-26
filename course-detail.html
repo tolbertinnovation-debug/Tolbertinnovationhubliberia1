@@ -211,6 +211,23 @@
     .btn-enroll-cta { background: var(--gold); color: #fff; padding: 0.9rem 2.5rem; border-radius: 50px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: all .25s; display: inline-block; box-shadow: 0 4px 20px rgba(245,158,11,.4); }
     .btn-enroll-cta:hover { background: var(--gold-dark); transform: translateY(-2px); }
 
+    /* ===== RELATED COURSES ===== */
+    .related-courses-section { background: #f9fafb; border-top: 1px solid #e5e7eb; padding: 3.5rem 0; }
+    .related-courses-inner { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+    .related-title { font-size: 1.5rem; font-weight: 800; color: #002868; margin-bottom: 1.8rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media(max-width: 860px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width: 540px) { .related-grid { grid-template-columns: 1fr; } }
+    .related-card { background: #fff; border-radius: 12px; border: 1.5px solid #e5e7eb; overflow: hidden; display: flex; flex-direction: column; transition: all .2s; text-decoration: none; color: inherit; }
+    .related-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,.12); border-color: #002868; }
+    .related-thumb { height: 110px; display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; }
+    .related-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
+    .related-cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #002868; margin-bottom: 0.35rem; }
+    .related-title-text { font-size: 0.92rem; font-weight: 700; color: #111827; line-height: 1.4; margin-bottom: 0.5rem; flex: 1; }
+    .related-meta { font-size: 0.78rem; color: #6b7280; display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+    .related-meta .r-rating { color: #f59e0b; font-weight: 700; }
+    .related-free-tag { display: inline-block; background: #10b981; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 50px; text-transform: uppercase; }
+
     /* ===== FOOTER ===== */
     .academy-footer { background: #0a1628; color: rgba(255,255,255,.75); padding: 3rem 0 1.5rem; margin-top: 2rem; }
     .footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 2.5rem; margin-bottom: 2rem; }
@@ -435,6 +452,7 @@
         <div class="widget-body">
           <div class="widget-price-row" id="wPrice2"></div>
           <a href="#" class="btn-enroll-widget" id="wBtn2">Enroll Now</a>
+          <p style="text-align:center;font-size:0.76rem;color:#6b7280;margin:0.4rem 0 0.8rem;display:flex;align-items:center;justify-content:center;gap:0.3rem;"><span style="color:#10b981;font-size:1rem;">●</span> <span id="wStudentCount">8,400+</span> students enrolled · 100% free</p>
           <div class="widget-includes">
             <h4>This course includes:</h4>
             <div class="widget-include-item" id="wDuration2"></div>
@@ -458,6 +476,17 @@
     </div>
     <a href="#" class="mobile-enroll-btn" id="mbBtn">Enroll</a>
   </div>
+
+  <!-- RELATED COURSES -->
+  <section class="related-courses-section" id="relatedCourses" style="display:none;">
+    <div class="related-courses-inner">
+      <h2 class="related-title">Students Also Enrolled In</h2>
+      <div class="related-grid" id="relatedGrid"></div>
+      <div style="text-align:center;margin-top:2rem;">
+        <a href="courses.html" style="display:inline-block;background:#002868;color:#fff;padding:0.75rem 2rem;border-radius:50px;font-weight:700;font-size:0.95rem;text-decoration:none;transition:all .2s;">Browse All Courses →</a>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="academy-footer">
@@ -612,6 +641,7 @@
       }
       fillWidget('wIcon1', 'wPrice1', 'wBtn1', 'wDuration1');
       fillWidget('wIcon2', 'wPrice2', 'wBtn2', 'wDuration2');
+      if (g('wStudentCount')) g('wStudentCount').textContent = c.students;
 
       // MOBILE BAR
       g('mbPrice').innerHTML = c.isFree
@@ -716,6 +746,39 @@
 
       // Re-observe any reveals that were empty during first pass
       document.querySelectorAll('.reveal:not(.visible)').forEach(function(el) { _revealObserver.observe(el); });
+
+      // RELATED COURSES — pick up to 3 other courses from COURSES_DB in the same category, or any if not enough
+      var related = [];
+      var keys = Object.keys(COURSES_DB);
+      keys.forEach(function(k) {
+        if (k !== c.id && COURSES_DB[k].category === c.category) related.push(COURSES_DB[k]);
+      });
+      if (related.length < 3) {
+        keys.forEach(function(k) {
+          if (k !== c.id && COURSES_DB[k].category !== c.category && related.length < 3) related.push(COURSES_DB[k]);
+        });
+      }
+      related = related.slice(0, 3);
+      if (related.length > 0) {
+        var gh = '';
+        related.forEach(function(r) {
+          gh += '<a href="course-detail.html?id=' + esc(r.id) + '" class="related-card">'
+            + '<div class="related-thumb" style="background:' + (r.gradient || 'linear-gradient(135deg,#002868,#1a4a9c)') + ';">'
+            + '<span style="filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))">' + esc(r.icon) + '</span></div>'
+            + '<div class="related-body">'
+            + '<div class="related-cat">' + esc(r.category) + '</div>'
+            + '<div class="related-title-text">' + esc(r.title) + '</div>'
+            + '<div class="related-meta">'
+            + '<span class="r-rating">★ ' + r.rating + '</span>'
+            + '<span>⏱ ' + esc(r.duration) + '</span>'
+            + '<span>' + esc(r.level) + '</span>'
+            + '</div>'
+            + (r.isFree ? '<span class="related-free-tag">FREE</span>' : '')
+            + '</div></a>';
+        });
+        document.getElementById('relatedGrid').innerHTML = gh;
+        document.getElementById('relatedCourses').style.display = '';
+      }
     })();
   </script>
 </body>
