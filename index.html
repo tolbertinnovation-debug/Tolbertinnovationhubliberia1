@@ -22,30 +22,36 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
-    /* ── Programs Carousel ── */
-    .programs-carousel {
+    /* ── Shared carousel styles (Programs + News) ── */
+    .programs-carousel,
+    .news-carousel {
       overflow: hidden;
       padding-bottom: 3.25rem;
       margin-bottom: 1.5rem;
     }
-    .programs-carousel .swiper-slide {
+    .programs-carousel .swiper-slide,
+    .news-carousel .swiper-slide {
       height: auto;
     }
-    /* Equal-height cards inside the carousel */
-    .programs-carousel .swiper-slide .card {
+    /* Equal-height cards */
+    .programs-carousel .swiper-slide .card,
+    .news-carousel .swiper-slide .card {
       display: flex;
       flex-direction: column;
       height: 100%;
     }
     .programs-carousel .swiper-slide .card .card-link,
-    .programs-carousel .swiper-slide .card .prog-btn-row {
+    .programs-carousel .swiper-slide .card .prog-btn-row,
+    .news-carousel .swiper-slide .card .card-link {
       margin-top: auto;
     }
     /* Pagination pill dots */
-    .programs-carousel .swiper-pagination {
+    .programs-carousel .swiper-pagination,
+    .news-carousel .swiper-pagination {
       bottom: 0.5rem;
     }
-    .programs-carousel .swiper-pagination-bullet {
+    .programs-carousel .swiper-pagination-bullet,
+    .news-carousel .swiper-pagination-bullet {
       width: 8px;
       height: 8px;
       background: var(--brand-blue);
@@ -53,13 +59,16 @@
       transition: width 0.3s ease, opacity 0.3s ease;
       border-radius: 4px;
     }
-    .programs-carousel .swiper-pagination-bullet-active {
+    .programs-carousel .swiper-pagination-bullet-active,
+    .news-carousel .swiper-pagination-bullet-active {
       opacity: 1;
       width: 24px;
     }
     /* Navigation arrows */
     .programs-carousel .swiper-button-prev,
-    .programs-carousel .swiper-button-next {
+    .programs-carousel .swiper-button-next,
+    .news-carousel .swiper-button-prev,
+    .news-carousel .swiper-button-next {
       top: 50%;
       transform: translateY(calc(-50% - 1.5rem));
       width: 40px;
@@ -71,12 +80,16 @@
       color: var(--brand-blue, #002868);
     }
     .programs-carousel .swiper-button-prev::after,
-    .programs-carousel .swiper-button-next::after {
+    .programs-carousel .swiper-button-next::after,
+    .news-carousel .swiper-button-prev::after,
+    .news-carousel .swiper-button-next::after {
       font-size: 13px;
       font-weight: 800;
     }
     .programs-carousel .swiper-button-prev:hover,
-    .programs-carousel .swiper-button-next:hover {
+    .programs-carousel .swiper-button-next:hover,
+    .news-carousel .swiper-button-prev:hover,
+    .news-carousel .swiper-button-next:hover {
       background: var(--brand-blue, #002868);
       color: #fff;
       border-color: var(--brand-blue, #002868);
@@ -84,7 +97,9 @@
     /* Hide arrows on mobile, show on tablet+ */
     @media (max-width: 639px) {
       .programs-carousel .swiper-button-prev,
-      .programs-carousel .swiper-button-next {
+      .programs-carousel .swiper-button-next,
+      .news-carousel .swiper-button-prev,
+      .news-carousel .swiper-button-next {
         display: none;
       }
     }
@@ -695,7 +710,7 @@
           </div>
           <a href="news.html" class="btn btn-outline-blue btn-sm" style="flex-shrink:0;">All News →</a>
         </div>
-        <div class="cards" data-latest-news>
+        <div class="swiper news-carousel" role="region" aria-label="Latest News" aria-roledescription="carousel" data-latest-news>
           <p style="color:var(--text-muted);font-size:0.9rem;padding:1rem 0;">Loading latest news&hellip; <a href="news.html">View all news</a></p>
         </div>
       </div>

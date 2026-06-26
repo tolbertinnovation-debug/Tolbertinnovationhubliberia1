@@ -243,17 +243,57 @@ function initReveal() {
 function renderLatestUpdates() {
   const container = document.querySelector('[data-latest-news]');
   if (!container) return;
-  container.innerHTML = newsPosts.slice(0, 3).map((post) => `
-    <article class="card news-card reveal">
-      <img class="news-card-image" src="${post.image}" alt="${post.imageAlt}" loading="lazy" />
-      <p class="news-meta">${post.date}</p>
-      <p class="news-category">${post.category}</p>
-      <h3>${post.title}</h3>
-      <p>${post.summary}</p>
-      <a class="card-link" href="${post.href}">Read More</a>
-    </article>
+
+  const slides = newsPosts.map((post, i) => `
+    <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${newsPosts.length}">
+      <article class="card news-card">
+        <img class="news-card-image" src="${post.image}" alt="${post.imageAlt}" loading="lazy" />
+        <p class="news-meta">${post.date}</p>
+        <p class="news-category">${post.category}</p>
+        <h3>${post.title}</h3>
+        <p>${post.summary}</p>
+        <a class="card-link" href="${post.href}">Read More</a>
+      </article>
+    </div>
   `).join('');
-  initReveal();
+
+  container.innerHTML = `
+    <div class="swiper-wrapper">${slides}</div>
+    <div class="swiper-pagination" role="tablist" aria-label="Select a news slide"></div>
+    <button class="swiper-button-prev" aria-label="Previous news item"></button>
+    <button class="swiper-button-next" aria-label="Next news item"></button>
+  `;
+
+  if (typeof Swiper !== 'undefined') {
+    new Swiper(container, {
+      loop: true,
+      speed: 600,
+      slidesPerView: 1,
+      spaceBetween: 16,
+      autoplay: {
+        delay: 4500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      pagination: {
+        el: container.querySelector('.swiper-pagination'),
+        clickable: true,
+      },
+      navigation: {
+        nextEl: container.querySelector('.swiper-button-next'),
+        prevEl: container.querySelector('.swiper-button-prev'),
+      },
+      breakpoints: {
+        640: { slidesPerView: 2, spaceBetween: 20 },
+        1024: { slidesPerView: 3, spaceBetween: 24 },
+      },
+      a11y: {
+        prevSlideMessage: 'Previous news item',
+        nextSlideMessage: 'Next news item',
+        paginationBulletMessage: 'Go to slide {{index}}',
+      },
+    });
+  }
 }
 
 // ============================================================
