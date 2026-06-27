@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TIH Digital Library | Tolbert Innovation Hub</title>
+  <meta name="description" content="Explore thousands of educational resources, eBooks, scholarship guides, business manuals, WASSCE study materials, and learning resources at the TIH Digital Library — free for all." />
+  <meta name="keywords" content="TIH digital library, educational resources Liberia, IELTS books, WASSCE study materials, scholarship guides, business resources Africa, free ebooks Liberia" />
+  <meta name="author" content="Tolbert Innovation Hub" />
+  <meta property="og:title" content="TIH Digital Library | Tolbert Innovation Hub" />
+  <meta property="og:description" content="Explore thousands of educational resources, eBooks, scholarship guides, and learning materials — free for everyone." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.tolbertinnovationhub.org/library.html" />
+  <meta property="og:image" content="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    /* ── TIH DIGITAL LIBRARY — Page Styles ── */
+
+    /* Hero */
+    .lib-hero {
+      background: linear-gradient(135deg, #001535 0%, #002868 50%, #003a8c 100%);
+      color: #fff;
+      padding: 5rem 0 4.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .lib-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(217,119,6,0.18) 0%, transparent 55%),
+                  radial-gradient(ellipse at 20% 80%, rgba(191,10,48,0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .lib-hero .eyebrow {
+      background: rgba(217,119,6,0.2);
+      border: 1px solid rgba(217,119,6,0.45);
+      color: #fcd34d;
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.32rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.1rem;
+    }
+    .lib-hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.18;
+      margin: 0 0 1rem;
+      color: #fff;
+    }
+    .lib-hero h1 span { color: #fcd34d; }
+    .lib-hero .lead {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.82);
+      max-width: 640px;
+      line-height: 1.7;
+      margin: 0 0 2rem;
+    }
+
+    /* Search bar */
+    .lib-search-wrap {
+      display: flex;
+      gap: 0;
+      max-width: 680px;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+      margin-bottom: 1.5rem;
+    }
+    .lib-search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 0.95rem 1.2rem;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      color: #111827;
+      background: transparent;
+      min-width: 0;
+    }
+    .lib-search-input::placeholder { color: #9ca3af; }
+    .lib-search-select {
+      border: none;
+      border-left: 1px solid #e5e7eb;
+      outline: none;
+      padding: 0.85rem 1rem;
+      font-size: 0.88rem;
+      font-family: 'Inter', sans-serif;
+      color: #374151;
+      background: #f9fafb;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .lib-search-btn {
+      background: #BF0A30;
+      color: #fff;
+      border: none;
+      padding: 0.95rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .lib-search-btn:hover { background: #9a0828; }
+
+    .lib-hero-stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .lib-hero-stat { text-align: left; }
+    .lib-hero-stat .num {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fcd34d;
+      line-height: 1;
+    }
+    .lib-hero-stat .lbl {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0.2rem;
+    }
+
+    /* Category pills */
+    .lib-cats {
+      background: var(--surface, #fff);
+      border-bottom: 1px solid var(--border-light, #e4eaf4);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      box-shadow: 0 2px 8px rgba(0,40,104,0.06);
+    }
+    .lib-cats-inner {
+      display: flex;
+      gap: 0.4rem;
+      overflow-x: auto;
+      padding: 0.75rem 0;
+      scrollbar-width: none;
+    }
+    .lib-cats-inner::-webkit-scrollbar { display: none; }
+    .lib-cat-pill {
+      flex: 0 0 auto;
+      background: none;
+      border: 1.5px solid var(--border-light, #e4eaf4);
+      border-radius: 999px;
+      padding: 0.42rem 1rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-secondary, #4b5563);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .lib-cat-pill:hover {
+      border-color: #002868;
+      color: #002868;
+      background: rgba(0,40,104,0.05);
+    }
+    .lib-cat-pill.active {
+      background: #002868;
+      border-color: #002868;
+      color: #fff;
+    }
+
+    /* Section layout */
+    .lib-section {
+      padding: 3.5rem 0;
+    }
+    .lib-section-alt {
+      background: var(--surface-alt, #f8faff);
+    }
+    .lib-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+    .lib-section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary, #111827);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .lib-see-all {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #002868;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .lib-see-all:hover { color: #BF0A30; }
+
+    /* Featured grid */
+    .lib-featured-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 1024px) { .lib-featured-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px)  { .lib-featured-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px)  { .lib-featured-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; } }
+
+    /* Shelf (horizontal scroll) */
+    .lib-shelf {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.75rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0,40,104,0.18) transparent;
+    }
+    .lib-shelf::-webkit-scrollbar { height: 4px; }
+    .lib-shelf::-webkit-scrollbar-track { background: transparent; }
+    .lib-shelf::-webkit-scrollbar-thumb { background: rgba(0,40,104,0.18); border-radius: 2px; }
+
+    /* Book card */
+    .lib-book-card {
+      flex: 0 0 auto;
+      width: 160px;
+      scroll-snap-align: start;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .lib-book-card:hover { transform: translateY(-4px); }
+    .lib-book-card:hover .lib-cover { box-shadow: 0 12px 32px rgba(0,0,0,0.22); }
+
+    /* In featured grid */
+    .lib-featured-grid .lib-book-card {
+      width: 100%;
+      flex: none;
+    }
+
+    /* Search results grid */
+    .lib-results-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 1200px) { .lib-results-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 900px)  { .lib-results-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px)  { .lib-results-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; } }
+
+    .lib-cover {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      transition: box-shadow 0.2s;
+      margin-bottom: 0.75rem;
+    }
+    .lib-cover-emoji {
+      font-size: 2.4rem;
+      line-height: 1;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+      margin-bottom: 0.4rem;
+    }
+    .lib-cover-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0 0.5rem;
+      text-align: center;
+    }
+    .lib-cover-shine {
+      position: absolute;
+      top: 0; left: 0;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 100%);
+      pointer-events: none;
+    }
+    .lib-cover-spine {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: rgba(0,0,0,0.22);
+    }
+
+    .lib-book-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-primary, #111827);
+      line-height: 1.35;
+      margin: 0 0 0.25rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .lib-book-author {
+      font-size: 0.73rem;
+      color: var(--text-secondary, #6b7280);
+      margin: 0 0 0.35rem;
+    }
+    .lib-cat-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .lib-new-ribbon {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: #BF0A30;
+      color: #fff;
+      font-size: 0.55rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    /* Search results section */
+    #lib-search-section { display: none; }
+    #lib-search-section.visible { display: block; }
+
+    /* No results */
+    .lib-no-results {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-secondary, #6b7280);
+    }
+    .lib-no-results .icon { font-size: 3rem; margin-bottom: 1rem; }
+
+    /* Features section */
+    .lib-features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 900px) { .lib-features-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .lib-features-grid { grid-template-columns: 1fr; } }
+    .lib-feature-card {
+      background: var(--surface, #fff);
+      border: 1px solid var(--border-light, #e4eaf4);
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,40,104,0.05);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .lib-feature-card:hover { box-shadow: 0 8px 24px rgba(0,40,104,0.1); transform: translateY(-2px); }
+    .lib-feature-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .lib-feature-card h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary, #111827);
+      margin: 0 0 0.5rem;
+    }
+    .lib-feature-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary, #4b5563);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Stats banner */
+    .lib-stats-banner {
+      background: linear-gradient(135deg, #002868 0%, #001e52 100%);
+      color: #fff;
+      padding: 3rem 0;
+    }
+    .lib-stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    @media (max-width: 768px) { .lib-stats-row { grid-template-columns: repeat(2, 1fr); } }
+    .lib-stat-item .big {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fcd34d;
+      display: block;
+      font-family: 'Poppins', sans-serif;
+    }
+    .lib-stat-item .label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.72);
+      margin-top: 0.3rem;
+    }
+
+    /* CTA section */
+    .lib-cta {
+      background: linear-gradient(135deg, #BF0A30 0%, #8f0822 100%);
+      color: #fff;
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .lib-cta h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 0.75rem;
+    }
+    .lib-cta p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.84);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+    .lib-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-lib-white {
+      background: #fff;
+      color: #BF0A30;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-lib-white:hover { background: #fef2f2; transform: translateY(-1px); }
+    .btn-lib-outline-w {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.55);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .btn-lib-outline-w:hover { border-color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.1); }
+
+    /* ── BOOK DETAIL MODAL ── */
+    .lib-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .lib-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .lib-modal-box {
+      background: var(--surface, #fff);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.25s;
+    }
+    .lib-modal-overlay.open .lib-modal-box {
+      transform: translateY(0) scale(1);
+    }
+    .lib-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(0,0,0,0.08);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      color: #111827;
+    }
+    .lib-modal-close:hover { background: rgba(0,0,0,0.16); }
+    .lib-modal-header {
+      padding: 1.5rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--border-light, #e4eaf4);
+      position: relative;
+    }
+    .lib-modal-body {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding: 1.5rem;
+    }
+    @media (max-width: 560px) { .lib-modal-body { grid-template-columns: 1fr; } }
+    .lib-modal-cover {
+      width: 100%;
+      aspect-ratio: 2/3;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+    }
+    .lib-modal-details h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary, #111827);
+      margin: 0 0 0.4rem;
+    }
+    .lib-modal-details .lib-author-line {
+      font-size: 0.9rem;
+      color: var(--text-secondary, #6b7280);
+      margin-bottom: 0.75rem;
+    }
+    .lib-modal-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary, #4b5563);
+      line-height: 1.7;
+      margin: 0.75rem 0 1.25rem;
+    }
+    .lib-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.65rem;
+      margin-bottom: 1.25rem;
+    }
+    .lib-meta-item {
+      display: flex;
+      gap: 0.4rem;
+      align-items: flex-start;
+    }
+    .lib-meta-item .meta-lbl {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-secondary, #6b7280);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      padding-top: 0.05rem;
+    }
+    .lib-meta-item .meta-val {
+      font-size: 0.83rem;
+      color: var(--text-primary, #111827);
+      font-weight: 500;
+    }
+    .lib-modal-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding: 0 1.5rem 1.5rem;
+      border-top: 1px solid var(--border-light, #e4eaf4);
+      padding-top: 1.25rem;
+    }
+    .btn-read {
+      background: #002868;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-read:hover { background: #003a8c; }
+    .btn-download {
+      background: #BF0A30;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-download:hover { background: #9a0828; }
+    .btn-fav {
+      background: none;
+      border: 2px solid var(--border-light, #e4eaf4);
+      color: var(--text-secondary, #4b5563);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-fav:hover, .btn-fav.active { border-color: #BF0A30; color: #BF0A30; }
+    .btn-share {
+      background: none;
+      border: 2px solid var(--border-light, #e4eaf4);
+      color: var(--text-secondary, #4b5563);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-share:hover { border-color: #002868; color: #002868; }
+
+    /* Related books */
+    .lib-related { padding: 1rem 1.5rem 1.5rem; }
+    .lib-related h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary, #111827);
+      margin: 0 0 1rem;
+    }
+    .lib-related-shelf {
+      display: flex;
+      gap: 0.85rem;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+    .lib-related-shelf::-webkit-scrollbar { height: 3px; }
+    .lib-related-shelf::-webkit-scrollbar-thumb { background: rgba(0,40,104,0.15); border-radius: 2px; }
+
+    /* ── AUTH MODAL ── */
+    .lib-auth-box {
+      max-width: 440px;
+    }
+    .lib-auth-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--border-light, #e4eaf4);
+      margin-bottom: 1.5rem;
+    }
+    .lib-auth-tab {
+      flex: 1;
+      padding: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-secondary, #6b7280);
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+    .lib-auth-tab.active {
+      color: #002868;
+      border-bottom-color: #002868;
+    }
+    .lib-auth-form { padding: 0 1.5rem 1.5rem; }
+    .lib-form-group { margin-bottom: 1rem; }
+    .lib-form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-primary, #374151);
+      margin-bottom: 0.4rem;
+    }
+    .lib-form-group input {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1.5px solid var(--border-light, #d1d5db);
+      border-radius: 8px;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary, #111827);
+      background: var(--surface, #fff);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .lib-form-group input:focus { border-color: #002868; }
+    .btn-auth-submit {
+      width: 100%;
+      background: #002868;
+      color: #fff;
+      border: none;
+      padding: 0.85rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+    .btn-auth-submit:hover { background: #003a8c; }
+    .lib-auth-msg {
+      font-size: 0.82rem;
+      margin-top: 0.75rem;
+      text-align: center;
+      min-height: 1.2em;
+    }
+    .lib-auth-msg.error { color: #dc2626; }
+    .lib-auth-msg.success { color: #059669; }
+
+    /* ── USER DASHBOARD ── */
+    .lib-dash-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1.5px solid var(--border-light, #e4eaf4);
+      padding: 0 1.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .lib-dash-tab {
+      padding: 0.75rem 1rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-secondary, #6b7280);
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -1.5px;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .lib-dash-tab.active { color: #002868; border-bottom-color: #002868; }
+    .lib-dash-panel { padding: 1.5rem; display: none; }
+    .lib-dash-panel.active { display: block; }
+    .lib-dash-empty {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary, #9ca3af);
+      font-size: 0.88rem;
+    }
+    .lib-dash-empty .icon { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+
+    /* Nav user state */
+    .lib-nav-user {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .btn-nav-lib {
+      background: #d97706;
+      color: #fff;
+      border: none;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-nav-lib:hover { background: #b45309; }
+
+    /* Toast notification */
+    .lib-toast {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #111827;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      z-index: 9999;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      pointer-events: none;
+    }
+    .lib-toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* Dark mode */
+    [data-theme="dark"] .lib-cats { background: var(--surface); }
+    [data-theme="dark"] .lib-book-title { color: var(--text-primary, #f3f4f6); }
+    [data-theme="dark"] .lib-section-title { color: var(--text-primary, #f3f4f6); }
+    [data-theme="dark"] .lib-modal-box { background: #1f2937; }
+    [data-theme="dark"] .lib-modal-details h2 { color: #f9fafb; }
+    [data-theme="dark"] .lib-meta-item .meta-val { color: #e5e7eb; }
+    [data-theme="dark"] .lib-auth-box { background: #1f2937; }
+    [data-theme="dark"] .lib-form-group input { background: #374151; border-color: #4b5563; color: #f9fafb; }
+    [data-theme="dark"] .lib-feature-card { background: #1f2937; border-color: #374151; }
+    [data-theme="dark"] .lib-feature-card h4 { color: #f9fafb; }
+    [data-theme="dark"] .lib-section-alt { background: #111827; }
+    [data-theme="dark"] .lib-cat-pill { color: #9ca3af; border-color: #374151; }
+    [data-theme="dark"] .lib-cat-pill:hover { color: #93c5fd; border-color: #3b82f6; background: rgba(59,130,246,0.08); }
+    [data-theme="dark"] .lib-cat-pill.active { background: #2563eb; border-color: #2563eb; color: #fff; }
+    [data-theme="dark"] .lib-search-input { color: #111827; }
+    [data-theme="dark"] .lib-modal-header { border-color: #374151; }
+    [data-theme="dark"] .lib-modal-actions { border-color: #374151; }
+    [data-theme="dark"] .btn-fav, [data-theme="dark"] .btn-share { border-color: #374151; color: #9ca3af; }
+
+    /* Mobile tweaks */
+    @media (max-width: 640px) {
+      .lib-hero { padding: 3.5rem 0 3rem; }
+      .lib-hero h1 { font-size: 1.8rem; }
+      .lib-hero .lead { font-size: 0.92rem; }
+      .lib-search-select { display: none; }
+      .lib-hero-stats { gap: 1.25rem; }
+      .lib-hero-stat .num { font-size: 1.2rem; }
+      .lib-book-card { width: 130px; }
+      .lib-modal-body { grid-template-columns: 1fr; }
+      .lib-modal-cover { max-width: 160px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div id="announcement-bar" style="background:#BF0A30;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
+    📚 <strong>TIH Digital Library is Live!</strong> Browse 50+ educational resources — completely free for all learners.
+    <a href="#lib-featured" style="color:#fff;text-decoration:underline;margin-left:0.5rem;">Explore Now →</a>
+    <button onclick="this.parentElement.style.display='none'" aria-label="Close announcement" style="position:absolute;right:0.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.2rem 0.4rem;line-height:1;">✕</button>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="academy.html">Academy</a>
+        <a href="study-abroad.html">Study Abroad</a>
+        <a href="fully-funded-scholarship.html">Fully Funded</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="software.html">Software</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="wassce.html">WASSCE PRO</a>
+        <a href="grants.html">Grants</a>
+        <a class="active" aria-current="page" href="library.html">Library</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="apply.html" class="nav-cta">Apply Now</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="lib-hero">
+      <div class="container">
+        <div class="eyebrow">Free Educational Resources for Everyone</div>
+        <h1>TIH <span>Digital Library</span></h1>
+        <p class="lead">Explore thousands of educational resources, research papers, eBooks, training manuals, scholarship guides, business resources, and learning materials — all free.</p>
+
+        <form class="lib-search-wrap" id="libSearchForm" role="search" onsubmit="return false;">
+          <input type="search" class="lib-search-input" id="libSearchInput" placeholder="Search books, authors, topics, or resources..." aria-label="Search library" />
+          <select class="lib-search-select" id="libSearchCat" aria-label="Filter by category">
+            <option value="all">All Categories</option>
+            <option value="scholarships">Scholarships</option>
+            <option value="grants">Grants</option>
+            <option value="business">Business</option>
+            <option value="software">Software Dev</option>
+            <option value="webdev">Web Dev</option>
+            <option value="ai">Artificial Intelligence</option>
+            <option value="datascience">Data Science</option>
+            <option value="entrepreneurship">Entrepreneurship</option>
+            <option value="career">Career Dev</option>
+            <option value="wassce">WASSCE PRO</option>
+            <option value="tih">TIH Academy</option>
+          </select>
+          <button type="submit" class="lib-search-btn" onclick="doSearch()">🔍 Search</button>
+        </form>
+
+        <div class="lib-hero-stats">
+          <div class="lib-hero-stat"><span class="num">50+</span><span class="lbl">Resources Available</span></div>
+          <div class="lib-hero-stat"><span class="num">11</span><span class="lbl">Categories</span></div>
+          <div class="lib-hero-stat"><span class="num">100%</span><span class="lbl">Free Access</span></div>
+          <div class="lib-hero-stat"><span class="num">2026</span><span class="lbl">Updated</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY PILLS -->
+    <nav class="lib-cats" aria-label="Library categories">
+      <div class="container">
+        <div class="lib-cats-inner" id="libCatPills"></div>
+      </div>
+    </nav>
+
+    <!-- SEARCH RESULTS (hidden until search) -->
+    <section class="lib-section" id="lib-search-section">
+      <div class="container">
+        <div class="lib-section-header">
+          <h2 class="lib-section-title" id="searchResultTitle">Search Results</h2>
+          <button style="background:none;border:none;font-size:0.82rem;font-weight:600;color:#BF0A30;cursor:pointer;" onclick="clearSearch()">✕ Clear Search</button>
+        </div>
+        <div id="searchResultsGrid" class="lib-results-grid"></div>
+      </div>
+    </section>
+
+    <!-- FEATURED BOOKS -->
+    <section class="lib-section" id="lib-featured">
+      <div class="container">
+        <div class="lib-section-header">
+          <h2 class="lib-section-title">⭐ Featured Resources</h2>
+          <a href="#lib-shelves" class="lib-see-all">Browse All →</a>
+        </div>
+        <div id="featuredGrid" class="lib-featured-grid"></div>
+      </div>
+    </section>
+
+    <!-- ALL SHELVES -->
+    <div id="lib-shelves">
+
+      <!-- New Arrivals -->
+      <section class="lib-section lib-section-alt">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">✨ New Arrivals</h2>
+          </div>
+          <div class="lib-shelf" id="shelf-new"></div>
+        </div>
+      </section>
+
+      <!-- Most Popular -->
+      <section class="lib-section">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">🔥 Most Popular</h2>
+          </div>
+          <div class="lib-shelf" id="shelf-popular"></div>
+        </div>
+      </section>
+
+      <!-- Scholarships -->
+      <section class="lib-section lib-section-alt">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">🎓 Scholarship Library</h2>
+            <a href="fully-funded-scholarship.html" class="lib-see-all">View Scholarships →</a>
+          </div>
+          <div class="lib-shelf" id="shelf-scholarships"></div>
+        </div>
+      </section>
+
+      <!-- Grants -->
+      <section class="lib-section">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">💰 Grant Opportunity Library</h2>
+            <a href="grants.html" class="lib-see-all">View Grants →</a>
+          </div>
+          <div class="lib-shelf" id="shelf-grants"></div>
+        </div>
+      </section>
+
+      <!-- Business -->
+      <section class="lib-section lib-section-alt">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">💼 Business Startup Toolkit</h2>
+          </div>
+          <div class="lib-shelf" id="shelf-business"></div>
+        </div>
+      </section>
+
+      <!-- Software Dev -->
+      <section class="lib-section">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">💻 Software Development</h2>
+            <a href="software.html" class="lib-see-all">TIH Software →</a>
+          </div>
+          <div class="lib-shelf" id="shelf-software"></div>
+        </div>
+      </section>
+
+      <!-- Web Dev -->
+      <section class="lib-section lib-section-alt">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">🌐 Web Development Resources</h2>
+          </div>
+          <div class="lib-shelf" id="shelf-webdev"></div>
+        </div>
+      </section>
+
+      <!-- AI -->
+      <section class="lib-section">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">🤖 AI Learning Center</h2>
+          </div>
+          <div class="lib-shelf" id="shelf-ai"></div>
+        </div>
+      </section>
+
+      <!-- Data Science -->
+      <section class="lib-section lib-section-alt">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">📊 Data Science</h2>
+          </div>
+          <div class="lib-shelf" id="shelf-datascience"></div>
+        </div>
+      </section>
+
+      <!-- Entrepreneurship -->
+      <section class="lib-section">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">🚀 Entrepreneurship</h2>
+          </div>
+          <div class="lib-shelf" id="shelf-entrepreneurship"></div>
+        </div>
+      </section>
+
+      <!-- Career Dev -->
+      <section class="lib-section lib-section-alt">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">📈 Career Development</h2>
+          </div>
+          <div class="lib-shelf" id="shelf-career"></div>
+        </div>
+      </section>
+
+      <!-- WASSCE PRO -->
+      <section class="lib-section">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">📝 WASSCE PRO Study Materials</h2>
+            <a href="wassce.html" class="lib-see-all">WASSCE PRO →</a>
+          </div>
+          <div class="lib-shelf" id="shelf-wassce"></div>
+        </div>
+      </section>
+
+      <!-- TIH Academy -->
+      <section class="lib-section lib-section-alt">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">🏫 TIH Academy Courses</h2>
+            <a href="academy.html" class="lib-see-all">TIH Academy →</a>
+          </div>
+          <div class="lib-shelf" id="shelf-tih"></div>
+        </div>
+      </section>
+
+    </div><!-- /lib-shelves -->
+
+    <!-- FEATURES -->
+    <section class="lib-section">
+      <div class="container">
+        <div class="section-header centered" style="margin-bottom:2.5rem;">
+          <p class="section-label">Why TIH Digital Library</p>
+          <h2>Everything You Need to <span style="color:#002868;">Learn &amp; Grow</span></h2>
+          <p class="section-intro">A curated collection of high-quality resources built specifically for Liberian and African learners.</p>
+        </div>
+        <div class="lib-features-grid">
+          <div class="lib-feature-card">
+            <span class="lib-feature-icon">🔍</span>
+            <h4>Smart Search &amp; Filters</h4>
+            <p>Find exactly what you need with powerful search across titles, authors, topics, and categories.</p>
+          </div>
+          <div class="lib-feature-card">
+            <span class="lib-feature-icon">📱</span>
+            <h4>Works on Any Device</h4>
+            <p>Access the full library on your phone, tablet, or computer with a beautiful responsive interface.</p>
+          </div>
+          <div class="lib-feature-card">
+            <span class="lib-feature-icon">💾</span>
+            <h4>Save Favorites</h4>
+            <p>Bookmark your favorite resources and build a personal collection to revisit any time.</p>
+          </div>
+          <div class="lib-feature-card">
+            <span class="lib-feature-icon">🎓</span>
+            <h4>Scholarship Guides</h4>
+            <p>Dedicated section with IELTS, TOEFL, scholarship application, and study abroad guides.</p>
+          </div>
+          <div class="lib-feature-card">
+            <span class="lib-feature-icon">💰</span>
+            <h4>Grant Resources</h4>
+            <p>Step-by-step grant writing guides, donor directories, and funding opportunity handbooks.</p>
+          </div>
+          <div class="lib-feature-card">
+            <span class="lib-feature-icon">🌍</span>
+            <h4>Built for Africa</h4>
+            <p>All resources are relevant to Liberian and African contexts with practical, real-world examples.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS BANNER -->
+    <div class="lib-stats-banner">
+      <div class="container">
+        <div class="lib-stats-row">
+          <div class="lib-stat-item"><span class="big">50+</span><p class="label">Educational Resources</p></div>
+          <div class="lib-stat-item"><span class="big">11</span><p class="label">Subject Categories</p></div>
+          <div class="lib-stat-item"><span class="big">100%</span><p class="label">Free Access</p></div>
+          <div class="lib-stat-item"><span class="big">2026</span><p class="label">Regularly Updated</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="lib-cta">
+      <div class="container">
+        <h2>Start Learning Today</h2>
+        <p>Browse our full collection of educational resources and take the next step in your education, career, or business journey — completely free.</p>
+        <div class="lib-cta-btns">
+          <a href="#lib-featured" class="btn-lib-white">Browse Library</a>
+          <a href="classroom.html" class="btn-lib-outline-w">Free Classroom →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Innovation Through Technology and Education. Never Stop Innovating.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+            <a href="https://www.youtube.com/@TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">▶️</a>
+            <a href="https://www.linkedin.com/company/tolbert-innovation-hub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">💼</a>
+            <a href="https://www.facebook.com/TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">📘</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Library</p>
+          <ul class="footer-links">
+            <li><a href="library.html">Digital Library</a></li>
+            <li><a href="library.html#shelf-scholarships">Scholarship Resources</a></li>
+            <li><a href="library.html#shelf-grants">Grant Guides</a></li>
+            <li><a href="library.html#shelf-wassce">WASSCE Materials</a></li>
+            <li><a href="library.html#shelf-tih">TIH Academy Courses</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="academy.html">TIH Academy</a></li>
+            <li><a href="study-abroad.html">Study Abroad</a></li>
+            <li><a href="fully-funded-scholarship.html">Fully Funded</a></li>
+            <li><a href="wassce.html">WASSCE PRO</a></li>
+            <li><a href="grants.html">Grants</a></li>
+            <li><a href="classroom.html">Free Classroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact Us</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">🌐</span><span>tolbertinnovationhub.org</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+          <div style="margin-top:1.25rem;">
+            <a href="contact.html" class="btn btn-outline btn-sm" style="font-size:0.82rem;">Get In Touch →</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved. | <a href="privacy.html" style="color:rgba(200,216,240,0.7);">Privacy Policy</a> | <a href="terms.html" style="color:rgba(200,216,240,0.7);">Terms of Service</a></p>
+          <p style="font-size:0.82rem;color:rgba(200,216,240,0.55);margin:0;">Empowering Africa's Future — Never Stop Innovating 🚀</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOOK DETAIL MODAL -->
+  <div class="lib-modal-overlay" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="modalBookTitle">
+    <div class="lib-modal-box" id="bookModalBox">
+      <div class="lib-modal-header">
+        <button class="lib-modal-close" onclick="closeBookModal()" aria-label="Close">✕</button>
+        <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#6b7280;margin:0 0 0.25rem;">TIH Digital Library</p>
+        <h2 id="modalBookTitle" style="font-family:'Poppins',sans-serif;font-size:1rem;font-weight:700;margin:0;color:var(--text-primary,#111827);">Book Detail</h2>
+      </div>
+      <div class="lib-modal-body" id="bookModalBody"></div>
+      <div class="lib-modal-actions" id="bookModalActions"></div>
+      <div class="lib-related" id="bookModalRelated"></div>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div class="lib-modal-overlay" id="authModal" role="dialog" aria-modal="true" aria-label="Sign in to TIH Library">
+    <div class="lib-modal-box lib-auth-box">
+      <div class="lib-modal-header">
+        <button class="lib-modal-close" onclick="closeAuthModal()" aria-label="Close">✕</button>
+        <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#6b7280;margin:0 0 0.25rem;">TIH Digital Library</p>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:1rem;font-weight:700;margin:0;color:var(--text-primary,#111827);">My Library Account</h2>
+      </div>
+      <div class="lib-auth-tabs">
+        <button class="lib-auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Sign In</button>
+        <button class="lib-auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Create Account</button>
+      </div>
+      <div id="authFormLogin" class="lib-auth-form">
+        <div class="lib-form-group">
+          <label for="loginEmail">Email Address</label>
+          <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div class="lib-form-group">
+          <label for="loginPass">Password</label>
+          <input type="password" id="loginPass" placeholder="Your password" autocomplete="current-password" />
+        </div>
+        <button class="btn-auth-submit" onclick="doLogin()">Sign In to Library</button>
+        <p class="lib-auth-msg" id="loginMsg"></p>
+      </div>
+      <div id="authFormRegister" class="lib-auth-form" style="display:none;">
+        <div class="lib-form-group">
+          <label for="regName">Full Name</label>
+          <input type="text" id="regName" placeholder="Your full name" autocomplete="name" />
+        </div>
+        <div class="lib-form-group">
+          <label for="regEmail">Email Address</label>
+          <input type="email" id="regEmail" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div class="lib-form-group">
+          <label for="regPass">Password</label>
+          <input type="password" id="regPass" placeholder="Create a password (min. 6 chars)" autocomplete="new-password" />
+        </div>
+        <button class="btn-auth-submit" onclick="doRegister()">Create Account</button>
+        <p class="lib-auth-msg" id="registerMsg"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- USER DASHBOARD MODAL -->
+  <div class="lib-modal-overlay" id="dashModal" role="dialog" aria-modal="true" aria-label="My Library Dashboard">
+    <div class="lib-modal-box" style="max-width:680px;">
+      <div class="lib-modal-header">
+        <button class="lib-modal-close" onclick="closeDashModal()" aria-label="Close">✕</button>
+        <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#6b7280;margin:0 0 0.25rem;">TIH Digital Library</p>
+        <h2 id="dashUserName" style="font-family:'Poppins',sans-serif;font-size:1rem;font-weight:700;margin:0;color:var(--text-primary,#111827);">My Dashboard</h2>
+      </div>
+      <div class="lib-dash-tabs">
+        <button class="lib-dash-tab active" onclick="switchDashTab('favs', this)">❤️ Favorites</button>
+        <button class="lib-dash-tab" onclick="switchDashTab('history', this)">📖 History</button>
+        <button class="lib-dash-tab" onclick="switchDashTab('downloads', this)">⬇️ Downloads</button>
+        <button class="lib-dash-tab" onclick="switchDashTab('account', this)">👤 Account</button>
+      </div>
+      <div id="dash-favs" class="lib-dash-panel active"></div>
+      <div id="dash-history" class="lib-dash-panel"></div>
+      <div id="dash-downloads" class="lib-dash-panel"></div>
+      <div id="dash-account" class="lib-dash-panel"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="lib-toast" id="libToast"></div>
+
+  <script src="main.js"></script>
+  <script src="chatbot.js"></script>
+
+  <script>
+  // ── TIH DIGITAL LIBRARY APP ──
+
+  // ── BOOK DATABASE ──
+  const BOOKS = [
+    // SCHOLARSHIPS
+    {id:1,title:"Complete IELTS Preparation Guide 2026",author:"TIH Education Team",desc:"A comprehensive step-by-step guide covering all four IELTS components: Listening, Reading, Writing, and Speaking. Includes band score improvement strategies, model answers, and 3 full practice tests.",year:2026,cat:"scholarships",icon:"🎓",bg:"linear-gradient(150deg,#002868 0%,#1a4a9c 100%)",pages:320,size:"12.4 MB",readTime:"6-8 hrs",lang:"English",tags:["ielts","english","exam","scholarship"],featured:true,popular:true,isNew:true},
+    {id:2,title:"How to Win Scholarships: A Guide for African Students",author:"TIH Research Department",desc:"Proven strategies for finding, applying, and winning scholarships from top universities worldwide. Covers essay writing, recommendation letters, and interview preparation with real examples.",year:2026,cat:"scholarships",icon:"🏆",bg:"linear-gradient(150deg,#003a8c 0%,#0047AB 100%)",pages:210,size:"6.8 MB",readTime:"4 hrs",lang:"English",tags:["scholarship","essay","apply"],featured:true,popular:true,isNew:false},
+    {id:3,title:"TOEFL iBT Complete Study Guide",author:"TIH Education Team",desc:"Full preparation guide for the TOEFL iBT exam covering reading, listening, speaking, and writing. Includes sample responses, scoring guides, and 2 complete practice tests.",year:2026,cat:"scholarships",icon:"📖",bg:"linear-gradient(150deg,#001e52 0%,#002868 100%)",pages:290,size:"10.2 MB",readTime:"5-6 hrs",lang:"English",tags:["toefl","english","exam"],featured:false,popular:true,isNew:false},
+    {id:4,title:"Studying Abroad: From Application to Arrival",author:"TIH Study Abroad Team",desc:"Everything you need to know about studying abroad from choosing a university to arriving on campus. Covers visa applications, packing lists, cultural adjustment, and academic preparation.",year:2026,cat:"scholarships",icon:"✈️",bg:"linear-gradient(150deg,#0047AB 0%,#1a4a9c 100%)",pages:180,size:"5.6 MB",readTime:"3-4 hrs",lang:"English",tags:["study abroad","visa","university"],featured:false,popular:false,isNew:true},
+    {id:5,title:"Fully Funded Scholarships Directory 2026-2027",author:"TIH Research Department",desc:"A curated directory of over 200 fully funded scholarship opportunities for Liberian and African students. Includes deadlines, eligibility criteria, application links, and insider tips.",year:2026,cat:"scholarships",icon:"📋",bg:"linear-gradient(150deg,#002868 0%,#003a8c 100%)",pages:240,size:"9.1 MB",readTime:"Reference",lang:"English",tags:["scholarship","fully funded","directory"],featured:true,popular:true,isNew:true},
+    // GRANTS
+    {id:6,title:"Grant Writing for African NGOs and Businesses",author:"TIH Grant Support Team",desc:"A practical handbook on writing compelling grant proposals. Covers budget planning, narrative writing, logical frameworks, and follow-up reporting for African organizations.",year:2026,cat:"grants",icon:"💰",bg:"linear-gradient(150deg,#065f46 0%,#059669 100%)",pages:195,size:"7.2 MB",readTime:"4 hrs",lang:"English",tags:["grants","ngo","writing"],featured:true,popular:true,isNew:false},
+    {id:7,title:"EU & World Bank Funding Guide for Liberia 2026",author:"TIH Research Department",desc:"Comprehensive guide to accessing EU and World Bank funding for Liberian organizations. Covers current open calls, eligibility requirements, and application processes.",year:2026,cat:"grants",icon:"🌍",bg:"linear-gradient(150deg,#064e3b 0%,#065f46 100%)",pages:160,size:"6.0 MB",readTime:"3 hrs",lang:"English",tags:["grants","EU","World Bank","Liberia"],featured:false,popular:true,isNew:true},
+    {id:8,title:"USAID Grant Application Handbook",author:"TIH Research Department",desc:"Step-by-step guide to understanding and applying for USAID grants in Liberia and West Africa. Includes current funding priorities, application tips, and compliance requirements.",year:2026,cat:"grants",icon:"🇺🇸",bg:"linear-gradient(150deg,#065f46 0%,#047857 100%)",pages:145,size:"5.5 MB",readTime:"3 hrs",lang:"English",tags:["grants","USAID","NGO"],featured:false,popular:false,isNew:false},
+    {id:9,title:"Tony Elumelu Foundation Application Guide",author:"TIH Business Hub",desc:"Everything you need to successfully apply for the TEF Entrepreneurship Programme, including tips from past winners and a detailed review of the application process.",year:2026,cat:"grants",icon:"🌟",bg:"linear-gradient(150deg,#014737 0%,#065f46 100%)",pages:120,size:"4.5 MB",readTime:"2-3 hrs",lang:"English",tags:["grants","TEF","entrepreneurship"],featured:false,popular:true,isNew:true},
+    // BUSINESS
+    {id:10,title:"Business Plan Writing: A Complete Starter Guide",author:"TIH Business Hub",desc:"Learn to write a winning business plan from concept to completion. Includes templates, market analysis frameworks, financial projections, and real examples from Liberian businesses.",year:2026,cat:"business",icon:"💼",bg:"linear-gradient(150deg,#92400e 0%,#d97706 100%)",pages:230,size:"8.8 MB",readTime:"5 hrs",lang:"English",tags:["business plan","startup","entrepreneur"],featured:true,popular:true,isNew:false},
+    {id:11,title:"Financial Literacy for Entrepreneurs",author:"TIH Business Hub",desc:"Master the financial fundamentals every entrepreneur needs: bookkeeping, cash flow management, pricing strategies, profit margins, and accessing business loans.",year:2026,cat:"business",icon:"💵",bg:"linear-gradient(150deg,#78350f 0%,#92400e 100%)",pages:185,size:"7.0 MB",readTime:"4 hrs",lang:"English",tags:["finance","accounting","business"],featured:false,popular:true,isNew:false},
+    {id:12,title:"Marketing on a Shoestring Budget",author:"TIH Business Hub",desc:"Effective marketing strategies for small businesses with limited budgets. Covers social media, WhatsApp Business, content creation, and building brand awareness in African markets.",year:2026,cat:"business",icon:"📣",bg:"linear-gradient(150deg,#92400e 0%,#b45309 100%)",pages:165,size:"6.2 MB",readTime:"3-4 hrs",lang:"English",tags:["marketing","social media","branding"],featured:false,popular:false,isNew:true},
+    {id:13,title:"Startup to Scale: Building a Business in Africa",author:"TIH Research Department",desc:"A comprehensive guide to growing a startup from zero to scale in the African market. Covers fundraising, team building, market entry strategies, and sustainable growth.",year:2026,cat:"business",icon:"📈",bg:"linear-gradient(150deg,#d97706 0%,#f59e0b 100%)",pages:260,size:"9.5 MB",readTime:"5-6 hrs",lang:"English",tags:["startup","scale","Africa"],featured:true,popular:true,isNew:false},
+    {id:14,title:"Microfinance Access for Small Businesses",author:"TIH Business Hub",desc:"Understand microfinance options available to small businesses in Liberia. Includes guides to accessing funds from local MFIs, cooperatives, and international programs.",year:2026,cat:"business",icon:"🏦",bg:"linear-gradient(150deg,#78350f 0%,#d97706 100%)",pages:140,size:"5.2 MB",readTime:"3 hrs",lang:"English",tags:["microfinance","loans","SME"],featured:false,popular:false,isNew:false},
+    // SOFTWARE DEV
+    {id:15,title:"Introduction to Python Programming",author:"TIH Tech Team",desc:"A beginner-friendly guide to Python covering variables, data types, control flow, functions, and object-oriented programming. Perfect for absolute beginners with no coding experience.",year:2026,cat:"software",icon:"🐍",bg:"linear-gradient(150deg,#4c1d95 0%,#7c3aed 100%)",pages:310,size:"11.6 MB",readTime:"6-8 hrs",lang:"English",tags:["python","programming","coding"],featured:true,popular:true,isNew:false},
+    {id:16,title:"Clean Code Principles for Developers",author:"TIH Tech Team",desc:"Learn the principles of writing clean, maintainable, and efficient code. Covers naming conventions, functions, comments, formatting, error handling, and unit testing.",year:2026,cat:"software",icon:"✨",bg:"linear-gradient(150deg,#3b0764 0%,#4c1d95 100%)",pages:245,size:"9.2 MB",readTime:"5 hrs",lang:"English",tags:["clean code","best practices","development"],featured:false,popular:true,isNew:false},
+    {id:17,title:"Mobile App Development for Beginners",author:"TIH Tech Team",desc:"Build your first mobile application from scratch. Covers the fundamentals of mobile development, UI design principles, and step-by-step tutorials using modern frameworks.",year:2026,cat:"software",icon:"📱",bg:"linear-gradient(150deg,#7c3aed 0%,#6d28d9 100%)",pages:290,size:"12.0 MB",readTime:"6-7 hrs",lang:"English",tags:["mobile","app","development"],featured:false,popular:true,isNew:true},
+    {id:18,title:"Database Design & SQL Fundamentals",author:"TIH Tech Team",desc:"Understand relational databases, SQL queries, data modeling, and database design principles. Includes hands-on exercises and real-world database project examples.",year:2026,cat:"software",icon:"🗄️",bg:"linear-gradient(150deg,#5b21b6 0%,#7c3aed 100%)",pages:220,size:"8.5 MB",readTime:"5 hrs",lang:"English",tags:["database","SQL","data"],featured:false,popular:false,isNew:false},
+    {id:19,title:"Software Project Management Essentials",author:"TIH Tech Team",desc:"Master software project management: agile methodologies, scrum, kanban, team collaboration, risk management, and delivering projects on time and budget.",year:2026,cat:"software",icon:"🔧",bg:"linear-gradient(150deg,#4c1d95 0%,#5b21b6 100%)",pages:200,size:"7.6 MB",readTime:"4-5 hrs",lang:"English",tags:["project management","agile","scrum"],featured:false,popular:false,isNew:false},
+    // WEB DEV
+    {id:20,title:"HTML, CSS & JavaScript: The Complete Guide",author:"TIH Tech Team",desc:"The ultimate beginner's guide to web development. Learn HTML structure, CSS styling, responsive design, and JavaScript interactivity to build your first websites from scratch.",year:2026,cat:"webdev",icon:"🌐",bg:"linear-gradient(150deg,#0e7490 0%,#0284c7 100%)",pages:380,size:"14.2 MB",readTime:"8-10 hrs",lang:"English",tags:["html","css","javascript","web"],featured:true,popular:true,isNew:false},
+    {id:21,title:"Responsive Web Design with Bootstrap 5",author:"TIH Tech Team",desc:"Build responsive, mobile-first websites using Bootstrap 5. Covers the grid system, components, utilities, and customization techniques for professional web projects.",year:2026,cat:"webdev",icon:"📐",bg:"linear-gradient(150deg,#0369a1 0%,#0284c7 100%)",pages:250,size:"9.8 MB",readTime:"5-6 hrs",lang:"English",tags:["bootstrap","responsive","css"],featured:false,popular:true,isNew:false},
+    {id:22,title:"React.js for Beginners",author:"TIH Tech Team",desc:"Learn React.js from the ground up: components, props, state, hooks, routing, and API integration. Build interactive user interfaces with the world's most popular front-end library.",year:2026,cat:"webdev",icon:"⚛️",bg:"linear-gradient(150deg,#0c4a6e 0%,#0369a1 100%)",pages:330,size:"12.8 MB",readTime:"7-8 hrs",lang:"English",tags:["react","javascript","frontend"],featured:false,popular:true,isNew:true},
+    {id:23,title:"UI/UX Design Principles for Developers",author:"TIH Tech Team",desc:"Understand the fundamentals of user interface and user experience design. Create beautiful, intuitive, and accessible digital products using proven design principles.",year:2026,cat:"webdev",icon:"🎨",bg:"linear-gradient(150deg,#0e7490 0%,#0369a1 100%)",pages:210,size:"8.0 MB",readTime:"4-5 hrs",lang:"English",tags:["ui","ux","design"],featured:false,popular:false,isNew:false},
+    // AI
+    {id:24,title:"Introduction to Artificial Intelligence",author:"TIH AI Lab",desc:"A comprehensive introduction to AI concepts, history, and applications. Covers machine learning, neural networks, natural language processing, and real-world AI use cases in Africa.",year:2026,cat:"ai",icon:"🤖",bg:"linear-gradient(150deg,#6d28d9 0%,#db2777 100%)",pages:295,size:"11.0 MB",readTime:"6-7 hrs",lang:"English",tags:["ai","machine learning","intro"],featured:true,popular:true,isNew:false},
+    {id:25,title:"Machine Learning for Beginners",author:"TIH AI Lab",desc:"Demystify machine learning with practical examples and hands-on projects. Covers supervised learning, unsupervised learning, model evaluation, and implementing algorithms in Python.",year:2026,cat:"ai",icon:"🧠",bg:"linear-gradient(150deg,#5b21b6 0%,#6d28d9 100%)",pages:320,size:"12.2 MB",readTime:"7-8 hrs",lang:"English",tags:["machine learning","python","data"],featured:false,popular:true,isNew:false},
+    {id:26,title:"ChatGPT & AI Tools for Productivity",author:"TIH AI Lab",desc:"Harness the power of ChatGPT and other AI tools to supercharge your productivity. Learn to use AI for writing, research, coding, education, and business tasks.",year:2026,cat:"ai",icon:"💬",bg:"linear-gradient(150deg,#be185d 0%,#db2777 100%)",pages:175,size:"6.8 MB",readTime:"3-4 hrs",lang:"English",tags:["ChatGPT","AI tools","productivity"],featured:false,popular:true,isNew:true},
+    {id:27,title:"AI Ethics & Society",author:"TIH AI Lab",desc:"Explore the ethical implications of artificial intelligence. Covers bias, fairness, privacy, accountability, and the future of AI in African communities.",year:2026,cat:"ai",icon:"⚖️",bg:"linear-gradient(150deg,#7c3aed 0%,#6d28d9 100%)",pages:190,size:"7.2 MB",readTime:"4 hrs",lang:"English",tags:["AI ethics","society","Africa"],featured:false,popular:false,isNew:false},
+    {id:28,title:"Building Your First AI Application",author:"TIH AI Lab",desc:"Step-by-step guide to building practical AI applications using modern tools and APIs. Build chatbots, image classifiers, and recommendation systems. No prior AI experience required.",year:2026,cat:"ai",icon:"🔨",bg:"linear-gradient(150deg,#6d28d9 0%,#be185d 100%)",pages:260,size:"10.0 MB",readTime:"5-6 hrs",lang:"English",tags:["AI development","application","build"],featured:false,popular:false,isNew:true},
+    // DATA SCIENCE
+    {id:29,title:"Data Science with Python: A Beginner's Guide",author:"TIH Data Team",desc:"Start your data science journey with Python. Learn data manipulation with pandas, visualization with matplotlib, and basic machine learning with African real-world data examples.",year:2026,cat:"datascience",icon:"📊",bg:"linear-gradient(150deg,#0d9488 0%,#0891b2 100%)",pages:340,size:"13.0 MB",readTime:"7-8 hrs",lang:"English",tags:["data science","python","analysis"],featured:true,popular:true,isNew:false},
+    {id:30,title:"Excel for Data Analysis & Visualization",author:"TIH Data Team",desc:"Master Excel for professional data analysis. Learn pivot tables, advanced formulas, charts, and visualization techniques to analyze and present data effectively.",year:2026,cat:"datascience",icon:"📉",bg:"linear-gradient(150deg,#0f766e 0%,#0d9488 100%)",pages:245,size:"9.4 MB",readTime:"5 hrs",lang:"English",tags:["excel","data","visualization"],featured:false,popular:true,isNew:false},
+    {id:31,title:"Statistics for Data-Driven Decisions",author:"TIH Data Team",desc:"Understand statistical concepts that drive data analysis and decision-making. Covers probability, descriptive and inferential statistics, hypothesis testing, and regression analysis.",year:2026,cat:"datascience",icon:"🔢",bg:"linear-gradient(150deg,#0891b2 0%,#0284c7 100%)",pages:280,size:"10.5 MB",readTime:"6-7 hrs",lang:"English",tags:["statistics","data","analysis"],featured:false,popular:false,isNew:false},
+    {id:32,title:"Introduction to Big Data Analytics",author:"TIH Data Team",desc:"Explore the world of big data: collection, processing, and analysis. Learn about cloud data platforms, real-time analytics, and big data applications in African businesses.",year:2026,cat:"datascience",icon:"🌊",bg:"linear-gradient(150deg,#0e7490 0%,#0891b2 100%)",pages:215,size:"8.2 MB",readTime:"4-5 hrs",lang:"English",tags:["big data","analytics","cloud"],featured:false,popular:false,isNew:true},
+    // ENTREPRENEURSHIP
+    {id:33,title:"The African Entrepreneur's Playbook",author:"TIH Business Hub",desc:"A practical guide for entrepreneurs building businesses on the African continent. Covers market opportunities, customer discovery, product development, and growth strategies unique to Africa.",year:2026,cat:"entrepreneurship",icon:"🚀",bg:"linear-gradient(150deg,#9a3412 0%,#ea580c 100%)",pages:275,size:"10.4 MB",readTime:"5-6 hrs",lang:"English",tags:["entrepreneurship","Africa","startup"],featured:true,popular:true,isNew:false},
+    {id:34,title:"Digital Business Ideas for Liberia 2026",author:"TIH Business Hub",desc:"Discover the most profitable digital business opportunities in Liberia. Includes market research, startup costs, revenue models, and case studies of successful Liberian digital businesses.",year:2026,cat:"entrepreneurship",icon:"💡",bg:"linear-gradient(150deg,#c2410c 0%,#ea580c 100%)",pages:155,size:"5.8 MB",readTime:"3 hrs",lang:"English",tags:["digital business","Liberia","ideas"],featured:false,popular:true,isNew:true},
+    {id:35,title:"Social Enterprise: Business with a Mission",author:"TIH Business Hub",desc:"Build a business that creates both financial returns and positive social impact. Covers social enterprise models, impact measurement, and sustainable funding approaches.",year:2026,cat:"entrepreneurship",icon:"🌱",bg:"linear-gradient(150deg,#7c2d12 0%,#9a3412 100%)",pages:190,size:"7.2 MB",readTime:"4 hrs",lang:"English",tags:["social enterprise","impact","mission"],featured:false,popular:false,isNew:false},
+    {id:36,title:"Funding Your Startup: A Liberian Guide",author:"TIH Business Hub",desc:"Navigate the funding landscape for startups in Liberia. Covers bootstrapping, grants, angel investors, microfinance, crowdfunding, and pitching to international investors.",year:2026,cat:"entrepreneurship",icon:"💰",bg:"linear-gradient(150deg,#ea580c 0%,#f97316 100%)",pages:180,size:"6.8 MB",readTime:"4 hrs",lang:"English",tags:["funding","startup","investment"],featured:false,popular:true,isNew:false},
+    // CAREER DEV
+    {id:37,title:"CV & Resume Writing for African Job Seekers",author:"TIH Career Center",desc:"Create a CV that gets noticed by recruiters. Includes templates, ATS optimization tips, and real-world examples for African job seekers applying locally and internationally.",year:2026,cat:"career",icon:"📄",bg:"linear-gradient(150deg,#1e3a8a 0%,#2563eb 100%)",pages:160,size:"6.0 MB",readTime:"3 hrs",lang:"English",tags:["cv","resume","career"],featured:true,popular:true,isNew:false},
+    {id:38,title:"Job Interview Success Guide",author:"TIH Career Center",desc:"Master the art of job interviews. Learn how to prepare, research companies, answer behavioral questions, dress professionally, and negotiate your salary.",year:2026,cat:"career",icon:"🤝",bg:"linear-gradient(150deg,#1d4ed8 0%,#2563eb 100%)",pages:145,size:"5.5 MB",readTime:"3 hrs",lang:"English",tags:["interview","career","job search"],featured:false,popular:true,isNew:false},
+    {id:39,title:"LinkedIn & Digital Professional Presence",author:"TIH Career Center",desc:"Build a powerful digital presence that attracts opportunities. Optimize your LinkedIn profile, create engaging content, and use digital tools for career advancement.",year:2026,cat:"career",icon:"🔗",bg:"linear-gradient(150deg,#1e3a8a 0%,#1d4ed8 100%)",pages:130,size:"5.0 MB",readTime:"2-3 hrs",lang:"English",tags:["LinkedIn","networking","digital"],featured:false,popular:true,isNew:true},
+    {id:40,title:"Workplace Communication & Professionalism",author:"TIH Career Center",desc:"Develop the communication and professionalism skills employers value most. Covers business writing, email etiquette, presentation skills, and workplace conflict resolution.",year:2026,cat:"career",icon:"💬",bg:"linear-gradient(150deg,#1e40af 0%,#2563eb 100%)",pages:175,size:"6.6 MB",readTime:"3-4 hrs",lang:"English",tags:["communication","professionalism","workplace"],featured:false,popular:false,isNew:false},
+    {id:41,title:"Career Transition & Development Handbook",author:"TIH Career Center",desc:"Navigate career changes with confidence. Identify transferable skills, reskill for new industries, build a personal brand, and create a strategic career development plan.",year:2026,cat:"career",icon:"🔄",bg:"linear-gradient(150deg,#1e3a8a 0%,#1e40af 100%)",pages:195,size:"7.4 MB",readTime:"4 hrs",lang:"English",tags:["career change","development","skills"],featured:false,popular:false,isNew:false},
+    // WASSCE PRO
+    {id:42,title:"WASSCE Mathematics: Complete Guide & Past Questions",author:"TIH WASSCE PRO",desc:"Comprehensive WASSCE Mathematics preparation covering algebra, geometry, statistics, and calculus. Includes solved past questions from 2015-2024, worked examples, and exam strategies.",year:2026,cat:"wassce",icon:"📐",bg:"linear-gradient(150deg,#991b1b 0%,#dc2626 100%)",pages:420,size:"16.0 MB",readTime:"Reference",lang:"English",tags:["wassce","mathematics","past questions"],featured:true,popular:true,isNew:false},
+    {id:43,title:"WASSCE English Language Mastery",author:"TIH WASSCE PRO",desc:"Complete WASSCE English Language preparation: comprehension, summary writing, essay writing, oral English, and literature. Includes practice exercises and model answers.",year:2026,cat:"wassce",icon:"📝",bg:"linear-gradient(150deg,#b91c1c 0%,#dc2626 100%)",pages:360,size:"13.6 MB",readTime:"Reference",lang:"English",tags:["wassce","english","language"],featured:false,popular:true,isNew:false},
+    {id:44,title:"WASSCE Science: Biology, Chemistry & Physics",author:"TIH WASSCE PRO",desc:"Combined science guide for WASSCE covering Biology, Chemistry, and Physics. Covers all major topics, practical experiments, definitions, and solved past questions.",year:2026,cat:"wassce",icon:"🔬",bg:"linear-gradient(150deg,#7f1d1d 0%,#991b1b 100%)",pages:480,size:"18.2 MB",readTime:"Reference",lang:"English",tags:["wassce","biology","chemistry","physics"],featured:false,popular:true,isNew:true},
+    {id:45,title:"WASSCE Social Studies & Economics",author:"TIH WASSCE PRO",desc:"Complete preparation for WASSCE Social Studies and Economics. Covers government, economic concepts, African history, social issues, and past questions with model answers.",year:2026,cat:"wassce",icon:"🌍",bg:"linear-gradient(150deg,#dc2626 0%,#ef4444 100%)",pages:300,size:"11.4 MB",readTime:"Reference",lang:"English",tags:["wassce","social studies","economics"],featured:false,popular:false,isNew:false},
+    {id:46,title:"WASSCE All-Subject Study Planner 2026",author:"TIH WASSCE PRO",desc:"A structured 12-week study planner for WASSCE preparation covering all core subjects. Includes daily study schedules, revision checklists, and exam day tips.",year:2026,cat:"wassce",icon:"📅",bg:"linear-gradient(150deg,#991b1b 0%,#b91c1c 100%)",pages:120,size:"4.5 MB",readTime:"Reference",lang:"English",tags:["wassce","study planner","exam prep"],featured:false,popular:true,isNew:true},
+    // TIH ACADEMY
+    {id:47,title:"Digital Skills Essentials: Computers & Internet",author:"TIH Academy",desc:"The complete beginner's guide to computers and the internet. Learn hardware, software, file management, email, online safety, and essential digital skills for the modern workplace.",year:2026,cat:"tih",icon:"💻",bg:"linear-gradient(150deg,#002868 0%,#BF0A30 100%)",pages:220,size:"8.4 MB",readTime:"5 hrs",lang:"English",tags:["digital skills","computers","internet"],featured:true,popular:true,isNew:false},
+    {id:48,title:"Office Suite Mastery: Word, Excel & PowerPoint",author:"TIH Academy",desc:"Become proficient in Microsoft Office: Word for documents, Excel for data and calculations, and PowerPoint for presentations. Perfect for students and working professionals.",year:2026,cat:"tih",icon:"📊",bg:"linear-gradient(150deg,#003a8c 0%,#BF0A30 100%)",pages:310,size:"12.0 MB",readTime:"6-7 hrs",lang:"English",tags:["microsoft office","excel","word","powerpoint"],featured:false,popular:true,isNew:false},
+    {id:49,title:"Leadership & Communication Skills",author:"TIH Academy",desc:"Develop leadership and communication skills that define successful professionals. Covers active listening, public speaking, emotional intelligence, team leadership, and conflict management.",year:2026,cat:"tih",icon:"🎯",bg:"linear-gradient(150deg,#001e52 0%,#9a0828 100%)",pages:195,size:"7.4 MB",readTime:"4 hrs",lang:"English",tags:["leadership","communication","skills"],featured:false,popular:true,isNew:false},
+    {id:50,title:"Entrepreneurship: From Idea to Launch",author:"TIH Academy",desc:"Practical course companion covering the entrepreneurship journey from idea to business launch. Learn business modeling, market validation, financial planning, and making your first sales.",year:2026,cat:"tih",icon:"🚀",bg:"linear-gradient(150deg,#002868 0%,#c2410c 100%)",pages:255,size:"9.8 MB",readTime:"5-6 hrs",lang:"English",tags:["entrepreneurship","business","launch"],featured:false,popular:false,isNew:true}
+  ];
+
+  const CATS = [
+    {id:"all",label:"All",icon:"📚"},
+    {id:"new",label:"New Arrivals",icon:"✨"},
+    {id:"popular",label:"Popular",icon:"🔥"},
+    {id:"scholarships",label:"Scholarships",icon:"🎓"},
+    {id:"grants",label:"Grants",icon:"💰"},
+    {id:"business",label:"Business",icon:"💼"},
+    {id:"software",label:"Software Dev",icon:"💻"},
+    {id:"webdev",label:"Web Dev",icon:"🌐"},
+    {id:"ai",label:"AI",icon:"🤖"},
+    {id:"datascience",label:"Data Science",icon:"📊"},
+    {id:"entrepreneurship",label:"Entrepreneurship",icon:"🚀"},
+    {id:"career",label:"Career Dev",icon:"📈"},
+    {id:"wassce",label:"WASSCE PRO",icon:"📝"},
+    {id:"tih",label:"TIH Academy",icon:"🏫"}
+  ];
+
+  const CAT_COLORS = {
+    scholarships:"#002868",grants:"#059669",business:"#d97706",
+    software:"#7c3aed",webdev:"#0284c7",ai:"#db2777",
+    datascience:"#0891b2",entrepreneurship:"#ea580c",career:"#2563eb",
+    wassce:"#dc2626",tih:"#BF0A30"
+  };
+
+  // ── LOCALSTORAGE HELPERS ──
+  function getUser()    { try { return JSON.parse(localStorage.getItem('tih_lib_user')||'null'); } catch(e){return null;} }
+  function saveUser(u)  { localStorage.setItem('tih_lib_user', JSON.stringify(u)); }
+  function getFavs()    { try { return JSON.parse(localStorage.getItem('tih_lib_favs')||'[]'); } catch(e){return[];} }
+  function saveFavs(a)  { localStorage.setItem('tih_lib_favs', JSON.stringify(a)); }
+  function getHistory() { try { return JSON.parse(localStorage.getItem('tih_lib_hist')||'[]'); } catch(e){return[];} }
+  function saveHistory(a){ localStorage.setItem('tih_lib_hist', JSON.stringify(a)); }
+  function getDownloads(){ try { return JSON.parse(localStorage.getItem('tih_lib_dl')||'[]'); } catch(e){return[];} }
+  function saveDownloads(a){ localStorage.setItem('tih_lib_dl', JSON.stringify(a)); }
+  function getUsers()   { try { return JSON.parse(localStorage.getItem('tih_lib_users')||'[]'); } catch(e){return[];} }
+  function saveUsers(a) { localStorage.setItem('tih_lib_users', JSON.stringify(a)); }
+
+  function isFav(id){ return getFavs().includes(id); }
+
+  function toggleFav(id){
+    let favs = getFavs();
+    const idx = favs.indexOf(id);
+    if(idx === -1){ favs.push(id); showToast('Added to Favorites ❤️'); }
+    else { favs.splice(idx,1); showToast('Removed from Favorites'); }
+    saveFavs(favs);
+    document.querySelectorAll('.btn-fav[data-id="'+id+'"]').forEach(b=>{
+      b.classList.toggle('active', favs.includes(id));
+      b.title = favs.includes(id) ? 'Remove from Favorites' : 'Save to Favorites';
+    });
+  }
+
+  function addToHistory(id){
+    let h = getHistory();
+    h = h.filter(x => x !== id);
+    h.unshift(id);
+    if(h.length > 20) h = h.slice(0,20);
+    saveHistory(h);
+  }
+
+  function addToDownloads(id){
+    let dl = getDownloads();
+    dl = dl.filter(x => x !== id);
+    dl.unshift(id);
+    if(dl.length > 30) dl = dl.slice(0,30);
+    saveDownloads(dl);
+  }
+
+  // ── TOAST ──
+  function showToast(msg){
+    const t = document.getElementById('libToast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'), 2800);
+  }
+
+  // ── RENDER BOOK CARD ──
+  function bookCard(book, small){
+    const fav = isFav(book.id);
+    const catColor = CAT_COLORS[book.cat] || '#002868';
+    return `<div class="lib-book-card" onclick="openBook(${book.id})" tabindex="0" role="button" aria-label="Open ${book.title}" onkeydown="if(event.key==='Enter')openBook(${book.id})">
+      <div class="lib-cover" style="background:${book.bg};">
+        <div class="lib-cover-spine"></div>
+        <div class="lib-cover-shine"></div>
+        ${book.isNew ? '<span class="lib-new-ribbon">NEW</span>' : ''}
+        <div class="lib-cover-emoji">${book.icon}</div>
+        <div class="lib-cover-label">${book.cat.toUpperCase()}</div>
+      </div>
+      <p class="lib-book-title">${book.title}</p>
+      <p class="lib-book-author">${book.author}</p>
+      <span class="lib-cat-badge" style="background:${catColor}18;color:${catColor};">${book.cat}</span>
+    </div>`;
+  }
+
+  // ── RENDER SHELVES ──
+  function renderShelf(elId, books){
+    const el = document.getElementById(elId);
+    if(!el) return;
+    if(!books.length){ el.innerHTML = '<p style="color:#9ca3af;font-size:0.85rem;padding:1rem;">No resources in this category yet.</p>'; return; }
+    el.innerHTML = books.map(b => bookCard(b)).join('');
+  }
+
+  function renderFeatured(){
+    const featured = BOOKS.filter(b=>b.featured).slice(0,8);
+    const el = document.getElementById('featuredGrid');
+    if(!el) return;
+    el.innerHTML = featured.map(b => bookCard(b)).join('');
+  }
+
+  function renderAllShelves(){
+    renderFeatured();
+    renderShelf('shelf-new', BOOKS.filter(b=>b.isNew));
+    renderShelf('shelf-popular', BOOKS.filter(b=>b.popular));
+    renderShelf('shelf-scholarships', BOOKS.filter(b=>b.cat==='scholarships'));
+    renderShelf('shelf-grants', BOOKS.filter(b=>b.cat==='grants'));
+    renderShelf('shelf-business', BOOKS.filter(b=>b.cat==='business'));
+    renderShelf('shelf-software', BOOKS.filter(b=>b.cat==='software'));
+    renderShelf('shelf-webdev', BOOKS.filter(b=>b.cat==='webdev'));
+    renderShelf('shelf-ai', BOOKS.filter(b=>b.cat==='ai'));
+    renderShelf('shelf-datascience', BOOKS.filter(b=>b.cat==='datascience'));
+    renderShelf('shelf-entrepreneurship', BOOKS.filter(b=>b.cat==='entrepreneurship'));
+    renderShelf('shelf-career', BOOKS.filter(b=>b.cat==='career'));
+    renderShelf('shelf-wassce', BOOKS.filter(b=>b.cat==='wassce'));
+    renderShelf('shelf-tih', BOOKS.filter(b=>b.cat==='tih'));
+  }
+
+  // ── CATEGORY PILLS ──
+  function renderCatPills(){
+    const wrap = document.getElementById('libCatPills');
+    if(!wrap) return;
+    wrap.innerHTML = CATS.map(c=>`<button class="lib-cat-pill${c.id==='all'?' active':''}" data-cat="${c.id}" onclick="filterByCat('${c.id}',this)">${c.icon} ${c.label}</button>`).join('');
+  }
+
+  function filterByCat(catId, btn){
+    document.querySelectorAll('.lib-cat-pill').forEach(p=>p.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+    if(catId === 'all'){ clearSearch(); return; }
+    const q = catId === 'new' ? '' : catId === 'popular' ? '' : catId;
+    let results;
+    if(catId === 'new') results = BOOKS.filter(b=>b.isNew);
+    else if(catId === 'popular') results = BOOKS.filter(b=>b.popular);
+    else results = BOOKS.filter(b=>b.cat===catId);
+    showResults(results, CATS.find(c=>c.id===catId)?.label || catId);
+  }
+
+  // ── SEARCH ──
+  function doSearch(){
+    const q = (document.getElementById('libSearchInput').value||'').trim().toLowerCase();
+    const cat = document.getElementById('libSearchCat').value;
+    if(!q && cat==='all'){ clearSearch(); return; }
+    let results = BOOKS.filter(b=>{
+      const matchCat = cat==='all' || b.cat===cat;
+      if(!q) return matchCat;
+      const matchQ = b.title.toLowerCase().includes(q)||b.author.toLowerCase().includes(q)||b.cat.toLowerCase().includes(q)||(b.tags||[]).some(t=>t.includes(q));
+      return matchCat && matchQ;
+    });
+    const label = q ? `Results for "${q}"` : `Category: ${cat}`;
+    showResults(results, label);
+  }
+
+  document.getElementById('libSearchInput').addEventListener('keydown', e=>{ if(e.key==='Enter') doSearch(); });
+
+  function showResults(results, label){
+    const sec = document.getElementById('lib-search-section');
+    const grid = document.getElementById('searchResultsGrid');
+    const title = document.getElementById('searchResultTitle');
+    sec.classList.add('visible');
+    title.textContent = label + (results.length ? ` (${results.length})` : '');
+    if(!results.length){
+      grid.innerHTML = `<div class="lib-no-results" style="grid-column:1/-1;"><span class="icon">📭</span><p>No resources found. Try a different search term or category.</p></div>`;
+    } else {
+      grid.innerHTML = results.map(b=>bookCard(b)).join('');
+    }
+    sec.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function clearSearch(){
+    document.getElementById('lib-search-section').classList.remove('visible');
+    document.getElementById('libSearchInput').value = '';
+    document.getElementById('libSearchCat').value = 'all';
+    document.querySelectorAll('.lib-cat-pill').forEach(p=>p.classList.toggle('active', p.dataset.cat==='all'));
+  }
+
+  // ── BOOK DETAIL MODAL ──
+  function openBook(id){
+    const book = BOOKS.find(b=>b.id===id);
+    if(!book) return;
+    addToHistory(id);
+    const catColor = CAT_COLORS[book.cat] || '#002868';
+    const fav = isFav(id);
+    document.getElementById('modalBookTitle').textContent = book.title;
+    document.getElementById('bookModalBody').innerHTML = `
+      <div>
+        <div class="lib-modal-cover" style="background:${book.bg};">
+          <div class="lib-cover-spine"></div>
+          <div class="lib-cover-shine"></div>
+          <div style="font-size:4rem;">${book.icon}</div>
+          <div style="font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.1em;padding:0 0.5rem;text-align:center;margin-top:0.4rem;">${book.cat}</div>
+        </div>
+      </div>
+      <div class="lib-modal-details">
+        <span class="lib-cat-badge" style="background:${catColor}18;color:${catColor};margin-bottom:0.6rem;display:inline-block;">${book.cat}</span>
+        <h2>${book.title}</h2>
+        <p class="lib-author-line">by <strong>${book.author}</strong></p>
+        <div style="display:flex;gap:0.25rem;margin-bottom:0.5rem;" aria-label="Rating: 4.8 out of 5">
+          ${'⭐'.repeat(5)} <span style="font-size:0.8rem;color:#6b7280;margin-left:0.3rem;">4.8</span>
+        </div>
+        <p class="lib-modal-desc">${book.desc}</p>
+        <div class="lib-meta-grid">
+          <div class="lib-meta-item"><span class="meta-lbl">📄 Pages:</span><span class="meta-val">${book.pages}</span></div>
+          <div class="lib-meta-item"><span class="meta-lbl">📦 Size:</span><span class="meta-val">${book.size}</span></div>
+          <div class="lib-meta-item"><span class="meta-lbl">⏱ Read Time:</span><span class="meta-val">${book.readTime}</span></div>
+          <div class="lib-meta-item"><span class="meta-lbl">🌐 Language:</span><span class="meta-val">${book.lang}</span></div>
+          <div class="lib-meta-item"><span class="meta-lbl">📅 Year:</span><span class="meta-val">${book.year}</span></div>
+          <div class="lib-meta-item"><span class="meta-lbl">🏷 Category:</span><span class="meta-val">${book.cat}</span></div>
+        </div>
+        ${book.tags ? `<div style="display:flex;flex-wrap:wrap;gap:0.4rem;">${book.tags.map(t=>`<span style="background:#f3f4f6;color:#374151;font-size:0.7rem;padding:0.2rem 0.55rem;border-radius:999px;">${t}</span>`).join('')}</div>` : ''}
+      </div>`;
+    document.getElementById('bookModalActions').innerHTML = `
+      <a href="#" class="btn-read" onclick="handleRead(${id});return false;">📖 Read Online</a>
+      <a href="#" class="btn-download" onclick="handleDownload(${id});return false;">⬇️ Download PDF</a>
+      <button class="btn-fav${fav?' active':''}" data-id="${id}" title="${fav?'Remove from Favorites':'Save to Favorites'}" onclick="toggleFav(${id})">
+        ${fav?'❤️':'🤍'} Favorite
+      </button>
+      <button class="btn-share" onclick="handleShare(${id})">🔗 Share</button>`;
+    // Related books (same category, excluding current)
+    const related = BOOKS.filter(b=>b.cat===book.cat && b.id!==id).slice(0,6);
+    document.getElementById('bookModalRelated').innerHTML = related.length ? `
+      <h4>More in ${book.cat}</h4>
+      <div class="lib-related-shelf">${related.map(r=>bookCard(r)).join('')}</div>` : '';
+    const modal = document.getElementById('bookModal');
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeBookModal(){
+    document.getElementById('bookModal').classList.remove('open');
+    document.getElementById('bookModal').setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  function handleRead(id){
+    const book = BOOKS.find(b=>b.id===id);
+    if(!book) return;
+    addToHistory(id);
+    showToast('Opening "' + book.title.substring(0,30) + '..." 📖');
+  }
+
+  function handleDownload(id){
+    const book = BOOKS.find(b=>b.id===id);
+    if(!book) return;
+    addToDownloads(id);
+    showToast('Preparing download for "' + book.title.substring(0,28) + '..." ⬇️');
+  }
+
+  function handleShare(id){
+    const book = BOOKS.find(b=>b.id===id);
+    if(!book) return;
+    const text = 'Check out "' + book.title + '" on TIH Digital Library: https://tolbertinnovationhub.org/library.html';
+    if(navigator.clipboard){ navigator.clipboard.writeText(text).then(()=>showToast('Link copied to clipboard! 🔗')); }
+    else { showToast('Share: ' + text.substring(0,60) + '...'); }
+  }
+
+  // Close modal on overlay click
+  document.getElementById('bookModal').addEventListener('click', function(e){ if(e.target===this) closeBookModal(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeBookModal(); closeAuthModal(); closeDashModal(); } });
+
+  // ── AUTH ──
+  function openAuthModal(){
+    document.getElementById('authModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAuthModal(){
+    document.getElementById('authModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('authModal').addEventListener('click',function(e){if(e.target===this)closeAuthModal();});
+
+  function switchAuthTab(tab){
+    document.getElementById('authFormLogin').style.display = tab==='login' ? '' : 'none';
+    document.getElementById('authFormRegister').style.display = tab==='register' ? '' : 'none';
+    document.getElementById('tabLogin').classList.toggle('active', tab==='login');
+    document.getElementById('tabRegister').classList.toggle('active', tab==='register');
+  }
+
+  function doLogin(){
+    const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+    const pass  = document.getElementById('loginPass').value;
+    const msg   = document.getElementById('loginMsg');
+    if(!email||!pass){ msg.className='lib-auth-msg error'; msg.textContent='Please fill in all fields.'; return; }
+    const users = getUsers();
+    const user = users.find(u=>u.email===email && u.password===pass);
+    if(!user){ msg.className='lib-auth-msg error'; msg.textContent='Incorrect email or password.'; return; }
+    saveUser({name:user.name,email:user.email});
+    msg.className='lib-auth-msg success'; msg.textContent='Welcome back, '+user.name+'!';
+    setTimeout(()=>{ closeAuthModal(); updateAuthUI(); showToast('Welcome back, '+user.name+'! 📚'); }, 900);
+  }
+
+  function doRegister(){
+    const name  = document.getElementById('regName').value.trim();
+    const email = document.getElementById('regEmail').value.trim().toLowerCase();
+    const pass  = document.getElementById('regPass').value;
+    const msg   = document.getElementById('registerMsg');
+    if(!name||!email||!pass){ msg.className='lib-auth-msg error'; msg.textContent='Please fill in all fields.'; return; }
+    if(pass.length<6){ msg.className='lib-auth-msg error'; msg.textContent='Password must be at least 6 characters.'; return; }
+    const users = getUsers();
+    if(users.find(u=>u.email===email)){ msg.className='lib-auth-msg error'; msg.textContent='An account with this email already exists.'; return; }
+    users.push({name,email,password:pass,joined:new Date().toISOString()});
+    saveUsers(users);
+    saveUser({name,email});
+    msg.className='lib-auth-msg success'; msg.textContent='Account created! Welcome, '+name+'!';
+    setTimeout(()=>{ closeAuthModal(); updateAuthUI(); showToast('Account created! Welcome to TIH Library 📚'); }, 900);
+  }
+
+  function doLogout(){
+    localStorage.removeItem('tih_lib_user');
+    updateAuthUI();
+    showToast('Signed out. See you soon! 👋');
+  }
+
+  // ── AUTH UI UPDATE ──
+  function updateAuthUI(){
+    const user = getUser();
+    const wrap = document.getElementById('libAuthArea');
+    if(!wrap) return;
+    if(user){
+      wrap.innerHTML = `<button class="btn-nav-lib" onclick="openDashModal()" title="My Library Dashboard">📚 ${user.name.split(' ')[0]}</button>`;
+    } else {
+      wrap.innerHTML = `<button class="btn-nav-lib" onclick="openAuthModal()">Sign In</button>`;
+    }
+  }
+
+  // ── USER DASHBOARD ──
+  function openDashModal(){
+    const user = getUser();
+    if(!user){ openAuthModal(); return; }
+    document.getElementById('dashUserName').textContent = user.name + "'s Library";
+    renderDashFavs();
+    document.getElementById('dashModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDashModal(){
+    document.getElementById('dashModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('dashModal').addEventListener('click',function(e){if(e.target===this)closeDashModal();});
+
+  function switchDashTab(tab, btn){
+    document.querySelectorAll('.lib-dash-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.lib-dash-panel').forEach(p=>p.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+    const panel = document.getElementById('dash-'+tab);
+    if(panel) panel.classList.add('active');
+    if(tab==='favs') renderDashFavs();
+    else if(tab==='history') renderDashHistory();
+    else if(tab==='downloads') renderDashDownloads();
+    else if(tab==='account') renderDashAccount();
+  }
+
+  function miniBookList(ids, emptyMsg){
+    if(!ids.length) return `<div class="lib-dash-empty"><span class="icon">📭</span><p>${emptyMsg}</p></div>`;
+    const books = ids.map(id=>BOOKS.find(b=>b.id===id)).filter(Boolean);
+    return `<div style="display:flex;flex-direction:column;gap:0.75rem;">${books.map(b=>`
+      <div style="display:flex;gap:0.85rem;align-items:center;cursor:pointer;" onclick="closeDashModal();setTimeout(()=>openBook(${b.id}),200);">
+        <div style="width:44px;height:66px;border-radius:5px;flex-shrink:0;background:${b.bg};display:flex;align-items:center;justify-content:center;font-size:1.4rem;">${b.icon}</div>
+        <div style="min-width:0;">
+          <p style="font-size:0.83rem;font-weight:700;color:var(--text-primary,#111827);margin:0 0 0.15rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${b.title}</p>
+          <p style="font-size:0.75rem;color:var(--text-secondary,#6b7280);margin:0;">${b.author}</p>
+        </div>
+      </div>`).join('')}</div>`;
+  }
+
+  function renderDashFavs(){
+    document.getElementById('dash-favs').innerHTML = miniBookList(getFavs(), 'No favorites yet. Browse the library and save books you love!');
+  }
+  function renderDashHistory(){
+    document.getElementById('dash-history').innerHTML = miniBookList(getHistory(), 'Your reading history will appear here.');
+  }
+  function renderDashDownloads(){
+    document.getElementById('dash-downloads').innerHTML = miniBookList(getDownloads(), 'No downloads yet. Download resources to access them offline.');
+  }
+  function renderDashAccount(){
+    const user = getUser();
+    if(!user){ document.getElementById('dash-account').innerHTML=''; return; }
+    document.getElementById('dash-account').innerHTML = `
+      <div style="padding:0.5rem 0;">
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding:1rem;background:var(--surface-alt,#f8faff);border-radius:12px;">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#002868,#1a4a9c);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;font-weight:700;">${user.name.charAt(0).toUpperCase()}</div>
+          <div>
+            <p style="font-size:1rem;font-weight:700;color:var(--text-primary,#111827);margin:0 0 0.15rem;">${user.name}</p>
+            <p style="font-size:0.8rem;color:var(--text-secondary,#6b7280);margin:0;">${user.email}</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.5rem;text-align:center;">
+          <div style="padding:0.75rem;background:var(--surface-alt,#f8faff);border-radius:10px;">
+            <div style="font-size:1.4rem;font-weight:800;color:#002868;">${getFavs().length}</div>
+            <div style="font-size:0.75rem;color:#6b7280;">Favorites</div>
+          </div>
+          <div style="padding:0.75rem;background:var(--surface-alt,#f8faff);border-radius:10px;">
+            <div style="font-size:1.4rem;font-weight:800;color:#002868;">${getHistory().length}</div>
+            <div style="font-size:0.75rem;color:#6b7280;">Viewed</div>
+          </div>
+          <div style="padding:0.75rem;background:var(--surface-alt,#f8faff);border-radius:10px;">
+            <div style="font-size:1.4rem;font-weight:800;color:#002868;">${getDownloads().length}</div>
+            <div style="font-size:0.75rem;color:#6b7280;">Downloads</div>
+          </div>
+        </div>
+        <button onclick="doLogout();closeDashModal();" style="background:#fee2e2;color:#dc2626;border:none;border-radius:8px;padding:0.7rem 1.5rem;font-size:0.88rem;font-weight:700;font-family:'Poppins',sans-serif;cursor:pointer;width:100%;">Sign Out</button>
+      </div>`;
+  }
+
+  // ── INJECT AUTH BUTTON INTO HEADER ──
+  (function injectAuthBtn(){
+    const header = document.querySelector('.nav-wrap');
+    if(!header) return;
+    const div = document.createElement('div');
+    div.id = 'libAuthArea';
+    div.style.cssText = 'display:flex;align-items:center;margin-left:0.5rem;';
+    header.insertBefore(div, header.querySelector('.dark-mode-toggle'));
+    updateAuthUI();
+  })();
+
+  // ── INIT ──
+  renderCatPills();
+  renderAllShelves();
+
+  </script>
+</body>
+</html>
