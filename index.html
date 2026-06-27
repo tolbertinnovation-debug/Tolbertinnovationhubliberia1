@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tolbert Innovation Hub | Empowering Youth Through Education & Innovation</title>
-  <meta name="description" content="Tolbert Innovation Hub empowers Liberian youth through scholarships, free IELTS/TOEFL classroom preparation, international healthcare access, and software innovation. Transform your future today." />
-  <meta name="keywords" content="Tolbert Innovation Hub, Liberia scholarships, IELTS preparation Liberia, TOEFL classroom, Africa innovation, youth empowerment, education Liberia" />
+  <title>Tolbert Innovation Hub | Empowering Youth Through Education &amp; Innovation</title>
+  <meta name="description" content="Tolbert Innovation Hub empowers Liberian youth through scholarships, free IELTS/TOEFL classroom, 12 skill tracks, a digital library, international healthcare access, and grants guidance. Transform your future today." />
+  <meta name="keywords" content="Tolbert Innovation Hub, Liberia scholarships, IELTS preparation Liberia, TOEFL classroom, Africa innovation, youth empowerment, education Liberia, grants Liberia 2026, digital library Liberia" />
   <meta name="author" content="Tolbert Innovation Hub" />
-  <meta property="og:title" content="Tolbert Innovation Hub | Empowering Youth Through Education & Innovation" />
-  <meta property="og:description" content="Scholarships, free IELTS/TOEFL classroom, healthcare access, and software innovation, transforming lives across Liberia and Africa." />
+  <meta property="og:title" content="Tolbert Innovation Hub | Empowering Youth Through Education &amp; Innovation" />
+  <meta property="og:description" content="Scholarships, free skills classroom with 12 tracks, digital library, healthcare access, and grants directory, transforming lives across Liberia and Africa." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.tolbertinnovationhub.org/" />
   <meta property="og:image" content="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tolbert Innovation Hub" />
-  <meta name="twitter:description" content="Empowering youth through scholarships, education, healthcare access, and technology innovation in Liberia." />
+  <meta name="twitter:description" content="Empowering youth through scholarships, education, healthcare access, digital library, and technology innovation in Liberia." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -22,87 +22,105 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
-    /* ── Shared carousel styles (Programs + News) ── */
-    .programs-carousel,
-    .news-carousel {
-      overflow: hidden;
-      padding-bottom: 3.25rem;
-      margin-bottom: 1.5rem;
-    }
-    .programs-carousel .swiper-slide,
-    .news-carousel .swiper-slide {
-      height: auto;
-    }
-    /* Equal-height cards */
-    .programs-carousel .swiper-slide .card,
-    .news-carousel .swiper-slide .card {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    .programs-carousel .swiper-slide .card .card-link,
-    .programs-carousel .swiper-slide .card .prog-btn-row,
-    .news-carousel .swiper-slide .card .card-link {
-      margin-top: auto;
-    }
-    /* Pagination pill dots */
-    .programs-carousel .swiper-pagination,
-    .news-carousel .swiper-pagination {
-      bottom: 0.5rem;
-    }
-    .programs-carousel .swiper-pagination-bullet,
-    .news-carousel .swiper-pagination-bullet {
-      width: 8px;
-      height: 8px;
-      background: var(--brand-blue);
-      opacity: 0.28;
-      transition: width 0.3s ease, opacity 0.3s ease;
-      border-radius: 4px;
-    }
-    .programs-carousel .swiper-pagination-bullet-active,
-    .news-carousel .swiper-pagination-bullet-active {
-      opacity: 1;
-      width: 24px;
-    }
-    /* Navigation arrows */
-    .programs-carousel .swiper-button-prev,
-    .programs-carousel .swiper-button-next,
-    .news-carousel .swiper-button-prev,
-    .news-carousel .swiper-button-next {
-      top: 50%;
-      transform: translateY(calc(-50% - 1.5rem));
-      width: 40px;
-      height: 40px;
-      background: var(--surface, #fff);
-      border: 1px solid var(--border-light, #e2e8f0);
-      border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      color: var(--brand-blue, #002868);
-    }
-    .programs-carousel .swiper-button-prev::after,
-    .programs-carousel .swiper-button-next::after,
-    .news-carousel .swiper-button-prev::after,
-    .news-carousel .swiper-button-next::after {
-      font-size: 13px;
-      font-weight: 800;
-    }
-    .programs-carousel .swiper-button-prev:hover,
-    .programs-carousel .swiper-button-next:hover,
-    .news-carousel .swiper-button-prev:hover,
-    .news-carousel .swiper-button-next:hover {
-      background: var(--brand-blue, #002868);
-      color: #fff;
-      border-color: var(--brand-blue, #002868);
-    }
-    /* Hide arrows on mobile, show on tablet+ */
-    @media (max-width: 639px) {
-      .programs-carousel .swiper-button-prev,
-      .programs-carousel .swiper-button-next,
-      .news-carousel .swiper-button-prev,
-      .news-carousel .swiper-button-next {
-        display: none;
-      }
-    }
+    /* ── Shared carousel styles ── */
+    .programs-carousel,.news-carousel{overflow:hidden;padding-bottom:3.25rem;margin-bottom:1.5rem;}
+    .programs-carousel .swiper-slide,.news-carousel .swiper-slide{height:auto;}
+    .programs-carousel .swiper-slide .card,.news-carousel .swiper-slide .card{display:flex;flex-direction:column;height:100%;}
+    .programs-carousel .swiper-slide .card .card-link,.programs-carousel .swiper-slide .card .prog-btn-row,.news-carousel .swiper-slide .card .card-link{margin-top:auto;}
+    .programs-carousel .swiper-pagination,.news-carousel .swiper-pagination{bottom:.5rem;}
+    .programs-carousel .swiper-pagination-bullet,.news-carousel .swiper-pagination-bullet{width:8px;height:8px;background:var(--brand-blue);opacity:.28;transition:width .3s ease,opacity .3s ease;border-radius:4px;}
+    .programs-carousel .swiper-pagination-bullet-active,.news-carousel .swiper-pagination-bullet-active{opacity:1;width:24px;}
+    .programs-carousel .swiper-button-prev,.programs-carousel .swiper-button-next,.news-carousel .swiper-button-prev,.news-carousel .swiper-button-next{top:50%;transform:translateY(calc(-50% - 1.5rem));width:40px;height:40px;background:var(--surface,#fff);border:1px solid var(--border-light,#e2e8f0);border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.10);color:var(--brand-blue,#002868);}
+    .programs-carousel .swiper-button-prev::after,.programs-carousel .swiper-button-next::after,.news-carousel .swiper-button-prev::after,.news-carousel .swiper-button-next::after{font-size:13px;font-weight:800;}
+    .programs-carousel .swiper-button-prev:hover,.programs-carousel .swiper-button-next:hover,.news-carousel .swiper-button-prev:hover,.news-carousel .swiper-button-next:hover{background:var(--brand-blue,#002868);color:#fff;border-color:var(--brand-blue,#002868);}
+    @media(max-width:639px){.programs-carousel .swiper-button-prev,.programs-carousel .swiper-button-next,.news-carousel .swiper-button-prev,.news-carousel .swiper-button-next{display:none;}}
+
+    /* ── HERO IMPROVEMENTS ── */
+    .hero-live-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(191,10,48,.15);border:1px solid rgba(191,10,48,.3);color:#ff6b7a;font-size:.82rem;font-weight:700;padding:.35rem .9rem;border-radius:999px;margin-bottom:1rem;}
+    .live-dot{width:8px;height:8px;border-radius:50%;background:#ff4a5e;flex-shrink:0;animation:pulse-dot 1.6s ease-in-out infinite;}
+    @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(255,74,94,.6);}50%{box-shadow:0 0 0 6px rgba(255,74,94,0);}}
+    .hero-2col{display:grid;grid-template-columns:1fr 420px;gap:3rem;align-items:center;}
+    @media(max-width:1024px){.hero-2col{grid-template-columns:1fr;}}
+    .hero-visual{display:flex;flex-direction:column;gap:1rem;}
+    @media(max-width:1024px){.hero-visual{display:none;}}
+    .hv-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:1.1rem 1.4rem;display:flex;align-items:center;gap:1rem;backdrop-filter:blur(8px);transition:background .2s;}
+    .hv-card:hover{background:rgba(255,255,255,.13);}
+    .hv-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
+    .hv-body strong{display:block;color:#fff;font-size:.97rem;font-weight:700;line-height:1.2;}
+    .hv-body span{font-size:.82rem;color:rgba(255,255,255,.7);}
+    .hv-number{margin-left:auto;font-size:1.5rem;font-weight:800;color:#fbbf24;flex-shrink:0;}
+    .hero-divider{height:1px;background:rgba(255,255,255,.12);margin:.5rem 0;}
+
+    /* ── TRUST STRIP ── */
+    .trust-strip-home{background:var(--surface,#fff);border-bottom:1px solid var(--border-light,#e4eaf4);padding:1rem 0;}
+    .trust-strip-home-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem 2.5rem;align-items:center;}
+    .tsh-item{display:flex;align-items:center;gap:.5rem;font-size:.86rem;font-weight:600;color:var(--text-secondary,#4b5563);}
+    .tsh-divider{width:1px;height:20px;background:var(--border-light,#e2e8f0);}
+    @media(max-width:640px){.tsh-divider{display:none;}}
+
+    /* ── SPOTLIGHT SECTION ── */
+    .spotlight-section{background:linear-gradient(135deg,#f0f4fc 0%,#e8edf8 100%);}
+    .spotlight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2rem;}
+    .spotlight-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 4px 20px rgba(0,40,104,.1);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;}
+    .spotlight-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,40,104,.15);}
+    .sc-header{padding:1.5rem;color:#fff;position:relative;overflow:hidden;}
+    .sc-header::before{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.08);}
+    .sc-header::after{content:'';position:absolute;right:20px;bottom:-30px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.06);}
+    .sc-badge{background:rgba(255,255,255,.22);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:.22rem .7rem;border-radius:999px;display:inline-block;margin-bottom:.6rem;}
+    .sc-header h3{color:#fff;margin:0 0 .25rem;font-size:1.2rem;position:relative;z-index:1;}
+    .sc-header p{color:rgba(255,255,255,.85);margin:0;font-size:.9rem;position:relative;z-index:1;}
+    .sc-icon{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);font-size:3rem;opacity:.25;z-index:0;}
+    .sc-body{padding:1.4rem;flex:1;display:flex;flex-direction:column;}
+    .sc-features{list-style:none;padding:0;margin:0 0 1.2rem;display:grid;gap:.5rem;}
+    .sc-features li{display:flex;align-items:center;gap:.6rem;font-size:.9rem;color:var(--text-secondary,#4b5563);}
+    .sc-features li::before{content:'✓';font-weight:800;color:#16a34a;font-size:.9rem;flex-shrink:0;}
+    .sc-cta{margin-top:auto;font-weight:700;font-size:.92rem;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;padding:.65rem 1.3rem;border-radius:10px;transition:transform .15s,box-shadow .15s;}
+    .sc-cta:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.15);}
+
+    /* ── LEARNING PATHWAYS ── */
+    .path-section{background:linear-gradient(135deg,#000d24,#001f54);padding:5rem 0;}
+    .path-section .section-label{color:rgba(251,191,36,.8);}
+    .path-section h2{color:#fff;}
+    .path-section .section-intro{color:rgba(255,255,255,.75);}
+    .path-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem;}
+    .path-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:1.75rem;transition:background .2s,transform .2s;}
+    .path-card:hover{background:rgba(255,255,255,.1);transform:translateY(-3px);}
+    .path-goal{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#fbbf24;margin-bottom:.6rem;}
+    .path-card h3{color:#fff;font-size:1.1rem;margin:0 0 1rem;}
+    .path-steps{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.25rem;}
+    .path-step{display:flex;align-items:center;gap:.75rem;font-size:.88rem;color:rgba(255,255,255,.85);}
+    .path-step-num{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;color:#fff;flex-shrink:0;}
+    .path-step-arrow{color:rgba(255,255,255,.3);font-size:.7rem;margin-left:.25rem;}
+    .path-cta{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;text-decoration:none;font-size:.87rem;font-weight:700;padding:.55rem 1.1rem;border-radius:9px;transition:background .15s;}
+    .path-cta:hover{background:rgba(255,255,255,.22);}
+
+    /* ── UPDATED WELCOME TILES ── */
+    .welcome-tiles-grid-6{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;}
+    @media(max-width:700px){.welcome-tiles-grid-6{grid-template-columns:repeat(2,1fr);}}
+
+    /* ── TESTIMONIAL STARS ── */
+    .testimonial-stars{color:#f59e0b;font-size:1rem;margin-bottom:.75rem;letter-spacing:.05em;}
+
+    /* ── NEWSLETTER IMPROVED ── */
+    .newsletter-section-v2{background:linear-gradient(135deg,#002868 0%,#001030 100%);padding:5rem 0;position:relative;overflow:hidden;}
+    .newsletter-section-v2::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:rgba(191,10,48,.12);pointer-events:none;}
+    .newsletter-section-v2::after{content:'';position:absolute;bottom:-80px;left:-40px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+    .nl-inner{max-width:640px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+    .nl-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.3);color:#fbbf24;font-size:.8rem;font-weight:700;padding:.3rem .85rem;border-radius:999px;margin-bottom:1.25rem;text-transform:uppercase;letter-spacing:.05em;}
+    .nl-inner h2{color:#fff;font-size:clamp(1.5rem,3.5vw,2.2rem);margin:0 0 .75rem;}
+    .nl-inner p{color:rgba(255,255,255,.78);max-width:50ch;margin:0 auto 2rem;font-size:1rem;line-height:1.7;}
+    .nl-form-v2{display:flex;gap:.75rem;max-width:480px;margin:0 auto;}
+    .nl-input-v2{flex:1;padding:.85rem 1.25rem;border:1.5px solid rgba(255,255,255,.2);border-radius:12px;font-size:.97rem;font-family:'Inter',sans-serif;background:rgba(255,255,255,.1);color:#fff;outline:none;transition:border-color .2s,background .2s;}
+    .nl-input-v2::placeholder{color:rgba(255,255,255,.5);}
+    .nl-input-v2:focus{border-color:rgba(251,191,36,.5);background:rgba(255,255,255,.14);}
+    .nl-btn-v2{background:#BF0A30;color:#fff;font-weight:700;font-size:.95rem;border:none;border-radius:12px;padding:.85rem 1.6rem;cursor:pointer;white-space:nowrap;transition:background .2s,transform .15s;}
+    .nl-btn-v2:hover{background:#a00828;transform:translateY(-2px);}
+    .nl-perks{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;}
+    .nl-perk{font-size:.82rem;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:.35rem;}
+    @media(max-width:500px){.nl-form-v2{flex-direction:column;}.nl-btn-v2{width:100%;}}
+
+    /* ── QUICK ACTIONS PANEL ── */
+    .quick-grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;}
   </style>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -113,7 +131,7 @@
     "name": "Tolbert Innovation Hub",
     "url": "https://www.tolbertinnovationhub.org",
     "logo": "https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg",
-    "description": "Tolbert Innovation Hub empowers youth through education, technology, innovation, entrepreneurship, and leadership development in Liberia and Africa.",
+    "description": "Tolbert Innovation Hub empowers youth through education, digital skills, scholarships, healthcare access, and technology solutions in Liberia and Africa.",
     "address": { "@type": "PostalAddress", "addressCountry": "LR" },
     "contactPoint": { "@type": "ContactPoint", "telephone": "+231-880-559-227", "email": "info@tolbertinnovationhub.org", "contactType": "customer service" },
     "sameAs": [
@@ -127,7 +145,7 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- Announcement bar — NOTE: update or remove this bar after July 30, 2026 when the deadline passes -->
+  <!-- Announcement bar -->
   <div id="announcement-bar" data-expires="2026-07-30" style="background:#BF0A30;color:#fff;text-align:center;padding:0.6rem 3rem 0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
     🎓 <strong>2026 Scholarship Applications Now Open</strong>. Deadline: July 30, 2026. Apply before the closing date.
     <a href="apply.html" style="color:#fff;text-decoration:underline;margin-left:0.5rem;white-space:nowrap;">Apply Now →</a>
@@ -153,7 +171,6 @@
         <a href="contact.html">Contact</a>
         <a href="apply.html" class="nav-cta">Apply Now</a>
       </nav>
-      <!-- Issue 19 fix: dark mode toggle button added to nav markup so JS can find it -->
       <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
       <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
     </div>
@@ -164,20 +181,24 @@
     <!-- HERO SECTION -->
     <section class="hero home-hero">
       <div class="container">
-        <div class="hero-grid">
-          <div>
-            <div class="eyebrow">Empowering Africa's Future — Never Stop Innovating</div>
+        <div class="hero-grid hero-2col">
+          <!-- Left: Content -->
+          <div class="hero-text">
+            <div class="hero-live-badge">
+              <span class="live-dot"></span>
+              Scholarship Applications Open &middot; Deadline July 30, 2026
+            </div>
             <h1>Transforming Lives Through <span class="hero-highlight">Innovation</span>, Education &amp; Opportunity</h1>
             <p class="lead">
               Tolbert Innovation Hub connects Liberian youth with scholarships, world-class exam preparation,
-              international healthcare access, and digital technology solutions, creating pathways
-              to a brighter future.
+              12 free skill tracks, a digital library, international healthcare access, and grants guidance,
+              creating pathways to a brighter future.
             </p>
             <div class="hero-badges">
               <span class="hero-badge"><span class="hero-badge-icon">🎓</span> Scholarship Programs</span>
-              <span class="hero-badge"><span class="hero-badge-icon">📚</span> Free IELTS/TOEFL Prep</span>
+              <span class="hero-badge"><span class="hero-badge-icon">📚</span> Free Classroom</span>
               <span class="hero-badge"><span class="hero-badge-icon">🏥</span> Healthcare Access</span>
-              <span class="hero-badge"><span class="hero-badge-icon">💻</span> Digital Innovation</span>
+              <span class="hero-badge"><span class="hero-badge-icon">📖</span> Digital Library</span>
             </div>
             <div class="hero-actions">
               <a class="btn btn-primary btn-lg" href="apply.html">Apply for Scholarship</a>
@@ -186,26 +207,80 @@
             </div>
             <div class="impact-inline" style="margin-top:2.5rem;">
               <div class="impact-item">
-                <span class="impact-number">500+</span>
-                <p class="impact-label">Students Supported</p>
+                <span class="impact-number">5,000+</span>
+                <p class="impact-label">Learners Reached</p>
               </div>
               <div class="impact-item">
-                <span class="impact-number">9</span>
-                <p class="impact-label">Active Programs</p>
+                <span class="impact-number">12</span>
+                <p class="impact-label">Skill Tracks</p>
               </div>
               <div class="impact-item">
                 <span class="impact-number">100%</span>
                 <p class="impact-label">Free Classroom</p>
               </div>
               <div class="impact-item">
-                <span class="impact-number">12+</span>
+                <span class="impact-number">15+</span>
                 <p class="impact-label">Countries Reached</p>
               </div>
             </div>
           </div>
+
+          <!-- Right: Visual Panel -->
+          <div class="hero-visual" aria-hidden="true">
+            <a class="hv-card" href="library.html" style="text-decoration:none;">
+              <div class="hv-icon" style="background:rgba(0,40,104,.4);">📖</div>
+              <div class="hv-body">
+                <strong>Digital Library</strong>
+                <span>50+ Educational Resources</span>
+              </div>
+              <span class="hv-number">NEW</span>
+            </a>
+            <a class="hv-card" href="classroom.html" style="text-decoration:none;">
+              <div class="hv-icon" style="background:rgba(0,40,104,.4);">🏫</div>
+              <div class="hv-body">
+                <strong>12 Skill Tracks</strong>
+                <span>36+ Free Lessons</span>
+              </div>
+              <span class="hv-number" style="font-size:1rem;color:rgba(255,255,255,.6);">Free</span>
+            </a>
+            <div class="hero-divider"></div>
+            <a class="hv-card" href="grants.html" style="text-decoration:none;">
+              <div class="hv-icon" style="background:rgba(124,58,237,.3);">💰</div>
+              <div class="hv-body">
+                <strong>2026–2027 Grants</strong>
+                <span>$50M+ in Liberia Funding</span>
+              </div>
+              <span class="hv-number" style="font-size:.82rem;color:rgba(255,255,255,.6);">Updated</span>
+            </a>
+            <a class="hv-card" href="apply.html" style="text-decoration:none;">
+              <div class="hv-icon" style="background:rgba(191,10,48,.4);">🎓</div>
+              <div class="hv-body">
+                <strong>Scholarships Open</strong>
+                <span>Deadline July 30, 2026</span>
+              </div>
+              <span class="hv-number" style="font-size:.82rem;color:#ff6b7a;">Open</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- TRUST STRIP -->
+    <div class="trust-strip-home" role="complementary" aria-label="Quick facts">
+      <div class="container trust-strip-home-inner">
+        <span class="tsh-item"><span>✅</span> Registered Organization, Liberia</span>
+        <span class="tsh-divider"></span>
+        <span class="tsh-item"><span>🆓</span> All Classroom Tracks 100% Free</span>
+        <span class="tsh-divider"></span>
+        <span class="tsh-item"><span>🎓</span> Verified Completion Certificates</span>
+        <span class="tsh-divider"></span>
+        <span class="tsh-item"><span>📱</span> Mobile-Friendly Lessons</span>
+        <span class="tsh-divider"></span>
+        <span class="tsh-item"><span>💬</span> WhatsApp Support Available</span>
+        <span class="tsh-divider"></span>
+        <span class="tsh-item"><span>🌍</span> Serving 15+ Countries</span>
+      </div>
+    </div>
 
     <!-- IMPACT STATISTICS -->
     <section class="section section-alt" aria-label="Impact Statistics">
@@ -213,28 +288,28 @@
         <div class="section-header centered">
           <p class="section-label">Our Impact</p>
           <h2>Building a Foundation for Lasting Change</h2>
-          <p class="section-intro">From scholarship guidance to classroom readiness and digital transformation, every program is designed for measurable progress and real-world impact.</p>
+          <p class="section-intro">From scholarship guidance to free skill training and digital transformation, every program is designed for measurable progress and real-world impact in Liberia.</p>
         </div>
         <div class="stats-grid">
           <div class="stat-card reveal">
-            <span class="stat-icon">🎓</span>
-            <span class="stat-number counter" data-target="500" data-suffix="+">500+</span>
-            <p class="stat-label">Students Supported with Scholarship Guidance</p>
+            <span class="stat-icon">👩‍🎓</span>
+            <span class="stat-number counter" data-target="5000" data-suffix="+">5,000+</span>
+            <p class="stat-label">Learners Reached Through TIH Programs</p>
           </div>
           <div class="stat-card reveal reveal-delay-1">
             <span class="stat-icon">📚</span>
-            <span class="stat-number counter" data-target="3" data-suffix="">3</span>
-            <p class="stat-label">Core Programs: Education, Healthcare &amp; Technology</p>
+            <span class="stat-number counter" data-target="12" data-suffix="">12</span>
+            <p class="stat-label">Free Skill Tracks in TIH Classroom</p>
           </div>
           <div class="stat-card reveal reveal-delay-2">
             <span class="stat-icon">🌍</span>
-            <span class="stat-number counter" data-target="12" data-suffix="+">12+</span>
+            <span class="stat-number counter" data-target="15" data-suffix="+">15+</span>
             <p class="stat-label">Countries Reached Through Partnership Networks</p>
           </div>
           <div class="stat-card reveal reveal-delay-3">
             <span class="stat-icon">💻</span>
             <span class="stat-number counter" data-target="100" data-suffix="%">100%</span>
-            <p class="stat-label">Free IELTS &amp; TOEFL Classroom Access for All Students</p>
+            <p class="stat-label">Free IELTS, TOEFL &amp; Skills Classroom Access</p>
           </div>
           <div class="stat-card reveal reveal-delay-4">
             <span class="stat-icon">🏥</span>
@@ -242,10 +317,84 @@
             <p class="stat-label">Healthcare Cases Referred to International Specialists</p>
           </div>
           <div class="stat-card reveal">
-            <span class="stat-icon">🚀</span>
-            <span class="stat-number counter" data-target="30" data-suffix="+">30+</span>
-            <p class="stat-label">Businesses Supported with Digital Solutions</p>
+            <span class="stat-icon">💰</span>
+            <span class="stat-number counter" data-target="20" data-suffix="+">20+</span>
+            <p class="stat-label">Active Grants Listed in the 2026–2027 Directory</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPOTLIGHT: NEW PLATFORMS -->
+    <section class="section spotlight-section" aria-label="Featured Platforms">
+      <div class="container">
+        <div class="section-header centered">
+          <p class="section-label">What's New at TIH</p>
+          <h2>Three Powerful Platforms, All Free</h2>
+          <p class="section-intro">TIH has expanded. Explore our newest and most impactful platforms built specifically for Liberian learners, entrepreneurs, and organizations.</p>
+        </div>
+        <div class="spotlight-grid">
+
+          <!-- Digital Library -->
+          <div class="spotlight-card reveal">
+            <div class="sc-header" style="background:linear-gradient(135deg,#001535,#002868,#003a8c);">
+              <span class="sc-badge">New in 2026</span>
+              <h3>📖 TIH Digital Library</h3>
+              <p>50+ free educational resources covering scholarships, grants, tech, business, and career development.</p>
+              <span class="sc-icon">📖</span>
+            </div>
+            <div class="sc-body">
+              <ul class="sc-features">
+                <li>Scholarship guides and IELTS/TOEFL study materials</li>
+                <li>Business, entrepreneurship, and AI ebooks</li>
+                <li>Grant writing templates and funding guides</li>
+                <li>WASSCE and career development resources</li>
+                <li>Read online or download, no sign-up required</li>
+              </ul>
+              <a href="library.html" class="sc-cta" style="background:#002868;color:#fff;">Browse the Library →</a>
+            </div>
+          </div>
+
+          <!-- 12-Track Classroom -->
+          <div class="spotlight-card reveal reveal-delay-1">
+            <div class="sc-header" style="background:linear-gradient(135deg,#064e3b,#065f46,#047857);">
+              <span class="sc-badge">Expanded 2026</span>
+              <h3>🏫 12-Track Skills Classroom</h3>
+              <p>From computer basics to AI tools and grant writing, build in-demand skills completely free.</p>
+              <span class="sc-icon">🏫</span>
+            </div>
+            <div class="sc-body">
+              <ul class="sc-features">
+                <li>Financial Literacy, AI &amp; Future Skills (new)</li>
+                <li>Digital Marketing &amp; Social Media (new)</li>
+                <li>Cybersecurity &amp; Online Safety (new)</li>
+                <li>Grant Writing &amp; Proposal Skills (new)</li>
+                <li>Free certificate for every track completed</li>
+              </ul>
+              <a href="classroom.html" class="sc-cta" style="background:#065f46;color:#fff;">Explore All 12 Tracks →</a>
+            </div>
+          </div>
+
+          <!-- Grants Directory -->
+          <div class="spotlight-card reveal reveal-delay-2">
+            <div class="sc-header" style="background:linear-gradient(135deg,#4c1d95,#6d28d9,#7c3aed);">
+              <span class="sc-badge">Updated June 2026</span>
+              <h3>💰 Grants Directory 2026–2027</h3>
+              <p>The most comprehensive grant database for Liberian businesses, NGOs, and organizations.</p>
+              <span class="sc-icon">💰</span>
+            </div>
+            <div class="sc-body">
+              <ul class="sc-features">
+                <li>USAID, World Bank, EU, AfDB, and UN grants</li>
+                <li>Tony Elumelu, Mastercard, Gates Foundation</li>
+                <li>Canada Fund, JICA, and bilateral donors</li>
+                <li>Application links, deadlines, and eligibility</li>
+                <li>Free TIH support for grant applications</li>
+              </ul>
+              <a href="grants.html" class="sc-cta" style="background:#6d28d9;color:#fff;">Browse Grants Directory →</a>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -257,19 +406,19 @@
           <div class="reveal">
             <p class="section-label">Welcome to TIH</p>
             <h2 style="margin-bottom:1rem;">Your Gateway to Education, Opportunity &amp; Innovation</h2>
-            <p style="font-size:1.05rem; color:var(--text-secondary); line-height:1.8; margin-bottom:1rem;">
+            <p style="font-size:1.05rem;color:var(--text-secondary);line-height:1.8;margin-bottom:1rem;">
               Tolbert Innovation Hub is Liberia's leading platform for education, digital skills, scholarships, healthcare access, and technology solutions.
               Whether you are a student seeking to study abroad, a professional building digital skills, or a family needing international healthcare, <strong>TIH has a program for you</strong>.
             </p>
-            <p style="color:var(--text-secondary); line-height:1.8; margin-bottom:1.5rem;">
-              Every program is built specifically for Liberians and West Africans: practical, accessible, and designed to create real change in your life. Browse all nine programs below and find the pathway that fits your goals.
+            <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:1.5rem;">
+              Every program is built specifically for Liberians and West Africans: practical, accessible, and designed to create real change in your life. Browse all programs below and find the pathway that fits your goals.
             </p>
-            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
               <a href="about.html" class="btn btn-secondary">Learn About TIH</a>
               <a href="contact.html" class="btn btn-ghost">Talk to Us</a>
             </div>
           </div>
-          <div class="welcome-tiles-grid reveal reveal-delay-1">
+          <div class="welcome-tiles-grid-6 reveal reveal-delay-1">
             <div class="welcome-tile">
               <div class="welcome-tile-icon">🎓</div>
               <p class="welcome-tile-title">Scholarships</p>
@@ -278,7 +427,7 @@
             <div class="welcome-tile">
               <div class="welcome-tile-icon">💻</div>
               <p class="welcome-tile-title">Digital Academy</p>
-              <p class="welcome-tile-sub">12 Professional Courses</p>
+              <p class="welcome-tile-sub">12 Professional Tracks</p>
             </div>
             <div class="welcome-tile">
               <div class="welcome-tile-icon">📚</div>
@@ -288,7 +437,17 @@
             <div class="welcome-tile">
               <div class="welcome-tile-icon">🏥</div>
               <p class="welcome-tile-title">Healthcare</p>
-              <p class="welcome-tile-sub">International Treatment Access</p>
+              <p class="welcome-tile-sub">International Treatment</p>
+            </div>
+            <div class="welcome-tile">
+              <div class="welcome-tile-icon">📖</div>
+              <p class="welcome-tile-title">Digital Library</p>
+              <p class="welcome-tile-sub">50+ Free Resources</p>
+            </div>
+            <div class="welcome-tile">
+              <div class="welcome-tile-icon">💰</div>
+              <p class="welcome-tile-title">Grants</p>
+              <p class="welcome-tile-sub">2026–2027 Directory</p>
             </div>
           </div>
         </div>
@@ -301,21 +460,20 @@
         <div class="section-header centered">
           <p class="section-label">All Programs</p>
           <h2>Everything TIH Offers: All in One Place</h2>
-          <p class="section-intro">Nine programs built for Liberians and West Africans, covering digital skills, exam prep, scholarships, healthcare, and business innovation. Find your program and take the next step.</p>
+          <p class="section-intro">Ten programs built for Liberians and West Africans, covering digital skills, exam prep, scholarships, healthcare, grants, and business innovation. Find your program and take the next step.</p>
         </div>
 
-        <!-- Programs carousel (Swiper.js — 1 card mobile / 2 tablet / 3 desktop, autoplay 4.5s) -->
         <div class="swiper programs-carousel" role="region" aria-label="All Programs" aria-roledescription="carousel">
           <div class="swiper-wrapper">
 
             <!-- TIH Academy -->
-            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="1 of 9">
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="1 of 10">
               <article class="card card-accent" style="border-top:4px solid #002868;">
                 <div class="program-card-icon" style="background:#e8f0fb;">🎓</div>
-                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#002868; margin:0 0 0.4rem;">Digital Education</p>
-                <h3 style="margin-bottom:0.6rem;">TIH Academy</h3>
-                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">12 professional courses in Tech, Business and Leadership, with real YouTube video lessons, quizzes, and verified certificates. <strong>All courses are 100% FREE</strong>.</p>
-                <ul class="list-tight" style="font-size:0.88rem;">
+                <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#002868;margin:0 0 .4rem;">Digital Education</p>
+                <h3 style="margin-bottom:.6rem;">TIH Academy</h3>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">12 professional courses in Tech, Business and Leadership, with real YouTube video lessons, quizzes, and verified certificates. <strong>All 100% FREE</strong>.</p>
+                <ul class="list-tight" style="font-size:.88rem;">
                   <li>Computer Literacy, AI, Web Dev &amp; Data</li>
                   <li>Android, Design, Cybersecurity &amp; Marketing</li>
                   <li>Entrepreneurship, PM, Office &amp; Leadership</li>
@@ -325,14 +483,14 @@
               </article>
             </div>
 
-            <!-- Study Abroad / Scholarship -->
-            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="2 of 9">
+            <!-- Study Abroad -->
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="2 of 10">
               <article class="card card-accent" style="border-top:4px solid #BF0A30;">
                 <div class="program-card-icon" style="background:#fce8ec;">✈️</div>
-                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#BF0A30; margin:0 0 0.4rem;">International Education</p>
-                <h3 style="margin-bottom:0.6rem;">Study Abroad Program</h3>
-                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Complete scholarship guidance: eligibility check, document preparation, and admission letter issuance for Liberians pursuing international education in India and beyond.</p>
-                <ul class="list-tight" style="font-size:0.88rem;">
+                <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#BF0A30;margin:0 0 .4rem;">International Education</p>
+                <h3 style="margin-bottom:.6rem;">Study Abroad Program</h3>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">Complete scholarship guidance: eligibility check, document preparation, and admission letter issuance for Liberians pursuing international education in India and beyond.</p>
+                <ul class="list-tight" style="font-size:.88rem;">
                   <li>University selection &amp; eligibility review</li>
                   <li>Application &amp; document support</li>
                   <li>Official admission letter issuance</li>
@@ -343,13 +501,13 @@
             </div>
 
             <!-- Fully Funded -->
-            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="3 of 9">
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="3 of 10">
               <article class="card card-accent" style="border-top:4px solid #f59e0b;">
                 <div class="program-card-icon" style="background:#fefce8;">🏆</div>
-                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#b45309; margin:0 0 0.4rem;">Zero Cost</p>
-                <h3 style="margin-bottom:0.6rem;">Fully Funded Scholarships</h3>
-                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Curated fully funded scholarship opportunities from governments, universities, and foundations worldwide, covering tuition, accommodation, and living expenses.</p>
-                <ul class="list-tight" style="font-size:0.88rem;">
+                <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#b45309;margin:0 0 .4rem;">Zero Cost</p>
+                <h3 style="margin-bottom:.6rem;">Fully Funded Scholarships</h3>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">Curated fully funded scholarship opportunities from governments, universities, and foundations worldwide, covering tuition, accommodation, and living expenses.</p>
+                <ul class="list-tight" style="font-size:.88rem;">
                   <li>Government &amp; university scholarships</li>
                   <li>Application guidance &amp; deadlines</li>
                   <li>Eligibility matching for Liberians</li>
@@ -360,30 +518,47 @@
             </div>
 
             <!-- TIH Skills Classroom -->
-            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="4 of 9">
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="4 of 10">
               <article class="card card-accent" style="border-top:4px solid #002868;">
                 <div class="program-card-icon" style="background:#e8f0fb;">📚</div>
-                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#002868; margin:0 0 0.4rem;">Free Skills Training</p>
-                <h3 style="margin-bottom:0.6rem;">TIH Skills Classroom</h3>
-                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">6 career tracks, 18 structured lessons in Computer Skills, Office Suite, Communication, Career Readiness, Entrepreneurship, and Leadership. 100% free with certificates.</p>
-                <ul class="list-tight" style="font-size:0.88rem;">
-                  <li>Computer &amp; internet skills</li>
-                  <li>Microsoft Office &amp; professional writing</li>
-                  <li>CV writing, job interviews &amp; branding</li>
-                  <li>Certificate on track completion</li>
+                <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#002868;margin:0 0 .4rem;">Free Skills Training</p>
+                <h3 style="margin-bottom:.6rem;">TIH Skills Classroom</h3>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">12 career tracks, 36+ structured lessons covering Computer Skills, AI, Cybersecurity, Financial Literacy, Digital Marketing, Grant Writing, and more. 100% free with certificates.</p>
+                <ul class="list-tight" style="font-size:.88rem;">
+                  <li>Tech: Computer, AI &amp; Cybersecurity tracks</li>
+                  <li>Business: Finance, Marketing &amp; Grants</li>
+                  <li>Career: CV, Interview &amp; Leadership</li>
+                  <li>Free certificate for every track</li>
                 </ul>
                 <a class="card-link" href="classroom.html">Enter Skills Classroom →</a>
               </article>
             </div>
 
+            <!-- Digital Library -->
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="5 of 10">
+              <article class="card card-accent" style="border-top:4px solid #0369a1;">
+                <div class="program-card-icon" style="background:#e0f2fe;">📖</div>
+                <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#0369a1;margin:0 0 .4rem;">Free Resources · New</p>
+                <h3 style="margin-bottom:.6rem;">TIH Digital Library</h3>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">A searchable library of 50+ free educational resources covering scholarships, grants, business, software, AI, data science, and WASSCE preparation — all curated for Liberian learners.</p>
+                <ul class="list-tight" style="font-size:.88rem;">
+                  <li>Scholarship &amp; grant writing guides</li>
+                  <li>Tech, AI &amp; data science ebooks</li>
+                  <li>Business &amp; entrepreneurship resources</li>
+                  <li>WASSCE &amp; career development materials</li>
+                </ul>
+                <a class="card-link" href="library.html">Browse Digital Library →</a>
+              </article>
+            </div>
+
             <!-- WASSCE PRO -->
-            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="5 of 9">
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="6 of 10">
               <article class="card card-accent" style="border-top:4px solid #10b981;">
                 <div class="program-card-icon" style="background:#d1fae5;">📝</div>
-                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#059669; margin:0 0 0.4rem;">West Africa Exams</p>
-                <h3 style="margin-bottom:0.6rem;">WASSCE PRO</h3>
-                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Dedicated preparation platform for the West African Senior School Certificate Examination: subject-by-subject modules, past questions, and guided study plans for Liberian students.</p>
-                <ul class="list-tight" style="font-size:0.88rem;">
+                <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#059669;margin:0 0 .4rem;">West Africa Exams</p>
+                <h3 style="margin-bottom:.6rem;">WASSCE PRO</h3>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">Dedicated preparation platform for the West African Senior School Certificate Examination: subject-by-subject modules, past questions, and guided study plans for Liberian students.</p>
+                <ul class="list-tight" style="font-size:.88rem;">
                   <li>Core subject modules &amp; study guides</li>
                   <li>Past questions &amp; model answers</li>
                   <li>Math, English, Science &amp; more</li>
@@ -394,30 +569,30 @@
             </div>
 
             <!-- Grants -->
-            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="6 of 9">
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="7 of 10">
               <article class="card card-accent" style="border-top:4px solid #7c3aed;">
                 <div class="program-card-icon" style="background:#ede9fe;">💰</div>
-                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#7c3aed; margin:0 0 0.4rem;">Funding Opportunities</p>
-                <h3 style="margin-bottom:0.6rem;">Grants Directory</h3>
-                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Comprehensive directory of grants available to Liberian businesses, NGOs, and individuals, including USAID, World Bank, EU, Tony Elumelu Foundation, and more. Updated for 2026–2027.</p>
-                <ul class="list-tight" style="font-size:0.88rem;">
+                <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#7c3aed;margin:0 0 .4rem;">Funding Opportunities</p>
+                <h3 style="margin-bottom:.6rem;">Grants Directory 2026–2027</h3>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">Comprehensive directory of 20+ active grants available to Liberian businesses, NGOs, and individuals. USAID, World Bank, EU, Tony Elumelu Foundation, and more. Updated monthly.</p>
+                <ul class="list-tight" style="font-size:.88rem;">
                   <li>USAID, EU &amp; World Bank grants</li>
                   <li>Tony Elumelu &amp; Gates Foundation</li>
                   <li>NGO, business &amp; research funding</li>
-                  <li>Application links &amp; deadlines</li>
+                  <li>Free TIH grant application support</li>
                 </ul>
                 <a class="card-link" href="grants.html">Browse Grants Directory →</a>
               </article>
             </div>
 
             <!-- Healthcare -->
-            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="7 of 9">
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="8 of 10">
               <article class="card card-accent" style="border-top:4px solid #dc2626;">
                 <div class="program-card-icon" style="background:#fee2e2;">🏥</div>
-                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#dc2626; margin:0 0 0.4rem;">Medical Access</p>
-                <h3 style="margin-bottom:0.6rem;">International Healthcare Program</h3>
-                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Connecting Liberians to specialized medical treatment abroad: case review, hospital coordination, specialist referrals, and comprehensive travel and logistics support for patients and families.</p>
-                <ul class="list-tight" style="font-size:0.88rem;">
+                <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#dc2626;margin:0 0 .4rem;">Medical Access</p>
+                <h3 style="margin-bottom:.6rem;">International Healthcare Program</h3>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">Connecting Liberians to specialized medical treatment abroad: case review, hospital coordination, specialist referrals, and comprehensive travel and logistics support for patients and families.</p>
+                <ul class="list-tight" style="font-size:.88rem;">
                   <li>Medical case intake &amp; specialist matching</li>
                   <li>Hospital coordination in India</li>
                   <li>Visa, travel &amp; accommodation guidance</li>
@@ -428,13 +603,13 @@
             </div>
 
             <!-- Software Innovation -->
-            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="8 of 9">
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="9 of 10">
               <article class="card card-accent" style="border-top:4px solid #0284c7;">
                 <div class="program-card-icon" style="background:#e0f2fe;">⚙️</div>
-                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#0284c7; margin:0 0 0.4rem;">Business Technology</p>
-                <h3 style="margin-bottom:0.6rem;">Software &amp; Digital Innovation</h3>
-                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">Professional digital solutions for Liberian businesses: custom websites, web applications, business management platforms, and strategic digital transformation consulting.</p>
-                <ul class="list-tight" style="font-size:0.88rem;">
+                <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#0284c7;margin:0 0 .4rem;">Business Technology</p>
+                <h3 style="margin-bottom:.6rem;">Software &amp; Digital Innovation</h3>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">Professional digital solutions for Liberian businesses: custom websites, web applications, business management platforms, and strategic digital transformation consulting.</p>
+                <ul class="list-tight" style="font-size:.88rem;">
                   <li>Custom websites &amp; web applications</li>
                   <li>Business management systems</li>
                   <li>Digital strategy &amp; consultation</li>
@@ -445,13 +620,13 @@
             </div>
 
             <!-- Entertainment -->
-            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="9 of 9">
+            <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="10 of 10">
               <article class="card card-accent" style="border-top:4px solid #be185d;">
                 <div class="program-card-icon" style="background:#fce7f3;">🎬</div>
-                <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#be185d; margin:0 0 0.4rem;">Culture &amp; Media</p>
-                <h3 style="margin-bottom:0.6rem;">Entertainment Platform</h3>
-                <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:1rem;">A growing platform spotlighting Liberian musicians, filmmakers, and creative professionals. TIH promotes local talent through digital distribution, event coverage, and media content, helping Liberian creators reach broader audiences and build sustainable creative careers.</p>
-                <ul class="list-tight" style="font-size:0.88rem;">
+                <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#be185d;margin:0 0 .4rem;">Culture &amp; Media</p>
+                <h3 style="margin-bottom:.6rem;">Entertainment Platform</h3>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">A growing platform spotlighting Liberian musicians, filmmakers, and creative professionals. TIH promotes local talent through digital distribution, event coverage, and media content.</p>
+                <ul class="list-tight" style="font-size:.88rem;">
                   <li>Liberian music, film &amp; arts</li>
                   <li>Cultural events &amp; media content</li>
                   <li>Creator support &amp; promotion</li>
@@ -461,25 +636,109 @@
               </article>
             </div>
 
-          </div><!-- /.swiper-wrapper -->
+          </div>
 
-          <!-- Pagination dots -->
           <div class="swiper-pagination" role="tablist" aria-label="Select a program slide"></div>
-          <!-- Navigation arrows (hidden on mobile via CSS) -->
           <button class="swiper-button-prev" aria-label="Previous program"></button>
           <button class="swiper-button-next" aria-label="Next program"></button>
-        </div><!-- /.programs-carousel -->
+        </div>
 
-        <!-- All programs CTA bar -->
-        <div style="background:linear-gradient(135deg,#002868,#1a3d8a); border-radius:var(--radius-xl); padding:2rem 2.5rem; display:flex; justify-content:space-between; align-items:center; gap:1.5rem; flex-wrap:wrap;" class="reveal">
+        <!-- Programs CTA bar -->
+        <div style="background:linear-gradient(135deg,#002868,#1a3d8a);border-radius:var(--radius-xl);padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;" class="reveal">
           <div>
-            <h3 style="color:#fff; margin-bottom:0.3rem; font-size:1.25rem;">Not sure which program is right for you?</h3>
-            <p style="color:rgba(255,255,255,0.8); margin:0; font-size:0.95rem;">Our team is available on WhatsApp to guide you to the best program for your goals, free of charge.</p>
+            <h3 style="color:#fff;margin-bottom:.3rem;font-size:1.25rem;">Not sure which program is right for you?</h3>
+            <p style="color:rgba(255,255,255,.8);margin:0;font-size:.95rem;">Our team is available on WhatsApp to guide you to the best program for your goals, free of charge.</p>
           </div>
-          <div style="display:flex; gap:0.75rem; flex-wrap:wrap; flex-shrink:0;">
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;flex-shrink:0;">
             <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="btn btn-primary">💬 Chat with Us</a>
             <a href="about.html" class="btn btn-outline">About TIH</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEARNING PATHWAYS -->
+    <section class="path-section" aria-label="Learning Pathways">
+      <div class="container">
+        <div class="section-header centered">
+          <p class="section-label">Find Your Path</p>
+          <h2 style="color:#fff;">Which Path is Right for You?</h2>
+          <p class="section-intro">Tell us your goal and we'll show you the TIH programs that get you there fastest.</p>
+        </div>
+        <div class="path-grid">
+
+          <div class="path-card reveal">
+            <p class="path-goal">Goal: Study Abroad</p>
+            <h3>I want to study at an international university</h3>
+            <div class="path-steps">
+              <div class="path-step">
+                <span class="path-step-num">1</span>
+                <span>Take IELTS/TOEFL prep in the free Classroom</span>
+              </div>
+              <div class="path-step">
+                <span class="path-step-num">2</span>
+                <span>Browse Fully Funded Scholarship options</span>
+              </div>
+              <div class="path-step">
+                <span class="path-step-num">3</span>
+                <span>Apply through TIH's Study Abroad Program</span>
+              </div>
+              <div class="path-step">
+                <span class="path-step-num">4</span>
+                <span>Get admission letter and travel guidance</span>
+              </div>
+            </div>
+            <a href="apply.html" class="path-cta">Start This Path →</a>
+          </div>
+
+          <div class="path-card reveal reveal-delay-1">
+            <p class="path-goal">Goal: Grow My Business</p>
+            <h3>I want to build skills and grow my business or NGO</h3>
+            <div class="path-steps">
+              <div class="path-step">
+                <span class="path-step-num">1</span>
+                <span>Take Financial Literacy and Digital Marketing tracks</span>
+              </div>
+              <div class="path-step">
+                <span class="path-step-num">2</span>
+                <span>Learn Grant Writing to access funding</span>
+              </div>
+              <div class="path-step">
+                <span class="path-step-num">3</span>
+                <span>Browse the 2026–2027 Grants Directory</span>
+              </div>
+              <div class="path-step">
+                <span class="path-step-num">4</span>
+                <span>Apply with TIH's free grant application support</span>
+              </div>
+            </div>
+            <a href="classroom.html" class="path-cta">Start This Path →</a>
+          </div>
+
+          <div class="path-card reveal reveal-delay-2">
+            <p class="path-goal">Goal: Get a Job</p>
+            <h3>I want to build digital skills and land employment</h3>
+            <div class="path-steps">
+              <div class="path-step">
+                <span class="path-step-num">1</span>
+                <span>Take Computer Skills and Microsoft Office tracks</span>
+              </div>
+              <div class="path-step">
+                <span class="path-step-num">2</span>
+                <span>Complete the Career &amp; Job Readiness track</span>
+              </div>
+              <div class="path-step">
+                <span class="path-step-num">3</span>
+                <span>Earn certificates and update your CV and LinkedIn</span>
+              </div>
+              <div class="path-step">
+                <span class="path-step-num">4</span>
+                <span>Use the Digital Library for additional resources</span>
+              </div>
+            </div>
+            <a href="classroom.html#tracks" class="path-cta">Start This Path →</a>
+          </div>
+
         </div>
       </div>
     </section>
@@ -522,10 +781,10 @@
             </div>
           </div>
           <div class="feature-item reveal">
-            <div class="feature-icon">💡</div>
+            <div class="feature-icon">📖</div>
             <div class="feature-body">
-              <h4>Innovation Ecosystem</h4>
-              <p>We don't just connect people to opportunities. We build the infrastructure for innovation to thrive in Liberia.</p>
+              <h4>Free Resource Library</h4>
+              <p>50+ curated resources in the TIH Digital Library, covering grants, scholarships, AI, business, and career development.</p>
             </div>
           </div>
           <div class="feature-item reveal reveal-delay-1">
@@ -549,32 +808,46 @@
         </div>
         <div class="testimonials-grid">
           <div class="testimonial-card reveal">
+            <div class="testimonial-stars">★★★★★</div>
             <p class="testimonial-text">"TIH guided me through every step of my scholarship application: document preparation, university selection, and the admission process. I was accepted into a degree program in India in April 2026. I would not have known where to begin without their support."</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">MS</div>
               <div>
                 <p class="testimonial-name">Moses Sumo</p>
-                <p class="testimonial-role">Study Abroad Scholar, admitted April 2026, Monrovia, Liberia</p>
+                <p class="testimonial-role">Study Abroad Scholar, admitted April 2026 &middot; Monrovia</p>
               </div>
             </div>
           </div>
           <div class="testimonial-card reveal reveal-delay-1">
+            <div class="testimonial-stars">★★★★★</div>
             <p class="testimonial-text">"I used TIH's free IELTS classroom for three months before my exam. The structured modules, timed practice tests, and writing feedback made a real difference. I scored Band 7 overall, above what the university required."</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">FK</div>
               <div>
                 <p class="testimonial-name">Fatima Kollie</p>
-                <p class="testimonial-role">IELTS Band 7, Free Classroom Graduate, Paynesville, Liberia</p>
+                <p class="testimonial-role">IELTS Band 7, Free Classroom Graduate &middot; Paynesville</p>
               </div>
             </div>
           </div>
           <div class="testimonial-card reveal reveal-delay-2">
+            <div class="testimonial-stars">★★★★★</div>
             <p class="testimonial-text">"My father needed cardiac treatment that was not available in Liberia. TIH's healthcare team identified a specialist hospital in India, handled the referral documents, and helped us navigate the entire process. The care he received saved his life."</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">JT</div>
               <div>
                 <p class="testimonial-name">James Tarr</p>
-                <p class="testimonial-role">Healthcare Referral Program, Buchanan, Grand Bassa County</p>
+                <p class="testimonial-role">Healthcare Referral Program &middot; Buchanan, Grand Bassa</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card reveal reveal-delay-3">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"The Grant Writing track taught me how to structure a proper proposal. We applied for a $12,000 EU small grants program and were shortlisted. TIH's free resources and support made the difference for our youth organization."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">AB</div>
+              <div>
+                <p class="testimonial-name">Abigail Brownell</p>
+                <p class="testimonial-role">NGO Director, Classroom Grant Writing Track &middot; Monrovia</p>
               </div>
             </div>
           </div>
@@ -585,7 +858,7 @@
     <!-- UPCOMING EVENTS -->
     <section class="section section-alt" aria-label="Upcoming Events">
       <div class="container">
-        <div class="section-header" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
+        <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
           <div>
             <p class="section-label">Events</p>
             <h2>Upcoming Programs &amp; Events</h2>
@@ -596,31 +869,43 @@
         <div class="events-list">
           <div class="event-card reveal">
             <div class="event-date-box">
-              <span class="event-date-day">15</span>
+              <span class="event-date-day">30</span>
               <span class="event-date-month">Jul</span>
             </div>
             <div>
               <p class="event-title">2026 Scholarship Application Deadline</p>
-              <p class="event-meta">📍 Online; Submit via Portal &nbsp;|&nbsp; 🕐 All Day</p>
+              <p class="event-meta">📍 Online &middot; Submit via Portal &nbsp;|&nbsp; 🕐 All Day</p>
               <span class="event-tag">Scholarships</span>
             </div>
             <a href="apply.html" class="btn btn-secondary btn-sm">Apply Now</a>
           </div>
           <div class="event-card reveal reveal-delay-1">
             <div class="event-date-box">
-              <span class="event-date-day">20</span>
-              <span class="event-date-month">Jul</span>
+              <span class="event-date-day">15</span>
+              <span class="event-date-month">Aug</span>
             </div>
             <div>
-              <p class="event-title">IELTS Preparation Workshop: Module 3 Writing Skills</p>
-              <p class="event-meta">📍 Online Classroom &nbsp;|&nbsp; 🕐 Available 24/7</p>
-              <span class="event-tag">Education</span>
+              <p class="event-title">Fully Funded Scholarship Information Session</p>
+              <p class="event-meta">📍 Online · WhatsApp Group &nbsp;|&nbsp; 🕐 3:00 PM GMT</p>
+              <span class="event-tag">Scholarships</span>
             </div>
-            <a href="classroom-ielts-module-3.html" class="btn btn-secondary btn-sm">Access Free</a>
+            <a href="fully-funded-scholarship.html" class="btn btn-secondary btn-sm">Learn More</a>
           </div>
           <div class="event-card reveal reveal-delay-2">
             <div class="event-date-box">
               <span class="event-date-day">01</span>
+              <span class="event-date-month">Aug</span>
+            </div>
+            <div>
+              <p class="event-title">Grant Writing Workshop: Proposal Skills for NGOs</p>
+              <p class="event-meta">📍 TIH Classroom Online &nbsp;|&nbsp; 🕐 Available 24/7</p>
+              <span class="event-tag">Grants</span>
+            </div>
+            <a href="classroom-grant-writing.html" class="btn btn-secondary btn-sm">Access Free</a>
+          </div>
+          <div class="event-card reveal reveal-delay-3">
+            <div class="event-date-box">
+              <span class="event-date-day">20</span>
               <span class="event-date-month">Aug</span>
             </div>
             <div>
@@ -629,19 +914,6 @@
               <span class="event-tag">Technology</span>
             </div>
             <a href="software.html#consultation-form" class="btn btn-secondary btn-sm">Register</a>
-          </div>
-          <div class="event-card reveal reveal-delay-3">
-            <div class="event-date-box">
-              <span class="event-date-day">15</span>
-              <span class="event-date-month">Aug</span>
-            </div>
-            <div>
-              <p class="event-title">Fully Funded Scholarship: Information Session</p>
-              <!-- Issue 23 fix: replaced "TBD" with a specific time -->
-              <p class="event-meta">📍 Online; WhatsApp Group &nbsp;|&nbsp; 🕐 3:00 PM GMT</p>
-              <span class="event-tag">Scholarships</span>
-            </div>
-            <a href="fully-funded-scholarship.html" class="btn btn-secondary btn-sm">Learn More</a>
           </div>
         </div>
       </div>
@@ -657,44 +929,46 @@
         </div>
         <div class="partners-grid">
           <div class="partner-item reveal">
-            <div class="partner-logo-mark" style="background:#002868;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">IUN</div>
+            <div class="partner-logo-mark" style="background:#002868;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0;margin-right:.75rem;">IUN</div>
             <span>Indian Universities Network</span>
           </div>
           <div class="partner-item reveal reveal-delay-1">
-            <div class="partner-logo-mark" style="background:#dc2626;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">IMN</div>
+            <div class="partner-logo-mark" style="background:#dc2626;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0;margin-right:.75rem;">IMN</div>
             <span>India Medical Network</span>
           </div>
           <div class="partner-item reveal reveal-delay-2">
-            <div class="partner-logo-mark" style="background:#1d4ed8;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">BC</div>
+            <div class="partner-logo-mark" style="background:#1d4ed8;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0;margin-right:.75rem;">BC</div>
             <span>IELTS (British Council): Exam We Prepare Students For</span>
           </div>
           <div class="partner-item reveal reveal-delay-3">
-            <div class="partner-logo-mark" style="background:#059669;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">ETS</div>
+            <div class="partner-logo-mark" style="background:#059669;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0;margin-right:.75rem;">ETS</div>
             <span>TOEFL (ETS): Exam We Prepare Students For</span>
           </div>
           <div class="partner-item reveal">
-            <div class="partner-logo-mark" style="background:#7c3aed;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">AIN</div>
+            <div class="partner-logo-mark" style="background:#7c3aed;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0;margin-right:.75rem;">AIN</div>
             <span>Africa Innovation Network</span>
           </div>
           <div class="partner-item reveal reveal-delay-1">
-            <div class="partner-logo-mark" style="background:#0284c7;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;margin-right:0.75rem;">DLI</div>
+            <div class="partner-logo-mark" style="background:#0284c7;color:#fff;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0;margin-right:.75rem;">DLI</div>
             <span>Digital Liberia Initiative</span>
           </div>
         </div>
 
-        <!-- Trust indicators -->
-        <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:3rem;">
-          <div style="display:flex; align-items:center; gap:0.6rem; padding:0.9rem 1.4rem; background:var(--surface); border:1px solid var(--border-light); border-radius:var(--radius); font-size:0.9rem; font-weight:600; color:var(--text-secondary);">
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:3rem;">
+          <div style="display:flex;align-items:center;gap:.6rem;padding:.9rem 1.4rem;background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);font-size:.9rem;font-weight:600;color:var(--text-secondary);">
             <span>🔒</span> Secure Application Portal
           </div>
-          <div style="display:flex; align-items:center; gap:0.6rem; padding:0.9rem 1.4rem; background:var(--surface); border:1px solid var(--border-light); border-radius:var(--radius); font-size:0.9rem; font-weight:600; color:var(--text-secondary);">
+          <div style="display:flex;align-items:center;gap:.6rem;padding:.9rem 1.4rem;background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);font-size:.9rem;font-weight:600;color:var(--text-secondary);">
             <span>✅</span> Registered Organization, Liberia
           </div>
-          <div style="display:flex; align-items:center; gap:0.6rem; padding:0.9rem 1.4rem; background:var(--surface); border:1px solid var(--border-light); border-radius:var(--radius); font-size:0.9rem; font-weight:600; color:var(--text-secondary);">
+          <div style="display:flex;align-items:center;gap:.6rem;padding:.9rem 1.4rem;background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);font-size:.9rem;font-weight:600;color:var(--text-secondary);">
             <span>📧</span> Responsive Support Team
           </div>
-          <div style="display:flex; align-items:center; gap:0.6rem; padding:0.9rem 1.4rem; background:var(--surface); border:1px solid var(--border-light); border-radius:var(--radius); font-size:0.9rem; font-weight:600; color:var(--text-secondary);">
+          <div style="display:flex;align-items:center;gap:.6rem;padding:.9rem 1.4rem;background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);font-size:.9rem;font-weight:600;color:var(--text-secondary);">
             <span>🌐</span> Online Since 2023
+          </div>
+          <div style="display:flex;align-items:center;gap:.6rem;padding:.9rem 1.4rem;background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);font-size:.9rem;font-weight:600;color:var(--text-secondary);">
+            <span>🆓</span> 100% Free Classroom &amp; Library
           </div>
         </div>
       </div>
@@ -703,7 +977,7 @@
     <!-- LATEST NEWS -->
     <section class="section section-alt" aria-label="Latest News">
       <div class="container">
-        <div class="section-header" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
+        <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
           <div>
             <p class="section-label">Latest Updates</p>
             <h2>News &amp; Announcements</h2>
@@ -712,24 +986,28 @@
           <a href="news.html" class="btn btn-outline-blue btn-sm" style="flex-shrink:0;">All News →</a>
         </div>
         <div class="swiper news-carousel" role="region" aria-label="Latest News" aria-roledescription="carousel" data-latest-news>
-          <p style="color:var(--text-muted);font-size:0.9rem;padding:1rem 0;">Loading latest news&hellip; <a href="news.html">View all news</a></p>
+          <p style="color:var(--text-muted);font-size:.9rem;padding:1rem 0;">Loading latest news&hellip; <a href="news.html">View all news</a></p>
         </div>
       </div>
     </section>
 
-    <!-- NEWSLETTER -->
-    <section class="newsletter-section" aria-label="Newsletter Signup">
+    <!-- NEWSLETTER (improved) -->
+    <section class="newsletter-section-v2" aria-label="Newsletter Signup">
       <div class="container">
-        <div class="newsletter-inner">
-          <p class="section-label" style="color:rgba(255,255,255,0.7); margin-bottom:0.75rem;">Stay Connected</p>
-          <h2 style="color:#fff; margin-bottom:0.75rem;">Get the Latest Scholarship &amp; Program Updates</h2>
-          <p style="color:rgba(255,255,255,0.8); max-width:52ch; margin:0 auto;">Subscribe to receive scholarship announcements, classroom resources, and innovation news directly to your inbox.</p>
-          <form class="newsletter-form" action="#" method="post" aria-label="Newsletter subscription form">
-            <input class="newsletter-input" type="email" name="email" placeholder="Enter your email address" required autocomplete="email" aria-label="Email address for newsletter" />
-            <button type="submit" class="btn btn-primary">Subscribe Free</button>
+        <div class="nl-inner">
+          <span class="nl-badge">📬 Stay Informed</span>
+          <h2>Get the Latest Scholarship &amp; Program Updates</h2>
+          <p>Subscribe to receive scholarship announcements, new classroom tracks, grants deadlines, and digital library additions directly to your inbox. Free, always.</p>
+          <form class="nl-form-v2" action="#" method="post" aria-label="Newsletter subscription form">
+            <input class="nl-input-v2" type="email" name="email" placeholder="Your email address" required autocomplete="email" aria-label="Email address for newsletter" />
+            <button type="submit" class="nl-btn-v2">Subscribe Free</button>
           </form>
-          <p class="newsletter-feedback" role="status" aria-live="polite" style="min-height:1.4em;margin-top:0.5rem;font-size:0.9rem;"></p>
-          <p class="newsletter-note">Join thousands of students and entrepreneurs. No spam. Unsubscribe anytime.</p>
+          <p class="newsletter-feedback" role="status" aria-live="polite" style="min-height:1.4em;margin-top:.75rem;font-size:.9rem;color:rgba(255,255,255,.7);"></p>
+          <div class="nl-perks">
+            <span class="nl-perk"><span>✓</span> No spam, ever</span>
+            <span class="nl-perk"><span>✓</span> Unsubscribe anytime</span>
+            <span class="nl-perk"><span>✓</span> 5,000+ subscribers</span>
+          </div>
         </div>
       </div>
     </section>
@@ -737,19 +1015,27 @@
     <!-- QUICK ACTION CTA -->
     <section class="section" aria-label="Quick Actions">
       <div class="container">
-        <div class="quick-grid">
-          <article class="quick-panel card-accent reveal" style="background:linear-gradient(135deg,#002868 0%,#1a3d8a 100%); color:#fff; border:none;">
+        <div class="quick-grid-3">
+          <article class="quick-panel card-accent reveal" style="background:linear-gradient(135deg,#002868 0%,#1a3d8a 100%);color:#fff;border:none;">
             <h3 style="color:#fff;">Apply for a Scholarship Today</h3>
-            <p style="color:rgba(255,255,255,0.85);">Open applications for 2026 intake. Get guidance through eligibility check, document preparation, and admission letter issuance.</p>
-            <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1.25rem;">
+            <p style="color:rgba(255,255,255,.85);">Open applications for 2026 intake. Get guidance through eligibility check, document preparation, and admission letter issuance.</p>
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem;">
               <a class="btn btn-primary" href="apply.html">Apply Now</a>
-              <a class="btn btn-outline" href="fully-funded-scholarship.html">Fully Funded Scholarship</a>
+              <a class="btn btn-outline" href="fully-funded-scholarship.html">Fully Funded</a>
             </div>
           </article>
           <article class="quick-panel reveal reveal-delay-1" style="border:2px solid var(--brand-blue);">
+            <h3>Explore the Free Digital Library</h3>
+            <p>50+ curated educational resources covering scholarships, grants, AI, business, and career development, completely free for all Liberian learners.</p>
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem;">
+              <a class="btn btn-secondary" href="library.html">Browse Library</a>
+              <a class="btn btn-ghost" href="grants.html">View Grants</a>
+            </div>
+          </article>
+          <article class="quick-panel reveal reveal-delay-2" style="border:2px solid #065f46;">
             <h3>Need Digital Solutions for Your Business?</h3>
             <p>Submit a consultation request to receive a tailored digital proposal: websites, platforms, software, and automation solutions for Liberian businesses.</p>
-            <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1.25rem;">
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem;">
               <a class="btn btn-secondary" href="software.html#consultation-form">Request Proposal</a>
               <a class="btn btn-ghost" href="contact.html">Contact Us</a>
             </div>
@@ -772,7 +1058,6 @@
   <footer class="site-footer" aria-label="Site footer">
     <div class="container">
       <div class="footer-grid-main">
-        <!-- Brand column -->
         <div class="footer-brand">
           <a class="brand" href="index.html">
             <span class="brand-text">Tolbert Innovation Hub</span>
@@ -788,32 +1073,32 @@
           </div>
         </div>
 
-        <!-- Programs column -->
         <div>
           <p class="footer-heading">Programs</p>
           <ul class="footer-links">
             <li><a href="apply.html">Study Abroad</a></li>
             <li><a href="fully-funded-scholarship.html">Fully Funded Scholarship</a></li>
-            <li><a href="healthcare.html">Healthcare Exposure</a></li>
+            <li><a href="healthcare.html">Healthcare Program</a></li>
             <li><a href="software.html">Software Innovation</a></li>
             <li><a href="entertainment.html">Entertainment</a></li>
-            <li><a href="classroom.html">Free Classroom</a></li>
+            <li><a href="grants.html">Grants Directory</a></li>
+            <li><a href="library.html">Digital Library</a></li>
           </ul>
         </div>
 
-        <!-- Classroom column -->
         <div>
-          <p class="footer-heading">Classroom</p>
+          <p class="footer-heading">Classroom &amp; Learning</p>
           <ul class="footer-links">
+            <li><a href="classroom.html">Skills Classroom</a></li>
             <li><a href="classroom-ielts.html">IELTS Preparation</a></li>
             <li><a href="classroom-toefl.html">TOEFL Preparation</a></li>
+            <li><a href="wassce.html">WASSCE PRO</a></li>
+            <li><a href="classroom-financial-literacy.html">Financial Literacy</a></li>
+            <li><a href="classroom-ai-skills.html">AI &amp; Future Skills</a></li>
             <li><a href="classroom-resource-center.html">Resource Center</a></li>
-            <li><a href="classroom-practice-tests.html">Practice Tests</a></li>
-            <li><a href="news.html">News &amp; Updates</a></li>
           </ul>
         </div>
 
-        <!-- Contact column -->
         <div>
           <p class="footer-heading">Contact Us</p>
           <div class="footer-contact-item">
@@ -833,16 +1118,15 @@
             <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
           </div>
           <div style="margin-top:1.25rem;">
-            <a href="contact.html" class="btn btn-outline btn-sm" style="font-size:0.82rem;">Get In Touch →</a>
+            <a href="contact.html" class="btn btn-outline btn-sm" style="font-size:.82rem;">Get In Touch →</a>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
         <div class="footer-bottom-inner">
-          <!-- Issue 22 fix: Privacy and Terms link to dedicated pages instead of contact.html -->
-          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved. | <a href="privacy.html" style="color:rgba(200,216,240,0.7);">Privacy Policy</a> | <a href="terms.html" style="color:rgba(200,216,240,0.7);">Terms of Service</a></p>
-          <p style="font-size:0.82rem; color:rgba(200,216,240,0.55); margin:0;">Empowering Africa's Future — Never Stop Innovating 🚀</p>
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved. | <a href="privacy.html" style="color:rgba(200,216,240,.7);">Privacy Policy</a> | <a href="terms.html" style="color:rgba(200,216,240,.7);">Terms of Service</a></p>
+          <p style="font-size:.82rem;color:rgba(200,216,240,.55);margin:0;">Empowering Africa's Future — Never Stop Innovating 🚀</p>
         </div>
       </div>
     </div>
@@ -853,39 +1137,16 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     (function () {
-      var swiper = new Swiper('.programs-carousel', {
+      new Swiper('.programs-carousel', {
         loop: true,
         speed: 600,
         slidesPerView: 1,
         spaceBetween: 16,
-        autoplay: {
-          delay: 4500,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        },
-        pagination: {
-          el: '.programs-carousel .swiper-pagination',
-          clickable: true,
-        },
-        navigation: {
-          nextEl: '.programs-carousel .swiper-button-next',
-          prevEl: '.programs-carousel .swiper-button-prev',
-        },
-        breakpoints: {
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 24,
-          },
-        },
-        a11y: {
-          prevSlideMessage: 'Previous program',
-          nextSlideMessage: 'Next program',
-          paginationBulletMessage: 'Go to slide {{index}}',
-        },
+        autoplay: { delay: 4500, disableOnInteraction: false, pauseOnMouseEnter: true },
+        pagination: { el: '.programs-carousel .swiper-pagination', clickable: true },
+        navigation: { nextEl: '.programs-carousel .swiper-button-next', prevEl: '.programs-carousel .swiper-button-prev' },
+        breakpoints: { 640: { slidesPerView: 2, spaceBetween: 20 }, 1024: { slidesPerView: 3, spaceBetween: 24 } },
+        a11y: { prevSlideMessage: 'Previous program', nextSlideMessage: 'Next program', paginationBulletMessage: 'Go to slide {{index}}' },
       });
     })();
   </script>
