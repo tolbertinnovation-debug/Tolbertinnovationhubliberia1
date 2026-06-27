@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Course Detail | TIH Academy</title>
-  <meta name="description" content="TIH Academy course — learn in-demand digital skills with Liberia's leading technology training platform." />
+  <meta name="description" content="TIH Academy course: learn in-demand digital skills with Liberia's leading technology training platform." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -339,7 +339,7 @@
 
         <div class="hero-instructor-row">
           <div class="instr-avatar" id="cdInstrIcon"></div>
-          <div class="instr-info">Created by <strong id="cdInstructor"></strong> — <span id="cdInstrTitle"></span></div>
+          <div class="instr-info">Created by <strong id="cdInstructor"></strong>, <span id="cdInstrTitle"></span></div>
         </div>
 
         <div class="hero-details-row" id="cdDetailsRow"></div>
@@ -740,7 +740,7 @@
       // CTA BANNER
       g('cdCtaTitle').textContent = 'Ready to Start? Enroll in ' + c.title.split(':')[0];
       g('cdCtaText').textContent = 'Join ' + c.students + ' students learning with TIH Academy. '
-        + (c.isFree ? 'This course is completely free — no credit card required.' : 'Invest in your future today.');
+        + (c.isFree ? 'This course is completely free, no credit card required.' : 'Invest in your future today.');
       g('cdCtaBtn').href = enrollHref;
       g('cdCtaBtn').textContent = c.isFree ? 'Enroll for Free Today →' : 'Enroll Now →';
 

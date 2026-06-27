@@ -134,7 +134,7 @@
           var origLabel = btn ? btn.textContent : '';
           if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
           fb.className = ''; fb.textContent = '';
-          var data = { _subject: 'TOEFL Certificate Request — Tolbert Innovation Hub', _captcha: 'false', _template: 'table' };
+          var data = { _subject: 'TOEFL Certificate Request: Tolbert Innovation Hub', _captcha: 'false', _template: 'table' };
           new FormData(this).forEach(function(v, k) { data[k] = v; });
           try {
             var res  = await fetch('https://formsubmit.co/ajax/tolbertinnovationhub@gmail.com', {

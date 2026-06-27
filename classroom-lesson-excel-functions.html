@@ -59,45 +59,45 @@
     </div></section>
     <section class="section"><div class="container"><div class="lesson-body">
       <div class="obj-card"><h3>Learning Objectives</h3><ul>
-        <li>Understand: <strong>Logical Functions — IF, AND, OR</strong></li>
-        <li>Understand: <strong>Lookup Functions — VLOOKUP and XLOOKUP</strong></li>
-        <li>Understand: <strong>Conditional Aggregation — SUMIF, COUNTIF, AVERAGEIF</strong></li>
+        <li>Understand: <strong>Logical Functions: IF, AND, OR</strong></li>
+        <li>Understand: <strong>Lookup Functions: VLOOKUP and XLOOKUP</strong></li>
+        <li>Understand: <strong>Conditional Aggregation: SUMIF, COUNTIF, AVERAGEIF</strong></li>
         <li>Understand: <strong>Data Validation and Pivot Tables</strong></li>
       </ul></div>
 
       <div class="ls"><h2>Logical Functions: IF, AND, OR</h2>
         <p>The IF function is the most important formula in Excel. It tests a condition and returns one value if true and another if false. Syntax: =IF(condition, value_if_true, value_if_false). Example: if a student's score is in column B and you want to show "Pass" or "Fail":</p>
         <div class="formula-box">=IF(B2&gt;=50, "Pass", "Fail")</div>
-        <p>You can nest IFs for multiple conditions: =IF(B2&gt;=70, "Distinction", IF(B2&gt;=50, "Pass", "Fail")). AND and OR allow multiple conditions: =IF(AND(B2&gt;=50, C2="Attended"), "Pass", "Fail") — the student passes only if they scored 50+ AND attended. =IF(OR(B2&gt;=90, C2="Scholarship"), "Award", "No Award") — they receive an award if either condition is true.</p>
+        <p>You can nest IFs for multiple conditions: =IF(B2&gt;=70, "Distinction", IF(B2&gt;=50, "Pass", "Fail")). AND and OR allow multiple conditions: =IF(AND(B2&gt;=50, C2="Attended"), "Pass", "Fail"), where the student passes only if they scored 50+ AND attended. =IF(OR(B2&gt;=90, C2="Scholarship"), "Award", "No Award"), and they receive an award if either condition is true.</p>
         <p>These functions are used in business for: flagging overdue payments, calculating bonuses, grading systems, inventory alerts, and loan eligibility checks. Mastering IF means you can automate decisions that would otherwise require manual checking of every row.</p>
       </div>
 
       <div class="ls"><h2>VLOOKUP and XLOOKUP</h2>
-        <p>VLOOKUP (Vertical Lookup) searches for a value in the first column of a table and returns a value from another column in the same row. It is used to pull data from one table into another — like looking up an employee's salary by their ID number.</p>
+        <p>VLOOKUP (Vertical Lookup) searches for a value in the first column of a table and returns a value from another column in the same row. It is used to pull data from one table into another, like looking up an employee's salary by their ID number.</p>
         <div class="formula-box">=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])</div>
-        <p>Example: You have a list of student IDs in column A and you want to pull their names from a separate table. =VLOOKUP(A2, StudentTable, 2, FALSE) — looks up the value in A2, searches in StudentTable, and returns the value from column 2 (name). Always use FALSE for exact match. VLOOKUP only searches left-to-right; the lookup column must be the leftmost column of your table.</p>
-        <p>XLOOKUP (available in Excel 365 and newer) is more powerful — it can search in any direction and is simpler to write. =XLOOKUP(A2, StudentTable[ID], StudentTable[Name], "Not Found"). If your Excel version supports XLOOKUP, prefer it over VLOOKUP. HLOOKUP works horizontally (across rows) instead of vertically. INDEX/MATCH is a more flexible alternative for complex lookups.</p>
+        <p>Example: You have a list of student IDs in column A and you want to pull their names from a separate table. =VLOOKUP(A2, StudentTable, 2, FALSE): looks up the value in A2, searches in StudentTable, and returns the value from column 2 (name). Always use FALSE for exact match. VLOOKUP only searches left-to-right; the lookup column must be the leftmost column of your table.</p>
+        <p>XLOOKUP (available in Excel 365 and newer) is more powerful: it can search in any direction and is simpler to write. =XLOOKUP(A2, StudentTable[ID], StudentTable[Name], "Not Found"). If your Excel version supports XLOOKUP, prefer it over VLOOKUP. HLOOKUP works horizontally (across rows) instead of vertically. INDEX/MATCH is a more flexible alternative for complex lookups.</p>
       </div>
 
       <div class="ls"><h2>SUMIF, COUNTIF, and AVERAGEIF</h2>
-        <p>These "conditional aggregation" functions calculate totals, counts, or averages only for rows that meet a specific condition — extremely useful for business reports and financial analysis.</p>
+        <p>These "conditional aggregation" functions calculate totals, counts, or averages only for rows that meet a specific condition, extremely useful for business reports and financial analysis.</p>
         <div class="formula-box">=SUMIF(range, criteria, sum_range)</div>
-        <p>Example: You have sales data with a "Region" column and a "Sales" column. To total sales for only the Monrovia region: =SUMIF(B:B, "Monrovia", C:C). COUNTIF counts how many rows match: =COUNTIF(B:B, "Monrovia") — how many transactions were in Monrovia. AVERAGEIF averages only matching rows: =AVERAGEIF(B:B, "Monrovia", C:C) — average sales per Monrovia transaction.</p>
-        <p>SUMIFS, COUNTIFS, and AVERAGEIFS (with an S) allow multiple conditions. =SUMIFS(C:C, B:B, "Monrovia", D:D, "Q1") — total Monrovia sales in Q1 only. These formulas replace hours of manual filtering and are standard in every financial model and business dashboard.</p>
+        <p>Example: You have sales data with a "Region" column and a "Sales" column. To total sales for only the Monrovia region: =SUMIF(B:B, "Monrovia", C:C). COUNTIF counts how many rows match: =COUNTIF(B:B, "Monrovia"): how many transactions were in Monrovia. AVERAGEIF averages only matching rows: =AVERAGEIF(B:B, "Monrovia", C:C): average sales per Monrovia transaction.</p>
+        <p>SUMIFS, COUNTIFS, and AVERAGEIFS (with an S) allow multiple conditions. =SUMIFS(C:C, B:B, "Monrovia", D:D, "Q1"): total Monrovia sales in Q1 only. only. These formulas replace hours of manual filtering and are standard in every financial model and business dashboard.</p>
       </div>
 
       <div class="ls"><h2>Data Validation and Pivot Tables</h2>
-        <p>Data Validation restricts what can be entered in a cell, preventing errors at the source. Select a cell &gt; Data &gt; Data Validation. You can restrict entries to: a list (dropdown menu of allowed values), whole numbers within a range, dates within a period, or custom formulas. Add an error message to tell users what is acceptable. Dropdowns in forms ensure consistent data entry — for example, ensuring a "Status" column only accepts "Open", "Closed", or "Pending".</p>
-        <p>Pivot Tables are Excel's most powerful data analysis tool. They summarize large datasets interactively — grouping, totaling, and filtering thousands of rows in seconds. To create: select your data &gt; Insert &gt; PivotTable. In the field list, drag fields to Rows, Columns, Values, and Filters. Example: drag "Region" to Rows, "Product" to Columns, and "Sales" to Values — you get a cross-tab showing sales by region and product with grand totals automatically.</p>
-        <p>PivotCharts turn a Pivot Table into an interactive chart. Slicers (Insert &gt; Slicer) add visual filter buttons to your Pivot Table. These tools allow you to explore data without writing any formulas — they are used in every professional business reporting context.</p>
+        <p>Data Validation restricts what can be entered in a cell, preventing errors at the source. Select a cell &gt; Data &gt; Data Validation. You can restrict entries to: a list (dropdown menu of allowed values), whole numbers within a range, dates within a period, or custom formulas. Add an error message to tell users what is acceptable. Dropdowns in forms ensure consistent data entry, for example, ensuring a "Status" column only accepts "Open", "Closed", or "Pending".</p>
+        <p>Pivot Tables are Excel's most powerful data analysis tool. They summarize large datasets interactively: grouping, totaling, and filtering thousands of rows in seconds. To create: select your data &gt; Insert &gt; PivotTable. In the field list, drag fields to Rows, Columns, Values, and Filters. Example: drag "Region" to Rows, "Product" to Columns, and "Sales" to Values, giving you a cross-tab showing sales by region and product with grand totals automatically.</p>
+        <p>PivotCharts turn a Pivot Table into an interactive chart. Slicers (Insert &gt; Slicer) add visual filter buttons to your Pivot Table. These tools allow you to explore data without writing any formulas. They are used in every professional business reporting context.</p>
       </div>
 
       <div class="tip-box"><h3>&#128161; Key Tips</h3><ul>
-        <li>Use absolute references ($A$1) in VLOOKUP table arrays so the formula does not break when copied down — press F4 to toggle between reference types.</li>
-        <li>Named Ranges (Formulas &gt; Define Name) make formulas readable — =SUMIF(Region, "Monrovia", Sales) is clearer than =SUMIF(B:B, "Monrovia", C:C).</li>
-        <li>Press Ctrl+T to convert a data range into an Excel Table — it auto-expands formulas and makes Pivot Tables much easier to refresh.</li>
+        <li>Use absolute references ($A$1) in VLOOKUP table arrays so the formula does not break when copied down. Press F4 to toggle between reference types.</li>
+        <li>Named Ranges (Formulas &gt; Define Name) make formulas readable: =SUMIF(Region, "Monrovia", Sales) is clearer than =SUMIF(B:B, "Monrovia", C:C).</li>
+        <li>Press Ctrl+T to convert a data range into an Excel Table. It auto-expands formulas and makes Pivot Tables much easier to refresh.</li>
         <li>When a formula returns #N/A or #VALUE!, wrap it in IFERROR: =IFERROR(VLOOKUP(...),"Not Found") to show a friendly message instead of an error.</li>
-        <li>Conditional Formatting (Home &gt; Conditional Formatting) highlights cells that meet criteria with color — great for flagging late payments or low stock.</li>
+        <li>Conditional Formatting (Home &gt; Conditional Formatting) highlights cells that meet criteria with color, great for flagging late payments or low stock.</li>
       </ul></div>
 
       <div class="vid-box">
@@ -129,7 +129,7 @@
         </div>
       </div>
 
-      <div class="asgn"><h3>&#128221; Practice Assignment</h3><p>Create an Excel workbook for a fictional small business with 20 rows of sales data (columns: Date, Region, Product, Units Sold, Unit Price, Total). Practice: 1) Add a "Status" column using IF to show "High" if Total is above 500, "Low" if below. 2) Use SUMIF to calculate total sales by Region. 3) Use COUNTIF to count how many sales each product had. 4) Create a Pivot Table summarizing total sales by Region and Product. 5) Add a Pivot Chart from your Pivot Table. Save the file and review your results — you have built a professional business report.</p></div>
+      <div class="asgn"><h3>&#128221; Practice Assignment</h3><p>Create an Excel workbook for a fictional small business with 20 rows of sales data (columns: Date, Region, Product, Units Sold, Unit Price, Total). Practice: 1) Add a "Status" column using IF to show "High" if Total is above 500, "Low" if below. 2) Use SUMIF to calculate total sales by Region. 3) Use COUNTIF to count how many sales each product had. 4) Create a Pivot Table summarizing total sales by Region and Product. 5) Add a Pivot Chart from your Pivot Table. Save the file and review your results. You have built a professional business report.</p></div>
 
       <button class="mc-btn" onclick="this.textContent='&#10003; Lesson Complete!';this.disabled=true;">Mark Lesson as Complete</button>
       <div class="lnav">

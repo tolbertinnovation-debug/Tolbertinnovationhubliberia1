@@ -384,7 +384,7 @@
         <div class="tab-panel" id="tab-notes">
           <div class="notes-label" id="notesLabel">📝 Lesson Notes</div>
           <div class="notes-prompt" id="notesPrompt"></div>
-          <textarea class="notes-textarea" id="notesArea" placeholder="Type your notes for this lesson — key points, questions, ideas…&#10;&#10;Notes are saved automatically." oninput="scheduleNoteSave()"></textarea>
+          <textarea class="notes-textarea" id="notesArea" placeholder="Type your notes for this lesson: key points, questions, ideas…&#10;&#10;Notes are saved automatically." oninput="scheduleNoteSave()"></textarea>
           <div class="notes-actions">
             <button class="btn-save-notes" onclick="saveNotes()">💾 Save</button>
             <span class="notes-saved-msg" id="noteSavedMsg">✓ Saved</span>
@@ -460,7 +460,7 @@
       <div class="completion-header">
         <div class="completion-icon">🏆</div>
         <h2>Course Complete!</h2>
-        <p id="completionSubtitle">Congratulations — you've mastered the course!</p>
+        <p id="completionSubtitle">Congratulations! You've mastered the course!</p>
       </div>
       <div class="certificate-preview">
         <div class="cert-header-band">
@@ -561,7 +561,7 @@
     document.getElementById('certCourseTitle').textContent = course.title;
     document.getElementById('certId').textContent = course.certId || ('TIH-2026-' + courseId.toUpperCase().substring(0,4) + '-0001');
     document.getElementById('certSigName').textContent = course.instructor;
-    document.getElementById('completionSubtitle').textContent = 'Congratulations — you\'ve mastered ' + course.title.split(':')[0] + '!';
+    document.getElementById('completionSubtitle').textContent = 'Congratulations! You\'ve mastered ' + course.title.split(':')[0] + '!';
     document.getElementById('certDate').textContent = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
   })();
 
@@ -687,7 +687,7 @@
     // Overview
     var overviewHtml;
     if (lesson.isQuiz) {
-      overviewHtml = '<p>This is the quiz for Module ' + lesson.module + '. You need 60% or higher to pass. Review the lessons if needed — you can retry as many times as you like.</p>';
+      overviewHtml = '<p>This is the quiz for Module ' + lesson.module + '. You need 60% or higher to pass. Review the lessons if needed. You can retry as many times as you like.</p>';
     } else if (lesson.isProject) {
       overviewHtml = '<p>This is the hands-on project for Module ' + lesson.module + '. Apply what you have learned to complete the project as described in the video. Mark it complete when you are done.</p>';
     } else {
@@ -702,7 +702,7 @@
     // Resources — Issue 12 fix: styled empty state instead of bare placeholder
     document.getElementById('resourcesContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">📂</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">Resources Coming Soon</p><p style="font-size:0.85rem;">Downloadable materials for this lesson are being prepared. Check back shortly or use the Notes tab to capture key points from the video.</p></div>';
     // Q&A — Issue 13 fix: styled empty state with engagement prompt instead of bare placeholder
-    document.getElementById('qaContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">💬</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">No Questions Yet</p><p style="font-size:0.85rem;">Have a question about this lesson? Reach out on WhatsApp or send us a message — we will add the most helpful Q&amp;As here.</p><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;background:#25D366;color:#fff;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px;text-decoration:none;">💬 Ask on WhatsApp</a></div>';
+    document.getElementById('qaContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">💬</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">No Questions Yet</p><p style="font-size:0.85rem;">Have a question about this lesson? Reach out on WhatsApp or send us a message. We will add the most helpful Q&amp;As here.</p><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;background:#25D366;color:#fff;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px;text-decoration:none;">💬 Ask on WhatsApp</a></div>';
     // Notes
     document.getElementById('notesLabel').textContent = '📝 ' + lesson.title;
     var notePrompts = {
@@ -881,7 +881,7 @@
       if (st && (st.textContent === '🔒' || st.textContent.trim() === '🔒')) st.textContent = '○';
     });
     var meta = document.getElementById('modMeta' + moduleNum);
-    if (meta) meta.textContent = meta.textContent.replace('🔒 Locked', 'Unlocked — Ready');
+    if (meta) meta.textContent = meta.textContent.replace('🔒 Locked', 'Unlocked: Ready');
     var header = modules[idx].querySelector('.sidebar-module-header');
     var lessonsList = modules[idx].querySelector('.sidebar-lessons');
     if (header && !header.classList.contains('open')) {
@@ -955,7 +955,7 @@
 
   // ===== DOWNLOAD / EXPORT NOTES =====
   function downloadNotes() {
-    var lines = ['TIH Academy — ' + course.title + ' — My Notes', '='.repeat(50), ''];
+    var lines = ['TIH Academy: ' + course.title + ' | My Notes', '='.repeat(50), ''];
     var hasAny = false;
     lessons.forEach(function(lesson, idx) {
       var note = (localStorage.getItem('tih_notes_' + courseId + '_' + idx) || '').trim();
@@ -1066,8 +1066,8 @@
     var nextModNum = currentQuizData.moduleNum + 1;
     document.getElementById('quizResultMsg').textContent = quizLastPassed
       ? 'Excellent work! You scored ' + quizScore + ' out of ' + total + '. Module ' + currentQuizData.moduleNum + ' quiz is complete. '
-        + (currentQuizData.isFinal ? 'Your course certificate is ready!' : 'Keep going — you\'re making great progress!')
-      : 'You scored ' + quizScore + ' out of ' + total + '. You need at least ' + passThreshold + ' correct to pass. Review the lessons and try again — you\'ve got this!';
+        + (currentQuizData.isFinal ? 'Your course certificate is ready!' : 'Keep going! You\'re making great progress!')
+      : 'You scored ' + quizScore + ' out of ' + total + '. You need at least ' + passThreshold + ' correct to pass. Review the lessons and try again. You've got this!';
     document.getElementById('quizResultBtn').textContent = quizLastPassed
       ? (currentQuizData.isFinal ? '🏆 Claim Certificate' : 'Continue to Next Module →')
       : '↺ Retry Quiz';
@@ -1177,7 +1177,7 @@
   function buildCertHTML(name, title, certId, certDate, sigName) {
     var esc = function(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
     return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>' +
-      '<title>Certificate — ' + esc(title) + ' — TIH Academy</title>' +
+      '<title>Certificate: ' + esc(title) + ' | TIH Academy</title>' +
       '<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>' +
       '<style>' +
       '@page{size:A4 landscape;margin:0}' +
