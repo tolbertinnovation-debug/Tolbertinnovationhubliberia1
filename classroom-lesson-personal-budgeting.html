@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding Money & Personal Budgeting | TIH Classroom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="classroom.css" />
+  <style>
+    .lesson-hero{background:linear-gradient(135deg,#000d24,#7c4a00 60%,#d97706 100%);color:#fff;padding:3.5rem 0 2.5rem;}
+    .lesson-hero .badge{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);margin:.25rem .25rem .25rem 0;}
+    .lesson-hero h1{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin:.75rem 0 .75rem;line-height:1.2;}
+    .prog-bar{height:8px;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden;max-width:280px;margin-top:.75rem;}
+    .prog-fill{height:100%;background:#d97706;border-radius:999px;}
+    .lesson-body{max-width:760px;margin:0 auto;}
+    .obj-card{background:#fef3c7;border-left:4px solid #d97706;border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .obj-card h3{color:#d97706;margin:0 0 .75rem;font-size:.9rem;text-transform:uppercase;}
+    .obj-card li{color:#374151;font-size:.95rem;line-height:1.7;margin-bottom:.3rem;}
+    .ls h2{font-size:1.15rem;color:#0d1520;margin:0 0 .7rem;padding-bottom:.4rem;border-bottom:2px solid #d9770633;}
+    .ls{margin-bottom:1.75rem;}
+    .ls p,.ls li{color:#374151;line-height:1.8;font-size:.96rem;}
+    .tip-box{background:#fef3c7;border-left:4px solid #d97706;border-radius:10px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .tip-box h3{color:#92400e;margin:0 0 .6rem;font-size:.9rem;}
+    .tip-box li{color:#78350f;font-size:.9rem;line-height:1.7;margin-bottom:.3rem;}
+    .vid-box{background:#f0f9ff;border:1px solid #0ea5e9;border-radius:12px;padding:1.5rem;margin:2rem 0;text-align:center;}
+    .vid-box h3{color:#0369a1;margin:0 0 .4rem;}
+    .vid-box p{color:#0c4a6e;font-size:.9rem;margin:0 0 1rem;}
+    .qi{background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;}
+    .qi strong{color:#0d1520;display:block;margin-bottom:.6rem;font-size:.96rem;}
+    .qo label{display:flex;align-items:center;gap:.6rem;padding:.45rem .7rem;border-radius:8px;cursor:pointer;font-size:.9rem;color:#374151;}
+    .qo label:hover{background:#f8fafd;}
+    .qo input{accent-color:#d97706;}
+    .qbtn{margin-top:.75rem;background:#d97706;color:#fff;border:none;border-radius:8px;padding:.55rem 1.3rem;font-weight:700;cursor:pointer;font-size:.88rem;}
+    .qfb{display:none;margin-top:.6rem;padding:.65rem .9rem;border-radius:8px;font-size:.88rem;font-weight:600;}
+    .asgn{background:#f0fdf4;border-left:4px solid #16a34a;border-radius:12px;padding:1.5rem;margin:2rem 0;}
+    .asgn h3{color:#166534;margin:0 0 .6rem;}
+    .asgn p{color:#14532d;font-size:.94rem;line-height:1.75;margin:0;}
+    .lnav{display:flex;gap:1rem;flex-wrap:wrap;margin:2.5rem 0;padding-top:2rem;border-top:1px solid #e4eaf4;}
+    .lnav a{flex:1;min-width:180px;background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1rem 1.1rem;text-decoration:none;color:#374151;font-size:.9rem;transition:border-color .2s;}
+    .lnav a:hover{border-color:#d97706;}
+    .nd{font-size:.76rem;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem;}
+    .nt{font-weight:700;color:#0d1520;}
+    .mc-btn{width:100%;background:#d97706;color:#fff;border:none;border-radius:12px;padding:.9rem;font-size:.97rem;font-weight:700;cursor:pointer;margin-top:1rem;}
+    .mc-btn:disabled{background:#16a34a;}
+    .budget-table{border-collapse:collapse;width:100%;margin:1.25rem 0;font-size:.92rem;}
+    .budget-table th{background:#d97706;color:#fff;padding:.65rem .9rem;text-align:left;}
+    .budget-table td{padding:.6rem .9rem;border:1px solid #e4eaf4;color:#374151;}
+    .budget-table tr:nth-child(even) td{background:#fef9f0;}
+    .budget-table tr:last-child td{font-weight:700;background:#fef3c7;}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="classroom.html"><img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="TIH" /><span>TIH Classroom</span></a>
+      <nav class="nav-links" aria-label="Classroom navigation">
+        <a href="index.html">Main Site</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="classroom-financial-literacy.html" class="active" aria-current="page">Financial Literacy &amp; Money Management</a>
+        <a href="classroom-dashboard.html">Dashboard</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode">&#127769;</button>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false">&#9776; Menu</button>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="lesson-hero">
+      <div class="container">
+        <span class="badge">Lesson 1</span>
+        <span class="badge">All Levels</span>
+        <span class="badge">&#9201; 45 min</span>
+        <h1>&#128176; Understanding Money &amp; Personal Budgeting</h1>
+        <p style="opacity:.88;max-width:60ch;font-size:.96rem;line-height:1.7;">Financial literacy is one of the most important life skills you can develop. Understanding how to manage your money — no matter how much or how little — gives you control over your future, reduces stress, and helps you build toward long-term security. In Liberia, where many people earn irregular incomes and rely on mobile money and informal trade, smart money management is essential.</p>
+        <div class="prog-bar"><div class="prog-fill" style="width:20%;"></div></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container"><div class="lesson-body">
+
+        <!-- Learning Objectives -->
+        <div class="obj-card">
+          <h3>Learning Objectives</h3>
+          <ul>
+            <li>Understand: <strong>The difference between income and expenses in the Liberian context</strong></li>
+            <li>Understand: <strong>How to apply the 50/30/20 rule to a Liberian household budget</strong></li>
+            <li>Understand: <strong>How to build and use a monthly budget table</strong></li>
+            <li>Understand: <strong>Daily expense tracking methods that work without a bank account</strong></li>
+          </ul>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="ls">
+          <h2>Why Financial Literacy Matters in Liberia</h2>
+          <p>Liberia's economy is largely informal — market traders, farmers, casual workers, and small business owners often have unpredictable incomes. Mobile money services like MTN MoMo and Lonestar Cell have made it easier to send and receive money, but easier access to money can also lead to faster spending without a plan. Many Liberians face financial emergencies — medical bills, school fees, funeral costs — without any savings buffer, making hard times even harder.</p>
+          <p>Financial literacy doesn't mean having a lot of money. It means knowing where your money goes, making intentional decisions, and planning for both expected and unexpected costs. The person who earns 5,000 LRD per week with a budget will, over time, be better off than the person earning 10,000 LRD with no plan. A budget does not restrict your freedom — it gives you a clear picture of your choices so that you can make better ones.</p>
+          <p>In Liberia, financial stress affects families, relationships, and health. When people have no plan, they borrow more, fall behind on school fees, and struggle to invest in small business growth. Learning to manage money — even basic tracking and saving habits — creates a foundation for stability. This lesson is designed to give you practical tools you can use immediately, regardless of whether you have a bank account or a smartphone.</p>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="ls">
+          <h2>Understanding Income and Expenses</h2>
+          <p>Income can be fixed or variable. Fixed income includes a monthly government salary, an NGO paycheck, or a regular remittance from family abroad — the same amount arrives on a predictable schedule. Variable income includes market trading profits, farm sales, daily labor wages, and small business earnings — the amount changes week to week or month to month. The first step in any budget is to list all your income sources and estimate a realistic monthly total. Include salary, trade profits, farm sales, mobile money receipts, and any remittances from family abroad.</p>
+          <p>Expenses fall into several categories: food and water, rent and utilities, school fees and school supplies, transport, healthcare, airtime and data, savings, and debt repayments. Some expenses happen every month (rent, food); others are irregular but predictable (school fees at the start of term, annual medical check-ups). The goal is to anticipate as many of these costs as possible so that they don't catch you by surprise.</p>
+          <p>The first step to any budget is knowing the difference between what comes in and what goes out each month. Many people are surprised to discover where their money actually goes once they write it down. Small daily purchases — a cold drink here, airtime top-up there — add up faster than most people realize. Writing everything down removes the guesswork and puts you in control.</p>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="ls">
+          <h2>The 50/30/20 Rule Adapted for Liberia</h2>
+          <p>The 50/30/20 rule is a simple and widely used guideline for dividing your income into three categories. Fifty percent goes to needs — the essential costs that you cannot avoid, including food, rent, school fees, transport to work, and basic healthcare. Thirty percent goes to wants — things that improve your life but are not strictly essential, such as entertainment, extra data bundles beyond basic communication needs, new clothing beyond immediate necessity, or social outings. Twenty percent goes to savings and debt repayment — building a financial cushion and reducing money owed to others.</p>
+          <p>In Liberia, where incomes are often low relative to the cost of living, the 20% savings goal may feel difficult or even impossible at first. That is normal. Start with 5%, or even 2%. The most important thing is to build the habit of setting money aside before spending, not after. Even saving 200 LRD per week adds up to 10,400 LRD in a year — enough to cover a school fee payment or form the beginning of an emergency fund. If you carry debt, especially with informal money lenders who may charge very high weekly interest rates, make paying down that debt your savings priority. Reducing high-interest debt is one of the fastest ways to improve your financial situation.</p>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="ls">
+          <h2>Building a Monthly Budget Table</h2>
+          <p>A budget is simply a plan for your money. It does not need to be complicated or require any special tools. Here is a simple template you can recreate in a notebook, in Google Sheets on your phone, or on a plain piece of paper. The key is to fill in the "Budgeted Amount" column at the start of the month, then record "Actual Spent" as the month goes on.</p>
+
+          <table class="budget-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Budgeted Amount (LRD)</th>
+                <th>Actual Spent (LRD)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Food &amp; Water</td>
+                <td>8,000</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Rent</td>
+                <td>5,000</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>School Fees</td>
+                <td>3,000</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Transport</td>
+                <td>2,500</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Airtime &amp; Data</td>
+                <td>1,500</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Healthcare</td>
+                <td>1,000</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Savings</td>
+                <td>2,000</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Other</td>
+                <td>1,000</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>TOTAL</td>
+                <td>24,000</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>Adjust the categories and amounts to match your real life. The key is to fill in "Budgeted Amount" at the start of the month and "Actual Spent" at the end of the month. When actual spending exceeds budget, that category needs attention — either the budget was too low and needs adjusting, or the spending was too high and needs to be reduced next month.</p>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="ls">
+          <h2>Tracking Expenses Daily</h2>
+          <p>The most important habit in personal finance is tracking every expenditure. You cannot manage what you do not measure. There are several simple methods that work well in Liberia even without a bank account or internet connection. The Notebook Method: carry a small, inexpensive exercise book and write down every purchase as it happens — the market stall, the taxi fare, the snack from a hawker, the airtime top-up. Do not wait until the end of the day to remember; write it immediately. Google Sheets or Excel on your phone: both are free and can be set up with simple category columns in under ten minutes. A dedicated WhatsApp note — either saving messages to yourself in a private chat, or creating a WhatsApp group with only yourself as a member — is another quick option that many people already know how to use.</p>
+          <p>Review your spending every Sunday. Set aside fifteen minutes to look back at the week's purchases. Look for patterns: Are you spending more on airtime than you budgeted? Are market purchases adding up faster than expected? Are there small daily expenses — drinks, snacks, transport choices — that could be reduced? Small daily expenses often surprise people most when they see them totalled across a week or month. The purpose of the weekly review is not to feel guilty about spending, but to make more deliberate choices the following week. Over time, this habit reshapes how you relate to money entirely.</p>
+        </div>
+
+        <!-- Tip Box -->
+        <div class="tip-box">
+          <h3>&#128161; Smart Money Habits</h3>
+          <ul>
+            <li>Pay yourself first — move your savings amount the same day you receive income, before spending anything else.</li>
+            <li>Avoid informal money lenders with very high interest rates whenever possible. Explore group savings (susu/osusu) with trusted friends and community members instead.</li>
+            <li>Use your mobile money transaction history as a free record of your spending — review it at the end of every month to see where your money went.</li>
+            <li>Set a specific savings goal (school fees, small business stock, emergency fund) — goals make saving feel purposeful and help you stay motivated when it is tempting to spend.</li>
+          </ul>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div style="background:#fef3c7;border-left:4px solid #d97706;border-radius:12px;padding:1.5rem;margin:2rem 0;">
+          <h3 style="color:#92400e;margin:0 0 .75rem;font-size:1rem;">Key Takeaways</h3>
+          <ul style="margin:0;padding-left:1.2rem;">
+            <li style="color:#78350f;font-size:.95rem;line-height:1.75;margin-bottom:.4rem;">Know your income sources and categorize your expenses — this is the foundation of financial control.</li>
+            <li style="color:#78350f;font-size:.95rem;line-height:1.75;margin-bottom:.4rem;">The 50/30/20 rule is a helpful guide: needs, wants, and savings. Adapt it to your real situation and start small if necessary.</li>
+            <li style="color:#78350f;font-size:.95rem;line-height:1.75;margin-bottom:.4rem;">A simple monthly budget table — even in a notebook — is more powerful than any finance app if you actually use it consistently.</li>
+            <li style="color:#78350f;font-size:.95rem;line-height:1.75;margin-bottom:.4rem;">Daily expense tracking reveals spending patterns and helps you make better, more deliberate decisions week by week.</li>
+          </ul>
+        </div>
+
+        <!-- Quiz -->
+        <div style="margin:2rem 0;">
+          <h2 style="font-size:1.15rem;color:#0d1520;margin:0 0 1rem;">&#9989; Quick Knowledge Check</h2>
+
+          <div class="qi" id="q1">
+            <strong>Q1. What does the '50' in the 50/30/20 budgeting rule represent?</strong>
+            <div class="qo"><label><input type="radio" name="q1" value="a" /> 50% for savings</label></div>
+            <div class="qo"><label><input type="radio" name="q1" value="b" /> 50% for needs like food, rent, and school fees</label></div>
+            <div class="qo"><label><input type="radio" name="q1" value="c" /> 50% for entertainment</label></div>
+            <div class="qo"><label><input type="radio" name="q1" value="d" /> 50% for debt repayment</label></div>
+            <button class="qbtn" onclick="checkQ('q1','b')">Check Answer</button>
+            <div class="qfb" id="q1-fb"></div>
+          </div>
+
+          <div class="qi" id="q2">
+            <strong>Q2. Which of the following is an example of VARIABLE income in Liberia?</strong>
+            <div class="qo"><label><input type="radio" name="q2" value="a" /> Monthly government salary</label></div>
+            <div class="qo"><label><input type="radio" name="q2" value="b" /> NGO monthly paycheck</label></div>
+            <div class="qo"><label><input type="radio" name="q2" value="c" /> Market trading profits</label></div>
+            <div class="qo"><label><input type="radio" name="q2" value="d" /> Fixed pension payment</label></div>
+            <button class="qbtn" onclick="checkQ('q2','c')">Check Answer</button>
+            <div class="qfb" id="q2-fb"></div>
+          </div>
+
+          <div class="qi" id="q3">
+            <strong>Q3. What is the recommended first step when building a monthly budget?</strong>
+            <div class="qo"><label><input type="radio" name="q3" value="a" /> Open a bank account immediately</label></div>
+            <div class="qo"><label><input type="radio" name="q3" value="b" /> List all your income sources and all your expenses</label></div>
+            <div class="qo"><label><input type="radio" name="q3" value="c" /> Cut all spending by 50%</label></div>
+            <div class="qo"><label><input type="radio" name="q3" value="d" /> Ask your employer for a raise</label></div>
+            <button class="qbtn" onclick="checkQ('q3','b')">Check Answer</button>
+            <div class="qfb" id="q3-fb"></div>
+          </div>
+
+          <div class="qi" id="q4">
+            <strong>Q4. Which free tool can you use to track expenses on a basic smartphone?</strong>
+            <div class="qo"><label><input type="radio" name="q4" value="a" /> Adobe Photoshop</label></div>
+            <div class="qo"><label><input type="radio" name="q4" value="b" /> Microsoft PowerPoint</label></div>
+            <div class="qo"><label><input type="radio" name="q4" value="c" /> Google Sheets</label></div>
+            <div class="qo"><label><input type="radio" name="q4" value="d" /> Google Maps</label></div>
+            <button class="qbtn" onclick="checkQ('q4','c')">Check Answer</button>
+            <div class="qfb" id="q4-fb"></div>
+          </div>
+        </div>
+
+        <!-- Practical Assignment -->
+        <div class="asgn">
+          <h3>&#128221; Practical Assignment</h3>
+          <p>Create your own monthly budget for the current month. Use the table structure from Section 4 of this lesson. Step 1: List every source of income you expect this month with the amount. Step 2: List every expense category and estimate how much you will spend. Step 3: Calculate whether your income covers your expenses. Step 4: Identify one expense you can reduce and one amount you will move to savings. You can do this in a notebook, on your phone in Google Sheets, or on a piece of paper. Bring it to the next lesson or share a photo in the TIH WhatsApp group for feedback.</p>
+        </div>
+
+        <!-- Mark Complete -->
+        <button class="mc-btn" onclick="this.textContent='&#10003; Lesson Marked Complete!';this.disabled=true;this.style.background='#16a34a';">Mark Lesson as Complete</button>
+
+        <!-- Lesson Navigation -->
+        <div class="lnav">
+          <a href="classroom-financial-literacy.html">
+            <div class="nd">&#8592; Track Overview</div>
+            <div class="nt">Financial Literacy &amp; Money Management</div>
+          </a>
+          <a href="classroom-lesson-mobile-money-savings.html" style="text-align:right">
+            <div class="nd">Next &#8594;</div>
+            <div class="nt">Mobile Money &amp; Smart Saving</div>
+          </a>
+        </div>
+
+      </div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container">
+    <div class="footer-grid">
+      <div><p><strong>TIH Classroom</strong></p><p style="opacity:.8;font-size:.9rem;">Free skills platform for Liberian learners.</p></div>
+      <div><p><strong>This Track</strong></p><p><a href="classroom-financial-literacy.html">Financial Literacy &amp; Money Management</a></p></div>
+      <div><p><strong>All Tracks</strong></p><p><a href="classroom.html">Browse All Courses</a></p></div>
+      <div><p><strong>Main Site</strong></p><p><a href="index.html">Home</a></p></div>
+    </div>
+    <p class="copyright-note">&#169; 2026 Tolbert Innovation Hub. All rights reserved.</p>
+  </div></footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 4px 20px rgba(0,0,0,.2);"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="34" height="34" alt="WhatsApp" /></a>
+
+  <script>
+  function checkQ(id, correct) {
+    var q = document.getElementById(id);
+    var selected = q.querySelector('input[name="'+id+'"]:checked');
+    var fb = document.getElementById(id+'-fb');
+    if (!selected) { fb.style.display='block'; fb.style.background='#fef3c7'; fb.style.color='#92400e'; fb.textContent='Please select an answer first.'; return; }
+    if (selected.value === correct) {
+      fb.style.display='block'; fb.style.background='#f0fdf4'; fb.style.color='#166534'; fb.textContent='Correct! Well done.';
+    } else {
+      fb.style.display='block'; fb.style.background='#fef2f2'; fb.style.color='#991b1b'; fb.textContent='Not quite. Review the lesson and try again.';
+    }
+  }
+  </script>
+  <script src="classroom.js"></script><script src="chatbot.js"></script>
+</body>
+</html>

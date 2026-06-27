@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction to Artificial Intelligence | TIH Classroom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="classroom.css" />
+  <style>
+    .lesson-hero{background:linear-gradient(135deg,#000d24,#4c1d95 60%,#6d28d9 100%);color:#fff;padding:3.5rem 0 2.5rem;}
+    .lesson-hero .badge{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);margin:.25rem .25rem .25rem 0;}
+    .lesson-hero h1{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin:.75rem 0 .75rem;line-height:1.2;}
+    .prog-bar{height:8px;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden;max-width:280px;margin-top:.75rem;}
+    .prog-fill{height:100%;background:#6d28d9;border-radius:999px;}
+    .lesson-body{max-width:760px;margin:0 auto;}
+    .obj-card{background:#ede9fe;border-left:4px solid #6d28d9;border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .obj-card h3{color:#6d28d9;margin:0 0 .75rem;font-size:.9rem;text-transform:uppercase;}
+    .obj-card li{color:#374151;font-size:.95rem;line-height:1.7;margin-bottom:.3rem;}
+    .ls h2{font-size:1.15rem;color:#0d1520;margin:0 0 .7rem;padding-bottom:.4rem;border-bottom:2px solid #6d28d933;}
+    .ls{margin-bottom:1.75rem;}
+    .ls p,.ls li{color:#374151;line-height:1.8;font-size:.96rem;}
+    .tip-box{background:#ede9fe;border-left:4px solid #6d28d9;border-radius:10px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .tip-box h3{color:#4c1d95;margin:0 0 .6rem;font-size:.9rem;}
+    .tip-box li{color:#3b0764;font-size:.9rem;line-height:1.7;margin-bottom:.3rem;}
+    .key-box{background:#ede9fe;border-left:4px solid #6d28d9;border-radius:12px;padding:1.5rem;margin:2rem 0;}
+    .key-box h3{color:#4c1d95;margin:0 0 .75rem;font-size:.95rem;font-weight:700;}
+    .key-box li{color:#374151;font-size:.94rem;line-height:1.75;margin-bottom:.4rem;}
+    .qi{background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;}
+    .qi strong{color:#0d1520;display:block;margin-bottom:.6rem;font-size:.96rem;}
+    .qo label{display:flex;align-items:center;gap:.6rem;padding:.45rem .7rem;border-radius:8px;cursor:pointer;font-size:.9rem;color:#374151;}
+    .qo label:hover{background:#f8fafd;}
+    .qo input{accent-color:#6d28d9;}
+    .qbtn{margin-top:.75rem;background:#6d28d9;color:#fff;border:none;border-radius:8px;padding:.55rem 1.3rem;font-weight:700;cursor:pointer;font-size:.88rem;}
+    .qfb{display:none;margin-top:.6rem;padding:.65rem .9rem;border-radius:8px;font-size:.88rem;font-weight:600;}
+    .asgn{background:#f0fdf4;border-left:4px solid #16a34a;border-radius:12px;padding:1.5rem;margin:2rem 0;}
+    .asgn h3{color:#166534;margin:0 0 .6rem;}
+    .asgn p{color:#14532d;font-size:.94rem;line-height:1.75;margin:0;}
+    .lnav{display:flex;gap:1rem;flex-wrap:wrap;margin:2.5rem 0;padding-top:2rem;border-top:1px solid #e4eaf4;}
+    .lnav a{flex:1;min-width:180px;background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1rem 1.1rem;text-decoration:none;color:#374151;font-size:.9rem;transition:border-color .2s;}
+    .lnav a:hover{border-color:#6d28d9;}
+    .nd{font-size:.76rem;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem;}
+    .nt{font-weight:700;color:#0d1520;}
+    .mc-btn{width:100%;background:#6d28d9;color:#fff;border:none;border-radius:12px;padding:.9rem;font-size:.97rem;font-weight:700;cursor:pointer;margin-top:1rem;}
+    .mc-btn:disabled{background:#16a34a;}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="classroom.html"><img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="TIH" /><span>TIH Classroom</span></a>
+      <nav class="nav-links" aria-label="Classroom navigation">
+        <a href="index.html">Main Site</a><a href="classroom.html">Classroom</a>
+        <a href="classroom-ai-skills.html" class="active" aria-current="page">AI &amp; Future Digital Skills</a><a href="classroom-dashboard.html">Dashboard</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode">&#127769;</button>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false">&#9776; Menu</button>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="lesson-hero">
+      <div class="container">
+        <span class="badge">Lesson 1 of 4</span>
+        <span class="badge">Beginner</span>
+        <span class="badge">&#9201; 40 min</span>
+        <h1>&#129302; Introduction to Artificial Intelligence</h1>
+        <p style="opacity:.88;max-width:60ch;font-size:.96rem;line-height:1.7;">Artificial Intelligence — or AI — is one of the most talked-about topics in technology today. But what is it really? In this lesson, we cut through the hype and science fiction to give you a clear, practical understanding of what AI is, how it works, and why it matters for your life and career in Liberia and beyond.</p>
+        <div class="prog-bar"><div class="prog-fill" style="width:25%;"></div></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container"><div class="lesson-body">
+
+        <div class="obj-card">
+          <h3>Learning Objectives</h3>
+          <ul>
+            <li>Understand: <strong>What artificial intelligence is and how it differs from traditional computer programs</strong></li>
+            <li>Understand: <strong>The main types of AI tools used in everyday life</strong></li>
+            <li>Understand: <strong>How AI is being applied in Africa and Liberia specifically</strong></li>
+            <li>Understand: <strong>The opportunities AI creates and the risks it poses for workers and communities</strong></li>
+          </ul>
+        </div>
+
+        <div class="ls">
+          <h2>What Is AI? Separating Fact from Fiction</h2>
+          <p>AI in movies is usually a humanoid robot that thinks exactly like a human — the Terminator, HAL 9000, and similar characters have shaped how most people imagine artificial intelligence. Real AI is far less dramatic but far more useful. Artificial Intelligence is the ability of a computer system to perform tasks that normally require human intelligence — things like recognizing speech, translating languages, identifying objects in photos, recommending videos, or answering questions in natural language. AI is not magic and it is not alive. It is a very sophisticated pattern-matching system trained on massive amounts of data.</p>
+          <p>The key idea is that instead of a programmer writing explicit rules ("if the email says 'you won a prize' then mark as spam"), the AI learns the rules itself by analyzing thousands of examples. This is called machine learning — the computer learns from data rather than being explicitly programmed for every situation. A spam filter trained with machine learning reads tens of thousands of spam emails and tens of thousands of legitimate emails, and it figures out on its own what patterns separate them. When it sees a new email, it applies that learned knowledge to make a judgment. The result is far more flexible and accurate than any set of hand-written rules could be.</p>
+          <p>Think of it using the input-processing-output model: you give the AI an input (a photo, a question, a block of text), it processes that input using everything it has learned from its training data, and it gives you an output (a label, an answer, a translation). The "intelligence" is entirely in what the system learned during training. This is why AI tools can seem surprisingly capable at some tasks and surprisingly wrong at others — they are only as good as the data they were trained on and the patterns they were able to extract from it.</p>
+        </div>
+
+        <div class="ls">
+          <h2>Types of AI We Use Every Day</h2>
+          <p>Many people already use AI daily without realizing it. The technology is quietly embedded in the apps and devices that millions of people interact with every hour. Once you start recognizing AI in your daily life, you begin to see just how widespread it already is — and how much it shapes the information and options you are presented with.</p>
+          <p>Here are the most common types of AI tools in everyday use:</p>
+          <ul>
+            <li><strong>Voice Assistants</strong> — Siri on iPhone, Google Assistant on Android, and Alexa on Amazon devices all use AI to understand your spoken words and respond in natural language. They process audio input, convert it to text, understand your intent, and generate a spoken reply — all in under a second.</li>
+            <li><strong>Recommendation Engines</strong> — When YouTube suggests a video, Netflix suggests a movie, or Jumia shows products "you might like," that is AI at work. These systems analyze your past behavior and the behavior of millions of other users to predict what you want next. They are highly effective, which is why people often find themselves watching far more YouTube than they planned.</li>
+            <li><strong>Translation Tools</strong> — Google Translate uses AI to convert between over 100 languages. It is not perfect, but it is remarkably useful and improves every year as it processes more and more translated text from around the world.</li>
+            <li><strong>Image Recognition</strong> — When your phone unlocks with your face, when Facebook suggests tagging your friend in a photo, or when Google Lens identifies a plant or a product from a photograph — these are all AI-powered image recognition systems analyzing visual data.</li>
+            <li><strong>Language Models like ChatGPT</strong> — These are AI systems trained on vast amounts of text that can answer questions, write essays, summarize documents, write computer code, and hold natural conversations. These are the most powerful general-purpose AI tools available to individuals today, and they are accessible to anyone with an internet connection.</li>
+          </ul>
+          <p>Understanding which AI tool is right for which task is one of the most valuable practical skills you can develop. The next lesson in this track will go deeper into how to use these tools effectively for real work tasks.</p>
+        </div>
+
+        <div class="ls">
+          <h2>AI in Africa and Liberia</h2>
+          <p>AI is not just a Silicon Valley technology reserved for wealthy countries. African startups and international organizations are actively using AI to solve real problems on the continent, often in ways specifically tailored to African contexts and needs. Mobile money fraud detection is one important example: companies like MTN and Orange use AI systems to detect unusual transactions in real time and prevent fraud on mobile money platforms, protecting millions of Africans from financial crime. Agricultural tools are another: AI-powered apps can analyze photos of crops to detect diseases and recommend appropriate treatments, helping small-scale farmers improve their yields without needing access to expensive agronomists or laboratories. In health, where many communities have very few doctors, AI tools are being developed to help community health workers identify common diseases from symptoms or medical images, extending the reach of healthcare into underserved areas.</p>
+          <p>Job matching platforms across the continent also increasingly use AI to connect job seekers with opportunities based on their skills and experience, reducing the friction that has historically made it difficult for qualified people to find relevant work. In education, AI tutoring and content tools are beginning to make quality learning resources available to students regardless of geography. These applications are not science fiction — they are operating today across Nigeria, Kenya, Ghana, Rwanda, and increasingly across the rest of the continent.</p>
+          <p>In Liberia specifically, AI tools like ChatGPT and Google's AI features are available to anyone with internet access — there is no restriction, no special subscription required for basic use, and no technical expertise needed to get started. TIH Classroom itself uses AI to provide personalized learning support to students. The digital skills gap in Liberia means that Liberians who learn to use AI tools effectively have a significant competitive advantage in the job market. Employers — both local and international — are increasingly looking for workers who can leverage AI to work faster and more effectively. Getting ahead of this curve now, while AI is still new to most people, is a real opportunity.</p>
+        </div>
+
+        <div class="ls">
+          <h2>Opportunities and Risks</h2>
+          <p>AI creates enormous opportunities for individuals who learn to use it well. Many jobs will not disappear but will change — and those who adapt will become significantly more productive. Data entry is becoming faster with AI assistance. Customer service agents can use AI to answer routine questions faster and focus their energy on complex cases that require real human judgment. Writers and marketers can use AI to draft content quickly and then refine it. Programmers can use AI coding assistants to write and debug code at a pace that would have been impossible five years ago. Researchers and analysts can use AI to summarize vast amounts of information in minutes rather than hours. In each of these cases, AI is a force multiplier for human workers who know how to use it.</p>
+          <p>At the same time, some job categories face genuine risk. Highly repetitive data processing work, basic translation between common language pairs, some routine customer service roles, and certain entry-level writing and coding tasks may see reduced demand as AI handles more of that work automatically. This is not unique to AI — every major wave of technology has shifted which skills are in demand. The workers who struggled most were those who refused to learn new tools. The best strategy for staying competitive is to focus on skills that AI cannot replicate easily: critical thinking, creativity, emotional intelligence, leadership, local cultural knowledge, and physical presence. And crucially — learn to work with AI as a tool, not against it. A person who uses AI well will outperform a person who does not, in almost every field.</p>
+          <p>There are also real ethical concerns worth understanding. AI systems can be biased if they are trained on biased data — a hiring AI trained mostly on data from Western applicants may systematically disadvantage African candidates even when it is not designed to do so. AI can also generate convincing misinformation: deepfake videos, fake news articles written at scale, and fraudulent images are all becoming easier to produce. Being a critical consumer of AI-generated content — asking "could this be artificially generated?" before sharing or believing something — is an essential skill in the modern information environment. AI is a powerful tool, and like all powerful tools, it requires judgment and responsibility to use well.</p>
+        </div>
+
+        <div class="tip-box">
+          <h3>&#128161; Getting Started with AI Today</h3>
+          <ul>
+            <li>Visit <strong>chat.openai.com</strong> to try ChatGPT for free. Start by asking it to explain something you are curious about or to help you draft a professional email — you will be surprised how capable it is.</li>
+            <li>Use <strong>Google Translate</strong> (translate.google.com) to practice AI-powered translation between English and local languages. Try translating a paragraph and then back-translating it to see where the AI makes errors.</li>
+            <li>Notice AI in your daily life — YouTube recommendations, smartphone face unlock, and spam email filters are all AI systems operating quietly in the background of tools you already use.</li>
+            <li>Follow AI news from African perspectives at sites like <strong>TechCabal.com</strong> and <strong>Disrupt Africa</strong> to see how AI is developing on the continent and what opportunities are emerging for African workers and entrepreneurs.</li>
+          </ul>
+        </div>
+
+        <div class="key-box">
+          <h3>&#9989; Key Takeaways</h3>
+          <ul>
+            <li>AI is pattern recognition at scale — it learns from data and performs tasks that normally require human intelligence, without being explicitly programmed with every rule.</li>
+            <li>You are already using AI every day through translation tools, voice assistants, recommendation engines, and spam filters — AI is not a future technology, it is a present one.</li>
+            <li>AI is being applied across Africa in mobile money fraud detection, agriculture, health, and education — it is solving real problems in African contexts right now.</li>
+            <li>The best strategy is to learn to use AI as a tool — people who use AI effectively will outperform those who do not, and that advantage is available to anyone willing to learn.</li>
+          </ul>
+        </div>
+
+        <div style="margin:2rem 0;">
+          <h2 style="font-size:1.15rem;color:#0d1520;margin:0 0 1rem;">&#9989; Quick Knowledge Check</h2>
+
+          <div class="qi" id="q1">
+            <strong>Q1. What is the main difference between traditional programming and machine learning?</strong>
+            <div class="qo"><label><input type="radio" name="q1" value="a" /> Traditional programs are faster</label></div>
+            <div class="qo"><label><input type="radio" name="q1" value="b" /> Machine learning learns rules from data rather than being explicitly programmed</label></div>
+            <div class="qo"><label><input type="radio" name="q1" value="c" /> Machine learning requires more electricity</label></div>
+            <div class="qo"><label><input type="radio" name="q1" value="d" /> Traditional programs use the internet</label></div>
+            <button class="qbtn" onclick="checkQ('q1','b')">Check Answer</button>
+            <div class="qfb" id="q1-fb"></div>
+          </div>
+
+          <div class="qi" id="q2">
+            <strong>Q2. Which of the following is an example of AI you might already use?</strong>
+            <div class="qo"><label><input type="radio" name="q2" value="a" /> A printed dictionary</label></div>
+            <div class="qo"><label><input type="radio" name="q2" value="b" /> A regular alarm clock</label></div>
+            <div class="qo"><label><input type="radio" name="q2" value="c" /> YouTube's video recommendation system</label></div>
+            <div class="qo"><label><input type="radio" name="q2" value="d" /> A notebook and pen</label></div>
+            <button class="qbtn" onclick="checkQ('q2','c')">Check Answer</button>
+            <div class="qfb" id="q2-fb"></div>
+          </div>
+
+          <div class="qi" id="q3">
+            <strong>Q3. How is AI being used in African agriculture?</strong>
+            <div class="qo"><label><input type="radio" name="q3" value="a" /> To replace all farmers with robots</label></div>
+            <div class="qo"><label><input type="radio" name="q3" value="b" /> To analyze crop photos and detect diseases</label></div>
+            <div class="qo"><label><input type="radio" name="q3" value="c" /> To automatically harvest all crops</label></div>
+            <div class="qo"><label><input type="radio" name="q3" value="d" /> To predict stock market prices</label></div>
+            <button class="qbtn" onclick="checkQ('q3','b')">Check Answer</button>
+            <div class="qfb" id="q3-fb"></div>
+          </div>
+
+          <div class="qi" id="q4">
+            <strong>Q4. Which type of skill is HARDEST for AI to replace?</strong>
+            <div class="qo"><label><input type="radio" name="q4" value="a" /> Basic data entry</label></div>
+            <div class="qo"><label><input type="radio" name="q4" value="b" /> Routine customer service responses</label></div>
+            <div class="qo"><label><input type="radio" name="q4" value="c" /> Emotional intelligence and human relationships</label></div>
+            <div class="qo"><label><input type="radio" name="q4" value="d" /> Simple translation between common languages</label></div>
+            <button class="qbtn" onclick="checkQ('q4','c')">Check Answer</button>
+            <div class="qfb" id="q4-fb"></div>
+          </div>
+        </div>
+
+        <div class="asgn">
+          <h3>&#128221; Practical Assignment</h3>
+          <p>Use Google Translate (translate.google.com) to translate a paragraph of your choice from English into a local Liberian language. Then visit chat.openai.com and ask ChatGPT to write a professional email for you — for example, an email applying for a job, requesting information, or following up on a meeting. After trying both tools, write 2–3 sentences describing your experience: What worked well? What surprised you? What limitations did you notice? Share your reflection in the TIH WhatsApp group or bring it to the next lesson.</p>
+        </div>
+
+        <button class="mc-btn" onclick="this.textContent='&#10003; Lesson Marked Complete!';this.disabled=true;this.style.background='#16a34a';">Mark Lesson as Complete</button>
+
+        <div class="lnav">
+          <a href="classroom-ai-skills.html">
+            <div class="nd">&#8592; Track Overview</div>
+            <div class="nt">AI &amp; Future Digital Skills</div>
+          </a>
+          <a href="classroom-lesson-using-ai-tools.html" style="text-align:right">
+            <div class="nd">Next &#8594;</div>
+            <div class="nt">Using AI Tools Effectively</div>
+          </a>
+        </div>
+
+      </div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container">
+    <div class="footer-grid">
+      <div><p><strong>TIH Classroom</strong></p><p style="opacity:.8;font-size:.9rem;">Free skills platform for Liberian learners.</p></div>
+      <div><p><strong>This Track</strong></p><p><a href="classroom-ai-skills.html">AI &amp; Future Digital Skills</a></p></div>
+      <div><p><strong>All Tracks</strong></p><p><a href="classroom.html">Browse All Courses</a></p></div>
+      <div><p><strong>Main Site</strong></p><p><a href="index.html">Home</a></p></div>
+    </div>
+    <p class="copyright-note">&#169; 2026 Tolbert Innovation Hub. All rights reserved.</p>
+  </div></footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 4px 20px rgba(0,0,0,.2);"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="34" height="34" alt="WhatsApp" /></a>
+
+  <script>
+  function checkQ(id, correct) {
+    var q = document.getElementById(id);
+    var selected = q.querySelector('input[name="'+id+'"]:checked');
+    var fb = document.getElementById(id+'-fb');
+    if (!selected) { fb.style.display='block'; fb.style.background='#fef3c7'; fb.style.color='#92400e'; fb.textContent='Please select an answer first.'; return; }
+    if (selected.value === correct) {
+      fb.style.display='block'; fb.style.background='#f0fdf4'; fb.style.color='#166534'; fb.textContent='Correct! Well done.';
+    } else {
+      fb.style.display='block'; fb.style.background='#fef2f2'; fb.style.color='#991b1b'; fb.textContent='Not quite. Review the lesson and try again.';
+    }
+  }
+  </script>
+  <script src="classroom.js"></script><script src="chatbot.js"></script>
+</body>
+</html>

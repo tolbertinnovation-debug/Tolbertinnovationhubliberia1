@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding Cyber Threats | TIH Classroom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="classroom.css" />
+  <style>
+    .lesson-hero{background:linear-gradient(135deg,#000d24,#312e81 60%,#4338ca 100%);color:#fff;padding:3.5rem 0 2.5rem;}
+    .lesson-hero .badge{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);margin:.25rem .25rem .25rem 0;}
+    .lesson-hero h1{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin:.75rem 0 .75rem;line-height:1.2;}
+    .prog-bar{height:8px;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden;max-width:280px;margin-top:.75rem;}
+    .prog-fill{height:100%;background:#4338ca;border-radius:999px;}
+    .lesson-body{max-width:760px;margin:0 auto;}
+    .obj-card{background:#e0e7ff;border-left:4px solid #4338ca;border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .obj-card h3{color:#4338ca;margin:0 0 .75rem;font-size:.9rem;text-transform:uppercase;}
+    .obj-card li{color:#374151;font-size:.95rem;line-height:1.7;margin-bottom:.3rem;}
+    .ls h2{font-size:1.15rem;color:#0d1520;margin:0 0 .7rem;padding-bottom:.4rem;border-bottom:2px solid #4338ca33;}
+    .ls{margin-bottom:1.75rem;}
+    .ls p,.ls li{color:#374151;line-height:1.8;font-size:.96rem;}
+    .ls ul{padding-left:1.4rem;margin:.5rem 0;}
+    .ls ul li{margin-bottom:.4rem;}
+    .threat-block{background:#f8f9ff;border:1px solid #c7d2fe;border-radius:10px;padding:1rem 1.25rem;margin:.85rem 0;}
+    .threat-block h4{color:#4338ca;margin:0 0 .35rem;font-size:.96rem;}
+    .threat-block p{margin:0;color:#374151;font-size:.93rem;line-height:1.75;}
+    .tip-box{background:#e0e7ff;border-left:4px solid #4338ca;border-radius:10px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .tip-box h3{color:#3730a3;margin:0 0 .6rem;font-size:.9rem;}
+    .tip-box li{color:#1e1b4b;font-size:.9rem;line-height:1.7;margin-bottom:.3rem;}
+    .takeaway-box{background:#e0e7ff;border-left:4px solid #4338ca;border-radius:12px;padding:1.5rem;margin:2rem 0;}
+    .takeaway-box h3{color:#3730a3;margin:0 0 .75rem;font-size:.95rem;text-transform:uppercase;}
+    .takeaway-box li{color:#1e1b4b;font-size:.94rem;line-height:1.75;margin-bottom:.45rem;}
+    .qi{background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;}
+    .qi strong{color:#0d1520;display:block;margin-bottom:.6rem;font-size:.96rem;}
+    .qo label{display:flex;align-items:center;gap:.6rem;padding:.45rem .7rem;border-radius:8px;cursor:pointer;font-size:.9rem;color:#374151;}
+    .qo label:hover{background:#f8fafd;}
+    .qo input{accent-color:#4338ca;}
+    .qbtn{margin-top:.75rem;background:#4338ca;color:#fff;border:none;border-radius:8px;padding:.55rem 1.3rem;font-weight:700;cursor:pointer;font-size:.88rem;}
+    .qfb{display:none;margin-top:.6rem;padding:.65rem .9rem;border-radius:8px;font-size:.88rem;font-weight:600;}
+    .asgn{background:#f0fdf4;border-left:4px solid #16a34a;border-radius:12px;padding:1.5rem;margin:2rem 0;}
+    .asgn h3{color:#166534;margin:0 0 .6rem;}
+    .asgn p{color:#14532d;font-size:.94rem;line-height:1.75;margin:0;}
+    .lnav{display:flex;gap:1rem;flex-wrap:wrap;margin:2.5rem 0;padding-top:2rem;border-top:1px solid #e4eaf4;}
+    .lnav a{flex:1;min-width:180px;background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1rem 1.1rem;text-decoration:none;color:#374151;font-size:.9rem;transition:border-color .2s;}
+    .lnav a:hover{border-color:#4338ca;}
+    .nd{font-size:.76rem;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem;}
+    .nt{font-weight:700;color:#0d1520;}
+    .mc-btn{width:100%;background:#4338ca;color:#fff;border:none;border-radius:12px;padding:.9rem;font-size:.97rem;font-weight:700;cursor:pointer;margin-top:1rem;}
+    .mc-btn:disabled{background:#16a34a;}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="classroom.html"><img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="TIH" /><span>TIH Classroom</span></a>
+      <nav class="nav-links" aria-label="Classroom navigation">
+        <a href="index.html">Main Site</a>
+        <a href="classroom.html">Classroom</a>
+        <a href="classroom-cybersecurity.html" class="active" aria-current="page">Cybersecurity &amp; Online Safety</a>
+        <a href="classroom-dashboard.html">Dashboard</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode">&#127769;</button>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false">&#9776; Menu</button>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="lesson-hero">
+      <div class="container">
+        <span class="badge">Lesson 1 of 4</span>
+        <span class="badge">All Levels</span>
+        <span class="badge">&#9201; 40 min</span>
+        <h1>&#9888;&#65039; Understanding Cyber Threats</h1>
+        <p style="opacity:.88;max-width:60ch;font-size:.96rem;line-height:1.7;">Cybercrime is one of the fastest-growing threats in West Africa. Every day, Liberians lose money to phone scams, fake job offers, SIM swap fraud, and phishing attacks. This lesson teaches you to recognize the most common cyber threats targeting Liberians, understand how attackers think, and protect yourself before you become the next victim.</p>
+        <div class="prog-bar"><div class="prog-fill" style="width:25%;"></div></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container"><div class="lesson-body">
+
+        <!-- Learning Objectives -->
+        <div class="obj-card">
+          <h3>Learning Objectives</h3>
+          <ul>
+            <li>Understand: <strong>The main types of cyber threats active in Liberia and West Africa</strong></li>
+            <li>Understand: <strong>The most common online and phone-based scams targeting Liberians</strong></li>
+            <li>Understand: <strong>How to identify a phishing attempt before clicking or responding</strong></li>
+            <li>Understand: <strong>What to do immediately if you are targeted by a cyber threat</strong></li>
+          </ul>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="ls">
+          <h2>Section 1 &mdash; Cybercrime in Liberia: Why You Are a Target</h2>
+          <p>Cybercrime in West Africa has grown dramatically in the past decade, fueled by increased internet access, mobile money adoption, and sophisticated criminal networks. In Liberia, the Liberia Telecommunications Authority (LTA) has reported thousands of fraud cases related to mobile money scams, SIM swap attacks, and impersonation fraud annually. Globally, developing countries are disproportionately targeted because awareness is lower, law enforcement capacity is still developing, and mobile money systems &mdash; while enormously valuable &mdash; have created new attack surfaces for criminals.</p>
+          <p>Critically, you do not need to be wealthy or tech-savvy to be a target. Criminals target ordinary Liberians receiving remittances from abroad, market traders using MTN MoMo or Lonestar Cell mobile money, students with smartphone access, and anyone with a Facebook or WhatsApp account. The attackers are not random; they are organized, patient, and experienced at exploiting human psychology in ways that feel convincing even to intelligent, careful people.</p>
+          <p>Understanding how these attacks work is the most important defense. Cybercriminals rely on urgency, fear, and confusion &mdash; once you understand their methods, their attacks lose their power. Knowledge is not just helpful in this context; it is the difference between losing your life savings and protecting everything you have worked for.</p>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="ls">
+          <h2>Section 2 &mdash; Types of Cyber Threats</h2>
+          <p>Cyber threats come in several forms. Understanding each type helps you recognize attacks when they happen. The categories below cover the threats most frequently reported in Liberia and across West Africa.</p>
+
+          <div class="threat-block">
+            <h4>Phishing</h4>
+            <p>Fraudulent emails, SMS messages, or social media messages designed to trick you into revealing personal information (passwords, PIN numbers, account details) or clicking a malicious link. <em>Example:</em> "Your MTN MoMo account has been suspended. Click here to verify your identity." The link takes you to a fake website that steals your login credentials. Phishing messages are crafted to look authentic &mdash; they may use official logos, familiar language, and urgent tone to bypass your natural caution.</p>
+          </div>
+
+          <div class="threat-block">
+            <h4>Vishing (Voice Phishing)</h4>
+            <p>Phone calls where the attacker pretends to be from a bank, mobile money provider, government agency, or international organization. They create urgency: "Your account will be closed in 24 hours unless you verify your PIN now." The caller may know your name, partial account details, or other personal information to seem legitimate. No legitimate organization will ever ask for your PIN over the phone &mdash; not a bank, not MTN, not the government.</p>
+          </div>
+
+          <div class="threat-block">
+            <h4>SIM Swap Fraud</h4>
+            <p>The attacker contacts your mobile network provider, pretending to be you, and requests your phone number be transferred to a new SIM card they control. Once they have your number, they can receive your mobile money OTP (one-time password) codes and drain your account. This is one of the most damaging scams in Liberia. Victims often discover the attack only when their phone suddenly loses all signal &mdash; by which time the attacker may have already accessed their mobile money account.</p>
+          </div>
+
+          <div class="threat-block">
+            <h4>Malware and Viruses</h4>
+            <p>Malicious software installed on your device through suspicious downloads, fake app stores, infected USB drives, or malicious links. Malware can log your keystrokes, steal your passwords, or even lock your device until you pay a ransom (ransomware). Fake versions of popular apps &mdash; banking apps, WhatsApp clones, "free" games &mdash; are a common delivery method in West Africa. Only install apps from official stores (Google Play, Apple App Store) and avoid clicking download links in messages.</p>
+          </div>
+
+          <div class="threat-block">
+            <h4>Social Engineering</h4>
+            <p>The broadest category &mdash; any manipulation technique that exploits human psychology rather than technical vulnerabilities. This includes pretending to be a friend in need of emergency money, creating fake romantic relationships to extract money (romance scams), or impersonating authority figures such as police officers, immigration officials, or UN representatives. Social engineering is effective because it targets human emotions: compassion, fear, greed, and trust. No security software can fully protect against it &mdash; awareness is the only reliable defense.</p>
+          </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="ls">
+          <h2>Section 3 &mdash; Common Scams in Liberia</h2>
+          <p><strong>The "You Won a Prize" Scam:</strong> You receive an SMS, WhatsApp message, or Facebook notification saying you have won a cash prize, phone, or scholarship. To claim your prize, you must pay a small "processing fee" or "tax" upfront. No prize ever arrives. The fee is the entire point. These messages are sent to thousands of people simultaneously; the scammers profit from the small percentage who pay. Legitimate competitions never ask you to pay to receive your winnings. If you did not enter a competition, you cannot have won it.</p>
+          <p><strong>Fake Job Offers:</strong> A message arrives on WhatsApp, Facebook, or by SMS offering an unusually well-paying job &mdash; data entry from home, an overseas position, a government contract &mdash; with minimal requirements. To proceed, you must pay a "registration fee," "background check fee," or "visa processing fee." These jobs do not exist. Real employers do not ask job seekers to pay fees for job applications. If a job offer asks you to send money before you can start work, it is a scam without exception.</p>
+          <p><strong>Romance Scams:</strong> Someone connects with you on Facebook or WhatsApp, often claiming to be a Liberian working abroad, a UN worker, or a foreign professional. They build a relationship over weeks or months &mdash; sending messages, sometimes photos or even video calls &mdash; then request money for an emergency: medical bills, a stuck shipment, a flight home to meet you. The person is often not who they claim to be. Profile photos may be stolen from real people's social media accounts. These scams can last months and cause serious financial and emotional harm. Be cautious of any online relationship that moves quickly and eventually involves a financial request.</p>
+          <p><strong>Government Impersonation:</strong> An attacker poses as a government official, police officer, immigration officer, or court representative and threatens you with arrest, deportation, or legal action unless you pay a fine immediately via mobile money. The threat is designed to cause panic and override rational thinking. Real government officials do not collect fines or fees via mobile money. If you receive such a call, hang up immediately and verify through official channels &mdash; call the relevant agency's publicly listed number directly, never a number provided by the caller.</p>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="ls">
+          <h2>Section 4 &mdash; How to Spot a Phishing Attempt</h2>
+          <p>Phishing messages are designed to trigger panic and quick action before you have time to think critically. The attacker wants you to act NOW &mdash; click this link, enter your PIN, confirm your account &mdash; before your rational mind can evaluate whether the request makes sense. The most powerful defense is to slow down. Any message demanding immediate action with threats of account suspension, arrest, or loss of money should immediately raise your suspicion. Examine the message carefully before doing anything.</p>
+          <p>Recognizing phishing is a skill you can develop. Once you know what to look for, fraudulent messages become much easier to identify. The following red flags appear in the vast majority of phishing attempts. The more of these you see in a single message, the more certain you can be that it is fraudulent.</p>
+          <ul>
+            <li><strong>Urgent language:</strong> "Act now or your account will be deleted in 24 hours"</li>
+            <li><strong>Requests for your PIN, password, or OTP code</strong> &mdash; legitimate organizations NEVER ask for these</li>
+            <li>The sender's email address or phone number does not match the official organization (e.g., MTNMoMo@gmail.com instead of an official MTN domain)</li>
+            <li>Links that look slightly wrong: mtn-momo-liberia.com instead of mtn.com.lr</li>
+            <li>Prizes, offers, or opportunities that seem too good to be true</li>
+            <li>Poor grammar, spelling errors, and unprofessional language</li>
+            <li>Pressure to complete the action using WhatsApp or a personal phone rather than official channels</li>
+            <li>Request to keep the interaction secret ("don't tell family members about this offer")</li>
+          </ul>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="ls">
+          <h2>Section 5 &mdash; What To Do If You Are Targeted</h2>
+          <p>If you receive a suspicious message or call: do not click any links, do not call back numbers provided in the message, and do not share any personal information. Hang up on calls demanding immediate action. Block the number. Trusting your instincts is important &mdash; if something feels wrong, it very likely is. You are never obligated to respond instantly to any financial or security request, regardless of how urgent the attacker makes it seem.</p>
+          <p>If you accidentally clicked a link or entered information, act immediately. Change your passwords and mobile money PIN right away. Contact your mobile money provider's official customer service line (find the number on their official website, not in the suspicious message). Notify your bank if applicable. If you experience a SIM swap &mdash; your phone suddenly loses signal without explanation &mdash; call your mobile network provider immediately from another phone and report that your number may have been compromised. The faster you act, the more likely you are to limit the damage.</p>
+          <p>For reporting: contact the Liberia Telecommunications Authority (LTA) at their official hotline, and report to the Liberia National Police cybercrime unit. Document everything &mdash; screenshots of messages, phone numbers, message content, times and dates &mdash; before reporting. Sharing information about scams with family, friends, and on community WhatsApp groups is one of the most effective ways to prevent others from becoming victims. Awareness spreads faster than any government campaign when communities share actively. Your experience, if shared, could prevent someone you care about from losing their money.</p>
+        </div>
+
+        <!-- Tip Box -->
+        <div class="tip-box">
+          <h3>&#128161; Stay Safe Online &mdash; Rules to Live By</h3>
+          <ul>
+            <li>Never share your mobile money PIN, bank PIN, or OTP code with anyone &mdash; not a bank representative, not a mobile money agent, not even a family member.</li>
+            <li>Before acting on any urgent financial message, call the organization directly using the official number from their website, not a number provided in the suspicious message.</li>
+            <li>Enable two-factor authentication (2FA) on all your important accounts &mdash; email, social media, and any financial apps.</li>
+            <li>Regularly check your mobile money transaction history for unauthorized transactions. Report discrepancies immediately.</li>
+          </ul>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="takeaway-box">
+          <h3>&#9989; Key Takeaways</h3>
+          <ul>
+            <li>Cybercriminals target ordinary Liberians through phishing, vishing, SIM swap fraud, fake job offers, and romance scams &mdash; awareness is your best defense.</li>
+            <li>Urgency and fear are the attacker's primary weapons &mdash; slow down, think critically, and verify before acting on any unexpected financial message.</li>
+            <li>Never share your PIN, password, or OTP with anyone, regardless of who they claim to be or how convincing they sound.</li>
+            <li>Report suspected scams to the LTA, document everything with screenshots, and share awareness in your community.</li>
+          </ul>
+        </div>
+
+        <!-- Quiz -->
+        <div style="margin:2rem 0;">
+          <h2 style="font-size:1.15rem;color:#0d1520;margin:0 0 1rem;">&#9989; Quick Knowledge Check</h2>
+
+          <div class="qi" id="q1">
+            <strong>Q1. What is a SIM swap attack?</strong>
+            <div class="qo"><label><input type="radio" name="q1" value="a" /> When someone physically steals your SIM card from your phone</label></div>
+            <div class="qo"><label><input type="radio" name="q1" value="b" /> When an attacker transfers your phone number to a new SIM they control, gaining access to your mobile money OTP codes</label></div>
+            <div class="qo"><label><input type="radio" name="q1" value="c" /> When your SIM card stops working due to network issues</label></div>
+            <div class="qo"><label><input type="radio" name="q1" value="d" /> When you upgrade to a newer SIM card at the network office</label></div>
+            <button class="qbtn" onclick="checkQ('q1','b')">Check Answer</button>
+            <div class="qfb" id="q1-fb"></div>
+          </div>
+
+          <div class="qi" id="q2">
+            <strong>Q2. You receive an SMS: "Your MTN MoMo account is suspended. Enter your PIN at this link to restore access." What should you do?</strong>
+            <div class="qo"><label><input type="radio" name="q2" value="a" /> Enter your PIN immediately to restore access</label></div>
+            <div class="qo"><label><input type="radio" name="q2" value="b" /> Forward the message to your contacts</label></div>
+            <div class="qo"><label><input type="radio" name="q2" value="c" /> Click the link and check if it looks legitimate</label></div>
+            <div class="qo"><label><input type="radio" name="q2" value="d" /> Delete the message, do not click the link, and contact MTN directly using their official number</label></div>
+            <button class="qbtn" onclick="checkQ('q2','d')">Check Answer</button>
+            <div class="qfb" id="q2-fb"></div>
+          </div>
+
+          <div class="qi" id="q3">
+            <strong>Q3. Which of the following is a red flag that a job offer might be a scam?</strong>
+            <div class="qo"><label><input type="radio" name="q3" value="a" /> The job description mentions specific required qualifications</label></div>
+            <div class="qo"><label><input type="radio" name="q3" value="b" /> The company has an official website and email domain</label></div>
+            <div class="qo"><label><input type="radio" name="q3" value="c" /> You are asked to pay a registration fee or background check fee before receiving the job</label></div>
+            <div class="qo"><label><input type="radio" name="q3" value="d" /> The employer requests references from your previous work</label></div>
+            <button class="qbtn" onclick="checkQ('q3','c')">Check Answer</button>
+            <div class="qfb" id="q3-fb"></div>
+          </div>
+
+          <div class="qi" id="q4">
+            <strong>Q4. What is the first thing you should do if you accidentally entered your mobile money PIN on a suspicious website?</strong>
+            <div class="qo"><label><input type="radio" name="q4" value="a" /> Wait to see if anything happens before taking action</label></div>
+            <div class="qo"><label><input type="radio" name="q4" value="b" /> Change your mobile money PIN immediately and contact your mobile network provider</label></div>
+            <div class="qo"><label><input type="radio" name="q4" value="c" /> Uninstall your mobile money app</label></div>
+            <div class="qo"><label><input type="radio" name="q4" value="d" /> Post about it on Facebook to warn others before doing anything else</label></div>
+            <button class="qbtn" onclick="checkQ('q4','b')">Check Answer</button>
+            <div class="qfb" id="q4-fb"></div>
+          </div>
+        </div>
+
+        <!-- Assignment -->
+        <div class="asgn">
+          <h3>&#128221; Practical Assignment</h3>
+          <p>Open your email inbox or WhatsApp messages right now and look for any message that seems unusual, unexpected, or suspicious. If you find one, identify at least 3 red flags it contains (refer to the list in Section 4 of this lesson). If you cannot find a suspicious message, write a description of what a typical phishing SMS in Liberia might look like &mdash; include the fake sender, the urgent message text, the request it makes, and the red flags that give it away. Share your findings in the TIH WhatsApp group &mdash; your example might help another learner recognize and avoid a real scam.</p>
+        </div>
+
+        <!-- Mark Complete -->
+        <button class="mc-btn" onclick="this.textContent='&#10003; Lesson Marked Complete!';this.disabled=true;this.style.background='#16a34a';">Mark Lesson as Complete</button>
+
+        <!-- Lesson Navigation -->
+        <div class="lnav">
+          <a href="classroom-cybersecurity.html">
+            <div class="nd">&#8592; Track Overview</div>
+            <div class="nt">Cybersecurity &amp; Online Safety</div>
+          </a>
+          <a href="classroom-lesson-password-security.html" style="text-align:right">
+            <div class="nd">Next &#8594;</div>
+            <div class="nt">Password Security &amp; Account Protection</div>
+          </a>
+        </div>
+
+      </div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container">
+    <div class="footer-grid">
+      <div><p><strong>TIH Classroom</strong></p><p style="opacity:.8;font-size:.9rem;">Free skills platform for Liberian learners.</p></div>
+      <div><p><strong>This Track</strong></p><p><a href="classroom-cybersecurity.html">Cybersecurity &amp; Online Safety</a></p></div>
+      <div><p><strong>All Tracks</strong></p><p><a href="classroom.html">Browse All Courses</a></p></div>
+      <div><p><strong>Main Site</strong></p><p><a href="index.html">Home</a></p></div>
+    </div>
+    <p class="copyright-note">&#169; 2026 Tolbert Innovation Hub. All rights reserved.</p>
+  </div></footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 4px 20px rgba(0,0,0,.2);"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="34" height="34" alt="WhatsApp" /></a>
+
+  <script>
+  function checkQ(id, correct) {
+    var q = document.getElementById(id);
+    var selected = q.querySelector('input[name="'+id+'"]:checked');
+    var fb = document.getElementById(id+'-fb');
+    if (!selected) { fb.style.display='block'; fb.style.background='#fef3c7'; fb.style.color='#92400e'; fb.textContent='Please select an answer first.'; return; }
+    if (selected.value === correct) {
+      fb.style.display='block'; fb.style.background='#f0fdf4'; fb.style.color='#166534'; fb.textContent='Correct! Well done.';
+    } else {
+      fb.style.display='block'; fb.style.background='#fef2f2'; fb.style.color='#991b1b'; fb.textContent='Not quite. Review the lesson and try again.';
+    }
+  }
+  </script>
+  <script src="classroom.js"></script><script src="chatbot.js"></script>
+</body>
+</html>
