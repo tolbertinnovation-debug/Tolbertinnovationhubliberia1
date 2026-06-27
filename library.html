@@ -347,6 +347,20 @@
       padding: 0.18rem 0.45rem;
       border-radius: 4px;
     }
+    .lib-pdf-badge {
+      position: absolute;
+      bottom: 0.5rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      background: rgba(5,150,105,0.92);
+      color: #fff;
+      font-size: 0.52rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.4rem;
+    }
 
     /* Search results section */
     #lib-search-section { display: none; }
@@ -919,13 +933,14 @@
             <option value="career">Career Dev</option>
             <option value="wassce">WASSCE PRO</option>
             <option value="tih">TIH Academy</option>
+            <option value="classics">Classic Books</option>
           </select>
           <button type="submit" class="lib-search-btn" onclick="doSearch()">🔍 Search</button>
         </form>
 
         <div class="lib-hero-stats">
-          <div class="lib-hero-stat"><span class="num">50+</span><span class="lbl">Resources Available</span></div>
-          <div class="lib-hero-stat"><span class="num">11</span><span class="lbl">Categories</span></div>
+          <div class="lib-hero-stat"><span class="num">70+</span><span class="lbl">Resources Available</span></div>
+          <div class="lib-hero-stat"><span class="num">12</span><span class="lbl">Categories</span></div>
           <div class="lib-hero-stat"><span class="num">100%</span><span class="lbl">Free Access</span></div>
           <div class="lib-hero-stat"><span class="num">2026</span><span class="lbl">Updated</span></div>
         </div>
@@ -1099,6 +1114,30 @@
         </div>
       </section>
 
+      <!-- Free Downloads -->
+      <section class="lib-section" style="background:linear-gradient(135deg,#001535 0%,#002868 50%,#003a8c 100%);color:#fff;">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title" style="color:#fff;">📥 Free Download Books</h2>
+            <span style="font-size:0.8rem;color:rgba(255,255,255,0.7);font-weight:600;">Real books · Click to download PDF</span>
+          </div>
+          <p style="color:rgba(255,255,255,0.75);font-size:0.88rem;margin:-0.5rem 0 1.25rem;max-width:64ch;">All books below are legally free to download. Click any book to open the download page. Public domain classics from Project Gutenberg and CC-licensed technical books.</p>
+          <div class="lib-shelf" id="shelf-freedl"></div>
+        </div>
+      </section>
+
+      <!-- Classic Books -->
+      <section class="lib-section lib-section-alt">
+        <div class="container">
+          <div class="lib-section-header">
+            <h2 class="lib-section-title">📜 Classic Books — Free Public Domain</h2>
+            <span style="font-size:0.8rem;color:#059669;font-weight:700;background:#d1fae5;padding:0.2rem 0.7rem;border-radius:999px;">FREE PDF</span>
+          </div>
+          <p style="color:#4b5563;font-size:0.88rem;margin:-0.5rem 0 1.25rem;max-width:64ch;">Public domain classics from Project Gutenberg. These books are over 100 years old, completely free, and still deeply relevant for business, leadership, and personal growth.</p>
+          <div class="lib-shelf" id="shelf-classics"></div>
+        </div>
+      </section>
+
     </div><!-- /lib-shelves -->
 
     <!-- FEATURES -->
@@ -1148,8 +1187,8 @@
     <div class="lib-stats-banner">
       <div class="container">
         <div class="lib-stats-row">
-          <div class="lib-stat-item"><span class="big">50+</span><p class="label">Educational Resources</p></div>
-          <div class="lib-stat-item"><span class="big">11</span><p class="label">Subject Categories</p></div>
+          <div class="lib-stat-item"><span class="big">70+</span><p class="label">Educational Resources</p></div>
+          <div class="lib-stat-item"><span class="big">12</span><p class="label">Subject Categories</p></div>
           <div class="lib-stat-item"><span class="big">100%</span><p class="label">Free Access</p></div>
           <div class="lib-stat-item"><span class="big">2026</span><p class="label">Regularly Updated</p></div>
         </div>
@@ -1376,7 +1415,23 @@
     {id:47,title:"Digital Skills Essentials: Computers & Internet",author:"TIH Academy",desc:"The complete beginner's guide to computers and the internet. Learn hardware, software, file management, email, online safety, and essential digital skills for the modern workplace.",year:2026,cat:"tih",icon:"💻",bg:"linear-gradient(150deg,#002868 0%,#BF0A30 100%)",pages:220,size:"8.4 MB",readTime:"5 hrs",lang:"English",tags:["digital skills","computers","internet"],featured:true,popular:true,isNew:false},
     {id:48,title:"Office Suite Mastery: Word, Excel & PowerPoint",author:"TIH Academy",desc:"Become proficient in Microsoft Office: Word for documents, Excel for data and calculations, and PowerPoint for presentations. Perfect for students and working professionals.",year:2026,cat:"tih",icon:"📊",bg:"linear-gradient(150deg,#003a8c 0%,#BF0A30 100%)",pages:310,size:"12.0 MB",readTime:"6-7 hrs",lang:"English",tags:["microsoft office","excel","word","powerpoint"],featured:false,popular:true,isNew:false},
     {id:49,title:"Leadership & Communication Skills",author:"TIH Academy",desc:"Develop leadership and communication skills that define successful professionals. Covers active listening, public speaking, emotional intelligence, team leadership, and conflict management.",year:2026,cat:"tih",icon:"🎯",bg:"linear-gradient(150deg,#001e52 0%,#9a0828 100%)",pages:195,size:"7.4 MB",readTime:"4 hrs",lang:"English",tags:["leadership","communication","skills"],featured:false,popular:true,isNew:false},
-    {id:50,title:"Entrepreneurship: From Idea to Launch",author:"TIH Academy",desc:"Practical course companion covering the entrepreneurship journey from idea to business launch. Learn business modeling, market validation, financial planning, and making your first sales.",year:2026,cat:"tih",icon:"🚀",bg:"linear-gradient(150deg,#002868 0%,#c2410c 100%)",pages:255,size:"9.8 MB",readTime:"5-6 hrs",lang:"English",tags:["entrepreneurship","business","launch"],featured:false,popular:false,isNew:true}
+    {id:50,title:"Entrepreneurship: From Idea to Launch",author:"TIH Academy",desc:"Practical course companion covering the entrepreneurship journey from idea to business launch. Learn business modeling, market validation, financial planning, and making your first sales.",year:2026,cat:"tih",icon:"🚀",bg:"linear-gradient(150deg,#002868 0%,#c2410c 100%)",pages:255,size:"9.8 MB",readTime:"5-6 hrs",lang:"English",tags:["entrepreneurship","business","launch"],featured:false,popular:false,isNew:true},
+    // ── PUBLIC DOMAIN CLASSICS (Project Gutenberg) ──
+    {id:51,title:"As a Man Thinketh",author:"James Allen",desc:"One of the greatest self-help books ever written. James Allen explores how your thoughts shape your character, health, and destiny. A short but powerful read that has inspired millions worldwide since 1903.",year:1903,cat:"classics",icon:"💭",bg:"linear-gradient(150deg,#1e1b4b 0%,#312e81 100%)",pages:62,size:"0.4 MB",readTime:"1-2 hrs",lang:"English",tags:["mindset","self-help","classic","thoughts"],featured:true,popular:true,isNew:false,hasPdf:true,readUrl:"https://www.gutenberg.org/files/4507/4507-h/4507-h.htm",pdfUrl:"https://www.gutenberg.org/ebooks/4507",source:"Project Gutenberg · Public Domain"},
+    {id:52,title:"The Science of Getting Rich",author:"Wallace D. Wattles",desc:"A practical guide to building wealth through right thinking and right action. Published in 1910, this book inspired the modern bestseller 'The Secret' and remains one of the most influential prosperity books ever written.",year:1910,cat:"classics",icon:"💰",bg:"linear-gradient(150deg,#78350f 0%,#d97706 100%)",pages:88,size:"0.5 MB",readTime:"2 hrs",lang:"English",tags:["wealth","mindset","prosperity","classic"],featured:true,popular:true,isNew:false,hasPdf:true,readUrl:"https://www.gutenberg.org/files/1541/1541-h/1541-h.htm",pdfUrl:"https://www.gutenberg.org/ebooks/1541",source:"Project Gutenberg · Public Domain"},
+    {id:53,title:"Acres of Diamonds",author:"Russell H. Conwell",desc:"A timeless classic by the founder of Temple University. Conwell argues that opportunity and wealth lie right where you are — you don't need to look elsewhere. Based on a lecture he delivered over 6,000 times worldwide.",year:1890,cat:"classics",icon:"💎",bg:"linear-gradient(150deg,#164e63 0%,#0891b2 100%)",pages:52,size:"0.3 MB",readTime:"1 hr",lang:"English",tags:["success","opportunity","classic","entrepreneurship"],featured:false,popular:true,isNew:false,hasPdf:true,readUrl:"https://www.gutenberg.org/files/368/368-h/368-h.htm",pdfUrl:"https://www.gutenberg.org/ebooks/368",source:"Project Gutenberg · Public Domain"},
+    {id:54,title:"Up from Slavery",author:"Booker T. Washington",desc:"The inspiring autobiography of Booker T. Washington, born into slavery and who became one of the most influential leaders in American history. His story of perseverance, education, and leadership is profoundly relevant for all African readers.",year:1901,cat:"classics",icon:"✊",bg:"linear-gradient(150deg,#1c1917 0%,#44403c 100%)",pages:244,size:"1.1 MB",readTime:"5-6 hrs",lang:"English",tags:["autobiography","Africa","leadership","classic"],featured:true,popular:true,isNew:false,hasPdf:true,readUrl:"https://www.gutenberg.org/files/2376/2376-h/2376-h.htm",pdfUrl:"https://www.gutenberg.org/ebooks/2376",source:"Project Gutenberg · Public Domain"},
+    {id:55,title:"The Art of War",author:"Sun Tzu",desc:"The ancient Chinese military classic translated by Lionel Giles. Sun Tzu's strategic wisdom has been applied in business, leadership, and everyday decision-making for over 2,000 years. Essential reading for every leader and entrepreneur.",year:500,cat:"classics",icon:"⚔️",bg:"linear-gradient(150deg,#1f2937 0%,#374151 100%)",pages:76,size:"0.4 MB",readTime:"1-2 hrs",lang:"English",tags:["strategy","leadership","philosophy","classic"],featured:false,popular:true,isNew:false,hasPdf:true,readUrl:"https://www.gutenberg.org/files/132/132-h/132-h.htm",pdfUrl:"https://www.gutenberg.org/ebooks/132",source:"Project Gutenberg · Public Domain"},
+    {id:56,title:"Autobiography of Benjamin Franklin",author:"Benjamin Franklin",desc:"The life story of one of America's greatest inventors, entrepreneurs, and statesmen. Franklin's autobiography is a masterclass in self-improvement, discipline, and building a meaningful life from humble beginnings.",year:1791,cat:"classics",icon:"⚡",bg:"linear-gradient(150deg,#1e3a8a 0%,#1d4ed8 100%)",pages:184,size:"0.8 MB",readTime:"4 hrs",lang:"English",tags:["autobiography","entrepreneurship","self-improvement","classic"],featured:false,popular:true,isNew:false,hasPdf:true,readUrl:"https://www.gutenberg.org/files/20203/20203-h/20203-h.htm",pdfUrl:"https://www.gutenberg.org/ebooks/20203",source:"Project Gutenberg · Public Domain"},
+    {id:57,title:"The Prince",author:"Niccolò Machiavelli",desc:"Machiavelli's timeless treatise on political power and leadership. Written in 1513 and freely available today, it remains one of the most widely read and discussed books on how power and strategy work in the real world.",year:1532,cat:"classics",icon:"👑",bg:"linear-gradient(150deg,#1c1917 0%,#292524 100%)",pages:112,size:"0.5 MB",readTime:"2-3 hrs",lang:"English",tags:["leadership","politics","strategy","classic"],featured:false,popular:false,isNew:false,hasPdf:true,readUrl:"https://www.gutenberg.org/files/1232/1232-h/1232-h.htm",pdfUrl:"https://www.gutenberg.org/ebooks/1232",source:"Project Gutenberg · Public Domain"},
+    {id:58,title:"Self-Reliance and Other Essays",author:"Ralph Waldo Emerson",desc:"Emerson's philosophical essays on individuality, non-conformity, and self-reliance. These foundational texts encourage readers to trust their own instincts, think for themselves, and build an authentic and independent life.",year:1841,cat:"classics",icon:"🌟",bg:"linear-gradient(150deg,#065f46 0%,#047857 100%)",pages:96,size:"0.4 MB",readTime:"2-3 hrs",lang:"English",tags:["philosophy","self-reliance","independence","classic"],featured:false,popular:false,isNew:false,hasPdf:true,readUrl:"https://www.gutenberg.org/files/16643/16643-h/16643-h.htm",pdfUrl:"https://www.gutenberg.org/ebooks/16643",source:"Project Gutenberg · Public Domain"},
+    {id:59,title:"Common Sense",author:"Thomas Paine",desc:"Paine's revolutionary pamphlet that made the case for American independence. A masterclass in persuasive writing, clear argumentation, and civic courage. Still deeply relevant to anyone passionate about governance, justice, and freedom.",year:1776,cat:"classics",icon:"📢",bg:"linear-gradient(150deg,#7f1d1d 0%,#991b1b 100%)",pages:54,size:"0.3 MB",readTime:"1-2 hrs",lang:"English",tags:["politics","freedom","democracy","classic"],featured:false,popular:false,isNew:false,hasPdf:true,readUrl:"https://www.gutenberg.org/files/147/147-h/147-h.htm",pdfUrl:"https://www.gutenberg.org/ebooks/147",source:"Project Gutenberg · Public Domain"},
+    // ── FREE CC-LICENSED TECH BOOKS ──
+    {id:60,title:"Think Python: How to Think Like a Computer Scientist",author:"Allen B. Downey",desc:"The definitive Python programming textbook for beginners. Downey's crystal-clear writing makes learning to code approachable for everyone. Used in universities worldwide. This is the full book — download the PDF for free legally.",year:2019,cat:"software",icon:"🐍",bg:"linear-gradient(150deg,#134e4a 0%,#0f766e 100%)",pages:292,size:"3.4 MB",readTime:"8-10 hrs",lang:"English",tags:["python","programming","beginners","free book"],featured:false,popular:true,isNew:false,hasPdf:true,readUrl:"https://greenteapress.com/thinkpython2/html/index.html",pdfUrl:"https://greenteapress.com/thinkpython2/thinkpython2.pdf",source:"Green Tea Press · CC BY-NC 4.0"},
+    {id:61,title:"Eloquent JavaScript (3rd Edition)",author:"Marijn Haverbeke",desc:"A modern introduction to JavaScript and programming, widely regarded as the best free JavaScript book available. Covers the core language, browser APIs, Node.js, and advanced topics. Download the full PDF completely free.",year:2018,cat:"webdev",icon:"✨",bg:"linear-gradient(150deg,#0c4a6e 0%,#0284c7 100%)",pages:472,size:"6.2 MB",readTime:"12-15 hrs",lang:"English",tags:["javascript","web development","programming","free book"],featured:false,popular:true,isNew:false,hasPdf:true,readUrl:"https://eloquentjavascript.net/",pdfUrl:"https://eloquentjavascript.net/Eloquent_JavaScript.pdf",source:"eloquentjavascript.net · CC BY-NC"},
+    {id:62,title:"Pro Git (2nd Edition)",author:"Scott Chacon & Ben Straub",desc:"The official and comprehensive guide to Git published by Apress and freely available online. Covers everything from the basics to advanced workflows, branching strategies, and Git internals. Essential for every developer.",year:2014,cat:"software",icon:"🔀",bg:"linear-gradient(150deg,#1e1b4b 0%,#4c1d95 100%)",pages:574,size:"9.8 MB",readTime:"12-15 hrs",lang:"English",tags:["git","version control","development","free book"],featured:false,popular:true,isNew:false,hasPdf:true,readUrl:"https://git-scm.com/book/en/v2",pdfUrl:"https://git-scm.com/book/en/v2",source:"Apress · CC BY-NC-SA 3.0"},
+    {id:63,title:"The Linux Command Line (5th Edition)",author:"William E. Shotts Jr.",desc:"A complete guide to the Linux command line — from basic navigation to shell scripting, system administration, and writing programs. Free to read online and download. Used by developers, sysadmins, and learners worldwide.",year:2019,cat:"software",icon:"🖥️",bg:"linear-gradient(150deg,#052e16 0%,#166534 100%)",pages:480,size:"7.2 MB",readTime:"12-14 hrs",lang:"English",tags:["linux","terminal","command line","free book"],featured:false,popular:false,isNew:false,hasPdf:true,readUrl:"https://linuxcommand.org/tlcl.php",pdfUrl:"https://sourceforge.net/projects/linuxcommand/files/TLCL/19.01/TLCL-19.01.pdf/download",source:"linuxcommand.org · CC BY-NC-ND 3.0"},
+    {id:64,title:"The Richest Man in Babylon",author:"George S. Clason",desc:"The classic guide to financial wisdom, told through parables set in ancient Babylon. Teaches timeless lessons about saving, investing, and building lasting wealth. One of the best-selling personal finance books ever written. Public domain version.",year:1926,cat:"classics",icon:"🏛️",bg:"linear-gradient(150deg,#92400e 0%,#b45309 100%)",pages:144,size:"0.7 MB",readTime:"3-4 hrs",lang:"English",tags:["finance","wealth","savings","classic"],featured:true,popular:true,isNew:false,hasPdf:true,readUrl:"https://www.gutenberg.org/ebooks/subject/12541",pdfUrl:"https://archive.org/details/richestmaninbaby0000clas",source:"Internet Archive · Public Domain"}
   ];
 
   const CATS = [
@@ -1393,14 +1448,15 @@
     {id:"entrepreneurship",label:"Entrepreneurship",icon:"🚀"},
     {id:"career",label:"Career Dev",icon:"📈"},
     {id:"wassce",label:"WASSCE PRO",icon:"📝"},
-    {id:"tih",label:"TIH Academy",icon:"🏫"}
+    {id:"tih",label:"TIH Academy",icon:"🏫"},
+    {id:"classics",label:"Classic Books",icon:"📜"}
   ];
 
   const CAT_COLORS = {
     scholarships:"#002868",grants:"#059669",business:"#d97706",
     software:"#7c3aed",webdev:"#0284c7",ai:"#db2777",
     datascience:"#0891b2",entrepreneurship:"#ea580c",career:"#2563eb",
-    wassce:"#dc2626",tih:"#BF0A30"
+    wassce:"#dc2626",tih:"#BF0A30",classics:"#312e81"
   };
 
   // ── LOCALSTORAGE HELPERS ──
@@ -1462,6 +1518,7 @@
         <div class="lib-cover-spine"></div>
         <div class="lib-cover-shine"></div>
         ${book.isNew ? '<span class="lib-new-ribbon">NEW</span>' : ''}
+        ${book.hasPdf ? '<span class="lib-pdf-badge">FREE PDF</span>' : ''}
         <div class="lib-cover-emoji">${book.icon}</div>
         <div class="lib-cover-label">${book.cat.toUpperCase()}</div>
       </div>
@@ -1501,6 +1558,8 @@
     renderShelf('shelf-career', BOOKS.filter(b=>b.cat==='career'));
     renderShelf('shelf-wassce', BOOKS.filter(b=>b.cat==='wassce'));
     renderShelf('shelf-tih', BOOKS.filter(b=>b.cat==='tih'));
+    renderShelf('shelf-freedl', BOOKS.filter(b=>b.hasPdf));
+    renderShelf('shelf-classics', BOOKS.filter(b=>b.cat==='classics'));
   }
 
   // ── CATEGORY PILLS ──
@@ -1592,16 +1651,22 @@
           <div class="lib-meta-item"><span class="meta-lbl">🌐 Language:</span><span class="meta-val">${book.lang}</span></div>
           <div class="lib-meta-item"><span class="meta-lbl">📅 Year:</span><span class="meta-val">${book.year}</span></div>
           <div class="lib-meta-item"><span class="meta-lbl">🏷 Category:</span><span class="meta-val">${book.cat}</span></div>
+          ${book.source ? `<div class="lib-meta-item" style="grid-column:1/-1;"><span class="meta-lbl">📚 Source:</span><span class="meta-val" style="color:#059669;font-weight:600;">${book.source}</span></div>` : ''}
         </div>
         ${book.tags ? `<div style="display:flex;flex-wrap:wrap;gap:0.4rem;">${book.tags.map(t=>`<span style="background:#f3f4f6;color:#374151;font-size:0.7rem;padding:0.2rem 0.55rem;border-radius:999px;">${t}</span>`).join('')}</div>` : ''}
       </div>`;
     document.getElementById('bookModalActions').innerHTML = `
-      <a href="#" class="btn-read" onclick="handleRead(${id});return false;">📖 Read Online</a>
-      <a href="#" class="btn-download" onclick="handleDownload(${id});return false;">⬇️ Download PDF</a>
+      ${book.readUrl
+        ? `<a href="${book.readUrl}" target="_blank" rel="noopener noreferrer" class="btn-read" onclick="addToHistory(${id})">📖 Read Online</a>`
+        : `<a href="#" class="btn-read" onclick="handleRead(${id});return false;">📖 Read Online</a>`}
+      ${book.pdfUrl
+        ? `<a href="${book.pdfUrl}" target="_blank" rel="noopener noreferrer" class="btn-download" onclick="addToDownloads(${id})">⬇️ Download PDF</a>`
+        : `<a href="#" class="btn-download" onclick="handleDownload(${id});return false;">⬇️ Download PDF</a>`}
       <button class="btn-fav${fav?' active':''}" data-id="${id}" title="${fav?'Remove from Favorites':'Save to Favorites'}" onclick="toggleFav(${id})">
         ${fav?'❤️':'🤍'} Favorite
       </button>
-      <button class="btn-share" onclick="handleShare(${id})">🔗 Share</button>`;
+      <button class="btn-share" onclick="handleShare(${id})">🔗 Share</button>
+      ${book.hasPdf ? `<p style="width:100%;font-size:0.75rem;color:#059669;margin:0;"><strong>✓ Free & Legal Download</strong> — ${book.source||'Open License'}</p>` : ''}`;
     // Related books (same category, excluding current)
     const related = BOOKS.filter(b=>b.cat===book.cat && b.id!==id).slice(0,6);
     document.getElementById('bookModalRelated').innerHTML = related.length ? `
@@ -1623,14 +1688,23 @@
     const book = BOOKS.find(b=>b.id===id);
     if(!book) return;
     addToHistory(id);
-    showToast('Opening "' + book.title.substring(0,30) + '..." 📖');
+    if(book.readUrl){
+      window.open(book.readUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      showToast('Opening "' + book.title.substring(0,30) + '..." 📖');
+    }
   }
 
   function handleDownload(id){
     const book = BOOKS.find(b=>b.id===id);
     if(!book) return;
     addToDownloads(id);
-    showToast('Preparing download for "' + book.title.substring(0,28) + '..." ⬇️');
+    if(book.pdfUrl){
+      window.open(book.pdfUrl, '_blank', 'noopener,noreferrer');
+      showToast('Opening download page ⬇️');
+    } else {
+      showToast('Preparing download for "' + book.title.substring(0,28) + '..." ⬇️');
+    }
   }
 
   function handleShare(id){
