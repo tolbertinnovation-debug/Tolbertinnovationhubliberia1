@@ -736,6 +736,40 @@
       </div>
     </section>
 
+    <!-- STICKY SEARCH + FILTER BAR -->
+    <div class="dir-filter-bar" role="search" aria-label="Filter universities">
+      <div class="container">
+        <div class="dir-filter-inner">
+          <div class="dir-search-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" id="uniSearchInput" placeholder="Search university or program…" aria-label="Search universities" />
+          </div>
+          <button class="dir-filters-btn" aria-expanded="true" aria-controls="filterPillsRow">⚙ Filters</button>
+        </div>
+        <div class="dir-filter-pills" id="filterPillsRow">
+          <button class="filter-pill on" data-filter="country" data-value="all" aria-pressed="true">All Countries</button>
+          <button class="filter-pill" data-filter="country" data-value="India" aria-pressed="false">🇮🇳 India</button>
+          <button class="filter-pill" data-filter="country" data-value="Cyprus" aria-pressed="false">🇨🇾 North Cyprus</button>
+          <button class="filter-pill" data-filter="scholarship" data-value="true" aria-pressed="false">✓ Scholarships Available</button>
+          <span style="width:1px;height:20px;background:#e2e8f0;display:inline-block;margin:0 0.25rem;align-self:center;" aria-hidden="true"></span>
+          <button class="filter-pill on" data-filter="degree" data-value="all" aria-pressed="true">All Levels</button>
+          <button class="filter-pill" data-filter="degree" data-value="UG" aria-pressed="false">UG</button>
+          <button class="filter-pill" data-filter="degree" data-value="PG" aria-pressed="false">PG</button>
+          <button class="filter-pill" data-filter="degree" data-value="PhD" aria-pressed="false">PhD</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIVERSITY GRID -->
+    <section id="universities" class="dir-grid-section">
+      <div class="container">
+        <div class="dir-count-bar">
+          <span class="dir-count-text" id="uniCount" aria-live="polite">Showing 20 universities in India &amp; North Cyprus</span>
+        </div>
+        <div id="uniGrid" aria-label="University listing"></div>
+      </div>
+    </section>
+
     <!-- WHY STUDY ABROAD WITH TIH -->
     <section class="why-tih-section" aria-label="Why study abroad with TIH">
       <div class="container why-tih-inner">
@@ -774,40 +808,6 @@
             <p>Hundreds of Liberian students have successfully started their international education journey through TIH.</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- STICKY SEARCH + FILTER BAR -->
-    <div class="dir-filter-bar" role="search" aria-label="Filter universities">
-      <div class="container">
-        <div class="dir-filter-inner">
-          <div class="dir-search-wrap">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <input type="text" id="uniSearchInput" placeholder="Search university or program…" aria-label="Search universities" />
-          </div>
-          <button class="dir-filters-btn" aria-expanded="true" aria-controls="filterPillsRow">⚙ Filters</button>
-        </div>
-        <div class="dir-filter-pills" id="filterPillsRow">
-          <button class="filter-pill on" data-filter="country" data-value="all" aria-pressed="true">All Countries</button>
-          <button class="filter-pill" data-filter="country" data-value="India" aria-pressed="false">🇮🇳 India</button>
-          <button class="filter-pill" data-filter="country" data-value="Cyprus" aria-pressed="false">🇨🇾 North Cyprus</button>
-          <button class="filter-pill" data-filter="scholarship" data-value="true" aria-pressed="false">✓ Scholarships Available</button>
-          <span style="width:1px;height:20px;background:#e2e8f0;display:inline-block;margin:0 0.25rem;align-self:center;" aria-hidden="true"></span>
-          <button class="filter-pill on" data-filter="degree" data-value="all" aria-pressed="true">All Levels</button>
-          <button class="filter-pill" data-filter="degree" data-value="UG" aria-pressed="false">UG</button>
-          <button class="filter-pill" data-filter="degree" data-value="PG" aria-pressed="false">PG</button>
-          <button class="filter-pill" data-filter="degree" data-value="PhD" aria-pressed="false">PhD</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- UNIVERSITY GRID -->
-    <section id="universities" class="dir-grid-section">
-      <div class="container">
-        <div class="dir-count-bar">
-          <span class="dir-count-text" id="uniCount" aria-live="polite">Showing 20 universities in India &amp; North Cyprus</span>
-        </div>
-        <div id="uniGrid" aria-label="University listing"></div>
       </div>
     </section>
 
