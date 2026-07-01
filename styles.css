@@ -1796,6 +1796,32 @@ textarea {
     padding: 0.55rem 2.5rem 0.55rem 0.75rem;
     line-height: 1.4;
   }
+
+  /* Hero CTA buttons: Apply full-width top, other two side-by-side below */
+  .hero-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+  .hero-actions .btn:first-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Impact stats: 2×2 grid so numbers don't get too tight */
+  .impact-inline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 1.5rem;
+    justify-items: center;
+  }
+
+  /* Trust strip: single-column list on very small screens */
+  .trust-strip-home-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
+    padding: 0 0.25rem;
+  }
 }
 
 @media (max-width: 680px) {
