@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>My Dashboard | TIH Learning Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #1E3A8A; --primary-light: #eef2ff; --secondary: #F97316; --secondary-dark: #ea6a0a;
+      --accent: #10B981; --danger: #dc2626; --bg: #F8FAFC; --text: #1F2937; --muted: #64748b;
+      --border: #e2e8f0; --radius: 12px; --shadow: 0 4px 16px rgba(30,58,138,.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.55; padding-bottom: 76px; }
+    h1,h2,h3 { font-family: 'Poppins', sans-serif; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* LOGIN */
+    .login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.25rem; background: linear-gradient(140deg, #0f1f52, var(--primary)); }
+    .login-card { background: #fff; border-radius: 16px; padding: 2rem 1.75rem; width: 100%; max-width: 400px; box-shadow: 0 24px 64px rgba(0,0,0,.3); }
+    .login-card .brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--primary); font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .login-card .brand span { color: var(--secondary); }
+    .login-card .sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.4rem; }
+    .fld { margin-bottom: 1rem; }
+    .fld label { display: block; font-size: 0.83rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .fld input { width: 100%; padding: 0.75rem 0.9rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: inherit; min-height: 48px; }
+    .fld input:focus { outline: none; border-color: var(--primary); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; border: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem; padding: 0.7rem 1.2rem; min-height: 46px; transition: opacity .15s; }
+    .btn:hover { opacity: .9; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-orange { background: var(--secondary); color: #fff; }
+    .btn-line { background: #fff; border: 1.5px solid var(--border); color: var(--text); }
+    .btn-block { width: 100%; }
+    .btn-sm { padding: 0.4rem 0.8rem; min-height: 36px; font-size: 0.8rem; }
+    .feedback { font-size: 0.85rem; font-weight: 600; margin-top: 0.6rem; min-height: 1.2em; }
+    .feedback.err { color: var(--danger); }
+    .feedback.ok { color: var(--accent); }
+    .login-help { margin-top: 1.1rem; font-size: 0.82rem; color: var(--muted); text-align: center; }
+    .login-help a { color: var(--primary); font-weight: 700; }
+
+    /* SHELL */
+    .shell { display: none; }
+    .shell.show { display: block; }
+    .dash-topbar { background: #fff; border-bottom: 1px solid var(--border); padding: 0 1.1rem; height: 58px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+    .dash-brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--primary); font-size: 0.98rem; }
+    .dash-brand span { color: var(--secondary); }
+    .dash-top-right { display: flex; align-items: center; gap: 0.6rem; }
+    .avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 1.4rem 1.1rem 3rem; }
+
+    .welcome { margin-bottom: 1.4rem; }
+    .welcome h1 { font-size: clamp(1.25rem, 3.5vw, 1.6rem); color: var(--primary); font-weight: 800; }
+    .welcome p { color: var(--muted); font-size: 0.9rem; }
+    .streak-chip { display: inline-flex; align-items: center; gap: 0.35rem; background: #fff7ed; color: #9a3412; font-weight: 700; font-size: 0.8rem; border-radius: 999px; padding: 0.3rem 0.8rem; margin-top: 0.5rem; }
+
+    .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-bottom: 1.6rem; }
+    .mini-stat { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.8rem; text-align: center; box-shadow: var(--shadow); }
+    .mini-stat b { display: block; font-family: 'Poppins', sans-serif; font-size: 1.25rem; color: var(--primary); }
+    .mini-stat span { font-size: 0.7rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
+    @media (max-width: 560px) { .stat-strip { grid-template-columns: 1fr 1fr; } }
+
+    section { margin-bottom: 1.9rem; }
+    section > h2 { font-size: 1.02rem; color: var(--primary); margin-bottom: 0.8rem; }
+
+    /* COURSE CARDS */
+    .courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .course-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 0.55rem; }
+    .cc-top { display: flex; align-items: center; gap: 0.6rem; }
+    .cc-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; background: var(--primary-light); flex-shrink: 0; }
+    .cc-title { font-weight: 700; font-size: 0.92rem; line-height: 1.3; }
+    .cc-meta { font-size: 0.75rem; color: var(--muted); }
+    .prog-track { background: #e2e8f0; height: 8px; border-radius: 999px; overflow: hidden; }
+    .prog-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #34d399); border-radius: 999px; transition: width .4s; }
+    .cc-row { display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem; color: var(--muted); font-weight: 600; }
+    .deadline-chip { color: var(--secondary); font-weight: 700; }
+    .deadline-chip.overdue { color: var(--danger); }
+    .pill { display: inline-block; font-size: 0.68rem; font-weight: 800; border-radius: 999px; padding: 0.12rem 0.55rem; }
+    .pill.done { background: #d1fae5; color: #065f46; }
+    .pill.progress { background: #dbeafe; color: #1e40af; }
+    .pill.new { background: #fef9c3; color: #854d0e; }
+    .pill.high { background: #fee2e2; color: #991b1b; }
+
+    /* COMPLETED LIST */
+    .done-row { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; box-shadow: var(--shadow); flex-wrap: wrap; }
+    .done-row .dr-name { flex: 1; font-weight: 700; font-size: 0.9rem; min-width: 150px; }
+    .done-row .dr-date { font-size: 0.76rem; color: var(--muted); }
+
+    .empty-box { background: #fff; border: 1.5px dashed var(--border); border-radius: var(--radius); padding: 1.75rem 1.25rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
+
+    /* ACTIVITY */
+    .act-row { display: flex; gap: 0.7rem; font-size: 0.85rem; padding: 0.5rem 0; border-bottom: 1px solid #f1f5f9; }
+    .act-row .when { color: var(--muted); font-size: 0.75rem; white-space: nowrap; }
+
+    /* BOTTOM NAV (mobile) */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid var(--border); display: flex; z-index: 60; }
+    .bn-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 0.55rem 0 0.65rem; font-size: 0.66rem; font-weight: 700; color: var(--muted); background: none; border: none; min-height: 56px; }
+    .bn-item .ico { font-size: 1.15rem; }
+    .bn-item.active { color: var(--primary); }
+    @media (min-width: 761px) { .bottom-nav { display: none; } body { padding-bottom: 0; } }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,.55); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #fff; border-radius: 14px; width: 100%; max-width: 420px; padding: 1.5rem; box-shadow: 0 24px 64px rgba(0,0,0,.35); max-height: 90vh; overflow-y: auto; }
+    .modal h3 { color: var(--primary); font-size: 1.02rem; margin-bottom: 0.9rem; }
+    .view { display: none; }
+    .view.active { display: block; }
+    .kv { display: flex; justify-content: space-between; gap: 1rem; padding: 0.5rem 0; border-bottom: 1px solid #f1f5f9; font-size: 0.88rem; }
+    .kv .k { color: var(--muted); font-weight: 600; }
+    .kv .v { font-weight: 700; text-align: right; word-break: break-word; }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="brand">TIH <span>Learning Hub</span></div>
+      <div class="sub">Student sign in — use the details sent to your WhatsApp/email.</div>
+      <div class="fld"><label>Student ID or Email</label><input type="text" id="loginId" autocomplete="username" placeholder="TIH-STU-XXXXXX or you@email.com" /></div>
+      <div class="fld"><label>Password</label><input type="password" id="loginPass" autocomplete="current-password" /></div>
+      <button class="btn btn-primary btn-block" id="loginBtn">Sign In →</button>
+      <div class="feedback err" id="loginFeedback"></div>
+      <div class="login-help">
+        No account yet? <a href="hub-apply.html">Apply for free access</a><br>
+        Forgot password? <a href="https://wa.me/231880559227?text=Hello%20TIH%2C%20I%20forgot%20my%20Learning%20Hub%20password.%20My%20Student%20ID%20is%3A%20" target="_blank" rel="noopener noreferrer">Contact support on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHELL -->
+  <div class="shell" id="shell">
+    <div class="dash-topbar">
+      <div class="dash-brand">TIH <span>Learning Hub</span></div>
+      <div class="dash-top-right">
+        <button class="btn btn-line btn-sm" id="logoutBtn">Log out</button>
+        <div class="avatar" id="avatar">S</div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <!-- HOME VIEW -->
+      <div class="view active" id="view-home">
+        <div class="welcome">
+          <h1 id="welcomeMsg">Welcome back!</h1>
+          <p id="welcomeSub">Keep going — every lesson brings you closer to your goals.</p>
+          <span class="streak-chip" id="streakChip" style="display:none;">🔥 <span id="streakText"></span></span>
+        </div>
+
+        <div class="stat-strip" id="statStrip"></div>
+
+        <section id="deadlinesSection" style="display:none;">
+          <h2>⏰ Upcoming Deadlines</h2>
+          <div id="deadlinesList"></div>
+        </section>
+
+        <section>
+          <h2>📚 My Assigned Courses</h2>
+          <div class="courses-grid" id="coursesGrid"></div>
+          <div class="empty-box" id="coursesEmpty" style="display:none;">
+            No courses assigned yet. The TIH team assigns your courses after onboarding — need help?
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="color:var(--primary);font-weight:700;">Chat with us on WhatsApp</a>.
+          </div>
+        </section>
+
+        <section>
+          <h2>🏆 Completed Courses &amp; Certificates</h2>
+          <div id="completedList"></div>
+          <div class="empty-box" id="completedEmpty" style="display:none;">Complete your first course to earn a verified TIH certificate!</div>
+        </section>
+
+        <section>
+          <h2>🕐 Recent Activity</h2>
+          <div id="activityList" style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:.7rem 1rem;box-shadow:var(--shadow);"></div>
+        </section>
+      </div>
+
+      <!-- PROFILE VIEW -->
+      <div class="view" id="view-profile">
+        <div class="welcome"><h1>My Profile</h1></div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;box-shadow:var(--shadow);max-width:520px;">
+          <div class="kv"><span class="k">Name</span><span class="v" id="pName"></span></div>
+          <div class="kv"><span class="k">Student ID</span><span class="v" id="pId"></span></div>
+          <div class="kv"><span class="k">Email</span><span class="v" id="pEmail"></span></div>
+          <div class="kv"><span class="k">Phone</span><span class="v" id="pPhone"></span></div>
+          <div class="kv"><span class="k">Location</span><span class="v" id="pLoc"></span></div>
+          <div class="kv"><span class="k">Member Since</span><span class="v" id="pSince"></span></div>
+          <h3 style="font-size:.92rem;color:var(--primary);margin:1.2rem 0 .7rem;">Change Password</h3>
+          <div class="fld"><label>New password (min 8 characters)</label><input type="password" id="npass1" /></div>
+          <div class="fld"><label>Confirm new password</label><input type="password" id="npass2" /></div>
+          <button class="btn btn-primary" id="changePassBtn">Update Password</button>
+          <div class="feedback" id="passFb"></div>
+          <p style="font-size:.78rem;color:var(--muted);margin-top:1rem;">To update your personal details, message the TIH team on <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="color:var(--primary);font-weight:700;">WhatsApp</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <button class="bn-item active" data-view="home"><span class="ico">🏠</span>Home</button>
+      <a class="bn-item" href="my-certificates.html"><span class="ico">🏆</span>Certs</a>
+      <a class="bn-item" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer"><span class="ico">💬</span>Support</a>
+      <button class="bn-item" data-view="profile"><span class="ico">👤</span>Profile</button>
+    </nav>
+  </div>
+
+  <!-- FORCE PASSWORD CHANGE MODAL -->
+  <div class="modal-overlay" id="forcePassModal">
+    <div class="modal">
+      <h3>🔐 Set Your New Password</h3>
+      <p style="font-size:.87rem;color:var(--muted);margin-bottom:1rem;">You're using a temporary password. Choose a new one to secure your account.</p>
+      <div class="fld"><label>New password (min 8 characters)</label><input type="password" id="fp1" /></div>
+      <div class="fld"><label>Confirm new password</label><input type="password" id="fp2" /></div>
+      <button class="btn btn-primary btn-block" id="fpBtn">Save New Password</button>
+      <div class="feedback err" id="fpFb"></div>
+    </div>
+  </div>
+
+  <script src="courses-db.js?v=3"></script>
+  <script src="hub-db.js?v=1"></script>
+  <script>
+    var esc = HubDB.esc;
+    var currentStudent = null;
+
+    function courseMeta(id) {
+      var c = (typeof COURSES_DB !== 'undefined') ? COURSES_DB[id] : null;
+      return {
+        title: c ? c.title.split(':')[0] : id,
+        icon: c ? (c.icon || '📘') : '📘',
+        duration: c ? (c.duration || '') : ''
+      };
+    }
+    function fmtDate(iso) {
+      if (!iso) return '—';
+      try { return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+      catch (e) { return '—'; }
+    }
+
+    /* ---- Login flow ---- */
+    function doLogin() {
+      var id = document.getElementById('loginId').value.trim();
+      var pass = document.getElementById('loginPass').value;
+      var fb = document.getElementById('loginFeedback');
+      if (!id || !pass) { fb.textContent = 'Enter your Student ID/email and password.'; return; }
+      HubDB.studentLogin(id, pass).then(function (res) {
+        if (!res.ok) { fb.textContent = res.error; return; }
+        currentStudent = res.student;
+        enterDashboard();
+        if (res.mustChangePassword) {
+          document.getElementById('forcePassModal').classList.add('open');
+        }
+      });
+    }
+    document.getElementById('loginBtn').addEventListener('click', doLogin);
+    document.getElementById('loginPass').addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(); });
+
+    document.getElementById('fpBtn').addEventListener('click', function () {
+      var p1 = document.getElementById('fp1').value;
+      var p2 = document.getElementById('fp2').value;
+      var fb = document.getElementById('fpFb');
+      if (p1.length < 8) { fb.textContent = 'Password must be at least 8 characters.'; return; }
+      if (p1 !== p2) { fb.textContent = 'Passwords do not match.'; return; }
+      HubDB.changeStudentPassword(currentStudent.id, p1).then(function () {
+        document.getElementById('forcePassModal').classList.remove('open');
+      });
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', function () {
+      HubDB.studentLogout();
+      location.reload();
+    });
+
+    /* ---- Views / bottom nav ---- */
+    document.querySelectorAll('.bn-item[data-view]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('.bn-item').forEach(function (x) { x.classList.remove('active'); });
+        b.classList.add('active');
+        var v = b.getAttribute('data-view');
+        document.querySelectorAll('.view').forEach(function (x) { x.classList.toggle('active', x.id === 'view-' + v); });
+        window.scrollTo(0, 0);
+      });
+    });
+
+    /* ---- Streak (based on login history dates) ---- */
+    function computeStreak(history) {
+      if (!history || !history.length) return 0;
+      var days = {};
+      history.forEach(function (iso) { days[String(iso).slice(0, 10)] = true; });
+      var streak = 0;
+      var d = new Date();
+      for (;;) {
+        var key = d.toISOString().slice(0, 10);
+        if (days[key]) { streak++; d.setDate(d.getDate() - 1); }
+        else break;
+      }
+      return streak;
+    }
+
+    /* ---- Dashboard render ---- */
+    function enterDashboard() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('shell').classList.add('show');
+      var s = currentStudent;
+      var firstName = (s.name || 'Student').split(' ')[0];
+      document.getElementById('welcomeMsg').textContent = 'Welcome back, ' + firstName + '!';
+      document.getElementById('avatar').textContent = firstName.charAt(0).toUpperCase();
+
+      // Streak
+      var streak = computeStreak(s.loginHistory);
+      if (streak >= 2) {
+        document.getElementById('streakChip').style.display = 'inline-flex';
+        document.getElementById('streakText').textContent = streak + ' days in a row';
+      }
+
+      // Profile
+      document.getElementById('pName').textContent = s.name;
+      document.getElementById('pId').textContent = s.id;
+      document.getElementById('pEmail').textContent = s.email;
+      document.getElementById('pPhone').textContent = s.phone || '—';
+      document.getElementById('pLoc').textContent = s.location || '—';
+      document.getElementById('pSince').textContent = fmtDate(s.createdAt);
+
+      renderCourses();
+    }
+
+    function renderCourses() {
+      var s = currentStudent;
+      var assigned = s.courses || [];
+      var totalLessons = 0, doneLessons = 0, completedCourses = [], inProgress = 0, notStarted = 0;
+      var priorityOrder = { high: 0, medium: 1, low: 2 };
+
+      var cards = assigned.slice().sort(function (a, b) {
+        return (priorityOrder[a.priority] || 1) - (priorityOrder[b.priority] || 1);
+      }).map(function (c) {
+        var meta = courseMeta(c.id);
+        var p = HubDB.courseProgress(c.id);
+        totalLessons += p.total; doneLessons += p.completed;
+        var cert = HubDB.courseCertificate(c.id);
+        var isDone = p.total > 0 && p.completed >= p.total;
+        if (isDone) completedCourses.push({ c: c, meta: meta, cert: cert });
+        else if (p.completed > 0) inProgress++;
+        else notStarted++;
+
+        var statusPill = isDone ? '<span class="pill done">Completed</span>'
+          : (p.completed > 0 ? '<span class="pill progress">In Progress</span>' : '<span class="pill new">Not Started</span>');
+        var prioPill = (c.priority === 'high' && !isDone) ? ' <span class="pill high">Priority</span>' : '';
+
+        var deadlineHtml = '';
+        if (c.deadline && !isDone) {
+          var days = Math.ceil((new Date(c.deadline).getTime() - Date.now()) / 86400000);
+          deadlineHtml = '<span class="deadline-chip' + (days < 0 ? ' overdue' : '') + '">'
+            + (days < 0 ? '⚠ Overdue' : '⏰ Due in ' + days + ' day' + (days === 1 ? '' : 's')) + '</span>';
+        }
+
+        var action = isDone
+          ? '<a class="btn btn-line btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">Review Course</a>'
+          : '<a class="btn btn-orange btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">' + (p.completed > 0 ? 'Continue →' : 'Start Course →') + '</a>';
+
+        return '<div class="course-card">'
+          + '<div class="cc-top"><div class="cc-icon">' + meta.icon + '</div>'
+          + '<div><div class="cc-title">' + esc(meta.title) + '</div>'
+          + '<div class="cc-meta">' + statusPill + prioPill + '</div></div></div>'
+          + '<div class="prog-track"><div class="prog-fill" style="width:' + p.pct + '%"></div></div>'
+          + '<div class="cc-row"><span>' + p.completed + '/' + p.total + ' lessons · ' + p.pct + '%</span>' + deadlineHtml + '</div>'
+          + '<div>' + action + '</div>'
+          + '</div>';
+      }).join('');
+
+      document.getElementById('coursesGrid').innerHTML = cards;
+      document.getElementById('coursesEmpty').style.display = assigned.length ? 'none' : 'block';
+
+      // Stats strip
+      var overallPct = totalLessons ? Math.round(doneLessons / totalLessons * 100) : 0;
+      document.getElementById('statStrip').innerHTML =
+        '<div class="mini-stat"><b>' + assigned.length + '</b><span>Courses</span></div>'
+        + '<div class="mini-stat"><b>' + doneLessons + '/' + totalLessons + '</b><span>Lessons Done</span></div>'
+        + '<div class="mini-stat"><b>' + overallPct + '%</b><span>Overall</span></div>'
+        + '<div class="mini-stat"><b>' + completedCourses.length + '</b><span>Certificates</span></div>';
+
+      // Deadlines
+      var upcoming = assigned.filter(function (c) {
+        if (!c.deadline) return false;
+        var p = HubDB.courseProgress(c.id);
+        return !(p.total > 0 && p.completed >= p.total);
+      }).sort(function (a, b) { return new Date(a.deadline) - new Date(b.deadline); });
+      if (upcoming.length) {
+        document.getElementById('deadlinesSection').style.display = 'block';
+        document.getElementById('deadlinesList').innerHTML = upcoming.map(function (c) {
+          var days = Math.ceil((new Date(c.deadline).getTime() - Date.now()) / 86400000);
+          return '<div class="done-row"><span class="dr-name">' + esc(courseMeta(c.id).title) + '</span>'
+            + '<span class="deadline-chip' + (days < 0 ? ' overdue' : '') + '">' + (days < 0 ? '⚠ Overdue' : 'Due ' + fmtDate(c.deadline)) + '</span>'
+            + '<a class="btn btn-orange btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">Go →</a></div>';
+        }).join('');
+      }
+
+      // Completed
+      var doneHtml = completedCourses.map(function (item) {
+        return '<div class="done-row">'
+          + '<span style="font-size:1.2rem;">' + item.meta.icon + '</span>'
+          + '<span class="dr-name">' + esc(item.meta.title)
+          + (item.cert ? '<br><span class="dr-date">Cert ID: ' + esc(item.cert.certId) + ' · ' + esc(item.cert.date || '') + '</span>' : '') + '</span>'
+          + '<a class="btn btn-primary btn-sm" href="course-player.html?id=' + encodeURIComponent(item.c.id) + '">🏆 Certificate</a>'
+          + '<a class="btn btn-line btn-sm" href="certificate-verify.html' + (item.cert ? '?id=' + encodeURIComponent(item.cert.certId) : '') + '">Verify</a>'
+          + '</div>';
+      }).join('');
+      document.getElementById('completedList').innerHTML = doneHtml;
+      document.getElementById('completedEmpty').style.display = completedCourses.length ? 'none' : 'block';
+
+      // Recent activity from login history + progress
+      var acts = [];
+      (currentStudent.loginHistory || []).slice(0, 3).forEach(function (iso) {
+        acts.push({ at: iso, text: 'Signed in to Learning Hub' });
+      });
+      assigned.forEach(function (c) {
+        var p = HubDB.courseProgress(c.id);
+        if (p.completed > 0) acts.push({ at: null, text: 'Progress in "' + courseMeta(c.id).title + '" — ' + p.completed + '/' + p.total + ' lessons' });
+      });
+      document.getElementById('activityList').innerHTML = acts.length
+        ? acts.slice(0, 6).map(function (a) {
+            return '<div class="act-row">' + (a.at ? '<span class="when">' + fmtDate(a.at) + '</span>' : '') + '<span>' + esc(a.text) + '</span></div>';
+          }).join('')
+        : '<div class="act-row"><span>No activity yet — start your first lesson!</span></div>';
+    }
+
+    /* ---- Change password (profile) ---- */
+    document.getElementById('changePassBtn').addEventListener('click', function () {
+      var p1 = document.getElementById('npass1').value;
+      var p2 = document.getElementById('npass2').value;
+      var fb = document.getElementById('passFb');
+      if (p1.length < 8) { fb.className = 'feedback err'; fb.textContent = 'Password must be at least 8 characters.'; return; }
+      if (p1 !== p2) { fb.className = 'feedback err'; fb.textContent = 'Passwords do not match.'; return; }
+      HubDB.changeStudentPassword(currentStudent.id, p1).then(function () {
+        fb.className = 'feedback ok'; fb.textContent = '✓ Password updated.';
+        document.getElementById('npass1').value = '';
+        document.getElementById('npass2').value = '';
+      });
+    });
+
+    /* ---- Session restore ---- */
+    (function () {
+      var sess = HubDB.studentSession();
+      if (sess) {
+        var s = HubDB.findStudent(sess.id);
+        if (s && s.status === 'active') {
+          currentStudent = s;
+          enterDashboard();
+          if (s.mustChangePassword) document.getElementById('forcePassModal').classList.add('open');
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

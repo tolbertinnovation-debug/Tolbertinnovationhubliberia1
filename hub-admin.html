@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin Panel | TIH Learning Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #1E3A8A; --primary-light: #eef2ff; --secondary: #F97316;
+      --accent: #10B981; --danger: #dc2626; --bg: #F8FAFC; --text: #1F2937; --muted: #64748b;
+      --border: #e2e8f0; --radius: 12px; --shadow: 0 4px 16px rgba(30,58,138,.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.55; }
+    h1,h2,h3 { font-family: 'Poppins', sans-serif; }
+    a { color: var(--primary); text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* LOGIN */
+    .login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.25rem; background: linear-gradient(140deg, #0f1f52, var(--primary)); }
+    .login-card { background: #fff; border-radius: 16px; padding: 2rem 1.75rem; width: 100%; max-width: 400px; box-shadow: 0 24px 64px rgba(0,0,0,.3); }
+    .login-card h1 { font-size: 1.3rem; color: var(--primary); margin-bottom: 0.25rem; }
+    .login-card .sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.4rem; }
+    .fld { margin-bottom: 1rem; }
+    .fld label { display: block; font-size: 0.83rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .fld input, .fld select, .fld textarea { width: 100%; padding: 0.7rem 0.85rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.92rem; font-family: inherit; min-height: 46px; }
+    .fld textarea { min-height: 90px; resize: vertical; }
+    .fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; border-color: var(--primary); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; border: none; border-radius: 8px; font-weight: 700; font-size: 0.88rem; padding: 0.6rem 1.1rem; min-height: 42px; transition: opacity .15s; }
+    .btn:hover { opacity: .88; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-orange { background: var(--secondary); color: #fff; }
+    .btn-green { background: var(--accent); color: #fff; }
+    .btn-red { background: var(--danger); color: #fff; }
+    .btn-line { background: #fff; border: 1.5px solid var(--border); color: var(--text); }
+    .btn-block { width: 100%; }
+    .btn-sm { padding: 0.35rem 0.7rem; min-height: 34px; font-size: 0.8rem; border-radius: 6px; }
+    .feedback { font-size: 0.85rem; font-weight: 600; margin-top: 0.6rem; min-height: 1.2em; }
+    .feedback.err { color: var(--danger); }
+    .feedback.ok { color: var(--accent); }
+    .default-cred-note { background: #fef9c3; color: #854d0e; font-size: 0.8rem; border-radius: 8px; padding: 0.7rem 0.9rem; margin-top: 1rem; }
+
+    /* APP SHELL */
+    .shell { display: none; }
+    .shell.show { display: block; }
+    .admin-topbar { background: #fff; border-bottom: 1px solid var(--border); padding: 0 1.25rem; height: 58px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+    .admin-brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--primary); font-size: 1rem; }
+    .admin-brand span { color: var(--secondary); }
+    .admin-topbar-right { display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; }
+    .tabs { display: flex; gap: 0.25rem; background: #fff; border-bottom: 1px solid var(--border); padding: 0 1rem; overflow-x: auto; position: sticky; top: 58px; z-index: 49; }
+    .tab { padding: 0.75rem 0.9rem; font-size: 0.86rem; font-weight: 700; color: var(--muted); border: none; background: none; border-bottom: 2.5px solid transparent; white-space: nowrap; }
+    .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .tab .badge { background: var(--secondary); color: #fff; font-size: 0.68rem; border-radius: 999px; padding: 0.05rem 0.42rem; margin-left: 0.25rem; vertical-align: middle; }
+    .panel { display: none; padding: 1.4rem 1.25rem 4rem; max-width: 1180px; margin: 0 auto; }
+    .panel.active { display: block; }
+    .panel h2 { font-size: 1.15rem; color: var(--primary); margin-bottom: 1rem; }
+
+    /* DASHBOARD STATS */
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.9rem; margin-bottom: 1.5rem; }
+    .stat-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; box-shadow: var(--shadow); }
+    .stat-card b { display: block; font-family: 'Poppins', sans-serif; font-size: 1.6rem; color: var(--primary); }
+    .stat-card span { font-size: 0.78rem; color: var(--muted); font-weight: 600; }
+    .stat-card.warn b { color: var(--secondary); }
+    .quick-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+    /* TABLES */
+    .table-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .table-tools { display: flex; gap: 0.6rem; padding: 0.85rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; align-items: center; }
+    .table-tools input, .table-tools select { padding: 0.5rem 0.75rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.85rem; font-family: inherit; }
+    .table-tools input { flex: 1; min-width: 160px; }
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th { text-align: left; padding: 0.65rem 0.85rem; background: var(--bg); color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+    td { padding: 0.7rem 0.85rem; border-top: 1px solid #f1f5f9; vertical-align: middle; }
+    tr:hover td { background: #f8fafd; }
+    .pill { display: inline-block; font-size: 0.72rem; font-weight: 800; border-radius: 999px; padding: 0.15rem 0.6rem; white-space: nowrap; }
+    .pill.pending { background: #fef9c3; color: #854d0e; }
+    .pill.review { background: #dbeafe; color: #1e40af; }
+    .pill.approved, .pill.active { background: #d1fae5; color: #065f46; }
+    .pill.rejected, .pill.suspended { background: #fee2e2; color: #991b1b; }
+    .pill.info-needed { background: #ffedd5; color: #9a3412; }
+    .row-actions { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+    .empty-state { text-align: center; padding: 2.5rem 1rem; color: var(--muted); font-size: 0.9rem; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,.55); z-index: 200; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #fff; border-radius: 14px; width: 100%; max-width: 640px; padding: 1.5rem; box-shadow: 0 24px 64px rgba(0,0,0,.35); }
+    .modal h3 { color: var(--primary); font-size: 1.05rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .modal h3 .x { background: none; border: none; font-size: 1.2rem; color: var(--muted); }
+    .kv { display: flex; justify-content: space-between; gap: 1rem; padding: 0.45rem 0; border-bottom: 1px solid #f1f5f9; font-size: 0.87rem; }
+    .kv .k { color: var(--muted); font-weight: 600; flex-shrink: 0; }
+    .kv .v { font-weight: 700; text-align: right; word-break: break-word; }
+    .cred-box { background: var(--primary-light); border: 2px dashed var(--primary); border-radius: 10px; padding: 1rem; margin: 1rem 0; font-size: 0.95rem; }
+    .cred-box b { font-family: 'Poppins', sans-serif; }
+    .modal-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.1rem; }
+    .prog-track { background: #e2e8f0; height: 8px; border-radius: 999px; overflow: hidden; min-width: 80px; }
+    .prog-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #34d399); border-radius: 999px; }
+    .course-row { display: flex; align-items: center; gap: 0.7rem; padding: 0.55rem 0; border-bottom: 1px solid #f1f5f9; font-size: 0.85rem; }
+    .course-row .cname { flex: 1; font-weight: 600; min-width: 0; }
+    .note-item { background: var(--bg); border-radius: 8px; padding: 0.6rem 0.8rem; font-size: 0.83rem; margin-bottom: 0.5rem; }
+    .note-item .who { font-size: 0.72rem; color: var(--muted); }
+    .audit-row { font-size: 0.83rem; padding: 0.55rem 0.2rem; border-bottom: 1px solid #f1f5f9; display: flex; gap: 0.75rem; }
+    .audit-row .when { color: var(--muted); white-space: nowrap; font-size: 0.76rem; }
+    .bar-row { display: flex; align-items: center; gap: 0.7rem; padding: 0.4rem 0; font-size: 0.85rem; }
+    .bar-row .bl { width: 180px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bar-row .bt { flex: 1; }
+    @media (max-width: 640px) {
+      .panel { padding: 1rem 0.8rem 4rem; }
+      .bar-row .bl { width: 110px; font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <h1>🛡️ TIH Admin Panel</h1>
+      <div class="sub">TIH staff only. All actions are logged.</div>
+      <div class="fld"><label>Username</label><input type="text" id="adminUser" autocomplete="username" /></div>
+      <div class="fld"><label>Password</label><input type="password" id="adminPass" autocomplete="current-password" /></div>
+      <button class="btn btn-primary btn-block" id="adminLoginBtn">Sign In</button>
+      <div class="feedback err" id="loginFeedback"></div>
+      <div class="default-cred-note" id="defaultCredNote" style="display:none;">
+        First time here? Use the default credentials <b>tihadmin</b> / <b>TIH-Admin-2026</b>, then change the password immediately in Settings.
+      </div>
+    </div>
+  </div>
+
+  <!-- SHELL -->
+  <div class="shell" id="shell">
+    <div class="admin-topbar">
+      <div class="admin-brand">TIH <span>Learning Hub</span> · Admin</div>
+      <div class="admin-topbar-right">
+        <span id="adminWho" style="color:var(--muted);"></span>
+        <button class="btn btn-line btn-sm" id="logoutBtn">Log out</button>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-panel="dash">📊 Dashboard</button>
+      <button class="tab" data-panel="apps">📥 Applications <span class="badge" id="appsBadge" style="display:none;"></span></button>
+      <button class="tab" data-panel="students">👥 Students</button>
+      <button class="tab" data-panel="certs">🏆 Certificates</button>
+      <button class="tab" data-panel="audit">📜 Audit Log</button>
+      <button class="tab" data-panel="settings">⚙️ Settings</button>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="panel active" id="panel-dash">
+      <h2>Overview</h2>
+      <div class="stat-grid" id="statGrid"></div>
+      <h2 style="margin-top:1.5rem;">Most Assigned Courses</h2>
+      <div class="table-card" style="padding:1rem;" id="popularCourses"></div>
+      <h2 style="margin-top:1.5rem;">Quick Actions</h2>
+      <div class="quick-actions">
+        <button class="btn btn-primary" onclick="switchPanel('apps')">Review Applications</button>
+        <button class="btn btn-orange" id="addStudentBtn">+ Add Student Manually</button>
+        <button class="btn btn-line" onclick="switchPanel('certs')">View Certificates</button>
+        <button class="btn btn-line" id="exportBtn">⬇ Export All Data (JSON)</button>
+      </div>
+    </div>
+
+    <!-- APPLICATIONS -->
+    <div class="panel" id="panel-apps">
+      <h2>Applications</h2>
+      <div class="table-card">
+        <div class="table-tools">
+          <input type="text" id="appSearch" placeholder="Search name, email, ID…" />
+          <select id="appFilter">
+            <option value="">All statuses</option>
+            <option value="pending">Pending</option>
+            <option value="review">Under Review</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+            <option value="info-needed">More Info Needed</option>
+          </select>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>App ID</th><th>Name</th><th>Location</th><th>Tracks</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="appsTbody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="appsEmpty" style="display:none;">No applications yet. Share the <a href="hub-apply.html">application form</a> to get started.</div>
+      </div>
+    </div>
+
+    <!-- STUDENTS -->
+    <div class="panel" id="panel-students">
+      <h2>Students</h2>
+      <div class="table-card">
+        <div class="table-tools">
+          <input type="text" id="stuSearch" placeholder="Search name, email, phone, ID…" />
+          <select id="stuFilter">
+            <option value="">All</option>
+            <option value="active">Active</option>
+            <option value="suspended">Suspended</option>
+          </select>
+          <button class="btn btn-orange btn-sm" id="addStudentBtn2">+ Add Student</button>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Student ID</th><th>Name</th><th>Contact</th><th>Courses</th><th>Last Login</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="stuTbody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="stuEmpty" style="display:none;">No students yet. Approve an application or add a student manually.</div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATES -->
+    <div class="panel" id="panel-certs">
+      <h2>Certificates Issued (this device)</h2>
+      <div class="table-card">
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Certificate ID</th><th>Student</th><th>Course</th><th>Date</th><th>Actions</th></tr></thead>
+            <tbody id="certTbody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="certEmpty" style="display:none;">No certificates recorded on this device yet. Certificates are stored in each learner's browser and can be verified at <a href="certificate-verify.html">certificate-verify.html</a>.</div>
+      </div>
+    </div>
+
+    <!-- AUDIT -->
+    <div class="panel" id="panel-audit">
+      <h2>Audit Log</h2>
+      <div class="table-card" style="padding:0.9rem 1.1rem;" id="auditList"></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="panel" id="panel-settings">
+      <h2>Settings</h2>
+      <div class="table-card" style="padding:1.4rem;max-width:480px;">
+        <h3 style="font-size:.95rem;margin-bottom:.9rem;">Change Admin Password</h3>
+        <div class="fld"><label>New password (min 10 characters)</label><input type="password" id="newAdminPass" /></div>
+        <div class="fld"><label>Confirm new password</label><input type="password" id="newAdminPass2" /></div>
+        <button class="btn btn-primary" id="changePassBtn">Update Password</button>
+        <div class="feedback" id="passFeedback"></div>
+        <hr style="border:none;border-top:1px solid var(--border);margin:1.4rem 0;" />
+        <h3 style="font-size:.95rem;margin-bottom:.6rem;">Platform Notes</h3>
+        <p style="font-size:.83rem;color:var(--muted);">This admin panel stores data in this browser (static-site mode). Approve applications on the same device where they were submitted, or collect applications via the WhatsApp confirmation messages applicants send. For multi-device sync, a backend upgrade is required.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GENERIC MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modalBox"></div>
+  </div>
+
+  <script src="courses-db.js?v=3"></script>
+  <script src="hub-db.js?v=1"></script>
+  <script>
+    /* ============ HELPERS ============ */
+    var esc = HubDB.esc;
+    function courseName(id) {
+      return (typeof COURSES_DB !== 'undefined' && COURSES_DB[id]) ? COURSES_DB[id].title.split(':')[0] : id;
+    }
+    function fmtDate(iso) {
+      if (!iso) return '—';
+      try { return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+      catch (e) { return '—'; }
+    }
+    function openModal(html) {
+      document.getElementById('modalBox').innerHTML = html;
+      document.getElementById('modalOverlay').classList.add('open');
+    }
+    function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+    document.getElementById('modalOverlay').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
+
+    /* ============ AUTH ============ */
+    function enterShell() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('shell').classList.add('show');
+      var s = HubDB.adminSession();
+      document.getElementById('adminWho').textContent = s ? ('Signed in: ' + s.username) : '';
+      renderAll();
+    }
+    HubDB.ensureAdminAccount().then(function (acct) {
+      if (acct.isDefaultPassword) document.getElementById('defaultCredNote').style.display = 'block';
+      if (HubDB.adminSession()) enterShell();
+    });
+    document.getElementById('adminLoginBtn').addEventListener('click', doLogin);
+    document.getElementById('adminPass').addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(); });
+    function doLogin() {
+      var u = document.getElementById('adminUser').value;
+      var p = document.getElementById('adminPass').value;
+      HubDB.adminLogin(u, p).then(function (res) {
+        if (!res.ok) { document.getElementById('loginFeedback').textContent = res.error; return; }
+        HubDB.audit('Admin signed in');
+        enterShell();
+        if (res.isDefaultPassword) {
+          switchPanel('settings');
+          document.getElementById('passFeedback').className = 'feedback err';
+          document.getElementById('passFeedback').textContent = 'You are using the default password — change it now.';
+        }
+      });
+    }
+    document.getElementById('logoutBtn').addEventListener('click', function () {
+      HubDB.audit('Admin signed out');
+      HubDB.adminLogout();
+      location.reload();
+    });
+
+    /* ============ TABS ============ */
+    function switchPanel(key) {
+      document.querySelectorAll('.tab').forEach(function (t) { t.classList.toggle('active', t.getAttribute('data-panel') === key); });
+      document.querySelectorAll('.panel').forEach(function (p) { p.classList.toggle('active', p.id === 'panel-' + key); });
+      renderAll();
+    }
+    document.querySelectorAll('.tab').forEach(function (t) {
+      t.addEventListener('click', function () { switchPanel(t.getAttribute('data-panel')); });
+    });
+
+    /* ============ RENDER: DASHBOARD ============ */
+    function renderDash() {
+      var apps = HubDB.getApplications();
+      var students = HubDB.getStudents();
+      var pending = apps.filter(function (a) { return a.status === 'pending' || a.status === 'review'; }).length;
+      var active = students.filter(function (s) { return s.status === 'active'; }).length;
+      var twoWeeksAgo = Date.now() - 14 * 86400000;
+      var atRisk = students.filter(function (s) {
+        return s.status === 'active' && (!s.lastLoginAt || new Date(s.lastLoginAt).getTime() < twoWeeksAgo);
+      }).length;
+      var certCount = 0;
+      for (var i = 0; i < localStorage.length; i++) {
+        if ((localStorage.key(i) || '').indexOf('tih_cert_') === 0) certCount++;
+      }
+      var approvedCount = apps.filter(function (a) { return a.status === 'approved'; }).length;
+      var decidedCount = apps.filter(function (a) { return a.status === 'approved' || a.status === 'rejected'; }).length;
+      var approvalRate = decidedCount ? Math.round(approvedCount / decidedCount * 100) + '%' : '—';
+
+      document.getElementById('statGrid').innerHTML =
+        '<div class="stat-card warn"><b>' + pending + '</b><span>New / Pending Applications</span></div>'
+        + '<div class="stat-card"><b>' + active + '</b><span>Active Students</span></div>'
+        + '<div class="stat-card"><b>' + certCount + '</b><span>Certificates (this device)</span></div>'
+        + '<div class="stat-card warn"><b>' + atRisk + '</b><span>At-Risk (no login 14+ days)</span></div>'
+        + '<div class="stat-card"><b>' + approvalRate + '</b><span>Approval Rate</span></div>';
+
+      // Popular courses bar list
+      var counts = {};
+      students.forEach(function (s) { (s.courses || []).forEach(function (c) { counts[c.id] = (counts[c.id] || 0) + 1; }); });
+      var entries = Object.keys(counts).map(function (k) { return [k, counts[k]]; }).sort(function (a, b) { return b[1] - a[1]; }).slice(0, 8);
+      var max = entries.length ? entries[0][1] : 1;
+      var html = entries.map(function (e) {
+        return '<div class="bar-row"><span class="bl">' + esc(courseName(e[0])) + '</span>'
+          + '<span class="bt"><span class="prog-track"><span class="prog-fill" style="width:' + Math.round(e[1] / max * 100) + '%"></span></span></span>'
+          + '<b>' + e[1] + '</b></div>';
+      }).join('');
+      document.getElementById('popularCourses').innerHTML = html || '<div class="empty-state">No course assignments yet.</div>';
+
+      var badge = document.getElementById('appsBadge');
+      if (pending > 0) { badge.style.display = ''; badge.textContent = pending; } else { badge.style.display = 'none'; }
+    }
+
+    /* ============ RENDER: APPLICATIONS ============ */
+    function renderApps() {
+      var q = (document.getElementById('appSearch').value || '').toLowerCase();
+      var f = document.getElementById('appFilter').value;
+      var apps = HubDB.getApplications().filter(function (a) {
+        if (f && a.status !== f) return false;
+        if (q && (a.name + ' ' + a.email + ' ' + a.id).toLowerCase().indexOf(q) === -1) return false;
+        return true;
+      });
+      var tbody = document.getElementById('appsTbody');
+      document.getElementById('appsEmpty').style.display = apps.length ? 'none' : 'block';
+      tbody.innerHTML = apps.map(function (a) {
+        return '<tr>'
+          + '<td><b>' + esc(a.id) + '</b></td>'
+          + '<td>' + esc(a.name) + '<br><span style="color:var(--muted);font-size:.76rem;">' + esc(a.email) + '</span></td>'
+          + '<td>' + esc(a.location) + '</td>'
+          + '<td style="font-size:.78rem;">' + (a.tracks || []).map(courseName).map(esc).join(', ') + '</td>'
+          + '<td style="white-space:nowrap;">' + fmtDate(a.submittedAt) + '</td>'
+          + '<td><span class="pill ' + a.status + '">' + a.status.replace('-', ' ') + '</span></td>'
+          + '<td><div class="row-actions">'
+          + '<button class="btn btn-line btn-sm" onclick="viewApp(\'' + a.id + '\')">View</button>'
+          + (a.status !== 'approved' ? '<button class="btn btn-green btn-sm" onclick="approveApp(\'' + a.id + '\')">Approve</button>' : '')
+          + (a.status !== 'approved' && a.status !== 'rejected' ? '<button class="btn btn-red btn-sm" onclick="rejectApp(\'' + a.id + '\')">Reject</button>' : '')
+          + '</div></td></tr>';
+      }).join('');
+    }
+    document.getElementById('appSearch').addEventListener('input', renderApps);
+    document.getElementById('appFilter').addEventListener('change', renderApps);
+
+    window.viewApp = function (id) {
+      var a = HubDB.findApplication(id);
+      if (!a) return;
+      var notes = (a.notes || []).map(function (n) {
+        return '<div class="note-item">' + esc(n.text) + '<div class="who">' + esc(n.by) + ' · ' + fmtDate(n.at) + '</div></div>';
+      }).join('');
+      openModal(
+        '<h3>Application ' + esc(a.id) + ' <button class="x" onclick="closeModal()">✕</button></h3>'
+        + '<div class="kv"><span class="k">Name</span><span class="v">' + esc(a.name) + '</span></div>'
+        + '<div class="kv"><span class="k">Email</span><span class="v">' + esc(a.email) + '</span></div>'
+        + '<div class="kv"><span class="k">Phone / WhatsApp</span><span class="v">' + esc(a.phone) + '</span></div>'
+        + '<div class="kv"><span class="k">Location</span><span class="v">' + esc(a.location) + '</span></div>'
+        + '<div class="kv"><span class="k">Date of Birth</span><span class="v">' + esc(a.dob || '—') + '</span></div>'
+        + '<div class="kv"><span class="k">Education</span><span class="v">' + esc(a.education) + '</span></div>'
+        + '<div class="kv"><span class="k">Occupation</span><span class="v">' + esc(a.occupation || '—') + '</span></div>'
+        + '<div class="kv"><span class="k">Referral</span><span class="v">' + esc(a.referral || '—') + '</span></div>'
+        + '<div class="kv"><span class="k">Tracks</span><span class="v">' + (a.tracks || []).map(courseName).map(esc).join(', ') + '</span></div>'
+        + '<div class="kv"><span class="k">Status</span><span class="v"><span class="pill ' + a.status + '">' + a.status + '</span></span></div>'
+        + '<p style="margin:.8rem 0;font-size:.88rem;"><b>Goals:</b> ' + esc(a.goals) + '</p>'
+        + '<h3 style="font-size:.9rem;margin:1rem 0 .5rem;">Internal Notes</h3>' + (notes || '<p style="font-size:.82rem;color:var(--muted);">No notes yet.</p>')
+        + '<div class="fld" style="margin-top:.6rem;"><textarea id="noteText" placeholder="Add internal note…"></textarea></div>'
+        + '<div class="modal-actions">'
+        + '<button class="btn btn-line" onclick="addAppNote(\'' + a.id + '\')">Add Note</button>'
+        + (a.status !== 'approved' ? '<button class="btn btn-green" onclick="approveApp(\'' + a.id + '\')">✓ Approve</button>' : '')
+        + '<button class="btn btn-orange" onclick="requestInfo(\'' + a.id + '\')">Request More Info</button>'
+        + (a.status !== 'rejected' && a.status !== 'approved' ? '<button class="btn btn-red" onclick="rejectApp(\'' + a.id + '\')">Reject</button>' : '')
+        + (a.status === 'pending' ? '<button class="btn btn-line" onclick="markReview(\'' + a.id + '\')">Mark Under Review</button>' : '')
+        + '</div>'
+      );
+    };
+    window.addAppNote = function (id) {
+      var text = (document.getElementById('noteText') || {}).value || '';
+      if (!text.trim()) return;
+      var a = HubDB.findApplication(id);
+      var notes = a.notes || [];
+      var s = HubDB.adminSession();
+      notes.push({ text: text.trim(), by: s ? s.username : 'admin', at: new Date().toISOString() });
+      HubDB.updateApplication(id, { notes: notes });
+      HubDB.audit('Added note to application', id);
+      viewApp(id);
+    };
+    window.markReview = function (id) {
+      HubDB.updateApplication(id, { status: 'review' });
+      HubDB.audit('Marked application under review', id);
+      closeModal(); renderAll();
+    };
+    window.requestInfo = function (id) {
+      var msg = prompt('What information do you need from the applicant?');
+      if (msg === null) return;
+      var a = HubDB.updateApplication(id, { status: 'info-needed', statusMessage: msg.trim() });
+      HubDB.audit('Requested more info', id);
+      closeModal(); renderAll();
+      if (a && confirm('Open WhatsApp to notify ' + a.name + '?')) {
+        window.open(HubDB.waLink(a.phone, 'Hello ' + a.name + ', regarding your TIH Learning Hub application ' + a.id + ': ' + msg + '\n\nReply here or check your status: https://tolbertinnovationhub.org/hub-track.html?id=' + a.id), '_blank');
+        HubDB.logMessage({ to: a.phone, channel: 'whatsapp', type: 'info-request', target: id });
+      }
+    };
+    window.rejectApp = function (id) {
+      var reason = prompt('Reason for rejection (optional — shown to the applicant):');
+      if (reason === null) return;
+      var a = HubDB.updateApplication(id, { status: 'rejected', statusMessage: reason.trim() });
+      HubDB.audit('Rejected application', id);
+      closeModal(); renderAll();
+      if (a && confirm('Open WhatsApp to notify ' + a.name + '?')) {
+        window.open(HubDB.waLink(a.phone, 'Hello ' + a.name + ', thank you for applying to TIH Learning Hub (application ' + a.id + '). Unfortunately your application was not approved at this time.' + (reason ? ' Reason: ' + reason : '') + ' You are welcome to re-apply in the future.'), '_blank');
+        HubDB.logMessage({ to: a.phone, channel: 'whatsapp', type: 'rejection', target: id });
+      }
+    };
+    window.approveApp = function (id) {
+      var a = HubDB.findApplication(id);
+      if (!a) return;
+      if (!confirm('Approve ' + a.name + ' and create their student account?')) return;
+      HubDB.createStudent({
+        name: a.name, email: a.email, phone: a.phone, location: a.location, applicationId: a.id
+      }).then(function (res) {
+        // Assign requested tracks automatically
+        (a.tracks || []).forEach(function (cid) { HubDB.assignCourse(res.student.id, cid); });
+        HubDB.updateApplication(id, { status: 'approved', statusMessage: '', studentId: res.student.id });
+        HubDB.audit('Approved application → created student ' + res.student.id, id);
+        renderAll();
+        var loginUrl = 'https://tolbertinnovationhub.org/hub-dashboard.html';
+        var waText = 'Welcome to TIH Learning Hub, ' + a.name + '! 🎉\n\nYour application ' + a.id + ' has been APPROVED.\n\nLogin details:\nStudent ID: ' + res.student.id + '\nTemporary password: ' + res.tempPassword + '\n\nLogin here: ' + loginUrl + '\nYou will be asked to set a new password on first login.\n\nYour first courses are already assigned. Happy learning!';
+        openModal(
+          '<h3>✅ Student Account Created <button class="x" onclick="closeModal()">✕</button></h3>'
+          + '<p style="font-size:.9rem;">Deliver these credentials to <b>' + esc(a.name) + '</b> now — the temporary password is only shown once.</p>'
+          + '<div class="cred-box">Student ID: <b>' + esc(res.student.id) + '</b><br>Temp password: <b>' + esc(res.tempPassword) + '</b></div>'
+          + '<div class="modal-actions">'
+          + '<a class="btn btn-green" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(a.phone, waText) + '">💬 Send via WhatsApp</a>'
+          + '<a class="btn btn-line" href="' + HubDB.mailtoLink(a.email, 'Your TIH Learning Hub Account', waText) + '">✉️ Send via Email</a>'
+          + '<button class="btn btn-line" onclick="navigator.clipboard&&navigator.clipboard.writeText(\'' + res.student.id + ' / ' + res.tempPassword + '\');this.textContent=\'✓ Copied\'">📋 Copy</button>'
+          + '</div>'
+        );
+        HubDB.logMessage({ to: a.phone, channel: 'whatsapp', type: 'credentials', target: res.student.id });
+      });
+    };
+
+    /* ============ RENDER: STUDENTS ============ */
+    function renderStudents() {
+      var q = (document.getElementById('stuSearch').value || '').toLowerCase();
+      var f = document.getElementById('stuFilter').value;
+      var list = HubDB.getStudents().filter(function (s) {
+        if (f && s.status !== f) return false;
+        if (q && (s.name + ' ' + s.email + ' ' + s.phone + ' ' + s.id).toLowerCase().indexOf(q) === -1) return false;
+        return true;
+      });
+      document.getElementById('stuEmpty').style.display = list.length ? 'none' : 'block';
+      document.getElementById('stuTbody').innerHTML = list.map(function (s) {
+        return '<tr>'
+          + '<td><b>' + esc(s.id) + '</b></td>'
+          + '<td>' + esc(s.name) + '</td>'
+          + '<td style="font-size:.78rem;">' + esc(s.email) + '<br>' + esc(s.phone || '') + '</td>'
+          + '<td>' + (s.courses || []).length + '</td>'
+          + '<td style="white-space:nowrap;">' + fmtDate(s.lastLoginAt) + '</td>'
+          + '<td><span class="pill ' + s.status + '">' + s.status + '</span></td>'
+          + '<td><div class="row-actions">'
+          + '<button class="btn btn-line btn-sm" onclick="viewStudent(\'' + s.id + '\')">Manage</button>'
+          + '</div></td></tr>';
+      }).join('');
+    }
+    document.getElementById('stuSearch').addEventListener('input', renderStudents);
+    document.getElementById('stuFilter').addEventListener('change', renderStudents);
+
+    window.viewStudent = function (id) {
+      var s = HubDB.findStudent(id);
+      if (!s) return;
+      var courseRows = (s.courses || []).map(function (c) {
+        var p = HubDB.courseProgress(c.id);
+        return '<div class="course-row">'
+          + '<span class="cname">' + esc(courseName(c.id)) + (c.deadline ? ' <span style="color:var(--secondary);font-size:.72rem;">due ' + fmtDate(c.deadline) + '</span>' : '') + '</span>'
+          + '<span class="prog-track" style="width:90px;"><span class="prog-fill" style="width:' + p.pct + '%"></span></span>'
+          + '<span style="font-size:.76rem;color:var(--muted);width:38px;text-align:right;">' + p.pct + '%</span>'
+          + '<button class="btn btn-red btn-sm" onclick="unassign(\'' + s.id + '\',\'' + c.id + '\')">✕</button>'
+          + '</div>';
+      }).join('') || '<p style="font-size:.83rem;color:var(--muted);">No courses assigned.</p>';
+
+      var courseOpts = '';
+      try {
+        Object.keys(COURSES_DB).forEach(function (cid) {
+          if (!(s.courses || []).some(function (c) { return c.id === cid; })) {
+            courseOpts += '<option value="' + cid + '">' + esc(courseName(cid)) + '</option>';
+          }
+        });
+      } catch (e) {}
+
+      var notes = (s.adminNotes || []).map(function (n) {
+        return '<div class="note-item">' + esc(n.text) + '<div class="who">' + esc(n.by) + ' · ' + fmtDate(n.at) + '</div></div>';
+      }).join('');
+
+      openModal(
+        '<h3>' + esc(s.name) + ' <span style="font-size:.75rem;color:var(--muted);font-weight:500;">' + esc(s.id) + '</span> <button class="x" onclick="closeModal()">✕</button></h3>'
+        + '<div class="kv"><span class="k">Email</span><span class="v">' + esc(s.email) + '</span></div>'
+        + '<div class="kv"><span class="k">Phone</span><span class="v">' + esc(s.phone || '—') + '</span></div>'
+        + '<div class="kv"><span class="k">Location</span><span class="v">' + esc(s.location || '—') + '</span></div>'
+        + '<div class="kv"><span class="k">Status</span><span class="v"><span class="pill ' + s.status + '">' + s.status + '</span></span></div>'
+        + '<div class="kv"><span class="k">Joined</span><span class="v">' + fmtDate(s.createdAt) + '</span></div>'
+        + '<div class="kv"><span class="k">Last Login</span><span class="v">' + fmtDate(s.lastLoginAt) + '</span></div>'
+        + '<h3 style="font-size:.9rem;margin:1rem 0 .4rem;">Assigned Courses</h3>' + courseRows
+        + (courseOpts
+            ? '<div style="display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap;align-items:center;">'
+              + '<select id="assignSel" style="flex:1;min-width:150px;padding:.5rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;">' + courseOpts + '</select>'
+              + '<input type="date" id="assignDeadline" title="Optional deadline" style="padding:.5rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;">'
+              + '<select id="assignPriority" style="padding:.5rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;"><option value="medium">Medium</option><option value="high">High</option><option value="low">Low</option></select>'
+              + '<button class="btn btn-primary btn-sm" onclick="doAssign(\'' + s.id + '\')">+ Assign</button></div>'
+            : '')
+        + '<h3 style="font-size:.9rem;margin:1rem 0 .4rem;">Admin Notes</h3>' + (notes || '<p style="font-size:.82rem;color:var(--muted);">No notes.</p>')
+        + '<div class="fld" style="margin-top:.5rem;"><textarea id="stuNoteText" placeholder="Add internal note…"></textarea></div>'
+        + '<div class="modal-actions">'
+        + '<button class="btn btn-line btn-sm" onclick="addStuNote(\'' + s.id + '\')">Add Note</button>'
+        + '<button class="btn btn-orange btn-sm" onclick="resetPass(\'' + s.id + '\')">Reset Password</button>'
+        + '<a class="btn btn-green btn-sm" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(s.phone, 'Hello ' + s.name + ', this is TIH Learning Hub. ') + '">💬 Message</a>'
+        + (s.status === 'active'
+            ? '<button class="btn btn-red btn-sm" onclick="suspendStu(\'' + s.id + '\')">Suspend</button>'
+            : '<button class="btn btn-green btn-sm" onclick="activateStu(\'' + s.id + '\')">Re-activate</button>')
+        + '<button class="btn btn-red btn-sm" onclick="deleteStu(\'' + s.id + '\')">Delete</button>'
+        + '</div>'
+      );
+    };
+    window.doAssign = function (sid) {
+      var cid = document.getElementById('assignSel').value;
+      var deadline = document.getElementById('assignDeadline').value || null;
+      var priority = document.getElementById('assignPriority').value;
+      HubDB.assignCourse(sid, cid, { deadline: deadline, priority: priority });
+      HubDB.audit('Assigned course ' + cid, sid);
+      var s = HubDB.findStudent(sid);
+      if (s && s.phone && confirm('Notify ' + s.name + ' on WhatsApp about the new course?')) {
+        window.open(HubDB.waLink(s.phone, 'Hello ' + s.name + '! A new course has been assigned to you on TIH Learning Hub: "' + courseName(cid) + '"' + (deadline ? ' (deadline: ' + deadline + ')' : '') + '. Login to start: https://tolbertinnovationhub.org/hub-dashboard.html'), '_blank');
+        HubDB.logMessage({ to: s.phone, channel: 'whatsapp', type: 'course-assigned', target: sid });
+      }
+      viewStudent(sid); renderAll();
+    };
+    window.unassign = function (sid, cid) {
+      if (!confirm('Remove ' + courseName(cid) + ' from this student?')) return;
+      HubDB.removeCourse(sid, cid);
+      HubDB.audit('Removed course ' + cid, sid);
+      viewStudent(sid); renderAll();
+    };
+    window.addStuNote = function (sid) {
+      var text = (document.getElementById('stuNoteText') || {}).value || '';
+      if (!text.trim()) return;
+      var s = HubDB.findStudent(sid);
+      var notes = s.adminNotes || [];
+      var sess = HubDB.adminSession();
+      notes.push({ text: text.trim(), by: sess ? sess.username : 'admin', at: new Date().toISOString() });
+      HubDB.updateStudent(sid, { adminNotes: notes });
+      HubDB.audit('Added note to student', sid);
+      viewStudent(sid);
+    };
+    window.resetPass = function (sid) {
+      if (!confirm('Generate a new temporary password for this student?')) return;
+      HubDB.resetStudentPassword(sid).then(function (tempPassword) {
+        HubDB.audit('Reset student password', sid);
+        var s = HubDB.findStudent(sid);
+        openModal(
+          '<h3>🔑 Password Reset <button class="x" onclick="closeModal()">✕</button></h3>'
+          + '<p style="font-size:.9rem;">New temporary password for <b>' + esc(s.name) + '</b> (shown once):</p>'
+          + '<div class="cred-box">Student ID: <b>' + esc(s.id) + '</b><br>Temp password: <b>' + esc(tempPassword) + '</b></div>'
+          + '<div class="modal-actions">'
+          + '<a class="btn btn-green" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(s.phone, 'Hello ' + s.name + ', your TIH Learning Hub password was reset.\nStudent ID: ' + s.id + '\nTemporary password: ' + tempPassword + '\nLogin: https://tolbertinnovationhub.org/hub-dashboard.html') + '">💬 Send via WhatsApp</a>'
+          + '</div>'
+        );
+      });
+    };
+    window.suspendStu = function (sid) {
+      if (!confirm('Suspend this account? The student will not be able to log in.')) return;
+      HubDB.updateStudent(sid, { status: 'suspended' });
+      HubDB.audit('Suspended student', sid);
+      viewStudent(sid); renderAll();
+    };
+    window.activateStu = function (sid) {
+      HubDB.updateStudent(sid, { status: 'active' });
+      HubDB.audit('Re-activated student', sid);
+      viewStudent(sid); renderAll();
+    };
+    window.deleteStu = function (sid) {
+      if (!confirm('Permanently delete this student account? This cannot be undone.')) return;
+      HubDB.deleteStudent(sid);
+      HubDB.audit('Deleted student', sid);
+      closeModal(); renderAll();
+    };
+
+    /* Add student manually */
+    function addStudentModal() {
+      openModal(
+        '<h3>+ Add Student Manually <button class="x" onclick="closeModal()">✕</button></h3>'
+        + '<div class="fld"><label>Full Name</label><input id="mName" /></div>'
+        + '<div class="fld"><label>Email</label><input id="mEmail" type="email" /></div>'
+        + '<div class="fld"><label>Phone / WhatsApp</label><input id="mPhone" /></div>'
+        + '<div class="fld"><label>Location</label><input id="mLoc" /></div>'
+        + '<button class="btn btn-primary btn-block" onclick="doAddStudent()">Create Account</button>'
+        + '<div class="feedback err" id="mErr"></div>'
+      );
+    }
+    document.getElementById('addStudentBtn').addEventListener('click', addStudentModal);
+    document.getElementById('addStudentBtn2').addEventListener('click', addStudentModal);
+    window.doAddStudent = function () {
+      var name = document.getElementById('mName').value.trim();
+      var email = document.getElementById('mEmail').value.trim();
+      var phone = document.getElementById('mPhone').value.trim();
+      var loc = document.getElementById('mLoc').value.trim();
+      if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        document.getElementById('mErr').textContent = 'Name and a valid email are required.';
+        return;
+      }
+      HubDB.createStudent({ name: name, email: email, phone: phone, location: loc }).then(function (res) {
+        HubDB.audit('Manually created student ' + res.student.id);
+        renderAll();
+        openModal(
+          '<h3>✅ Student Created <button class="x" onclick="closeModal()">✕</button></h3>'
+          + '<div class="cred-box">Student ID: <b>' + esc(res.student.id) + '</b><br>Temp password: <b>' + esc(res.tempPassword) + '</b></div>'
+          + '<div class="modal-actions">'
+          + '<a class="btn btn-green" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(phone, 'Welcome to TIH Learning Hub, ' + name + '!\nStudent ID: ' + res.student.id + '\nTemporary password: ' + res.tempPassword + '\nLogin: https://tolbertinnovationhub.org/hub-dashboard.html') + '">💬 Send via WhatsApp</a>'
+          + '<button class="btn btn-line" onclick="viewStudent(\'' + res.student.id + '\')">Manage Student</button>'
+          + '</div>'
+        );
+      });
+    };
+
+    /* ============ RENDER: CERTIFICATES ============ */
+    function renderCerts() {
+      var rows = [];
+      for (var i = 0; i < localStorage.length; i++) {
+        var key = localStorage.key(i) || '';
+        if (key.indexOf('tih_cert_') === 0) {
+          try {
+            var cert = JSON.parse(localStorage.getItem(key));
+            if (cert && cert.certId) rows.push(cert);
+          } catch (e) {}
+        }
+      }
+      document.getElementById('certEmpty').style.display = rows.length ? 'none' : 'block';
+      document.getElementById('certTbody').innerHTML = rows.map(function (c) {
+        return '<tr><td><b>' + esc(c.certId) + '</b></td><td>' + esc(c.studentName || '—') + '</td>'
+          + '<td>' + esc((c.courseTitle || '').split(':')[0]) + '</td><td>' + esc(c.date || '—') + '</td>'
+          + '<td><a class="btn btn-line btn-sm" href="certificate-verify.html?id=' + encodeURIComponent(c.certId) + '">Verify</a></td></tr>';
+      }).join('');
+    }
+
+    /* ============ RENDER: AUDIT ============ */
+    function renderAudit() {
+      var log = HubDB.getAudit();
+      document.getElementById('auditList').innerHTML = log.length
+        ? log.slice(0, 120).map(function (e) {
+            return '<div class="audit-row"><span class="when">' + new Date(e.at).toLocaleString() + '</span>'
+              + '<span><b>' + esc(e.by) + '</b> — ' + esc(e.action) + (e.target ? ' <span style="color:var(--muted);">(' + esc(e.target) + ')</span>' : '') + '</span></div>';
+          }).join('')
+        : '<div class="empty-state">No admin actions logged yet.</div>';
+    }
+
+    /* ============ SETTINGS ============ */
+    document.getElementById('changePassBtn').addEventListener('click', function () {
+      var p1 = document.getElementById('newAdminPass').value;
+      var p2 = document.getElementById('newAdminPass2').value;
+      var fb = document.getElementById('passFeedback');
+      if (p1.length < 10) { fb.className = 'feedback err'; fb.textContent = 'Password must be at least 10 characters.'; return; }
+      if (p1 !== p2) { fb.className = 'feedback err'; fb.textContent = 'Passwords do not match.'; return; }
+      HubDB.changeAdminPassword(p1).then(function () {
+        HubDB.audit('Changed admin password');
+        fb.className = 'feedback ok'; fb.textContent = '✓ Password updated.';
+        document.getElementById('newAdminPass').value = '';
+        document.getElementById('newAdminPass2').value = '';
+      });
+    });
+
+    /* ============ EXPORT ============ */
+    document.getElementById('exportBtn').addEventListener('click', function () {
+      var data = {
+        exportedAt: new Date().toISOString(),
+        applications: HubDB.getApplications(),
+        students: HubDB.getStudents(),
+        audit: HubDB.getAudit(),
+        messages: HubDB.getMessages()
+      };
+      var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'tih-hub-export-' + new Date().toISOString().slice(0, 10) + '.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      HubDB.audit('Exported all data');
+    });
+
+    /* ============ MASTER RENDER ============ */
+    function renderAll() {
+      renderDash(); renderApps(); renderStudents(); renderCerts(); renderAudit();
+    }
+    window.switchPanel = switchPanel;
+    window.closeModal = closeModal;
+  </script>
+</body>
+</html>

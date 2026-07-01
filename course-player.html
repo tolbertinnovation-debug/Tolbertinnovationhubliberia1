@@ -1080,7 +1080,7 @@
     document.getElementById('quizResultMsg').textContent = quizLastPassed
       ? 'Excellent work! You scored ' + quizScore + ' out of ' + total + '. Module ' + currentQuizData.moduleNum + ' quiz is complete. '
         + (currentQuizData.isFinal ? 'Your course certificate is ready!' : 'Keep going! You\'re making great progress!')
-      : 'You scored ' + quizScore + ' out of ' + total + '. You need at least ' + passThreshold + ' correct to pass. Review the lessons and try again. You've got this!';
+      : 'You scored ' + quizScore + ' out of ' + total + '. You need at least ' + passThreshold + ' correct to pass. Review the lessons and try again. You\'ve got this!';
     document.getElementById('quizResultBtn').textContent = quizLastPassed
       ? (currentQuizData.isFinal ? '🏆 Claim Certificate' : 'Continue to Next Module →')
       : '↺ Retry Quiz';

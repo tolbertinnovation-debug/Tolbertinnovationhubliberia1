@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Your Application | TIH Learning Hub</title>
+  <meta name="description" content="Check the status of your TIH Learning Hub application using your Application ID." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #1E3A8A; --primary-light: #eef2ff; --secondary: #F97316;
+      --accent: #10B981; --bg: #F8FAFC; --text: #1F2937; --muted: #64748b; --border: #e2e8f0;
+      --radius: 12px; --shadow: 0 4px 16px rgba(30,58,138,.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; }
+    h1,h2,h3 { font-family: 'Poppins', sans-serif; }
+    a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    .topbar { background: #fff; border-bottom: 1px solid var(--border); padding: 0.9rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+    .brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--primary); font-size: 1.05rem; }
+    .brand span { color: var(--secondary); }
+    .wrap { max-width: 560px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    .page-head { text-align: center; margin-bottom: 1.5rem; }
+    .page-head h1 { font-size: clamp(1.4rem, 4vw, 1.9rem); color: var(--primary); font-weight: 800; margin-bottom: 0.4rem; }
+    .page-head p { color: var(--muted); font-size: 0.93rem; }
+    .card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.6rem 1.4rem; }
+    .search-row { display: flex; gap: 0.6rem; }
+    .search-row input { flex: 1; padding: 0.8rem 1rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: inherit; text-transform: uppercase; min-height: 50px; }
+    .search-row input:focus { outline: none; border-color: var(--primary); }
+    .search-row button { background: var(--primary); color: #fff; border: none; border-radius: 8px; padding: 0 1.4rem; font-weight: 700; cursor: pointer; font-size: 0.92rem; min-height: 50px; }
+    .hint { font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem; }
+    .result { display: none; margin-top: 1.5rem; }
+    .result.show { display: block; }
+    .status-banner { border-radius: var(--radius); padding: 1.25rem; text-align: center; margin-bottom: 1.25rem; }
+    .status-banner .s-icon { font-size: 2.2rem; }
+    .status-banner .s-label { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.15rem; margin-top: 0.3rem; }
+    .status-banner .s-sub { font-size: 0.86rem; margin-top: 0.25rem; }
+    .st-pending  { background: #fef9c3; color: #854d0e; }
+    .st-review   { background: #dbeafe; color: #1e40af; }
+    .st-approved { background: #d1fae5; color: #065f46; }
+    .st-rejected { background: #fee2e2; color: #991b1b; }
+    .st-info     { background: #ffedd5; color: #9a3412; }
+    .detail-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; }
+    .detail-row .k { color: var(--muted); font-weight: 600; }
+    .detail-row .v { font-weight: 700; text-align: right; }
+    .timeline { margin-top: 1.25rem; }
+    .tstep { display: flex; gap: 0.8rem; padding-bottom: 1.1rem; position: relative; }
+    .tstep::before { content: ''; position: absolute; left: 13px; top: 28px; bottom: 0; width: 2px; background: var(--border); }
+    .tstep:last-child::before { display: none; }
+    .tdot { width: 28px; height: 28px; border-radius: 50%; background: var(--border); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; z-index: 1; }
+    .tstep.done .tdot { background: var(--accent); }
+    .tstep.current .tdot { background: var(--primary); }
+    .tstep .t-label { font-weight: 700; font-size: 0.9rem; }
+    .tstep .t-sub { font-size: 0.8rem; color: var(--muted); }
+    .msg-box { background: var(--primary-light); border-left: 4px solid var(--primary); border-radius: 8px; padding: 0.9rem 1rem; font-size: 0.9rem; margin-top: 1rem; }
+    .not-found { display: none; margin-top: 1.25rem; background: #fee2e2; color: #991b1b; border-radius: 8px; padding: 1rem; font-size: 0.9rem; font-weight: 600; text-align: center; }
+    .not-found.show { display: block; }
+    .support-note { text-align: center; margin-top: 1.75rem; font-size: 0.86rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a class="brand" href="learning-hub.html">TIH <span>Learning Hub</span></a>
+    <a href="hub-apply.html" style="font-size:.88rem;">Apply →</a>
+  </div>
+
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Track Your Application</h1>
+      <p>Enter your Application ID (e.g. <strong>TIH-APP-A1B2C3</strong>) — no login needed.</p>
+    </div>
+
+    <div class="card">
+      <div class="search-row">
+        <input type="text" id="appIdInput" placeholder="TIH-APP-XXXXXX" autocomplete="off" />
+        <button id="checkBtn">Check</button>
+      </div>
+      <div class="hint">Your ID was shown when you applied, and sent in your confirmation message.</div>
+
+      <div class="not-found" id="notFound">
+        No application found with that ID on this device. Double-check the ID, or contact us on
+        <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">WhatsApp</a> and we'll check for you.
+      </div>
+
+      <div class="result" id="result">
+        <div class="status-banner" id="statusBanner">
+          <div class="s-icon" id="sIcon"></div>
+          <div class="s-label" id="sLabel"></div>
+          <div class="s-sub" id="sSub"></div>
+        </div>
+        <div class="detail-row"><span class="k">Application ID</span><span class="v" id="rId"></span></div>
+        <div class="detail-row"><span class="k">Applicant</span><span class="v" id="rName"></span></div>
+        <div class="detail-row"><span class="k">Submitted</span><span class="v" id="rDate"></span></div>
+        <div class="detail-row"><span class="k">Estimated Review Time</span><span class="v">3–5 business days</span></div>
+        <div class="msg-box" id="msgBox" style="display:none;"></div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </div>
+
+    <p class="support-note">Questions? Chat with us on <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">💬 WhatsApp Support</a></p>
+  </div>
+
+  <script src="hub-db.js?v=1"></script>
+  <script>
+    (function () {
+      function getUrlParam(name) {
+        var m = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+        return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : null;
+      }
+
+      var STATUS_META = {
+        'pending':     { cls: 'st-pending',  icon: '⏳', label: 'Pending Review',    sub: 'Your application is in the queue.' },
+        'review':      { cls: 'st-review',   icon: '🔎', label: 'Under Review',      sub: 'The TIH team is reviewing your application now.' },
+        'approved':    { cls: 'st-approved', icon: '🎉', label: 'Approved!',         sub: 'Your login details have been sent to your email and WhatsApp.' },
+        'rejected':    { cls: 'st-rejected', icon: '😔', label: 'Not Approved',      sub: 'See the note below. You may re-apply in the future.' },
+        'info-needed': { cls: 'st-info',     icon: '📩', label: 'More Info Needed',  sub: 'Please provide the information requested below.' }
+      };
+
+      function renderTimeline(status) {
+        var steps = [
+          { key: 'submitted', label: 'Application Submitted', sub: 'We received your application.' },
+          { key: 'review', label: 'Under Review', sub: 'Our team checks your details and goals.' },
+          { key: 'decision', label: 'Decision', sub: 'Approved, more info requested, or not approved.' },
+          { key: 'account', label: 'Account Created', sub: 'Login details sent via WhatsApp + email.' }
+        ];
+        var reached = { 'pending': 1, 'review': 2, 'info-needed': 2, 'rejected': 3, 'approved': 4 }[status] || 1;
+        var html = '';
+        for (var i = 0; i < steps.length; i++) {
+          var stateCls = (i + 1 < reached) ? 'done' : (i + 1 === reached ? 'current' : '');
+          var mark = (i + 1 < reached) ? '✓' : (i + 1);
+          html += '<div class="tstep ' + stateCls + '"><div class="tdot">' + mark + '</div>'
+            + '<div><div class="t-label">' + steps[i].label + '</div><div class="t-sub">' + steps[i].sub + '</div></div></div>';
+        }
+        document.getElementById('timeline').innerHTML = html;
+      }
+
+      function show(app) {
+        document.getElementById('notFound').classList.remove('show');
+        var meta = STATUS_META[app.status] || STATUS_META['pending'];
+        var banner = document.getElementById('statusBanner');
+        banner.className = 'status-banner ' + meta.cls;
+        document.getElementById('sIcon').textContent = meta.icon;
+        document.getElementById('sLabel').textContent = meta.label;
+        document.getElementById('sSub').textContent = meta.sub;
+        document.getElementById('rId').textContent = app.id;
+        document.getElementById('rName').textContent = app.name;
+        document.getElementById('rDate').textContent = new Date(app.submittedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        var msgBox = document.getElementById('msgBox');
+        if (app.statusMessage) {
+          msgBox.style.display = 'block';
+          msgBox.textContent = ((app.status === 'rejected') ? 'Reason: ' : 'Message from TIH: ') + app.statusMessage;
+        } else {
+          msgBox.style.display = 'none';
+        }
+        renderTimeline(app.status);
+        document.getElementById('result').classList.add('show');
+      }
+
+      function check() {
+        var id = document.getElementById('appIdInput').value.trim().toUpperCase();
+        if (!id) return;
+        var app = HubDB.findApplication(id);
+        if (app) { show(app); }
+        else {
+          document.getElementById('result').classList.remove('show');
+          document.getElementById('notFound').classList.add('show');
+        }
+      }
+
+      document.getElementById('checkBtn').addEventListener('click', check);
+      document.getElementById('appIdInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') check(); });
+
+      var fromUrl = getUrlParam('id');
+      if (fromUrl) {
+        document.getElementById('appIdInput').value = fromUrl.toUpperCase();
+        check();
+      }
+    })();
+  </script>
+</body>
+</html>

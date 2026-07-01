@@ -577,6 +577,14 @@
     document.getElementById('cert-id').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') verifyById();
     });
+    // Auto-verify when arriving with ?id=CERT-ID in the URL
+    (function() {
+      var m = new RegExp('[?&]id=([^&]*)').exec(window.location.search);
+      if (m && m[1]) {
+        document.getElementById('cert-id').value = decodeURIComponent(m[1].replace(/\+/g, ' '));
+        verifyById();
+      }
+    })();
     // Back to top
     window.addEventListener('scroll', function() {
       var btn = document.getElementById('backToTop');
