@@ -726,9 +726,14 @@
     (function () {
       'use strict';
 
+      /* ---- Helpers ---- */
+      function getUrlParam(name) {
+        var m = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+        return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : null;
+      }
+
       /* ---- State ---- */
-      var params = new URLSearchParams(window.location.search);
-      var sid = params.get('s') || 'mathematics';
+      var sid = getUrlParam('s') || 'mathematics';
 
       var subjectData = null;
       var currentTopicForMCQ = null;

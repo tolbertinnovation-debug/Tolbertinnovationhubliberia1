@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="courses-db.js?v=2"></script>
-  <script src="lesson-content.js?v=2"></script>
+  <script src="courses-db.js?v=3"></script>
+  <script src="lesson-content.js?v=3"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -511,12 +511,19 @@
   <canvas id="confettiCanvas"></canvas>
 
   <script>
+  // ===== URL PARAM HELPER (works in all browsers, including older Android) =====
+  function getUrlParam(name) {
+    var rx = new RegExp('[?&]' + name + '=([^&]*)');
+    var m = rx.exec(window.location.search);
+    return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : null;
+  }
+
   // ===== LOAD COURSE FROM DB =====
   var courseId, course, lessons, quizData, totalLessons;
 
   (function loadCourse() {
-    var params = new URLSearchParams(window.location.search);
-    courseId = params.get('id') || 'computer-literacy';
+    try {
+    courseId = getUrlParam('id') || 'computer-literacy';
     course = COURSES_DB[courseId];
     if (!course) {
       document.body.innerHTML = '<div style="padding:3rem;text-align:center;font-family:Inter,sans-serif"><h2 style="color:#002868">Course not found</h2><p style="margin:1rem 0 2rem;color:#6b7280">This course does not exist.</p><a href="courses.html" style="color:#002868;font-weight:700">← Back to Courses</a></div>';
@@ -563,6 +570,9 @@
     document.getElementById('certSigName').textContent = course.instructor;
     document.getElementById('completionSubtitle').textContent = 'Congratulations! You\'ve mastered ' + course.title.split(':')[0] + '!';
     document.getElementById('certDate').textContent = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+    } catch(e) {
+      document.getElementById('lessonTitle').textContent = 'Error loading course — please refresh.';
+    }
   })();
 
   // ===== STATE =====
@@ -648,13 +658,13 @@
   // ===== INIT =====
   (function init() {
     if (!course) return;
+    try {
     // Restore saved progress FIRST so isLessonLocked() is accurate from the start
     var savedProgress = localStorage.getItem('tih_progress_' + courseId);
     if (savedProgress) { try { completedLessons = JSON.parse(savedProgress); } catch(e) {} }
 
     // Determine starting lesson: URL param → first incomplete → 0
-    var params = new URLSearchParams(window.location.search);
-    var startLesson = parseInt(params.get('lesson'));
+    var startLesson = parseInt(getUrlParam('lesson'));
     if (!isNaN(startLesson) && startLesson >= 0 && startLesson < totalLessons) {
       // Only honor URL param if the lesson is actually unlocked
       currentLessonIndex = isLessonLocked(startLesson) ? 0 : startLesson;
@@ -671,6 +681,9 @@
     buildSidebar();
     renderLesson(currentLessonIndex);
     updateProgress();
+    } catch(e) {
+      document.getElementById('lessonTitle').textContent = 'Error loading lesson — please refresh.';
+    }
   })();
 
   // ===== RENDER LESSON =====
