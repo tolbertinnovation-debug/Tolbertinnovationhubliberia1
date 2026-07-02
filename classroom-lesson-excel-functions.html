@@ -1,160 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Excel Functions &amp; Lookup Formulas | TIH Classroom</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="classroom.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moved to TIH Learning Hub | Tolbert Innovation Hub</title>
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://tolbertinnovationhub.org/learning-hub.html" />
+  <meta http-equiv="refresh" content="0;url=learning-hub.html" />
   <style>
-    .lesson-hero{background:linear-gradient(135deg,#000d24,#002868 60%,#16a34a 100%);color:#fff;padding:3.5rem 0 2.5rem;}
-    .lesson-hero .badge{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);margin:.25rem .25rem .25rem 0;}
-    .lesson-hero h1{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin:.75rem 0 .75rem;}
-    .prog-bar{height:8px;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden;max-width:280px;margin-top:.75rem;}
-    .prog-fill{height:100%;background:#16a34a;border-radius:999px;}
-    .lesson-body{max-width:760px;margin:0 auto;}
-    .obj-card{background:#dcfce7;border-left:4px solid #16a34a;border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0;}
-    .obj-card h3{color:#16a34a;margin:0 0 .75rem;font-size:.9rem;text-transform:uppercase;}
-    .obj-card li{color:#374151;font-size:.95rem;line-height:1.7;margin-bottom:.3rem;}
-    .ls{margin-bottom:1.75rem;}.ls h2{font-size:1.15rem;color:#0d1520;margin:0 0 .7rem;padding-bottom:.4rem;border-bottom:2px solid #16a34a33;}
-    .ls p,.ls li{color:#374151;line-height:1.8;font-size:.96rem;}
-    .formula-box{background:#f0fdf4;border:1px solid #16a34a;border-radius:8px;padding:.75rem 1rem;margin:.75rem 0;font-family:monospace;font-size:.92rem;color:#14532d;}
-    .tip-box{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:10px;padding:1.25rem 1.5rem;margin:2rem 0;}
-    .tip-box h3{color:#92400e;margin:0 0 .6rem;font-size:.9rem;}.tip-box li{color:#78350f;font-size:.9rem;line-height:1.7;margin-bottom:.3rem;}
-    .vid-box{background:#f0fdf4;border:1px solid #16a34a;border-radius:12px;padding:1.5rem;margin:2rem 0;text-align:center;}
-    .vid-box h3{color:#166534;margin:0 0 .4rem;}.vid-box p{color:#14532d;font-size:.9rem;margin:0 0 1rem;}
-    .qi{background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;}
-    .qi strong{color:#0d1520;display:block;margin-bottom:.6rem;font-size:.96rem;}
-    .qo label{display:flex;align-items:center;gap:.6rem;padding:.45rem .7rem;border-radius:8px;cursor:pointer;font-size:.9rem;color:#374151;}
-    .qo label:hover{background:#f8fafd;}.qo input{accent-color:#16a34a;}
-    .qbtn{margin-top:.75rem;background:#16a34a;color:#fff;border:none;border-radius:8px;padding:.55rem 1.3rem;font-weight:700;cursor:pointer;font-size:.88rem;}
-    .qfb{display:none;margin-top:.6rem;padding:.65rem .9rem;border-radius:8px;font-size:.88rem;font-weight:600;}
-    .asgn{background:#f0fdf4;border-left:4px solid #16a34a;border-radius:12px;padding:1.5rem;margin:2rem 0;}
-    .asgn h3{color:#166534;margin:0 0 .6rem;}.asgn p{color:#14532d;font-size:.94rem;line-height:1.75;margin:0;}
-    .lnav{display:flex;gap:1rem;flex-wrap:wrap;margin:2.5rem 0;padding-top:2rem;border-top:1px solid #e4eaf4;}
-    .lnav a{flex:1;min-width:180px;background:#fff;border:1px solid #e4eaf4;border-radius:12px;padding:1rem 1.1rem;text-decoration:none;color:#374151;font-size:.9rem;transition:border-color .2s;}
-    .lnav a:hover{border-color:#16a34a;}.nd{font-size:.76rem;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem;}
-    .nt{font-weight:700;color:#0d1520;}
-    .mc-btn{width:100%;background:#16a34a;color:#fff;border:none;border-radius:12px;padding:.9rem;font-size:.97rem;font-weight:700;cursor:pointer;margin-top:1rem;}
-    .mc-btn:disabled{background:#15803d;}
+    body { font-family: Inter, -apple-system, sans-serif; background: #F8FAFC; color: #1F2937; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 1.5rem; text-align: center; }
+    .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 2.5rem 2rem; max-width: 420px; box-shadow: 0 8px 32px rgba(30,58,138,.1); }
+    h1 { color: #1E3A8A; font-size: 1.25rem; margin: 0 0 .6rem; }
+    p { color: #64748b; font-size: .95rem; margin: 0 0 1.25rem; }
+    a { display: inline-block; background: #F97316; color: #fff; font-weight: 700; padding: .8rem 1.6rem; border-radius: 999px; text-decoration: none; }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  <header class="site-header"><div class="container nav-wrap">
-    <a class="brand" href="classroom.html"><img src="https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg" alt="TIH" /><span>TIH Classroom</span></a>
-    <nav class="nav-links" aria-label="Classroom navigation">
-      <a href="index.html">Main Site</a><a href="classroom.html">Classroom</a>
-      <a href="classroom-office-suite.html">Microsoft Office</a><a href="classroom-dashboard.html">Dashboard</a>
-    </nav>
-    <button class="dark-mode-toggle" aria-label="Toggle dark mode">&#127769;</button>
-    <button class="menu-toggle" id="menuToggle" aria-expanded="false">&#9776; Menu</button>
-  </div></header>
-  <main id="main-content">
-    <section class="lesson-hero"><div class="container">
-      <span class="badge">Lesson 5 of 6</span><span class="badge">Intermediate</span><span class="badge">&#9201; 60 min</span>
-      <h1>&#128202; Excel Functions &amp; Lookup Formulas</h1>
-      <p style="opacity:.88;max-width:60ch;font-size:.96rem;line-height:1.7;">Unlock Excel's power with IF statements, VLOOKUP, SUMIF, and data analysis tools that professionals use to process data quickly and accurately.</p>
-      <div class="prog-bar"><div class="prog-fill" style="width:83%;"></div></div>
-    </div></section>
-    <section class="section"><div class="container"><div class="lesson-body">
-      <div class="obj-card"><h3>Learning Objectives</h3><ul>
-        <li>Understand: <strong>Logical Functions: IF, AND, OR</strong></li>
-        <li>Understand: <strong>Lookup Functions: VLOOKUP and XLOOKUP</strong></li>
-        <li>Understand: <strong>Conditional Aggregation: SUMIF, COUNTIF, AVERAGEIF</strong></li>
-        <li>Understand: <strong>Data Validation and Pivot Tables</strong></li>
-      </ul></div>
-
-      <div class="ls"><h2>Logical Functions: IF, AND, OR</h2>
-        <p>The IF function is the most important formula in Excel. It tests a condition and returns one value if true and another if false. Syntax: =IF(condition, value_if_true, value_if_false). Example: if a student's score is in column B and you want to show "Pass" or "Fail":</p>
-        <div class="formula-box">=IF(B2&gt;=50, "Pass", "Fail")</div>
-        <p>You can nest IFs for multiple conditions: =IF(B2&gt;=70, "Distinction", IF(B2&gt;=50, "Pass", "Fail")). AND and OR allow multiple conditions: =IF(AND(B2&gt;=50, C2="Attended"), "Pass", "Fail"), where the student passes only if they scored 50+ AND attended. =IF(OR(B2&gt;=90, C2="Scholarship"), "Award", "No Award"), and they receive an award if either condition is true.</p>
-        <p>These functions are used in business for: flagging overdue payments, calculating bonuses, grading systems, inventory alerts, and loan eligibility checks. Mastering IF means you can automate decisions that would otherwise require manual checking of every row.</p>
-      </div>
-
-      <div class="ls"><h2>VLOOKUP and XLOOKUP</h2>
-        <p>VLOOKUP (Vertical Lookup) searches for a value in the first column of a table and returns a value from another column in the same row. It is used to pull data from one table into another, like looking up an employee's salary by their ID number.</p>
-        <div class="formula-box">=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])</div>
-        <p>Example: You have a list of student IDs in column A and you want to pull their names from a separate table. =VLOOKUP(A2, StudentTable, 2, FALSE): looks up the value in A2, searches in StudentTable, and returns the value from column 2 (name). Always use FALSE for exact match. VLOOKUP only searches left-to-right; the lookup column must be the leftmost column of your table.</p>
-        <p>XLOOKUP (available in Excel 365 and newer) is more powerful: it can search in any direction and is simpler to write. =XLOOKUP(A2, StudentTable[ID], StudentTable[Name], "Not Found"). If your Excel version supports XLOOKUP, prefer it over VLOOKUP. HLOOKUP works horizontally (across rows) instead of vertically. INDEX/MATCH is a more flexible alternative for complex lookups.</p>
-      </div>
-
-      <div class="ls"><h2>SUMIF, COUNTIF, and AVERAGEIF</h2>
-        <p>These "conditional aggregation" functions calculate totals, counts, or averages only for rows that meet a specific condition, extremely useful for business reports and financial analysis.</p>
-        <div class="formula-box">=SUMIF(range, criteria, sum_range)</div>
-        <p>Example: You have sales data with a "Region" column and a "Sales" column. To total sales for only the Monrovia region: =SUMIF(B:B, "Monrovia", C:C). COUNTIF counts how many rows match: =COUNTIF(B:B, "Monrovia"): how many transactions were in Monrovia. AVERAGEIF averages only matching rows: =AVERAGEIF(B:B, "Monrovia", C:C): average sales per Monrovia transaction.</p>
-        <p>SUMIFS, COUNTIFS, and AVERAGEIFS (with an S) allow multiple conditions. =SUMIFS(C:C, B:B, "Monrovia", D:D, "Q1"): total Monrovia sales in Q1 only. only. These formulas replace hours of manual filtering and are standard in every financial model and business dashboard.</p>
-      </div>
-
-      <div class="ls"><h2>Data Validation and Pivot Tables</h2>
-        <p>Data Validation restricts what can be entered in a cell, preventing errors at the source. Select a cell &gt; Data &gt; Data Validation. You can restrict entries to: a list (dropdown menu of allowed values), whole numbers within a range, dates within a period, or custom formulas. Add an error message to tell users what is acceptable. Dropdowns in forms ensure consistent data entry, for example, ensuring a "Status" column only accepts "Open", "Closed", or "Pending".</p>
-        <p>Pivot Tables are Excel's most powerful data analysis tool. They summarize large datasets interactively: grouping, totaling, and filtering thousands of rows in seconds. To create: select your data &gt; Insert &gt; PivotTable. In the field list, drag fields to Rows, Columns, Values, and Filters. Example: drag "Region" to Rows, "Product" to Columns, and "Sales" to Values, giving you a cross-tab showing sales by region and product with grand totals automatically.</p>
-        <p>PivotCharts turn a Pivot Table into an interactive chart. Slicers (Insert &gt; Slicer) add visual filter buttons to your Pivot Table. These tools allow you to explore data without writing any formulas. They are used in every professional business reporting context.</p>
-      </div>
-
-      <div class="tip-box"><h3>&#128161; Key Tips</h3><ul>
-        <li>Use absolute references ($A$1) in VLOOKUP table arrays so the formula does not break when copied down. Press F4 to toggle between reference types.</li>
-        <li>Named Ranges (Formulas &gt; Define Name) make formulas readable: =SUMIF(Region, "Monrovia", Sales) is clearer than =SUMIF(B:B, "Monrovia", C:C).</li>
-        <li>Press Ctrl+T to convert a data range into an Excel Table. It auto-expands formulas and makes Pivot Tables much easier to refresh.</li>
-        <li>When a formula returns #N/A or #VALUE!, wrap it in IFERROR: =IFERROR(VLOOKUP(...),"Not Found") to show a friendly message instead of an error.</li>
-        <li>Conditional Formatting (Home &gt; Conditional Formatting) highlights cells that meet criteria with color, great for flagging late payments or low stock.</li>
-      </ul></div>
-
-      <div class="vid-box">
-        <h3>&#128250; Watch &amp; Learn</h3><p>See Excel functions and Pivot Tables used in a real business scenario.</p>
-        <div style="position:relative;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;margin-top:.75rem;box-shadow:0 4px 20px rgba(0,0,0,.2);"><iframe src="https://www.youtube.com/embed/bsuP2dD3rec?rel=0" title="Excel Functions &amp; Lookup Formulas" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe></div>
-      </div>
-
-      <div style="margin:2rem 0;"><h2 style="font-size:1.15rem;color:#0d1520;margin:0 0 1rem;">&#9989; Quick Knowledge Check</h2>
-        <div class="qi"><strong>Q1. What does =IF(B2&gt;=50, "Pass", "Fail") do?</strong>
-          <div class="qo"><label><input type="radio" name="q0" value="a" /> Adds all numbers in column B that are 50 or above</label></div>
-          <div class="qo"><label><input type="radio" name="q0" value="b" /> Shows "Pass" if the value in B2 is 50 or higher, and "Fail" if it is lower</label></div>
-          <div class="qo"><label><input type="radio" name="q0" value="c" /> Counts how many cells in B are equal to 50</label></div>
-          <div class="qo"><label><input type="radio" name="q0" value="d" /> Searches for the value 50 in column B</label></div>
-          <button class="qbtn" onclick="checkQ(0,'b')">Check Answer</button><div class="qfb" id="qf0"></div>
-        </div>
-        <div class="qi"><strong>Q2. What does VLOOKUP search by default?</strong>
-          <div class="qo"><label><input type="radio" name="q1" value="a" /> The last column of a table</label></div>
-          <div class="qo"><label><input type="radio" name="q1" value="b" /> The first (leftmost) column of the specified table range</label></div>
-          <div class="qo"><label><input type="radio" name="q1" value="c" /> The entire spreadsheet</label></div>
-          <div class="qo"><label><input type="radio" name="q1" value="d" /> Any column you specify in the formula</label></div>
-          <button class="qbtn" onclick="checkQ(1,'b')">Check Answer</button><div class="qfb" id="qf1"></div>
-        </div>
-        <div class="qi"><strong>Q3. What does a Pivot Table do?</strong>
-          <div class="qo"><label><input type="radio" name="q2" value="a" /> Rotates rows into columns to transpose a spreadsheet</label></div>
-          <div class="qo"><label><input type="radio" name="q2" value="b" /> Interactively summarizes and analyzes large datasets by grouping, totaling, and filtering</label></div>
-          <div class="qo"><label><input type="radio" name="q2" value="c" /> Creates a pivot chart from existing chart data</label></div>
-          <div class="qo"><label><input type="radio" name="q2" value="d" /> Converts a table into a formatted report automatically</label></div>
-          <button class="qbtn" onclick="checkQ(2,'b')">Check Answer</button><div class="qfb" id="qf2"></div>
-        </div>
-      </div>
-
-      <div class="asgn"><h3>&#128221; Practice Assignment</h3><p>Create an Excel workbook for a fictional small business with 20 rows of sales data (columns: Date, Region, Product, Units Sold, Unit Price, Total). Practice: 1) Add a "Status" column using IF to show "High" if Total is above 500, "Low" if below. 2) Use SUMIF to calculate total sales by Region. 3) Use COUNTIF to count how many sales each product had. 4) Create a Pivot Table summarizing total sales by Region and Product. 5) Add a Pivot Chart from your Pivot Table. Save the file and review your results. You have built a professional business report.</p></div>
-
-      <button class="mc-btn" onclick="this.textContent='&#10003; Lesson Complete!';this.disabled=true;">Mark Lesson as Complete</button>
-      <div class="lnav">
-        <a href="classroom-lesson-word-advanced.html"><div class="nd">&#8592; Previous</div><div class="nt">Advanced Word Features</div></a>
-        <a href="classroom-lesson-office365-cloud.html" style="text-align:right"><div class="nd">Next &#8594;</div><div class="nt">Microsoft 365 &amp; Cloud Collaboration</div></a>
-      </div>
-    </div></div></section>
-  </main>
-  <footer class="site-footer"><div class="container">
-    <div class="footer-grid">
-      <div><p><strong>TIH Classroom</strong></p><p style="opacity:.8;font-size:.9rem;">Free skills for Liberian learners.</p></div>
-      <div><p><strong>This Track</strong></p><p><a href="classroom-office-suite.html">Microsoft Office Suite</a></p></div>
-      <div><p><strong>All Tracks</strong></p><p><a href="classroom.html">Browse Courses</a></p></div>
-      <div><p><strong>Main Site</strong></p><p><a href="index.html">Home</a></p></div>
-    </div>
-    <p class="copyright-note">&#169; 2026 Tolbert Innovation Hub. All rights reserved.</p>
-  </div></footer>
-  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 4px 20px rgba(0,0,0,.2);"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="34" height="34" alt="WA" /></a>
-  <script>
-  function checkQ(idx, correct) {
-    var sel = document.querySelector('input[name="q'+idx+'"]:checked');
-    var fb = document.getElementById('qf'+idx);
-    if (!sel) { fb.style.display='block'; fb.style.background='#fef3c7'; fb.style.color='#92400e'; fb.textContent='Please select an answer first.'; return; }
-    if (sel.value === correct) { fb.style.display='block'; fb.style.background='#f0fdf4'; fb.style.color='#166534'; fb.textContent='Correct! Well done.'; }
-    else { fb.style.display='block'; fb.style.background='#fef2f2'; fb.style.color='#991b1b'; fb.textContent='Not quite. Review the lesson and try again.'; }
-  }
-  </script><script src="classroom.js"></script><script src="chatbot.js"></script>
-</body></html>
+  <div class="card">
+    <h1>🎓 We've Moved!</h1>
+    <p>TIH Academy and TIH Classroom are now one platform: <strong>TIH Learning Hub</strong>. You are being redirected…</p>
+    <a href="learning-hub.html">Go to TIH Learning Hub →</a>
+  </div>
+  <script>window.location.replace('learning-hub.html');</script>
+</body>
+</html>

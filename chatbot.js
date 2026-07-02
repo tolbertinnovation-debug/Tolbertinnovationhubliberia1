@@ -170,17 +170,17 @@
 
   // ── PAGE CONTEXT ─────────────────────────────────────────────────────────────
   const PAGE_MAP = [
-    { match:'classroom-ielts-module-1.html', label:'IELTS Module 1 — Orientation',
+    { match:'learning-hub.html', label:'IELTS Module 1 — Orientation',
       qr:['📚 What\'s in Module 1','💡 IELTS Study Tips','🏅 Get Certificate','🎓 Scholarship Help','📞 Contact'] },
-    { match:'classroom-ielts-module-2.html', label:'IELTS Module 2 — Reading',
+    { match:'learning-hub.html', label:'IELTS Module 2 — Reading',
       qr:['📖 Reading Strategies','💡 Skimming Tips','🏅 Get Certificate','🎓 Scholarship Help','📞 Contact'] },
-    { match:'classroom-ielts-module-3.html', label:'IELTS Module 3 — Writing',
+    { match:'learning-hub.html', label:'IELTS Module 3 — Writing',
       qr:['✍️ Writing Task 1 vs 2','💡 Band 7+ Tips','🏅 Get Certificate','🎓 Scholarship','📞 Contact'] },
-    { match:'classroom-ielts-module-4.html', label:'IELTS Module 4 — Listening',
+    { match:'learning-hub.html', label:'IELTS Module 4 — Listening',
       qr:['🎧 Listening Tips','💡 Note-Taking','🏅 Get Certificate','🎓 Scholarship','📞 Contact'] },
-    { match:'classroom-ielts-module-5.html', label:'IELTS Module 5 — Speaking',
+    { match:'learning-hub.html', label:'IELTS Module 5 — Speaking',
       qr:['🗣️ Speaking Tips','💡 Fluency Advice','🏅 Get Certificate','🎓 Scholarship','📞 Contact'] },
-    { match:'classroom-ielts-module-6.html', label:'IELTS Module 6 — Mock Exam',
+    { match:'learning-hub.html', label:'IELTS Module 6 — Mock Exam',
       qr:['📝 Mock Exam Tips','🏅 Request Certificate','🎓 Scholarship','📞 Contact'] },
     { match:'classroom-ielts-module-computer', label:'Computer vs Paper IELTS',
       qr:['💻 Computer-Based Tips','📄 Paper-Based Tips','🏅 Certificate','📞 Contact'] },
@@ -217,7 +217,7 @@
     { match:'impact', label:'Impact Report',
       qr:['📊 View Stats','⭐ Success Stories','🎓 Scholarship','📞 Contact'] },
     { match:'index', label:'TIH Home',
-      qr:['🎓 Scholarships','📚 Free Classroom','🏥 Healthcare','💻 Software','📝 Apply Now'] },
+      qr:['🎓 Scholarships','📚 Free Learning Hub','🏥 Healthcare','💻 Software','📝 Apply Now'] },
   ];
 
   function getPageCtx() {
@@ -226,7 +226,7 @@
     for (const p of PAGE_MAP) {
       if (href.includes(p.match)) return p;
     }
-    return { label:'Tolbert Innovation Hub', qr:['🎓 Scholarships','📚 Free Classroom','🏥 Healthcare','💻 Software','📝 Apply Now','📞 Contact'] };
+    return { label:'Tolbert Innovation Hub', qr:['🎓 Scholarships','📚 Free Learning Hub','🏥 Healthcare','💻 Software','📝 Apply Now','📞 Contact'] };
   }
 
   // ── PAGE LEARNING ─────────────────────────────────────────────────────────────
@@ -336,7 +336,7 @@
       reply:`Hello! 👋 Welcome to <strong>Tolbert Innovation Hub</strong>!<br><br>
 I'm the TIH Assistant — here to help you explore programs, scholarships, free IELTS/TOEFL prep, healthcare referrals, software services, and more.<br><br>
 What would you like to do today?`,
-      qr:['🎓 Browse Programs','🏆 Fully Funded Scholarships','📚 Free Classroom','🏥 Healthcare','💻 Software','📞 Contact'] },
+      qr:['🎓 Browse Programs','🏆 Fully Funded Scholarships','📚 Free Learning Hub','🏥 Healthcare','💻 Software','📞 Contact'] },
 
     { id:'about_tih',
       keywords:['what is tih','what is tolbert','about tolbert','tell me about','what does tih do','who is tolbert innovation','organization','ngo','nonprofit','what you do','what do you offer','what programs','overview','mission'],
@@ -348,7 +348,7 @@ TIH is a Liberian organization founded by <strong>Mr. Samuel S. Tolbert</strong>
 📚 <strong>Free IELTS/TOEFL Classroom</strong> — 6-module courses, 100% free<br>
 🌟 <strong>Empowerment Training</strong> — for youth, students, business owners &amp; innovators<br><br>
 📍 Based in Monrovia, Liberia · 📞 +231 880 559 227`,
-      qr:['🎓 Scholarships','🏥 Healthcare','💻 Software','📚 Free Classroom','🌟 Empowerment Training','📞 Contact'] },
+      qr:['🎓 Scholarships','🏥 Healthcare','💻 Software','📚 Free Learning Hub','🌟 Empowerment Training','📞 Contact'] },
 
     { id:'founder',
       keywords:['founder','founded','samuel','tolbert','samuel tolbert','who started','who created','ceo','chief executive','leadership','who runs','who is in charge','mr tolbert','mr samuel'],
@@ -700,7 +700,7 @@ Our TOEFL classroom has <strong>6 structured modules</strong>:<br>
 
     { id:'classroom',
       keywords:['classroom','free class','free course','online learning','study platform','modules','lesson','practice test','mock exam','exam preparation','english exam','exam prep','language test','free training','online course'],
-      reply:`🏫 <strong>TIH Free Classroom</strong><br><br>
+      reply:`🏫 <strong>TIH Free Learning Hub</strong><br><br>
 We offer two completely free exam preparation tracks:<br><br>
 📗 <strong>IELTS Preparation</strong> — 6 modules covering all 4 skills + mock exam<br>
 📘 <strong>TOEFL Preparation</strong> — 6 modules covering Reading, Listening, Speaking, Writing + mock exam<br><br>
@@ -984,7 +984,7 @@ Both are coordinated end-to-end by TIH.`,
 • 🏥 <strong>Healthcare Program:</strong> Rolling — apply anytime<br>
 • 💻 <strong>Software Consultation:</strong> Rolling — apply anytime<br><br>
 ⚠️ <strong>Apply early</strong> — document preparation takes time!`,
-      qr:['📝 Apply for Scholarship','🎓 India & Cyprus 50%','📚 Free Classroom','🔙 Main Menu'] },
+      qr:['📝 Apply for Scholarship','🎓 India & Cyprus 50%','📚 Free Learning Hub','🔙 Main Menu'] },
 
     { id:'chevening',
       keywords:['chevening','uk scholarship','british scholarship','foreign commonwealth','fcdo','study uk','master uk','uk master','uk government scholarship'],
@@ -1157,7 +1157,7 @@ TIH provides <strong>visa guidance and document support</strong>:<br><br>
 • 📚 <strong>IELTS/TOEFL Classroom:</strong> Self-paced — complete any time<br>
 • 🏥 <strong>Healthcare referral:</strong> Ongoing, case-by-case<br>
 • 💻 <strong>Software project:</strong> 2 weeks – 3 months (by scope)`,
-      qr:['🎓 Apply for Scholarship','📚 Free Classroom','🔙 Main Menu'] },
+      qr:['🎓 Apply for Scholarship','📚 Free Learning Hub','🔙 Main Menu'] },
 
     { id:'age',
       keywords:['age','how old','age requirement','age limit','minimum age','maximum age','am i too old','am i too young','age criteria','over 40','year old','years old'],
@@ -1242,10 +1242,10 @@ All TIH programs are designed to serve <strong>Liberian citizens</strong>:<br><b
 • 🇬🇧 <strong>Chevening (UK)</strong> — Liberian citizens, 2+ years work experience<br>
 • 🇺🇸 <strong>Fulbright (USA)</strong> — Liberian citizens residing in Liberia<br>
 • 🌍 <strong>Mastercard Foundation</strong> — African citizens (Liberia ✓)<br>
-• 📚 <strong>Free Classroom</strong> — <strong>Open to everyone, no restrictions!</strong><br>
+• 📚 <strong>Free Learning Hub</strong> — <strong>Open to everyone, no restrictions!</strong><br>
 • 🏥 <strong>Healthcare</strong> — Open to all Liberians<br>
 • 💻 <strong>Software</strong> — Open to any individual or business`,
-      qr:['📝 Apply for Scholarship','🏆 ICCR Scholarship','📚 Free Classroom','🔙 Main Menu'] },
+      qr:['📝 Apply for Scholarship','🏆 ICCR Scholarship','📚 Free Learning Hub','🔙 Main Menu'] },
 
     { id:'page_info',
       keywords:['what is on this page','what does this page','explain this page','what is this','what is here','tell me about this page','what can i find here','page content','this page','what page','summary of page'],
@@ -1275,7 +1275,7 @@ I can collect your application right here in this chat. Which program are you ap
     { id:'thanks',
       keywords:['thank you','thanks','thank','appreciate','helpful','great','wonderful','awesome','nice','good job','excellent','perfect','amazing'],
       reply:`You're very welcome! 😊 Happy to help. Is there anything else I can assist you with?`,
-      qr:['🎓 Scholarships','📚 Free Classroom','🏥 Healthcare','💻 Software','📝 Apply Now'] },
+      qr:['🎓 Scholarships','📚 Free Learning Hub','🏥 Healthcare','💻 Software','📝 Apply Now'] },
 
     { id:'partner_hospitals',
       keywords:['apollo','fortis','narayana','medanta','aiims','kokilaben','max healthcare','manipal','partner hospital','which hospital','hospital name','hospital list','hospital partner'],
@@ -1414,7 +1414,7 @@ Our structured 5-phase program (~120 min/day):<br>
 <strong>Phase 4</strong> — Mock Tests: Full exam simulations<br>
 <strong>Phase 5</strong> — Review: Targeted weak-area drilling<br><br>
 Designed to get you exam-ready in 8–12 weeks.`,
-      qr:['📚 Join Free Classroom','🎓 Scholarships','📝 Apply Now'] },
+      qr:['📚 Join Free Learning Hub','🎓 Scholarships','📝 Apply Now'] },
 
     { id:'video_lessons',
       keywords:['video','youtube','lesson video','e2 language','ielts liz','magoosh','tst prep','video lesson','watch','tutorial'],
@@ -1468,7 +1468,7 @@ TIH's entertainment page lists free streaming platforms:<br>
 • <strong>moviebox.ph</strong> — Movie streaming<br>
 • <strong>gomovies.gg</strong> — Free film library<br><br>
 Visit the Entertainment page on our website for direct links.`,
-      qr:['🌐 Visit Website','📚 Free Classroom','🎓 Scholarships'] },
+      qr:['🌐 Visit Website','📚 Free Learning Hub','🎓 Scholarships'] },
 
     { id:'volunteer_roles',
       keywords:['volunteer role','volunteer position','what volunteer','volunteer job','education mentor','scholarship advisor','technology trainer','healthcare coordinator','content creator','community outreach','how to volunteer','volunteer hours'],
@@ -1561,7 +1561,7 @@ We guide you at every step — it's completely free!`,
 
     { id:'classroom_structure',
       keywords:['classroom structure','how classroom works','what is in classroom','classroom content','classroom feature','free classroom overview','ielts classroom detail','toefl classroom detail'],
-      reply:`📚 <strong>TIH Free Classroom — What's Inside</strong><br><br>
+      reply:`📚 <strong>TIH Free Learning Hub — What's Inside</strong><br><br>
 The classroom is organized into 4 sections:<br>
 • <strong>Mastery Plan</strong> — 5-phase daily study schedule (~120 min/day)<br>
 • <strong>Video Lessons</strong> — Curated YouTube channels (E2, IELTS Liz, Magoosh, TST)<br>
@@ -1887,26 +1887,26 @@ Our team is ready to answer any question you have!<br><br>
     // External link navigation
     const NAV = {
       'open whatsapp':        'https://wa.me/231880559227',
-      'ielts classroom':      'classroom-ielts.html',
-      'start ielts':          'classroom-ielts.html',
-      'go to ielts':          'classroom-ielts.html',
-      'ielts module 1':       'classroom-ielts-module-1.html',
-      'ielts module 2':       'classroom-ielts-module-2.html',
-      'module 2 — reading':   'classroom-ielts-module-2.html',
-      'ielts module 3':       'classroom-ielts-module-3.html',
-      'module 3 — writing':   'classroom-ielts-module-3.html',
-      'ielts module 4':       'classroom-ielts-module-4.html',
-      'module 4 — listening': 'classroom-ielts-module-4.html',
-      'ielts module 5':       'classroom-ielts-module-5.html',
-      'module 5 — speaking':  'classroom-ielts-module-5.html',
-      'ielts module 6':       'classroom-ielts-module-6.html',
-      'toefl classroom':      'classroom-toefl.html',
-      'start toefl':          'classroom-toefl.html',
-      'go to toefl':          'classroom-toefl.html',
-      'request ielts certificate': 'classroom-ielts-certificate-request.html',
-      'ielts certificate':    'classroom-ielts-certificate-request.html',
-      'request toefl certificate': 'classroom-toefl-certificate-request.html',
-      'toefl certificate':    'classroom-toefl-certificate-request.html',
+      'ielts classroom':      'learning-hub.html',
+      'start ielts':          'learning-hub.html',
+      'go to ielts':          'learning-hub.html',
+      'ielts module 1':       'learning-hub.html',
+      'ielts module 2':       'learning-hub.html',
+      'module 2 — reading':   'learning-hub.html',
+      'ielts module 3':       'learning-hub.html',
+      'module 3 — writing':   'learning-hub.html',
+      'ielts module 4':       'learning-hub.html',
+      'module 4 — listening': 'learning-hub.html',
+      'ielts module 5':       'learning-hub.html',
+      'module 5 — speaking':  'learning-hub.html',
+      'ielts module 6':       'learning-hub.html',
+      'toefl classroom':      'learning-hub.html',
+      'start toefl':          'learning-hub.html',
+      'go to toefl':          'learning-hub.html',
+      'request ielts certificate': 'learning-hub.html',
+      'ielts certificate':    'learning-hub.html',
+      'request toefl certificate': 'learning-hub.html',
+      'toefl certificate':    'learning-hub.html',
       'view full pricing':    'software.html#pricing',
       'full pricing':         'software.html#pricing',
       'view portfolio':       'software.html#portfolio',
@@ -1924,7 +1924,7 @@ Our team is ready to answer any question you have!<br><br>
       'go to faq page':       'faq.html',
       'contact form':         'contact.html#contact-form',
       'contact page':         'contact.html',
-      'resource center':      'classroom-resource-center.html',
+      'resource center':      'learning-hub.html',
       'success stories':      'success-stories.html',
       'more success stories': 'success-stories.html',
       'view impact report':   'impact.html',
@@ -1950,7 +1950,7 @@ Our team is ready to answer any question you have!<br><br>
       'fulbright':            'fully-funded-scholarship.html#more-scholarships',
       'daad':                 'fully-funded-scholarship.html#more-scholarships',
       'application feedback': 'contact.html',
-      'improve ielts score':  'classroom-ielts.html',
+      'improve ielts score':  'learning-hub.html',
     };
 
     for (const [key, url] of Object.entries(NAV)) {
@@ -2050,7 +2050,7 @@ Our team is ready to answer any question you have!<br><br>
         const json = await res.json();
         if (json.success === true || json.success === 'true') {
           type(600, () => botMsg(`✅ <strong>Application Submitted!</strong><br><br>Thank you! The TIH team will contact you within <strong>24–48 hours</strong> by email or WhatsApp.<br><br>Is there anything else I can help with?`,
-            ['🎓 Scholarships','📚 Free Classroom','📞 Contact','🔙 Main Menu']));
+            ['🎓 Scholarships','📚 Free Learning Hub','📞 Contact','🔙 Main Menu']));
         } else throw new Error();
       } catch (_) {
         type(400, () => botMsg(`Your details were noted. To confirm delivery, also WhatsApp us at <strong>+231 880 559 227</strong> or email <strong>tolbertinnovationhub@gmail.com</strong>.`,['💬 Open WhatsApp','🔙 Main Menu']));

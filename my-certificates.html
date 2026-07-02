@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Certificates | TIH Academy</title>
+  <title>My Certificates | TIH Learning Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -138,12 +138,12 @@
   <!-- TOPBAR -->
   <div class="topbar">
     <div class="topbar-left">
-      <a href="academy.html" class="topbar-back">← <span>Academy</span></a>
+      <a href="learning-hub.html" class="topbar-back">← <span>Academy</span></a>
       <div class="topbar-divider"></div>
-      <div class="topbar-brand">TIH <span>Academy</span></div>
+      <div class="topbar-brand">TIH <span>Learning Hub</span></div>
     </div>
     <div class="topbar-right">
-      <a href="courses.html" class="btn-browse">Browse Courses</a>
+      <a href="learning-hub.html" class="btn-browse">Browse Courses</a>
     </div>
   </div>
 
@@ -151,7 +151,7 @@
   <div class="page-hero">
     <div class="hero-icon">🏆</div>
     <h1>My Certificates</h1>
-    <p>All your earned TIH Academy certificates in one place: download, share, or verify at any time.</p>
+    <p>All your earned TIH Learning Hub certificates in one place: download, share, or verify at any time.</p>
   </div>
 
   <!-- SUMMARY BAR -->
@@ -196,8 +196,8 @@
       <div class="empty-state">
         <div class="empty-icon">📜</div>
         <h2>No Certificates Yet</h2>
-        <p>Complete a course to earn your first TIH Academy certificate. Each certificate is professionally verified and shareable with employers.</p>
-        <a href="courses.html"><button class="btn-start">🚀 Start Learning Now</button></a>
+        <p>Complete a course to earn your first TIH Learning Hub certificate. Each certificate is professionally verified and shareable with employers.</p>
+        <a href="learning-hub.html"><button class="btn-start">🚀 Start Learning Now</button></a>
       </div>
     </div>
 
@@ -282,7 +282,7 @@
         '<div class="cert-card-header">' +
         '<span class="cert-card-icon">' + meta.icon + '</span>' +
         '<div class="cert-card-org">' +
-        '<div class="cert-card-org-name">TIH <span>Academy</span></div>' +
+        '<div class="cert-card-org-name">TIH <span>Learning Hub</span></div>' +
         '<div class="cert-card-org-sub">Certificate of Completion</div>' +
         '</div></div>' +
         '<div class="cert-card-body">' +
@@ -346,7 +346,7 @@
   // ===== BUILD CERTIFICATE HTML (A4 LANDSCAPE) =====
   function buildCertHTML(name, title, certId, certDate, sigName) {
     return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>' +
-      '<title>Certificate: ' + esc(title) + ' | TIH Academy</title>' +
+      '<title>Certificate: ' + esc(title) + ' | TIH Learning Hub</title>' +
       '<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>' +
       '<style>' +
       '@page{size:A4 landscape;margin:0}' +
@@ -389,7 +389,7 @@
       '<div class="cert">' +
       '<div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>' +
       '<div class="hd"><span class="hd-icon">🎓</span>' +
-      '<div><div class="org-name">TIH <span>Academy</span></div>' +
+      '<div><div class="org-name">TIH <span>Learning Hub</span></div>' +
       '<div class="org-sub">Tolbert Innovation Hub &middot; Certificate of Completion</div></div></div>' +
       '<div class="body">' +
       '<div class="divider">✶ &nbsp; AWARDED TO &nbsp; ✶</div>' +
@@ -401,9 +401,9 @@
       '<div class="cert-id-row">Issued: ' + esc(certDate) + ' &nbsp;&middot;&nbsp; Credential ID: <strong>' + esc(certId) + '</strong></div>' +
       '</div>' +
       '<div class="footer">' +
-      '<div class="sig"><div class="sig-line"></div><div class="sig-name">' + esc(sigName) + '</div><div class="sig-role">Founder &amp; CEO, TIH Academy</div></div>' +
+      '<div class="sig"><div class="sig-line"></div><div class="sig-name">' + esc(sigName) + '</div><div class="sig-role">Founder &amp; CEO, TIH Learning Hub</div></div>' +
       '<div class="seal"><span class="seal-check">✓</span><span class="seal-text">VERIFIED</span></div>' +
-      '<div class="sig"><div class="sig-line"></div><div class="sig-name">TIH Academy</div><div class="sig-role">Authorized Certification Body</div></div>' +
+      '<div class="sig"><div class="sig-line"></div><div class="sig-name">TIH Learning Hub</div><div class="sig-role">Authorized Certification Body</div></div>' +
       '</div></div>' +
       '<script>window.onload=function(){setTimeout(function(){window.print();},900)};<\/script>' +
       '</body></html>';

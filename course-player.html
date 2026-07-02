@@ -6,7 +6,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>Course Player | TIH Academy</title>
+  <title>Course Player | TIH Learning Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -314,9 +314,9 @@
   <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-left">
-      <a href="#" class="topbar-back" id="topbarBack">← <span>Back to Course</span></a>
+      <a href="#" class="topbar-back" id="topbarBack">← <span>My Dashboard</span></a>
       <div class="topbar-divider"></div>
-      <div class="topbar-brand">TIH <span>Academy</span></div>
+      <div class="topbar-brand">TIH <span>Learning Hub</span></div>
     </div>
     <div class="topbar-center">
       <button class="btn-contents" id="btnContents" onclick="toggleSidebar()">☰ Contents</button>
@@ -467,7 +467,7 @@
         <div class="cert-header-band">
           <span class="cert-header-icon">🎓</span>
           <div class="cert-header-text">
-            <div class="cert-logo">TIH <span>Academy</span></div>
+            <div class="cert-logo">TIH <span>Learning Hub</span></div>
             <div class="cert-subtitle">Certificate of Completion</div>
           </div>
         </div>
@@ -485,7 +485,7 @@
           <div>
             <div class="cert-sig-line"></div>
             <div class="cert-sig-name" id="certSigName">Samuel Tolbert</div>
-            <div class="cert-sig-role">Founder &amp; CEO, TIH Academy</div>
+            <div class="cert-sig-role">Founder &amp; CEO, TIH Learning Hub</div>
           </div>
           <div class="cert-verified">
             <span class="cert-verified-check">✓</span>
@@ -550,7 +550,7 @@
 
     course = COURSES_DB[courseId];
     if (!course) {
-      document.body.innerHTML = '<div style="padding:3rem;text-align:center;font-family:Inter,sans-serif"><h2 style="color:#002868">Course not found</h2><p style="margin:1rem 0 2rem;color:#6b7280">This course does not exist.</p><a href="courses.html" style="color:#002868;font-weight:700">← Back to Courses</a></div>';
+      document.body.innerHTML = '<div style="padding:3rem;text-align:center;font-family:Inter,sans-serif"><h2 style="color:#002868">Course not found</h2><p style="margin:1rem 0 2rem;color:#6b7280">This course does not exist.</p><a href="learning-hub.html" style="color:#002868;font-weight:700">← Back to Courses</a></div>';
       return;
     }
 
@@ -577,7 +577,7 @@
 
     // Update topbar
     document.getElementById('topbarTitle').textContent = course.title;
-    document.getElementById('topbarBack').href = 'course-detail.html?id=' + encodeURIComponent(courseId);
+    document.getElementById('topbarBack').href = 'hub-dashboard.html';
     // Populate avatar with first letter of logged-in student's name
     (function() {
       var avatarEl = document.getElementById('topbarAvatar');
@@ -992,7 +992,7 @@
 
   // ===== DOWNLOAD / EXPORT NOTES =====
   function downloadNotes() {
-    var lines = ['TIH Academy: ' + course.title + ' | My Notes', '='.repeat(50), ''];
+    var lines = ['TIH Learning Hub: ' + course.title + ' | My Notes', '='.repeat(50), ''];
     var hasAny = false;
     lessons.forEach(function(lesson, idx) {
       var note = (localStorage.getItem('tih_notes_' + courseId + '_' + idx) || '').trim();
@@ -1257,7 +1257,7 @@
   function buildCertHTML(name, title, certId, certDate, sigName) {
     var esc = function(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
     return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>' +
-      '<title>Certificate: ' + esc(title) + ' | TIH Academy</title>' +
+      '<title>Certificate: ' + esc(title) + ' | TIH Learning Hub</title>' +
       '<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>' +
       '<style>' +
       '@page{size:A4 landscape;margin:0}' +
@@ -1301,7 +1301,7 @@
       '<div class="cert">' +
       '<div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>' +
       '<div class="hd"><span class="hd-icon">🎓</span>' +
-      '<div><div class="org-name">TIH <span>Academy</span></div>' +
+      '<div><div class="org-name">TIH <span>Learning Hub</span></div>' +
       '<div class="org-sub">Tolbert Innovation Hub &middot; Certificate of Completion</div></div></div>' +
       '<div class="body">' +
       '<div class="divider">✶ &nbsp; AWARDED TO &nbsp; ✶</div>' +
@@ -1313,18 +1313,18 @@
       '<div class="cert-id-row">Issued: ' + esc(certDate) + ' &nbsp;&middot;&nbsp; Credential ID: <strong>' + esc(certId) + '</strong></div>' +
       '</div>' +
       '<div class="footer">' +
-      '<div class="sig"><div class="sig-line"></div><div class="sig-name">' + esc(sigName) + '</div><div class="sig-role">Founder &amp; CEO, TIH Academy</div></div>' +
+      '<div class="sig"><div class="sig-line"></div><div class="sig-name">' + esc(sigName) + '</div><div class="sig-role">Founder &amp; CEO, TIH Learning Hub</div></div>' +
       '<div class="seal"><span class="seal-check">✓</span><span class="seal-text">VERIFIED</span></div>' +
-      '<div class="sig"><div class="sig-line"></div><div class="sig-name">TIH Academy</div><div class="sig-role">Authorized Certification Body</div></div>' +
+      '<div class="sig"><div class="sig-line"></div><div class="sig-name">TIH Learning Hub</div><div class="sig-role">Authorized Certification Body</div></div>' +
       '</div></div>' +
       '<script>window.onload=function(){setTimeout(function(){window.print();},900)};<\/script>' +
       '</body></html>';
   }
 
   function shareCompletion() {
-    var text = 'I just completed "' + course.title + '" at TIH Academy! Certificate ID: ' + (course.certId || 'TIH-2026');
+    var text = 'I just completed "' + course.title + '" at TIH Learning Hub! Certificate ID: ' + (course.certId || 'TIH-2026');
     if (navigator.share) {
-      navigator.share({ title: 'TIH Academy Certificate', text: text, url: window.location.href });
+      navigator.share({ title: 'TIH Learning Hub Certificate', text: text, url: window.location.href });
     } else {
       navigator.clipboard.writeText(text).then(function() { alert('Share text copied to clipboard!'); });
     }
