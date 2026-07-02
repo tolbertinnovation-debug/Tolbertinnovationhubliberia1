@@ -165,8 +165,8 @@
   <div class="hero">
     <div class="container hero-inner">
       <span class="hero-eyebrow">🇱🇷 TIH Academy + TIH Classroom — now one platform</span>
-      <h1>Transform Your Future with <em>TIH Learning Hub</em></h1>
-      <p>Free, curated courses and professional certificates built for Liberian learners. Apply once, get admin-approved access, and learn on any phone — even on limited data.</p>
+      <h1>Build Skills. Earn Certificates. <em>Transform Your Future.</em></h1>
+      <p>TIH Learning Hub is Liberia's admin-curated learning platform. Apply once, get personally approved, and learn on any phone — even on limited data. Course content is available to approved students only.</p>
       <div class="hero-actions">
         <a href="hub-apply.html" class="btn btn-orange">Apply for Free Access →</a>
         <a href="hub-dashboard.html" class="btn btn-ghost">Student Login</a>
@@ -257,7 +257,7 @@
         <div class="step"><div class="step-num">1</div><h3>Apply Online</h3><p>Fill the free application form. It takes 5 minutes — tell us your goals and pick the tracks you want.</p></div>
         <div class="step"><div class="step-num">2</div><h3>Admin Review</h3><p>Our team reviews every application within 3–5 business days. Track your status anytime with your Application ID.</p></div>
         <div class="step"><div class="step-num">3</div><h3>Get Your Account</h3><p>Approved? Your login details arrive by WhatsApp and email, with your first courses already assigned.</p></div>
-        <div class="step"><div class="step-num">4</div><h3>Learn &amp; Get Certified</h3><p>Complete lessons, pass quizzes, and earn verified certificates employers can check online.</p></div>
+        <div class="step"><div class="step-num">4</div><h3>Learn &amp; Get Certified</h3><p>Complete lessons in order, pass the quizzes, then request your certificate — every certificate is reviewed and approved by the TIH team before it is issued.</p></div>
       </div>
     </div>
   </section>
@@ -386,7 +386,8 @@
           var c = COURSES_DB[ids[i]];
           var lessons = 0;
           (c.modules || []).forEach(function (m) { lessons += (m.lessons || []).length; });
-          html += '<a class="track-chip" href="course-detail.html?id=' + encodeURIComponent(c.id) + '">'
+          // No public course browsing — track chips lead to the application form.
+          html += '<a class="track-chip" href="hub-apply.html">'
             + '<span class="t-icon">' + (c.icon || '📘') + '</span>'
             + '<span><span class="t-name">' + c.title.split(':')[0] + '</span><br>'
             + '<span class="t-meta">' + lessons + ' lessons · ' + (c.level || 'All levels') + ' · ' + (c.duration || '') + '</span></span>'

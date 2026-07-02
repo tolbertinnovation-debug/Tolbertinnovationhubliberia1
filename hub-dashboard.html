@@ -220,10 +220,15 @@
   </div>
 
   <script src="courses-db.js?v=3"></script>
-  <script src="hub-db.js?v=1"></script>
+  <script src="hub-db.js?v=2"></script>
   <script>
     var esc = HubDB.esc;
     var currentStudent = null;
+
+    function getUrlParam(name) {
+      var m = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+      return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : null;
+    }
 
     function courseMeta(id) {
       var c = (typeof COURSES_DB !== 'undefined') ? COURSES_DB[id] : null;
@@ -248,6 +253,13 @@
       HubDB.studentLogin(id, pass).then(function (res) {
         if (!res.ok) { fb.textContent = res.error; return; }
         currentStudent = res.student;
+        // If they were sent here from a gated course page, return them to it
+        // (unless they still need to change a temporary password first).
+        var next = getUrlParam('next');
+        if (next && !res.mustChangePassword && HubDB.courseAssignedTo(res.student, next)) {
+          window.location.href = 'course-player.html?id=' + encodeURIComponent(next);
+          return;
+        }
         enterDashboard();
         if (res.mustChangePassword) {
           document.getElementById('forcePassModal').classList.add('open');
@@ -396,15 +408,32 @@
         }).join('');
       }
 
-      // Completed
+      // Completed — certificate flow: request → admin approval code → download
       var doneHtml = completedCourses.map(function (item) {
+        var cid = item.c.id;
+        var approved = HubDB.certApprovedLocal(cid);
+        var req = HubDB.pendingCertRequest(currentStudent.id, cid);
+        var certActions;
+        if (approved) {
+          certActions = '<span class="pill done">✓ Approved</span>'
+            + '<a class="btn btn-primary btn-sm" href="course-player.html?id=' + encodeURIComponent(cid) + '">🏆 Download Certificate</a>'
+            + (item.cert ? '<a class="btn btn-line btn-sm" href="certificate-verify.html?id=' + encodeURIComponent(item.cert.certId) + '">Verify</a>' : '');
+        } else if (req && req.status === 'pending') {
+          certActions = '<span class="pill progress">⏳ Awaiting Approval</span>'
+            + '<span style="display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;">'
+            + '<input type="text" id="code-' + cid + '" placeholder="Approval code" maxlength="6" '
+            + 'style="width:120px;padding:.45rem .6rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;text-transform:uppercase;font-size:.82rem;min-height:36px;" />'
+            + '<button class="btn btn-primary btn-sm" onclick="verifyCode(\'' + cid + '\')">Unlock</button>'
+            + '<span class="feedback err" id="codefb-' + cid + '" style="margin:0;"></span></span>';
+        } else {
+          certActions = '<button class="btn btn-orange btn-sm" onclick="requestCert(\'' + cid + '\')">🏆 Request Certificate</button>';
+        }
         return '<div class="done-row">'
           + '<span style="font-size:1.2rem;">' + item.meta.icon + '</span>'
           + '<span class="dr-name">' + esc(item.meta.title)
-          + (item.cert ? '<br><span class="dr-date">Cert ID: ' + esc(item.cert.certId) + ' · ' + esc(item.cert.date || '') + '</span>' : '') + '</span>'
-          + '<a class="btn btn-primary btn-sm" href="course-player.html?id=' + encodeURIComponent(item.c.id) + '">🏆 Certificate</a>'
-          + '<a class="btn btn-line btn-sm" href="certificate-verify.html' + (item.cert ? '?id=' + encodeURIComponent(item.cert.certId) : '') + '">Verify</a>'
-          + '</div>';
+          + (approved && item.cert ? '<br><span class="dr-date">Cert ID: ' + esc(item.cert.certId) + ' · ' + esc(item.cert.date || '') + '</span>'
+             : '<br><span class="dr-date">Certificates are reviewed by the TIH team before issuing.</span>')
+          + '</span>' + certActions + '</div>';
       }).join('');
       document.getElementById('completedList').innerHTML = doneHtml;
       document.getElementById('completedEmpty').style.display = completedCourses.length ? 'none' : 'block';
@@ -424,6 +453,30 @@
           }).join('')
         : '<div class="act-row"><span>No activity yet — start your first lesson!</span></div>';
     }
+
+    /* ---- Certificate request / approval code ---- */
+    window.requestCert = function (cid) {
+      var meta = courseMeta(cid);
+      HubDB.requestCertificate(currentStudent.id, cid, meta.title);
+      var waText = 'CERTIFICATE REQUEST — TIH Learning Hub\n'
+        + 'Student: ' + currentStudent.name + '\n'
+        + 'Student ID: ' + currentStudent.id + '\n'
+        + 'Course: ' + meta.title + '\n'
+        + 'Course ID: ' + cid + '\n'
+        + 'All lessons and quizzes completed. Please review my certificate request.';
+      window.open(HubDB.waLink(null, waText), '_blank');
+      renderCourses();
+    };
+    window.verifyCode = function (cid) {
+      var input = document.getElementById('code-' + cid);
+      var fb = document.getElementById('codefb-' + cid);
+      var code = (input.value || '').trim();
+      if (code.length < 6) { fb.textContent = 'Enter the 6-character code.'; return; }
+      HubDB.verifyCertCode(currentStudent.id, cid, code).then(function (ok) {
+        if (ok) { renderCourses(); }
+        else { fb.textContent = 'Invalid code — check with the TIH team.'; }
+      });
+    };
 
     /* ---- Change password (profile) ---- */
     document.getElementById('changePassBtn').addEventListener('click', function () {

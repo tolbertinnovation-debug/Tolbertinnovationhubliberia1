@@ -144,6 +144,7 @@
       <button class="tab active" data-panel="dash">📊 Dashboard</button>
       <button class="tab" data-panel="apps">📥 Applications <span class="badge" id="appsBadge" style="display:none;"></span></button>
       <button class="tab" data-panel="students">👥 Students</button>
+      <button class="tab" data-panel="certreq">📋 Cert Requests <span class="badge" id="certReqBadge" style="display:none;"></span></button>
       <button class="tab" data-panel="certs">🏆 Certificates</button>
       <button class="tab" data-panel="audit">📜 Audit Log</button>
       <button class="tab" data-panel="settings">⚙️ Settings</button>
@@ -212,6 +213,30 @@
       </div>
     </div>
 
+    <!-- CERTIFICATE REQUESTS -->
+    <div class="panel" id="panel-certreq">
+      <h2>Certificate Requests</h2>
+      <div class="table-card" style="padding:1.2rem;margin-bottom:1.2rem;">
+        <h3 style="font-size:.95rem;margin-bottom:.35rem;">🔑 Generate Approval Code</h3>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:.9rem;">When a student requests a certificate (you'll receive their request on WhatsApp with their Student ID), verify their work, then generate their approval code here and send it back. The student enters the code on their dashboard to unlock the certificate.</p>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;">
+          <input type="text" id="codeStuId" placeholder="Student ID (TIH-STU-XXXXXX)" style="flex:1;min-width:200px;padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;text-transform:uppercase;" />
+          <select id="codeCourse" style="padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;min-width:180px;"></select>
+          <button class="btn btn-primary" id="genCodeBtn">Generate Code</button>
+        </div>
+        <div id="codeResult" style="margin-top:.9rem;"></div>
+      </div>
+      <div class="table-card">
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Request</th><th>Student</th><th>Course</th><th>Requested</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="certReqTbody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="certReqEmpty" style="display:none;">No certificate requests recorded on this device. Requests made on student devices arrive via WhatsApp — use the code generator above to approve them.</div>
+      </div>
+    </div>
+
     <!-- CERTIFICATES -->
     <div class="panel" id="panel-certs">
       <h2>Certificates Issued (this device)</h2>
@@ -254,7 +279,7 @@
   </div>
 
   <script src="courses-db.js?v=3"></script>
-  <script src="hub-db.js?v=1"></script>
+  <script src="hub-db.js?v=2"></script>
   <script>
     /* ============ HELPERS ============ */
     var esc = HubDB.esc;
@@ -664,6 +689,95 @@
       });
     };
 
+    /* ============ RENDER: CERTIFICATE REQUESTS ============ */
+    function populateCodeCourses() {
+      var sel = document.getElementById('codeCourse');
+      if (sel.options.length) return;
+      try {
+        Object.keys(COURSES_DB).forEach(function (cid) {
+          var o = document.createElement('option');
+          o.value = cid; o.textContent = courseName(cid);
+          sel.appendChild(o);
+        });
+      } catch (e) {}
+    }
+    document.getElementById('genCodeBtn').addEventListener('click', function () {
+      var stuId = document.getElementById('codeStuId').value.trim().toUpperCase();
+      var cid = document.getElementById('codeCourse').value;
+      var out = document.getElementById('codeResult');
+      if (!/^TIH-STU-[A-Z0-9]{6}$/.test(stuId)) {
+        out.innerHTML = '<span class="feedback err">Enter a valid Student ID (TIH-STU-XXXXXX).</span>';
+        return;
+      }
+      HubDB.certCode(stuId, cid).then(function (code) {
+        HubDB.audit('Generated cert approval code for ' + cid, stuId);
+        var s = HubDB.findStudent(stuId);
+        var waText = 'TIH Learning Hub — Certificate APPROVED! 🎉\n\nYour certificate for "' + courseName(cid) + '" has been approved.\n\nApproval code: ' + code + '\n\nEnter this code on your dashboard (Completed Courses section) to unlock and download your certificate: https://tolbertinnovationhub.org/hub-dashboard.html';
+        out.innerHTML = '<div class="cred-box">Approval code for <b>' + esc(stuId) + '</b> · ' + esc(courseName(cid)) + ': <b style="font-size:1.2rem;letter-spacing:.1em;">' + code + '</b></div>'
+          + '<div class="modal-actions" style="margin-top:.5rem;">'
+          + '<a class="btn btn-green btn-sm" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(s ? s.phone : null, waText) + '">💬 Send via WhatsApp</a>'
+          + '<button class="btn btn-line btn-sm" onclick="navigator.clipboard&&navigator.clipboard.writeText(\'' + code + '\');this.textContent=\'✓ Copied\'">📋 Copy Code</button>'
+          + '</div>';
+      });
+    });
+    function renderCertReqs() {
+      populateCodeCourses();
+      var reqs = HubDB.getCertRequests();
+      document.getElementById('certReqEmpty').style.display = reqs.length ? 'none' : 'block';
+      document.getElementById('certReqTbody').innerHTML = reqs.map(function (r) {
+        var s = HubDB.findStudent(r.studentId);
+        return '<tr><td><b>' + esc(r.id) + '</b></td>'
+          + '<td>' + esc(s ? s.name : r.studentId) + '<br><span style="color:var(--muted);font-size:.76rem;">' + esc(r.studentId) + '</span></td>'
+          + '<td>' + esc(courseName(r.courseId)) + '</td>'
+          + '<td style="white-space:nowrap;">' + fmtDate(r.requestedAt) + '</td>'
+          + '<td><span class="pill ' + (r.status === 'approved' ? 'approved' : (r.status === 'declined' ? 'rejected' : 'pending')) + '">' + r.status + '</span></td>'
+          + '<td><div class="row-actions">'
+          + (r.status === 'pending'
+              ? '<button class="btn btn-green btn-sm" onclick="approveCertReq(\'' + r.id + '\')">Approve</button>'
+                + '<button class="btn btn-red btn-sm" onclick="declineCertReq(\'' + r.id + '\')">Decline</button>'
+              : '')
+          + '</div></td></tr>';
+      }).join('');
+      var pendingN = reqs.filter(function (r) { return r.status === 'pending'; }).length;
+      var badge = document.getElementById('certReqBadge');
+      if (pendingN > 0) { badge.style.display = ''; badge.textContent = pendingN; } else { badge.style.display = 'none'; }
+    }
+    window.approveCertReq = function (id) {
+      var reqs = HubDB.getCertRequests();
+      var r = null;
+      for (var i = 0; i < reqs.length; i++) { if (reqs[i].id === id) r = reqs[i]; }
+      if (!r) return;
+      HubDB.updateCertRequest(id, { status: 'approved' });
+      HubDB.audit('Approved certificate request ' + id, r.studentId);
+      HubDB.certCode(r.studentId, r.courseId).then(function (code) {
+        var s = HubDB.findStudent(r.studentId);
+        var waText = 'TIH Learning Hub — Certificate APPROVED! 🎉\n\nYour certificate for "' + courseName(r.courseId) + '" has been approved.\n\nApproval code: ' + code + '\n\nEnter this code on your dashboard to unlock and download your certificate: https://tolbertinnovationhub.org/hub-dashboard.html';
+        openModal(
+          '<h3>✅ Request Approved <button class="x" onclick="closeModal()">✕</button></h3>'
+          + '<p style="font-size:.9rem;">Send the approval code to <b>' + esc(s ? s.name : r.studentId) + '</b>:</p>'
+          + '<div class="cred-box">Approval code: <b style="font-size:1.2rem;letter-spacing:.1em;">' + code + '</b></div>'
+          + '<div class="modal-actions">'
+          + '<a class="btn btn-green" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(s ? s.phone : null, waText) + '">💬 Send via WhatsApp</a>'
+          + '<button class="btn btn-line" onclick="navigator.clipboard&&navigator.clipboard.writeText(\'' + code + '\');this.textContent=\'✓ Copied\'">📋 Copy Code</button>'
+          + '</div>'
+        );
+        renderAll();
+      });
+    };
+    window.declineCertReq = function (id) {
+      var reason = prompt('Reason for declining (sent to the student):');
+      if (reason === null) return;
+      var r = HubDB.updateCertRequest(id, { status: 'declined', reason: reason.trim() });
+      HubDB.audit('Declined certificate request ' + id, r ? r.studentId : '');
+      renderAll();
+      if (r) {
+        var s = HubDB.findStudent(r.studentId);
+        if (s && s.phone && confirm('Notify the student on WhatsApp?')) {
+          window.open(HubDB.waLink(s.phone, 'Hello ' + s.name + ', regarding your certificate request for "' + courseName(r.courseId) + '": it was not approved at this time.' + (reason ? ' Reason: ' + reason : '') + ' Please review the course material and request again.'), '_blank');
+        }
+      }
+    };
+
     /* ============ RENDER: CERTIFICATES ============ */
     function renderCerts() {
       var rows = [];
@@ -730,7 +844,7 @@
 
     /* ============ MASTER RENDER ============ */
     function renderAll() {
-      renderDash(); renderApps(); renderStudents(); renderCerts(); renderAudit();
+      renderDash(); renderApps(); renderStudents(); renderCertReqs(); renderCerts(); renderAudit();
     }
     window.switchPanel = switchPanel;
     window.closeModal = closeModal;

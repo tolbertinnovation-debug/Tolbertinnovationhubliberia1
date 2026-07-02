@@ -16,7 +16,8 @@ var HubDB = (function () {
     studentSession: 'tih_hub_student_session',
     audit: 'tih_hub_audit_log',
     messages: 'tih_hub_message_log',
-    settings: 'tih_hub_settings'
+    settings: 'tih_hub_settings',
+    certRequests: 'tih_hub_cert_requests'
   };
 
   var WHATSAPP_NUMBER = '231880559227';
@@ -289,6 +290,81 @@ var HubDB = (function () {
     return getJSON('tih_cert_' + courseId, null);
   }
 
+  /* ---- Certificate requests & approval codes ----
+     Cross-device flow for the static site: the student's request reaches
+     the admin via WhatsApp (includes Student ID). The admin generates a
+     deterministic approval code for (studentId, courseId) and sends it
+     back; the student's device recomputes and verifies the code, then
+     unlocks certificate issuance locally. */
+  function certCode(studentId, courseId) {
+    return sha256('TIH-CERT-APPROVE|' + String(studentId).toUpperCase() + '|' + String(courseId).toLowerCase()).then(function (hex) {
+      return hex.replace(/[^a-z0-9]/gi, '').slice(0, 6).toUpperCase();
+    });
+  }
+  function getCertRequests() { return getJSON(KEYS.certRequests, []); }
+  function saveCertRequests(list) { setJSON(KEYS.certRequests, list); }
+  function requestCertificate(studentId, courseId, courseTitle) {
+    var list = getCertRequests();
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].studentId === studentId && list[i].courseId === courseId && list[i].status === 'pending') return list[i];
+    }
+    var req = {
+      id: 'TIH-CRQ-' + randChunk(6, 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'),
+      studentId: studentId, courseId: courseId, courseTitle: courseTitle || courseId,
+      requestedAt: nowISO(), status: 'pending', // pending | approved | declined
+      reason: ''
+    };
+    list.unshift(req);
+    saveCertRequests(list);
+    return req;
+  }
+  function updateCertRequest(id, changes) {
+    var list = getCertRequests();
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].id === id) {
+        for (var k in changes) { if (changes.hasOwnProperty(k)) list[i][k] = changes[k]; }
+        list[i].decidedAt = nowISO();
+        saveCertRequests(list);
+        return list[i];
+      }
+    }
+    return null;
+  }
+  // Student side: verify the code the admin sent; on success record the
+  // local approval flag that unlocks certificate issuance in the player.
+  function verifyCertCode(studentId, courseId, code) {
+    return certCode(studentId, courseId).then(function (expected) {
+      var ok = String(code || '').replace(/[^a-z0-9]/gi, '').toUpperCase() === expected;
+      if (ok) {
+        try { localStorage.setItem('tih_hub_cert_ok_' + courseId, JSON.stringify({ studentId: studentId, at: nowISO() })); } catch (e) {}
+        var list = getCertRequests();
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].studentId === studentId && list[i].courseId === courseId && list[i].status === 'pending') {
+            list[i].status = 'approved'; list[i].decidedAt = nowISO();
+          }
+        }
+        saveCertRequests(list);
+      }
+      return ok;
+    });
+  }
+  function certApprovedLocal(courseId) {
+    return !!getJSON('tih_hub_cert_ok_' + courseId, null);
+  }
+  function pendingCertRequest(studentId, courseId) {
+    var list = getCertRequests();
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].studentId === studentId && list[i].courseId === courseId) return list[i];
+    }
+    return null;
+  }
+
+  /* ---- Course access control ---- */
+  function courseAssignedTo(student, courseId) {
+    if (!student || !student.courses) return false;
+    return student.courses.some(function (c) { return c.id === courseId; });
+  }
+
   /* ---- WhatsApp / email helpers ---- */
   function waLink(phone, text) {
     var num = String(phone || WHATSAPP_NUMBER).replace(/[^0-9]/g, '');
@@ -340,6 +416,15 @@ var HubDB = (function () {
     // progress
     courseProgress: courseProgress,
     courseCertificate: courseCertificate,
+    // certificate requests / approval
+    certCode: certCode,
+    getCertRequests: getCertRequests,
+    requestCertificate: requestCertificate,
+    updateCertRequest: updateCertRequest,
+    verifyCertCode: verifyCertCode,
+    certApprovedLocal: certApprovedLocal,
+    pendingCertRequest: pendingCertRequest,
+    courseAssignedTo: courseAssignedTo,
     // comms
     waLink: waLink,
     mailtoLink: mailtoLink

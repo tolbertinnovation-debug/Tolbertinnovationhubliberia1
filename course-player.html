@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="courses-db.js?v=3"></script>
   <script src="lesson-content.js?v=3"></script>
+  <script src="hub-db.js?v=2"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -497,7 +498,7 @@
         <input id="certNameInput" type="text" placeholder="Your Full Name" oninput="updateCertName(this.value)" />
       </div>
       <div class="completion-actions">
-        <button class="btn-cert-primary" onclick="printCertificate()">⬇ Download / Print Certificate</button>
+        <button class="btn-cert-primary" id="certPrimaryBtn" onclick="printCertificate()">⬇ Download / Print Certificate</button>
         <div class="cert-row">
           <a href="my-certificates.html" class="btn-cert-sec">🏆 My Certs</a>
           <button class="btn-cert-sec" onclick="shareCompletion()">🔗 Share</button>
@@ -519,11 +520,34 @@
   }
 
   // ===== LOAD COURSE FROM DB =====
-  var courseId, course, lessons, quizData, totalLessons;
+  var courseId, course, lessons, quizData, totalLessons, hubStudent = null;
 
   (function loadCourse() {
     try {
     courseId = getUrlParam('id') || 'computer-literacy';
+
+    // ===== ACCESS CONTROL: login required, assigned courses only =====
+    var hubSession = (typeof HubDB !== 'undefined') ? HubDB.studentSession() : null;
+    if (!hubSession) {
+      window.location.replace('hub-dashboard.html?next=' + encodeURIComponent(courseId));
+      return;
+    }
+    hubStudent = HubDB.findStudent(hubSession.id);
+    if (!hubStudent || hubStudent.status !== 'active') {
+      window.location.replace('hub-dashboard.html?next=' + encodeURIComponent(courseId));
+      return;
+    }
+    if (!HubDB.courseAssignedTo(hubStudent, courseId)) {
+      document.body.innerHTML = '<div style="padding:3rem 1.5rem;text-align:center;font-family:Inter,sans-serif;max-width:480px;margin:0 auto;">'
+        + '<div style="font-size:3rem;margin-bottom:.75rem;">🔒</div>'
+        + '<h2 style="color:#002868;margin-bottom:.6rem;">Course Not Assigned</h2>'
+        + '<p style="color:#6b7280;margin-bottom:1.5rem;">This course has not been assigned to your account yet. Courses are assigned by the TIH team based on your learning plan.</p>'
+        + '<a href="hub-dashboard.html" style="display:inline-block;background:#002868;color:#fff;font-weight:700;padding:.75rem 1.5rem;border-radius:10px;text-decoration:none;margin-right:.5rem;">← My Dashboard</a>'
+        + '<a href="https://wa.me/231880559227?text=' + encodeURIComponent('Hello TIH, I would like to request access to the course: ' + courseId + '. My Student ID is ' + hubStudent.id) + '" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:.75rem 1.5rem;border-radius:10px;text-decoration:none;">💬 Request Access</a>'
+        + '</div>';
+      return;
+    }
+
     course = COURSES_DB[courseId];
     if (!course) {
       document.body.innerHTML = '<div style="padding:3rem;text-align:center;font-family:Inter,sans-serif"><h2 style="color:#002868">Course not found</h2><p style="margin:1rem 0 2rem;color:#6b7280">This course does not exist.</p><a href="courses.html" style="color:#002868;font-weight:700">← Back to Courses</a></div>';
@@ -1124,13 +1148,52 @@
     renderLesson(currentLessonIndex);
   }
 
+  // ===== CERTIFICATE APPROVAL GATE =====
+  // Certificates are issued on request: the student requests review, the
+  // TIH admin approves, and only then can the certificate be generated.
+  function certIsApproved() {
+    return (typeof HubDB !== 'undefined') && HubDB.certApprovedLocal(courseId);
+  }
+  function requestCertReview() {
+    if (typeof HubDB === 'undefined' || !hubStudent) { window.location.href = 'hub-dashboard.html'; return; }
+    HubDB.requestCertificate(hubStudent.id, courseId, course.title);
+    var waText = 'CERTIFICATE REQUEST — TIH Learning Hub\n'
+      + 'Student: ' + hubStudent.name + '\n'
+      + 'Student ID: ' + hubStudent.id + '\n'
+      + 'Course: ' + course.title + '\n'
+      + 'Course ID: ' + courseId + '\n'
+      + 'All lessons and quizzes completed. Please review my certificate request.';
+    window.open(HubDB.waLink(null, waText), '_blank');
+    var btn = document.getElementById('certPrimaryBtn');
+    if (btn) { btn.textContent = '⏳ Request Sent — Awaiting Admin Approval'; btn.disabled = true; }
+  }
+
   // ===== COMPLETION MODAL =====
   function showCompletionModal() {
     var savedName = localStorage.getItem('tih_student_name') || '';
     var inp = document.getElementById('certNameInput');
     if (inp) inp.value = savedName;
     document.getElementById('certNameDisplay').textContent = savedName || 'Enter Your Name Below';
-    if (savedName) saveCertificate(savedName);
+    // Adapt the primary action to the approval state
+    var btn = document.getElementById('certPrimaryBtn');
+    var subtitle = document.getElementById('completionSubtitle');
+    if (certIsApproved()) {
+      if (savedName) saveCertificate(savedName);
+      if (btn) { btn.textContent = '⬇ Download / Print Certificate'; btn.disabled = false; btn.onclick = printCertificate; }
+    } else {
+      var pending = (typeof HubDB !== 'undefined' && hubStudent) ? HubDB.pendingCertRequest(hubStudent.id, courseId) : null;
+      if (btn) {
+        if (pending && pending.status === 'pending') {
+          btn.textContent = '⏳ Awaiting Admin Approval — Enter Code on Dashboard';
+          btn.onclick = function () { window.location.href = 'hub-dashboard.html'; };
+        } else {
+          btn.textContent = '🏆 Request Certificate Review';
+          btn.onclick = requestCertReview;
+        }
+        btn.disabled = false;
+      }
+      if (subtitle) subtitle.textContent = 'Course complete! Request your certificate — the TIH team reviews every request before issuing.';
+    }
     document.getElementById('completionModal').classList.add('open');
     launchConfetti();
   }
@@ -1139,7 +1202,7 @@
     document.getElementById('certNameDisplay').textContent = trimmed || 'Enter Your Name Below';
     if (trimmed) {
       localStorage.setItem('tih_student_name', trimmed);
-      saveCertificate(trimmed);
+      if (certIsApproved()) saveCertificate(trimmed);
     }
   }
   function closeCompletionModal() {
@@ -1165,6 +1228,10 @@
 
   // ===== DOWNLOAD CERTIFICATE (A4 LANDSCAPE IN NEW WINDOW) =====
   function printCertificate() {
+    if (!certIsApproved()) {
+      alert('Your certificate must be approved by the TIH team before it can be downloaded.\n\nRequest a review from the completion screen, then enter the approval code you receive on your dashboard.');
+      return;
+    }
     var name = (document.getElementById('certNameInput').value.trim()) || (localStorage.getItem('tih_student_name') || 'Graduate');
     if (!name || name === 'Graduate') {
       var entered = prompt('Please enter your full name for the certificate:');
