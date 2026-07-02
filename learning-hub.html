@@ -94,6 +94,20 @@
     .track-chip .t-name { font-size: 0.88rem; font-weight: 700; color: var(--text); line-height: 1.3; }
     .track-chip .t-meta { font-size: 0.76rem; color: var(--muted); }
 
+    /* CAREER PATHWAYS */
+    .pathways-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
+    .pathway-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: #fff; transition: transform .2s, box-shadow .2s; }
+    .pathway-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .pw-head { color: #fff; padding: 1.25rem 1.4rem; }
+    .pw-icon { font-size: 1.6rem; display: block; margin-bottom: 0.4rem; }
+    .pw-head h3 { font-size: 1.08rem; font-weight: 800; margin-bottom: 0.25rem; }
+    .pw-head p { font-size: 0.84rem; color: rgba(255,255,255,.85); }
+    .pw-body { padding: 1.1rem 1.4rem 1.3rem; }
+    .pw-seq { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; margin-bottom: 0.9rem; }
+    .pw-chip { background: var(--primary-light); color: var(--primary); font-size: 0.74rem; font-weight: 700; border-radius: 999px; padding: 0.25rem 0.65rem; white-space: nowrap; }
+    .pw-arrow { color: var(--secondary); font-weight: 800; font-size: 0.8rem; }
+    .pw-outcome { font-size: 0.84rem; color: var(--text); background: var(--bg); border-radius: 8px; padding: 0.6rem 0.8rem; }
+
     /* HOW IT WORKS */
     .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; counter-reset: step; }
     .step { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; position: relative; box-shadow: var(--shadow); }
@@ -151,6 +165,7 @@
       <a href="learning-hub.html" class="hub-brand">TIH <span>Learning Hub</span></a>
       <nav class="hub-nav" id="hubNav" aria-label="Learning Hub navigation">
         <a href="#programs">Programs</a>
+        <a href="#pathways">Pathways</a>
         <a href="#tracks">Tracks</a>
         <a href="#how">How It Works</a>
         <a href="hub-track.html">Track Application</a>
@@ -179,7 +194,7 @@
   <div class="stats-band">
     <div class="container stats-inner">
       <div class="stat"><b>5,000+</b><span>Active Learners</span></div>
-      <div class="stat"><b>12</b><span>Skill Tracks</span></div>
+      <div class="stat"><b id="trackCountStat">12</b><span>Learning Tracks</span></div>
       <div class="stat"><b>15+</b><span>Countries Reached</span></div>
       <div class="stat"><b>100%</b><span>Free Core Courses</span></div>
     </div>
@@ -233,12 +248,91 @@
     </div>
   </section>
 
+  <!-- CAREER PATHWAYS -->
+  <section id="pathways" style="background:#fff;border-top:1px solid var(--border);">
+    <div class="container">
+      <div class="sec-head">
+        <h2>4 Career Pathways</h2>
+        <p>Not sure where to start? Follow a guided pathway — a recommended sequence of tracks that takes you from beginner to job-ready, ending with a portfolio capstone project.</p>
+      </div>
+      <div class="pathways-grid">
+        <div class="pathway-card">
+          <div class="pw-head" style="background:linear-gradient(135deg,#1E3A8A,#2b4cad);">
+            <span class="pw-icon">💻</span>
+            <h3>Tech &amp; Coding</h3>
+            <p>Build technical skills for remote jobs and freelancing</p>
+          </div>
+          <div class="pw-body">
+            <div class="pw-seq">
+              <span class="pw-chip">Computer Literacy</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Web Dev</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Android</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Data</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Cybersecurity</span>
+            </div>
+            <div class="pw-outcome">🎯 <strong>Outcome:</strong> Land a remote tech job or freelance gig</div>
+          </div>
+        </div>
+        <div class="pathway-card">
+          <div class="pw-head" style="background:linear-gradient(135deg,#c2410c,#F97316);">
+            <span class="pw-icon">🚀</span>
+            <h3>Digital Business</h3>
+            <p>Start, market, and manage a business online</p>
+          </div>
+          <div class="pw-body">
+            <div class="pw-seq">
+              <span class="pw-chip">Computer Literacy</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Design</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Digital Marketing</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Entrepreneurship</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Project Management</span>
+            </div>
+            <div class="pw-outcome">🎯 <strong>Outcome:</strong> Launch or grow a profitable business</div>
+          </div>
+        </div>
+        <div class="pathway-card">
+          <div class="pw-head" style="background:linear-gradient(135deg,#065f46,#10B981);">
+            <span class="pw-icon">🏢</span>
+            <h3>Career &amp; Workplace</h3>
+            <p>Excel in professional and administrative roles</p>
+          </div>
+          <div class="pw-body">
+            <div class="pw-seq">
+              <span class="pw-chip">Computer Literacy</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Office Productivity</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Leadership</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Project Management</span>
+            </div>
+            <div class="pw-outcome">🎯 <strong>Outcome:</strong> Get hired and promoted in any organization</div>
+          </div>
+        </div>
+        <div class="pathway-card">
+          <div class="pw-head" style="background:linear-gradient(135deg,#5b21b6,#7c3aed);">
+            <span class="pw-icon">🤖</span>
+            <h3>Emerging Tech &amp; AI</h3>
+            <p>Enter the AI-driven economy</p>
+          </div>
+          <div class="pw-body">
+            <div class="pw-seq">
+              <span class="pw-chip">Computer Literacy</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">AI</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Data</span><span class="pw-arrow">→</span>
+              <span class="pw-chip">Cybersecurity</span>
+            </div>
+            <div class="pw-outcome">🎯 <strong>Outcome:</strong> Work with AI and data tools</div>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:.85rem;color:var(--muted);margin-top:1.25rem;">💡 <strong>Computer Literacy</strong> is the mandatory foundation for every pathway. Every pathway ends with a capstone project for your portfolio.</p>
+    </div>
+  </section>
+
   <!-- TRACKS -->
   <section class="tracks-section" id="tracks">
     <div class="container">
       <div class="sec-head">
-        <h2>12 Core Learning Tracks</h2>
-        <p>Each track includes video lessons, notes, quizzes and a verified TIH certificate on completion. Assigned to you by the TIH team based on your goals.</p>
+        <h2 id="tracksHeading">Learning Tracks</h2>
+        <p>Each track includes video lessons, notes, quizzes, a capstone project and a verified TIH certificate on completion. Assigned to you by the TIH team based on your goals.</p>
       </div>
       <div class="tracks-grid" id="tracksGrid">
         <!-- Populated from COURSES_DB -->
@@ -394,6 +488,10 @@
             + '</a>';
         }
         grid.innerHTML = html;
+        var h = document.getElementById('tracksHeading');
+        if (h) h.textContent = ids.length + ' Learning Tracks';
+        var st = document.getElementById('trackCountStat');
+        if (st) st.textContent = ids.length;
       } catch (e) {}
     })();
 
