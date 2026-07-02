@@ -59,6 +59,7 @@ function buildCertHTML(name, title, certId, certDate) {
     '.sig-line{border-bottom:.45mm solid #1f2937;margin-bottom:1.6mm}' +
     '.sig-name{font-size:10pt;font-weight:700;color:#111827;font-family:Poppins,sans-serif}' +
     '.sig-role{font-size:7.5pt;color:#6b7280;margin-top:.6mm}' +
+    '.date-val{height:15mm;display:flex;align-items:flex-end;justify-content:center;font-family:"Playfair Display",Georgia,serif;font-size:13pt;font-weight:700;color:#111827;padding-bottom:1.6mm;letter-spacing:.02em}' +
     /* Gold embossed seal */
     '.seal{width:30mm;height:30mm;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f3d27a,#c8960c 58%,#a87a08);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#4a3403;text-align:center;padding:0 3mm;box-shadow:0 1.5mm 4mm rgba(168,122,8,.45),inset 0 0 0 1mm rgba(255,255,255,.35);position:relative}' +
     '.seal::before{content:"";position:absolute;inset:2.2mm;border:.35mm dashed rgba(74,52,3,.55);border-radius:50%}' +
@@ -105,10 +106,10 @@ function buildCertHTML(name, title, certId, certDate) {
     '</div>' +
     '<div class="seal"><span class="s-star">&#9733;</span><span class="s-t1">TOLBERT INNOVATION HUB</span><span class="s-t2">OFFICIAL SEAL &middot; LIBERIA</span><span class="s-check">&#10003; VERIFIED</span></div>' +
     '<div class="sig-block">' +
-    '<div style="height:15mm"></div>' +
+    '<div class="date-val">' + esc(certDate) + '</div>' +
     '<div class="sig-line"></div>' +
     '<div class="sig-name">Date of Issue</div>' +
-    '<div class="sig-role">' + esc(certDate) + '</div>' +
+    '<div class="sig-role">Tolbert Innovation Hub &middot; Monrovia, Liberia</div>' +
     '</div>' +
     '</div>' +
     '<div class="meta-strip">' +
