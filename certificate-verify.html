@@ -260,12 +260,12 @@
             </div>
             <div class="result-body">
               <div class="result-grid">
-                <div class="result-field"><label>Certificate Holder</label><span id="res-name">Amara Koroma</span></div>
-                <div class="result-field"><label>Certificate ID</label><span id="res-id">TIH-2026-001234</span></div>
-                <div class="result-field"><label>Program Completed</label><span>AI &amp; Data Analytics Professional</span></div>
-                <div class="result-field"><label>Issue Date</label><span>March 15, 2026</span></div>
+                <div class="result-field"><label>Certificate Holder</label><span id="res-name">—</span></div>
+                <div class="result-field"><label>Certificate ID</label><span id="res-id">—</span></div>
+                <div class="result-field"><label>Program Completed</label><span id="res-course">—</span></div>
+                <div class="result-field"><label>Issue Date</label><span id="res-date">—</span></div>
                 <div class="result-field"><label>Certificate Status</label><span style="color:#10b981;font-weight:700;">✅ Active &amp; Valid</span></div>
-                <div class="result-field"><label>Institution</label><span>Tolbert Innovation Hub Academy</span></div>
+                <div class="result-field"><label>Institution</label><span>Tolbert Innovation Hub · TIH Learning Hub</span></div>
               </div>
               <div class="result-actions">
                 <a href="#" class="btn-result-action btn-result-primary" onclick="printResult(event)">🖨 Print Verification</a>
@@ -277,8 +277,9 @@
 
           <!-- RESULT: FAIL -->
           <div class="result-fail" id="result-fail">
-            <h4>❌ Certificate Not Found</h4>
-            <p>We couldn't verify this certificate. Please check the ID and try again. If you believe this is an error, contact <a href="mailto:academy@tolbertinnovationhub.org" style="color:#b91c1c;">academy@tolbertinnovationhub.org</a></p>
+            <h4>❌ Certificate Not Found on This Device</h4>
+            <p>No certificate with this ID was found in this browser. If you are the graduate, open this page on the same device where you downloaded your certificate. Employers confirming a certificate can send the Certificate ID and holder's name to the TIH team to confirm authenticity:
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="color:#b91c1c;font-weight:700;">💬 WhatsApp</a> or <a href="mailto:academy@tolbertinnovationhub.org" style="color:#b91c1c;">academy@tolbertinnovationhub.org</a>.</p>
           </div>
         </div>
 
@@ -518,24 +519,55 @@
       document.getElementById('panel-' + tab).classList.add('active');
     }
 
+    // Look up a real issued certificate by its credential ID.
+    // Certificates are saved by the course player under localStorage keys
+    // "tih_cert_<courseId>" as { certId, studentName, courseTitle, date, ... }.
+    function findLocalCertificate(id) {
+      var want = String(id || '').trim().toUpperCase();
+      if (!want) return null;
+      for (var i = 0; i < localStorage.length; i++) {
+        var key = localStorage.key(i) || '';
+        if (key.indexOf('tih_cert_') !== 0) continue;
+        try {
+          var cert = JSON.parse(localStorage.getItem(key));
+          if (cert && String(cert.certId || '').toUpperCase() === want) return cert;
+        } catch (e) {}
+      }
+      return null;
+    }
+
+    function showVerifiedCert(cert) {
+      var successEl = document.getElementById('result-success');
+      var failEl = document.getElementById('result-fail');
+      failEl.classList.remove('show');
+      document.getElementById('res-name').textContent = cert.studentName || '—';
+      document.getElementById('res-id').textContent = cert.certId || '—';
+      document.getElementById('res-course').textContent = (cert.courseTitle || '—');
+      document.getElementById('res-date').textContent = cert.date || '—';
+      successEl.classList.add('show');
+      successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function showVerifyFail() {
+      document.getElementById('result-success').classList.remove('show');
+      document.getElementById('result-fail').classList.add('show');
+      document.getElementById('result-fail').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Core verification (no captcha) — used by the button and by URL auto-verify.
+    function doVerifyById(id) {
+      var cert = findLocalCertificate(id);
+      if (cert) { showVerifiedCert(cert); return true; }
+      showVerifyFail();
+      return false;
+    }
+
     function verifyById() {
       const id = document.getElementById('cert-id').value.trim();
       const captcha = document.getElementById('captcha-id').value.trim();
-      const successEl = document.getElementById('result-success');
-      const failEl = document.getElementById('result-fail');
-      successEl.classList.remove('show');
-      failEl.classList.remove('show');
       if (!id) { alert('Please enter a certificate ID.'); return; }
       if (captcha !== '11') { alert('Security check failed. 7 + 4 = 11'); return; }
-      // Demo: any ID starting with TIH- succeeds
-      if (id.toUpperCase().startsWith('TIH-')) {
-        document.getElementById('res-name').textContent = 'Amara Koroma';
-        document.getElementById('res-id').textContent = id.toUpperCase();
-        successEl.classList.add('show');
-        successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      } else {
-        failEl.classList.add('show');
-      }
+      doVerifyById(id);
     }
 
     function verifyByName() {
@@ -576,12 +608,14 @@
     document.getElementById('cert-id').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') verifyById();
     });
-    // Auto-verify when arriving with ?id=CERT-ID in the URL
+    // Auto-verify when arriving with ?id=CERT-ID in the URL (from a QR code or
+    // shared link) — bypasses the manual captcha since it is a direct lookup.
     (function() {
       var m = new RegExp('[?&]id=([^&]*)').exec(window.location.search);
       if (m && m[1]) {
-        document.getElementById('cert-id').value = decodeURIComponent(m[1].replace(/\+/g, ' '));
-        verifyById();
+        var val = decodeURIComponent(m[1].replace(/\+/g, ' '));
+        document.getElementById('cert-id').value = val;
+        doVerifyById(val);
       }
     })();
     // Back to top
