@@ -3249,3 +3249,394 @@ COURSES_DB['healthtech'] = {
     }
   ]
 };
+
+COURSES_DB['remote-work'] = {
+  "id": "remote-work",
+  "title": "Remote Work & Freelancing: Earn Global Income from Liberia",
+  "shortDesc": "For ambitious youth ready to earn US dollars online — learn to package your skills, win clients on Upwork and Fiverr, build a professional portfolio, price your work, and get paid reliably in Liberia despite payment and power challenges.",
+  "category": "Remote Work & Freelancing",
+  "icon": "💼",
+  "gradient": "linear-gradient(135deg,#c2410c,#f97316)",
+  "instructor": "Emmanuel Gaye",
+  "instructorTitle": "Remote Work Coach & Top-Rated Upwork Freelancer, TIH",
+  "instructorBio": "Emmanuel Gaye is a Top-Rated Plus Upwork freelancer who built a six-figure remote career in digital marketing and writing without ever leaving Monrovia. He has coached over 800 West African freelancers to land their first international clients and get paid reliably in USD.",
+  "rating": 4.9,
+  "reviewCount": 612,
+  "students": "3,200+",
+  "duration": "19h",
+  "level": "Intermediate",
+  "price": "FREE",
+  "origPrice": "$140",
+  "isFree": true,
+  "badge": "free",
+  "certId": "TIH-2026-RMT-0001",
+  "learn": [
+    "Understand the global remote work market and which skills earn USD from Liberia",
+    "Identify, package, and position your most marketable skill for international clients",
+    "Build an Upwork profile and Fiverr gigs that win high-paying clients",
+    "Write proposals and cover letters that get replies and interviews",
+    "Create a professional portfolio for free using tools like Canva and Google Sites",
+    "Price your services confidently and negotiate rates in US dollars",
+    "Receive international payments in Liberia using Payoneer, Wise, and mobile money",
+    "Deliver 5-star work, earn repeat clients, and grow from solo freelancer to agency owner"
+  ],
+  "requirements": [
+    "Basic computer and internet skills (or complete our free Computer Literacy course first)",
+    "A reliable smartphone or laptop plus a plan for managing data costs and power outages",
+    "At least one skill to offer such as writing, design, virtual assistance, or data entry (we help you find yours)"
+  ],
+  "about": [
+    "The internet has erased the distance that once locked Liberian youth out of the global job market. Today a young person in Monrovia, Buchanan, or Gbarnga can earn United States dollars from clients in New York, London, or Nairobi without ever leaving home. This course is a complete, practical roadmap for turning your skills into real global income from right here in Liberia.",
+    "You will learn exactly how to choose a marketable skill, build a winning profile on Upwork and Fiverr, write proposals that get replies, and price your work fairly. Most importantly, this course tackles the challenge that stops most Liberians before they start: how to actually get paid. We walk through Payoneer, Wise, mobile money, and real PayPal workarounds, plus how to plan around data costs and electricity outages so you never miss a deadline.",
+    "Thousands of West African freelancers are already earning $800 to $2,000 every month online. Whether you are a student, a job seeker, or a professional wanting extra income, this free course gives you a clear, step-by-step path from your first proposal to your first paycheck and beyond, all the way to building your own small agency."
+  ],
+  "modules": [
+    {
+      "title": "Module 1: The Global Remote Work Opportunity",
+      "icon": "💼",
+      "meta": "4 lessons · 40 min",
+      "lessons": [
+        {
+          "t": "1.1 The Remote Work Landscape: What Skills Actually Sell",
+          "d": "11:20",
+          "v": "7oM-Nfl8CtQ"
+        },
+        {
+          "t": "1.2 Finding & Packaging Your Marketable Skill",
+          "d": "10:15",
+          "v": "Tn6-PIqc4UM"
+        },
+        {
+          "t": "1.3 Creating an Upwork Profile That Wins Clients",
+          "d": "13:40",
+          "v": "9NzTAZPra3A"
+        },
+        {
+          "t": "📝 Quiz: The Remote Work Opportunity",
+          "d": "5 questions",
+          "isQuiz": true,
+          "quizId": "mod1"
+        }
+      ]
+    },
+    {
+      "title": "Module 2: Winning Clients & Building Your Presence",
+      "icon": "🎯",
+      "meta": "4 lessons · 40 min",
+      "lessons": [
+        {
+          "t": "2.1 Fiverr Gigs That Sell: Setup & Optimization",
+          "d": "12:30",
+          "v": "8gNUUK6fwX4"
+        },
+        {
+          "t": "2.2 Writing Winning Proposals & Cover Letters",
+          "d": "11:45",
+          "v": "rErBcmM1wDk"
+        },
+        {
+          "t": "2.3 Building a Portfolio with Free Tools",
+          "d": "10:50",
+          "v": "DvMNG6MUlGI"
+        },
+        {
+          "t": "📝 Quiz: Winning Your First Clients",
+          "d": "5 questions",
+          "isQuiz": true,
+          "quizId": "mod2"
+        }
+      ]
+    },
+    {
+      "title": "Module 3: Pricing & Getting Paid in Liberia",
+      "icon": "💰",
+      "meta": "3 lessons · 50 min",
+      "lessons": [
+        {
+          "t": "3.1 Pricing Your Services & Negotiating Rates",
+          "d": "12:10",
+          "v": "2GzslyLAD1E"
+        },
+        {
+          "t": "3.2 Getting Paid in Liberia: Payoneer, Wise, Mobile Money & PayPal",
+          "d": "13:20",
+          "v": "9uU-i5ZI-_U"
+        },
+        {
+          "t": "🛠️ Capstone: Launch Your Complete Freelance Profile & Portfolio",
+          "d": "Project",
+          "isProject": true
+        }
+      ]
+    },
+    {
+      "title": "Module 4: Delivering, Growing & Certification",
+      "icon": "🏆",
+      "meta": "3 lessons · 40 min",
+      "lessons": [
+        {
+          "t": "4.1 Delivering Excellent Work & Earning 5-Star Reviews",
+          "d": "9:40",
+          "v": "Tn6-PIqc4UM"
+        },
+        {
+          "t": "4.2 Growing from Freelancer to Agency",
+          "d": "14:00",
+          "v": "FTOpohYyn1o"
+        },
+        {
+          "t": "🏆 Final Assessment & Certificate",
+          "d": "Assessment",
+          "isQuiz": true,
+          "quizId": "final",
+          "isFinal": true
+        }
+      ]
+    }
+  ],
+  "quizzes": {
+    "mod1": {
+      "title": "Quiz: The Remote Work Opportunity",
+      "moduleNum": 1,
+      "unlocks": 3,
+      "questions": [
+        {
+          "q": "What does remote work allow a freelancer in Liberia to do?",
+          "opts": [
+            "Only work for local companies",
+            "Earn income in US dollars from international clients online",
+            "Avoid using the internet entirely",
+            "Work only inside a physical office"
+          ],
+          "correct": 1,
+          "exp": "Remote work lets you serve clients anywhere in the world and get paid in USD without leaving Liberia."
+        },
+        {
+          "q": "Which is a beginner-friendly skill that sells well online?",
+          "opts": [
+            "Brain surgery",
+            "Virtual assistance",
+            "Operating heavy machinery",
+            "Driving a local taxi"
+          ],
+          "correct": 1,
+          "exp": "Virtual assistance needs organization and communication, making it one of the fastest ways to start earning online."
+        },
+        {
+          "q": "A truly marketable skill is one that:",
+          "opts": [
+            "Only you personally enjoy",
+            "Clients are actively searching for and paying for",
+            "Always requires a university degree",
+            "Cannot be found anywhere on Upwork"
+          ],
+          "correct": 1,
+          "exp": "A skill only earns money when there is real client demand for it on platforms like Upwork and Fiverr."
+        },
+        {
+          "q": "The best Upwork profile title is:",
+          "opts": [
+            "Generic, like just Freelancer",
+            "Specific and benefit-driven, like SEO Blog Writer for Health Brands",
+            "Left completely blank",
+            "Only your full name"
+          ],
+          "correct": 1,
+          "exp": "A specific, benefit-driven title tells clients exactly what you do and helps you stand out."
+        },
+        {
+          "q": "Why should you not hide that you are based in Liberia?",
+          "opts": [
+            "It is illegal to hide your location",
+            "Many clients value hardworking African freelancers and fair rates",
+            "Upwork automatically bans hidden locations",
+            "Hiding it slows down your internet"
+          ],
+          "correct": 1,
+          "exp": "Many clients appreciate reliable African freelancers, so your location can be a strength, not a weakness."
+        }
+      ]
+    },
+    "mod2": {
+      "title": "Quiz: Winning Your First Clients",
+      "moduleNum": 2,
+      "unlocks": 3,
+      "questions": [
+        {
+          "q": "On Fiverr, how do clients typically start working with you?",
+          "opts": [
+            "They must call you first",
+            "They come to you and order your gigs directly",
+            "They can only pay in cash",
+            "They cannot leave reviews"
+          ],
+          "correct": 1,
+          "exp": "On Fiverr you set up gigs once and buyers order directly, which is great when your internet is unreliable."
+        },
+        {
+          "q": "How many packages can a single Fiverr gig offer?",
+          "opts": [
+            "Only one",
+            "Only two",
+            "Three: Basic, Standard, and Premium",
+            "Exactly ten"
+          ],
+          "correct": 2,
+          "exp": "Offering Basic, Standard, and Premium packages lets buyers choose an option that fits their budget."
+        },
+        {
+          "q": "A strong Upwork proposal should be:",
+          "opts": [
+            "As long as you can possibly make it",
+            "Copy-pasted identically for every job",
+            "Personalized to the client and under 200 to 300 words",
+            "Sent without reading the job post"
+          ],
+          "correct": 2,
+          "exp": "Short, personalized proposals that address the client problem get far more replies than long generic ones."
+        },
+        {
+          "q": "If you have no experience yet, the best way to win a job is to:",
+          "opts": [
+            "Lie about your past work",
+            "Create a relevant sample and attach it to your proposal",
+            "Charge the highest price possible",
+            "Skip sending proposals altogether"
+          ],
+          "correct": 1,
+          "exp": "A relevant free sample proves your ability and can beat competitors who only make promises."
+        },
+        {
+          "q": "Which is a good free tool for building a portfolio?",
+          "opts": [
+            "Canva",
+            "A paid television subscription",
+            "A landline telephone",
+            "No free tools exist"
+          ],
+          "correct": 0,
+          "exp": "Canva lets you design professional graphics and mockups for free, even with no design experience."
+        }
+      ]
+    },
+    "final": {
+      "title": "Final Assessment",
+      "moduleNum": 4,
+      "unlocks": null,
+      "isFinal": true,
+      "questions": [
+        {
+          "q": "When a client says their budget is tight, the smartest response is to:",
+          "opts": [
+            "Immediately cut your price in half",
+            "Adjust the scope, such as offering fewer revisions or a smaller package",
+            "Cancel the job right away",
+            "Ignore the client completely"
+          ],
+          "correct": 1,
+          "exp": "Adjusting scope protects your value while still giving the client an option they can afford."
+        },
+        {
+          "q": "Which payment method is preferred because Upwork and Fiverr pay out to it directly?",
+          "opts": [
+            "Cash pickup at a market",
+            "Payoneer",
+            "Mailing gold",
+            "A local savings club"
+          ],
+          "correct": 1,
+          "exp": "Payoneer connects directly to Upwork and Fiverr and gives you a USD receiving account and card."
+        },
+        {
+          "q": "Most negative freelance reviews are actually caused by:",
+          "opts": [
+            "Bad work quality only",
+            "Mismatched expectations and poor communication",
+            "Delivering the work too early",
+            "Politely asking for feedback"
+          ],
+          "correct": 1,
+          "exp": "Setting clear expectations in writing and communicating often prevents most bad reviews."
+        },
+        {
+          "q": "To grow from freelancer to agency, your main job becomes:",
+          "opts": [
+            "Doing every task yourself forever",
+            "Winning clients while a trained team delivers the work",
+            "Lowering all of your prices",
+            "Stopping communication with clients"
+          ],
+          "correct": 1,
+          "exp": "As an agency owner you focus on sales and quality control while your team handles delivery."
+        },
+        {
+          "q": "To handle unreliable power and internet, a smart freelancer should:",
+          "opts": [
+            "Promise impossible deadlines",
+            "Plan ahead and deliver early using backup power and data",
+            "Never tell clients about any challenges",
+            "Only try to work during blackouts"
+          ],
+          "correct": 1,
+          "exp": "Planning ahead with backup power, data bundles, and early delivery keeps you dependable to clients."
+        }
+      ]
+    }
+  },
+  "reviews": [
+    {
+      "name": "Grace Johnson",
+      "loc": "Monrovia, Liberia",
+      "date": "February 2026",
+      "bg": "#c2410c",
+      "init": "GJ",
+      "rating": 5,
+      "text": "I always thought freelancing was for people abroad. This course changed my mind completely. Within six weeks I set up my Upwork profile, sent proposals the way Emmanuel taught, and landed my first 500 dollar contract as a virtual assistant. I got paid through Payoneer with no stress. This is real income for my family."
+    },
+    {
+      "name": "Prince Karweaye",
+      "loc": "Paynesville, Liberia",
+      "date": "March 2026",
+      "bg": "#f97316",
+      "init": "PK",
+      "rating": 5,
+      "text": "The Fiverr lessons are gold. I started a logo design gig at a low price to earn reviews, and after fifteen 5-star reviews I now charge 50 dollars per order. Buyers come to me even while my data is off. I never believed I could earn dollars from Paynesville, but here I am."
+    },
+    {
+      "name": "Bendu Massaquoi",
+      "loc": "Gbarnga, Bong County",
+      "date": "May 2026",
+      "bg": "#0e7490",
+      "init": "BM",
+      "rating": 4,
+      "text": "I had no portfolio and no confidence. The lesson on free tools showed me how to build sample work in Canva and put it online for free. I used one sample in a proposal and won my first international writing client. Living in Gbarnga has never stopped me since."
+    },
+    {
+      "name": "Alfred Toe",
+      "loc": "Buchanan, Grand Bassa",
+      "date": "June 2026",
+      "bg": "#7c3aed",
+      "init": "AT",
+      "rating": 5,
+      "text": "Getting paid was my biggest fear, and this course solved it. The payment module walked me through Payoneer and Wise step by step. My first 500 dollar Upwork payment reached my local bank within days. Every Liberian who wants to work online needs this course."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How do I receive payment in Liberia as a freelancer?",
+      "a": "The proven setup is Payoneer for Upwork and Fiverr payouts, plus Wise for direct client bank transfers with low fees, and then withdrawing to your Liberian bank account or mobile money such as Orange Money or MTN MoMo. We show you how to open and verify each account early so your payments are never held up."
+    },
+    {
+      "q": "Do I need experience or a university degree to start freelancing?",
+      "a": "No. Many successful freelancers start with no experience and no degree. This course shows you how to identify a skill you already have, create sample work to prove it, and win your first clients through strong profiles and personalized proposals."
+    },
+    {
+      "q": "How do I deal with unreliable internet and electricity in Liberia?",
+      "a": "We teach practical planning: buy data bundles ahead of deadlines, keep a power bank or generator backup, and deliver work early so an outage never causes a late delivery. Fiverr gigs are also ideal because orders arrive even when you are offline."
+    },
+    {
+      "q": "Is this course really free and is the certificate recognized?",
+      "a": "Yes, it is completely free with no credit card required. On passing the final assessment you receive a TIH certificate with a unique verification code that employers and clients can confirm as genuine."
+    }
+  ]
+};
