@@ -239,7 +239,26 @@
 
     <!-- CERTIFICATES -->
     <div class="panel" id="panel-certs">
-      <h2>Certificates Issued (this device)</h2>
+      <h2>Certificates</h2>
+      <div class="table-card" style="padding:1rem 1.1rem;margin-bottom:1.2rem;">
+        <div id="cloudStatus" style="font-size:.86rem;font-weight:700;"></div>
+        <p style="font-size:.82rem;color:var(--muted);margin-top:.35rem;" id="cloudHint"></p>
+      </div>
+
+      <div class="table-card" style="padding:1.2rem;margin-bottom:1.2rem;">
+        <h3 style="font-size:.95rem;margin-bottom:.35rem;">☁ Publish / Back-fill a Certificate to the Public Registry</h3>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:.9rem;">Use this to add a certificate to the cloud registry so it verifies from any device — for certificates issued before cloud verification was enabled, or to guarantee a record exists. Enter the exact Credential ID printed on the certificate.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">
+          <input type="text" id="bfCertId" placeholder="Credential ID (TIH-2026-XXX-XXXXXX)" style="padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;text-transform:uppercase;" />
+          <input type="text" id="bfName" placeholder="Holder full name" style="padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;" />
+          <select id="bfCourse" style="padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;"></select>
+          <input type="text" id="bfDate" placeholder="Issue date (e.g. July 3, 2026)" style="padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;" />
+        </div>
+        <button class="btn btn-primary" id="bfPublishBtn" style="margin-top:.7rem;">Publish to Registry</button>
+        <div class="feedback" id="bfFeedback"></div>
+      </div>
+
+      <h3 style="font-size:.95rem;margin-bottom:.6rem;">Certificates Recorded on This Device</h3>
       <div class="table-card">
         <div class="table-scroll">
           <table>
@@ -280,6 +299,8 @@
 
   <script src="courses-db.js?v=3"></script>
   <script src="hub-db.js?v=2"></script>
+  <script src="hub-config.js?v=1"></script>
+  <script src="cert-registry.js?v=1"></script>
   <script>
     /* ============ HELPERS ============ */
     var esc = HubDB.esc;
@@ -792,11 +813,78 @@
       }
       document.getElementById('certEmpty').style.display = rows.length ? 'none' : 'block';
       document.getElementById('certTbody').innerHTML = rows.map(function (c) {
+        var pub = (typeof CertRegistry !== 'undefined' && CertRegistry.isCloudEnabled())
+          ? '<button class="btn btn-green btn-sm" onclick="publishCert(\'' + encodeURIComponent(c.courseId) + '\')">☁ Publish</button>'
+          : '';
         return '<tr><td><b>' + esc(c.certId) + '</b></td><td>' + esc(c.studentName || '—') + '</td>'
           + '<td>' + esc((c.courseTitle || '').split(':')[0]) + '</td><td>' + esc(c.date || '—') + '</td>'
-          + '<td><a class="btn btn-line btn-sm" href="certificate-verify.html?id=' + encodeURIComponent(c.certId) + '">Verify</a></td></tr>';
+          + '<td><div class="row-actions">'
+          + '<a class="btn btn-line btn-sm" href="certificate-verify.html?id=' + encodeURIComponent(c.certId) + '">Verify</a>' + pub
+          + '</div></td></tr>';
       }).join('');
+
+      // Cloud status banner + back-fill course dropdown
+      var enabled = (typeof CertRegistry !== 'undefined' && CertRegistry.isCloudEnabled());
+      var st = document.getElementById('cloudStatus');
+      var hint = document.getElementById('cloudHint');
+      if (st) {
+        st.textContent = enabled ? '☁ Cloud verification: ENABLED' : '⚠ Cloud verification: NOT CONFIGURED';
+        st.style.color = enabled ? 'var(--accent)' : 'var(--secondary)';
+        hint.textContent = enabled
+          ? 'Certificates published here verify from any device at certificate-verify.html. New completions publish automatically when a learner downloads their approved certificate.'
+          : 'Certificates currently verify only on the device that issued them. To enable public cross-device verification, add your Firebase keys in hub-config.js (setup steps are inside that file).';
+      }
+      var sel = document.getElementById('bfCourse');
+      if (sel && !sel.options.length) {
+        try {
+          Object.keys(COURSES_DB).forEach(function (cid) {
+            var o = document.createElement('option');
+            o.value = cid; o.textContent = courseName(cid);
+            sel.appendChild(o);
+          });
+        } catch (e) {}
+      }
     }
+
+    // Publish an existing local certificate record to the cloud registry.
+    window.publishCert = function (encCourseId) {
+      var courseId = decodeURIComponent(encCourseId);
+      var cert = null;
+      try { cert = JSON.parse(localStorage.getItem('tih_cert_' + courseId)); } catch (e) {}
+      if (!cert) { alert('Certificate record not found.'); return; }
+      CertRegistry.publish(cert).then(function (ok) {
+        HubDB.audit('Published certificate to registry ' + cert.certId, cert.courseId);
+        alert(ok ? 'Published to the public registry.\n' + cert.certId + ' can now be verified from any device.'
+                 : 'Could not reach the registry. Check your internet and Firebase configuration, then try again.');
+      });
+    };
+
+    // Manual back-fill: publish an arbitrary certificate to the registry.
+    document.getElementById('bfPublishBtn').addEventListener('click', function () {
+      var fb = document.getElementById('bfFeedback');
+      if (typeof CertRegistry === 'undefined' || !CertRegistry.isCloudEnabled()) {
+        fb.className = 'feedback err';
+        fb.textContent = 'Cloud verification is not configured yet. Add Firebase keys in hub-config.js first.';
+        return;
+      }
+      var certId = document.getElementById('bfCertId').value.trim().toUpperCase();
+      var name = document.getElementById('bfName').value.trim();
+      var courseId = document.getElementById('bfCourse').value;
+      var date = document.getElementById('bfDate').value.trim();
+      if (!/^TIH-\d{4}-[A-Z0-9]+-[A-Z0-9]+$/.test(certId)) { fb.className = 'feedback err'; fb.textContent = 'Enter a valid Credential ID (e.g. TIH-2026-FIN-48CVKT).'; return; }
+      if (!name) { fb.className = 'feedback err'; fb.textContent = 'Enter the holder\'s full name.'; return; }
+      var rec = {
+        certId: certId, studentName: name, courseId: courseId,
+        courseTitle: courseName(courseId), date: date || '', category: ''
+      };
+      fb.className = 'feedback'; fb.textContent = 'Publishing…';
+      CertRegistry.publish(rec).then(function (ok) {
+        HubDB.audit('Back-filled certificate to registry ' + certId, courseId);
+        fb.className = ok ? 'feedback ok' : 'feedback err';
+        fb.textContent = ok ? '✓ Published. ' + certId + ' now verifies from any device.'
+                            : 'Could not reach the registry. Check internet and Firebase config, then retry. (Note: an existing record with this ID will not be overwritten.)';
+      });
+    });
 
     /* ============ RENDER: AUDIT ============ */
     function renderAudit() {
