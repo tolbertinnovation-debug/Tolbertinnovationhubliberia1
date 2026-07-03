@@ -13,6 +13,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="hub-config.js?v=1"></script>
+  <script src="cert-registry.js?v=1"></script>
   <style>
     :root {
       --ac-gold: #f59e0b;
@@ -555,11 +557,24 @@
     }
 
     // Core verification (no captcha) — used by the button and by URL auto-verify.
+    // Checks the public cloud registry first (works from any device), then
+    // falls back to a local record on the issuing device.
     function doVerifyById(id) {
-      var cert = findLocalCertificate(id);
-      if (cert) { showVerifiedCert(cert); return true; }
-      showVerifyFail();
-      return false;
+      var local = findLocalCertificate(id);
+      var cloud = (typeof CertRegistry !== 'undefined' && CertRegistry.isCloudEnabled());
+      if (!cloud) {
+        if (local) { showVerifiedCert(local); return; }
+        showVerifyFail();
+        return;
+      }
+      // Cloud enabled: authoritative lookup, with local as a fast fallback.
+      CertRegistry.lookup(id).then(function (rec) {
+        if (rec) { showVerifiedCert(rec); }
+        else if (local) { showVerifiedCert(local); }
+        else { showVerifyFail(); }
+      }).catch(function () {
+        if (local) { showVerifiedCert(local); } else { showVerifyFail(); }
+      });
     }
 
     function verifyById() {

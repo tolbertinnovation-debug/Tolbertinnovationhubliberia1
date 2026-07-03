@@ -13,6 +13,8 @@
   <script src="courses-db.js?v=3"></script>
   <script src="lesson-content.js?v=3"></script>
   <script src="hub-db.js?v=2"></script>
+  <script src="hub-config.js?v=1"></script>
+  <script src="cert-registry.js?v=1"></script>
   <script src="cert-template.js?v=1"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -597,7 +599,7 @@
 
     // Completion modal cert details
     document.getElementById('certCourseTitle').textContent = course.title;
-    document.getElementById('certId').textContent = course.certId || ('TIH-2026-' + courseId.toUpperCase().substring(0,4) + '-0001');
+    document.getElementById('certId').textContent = getCredentialId();
     document.getElementById('certSigName').textContent = 'Samuel S. Tolbert';
     document.getElementById('completionSubtitle').textContent = 'Congratulations! You\'ve mastered ' + course.title.split(':')[0] + '!';
     document.getElementById('certDate').textContent = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
@@ -1216,21 +1218,51 @@
     document.getElementById('completionModal').classList.remove('open');
   }
 
-  // ===== SAVE CERTIFICATE TO LOCALSTORAGE =====
+  // ===== UNIQUE CREDENTIAL ID (one per graduate, per course) =====
+  // The old scheme reused a single ID (e.g. TIH-2026-FIN-0001) for every
+  // graduate of a course. We now mint a unique ID once and reuse it stably,
+  // so each learner's certificate is individually identifiable and verifiable.
+  function trackCode() {
+    // Middle code from the course's certId (e.g. "FIN" from TIH-2026-FIN-0001),
+    // falling back to the first letters of the course id.
+    var parts = String(course && course.certId || '').split('-');
+    if (parts.length >= 3 && parts[2]) return parts[2].toUpperCase();
+    return courseId.replace(/[^a-z0-9]/gi, '').substring(0, 4).toUpperCase();
+  }
+  function getCredentialId() {
+    var key = 'tih_certid_' + courseId;
+    var existing = localStorage.getItem(key);
+    if (existing) return existing;
+    var year = new Date().getFullYear();
+    var alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    var suffix = '';
+    for (var i = 0; i < 6; i++) suffix += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+    var id = 'TIH-' + year + '-' + trackCode() + '-' + suffix;
+    try { localStorage.setItem(key, id); } catch (e) {}
+    return id;
+  }
+
+  // ===== SAVE CERTIFICATE TO LOCALSTORAGE (+ cloud registry if enabled) =====
   function saveCertificate(studentName) {
     if (!course) return;
-    var certId = course.certId || ('TIH-2026-' + courseId.toUpperCase().substring(0,4) + '-0001');
+    var certId = getCredentialId();
     var date = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
-    localStorage.setItem('tih_cert_' + courseId, JSON.stringify({
+    var record = {
       courseId: courseId,
       courseTitle: course.title,
       studentName: studentName || '',
       certId: certId,
       date: date,
       completedAt: Date.now(),
-      instructor: course.instructor || 'Samuel Tolbert',
+      instructor: 'Samuel S. Tolbert',
       category: course.category || ''
-    }));
+    };
+    localStorage.setItem('tih_cert_' + courseId, JSON.stringify(record));
+    // Publish to the public registry for cross-device verification (best effort,
+    // no-op when Firebase is not configured). Only publish with a real name.
+    if (studentName && typeof CertRegistry !== 'undefined') {
+      try { CertRegistry.publish(record); } catch (e) {}
+    }
   }
 
   // ===== DOWNLOAD CERTIFICATE (A4 LANDSCAPE IN NEW WINDOW) =====
