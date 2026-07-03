@@ -1294,3 +1294,1958 @@ COURSES_DB['leadership'] = {
     {q:'Will this help me get promoted?', a:'Leadership skills are the most commonly cited factor in promotion decisions. This course improves your communication, decision-making, team management, and strategic thinking — all criteria by which advancement is assessed.'}
   ]
 };
+
+COURSES_DB['grant-writing'] = {
+  "id": "grant-writing",
+  "title": "Grant Writing & Fundraising: Win Funding for Your Cause",
+  "shortDesc": "Learn to find donors, write winning proposals, and manage grants professionally — build logic models, needs statements, SMART objectives, budgets in USD/LRD, and M&E plans that unlock funding from USAID, EU, UNDP, and foundations active in Liberia.",
+  "category": "Business & Fundraising",
+  "icon": "💰",
+  "gradient": "linear-gradient(135deg,#065f46,#10b981)",
+  "instructor": "Miatta S. Freeman",
+  "instructorTitle": "Grants & Partnerships Director, West Africa Impact Alliance",
+  "instructorBio": "Miatta S. Freeman has raised over $4.2 million for Liberian and West African NGOs, winning grants from USAID, the EU, UNDP, and the Mastercard Foundation. Based in Monrovia, she has trained hundreds of community organizations from Paynesville to Ganta in professional proposal development.",
+  "rating": 4.8,
+  "reviewCount": 486,
+  "students": "3,200+",
+  "duration": "20h",
+  "level": "Intermediate",
+  "price": "FREE",
+  "origPrice": "$150",
+  "isFree": true,
+  "badge": "free",
+  "certId": "TIH-2026-GRW-0001",
+  "learn": [
+    "Understand how grants work and who funds projects in Liberia — USAID, EU, UNDP, Mastercard Foundation and more",
+    "Find real, current grant opportunities using free online databases and donor websites",
+    "Read calls for proposals correctly and judge your organization's eligibility before you apply",
+    "Build a logic model and theory of change that clearly connects activities to impact",
+    "Write compelling, data-backed needs statements about your community",
+    "Set SMART objectives and design activities donors can measure and trust",
+    "Prepare professional grant budgets in USD and LRD with realistic unit costs",
+    "Write, submit, and follow up on a complete proposal — and manage donor relationships after you win"
+  ],
+  "requirements": [
+    "Comfortable reading and writing English at a professional level (grant proposals are written documents)",
+    "Access to a computer or smartphone with internet — a computer is strongly recommended for the capstone proposal",
+    "Basic familiarity with Word and Excel, or completion of the TIH Computer Literacy course"
+  ],
+  "about": [
+    "Every year, millions of dollars in grant funding flows into Liberia and West Africa from donors like USAID, the European Union, UNDP, UNICEF, the Mastercard Foundation, and the Open Society Foundations. Yet many community organizations in Monrovia, Paynesville, Buchanan, and beyond never win a single grant — not because their work lacks value, but because nobody taught them how to write a proposal the way donors expect. This course fixes that.",
+    "You will move step by step through the full grant cycle: understanding who funds what, finding live opportunities, checking eligibility, building a logic model and theory of change, writing needs statements and SMART objectives, budgeting in both USD and Liberian dollars, drafting the full narrative, planning monitoring and evaluation, and managing the donor relationship after submission. The capstone challenges you to write a complete, realistic $10,000 grant proposal you can adapt and actually submit.",
+    "This is an intermediate course built on real West African examples — real donor names, real budget lines priced in Liberian markets, real reporting expectations. Whether you run a youth group in Gbarnga, a women's cooperative in Kakata, or an NGO in Sinkor, by the end you will have a fundable proposal in your hands and the confidence to keep winning."
+  ],
+  "modules": [
+    {
+      "title": "Module 1: The Grant Landscape — Donors, Opportunities & Eligibility",
+      "icon": "🌍",
+      "meta": "4 lessons · 31 min",
+      "lessons": [
+        {
+          "t": "1.1 What Grants Are & Who Funds Them: USAID, EU, UNDP & Foundations",
+          "d": "10:00",
+          "v": "GMsl-wR-wmM"
+        },
+        {
+          "t": "1.2 Finding Grant Opportunities: Databases, Calls & Donor Websites",
+          "d": "11:30",
+          "v": "tL6V3hNdbVY"
+        },
+        {
+          "t": "1.3 Eligibility & Donor Priorities: Reading a Call for Proposals",
+          "d": "9:00",
+          "v": "VCvIlKM39-w"
+        },
+        {
+          "t": "📝 Quiz: The Grant Landscape",
+          "d": "5 questions",
+          "isQuiz": true,
+          "quizId": "mod1"
+        }
+      ]
+    },
+    {
+      "title": "Module 2: Designing a Fundable Project",
+      "icon": "🧩",
+      "meta": "4 lessons · 32 min",
+      "lessons": [
+        {
+          "t": "2.1 Logic Models & Theory of Change: From Inputs to Impact",
+          "d": "12:00",
+          "v": "lYi30bL0AMo"
+        },
+        {
+          "t": "2.2 Writing a Compelling Needs Statement with Real Data",
+          "d": "10:30",
+          "v": "GH7lLHcshqQ"
+        },
+        {
+          "t": "2.3 SMART Objectives & Activities Donors Can Measure",
+          "d": "9:30",
+          "v": "ENxQLZO0sRw"
+        },
+        {
+          "t": "📝 Quiz: Project Design Essentials",
+          "d": "5 questions",
+          "isQuiz": true,
+          "quizId": "mod2"
+        }
+      ]
+    },
+    {
+      "title": "Module 3: Budgets & the Full Proposal",
+      "icon": "✍️",
+      "meta": "3 lessons · 27 min",
+      "lessons": [
+        {
+          "t": "3.1 Grant Budgeting: Unit Costs, USD/LRD & What Donors Will Pay For",
+          "d": "13:00",
+          "v": "0nIf9hqrBzc"
+        },
+        {
+          "t": "3.2 Writing the Full Proposal Narrative, Step by Step",
+          "d": "14:00",
+          "v": "ByQRri_LTUE"
+        },
+        {
+          "t": "🛠️ Capstone: Write a Full $10,000 Grant Proposal",
+          "d": "Project",
+          "isProject": true
+        }
+      ]
+    },
+    {
+      "title": "Module 4: M&E, Submission & Donor Relations",
+      "icon": "🏆",
+      "meta": "3 lessons · 21 min",
+      "lessons": [
+        {
+          "t": "4.1 Monitoring & Evaluation Plans: Indicators, Targets & Reporting",
+          "d": "11:00",
+          "v": "Yp9VxTWMj7g"
+        },
+        {
+          "t": "4.2 Submission, Follow-Up & Building Long-Term Donor Relationships",
+          "d": "9:30",
+          "v": "emhvQrFbNBA"
+        },
+        {
+          "t": "🏆 Final Assessment & Certificate",
+          "d": "Assessment",
+          "isQuiz": true,
+          "quizId": "final",
+          "isFinal": true
+        }
+      ]
+    }
+  ],
+  "quizzes": {
+    "mod1": {
+      "title": "Quiz: The Grant Landscape",
+      "moduleNum": 1,
+      "unlocks": 3,
+      "questions": [
+        {
+          "q": "A grant is best described as:",
+          "opts": [
+            "A loan you must repay with interest",
+            "Non-repayable funding given for a specific purpose with conditions",
+            "A salary paid by government",
+            "A donation with no rules attached"
+          ],
+          "correct": 1,
+          "exp": "Grants are non-repayable, but they come with conditions — you must deliver the agreed project and report on how the money was used."
+        },
+        {
+          "q": "Which of these donors is a UN agency active in Liberia?",
+          "opts": [
+            "Mastercard Foundation",
+            "USAID",
+            "UNDP",
+            "Open Society Foundations"
+          ],
+          "correct": 2,
+          "exp": "UNDP is the United Nations Development Programme. USAID is a US government agency, while Mastercard Foundation and Open Society are private foundations."
+        },
+        {
+          "q": "The BEST place to find current grant opportunities is:",
+          "opts": [
+            "Waiting for donors to call your office",
+            "Donor websites, newsletters, and databases like fundsforNGOs and Grants.gov",
+            "Facebook rumors",
+            "Asking friends only"
+          ],
+          "correct": 1,
+          "exp": "Serious grant seekers check donor websites and free databases regularly and subscribe to donor newsletters so opportunities come to their inbox."
+        },
+        {
+          "q": "A call for proposals says applicants must be registered NGOs with 3+ years of audited accounts. Your Paynesville youth group registered last year. You should:",
+          "opts": [
+            "Apply anyway and hope nobody checks",
+            "Fake the registration date",
+            "Partner as a sub-grantee under an eligible NGO or skip this call",
+            "Complain to the donor"
+          ],
+          "correct": 2,
+          "exp": "Never waste time on calls where you are ineligible. Partnering with an established NGO as a sub-grantee is a legitimate way for young organizations to build a track record."
+        },
+        {
+          "q": "Donor priorities matter because:",
+          "opts": [
+            "Donors fund any good idea",
+            "Donors only fund projects that match their published strategy and focus areas",
+            "Priorities are just suggestions",
+            "Priorities only apply to big NGOs"
+          ],
+          "correct": 1,
+          "exp": "A donor focused on girls' education will not fund a road project no matter how well written. Matching your project to donor priorities is the first rule of grant writing."
+        }
+      ]
+    },
+    "mod2": {
+      "title": "Quiz: Project Design Essentials",
+      "moduleNum": 2,
+      "unlocks": 3,
+      "questions": [
+        {
+          "q": "In a logic model, training 50 women in Kakata to use Excel is an example of:",
+          "opts": [
+            "An impact",
+            "An input",
+            "An activity",
+            "A long-term outcome"
+          ],
+          "correct": 2,
+          "exp": "Activities are the things your project actually does. Inputs are resources, outputs are direct products, and outcomes/impact are the changes that result."
+        },
+        {
+          "q": "A theory of change explains:",
+          "opts": [
+            "Your organization's history",
+            "How and why your activities will lead to the change you want to see",
+            "Your budget in detail",
+            "Who sits on your board"
+          ],
+          "correct": 1,
+          "exp": "A theory of change is the 'if we do X, then Y will happen, because Z' story that connects activities to results."
+        },
+        {
+          "q": "The strongest needs statement:",
+          "opts": [
+            "Says your NGO has no money",
+            "Uses verifiable data about the community problem, like LISGIS statistics",
+            "Uses emotional language only",
+            "Describes your office equipment needs"
+          ],
+          "correct": 1,
+          "exp": "Donors fund community problems, not organizational shortfalls. Evidence from sources like LISGIS, WHO, or your own baseline survey makes the need credible."
+        },
+        {
+          "q": "Which objective is SMART?",
+          "opts": [
+            "Help young people in Liberia",
+            "Improve education somehow",
+            "Train 120 out-of-school youth in Paynesville in digital skills, with 70% passing certification, by December 2026",
+            "Do many trainings"
+          ],
+          "correct": 2,
+          "exp": "It is Specific, Measurable (120 youth, 70% pass rate), Achievable, Relevant, and Time-bound (by December 2026)."
+        },
+        {
+          "q": "Objectives differ from goals because objectives are:",
+          "opts": [
+            "Longer and vaguer",
+            "Specific, measurable steps toward the broader goal",
+            "Only about money",
+            "Written after the project ends"
+          ],
+          "correct": 1,
+          "exp": "The goal is the big-picture change; objectives are the concrete, measurable milestones that add up to it."
+        }
+      ]
+    },
+    "final": {
+      "title": "Final Assessment",
+      "moduleNum": 4,
+      "unlocks": null,
+      "isFinal": true,
+      "questions": [
+        {
+          "q": "In a grant budget, paying a trainer $50 per day for 10 days is best shown as:",
+          "opts": [
+            "One lump sum with no explanation",
+            "Unit cost x quantity: $50 x 10 days = $500",
+            "A hidden cost inside 'miscellaneous'",
+            "An LRD figure with no exchange rate"
+          ],
+          "correct": 1,
+          "exp": "Donors expect unit-cost budgeting. Show the unit, rate, and quantity — and if you budget in LRD, state the exchange rate used."
+        },
+        {
+          "q": "Which cost would MOST donors refuse to fund?",
+          "opts": [
+            "Venue rental for community training",
+            "Personal expenses unrelated to the project",
+            "Project staff salaries",
+            "Monitoring visits to project sites"
+          ],
+          "correct": 1,
+          "exp": "Only costs necessary for delivering the project are eligible. Personal or unrelated expenses are ineligible and can get an organization blacklisted."
+        },
+        {
+          "q": "An indicator like 'number of youth completing training, disaggregated by gender' belongs in your:",
+          "opts": [
+            "Cover letter",
+            "Monitoring & Evaluation plan",
+            "Bank statement",
+            "Organizational chart"
+          ],
+          "correct": 1,
+          "exp": "The M&E plan lists indicators, baselines, targets, data sources, and who collects the data — it shows donors you can prove your results."
+        },
+        {
+          "q": "You submitted a proposal to a donor a month ago and heard nothing. The professional next step is:",
+          "opts": [
+            "Send an angry message",
+            "Send a brief, polite follow-up email confirming receipt and offering more information",
+            "Give up on grants forever",
+            "Submit the same proposal ten more times"
+          ],
+          "correct": 1,
+          "exp": "A short, courteous follow-up shows professionalism. Donor relationships are long-term — how you behave when you lose matters as much as when you win."
+        },
+        {
+          "q": "After winning a grant, the MOST important way to keep the donor's trust is:",
+          "opts": [
+            "Spend fast and explain later",
+            "Deliver activities as agreed, keep receipts, and submit honest, on-time reports",
+            "Avoid communication until the end",
+            "Change the project without telling anyone"
+          ],
+          "correct": 1,
+          "exp": "Faithful implementation, clean financial records, and timely honest reporting turn a one-time grant into a long-term funding relationship."
+        }
+      ]
+    }
+  },
+  "reviews": [
+    {
+      "name": "Korpo Weah",
+      "loc": "Paynesville, Liberia",
+      "date": "April 2026",
+      "bg": "#065f46",
+      "init": "KW",
+      "rating": 5,
+      "text": "I lead a small women's savings group and we had never won anything before. Using the logic model and budget templates from this course, we won a $7,500 grant from a UNDP small grants window to expand our soap-making business. Miatta explains donor language in a way ordinary Liberians can understand."
+    },
+    {
+      "name": "Emmanuel Togba",
+      "loc": "Ganta, Nimba County",
+      "date": "May 2026",
+      "bg": "#BF0A30",
+      "init": "ET",
+      "rating": 5,
+      "text": "Our youth agriculture group in Ganta applied three times before and failed every time. After this course I rewrote our needs statement with real LISGIS data and fixed our budget with proper unit costs. We just signed our first grant agreement worth $10,000. This free course paid for itself many times over."
+    },
+    {
+      "name": "Bendu Sherman",
+      "loc": "Sinkor, Monrovia",
+      "date": "March 2026",
+      "bg": "#7c3aed",
+      "init": "BS",
+      "rating": 5,
+      "text": "I work for a local NGO and was always afraid of the M&E section. The module on indicators and reporting changed everything — our program officer at the embassy praised our last report. I have since been promoted to Grants Officer with a salary increase. Thank you TIH."
+    },
+    {
+      "name": "Prince Dolo",
+      "loc": "Buchanan, Grand Bassa",
+      "date": "June 2026",
+      "bg": "#0369a1",
+      "init": "PD",
+      "rating": 4,
+      "text": "The capstone was hard work but worth it. I wrote a full proposal for a school sanitation project in Buchanan and used it to apply to two foundations. One shortlisted us and requested a site visit. My only wish is for more videos on EU applications specifically, but the fundamentals here are excellent."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is this course really free, and do I get a certificate?",
+      "a": "Yes — completely free, no credit card required. When you pass the final assessment you receive a verifiable TIH certificate (ID format TIH-2026-GRW-XXXX) that you can show to employers, NGOs, and donor-funded projects hiring grants staff."
+    },
+    {
+      "q": "Do I need to work for a registered NGO to benefit?",
+      "a": "No. The course serves NGO staff, community group leaders, students, and freelancers. Grant writing is also a paid skill — many Liberian organizations hire consultants to write proposals, and this course prepares you for that work."
+    },
+    {
+      "q": "Will this help me win grants specifically in Liberia?",
+      "a": "Yes. Every module uses West African examples: donors active in Liberia (USAID, EU, UNDP, UNICEF, Mastercard Foundation), budgets in USD and LRD, mobile money considerations, and the realities of community projects in Monrovia and the counties."
+    },
+    {
+      "q": "How long does the course take and what is the capstone?",
+      "a": "About 20 hours total — most learners finish in 3-4 weeks studying an hour a day. The capstone asks you to write a complete, realistic $10,000 grant proposal (needs statement, logic model, objectives, budget, and M&E plan) that you can adapt and submit to a real donor."
+    }
+  ]
+};
+
+COURSES_DB['financial-literacy'] = {
+  "id": "financial-literacy",
+  "title": "Financial Literacy: Master Your Money & Build Wealth",
+  "shortDesc": "Learn to budget in both USD and LRD, save through susu clubs and banks, use Orange Money and MTN MoMo safely, borrow wisely, and start building wealth — practical money skills for real Liberian life.",
+  "category": "Business & Finance",
+  "icon": "🏦",
+  "gradient": "linear-gradient(135deg,#0f766e,#14b8a6)",
+  "instructor": "Hawa Konneh",
+  "instructorTitle": "Financial Inclusion Specialist & Former Microfinance Officer, Monrovia",
+  "instructorBio": "Hawa Konneh spent 12 years as a microfinance and savings-group officer in Monrovia and Bong County, helping over 5,000 market traders, susu club members, and small business owners manage money across USD and LRD. She has trained financial literacy facilitators for NGOs across West Africa and designed this course around the real money challenges Liberian families face every day.",
+  "rating": 4.8,
+  "reviewCount": 892,
+  "students": "5,600+",
+  "duration": "18h",
+  "level": "All Levels",
+  "price": "FREE",
+  "origPrice": "$95",
+  "isFree": true,
+  "badge": "free",
+  "certId": "TIH-2026-FIN-0001",
+  "learn": [
+    "Set clear financial goals and build a healthy money mindset",
+    "Create a realistic monthly budget in both USD and LRD",
+    "Track every expense using your phone, a notebook, or free apps",
+    "Use Orange Money and Lonestar Cell MTN MoMo safely and spot fraud before it happens",
+    "Save consistently through susu clubs, bank accounts, and personal savings plans",
+    "Open and manage a bank account in Liberia with confidence",
+    "Borrow wisely, avoid dangerous debt, and understand loans and interest",
+    "Build an emergency fund and a 6-month financial plan for your family"
+  ],
+  "requirements": [
+    "No prior financial knowledge needed — we start from the very beginning",
+    "A phone or notebook to practice budgeting and expense tracking exercises",
+    "Willingness to honestly examine your own income and spending habits"
+  ],
+  "about": [
+    "Money touches every part of life in Liberia — from paying school fees and buying rice, to sending mobile money to family upcountry, to saving for a business at Waterside or Red Light Market. Yet most of us were never taught how money actually works. This course changes that. It is built specifically for the Liberian and West African reality: two currencies, cash-heavy markets, susu clubs, mobile money, and family responsibilities.",
+    "You will learn step by step how to set financial goals, budget in USD and LRD, track your spending, protect yourself from Orange Money and MoMo fraud, save through both traditional susu clubs and formal banks, borrow without falling into debt traps, and take your first steps toward investing and building business capital.",
+    "Whether you are a student, a market trader, a motorbike rider, an office worker, or a parent managing a household, these skills will put money under your control instead of the other way around. The course is completely free, and you earn a verifiable TIH certificate when you pass the final assessment."
+  ],
+  "modules": [
+    {
+      "title": "Module 1: Money Mindset & Budgeting Basics",
+      "icon": "💰",
+      "meta": "4 lessons · 32 min",
+      "lessons": [
+        {
+          "t": "1.1 Money Mindset & Setting Financial Goals",
+          "d": "10:00",
+          "v": "2uNvA48yvv0"
+        },
+        {
+          "t": "1.2 Budgeting Basics: Managing USD & LRD Together",
+          "d": "12:30",
+          "v": "Pau88PAPD7Q"
+        },
+        {
+          "t": "1.3 Tracking Your Expenses Every Day",
+          "d": "9:00",
+          "v": "ZmthxqxuFQI"
+        },
+        {
+          "t": "📝 Quiz: Money Mindset & Budgeting",
+          "d": "5 questions",
+          "isQuiz": true,
+          "quizId": "mod1"
+        }
+      ]
+    },
+    {
+      "title": "Module 2: Mobile Money, Saving & Banking",
+      "icon": "📱",
+      "meta": "4 lessons · 31 min",
+      "lessons": [
+        {
+          "t": "2.1 Mobile Money Mastery & Fraud Protection (Orange Money & MTN MoMo)",
+          "d": "11:00",
+          "v": "2C7u8onP7t4"
+        },
+        {
+          "t": "2.2 Saving Strategies & Susu Clubs",
+          "d": "10:30",
+          "v": "nQEEQKgX6hg"
+        },
+        {
+          "t": "2.3 Banking in Liberia: Accounts, Requirements & Choosing a Bank",
+          "d": "9:30",
+          "v": "guAaA1-CxT4"
+        },
+        {
+          "t": "📝 Quiz: Mobile Money, Saving & Banking",
+          "d": "5 questions",
+          "isQuiz": true,
+          "quizId": "mod2"
+        }
+      ]
+    },
+    {
+      "title": "Module 3: Debt, Credit & Borrowing Wisely",
+      "icon": "🤝",
+      "meta": "3 lessons · 22 min",
+      "lessons": [
+        {
+          "t": "3.1 Debt & Borrowing Wisely: Good Debt vs Bad Debt",
+          "d": "12:00",
+          "v": "wSqtotgaNAc"
+        },
+        {
+          "t": "3.2 Building Credit & Understanding Loans",
+          "d": "10:00",
+          "v": "IFxzKqMFeE0"
+        },
+        {
+          "t": "🛠️ Capstone: Create Your 6-Month Budget & Savings Plan",
+          "d": "Project",
+          "isProject": true
+        }
+      ]
+    },
+    {
+      "title": "Module 4: Investing & Planning Your Future",
+      "icon": "🏆",
+      "meta": "3 lessons · 24 min",
+      "lessons": [
+        {
+          "t": "4.1 Introduction to Investing & Building Business Capital",
+          "d": "13:00",
+          "v": "qIw-yFC-HNU"
+        },
+        {
+          "t": "4.2 Financial Planning for Family & Emergencies",
+          "d": "11:00",
+          "v": "s3v2nNT7Um8"
+        },
+        {
+          "t": "🏆 Final Assessment & Certificate",
+          "d": "Assessment",
+          "isQuiz": true,
+          "quizId": "final",
+          "isFinal": true
+        }
+      ]
+    }
+  ],
+  "quizzes": {
+    "mod1": {
+      "title": "Quiz: Money Mindset & Budgeting",
+      "moduleNum": 1,
+      "unlocks": 3,
+      "questions": [
+        {
+          "q": "A SMART financial goal is:",
+          "opts": [
+            "A wish to be rich someday",
+            "Specific, measurable, and has a deadline",
+            "Only for people with bank accounts",
+            "Something you keep secret from family"
+          ],
+          "correct": 1,
+          "exp": "SMART goals are Specific, Measurable, Achievable, Relevant, and Time-bound — e.g. 'Save US$150 for school fees by December.'"
+        },
+        {
+          "q": "Why should a Liberian budget track USD and LRD separately?",
+          "opts": [
+            "LRD is not real money",
+            "Exchange rates change, so mixing them hides your true spending",
+            "Banks only accept USD",
+            "It looks more professional"
+          ],
+          "correct": 1,
+          "exp": "Because the LRD/USD rate moves, recording each currency separately shows exactly what you earn and spend in each."
+        },
+        {
+          "q": "In the 50/30/20 budgeting guide, the 20 percent goes to:",
+          "opts": [
+            "Entertainment",
+            "Rent and food",
+            "Savings and paying off debt",
+            "Mobile phone credit"
+          ],
+          "correct": 2,
+          "exp": "50% covers needs, 30% covers wants, and 20% goes to savings and debt repayment — adjust the split to fit your income."
+        },
+        {
+          "q": "The BEST first step to control spending is:",
+          "opts": [
+            "Stop eating out forever",
+            "Write down every expense for at least one week",
+            "Borrow to cover gaps",
+            "Hide money from yourself"
+          ],
+          "correct": 1,
+          "exp": "You cannot fix what you cannot see. Tracking every expense — even small chargers-of-scratch-card purchases — reveals where money leaks."
+        },
+        {
+          "q": "A 'need' in your budget is:",
+          "opts": [
+            "New clothes for a party",
+            "Rice, rent, transport to work, and school fees",
+            "DSTV subscription",
+            "Weekend entertainment"
+          ],
+          "correct": 1,
+          "exp": "Needs are essentials for living and earning — food, shelter, transport, education. Wants come after needs are covered."
+        }
+      ]
+    },
+    "mod2": {
+      "title": "Quiz: Mobile Money, Saving & Banking",
+      "moduleNum": 2,
+      "unlocks": 3,
+      "questions": [
+        {
+          "q": "Someone calls claiming to be Orange Money support and asks for your PIN to 'reverse a wrong transfer.' You should:",
+          "opts": [
+            "Give the PIN so they can fix it",
+            "Give half the PIN only",
+            "Hang up — no real agent ever asks for your PIN",
+            "Send them money first"
+          ],
+          "correct": 2,
+          "exp": "Orange Money and Lonestar Cell MTN staff NEVER ask for your PIN. Anyone requesting it is a fraudster — hang up and report."
+        },
+        {
+          "q": "Before sending mobile money you should always:",
+          "opts": [
+            "Send quickly before network fails",
+            "Confirm the recipient's name shown on the screen matches who you intend to pay",
+            "Share your PIN with the agent",
+            "Use someone else's SIM"
+          ],
+          "correct": 1,
+          "exp": "Both Orange Money and MTN MoMo display the recipient's registered name before you confirm — checking it prevents costly wrong transfers."
+        },
+        {
+          "q": "In a susu club, members:",
+          "opts": [
+            "Borrow from a bank together",
+            "Contribute a fixed amount regularly and take turns receiving the pooled lump sum",
+            "Invest in foreign stocks",
+            "Pay interest to the government"
+          ],
+          "correct": 1,
+          "exp": "A susu is a rotating savings club — everyone contributes each cycle and one member at a time receives the full pool."
+        },
+        {
+          "q": "The biggest risk of a susu club compared to a bank is:",
+          "opts": [
+            "It builds discipline",
+            "A dishonest member or keeper can run away with the money",
+            "It has no paperwork",
+            "Meetings take time"
+          ],
+          "correct": 1,
+          "exp": "Susu clubs rely on trust. Join only with people you know well, keep written records, and never put all your savings in one susu."
+        },
+        {
+          "q": "To open a basic bank account in Liberia you typically need:",
+          "opts": [
+            "A university degree",
+            "Valid ID (voter card, passport, or national ID), a small opening deposit, and sometimes a reference",
+            "US$1,000 minimum",
+            "Property documents"
+          ],
+          "correct": 1,
+          "exp": "Most Liberian banks require valid identification, a passport photo, a small opening deposit, and basic personal details."
+        }
+      ]
+    },
+    "final": {
+      "title": "Final Assessment",
+      "moduleNum": 4,
+      "unlocks": null,
+      "isFinal": true,
+      "questions": [
+        {
+          "q": "Which is an example of GOOD debt?",
+          "opts": [
+            "Borrowing for a party",
+            "A loan to buy stock for your market table that sells at a profit",
+            "Borrowing to gamble",
+            "Daily loans for snacks"
+          ],
+          "correct": 1,
+          "exp": "Good debt finances something that grows your income or value — like business inventory that earns more than the loan costs."
+        },
+        {
+          "q": "Before taking any loan you should FIRST:",
+          "opts": [
+            "Sign quickly before the offer expires",
+            "Calculate the total repayment including interest and compare it to your income",
+            "Tell nobody",
+            "Take the biggest amount offered"
+          ],
+          "correct": 1,
+          "exp": "Always compute the full cost — principal plus interest and fees — and confirm your budget can carry the repayment before signing."
+        },
+        {
+          "q": "An emergency fund should ideally cover:",
+          "opts": [
+            "One day of spending",
+            "3 to 6 months of essential expenses",
+            "Your entire lifetime",
+            "Only funeral costs"
+          ],
+          "correct": 1,
+          "exp": "Three to six months of essentials protects your family from job loss, sickness, or sudden expenses without borrowing."
+        },
+        {
+          "q": "The safest way to grow money for a future business is:",
+          "opts": [
+            "Keep all cash under the mattress",
+            "Join every susu in town",
+            "Combine a bank savings account, a trusted susu, and reinvesting small profits",
+            "Send it to a stranger promising to double it"
+          ],
+          "correct": 2,
+          "exp": "Diversifying between formal savings and trusted community savings — while avoiding 'double your money' scams — grows capital safely."
+        },
+        {
+          "q": "This course teaches you to:",
+          "opts": [
+            "Get rich overnight",
+            "Control your money through budgeting, safe saving, wise borrowing, and planning",
+            "Avoid all banks forever",
+            "Print money"
+          ],
+          "correct": 1,
+          "exp": "Financial literacy means making informed decisions — budgeting, saving, borrowing wisely, and planning — so money serves your goals."
+        }
+      ]
+    }
+  },
+  "reviews": [
+    {
+      "name": "Princess Doe",
+      "loc": "Paynesville, Liberia",
+      "date": "April 2026",
+      "bg": "#0f766e",
+      "init": "PD",
+      "rating": 5,
+      "text": "I sell at Red Light Market and I always wondered where my profit was going. After the budgeting and expense tracking lessons, I found I was losing over LD 4,000 every week on small small things. In three months I saved enough to add a second table of goods. This course is pure gold for market women."
+    },
+    {
+      "name": "Emmanuel Togba",
+      "loc": "Monrovia, Liberia",
+      "date": "March 2026",
+      "bg": "#BF0A30",
+      "init": "ET",
+      "rating": 5,
+      "text": "The mobile money fraud lesson saved me real money. One week after finishing it, a man called pretending to be Orange Money support asking for my PIN to reverse a transfer. I recognized the scam immediately and reported him. I also finally opened my first bank account using the checklist from Module 2."
+    },
+    {
+      "name": "Musu Kollie",
+      "loc": "Kakata, Margibi County",
+      "date": "May 2026",
+      "bg": "#10b981",
+      "init": "MK",
+      "rating": 5,
+      "text": "Our susu club used to run on memory alone and we had plenty confusion. I used what I learned to set up written records and clear rules for our 12 members. Nobody has missed a payment since. The capstone project also gave me a real 6-month savings plan for my children's school fees."
+    },
+    {
+      "name": "Abraham Freeman",
+      "loc": "Ganta, Nimba County",
+      "date": "June 2026",
+      "bg": "#7c3aed",
+      "init": "AF",
+      "rating": 4,
+      "text": "As a motorbike rider my income changes every day, and I thought budgeting was only for salary people. This course showed me how to budget with irregular income in both LRD and USD. I now have my first emergency fund — one month of expenses saved — and I am working toward three. Very practical teaching."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is this course really free?",
+      "a": "Yes, 100% free. TIH believes financial literacy is a basic life skill every Liberian deserves, regardless of income. There are no hidden fees and no credit card is required."
+    },
+    {
+      "q": "I don't have a bank account or much money. Can I still benefit?",
+      "a": "Absolutely — this course is designed for you. It starts with skills that need no bank account: goal setting, budgeting, expense tracking, mobile money safety, and susu savings. Banking is covered step by step for when you are ready."
+    },
+    {
+      "q": "Does the course use Liberian examples or foreign ones?",
+      "a": "Every module is grounded in Liberian reality: budgeting across USD and LRD, Orange Money and Lonestar Cell MTN MoMo, susu clubs, Monrovia market trading, and banking requirements in Liberia. Video lessons are supplemented with locally focused reading notes."
+    },
+    {
+      "q": "How long does it take and is the certificate recognized?",
+      "a": "Most learners finish in 3-4 weeks studying about an hour a day. Your TIH certificate includes a unique verification code (TIH-2026-FIN-0001 series) that employers, NGOs, and microfinance institutions can confirm online."
+    }
+  ]
+};
+
+COURSES_DB['english-success'] = {
+  "id": "english-success",
+  "title": "English for Academic & Professional Success: IELTS, Essays & Interviews",
+  "shortDesc": "Master the formal English that opens doors — write winning scholarship essays and motivation letters, prepare for IELTS with proven band strategies, and speak with confidence in interviews for opportunities in Liberia and abroad.",
+  "category": "Language & Communication",
+  "icon": "🗣️",
+  "gradient": "linear-gradient(135deg,#4338ca,#6366f1)",
+  "instructor": "Hawa D. Cooper",
+  "instructorTitle": "English Language & Test Prep Lead, Tolbert Innovation Hub",
+  "instructorBio": "Hawa D. Cooper is a British Council-trained English instructor and former lecturer at the University of Liberia with an IELTS band 8.5. Over the past decade she has coached hundreds of Liberian and West African students to IELTS success and helped them win scholarships to universities in India, Cyprus, and Turkey.",
+  "rating": 4.8,
+  "reviewCount": 612,
+  "students": "3,200+",
+  "duration": "20h",
+  "level": "Intermediate",
+  "price": "FREE",
+  "origPrice": "$150",
+  "isFree": true,
+  "badge": "free",
+  "certId": "TIH-2026-ENG-0001",
+  "learn": [
+    "Switch confidently between Liberian conversational English and formal international English",
+    "Apply the grammar rules that matter most in formal writing — tenses, agreement, and articles",
+    "Structure clear academic essays with strong thesis statements and paragraphs",
+    "Write scholarship personal statements and motivation letters that stand out",
+    "Understand the IELTS exam format, band scores, and how to set a realistic target",
+    "Use proven tactics for IELTS and TOEFL listening and reading sections",
+    "Plan and write high-scoring IELTS Writing Task 2 essays under time pressure",
+    "Communicate professionally in emails, workplace settings, and job interviews"
+  ],
+  "requirements": [
+    "Intermediate English ability — a WASSCE English pass or equivalent everyday fluency is enough",
+    "A notebook and a device with internet access for video lessons and writing practice",
+    "Willingness to write, record yourself speaking, and practice aloud every week"
+  ],
+  "about": [
+    "English is the official language of Liberia, yet many bright WASSCE graduates lose scholarships, jobs, and admission offers because the formal English expected by international examiners, universities, and employers differs from the Liberian English we speak every day at home and in the market. This course bridges that exact gap. It was built for Liberian and West African youth who already communicate in English but need to write, test, and interview at an international standard.",
+    "Across four modules you will move from register and grammar fundamentals to academic essay writing, scholarship personal statements, complete IELTS preparation — listening, reading, writing, and speaking — and finally professional emails and job interview English. Every lesson uses examples drawn from real Liberian life: applying from Monrovia, writing to admissions offices abroad, and interviewing with NGOs and companies at home.",
+    "TIH students use these exact skills to win placements at our partner destinations in India, Cyprus, and Turkey, and to secure competitive roles in Liberia. Whether your goal is an IELTS band 6.5, a Türkiye Burslari scholarship, or simply emails your boss admires, this free course gives you a clear, practical path — finishing with a capstone project and a verified TIH certificate."
+  ],
+  "modules": [
+    {
+      "title": "Module 1: Foundations of Formal English",
+      "icon": "✍️",
+      "meta": "4 lessons · 33 min",
+      "lessons": [
+        {
+          "t": "1.1 Professional vs Conversational English: Knowing When to Switch",
+          "d": "10:00",
+          "v": "4AetJ7xJTdw"
+        },
+        {
+          "t": "1.2 Grammar Essentials for Formal Writing",
+          "d": "12:00",
+          "v": "BBVsrdwuLeE"
+        },
+        {
+          "t": "1.3 Academic Essay Structure: Thesis, Body & Conclusion",
+          "d": "11:00",
+          "v": "tBAbIobh3uo"
+        },
+        {
+          "t": "📝 Quiz: Formal English Foundations",
+          "d": "5 questions",
+          "isQuiz": true,
+          "quizId": "mod1"
+        }
+      ]
+    },
+    {
+      "title": "Module 2: Scholarship Writing & IELTS Foundations",
+      "icon": "🎓",
+      "meta": "4 lessons · 35 min",
+      "lessons": [
+        {
+          "t": "2.1 Scholarship Personal Statements & Motivation Letters",
+          "d": "12:00",
+          "v": "ZNOJ1RSJa4c"
+        },
+        {
+          "t": "2.2 IELTS Overview: Format, Band Scores & Setting Your Target",
+          "d": "9:30",
+          "v": "zBLsjez-D3s"
+        },
+        {
+          "t": "2.3 IELTS & TOEFL Listening and Reading Tactics",
+          "d": "13:00",
+          "v": "q8qmJeBxk4Q"
+        },
+        {
+          "t": "📝 Quiz: Scholarships & IELTS Basics",
+          "d": "5 questions",
+          "isQuiz": true,
+          "quizId": "mod2"
+        }
+      ]
+    },
+    {
+      "title": "Module 3: IELTS Writing & Confident Speaking",
+      "icon": "🎤",
+      "meta": "3 lessons · 24 min",
+      "lessons": [
+        {
+          "t": "3.1 IELTS Writing Task Strategies: Planning to Band 7",
+          "d": "14:00",
+          "v": "gsEmGSVU7cA"
+        },
+        {
+          "t": "3.2 Speaking Confidently: Fluency & Pronunciation for International Audiences",
+          "d": "10:00",
+          "v": "edmfgGseslg"
+        },
+        {
+          "t": "🛠️ Capstone: Record Your 3-Minute Professional Introduction",
+          "d": "Project",
+          "isProject": true
+        }
+      ]
+    },
+    {
+      "title": "Module 4: Professional Communication & Career English",
+      "icon": "💼",
+      "meta": "3 lessons · 24 min",
+      "lessons": [
+        {
+          "t": "4.1 Professional Emails & Workplace Communication",
+          "d": "11:00",
+          "v": "3Tu1jN65slw"
+        },
+        {
+          "t": "4.2 Job Interview English: Presenting Yourself with Impact",
+          "d": "12:30",
+          "v": "GlN51CS_udI"
+        },
+        {
+          "t": "🏆 Final Assessment & Certificate",
+          "d": "Assessment",
+          "isQuiz": true,
+          "quizId": "final",
+          "isFinal": true
+        }
+      ]
+    }
+  ],
+  "quizzes": {
+    "mod1": {
+      "title": "Quiz: Formal English Foundations",
+      "moduleNum": 1,
+      "unlocks": 3,
+      "questions": [
+        {
+          "q": "Which sentence is most appropriate in a scholarship application letter?",
+          "opts": [
+            "I beg you yah, please give me the scholarship.",
+            "I would be grateful for the opportunity to be considered for this scholarship.",
+            "Gimme the scholarship, I really need it bad.",
+            "This scholarship thing, I want it plenty."
+          ],
+          "correct": 1,
+          "exp": "Formal writing uses polite, complete standard-English sentences. Expressions common in Liberian conversation, like 'I beg you yah', are warm at home but too informal for examiners and admissions officers."
+        },
+        {
+          "q": "In formal academic writing, contractions like 'don't' and 'can't' should be:",
+          "opts": [
+            "Used as often as possible",
+            "Written out in full as 'do not' and 'cannot'",
+            "Replaced with slang",
+            "Used only in the conclusion"
+          ],
+          "correct": 1,
+          "exp": "Writing contractions out in full instantly makes your essays and letters sound more formal and professional."
+        },
+        {
+          "q": "A thesis statement in an academic essay is:",
+          "opts": [
+            "The last sentence of the essay",
+            "A list of every point you will make",
+            "The central argument, usually stated in the introduction",
+            "A famous quotation"
+          ],
+          "correct": 2,
+          "exp": "The thesis statement appears in the introduction and tells the reader exactly what position your essay will argue."
+        },
+        {
+          "q": "Every strong body paragraph should begin with:",
+          "opts": [
+            "A joke to entertain the reader",
+            "A topic sentence stating the paragraph's main idea",
+            "A rhetorical question",
+            "The word 'Furthermore'"
+          ],
+          "correct": 1,
+          "exp": "A topic sentence announces the paragraph's main idea, then explanation and evidence follow — the pattern international examiners look for."
+        },
+        {
+          "q": "A Liberian student writes 'She can come to class every day' to describe a habit. In international formal English this is best written as:",
+          "opts": [
+            "She comes to class every day.",
+            "She can coming to class every day.",
+            "She be coming to class every day.",
+            "She could came to class every day."
+          ],
+          "correct": 0,
+          "exp": "Liberian English often uses habitual 'can', but international standard English uses the simple present tense for habits — a small switch that raises your writing score."
+        }
+      ]
+    },
+    "mod2": {
+      "title": "Quiz: Scholarships & IELTS Basics",
+      "moduleNum": 2,
+      "unlocks": 3,
+      "questions": [
+        {
+          "q": "The most important rule for a scholarship motivation letter is:",
+          "opts": [
+            "Use the same letter for every application",
+            "Make it as long as possible",
+            "Tailor it to the specific scholarship and program",
+            "Focus only on your financial need"
+          ],
+          "correct": 2,
+          "exp": "Selection committees instantly recognize generic letters. Tailoring each letter to the specific scholarship — such as Study in India or Türkiye Burslari — dramatically improves your chances."
+        },
+        {
+          "q": "Your overall IELTS band score is calculated by:",
+          "opts": [
+            "Taking your highest section score",
+            "Averaging the four section scores and rounding to the nearest half band",
+            "Adding all four scores together",
+            "Using only your Writing score"
+          ],
+          "correct": 1,
+          "exp": "Listening, Reading, Writing and Speaking each get a band from 0 to 9; the overall band is their average rounded to the nearest half band."
+        },
+        {
+          "q": "In the IELTS Listening test, misspelling a correct answer means:",
+          "opts": [
+            "You still get full marks",
+            "You get half a mark",
+            "The answer is marked wrong",
+            "The examiner corrects it for you"
+          ],
+          "correct": 2,
+          "exp": "Answers must be spelled correctly when transferred, so spelling practice is a direct way to protect your Listening and Reading marks."
+        },
+        {
+          "q": "Most university scholarship programs in India, Cyprus, and Turkey typically ask for an IELTS band around:",
+          "opts": [
+            "9.0 only",
+            "6.0 to 6.5",
+            "3.0",
+            "There is no English requirement anywhere"
+          ],
+          "correct": 1,
+          "exp": "A band of 6.0 to 6.5 meets the entry requirement for most partner universities, which makes it a realistic first target for a strong WASSCE graduate."
+        },
+        {
+          "q": "The best tactic for IELTS Reading is to:",
+          "opts": [
+            "Read every word of every passage slowly",
+            "Skim for the main idea, then scan for keywords in the questions",
+            "Answer questions without reading the passage",
+            "Memorize academic articles beforehand"
+          ],
+          "correct": 1,
+          "exp": "Skimming and scanning let you find answers within the 60-minute limit — reading every word slowly means running out of time."
+        }
+      ]
+    },
+    "final": {
+      "title": "Final Assessment",
+      "moduleNum": 4,
+      "unlocks": null,
+      "isFinal": true,
+      "questions": [
+        {
+          "q": "IELTS Writing Task 2 requires an essay that is:",
+          "opts": [
+            "At least 250 words, formal in style, completed in about 40 minutes",
+            "Exactly 100 words with bullet points",
+            "Written in slang to sound natural",
+            "At least 1,000 words with no time limit"
+          ],
+          "correct": 0,
+          "exp": "Task 2 demands at least 250 words in a formal style within roughly 40 minutes — planning for five minutes first keeps your essay organized."
+        },
+        {
+          "q": "The subject line of a professional email should be:",
+          "opts": [
+            "Left blank to create suspense",
+            "Written in all capital letters",
+            "Short, specific, and clear about the purpose",
+            "A friendly greeting like 'Hello my friend!'"
+          ],
+          "correct": 2,
+          "exp": "A clear, specific subject line — such as 'Application for Program Assistant Position' — tells a busy reader exactly why you are writing."
+        },
+        {
+          "q": "The strongest structure for answering 'Tell me about yourself' in an interview is:",
+          "opts": [
+            "Reciting your entire life story from childhood",
+            "Present role and skills, relevant past experience, then future goals tied to the job",
+            "Talking only about your family and home county",
+            "Asking the interviewer to read your CV instead"
+          ],
+          "correct": 1,
+          "exp": "The present-past-future structure keeps your answer focused, relevant, and under two to three minutes — exactly what interviewers and scholarship panels want."
+        },
+        {
+          "q": "When speaking English for IELTS or interviews, examiners reward:",
+          "opts": [
+            "Speaking as fast as possible",
+            "A perfect British accent only",
+            "Clear pronunciation, fluency, and organized ideas — your Liberian accent is not a problem",
+            "Long silences to appear thoughtful"
+          ],
+          "correct": 2,
+          "exp": "IELTS scores intelligibility, fluency, vocabulary and grammar — not accent. A clear, confident Liberian voice can absolutely earn band 7 and above."
+        },
+        {
+          "q": "The biggest mistake in a scholarship personal statement is:",
+          "opts": [
+            "Telling a specific personal story",
+            "Copying a generic template found online",
+            "Explaining why the specific program fits your goals",
+            "Mentioning concrete achievements"
+          ],
+          "correct": 1,
+          "exp": "Committees read thousands of applications and spot copied templates immediately. Specific, honest stories from your own life in Liberia are what win scholarships."
+        }
+      ]
+    }
+  },
+  "reviews": [
+    {
+      "name": "Princess Weah",
+      "loc": "Sinkor, Monrovia",
+      "date": "February 2026",
+      "bg": "#4338ca",
+      "init": "PW",
+      "rating": 5,
+      "text": "I took IELTS twice before and stayed on band 5.5. After finishing this course and following Ms. Cooper's writing strategies, I scored an overall band 7.0! My admission to a university in Cyprus is now confirmed. The lesson on Liberian English versus formal English opened my eyes completely."
+    },
+    {
+      "name": "Emmanuel Dolo",
+      "loc": "Paynesville, Liberia",
+      "date": "March 2026",
+      "bg": "#BF0A30",
+      "init": "ED",
+      "rating": 5,
+      "text": "The motivation letter module is gold. I rewrote my personal statement using the exact structure taught here and won a Study in India scholarship for my engineering degree. Two of my friends from my WASSCE class are now taking the course because of my result."
+    },
+    {
+      "name": "Musu Fahnbulleh",
+      "loc": "Kakata, Margibi County",
+      "date": "April 2026",
+      "bg": "#10b981",
+      "init": "MF",
+      "rating": 5,
+      "text": "I was not applying abroad — I just wanted a better job here. The email and interview modules changed how I present myself. Last month I passed an interview with an international NGO in Monrovia and got the program assistant role. The capstone recording exercise gave me real confidence."
+    },
+    {
+      "name": "Abraham Togba",
+      "loc": "Ganta, Nimba County",
+      "date": "May 2026",
+      "bg": "#7c3aed",
+      "init": "AT",
+      "rating": 4,
+      "text": "Studying from Nimba with limited data was my worry, but the lessons are short and practical. I scored band 6.5 on my first IELTS attempt and my Türkiye Burslari application has moved to the interview stage. I wish there were more speaking practice partners, but the content itself is excellent."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "I already speak English every day in Liberia. Why do I need this course?",
+      "a": "Liberian English is rich and expressive, but international examiners, universities, and employers expect formal standard English with different grammar, vocabulary, and tone. This course teaches you exactly where the two differ and how to switch confidently — without losing your own voice."
+    },
+    {
+      "q": "Will this course fully prepare me for the IELTS exam?",
+      "a": "It covers the complete IELTS foundation: format, band scoring, and strategies for all four papers, with extra depth on Writing Task 2 and Speaking. Combine it with the free official practice tests we link in each lesson, and most students are exam-ready in 6 to 10 weeks."
+    },
+    {
+      "q": "Do scholarships to India, Cyprus, and Turkey always require IELTS?",
+      "a": "Requirements vary. Some partner universities accept a WASSCE English pass or their own English interview, while others require IELTS 6.0 to 6.5. This course prepares you for all three paths — the test, the written application, and the interview — so no requirement catches you off guard."
+    },
+    {
+      "q": "Is the certificate useful if I stay and work in Liberia?",
+      "a": "Yes. Strong formal English is one of the most requested skills by employers and NGOs in Monrovia and across the counties. Your TIH certificate carries a unique verification code that Liberian employers can confirm instantly, and the email and interview skills apply to any job application at home."
+    }
+  ]
+};
+
+COURSES_DB['agritech'] = {
+  "id": "agritech",
+  "title": "AgriTech & Digital Agriculture: Farming Meets Technology",
+  "shortDesc": "Learn how phones, apps, data, and smart tools can transform farming in Liberia — from digital farm records and crop planning to selling produce online, mobile money, and the future of drones and sensors.",
+  "category": "Agriculture & Technology",
+  "icon": "🌾",
+  "gradient": "linear-gradient(135deg,#3f6212,#84cc16)",
+  "instructor": "Kormassa Dolo",
+  "instructorTitle": "Agronomist & AgriTech Consultant, Central Agricultural Research Institute (CARI) Alumna",
+  "instructorBio": "Kormassa Dolo is a Liberian agronomist trained at Cuttington University and CARI in Suakoko, Bong County. She has spent over a decade helping smallholder rice, cassava, and vegetable farmers in Lofa, Bong, and Nimba counties adopt digital tools — from spreadsheet record keeping to WhatsApp marketing — and has consulted for agribusinesses across West Africa.",
+  "rating": 4.8,
+  "reviewCount": 412,
+  "students": "2,900+",
+  "duration": "17h",
+  "level": "Beginner",
+  "price": "FREE",
+  "origPrice": "$95",
+  "isFree": true,
+  "badge": "free",
+  "certId": "TIH-2026-AGR-0001",
+  "learn": [
+    "Understand what AgriTech is and how it can transform Liberian farming",
+    "Keep accurate digital farm records using free phone apps and spreadsheets",
+    "Plan crops using weather forecasts and market price data",
+    "Use mobile apps and SMS services to get farming advice and market prices",
+    "Apply low-cost precision methods for soil, plant spacing, and inputs",
+    "Reduce post-harvest losses with proper handling and storage technology like hermetic bags",
+    "Sell farm produce online using WhatsApp Business and Facebook Marketplace",
+    "Manage farm money with mobile money, budgets, and simple agribusiness plans"
+  ],
+  "requirements": [
+    "No farming or technology experience required — everything starts from the basics",
+    "A smartphone with WhatsApp (a basic phone works for the SMS and mobile money lessons)",
+    "Interest in farming, agribusiness, or helping farmers in your community"
+  ],
+  "about": [
+    "Agriculture employs the majority of Liberians, yet most of our farmers still work without records, without market information, and without technology. Meanwhile, a young farmer in Kenya checks market prices by SMS and a rice processor like Fabrar Rice in Liberia uses modern milling and packaging to compete with imported rice. This course closes that gap — it shows Liberian and West African youth how simple, affordable technology can make farming more profitable and less risky.",
+    "You will learn practical digital skills built for our reality: keeping farm records on a phone, planning cassava and vegetable planting around the rainy season and Monrovia market prices, storing rice in hermetic bags so weevils do not eat your profit, selling greens and peppers to Monrovia buyers on WhatsApp, and receiving payment safely with Lonestar MTN Mobile Money or Orange Money. Every example uses Liberian crops — rice, cassava, rubber, cocoa, and vegetables — and real markets like Red Light and Duala.",
+    "Whether you farm in Lofa, run a small garden in Paynesville, or dream of starting an agribusiness, this course gives you a complete foundation. You will finish with a capstone project — a digital farm record and marketing plan you can use immediately — plus a verified TIH certificate recognized by employers, NGOs, and agricultural programs."
+  ],
+  "modules": [
+    {
+      "title": "Module 1: AgriTech Foundations & Farm Data",
+      "icon": "🌾",
+      "meta": "4 lessons · 34 min",
+      "lessons": [
+        {
+          "t": "1.1 What is AgriTech? Why It Matters for Liberia",
+          "d": "10:00",
+          "v": "ev-4uQzdTXI"
+        },
+        {
+          "t": "1.2 Digital Farm Record Keeping with Phone Apps & Spreadsheets",
+          "d": "11:30",
+          "v": "QijsZjlvxh4"
+        },
+        {
+          "t": "1.3 Smart Crop Planning with Weather & Market Data",
+          "d": "12:00",
+          "v": "l8nFgIhK7bw"
+        },
+        {
+          "t": "📝 Quiz: AgriTech Foundations",
+          "d": "5 questions",
+          "isQuiz": true,
+          "quizId": "mod1"
+        }
+      ]
+    },
+    {
+      "title": "Module 2: Digital Tools for the Field",
+      "icon": "📱",
+      "meta": "4 lessons · 32 min",
+      "lessons": [
+        {
+          "t": "2.1 Mobile Apps & SMS Services for Farmers",
+          "d": "9:30",
+          "v": "yoeVcRlj1WI"
+        },
+        {
+          "t": "2.2 Precision Basics: Soil, Spacing & Inputs on a Budget",
+          "d": "12:30",
+          "v": "GcPdvSj6CbE"
+        },
+        {
+          "t": "2.3 Post-Harvest Handling & Storage Technology",
+          "d": "10:00",
+          "v": "dsYo9rBPQGo"
+        },
+        {
+          "t": "📝 Quiz: Digital Tools for the Field",
+          "d": "5 questions",
+          "isQuiz": true,
+          "quizId": "mod2"
+        }
+      ]
+    },
+    {
+      "title": "Module 3: Selling & Managing Farm Money Online",
+      "icon": "💰",
+      "meta": "3 lessons · 20 min",
+      "lessons": [
+        {
+          "t": "3.1 Selling Farm Produce Online: WhatsApp Business & Facebook Marketplace",
+          "d": "11:00",
+          "v": "gHfEm1z-3iY"
+        },
+        {
+          "t": "3.2 Farm Finance & Mobile Money for Agribusiness",
+          "d": "9:00",
+          "v": "pun14jec_Xk"
+        },
+        {
+          "t": "🛠️ Capstone: Build a Digital Farm Record & Marketing Plan",
+          "d": "Project",
+          "isProject": true
+        }
+      ]
+    },
+    {
+      "title": "Module 4: Agri-Entrepreneurship & The Future",
+      "icon": "🏆",
+      "meta": "3 lessons · 26 min",
+      "lessons": [
+        {
+          "t": "4.1 Agri-Entrepreneurship & Value Addition",
+          "d": "12:00",
+          "v": "EEcy1swBlRo"
+        },
+        {
+          "t": "4.2 Drones, Sensors & The Future of Farming",
+          "d": "14:00",
+          "v": "qwNVNE83Udo"
+        },
+        {
+          "t": "🏆 Final Assessment & Certificate",
+          "d": "Assessment",
+          "isQuiz": true,
+          "quizId": "final",
+          "isFinal": true
+        }
+      ]
+    }
+  ],
+  "quizzes": {
+    "mod1": {
+      "title": "Quiz: AgriTech Foundations",
+      "moduleNum": 1,
+      "unlocks": 3,
+      "questions": [
+        {
+          "q": "What is AgriTech?",
+          "opts": [
+            "Only expensive tractors and machines",
+            "Using technology and data to improve farming",
+            "A government farming program",
+            "A type of fertilizer"
+          ],
+          "correct": 1,
+          "exp": "AgriTech means applying technology — from simple phone apps to sensors — to make farming more productive and profitable."
+        },
+        {
+          "q": "Why is farm record keeping important for a Liberian farmer?",
+          "opts": [
+            "It is required by law",
+            "It shows which crops make profit and helps when applying for loans",
+            "It makes the farm look bigger",
+            "Records replace the need to sell produce"
+          ],
+          "correct": 1,
+          "exp": "Records reveal your real costs and profits, and banks and microfinance institutions ask for them before giving agribusiness loans."
+        },
+        {
+          "q": "Which free tool can a farmer use to keep digital records on a smartphone?",
+          "opts": [
+            "A drone",
+            "Google Sheets or a notes app",
+            "A satellite dish",
+            "A television"
+          ],
+          "correct": 1,
+          "exp": "Free apps like Google Sheets work on most smartphones and can track planting dates, expenses, and sales."
+        },
+        {
+          "q": "When planning crops, a smart farmer in Lofa County should check:",
+          "opts": [
+            "Only what neighbors are planting",
+            "Rainy season timing and Monrovia market prices",
+            "The color of the soil only",
+            "Nothing — just plant anytime"
+          ],
+          "correct": 1,
+          "exp": "Combining weather patterns (rainy season is roughly May to October) with market demand helps you plant the right crop at the right time."
+        },
+        {
+          "q": "A farmer sells cassava for LRD 15,000 but spent LRD 9,000 on inputs and transport. Her profit is:",
+          "opts": [
+            "LRD 15,000",
+            "LRD 9,000",
+            "LRD 6,000",
+            "LRD 24,000"
+          ],
+          "correct": 2,
+          "exp": "Profit = sales minus costs. LRD 15,000 - LRD 9,000 = LRD 6,000. Records make this calculation possible."
+        }
+      ]
+    },
+    "mod2": {
+      "title": "Quiz: Digital Tools for the Field",
+      "moduleNum": 2,
+      "unlocks": 3,
+      "questions": [
+        {
+          "q": "Why are SMS and USSD services useful for rural farmers in West Africa?",
+          "opts": [
+            "They require expensive smartphones",
+            "They work on basic phones without internet",
+            "They only work in cities",
+            "They are only for banks"
+          ],
+          "correct": 1,
+          "exp": "SMS and USSD services like market price alerts work on any phone, even without internet — vital in rural Liberia."
+        },
+        {
+          "q": "What is the low-cost first step of precision farming?",
+          "opts": [
+            "Buying a drone",
+            "Testing your soil and using correct plant spacing",
+            "Hiring more workers",
+            "Planting as many seeds as possible"
+          ],
+          "correct": 1,
+          "exp": "Knowing your soil and spacing plants correctly costs little but significantly improves yields and reduces wasted inputs."
+        },
+        {
+          "q": "What is a hermetic storage bag used for?",
+          "opts": [
+            "Carrying water to the farm",
+            "Storing grain airtight so insects and mold cannot destroy it",
+            "Covering seedlings from sun",
+            "Packaging produce for WhatsApp photos"
+          ],
+          "correct": 1,
+          "exp": "Hermetic bags seal out air and moisture, protecting stored rice and other grains from weevils and mold without chemicals."
+        },
+        {
+          "q": "Applying fertilizer only where and when crops need it helps you:",
+          "opts": [
+            "Spend more money",
+            "Reduce costs and avoid damaging the soil",
+            "Grow crops without water",
+            "Avoid keeping records"
+          ],
+          "correct": 1,
+          "exp": "Targeted input use — a core precision principle — cuts costs and protects long-term soil health."
+        },
+        {
+          "q": "A big cause of post-harvest loss for Liberian rice farmers is:",
+          "opts": [
+            "Too much sunlight during growth",
+            "Poor drying and storage allowing pests and mold",
+            "Selling too quickly",
+            "Using mobile money"
+          ],
+          "correct": 1,
+          "exp": "Much of Liberia's harvest is lost after harvest — proper drying and airtight storage protect both food and income."
+        }
+      ]
+    },
+    "final": {
+      "title": "Final Assessment",
+      "moduleNum": 4,
+      "unlocks": null,
+      "isFinal": true,
+      "questions": [
+        {
+          "q": "Which tool lets a farmer create a product catalog with prices that customers can browse?",
+          "opts": [
+            "A USSD code",
+            "WhatsApp Business",
+            "A calculator app",
+            "FM radio"
+          ],
+          "correct": 1,
+          "exp": "WhatsApp Business includes a free catalog feature — perfect for showing vegetables or rice with LRD prices to Monrovia buyers."
+        },
+        {
+          "q": "Why is mobile money like Lonestar MTN MoMo or Orange Money useful for agribusiness?",
+          "opts": [
+            "It replaces farming",
+            "Buyers can pay instantly and safely without carrying cash",
+            "It grows crops faster",
+            "It is only for salaries"
+          ],
+          "correct": 1,
+          "exp": "Mobile money lets a buyer in Monrovia pay a farmer in Nimba instantly, creating a payment record and reducing cash risk."
+        },
+        {
+          "q": "What is value addition?",
+          "opts": [
+            "Increasing the farm size",
+            "Processing raw produce into higher-value products, like cassava into gari",
+            "Adding more workers",
+            "Raising prices without changes"
+          ],
+          "correct": 1,
+          "exp": "Value addition — like Fabrar Rice milling and packaging Liberian rice — turns raw crops into products that earn far more."
+        },
+        {
+          "q": "Drones and sensors help modern farmers mainly by:",
+          "opts": [
+            "Replacing all farm workers",
+            "Monitoring crop health and targeting water and inputs precisely",
+            "Scaring away customers",
+            "Making farming more expensive with no benefit"
+          ],
+          "correct": 1,
+          "exp": "Drones and sensors gather field data so farmers can spot problems early and apply inputs only where needed."
+        },
+        {
+          "q": "The digital farm record and marketing plan you built in the capstone helps you:",
+          "opts": [
+            "Decorate your phone",
+            "Track profit, plan crops, and reach buyers — and support loan applications",
+            "Avoid paying transport",
+            "Replace the need for good seeds"
+          ],
+          "correct": 1,
+          "exp": "A complete record and marketing plan is the foundation of a professional agribusiness — proof of profitability for lenders and a roadmap for growth."
+        }
+      ]
+    }
+  },
+  "reviews": [
+    {
+      "name": "Korto Weah",
+      "loc": "Voinjama, Lofa County",
+      "date": "March 2026",
+      "bg": "#3f6212",
+      "init": "KW",
+      "rating": 5,
+      "text": "My family grows rice and I never knew our real profit until this course. I set up a Google Sheets record and found we were losing money on transport. This season I organized shared transport with neighbors and stored paddy in hermetic bags — we saved almost LRD 40,000. Every young farmer in Lofa should take this."
+    },
+    {
+      "name": "Emmanuel Gonlepa",
+      "loc": "Ganta, Nimba County",
+      "date": "April 2026",
+      "bg": "#84cc16",
+      "init": "EG",
+      "rating": 5,
+      "text": "I started a WhatsApp Business catalog for my pepper and bitterball garden after Module 3. Now I have regular buyers from Ganta and even two restaurants in Monrovia who pay me through Mobile Money before I even harvest. My income has more than doubled in three months."
+    },
+    {
+      "name": "Musu Fahnbulleh",
+      "loc": "Kakata, Margibi County",
+      "date": "May 2026",
+      "bg": "#0891b2",
+      "init": "MF",
+      "rating": 5,
+      "text": "The value addition lesson changed my thinking. Instead of selling raw cassava at Red Light, I now process it into fufu flour and package it in small bags. The capstone project became my real business plan and I used it to win a small youth agribusiness grant."
+    },
+    {
+      "name": "Abraham Togba",
+      "loc": "Gbarnga, Bong County",
+      "date": "June 2026",
+      "bg": "#7c3aed",
+      "init": "AT",
+      "rating": 4,
+      "text": "I am an agriculture student at Cuttington and this course taught practical things my classes never covered — checking weather data before planting and using SMS market services. The certificate verification impressed the NGO where I now intern as a farmer field assistant."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Do I need to own a farm to take this course?",
+      "a": "No. This course is for anyone interested in agriculture — students, aspiring agri-entrepreneurs, extension workers, or family members who help on a farm. The skills also prepare you for jobs with NGOs and agribusinesses."
+    },
+    {
+      "q": "Will these tools work in rural areas with poor internet?",
+      "a": "Yes. The course emphasizes tools that work in low-connectivity settings — SMS and USSD services on basic phones, offline spreadsheet apps, and mobile money which works without internet. Lessons can be downloaded when you have connection."
+    },
+    {
+      "q": "Is this course really free and do I get a certificate?",
+      "a": "Completely free — no hidden costs. When you pass the final assessment you receive a TIH certificate with a unique verification code (TIH-2026-AGR series) that employers, NGOs, and agricultural programs can verify online."
+    },
+    {
+      "q": "Which crops does the course cover?",
+      "a": "Examples focus on Liberia's main crops — rice, cassava, vegetables, rubber, and cocoa — but every method (record keeping, storage, online selling, mobile money) applies to any crop or livestock enterprise in West Africa."
+    }
+  ]
+};
+
+COURSES_DB['healthtech'] = {
+  "id": "healthtech",
+  "title": "Healthcare Technology & Telehealth: Digital Skills for Health Workers",
+  "shortDesc": "Learn the digital skills modern health work demands — electronic records, digital patient intake, telehealth consultations, SMS and WhatsApp follow-up, DHIS2 awareness, and health data privacy — built for Liberian and West African clinics, hospitals, and community health workers.",
+  "category": "Health & Technology",
+  "icon": "🏥",
+  "gradient": "linear-gradient(135deg,#9f1239,#f43f5e)",
+  "instructor": "Dr. Musu Kollie-Nagbe",
+  "instructorTitle": "Health Informatics Specialist & Digital Health Consultant, Monrovia",
+  "instructorBio": "Dr. Musu Kollie-Nagbe is a Liberian health informatics specialist who served in the Ministry of Health data systems team during the 2014-2016 Ebola response and later supported DHIS2 reporting rollouts across county health teams. She has trained nurses, physician assistants, and community health assistants at JFK Medical Center, Redemption Hospital, and rural facilities in Bong, Nimba, and Lofa to move from paper to digital workflows.",
+  "rating": 4.8,
+  "reviewCount": 318,
+  "students": "2,300+",
+  "duration": "17h",
+  "level": "Beginner",
+  "price": "FREE",
+  "origPrice": "$150",
+  "isFree": true,
+  "badge": "free",
+  "certId": "TIH-2026-HLT-0001",
+  "learn": [
+    "Explain what digital health is and why it matters for African health systems",
+    "Compare electronic health records with paper systems and plan a safe transition",
+    "Build digital patient intake forms using Google Forms and KoboToolbox",
+    "Conduct professional telehealth consultations by phone, video, and chat",
+    "Run patient follow-up programs using SMS and WhatsApp on Lonestar and Orange networks",
+    "Protect patient privacy and confidentiality when handling digital health data",
+    "Understand how DHIS2 and community health worker tools support MOH reporting",
+    "Use simple digital tools to manage clinic appointments, records, and drug inventory"
+  ],
+  "requirements": [
+    "No prior health informatics or IT experience needed — this course starts from the basics",
+    "Access to a smartphone or computer with internet (mobile data on Lonestar or Orange is enough)",
+    "Helpful but not required: experience in or interest in a clinic, hospital, pharmacy, or community health role"
+  ],
+  "about": [
+    "Health care in Liberia and across West Africa is going digital. From DHIS2 reporting at county health teams to WhatsApp follow-up between community health assistants and district supervisors, the health workers who can use digital tools are the ones being hired, promoted, and trusted with bigger responsibilities. Yet most facilities — from JFK Medical Center in Sinkor to small clinics in Lofa and Grand Gedeh — still run on paper records that get lost, damaged, or duplicated.",
+    "This course teaches you the practical digital skills that health facilities actually need: replacing paper registers with electronic records, building digital patient intake forms with free tools like Google Forms and KoboToolbox, running remote consultations by phone and video, following up with patients over SMS and WhatsApp, protecting patient confidentiality, and tracking drug inventory so clinics stop running out of essential medicines. Every lesson uses real Liberian examples, including the hard lessons the country learned about health data during the Ebola crisis.",
+    "Whether you are a nurse, physician assistant, community health assistant (CHA), pharmacy worker, records clerk, health sciences student, or a tech-minded person who wants to serve the health sector, this free course gives you a verified certificate and a capstone project you can show to employers, county health teams, and NGOs."
+  ],
+  "modules": [
+    {
+      "title": "Module 1: Foundations of Digital Health",
+      "icon": "🏥",
+      "meta": "4 lessons · 34 min",
+      "lessons": [
+        {
+          "t": "1.1 Introduction to Health Technology & Digital Health in Africa",
+          "d": "11:00",
+          "v": "_EqfLDZc28Q"
+        },
+        {
+          "t": "1.2 Electronic Health Records vs Paper Systems",
+          "d": "9:30",
+          "v": "HoWvf76JdX8"
+        },
+        {
+          "t": "1.3 Digital Patient Intake Forms with Google Forms & KoboToolbox",
+          "d": "13:00",
+          "v": "9ewgr1BD0Rw"
+        },
+        {
+          "t": "📝 Quiz: Digital Health Foundations",
+          "d": "5 questions",
+          "isQuiz": true,
+          "quizId": "mod1"
+        }
+      ]
+    },
+    {
+      "title": "Module 2: Telehealth & Mobile Health in Practice",
+      "icon": "📱",
+      "meta": "4 lessons · 31 min",
+      "lessons": [
+        {
+          "t": "2.1 Telehealth Fundamentals & Remote Consultations",
+          "d": "10:00",
+          "v": "2xuNOPU3zhg"
+        },
+        {
+          "t": "2.2 mHealth: SMS & WhatsApp for Patient Follow-Up",
+          "d": "12:00",
+          "v": "Qus5MFg-tDk"
+        },
+        {
+          "t": "2.3 Health Data Privacy & Confidentiality Basics",
+          "d": "8:30",
+          "v": "Lfhl0ip14CI"
+        },
+        {
+          "t": "📝 Quiz: Telehealth & Patient Privacy",
+          "d": "5 questions",
+          "isQuiz": true,
+          "quizId": "mod2"
+        }
+      ]
+    },
+    {
+      "title": "Module 3: Digital Tools for Community & Public Health",
+      "icon": "🧑‍⚕️",
+      "meta": "3 lessons · 21 min",
+      "lessons": [
+        {
+          "t": "3.1 Community Health Worker Digital Tools & DHIS2 Awareness",
+          "d": "11:30",
+          "v": "V0Nt395JQQg"
+        },
+        {
+          "t": "3.2 Health Information for Patients: Fighting Misinformation Online",
+          "d": "9:00",
+          "v": "n4ga1YzwWNY"
+        },
+        {
+          "t": "🛠️ Capstone: Design a Digital Patient Intake & Telehealth Workflow",
+          "d": "Project",
+          "isProject": true
+        }
+      ]
+    },
+    {
+      "title": "Module 4: Clinic Operations & Your Health Tech Career",
+      "icon": "🏆",
+      "meta": "3 lessons · 25 min",
+      "lessons": [
+        {
+          "t": "4.1 Digital Tools for Clinic Management & Inventory",
+          "d": "14:00",
+          "v": "WOXrMOzK_A4"
+        },
+        {
+          "t": "4.2 Careers in Health Tech & Telemedicine in West Africa",
+          "d": "10:30",
+          "v": "SkzILojGPos"
+        },
+        {
+          "t": "🏆 Final Assessment & Certificate",
+          "d": "Assessment",
+          "isQuiz": true,
+          "quizId": "final",
+          "isFinal": true
+        }
+      ]
+    }
+  ],
+  "quizzes": {
+    "mod1": {
+      "title": "Quiz: Digital Health Foundations",
+      "moduleNum": 1,
+      "unlocks": 3,
+      "questions": [
+        {
+          "q": "Digital health is best described as:",
+          "opts": [
+            "Only robots performing surgery",
+            "Using digital technology to improve health services and information",
+            "Replacing all doctors with apps",
+            "Selling medicine online"
+          ],
+          "correct": 1,
+          "exp": "Digital health means using technology — records, phones, data systems — to improve how health care is delivered and managed."
+        },
+        {
+          "q": "A major weakness of paper-only records at a facility like Redemption Hospital is:",
+          "opts": [
+            "They are too easy to search",
+            "They can be lost, damaged, or misfiled and are hard to share",
+            "They update automatically",
+            "They require electricity"
+          ],
+          "correct": 1,
+          "exp": "Paper registers can be destroyed by fire or water, misfiled, or lost — and only one person can use a paper file at a time."
+        },
+        {
+          "q": "A key health data lesson from Liberia's 2014-2016 Ebola response was:",
+          "opts": [
+            "Data does not matter in an outbreak",
+            "Slow, paper-based case reporting delayed the response — fast digital reporting saves lives",
+            "Only foreign experts should handle data",
+            "Radios replaced the need for records"
+          ],
+          "correct": 1,
+          "exp": "During Ebola, delays in moving paper case reports slowed contact tracing. Faster digital reporting helped turn the outbreak around."
+        },
+        {
+          "q": "Which free tool is well suited for a clinic intake form that must also work offline in the field?",
+          "opts": [
+            "KoboToolbox",
+            "Photoshop",
+            "AutoCAD",
+            "Premiere Pro"
+          ],
+          "correct": 0,
+          "exp": "KoboToolbox is free, built for low-connectivity settings, and lets you collect form data offline and sync later."
+        },
+        {
+          "q": "An electronic health record (EHR) is:",
+          "opts": [
+            "A printed patient card",
+            "A digital version of a patient's health information that authorized staff can access",
+            "A type of X-ray machine",
+            "A government ID card"
+          ],
+          "correct": 1,
+          "exp": "An EHR stores patient history, visits, medications, and results digitally so authorized health workers can find and update them quickly."
+        }
+      ]
+    },
+    "mod2": {
+      "title": "Quiz: Telehealth & Patient Privacy",
+      "moduleNum": 2,
+      "unlocks": 3,
+      "questions": [
+        {
+          "q": "Telehealth means:",
+          "opts": [
+            "Watching health TV shows",
+            "Delivering health services and consultations remotely using phones or the internet",
+            "Only hospital-to-hospital video calls",
+            "A type of health insurance"
+          ],
+          "correct": 1,
+          "exp": "Telehealth uses calls, video, and messaging to deliver consultations, follow-up, and health education at a distance."
+        },
+        {
+          "q": "A good use of SMS in patient care is:",
+          "opts": [
+            "Posting patient diagnoses publicly",
+            "Sending appointment and medication reminders",
+            "Replacing all physical examinations",
+            "Advertising unrelated products"
+          ],
+          "correct": 1,
+          "exp": "Simple SMS reminders on Lonestar or Orange networks measurably improve appointment attendance and medication adherence."
+        },
+        {
+          "q": "Before discussing a patient's condition on WhatsApp, a health worker should:",
+          "opts": [
+            "Post it in a community group to get advice fast",
+            "Get consent, use private one-to-one messages, and follow facility policy",
+            "Add the patient's photo for clarity",
+            "Share it with family friends"
+          ],
+          "correct": 1,
+          "exp": "Patient information must stay confidential: get consent, never use public groups, and follow your facility's communication policy."
+        },
+        {
+          "q": "Patient confidentiality means:",
+          "opts": [
+            "Hiding information from the patient",
+            "Sharing patient information only with those authorized to provide their care",
+            "Deleting all patient records yearly",
+            "Never writing anything down"
+          ],
+          "correct": 1,
+          "exp": "Confidentiality protects patients' trust — their information is shared only with authorized caregivers on a need-to-know basis."
+        },
+        {
+          "q": "A patient in rural Grand Gedeh has a basic phone with no internet. The best telehealth channel is:",
+          "opts": [
+            "4K video conference",
+            "Voice call or SMS on the mobile network",
+            "Email with attachments",
+            "A mobile app download"
+          ],
+          "correct": 1,
+          "exp": "Effective telehealth matches the channel to the patient — voice calls and SMS work on any phone and any network signal."
+        }
+      ]
+    },
+    "final": {
+      "title": "Final Assessment",
+      "moduleNum": 4,
+      "unlocks": null,
+      "isFinal": true,
+      "questions": [
+        {
+          "q": "MOH Liberia and county health teams primarily use DHIS2 to:",
+          "opts": [
+            "Play training videos",
+            "Collect, aggregate, and report national health data",
+            "Pay staff salaries",
+            "Order ambulances"
+          ],
+          "correct": 1,
+          "exp": "DHIS2 is the national health management information system — facilities report indicators that guide planning and supplies."
+        },
+        {
+          "q": "A false health cure is going viral on WhatsApp. The best response is:",
+          "opts": [
+            "Forward it quickly to warn people",
+            "Check official sources like MOH Liberia or WHO, then share the correct information without forwarding the rumor",
+            "Ignore all health information forever",
+            "Argue with strangers in every group"
+          ],
+          "correct": 1,
+          "exp": "Verify with official sources first. Forwarding a rumor — even to debunk it — helps it spread; share the verified facts instead."
+        },
+        {
+          "q": "Digital inventory tracking helps a clinic mainly by:",
+          "opts": [
+            "Making the pharmacy look modern",
+            "Preventing stockouts and expiry of essential medicines",
+            "Replacing the pharmacist",
+            "Increasing drug prices"
+          ],
+          "correct": 1,
+          "exp": "A simple digital stock tracker shows what is running low or expiring, so clinics reorder on time and avoid dangerous stockouts."
+        },
+        {
+          "q": "When designing a digital patient intake workflow, the FIRST step is to:",
+          "opts": [
+            "Buy expensive servers",
+            "Map the current paper process and the exact data the clinic collects",
+            "Delete all old records",
+            "Print more forms"
+          ],
+          "correct": 1,
+          "exp": "You digitize a process, not just a form — first understand what data is collected, by whom, and where it flows."
+        },
+        {
+          "q": "This course prepares you to:",
+          "opts": [
+            "Perform surgery",
+            "Apply practical digital skills — records, intake forms, telehealth, follow-up, and data privacy — in health settings",
+            "Repair hospital generators",
+            "Replace the Ministry of Health"
+          ],
+          "correct": 1,
+          "exp": "You now have employable digital health skills and a capstone project to show clinics, county health teams, and NGOs."
+        }
+      ]
+    }
+  },
+  "reviews": [
+    {
+      "name": "Korpo Weah",
+      "loc": "Paynesville, Liberia",
+      "date": "April 2026",
+      "bg": "#9f1239",
+      "init": "KW",
+      "rating": 5,
+      "text": "I am a records clerk at a private clinic in Paynesville. After Module 1, I built our first digital intake form in KoboToolbox and we digitized three years of patient files in two months. Our doctor now finds any patient history in seconds. My supervisor gave me a new title: Health Records Officer."
+    },
+    {
+      "name": "Emmanuel Dolo",
+      "loc": "Ganta, Nimba County",
+      "date": "March 2026",
+      "bg": "#002868",
+      "init": "ED",
+      "rating": 5,
+      "text": "As a community health assistant, I used to walk hours to hand in paper reports. This course taught me how our data feeds into DHIS2 and how to do patient follow-up by SMS on the Lonestar network. My defaulter tracing for TB patients improved so much that the county health team asked me to train other CHAs."
+    },
+    {
+      "name": "Princess Toe",
+      "loc": "Monrovia, Liberia",
+      "date": "May 2026",
+      "bg": "#10b981",
+      "init": "PT",
+      "rating": 5,
+      "text": "I am a nurse and I always feared technology. Dr. Musu explains everything with examples from JFK and Redemption that I recognize from my own work. I now run phone follow-up consultations for our hypertension patients over WhatsApp, and our missed-appointment rate dropped by almost half."
+    },
+    {
+      "name": "Abraham Fahnbulleh",
+      "loc": "Voinjama, Lofa County",
+      "date": "June 2026",
+      "bg": "#7c3aed",
+      "init": "AF",
+      "rating": 4,
+      "text": "Our clinic pharmacy in Lofa kept running out of essential drugs. Using the inventory lesson in Module 4, I set up a simple stock tracker on a spreadsheet and we have not had a stockout of malaria medicine since February. The capstone project became a real system we use every day. Internet in Voinjama is slow, but the lessons downloaded fine."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Do I need to be a doctor or nurse to take this course?",
+      "a": "No. This course is for anyone connected to health work — nurses, physician assistants, CHAs, pharmacy staff, records clerks, health sciences students, and tech-minded people who want to serve clinics and hospitals. No medical or IT background is required."
+    },
+    {
+      "q": "Will the tools taught cost my clinic money?",
+      "a": "No. The course focuses on free tools: Google Forms, KoboToolbox, WhatsApp, SMS, and free spreadsheet software. DHIS2 is already provided by MOH Liberia to health facilities. Everything you learn can be applied with a smartphone and mobile data."
+    },
+    {
+      "q": "Is patient data safe with these digital tools?",
+      "a": "Yes, when used correctly — and an entire lesson is dedicated to privacy and confidentiality. You will learn consent, need-to-know sharing, safe messaging practices, and the confidentiality standards expected by MOH Liberia and health NGOs."
+    },
+    {
+      "q": "Is the certificate useful for health sector jobs?",
+      "a": "Yes. Your TIH certificate carries a unique verification code that employers can confirm online. Health facilities, county health teams, and NGOs across Liberia increasingly ask for digital skills, and your capstone project gives you real evidence to show at interviews."
+    }
+  ]
+};
