@@ -220,7 +220,7 @@
   </div>
 
   <script src="courses-db.js?v=3"></script>
-  <script src="hub-db.js?v=2"></script>
+  <script src="hub-db.js?v=3"></script>
   <script>
     var esc = HubDB.esc;
     var currentStudent = null;
@@ -367,14 +367,20 @@
             + (days < 0 ? '⚠ Overdue' : '⏰ Due in ' + days + ' day' + (days === 1 ? '' : 's')) + '</span>';
         }
 
-        var action = isDone
-          ? '<a class="btn btn-line btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">Review Course</a>'
-          : '<a class="btn btn-orange btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">' + (p.completed > 0 ? 'Continue →' : 'Start Course →') + '</a>';
+        var unlocked = HubDB.hasAccess(c.id);
+        var action;
+        if (!unlocked) {
+          action = '<a class="btn btn-orange btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">🔓 Unlock (US$2)</a>';
+        } else if (isDone) {
+          action = '<a class="btn btn-line btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">Review Course</a>';
+        } else {
+          action = '<a class="btn btn-orange btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">' + (p.completed > 0 ? 'Continue →' : 'Start Course →') + '</a>';
+        }
 
         return '<div class="course-card">'
           + '<div class="cc-top"><div class="cc-icon">' + meta.icon + '</div>'
           + '<div><div class="cc-title">' + esc(meta.title) + '</div>'
-          + '<div class="cc-meta">' + statusPill + prioPill + '</div></div></div>'
+          + '<div class="cc-meta">' + (unlocked ? statusPill : '<span class="pill new">🔒 Locked · US$2</span>') + prioPill + '</div></div></div>'
           + '<div class="prog-track"><div class="prog-fill" style="width:' + p.pct + '%"></div></div>'
           + '<div class="cc-row"><span>' + p.completed + '/' + p.total + ' lessons · ' + p.pct + '%</span>' + deadlineHtml + '</div>'
           + '<div>' + action + '</div>'

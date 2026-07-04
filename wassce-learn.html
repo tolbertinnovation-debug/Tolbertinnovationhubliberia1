@@ -715,6 +715,9 @@
 
   <!-- Data + Scripts -->
   <script src="wassce-data.js"></script>
+  <script src="hub-db.js?v=3"></script>
+  <script src="hub-config.js?v=1"></script>
+  <script src="paywall.js?v=1"></script>
   <script src="main.js"></script>
   <script src="chatbot.js"></script>
 
@@ -1390,6 +1393,16 @@
 
       /* ---- DOM ready ---- */
       document.addEventListener('DOMContentLoaded', function () {
+
+        /* ===== PAYWALL: WASSCE subjects are locked until payment is confirmed ===== */
+        var accessItem = 'wassce-' + sid;
+        var subjectTitle = 'WASSCE: ' + sid.charAt(0).toUpperCase() + sid.slice(1);
+        if (typeof HubDB === 'undefined' || typeof Paywall === 'undefined') {
+          window.location.replace('hub-dashboard.html?next=' + encodeURIComponent('wassce-learn.html?s=' + sid));
+          return;
+        }
+        Paywall.require({ itemId: accessItem, itemTitle: subjectTitle });
+        if (!HubDB.hasAccess(accessItem)) return; /* locked → stop page init */
 
         /* Tab buttons */
         document.querySelectorAll('.tab-btn').forEach(function (btn) {

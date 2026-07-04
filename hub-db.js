@@ -22,6 +22,15 @@ var HubDB = (function () {
 
   var WHATSAPP_NUMBER = '231880559227';
 
+  // Paid-access settings. Every course and WASSCE subject is locked until the
+  // learner pays and an administrator issues a matching access code.
+  var PAYMENT = {
+    amountUSD: 2,
+    momoNumber: '0880559227',
+    momoName: 'Samuel Tolbert',
+    currencyNote: 'US$2 (or the Liberian dollar equivalent)'
+  };
+
   function getJSON(key, fallback) {
     try {
       var raw = localStorage.getItem(key);
@@ -365,6 +374,35 @@ var HubDB = (function () {
     return student.courses.some(function (c) { return c.id === courseId; });
   }
 
+  /* ---- PAID ACCESS (deterministic access codes) ----
+     Each locked item (a course id or a WASSCE subject id) is unlocked with a
+     6-character code the admin generates for (studentId, itemId) after the
+     learner pays via mobile money. The code is deterministic, so the admin can
+     generate it on their device and the learner verifies it on theirs — no
+     shared backend required. Verified access is stored locally so the learner
+     stays unlocked. */
+  function accessCode(studentId, itemId) {
+    return sha256('TIH-ACCESS|' + String(studentId).toUpperCase() + '|' + String(itemId).toLowerCase()).then(function (hex) {
+      return hex.replace(/[^a-z0-9]/gi, '').slice(0, 6).toUpperCase();
+    });
+  }
+  function hasAccess(itemId) {
+    return !!getJSON('tih_access_' + itemId, null);
+  }
+  function verifyAccessCode(studentId, itemId, code) {
+    return accessCode(studentId, itemId).then(function (expected) {
+      var ok = String(code || '').replace(/[^a-z0-9]/gi, '').toUpperCase() === expected;
+      if (ok) {
+        try { localStorage.setItem('tih_access_' + itemId, JSON.stringify({ studentId: studentId, at: nowISO() })); } catch (e) {}
+      }
+      return ok;
+    });
+  }
+  function grantAccess(itemId, studentId) {
+    // Admin-side same-device grant (also used by tests/back-office).
+    try { localStorage.setItem('tih_access_' + itemId, JSON.stringify({ studentId: studentId || '', at: nowISO() })); } catch (e) {}
+  }
+
   /* ---- WhatsApp / email helpers ---- */
   function waLink(phone, text) {
     var num = String(phone || WHATSAPP_NUMBER).replace(/[^0-9]/g, '');
@@ -425,6 +463,12 @@ var HubDB = (function () {
     certApprovedLocal: certApprovedLocal,
     pendingCertRequest: pendingCertRequest,
     courseAssignedTo: courseAssignedTo,
+    // paid access
+    PAYMENT: PAYMENT,
+    accessCode: accessCode,
+    hasAccess: hasAccess,
+    verifyAccessCode: verifyAccessCode,
+    grantAccess: grantAccess,
     // comms
     waLink: waLink,
     mailtoLink: mailtoLink

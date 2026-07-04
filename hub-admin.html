@@ -144,6 +144,7 @@
       <button class="tab active" data-panel="dash">📊 Dashboard</button>
       <button class="tab" data-panel="apps">📥 Applications <span class="badge" id="appsBadge" style="display:none;"></span></button>
       <button class="tab" data-panel="students">👥 Students</button>
+      <button class="tab" data-panel="access">💳 Access Codes</button>
       <button class="tab" data-panel="certreq">📋 Cert Requests <span class="badge" id="certReqBadge" style="display:none;"></span></button>
       <button class="tab" data-panel="certs">🏆 Certificates</button>
       <button class="tab" data-panel="audit">📜 Audit Log</button>
@@ -210,6 +211,30 @@
           </table>
         </div>
         <div class="empty-state" id="stuEmpty" style="display:none;">No students yet. Approve an application or add a student manually.</div>
+      </div>
+    </div>
+
+    <!-- ACCESS CODES (paid unlock) -->
+    <div class="panel" id="panel-access">
+      <h2>Access Codes &amp; Payments</h2>
+      <div class="table-card" style="padding:1.2rem;margin-bottom:1.2rem;">
+        <h3 style="font-size:.95rem;margin-bottom:.35rem;">💳 How Paid Access Works</h3>
+        <p style="font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:.5rem;">
+          Every course and WASSCE subject is locked. A learner pays <b>US$2</b> by Mobile Money to
+          <b id="momoInfo">0880559227 · Samuel Tolbert</b>, then sends you their payment confirmation with their Student ID.
+          Once you confirm the payment arrived, generate their access code below and send it to them —
+          they enter it to unlock that one course/subject.
+        </p>
+      </div>
+      <div class="table-card" style="padding:1.2rem;">
+        <h3 style="font-size:.95rem;margin-bottom:.35rem;">🔑 Generate an Access Code</h3>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:.9rem;">Enter the learner's Student ID and choose what they paid for.</p>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;">
+          <input type="text" id="acStuId" placeholder="Student ID (TIH-STU-XXXXXX)" style="flex:1;min-width:200px;padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;text-transform:uppercase;" />
+          <select id="acItem" style="padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;min-width:220px;"></select>
+          <button class="btn btn-primary" id="acGenBtn">Generate Code</button>
+        </div>
+        <div id="acResult" style="margin-top:.9rem;"></div>
       </div>
     </div>
 
@@ -298,7 +323,7 @@
   </div>
 
   <script src="courses-db.js?v=3"></script>
-  <script src="hub-db.js?v=2"></script>
+  <script src="hub-db.js?v=3"></script>
   <script src="hub-config.js?v=1"></script>
   <script src="cert-registry.js?v=1"></script>
   <script>
@@ -710,6 +735,62 @@
       });
     };
 
+    /* ============ ACCESS CODES (paid unlock) ============ */
+    var WASSCE_SUBJECTS_LIST = [
+      ['mathematics','Mathematics'],['english','English Language'],['biology','Biology'],['chemistry','Chemistry'],
+      ['physics','Physics'],['economics','Economics'],['civic-education','Civic Education'],['accounts','Financial Accounting'],
+      ['commerce','Commerce'],['marketing','Marketing'],['literature','Literature in English'],['government','Government'],
+      ['geography','Geography'],['history','History'],['crs','Christian Religious Studies'],['irs','Islamic Religious Studies'],
+      ['agriculture','Agricultural Science'],['further-maths','Further Mathematics'],['health-science','Health Science'],
+      ['food-nutrition','Food & Nutrition'],['technical-drawing','Technical Drawing'],['computer-science','Computer Science'],
+      ['home-economics','Home Economics']
+    ];
+    function populateAccessItems() {
+      var sel = document.getElementById('acItem');
+      if (!sel || sel.options.length) return;
+      var html = '<optgroup label="Learning Hub Courses">';
+      try {
+        Object.keys(COURSES_DB).forEach(function (cid) {
+          html += '<option value="' + cid + '">' + esc(courseName(cid)) + '</option>';
+        });
+      } catch (e) {}
+      html += '</optgroup><optgroup label="WASSCE Subjects">';
+      WASSCE_SUBJECTS_LIST.forEach(function (s) {
+        html += '<option value="wassce-' + s[0] + '">WASSCE: ' + esc(s[1]) + '</option>';
+      });
+      html += '</optgroup>';
+      sel.innerHTML = html;
+    }
+    function accessItemLabel(itemId) {
+      if (itemId.indexOf('wassce-') === 0) {
+        var key = itemId.slice(7);
+        for (var i = 0; i < WASSCE_SUBJECTS_LIST.length; i++) if (WASSCE_SUBJECTS_LIST[i][0] === key) return 'WASSCE: ' + WASSCE_SUBJECTS_LIST[i][1];
+        return 'WASSCE: ' + key;
+      }
+      return courseName(itemId);
+    }
+    document.getElementById('acGenBtn').addEventListener('click', function () {
+      var stuId = document.getElementById('acStuId').value.trim().toUpperCase();
+      var itemId = document.getElementById('acItem').value;
+      var out = document.getElementById('acResult');
+      if (!/^TIH-STU-[A-Z0-9]{6}$/.test(stuId)) {
+        out.innerHTML = '<span class="feedback err">Enter a valid Student ID (TIH-STU-XXXXXX).</span>';
+        return;
+      }
+      HubDB.accessCode(stuId, itemId).then(function (code) {
+        HubDB.audit('Generated access code for ' + itemId, stuId);
+        var s = HubDB.findStudent(stuId);
+        var label = accessItemLabel(itemId);
+        var waText = 'TIH Learning Hub — Payment Confirmed! ✅\n\nYour access code for "' + label + '" is:\n\n'
+          + code + '\n\nEnter this code to unlock it. Courses: open the course from your dashboard. WASSCE: open the subject from WASSCE PRO. Happy learning!';
+        out.innerHTML = '<div class="cred-box">Access code for <b>' + esc(stuId) + '</b> · ' + esc(label) + ': <b style="font-size:1.2rem;letter-spacing:.1em;">' + code + '</b></div>'
+          + '<div class="modal-actions" style="margin-top:.5rem;">'
+          + '<a class="btn btn-green btn-sm" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(s ? s.phone : null, waText) + '">💬 Send via WhatsApp</a>'
+          + '<button class="btn btn-line btn-sm" onclick="navigator.clipboard&&navigator.clipboard.writeText(\'' + code + '\');this.textContent=\'✓ Copied\'">📋 Copy Code</button>'
+          + '</div>';
+      });
+    });
+
     /* ============ RENDER: CERTIFICATE REQUESTS ============ */
     function populateCodeCourses() {
       var sel = document.getElementById('codeCourse');
@@ -932,6 +1013,7 @@
 
     /* ============ MASTER RENDER ============ */
     function renderAll() {
+      populateAccessItems();
       renderDash(); renderApps(); renderStudents(); renderCertReqs(); renderCerts(); renderAudit();
     }
     window.switchPanel = switchPanel;

@@ -12,9 +12,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="courses-db.js?v=3"></script>
   <script src="lesson-content.js?v=3"></script>
-  <script src="hub-db.js?v=2"></script>
+  <script src="hub-db.js?v=3"></script>
   <script src="hub-config.js?v=1"></script>
   <script src="cert-registry.js?v=1"></script>
+  <script src="paywall.js?v=1"></script>
   <script src="cert-template.js?v=1"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -549,21 +550,18 @@
       window.location.replace('hub-dashboard.html?next=' + encodeURIComponent(courseId));
       return;
     }
-    if (!HubDB.courseAssignedTo(hubStudent, courseId)) {
-      document.body.innerHTML = '<div style="padding:3rem 1.5rem;text-align:center;font-family:Inter,sans-serif;max-width:480px;margin:0 auto;">'
-        + '<div style="font-size:3rem;margin-bottom:.75rem;">🔒</div>'
-        + '<h2 style="color:#002868;margin-bottom:.6rem;">Course Not Assigned</h2>'
-        + '<p style="color:#6b7280;margin-bottom:1.5rem;">This course has not been assigned to your account yet. Courses are assigned by the TIH team based on your learning plan.</p>'
-        + '<a href="hub-dashboard.html" style="display:inline-block;background:#002868;color:#fff;font-weight:700;padding:.75rem 1.5rem;border-radius:10px;text-decoration:none;margin-right:.5rem;">← My Dashboard</a>'
-        + '<a href="https://wa.me/231880559227?text=' + encodeURIComponent('Hello TIH, I would like to request access to the course: ' + courseId + '. My Student ID is ' + hubStudent.id) + '" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:.75rem 1.5rem;border-radius:10px;text-decoration:none;">💬 Request Access</a>'
-        + '</div>';
-      return;
-    }
-
     course = COURSES_DB[courseId];
     if (!course) {
       document.body.innerHTML = '<div style="padding:3rem;text-align:center;font-family:Inter,sans-serif"><h2 style="color:#002868">Course not found</h2><p style="margin:1rem 0 2rem;color:#6b7280">This course does not exist.</p><a href="learning-hub.html" style="color:#002868;font-weight:700">← Back to Courses</a></div>';
       return;
+    }
+
+    // ===== PAYWALL: locked until payment is confirmed and an access code is entered =====
+    if (typeof HubDB !== 'undefined' && !HubDB.hasAccess(courseId)) {
+      if (typeof Paywall !== 'undefined') {
+        Paywall.require({ itemId: courseId, itemTitle: course.title });
+      }
+      return; // do not build the player while locked
     }
 
     // Build flat lessons array from modules
