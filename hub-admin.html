@@ -327,7 +327,7 @@
   <script src="hub-config.js?v=2"></script>
   <script src="hub-cloud.js?v=1"></script>
   <script src="hub-db.js?v=4"></script>
-  <script src="cert-registry.js?v=1"></script>
+  <script src="cert-registry.js?v=2"></script>
   <script>
     /* ============ HELPERS ============ */
     var esc = HubDB.esc;
@@ -992,7 +992,7 @@
         st.style.color = enabled ? 'var(--accent)' : 'var(--secondary)';
         hint.textContent = enabled
           ? 'Certificates published here verify from any device at certificate-verify.html. New completions publish automatically when a learner downloads their approved certificate.'
-          : 'Certificates currently verify only on the device that issued them. To enable public cross-device verification, add your Firebase keys in hub-config.js (setup steps are inside that file).';
+          : 'Certificates currently verify only on the device that issued them. To enable public cross-device verification, add your Supabase keys in hub-config.js (setup steps are inside that file).';
       }
       var sel = document.getElementById('bfCourse');
       if (sel && !sel.options.length) {
@@ -1015,7 +1015,7 @@
       CertRegistry.publish(cert).then(function (ok) {
         HubDB.audit('Published certificate to registry ' + cert.certId, cert.courseId);
         alert(ok ? 'Published to the public registry.\n' + cert.certId + ' can now be verified from any device.'
-                 : 'Could not reach the registry. Check your internet and Firebase configuration, then try again.');
+                 : 'Could not reach the registry. Check your internet and Supabase configuration, then try again.');
       });
     };
 
@@ -1024,7 +1024,7 @@
       var fb = document.getElementById('bfFeedback');
       if (typeof CertRegistry === 'undefined' || !CertRegistry.isCloudEnabled()) {
         fb.className = 'feedback err';
-        fb.textContent = 'Cloud verification is not configured yet. Add Firebase keys in hub-config.js first.';
+        fb.textContent = 'Cloud verification is not configured yet. Add Supabase keys in hub-config.js first.';
         return;
       }
       var certId = document.getElementById('bfCertId').value.trim().toUpperCase();
@@ -1042,7 +1042,7 @@
         HubDB.audit('Back-filled certificate to registry ' + certId, courseId);
         fb.className = ok ? 'feedback ok' : 'feedback err';
         fb.textContent = ok ? '✓ Published. ' + certId + ' now verifies from any device.'
-                            : 'Could not reach the registry. Check internet and Firebase config, then retry. (Note: an existing record with this ID will not be overwritten.)';
+                            : 'Could not reach the registry. Check internet and Supabase config, then retry. (Note: an existing record with this ID will not be overwritten.)';
       });
     });
 

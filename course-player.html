@@ -15,7 +15,7 @@
   <script src="hub-config.js?v=2"></script>
   <script src="hub-cloud.js?v=1"></script>
   <script src="hub-db.js?v=4"></script>
-  <script src="cert-registry.js?v=1"></script>
+  <script src="cert-registry.js?v=2"></script>
   <script src="paywall.js?v=1"></script>
   <script src="wassce-course.js?v=1"></script>
   <script src="cert-template.js?v=1"></script>
@@ -1263,7 +1263,7 @@
     };
     localStorage.setItem('tih_cert_' + courseId, JSON.stringify(record));
     // Publish to the public registry for cross-device verification (best effort,
-    // no-op when Firebase is not configured). Only publish with a real name.
+    // no-op when Supabase is not configured). Only publish with a real name.
     if (studentName && typeof CertRegistry !== 'undefined') {
       try { CertRegistry.publish(record); } catch (e) {}
     }

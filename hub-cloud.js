@@ -281,6 +281,43 @@ var HubCloud = (function () {
     });
   }
 
+  // ---- certificates (public verification) ----
+  // Publish is create-only: an issued certificate is permanent and must
+  // never be overwritten. Returns true on confirmed write or existing row.
+  function publishCertificate(rec) {
+    if (!rec || !rec.certId) return Promise.resolve(false);
+    var row = {
+      cert_id: String(rec.certId).toUpperCase(),
+      student_id: rec.studentId || '', student_name: rec.studentName || '',
+      course_id: rec.courseId || '', course_title: rec.courseTitle || '',
+      category: rec.category || '', issue_date: rec.date || '', verified: true
+    };
+    return ready().then(function (db) {
+      if (!db) return false;
+      return db.from('certificates').upsert(row, { onConflict: 'cert_id', ignoreDuplicates: true })
+        .then(function (res) { return ok(res); }).catch(function () { return false; });
+    }).catch(function () { return false; });
+  }
+  // Look up a certificate anywhere. Resolves to a verify-friendly record or null.
+  function lookupCertificate(certId) {
+    if (!certId) return Promise.resolve(null);
+    return ready().then(function (db) {
+      if (!db) return null;
+      var id = String(certId).trim().toUpperCase();
+      return db.from('certificates').select('*').eq('cert_id', id).limit(1)
+        .then(function (res) {
+          if (res && !res.error && Array.isArray(res.data) && res.data.length) {
+            var r = res.data[0];
+            return {
+              certId: r.cert_id, studentName: r.student_name, courseTitle: r.course_title,
+              date: r.issue_date, courseId: r.course_id, category: r.category, verified: r.verified
+            };
+          }
+          return null;
+        }).catch(function () { return null; });
+    }).catch(function () { return null; });
+  }
+
   // ---- realtime ----
   // Returns an unsubscribe function (no-op when cloud is off).
   function subscribe(table, cb) {
@@ -323,6 +360,8 @@ var HubCloud = (function () {
     pushCertRequest: pushCertRequest,
     updateCertRequest: updateCertRequest,
     fetchCertRequests: fetchCertRequests,
+    publishCertificate: publishCertificate,
+    lookupCertificate: lookupCertificate,
     subscribe: subscribe,
     // exposed for HubDB / tests
     _appFromRow: appFromRow,
