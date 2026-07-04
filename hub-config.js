@@ -37,6 +37,6 @@
      5. Commit this file. Central tracking is now live.
    ============================================================ */
 window.TIH_SUPABASE_CONFIG = {
-  url: "",
-  anonKey: ""
+  url: "https://oracluubhmxobcnsvcxz.supabase.co",
+  anonKey: "sb_publishable_tPiTlfiFlSJedb1VMsrjNA_sZ10Bri8"
 };
