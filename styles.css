@@ -1712,7 +1712,10 @@ textarea {
 /* ============================================================
    RESPONSIVE — MOBILE
    ============================================================ */
-@media (max-width: 920px) {
+/* Issue 11 fix: the primary nav holds 13 links + a CTA. Collapse it into the
+   mobile menu earlier (at 1080px) so the links no longer crowd or get clipped
+   by overflow:hidden on laptop widths before the toggle used to appear (920px). */
+@media (max-width: 1080px) {
   .nav-wrap {
     min-height: auto;
     padding: 0.75rem 0;
@@ -1771,7 +1774,9 @@ textarea {
     border-radius: var(--radius-xs);
     font-size: 0.95rem;
   }
+}
 
+@media (max-width: 920px) {
   .footer-grid-main {
     grid-template-columns: 1fr 1fr;
   }

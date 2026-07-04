@@ -217,7 +217,7 @@ COURSES_DB['ai'] = {
 COURSES_DB['data'] = {
   id: 'data',
   title: 'Data Analysis with Excel, Power BI & Google Sheets',
-  shortDesc: 'For analysts, NGO workers, and business professionals — learn to clean, analyze, and visualize data using Excel, Power BI, and Google Sheets, and build a portfolio that proves your skills to employers.',
+  shortDesc: 'For analysts and NGO workers — clean, analyze, and visualize data using Excel, Power BI, and Google Sheets, and build a portfolio that proves your skills to employers.',
   category: 'Data Analytics',
   icon: '📊',
   gradient: 'linear-gradient(135deg,#0d9488,#065f46)',
@@ -435,7 +435,7 @@ COURSES_DB['webdev'] = {
 COURSES_DB['design'] = {
   id: 'design',
   title: 'Graphic Design with Canva & Adobe Photoshop',
-  shortDesc: 'For entrepreneurs, marketers, and aspiring designers — learn design principles, build brand identities, create professional social media graphics in Canva, and retouch photos in Photoshop, with a portfolio of 8+ real pieces.',
+  shortDesc: 'For entrepreneurs and aspiring designers — learn design principles, build brand identities, and create professional graphics in Canva and Photoshop, with an 8-piece portfolio.',
   category: 'Graphic Design',
   icon: '🎨',
   gradient: 'linear-gradient(135deg,#be185d,#ec4899)',
@@ -759,7 +759,7 @@ COURSES_DB['marketing'] = {
 COURSES_DB['cybersecurity'] = {
   id: 'cybersecurity',
   title: 'Cybersecurity Fundamentals & Ethical Hacking',
-  shortDesc: 'For IT professionals and security-minded learners — understand how cyber attacks work, use Kali Linux to test systems ethically, and build the skills needed for CompTIA Security+ and CEH certification preparation.',
+  shortDesc: 'For IT and security-minded learners — understand how cyber attacks work, test systems ethically with Kali Linux, and prepare for CompTIA Security+ and CEH exams.',
   category: 'Cybersecurity',
   icon: '🔒',
   gradient: 'linear-gradient(135deg,#7f1d1d,#dc2626)',
@@ -867,7 +867,7 @@ COURSES_DB['cybersecurity'] = {
 COURSES_DB['entrepreneurship'] = {
   id: 'entrepreneurship',
   title: 'Entrepreneurship & Startup Launch Program',
-  shortDesc: 'For first-time and experienced entrepreneurs — validate your idea, write a fundable business plan, access grants and investors, register your business in Liberia, and launch with a complete go-to-market strategy.',
+  shortDesc: 'For first-time and experienced entrepreneurs — validate your idea, write a fundable business plan, access grants and investors, and register and launch your business in Liberia.',
   category: 'Entrepreneurship',
   icon: '💡',
   gradient: 'linear-gradient(135deg,#92400e,#f59e0b)',
@@ -1084,7 +1084,7 @@ COURSES_DB['project-mgmt'] = {
 COURSES_DB['office'] = {
   id: 'office',
   title: 'Microsoft Office Mastery: Word, Excel & PowerPoint',
-  shortDesc: 'For job seekers and working professionals — go beyond basics and master advanced Word, Excel, and PowerPoint features including mail merge, pivot tables, and slide masters that set you apart in every Liberian workplace.',
+  shortDesc: 'For job seekers and professionals — go beyond basics to master advanced Word, Excel, and PowerPoint features like mail merge, pivot tables, and slide masters.',
   category: 'Computer Fundamentals',
   icon: '💼',
   gradient: 'linear-gradient(135deg,#d97706,#f59e0b)',
@@ -1192,7 +1192,7 @@ COURSES_DB['office'] = {
 COURSES_DB['leadership'] = {
   id: 'leadership',
   title: 'Business Leadership Masterclass',
-  shortDesc: 'For emerging and experienced leaders in any sector — develop emotional intelligence, build high-performing teams, lead organizational change, and create a personal leadership plan that drives lasting impact.',
+  shortDesc: 'For emerging and experienced leaders — develop emotional intelligence, build high-performing teams, lead change, and create a personal leadership plan that drives lasting impact.',
   category: 'Leadership',
   icon: '🎯',
   /* Issue 28 fix: unique gradient distinguishes leadership from computer-literacy and project-mgmt */
@@ -1297,8 +1297,8 @@ COURSES_DB['leadership'] = {
 
 COURSES_DB['grant-writing'] = {
   "id": "grant-writing",
-  "title": "Grant Writing & Fundraising: Win Funding for Your Cause",
-  "shortDesc": "Learn to find donors, write winning proposals, and manage grants professionally — build logic models, needs statements, SMART objectives, budgets in USD/LRD, and M&E plans that unlock funding from USAID, EU, UNDP, and foundations active in Liberia.",
+  "title": "Grant Writing & Fundraising",
+  "shortDesc": "Find donors, write winning proposals, and manage grants professionally — build logic models, budgets, and M&E plans that unlock funding from USAID, EU, and foundations in Liberia.",
   "category": "Business & Fundraising",
   "icon": "💰",
   "gradient": "linear-gradient(135deg,#065f46,#10b981)",
@@ -2079,8 +2079,8 @@ COURSES_DB['financial-literacy'] = {
 
 COURSES_DB['english-success'] = {
   "id": "english-success",
-  "title": "English for Academic & Professional Success: IELTS, Essays & Interviews",
-  "shortDesc": "Master the formal English that opens doors — write winning scholarship essays and motivation letters, prepare for IELTS with proven band strategies, and speak with confidence in interviews for opportunities in Liberia and abroad.",
+  "title": "English for Academic & Professional Success",
+  "shortDesc": "Master the formal English that opens doors — write winning scholarship essays, prepare for IELTS with proven band strategies, and speak with confidence in interviews.",
   "category": "Language & Communication",
   "icon": "🗣️",
   "gradient": "linear-gradient(135deg,#4338ca,#6366f1)",
@@ -2470,8 +2470,8 @@ COURSES_DB['english-success'] = {
 
 COURSES_DB['agritech'] = {
   "id": "agritech",
-  "title": "AgriTech & Digital Agriculture: Farming Meets Technology",
-  "shortDesc": "Learn how phones, apps, data, and smart tools can transform farming in Liberia — from digital farm records and crop planning to selling produce online, mobile money, and the future of drones and sensors.",
+  "title": "AgriTech & Digital Agriculture",
+  "shortDesc": "See how phones, apps, and smart tools can transform farming in Liberia — from digital farm records and crop planning to selling produce online, mobile money, drones, and sensors.",
   "category": "Agriculture & Technology",
   "icon": "🌾",
   "gradient": "linear-gradient(135deg,#3f6212,#84cc16)",
@@ -2861,8 +2861,8 @@ COURSES_DB['agritech'] = {
 
 COURSES_DB['healthtech'] = {
   "id": "healthtech",
-  "title": "Healthcare Technology & Telehealth: Digital Skills for Health Workers",
-  "shortDesc": "Learn the digital skills modern health work demands — electronic records, digital patient intake, telehealth consultations, SMS and WhatsApp follow-up, DHIS2 awareness, and health data privacy — built for Liberian and West African clinics, hospitals, and community health workers.",
+  "title": "Healthcare Technology & Telehealth",
+  "shortDesc": "Digital skills for modern health work — electronic records, telehealth, patient follow-up, and health data privacy, built for Liberian clinics and community health workers.",
   "category": "Health & Technology",
   "icon": "🏥",
   "gradient": "linear-gradient(135deg,#9f1239,#f43f5e)",
@@ -3252,8 +3252,8 @@ COURSES_DB['healthtech'] = {
 
 COURSES_DB['remote-work'] = {
   "id": "remote-work",
-  "title": "Remote Work & Freelancing: Earn Global Income from Liberia",
-  "shortDesc": "For ambitious youth ready to earn US dollars online — learn to package your skills, win clients on Upwork and Fiverr, build a professional portfolio, price your work, and get paid reliably in Liberia despite payment and power challenges.",
+  "title": "Remote Work & Freelancing",
+  "shortDesc": "Earn US dollars online — package your skills, win clients on Upwork and Fiverr, build a portfolio, price your work, and get paid reliably from Liberia.",
   "category": "Remote Work & Freelancing",
   "icon": "💼",
   "gradient": "linear-gradient(135deg,#c2410c,#f97316)",

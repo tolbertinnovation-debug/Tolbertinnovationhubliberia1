@@ -483,14 +483,18 @@ function initBackToTop() {
 // Init
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
-  initDarkMode();
-  initNav();
-  wireAutoHideHeader();
-  renderLatestUpdates();
-  injectFooterFeaturedNews();
-  initCounters();
-  initReveal();
-  initBackToTop();
+  // Run each initializer in isolation so a failure in one does not
+  // cascade and leave later features (news render, counters) stuck.
+  const safe = (fn) => { try { fn(); } catch (e) { /* keep other inits running */ } };
+
+  safe(initDarkMode);
+  safe(initNav);
+  safe(wireAutoHideHeader);
+  safe(renderLatestUpdates);
+  safe(injectFooterFeaturedNews);
+  safe(initCounters);
+  safe(initReveal);
+  safe(initBackToTop);
 
   // Announcement bar close button
   const announcementClose = document.getElementById('announcement-close');
@@ -501,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  initCookieConsent();
+  safe(initCookieConsent);
 });
 
 // ============================================================
