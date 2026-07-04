@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apply for Free Access | TIH Learning Hub</title>
+  <title>Apply for Access | TIH Learning Hub</title>
   <meta name="description" content="Apply for free access to TIH Learning Hub. Every application is personally reviewed within 3-5 business days." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -165,7 +165,24 @@
   <script src="courses-db.js?v=3"></script>
   <script src="hub-db.js?v=3"></script>
   <script>
-    // Build track checkboxes from COURSES_DB
+    // WASSCE subjects (shown as their own group in the application form).
+    var WASSCE_APPLY = [
+      ['mathematics','Mathematics','📐'],['english','English Language','📖'],['biology','Biology','🧬'],
+      ['chemistry','Chemistry','⚗️'],['physics','Physics','🔬'],['economics','Economics','📊'],
+      ['civic-education','Civic Education','🏛️'],['accounts','Financial Accounting','🧾'],['commerce','Commerce','🛍️'],
+      ['marketing','Marketing','📣'],['literature','Literature in English','📚'],['government','Government','⚖️'],
+      ['geography','Geography','🌍'],['history','History','🏺'],['crs','Christian Religious Studies','✝️'],
+      ['irs','Islamic Religious Studies','☪️'],['agriculture','Agricultural Science','🌾'],['further-maths','Further Mathematics','➗'],
+      ['health-science','Health Science','🩺'],['food-nutrition','Food & Nutrition','🍲'],['technical-drawing','Technical Drawing','📏'],
+      ['computer-science','Computer Science','💻'],['home-economics','Home Economics','🏠']
+    ];
+    function wassceApplyName(id) {
+      var key = id.replace(/^wassce-/, '');
+      for (var i = 0; i < WASSCE_APPLY.length; i++) if (WASSCE_APPLY[i][0] === key) return 'WASSCE: ' + WASSCE_APPLY[i][1];
+      return id;
+    }
+
+    // Build track checkboxes from COURSES_DB, then WASSCE subjects.
     (function () {
       var box = document.getElementById('tracksSelect');
       var html = '';
@@ -177,6 +194,13 @@
             + (c.icon || '📘') + ' ' + HubDB.esc(c.title.split(':')[0]) + '</label>';
         }
       } catch (e) {}
+      // WASSCE group
+      html += '<div style="grid-column:1/-1;font-weight:800;color:var(--primary);font-size:0.9rem;margin:0.6rem 0 0.1rem;">🎓 WASSCE PRO — Exam Subjects</div>';
+      for (var j = 0; j < WASSCE_APPLY.length; j++) {
+        var w = WASSCE_APPLY[j];
+        html += '<label class="track-opt"><input type="checkbox" name="tracks" value="wassce-' + w[0] + '"> '
+          + w[2] + ' ' + HubDB.esc(w[1]) + '</label>';
+      }
       box.innerHTML = html;
       box.addEventListener('change', function (e) {
         if (e.target.name === 'tracks') {
@@ -227,6 +251,7 @@
 
         // Build WhatsApp confirmation message to the TIH team
         var trackNames = tracks.map(function (id) {
+          if (id.indexOf('wassce-') === 0) return wassceApplyName(id);
           return (typeof COURSES_DB !== 'undefined' && COURSES_DB[id]) ? COURSES_DB[id].title.split(':')[0] : id;
         }).join(', ');
         var waText = 'NEW TIH LEARNING HUB APPLICATION\n'
