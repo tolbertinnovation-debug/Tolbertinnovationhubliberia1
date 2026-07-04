@@ -3684,42 +3684,42 @@ COURSES_DB['ielts'] = {
   modules: [
     { title: 'Module 1: IELTS Foundations & the Band System', icon: '🧭', meta: '4 lessons',
       lessons: [
-        {t:'1.1 The IELTS Test: Academic vs General Training', d:'Reading'},
-        {t:'1.2 Understanding the Band Score System (0–9)', d:'Reading'},
-        {t:'1.3 Test-Day Logistics & Smart Preparation', d:'Reading'},
+        {t:'1.1 The IELTS Test: Academic vs General Training', d:'Reading', v:'tOFm-zoI6-w'},
+        {t:'1.2 Understanding the Band Score System (0–9)', d:'Reading', v:'zBLsjez-D3s'},
+        {t:'1.3 Test-Day Logistics & Smart Preparation', d:'Reading', v:'tIpP4M1kvvE'},
         {t:'📝 Quiz: IELTS Format & Scoring', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Listening', icon: '🎧', meta: '4 lessons',
       lessons: [
-        {t:'2.1 The Four Sections & Every Question Type', d:'Reading'},
-        {t:'2.2 Strategies: Prediction, Keywords & Distractor Traps', d:'Reading'},
-        {t:'2.3 Spelling, Numbers & Transferring Answers', d:'Reading'},
+        {t:'2.1 The Four Sections & Every Question Type', d:'Reading', v:'q2odDqMhYOg'},
+        {t:'2.2 Strategies: Prediction, Keywords & Distractor Traps', d:'Reading', v:'gfTqr_9BMjs'},
+        {t:'2.3 Spelling, Numbers & Transferring Answers', d:'Reading', v:'RrViOflRWg0'},
         {t:'📝 Quiz: Listening', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Reading', icon: '📖', meta: '4 lessons',
       lessons: [
-        {t:'3.1 Skimming, Scanning & Time Management', d:'Reading'},
-        {t:'3.2 True / False / Not Given (and Yes / No / Not Given)', d:'Reading'},
-        {t:'3.3 Matching Headings, Completion & Multiple Choice', d:'Reading'},
+        {t:'3.1 Skimming, Scanning & Time Management', d:'Reading', v:'7etaXjWJVJg'},
+        {t:'3.2 True / False / Not Given (and Yes / No / Not Given)', d:'Reading', v:'cNyLs7YWFL8'},
+        {t:'3.3 Matching Headings, Completion & Multiple Choice', d:'Reading', v:'SXdMpskBDmA'},
         {t:'📝 Quiz: Reading', d:'5 questions', isQuiz:true, quizId:'mod3'}
       ]
     },
     { title: 'Module 4: Writing', icon: '✍️', meta: '5 lessons',
       lessons: [
-        {t:'4.1 Task 1 Academic: Describing Graphs, Charts & Processes', d:'Reading'},
-        {t:'4.2 Task 1 General: Formal & Informal Letters', d:'Reading'},
-        {t:'4.3 Task 2: Essay Structure & Building an Argument', d:'Reading'},
-        {t:'4.4 Cohesion, Vocabulary & Common Mistakes', d:'Reading'},
+        {t:'4.1 Task 1 Academic: Describing Graphs, Charts & Processes', d:'Reading', v:'mTDjuQ-G31I'},
+        {t:'4.2 Task 1 General: Formal & Informal Letters', d:'Reading', v:'TbdP4Sz5Bn0'},
+        {t:'4.3 Task 2: Essay Structure & Building an Argument', d:'Reading', v:'_LwCwsFDRdE'},
+        {t:'4.4 Cohesion, Vocabulary & Common Mistakes', d:'Reading', v:'wSbv5bCY4No'},
         {t:'🛠️ Project: Write a Full Band 7 Task 2 Essay', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 5: Speaking', icon: '🗣️', meta: '4 lessons',
       lessons: [
-        {t:'5.1 Part 1: Introduction & Interview', d:'Reading'},
-        {t:'5.2 Part 2: The Long Turn (Cue Card)', d:'Reading'},
-        {t:'5.3 Part 3: Discussion, Fluency & Pronunciation', d:'Reading'},
+        {t:'5.1 Part 1: Introduction & Interview', d:'Reading', v:'wK5mVNZGYRc'},
+        {t:'5.2 Part 2: The Long Turn (Cue Card)', d:'Reading', v:'BzhUwBaQK1g'},
+        {t:'5.3 Part 3: Discussion, Fluency & Pronunciation', d:'Reading', v:'QoeKYAqBRtE'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -3791,36 +3791,36 @@ COURSES_DB['toefl'] = {
   modules: [
     { title: 'Module 1: TOEFL iBT Foundations', icon: '🧭', meta: '3 lessons',
       lessons: [
-        {t:'1.1 The TOEFL iBT Format & the 0–120 Score', d:'Reading'},
-        {t:'1.2 How Each Section Is Scored & What Universities Want', d:'Reading'},
+        {t:'1.1 The TOEFL iBT Format & the 0–120 Score', d:'Reading', v:'i8p28izQNdQ'},
+        {t:'1.2 How Each Section Is Scored & What Universities Want', d:'Reading', v:'fGrxgRAISlM'},
         {t:'📝 Quiz: TOEFL Format & Scoring', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Reading', icon: '📖', meta: '3 lessons',
       lessons: [
-        {t:'2.1 Academic Passages & the 10 Question Types', d:'Reading'},
-        {t:'2.2 Strategy: Vocabulary, Inference & Prose Summary', d:'Reading'},
+        {t:'2.1 Academic Passages & the 10 Question Types', d:'Reading', v:'UrsAfqDc_jI'},
+        {t:'2.2 Strategy: Vocabulary, Inference & Prose Summary', d:'Reading', v:'aXAEeeyaeuo'},
         {t:'📝 Quiz: Reading', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Listening', icon: '🎧', meta: '3 lessons',
       lessons: [
-        {t:'3.1 Lectures & Conversations: What to Expect', d:'Reading'},
-        {t:'3.2 Note-Taking Systems & Attitude/Function Questions', d:'Reading'},
+        {t:'3.1 Lectures & Conversations: What to Expect', d:'Reading', v:'EXAbraAOdBQ'},
+        {t:'3.2 Note-Taking Systems & Attitude/Function Questions', d:'Reading', v:'il_l3WGEZho'},
         {t:'📝 Quiz: Listening', d:'5 questions', isQuiz:true, quizId:'mod3'}
       ]
     },
     { title: 'Module 4: Speaking', icon: '🗣️', meta: '3 lessons',
       lessons: [
-        {t:'4.1 The Independent Task: Templates & Timing', d:'Reading'},
-        {t:'4.2 The Integrated Tasks: Read, Listen, Speak', d:'Reading'},
+        {t:'4.1 The Independent Task: Templates & Timing', d:'Reading', v:'RUfPjA7UODU'},
+        {t:'4.2 The Integrated Tasks: Read, Listen, Speak', d:'Reading', v:'C4J96Q-JzwM'},
         {t:'🛠️ Project: Record a 45-Second Independent Response', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 5: Writing', icon: '✍️', meta: '3 lessons',
       lessons: [
-        {t:'5.1 The Integrated Writing Task', d:'Reading'},
-        {t:'5.2 The Academic Discussion Task', d:'Reading'},
+        {t:'5.1 The Integrated Writing Task', d:'Reading', v:'KvBauox4auk'},
+        {t:'5.2 The Academic Discussion Task', d:'Reading', v:'QL4r78VQq1M'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
@@ -3892,37 +3892,37 @@ COURSES_DB['sat'] = {
   modules: [
     { title: 'Module 1: The Digital SAT & How It Is Scored', icon: '🧭', meta: '3 lessons',
       lessons: [
-        {t:'1.1 The Digital SAT Format: Adaptive Modules & Bluebook', d:'Reading'},
-        {t:'1.2 Scoring 400–1600 & Setting Your Target', d:'Reading'},
+        {t:'1.1 The Digital SAT Format: Adaptive Modules & Bluebook', d:'Reading', v:'2aiVO9FoGg4'},
+        {t:'1.2 Scoring 400–1600 & Setting Your Target', d:'Reading', v:'HXP17Be8TRY'},
         {t:'📝 Quiz: Digital SAT Format', d:'5 questions', isQuiz:true, quizId:'mod1'}
       ]
     },
     { title: 'Module 2: Reading & Writing — Reading Skills', icon: '📖', meta: '3 lessons',
       lessons: [
-        {t:'2.1 Craft & Structure: Main Idea, Purpose & Vocabulary', d:'Reading'},
-        {t:'2.2 Information & Ideas: Evidence, Inference & Data', d:'Reading'},
+        {t:'2.1 Craft & Structure: Main Idea, Purpose & Vocabulary', d:'Reading', v:'Pw5uTD3_FKw'},
+        {t:'2.2 Information & Ideas: Evidence, Inference & Data', d:'Reading', v:'POcYofMngBw'},
         {t:'📝 Quiz: Reading Skills', d:'5 questions', isQuiz:true, quizId:'mod2'}
       ]
     },
     { title: 'Module 3: Reading & Writing — Writing Skills', icon: '✍️', meta: '3 lessons',
       lessons: [
-        {t:'3.1 Standard English Conventions: Grammar & Punctuation', d:'Reading'},
-        {t:'3.2 Expression of Ideas: Transitions & Rhetorical Synthesis', d:'Reading'},
+        {t:'3.1 Standard English Conventions: Grammar & Punctuation', d:'Reading', v:'4jgnbFnXiYs'},
+        {t:'3.2 Expression of Ideas: Transitions & Rhetorical Synthesis', d:'Reading', v:'lo7LFbac_9o'},
         {t:'📝 Quiz: Writing Skills', d:'5 questions', isQuiz:true, quizId:'mod3'}
       ]
     },
     { title: 'Module 4: Math', icon: '🔢', meta: '4 lessons',
       lessons: [
-        {t:'4.1 Algebra: Linear Equations, Systems & Inequalities', d:'Reading'},
-        {t:'4.2 Advanced Math: Quadratics, Exponents & Functions', d:'Reading'},
-        {t:'4.3 Problem-Solving, Data Analysis & Geometry', d:'Reading'},
+        {t:'4.1 Algebra: Linear Equations, Systems & Inequalities', d:'Reading', v:'vrPbC9fao6Y'},
+        {t:'4.2 Advanced Math: Quadratics, Exponents & Functions', d:'Reading', v:'zvczFfWx40k'},
+        {t:'4.3 Problem-Solving, Data Analysis & Geometry', d:'Reading', v:'i0bBokmVtWw'},
         {t:'🛠️ Project: Solve a Mixed Math Set with the Desmos Calculator', d:'Project', isProject:true}
       ]
     },
     { title: 'Module 5: Strategy & Full Practice', icon: '🏁', meta: '3 lessons',
       lessons: [
-        {t:'5.1 Pacing, Guessing & the Adaptive Second Module', d:'Reading'},
-        {t:'5.2 Test-Day Plan & Score-Boosting Habits', d:'Reading'},
+        {t:'5.1 Pacing, Guessing & the Adaptive Second Module', d:'Reading', v:'gMGQHSUFRCU'},
+        {t:'5.2 Test-Day Plan & Score-Boosting Habits', d:'Reading', v:'XKu4sgpHWN8'},
         {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
       ]
     }
