@@ -3640,3 +3640,321 @@ COURSES_DB['remote-work'] = {
     }
   ]
 };
+
+/* ============================================================
+   PREMIUM EXAM-PREP COURSES (US$20 each) — reading masterclasses.
+   Content lessons carry no video id, so the player renders them as
+   in-depth written lessons (see LESSON_CONTENT). Pricing override
+   lives in hub-db.js (PRICE_OVERRIDES).
+   ============================================================ */
+
+COURSES_DB['ielts'] = {
+  id: 'ielts',
+  title: 'IELTS Masterclass: Band 7+ in Listening, Reading, Writing & Speaking',
+  shortDesc: 'A complete, strategy-driven IELTS course covering all four skills, the band-score system, question-type tactics, model answers, and full practice — built to move you to Band 7 and beyond.',
+  category: 'Exam Preparation',
+  icon: '🌍',
+  gradient: 'linear-gradient(135deg,#0b3d91,#1e3a8a,#3b82f6)',
+  instructor: 'Samuel Tolbert',
+  instructorTitle: 'Founder & CEO, Tolbert Innovation Hub',
+  instructorBio: 'Samuel Tolbert founded TIH to bring world-class exam preparation to Liberia and West Africa, coaching hundreds of students toward the scores they need to study and work abroad.',
+  rating: 4.9, reviewCount: 512, students: '1,200+',
+  duration: '30h', level: 'Intermediate → Advanced',
+  price: '$20', origPrice: '$150', isFree: false, badge: 'premium',
+  certId: 'TIH-2026-IELTS-0001',
+  learn: [
+    'Understand the Academic and General Training tests and choose the right one',
+    'Decode the 0–9 band-score system and the examiner criteria for each skill',
+    'Master every Listening question type with prediction and keyword tactics',
+    'Read faster with skimming, scanning and time control — and beat True/False/Not Given',
+    'Write Task 1 (graphs and letters) and Task 2 essays that hit Band 7 structure',
+    'Speak fluently across Parts 1–3 with model answers and pronunciation tips',
+    'Avoid the common mistakes that keep candidates stuck at Band 5–6'
+  ],
+  requirements: [
+    'An intermediate level of English (roughly Band 5) to build from',
+    'A notebook or device to complete the writing and speaking practice tasks',
+    'Commitment to practise with a timer — IELTS is as much about timing as accuracy'
+  ],
+  about: [
+    'IELTS is the world’s most widely accepted English test for university admission, professional registration, and migration. A strong band score opens doors to scholarships and opportunities across the UK, Canada, Australia, and beyond.',
+    'This masterclass is not a collection of random tips. It is a structured system: you learn how each of the four skills is scored, then work through the exact strategies for every question type, with model answers and practice built in.',
+    'Written specifically for learners in Liberia and West Africa, every lesson is clear, practical, and focused on turning effort into a higher band score.'
+  ],
+  modules: [
+    { title: 'Module 1: IELTS Foundations & the Band System', icon: '🧭', meta: '4 lessons',
+      lessons: [
+        {t:'1.1 The IELTS Test: Academic vs General Training', d:'Reading'},
+        {t:'1.2 Understanding the Band Score System (0–9)', d:'Reading'},
+        {t:'1.3 Test-Day Logistics & Smart Preparation', d:'Reading'},
+        {t:'📝 Quiz: IELTS Format & Scoring', d:'5 questions', isQuiz:true, quizId:'mod1'}
+      ]
+    },
+    { title: 'Module 2: Listening', icon: '🎧', meta: '4 lessons',
+      lessons: [
+        {t:'2.1 The Four Sections & Every Question Type', d:'Reading'},
+        {t:'2.2 Strategies: Prediction, Keywords & Distractor Traps', d:'Reading'},
+        {t:'2.3 Spelling, Numbers & Transferring Answers', d:'Reading'},
+        {t:'📝 Quiz: Listening', d:'5 questions', isQuiz:true, quizId:'mod2'}
+      ]
+    },
+    { title: 'Module 3: Reading', icon: '📖', meta: '4 lessons',
+      lessons: [
+        {t:'3.1 Skimming, Scanning & Time Management', d:'Reading'},
+        {t:'3.2 True / False / Not Given (and Yes / No / Not Given)', d:'Reading'},
+        {t:'3.3 Matching Headings, Completion & Multiple Choice', d:'Reading'},
+        {t:'📝 Quiz: Reading', d:'5 questions', isQuiz:true, quizId:'mod3'}
+      ]
+    },
+    { title: 'Module 4: Writing', icon: '✍️', meta: '5 lessons',
+      lessons: [
+        {t:'4.1 Task 1 Academic: Describing Graphs, Charts & Processes', d:'Reading'},
+        {t:'4.2 Task 1 General: Formal & Informal Letters', d:'Reading'},
+        {t:'4.3 Task 2: Essay Structure & Building an Argument', d:'Reading'},
+        {t:'4.4 Cohesion, Vocabulary & Common Mistakes', d:'Reading'},
+        {t:'🛠️ Project: Write a Full Band 7 Task 2 Essay', d:'Project', isProject:true}
+      ]
+    },
+    { title: 'Module 5: Speaking', icon: '🗣️', meta: '4 lessons',
+      lessons: [
+        {t:'5.1 Part 1: Introduction & Interview', d:'Reading'},
+        {t:'5.2 Part 2: The Long Turn (Cue Card)', d:'Reading'},
+        {t:'5.3 Part 3: Discussion, Fluency & Pronunciation', d:'Reading'},
+        {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
+      ]
+    }
+  ],
+  quizzes: {
+    mod1: { title: 'Quiz: IELTS Format & Scoring', moduleNum: 1, unlocks: 4, questions: [
+      {q:'Which IELTS test is required for most university admission?', opts:['General Training','Academic','Life Skills','Either one'], correct:1, exp:'The Academic test is used for higher education and professional registration; General Training is for migration and work.'},
+      {q:'The IELTS band scale runs from:', opts:['1 to 10','0 to 9','0 to 100','A to F'], correct:1, exp:'Each skill and the overall score is reported on a band scale from 0 to 9, in half-band steps.'},
+      {q:'Your overall band score is:', opts:['The Writing score','The average of the four skills, rounded','The lowest skill','The Speaking score'], correct:1, exp:'The overall band is the average of Listening, Reading, Writing and Speaking, rounded to the nearest half band.'},
+      {q:'How many skills does IELTS test?', opts:['Two','Three','Four','Five'], correct:2, exp:'IELTS tests Listening, Reading, Writing and Speaking.'},
+      {q:'A band 7 overall generally means:', opts:['Beginner','A good, operational command of English','No English','Native only'], correct:1, exp:'Band 7 describes a good user with operational command, occasional inaccuracies.'}
+    ]},
+    mod2: { title: 'Quiz: Listening', moduleNum: 2, unlocks: 4, questions: [
+      {q:'How many times is the Listening audio played?', opts:['Once','Twice','As many as you want','Three times'], correct:0, exp:'The IELTS Listening recording is played ONE time only, so prediction and focus are essential.'},
+      {q:'Before the audio starts you should:', opts:['Close your eyes','Read the questions and predict answers','Write your name','Do nothing'], correct:1, exp:'Use the preparation seconds to read ahead and predict the type of answer needed (number, name, noun).'},
+      {q:'A distractor in Listening is:', opts:['A correct answer','Information that sounds right but is corrected/changed by the speaker','A spelling rule','A type of accent'], correct:1, exp:'Speakers often give one answer then correct it — listen to the end before deciding.'},
+      {q:'Spelling in Listening answers:', opts:['Does not matter','Must be correct to earn the mark','Only matters for names','Is optional'], correct:1, exp:'Incorrectly spelled answers are marked wrong, so spelling accuracy is critical.'},
+      {q:'If you miss an answer, you should:', opts:['Stop the test','Panic','Let it go and focus on the next question','Guess randomly for all'], correct:2, exp:'Dwelling on a missed answer causes you to miss more — move on immediately.'}
+    ]},
+    mod3: { title: 'Quiz: Reading', moduleNum: 3, unlocks: 4, questions: [
+      {q:'Skimming means:', opts:['Reading every word slowly','Reading quickly for the general idea','Looking for one specific word','Translating the text'], correct:1, exp:'Skimming is fast reading to grasp the main idea and structure of a passage.'},
+      {q:'"Not Given" means:', opts:['The statement contradicts the text','The statement matches the text','There is no information to confirm or deny it','The question is wrong'], correct:2, exp:'Not Given means the passage neither confirms nor contradicts the statement.'},
+      {q:'For Matching Headings you should focus on:', opts:['The first line only','The main idea of each paragraph','Individual names','Punctuation'], correct:1, exp:'Headings summarise the central idea of a paragraph, not a single detail.'},
+      {q:'Academic Reading gives you:', opts:['30 minutes','60 minutes for 40 questions','90 minutes','No time limit'], correct:1, exp:'You have 60 minutes for 3 passages and 40 questions — budget about 20 minutes per passage.'},
+      {q:'A good time strategy is to:', opts:['Read all passages fully first','Answer easy questions first and not get stuck','Skip Reading','Only read titles'], correct:1, exp:'Secure the marks you can get quickly and return to harder items with remaining time.'}
+    ]},
+    final: { title: 'Final Assessment', moduleNum: 5, unlocks: null, isFinal: true, questions: [
+      {q:'A strong Task 2 essay always includes:', opts:['One long paragraph','An introduction, body paragraphs and a conclusion','Only bullet points','A drawing'], correct:1, exp:'Band 7 essays are clearly organised with an intro, developed body paragraphs and a conclusion.'},
+      {q:'In Speaking Part 2 you speak for:', opts:['10 seconds','1–2 minutes on a cue card','15 minutes','You do not speak'], correct:1, exp:'Part 2 is the long turn: 1 minute to prepare, then speak for 1–2 minutes.'},
+      {q:'"Coherence and Cohesion" in Writing refers to:', opts:['Handwriting','Logical organisation and linking of ideas','Vocabulary only','Grammar only'], correct:1, exp:'It is one of the four Writing criteria: how well ideas are organised and connected.'},
+      {q:'To raise your Speaking fluency score you should:', opts:['Speak very slowly','Memorise long scripts','Speak at a natural pace with linking words','Use one-word answers'], correct:2, exp:'Fluency rewards natural, connected speech — avoid long pauses and memorised chunks.'},
+      {q:'Task 2 is worth:', opts:['The same as Task 1','Less than Task 1','More than Task 1 (twice the weight)','Nothing'], correct:2, exp:'Task 2 carries twice the marks of Task 1, so manage your 60 minutes accordingly.'}
+    ]}
+  }
+};
+
+COURSES_DB['toefl'] = {
+  id: 'toefl',
+  title: 'TOEFL iBT Masterclass: Reading, Listening, Speaking & Writing',
+  shortDesc: 'A complete TOEFL iBT preparation course covering the format and 1–120 scoring, all four sections, integrated tasks, templates, and model responses to reach a competitive score.',
+  category: 'Exam Preparation',
+  icon: '🎓',
+  gradient: 'linear-gradient(135deg,#7c2d12,#b45309,#f59e0b)',
+  instructor: 'Samuel Tolbert',
+  instructorTitle: 'Founder & CEO, Tolbert Innovation Hub',
+  instructorBio: 'Samuel Tolbert founded TIH to bring world-class exam preparation to Liberia and West Africa, helping students meet the TOEFL scores required by universities worldwide.',
+  rating: 4.9, reviewCount: 388, students: '900+',
+  duration: '28h', level: 'Intermediate → Advanced',
+  price: '$20', origPrice: '$150', isFree: false, badge: 'premium',
+  certId: 'TIH-2026-TOEFL-0001',
+  learn: [
+    'Understand the TOEFL iBT format and the 0–120 scoring scale',
+    'Read academic passages efficiently and master every question type',
+    'Take effective notes for the Listening section lectures and conversations',
+    'Deliver strong independent and integrated Speaking responses using templates',
+    'Write the Integrated and Academic Discussion tasks to a high standard',
+    'Manage timing and stress across the full test'
+  ],
+  requirements: [
+    'An intermediate level of English to build from',
+    'A headset or quiet space to practise Speaking responses out loud',
+    'Willingness to practise note-taking, which is central to TOEFL success'
+  ],
+  about: [
+    'The TOEFL iBT is accepted by more than 11,000 universities worldwide and is often required for admission and scholarships in the United States and beyond.',
+    'This masterclass breaks the test into its four sections and teaches a reliable method for each — including the integrated tasks that combine reading, listening and speaking or writing, which most candidates find hardest.',
+    'Every lesson is written for clarity and built around templates and model answers you can adapt on test day.'
+  ],
+  modules: [
+    { title: 'Module 1: TOEFL iBT Foundations', icon: '🧭', meta: '3 lessons',
+      lessons: [
+        {t:'1.1 The TOEFL iBT Format & the 0–120 Score', d:'Reading'},
+        {t:'1.2 How Each Section Is Scored & What Universities Want', d:'Reading'},
+        {t:'📝 Quiz: TOEFL Format & Scoring', d:'5 questions', isQuiz:true, quizId:'mod1'}
+      ]
+    },
+    { title: 'Module 2: Reading', icon: '📖', meta: '3 lessons',
+      lessons: [
+        {t:'2.1 Academic Passages & the 10 Question Types', d:'Reading'},
+        {t:'2.2 Strategy: Vocabulary, Inference & Prose Summary', d:'Reading'},
+        {t:'📝 Quiz: Reading', d:'5 questions', isQuiz:true, quizId:'mod2'}
+      ]
+    },
+    { title: 'Module 3: Listening', icon: '🎧', meta: '3 lessons',
+      lessons: [
+        {t:'3.1 Lectures & Conversations: What to Expect', d:'Reading'},
+        {t:'3.2 Note-Taking Systems & Attitude/Function Questions', d:'Reading'},
+        {t:'📝 Quiz: Listening', d:'5 questions', isQuiz:true, quizId:'mod3'}
+      ]
+    },
+    { title: 'Module 4: Speaking', icon: '🗣️', meta: '3 lessons',
+      lessons: [
+        {t:'4.1 The Independent Task: Templates & Timing', d:'Reading'},
+        {t:'4.2 The Integrated Tasks: Read, Listen, Speak', d:'Reading'},
+        {t:'🛠️ Project: Record a 45-Second Independent Response', d:'Project', isProject:true}
+      ]
+    },
+    { title: 'Module 5: Writing', icon: '✍️', meta: '3 lessons',
+      lessons: [
+        {t:'5.1 The Integrated Writing Task', d:'Reading'},
+        {t:'5.2 The Academic Discussion Task', d:'Reading'},
+        {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
+      ]
+    }
+  ],
+  quizzes: {
+    mod1: { title: 'Quiz: TOEFL Format & Scoring', moduleNum: 1, unlocks: 3, questions: [
+      {q:'The TOEFL iBT total score ranges from:', opts:['0 to 9','0 to 120','0 to 100','200 to 800'], correct:1, exp:'Each of the four sections is scored 0–30, giving a total of 0–120.'},
+      {q:'How many sections does the TOEFL iBT have?', opts:['Two','Three','Four','Six'], correct:2, exp:'Reading, Listening, Speaking and Writing.'},
+      {q:'TOEFL is primarily used for admission to universities in:', opts:['Only Liberia','The United States and worldwide','Only France','Only online schools'], correct:1, exp:'TOEFL is accepted by 11,000+ institutions, especially in the US.'},
+      {q:'Each section is scored out of:', opts:['9','30','100','120'], correct:1, exp:'Each section is scored 0–30; the four combine to 120.'},
+      {q:'The TOEFL is delivered mainly:', opts:['On paper only','On a computer (internet-based)','By phone','In person orally only'], correct:1, exp:'The "iBT" means internet-based test, taken on a computer.'}
+    ]},
+    mod2: { title: 'Quiz: Reading', moduleNum: 2, unlocks: 3, questions: [
+      {q:'A TOEFL vocabulary question asks you to:', opts:['Spell a word','Choose the closest meaning of a word in context','Translate a word','Pronounce a word'], correct:1, exp:'You pick the option closest in meaning to the highlighted word as used in the passage.'},
+      {q:'The Prose Summary question requires you to:', opts:['Write an essay','Select the main ideas that belong in a summary','Fix grammar','Read aloud'], correct:1, exp:'You choose the answer choices that capture the passage’s major ideas.'},
+      {q:'An inference question asks about:', opts:['Something stated directly','Something strongly implied but not stated','The title','Vocabulary'], correct:1, exp:'Inference answers are supported by the text but not written word-for-word.'},
+      {q:'Best Reading time strategy:', opts:['Read the whole passage slowly first','Skim for structure, then answer using scanning','Answer without reading','Only read the first paragraph'], correct:1, exp:'Skim to map the passage, then scan back to the relevant lines for each question.'},
+      {q:'Reading passages are:', opts:['Casual chats','Academic, university-level texts','Poems','Advertisements'], correct:1, exp:'TOEFL Reading uses academic passages similar to first-year university texts.'}
+    ]},
+    mod3: { title: 'Quiz: Listening', moduleNum: 3, unlocks: 3, questions: [
+      {q:'During Listening you should:', opts:['Not take notes','Take structured notes','Close your eyes','Only listen to the first minute'], correct:1, exp:'Note-taking is allowed and essential; capture main ideas and signpost words.'},
+      {q:'A "function" question asks:', opts:['Why the speaker says something','How to spell a word','The exact words used','The speaker’s name'], correct:0, exp:'Function/purpose questions test why a statement was made, not just what was said.'},
+      {q:'TOEFL Listening includes:', opts:['Only songs','Lectures and campus conversations','Only news','Only interviews'], correct:1, exp:'You hear academic lectures and everyday campus conversations.'},
+      {q:'You hear each lecture:', opts:['Twice','Once','Three times','On demand'], correct:1, exp:'Audio plays once, so active note-taking matters.'},
+      {q:'Signpost words like "however" or "for example" signal:', opts:['The end of the test','Important structure and relationships between ideas','Nothing','A break'], correct:1, exp:'They flag contrasts, examples and emphasis — often tested by questions.'}
+    ]},
+    final: { title: 'Final Assessment', moduleNum: 5, unlocks: null, isFinal: true, questions: [
+      {q:'The Integrated Writing task asks you to:', opts:['Give only your opinion','Summarise how a lecture relates to a reading','Draw a chart','Translate'], correct:1, exp:'You explain how the lecture supports or challenges points in the reading passage.'},
+      {q:'A good independent Speaking response length is about:', opts:['5 seconds','45 seconds','5 minutes','No limit'], correct:1, exp:'Independent speaking responses are ~45 seconds; use preparation time to plan.'},
+      {q:'The Academic Discussion writing task asks you to:', opts:['Copy the professor','Contribute your own supported opinion to a discussion','Only agree','Write one sentence'], correct:1, exp:'You add your own well-supported point to an online class discussion prompt.'},
+      {q:'Integrated Speaking tasks combine:', opts:['Only speaking','Reading, listening and speaking','Only writing','Drawing'], correct:1, exp:'You read, then listen, then speak about how the sources relate.'},
+      {q:'Templates help because they:', opts:['Replace ideas','Give a reliable structure so you focus on content','Are required word-for-word','Lower your score'], correct:1, exp:'A template frees mental effort for content and delivery under time pressure.'}
+    ]}
+  }
+};
+
+COURSES_DB['sat'] = {
+  id: 'sat',
+  title: 'Digital SAT Masterclass: Reading & Writing + Math',
+  shortDesc: 'A full Digital SAT preparation course covering the adaptive format and 400–1600 scoring, the Reading & Writing section, the Math section, and a proven pacing and strategy system.',
+  category: 'Exam Preparation',
+  icon: '📐',
+  gradient: 'linear-gradient(135deg,#14532d,#15803d,#22c55e)',
+  instructor: 'Samuel Tolbert',
+  instructorTitle: 'Founder & CEO, Tolbert Innovation Hub',
+  instructorBio: 'Samuel Tolbert founded TIH to bring world-class exam preparation to Liberia and West Africa, guiding students toward the SAT scores that unlock US university admission and scholarships.',
+  rating: 4.9, reviewCount: 274, students: '700+',
+  duration: '32h', level: 'Intermediate → Advanced',
+  price: '$20', origPrice: '$160', isFree: false, badge: 'premium',
+  certId: 'TIH-2026-SAT-0001',
+  learn: [
+    'Understand the Digital SAT’s adaptive format and the 400–1600 score',
+    'Master Reading & Writing: craft, structure, expression and Standard English conventions',
+    'Solve Math faster: Algebra, Advanced Math, Problem-Solving & Data, and Geometry',
+    'Use the built-in Desmos calculator and reference sheet effectively',
+    'Apply pacing strategies for the two adaptive modules per section',
+    'Attempt a full-length practice set with worked solutions'
+  ],
+  requirements: [
+    'Solid basic English and math (roughly high-school level) to build on',
+    'A device to practise on Bluebook-style questions when possible',
+    'Discipline to practise under timed conditions'
+  ],
+  about: [
+    'The SAT is a key admission and scholarship test for universities in the United States. The exam is now the Digital SAT — shorter, adaptive, and taken on a computer through the Bluebook app.',
+    'This masterclass explains the new adaptive format, then teaches the content and question strategies for both the Reading & Writing section and the Math section, with worked examples throughout.',
+    'Every lesson is written clearly for learners in Liberia and West Africa who are aiming for competitive scores and international opportunities.'
+  ],
+  modules: [
+    { title: 'Module 1: The Digital SAT & How It Is Scored', icon: '🧭', meta: '3 lessons',
+      lessons: [
+        {t:'1.1 The Digital SAT Format: Adaptive Modules & Bluebook', d:'Reading'},
+        {t:'1.2 Scoring 400–1600 & Setting Your Target', d:'Reading'},
+        {t:'📝 Quiz: Digital SAT Format', d:'5 questions', isQuiz:true, quizId:'mod1'}
+      ]
+    },
+    { title: 'Module 2: Reading & Writing — Reading Skills', icon: '📖', meta: '3 lessons',
+      lessons: [
+        {t:'2.1 Craft & Structure: Main Idea, Purpose & Vocabulary', d:'Reading'},
+        {t:'2.2 Information & Ideas: Evidence, Inference & Data', d:'Reading'},
+        {t:'📝 Quiz: Reading Skills', d:'5 questions', isQuiz:true, quizId:'mod2'}
+      ]
+    },
+    { title: 'Module 3: Reading & Writing — Writing Skills', icon: '✍️', meta: '3 lessons',
+      lessons: [
+        {t:'3.1 Standard English Conventions: Grammar & Punctuation', d:'Reading'},
+        {t:'3.2 Expression of Ideas: Transitions & Rhetorical Synthesis', d:'Reading'},
+        {t:'📝 Quiz: Writing Skills', d:'5 questions', isQuiz:true, quizId:'mod3'}
+      ]
+    },
+    { title: 'Module 4: Math', icon: '🔢', meta: '4 lessons',
+      lessons: [
+        {t:'4.1 Algebra: Linear Equations, Systems & Inequalities', d:'Reading'},
+        {t:'4.2 Advanced Math: Quadratics, Exponents & Functions', d:'Reading'},
+        {t:'4.3 Problem-Solving, Data Analysis & Geometry', d:'Reading'},
+        {t:'🛠️ Project: Solve a Mixed Math Set with the Desmos Calculator', d:'Project', isProject:true}
+      ]
+    },
+    { title: 'Module 5: Strategy & Full Practice', icon: '🏁', meta: '3 lessons',
+      lessons: [
+        {t:'5.1 Pacing, Guessing & the Adaptive Second Module', d:'Reading'},
+        {t:'5.2 Test-Day Plan & Score-Boosting Habits', d:'Reading'},
+        {t:'🏆 Final Assessment & Certificate', d:'Assessment', isQuiz:true, quizId:'final', isFinal:true}
+      ]
+    }
+  ],
+  quizzes: {
+    mod1: { title: 'Quiz: Digital SAT Format', moduleNum: 1, unlocks: 3, questions: [
+      {q:'The Digital SAT total score ranges from:', opts:['0 to 120','400 to 1600','0 to 9','200 to 800'], correct:1, exp:'The SAT total is 400–1600: 200–800 for Reading & Writing plus 200–800 for Math.'},
+      {q:'The Digital SAT is "adaptive," which means:', opts:['It never changes','The second module’s difficulty depends on your first-module performance','It has no time limit','It is on paper'], correct:1, exp:'Each section has two modules; performance on the first sets the difficulty of the second.'},
+      {q:'The SAT is taken through:', opts:['Email','The Bluebook app on a computer','WhatsApp','A paper booklet only'], correct:1, exp:'The Digital SAT is administered through College Board’s Bluebook application.'},
+      {q:'The two sections of the SAT are:', opts:['Reading & Writing, and Math','Speaking and Writing','Listening and Reading','Essay and Math'], correct:0, exp:'The Digital SAT has a Reading & Writing section and a Math section.'},
+      {q:'A calculator is:', opts:['Never allowed','Allowed on the entire Math section (built-in Desmos)','Only on paper','Banned'], correct:1, exp:'A built-in Desmos graphing calculator is available for the whole Math section.'}
+    ]},
+    mod2: { title: 'Quiz: Reading Skills', moduleNum: 2, unlocks: 3, questions: [
+      {q:'"Words in Context" questions test:', opts:['Spelling','The best word for meaning and tone in a sentence','Handwriting','Pronunciation'], correct:1, exp:'You choose the word that best fits the logic and tone of the passage.'},
+      {q:'A "Command of Evidence" question asks you to:', opts:['Ignore the text','Find data or a quote that best supports a claim','Write an essay','Guess'], correct:1, exp:'You select the detail (text or graph) that most directly supports the point.'},
+      {q:'Digital SAT Reading passages are:', opts:['Very long (700+ words)','Short, one passage per question','Poems only','Absent'], correct:1, exp:'Each question has its own short passage of roughly 25–150 words.'},
+      {q:'An inference question requires an answer that is:', opts:['Directly stated','Logically supported by the passage','Unrelated','The longest option'], correct:1, exp:'Choose the option most logically supported by the given text.'},
+      {q:'Reading & Writing questions are arranged:', opts:['Randomly','Roughly easy to hard within a type','Hardest first','By colour'], correct:1, exp:'Questions are grouped by type and generally increase in difficulty.'}
+    ]},
+    mod3: { title: 'Quiz: Writing Skills', moduleNum: 3, unlocks: 3, questions: [
+      {q:'A comma splice is fixed by:', opts:['Adding more commas','Using a period, semicolon, or conjunction between two independent clauses','Removing all punctuation','Capitalising'], correct:1, exp:'Two independent clauses cannot be joined by a comma alone.'},
+      {q:'Transition questions test whether the logical relationship is:', opts:['Contrast, cause, example, etc.','Spelling','Length','Font'], correct:0, exp:'Pick the transition that matches the logic: however, therefore, for example, etc.'},
+      {q:'Subject–verb agreement means:', opts:['Verbs match the subject in number','All verbs are past tense','Sentences are short','Nouns are capitalised'], correct:0, exp:'A singular subject takes a singular verb; a plural subject takes a plural verb.'},
+      {q:'"Rhetorical Synthesis" asks you to:', opts:['Use given bullet-point notes to meet a stated goal','Write a poem','Translate','Draw'], correct:0, exp:'You combine given notes to accomplish a specific rhetorical goal.'},
+      {q:'The best answer for conventions questions is usually:', opts:['The longest','The one that is grammatically correct and concise','The most complex','Any option'], correct:1, exp:'SAT rewards correct, clear, concise writing.'}
+    ]},
+    final: { title: 'Final Assessment', moduleNum: 5, unlocks: null, isFinal: true, questions: [
+      {q:'On the Digital SAT you should guess when unsure because:', opts:['There is a penalty','There is no penalty for wrong answers','It lowers your score','Guessing is banned'], correct:1, exp:'There is no wrong-answer penalty, so never leave a question blank.'},
+      {q:'Solve 3x + 5 = 20. x =', opts:['3','5','15','45'], correct:1, exp:'3x = 15, so x = 5.'},
+      {q:'The slope of the line y = 2x + 4 is:', opts:['4','2','–4','1/2'], correct:1, exp:'In y = mx + b, the slope m is the coefficient of x, which is 2.'},
+      {q:'Good pacing means:', opts:['Spending all time on question 1','Moving steadily and flagging hard items to revisit','Skipping the section','Rushing everything'], correct:1, exp:'Answer efficiently, mark tough questions, and return with remaining time.'},
+      {q:'The Math reference sheet provides:', opts:['The answers','Common geometry formulas','Vocabulary','Nothing'], correct:1, exp:'A reference sheet with geometry formulas is available throughout the Math section.'}
+    ]}
+  }
+};

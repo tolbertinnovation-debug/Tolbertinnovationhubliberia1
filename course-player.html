@@ -10,13 +10,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="courses-db.js?v=3"></script>
-  <script src="lesson-content.js?v=3"></script>
+  <script src="courses-db.js?v=4"></script>
+  <script src="lesson-content.js?v=4"></script>
   <script src="hub-config.js?v=3"></script>
   <script src="hub-cloud.js?v=3"></script>
-  <script src="hub-db.js?v=5"></script>
+  <script src="hub-db.js?v=6"></script>
   <script src="cert-registry.js?v=2"></script>
-  <script src="paywall.js?v=1"></script>
+  <script src="paywall.js?v=2"></script>
   <script src="wassce-course.js?v=1"></script>
   <script src="cert-template.js?v=1"></script>
   <style>
@@ -577,6 +577,9 @@
           dur: l.d,
           module: mi + 1,
           videoId: l.v || 'Tn6-PIqc4UM',
+          // Reading lesson = a content lesson with no video. Its written material
+          // (LESSON_CONTENT) becomes the lesson body and the video pane is hidden.
+          reading: (!l.v && !l.isQuiz && !l.isProject),
           isQuiz: l.isQuiz || false,
           isProject: l.isProject || false,
           quizId: l.quizId || null,
@@ -745,8 +748,16 @@
     document.getElementById('lessonTitle').textContent = lesson.title;
     document.getElementById('lessonDur').textContent = lesson.dur;
     document.getElementById('lessonMeta').textContent = '📶 Module ' + lesson.module + ' · Lesson ' + (index + 1) + ' of ' + totalLessons;
-    // Update video (use placeholder for all lessons)
-    document.getElementById('videoIframe').src = 'https://www.youtube.com/embed/' + (lesson.videoId || 'Tn6-PIqc4UM') + '?rel=0&modestbranding=1';
+    // Update video — reading lessons hide the video pane and lead with their notes.
+    var videoWrap = document.querySelector('.video-container');
+    var vidEl = document.getElementById('videoIframe');
+    if (lesson.reading) {
+      if (videoWrap) videoWrap.style.display = 'none';
+      vidEl.src = 'about:blank';
+    } else {
+      if (videoWrap) videoWrap.style.display = '';
+      vidEl.src = 'https://www.youtube.com/embed/' + (lesson.videoId || 'Tn6-PIqc4UM') + '?rel=0&modestbranding=1';
+    }
     document.getElementById('videoScroll').scrollTop = 0;
     // Overview
     var overviewHtml;
@@ -764,7 +775,11 @@
     }
     document.getElementById('overviewContent').innerHTML = overviewHtml;
     // Resources — Issue 12 fix: styled empty state instead of bare placeholder
-    document.getElementById('resourcesContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">📂</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">Learn From the Video &amp; Your Notes</p><p style="font-size:0.85rem;">This lesson is delivered through the video above. Use the Notes tab to write down the key points as you watch, and visit the TIH Library for further reading on this topic.</p><a href="library.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;background:#1e40af;color:#fff;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px;text-decoration:none;">📚 Open the Library</a></div>';
+    var resHead = lesson.reading ? 'Learn From the Lesson &amp; Your Notes' : 'Learn From the Video &amp; Your Notes';
+    var resBody = lesson.reading
+      ? 'This lesson is delivered as a detailed written masterclass in the Overview tab. Read it carefully, use the Notes tab to capture key strategies, and visit the TIH Library for further practice on this topic.'
+      : 'This lesson is delivered through the video above. Use the Notes tab to write down the key points as you watch, and visit the TIH Library for further reading on this topic.';
+    document.getElementById('resourcesContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">📂</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">' + resHead + '</p><p style="font-size:0.85rem;">' + resBody + '</p><a href="library.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;background:#1e40af;color:#fff;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px;text-decoration:none;">📚 Open the Library</a></div>';
     // Q&A — Issue 13 fix: styled empty state with engagement prompt instead of bare placeholder
     document.getElementById('qaContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">💬</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">Have a Question?</p><p style="font-size:0.85rem;">If anything in this lesson is unclear, reach out to a TIH mentor on WhatsApp. We are happy to explain it another way and help you keep moving forward.</p><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;background:#25D366;color:#fff;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px;text-decoration:none;">💬 Ask on WhatsApp</a></div>';
     // Notes
