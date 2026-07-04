@@ -16,6 +16,7 @@
   <script src="hub-config.js?v=1"></script>
   <script src="cert-registry.js?v=1"></script>
   <script src="paywall.js?v=1"></script>
+  <script src="wassce-course.js?v=1"></script>
   <script src="cert-template.js?v=1"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -535,7 +536,7 @@
   // ===== LOAD COURSE FROM DB =====
   var courseId, course, lessons, quizData, totalLessons, hubStudent = null;
 
-  (function loadCourse() {
+  function loadCourse() {
     try {
     courseId = getUrlParam('id') || 'computer-literacy';
 
@@ -608,7 +609,7 @@
       var errEl = document.getElementById('lessonTitle');
       if (errEl) errEl.textContent = 'Error loading course — please refresh.';
     }
-  })();
+  }
 
   // ===== STATE =====
   var completedLessons = [];
@@ -691,7 +692,7 @@
   function escSide(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
   // ===== INIT =====
-  (function init() {
+  function init() {
     if (!course) return;
     try {
     // Restore saved progress FIRST so isLessonLocked() is accurate from the start
@@ -718,6 +719,18 @@
     updateProgress();
     } catch(e) {
       document.getElementById('lessonTitle').textContent = 'Error loading lesson — please refresh.';
+    }
+  }
+
+  // ===== BOOTSTRAP =====
+  // For WASSCE course ids (wassce-<subject>) this lazy-loads the WASSCE data and
+  // synthesizes the course into COURSES_DB first; normal courses run immediately.
+  (function boot() {
+    var bootId = getUrlParam('id') || 'computer-literacy';
+    if (typeof WassceCourse !== 'undefined') {
+      WassceCourse.ensure(bootId, function () { loadCourse(); init(); });
+    } else {
+      loadCourse(); init();
     }
   })();
 

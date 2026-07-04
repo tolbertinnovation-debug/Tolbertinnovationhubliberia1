@@ -524,10 +524,10 @@
       var grid = document.getElementById('wassceGrid');
       if (!grid) return;
       grid.innerHTML = subjects.map(function (s) {
-        return '<a class="track-chip" href="wassce-learn.html?s=' + s[0] + '">'
+        return '<a class="track-chip" href="course-player.html?id=wassce-' + s[0] + '">'
           + '<span class="t-icon">' + s[2] + '</span>'
           + '<span><span class="t-name">' + s[1] + '</span><br>'
-          + '<span class="t-meta">WASSCE · lessons, MCQ &amp; mock · US$2</span></span>'
+          + '<span class="t-meta">WASSCE · lessons, quiz &amp; certificate · US$2</span></span>'
           + '</a>';
       }).join('');
     })();
