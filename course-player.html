@@ -336,6 +336,7 @@
       </div>
     </div>
     <div class="topbar-right">
+      <a href="#" class="topbar-cert-btn" id="topbarPracticeBtn" style="text-decoration:none;display:none;background:#F97316;color:#fff;border-color:#F97316;" title="Take the timed practice test">🎯 Practice Test</a>
       <button class="topbar-cert-btn" id="topbarCertBtn" onclick="showCompletionModal()" title="View &amp; download your certificate">🏆 Certificate</button>
       <a href="my-certificates.html" class="topbar-cert-btn" id="topbarMyCertsBtn" style="text-decoration:none;display:none;" title="All my certificates">📜 My Certs</a>
       <a href="hub-dashboard.html" class="topbar-avatar" title="My Account" id="topbarAvatar" style="text-decoration:none;">?</a>
@@ -595,6 +596,11 @@
     // Update topbar
     document.getElementById('topbarTitle').textContent = course.title;
     document.getElementById('topbarBack').href = 'hub-dashboard.html';
+    // Premium exam-prep courses get a Practice Test entry point.
+    if (courseId === 'ielts' || courseId === 'toefl' || courseId === 'sat') {
+      var pb = document.getElementById('topbarPracticeBtn');
+      if (pb) { pb.href = 'practice-test.html?exam=' + courseId; pb.style.display = ''; }
+    }
     // Populate avatar with first letter of logged-in student's name
     (function() {
       var avatarEl = document.getElementById('topbarAvatar');

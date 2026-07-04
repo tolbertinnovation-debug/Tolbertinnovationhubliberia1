@@ -378,9 +378,13 @@
         }
 
         var unlocked = HubDB.hasAccess(c.id);
+        var price = (HubDB.priceFor ? HubDB.priceFor(c.id) : 2);
+        var isExam = (c.id === 'ielts' || c.id === 'toefl' || c.id === 'sat');
+        var practiceLink = (isExam && unlocked)
+          ? ' <a class="btn btn-line btn-sm" href="practice-test.html?exam=' + encodeURIComponent(c.id) + '">🎯 Practice Test</a>' : '';
         var action;
         if (!unlocked) {
-          action = '<a class="btn btn-orange btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">🔓 Unlock (US$2)</a>';
+          action = '<a class="btn btn-orange btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">🔓 Unlock (US$' + price + ')</a>';
         } else if (isDone) {
           action = '<a class="btn btn-line btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">Review Course</a>';
         } else {
@@ -390,10 +394,10 @@
         return '<div class="course-card">'
           + '<div class="cc-top"><div class="cc-icon">' + meta.icon + '</div>'
           + '<div><div class="cc-title">' + esc(meta.title) + '</div>'
-          + '<div class="cc-meta">' + (unlocked ? statusPill : '<span class="pill new">🔒 Locked · US$2</span>') + prioPill + '</div></div></div>'
+          + '<div class="cc-meta">' + (unlocked ? statusPill : '<span class="pill new">🔒 Locked · US$' + price + '</span>') + prioPill + '</div></div></div>'
           + '<div class="prog-track"><div class="prog-fill" style="width:' + p.pct + '%"></div></div>'
           + '<div class="cc-row"><span>' + p.completed + '/' + p.total + ' lessons · ' + p.pct + '%</span>' + deadlineHtml + '</div>'
-          + '<div>' + action + '</div>'
+          + '<div style="display:flex;gap:.4rem;flex-wrap:wrap;">' + action + practiceLink + '</div>'
           + '</div>';
       }).join('');
 
