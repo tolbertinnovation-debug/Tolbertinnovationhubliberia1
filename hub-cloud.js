@@ -99,7 +99,19 @@ var HubCloud = (function () {
   }
 
   // ---- helpers ----
-  function ok(res) { return !(res && res.error); }
+  function ok(res) {
+    if (res && res.error && typeof console !== 'undefined' && console.warn) {
+      console.warn('[HubCloud] write error:', res.error.message || res.error);
+    }
+    return !(res && res.error);
+  }
+  // Strip null/undefined so NOT-NULL columns fall back to their DB default
+  // (Postgres rejects an explicit null even when a default exists).
+  function clean(o) {
+    var r = {};
+    for (var k in o) { if (o.hasOwnProperty(k) && o[k] !== null && o[k] !== undefined) r[k] = o[k]; }
+    return r;
+  }
 
   // ---- admin auth (Supabase Auth) ----
   function adminSignIn(email, password) {
@@ -161,7 +173,7 @@ var HubCloud = (function () {
 
   // ---- applications ----
   function appRow(a) {
-    return {
+    return clean({
       id: a.id, submitted_at: a.submittedAt || a.submitted_at || null,
       status: a.status || 'pending', status_message: a.statusMessage || '',
       name: a.name || '', email: a.email || '', phone: a.phone || '',
@@ -169,7 +181,7 @@ var HubCloud = (function () {
       occupation: a.occupation || '', goals: a.goals || '',
       tracks: a.tracks || [], referral: a.referral || '',
       notes: a.notes || [], updated_at: a.updatedAt || null
-    };
+    });
   }
   function appFromRow(r) {
     return {
@@ -200,7 +212,7 @@ var HubCloud = (function () {
 
   // ---- students ----
   function stuRow(s) {
-    return {
+    return clean({
       id: s.id, created_at: s.createdAt || null, updated_at: s.updatedAt || null,
       status: s.status || 'active', name: s.name || '', email: s.email || '',
       phone: s.phone || '', location: s.location || '',
@@ -208,7 +220,7 @@ var HubCloud = (function () {
       must_change_password: s.mustChangePassword !== false,
       courses: s.courses || [], last_login_at: s.lastLoginAt || null,
       admin_notes: s.adminNotes || []
-    };
+    });
   }
   function stuFromRow(r) {
     return {
@@ -256,11 +268,11 @@ var HubCloud = (function () {
 
   // ---- certificate requests ----
   function crqRow(r) {
-    return {
+    return clean({
       id: r.id, student_id: r.studentId, course_id: r.courseId,
       course_title: r.courseTitle || r.courseId, requested_at: r.requestedAt || null,
       status: r.status || 'pending', reason: r.reason || '', decided_at: r.decidedAt || null
-    };
+    });
   }
   function crqFromRow(r) {
     return {
