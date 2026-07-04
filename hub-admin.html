@@ -135,6 +135,7 @@
     <div class="admin-topbar">
       <div class="admin-brand">TIH <span>Learning Hub</span> · Admin</div>
       <div class="admin-topbar-right">
+        <span id="dbStatus" title="Central database status" style="display:none;font-size:.72rem;font-weight:700;padding:.2rem .55rem;border-radius:999px;"></span>
         <span id="adminWho" style="color:var(--muted);"></span>
         <button class="btn btn-line btn-sm" id="logoutBtn">Log out</button>
       </div>
@@ -323,8 +324,9 @@
   </div>
 
   <script src="courses-db.js?v=3"></script>
-  <script src="hub-db.js?v=3"></script>
-  <script src="hub-config.js?v=1"></script>
+  <script src="hub-config.js?v=2"></script>
+  <script src="hub-cloud.js?v=1"></script>
+  <script src="hub-db.js?v=4"></script>
   <script src="cert-registry.js?v=1"></script>
   <script>
     /* ============ HELPERS ============ */
@@ -351,6 +353,81 @@
       var s = HubDB.adminSession();
       document.getElementById('adminWho').textContent = s ? ('Signed in: ' + s.username) : '';
       renderAll();
+      initCloud();
+    }
+
+    /* ============ CENTRAL DATABASE (Supabase) ============ */
+    var _cloudSubs = [], _syncTimer = null;
+    function setCloudBadge(text, bg, fg) {
+      var el = document.getElementById('dbStatus');
+      if (!el) return;
+      el.style.display = 'inline-block';
+      el.textContent = text;
+      el.style.background = bg; el.style.color = fg;
+    }
+    function initCloud() {
+      if (!(typeof HubDB !== 'undefined' && HubDB.cloudEnabled && HubDB.cloudEnabled())) {
+        setCloudBadge('⚠ Local only', '#fef3c7', '#92400e');
+        return; // cloud not configured — panel runs on local data as before
+      }
+      setCloudBadge('☁ Connecting…', '#e0e7ff', '#3730a3');
+      HubCloud.adminUser().then(function (user) {
+        if (user) { cloudReady(user); }
+        else { promptCloudSignIn(); }
+      });
+    }
+    function cloudReady(user) {
+      setCloudBadge('☁ Cloud connected', '#dcfce7', '#166534');
+      var who = document.getElementById('adminWho');
+      if (who && user && user.email) who.title = 'Cloud: ' + user.email;
+      pullCloud();
+      subscribeCloud();
+    }
+    function pullCloud() {
+      return HubDB.syncFromCloud().then(function (r) {
+        if (r && r.enabled) renderAll();
+        return r;
+      });
+    }
+    function scheduleSync() {
+      if (_syncTimer) return;
+      _syncTimer = setTimeout(function () { _syncTimer = null; pullCloud(); }, 800);
+    }
+    function subscribeCloud() {
+      ['applications', 'cert_requests', 'enrollments', 'progress'].forEach(function (t) {
+        _cloudSubs.push(HubCloud.subscribe(t, scheduleSync));
+      });
+    }
+    function promptCloudSignIn() {
+      setCloudBadge('☁ Sign in to sync', '#fee2e2', '#991b1b');
+      openModal(
+        '<h3 style="margin:0 0 .35rem;">Connect the central database</h3>' +
+        '<p style="color:var(--muted);font-size:.85rem;margin:0 0 1rem;">Sign in with your Supabase admin account to load applications and learners from every device in real time. (This is the account you created in Supabase → Authentication → Users.)</p>' +
+        '<label style="font-size:.8rem;font-weight:700;">Admin email</label>' +
+        '<input id="cloudEmail" type="email" autocomplete="username" style="width:100%;padding:.6rem;margin:.25rem 0 .7rem;border:1px solid #cbd5e1;border-radius:8px;">' +
+        '<label style="font-size:.8rem;font-weight:700;">Password</label>' +
+        '<input id="cloudPass" type="password" autocomplete="current-password" style="width:100%;padding:.6rem;margin:.25rem 0 .7rem;border:1px solid #cbd5e1;border-radius:8px;">' +
+        '<div id="cloudFb" class="feedback" style="min-height:1.1em;color:#b91c1c;font-size:.82rem;"></div>' +
+        '<div style="display:flex;gap:.5rem;margin-top:.6rem;">' +
+        '<button class="btn btn-primary" id="cloudSignInBtn" style="flex:1;">Connect</button>' +
+        '<button class="btn btn-line" id="cloudSkipBtn">Work offline</button>' +
+        '</div>'
+      );
+      document.getElementById('cloudSkipBtn').onclick = function () {
+        closeModal(); setCloudBadge('⚠ Offline (local only)', '#fef3c7', '#92400e');
+      };
+      document.getElementById('cloudSignInBtn').onclick = function () {
+        var email = document.getElementById('cloudEmail').value;
+        var pass = document.getElementById('cloudPass').value;
+        var fb = document.getElementById('cloudFb');
+        fb.textContent = 'Connecting…';
+        HubCloud.adminSignIn(email, pass).then(function (res) {
+          if (!res.ok) { fb.textContent = res.error || 'Sign-in failed.'; return; }
+          HubDB.audit('Cloud database connected');
+          closeModal();
+          HubCloud.adminUser().then(cloudReady);
+        });
+      };
     }
     HubDB.ensureAdminAccount().then(function (acct) {
       if (acct.isDefaultPassword) document.getElementById('defaultCredNote').style.display = 'block';
@@ -374,8 +451,11 @@
     }
     document.getElementById('logoutBtn').addEventListener('click', function () {
       HubDB.audit('Admin signed out');
+      _cloudSubs.forEach(function (u) { try { u(); } catch (e) {} });
       HubDB.adminLogout();
-      location.reload();
+      var done = function () { location.reload(); };
+      if (typeof HubCloud !== 'undefined' && HubCloud.isEnabled()) { HubCloud.adminSignOut().then(done, done); }
+      else { done(); }
     });
 
     /* ============ TABS ============ */

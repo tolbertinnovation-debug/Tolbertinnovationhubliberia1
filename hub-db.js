@@ -41,6 +41,17 @@ var HubDB = (function () {
     try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
   }
 
+  /* ---- Cloud bridge (Supabase, optional) ----
+     Returns the HubCloud module when a Supabase config is present, else
+     null. Every cloud call is best-effort and fire-and-forget: the local
+     write always happens first, so the site never blocks on the network
+     and works fully offline / when the cloud is unconfigured. */
+  function cloud() {
+    return (typeof HubCloud !== 'undefined' && HubCloud.isEnabled()) ? HubCloud : null;
+  }
+  function cloudEnabled() { return !!cloud(); }
+  function fire(promise) { if (promise && promise.catch) promise.catch(function () {}); }
+
   /* ---- SHA-256 hashing (same approach as classroom.js) ---- */
   function sha256(text) {
     if (window.crypto && window.crypto.subtle && window.TextEncoder) {
@@ -102,6 +113,7 @@ var HubDB = (function () {
     };
     list.unshift(app);
     saveApplications(list);
+    if (cloud()) fire(cloud().pushApplication(app)); // mirror to central DB
     return app;
   }
   function updateApplication(id, changes) {
@@ -111,6 +123,7 @@ var HubDB = (function () {
         for (var k in changes) { if (changes.hasOwnProperty(k)) list[i][k] = changes[k]; }
         list[i].updatedAt = nowISO();
         saveApplications(list);
+        if (cloud()) fire(cloud().pushApplication(list[i])); // full-row upsert keeps cloud in sync
         return list[i];
       }
     }
@@ -151,6 +164,7 @@ var HubDB = (function () {
       var list = getStudents();
       list.unshift(student);
       saveStudents(list);
+      if (cloud()) fire(cloud().pushStudent(student)); // mirror to central DB
       return { student: student, tempPassword: tempPassword };
     });
   }
@@ -161,6 +175,7 @@ var HubDB = (function () {
         for (var k in changes) { if (changes.hasOwnProperty(k)) list[i][k] = changes[k]; }
         list[i].updatedAt = nowISO();
         saveStudents(list);
+        if (cloud()) fire(cloud().pushStudent(list[i])); // keep cloud row current
         return list[i];
       }
     }
@@ -201,20 +216,37 @@ var HubDB = (function () {
   }
 
   /* ---- Student auth ---- */
+  // Finalise a successful login: refresh local cache, set session keys.
+  function completeStudentLogin(s) {
+    var list = getStudents();
+    var found = false;
+    for (var i = 0; i < list.length; i++) { if (list[i].id === s.id) { list[i] = s; found = true; break; } }
+    if (!found) list.unshift(s);
+    var history = (s.loginHistory || []).slice(0, 9);
+    history.unshift(nowISO());
+    s.lastLoginAt = nowISO(); s.loginHistory = history;
+    saveStudents(list);
+    setJSON(KEYS.studentSession, { id: s.id, name: s.name, email: s.email, at: nowISO() });
+    setJSON('tih_student_session', { name: s.name, email: s.email });
+    try { localStorage.setItem('tih_student_name', s.name); } catch (e) {}
+    if (cloud()) fire(cloud().touchStudentLogin(s.id));
+    return { ok: true, student: s, mustChangePassword: s.mustChangePassword };
+  }
   function studentLogin(idOrEmail, password) {
-    var s = findStudent(idOrEmail);
-    if (!s) return Promise.resolve({ ok: false, error: 'No account found. Check your Student ID or email.' });
-    if (s.status === 'suspended') return Promise.resolve({ ok: false, error: 'This account is suspended. Contact TIH support.' });
     return sha256(password).then(function (hash) {
-      if (hash !== s.passwordHash) return { ok: false, error: 'Incorrect password. Try again or contact support on WhatsApp.' };
-      var history = (s.loginHistory || []).slice(0, 9);
-      history.unshift(nowISO());
-      updateStudent(s.id, { lastLoginAt: nowISO(), loginHistory: history });
-      setJSON(KEYS.studentSession, { id: s.id, name: s.name, email: s.email, at: nowISO() });
-      // Also set the session key the course player reads for the avatar.
-      setJSON('tih_student_session', { name: s.name, email: s.email });
-      try { localStorage.setItem('tih_student_name', s.name); } catch (e) {}
-      return { ok: true, student: s, mustChangePassword: s.mustChangePassword };
+      // 1) Try the central database first (works from any device).
+      var cloudTry = cloud()
+        ? cloud().studentLogin(idOrEmail, hash).catch(function () { return null; })
+        : Promise.resolve(null);
+      return cloudTry.then(function (cloudStudent) {
+        if (cloudStudent) return completeStudentLogin(cloudStudent);
+        // 2) Fall back to the local account (offline / cloud unconfigured).
+        var s = findStudent(idOrEmail);
+        if (!s) return { ok: false, error: 'No account found. Check your Student ID or email.' };
+        if (s.status === 'suspended') return { ok: false, error: 'This account is suspended. Contact TIH support.' };
+        if (hash !== s.passwordHash) return { ok: false, error: 'Incorrect password. Try again or contact support on WhatsApp.' };
+        return completeStudentLogin(s);
+      });
     });
   }
   function studentSession() { return getJSON(KEYS.studentSession, null); }
@@ -298,6 +330,55 @@ var HubDB = (function () {
   function courseCertificate(courseId) {
     return getJSON('tih_cert_' + courseId, null);
   }
+  // Push a progress snapshot for the current student to the central DB so
+  // the admin can see live learning activity across devices (best effort).
+  function pushProgressSnapshot(courseId, activityType, score) {
+    if (!cloud()) return;
+    var sess = studentSession();
+    var studentId = sess && sess.id;
+    if (!studentId) return;
+    var p = courseProgress(courseId);
+    fire(cloud().pushProgress({
+      student_id: studentId, course_id: courseId,
+      completed_lessons: p.completed, total_lessons: p.total, pct: p.pct,
+      last_activity_at: nowISO()
+    }));
+    fire(cloud().logActivity({
+      student_id: studentId, course_id: courseId,
+      activity_type: activityType || 'lesson_complete',
+      detail: '', score: (typeof score === 'number' ? score : null)
+    }));
+  }
+
+  /* ---- Cloud pull (admin) ----
+     Refreshes the local caches from the central database so the admin
+     panel shows applications/students/requests submitted on any device.
+     Resolves to a summary; safe no-op (all zeros) when cloud is off. */
+  function syncFromCloud() {
+    if (!cloud()) return Promise.resolve({ enabled: false, applications: 0, students: 0, certRequests: 0 });
+    var C = cloud();
+    return Promise.all([
+      C.fetchApplications().catch(function () { return null; }),
+      C.fetchStudents().catch(function () { return null; }),
+      C.fetchCertRequests().catch(function () { return null; })
+    ]).then(function (r) {
+      var apps = r[0], studs = r[1], reqs = r[2];
+      var out = { enabled: true, applications: 0, students: 0, certRequests: 0 };
+      if (Array.isArray(apps)) { saveApplications(apps); out.applications = apps.length; }
+      if (Array.isArray(studs)) {
+        // Preserve any local-only login history that the cloud row lacks.
+        var localById = {};
+        getStudents().forEach(function (s) { localById[s.id] = s; });
+        studs.forEach(function (s) {
+          var loc = localById[s.id];
+          if (loc && (!s.loginHistory || !s.loginHistory.length)) s.loginHistory = loc.loginHistory || [];
+        });
+        saveStudents(studs); out.students = studs.length;
+      }
+      if (Array.isArray(reqs)) { saveCertRequests(reqs); out.certRequests = reqs.length; }
+      return out;
+    }).catch(function () { return { enabled: true, applications: 0, students: 0, certRequests: 0, error: true }; });
+  }
 
   /* ---- Certificate requests & approval codes ----
      Cross-device flow for the static site: the student's request reaches
@@ -325,6 +406,7 @@ var HubDB = (function () {
     };
     list.unshift(req);
     saveCertRequests(list);
+    if (cloud()) fire(cloud().pushCertRequest(req)); // mirror to central DB
     return req;
   }
   function updateCertRequest(id, changes) {
@@ -334,6 +416,7 @@ var HubDB = (function () {
         for (var k in changes) { if (changes.hasOwnProperty(k)) list[i][k] = changes[k]; }
         list[i].decidedAt = nowISO();
         saveCertRequests(list);
+        if (cloud()) fire(cloud().pushCertRequest(list[i]));
         return list[i];
       }
     }
@@ -394,6 +477,7 @@ var HubDB = (function () {
       var ok = String(code || '').replace(/[^a-z0-9]/gi, '').toUpperCase() === expected;
       if (ok) {
         try { localStorage.setItem('tih_access_' + itemId, JSON.stringify({ studentId: studentId, at: nowISO() })); } catch (e) {}
+        recordEnrollment(studentId, itemId, true); // central record of the unlock
       }
       return ok;
     });
@@ -401,6 +485,26 @@ var HubDB = (function () {
   function grantAccess(itemId, studentId) {
     // Admin-side same-device grant (also used by tests/back-office).
     try { localStorage.setItem('tih_access_' + itemId, JSON.stringify({ studentId: studentId || '', at: nowISO() })); } catch (e) {}
+    recordEnrollment(studentId, itemId, true);
+  }
+
+  // Central record of a paid enrollment / access grant (best effort).
+  function recordEnrollment(studentId, itemId, confirmed) {
+    if (!cloud() || !studentId) return;
+    var title = (typeof COURSES_DB !== 'undefined' && COURSES_DB[itemId] && COURSES_DB[itemId].title)
+      ? COURSES_DB[itemId].title
+      : (itemId === 'wassce-all' ? 'WASSCE PRO — All 23 Subjects' : itemId);
+    fire(cloud().pushEnrollment({
+      student_id: studentId, item_id: itemId, item_title: title,
+      payment_status: confirmed ? 'confirmed' : 'pending',
+      access_granted: !!confirmed, granted_at: confirmed ? nowISO() : null
+    }));
+    if (confirmed) {
+      fire(cloud().pushPayment({
+        student_id: studentId, item_id: itemId, amount: PAYMENT.amountUSD,
+        method: 'Mobile Money', status: 'success', confirmed_by: 'admin'
+      }));
+    }
   }
 
   /* ---- WhatsApp / email helpers ---- */
@@ -454,6 +558,10 @@ var HubDB = (function () {
     // progress
     courseProgress: courseProgress,
     courseCertificate: courseCertificate,
+    pushProgressSnapshot: pushProgressSnapshot,
+    // cloud
+    cloudEnabled: cloudEnabled,
+    syncFromCloud: syncFromCloud,
     // certificate requests / approval
     certCode: certCode,
     getCertRequests: getCertRequests,

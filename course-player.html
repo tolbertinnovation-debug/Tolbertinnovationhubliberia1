@@ -12,8 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="courses-db.js?v=3"></script>
   <script src="lesson-content.js?v=3"></script>
-  <script src="hub-db.js?v=3"></script>
-  <script src="hub-config.js?v=1"></script>
+  <script src="hub-config.js?v=2"></script>
+  <script src="hub-cloud.js?v=1"></script>
+  <script src="hub-db.js?v=4"></script>
   <script src="cert-registry.js?v=1"></script>
   <script src="paywall.js?v=1"></script>
   <script src="wassce-course.js?v=1"></script>
@@ -904,6 +905,7 @@
     if (completedLessons.indexOf(currentLessonIndex) !== -1) return;
     completedLessons.push(currentLessonIndex);
     localStorage.setItem('tih_progress_' + courseId, JSON.stringify(completedLessons));
+    if (typeof HubDB !== 'undefined' && HubDB.pushProgressSnapshot) HubDB.pushProgressSnapshot(courseId, 'lesson_complete');
     // Rebuild sidebar so the next lesson visibly unlocks
     buildSidebar();
     var nextIdx = currentLessonIndex + 1;
@@ -1125,6 +1127,7 @@
     if (completedLessons.indexOf(currentQuizLessonIndex) === -1) {
       completedLessons.push(currentQuizLessonIndex);
       localStorage.setItem('tih_progress_' + courseId, JSON.stringify(completedLessons));
+      if (typeof HubDB !== 'undefined' && HubDB.pushProgressSnapshot) HubDB.pushProgressSnapshot(courseId, 'quiz_passed');
     }
     // Rebuild sidebar so the next lesson unlocks immediately after quiz pass
     buildSidebar();
