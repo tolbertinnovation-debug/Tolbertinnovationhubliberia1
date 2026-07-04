@@ -168,7 +168,7 @@
 
         <section>
           <h2>🎓 WASSCE PRO — Exam Prep</h2>
-          <p style="font-size:.82rem;color:var(--muted);margin:-0.4rem 0 0.8rem;">One US$2 payment unlocks <strong>all 23 WASSCE subjects</strong>.</p>
+          <p style="font-size:.82rem;color:var(--muted);margin:-0.4rem 0 0.8rem;">Each subject unlocks separately for <strong>US$2</strong>.</p>
           <div class="courses-grid" id="wassceGrid"></div>
         </section>
 
@@ -486,11 +486,10 @@
     function renderWassce() {
       var grid = document.getElementById('wassceGrid');
       if (!grid) return;
-      // One US$2 WASSCE bundle unlocks every subject.
-      var bundleUnlocked = HubDB.hasAccess('wassce-all');
+      // Each WASSCE subject is unlocked individually with its own US$2 payment.
       grid.innerHTML = WASSCE_SUBJECTS.map(function (s) {
-        var unlocked = bundleUnlocked;
-        var pill = unlocked ? '<span class="pill done">✓ Unlocked</span>' : '<span class="pill new">🔒 US$2 · all subjects</span>';
+        var unlocked = HubDB.hasAccess('wassce-' + s[0]);
+        var pill = unlocked ? '<span class="pill done">✓ Unlocked</span>' : '<span class="pill new">🔒 US$2</span>';
         var btn = '<a class="btn btn-orange btn-sm" href="course-player.html?id=wassce-' + s[0] + '">' + (unlocked ? 'Study →' : '🔓 Unlock (US$2)') + '</a>';
         return '<div class="course-card">'
           + '<div class="cc-top"><div class="cc-icon">' + s[2] + '</div>'
