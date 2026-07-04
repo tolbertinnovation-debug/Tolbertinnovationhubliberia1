@@ -123,7 +123,7 @@ var HubDB = (function () {
         for (var k in changes) { if (changes.hasOwnProperty(k)) list[i][k] = changes[k]; }
         list[i].updatedAt = nowISO();
         saveApplications(list);
-        if (cloud()) fire(cloud().pushApplication(list[i])); // full-row upsert keeps cloud in sync
+        if (cloud()) fire(cloud().updateApplication(id, changes)); // proper UPDATE keeps cloud in sync
         return list[i];
       }
     }
@@ -354,6 +354,24 @@ var HubDB = (function () {
      Refreshes the local caches from the central database so the admin
      panel shows applications/students/requests submitted on any device.
      Resolves to a summary; safe no-op (all zeros) when cloud is off. */
+  // Merge a cloud list with the local list by id. Cloud wins on conflict
+  // (it is the shared source of truth); local-only rows are KEPT and pushed
+  // up to the cloud (back-fill) so nothing is ever lost and records made
+  // before the cloud was configured still arrive centrally.
+  function mergeById(cloudList, localList, backfill, sortKey) {
+    var byId = {};
+    (cloudList || []).forEach(function (c) { byId[c.id] = c; });
+    (localList || []).forEach(function (l) {
+      if (!byId[l.id]) { byId[l.id] = l; if (backfill) fire(backfill(l)); } // local-only → upload
+    });
+    var merged = [];
+    for (var k in byId) { if (byId.hasOwnProperty(k)) merged.push(byId[k]); }
+    if (sortKey) {
+      merged.sort(function (a, b) { return String(b[sortKey] || '').localeCompare(String(a[sortKey] || '')); });
+    }
+    return merged;
+  }
+
   function syncFromCloud() {
     if (!cloud()) return Promise.resolve({ enabled: false, applications: 0, students: 0, certRequests: 0 });
     var C = cloud();
@@ -364,18 +382,25 @@ var HubDB = (function () {
     ]).then(function (r) {
       var apps = r[0], studs = r[1], reqs = r[2];
       var out = { enabled: true, applications: 0, students: 0, certRequests: 0 };
-      if (Array.isArray(apps)) { saveApplications(apps); out.applications = apps.length; }
+      if (Array.isArray(apps)) {
+        var mergedApps = mergeById(apps, getApplications(), C.pushApplication, 'submittedAt');
+        saveApplications(mergedApps); out.applications = mergedApps.length;
+      }
       if (Array.isArray(studs)) {
-        // Preserve any local-only login history that the cloud row lacks.
+        // Preserve any local-only login history the cloud row lacks.
         var localById = {};
         getStudents().forEach(function (s) { localById[s.id] = s; });
         studs.forEach(function (s) {
           var loc = localById[s.id];
           if (loc && (!s.loginHistory || !s.loginHistory.length)) s.loginHistory = loc.loginHistory || [];
         });
-        saveStudents(studs); out.students = studs.length;
+        var mergedStuds = mergeById(studs, getStudents(), C.pushStudent, 'createdAt');
+        saveStudents(mergedStuds); out.students = mergedStuds.length;
       }
-      if (Array.isArray(reqs)) { saveCertRequests(reqs); out.certRequests = reqs.length; }
+      if (Array.isArray(reqs)) {
+        var mergedReqs = mergeById(reqs, getCertRequests(), C.pushCertRequest, 'requestedAt');
+        saveCertRequests(mergedReqs); out.certRequests = mergedReqs.length;
+      }
       return out;
     }).catch(function () { return { enabled: true, applications: 0, students: 0, certRequests: 0, error: true }; });
   }

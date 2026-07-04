@@ -181,7 +181,9 @@ var HubCloud = (function () {
       updatedAt: r.updated_at
     };
   }
-  function pushApplication(a) { return upsert('applications', appRow(a), 'id'); }
+  // New submissions are a plain insert (anon-safe: the RLS insert policy
+  // covers it, and a freshly-generated id never conflicts).
+  function pushApplication(a) { return insert('applications', appRow(a)); }
   function updateApplication(id, changes) {
     var c = {};
     if ('status' in changes) c.status = changes.status;
