@@ -167,6 +167,11 @@
         </section>
 
         <section>
+          <h2>🎓 WASSCE PRO — Exam Prep</h2>
+          <div class="courses-grid" id="wassceGrid"></div>
+        </section>
+
+        <section>
           <h2>🏆 Completed Courses &amp; Certificates</h2>
           <div id="completedList"></div>
           <div class="empty-box" id="completedEmpty" style="display:none;">Complete your first course to earn a verified TIH certificate!</div>
@@ -256,9 +261,11 @@
         // If they were sent here from a gated course page, return them to it
         // (unless they still need to change a temporary password first).
         var next = getUrlParam('next');
-        if (next && !res.mustChangePassword && HubDB.courseAssignedTo(res.student, next)) {
-          window.location.href = 'course-player.html?id=' + encodeURIComponent(next);
-          return;
+        if (next && !res.mustChangePassword) {
+          // Full page target (e.g. "wassce-learn.html?s=math") → go straight there.
+          if (/\.html(\?|$)/.test(next)) { window.location.href = next; return; }
+          // Otherwise treat as a course id.
+          if (COURSES_DB[next]) { window.location.href = 'course-player.html?id=' + encodeURIComponent(next); return; }
         }
         enterDashboard();
         if (res.mustChangePassword) {
@@ -458,6 +465,35 @@
             return '<div class="act-row">' + (a.at ? '<span class="when">' + fmtDate(a.at) + '</span>' : '') + '<span>' + esc(a.text) + '</span></div>';
           }).join('')
         : '<div class="act-row"><span>No activity yet — start your first lesson!</span></div>';
+
+      renderWassce();
+    }
+
+    /* ---- WASSCE subjects grid (locked until paid) ---- */
+    var WASSCE_SUBJECTS = [
+      ['mathematics','Mathematics','📐'],['english','English Language','📖'],['biology','Biology','🧬'],
+      ['chemistry','Chemistry','⚗️'],['physics','Physics','🔬'],['economics','Economics','📊'],
+      ['civic-education','Civic Education','🏛️'],['accounts','Financial Accounting','🧾'],['commerce','Commerce','🛍️'],
+      ['marketing','Marketing','📣'],['literature','Literature in English','📚'],['government','Government','⚖️'],
+      ['geography','Geography','🌍'],['history','History','🏺'],['crs','Christian Religious Studies','✝️'],
+      ['irs','Islamic Religious Studies','☪️'],['agriculture','Agricultural Science','🌾'],['further-maths','Further Mathematics','➗'],
+      ['health-science','Health Science','🩺'],['food-nutrition','Food & Nutrition','🍲'],['technical-drawing','Technical Drawing','📏'],
+      ['computer-science','Computer Science','💻'],['home-economics','Home Economics','🏠']
+    ];
+    function renderWassce() {
+      var grid = document.getElementById('wassceGrid');
+      if (!grid) return;
+      grid.innerHTML = WASSCE_SUBJECTS.map(function (s) {
+        var unlocked = HubDB.hasAccess('wassce-' + s[0]);
+        var pill = unlocked ? '<span class="pill done">✓ Unlocked</span>' : '<span class="pill new">🔒 Locked · US$2</span>';
+        var btn = '<a class="btn btn-orange btn-sm" href="wassce-learn.html?s=' + s[0] + '">' + (unlocked ? 'Study →' : '🔓 Unlock (US$2)') + '</a>';
+        return '<div class="course-card">'
+          + '<div class="cc-top"><div class="cc-icon">' + s[2] + '</div>'
+          + '<div><div class="cc-title">' + esc(s[1]) + '</div>'
+          + '<div class="cc-meta">' + pill + '</div></div></div>'
+          + '<div>' + btn + '</div>'
+          + '</div>';
+      }).join('');
     }
 
     /* ---- Certificate request / approval code ---- */

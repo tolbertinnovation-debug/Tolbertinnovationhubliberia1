@@ -167,10 +167,10 @@
         <a href="#programs">Programs</a>
         <a href="#pathways">Pathways</a>
         <a href="#tracks">Tracks</a>
+        <a href="#wassce">WASSCE</a>
         <a href="#how">How It Works</a>
-        <a href="hub-track.html">Track Application</a>
         <a href="hub-dashboard.html" class="nav-login">Student Login</a>
-        <a href="hub-apply.html" class="nav-apply">Apply for Free Access</a>
+        <a href="hub-apply.html" class="nav-apply">Apply for Access</a>
       </nav>
       <button class="hub-menu-btn" id="hubMenuBtn" aria-label="Open menu" aria-expanded="false">☰ Menu</button>
     </div>
@@ -340,6 +340,20 @@
     </div>
   </section>
 
+  <!-- WASSCE PRO -->
+  <section id="wassce">
+    <div class="container">
+      <div class="sec-head">
+        <h2>WASSCE PRO — Exam Preparation</h2>
+        <p>Full WASSCE preparation across 23 subjects — lessons, key points, past-question practice and mock tests. Sign in and unlock any subject for US$2.</p>
+      </div>
+      <div class="tracks-grid" id="wassceGrid">
+        <!-- Populated below -->
+      </div>
+      <p style="text-align:center;font-size:.85rem;color:var(--muted);margin-top:1.25rem;">Each subject unlocks after you sign in and the TIH team confirms your US$2 Mobile Money payment.</p>
+    </div>
+  </section>
+
   <!-- HOW IT WORKS -->
   <section id="how">
     <div class="container">
@@ -493,6 +507,29 @@
         var st = document.getElementById('trackCountStat');
         if (st) st.textContent = ids.length;
       } catch (e) {}
+    })();
+
+    // Build WASSCE subject grid → each opens the gated subject page (login + US$2)
+    (function () {
+      var subjects = [
+        ['mathematics','Mathematics','📐'],['english','English Language','📖'],['biology','Biology','🧬'],
+        ['chemistry','Chemistry','⚗️'],['physics','Physics','🔬'],['economics','Economics','📊'],
+        ['civic-education','Civic Education','🏛️'],['accounts','Financial Accounting','🧾'],['commerce','Commerce','🛍️'],
+        ['marketing','Marketing','📣'],['literature','Literature in English','📚'],['government','Government','⚖️'],
+        ['geography','Geography','🌍'],['history','History','🏺'],['crs','Christian Religious Studies','✝️'],
+        ['irs','Islamic Religious Studies','☪️'],['agriculture','Agricultural Science','🌾'],['further-maths','Further Mathematics','➗'],
+        ['health-science','Health Science','🩺'],['food-nutrition','Food & Nutrition','🍲'],['technical-drawing','Technical Drawing','📏'],
+        ['computer-science','Computer Science','💻'],['home-economics','Home Economics','🏠']
+      ];
+      var grid = document.getElementById('wassceGrid');
+      if (!grid) return;
+      grid.innerHTML = subjects.map(function (s) {
+        return '<a class="track-chip" href="wassce-learn.html?s=' + s[0] + '">'
+          + '<span class="t-icon">' + s[2] + '</span>'
+          + '<span><span class="t-name">' + s[1] + '</span><br>'
+          + '<span class="t-meta">WASSCE · lessons, MCQ &amp; mock · US$2</span></span>'
+          + '</a>';
+      }).join('');
     })();
 
     // Newsletter (stores locally + opens WhatsApp so the TIH team receives it)
