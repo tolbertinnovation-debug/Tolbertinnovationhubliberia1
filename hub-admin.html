@@ -754,14 +754,13 @@
           html += '<option value="' + cid + '">' + esc(courseName(cid)) + '</option>';
         });
       } catch (e) {}
-      html += '</optgroup><optgroup label="WASSCE Subjects">';
-      WASSCE_SUBJECTS_LIST.forEach(function (s) {
-        html += '<option value="wassce-' + s[0] + '">WASSCE: ' + esc(s[1]) + '</option>';
-      });
+      html += '</optgroup><optgroup label="WASSCE PRO">';
+      html += '<option value="wassce-all">WASSCE PRO — All 23 Subjects (US$2)</option>';
       html += '</optgroup>';
       sel.innerHTML = html;
     }
     function accessItemLabel(itemId) {
+      if (itemId === 'wassce-all') return 'WASSCE PRO — All 23 Subjects';
       if (itemId.indexOf('wassce-') === 0) {
         var key = itemId.slice(7);
         for (var i = 0; i < WASSCE_SUBJECTS_LIST.length; i++) if (WASSCE_SUBJECTS_LIST[i][0] === key) return 'WASSCE: ' + WASSCE_SUBJECTS_LIST[i][1];

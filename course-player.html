@@ -558,9 +558,14 @@
     }
 
     // ===== PAYWALL: locked until payment is confirmed and an access code is entered =====
-    if (typeof HubDB !== 'undefined' && !HubDB.hasAccess(courseId)) {
+    // WASSCE is one bundle — a single US$2 payment (access key "wassce-all")
+    // unlocks every WASSCE subject. Regular courses are gated individually.
+    var isWassce = courseId.indexOf('wassce-') === 0;
+    var gateId = isWassce ? 'wassce-all' : courseId;
+    var gateTitle = isWassce ? 'WASSCE PRO — All Subjects' : course.title;
+    if (typeof HubDB !== 'undefined' && !HubDB.hasAccess(gateId)) {
       if (typeof Paywall !== 'undefined') {
-        Paywall.require({ itemId: courseId, itemTitle: course.title });
+        Paywall.require({ itemId: gateId, itemTitle: gateTitle });
       }
       return; // do not build the player while locked
     }
