@@ -557,11 +557,51 @@ var HubDB = (function () {
     return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
+  /* ---- Professional, mistake-proof date/time formatting ----
+     One shared implementation so every page shows dates the same,
+     correct way. Empty or invalid values return a clean dash instead
+     of "Invalid Date" or the 1970 epoch. */
+  function _toDate(iso) {
+    if (!iso) return null;
+    var d = new Date(iso);
+    return (d && !isNaN(d.getTime())) ? d : null;
+  }
+  function fmtDate(iso) {
+    var d = _toDate(iso);
+    return d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—';
+  }
+  function fmtDateTime(iso) {
+    var d = _toDate(iso);
+    if (!d) return '—';
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      + ' · ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  }
+  // Live relative time, e.g. "just now", "5 minutes ago", "3 days ago";
+  // falls back to an absolute date after 30 days.
+  function timeAgo(iso) {
+    var d = _toDate(iso);
+    if (!d) return '—';
+    var s = Math.floor((Date.now() - d.getTime()) / 1000);
+    if (s < 0) s = 0;
+    if (s < 45) return 'just now';
+    if (s < 90) return '1 minute ago';
+    var m = Math.floor(s / 60);
+    if (m < 60) return m + ' minute' + (m === 1 ? '' : 's') + ' ago';
+    var h = Math.floor(m / 60);
+    if (h < 24) return h + ' hour' + (h === 1 ? '' : 's') + ' ago';
+    var dy = Math.floor(h / 24);
+    if (dy < 30) return dy + ' day' + (dy === 1 ? '' : 's') + ' ago';
+    return fmtDate(iso);
+  }
+
   return {
     KEYS: KEYS,
     WHATSAPP_NUMBER: WHATSAPP_NUMBER,
     sha256: sha256,
     esc: esc,
+    fmtDate: fmtDate,
+    fmtDateTime: fmtDateTime,
+    timeAgo: timeAgo,
     // applications
     getApplications: getApplications,
     findApplication: findApplication,

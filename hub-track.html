@@ -103,7 +103,7 @@
 
   <script src="hub-config.js?v=3"></script>
   <script src="hub-cloud.js?v=3"></script>
-  <script src="hub-db.js?v=6"></script>
+  <script src="hub-db.js?v=7"></script>
   <script>
     (function () {
       function getUrlParam(name) {
@@ -147,7 +147,7 @@
         document.getElementById('sSub').textContent = meta.sub;
         document.getElementById('rId').textContent = app.id;
         document.getElementById('rName').textContent = app.name;
-        document.getElementById('rDate').textContent = new Date(app.submittedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        document.getElementById('rDate').textContent = (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(app.submittedAt) : (app.submittedAt || '—');
         var msgBox = document.getElementById('msgBox');
         if (app.statusMessage) {
           msgBox.style.display = 'block';

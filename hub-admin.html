@@ -326,7 +326,7 @@
   <script src="courses-db.js?v=5"></script>
   <script src="hub-config.js?v=3"></script>
   <script src="hub-cloud.js?v=3"></script>
-  <script src="hub-db.js?v=6"></script>
+  <script src="hub-db.js?v=7"></script>
   <script src="cert-registry.js?v=2"></script>
   <script>
     /* ============ HELPERS ============ */
@@ -334,11 +334,9 @@
     function courseName(id) {
       return (typeof COURSES_DB !== 'undefined' && COURSES_DB[id]) ? COURSES_DB[id].title.split(':')[0] : id;
     }
-    function fmtDate(iso) {
-      if (!iso) return '—';
-      try { return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-      catch (e) { return '—'; }
-    }
+    function fmtDate(iso) { return (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(iso) : (iso || '—'); }
+    function fmtDateTime(iso) { return (typeof HubDB !== 'undefined' && HubDB.fmtDateTime) ? HubDB.fmtDateTime(iso) : (iso || '—'); }
+    function timeAgo(iso) { return (typeof HubDB !== 'undefined' && HubDB.timeAgo) ? HubDB.timeAgo(iso) : (iso || '—'); }
     function openModal(html) {
       document.getElementById('modalBox').innerHTML = html;
       document.getElementById('modalOverlay').classList.add('open');
@@ -385,7 +383,11 @@
     }
     function pullCloud() {
       return HubDB.syncFromCloud().then(function (r) {
-        if (r && r.enabled) renderAll();
+        if (r && r.enabled) {
+          renderAll();
+          // Live "last updated" stamp so the data visibly reflects real-time sync.
+          setCloudBadge('☁ Live · updated ' + new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit' }), '#dcfce7', '#166534');
+        }
         return r;
       });
     }
@@ -650,7 +652,7 @@
           + '<td>' + esc(s.name) + '</td>'
           + '<td style="font-size:.78rem;">' + esc(s.email) + '<br>' + esc(s.phone || '') + '</td>'
           + '<td>' + (s.courses || []).length + '</td>'
-          + '<td style="white-space:nowrap;">' + fmtDate(s.lastLoginAt) + '</td>'
+          + '<td style="white-space:nowrap;">' + (s.lastLoginAt ? timeAgo(s.lastLoginAt) : 'Never') + '</td>'
           + '<td><span class="pill ' + s.status + '">' + s.status + '</span></td>'
           + '<td><div class="row-actions">'
           + '<button class="btn btn-line btn-sm" onclick="viewStudent(\'' + s.id + '\')">Manage</button>'
@@ -693,7 +695,7 @@
         + '<div class="kv"><span class="k">Location</span><span class="v">' + esc(s.location || '—') + '</span></div>'
         + '<div class="kv"><span class="k">Status</span><span class="v"><span class="pill ' + s.status + '">' + s.status + '</span></span></div>'
         + '<div class="kv"><span class="k">Joined</span><span class="v">' + fmtDate(s.createdAt) + '</span></div>'
-        + '<div class="kv"><span class="k">Last Login</span><span class="v">' + fmtDate(s.lastLoginAt) + '</span></div>'
+        + '<div class="kv"><span class="k">Last Login</span><span class="v">' + (s.lastLoginAt ? fmtDateTime(s.lastLoginAt) : 'Never') + '</span></div>'
         + '<h3 style="font-size:.9rem;margin:1rem 0 .4rem;">Assigned Courses</h3>' + courseRows
         + (courseOpts
             ? '<div style="display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap;align-items:center;">'
@@ -1052,7 +1054,7 @@
       var log = HubDB.getAudit();
       document.getElementById('auditList').innerHTML = log.length
         ? log.slice(0, 120).map(function (e) {
-            return '<div class="audit-row"><span class="when">' + new Date(e.at).toLocaleString() + '</span>'
+            return '<div class="audit-row"><span class="when">' + fmtDateTime(e.at) + '</span>'
               + '<span><b>' + esc(e.by) + '</b> — ' + esc(e.action) + (e.target ? ' <span style="color:var(--muted);">(' + esc(e.target) + ')</span>' : '') + '</span></div>';
           }).join('')
         : '<div class="empty-state">No admin actions logged yet.</div>';

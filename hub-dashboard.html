@@ -228,7 +228,7 @@
   <script src="courses-db.js?v=5"></script>
   <script src="hub-config.js?v=3"></script>
   <script src="hub-cloud.js?v=3"></script>
-  <script src="hub-db.js?v=6"></script>
+  <script src="hub-db.js?v=7"></script>
   <script>
     var esc = HubDB.esc;
     var currentStudent = null;
@@ -246,11 +246,8 @@
         duration: c ? (c.duration || '') : ''
       };
     }
-    function fmtDate(iso) {
-      if (!iso) return '—';
-      try { return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-      catch (e) { return '—'; }
-    }
+    function fmtDate(iso) { return (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(iso) : (iso || '—'); }
+    function timeAgo(iso) { return (typeof HubDB !== 'undefined' && HubDB.timeAgo) ? HubDB.timeAgo(iso) : (iso || '—'); }
 
     /* ---- Login flow ---- */
     function doLogin() {
@@ -469,7 +466,7 @@
       });
       document.getElementById('activityList').innerHTML = acts.length
         ? acts.slice(0, 6).map(function (a) {
-            return '<div class="act-row">' + (a.at ? '<span class="when">' + fmtDate(a.at) + '</span>' : '') + '<span>' + esc(a.text) + '</span></div>';
+            return '<div class="act-row">' + (a.at ? '<span class="when">' + timeAgo(a.at) + '</span>' : '') + '<span>' + esc(a.text) + '</span></div>';
           }).join('')
         : '<div class="act-row"><span>No activity yet — start your first lesson!</span></div>';
 
