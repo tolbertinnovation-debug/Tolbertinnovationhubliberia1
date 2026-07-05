@@ -22,7 +22,7 @@ var PRACTICE_TESTS = {
     title: 'IELTS Practice Test',
     durationMin: 35,
     scoreType: 'band',
-    passMark: 65,
+    passMark: 70,
     intro: 'A timed IELTS-style practice test covering Reading comprehension, Listening (transcript-based), and Grammar & Vocabulary. Answer every question — there is no penalty for guessing. At the end you will get an estimated band score and a full review with explanations. Writing and Speaking practice prompts with model answers follow the test.',
     sections: [
       { name: 'Reading', questions: [
@@ -94,7 +94,7 @@ var PRACTICE_TESTS = {
     title: 'TOEFL iBT Practice Test',
     durationMin: 30,
     scoreType: 'toefl120',
-    passMark: 60,
+    passMark: 70,
     intro: 'A timed TOEFL iBT-style practice test covering Reading and Listening (transcript-based) comprehension and academic language use. You will receive an estimated 0–120 score and a full review. Integrated Writing and Speaking practice prompts with model responses follow the test.',
     sections: [
       { name: 'Reading', questions: [
@@ -157,7 +157,7 @@ var PRACTICE_TESTS = {
     title: 'Digital SAT Practice Test',
     durationMin: 35,
     scoreType: 'sat1600',
-    passMark: 60,
+    passMark: 70,
     intro: 'A timed Digital SAT-style practice test with two areas — Reading & Writing and Math. You will receive an estimated 400–1600 score with a breakdown for each area, plus a full review. Remember: there is no penalty for wrong answers, so never leave a blank.',
     sections: [
       { name: 'Reading & Writing', questions: [

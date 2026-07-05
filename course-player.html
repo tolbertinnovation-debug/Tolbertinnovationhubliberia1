@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="courses-db.js?v=5"></script>
-  <script src="lesson-content.js?v=4"></script>
+  <script src="lesson-content.js?v=5"></script>
   <script src="hub-config.js?v=3"></script>
   <script src="hub-cloud.js?v=4"></script>
   <script src="hub-db.js?v=7"></script>
@@ -769,7 +769,7 @@
     // Overview
     var overviewHtml;
     if (lesson.isQuiz) {
-      overviewHtml = '<p>This is the quiz for Module ' + lesson.module + '. You need 60% or higher to pass. Review the lessons if needed. You can retry as many times as you like.</p>';
+      overviewHtml = '<p>This is the quiz for Module ' + lesson.module + '. You need <strong>70% or higher to pass</strong> (for example 7 out of 10, or 14 out of 20 on the final). Review the lessons if needed — you can retry as many times as you like.</p>';
     } else if (lesson.isProject) {
       overviewHtml = '<p>This is the hands-on project for Module ' + lesson.module + '. Apply what you have learned to complete the project as described in the video. Mark it complete when you are done.</p>';
     } else {
@@ -1121,7 +1121,7 @@
   function showQuizResults() {
     document.getElementById('quizProgBar').style.width = '100%';
     var total = currentQuizData.questions.length;
-    var passThreshold = Math.ceil(total * 0.6);
+    var passThreshold = Math.ceil(total * 0.7); // 70% to pass (7/10 quiz, 14/20 final)
     quizLastPassed = (quizScore >= passThreshold);
     document.getElementById('quizActive').style.display = 'none';
     document.getElementById('quizResult').style.display = '';
