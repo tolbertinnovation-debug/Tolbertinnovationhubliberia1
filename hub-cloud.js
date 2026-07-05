@@ -332,6 +332,28 @@ var HubCloud = (function () {
     }).catch(function () { return null; });
   }
 
+  // Fetch all certificates that belong to a given student, mapped to the
+  // local certificate shape. Authoritative source for "My Certificates".
+  function fetchCertificatesFor(studentId) {
+    if (!studentId) return Promise.resolve([]);
+    return ready().then(function (db) {
+      if (!db) return [];
+      return db.from('certificates').select('*').eq('student_id', studentId)
+        .then(function (res) {
+          if (res && !res.error && Array.isArray(res.data)) {
+            return res.data.map(function (r) {
+              return {
+                certId: r.cert_id, courseId: r.course_id, courseTitle: r.course_title,
+                studentName: r.student_name, studentId: r.student_id,
+                category: r.category, date: r.issue_date, verified: r.verified
+              };
+            });
+          }
+          return [];
+        }).catch(function () { return []; });
+    }).catch(function () { return []; });
+  }
+
   // ---- realtime ----
   // Returns an unsubscribe function (no-op when cloud is off).
   function subscribe(table, cb) {
@@ -376,6 +398,7 @@ var HubCloud = (function () {
     fetchCertRequests: fetchCertRequests,
     publishCertificate: publishCertificate,
     lookupCertificate: lookupCertificate,
+    fetchCertificatesFor: fetchCertificatesFor,
     subscribe: subscribe,
     // exposed for HubDB / tests
     _appFromRow: appFromRow,

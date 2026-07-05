@@ -214,7 +214,7 @@
 
   <script src="courses-db.js?v=5"></script>
   <script src="hub-config.js?v=3"></script>
-  <script src="hub-cloud.js?v=3"></script>
+  <script src="hub-cloud.js?v=4"></script>
   <script src="hub-db.js?v=7"></script>
   <script src="cert-template.js?v=2"></script>
   <script>
@@ -261,79 +261,107 @@
     return false;
   }
 
-  var earned = [];
-  var locked = [];
-  COURSE_IDS.forEach(function(id) {
-    var raw = localStorage.getItem('tih_cert_' + id);
-    var cert = null;
-    if (raw) { try { cert = JSON.parse(raw); } catch(e) { cert = null; } }
-    if (cert && ownsCert(cert)) { earned.push(cert); }
-    else { locked.push(id); }
-  });
-
-  // ===== UPDATE SUMMARY =====
-  document.getElementById('earnedCount').textContent = earned.length;
-  document.getElementById('totalCount').textContent = COURSE_IDS.length;
-  document.getElementById('progressLabel').textContent = earned.length + ' of ' + COURSE_IDS.length;
-  document.getElementById('summaryFill').style.width = (COURSE_IDS.length ? Math.round(earned.length / COURSE_IDS.length * 100) : 0) + '%';
-
-  // ===== RENDER EARNED CERTIFICATES =====
   function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-  if (earned.length > 0) {
-    document.getElementById('earnedSection').style.display = 'block';
-    var gridHtml = '';
-    earned.forEach(function(cert) {
-      var meta = COURSE_META[cert.courseId] || { icon: '🎓', color: '#e8f0fb', accent: '#002868' };
-      var displayName = cert.studentName || studentName || 'Graduate';
-      gridHtml += '<div class="cert-card">' +
-        '<div class="cert-card-header">' +
-        '<span class="cert-card-icon">' + meta.icon + '</span>' +
-        '<div class="cert-card-org">' +
-        '<div class="cert-card-org-name">TIH <span>Learning Hub</span></div>' +
-        '<div class="cert-card-org-sub">Certificate of Completion</div>' +
-        '</div></div>' +
-        '<div class="cert-card-body">' +
-        '<div class="cert-card-divider">✦ AWARDED TO ✦</div>' +
-        '<div class="cert-card-certifies">This certifies that</div>' +
-        '<div class="cert-card-name">' + esc(displayName) + '</div>' +
-        '<div class="cert-card-for">has successfully completed</div>' +
-        '<div class="cert-card-course">' + esc(cert.courseTitle) + '</div>' +
-        '<div class="cert-card-meta">' +
-        '<span>📅 ' + esc(cert.date) + '</span>' +
-        '<span>·</span>' +
-        '<span class="cert-card-verified">✓ Verified</span>' +
-        '</div>' +
-        '<div style="text-align:center;font-size:0.65rem;color:var(--muted);margin-top:0.4rem;">ID: ' + esc(cert.certId) + '</div>' +
-        '</div>' +
-        '<div class="cert-card-footer">' +
-        '<button class="btn-dl" onclick="downloadCert(' + "'" + cert.courseId + "'" + ')">⬇ Download</button>' +
-        '<a href="course-player.html?id=' + esc(cert.courseId) + '" class="btn-view">View Course</a>' +
-        '</div></div>';
+  // courseId -> certificate record for the current learner.
+  var certsByCourse = {};
+
+  // 1) Seed from local storage (only certs owned by the current learner) for
+  //    an instant first paint.
+  COURSE_IDS.forEach(function(id) {
+    var raw = localStorage.getItem('tih_cert_' + id);
+    if (!raw) return;
+    try { var c = JSON.parse(raw); if (ownsCert(c)) certsByCourse[id] = c; } catch(e) {}
+  });
+  renderCerts();
+
+  // 2) Cloud is authoritative: pull THIS learner's certificates from the central
+  //    database (works across devices), merge, cache locally, and re-render.
+  if (typeof HubCloud !== 'undefined' && HubCloud.isEnabled() && HubCloud.fetchCertificatesFor && currentId) {
+    HubCloud.fetchCertificatesFor(currentId).then(function(list) {
+      if (list && list.length) {
+        list.forEach(function(c) {
+          if (!c || !c.courseId) return;
+          certsByCourse[c.courseId] = c;
+          try { localStorage.setItem('tih_cert_' + c.courseId, JSON.stringify(c)); } catch(e) {}
+        });
+        renderCerts();
+      }
     });
-    document.getElementById('certsGrid').innerHTML = gridHtml;
-  } else {
-    document.getElementById('emptyState').style.display = 'block';
   }
 
-  // ===== RENDER LOCKED COURSES =====
-  if (locked.length > 0) {
-    document.getElementById('lockedSection').style.display = 'block';
-    var lockedHtml = '';
-    locked.forEach(function(id) {
-      var course = (typeof COURSES_DB !== 'undefined') ? COURSES_DB[id] : null;
-      var meta = COURSE_META[id] || { icon: '🎓', color: '#f3f4f6', accent: '#6b7280' };
-      var title = course ? course.title : id;
-      lockedHtml += '<a href="course-player.html?id=' + esc(id) + '" class="locked-card">' +
-        '<div class="locked-icon" style="background:' + meta.color + '">' + meta.icon + '</div>' +
-        '<div class="locked-info">' +
-        '<div class="locked-title">' + esc(title) + '</div>' +
-        '<div class="locked-status">Not yet completed</div>' +
-        '</div>' +
-        '<span class="locked-badge">→</span>' +
-        '</a>';
+  function renderCerts() {
+    var earned = [], locked = [];
+    COURSE_IDS.forEach(function(id) {
+      if (certsByCourse[id]) earned.push(certsByCourse[id]); else locked.push(id);
     });
-    document.getElementById('lockedGrid').innerHTML = lockedHtml;
+
+    // Summary
+    document.getElementById('earnedCount').textContent = earned.length;
+    document.getElementById('totalCount').textContent = COURSE_IDS.length;
+    document.getElementById('progressLabel').textContent = earned.length + ' of ' + COURSE_IDS.length;
+    document.getElementById('summaryFill').style.width = (COURSE_IDS.length ? Math.round(earned.length / COURSE_IDS.length * 100) : 0) + '%';
+
+    // Earned
+    var es = document.getElementById('earnedSection'), empty = document.getElementById('emptyState');
+    if (earned.length > 0) {
+      es.style.display = 'block'; empty.style.display = 'none';
+      var gridHtml = '';
+      earned.forEach(function(cert) {
+        var meta = COURSE_META[cert.courseId] || { icon: '🎓', color: '#e8f0fb', accent: '#002868' };
+        var displayName = cert.studentName || studentName || 'Graduate';
+        gridHtml += '<div class="cert-card">' +
+          '<div class="cert-card-header">' +
+          '<span class="cert-card-icon">' + meta.icon + '</span>' +
+          '<div class="cert-card-org">' +
+          '<div class="cert-card-org-name">TIH <span>Learning Hub</span></div>' +
+          '<div class="cert-card-org-sub">Certificate of Completion</div>' +
+          '</div></div>' +
+          '<div class="cert-card-body">' +
+          '<div class="cert-card-divider">✦ AWARDED TO ✦</div>' +
+          '<div class="cert-card-certifies">This certifies that</div>' +
+          '<div class="cert-card-name">' + esc(displayName) + '</div>' +
+          '<div class="cert-card-for">has successfully completed</div>' +
+          '<div class="cert-card-course">' + esc(cert.courseTitle) + '</div>' +
+          '<div class="cert-card-meta">' +
+          '<span>📅 ' + esc(cert.date) + '</span>' +
+          '<span>·</span>' +
+          '<span class="cert-card-verified">✓ Verified</span>' +
+          '</div>' +
+          '<div style="text-align:center;font-size:0.65rem;color:var(--muted);margin-top:0.4rem;">ID: ' + esc(cert.certId) + '</div>' +
+          '</div>' +
+          '<div class="cert-card-footer">' +
+          '<button class="btn-dl" onclick="downloadCert(' + "'" + cert.courseId + "'" + ')">⬇ Download</button>' +
+          '<a href="course-player.html?id=' + esc(cert.courseId) + '" class="btn-view">View Course</a>' +
+          '</div></div>';
+      });
+      document.getElementById('certsGrid').innerHTML = gridHtml;
+    } else {
+      es.style.display = 'none'; empty.style.display = 'block';
+    }
+
+    // Locked / not yet earned
+    var ls = document.getElementById('lockedSection');
+    if (locked.length > 0) {
+      ls.style.display = 'block';
+      var lockedHtml = '';
+      locked.forEach(function(id) {
+        var course = (typeof COURSES_DB !== 'undefined') ? COURSES_DB[id] : null;
+        var meta = COURSE_META[id] || { icon: '🎓', color: '#f3f4f6', accent: '#6b7280' };
+        var title = course ? course.title : id;
+        lockedHtml += '<a href="course-player.html?id=' + esc(id) + '" class="locked-card">' +
+          '<div class="locked-icon" style="background:' + meta.color + '">' + meta.icon + '</div>' +
+          '<div class="locked-info">' +
+          '<div class="locked-title">' + esc(title) + '</div>' +
+          '<div class="locked-status">Not yet completed</div>' +
+          '</div>' +
+          '<span class="locked-badge">→</span>' +
+          '</a>';
+      });
+      document.getElementById('lockedGrid').innerHTML = lockedHtml;
+    } else {
+      ls.style.display = 'none';
+    }
   }
 
   // ===== DOWNLOAD CERTIFICATE =====
