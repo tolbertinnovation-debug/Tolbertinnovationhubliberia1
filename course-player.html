@@ -18,7 +18,7 @@
   <script src="cert-registry.js?v=2"></script>
   <script src="paywall.js?v=2"></script>
   <script src="wassce-course.js?v=1"></script>
-  <script src="cert-template.js?v=1"></script>
+  <script src="cert-template.js?v=2"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -510,8 +510,9 @@
         </div>
       </div>
       <div class="cert-name-row" id="certNameRow">
-        <label for="certNameInput">Enter your full name for the certificate:</label>
-        <input id="certNameInput" type="text" placeholder="Your Full Name" oninput="updateCertName(this.value)" />
+        <label>Certificate is issued in your official registered name:</label>
+        <div id="certOfficialName" style="font-weight:800;font-size:1.05rem;color:#002868;padding:.5rem .2rem;">—</div>
+        <p style="font-size:.78rem;color:#64748b;margin:0;">🔒 This name comes from your TIH account and cannot be edited here. If it is incorrect, contact the TIH team on WhatsApp — only an administrator can change it.</p>
       </div>
       <div class="completion-actions">
         <button class="btn-cert-primary" id="certPrimaryBtn" onclick="printCertificate()">⬇ Download / Print Certificate</button>
@@ -1199,17 +1200,25 @@
     if (btn) { btn.textContent = '⏳ Request Sent — Awaiting Admin Approval'; btn.disabled = true; }
   }
 
+  // The certificate name is ALWAYS the official account name set by the admin.
+  // Students cannot edit it here — this prevents fraudulent or mismatched names.
+  function certName() {
+    if (hubStudent && hubStudent.name) return String(hubStudent.name).trim();
+    var s = (typeof HubDB !== 'undefined') ? HubDB.studentSession() : null;
+    return (s && s.name) ? String(s.name).trim() : '';
+  }
+
   // ===== COMPLETION MODAL =====
   function showCompletionModal() {
-    var savedName = localStorage.getItem('tih_student_name') || '';
-    var inp = document.getElementById('certNameInput');
-    if (inp) inp.value = savedName;
-    document.getElementById('certNameDisplay').textContent = savedName || 'Your Name';
+    var official = certName();
+    var od = document.getElementById('certOfficialName');
+    if (od) od.textContent = official || '(name not set — contact TIH)';
+    document.getElementById('certNameDisplay').textContent = official || 'Your Name';
     // Adapt the primary action to the approval state
     var btn = document.getElementById('certPrimaryBtn');
     var subtitle = document.getElementById('completionSubtitle');
     if (certIsApproved()) {
-      if (savedName) saveCertificate(savedName);
+      if (official) saveCertificate(official);
       if (btn) { btn.textContent = '⬇ Download / Print Certificate'; btn.disabled = false; btn.onclick = printCertificate; }
     } else {
       var pending = (typeof HubDB !== 'undefined' && hubStudent) ? HubDB.pendingCertRequest(hubStudent.id, courseId) : null;
@@ -1227,14 +1236,6 @@
     }
     document.getElementById('completionModal').classList.add('open');
     launchConfetti();
-  }
-  function updateCertName(val) {
-    var trimmed = val.trim();
-    document.getElementById('certNameDisplay').textContent = trimmed || 'Your Name';
-    if (trimmed) {
-      localStorage.setItem('tih_student_name', trimmed);
-      if (certIsApproved()) saveCertificate(trimmed);
-    }
   }
   function closeCompletionModal() {
     document.getElementById('completionModal').classList.remove('open');
@@ -1273,6 +1274,7 @@
       courseId: courseId,
       courseTitle: course.title,
       studentName: studentName || '',
+      studentId: (hubStudent && hubStudent.id) ? hubStudent.id : '',
       certId: certId,
       date: date,
       completedAt: Date.now(),
@@ -1293,15 +1295,10 @@
       alert('Your certificate must be approved by the TIH team before it can be downloaded.\n\nRequest a review from the completion screen, then enter the approval code you receive on your dashboard.');
       return;
     }
-    var name = (document.getElementById('certNameInput').value.trim()) || (localStorage.getItem('tih_student_name') || 'Graduate');
-    if (!name || name === 'Graduate') {
-      var entered = prompt('Please enter your full name for the certificate:');
-      if (entered && entered.trim()) {
-        name = entered.trim();
-        localStorage.setItem('tih_student_name', name);
-        document.getElementById('certNameInput').value = name;
-        document.getElementById('certNameDisplay').textContent = name;
-      }
+    var name = certName();
+    if (!name) {
+      alert('Your certificate name is not set on your account. Please contact the TIH team on WhatsApp so an administrator can set your official name.');
+      return;
     }
     var certId = document.getElementById('certId').textContent;
     var certDate = document.getElementById('certDate').textContent;

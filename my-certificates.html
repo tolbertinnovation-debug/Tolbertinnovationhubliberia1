@@ -176,9 +176,7 @@
           <div class="summary-fill" id="summaryFill" style="width:0%"></div>
         </div>
       </div>
-      <div>
-        <button class="btn-browse" onclick="openNameModal()" style="background:#f59e0b;border-radius:8px;padding:.45rem 1rem;font-size:.82rem;">✏️ Edit My Name</button>
-      </div>
+      <div id="whoBox" style="font-size:.82rem;color:var(--muted);"></div>
     </div>
   </div>
 
@@ -209,26 +207,16 @@
 
   </div>
 
-  <!-- NAME EDIT MODAL -->
-  <div class="modal-overlay" id="nameModal" onclick="if(event.target===this)closeNameModal()">
-    <div class="name-modal">
-      <h3>✏️ Update Certificate Name</h3>
-      <p>This name will appear on all your certificates. Use your official full name exactly as you want it to appear.</p>
-      <input type="text" id="nameInput" placeholder="Your Full Name" maxlength="80" />
-      <div class="name-modal-btns">
-        <button class="btn-save-name" onclick="saveName()">Save Name</button>
-        <button class="btn-cancel-name" onclick="closeNameModal()">Cancel</button>
-      </div>
-    </div>
-  </div>
-
   <!-- FAB -->
   <div class="fab">
     <button class="fab-btn" title="Browse more courses" onclick="window.location.href='courses.html'">+</button>
   </div>
 
   <script src="courses-db.js?v=5"></script>
-  <script src="cert-template.js?v=1"></script>
+  <script src="hub-config.js?v=3"></script>
+  <script src="hub-cloud.js?v=3"></script>
+  <script src="hub-db.js?v=7"></script>
+  <script src="cert-template.js?v=2"></script>
   <script>
   // ===== COURSE METADATA (icons + colors for display) =====
   var COURSE_META = {
@@ -246,22 +234,41 @@
     'leadership': { icon: '🎯', color: '#f0fdf4', accent: '#047857' }
   };
 
-  // ===== LOAD DATA =====
-  var studentName = localStorage.getItem('tih_student_name') || '';
+  // ===== ACCESS CONTROL: must be signed in; only YOUR certificates show =====
+  var session = (typeof HubDB !== 'undefined') ? HubDB.studentSession() : null;
+  if (!session || !session.id) {
+    window.location.replace('hub-dashboard.html?next=' + encodeURIComponent('my-certificates.html'));
+  }
+  var currentStudent = (session && typeof HubDB !== 'undefined') ? HubDB.findStudent(session.id) : null;
+  var currentId = (currentStudent && currentStudent.id) || (session && session.id) || '';
+  // Official name is controlled by the admin account — never editable by the learner.
+  var officialName = (currentStudent && currentStudent.name) ? currentStudent.name : (session && session.name) || '';
+  var studentName = officialName;
+  var whoBox = document.getElementById('whoBox');
+  if (whoBox) whoBox.innerHTML = 'Signed in as <strong>' + esc(officialName || (session && session.id) || '') + '</strong>';
+
   var COURSE_IDS = Object.keys(COURSES_DB || {});
   if (!COURSE_IDS.length) {
     COURSE_IDS = ['computer-literacy','ai','data','webdev','design','android','marketing','cybersecurity','entrepreneurship','project-mgmt','office','leadership'];
   }
 
+  // A certificate belongs to the current learner if its stored studentId matches,
+  // or (for older records without an id) its name matches the official account name.
+  function ownsCert(cert) {
+    if (!cert) return false;
+    if (cert.studentId) return cert.studentId === currentId;
+    if (officialName && cert.studentName) return String(cert.studentName).trim().toLowerCase() === officialName.trim().toLowerCase();
+    return false;
+  }
+
   var earned = [];
   var locked = [];
   COURSE_IDS.forEach(function(id) {
-    var cert = localStorage.getItem('tih_cert_' + id);
-    if (cert) {
-      try { earned.push(JSON.parse(cert)); } catch(e) {}
-    } else {
-      locked.push(id);
-    }
+    var raw = localStorage.getItem('tih_cert_' + id);
+    var cert = null;
+    if (raw) { try { cert = JSON.parse(raw); } catch(e) { cert = null; } }
+    if (cert && ownsCert(cert)) { earned.push(cert); }
+    else { locked.push(id); }
   });
 
   // ===== UPDATE SUMMARY =====
@@ -335,7 +342,8 @@
     if (!certJson) { alert('Certificate not found. Complete the course first.'); return; }
     var cert;
     try { cert = JSON.parse(certJson); } catch(e) { alert('Error reading certificate data.'); return; }
-    var name = cert.studentName || studentName || 'Graduate';
+    if (!ownsCert(cert)) { alert('This certificate is not linked to your account.'); return; }
+    var name = cert.studentName || officialName || 'Graduate';
     var html = buildCertHTML(name, cert.courseTitle, cert.certId, cert.date);
     var win = window.open('', '_blank', 'width=1200,height=900');
     if (!win) { alert('Please allow pop-ups for this site to download your certificate.\n\nClick the pop-up blocked icon in your browser address bar and select "Allow".'); return; }
@@ -346,37 +354,8 @@
 
   // Certificate template lives in cert-template.js (shared with course-player.html)
 
-  // ===== NAME MODAL =====
-  function openNameModal() {
-    document.getElementById('nameInput').value = localStorage.getItem('tih_student_name') || '';
-    document.getElementById('nameModal').classList.add('open');
-    setTimeout(function() { document.getElementById('nameInput').focus(); }, 100);
-  }
-  function closeNameModal() {
-    document.getElementById('nameModal').classList.remove('open');
-  }
-  function saveName() {
-    var val = document.getElementById('nameInput').value.trim();
-    if (!val) { document.getElementById('nameInput').focus(); return; }
-    localStorage.setItem('tih_student_name', val);
-    // Update all saved certificates with new name
-    COURSE_IDS.forEach(function(id) {
-      var certJson = localStorage.getItem('tih_cert_' + id);
-      if (certJson) {
-        try {
-          var cert = JSON.parse(certJson);
-          cert.studentName = val;
-          localStorage.setItem('tih_cert_' + id, JSON.stringify(cert));
-        } catch(e) {}
-      }
-    });
-    closeNameModal();
-    location.reload(); // refresh to show updated names
-  }
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeNameModal();
-    if (e.key === 'Enter' && document.getElementById('nameModal').classList.contains('open')) saveName();
-  });
+  // Certificate names are set by the TIH administrator on the student's account
+  // and cannot be edited here — this keeps every certificate authentic.
   </script>
 
 </body>
