@@ -3730,28 +3730,58 @@ COURSES_DB['ielts'] = {
       {q:'The IELTS band scale runs from:', opts:['1 to 10','0 to 9','0 to 100','A to F'], correct:1, exp:'Each skill and the overall score is reported on a band scale from 0 to 9, in half-band steps.'},
       {q:'Your overall band score is:', opts:['The Writing score','The average of the four skills, rounded','The lowest skill','The Speaking score'], correct:1, exp:'The overall band is the average of Listening, Reading, Writing and Speaking, rounded to the nearest half band.'},
       {q:'How many skills does IELTS test?', opts:['Two','Three','Four','Five'], correct:2, exp:'IELTS tests Listening, Reading, Writing and Speaking.'},
-      {q:'A band 7 overall generally means:', opts:['Beginner','A good, operational command of English','No English','Native only'], correct:1, exp:'Band 7 describes a good user with operational command, occasional inaccuracies.'}
+      {q:'A band 7 overall generally means:', opts:['Beginner','A good, operational command of English','No English','Native only'], correct:1, exp:'Band 7 describes a good user with operational command, occasional inaccuracies.'},
+      {q:'How long is the IELTS Listening section (before answer transfer on paper)?', opts:['About 30 minutes','Exactly 10 minutes','2 hours','No limit'], correct:0, exp:'Listening runs about 30 minutes, plus 10 minutes to transfer answers on the paper test.'},
+      {q:'On the computer-delivered test, which skill is still face-to-face with an examiner?', opts:['Reading','Writing','Speaking','Listening'], correct:2, exp:'Speaking is always a live interview with a real examiner, in person or by video.'},
+      {q:'What is the minimum word count for Writing Task 2?', opts:['150','200','250','400'], correct:2, exp:'Task 2 needs at least 250 words; Task 1 needs at least 150.'},
+      {q:'An overall score of 6.25 is reported as:', opts:['6.0','6.5','6.25','7.0'], correct:0, exp:'It rounds to the nearest half band, so 6.25 becomes 6.0 (6.75 would become 7.0).'},
+      {q:'Which two skills are identical on the Academic and General Training tests?', opts:['Reading and Writing','Listening and Speaking','Reading and Speaking','Writing and Listening'], correct:1, exp:'Listening and Speaking are the same in both versions; Reading and Writing differ.'}
     ]},
     mod2: { title: 'Quiz: Listening', moduleNum: 2, unlocks: 4, questions: [
       {q:'How many times is the Listening audio played?', opts:['Once','Twice','As many as you want','Three times'], correct:0, exp:'The IELTS Listening recording is played ONE time only, so prediction and focus are essential.'},
       {q:'Before the audio starts you should:', opts:['Close your eyes','Read the questions and predict answers','Write your name','Do nothing'], correct:1, exp:'Use the preparation seconds to read ahead and predict the type of answer needed (number, name, noun).'},
       {q:'A distractor in Listening is:', opts:['A correct answer','Information that sounds right but is corrected/changed by the speaker','A spelling rule','A type of accent'], correct:1, exp:'Speakers often give one answer then correct it — listen to the end before deciding.'},
       {q:'Spelling in Listening answers:', opts:['Does not matter','Must be correct to earn the mark','Only matters for names','Is optional'], correct:1, exp:'Incorrectly spelled answers are marked wrong, so spelling accuracy is critical.'},
-      {q:'If you miss an answer, you should:', opts:['Stop the test','Panic','Let it go and focus on the next question','Guess randomly for all'], correct:2, exp:'Dwelling on a missed answer causes you to miss more — move on immediately.'}
+      {q:'If you miss an answer, you should:', opts:['Stop the test','Panic','Let it go and focus on the next question','Guess randomly for all'], correct:2, exp:'Dwelling on a missed answer causes you to miss more — move on immediately.'},
+      {q:'How many sections does the Listening test have?', opts:['Two','Three','Four','Five'], correct:2, exp:'There are four sections that increase in difficulty.'},
+      {q:'If the instruction says NO MORE THAN TWO WORDS, a three-word answer is:', opts:['Accepted','Marked wrong','Given half a mark','Ignored'], correct:1, exp:'Going over the word limit makes an otherwise correct answer wrong.'},
+      {q:'Section 2 is usually:', opts:['A two-person chat','A monologue on a social topic, such as a tour','An academic lecture','A group discussion'], correct:1, exp:'Section 2 is a monologue in an everyday social context.'},
+      {q:'Numbers like 15 and 50 are commonly confused because of:', opts:['Spelling','Word stress in speech','Grammar','Punctuation'], correct:1, exp:'Listen for the stressed syllable to tell 15/50 or 13/30 apart.'},
+      {q:'On the paper test, the 10 minutes at the end are for:', opts:['Extra questions','Transferring answers to the answer sheet','A break','Checking Reading'], correct:1, exp:'Use the transfer time to copy answers carefully and spell them correctly.'}
     ]},
     mod3: { title: 'Quiz: Reading', moduleNum: 3, unlocks: 4, questions: [
       {q:'Skimming means:', opts:['Reading every word slowly','Reading quickly for the general idea','Looking for one specific word','Translating the text'], correct:1, exp:'Skimming is fast reading to grasp the main idea and structure of a passage.'},
       {q:'"Not Given" means:', opts:['The statement contradicts the text','The statement matches the text','There is no information to confirm or deny it','The question is wrong'], correct:2, exp:'Not Given means the passage neither confirms nor contradicts the statement.'},
       {q:'For Matching Headings you should focus on:', opts:['The first line only','The main idea of each paragraph','Individual names','Punctuation'], correct:1, exp:'Headings summarise the central idea of a paragraph, not a single detail.'},
       {q:'Academic Reading gives you:', opts:['30 minutes','60 minutes for 40 questions','90 minutes','No time limit'], correct:1, exp:'You have 60 minutes for 3 passages and 40 questions — budget about 20 minutes per passage.'},
-      {q:'A good time strategy is to:', opts:['Read all passages fully first','Answer easy questions first and not get stuck','Skip Reading','Only read titles'], correct:1, exp:'Secure the marks you can get quickly and return to harder items with remaining time.'}
+      {q:'A good time strategy is to:', opts:['Read all passages fully first','Answer easy questions first and not get stuck','Skip Reading','Only read titles'], correct:1, exp:'Secure the marks you can get quickly and return to harder items with remaining time.'},
+      {q:'Academic Reading contains how many passages?', opts:['One','Two','Three','Four'], correct:2, exp:'Three passages with 40 questions in 60 minutes.'},
+      {q:'Scanning is used to:', opts:['Understand the whole text','Find a specific word or fact quickly','Translate the passage','Memorise the text'], correct:1, exp:'Scanning locates specific information fast once you know what to look for.'},
+      {q:'Yes / No / Not Given questions test:', opts:['Facts in the text','The writer’s opinions or claims','Vocabulary','Spelling'], correct:1, exp:'Yes/No/Not Given is about the writer’s views; True/False/Not Given is about facts.'},
+      {q:'For sentence-completion answers you should:', opts:['Use your own words','Copy words exactly from the passage within the word limit','Write full sentences','Guess'], correct:1, exp:'Use the exact words from the text and respect the word limit.'},
+      {q:'If a statement is true in real life but the passage never mentions it, the answer is:', opts:['True','False','Not Given','Yes'], correct:2, exp:'Use only the passage — if it is not stated, it is Not Given.'}
     ]},
     final: { title: 'Final Assessment', moduleNum: 5, unlocks: null, isFinal: true, questions: [
       {q:'A strong Task 2 essay always includes:', opts:['One long paragraph','An introduction, body paragraphs and a conclusion','Only bullet points','A drawing'], correct:1, exp:'Band 7 essays are clearly organised with an intro, developed body paragraphs and a conclusion.'},
       {q:'In Speaking Part 2 you speak for:', opts:['10 seconds','1–2 minutes on a cue card','15 minutes','You do not speak'], correct:1, exp:'Part 2 is the long turn: 1 minute to prepare, then speak for 1–2 minutes.'},
       {q:'"Coherence and Cohesion" in Writing refers to:', opts:['Handwriting','Logical organisation and linking of ideas','Vocabulary only','Grammar only'], correct:1, exp:'It is one of the four Writing criteria: how well ideas are organised and connected.'},
       {q:'To raise your Speaking fluency score you should:', opts:['Speak very slowly','Memorise long scripts','Speak at a natural pace with linking words','Use one-word answers'], correct:2, exp:'Fluency rewards natural, connected speech — avoid long pauses and memorised chunks.'},
-      {q:'Task 2 is worth:', opts:['The same as Task 1','Less than Task 1','More than Task 1 (twice the weight)','Nothing'], correct:2, exp:'Task 2 carries twice the marks of Task 1, so manage your 60 minutes accordingly.'}
+      {q:'Task 2 is worth:', opts:['The same as Task 1','Less than Task 1','More than Task 1 (twice the weight)','Nothing'], correct:2, exp:'Task 2 carries twice the marks of Task 1, so manage your 60 minutes accordingly.'},
+      {q:'In Speaking Part 1, the best answers are:', opts:['One word','Extended, with a reason or example','Memorised paragraphs','Silent'], correct:1, exp:'Give 2–3 sentence answers, adding a reason or example.'},
+      {q:'Academic Writing Task 1 asks you to:', opts:['Give your opinion','Describe visual data such as a graph or chart','Write a letter','Tell a story'], correct:1, exp:'Academic Task 1 describes and compares data shown in a visual.'},
+      {q:'The overview paragraph in Task 1 should describe:', opts:['Every small figure','The main trends or biggest features','Your opinion','Only the conclusion'], correct:1, exp:'The overview summarises the most striking overall features and is vital to the score.'},
+      {q:'Complete the first conditional: "If it rains, we ______ stay home."', opts:['will','would','were','are'], correct:0, exp:'First conditional: if + present simple, then will + base verb.'},
+      {q:'Which word is the most formal?', opts:['kids','loads of','numerous','a lot of'], correct:2, exp:'"Numerous" is formal; the others are informal.'},
+      {q:'A distractor in Listening is:', opts:['The correct answer','Information given, then corrected or changed','A grammar rule','An accent'], correct:1, exp:'Speakers often say one thing then correct it — listen to the end.'},
+      {q:'Matching Headings tests your understanding of each paragraph’s:', opts:['First word','Main idea','Punctuation','Length'], correct:1, exp:'A heading summarises the paragraph’s central idea.'},
+      {q:'Speaking Part 2 gives you how long to prepare?', opts:['No time','1 minute','5 minutes','10 minutes'], correct:1, exp:'You get 1 minute to prepare, then speak for 1–2 minutes.'},
+      {q:'Choose the correct form: "She has worked here ______ 2020."', opts:['since','for','during','from'], correct:0, exp:'"Since" is used with a point in time; "for" is used with a period of time.'},
+      {q:'To improve a Task 2 essay you should:', opts:['Add memorised phrases','Fully develop two clear ideas with examples','List many undeveloped ideas','Write under 250 words'], correct:1, exp:'Two well-developed ideas beat many shallow ones.'},
+      {q:'In Reading, when two options both seem true, choose the one that:', opts:['Is longest','Best paraphrases the passage','Contains "always"','Comes first'], correct:1, exp:'The answer is usually a precise paraphrase, not an overstatement.'},
+      {q:'A good pronunciation score depends on being:', opts:['British-sounding','Clearly understood, with good stress and intonation','Very fast','Very slow'], correct:1, exp:'Clarity, stress and intonation matter — not a particular accent.'},
+      {q:'The Listening recording is played:', opts:['Once','Twice','Three times','On demand'], correct:0, exp:'It plays one time only, so prediction and focus are essential.'},
+      {q:'"Not Given" in Reading means:', opts:['The text contradicts it','The text confirms it','There is not enough information to decide','The question is wrong'], correct:2, exp:'Not Given means the passage neither confirms nor denies the statement.'},
+      {q:'General Training Writing Task 1 is:', opts:['An essay','A letter','A graph description','A speech'], correct:1, exp:'General Training Task 1 is a letter (formal, semi-formal or informal).'}
     ]}
   }
 };
@@ -3831,28 +3861,58 @@ COURSES_DB['toefl'] = {
       {q:'How many sections does the TOEFL iBT have?', opts:['Two','Three','Four','Six'], correct:2, exp:'Reading, Listening, Speaking and Writing.'},
       {q:'TOEFL is primarily used for admission to universities in:', opts:['Only Liberia','The United States and worldwide','Only France','Only online schools'], correct:1, exp:'TOEFL is accepted by 11,000+ institutions, especially in the US.'},
       {q:'Each section is scored out of:', opts:['9','30','100','120'], correct:1, exp:'Each section is scored 0–30; the four combine to 120.'},
-      {q:'The TOEFL is delivered mainly:', opts:['On paper only','On a computer (internet-based)','By phone','In person orally only'], correct:1, exp:'The "iBT" means internet-based test, taken on a computer.'}
+      {q:'The TOEFL is delivered mainly:', opts:['On paper only','On a computer (internet-based)','By phone','In person orally only'], correct:1, exp:'The "iBT" means internet-based test, taken on a computer.'},
+      {q:'Which section combines reading, listening and speaking or writing?', opts:['Independent tasks','Integrated tasks','Vocabulary tasks','Grammar tasks'], correct:1, exp:'Integrated tasks require you to use two or more skills together.'},
+      {q:'Many universities ask for a total TOEFL score of about:', opts:['20–30','80–100','150–200','300+'], correct:1, exp:'Common requirements are 80–100, with competitive programs asking for 100+.'},
+      {q:'Note-taking during the test is:', opts:['Not allowed','Allowed and encouraged','Only for Reading','Only for Writing'], correct:1, exp:'You may take notes throughout — it is essential for Listening and integrated tasks.'},
+      {q:'The Speaking section is:', opts:['Handwritten','Recorded on a microphone','Skipped','A live debate'], correct:1, exp:'You speak into a microphone; responses are recorded and scored by raters and AI.'},
+      {q:'A section minimum (e.g. Speaking 22+) means you must:', opts:['Ignore that section','Reach a set score in that specific section','Retake the whole test','Score 120'], correct:1, exp:'Some programs require a minimum in each section, not just the total.'}
     ]},
     mod2: { title: 'Quiz: Reading', moduleNum: 2, unlocks: 3, questions: [
       {q:'A TOEFL vocabulary question asks you to:', opts:['Spell a word','Choose the closest meaning of a word in context','Translate a word','Pronounce a word'], correct:1, exp:'You pick the option closest in meaning to the highlighted word as used in the passage.'},
       {q:'The Prose Summary question requires you to:', opts:['Write an essay','Select the main ideas that belong in a summary','Fix grammar','Read aloud'], correct:1, exp:'You choose the answer choices that capture the passage’s major ideas.'},
       {q:'An inference question asks about:', opts:['Something stated directly','Something strongly implied but not stated','The title','Vocabulary'], correct:1, exp:'Inference answers are supported by the text but not written word-for-word.'},
       {q:'Best Reading time strategy:', opts:['Read the whole passage slowly first','Skim for structure, then answer using scanning','Answer without reading','Only read the first paragraph'], correct:1, exp:'Skim to map the passage, then scan back to the relevant lines for each question.'},
-      {q:'Reading passages are:', opts:['Casual chats','Academic, university-level texts','Poems','Advertisements'], correct:1, exp:'TOEFL Reading uses academic passages similar to first-year university texts.'}
+      {q:'Reading passages are:', opts:['Casual chats','Academic, university-level texts','Poems','Advertisements'], correct:1, exp:'TOEFL Reading uses academic passages similar to first-year university texts.'},
+      {q:'A "negative factual" question asks which statement is:', opts:['True and stated','NOT true or not stated in the passage','The main idea','A vocabulary word'], correct:1, exp:'You identify the option that is not supported by the passage.'},
+      {q:'To answer a Reading question you should:', opts:['Rely on memory','Scan back to the exact lines','Use outside knowledge','Guess from the title'], correct:1, exp:'Return to the relevant lines rather than relying on memory.'},
+      {q:'The Prose Summary question is worth:', opts:['1 point','2 points','5 points','0 points'], correct:1, exp:'It is worth 2 points because it tests understanding of the whole passage.'},
+      {q:'A vocabulary answer should keep the sentence:', opts:['Longer','Meaning the same in context','More formal','Rhyming'], correct:1, exp:'Choose the word closest in meaning as used in that sentence.'},
+      {q:'You do NOT need prior knowledge of the topic because:', opts:['The topics are easy','Every answer is found in the passage','You can use Google','The topics are random'], correct:1, exp:'All the information you need is in the text.'}
     ]},
     mod3: { title: 'Quiz: Listening', moduleNum: 3, unlocks: 3, questions: [
       {q:'During Listening you should:', opts:['Not take notes','Take structured notes','Close your eyes','Only listen to the first minute'], correct:1, exp:'Note-taking is allowed and essential; capture main ideas and signpost words.'},
       {q:'A "function" question asks:', opts:['Why the speaker says something','How to spell a word','The exact words used','The speaker’s name'], correct:0, exp:'Function/purpose questions test why a statement was made, not just what was said.'},
       {q:'TOEFL Listening includes:', opts:['Only songs','Lectures and campus conversations','Only news','Only interviews'], correct:1, exp:'You hear academic lectures and everyday campus conversations.'},
       {q:'You hear each lecture:', opts:['Twice','Once','Three times','On demand'], correct:1, exp:'Audio plays once, so active note-taking matters.'},
-      {q:'Signpost words like "however" or "for example" signal:', opts:['The end of the test','Important structure and relationships between ideas','Nothing','A break'], correct:1, exp:'They flag contrasts, examples and emphasis — often tested by questions.'}
+      {q:'Signpost words like "however" or "for example" signal:', opts:['The end of the test','Important structure and relationships between ideas','Nothing','A break'], correct:1, exp:'They flag contrasts, examples and emphasis — often tested by questions.'},
+      {q:'A good note-taking system separates:', opts:['Colours and fonts','Main ideas from details/examples','Names from dates','Nothing'], correct:1, exp:'Split-page notes (main ideas vs details) make questions easier to answer.'},
+      {q:'An "attitude" question asks about the speaker’s:', opts:['Exact words','Feeling or certainty','Name','Grammar'], correct:1, exp:'Attitude questions test tone — certainty, doubt, surprise, and so on.'},
+      {q:'Campus conversations usually involve:', opts:['Two people solving a practical problem','A single lecture','A song','A news report'], correct:0, exp:'Conversations are everyday campus situations, e.g. a student and an advisor.'},
+      {q:'If a clip is replayed and you are asked what the speaker means, the answer is about:', opts:['Spelling','Purpose or implied meaning','Volume','Speed'], correct:1, exp:'Replayed clips test the function or intended meaning, not literal words.'},
+      {q:'You cannot write down everything, so you should capture:', opts:['Every word','Main ideas and relationships','Only names','Only numbers'], correct:1, exp:'Focus on main ideas and how points connect.'}
     ]},
     final: { title: 'Final Assessment', moduleNum: 5, unlocks: null, isFinal: true, questions: [
       {q:'The Integrated Writing task asks you to:', opts:['Give only your opinion','Summarise how a lecture relates to a reading','Draw a chart','Translate'], correct:1, exp:'You explain how the lecture supports or challenges points in the reading passage.'},
       {q:'A good independent Speaking response length is about:', opts:['5 seconds','45 seconds','5 minutes','No limit'], correct:1, exp:'Independent speaking responses are ~45 seconds; use preparation time to plan.'},
       {q:'The Academic Discussion writing task asks you to:', opts:['Copy the professor','Contribute your own supported opinion to a discussion','Only agree','Write one sentence'], correct:1, exp:'You add your own well-supported point to an online class discussion prompt.'},
       {q:'Integrated Speaking tasks combine:', opts:['Only speaking','Reading, listening and speaking','Only writing','Drawing'], correct:1, exp:'You read, then listen, then speak about how the sources relate.'},
-      {q:'Templates help because they:', opts:['Replace ideas','Give a reliable structure so you focus on content','Are required word-for-word','Lower your score'], correct:1, exp:'A template frees mental effort for content and delivery under time pressure.'}
+      {q:'Templates help because they:', opts:['Replace ideas','Give a reliable structure so you focus on content','Are required word-for-word','Lower your score'], correct:1, exp:'A template frees mental effort for content and delivery under time pressure.'},
+      {q:'The TOEFL total score is out of:', opts:['9','30','100','120'], correct:3, exp:'Four sections of 0–30 combine to a total of 0–120.'},
+      {q:'In Integrated Writing, the lecture usually:', opts:['Repeats the reading','Challenges or casts doubt on the reading','Is unrelated','Is optional'], correct:1, exp:'The lecture typically responds to and challenges the reading’s points.'},
+      {q:'In Integrated Writing you should spend most words on:', opts:['Your opinion','What the professor (lecture) says','The introduction','New examples'], correct:1, exp:'The lecture is more important; report what the professor argues.'},
+      {q:'The Academic Discussion response should be about:', opts:['10 words','100+ well-organised words','1000 words','A single sentence'], correct:1, exp:'Aim for roughly 100+ words with a clear position and support.'},
+      {q:'A "function" question tests:', opts:['What was said','Why the speaker said it','How fast they spoke','The spelling'], correct:1, exp:'Function/purpose questions ask why a statement was made.'},
+      {q:'Reading passages resemble:', opts:['Text messages','First-year university textbooks','Poems','Song lyrics'], correct:1, exp:'They are academic, textbook-style passages.'},
+      {q:'A vocabulary question wants the option that is closest in:', opts:['Spelling','Meaning in context','Length','Sound'], correct:1, exp:'Pick the nearest meaning as the word is used in the passage.'},
+      {q:'The Speaking section is scored by:', opts:['Only a computer','Human raters and AI','Only the test-taker','Other students'], correct:1, exp:'Responses are rated on delivery, language use and topic development.'},
+      {q:'Independent Speaking gives you how long to prepare?', opts:['0 seconds','15 seconds','2 minutes','5 minutes'], correct:1, exp:'You get 15 seconds to prepare and 45 seconds to speak.'},
+      {q:'To reach a top score you generally need balanced sections rather than:', opts:['One very strong and one very weak','All equal','High Reading only','High Speaking only'], correct:0, exp:'A single very weak section can pull your total below a requirement.'},
+      {q:'The best way to prepare for Listening is to practise:', opts:['Reading aloud','Structured note-taking','Typing speed','Vocabulary lists only'], correct:1, exp:'Note-taking is the core Listening skill.'},
+      {q:'Integrated Speaking asks you to speak for about:', opts:['10 seconds','60 seconds','5 minutes','No limit'], correct:1, exp:'Integrated speaking responses are around 60 seconds.'},
+      {q:'"Numerous studies indicate" is preferred over "a lot of studies show" because it is:', opts:['Shorter','More academic and precise','Funnier','Informal'], correct:1, exp:'Academic writing favours precise, formal phrasing.'},
+      {q:'A good transition for contrast is:', opts:['therefore','nevertheless','because','for example'], correct:1, exp:'"Nevertheless" signals contrast.'},
+      {q:'The TOEFL iBT runs about:', opts:['30 minutes','Under 2 hours','5 hours','A full day'], correct:1, exp:'The current test takes under 2 hours in total.'}
     ]}
   }
 };
@@ -3933,28 +3993,58 @@ COURSES_DB['sat'] = {
       {q:'The Digital SAT is "adaptive," which means:', opts:['It never changes','The second module’s difficulty depends on your first-module performance','It has no time limit','It is on paper'], correct:1, exp:'Each section has two modules; performance on the first sets the difficulty of the second.'},
       {q:'The SAT is taken through:', opts:['Email','The Bluebook app on a computer','WhatsApp','A paper booklet only'], correct:1, exp:'The Digital SAT is administered through College Board’s Bluebook application.'},
       {q:'The two sections of the SAT are:', opts:['Reading & Writing, and Math','Speaking and Writing','Listening and Reading','Essay and Math'], correct:0, exp:'The Digital SAT has a Reading & Writing section and a Math section.'},
-      {q:'A calculator is:', opts:['Never allowed','Allowed on the entire Math section (built-in Desmos)','Only on paper','Banned'], correct:1, exp:'A built-in Desmos graphing calculator is available for the whole Math section.'}
+      {q:'A calculator is:', opts:['Never allowed','Allowed on the entire Math section (built-in Desmos)','Only on paper','Banned'], correct:1, exp:'A built-in Desmos graphing calculator is available for the whole Math section.'},
+      {q:'The Reading & Writing section has how many modules?', opts:['One','Two','Three','Four'], correct:1, exp:'Each section (Reading & Writing, and Math) has two modules.'},
+      {q:'Doing well on Module 1 leads to:', opts:['A shorter test','A harder Module 2 with a higher score ceiling','No Module 2','A lower score'], correct:1, exp:'Strong Module 1 performance unlocks the harder, higher-scoring Module 2.'},
+      {q:'The whole Digital SAT takes about:', opts:['45 minutes','2 hours 14 minutes','4 hours','A full day'], correct:1, exp:'The digital test is about 2 hours 14 minutes.'},
+      {q:'Reading & Writing gives you how long per module?', opts:['10 minutes','32 minutes','60 minutes','No limit'], correct:1, exp:'27 questions in 32 minutes per Reading & Writing module.'},
+      {q:'Which tool is available for the whole test to revisit questions?', opts:['A dictionary','Mark-for-review','A phone','A friend'], correct:1, exp:'Bluebook lets you flag questions and return to them.'}
     ]},
     mod2: { title: 'Quiz: Reading Skills', moduleNum: 2, unlocks: 3, questions: [
       {q:'"Words in Context" questions test:', opts:['Spelling','The best word for meaning and tone in a sentence','Handwriting','Pronunciation'], correct:1, exp:'You choose the word that best fits the logic and tone of the passage.'},
       {q:'A "Command of Evidence" question asks you to:', opts:['Ignore the text','Find data or a quote that best supports a claim','Write an essay','Guess'], correct:1, exp:'You select the detail (text or graph) that most directly supports the point.'},
       {q:'Digital SAT Reading passages are:', opts:['Very long (700+ words)','Short, one passage per question','Poems only','Absent'], correct:1, exp:'Each question has its own short passage of roughly 25–150 words.'},
       {q:'An inference question requires an answer that is:', opts:['Directly stated','Logically supported by the passage','Unrelated','The longest option'], correct:1, exp:'Choose the option most logically supported by the given text.'},
-      {q:'Reading & Writing questions are arranged:', opts:['Randomly','Roughly easy to hard within a type','Hardest first','By colour'], correct:1, exp:'Questions are grouped by type and generally increase in difficulty.'}
+      {q:'Reading & Writing questions are arranged:', opts:['Randomly','Roughly easy to hard within a type','Hardest first','By colour'], correct:1, exp:'Questions are grouped by type and generally increase in difficulty.'},
+      {q:'For a quantitative-evidence question you should read first:', opts:['The answer choices','The graph’s axis labels and units','The last line','Nothing'], correct:1, exp:'Misreading axes/units causes wrong answers — check them first.'},
+      {q:'A central-idea question asks for the passage’s:', opts:['Longest sentence','Main point','First word','A minor detail'], correct:1, exp:'Summarise the passage, then pick the closest option.'},
+      {q:'Wrong answer choices are often:', opts:['True but off-topic, or overstated','Always shortest','Always first','Always correct'], correct:0, exp:'Eliminate options that are irrelevant or use extreme words like "always".'},
+      {q:'The best approach to a mini-passage is to:', opts:['Read the answers first','Read the whole passage, then answer','Skip it','Guess'], correct:1, exp:'Context decides the answer, so read the short passage fully.'},
+      {q:'For "Words in Context," a useful tactic is to:', opts:['Pick the hardest word','Predict a word yourself, then match it','Choose the longest','Choose the first'], correct:1, exp:'Predict a fitting word, then find the closest option.'}
     ]},
     mod3: { title: 'Quiz: Writing Skills', moduleNum: 3, unlocks: 3, questions: [
       {q:'A comma splice is fixed by:', opts:['Adding more commas','Using a period, semicolon, or conjunction between two independent clauses','Removing all punctuation','Capitalising'], correct:1, exp:'Two independent clauses cannot be joined by a comma alone.'},
       {q:'Transition questions test whether the logical relationship is:', opts:['Contrast, cause, example, etc.','Spelling','Length','Font'], correct:0, exp:'Pick the transition that matches the logic: however, therefore, for example, etc.'},
       {q:'Subject–verb agreement means:', opts:['Verbs match the subject in number','All verbs are past tense','Sentences are short','Nouns are capitalised'], correct:0, exp:'A singular subject takes a singular verb; a plural subject takes a plural verb.'},
       {q:'"Rhetorical Synthesis" asks you to:', opts:['Use given bullet-point notes to meet a stated goal','Write a poem','Translate','Draw'], correct:0, exp:'You combine given notes to accomplish a specific rhetorical goal.'},
-      {q:'The best answer for conventions questions is usually:', opts:['The longest','The one that is grammatically correct and concise','The most complex','Any option'], correct:1, exp:'SAT rewards correct, clear, concise writing.'}
+      {q:'The best answer for conventions questions is usually:', opts:['The longest','The one that is grammatically correct and concise','The most complex','Any option'], correct:1, exp:'SAT rewards correct, clear, concise writing.'},
+      {q:'A colon is correctly used to:', opts:['Join two independent clauses with no words','Introduce a list or explanation after a complete sentence','Replace every comma','End a question'], correct:1, exp:'A colon follows a complete sentence to introduce a list or explanation.'},
+      {q:'"The team of players ______ ready." Choose the verb:', opts:['are','is','were','being'], correct:1, exp:'The subject "team" is singular, so use "is".'},
+      {q:'A transition showing cause and effect is:', opts:['however','therefore','for example','meanwhile'], correct:1, exp:'"Therefore" signals a result.'},
+      {q:'A pronoun must agree with its noun in:', opts:['Colour','Number','Length','Font'], correct:1, exp:'Singular noun → singular pronoun; plural → plural.'},
+      {q:'For rhetorical synthesis you should first:', opts:['Ignore the goal','Underline the stated goal, then test each option','Pick the longest','Guess'], correct:1, exp:'The correct answer accomplishes the specific stated goal.'}
     ]},
     final: { title: 'Final Assessment', moduleNum: 5, unlocks: null, isFinal: true, questions: [
       {q:'On the Digital SAT you should guess when unsure because:', opts:['There is a penalty','There is no penalty for wrong answers','It lowers your score','Guessing is banned'], correct:1, exp:'There is no wrong-answer penalty, so never leave a question blank.'},
       {q:'Solve 3x + 5 = 20. x =', opts:['3','5','15','45'], correct:1, exp:'3x = 15, so x = 5.'},
       {q:'The slope of the line y = 2x + 4 is:', opts:['4','2','–4','1/2'], correct:1, exp:'In y = mx + b, the slope m is the coefficient of x, which is 2.'},
       {q:'Good pacing means:', opts:['Spending all time on question 1','Moving steadily and flagging hard items to revisit','Skipping the section','Rushing everything'], correct:1, exp:'Answer efficiently, mark tough questions, and return with remaining time.'},
-      {q:'The Math reference sheet provides:', opts:['The answers','Common geometry formulas','Vocabulary','Nothing'], correct:1, exp:'A reference sheet with geometry formulas is available throughout the Math section.'}
+      {q:'The Math reference sheet provides:', opts:['The answers','Common geometry formulas','Vocabulary','Nothing'], correct:1, exp:'A reference sheet with geometry formulas is available throughout the Math section.'},
+      {q:'Solve 2(x − 4) = 10. x =', opts:['3','7','9','12'], correct:2, exp:'x − 4 = 5, so x = 9.'},
+      {q:'A shirt costs $50 and is 20% off. The sale price is:', opts:['$30','$40','$45','$48'], correct:1, exp:'20% of 50 = 10, so 50 − 10 = 40.'},
+      {q:'The mean of 6, 10 and x is 9. x =', opts:['9','10','11','12'], correct:2, exp:'(6+10+x)/3 = 9 → 16+x = 27 → x = 11.'},
+      {q:'A right triangle has legs 6 and 8. The hypotenuse is:', opts:['10','12','14','48'], correct:0, exp:'√(6²+8²) = √100 = 10.'},
+      {q:'The slope of y = −3x + 2 is:', opts:['2','3','−3','−2'], correct:2, exp:'The slope is the coefficient of x: −3.'},
+      {q:'If 25% of a number is 40, the number is:', opts:['100','120','160','200'], correct:2, exp:'0.25n = 40 → n = 160.'},
+      {q:'A car goes 180 km in 3 hours. Its average speed is:', opts:['40 km/h','50 km/h','60 km/h','90 km/h'], correct:2, exp:'180 ÷ 3 = 60 km/h.'},
+      {q:'Two independent clauses joined by only a comma is called a:', opts:['Colon','Comma splice','Semicolon','Fragment'], correct:1, exp:'A comma splice — fix with a period, semicolon or conjunction.'},
+      {q:'"Words in Context" tests the word that best fits the:', opts:['Rhyme','Meaning and tone','Length','Spelling'], correct:1, exp:'Choose the word matching the sentence’s logic and tone.'},
+      {q:'On the Digital SAT, each Reading question has:', opts:['A shared long passage','Its own short passage','No passage','A video'], correct:1, exp:'Each question comes with its own short passage.'},
+      {q:'A command-of-evidence answer must:', opts:['Be the longest','Directly support the claim','Be unrelated','Contain a number'], correct:1, exp:'Pick the detail that most directly supports the point.'},
+      {q:'Solve for x: x/4 = 5.', opts:['9','20','1.25','45'], correct:1, exp:'Multiply both sides by 4: x = 20.'},
+      {q:'The Math section allows a calculator on:', opts:['No questions','The entire section','Only Module 1','Only Module 2'], correct:1, exp:'The built-in Desmos calculator is available for the whole Math section.'},
+      {q:'Good test-day habit: in the last minutes of a module,', opts:['Leave hard ones blank','Make sure no question is unanswered','Stop early','Change every answer'], correct:1, exp:'With no penalty, guess anything unanswered before time runs out.'},
+      {q:'Subject–verb agreement: "The results ______ clear."', opts:['is','was','are','being'], correct:2, exp:'"Results" is plural, so use "are".'}
     ]}
   }
 };
