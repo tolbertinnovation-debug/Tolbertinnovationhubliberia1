@@ -234,9 +234,14 @@
           <input type="text" id="acStuId" placeholder="Student ID (TIH-STU-XXXXXX)" style="flex:1;min-width:200px;padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;text-transform:uppercase;" />
           <select id="acItem" style="padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;min-width:220px;"></select>
           <button class="btn btn-primary" id="acGenBtn">Generate Code</button>
+        </div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-top:.6rem;">
           <button class="btn btn-orange" id="acGrantAllWassceBtn">🎓 Grant ALL WASSCE Subjects</button>
+          <button class="btn btn-orange" id="acGrantAllCoursesBtn">📚 Grant ALL Courses</button>
+          <button class="btn btn-line" id="acShowUnlockedBtn">🔍 Show Unlocked</button>
         </div>
         <div id="acResult" style="margin-top:.9rem;"></div>
+        <div id="acUnlockedList" style="margin-top:.6rem;"></div>
       </div>
     </div>
 
@@ -905,6 +910,60 @@
         out.innerHTML = granted === WASSCE_SUBJECTS_LIST.length
           ? '<span class="feedback ok">✓ All ' + granted + ' WASSCE subjects unlocked online for <b>' + esc(stuId) + '</b>. They open on the learner\'s device at next login — no codes needed.</span>'
           : '<span class="feedback err">Only ' + granted + ' of ' + WASSCE_SUBJECTS_LIST.length + ' saved — check the database connection and try again (re-running is safe).</span>';
+      });
+    });
+
+    // Unlock EVERY Learning Hub course for a learner in one tap.
+    document.getElementById('acGrantAllCoursesBtn').addEventListener('click', function () {
+      var stuId = document.getElementById('acStuId').value.trim().toUpperCase();
+      var out = document.getElementById('acResult');
+      if (!/^TIH-STU-[A-Z0-9]{6}$/.test(stuId)) {
+        out.innerHTML = '<span class="feedback err">Enter a valid Student ID (TIH-STU-XXXXXX).</span>';
+        return;
+      }
+      var ids = [];
+      try { ids = Object.keys(COURSES_DB); } catch (e) {}
+      if (!ids.length) { out.innerHTML = '<span class="feedback err">No courses found.</span>'; return; }
+      out.innerHTML = '<span class="feedback">Granting all ' + ids.length + ' courses…</span>';
+      HubDB.audit('Granted online access to ALL courses', stuId);
+      Promise.all(ids.map(function (cid) {
+        return HubDB.adminGrantAccess(stuId, cid).catch(function () { return false; });
+      })).then(function (results) {
+        var granted = results.filter(Boolean).length;
+        out.innerHTML = granted === ids.length
+          ? '<span class="feedback ok">✓ All ' + granted + ' courses unlocked online for <b>' + esc(stuId) + '</b>. They open on the learner\'s device at next login — no codes needed.</span>'
+          : '<span class="feedback err">Only ' + granted + ' of ' + ids.length + ' saved — check the database connection and try again (re-running is safe).</span>';
+      });
+    });
+
+    // Show which items a learner already has unlocked (reads the central DB).
+    document.getElementById('acShowUnlockedBtn').addEventListener('click', function () {
+      var stuId = document.getElementById('acStuId').value.trim().toUpperCase();
+      var box = document.getElementById('acUnlockedList');
+      if (!/^TIH-STU-[A-Z0-9]{6}$/.test(stuId)) {
+        box.innerHTML = '<span class="feedback err">Enter a valid Student ID (TIH-STU-XXXXXX).</span>';
+        return;
+      }
+      if (typeof HubCloud === 'undefined' || !HubCloud.isEnabled()) {
+        box.innerHTML = '<span class="feedback err">Connect the cloud database to view unlocks.</span>';
+        return;
+      }
+      box.innerHTML = '<span class="feedback">Loading unlocked items…</span>';
+      HubCloud.fetchEnrollments().then(function (rows) {
+        var mine = (rows || []).filter(function (e) {
+          return String(e.student_id) === stuId && (e.access_granted === true || e.payment_status === 'confirmed' || e.payment_status === 'paid');
+        });
+        if (!mine.length) {
+          box.innerHTML = '<div class="cred-box">No unlocked items yet for <b>' + esc(stuId) + '</b>.</div>';
+          return;
+        }
+        var items = mine.map(function (e) {
+          return '<li>' + esc(accessItemLabel(e.item_id)) + ' <span style="color:var(--muted);font-size:.8rem;">(' + esc(e.item_id) + ')</span></li>';
+        }).join('');
+        box.innerHTML = '<div class="cred-box"><b>' + mine.length + '</b> unlocked for <b>' + esc(stuId) + '</b>:'
+          + '<ul style="margin:.4rem 0 0 1.1rem;padding:0;font-size:.88rem;line-height:1.6;">' + items + '</ul></div>';
+      }).catch(function () {
+        box.innerHTML = '<span class="feedback err">Could not load unlocks — check the database connection.</span>';
       });
     });
 
