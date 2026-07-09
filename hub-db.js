@@ -444,11 +444,16 @@ var HubDB = (function () {
       var out = { enabled: true, unlocks: 0, progress: 0, certs: certs.length, approvals: 0 };
 
       // 1) Paid access / unlocks — an item is unlocked once access is granted.
+      //    A row that exists but is NOT granted means the admin revoked it, so
+      //    lock it again on this device (keeps revokes in sync across devices).
       enrolls.forEach(function (e) {
+        if (!e.item_id) return;
         var granted = e.access_granted === true || e.payment_status === 'confirmed' || e.payment_status === 'paid';
-        if (granted && e.item_id) {
+        if (granted) {
           setJSON('tih_access_' + e.item_id, { studentId: id, at: e.granted_at || nowISO() });
           out.unlocks++;
+        } else {
+          try { localStorage.removeItem('tih_access_' + e.item_id); } catch (x) {}
         }
       });
 
@@ -671,6 +676,22 @@ var HubDB = (function () {
     }).catch(function () { return false; });
   }
 
+  // Admin revoke: flip a student+item enrollment back to locked in the central
+  // DB. The learner's device re-locks it on next login (hydrateAccountFromCloud
+  // removes local access for revoked rows). Resolves true on a confirmed write.
+  function adminRevokeAccess(studentId, itemId) {
+    audit('Revoked online access to ' + itemId, studentId);
+    // Also lock it on THIS device immediately (e.g. admin testing on same browser).
+    try { localStorage.removeItem('tih_access_' + itemId); } catch (e) {}
+    if (!cloud() || !studentId || !itemId) return Promise.resolve(false);
+    var title = (typeof COURSES_DB !== 'undefined' && COURSES_DB[itemId] && COURSES_DB[itemId].title)
+      ? COURSES_DB[itemId].title : itemId;
+    return cloud().pushEnrollment({
+      student_id: studentId, item_id: itemId, item_title: title,
+      payment_status: 'pending', access_granted: false, granted_at: null
+    }).catch(function () { return false; });
+  }
+
   // Central record of a paid enrollment / access grant (best effort).
   function recordEnrollment(studentId, itemId, confirmed) {
     if (!cloud() || !studentId) return;
@@ -805,6 +826,7 @@ var HubDB = (function () {
     verifyAccessCode: verifyAccessCode,
     grantAccess: grantAccess,
     adminGrantAccess: adminGrantAccess,
+    adminRevokeAccess: adminRevokeAccess,
     // comms
     waLink: waLink,
     mailtoLink: mailtoLink

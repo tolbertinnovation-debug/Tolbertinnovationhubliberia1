@@ -332,7 +332,7 @@
   <script src="courses-db.js?v=6"></script>
   <script src="hub-config.js?v=3"></script>
   <script src="hub-cloud.js?v=5"></script>
-  <script src="hub-db.js?v=11"></script>
+  <script src="hub-db.js?v=12"></script>
   <script src="cert-registry.js?v=2"></script>
   <script>
     /* ============ HELPERS ============ */
@@ -958,14 +958,26 @@
           return;
         }
         var items = mine.map(function (e) {
-          return '<li>' + esc(accessItemLabel(e.item_id)) + ' <span style="color:var(--muted);font-size:.8rem;">(' + esc(e.item_id) + ')</span></li>';
+          return '<li style="display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.3rem 0;border-bottom:1px solid var(--border);list-style:none;">'
+            + '<span>' + esc(accessItemLabel(e.item_id)) + ' <span style="color:var(--muted);font-size:.8rem;">(' + esc(e.item_id) + ')</span></span>'
+            + '<button class="btn btn-red btn-sm" onclick="revokeAccessNow(\'' + esc(stuId) + '\',\'' + esc(e.item_id) + '\')">🔒 Revoke</button></li>';
         }).join('');
         box.innerHTML = '<div class="cred-box"><b>' + mine.length + '</b> unlocked for <b>' + esc(stuId) + '</b>:'
-          + '<ul style="margin:.4rem 0 0 1.1rem;padding:0;font-size:.88rem;line-height:1.6;">' + items + '</ul></div>';
+          + '<ul style="margin:.4rem 0 0;padding:0;font-size:.88rem;line-height:1.6;">' + items + '</ul></div>';
       }).catch(function () {
         box.innerHTML = '<span class="feedback err">Could not load unlocks — check the database connection.</span>';
       });
     });
+
+    // Revoke one item's access, then refresh the unlocked list.
+    window.revokeAccessNow = function (stuId, itemId) {
+      if (!confirm('Lock "' + accessItemLabel(itemId) + '" again for ' + stuId + '? They lose access on their next login.')) return;
+      HubDB.adminRevokeAccess(stuId, itemId).then(function (ok) {
+        var box = document.getElementById('acUnlockedList');
+        if (!ok) { box.innerHTML = '<span class="feedback err">Could not revoke — check the database connection.</span>'; return; }
+        document.getElementById('acShowUnlockedBtn').click(); // reload the list
+      });
+    };
 
     /* ============ RENDER: CERTIFICATE REQUESTS ============ */
     function populateCodeCourses() {
