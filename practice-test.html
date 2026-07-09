@@ -165,13 +165,26 @@
       if(typeof HubDB==='undefined' || HubDB.hasAccess(exam)){ initPractice(); }
     }
 
+    // Shuffle a question's answer options so the correct one isn't always in the
+    // same position. Returns {opts, correct} with the answer remapped. Options that
+    // reference a position ("all of the above", "A and B") keep their order.
+    var PT_POS_DEP = /\b(all|none|both|any|each) of the (above|following)\b|\bthe above\b|\b(all|none) of these\b|\bboth [a-d] (and|&) [a-d]\b|\b[a-d] (and|or|&) [a-d]\b|\banswers? [a-d]\b|\boptions? [a-d]\b/i;
+    function shuffleQ(qq){
+      var opts=(qq.opts||[]).slice();
+      var positional=opts.some(function(o){ return PT_POS_DEP.test(String(o)); });
+      if(positional || opts.length<2) return { opts:opts, correct:qq.correct };
+      var idxs=opts.map(function(_,i){ return i; });
+      for(var i=idxs.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=idxs[i]; idxs[i]=idxs[j]; idxs[j]=t; }
+      return { opts:idxs.map(function(o){ return opts[o]; }), correct:idxs.indexOf(qq.correct) };
+    }
+
     function initPractice(){
       document.getElementById('examEyebrow').textContent = courseTitle.split(':')[0] + ' · Practice Test';
       document.getElementById('examTitle').textContent = T.title;
       document.getElementById('examIntro').textContent = T.intro;
       // flatten MCQ
       flat=[];
-      (T.sections||[]).forEach(function(sec){ (sec.questions||[]).forEach(function(qq){ flat.push({section:sec.name,q:qq.q,opts:qq.opts,correct:qq.correct,exp:qq.exp}); }); });
+      (T.sections||[]).forEach(function(sec){ (sec.questions||[]).forEach(function(qq){ var sh=shuffleQ(qq); flat.push({section:sec.name,q:qq.q,opts:sh.opts,correct:sh.correct,exp:qq.exp}); }); });
       document.getElementById('backCourseBtn').href='course-player.html?id='+encodeURIComponent(exam);
       // meta chips
       var mr=document.getElementById('metaRow');

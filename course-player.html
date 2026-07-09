@@ -635,6 +635,28 @@
   var currentQuizData = null;
   var currentQuizLessonIndex = -1;
   var quizLastPassed = false;
+  // Per-question shuffle: quizOrder[qi] = array of original option indices in the
+  // order they are shown. Rebuilt on every quiz start AND retry so the correct
+  // answer never sits in the same position twice.
+  var quizOrder = [];
+  // Options that reference a position ("all of the above", "A and B") must NOT be
+  // shuffled — reordering them would make them nonsensical. Such questions keep
+  // their original order.
+  var POS_DEP_OPT = /\b(all|none|both|any|each) of the (above|following)\b|\bthe above\b|\b(all|none) of these\b|\bboth [a-d] (and|&) [a-d]\b|\b[a-d] (and|or|&) [a-d]\b|\banswers? [a-d]\b|\boptions? [a-d]\b/i;
+  function questionIsPositional(q) {
+    return (q.opts || []).some(function (o) { return POS_DEP_OPT.test(String(o)); });
+  }
+  function buildQuizOrder() {
+    quizOrder = (currentQuizData.questions || []).map(function (q) {
+      var idxs = (q.opts || []).map(function (_, i) { return i; });
+      if (questionIsPositional(q)) return idxs; // keep original order
+      for (var i = idxs.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = idxs[i]; idxs[i] = idxs[j]; idxs[j] = tmp;
+      }
+      return idxs;
+    });
+  }
 
   // ===== LOCKING HELPERS =====
   function isLessonLocked(index) {
@@ -1050,6 +1072,7 @@
     currentQuizData = quizData[lesson.quizId];
     if (!currentQuizData) return;
     quizCurrentQ = 0; quizScore = 0; quizAnswered = false; quizSelectedIdx = null; quizLastPassed = false;
+    buildQuizOrder();
     document.getElementById('quizActive').style.display = '';
     document.getElementById('quizResult').style.display = 'none';
     document.getElementById('quizModal').classList.add('open');
@@ -1063,10 +1086,11 @@
     document.getElementById('quizQuestionNum').textContent = 'Question ' + (quizCurrentQ + 1) + ' of ' + currentQuizData.questions.length;
     document.getElementById('quizQuestionText').textContent = q.q;
     document.getElementById('quizProgBar').style.width = (quizCurrentQ / currentQuizData.questions.length * 100) + '%';
+    var order = quizOrder[quizCurrentQ] || q.opts.map(function (_, i) { return i; });
     var html = '';
-    q.opts.forEach(function(opt, i) {
+    order.forEach(function(origIdx, i) {
       html += '<div class="quiz-option" onclick="selectQuizOption(this,' + i + ')">'
-        + '<span class="quiz-option-letter">' + letterFor(i) + '</span>' + escSide(opt) + '</div>';
+        + '<span class="quiz-option-letter">' + letterFor(i) + '</span>' + escSide(q.opts[origIdx]) + '</div>';
     });
     document.getElementById('quizOptions').innerHTML = html;
     var fb = document.getElementById('quizFeedback');
@@ -1101,12 +1125,15 @@
     if (quizSelectedIdx === null) return;
     quizAnswered = true;
     var q = currentQuizData.questions[quizCurrentQ];
-    var isCorrect = (quizSelectedIdx === q.correct);
+    var order = quizOrder[quizCurrentQ] || q.opts.map(function (_, i) { return i; });
+    // Map the correct original-option index to its shuffled display position.
+    var correctDisplayIdx = order.indexOf(q.correct);
+    var isCorrect = (quizSelectedIdx === correctDisplayIdx);
     if (isCorrect) quizScore++;
     var opts = document.querySelectorAll('.quiz-option');
     opts.forEach(function(o, i) {
       o.classList.add('locked-opt');
-      if (i === q.correct) o.classList.add('correct');
+      if (i === correctDisplayIdx) o.classList.add('correct');
       else if (i === quizSelectedIdx && !isCorrect) o.classList.add('wrong');
     });
     var fb = document.getElementById('quizFeedback');
@@ -1169,6 +1196,7 @@
       }
     } else {
       quizCurrentQ = 0; quizScore = 0; quizAnswered = false; quizSelectedIdx = null;
+      buildQuizOrder(); // reshuffle so the retry shows answers in new positions
       document.getElementById('quizActive').style.display = '';
       document.getElementById('quizResult').style.display = 'none';
       renderQuizQuestion();

@@ -743,6 +743,21 @@
       var mcqIndex = 0;
       var mcqScore = 0;
       var mcqAnswered = false;
+      // Shuffle answer positions so the correct option isn't always in the same
+      // spot. Rebuilt for every question render. Options that reference a
+      // position ("all of the above", "A and B") are left in their original order.
+      var mcqOrder = [];
+      var MCQ_POS_DEP = /\b(all|none|both|any|each) of the (above|following)\b|\bthe above\b|\b(all|none) of these\b|\bboth [a-d] (and|&) [a-d]\b|\b[a-d] (and|or|&) [a-d]\b|\banswers? [a-d]\b|\boptions? [a-d]\b/i;
+      function buildMcqOrder(opts) {
+        var idxs = (opts || []).map(function (_, i) { return i; });
+        var positional = (opts || []).some(function (o) { return MCQ_POS_DEP.test(String(o)); });
+        if (positional) return idxs;
+        for (var i = idxs.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var t = idxs[i]; idxs[i] = idxs[j]; idxs[j] = t;
+        }
+        return idxs;
+      }
 
       /* ---- Helpers ---- */
       function getCompletedTopics(subjectId) {
@@ -1124,11 +1139,12 @@
           '</div>';
 
         var optContainer = document.getElementById('mcq-options');
-        var labels = ['A', 'B', 'C', 'D'];
-        q.options.forEach(function (opt, i) {
+        var labels = ['A', 'B', 'C', 'D', 'E', 'F'];
+        mcqOrder = buildMcqOrder(q.options);
+        mcqOrder.forEach(function (origIdx, i) {
           var btn = document.createElement('button');
           btn.className = 'mcq-option';
-          btn.textContent = labels[i] + '. ' + opt;
+          btn.textContent = labels[i] + '. ' + q.options[origIdx];
           btn.setAttribute('data-idx', i);
           btn.addEventListener('click', function () { handleMCQAnswer(i, q); });
           optContainer.appendChild(btn);
@@ -1140,14 +1156,16 @@
         if (mcqAnswered) return;
         mcqAnswered = true;
 
+        // Map the correct original-option index to its shuffled display position.
+        var correctDisplayIdx = mcqOrder.indexOf(q.answer);
         var opts = document.querySelectorAll('.mcq-option');
         opts.forEach(function (btn, i) {
           btn.disabled = true;
-          if (i === q.answer) btn.classList.add('correct');
-          if (i === selectedIdx && selectedIdx !== q.answer) btn.classList.add('wrong');
+          if (i === correctDisplayIdx) btn.classList.add('correct');
+          if (i === selectedIdx && selectedIdx !== correctDisplayIdx) btn.classList.add('wrong');
         });
 
-        if (selectedIdx === q.answer) {
+        if (selectedIdx === correctDisplayIdx) {
           mcqScore++;
           updateMCQScore();
           var questions = parseInt(localStorage.getItem('tih_questions') || '0', 10);
