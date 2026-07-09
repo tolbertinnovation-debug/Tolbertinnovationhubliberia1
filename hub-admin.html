@@ -326,7 +326,7 @@
   <script src="courses-db.js?v=6"></script>
   <script src="hub-config.js?v=3"></script>
   <script src="hub-cloud.js?v=5"></script>
-  <script src="hub-db.js?v=10"></script>
+  <script src="hub-db.js?v=11"></script>
   <script src="cert-registry.js?v=2"></script>
   <script>
     /* ============ HELPERS ============ */
@@ -869,9 +869,23 @@
           + '<div class="modal-actions" style="margin-top:.5rem;">'
           + '<a class="btn btn-green btn-sm" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(s ? s.phone : null, waText) + '">💬 Send via WhatsApp</a>'
           + '<button class="btn btn-line btn-sm" onclick="navigator.clipboard&&navigator.clipboard.writeText(\'' + code + '\');this.textContent=\'✓ Copied\'">📋 Copy Code</button>'
-          + '</div>';
+          + '<button class="btn btn-primary btn-sm" onclick="grantAccessNow(\'' + stuId + '\',\'' + itemId + '\')">⚡ Grant Access Now</button>'
+          + '</div><div id="acGrantMsg" style="margin-top:.5rem;"></div>';
       });
     });
+
+    // One-tap unlock: writes a confirmed enrollment straight to the central DB.
+    // The learner's device unlocks automatically on their next login (no code).
+    window.grantAccessNow = function (stuId, itemId) {
+      var msg = document.getElementById('acGrantMsg');
+      if (msg) msg.innerHTML = '<span class="feedback">Granting access…</span>';
+      HubDB.adminGrantAccess(stuId, itemId).then(function (ok) {
+        if (!msg) return;
+        msg.innerHTML = ok
+          ? '<span class="feedback ok">✓ Access granted online for ' + esc(accessItemLabel(itemId)) + '. It unlocks on the learner\'s device the next time they log in — no code needed.</span>'
+          : '<span class="feedback err">Could not reach the database. Check the connection and try again, or send the access code above instead.</span>';
+      });
+    };
 
     /* ============ RENDER: CERTIFICATE REQUESTS ============ */
     function populateCodeCourses() {

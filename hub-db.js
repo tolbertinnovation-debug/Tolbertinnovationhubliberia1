@@ -648,6 +648,29 @@ var HubDB = (function () {
     recordEnrollment(studentId, itemId, true);
   }
 
+  // Admin one-tap unlock: record a CONFIRMED enrollment in the central DB for a
+  // student + item. The learner's device applies it automatically on next login
+  // (hydrateAccountFromCloud) — no access code needed. Resolves to true on a
+  // confirmed cloud write, false when offline / cloud unconfigured.
+  function adminGrantAccess(studentId, itemId) {
+    audit('Granted online access to ' + itemId, studentId);
+    if (!cloud() || !studentId || !itemId) return Promise.resolve(false);
+    var title = (typeof COURSES_DB !== 'undefined' && COURSES_DB[itemId] && COURSES_DB[itemId].title)
+      ? COURSES_DB[itemId].title
+      : (itemId === 'wassce-all' ? 'WASSCE PRO — All 23 Subjects' : itemId);
+    var C = cloud();
+    return C.pushEnrollment({
+      student_id: studentId, item_id: itemId, item_title: title,
+      payment_status: 'confirmed', access_granted: true, granted_at: nowISO()
+    }).then(function (ok) {
+      if (ok) fire(C.pushPayment({
+        student_id: studentId, item_id: itemId, amount: PAYMENT.amountUSD,
+        method: 'Mobile Money', status: 'success', confirmed_by: 'admin'
+      }));
+      return ok;
+    }).catch(function () { return false; });
+  }
+
   // Central record of a paid enrollment / access grant (best effort).
   function recordEnrollment(studentId, itemId, confirmed) {
     if (!cloud() || !studentId) return;
@@ -781,6 +804,7 @@ var HubDB = (function () {
     hasAccess: hasAccess,
     verifyAccessCode: verifyAccessCode,
     grantAccess: grantAccess,
+    adminGrantAccess: adminGrantAccess,
     // comms
     waLink: waLink,
     mailtoLink: mailtoLink
