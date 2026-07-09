@@ -234,6 +234,7 @@
           <input type="text" id="acStuId" placeholder="Student ID (TIH-STU-XXXXXX)" style="flex:1;min-width:200px;padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;text-transform:uppercase;" />
           <select id="acItem" style="padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;min-width:220px;"></select>
           <button class="btn btn-primary" id="acGenBtn">Generate Code</button>
+          <button class="btn btn-orange" id="acGrantAllWassceBtn">🎓 Grant ALL WASSCE Subjects</button>
         </div>
         <div id="acResult" style="margin-top:.9rem;"></div>
       </div>
@@ -886,6 +887,26 @@
           : '<span class="feedback err">Could not reach the database. Check the connection and try again, or send the access code above instead.</span>';
       });
     };
+
+    // Unlock EVERY WASSCE subject for a learner in one tap.
+    document.getElementById('acGrantAllWassceBtn').addEventListener('click', function () {
+      var stuId = document.getElementById('acStuId').value.trim().toUpperCase();
+      var out = document.getElementById('acResult');
+      if (!/^TIH-STU-[A-Z0-9]{6}$/.test(stuId)) {
+        out.innerHTML = '<span class="feedback err">Enter a valid Student ID (TIH-STU-XXXXXX).</span>';
+        return;
+      }
+      out.innerHTML = '<span class="feedback">Granting all ' + WASSCE_SUBJECTS_LIST.length + ' WASSCE subjects…</span>';
+      HubDB.audit('Granted online access to ALL WASSCE subjects', stuId);
+      Promise.all(WASSCE_SUBJECTS_LIST.map(function (s) {
+        return HubDB.adminGrantAccess(stuId, 'wassce-' + s[0]).catch(function () { return false; });
+      })).then(function (results) {
+        var granted = results.filter(Boolean).length;
+        out.innerHTML = granted === WASSCE_SUBJECTS_LIST.length
+          ? '<span class="feedback ok">✓ All ' + granted + ' WASSCE subjects unlocked online for <b>' + esc(stuId) + '</b>. They open on the learner\'s device at next login — no codes needed.</span>'
+          : '<span class="feedback err">Only ' + granted + ' of ' + WASSCE_SUBJECTS_LIST.length + ' saved — check the database connection and try again (re-running is safe).</span>';
+      });
+    });
 
     /* ============ RENDER: CERTIFICATE REQUESTS ============ */
     function populateCodeCourses() {
