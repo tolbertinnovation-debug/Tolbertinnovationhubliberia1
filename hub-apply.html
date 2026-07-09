@@ -138,7 +138,23 @@
             <option>Other</option>
           </select>
         </div>
-        <button type="submit" class="btn-submit" id="submitBtn">Submit Application →</button>
+
+        <div style="border-top:1px dashed var(--border);margin:1.4rem 0 1rem;padding-top:1.2rem;">
+          <p style="font-weight:800;color:var(--primary);font-size:1rem;margin-bottom:.2rem;">🔐 Create your login</p>
+          <p style="font-size:.83rem;color:var(--muted);margin-bottom:1rem;">Choose a password now so you can sign in straight away. You'll log in with your <strong>email</strong> and this password.</p>
+        </div>
+        <div class="row-2">
+          <div class="field">
+            <label>Create a Password <span class="req">*</span></label>
+            <input type="password" name="password" required minlength="8" autocomplete="new-password" placeholder="At least 8 characters" />
+          </div>
+          <div class="field">
+            <label>Confirm Password <span class="req">*</span></label>
+            <input type="password" name="password2" required autocomplete="new-password" placeholder="Re-enter your password" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Create Account &amp; Submit →</button>
         <p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:.8rem;">By applying you agree to our <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>.</p>
       </form>
     </div>
@@ -146,26 +162,27 @@
     <!-- CONFIRMATION -->
     <div class="card confirm" id="confirmCard">
       <div class="confirm-icon">🎉</div>
-      <h2>Application Received!</h2>
-      <p style="color:var(--muted);font-size:.93rem;">Save your Application ID — you'll need it to check your status.</p>
-      <div class="app-id-box">
-        <div class="label">Your Application ID</div>
-        <div class="id" id="appIdDisplay">—</div>
+      <h2>Account Created!</h2>
+      <p style="color:var(--muted);font-size:.93rem;">You can log in right now using your email and the password you chose.</p>
+      <div class="app-id-box" style="text-align:left;">
+        <div class="label">Your Login</div>
+        <div style="font-size:.95rem;font-weight:700;color:var(--primary);word-break:break-all;">📧 <span id="loginEmailDisplay">—</span></div>
+        <div style="font-size:.82rem;color:var(--muted);margin-top:.35rem;">Password: the one you just created</div>
+        <div style="font-size:.82rem;color:var(--muted);margin-top:.5rem;">Application ID: <strong id="appIdDisplay">—</strong></div>
       </div>
-      <p style="font-size:.9rem;"><strong>Important:</strong> tap the WhatsApp button below to send your application to the TIH team — this confirms your submission and speeds up review.</p>
       <div class="confirm-actions">
-        <a class="btn-line btn-wa" id="waConfirmBtn" target="_blank" rel="noopener noreferrer">💬 Confirm via WhatsApp</a>
+        <a class="btn-line btn-track" id="loginNowBtn" href="hub-dashboard.html" style="background:var(--secondary);">▶ Log In Now</a>
+        <a class="btn-line btn-wa" id="waConfirmBtn" target="_blank" rel="noopener noreferrer">💬 Notify TIH on WhatsApp</a>
         <a class="btn-line btn-track" id="trackBtn">🔍 Track My Application</a>
-        <button class="btn-line btn-copy" id="copyIdBtn">📋 Copy Application ID</button>
       </div>
-      <p class="review-note">Review time: 3–5 business days. If approved, your login details will be sent to your WhatsApp and email.</p>
+      <p class="review-note">Your courses unlock for US$2 each after the TIH team confirms your Mobile Money payment. Log in to see your dashboard and next steps.</p>
     </div>
   </div>
 
   <script src="courses-db.js?v=6"></script>
   <script src="hub-config.js?v=3"></script>
   <script src="hub-cloud.js?v=4"></script>
-  <script src="hub-db.js?v=7"></script>
+  <script src="hub-db.js?v=8"></script>
   <script>
     // WASSCE subjects (shown as their own group in the application form).
     var WASSCE_APPLY = [
@@ -221,36 +238,7 @@
         errBox.scrollIntoView({ block: 'center' });
       }
 
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        errBox.classList.remove('show');
-        var fd = new FormData(form);
-        var tracks = [];
-        form.querySelectorAll('input[name="tracks"]:checked').forEach(function (cb) { tracks.push(cb.value); });
-
-        var name = String(fd.get('name') || '').trim();
-        var email = String(fd.get('email') || '').trim();
-        var phone = String(fd.get('phone') || '').trim();
-        var location = String(fd.get('location') || '').trim();
-        var education = String(fd.get('education') || '').trim();
-        var goals = String(fd.get('goals') || '').trim();
-
-        if (!name) return showError('Please enter your full name.');
-        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return showError('Please enter a valid email address.');
-        if (phone.replace(/[^0-9]/g, '').length < 7) return showError('Please enter a valid phone / WhatsApp number.');
-        if (!location) return showError('Please enter your location.');
-        if (!education) return showError('Please select your education level.');
-        if (!goals) return showError('Please tell us what you want to achieve.');
-        if (!tracks.length) return showError('Please choose at least one learning track.');
-
-        var app = HubDB.submitApplication({
-          name: name, email: email, phone: phone, location: location,
-          dob: String(fd.get('dob') || ''), education: education,
-          occupation: String(fd.get('occupation') || '').trim(),
-          goals: goals, tracks: tracks,
-          referral: String(fd.get('referral') || '')
-        });
-
+      function showConfirm(app, name, email, phone, location, education, goals, tracks) {
         // Build WhatsApp confirmation message to the TIH team
         var trackNames = tracks.map(function (id) {
           if (id.indexOf('wassce-') === 0) return wassceApplyName(id);
@@ -266,19 +254,72 @@
           + 'Tracks: ' + trackNames + '\n'
           + 'Goals: ' + goals;
 
+        document.getElementById('loginEmailDisplay').textContent = email;
         document.getElementById('appIdDisplay').textContent = app.id;
         document.getElementById('waConfirmBtn').href = HubDB.waLink(null, waText);
         document.getElementById('trackBtn').href = 'hub-track.html?id=' + encodeURIComponent(app.id);
-        document.getElementById('copyIdBtn').addEventListener('click', function () {
-          try {
-            navigator.clipboard.writeText(app.id);
-            this.textContent = '✓ Copied!';
-          } catch (err) { this.textContent = app.id; }
-        });
 
         document.getElementById('formCard').style.display = 'none';
         document.getElementById('confirmCard').classList.add('show');
         window.scrollTo(0, 0);
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        errBox.classList.remove('show');
+        var fd = new FormData(form);
+        var tracks = [];
+        form.querySelectorAll('input[name="tracks"]:checked').forEach(function (cb) { tracks.push(cb.value); });
+
+        var name = String(fd.get('name') || '').trim();
+        var email = String(fd.get('email') || '').trim();
+        var phone = String(fd.get('phone') || '').trim();
+        var location = String(fd.get('location') || '').trim();
+        var education = String(fd.get('education') || '').trim();
+        var goals = String(fd.get('goals') || '').trim();
+        var password = String(fd.get('password') || '');
+        var password2 = String(fd.get('password2') || '');
+
+        if (!name) return showError('Please enter your full name.');
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return showError('Please enter a valid email address.');
+        if (phone.replace(/[^0-9]/g, '').length < 7) return showError('Please enter a valid phone / WhatsApp number.');
+        if (!location) return showError('Please enter your location.');
+        if (!education) return showError('Please select your education level.');
+        if (!goals) return showError('Please tell us what you want to achieve.');
+        if (!tracks.length) return showError('Please choose at least one learning track.');
+        if (password.length < 8) return showError('Your password must be at least 8 characters.');
+        if (password !== password2) return showError('The two passwords do not match. Please re-enter them.');
+
+        var submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Creating your account…';
+
+        var app = HubDB.submitApplication({
+          name: name, email: email, phone: phone, location: location,
+          dob: String(fd.get('dob') || ''), education: education,
+          occupation: String(fd.get('occupation') || '').trim(),
+          goals: goals, tracks: tracks,
+          referral: String(fd.get('referral') || '')
+        });
+
+        // Create the learner's login account so they can sign in with email + password.
+        HubDB.registerStudent({
+          name: name, email: email, phone: phone, location: location,
+          password: password, courses: tracks, applicationId: app.id
+        }).then(function (res) {
+          if (!res.ok) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Create Account & Submit →';
+            return showError(res.error || 'We could not create your account. Please try again.');
+          }
+          // Link the application to the new student account.
+          try { HubDB.updateApplication(app.id, { studentId: res.student.id }); } catch (err) {}
+          showConfirm(app, name, email, phone, location, education, goals, tracks);
+        }).catch(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Create Account & Submit →';
+          showError('Something went wrong creating your account. Please try again.');
+        });
       });
     })();
   </script>

@@ -180,6 +180,40 @@ var HubDB = (function () {
       return { student: student, tempPassword: tempPassword };
     });
   }
+  // Self-registration: the learner sets their OWN password on the application
+  // form and can log in immediately with their email. Creates an active account
+  // (no admin-issued temp password needed). Returns {ok, student, error}.
+  function registerStudent(data) {
+    var email = String(data.email || '').trim();
+    if (!email) return Promise.resolve({ ok: false, error: 'Email is required.' });
+    if (findStudent(email)) {
+      return Promise.resolve({ ok: false, error: 'An account with this email already exists. Please log in instead.' });
+    }
+    if (!data.password || String(data.password).length < 8) {
+      return Promise.resolve({ ok: false, error: 'Password must be at least 8 characters.' });
+    }
+    return sha256(data.password).then(function (hash) {
+      var student = {
+        id: genStudentId(),
+        createdAt: nowISO(),
+        status: 'active',
+        name: data.name, email: email, phone: data.phone || '',
+        location: data.location || '',
+        applicationId: data.applicationId || null,
+        passwordHash: hash,
+        mustChangePassword: false,   // they chose their own password
+        courses: data.courses || [], // pre-assigned tracks (locked until paid)
+        lastLoginAt: null,
+        loginHistory: [],
+        adminNotes: []
+      };
+      var list = getStudents();
+      list.unshift(student);
+      saveStudents(list);
+      if (cloud()) fire(cloud().pushStudent(student)); // central DB → cross-device login
+      return { ok: true, student: student };
+    });
+  }
   function updateStudent(id, changes) {
     var list = getStudents();
     for (var i = 0; i < list.length; i++) {
@@ -611,6 +645,7 @@ var HubDB = (function () {
     getStudents: getStudents,
     findStudent: findStudent,
     createStudent: createStudent,
+    registerStudent: registerStudent,
     updateStudent: updateStudent,
     deleteStudent: deleteStudent,
     assignCourse: assignCourse,
