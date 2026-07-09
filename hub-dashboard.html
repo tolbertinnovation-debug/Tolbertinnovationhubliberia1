@@ -67,6 +67,33 @@
     .resume .r-meta { font-size: .74rem; color: rgba(255,255,255,.8); margin-top: .35rem; }
     .resume .r-btn { background: var(--secondary); color: #fff; border: none; border-radius: 999px; padding: .7rem 1.3rem; font-weight: 800; font-family: 'Poppins', sans-serif; font-size: .9rem; text-decoration: none; white-space: nowrap; min-height: 46px; display: inline-flex; align-items: center; }
 
+    /* MOMENTUM — level / XP / weekly activity */
+    .momentum { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; margin-bottom: 1.6rem; box-shadow: var(--shadow); display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; align-items: center; }
+    .mo-level { text-align: center; flex-shrink: 0; }
+    .mo-level .ring { width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.25rem; color: #fff; background: conic-gradient(var(--secondary) var(--deg,0deg), #e2e8f0 0deg); position: relative; }
+    .mo-level .ring::before { content: ''; position: absolute; inset: 5px; border-radius: 50%; background: #fff; }
+    .mo-level .ring span { position: relative; color: var(--primary); }
+    .mo-level small { display: block; font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-top: 0.25rem; }
+    .mo-mid .mo-rank { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.95rem; color: var(--primary); }
+    .mo-mid .mo-xp { font-size: 0.72rem; color: var(--muted); font-weight: 600; margin: 0.15rem 0 0.35rem; }
+    .xp-track { background: #eef2f9; height: 8px; border-radius: 999px; overflow: hidden; }
+    .xp-fill { height: 100%; background: linear-gradient(90deg, var(--secondary), #fbbf24); border-radius: 999px; transition: width .6s; }
+    .mo-week { text-align: center; flex-shrink: 0; }
+    .week-dots { display: flex; gap: 3px; justify-content: center; }
+    .week-dots i { width: 9px; height: 9px; border-radius: 50%; background: #e2e8f0; }
+    .week-dots i.on { background: var(--accent); }
+    .mo-week small { display: block; font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-top: 0.3rem; }
+    @media (max-width: 560px) { .momentum { grid-template-columns: auto 1fr; } .mo-week { grid-column: 1 / -1; border-top: 1px solid var(--border); padding-top: 0.7rem; } .week-dots i { width: 12px; height: 12px; } }
+
+    /* RECOMMENDATION — Learn Next */
+    .reco { background: linear-gradient(135deg, #062b1e, #065f46 70%, #10b981); color: #fff; border-radius: var(--radius); padding: 1rem 1.15rem; margin-bottom: 1.6rem; display: flex; align-items: center; gap: 0.9rem; box-shadow: 0 8px 24px rgba(6,95,70,.2); flex-wrap: wrap; }
+    .reco .rc-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,.16); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .reco .rc-body { flex: 1; min-width: 170px; }
+    .reco .rc-eyebrow { font-size: .66rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #a7f3d0; }
+    .reco .rc-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.98rem; margin: .12rem 0; }
+    .reco .rc-desc { font-size: .76rem; color: rgba(255,255,255,.85); }
+    .reco .rc-btn { background: #fff; color: #065f46; border: none; border-radius: 999px; padding: .6rem 1.15rem; font-weight: 800; font-family: 'Poppins', sans-serif; font-size: .84rem; text-decoration: none; white-space: nowrap; min-height: 42px; display: inline-flex; align-items: center; }
+
     /* ACHIEVEMENTS */
     .ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.6rem; }
     .ach-badge { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 0.6rem; text-align: center; box-shadow: var(--shadow); position: relative; }
@@ -170,8 +197,14 @@
           <span class="streak-chip" id="streakChip" style="display:none;">🔥 <span id="streakText"></span></span>
         </div>
 
+        <!-- MOMENTUM: level / XP / weekly activity -->
+        <div id="momentumCard"></div>
+
         <!-- CONTINUE LEARNING -->
         <div id="resumeCard" style="display:none;"></div>
+
+        <!-- LEARN NEXT recommendation -->
+        <div id="recoCard" style="display:none;"></div>
 
         <div class="stat-strip" id="statStrip"></div>
 
@@ -444,10 +477,15 @@
         + '<div class="mini-stat"><b>' + overallPct + '%</b><span>Overall</span></div>'
         + '<div class="mini-stat"><b>' + completedCourses.length + '</b><span>Certificates</span></div>';
 
-      // Continue Learning + Achievements
+      // Continue Learning + Momentum + Recommendation + Achievements
       resumeInProg.sort(function (a, b) { return b.pct - a.pct; });
       renderResume(resumeInProg[0] || resumeNotStarted[0] || null);
-      renderAchievements(doneLessons, completedCourses.length, computeStreak(s.loginHistory));
+      var streakNow = computeStreak(s.loginHistory);
+      var weekDays = activeDaysThisWeek(s.loginHistory);
+      var xp = doneLessons * 10 + completedCourses.length * 100;
+      renderMomentum(xp, weekDays);
+      renderReco(assigned);
+      renderAchievements(doneLessons, completedCourses.length, streakNow, xp);
 
       // Deadlines
       var upcoming = assigned.filter(function (c) {
@@ -533,7 +571,7 @@
     }
 
     /* ---- Achievements / badges ---- */
-    function renderAchievements(doneLessons, completedCount, streak) {
+    function renderAchievements(doneLessons, completedCount, streak, xp) {
       var grid = document.getElementById('achGrid');
       if (!grid) return;
       var badges = [
@@ -541,6 +579,8 @@
         { ic: '📖', name: '5 Lessons Done', earned: doneLessons >= 5 },
         { ic: '📚', name: '10 Lessons Done', earned: doneLessons >= 10 },
         { ic: '🔥', name: '3-Day Streak', earned: streak >= 3 },
+        { ic: '⚡', name: 'Week Warrior', earned: streak >= 7 },
+        { ic: '⭐', name: '500 XP', earned: (xp || 0) >= 500 },
         { ic: '🎓', name: 'First Course', earned: completedCount >= 1 },
         { ic: '🏆', name: 'Triple Graduate', earned: completedCount >= 3 }
       ];
@@ -550,6 +590,100 @@
           + '<div class="ab-ic">' + b.ic + '</div>'
           + '<div class="ab-name">' + b.name + '</div></div>';
       }).join('');
+    }
+
+    /* ---- Weekly activity: distinct login days in the last 7 days ---- */
+    function activeDaysThisWeek(history) {
+      if (!history || !history.length) return 0;
+      var cutoff = new Date(); cutoff.setDate(cutoff.getDate() - 6);
+      var cutKey = cutoff.toISOString().slice(0, 10);
+      var days = {};
+      history.forEach(function (iso) {
+        var d = String(iso).slice(0, 10);
+        if (d >= cutKey) days[d] = true;
+      });
+      return Math.min(7, Object.keys(days).length);
+    }
+
+    /* ---- Momentum: level + XP + weekly-days ring ---- */
+    var LEVEL_XP = 150; // XP needed per level
+    function levelRank(level) {
+      if (level >= 10) return 'Mentor';
+      if (level >= 7) return 'Achiever';
+      if (level >= 5) return 'Scholar';
+      if (level >= 3) return 'Learner';
+      return 'Beginner';
+    }
+    function renderMomentum(xp, weekDays) {
+      var el = document.getElementById('momentumCard');
+      if (!el) return;
+      var level = Math.floor(xp / LEVEL_XP) + 1;
+      var into = xp % LEVEL_XP;
+      var pct = Math.round(into / LEVEL_XP * 100);
+      var deg = Math.round(pct * 3.6);
+      var toNext = LEVEL_XP - into;
+      var goal = 5; // weekly active-days goal
+      var dots = '';
+      for (var i = 0; i < 7; i++) dots += '<i class="' + (i < weekDays ? 'on' : '') + '"></i>';
+      el.className = 'momentum';
+      el.innerHTML =
+        '<div class="mo-level"><div class="ring" style="--deg:' + deg + 'deg"><span>' + level + '</span></div><small>Level</small></div>'
+        + '<div class="mo-mid">'
+        + '<div class="mo-rank">' + levelRank(level) + ' · ' + xp + ' XP</div>'
+        + '<div class="mo-xp">' + toNext + ' XP to Level ' + (level + 1) + '</div>'
+        + '<div class="xp-track"><div class="xp-fill" style="width:' + pct + '%"></div></div>'
+        + '</div>'
+        + '<div class="mo-week"><div class="week-dots">' + dots + '</div>'
+        + '<small>' + weekDays + '/' + goal + ' days active</small></div>';
+    }
+
+    /* ---- Learn Next recommendation (rule-based, from the catalog) ---- */
+    // Pathway groupings — recommend the next course in the learner's strongest area.
+    var PATHWAYS = {
+      tech: ['webdev','design','data','ai','cybersecurity','android'],
+      business: ['marketing','entrepreneurship','project-mgmt','leadership'],
+      career: ['office','computer-literacy','ielts','toefl','sat']
+    };
+    function pathwayOf(courseId) {
+      for (var k in PATHWAYS) if (PATHWAYS[k].indexOf(courseId) !== -1) return k;
+      return null;
+    }
+    function renderReco(assigned) {
+      var el = document.getElementById('recoCard');
+      if (!el || typeof COURSES_DB === 'undefined') { if (el) el.style.display = 'none'; return; }
+      var have = {};
+      assigned.forEach(function (c) { have[c.id] = true; });
+
+      // Which pathway is the learner most invested in?
+      var counts = {};
+      assigned.forEach(function (c) { var p = pathwayOf(c.id); if (p) counts[p] = (counts[p] || 0) + 1; });
+      var topPath = null, best = 0;
+      for (var k in counts) if (counts[k] > best) { best = counts[k]; topPath = k; }
+
+      // Candidate = a catalog course they don't already have, preferring their top pathway.
+      var pool = [];
+      if (topPath) PATHWAYS[topPath].forEach(function (id) { if (!have[id] && COURSES_DB[id]) pool.push(id); });
+      if (!pool.length) {
+        Object.keys(COURSES_DB).forEach(function (id) { if (!have[id]) pool.push(id); });
+      }
+      if (!pool.length) { el.style.display = 'none'; return; }
+
+      // Deterministic pick (by student id) so it's stable across reloads.
+      var seed = 0, sid = (currentStudent && currentStudent.id) || '';
+      for (var i = 0; i < sid.length; i++) seed = (seed + sid.charCodeAt(i)) % 100000;
+      var pickId = pool[seed % pool.length];
+      var meta = courseMeta(pickId);
+      var price = (HubDB.priceFor ? HubDB.priceFor(pickId) : 2);
+      el.style.display = 'flex';
+      el.className = 'reco';
+      el.innerHTML =
+        '<div class="rc-icon">' + meta.icon + '</div>'
+        + '<div class="rc-body">'
+        + '<div class="rc-eyebrow">✨ Recommended for you</div>'
+        + '<div class="rc-title">' + esc(meta.title) + '</div>'
+        + '<div class="rc-desc">Grow your skills — unlock for US$' + price + '.</div>'
+        + '</div>'
+        + '<a class="rc-btn" href="learning-hub.html#courses">Explore →</a>';
     }
 
     /* ---- WASSCE subjects grid (locked until paid) ---- */
