@@ -143,7 +143,34 @@ var HubDB = (function () {
   }
 
   /* ---- Students ---- */
-  function getStudents() { return getJSON(KEYS.students, []); }
+  // Assigned courses must be objects: [{id, assignedAt, deadline, priority}].
+  // Older self-registered accounts stored bare id strings — coerce them so the
+  // dashboard and course player can read c.id (fixes blank "Course not found").
+  // WASSCE subjects (wassce-*) are handled by their own grid, not assigned cards.
+  function normCourses(courses) {
+    if (!Array.isArray(courses)) return [];
+    var out = [];
+    courses.forEach(function (c) {
+      var id = (c && typeof c === 'object') ? c.id : c;
+      if (!id) return;
+      if (String(id).indexOf('wassce-') === 0) return; // shown in the WASSCE grid
+      if (c && typeof c === 'object') out.push(c);
+      else out.push({ id: String(id), assignedAt: nowISO() });
+    });
+    return out;
+  }
+  function getStudents() {
+    var list = getJSON(KEYS.students, []);
+    var changed = false;
+    list.forEach(function (s) {
+      if (!s) return;
+      var before = JSON.stringify(s.courses || []);
+      s.courses = normCourses(s.courses);
+      if (JSON.stringify(s.courses) !== before) changed = true;
+    });
+    if (changed) setJSON(KEYS.students, list); // self-heal legacy records once
+    return list;
+  }
   function saveStudents(list) { setJSON(KEYS.students, list); }
   function findStudent(idOrEmail) {
     var q = String(idOrEmail || '').trim().toLowerCase();
@@ -202,7 +229,7 @@ var HubDB = (function () {
         applicationId: data.applicationId || null,
         passwordHash: hash,
         mustChangePassword: false,   // they chose their own password
-        courses: data.courses || [], // pre-assigned tracks (locked until paid)
+        courses: normCourses(data.courses), // pre-assigned tracks as {id} objects
         lastLoginAt: null,
         loginHistory: [],
         adminNotes: []
@@ -264,6 +291,7 @@ var HubDB = (function () {
   /* ---- Student auth ---- */
   // Finalise a successful login: refresh local cache, set session keys.
   function completeStudentLogin(s) {
+    s.courses = normCourses(s.courses); // coerce cloud/legacy course shapes
     var list = getStudents();
     var found = false;
     for (var i = 0; i < list.length; i++) { if (list[i].id === s.id) { list[i] = s; found = true; break; } }
