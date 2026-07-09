@@ -167,10 +167,21 @@ drop policy if exists stu_all_admin on public.students;
 create policy stu_all_admin on public.students
   for all to authenticated using (true) with check (true);
 
--- ENROLLMENTS / PAYMENTS: admin only.
+-- ENROLLMENTS / PAYMENTS: learners record their own unlock when they enter a
+-- valid access code (insert/update); admin may read/manage all. Learner reads
+-- go through the student_bundle RPC, so these tables stay closed to public SELECT.
+drop policy if exists enr_write_anon on public.enrollments;
+create policy enr_write_anon on public.enrollments
+  for insert to anon, authenticated with check (true);
+drop policy if exists enr_update_anon on public.enrollments;
+create policy enr_update_anon on public.enrollments
+  for update to anon, authenticated using (true) with check (true);
 drop policy if exists enr_all_admin on public.enrollments;
 create policy enr_all_admin on public.enrollments
   for all to authenticated using (true) with check (true);
+drop policy if exists pay_insert_anon on public.payments;
+create policy pay_insert_anon on public.payments
+  for insert to anon, authenticated with check (true);
 drop policy if exists pay_all_admin on public.payments;
 create policy pay_all_admin on public.payments
   for all to authenticated using (true) with check (true);
