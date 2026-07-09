@@ -66,7 +66,7 @@ var Paywall = (function () {
       + '<div style="padding:1.4rem 1.5rem;">'
       + '<p style="font-size:.92rem;color:#374151;margin:0 0 1rem;">Access to this course costs <b>US$' + esc(amount) + '</b>. Follow these steps to unlock it:</p>'
       + '<ol style="margin:0 0 1rem 1.1rem;padding:0;font-size:.9rem;color:#374151;line-height:1.7;">'
-      + '<li><b>Pay ' + esc(currencyNote) + '</b> by Mobile Money to:<br><span style="display:inline-block;background:#eef2ff;border:1px dashed #1E3A8A;border-radius:8px;padding:.5rem .8rem;margin-top:.35rem;font-weight:700;color:#1E3A8A;">' + esc(P.momoNumber) + ' &middot; ' + esc(P.momoName) + '</span></li>'
+      + '<li><b>Pay ' + esc(currencyNote) + '</b> by Mobile Money to:<br><a href="' + telLink + '" style="display:inline-flex;align-items:center;gap:.4rem;background:#eef2ff;border:1px dashed #1E3A8A;border-radius:8px;padding:.55rem .9rem;margin-top:.35rem;font-weight:700;color:#1E3A8A;text-decoration:none;">📞 ' + esc(P.momoNumber) + ' &middot; ' + esc(P.momoName) + '</a><span style="display:block;font-size:.72rem;color:#64748b;margin-top:.25rem;">Tap the number to call</span></li>'
       + '<li style="margin-top:.6rem;">Confirm your payment with the TIH team — by <b>WhatsApp</b>, <b>text</b>, or <b>call</b> (buttons below). Always send your <b>name</b> and <b>Student ID</b>: <b>' + esc(student.id) + '</b>.</li>'
       + '<li style="margin-top:.6rem;">The administrator confirms your payment and sends you a <b>6-character access code</b>.</li>'
       + '<li style="margin-top:.6rem;">Enter the code below to unlock this course.</li>'
