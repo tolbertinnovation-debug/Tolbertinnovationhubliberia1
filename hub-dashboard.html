@@ -56,6 +56,26 @@
     .welcome p { color: var(--muted); font-size: 0.9rem; }
     .streak-chip { display: inline-flex; align-items: center; gap: 0.35rem; background: #fff7ed; color: #9a3412; font-weight: 700; font-size: 0.8rem; border-radius: 999px; padding: 0.3rem 0.8rem; margin-top: 0.5rem; }
 
+    /* RESUME / CONTINUE LEARNING */
+    .resume { background: linear-gradient(135deg, #001a45, #002868 65%, #0b3aa0); color: #fff; border-radius: var(--radius); padding: 1.1rem 1.2rem; margin-bottom: 1.6rem; box-shadow: 0 8px 24px rgba(0,40,104,.22); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .resume .r-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .resume .r-body { flex: 1; min-width: 180px; }
+    .resume .r-eyebrow { font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #ffd9a8; }
+    .resume .r-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1rem; line-height: 1.25; margin: .15rem 0 .5rem; }
+    .resume .r-track { background: rgba(255,255,255,.2); height: 7px; border-radius: 999px; overflow: hidden; }
+    .resume .r-fill { height: 100%; background: linear-gradient(90deg, #f97316, #fbbf24); border-radius: 999px; }
+    .resume .r-meta { font-size: .74rem; color: rgba(255,255,255,.8); margin-top: .35rem; }
+    .resume .r-btn { background: var(--secondary); color: #fff; border: none; border-radius: 999px; padding: .7rem 1.3rem; font-weight: 800; font-family: 'Poppins', sans-serif; font-size: .9rem; text-decoration: none; white-space: nowrap; min-height: 46px; display: inline-flex; align-items: center; }
+
+    /* ACHIEVEMENTS */
+    .ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.6rem; }
+    .ach-badge { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 0.6rem; text-align: center; box-shadow: var(--shadow); position: relative; }
+    .ach-badge.locked { opacity: .5; filter: grayscale(1); }
+    .ach-badge .ab-ic { font-size: 1.7rem; line-height: 1; }
+    .ach-badge .ab-name { font-size: 0.72rem; font-weight: 700; color: var(--text); margin-top: 0.35rem; line-height: 1.25; }
+    .ach-badge .ab-lock { position: absolute; top: 6px; right: 8px; font-size: 0.7rem; }
+    .ach-badge.earned { border-color: #c8960c; background: linear-gradient(160deg, #fffef7, #fff8e6); }
+
     .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-bottom: 1.6rem; }
     .mini-stat { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.8rem; text-align: center; box-shadow: var(--shadow); }
     .mini-stat b { display: block; font-family: 'Poppins', sans-serif; font-size: 1.25rem; color: var(--primary); }
@@ -150,6 +170,9 @@
           <span class="streak-chip" id="streakChip" style="display:none;">🔥 <span id="streakText"></span></span>
         </div>
 
+        <!-- CONTINUE LEARNING -->
+        <div id="resumeCard" style="display:none;"></div>
+
         <div class="stat-strip" id="statStrip"></div>
 
         <section id="deadlinesSection" style="display:none;">
@@ -170,6 +193,11 @@
           <h2>🎓 WASSCE PRO — Exam Prep</h2>
           <p style="font-size:.82rem;color:var(--muted);margin:-0.4rem 0 0.8rem;">Each subject unlocks separately for <strong>US$2</strong>.</p>
           <div class="courses-grid" id="wassceGrid"></div>
+        </section>
+
+        <section id="achSection">
+          <h2>🏅 Achievements</h2>
+          <div class="ach-grid" id="achGrid"></div>
         </section>
 
         <section>
@@ -349,6 +377,7 @@
       var s = currentStudent;
       var assigned = s.courses || [];
       var totalLessons = 0, doneLessons = 0, completedCourses = [], inProgress = 0, notStarted = 0;
+      var resumeInProg = [], resumeNotStarted = [];
       var priorityOrder = { high: 0, medium: 1, low: 2 };
 
       var cards = assigned.slice().sort(function (a, b) {
@@ -375,6 +404,12 @@
         }
 
         var unlocked = HubDB.hasAccess(c.id);
+        // Collect a "Continue Learning" candidate: prefer an unlocked, in-progress
+        // course (highest %), otherwise an unlocked course not yet started.
+        if (unlocked && !isDone) {
+          var cand = { id: c.id, meta: meta, pct: p.pct, completed: p.completed, total: p.total };
+          if (p.completed > 0) resumeInProg.push(cand); else resumeNotStarted.push(cand);
+        }
         var price = (HubDB.priceFor ? HubDB.priceFor(c.id) : 2);
         var isExam = (c.id === 'ielts' || c.id === 'toefl' || c.id === 'sat');
         var practiceLink = (isExam && unlocked)
@@ -408,6 +443,11 @@
         + '<div class="mini-stat"><b>' + doneLessons + '/' + totalLessons + '</b><span>Lessons Done</span></div>'
         + '<div class="mini-stat"><b>' + overallPct + '%</b><span>Overall</span></div>'
         + '<div class="mini-stat"><b>' + completedCourses.length + '</b><span>Certificates</span></div>';
+
+      // Continue Learning + Achievements
+      resumeInProg.sort(function (a, b) { return b.pct - a.pct; });
+      renderResume(resumeInProg[0] || resumeNotStarted[0] || null);
+      renderAchievements(doneLessons, completedCourses.length, computeStreak(s.loginHistory));
 
       // Deadlines
       var upcoming = assigned.filter(function (c) {
@@ -471,6 +511,45 @@
         : '<div class="act-row"><span>No activity yet — start your first lesson!</span></div>';
 
       renderWassce();
+    }
+
+    /* ---- Continue Learning card ---- */
+    function renderResume(r) {
+      var el = document.getElementById('resumeCard');
+      if (!el) return;
+      if (!r) { el.style.display = 'none'; return; }
+      var started = r.completed > 0;
+      el.className = 'resume';
+      el.style.display = 'flex';
+      el.innerHTML =
+        '<div class="r-icon">' + r.meta.icon + '</div>'
+        + '<div class="r-body">'
+        + '<div class="r-eyebrow">' + (started ? 'Continue Learning' : 'Ready to Start') + '</div>'
+        + '<div class="r-title">' + esc(r.meta.title) + '</div>'
+        + '<div class="r-track"><div class="r-fill" style="width:' + r.pct + '%"></div></div>'
+        + '<div class="r-meta">' + r.completed + '/' + r.total + ' lessons · ' + r.pct + '% complete</div>'
+        + '</div>'
+        + '<a class="r-btn" href="course-player.html?id=' + encodeURIComponent(r.id) + '">' + (started ? '▶ Resume' : '▶ Start') + '</a>';
+    }
+
+    /* ---- Achievements / badges ---- */
+    function renderAchievements(doneLessons, completedCount, streak) {
+      var grid = document.getElementById('achGrid');
+      if (!grid) return;
+      var badges = [
+        { ic: '🚀', name: 'Getting Started', earned: doneLessons >= 1 },
+        { ic: '📖', name: '5 Lessons Done', earned: doneLessons >= 5 },
+        { ic: '📚', name: '10 Lessons Done', earned: doneLessons >= 10 },
+        { ic: '🔥', name: '3-Day Streak', earned: streak >= 3 },
+        { ic: '🎓', name: 'First Course', earned: completedCount >= 1 },
+        { ic: '🏆', name: 'Triple Graduate', earned: completedCount >= 3 }
+      ];
+      grid.innerHTML = badges.map(function (b) {
+        return '<div class="ach-badge ' + (b.earned ? 'earned' : 'locked') + '">'
+          + (b.earned ? '' : '<span class="ab-lock">🔒</span>')
+          + '<div class="ab-ic">' + b.ic + '</div>'
+          + '<div class="ab-name">' + b.name + '</div></div>';
+      }).join('');
     }
 
     /* ---- WASSCE subjects grid (locked until paid) ---- */

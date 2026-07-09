@@ -334,6 +334,10 @@
         <h2 id="tracksHeading">Learning Tracks</h2>
         <p>Each track includes video lessons, notes, quizzes, a capstone project and a verified TIH certificate on completion. Assigned to you by the TIH team based on your goals.</p>
       </div>
+      <div style="max-width:460px;margin:0 auto 1.5rem;">
+        <input id="trackSearch" type="search" placeholder="🔍 Search tracks — e.g. web, design, AI, WASSCE…" aria-label="Search learning tracks" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--border);border-radius:12px;font-size:.95rem;font-family:inherit;" />
+        <p id="trackSearchEmpty" style="display:none;text-align:center;color:var(--muted);font-size:.9rem;margin-top:1rem;">No tracks match your search. Try another word.</p>
+      </div>
       <div class="tracks-grid" id="tracksGrid">
         <!-- Populated from COURSES_DB -->
       </div>
@@ -507,6 +511,24 @@
         var st = document.getElementById('trackCountStat');
         if (st) st.textContent = ids.length;
       } catch (e) {}
+    })();
+
+    // Live search filter over the track chips.
+    (function () {
+      var inp = document.getElementById('trackSearch');
+      if (!inp) return;
+      var emptyMsg = document.getElementById('trackSearchEmpty');
+      inp.addEventListener('input', function () {
+        var q = inp.value.trim().toLowerCase();
+        var chips = document.querySelectorAll('#tracksGrid .track-chip');
+        var shown = 0;
+        chips.forEach(function (chip) {
+          var match = !q || chip.textContent.toLowerCase().indexOf(q) !== -1;
+          chip.style.display = match ? '' : 'none';
+          if (match) shown++;
+        });
+        if (emptyMsg) emptyMsg.style.display = (shown === 0 && q) ? 'block' : 'none';
+      });
     })();
 
     // Build WASSCE subject grid → each opens the gated subject page (login + US$2)
