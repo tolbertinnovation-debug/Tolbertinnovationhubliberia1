@@ -44,6 +44,12 @@ var Paywall = (function () {
       + 'I have paid ' + currencyNote + ' via Mobile Money to ' + P.momoNumber + ' (' + P.momoName + '). '
       + 'Please confirm and send my access code.';
     var wa = 'https://wa.me/' + String(HubDB.WHATSAPP_NUMBER).replace(/[^0-9]/g, '') + '?text=' + encodeURIComponent(waText);
+    // Call / text the same number, with the learner's name + ID pre-filled.
+    var contactIntl = '+' + String(HubDB.WHATSAPP_NUMBER).replace(/[^0-9]/g, '');
+    var smsText = 'TIH Learning Hub payment. Name: ' + (student.name || '') + ', Student ID: ' + student.id
+      + '. I paid ' + currencyNote + ' for "' + (opts.itemTitle || opts.itemId) + '". Please confirm and send my access code.';
+    var telLink = 'tel:' + contactIntl;
+    var smsLink = 'sms:' + contactIntl + '?body=' + encodeURIComponent(smsText);
 
     var o = document.createElement('div');
     o.id = 'tihPaywall';
@@ -61,15 +67,20 @@ var Paywall = (function () {
       + '<p style="font-size:.92rem;color:#374151;margin:0 0 1rem;">Access to this course costs <b>US$' + esc(amount) + '</b>. Follow these steps to unlock it:</p>'
       + '<ol style="margin:0 0 1rem 1.1rem;padding:0;font-size:.9rem;color:#374151;line-height:1.7;">'
       + '<li><b>Pay ' + esc(currencyNote) + '</b> by Mobile Money to:<br><span style="display:inline-block;background:#eef2ff;border:1px dashed #1E3A8A;border-radius:8px;padding:.5rem .8rem;margin-top:.35rem;font-weight:700;color:#1E3A8A;">' + esc(P.momoNumber) + ' &middot; ' + esc(P.momoName) + '</span></li>'
-      + '<li style="margin-top:.6rem;">Send your payment confirmation to the TIH team on WhatsApp (button below). Include your Student ID: <b>' + esc(student.id) + '</b>.</li>'
+      + '<li style="margin-top:.6rem;">Confirm your payment with the TIH team — by <b>WhatsApp</b>, <b>text</b>, or <b>call</b> (buttons below). Always send your <b>name</b> and <b>Student ID</b>: <b>' + esc(student.id) + '</b>.</li>'
       + '<li style="margin-top:.6rem;">The administrator confirms your payment and sends you a <b>6-character access code</b>.</li>'
       + '<li style="margin-top:.6rem;">Enter the code below to unlock this course.</li>'
       + '</ol>'
-      + '<a href="' + wa + '" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#25D366;color:#fff;font-weight:700;text-decoration:none;border-radius:999px;padding:.8rem;min-height:48px;font-size:.92rem;">💬 Send Payment Confirmation on WhatsApp</a>'
-      + '<div style="display:flex;gap:.5rem;margin-top:1rem;">'
-      + '<input id="tihAccessInput" type="text" maxlength="6" placeholder="Access code" style="flex:1;padding:.7rem .9rem;border:1.5px solid #e2e8f0;border-radius:8px;font-family:inherit;font-size:1rem;text-transform:uppercase;letter-spacing:.15em;min-height:48px;" />'
-      + '<button id="tihAccessBtn" style="background:#F97316;color:#fff;border:none;border-radius:8px;font-weight:700;padding:0 1.2rem;cursor:pointer;font-family:inherit;min-height:48px;">Unlock</button>'
+      + '<a href="' + wa + '" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#25D366;color:#fff;font-weight:700;text-decoration:none;border-radius:999px;padding:.8rem;min-height:50px;font-size:.92rem;">💬 Send Payment Confirmation on WhatsApp</a>'
+      + '<div style="display:flex;gap:.5rem;margin-top:.6rem;">'
+      + '<a href="' + telLink + '" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;background:#1E3A8A;color:#fff;font-weight:700;text-decoration:none;border-radius:999px;padding:.75rem;min-height:48px;font-size:.9rem;">📞 Call</a>'
+      + '<a href="' + smsLink + '" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;background:#0f766e;color:#fff;font-weight:700;text-decoration:none;border-radius:999px;padding:.75rem;min-height:48px;font-size:.9rem;">✉️ Text</a>'
       + '</div>'
+      + '<p style="font-size:.78rem;color:#64748b;margin:.7rem 0 0;text-align:center;">Send your <b>name</b> and <b>Student ID</b> (' + esc(student.id) + ') so we can confirm your payment.</p>'
+      + '<div style="border-top:1px solid #e2e8f0;margin:1.1rem 0 .9rem;"></div>'
+      + '<label style="display:block;font-size:.82rem;font-weight:700;color:#374151;margin-bottom:.4rem;">Already got your access code? Enter it here:</label>'
+      + '<input id="tihAccessInput" type="text" maxlength="6" placeholder="ACCESS CODE" style="width:100%;padding:.8rem .9rem;border:1.5px solid #e2e8f0;border-radius:10px;font-family:inherit;font-size:1.05rem;text-transform:uppercase;letter-spacing:.2em;text-align:center;min-height:50px;box-sizing:border-box;" />'
+      + '<button id="tihAccessBtn" style="width:100%;background:#F97316;color:#fff;border:none;border-radius:10px;font-weight:800;font-size:1rem;padding:.85rem;margin-top:.6rem;cursor:pointer;font-family:inherit;min-height:50px;">🔓 Unlock Course</button>'
       + '<div id="tihAccessFb" style="font-size:.85rem;font-weight:600;color:#dc2626;min-height:1.1em;margin-top:.5rem;"></div>'
       + '<div style="margin-top:1rem;text-align:center;">'
       + '<a href="hub-dashboard.html" style="color:#64748b;font-size:.82rem;text-decoration:none;">← Back to My Dashboard</a>'
