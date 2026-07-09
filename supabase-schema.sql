@@ -249,6 +249,45 @@ $$;
 grant execute on function public.student_touch_login(text) to anon, authenticated;
 
 -- ============================================================
+-- SECURE ACCOUNT BUNDLE (online-authoritative student data)
+-- The learner re-sends their login + password hash; on a match the
+-- function returns THAT student's enrollments, progress and certificate
+-- requests as one JSON object. This lets any device load the same
+-- account state online without opening these tables to public reads.
+-- ============================================================
+create or replace function public.student_bundle(p_login text, p_hash text)
+returns json
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_id text;
+  v_result json;
+begin
+  select s.id into v_id
+  from public.students s
+  where (lower(s.id) = lower(trim(p_login)) or lower(s.email) = lower(trim(p_login)))
+    and s.password_hash = p_hash
+    and s.status <> 'suspended'
+  limit 1;
+
+  if v_id is null then
+    return json_build_object('enrollments', '[]'::json, 'progress', '[]'::json, 'cert_requests', '[]'::json);
+  end if;
+
+  select json_build_object(
+    'enrollments',  coalesce((select json_agg(e) from public.enrollments  e where e.student_id = v_id), '[]'::json),
+    'progress',     coalesce((select json_agg(p) from public.progress     p where p.student_id = v_id), '[]'::json),
+    'cert_requests',coalesce((select json_agg(c) from public.cert_requests c where c.student_id = v_id), '[]'::json)
+  ) into v_result;
+
+  return v_result;
+end;
+$$;
+grant execute on function public.student_bundle(text, text) to anon, authenticated;
+
+-- ============================================================
 -- REALTIME — let the admin dashboard receive live updates.
 -- (Safe to re-run; "add table" errors if already a member, so guard.)
 -- ============================================================

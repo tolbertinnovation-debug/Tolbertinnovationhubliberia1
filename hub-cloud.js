@@ -255,6 +255,28 @@ var HubCloud = (function () {
       return db.rpc('student_touch_login', { p_id: String(id || '') }).catch(function () {});
     });
   }
+  // Online-authoritative account load: re-checks the password hash and returns
+  // this student's enrollments, progress and cert_requests in one call.
+  // Resolves to {enrollments, progress, certRequests} (empty arrays on failure).
+  function fetchAccountBundle(login, passwordHash) {
+    var empty = { enrollments: [], progress: [], certRequests: [] };
+    if (!login || !passwordHash) return Promise.resolve(empty);
+    return ready().then(function (db) {
+      if (!db) return empty;
+      return db.rpc('student_bundle', { p_login: String(login), p_hash: passwordHash })
+        .then(function (res) {
+          if (res && !res.error && res.data) {
+            var d = res.data;
+            return {
+              enrollments: d.enrollments || [],
+              progress: d.progress || [],
+              certRequests: d.cert_requests || []
+            };
+          }
+          return empty;
+        }).catch(function () { return empty; });
+    }).catch(function () { return empty; });
+  }
 
   // ---- enrollments / payments ----
   function pushEnrollment(row) { return upsert('enrollments', row, 'student_id,item_id'); }
@@ -387,6 +409,7 @@ var HubCloud = (function () {
     fetchStudents: fetchStudents,
     studentLogin: studentLogin,
     touchStudentLogin: touchStudentLogin,
+    fetchAccountBundle: fetchAccountBundle,
     pushEnrollment: pushEnrollment,
     pushPayment: pushPayment,
     fetchEnrollments: fetchEnrollments,

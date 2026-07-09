@@ -424,6 +424,67 @@ var HubDB = (function () {
     }));
   }
 
+  // ONLINE-AUTHORITATIVE ACCOUNT LOAD.
+  // Pulls this student's unlocks, progress and certificate state from the
+  // central DB into the local cache so the SAME account shows the SAME thing
+  // on any phone or browser. Best effort: resolves to a summary, never throws,
+  // and is a no-op when the cloud is unconfigured. Local cache stays as a fast
+  // first-paint layer; this refreshes it from the online source of truth.
+  function hydrateAccountFromCloud(student) {
+    var id = student && student.id;
+    var hash = student && student.passwordHash;
+    if (!cloud() || !id) return Promise.resolve({ enabled: false });
+    var C = cloud();
+    return Promise.all([
+      C.fetchAccountBundle(id, hash).catch(function () { return { enrollments: [], progress: [], certRequests: [] }; }),
+      C.fetchCertificatesFor(id).catch(function () { return []; })
+    ]).then(function (r) {
+      var bundle = r[0] || {}, certs = r[1] || [];
+      var enrolls = bundle.enrollments || [], prog = bundle.progress || [], reqs = bundle.certRequests || [];
+      var out = { enabled: true, unlocks: 0, progress: 0, certs: certs.length, approvals: 0 };
+
+      // 1) Paid access / unlocks — an item is unlocked once access is granted.
+      enrolls.forEach(function (e) {
+        var granted = e.access_granted === true || e.payment_status === 'confirmed' || e.payment_status === 'paid';
+        if (granted && e.item_id) {
+          setJSON('tih_access_' + e.item_id, { studentId: id, at: e.granted_at || nowISO() });
+          out.unlocks++;
+        }
+      });
+
+      // 2) Progress — lessons are gated sequentially, so a completed count of N
+      //    means lessons 0..N-1 are done. Restore only when the cloud is ahead
+      //    of local (never clobber newer local progress that hasn't synced yet).
+      prog.forEach(function (p) {
+        var n = parseInt(p.completed_lessons, 10) || 0;
+        if (n <= 0 || !p.course_id) return;
+        var local = getJSON('tih_progress_' + p.course_id, []);
+        var localN = Array.isArray(local) ? local.length : 0;
+        if (n > localN) {
+          var arr = [];
+          for (var i = 0; i < n; i++) arr.push(i);
+          setJSON('tih_progress_' + p.course_id, arr);
+          out.progress++;
+        }
+      });
+
+      // 3) Certificate approvals — an approved request unlocks the certificate.
+      reqs.forEach(function (q) {
+        if (q.status === 'approved' && q.course_id) {
+          setJSON('tih_hub_cert_ok_' + q.course_id, { studentId: id, at: q.decided_at || nowISO() });
+          out.approvals++;
+        }
+      });
+
+      // 4) Cache issued certificates locally (verify + My Certificates use them).
+      certs.forEach(function (c) {
+        if (c && c.courseId) setJSON('tih_cert_' + c.courseId, c);
+      });
+
+      return out;
+    }).catch(function () { return { enabled: true, error: true }; });
+  }
+
   /* ---- Cloud pull (admin) ----
      Refreshes the local caches from the central database so the admin
      panel shows applications/students/requests submitted on any device.
@@ -702,6 +763,7 @@ var HubDB = (function () {
     // cloud
     cloudEnabled: cloudEnabled,
     syncFromCloud: syncFromCloud,
+    hydrateAccountFromCloud: hydrateAccountFromCloud,
     // certificate requests / approval
     certCode: certCode,
     getCertRequests: getCertRequests,

@@ -288,8 +288,8 @@
 
   <script src="courses-db.js?v=6"></script>
   <script src="hub-config.js?v=3"></script>
-  <script src="hub-cloud.js?v=4"></script>
-  <script src="hub-db.js?v=9"></script>
+  <script src="hub-cloud.js?v=5"></script>
+  <script src="hub-db.js?v=10"></script>
   <script>
     var esc = HubDB.esc;
     var currentStudent = null;
@@ -403,7 +403,17 @@
       document.getElementById('pLoc').textContent = s.location || '—';
       document.getElementById('pSince').textContent = fmtDate(s.createdAt);
 
-      renderCourses();
+      renderCourses(); // instant first paint from the local cache
+      // Then load the authoritative account state from the online database so
+      // the same account shows the same unlocks, progress and certificates on
+      // any device. Best effort — re-render once the online data arrives.
+      if (HubDB.hydrateAccountFromCloud) {
+        HubDB.hydrateAccountFromCloud(s).then(function () {
+          var fresh = HubDB.findStudent(s.id);
+          if (fresh) currentStudent = fresh;
+          renderCourses();
+        });
+      }
     }
 
     function renderCourses() {
