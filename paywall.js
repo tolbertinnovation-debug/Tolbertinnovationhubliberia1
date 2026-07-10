@@ -77,6 +77,8 @@ var Paywall = (function () {
       + '<a href="' + smsLink + '" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;background:#0f766e;color:#fff;font-weight:700;text-decoration:none;border-radius:999px;padding:.75rem;min-height:48px;font-size:.9rem;">✉️ Text</a>'
       + '</div>'
       + '<p style="font-size:.78rem;color:#64748b;margin:.7rem 0 0;text-align:center;">Send your <b>name</b> and <b>Student ID</b> (' + esc(student.id) + ') so we can confirm your payment.</p>'
+      + '<button id="tihRequestBtn" style="width:100%;background:#1E3A8A;color:#fff;border:none;border-radius:999px;font-weight:800;font-size:.95rem;padding:.85rem;margin-top:.9rem;cursor:pointer;font-family:inherit;min-height:50px;">📩 I\'ve Paid — Request Access</button>'
+      + '<div id="tihRequestFb" style="font-size:.84rem;font-weight:600;min-height:1.1em;margin-top:.5rem;text-align:center;"></div>'
       + '<div style="border-top:1px solid #e2e8f0;margin:1.1rem 0 .9rem;"></div>'
       + '<label style="display:block;font-size:.82rem;font-weight:700;color:#374151;margin-bottom:.4rem;">Already got your access code? Enter it here:</label>'
       + '<input id="tihAccessInput" type="text" maxlength="6" placeholder="ACCESS CODE" style="width:100%;padding:.8rem .9rem;border:1.5px solid #e2e8f0;border-radius:10px;font-family:inherit;font-size:1.05rem;text-transform:uppercase;letter-spacing:.2em;text-align:center;min-height:50px;box-sizing:border-box;" />'
@@ -130,6 +132,28 @@ var Paywall = (function () {
     }
     document.getElementById('tihAccessBtn').addEventListener('click', attempt);
     document.getElementById('tihAccessInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') attempt(); });
+
+    // "I've paid — Request Access": logs a request the admin can grant in one tap.
+    var reqBtn = document.getElementById('tihRequestBtn');
+    if (reqBtn) {
+      reqBtn.addEventListener('click', function () {
+        var fb = document.getElementById('tihRequestFb');
+        reqBtn.disabled = true; reqBtn.textContent = 'Sending request…';
+        HubDB.requestAccess(itemId).then(function (res) {
+          if (res && res.ok) {
+            fb.style.color = '#16a34a';
+            fb.textContent = '✅ Request sent! The TIH team will confirm your payment and unlock it — then log in again.';
+            reqBtn.textContent = '✅ Request Sent';
+          } else {
+            reqBtn.disabled = false; reqBtn.textContent = '📩 I\'ve Paid — Request Access';
+            fb.style.color = '#dc2626';
+            fb.textContent = res && res.offline
+              ? 'Could not reach the server. Please use WhatsApp, Text, or Call above.'
+              : 'Could not send the request. Please use WhatsApp, Text, or Call above.';
+          }
+        });
+      });
+    }
   }
 
   return { require: require };

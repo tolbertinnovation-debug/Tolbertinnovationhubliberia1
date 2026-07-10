@@ -692,6 +692,30 @@ var HubDB = (function () {
     }).catch(function () { return false; });
   }
 
+  // Learner-initiated access request ("I've paid — please unlock me").
+  // Records a PENDING enrollment (payment_status='requested') in the central DB
+  // so the admin sees it in the Access Requests list with the learner's name+ID
+  // and can grant it with one tap. Resolves {ok}.
+  function requestAccess(itemId) {
+    var sess = studentSession();
+    if (!sess || !itemId) return Promise.resolve({ ok: false });
+    if (!cloud()) return Promise.resolve({ ok: false, offline: true });
+    var s = findStudent(sess.id) || { id: sess.id, name: sess.name };
+    var title = (typeof COURSES_DB !== 'undefined' && COURSES_DB[itemId] && COURSES_DB[itemId].title)
+      ? COURSES_DB[itemId].title
+      : (itemId.indexOf('wassce-') === 0 ? 'WASSCE: ' + itemId.slice(7) : itemId);
+    return cloud().pushEnrollment({
+      student_id: sess.id, item_id: itemId, item_title: title,
+      payment_status: 'requested', access_granted: false, granted_at: null
+    }).then(function (ok) {
+      fire(cloud().logActivity({
+        student_id: sess.id, course_id: itemId, activity_type: 'access_requested',
+        detail: (s.name || '') + ' requested access to ' + title, score: null
+      }));
+      return { ok: !!ok };
+    }).catch(function () { return { ok: false }; });
+  }
+
   // Central record of a paid enrollment / access grant (best effort).
   function recordEnrollment(studentId, itemId, confirmed) {
     if (!cloud() || !studentId) return;
@@ -827,6 +851,7 @@ var HubDB = (function () {
     grantAccess: grantAccess,
     adminGrantAccess: adminGrantAccess,
     adminRevokeAccess: adminRevokeAccess,
+    requestAccess: requestAccess,
     // comms
     waLink: waLink,
     mailtoLink: mailtoLink
