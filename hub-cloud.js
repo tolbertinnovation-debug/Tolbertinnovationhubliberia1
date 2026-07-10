@@ -117,6 +117,47 @@ var HubCloud = (function () {
     return _initPromise;
   }
 
+  // ---- REST layer (no CDN / no SDK needed) ----
+  // Talks to Supabase's PostgREST API with the built-in fetch(). This is the
+  // MOST reliable path on weak networks because it needs no external library to
+  // load — used for the critical access flow (requests, grants, unlock sync).
+  function restBase() { return String(_cfg.url).replace(/\/+$/, '') + '/rest/v1/'; }
+  function restHeaders(extra) {
+    var h = { 'apikey': _cfg.anonKey, 'Authorization': 'Bearer ' + _cfg.anonKey, 'Content-Type': 'application/json' };
+    if (extra) for (var k in extra) { if (extra.hasOwnProperty(k)) h[k] = extra[k]; }
+    return h;
+  }
+  function restUpsert(table, row, onConflict) {
+    if (!isConfigured() || typeof fetch === 'undefined') return Promise.resolve(false);
+    var url = restBase() + table + (onConflict ? '?on_conflict=' + encodeURIComponent(onConflict) : '');
+    return fetch(url, {
+      method: 'POST',
+      headers: restHeaders({ 'Prefer': 'resolution=merge-duplicates,return=minimal' }),
+      body: JSON.stringify(clean(row))
+    }).then(function (r) { return r.ok; }).catch(function () { return false; });
+  }
+  function restSelect(table, query) {
+    if (!isConfigured() || typeof fetch === 'undefined') return Promise.resolve([]);
+    return fetch(restBase() + table + '?' + query, { headers: restHeaders() })
+      .then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (d) { return Array.isArray(d) ? d : []; })
+      .catch(function () { return []; });
+  }
+  function restInsert(table, row, prefer) {
+    if (!isConfigured() || typeof fetch === 'undefined') return Promise.resolve(false);
+    return fetch(restBase() + table, {
+      method: 'POST',
+      headers: restHeaders({ 'Prefer': prefer || 'return=minimal' }),
+      body: JSON.stringify(clean(row))
+    }).then(function (r) { return r.ok; }).catch(function () { return false; });
+  }
+  function restRpc(fn, args) {
+    if (!isConfigured() || typeof fetch === 'undefined') return Promise.resolve(null);
+    return fetch(restBase() + 'rpc/' + fn, {
+      method: 'POST', headers: restHeaders(), body: JSON.stringify(args || {})
+    }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+  }
+
   // ---- helpers ----
   function ok(res) {
     if (res && res.error && typeof console !== 'undefined' && console.warn) {
@@ -214,7 +255,7 @@ var HubCloud = (function () {
   }
   // New submissions are a plain insert (anon-safe: the RLS insert policy
   // covers it, and a freshly-generated id never conflicts).
-  function pushApplication(a) { return insert('applications', appRow(a)); }
+  function pushApplication(a) { return restInsert('applications', appRow(a)); }
   function updateApplication(id, changes) {
     var c = {};
     if ('status' in changes) c.status = changes.status;
@@ -251,28 +292,24 @@ var HubCloud = (function () {
       loginHistory: [], adminNotes: r.admin_notes || []
     };
   }
-  function pushStudent(s) { return upsert('students', stuRow(s), 'id'); }
+  // REST-first (no CDN): registration and login must work on every device.
+  function pushStudent(s) { return restUpsert('students', stuRow(s), 'id'); }
   function fetchStudents() {
+    // Admin-only read (RLS): stays on the authenticated SDK.
     return fetchAll('students', 'created_at', false).then(function (rows) {
       return rows.map(stuFromRow);
     });
   }
-  // Secure cross-device login via the SECURITY DEFINER RPC.
+  // Secure cross-device login via the SECURITY DEFINER RPC, over plain fetch.
   function studentLogin(login, passwordHash) {
-    return ready().then(function (db) {
-      if (!db) return null;
-      return db.rpc('student_login', { p_login: String(login || ''), p_hash: passwordHash })
-        .then(function (res) {
-          if (res && !res.error && Array.isArray(res.data) && res.data.length) return stuFromRow(res.data[0]);
-          return null;
-        }).catch(function () { return null; });
-    }).catch(function () { return null; });
+    return restRpc('student_login', { p_login: String(login || ''), p_hash: passwordHash })
+      .then(function (data) {
+        if (Array.isArray(data) && data.length) return stuFromRow(data[0]);
+        return null;
+      }).catch(function () { return null; });
   }
   function touchStudentLogin(id) {
-    return ready().then(function (db) {
-      if (!db) return;
-      return db.rpc('student_touch_login', { p_id: String(id || '') }).catch(function () {});
-    });
+    return restRpc('student_touch_login', { p_id: String(id || '') });
   }
   // Online-authoritative account load: reads this student's enrollments,
   // progress and cert_requests directly (filtered by student_id). This is the
@@ -281,31 +318,27 @@ var HubCloud = (function () {
   function fetchAccountBundle(studentId) {
     var empty = { enrollments: [], progress: [], certRequests: [] };
     if (!studentId) return Promise.resolve(empty);
-    var sid = String(studentId);
-    function rows(table) {
-      return db_.from(table).select('*').eq('student_id', sid)
-        .then(function (r) { return (r && !r.error && Array.isArray(r.data)) ? r.data : []; })
-        .catch(function () { return []; });
-    }
-    var db_;
-    return ready().then(function (db) {
-      if (!db) return empty;
-      db_ = db;
-      return Promise.all([rows('enrollments'), rows('progress'), rows('cert_requests')])
-        .then(function (res) { return { enrollments: res[0], progress: res[1], certRequests: res[2] }; })
-        .catch(function () { return empty; });
+    var f = 'student_id=eq.' + encodeURIComponent(String(studentId)) + '&select=*';
+    // REST reads — no CDN needed, so grants sync on any device.
+    return Promise.all([
+      restSelect('enrollments', f),
+      restSelect('progress', f),
+      restSelect('cert_requests', f)
+    ]).then(function (r) {
+      return { enrollments: r[0], progress: r[1], certRequests: r[2] };
     }).catch(function () { return empty; });
   }
 
   // ---- enrollments / payments ----
-  function pushEnrollment(row) { return upsert('enrollments', row, 'student_id,item_id'); }
-  function pushPayment(row) { return insert('payments', row); }
-  function fetchEnrollments() { return fetchAll('enrollments', 'created_at', false); }
+  // REST-first (no CDN dependency) so unlock requests/grants work on any device.
+  function pushEnrollment(row) { return restUpsert('enrollments', row, 'student_id,item_id'); }
+  function pushPayment(row) { return restInsert('payments', row); }
+  function fetchEnrollments() { return restSelect('enrollments', 'select=*&order=created_at.desc'); }
 
-  // ---- progress / activity ----
-  function pushProgress(row) { return upsert('progress', row, 'student_id,course_id'); }
-  function logActivity(row) { return insert('activities', row); }
-  function fetchProgress() { return fetchAll('progress', 'last_activity_at', false); }
+  // ---- progress / activity ---- (REST-first, no CDN dependency)
+  function pushProgress(row) { return restUpsert('progress', row, 'student_id,course_id'); }
+  function logActivity(row) { return restInsert('activities', row); }
+  function fetchProgress() { return restSelect('progress', 'select=*&order=last_activity_at.desc'); }
 
   // ---- certificate requests ----
   function crqRow(r) {
@@ -322,7 +355,7 @@ var HubCloud = (function () {
       status: r.status, reason: r.reason || '', decidedAt: r.decided_at
     };
   }
-  function pushCertRequest(r) { return upsert('cert_requests', crqRow(r), 'id'); }
+  function pushCertRequest(r) { return restUpsert('cert_requests', crqRow(r), 'id'); }
   function updateCertRequest(id, changes) {
     var c = {};
     if ('status' in changes) c.status = changes.status;
@@ -331,7 +364,7 @@ var HubCloud = (function () {
     return update('cert_requests', String(id), c);
   }
   function fetchCertRequests() {
-    return fetchAll('cert_requests', 'requested_at', false).then(function (rows) {
+    return restSelect('cert_requests', 'select=*&order=requested_at.desc').then(function (rows) {
       return rows.map(crqFromRow);
     });
   }
@@ -347,52 +380,40 @@ var HubCloud = (function () {
       course_id: rec.courseId || '', course_title: rec.courseTitle || '',
       category: rec.category || '', issue_date: rec.date || '', verified: true
     };
-    return ready().then(function (db) {
-      if (!db) return false;
-      return db.from('certificates').upsert(row, { onConflict: 'cert_id', ignoreDuplicates: true })
-        .then(function (res) { return ok(res); }).catch(function () { return false; });
-    }).catch(function () { return false; });
+    // REST create-only (ignore duplicates): permanent, never overwritten.
+    return restInsert('certificates', row, 'resolution=ignore-duplicates,return=minimal');
   }
   // Look up a certificate anywhere. Resolves to a verify-friendly record or null.
   function lookupCertificate(certId) {
     if (!certId) return Promise.resolve(null);
-    return ready().then(function (db) {
-      if (!db) return null;
-      var id = String(certId).trim().toUpperCase();
-      return db.from('certificates').select('*').eq('cert_id', id).limit(1)
-        .then(function (res) {
-          if (res && !res.error && Array.isArray(res.data) && res.data.length) {
-            var r = res.data[0];
-            return {
-              certId: r.cert_id, studentName: r.student_name, courseTitle: r.course_title,
-              date: r.issue_date, courseId: r.course_id, category: r.category, verified: r.verified
-            };
-          }
-          return null;
-        }).catch(function () { return null; });
-    }).catch(function () { return null; });
+    var id = String(certId).trim().toUpperCase();
+    return restSelect('certificates', 'cert_id=eq.' + encodeURIComponent(id) + '&select=*&limit=1')
+      .then(function (data) {
+        if (Array.isArray(data) && data.length) {
+          var r = data[0];
+          return {
+            certId: r.cert_id, studentName: r.student_name, courseTitle: r.course_title,
+            date: r.issue_date, courseId: r.course_id, category: r.category, verified: r.verified
+          };
+        }
+        return null;
+      }).catch(function () { return null; });
   }
 
   // Fetch all certificates that belong to a given student, mapped to the
   // local certificate shape. Authoritative source for "My Certificates".
   function fetchCertificatesFor(studentId) {
     if (!studentId) return Promise.resolve([]);
-    return ready().then(function (db) {
-      if (!db) return [];
-      return db.from('certificates').select('*').eq('student_id', studentId)
-        .then(function (res) {
-          if (res && !res.error && Array.isArray(res.data)) {
-            return res.data.map(function (r) {
-              return {
-                certId: r.cert_id, courseId: r.course_id, courseTitle: r.course_title,
-                studentName: r.student_name, studentId: r.student_id,
-                category: r.category, date: r.issue_date, verified: r.verified
-              };
-            });
-          }
-          return [];
-        }).catch(function () { return []; });
-    }).catch(function () { return []; });
+    return restSelect('certificates', 'student_id=eq.' + encodeURIComponent(String(studentId)) + '&select=*')
+      .then(function (data) {
+        return (data || []).map(function (r) {
+          return {
+            certId: r.cert_id, courseId: r.course_id, courseTitle: r.course_title,
+            studentName: r.student_name, studentId: r.student_id,
+            category: r.category, date: r.issue_date, verified: r.verified
+          };
+        });
+      }).catch(function () { return []; });
   }
 
   // ---- realtime ----

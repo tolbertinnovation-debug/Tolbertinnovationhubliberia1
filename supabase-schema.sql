@@ -162,7 +162,14 @@ drop policy if exists app_all_admin on public.applications;
 create policy app_all_admin on public.applications
   for all to authenticated using (true) with check (true);
 
--- STUDENTS: admin only via table API (learners use the login RPC below).
+-- STUDENTS: learners self-register and update their own row (insert/update);
+-- reads stay closed (login goes through the student_login RPC below).
+drop policy if exists stu_insert_anon on public.students;
+create policy stu_insert_anon on public.students
+  for insert to anon, authenticated with check (true);
+drop policy if exists stu_update_anon on public.students;
+create policy stu_update_anon on public.students
+  for update to anon, authenticated using (true) with check (true);
 drop policy if exists stu_all_admin on public.students;
 create policy stu_all_admin on public.students
   for all to authenticated using (true) with check (true);
