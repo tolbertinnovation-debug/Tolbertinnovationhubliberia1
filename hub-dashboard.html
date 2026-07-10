@@ -426,6 +426,16 @@
       }).filter(function (c) {
         return c.id && typeof COURSES_DB !== 'undefined' && COURSES_DB[c.id];
       });
+      // Also show any course the learner has UNLOCKED (paid / admin-granted) even
+      // if it was never formally assigned — so "Grant ALL Courses" makes every
+      // unlocked course appear on the dashboard.
+      try {
+        var have = {};
+        assigned.forEach(function (c) { have[c.id] = true; });
+        Object.keys(COURSES_DB).forEach(function (cid) {
+          if (!have[cid] && HubDB.hasAccess(cid)) assigned.push({ id: cid });
+        });
+      } catch (e) {}
       var totalLessons = 0, doneLessons = 0, completedCourses = [], inProgress = 0, notStarted = 0;
       var resumeInProg = [], resumeNotStarted = [];
       var priorityOrder = { high: 0, medium: 1, low: 2 };
