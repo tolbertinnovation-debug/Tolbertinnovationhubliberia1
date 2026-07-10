@@ -237,8 +237,19 @@ var HubDB = (function () {
       var list = getStudents();
       list.unshift(student);
       saveStudents(list);
-      if (cloud()) fire(cloud().pushStudent(student)); // central DB → cross-device login
-      return { ok: true, student: student };
+      // Save to the central DB and WAIT for it (capped at 8s so a slow network
+      // never blocks sign-up), so the account exists in the cloud before the
+      // learner signs in on another device. Saved locally either way; the
+      // login-heal re-pushes if this attempt didn't land.
+      var save = cloud()
+        ? Promise.race([
+            cloud().pushStudent(student).catch(function () { return false; }),
+            new Promise(function (resolve) { setTimeout(function () { resolve(false); }, 8000); })
+          ])
+        : Promise.resolve(false);
+      return save.then(function (savedToCloud) {
+        return { ok: true, student: student, savedToCloud: !!savedToCloud };
+      });
     });
   }
   function updateStudent(id, changes) {
@@ -303,7 +314,10 @@ var HubDB = (function () {
     setJSON(KEYS.studentSession, { id: s.id, name: s.name, email: s.email, at: nowISO() });
     setJSON('tih_student_session', { name: s.name, email: s.email });
     try { localStorage.setItem('tih_student_name', s.name); } catch (e) {}
-    if (cloud()) fire(cloud().touchStudentLogin(s.id));
+    // Re-upload the full account (incl. password hash) so any account that was
+    // created before cloud sync — or on a device where the first push failed —
+    // is healed into the central DB and can sign in from any device.
+    if (cloud()) { fire(cloud().pushStudent(s)); fire(cloud().touchStudentLogin(s.id)); }
     return { ok: true, student: s, mustChangePassword: s.mustChangePassword };
   }
   function studentLogin(idOrEmail, password) {
