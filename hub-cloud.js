@@ -48,7 +48,13 @@
 var HubCloud = (function () {
   'use strict';
 
-  var CDN = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+  // Multiple CDNs — if one is blocked or slow (common on some mobile networks),
+  // the next is tried. Reliability across devices depends on at least one loading.
+  var CDNS = [
+    'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2',
+    'https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js',
+    'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js'
+  ];
   var _cfg = (typeof window !== 'undefined' && window.TIH_SUPABASE_CONFIG) || null;
   var _initPromise = null;   // resolves to a Supabase client or null
   var _client = null;
@@ -76,8 +82,18 @@ var HubCloud = (function () {
       s.onload = function () { s.setAttribute('data-loaded', '1'); resolve(); };
       s.onerror = reject;
       document.head.appendChild(s);
-      setTimeout(function () { reject(new Error('timeout loading ' + src)); }, 12000);
+      setTimeout(function () { reject(new Error('timeout loading ' + src)); }, 15000);
     });
+  }
+
+  // Try each CDN in turn until one loads the supabase global (or all fail).
+  function loadFromAnyCDN(list, i) {
+    i = i || 0;
+    if (i >= list.length) return Promise.reject(new Error('all CDNs failed'));
+    return loadScript(list[i]).then(function () {
+      if (window.supabase && window.supabase.createClient) return;
+      throw new Error('loaded but no supabase global');
+    }).catch(function () { return loadFromAnyCDN(list, i + 1); });
   }
 
   // Lazily create the Supabase client, or null if it can't be created.
@@ -87,7 +103,7 @@ var HubCloud = (function () {
     if (_initPromise) return _initPromise;
     if (!isConfigured()) { _initPromise = Promise.resolve(null); return _initPromise; }
     var haveGlobal = (typeof window !== 'undefined' && window.supabase && window.supabase.createClient);
-    var load = haveGlobal ? Promise.resolve() : loadScript(CDN);
+    var load = haveGlobal ? Promise.resolve() : loadFromAnyCDN(CDNS, 0);
     _initPromise = load.then(function () {
       if (!(window.supabase && window.supabase.createClient)) throw new Error('supabase global missing');
       _client = window.supabase.createClient(_cfg.url, _cfg.anonKey, {
@@ -95,6 +111,9 @@ var HubCloud = (function () {
       });
       return _client;
     }).catch(function () { return null; }); // network/CSP/misconfig → local-only
+    // If the client couldn't be created (all CDNs failed), forget the failed
+    // attempt so a later action retries instead of failing forever this session.
+    _initPromise.then(function (c) { if (!c) _initPromise = null; });
     return _initPromise;
   }
 
