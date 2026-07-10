@@ -214,6 +214,20 @@ drop policy if exists crq_all_admin on public.cert_requests;
 create policy crq_all_admin on public.cert_requests
   for all to authenticated using (true) with check (true);
 
+-- LEARNER READS: let a learner load their own account state (unlocks, progress,
+-- cert requests) directly, filtered client-side by student_id. Low-sensitivity
+-- (course access + lesson counts), consistent with certificates being public.
+-- This is what makes admin grants appear on the learner's other devices.
+drop policy if exists enr_read_anon on public.enrollments;
+create policy enr_read_anon on public.enrollments
+  for select to anon, authenticated using (true);
+drop policy if exists prog_read_anon on public.progress;
+create policy prog_read_anon on public.progress
+  for select to anon, authenticated using (true);
+drop policy if exists crq_read_anon on public.cert_requests;
+create policy crq_read_anon on public.cert_requests
+  for select to anon, authenticated using (true);
+
 -- CERTIFICATES: anyone may verify (public read); admin issues; permanent.
 drop policy if exists cert_read_all on public.certificates;
 create policy cert_read_all on public.certificates

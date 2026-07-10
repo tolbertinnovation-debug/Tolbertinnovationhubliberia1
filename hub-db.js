@@ -432,11 +432,10 @@ var HubDB = (function () {
   // first-paint layer; this refreshes it from the online source of truth.
   function hydrateAccountFromCloud(student) {
     var id = student && student.id;
-    var hash = student && student.passwordHash;
     if (!cloud() || !id) return Promise.resolve({ enabled: false });
     var C = cloud();
     return Promise.all([
-      C.fetchAccountBundle(id, hash).catch(function () { return { enrollments: [], progress: [], certRequests: [] }; }),
+      C.fetchAccountBundle(id).catch(function () { return { enrollments: [], progress: [], certRequests: [] }; }),
       C.fetchCertificatesFor(id).catch(function () { return []; })
     ]).then(function (r) {
       var bundle = r[0] || {}, certs = r[1] || [];

@@ -255,26 +255,26 @@ var HubCloud = (function () {
       return db.rpc('student_touch_login', { p_id: String(id || '') }).catch(function () {});
     });
   }
-  // Online-authoritative account load: re-checks the password hash and returns
-  // this student's enrollments, progress and cert_requests in one call.
-  // Resolves to {enrollments, progress, certRequests} (empty arrays on failure).
-  function fetchAccountBundle(login, passwordHash) {
+  // Online-authoritative account load: reads this student's enrollments,
+  // progress and cert_requests directly (filtered by student_id). This is the
+  // robust path — it works with simple anon SELECT policies and does not depend
+  // on a custom RPC being installed. Resolves {enrollments, progress, certRequests}.
+  function fetchAccountBundle(studentId) {
     var empty = { enrollments: [], progress: [], certRequests: [] };
-    if (!login || !passwordHash) return Promise.resolve(empty);
+    if (!studentId) return Promise.resolve(empty);
+    var sid = String(studentId);
+    function rows(table) {
+      return db_.from(table).select('*').eq('student_id', sid)
+        .then(function (r) { return (r && !r.error && Array.isArray(r.data)) ? r.data : []; })
+        .catch(function () { return []; });
+    }
+    var db_;
     return ready().then(function (db) {
       if (!db) return empty;
-      return db.rpc('student_bundle', { p_login: String(login), p_hash: passwordHash })
-        .then(function (res) {
-          if (res && !res.error && res.data) {
-            var d = res.data;
-            return {
-              enrollments: d.enrollments || [],
-              progress: d.progress || [],
-              certRequests: d.cert_requests || []
-            };
-          }
-          return empty;
-        }).catch(function () { return empty; });
+      db_ = db;
+      return Promise.all([rows('enrollments'), rows('progress'), rows('cert_requests')])
+        .then(function (res) { return { enrollments: res[0], progress: res[1], certRequests: res[2] }; })
+        .catch(function () { return empty; });
     }).catch(function () { return empty; });
   }
 
