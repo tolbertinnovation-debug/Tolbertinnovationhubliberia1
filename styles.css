@@ -420,7 +420,7 @@ textarea:focus-visible {
 .home-hero {
   background-image:
     linear-gradient(135deg, rgba(0,21,53,0.88) 0%, rgba(0,40,104,0.82) 55%, rgba(191,10,48,0.72) 100%),
-    url("https://i.ibb.co/WWCs1x2J/Chat-GPT-Image-Mar-8-2026-01-15-05-PM.png");
+    url("https://i.ibb.co/hxtZvRxQ/file-00000000f31471f4a4f7d623b0df55fc.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -1812,7 +1812,7 @@ textarea {
     grid-column: 1 / -1;
   }
 
-  /* Impact stats: 2×2 grid so numbers don't get too tight */
+  /* Impact stats: 2x2 grid so numbers don't get too tight */
   .impact-inline {
     display: grid;
     grid-template-columns: 1fr 1fr;
