@@ -35,7 +35,7 @@ function buildCertHTML(name, title, certId, certDate) {
     '.hd-logo{width:26mm;height:26mm;object-fit:contain;background:#fff;border-radius:50%;border:1mm solid #c8960c;box-shadow:0 1mm 4mm rgba(0,40,104,.18);flex-shrink:0}' +
     '.hd-logo-fb{display:none;width:26mm;height:26mm;border-radius:50%;background:#002868;color:#f5b31a;font-size:24pt;align-items:center;justify-content:center;border:1mm solid #c8960c;flex-shrink:0}' +
     '.org-name{font-family:Poppins,sans-serif;font-size:19pt;font-weight:800;color:#002868;letter-spacing:.02em;line-height:1.15}' +
-    '.org-name span{color:#BF0A30}' +
+    '.org-name span{color:#DC2626}' +
     '.org-sub{font-size:7.5pt;letter-spacing:.3em;color:#6b7280;text-transform:uppercase;margin-top:1.2mm;font-weight:600}' +
     /* Title */
     '.cert-heading{position:relative;z-index:2;text-align:center;margin-top:2mm}' +

@@ -103,7 +103,7 @@
       white-space: nowrap;
     }
     .lib-search-btn {
-      background: #BF0A30;
+      background: #DC2626;
       color: #fff;
       border: none;
       padding: 0.95rem 1.5rem;
@@ -114,7 +114,7 @@
       white-space: nowrap;
       transition: background 0.2s;
     }
-    .lib-search-btn:hover { background: #9a0828; }
+    .lib-search-btn:hover { background: #b91c1c; }
 
     .lib-hero-stats {
       display: flex;
@@ -210,7 +210,7 @@
       white-space: nowrap;
       transition: color 0.2s;
     }
-    .lib-see-all:hover { color: #BF0A30; }
+    .lib-see-all:hover { color: #DC2626; }
 
     /* Featured grid */
     .lib-featured-grid {
@@ -338,7 +338,7 @@
       position: absolute;
       top: 0.5rem;
       right: 0.5rem;
-      background: #BF0A30;
+      background: #DC2626;
       color: #fff;
       font-size: 0.55rem;
       font-weight: 800;
@@ -438,7 +438,7 @@
 
     /* CTA section */
     .lib-cta {
-      background: linear-gradient(135deg, #BF0A30 0%, #8f0822 100%);
+      background: linear-gradient(135deg, #DC2626 0%, #991b1b 100%);
       color: #fff;
       padding: 4rem 0;
       text-align: center;
@@ -460,7 +460,7 @@
     .lib-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn-lib-white {
       background: #fff;
-      color: #BF0A30;
+      color: #DC2626;
       border: none;
       padding: 0.85rem 2rem;
       border-radius: 8px;
@@ -633,7 +633,7 @@
     }
     .btn-read:hover { background: #003a8c; }
     .btn-download {
-      background: #BF0A30;
+      background: #DC2626;
       color: #fff;
       border: none;
       padding: 0.75rem 1.5rem;
@@ -648,7 +648,7 @@
       align-items: center;
       gap: 0.4rem;
     }
-    .btn-download:hover { background: #9a0828; }
+    .btn-download:hover { background: #b91c1c; }
     .btn-fav {
       background: none;
       border: 2px solid var(--border-light, #e4eaf4);
@@ -661,7 +661,7 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .btn-fav:hover, .btn-fav.active { border-color: #BF0A30; color: #BF0A30; }
+    .btn-fav:hover, .btn-fav.active { border-color: #DC2626; color: #DC2626; }
     .btn-share {
       background: none;
       border: 2px solid var(--border-light, #e4eaf4);
@@ -879,7 +879,7 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <div id="announcement-bar" style="background:#BF0A30;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
+  <div id="announcement-bar" style="background:#DC2626;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
     📚 <strong>TIH Digital Library is Live!</strong> Browse 50+ educational resources — completely free for all learners.
     <a href="#lib-featured" style="color:#fff;text-decoration:underline;margin-left:0.5rem;">Explore Now →</a>
     <button onclick="this.parentElement.style.display='none'" aria-label="Close announcement" style="position:absolute;right:0.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.2rem 0.4rem;line-height:1;">✕</button>
@@ -958,7 +958,7 @@
       <div class="container">
         <div class="lib-section-header">
           <h2 class="lib-section-title" id="searchResultTitle">Search Results</h2>
-          <button style="background:none;border:none;font-size:0.82rem;font-weight:600;color:#BF0A30;cursor:pointer;" onclick="clearSearch()">✕ Clear Search</button>
+          <button style="background:none;border:none;font-size:0.82rem;font-weight:600;color:#DC2626;cursor:pointer;" onclick="clearSearch()">✕ Clear Search</button>
         </div>
         <div id="searchResultsGrid" class="lib-results-grid"></div>
       </div>
@@ -1394,10 +1394,10 @@
     {id:31,title:"Statistics for Data-Driven Decisions",author:"TIH Data Team",desc:"Understand statistical concepts that drive data analysis and decision-making. Covers probability, descriptive and inferential statistics, hypothesis testing, and regression analysis.",year:2026,cat:"datascience",icon:"🔢",bg:"linear-gradient(150deg,#0891b2 0%,#0284c7 100%)",pages:280,size:"10.5 MB",readTime:"6-7 hrs",lang:"English",tags:["statistics","data","analysis"],featured:false,popular:false,isNew:false},
     {id:32,title:"Introduction to Big Data Analytics",author:"TIH Data Team",desc:"Explore the world of big data: collection, processing, and analysis. Learn about cloud data platforms, real-time analytics, and big data applications in African businesses.",year:2026,cat:"datascience",icon:"🌊",bg:"linear-gradient(150deg,#0e7490 0%,#0891b2 100%)",pages:215,size:"8.2 MB",readTime:"4-5 hrs",lang:"English",tags:["big data","analytics","cloud"],featured:false,popular:false,isNew:true},
     // ENTREPRENEURSHIP
-    {id:33,title:"The African Entrepreneur's Playbook",author:"TIH Business Hub",desc:"A practical guide for entrepreneurs building businesses on the African continent. Covers market opportunities, customer discovery, product development, and growth strategies unique to Africa.",year:2026,cat:"entrepreneurship",icon:"🚀",bg:"linear-gradient(150deg,#9a3412 0%,#ea580c 100%)",pages:275,size:"10.4 MB",readTime:"5-6 hrs",lang:"English",tags:["entrepreneurship","Africa","startup"],featured:true,popular:true,isNew:false},
-    {id:34,title:"Digital Business Ideas for Liberia 2026",author:"TIH Business Hub",desc:"Discover the most profitable digital business opportunities in Liberia. Includes market research, startup costs, revenue models, and case studies of successful Liberian digital businesses.",year:2026,cat:"entrepreneurship",icon:"💡",bg:"linear-gradient(150deg,#c2410c 0%,#ea580c 100%)",pages:155,size:"5.8 MB",readTime:"3 hrs",lang:"English",tags:["digital business","Liberia","ideas"],featured:false,popular:true,isNew:true},
-    {id:35,title:"Social Enterprise: Business with a Mission",author:"TIH Business Hub",desc:"Build a business that creates both financial returns and positive social impact. Covers social enterprise models, impact measurement, and sustainable funding approaches.",year:2026,cat:"entrepreneurship",icon:"🌱",bg:"linear-gradient(150deg,#7c2d12 0%,#9a3412 100%)",pages:190,size:"7.2 MB",readTime:"4 hrs",lang:"English",tags:["social enterprise","impact","mission"],featured:false,popular:false,isNew:false},
-    {id:36,title:"Funding Your Startup: A Liberian Guide",author:"TIH Business Hub",desc:"Navigate the funding landscape for startups in Liberia. Covers bootstrapping, grants, angel investors, microfinance, crowdfunding, and pitching to international investors.",year:2026,cat:"entrepreneurship",icon:"💰",bg:"linear-gradient(150deg,#ea580c 0%,#f97316 100%)",pages:180,size:"6.8 MB",readTime:"4 hrs",lang:"English",tags:["funding","startup","investment"],featured:false,popular:true,isNew:false},
+    {id:33,title:"The African Entrepreneur's Playbook",author:"TIH Business Hub",desc:"A practical guide for entrepreneurs building businesses on the African continent. Covers market opportunities, customer discovery, product development, and growth strategies unique to Africa.",year:2026,cat:"entrepreneurship",icon:"🚀",bg:"linear-gradient(150deg,#991b1b 0%,#b91c1c 100%)",pages:275,size:"10.4 MB",readTime:"5-6 hrs",lang:"English",tags:["entrepreneurship","Africa","startup"],featured:true,popular:true,isNew:false},
+    {id:34,title:"Digital Business Ideas for Liberia 2026",author:"TIH Business Hub",desc:"Discover the most profitable digital business opportunities in Liberia. Includes market research, startup costs, revenue models, and case studies of successful Liberian digital businesses.",year:2026,cat:"entrepreneurship",icon:"💡",bg:"linear-gradient(150deg,#c2410c 0%,#b91c1c 100%)",pages:155,size:"5.8 MB",readTime:"3 hrs",lang:"English",tags:["digital business","Liberia","ideas"],featured:false,popular:true,isNew:true},
+    {id:35,title:"Social Enterprise: Business with a Mission",author:"TIH Business Hub",desc:"Build a business that creates both financial returns and positive social impact. Covers social enterprise models, impact measurement, and sustainable funding approaches.",year:2026,cat:"entrepreneurship",icon:"🌱",bg:"linear-gradient(150deg,#7c2d12 0%,#991b1b 100%)",pages:190,size:"7.2 MB",readTime:"4 hrs",lang:"English",tags:["social enterprise","impact","mission"],featured:false,popular:false,isNew:false},
+    {id:36,title:"Funding Your Startup: A Liberian Guide",author:"TIH Business Hub",desc:"Navigate the funding landscape for startups in Liberia. Covers bootstrapping, grants, angel investors, microfinance, crowdfunding, and pitching to international investors.",year:2026,cat:"entrepreneurship",icon:"💰",bg:"linear-gradient(150deg,#b91c1c 0%,#dc2626 100%)",pages:180,size:"6.8 MB",readTime:"4 hrs",lang:"English",tags:["funding","startup","investment"],featured:false,popular:true,isNew:false},
     // CAREER DEV
     {id:37,title:"CV & Resume Writing for African Job Seekers",author:"TIH Career Center",desc:"Create a CV that gets noticed by recruiters. Includes templates, ATS optimization tips, and real-world examples for African job seekers applying locally and internationally.",year:2026,cat:"career",icon:"📄",bg:"linear-gradient(150deg,#1e3a8a 0%,#2563eb 100%)",pages:160,size:"6.0 MB",readTime:"3 hrs",lang:"English",tags:["cv","resume","career"],featured:true,popular:true,isNew:false},
     {id:38,title:"Job Interview Success Guide",author:"TIH Career Center",desc:"Master the art of job interviews. Learn how to prepare, research companies, answer behavioral questions, dress professionally, and negotiate your salary.",year:2026,cat:"career",icon:"🤝",bg:"linear-gradient(150deg,#1d4ed8 0%,#2563eb 100%)",pages:145,size:"5.5 MB",readTime:"3 hrs",lang:"English",tags:["interview","career","job search"],featured:false,popular:true,isNew:false},
@@ -1411,9 +1411,9 @@
     {id:45,title:"WASSCE Social Studies & Economics",author:"TIH WASSCE PRO",desc:"Complete preparation for WASSCE Social Studies and Economics. Covers government, economic concepts, African history, social issues, and past questions with model answers.",year:2026,cat:"wassce",icon:"🌍",bg:"linear-gradient(150deg,#dc2626 0%,#ef4444 100%)",pages:300,size:"11.4 MB",readTime:"Reference",lang:"English",tags:["wassce","social studies","economics"],featured:false,popular:false,isNew:false},
     {id:46,title:"WASSCE All-Subject Study Planner 2026",author:"TIH WASSCE PRO",desc:"A structured 12-week study planner for WASSCE preparation covering all core subjects. Includes daily study schedules, revision checklists, and exam day tips.",year:2026,cat:"wassce",icon:"📅",bg:"linear-gradient(150deg,#991b1b 0%,#b91c1c 100%)",pages:120,size:"4.5 MB",readTime:"Reference",lang:"English",tags:["wassce","study planner","exam prep"],featured:false,popular:true,isNew:true},
     // TIH ACADEMY
-    {id:47,title:"Digital Skills Essentials: Computers & Internet",author:"TIH Learning Hub",desc:"The complete beginner's guide to computers and the internet. Learn hardware, software, file management, email, online safety, and essential digital skills for the modern workplace.",year:2026,cat:"tih",icon:"💻",bg:"linear-gradient(150deg,#002868 0%,#BF0A30 100%)",pages:220,size:"8.4 MB",readTime:"5 hrs",lang:"English",tags:["digital skills","computers","internet"],featured:true,popular:true,isNew:false},
-    {id:48,title:"Office Suite Mastery: Word, Excel & PowerPoint",author:"TIH Learning Hub",desc:"Become proficient in Microsoft Office: Word for documents, Excel for data and calculations, and PowerPoint for presentations. Perfect for students and working professionals.",year:2026,cat:"tih",icon:"📊",bg:"linear-gradient(150deg,#003a8c 0%,#BF0A30 100%)",pages:310,size:"12.0 MB",readTime:"6-7 hrs",lang:"English",tags:["microsoft office","excel","word","powerpoint"],featured:false,popular:true,isNew:false},
-    {id:49,title:"Leadership & Communication Skills",author:"TIH Learning Hub",desc:"Develop leadership and communication skills that define successful professionals. Covers active listening, public speaking, emotional intelligence, team leadership, and conflict management.",year:2026,cat:"tih",icon:"🎯",bg:"linear-gradient(150deg,#001e52 0%,#9a0828 100%)",pages:195,size:"7.4 MB",readTime:"4 hrs",lang:"English",tags:["leadership","communication","skills"],featured:false,popular:true,isNew:false},
+    {id:47,title:"Digital Skills Essentials: Computers & Internet",author:"TIH Learning Hub",desc:"The complete beginner's guide to computers and the internet. Learn hardware, software, file management, email, online safety, and essential digital skills for the modern workplace.",year:2026,cat:"tih",icon:"💻",bg:"linear-gradient(150deg,#002868 0%,#DC2626 100%)",pages:220,size:"8.4 MB",readTime:"5 hrs",lang:"English",tags:["digital skills","computers","internet"],featured:true,popular:true,isNew:false},
+    {id:48,title:"Office Suite Mastery: Word, Excel & PowerPoint",author:"TIH Learning Hub",desc:"Become proficient in Microsoft Office: Word for documents, Excel for data and calculations, and PowerPoint for presentations. Perfect for students and working professionals.",year:2026,cat:"tih",icon:"📊",bg:"linear-gradient(150deg,#003a8c 0%,#DC2626 100%)",pages:310,size:"12.0 MB",readTime:"6-7 hrs",lang:"English",tags:["microsoft office","excel","word","powerpoint"],featured:false,popular:true,isNew:false},
+    {id:49,title:"Leadership & Communication Skills",author:"TIH Learning Hub",desc:"Develop leadership and communication skills that define successful professionals. Covers active listening, public speaking, emotional intelligence, team leadership, and conflict management.",year:2026,cat:"tih",icon:"🎯",bg:"linear-gradient(150deg,#001e52 0%,#b91c1c 100%)",pages:195,size:"7.4 MB",readTime:"4 hrs",lang:"English",tags:["leadership","communication","skills"],featured:false,popular:true,isNew:false},
     {id:50,title:"Entrepreneurship: From Idea to Launch",author:"TIH Learning Hub",desc:"Practical course companion covering the entrepreneurship journey from idea to business launch. Learn business modeling, market validation, financial planning, and making your first sales.",year:2026,cat:"tih",icon:"🚀",bg:"linear-gradient(150deg,#002868 0%,#c2410c 100%)",pages:255,size:"9.8 MB",readTime:"5-6 hrs",lang:"English",tags:["entrepreneurship","business","launch"],featured:false,popular:false,isNew:true},
     // ── PUBLIC DOMAIN CLASSICS (Project Gutenberg) ──
     {id:51,title:"As a Man Thinketh",author:"James Allen",desc:"One of the greatest self-help books ever written. James Allen explores how your thoughts shape your character, health, and destiny. A short but powerful read that has inspired millions worldwide since 1903.",year:1903,cat:"classics",icon:"💭",bg:"linear-gradient(150deg,#1e1b4b 0%,#312e81 100%)",pages:62,size:"0.4 MB",readTime:"1-2 hrs",lang:"English",tags:["mindset","self-help","classic","thoughts"],featured:true,popular:true,isNew:false,hasPdf:true,readUrl:"https://www.gutenberg.org/files/4507/4507-h/4507-h.htm",pdfUrl:"https://www.gutenberg.org/ebooks/4507",source:"Project Gutenberg · Public Domain"},
@@ -1457,8 +1457,8 @@
   const CAT_COLORS = {
     scholarships:"#002868",grants:"#059669",business:"#d97706",
     software:"#7c3aed",webdev:"#0284c7",ai:"#db2777",
-    datascience:"#0891b2",entrepreneurship:"#ea580c",career:"#2563eb",
-    wassce:"#dc2626",tih:"#BF0A30",classics:"#312e81"
+    datascience:"#0891b2",entrepreneurship:"#b91c1c",career:"#2563eb",
+    wassce:"#dc2626",tih:"#DC2626",classics:"#312e81"
   };
 
   // ── LOCALSTORAGE HELPERS ──

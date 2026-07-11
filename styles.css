@@ -14,10 +14,10 @@
   --brand-blue-mid: #1a4a9c;
   --brand-blue-light: #2563eb;
   --brand-blue-pale: #e8f0fb;
-  --brand-red: #BF0A30;
-  --brand-red-hover: #9a0828;
-  --brand-red-dark: #8f0822;
-  --brand-red-pale: #fce8ec;
+  --brand-red: #DC2626;
+  --brand-red-hover: #b91c1c;
+  --brand-red-dark: #991b1b;
+  --brand-red-pale: #fee2e2;
   --white: #ffffff;
 
   /* Typography */
@@ -1542,7 +1542,7 @@ textarea {
 
 /* CTA banner */
 .cta-banner {
-  background: linear-gradient(135deg, var(--brand-red) 0%, #8f0822 100%);
+  background: linear-gradient(135deg, var(--brand-red) 0%, #991b1b 100%);
   color: #fff;
   padding: clamp(2.5rem, 4vw, 4rem) 0;
   text-align: center;
@@ -1748,7 +1748,7 @@ textarea {
     flex-direction: column;
     gap: 0;
     overflow: hidden;
-    background: var(--surface-2, #f8fafc);
+    background: var(--surface-2, #f0f6fc);
     border-radius: var(--radius, 12px);
     margin-top: 0.75rem;
     padding: 0;

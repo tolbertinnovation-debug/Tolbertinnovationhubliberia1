@@ -475,7 +475,7 @@ function initBackToTop() {
   };
   window.addEventListener('scroll', toggle, { passive: true });
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  btn.addEventListener('mouseenter', () => { btn.style.background = '#BF0A30'; });
+  btn.addEventListener('mouseenter', () => { btn.style.background = '#DC2626'; });
   btn.addEventListener('mouseleave', () => { btn.style.background = '#002868'; });
 }
 

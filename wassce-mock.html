@@ -13,8 +13,8 @@
     /* ── Page-specific variables ── */
     :root {
       --navy: #002868;
-      --red: #BF0A30;
-      --orange: #f97316;
+      --red: #DC2626;
+      --orange: #dc2626;
       --green: #16a34a;
       --blue: #2563eb;
       --light-bg: #f1f5f9;
@@ -366,7 +366,7 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      background: #f8fafc;
+      background: #f0f6fc;
       border: 2px solid var(--border);
       border-radius: 10px;
       padding: 13px 18px;
@@ -422,7 +422,7 @@
       height: 34px;
       border-radius: 6px;
       border: 2px solid var(--border);
-      background: #f8fafc;
+      background: #f0f6fc;
       font-size: .78rem;
       font-weight: 600;
       color: var(--muted);
@@ -698,7 +698,7 @@
       padding: 8px 12px;
       border-radius: 6px;
       border: 1.5px solid transparent;
-      background: #f8fafc;
+      background: #f0f6fc;
     }
     .ri-option.correct-opt { background: #dcfce7; border-color: var(--green); color: #14532d; font-weight: 600; }
     .ri-option.wrong-opt { background: #fee2e2; border-color: var(--red); color: #7f1d1d; }
@@ -898,15 +898,15 @@
           <span>Answered</span>
         </div>
         <div class="legend-item">
-          <div class="legend-dot" style="background:#fed7aa;border:1.5px solid #f97316;"></div>
+          <div class="legend-dot" style="background:#fed7aa;border:1.5px solid #dc2626;"></div>
           <span>Flagged</span>
         </div>
         <div class="legend-item">
-          <div class="legend-dot" style="background:#f8fafc;border:2px solid #002868;"></div>
+          <div class="legend-dot" style="background:#f0f6fc;border:2px solid #002868;"></div>
           <span>Current</span>
         </div>
         <div class="legend-item">
-          <div class="legend-dot" style="background:#f8fafc;border:1.5px solid #e2e8f0;"></div>
+          <div class="legend-dot" style="background:#f0f6fc;border:1.5px solid #e2e8f0;"></div>
           <span>Unanswered</span>
         </div>
       </div>
@@ -1197,9 +1197,9 @@ function getGrade(pct) {
   if (pct >= 75) return { grade: 'A1', color: '#16a34a', message: 'Distinction! Excellent performance.' };
   if (pct >= 70) return { grade: 'B2', color: '#2563eb', message: 'Very Good! You passed with merit.' };
   if (pct >= 65) return { grade: 'B3', color: '#2563eb', message: 'Good performance.' };
-  if (pct >= 60) return { grade: 'C4', color: '#f97316', message: 'Credit. You passed!' };
-  if (pct >= 55) return { grade: 'C5', color: '#f97316', message: 'Credit.' };
-  if (pct >= 50) return { grade: 'C6', color: '#f97316', message: 'Credit.' };
+  if (pct >= 60) return { grade: 'C4', color: '#dc2626', message: 'Credit. You passed!' };
+  if (pct >= 55) return { grade: 'C5', color: '#dc2626', message: 'Credit.' };
+  if (pct >= 50) return { grade: 'C6', color: '#dc2626', message: 'Credit.' };
   if (pct >= 45) return { grade: 'D7', color: '#dc2626', message: 'Below average.' };
   if (pct >= 40) return { grade: 'E8', color: '#dc2626', message: 'Poor. Needs improvement.' };
   return { grade: 'F9', color: '#991b1b', message: 'Fail. More study needed.' };

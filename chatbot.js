@@ -19,7 +19,7 @@
     #tih-chat-btn svg{width:26px;height:26px;fill:#fff;}
     #tih-chat-badge{
       position:absolute;top:-2px;right:-2px;
-      width:20px;height:20px;background:#BF0A30;
+      width:20px;height:20px;background:#DC2626;
       border-radius:50%;border:2px solid #fff;
       font-size:.65rem;font-weight:800;color:#fff;
       display:flex;align-items:center;justify-content:center;
@@ -30,7 +30,7 @@
       position:fixed;bottom:5.2rem;left:1.5rem;z-index:950;
       width:380px;max-width:calc(100vw - 2rem);
       height:580px;max-height:calc(100vh - 7rem);
-      background:#f8fafc;border-radius:20px;
+      background:#f0f6fc;border-radius:20px;
       box-shadow:0 16px 56px rgba(0,0,0,0.22),0 2px 8px rgba(0,0,0,.08);
       display:flex;flex-direction:column;overflow:hidden;
       transform:scale(0.92) translateY(20px);opacity:0;pointer-events:none;
@@ -71,7 +71,7 @@
     .tih-msgs{
       flex:1;overflow-y:auto;padding:14px 12px 8px;
       display:flex;flex-direction:column;gap:9px;
-      scroll-behavior:smooth;background:#f8fafc;
+      scroll-behavior:smooth;background:#f0f6fc;
     }
     .tih-msgs::-webkit-scrollbar{width:4px;}
     .tih-msgs::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px;}
@@ -122,7 +122,7 @@
     .tih-inp{
       flex:1;border:1.5px solid #e2e8f0;border-radius:22px;
       padding:9px 14px;font-size:.875rem;font-family:inherit;
-      outline:none;background:#f8fafc;color:#1e293b;
+      outline:none;background:#f0f6fc;color:#1e293b;
       transition:border-color .15s,background .15s,box-shadow .15s;
     }
     .tih-inp:focus{border-color:#002868;background:#fff;box-shadow:0 0 0 3px rgba(0,40,104,.09);}
@@ -146,7 +146,7 @@
     .tih-field input,.tih-field select{
       border:1.5px solid #e2e8f0;border-radius:8px;
       padding:8px 11px;font-size:.875rem;font-family:inherit;
-      background:#f8fafc;outline:none;width:100%;box-sizing:border-box;
+      background:#f0f6fc;outline:none;width:100%;box-sizing:border-box;
       transition:border-color .15s,box-shadow .15s;color:#1e293b;
     }
     .tih-field input:focus,.tih-field select:focus{border-color:#002868;background:#fff;box-shadow:0 0 0 3px rgba(0,40,104,.08);}
@@ -2023,7 +2023,7 @@ Our team is ready to answer any question you have!<br><br>
     btn.textContent = isLast ? '✓ Submit Application' : 'Next →';
     btn.addEventListener('click', () => {
       const val = ctrl.value.trim();
-      if (!val) { ctrl.style.borderColor = '#BF0A30'; ctrl.focus(); return; }
+      if (!val) { ctrl.style.borderColor = '#DC2626'; ctrl.focus(); return; }
       ctrl.style.borderColor = '';
       flow.data[s.label] = val;
       prog.remove(); fieldDiv.remove();

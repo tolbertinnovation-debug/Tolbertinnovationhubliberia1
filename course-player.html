@@ -10,20 +10,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="courses-db.js?v=8"></script>
-  <script src="lesson-content.js?v=7"></script>
+  <script src="courses-db.js?v=9"></script>
+  <script src="lesson-content.js?v=8"></script>
   <script src="hub-config.js?v=3"></script>
   <script src="hub-cloud.js?v=8"></script>
   <script src="hub-db.js?v=15"></script>
   <script src="cert-registry.js?v=2"></script>
-  <script src="paywall.js?v=5"></script>
+  <script src="paywall.js?v=6"></script>
   <script src="wassce-course.js?v=2"></script>
-  <script src="cert-template.js?v=2"></script>
+  <script src="cert-template.js?v=3"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --blue: #002868; --blue-dark: #001a45; --blue-light: #eff6ff;
-      --red: #BF0A30; --gold: #f59e0b; --green: #10b981; --green-light: #d1fae5;
+      --red: #DC2626; --gold: #f59e0b; --green: #10b981; --green-light: #d1fae5;
       --text: #111827; --text-muted: #6b7280; --border: #e5e7eb;
       --bg: #f9fafb; --bg-alt: #f0f4ff; --white: #fff; --sidebar-w: 280px; --topbar-h: 60px;
     }
@@ -336,7 +336,7 @@
       </div>
     </div>
     <div class="topbar-right">
-      <a href="#" class="topbar-cert-btn" id="topbarPracticeBtn" style="text-decoration:none;display:none;background:#F97316;color:#fff;border-color:#F97316;" title="Take the timed practice test">🎯 Practice Test</a>
+      <a href="#" class="topbar-cert-btn" id="topbarPracticeBtn" style="text-decoration:none;display:none;background:#DC2626;color:#fff;border-color:#DC2626;" title="Take the timed practice test">🎯 Practice Test</a>
       <button class="topbar-cert-btn" id="topbarCertBtn" onclick="showCompletionModal()" title="View &amp; download your certificate">🏆 Certificate</button>
       <a href="my-certificates.html?v=2" class="topbar-cert-btn" id="topbarMyCertsBtn" style="text-decoration:none;display:none;" title="All my certificates">📜 My Certs</a>
       <a href="hub-dashboard.html" class="topbar-avatar" title="My Account" id="topbarAvatar" style="text-decoration:none;">?</a>
@@ -1358,7 +1358,7 @@
     canvas.style.display = 'block';
     var ctx = canvas.getContext('2d');
     if (!ctx) return;
-    var colors = ['#002868', '#BF0A30', '#f59e0b', '#10b981', '#6366f1', '#fff'];
+    var colors = ['#002868', '#DC2626', '#f59e0b', '#10b981', '#6366f1', '#fff'];
     var particles = [];
     for (var i = 0; i < 120; i++) {
       particles.push({ x: Math.random() * canvas.width, y: -20, w: Math.random() * 10 + 5, h: Math.random() * 6 + 3,

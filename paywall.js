@@ -82,7 +82,7 @@ var Paywall = (function () {
       + '<div style="border-top:1px solid #e2e8f0;margin:1.1rem 0 .9rem;"></div>'
       + '<label style="display:block;font-size:.82rem;font-weight:700;color:#374151;margin-bottom:.4rem;">Already got your access code? Enter it here:</label>'
       + '<input id="tihAccessInput" type="text" maxlength="6" placeholder="ACCESS CODE" style="width:100%;padding:.8rem .9rem;border:1.5px solid #e2e8f0;border-radius:10px;font-family:inherit;font-size:1.05rem;text-transform:uppercase;letter-spacing:.2em;text-align:center;min-height:50px;box-sizing:border-box;" />'
-      + '<button id="tihAccessBtn" style="width:100%;background:#F97316;color:#fff;border:none;border-radius:10px;font-weight:800;font-size:1rem;padding:.85rem;margin-top:.6rem;cursor:pointer;font-family:inherit;min-height:50px;">🔓 Unlock Course</button>'
+      + '<button id="tihAccessBtn" style="width:100%;background:#DC2626;color:#fff;border:none;border-radius:10px;font-weight:800;font-size:1rem;padding:.85rem;margin-top:.6rem;cursor:pointer;font-family:inherit;min-height:50px;">🔓 Unlock Course</button>'
       + '<div id="tihAccessFb" style="font-size:.85rem;font-weight:600;color:#dc2626;min-height:1.1em;margin-top:.5rem;"></div>'
       + '<div style="margin-top:1rem;text-align:center;">'
       + '<a href="hub-dashboard.html" style="color:#64748b;font-size:.82rem;text-decoration:none;">← Back to My Dashboard</a>'

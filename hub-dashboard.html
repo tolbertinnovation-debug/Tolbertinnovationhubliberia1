@@ -8,8 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary: #1E3A8A; --primary-light: #eef2ff; --secondary: #F97316; --secondary-dark: #ea6a0a;
-      --accent: #10B981; --danger: #dc2626; --bg: #F8FAFC; --text: #1F2937; --muted: #64748b;
+      --primary: #1E3A8A; --primary-light: #eef2ff; --secondary: #DC2626; --secondary-dark: #b91c1c;
+      --accent: #10B981; --danger: #dc2626; --bg: #F0F6FC; --text: #1F2937; --muted: #64748b;
       --border: #e2e8f0; --radius: 12px; --shadow: 0 4px 16px rgba(30,58,138,.08);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -54,16 +54,16 @@
     .welcome { margin-bottom: 1.4rem; }
     .welcome h1 { font-size: clamp(1.25rem, 3.5vw, 1.6rem); color: var(--primary); font-weight: 800; }
     .welcome p { color: var(--muted); font-size: 0.9rem; }
-    .streak-chip { display: inline-flex; align-items: center; gap: 0.35rem; background: #fff7ed; color: #9a3412; font-weight: 700; font-size: 0.8rem; border-radius: 999px; padding: 0.3rem 0.8rem; margin-top: 0.5rem; }
+    .streak-chip { display: inline-flex; align-items: center; gap: 0.35rem; background: #fef2f2; color: #991b1b; font-weight: 700; font-size: 0.8rem; border-radius: 999px; padding: 0.3rem 0.8rem; margin-top: 0.5rem; }
 
     /* RESUME / CONTINUE LEARNING */
     .resume { background: linear-gradient(135deg, #001a45, #002868 65%, #0b3aa0); color: #fff; border-radius: var(--radius); padding: 1.1rem 1.2rem; margin-bottom: 1.6rem; box-shadow: 0 8px 24px rgba(0,40,104,.22); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
     .resume .r-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
     .resume .r-body { flex: 1; min-width: 180px; }
-    .resume .r-eyebrow { font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #ffd9a8; }
+    .resume .r-eyebrow { font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #fecaca; }
     .resume .r-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1rem; line-height: 1.25; margin: .15rem 0 .5rem; }
     .resume .r-track { background: rgba(255,255,255,.2); height: 7px; border-radius: 999px; overflow: hidden; }
-    .resume .r-fill { height: 100%; background: linear-gradient(90deg, #f97316, #fbbf24); border-radius: 999px; }
+    .resume .r-fill { height: 100%; background: linear-gradient(90deg, #dc2626, #f87171); border-radius: 999px; }
     .resume .r-meta { font-size: .74rem; color: rgba(255,255,255,.8); margin-top: .35rem; }
     .resume .r-btn { background: var(--secondary); color: #fff; border: none; border-radius: 999px; padding: .7rem 1.3rem; font-weight: 800; font-family: 'Poppins', sans-serif; font-size: .9rem; text-decoration: none; white-space: nowrap; min-height: 46px; display: inline-flex; align-items: center; }
 
@@ -77,7 +77,7 @@
     .mo-mid .mo-rank { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.95rem; color: var(--primary); }
     .mo-mid .mo-xp { font-size: 0.72rem; color: var(--muted); font-weight: 600; margin: 0.15rem 0 0.35rem; }
     .xp-track { background: #eef2f9; height: 8px; border-radius: 999px; overflow: hidden; }
-    .xp-fill { height: 100%; background: linear-gradient(90deg, var(--secondary), #fbbf24); border-radius: 999px; transition: width .6s; }
+    .xp-fill { height: 100%; background: linear-gradient(90deg, var(--secondary), #f87171); border-radius: 999px; transition: width .6s; }
     .mo-week { text-align: center; flex-shrink: 0; }
     .week-dots { display: flex; gap: 3px; justify-content: center; }
     .week-dots i { width: 9px; height: 9px; border-radius: 50%; background: #e2e8f0; }
@@ -286,7 +286,7 @@
     </div>
   </div>
 
-  <script src="courses-db.js?v=8"></script>
+  <script src="courses-db.js?v=9"></script>
   <script src="hub-config.js?v=3"></script>
   <script src="hub-cloud.js?v=8"></script>
   <script src="hub-db.js?v=15"></script>
