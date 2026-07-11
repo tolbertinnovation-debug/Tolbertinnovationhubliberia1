@@ -11,7 +11,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --blue: #002868; --blue-dark: #001a45; --blue-light: #eff6ff;
-      --red: #DC2626; --gold: #f59e0b; --green: #10b981;
+      --red: #E31E24; --gold: #f59e0b; --green: #10b981;
       --text: #111827; --muted: #6b7280; --border: #e5e7eb;
       --bg: #f9fafb; --white: #fff;
     }
@@ -212,15 +212,15 @@
     <button class="fab-btn" title="Browse more courses" onclick="window.location.href='courses.html'">+</button>
   </div>
 
-  <script src="courses-db.js?v=9"></script>
+  <script src="courses-db.js?v=10"></script>
   <script src="hub-config.js?v=3"></script>
   <script src="hub-cloud.js?v=8"></script>
   <script src="hub-db.js?v=15"></script>
-  <script src="cert-template.js?v=3"></script>
+  <script src="cert-template.js?v=4"></script>
   <script>
   // ===== COURSE METADATA (icons + colors for display) =====
   var COURSE_META = {
-    'computer-literacy': { icon: '💻', color: '#e8f0fb', accent: '#002868' },
+    'computer-literacy': { icon: '💻', color: '#eaf4ff', accent: '#002868' },
     'ai': { icon: '🤖', color: '#f3e8ff', accent: '#7c3aed' },
     'data': { icon: '📊', color: '#ecfdf5', accent: '#065f46' },
     'webdev': { icon: '🌐', color: '#e0f2fe', accent: '#0d9488' },
@@ -229,7 +229,7 @@
     'marketing': { icon: '📢', color: '#fef9ec', accent: '#b45309' },
     'cybersecurity': { icon: '🔒', color: '#fee2e2', accent: '#7f1d1d' },
     'entrepreneurship': { icon: '💡', color: '#fffbeb', accent: '#92400e' },
-    'project-mgmt': { icon: '📋', color: '#e8f0fb', accent: '#002868' },
+    'project-mgmt': { icon: '📋', color: '#eaf4ff', accent: '#002868' },
     'office': { icon: '📝', color: '#f0fdf4', accent: '#065f46' },
     'leadership': { icon: '🎯', color: '#f0fdf4', accent: '#047857' }
   };
@@ -308,7 +308,7 @@
       es.style.display = 'block'; empty.style.display = 'none';
       var gridHtml = '';
       earned.forEach(function(cert) {
-        var meta = COURSE_META[cert.courseId] || { icon: '🎓', color: '#e8f0fb', accent: '#002868' };
+        var meta = COURSE_META[cert.courseId] || { icon: '🎓', color: '#eaf4ff', accent: '#002868' };
         var displayName = cert.studentName || studentName || 'Graduate';
         gridHtml += '<div class="cert-card">' +
           '<div class="cert-card-header">' +

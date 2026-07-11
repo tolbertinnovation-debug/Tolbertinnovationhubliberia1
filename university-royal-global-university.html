@@ -28,7 +28,7 @@
     .ud-header-actions { display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1rem; }
     .ud-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-top:1.5rem; }
     @media (max-width:700px) { .ud-stats { grid-template-columns:repeat(2,1fr); } }
-    .ud-stat-box { background:#f0f6fc; border:1px solid #e2e8f0; border-radius:10px; padding:1rem; text-align:center; }
+    .ud-stat-box { background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1rem; text-align:center; }
     .ud-stat-val { font-family:'Poppins',sans-serif; font-size:1.4rem; font-weight:800; color:#002868; display:block; }
     .ud-stat-lbl { font-size:0.78rem; color:#64748b; margin-top:0.2rem; }
     .ud-tags { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.25rem; }
@@ -38,7 +38,7 @@
     .ud-tab { padding:1rem 1.25rem; font-size:0.9rem; font-weight:600; color:#64748b; background:none; border:none; border-bottom:2.5px solid transparent; cursor:pointer; white-space:nowrap; font-family:'Inter',sans-serif; transition:color 0.18s,border-color 0.18s; }
     .ud-tab:hover { color:#002868; }
     .ud-tab.active { color:#002868; border-bottom-color:#002868; }
-    .ud-content { padding:2.5rem 0 3rem; background:#f0f6fc; }
+    .ud-content { padding:2.5rem 0 3rem; background:#f8fafc; }
     .ud-layout { display:grid; grid-template-columns:1fr 340px; gap:2rem; align-items:start; }
     @media (max-width:900px) { .ud-layout { grid-template-columns:1fr; } }
     .tab-panel { display:none; }
@@ -68,8 +68,8 @@
     @media (max-width:560px) { .form-row2 { grid-template-columns:1fr; } }
     .fg2 { display:flex; flex-direction:column; gap:0.4rem; margin-bottom:1.1rem; }
     .fg2 label { font-size:0.85rem; font-weight:600; color:#374151; }
-    .fg2 .req { color:#DC2626; }
-    .fg2 input,.fg2 select,.fg2 textarea { width:100%; padding:0.72rem 0.95rem; border:1.5px solid #e2e8f0; border-radius:8px; background:#f0f6fc; color:#0f172a; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:border-color 0.18s,box-shadow 0.18s; appearance:none; -webkit-appearance:none; }
+    .fg2 .req { color:#E31E24; }
+    .fg2 input,.fg2 select,.fg2 textarea { width:100%; padding:0.72rem 0.95rem; border:1.5px solid #e2e8f0; border-radius:8px; background:#f8fafc; color:#0f172a; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:border-color 0.18s,box-shadow 0.18s; appearance:none; -webkit-appearance:none; }
     .fg2 input:focus,.fg2 select:focus,.fg2 textarea:focus { border-color:#002868; background:#fff; box-shadow:0 0 0 3px rgba(0,40,104,0.1); }
     .fg2 textarea { resize:vertical; min-height:100px; }
     .fg2 select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 0.9rem center; padding-right:2.5rem; cursor:pointer; }
@@ -78,7 +78,7 @@
     .form-submit-row { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.85rem; margin-top:1.5rem; }
     .form-note { font-size:0.79rem; color:#6b7280; }
     .elig-checker { background:#fff; border:1px solid #e2e8f0; border-radius:14px; padding:1.5rem; margin-bottom:1.25rem; }
-    .elig-input { width:100%; padding:0.65rem 0.9rem; border:1.5px solid #e2e8f0; border-radius:8px; background:#f0f6fc; color:#0f172a; font-family:'Inter',sans-serif; font-size:0.9rem; outline:none; margin-bottom:0.75rem; transition:border-color 0.18s; appearance:none; -webkit-appearance:none; }
+    .elig-input { width:100%; padding:0.65rem 0.9rem; border:1.5px solid #e2e8f0; border-radius:8px; background:#f8fafc; color:#0f172a; font-family:'Inter',sans-serif; font-size:0.9rem; outline:none; margin-bottom:0.75rem; transition:border-color 0.18s; appearance:none; -webkit-appearance:none; }
     .elig-input:focus { border-color:#002868; }
     .elig-select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 0.9rem center; padding-right:2.5rem; cursor:pointer; }
     .elig-label { font-size:0.82rem; font-weight:600; color:#374151; display:block; margin-bottom:0.35rem; }
@@ -120,7 +120,7 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <div id="announcement-bar" style="background:#DC2626;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
+  <div id="announcement-bar" style="background:#E31E24;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
     🎓 <strong>2026 Scholarship Applications Now Open</strong>. Deadline July 30, 2026. Apply before the closing date.
     <a href="apply.html" style="color:#fff;text-decoration:underline;margin-left:0.5rem;">Apply Now →</a>
     <button onclick="this.parentElement.style.display='none'" aria-label="Close announcement" style="position:absolute;right:0.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.2rem 0.4rem;line-height:1;">✕</button>
@@ -429,7 +429,7 @@
                 data-success-message="Thank you! Your application to Royal Global University has been received. Our team will contact you within 2 business days."
                 novalidate>
             <h3>Application Form</h3>
-            <p class="form-card-lead">Fields marked <span style="color:#DC2626">*</span> are required.</p>
+            <p class="form-card-lead">Fields marked <span style="color:#E31E24">*</span> are required.</p>
             <input type="hidden" name="University" value="Royal Global University" />
             <div class="form-row2">
               <div class="fg2"><label for="app-name">Full Name <span class="req">*</span></label><input type="text" id="app-name" name="fullName" placeholder="As on passport" required /></div>

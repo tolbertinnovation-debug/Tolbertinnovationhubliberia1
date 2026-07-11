@@ -12,10 +12,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary: #1E3A8A; --primary-dark: #16296b; --primary-light: #eef2ff;
-      --secondary: #DC2626; --secondary-dark: #b91c1c;
-      --accent: #10B981; --bg: #F0F6FC; --text: #1F2937; --muted: #64748b;
-      --border: #e2e8f0; --radius: 12px; --radius-sm: 8px;
+      --primary: #1E3A8A; --primary-dark: #16296b; --primary-light: #eaf4ff;
+      --secondary: #E31E24; --secondary-dark: #b8181d;
+      --accent: #10B981; --bg: #F8FAFC; --text: #1F2937; --muted: #64748b;
+      --border: #e2e8f0; --radius: 16px; --radius-sm: 8px;
       --shadow: 0 4px 16px rgba(30,58,138,.08); --shadow-lg: 0 12px 32px rgba(30,58,138,.14);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,7 +47,7 @@
 
     /* HERO */
     .hero { background: linear-gradient(140deg, #0f1f52 0%, var(--primary) 55%, #2b4cad 100%); color: #fff; padding: 4.5rem 0 5rem; position: relative; overflow: hidden; }
-    .hero::after { content: ''; position: absolute; right: -120px; top: -120px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(220,38,38,.25), transparent 70%); }
+    .hero::after { content: ''; position: absolute; right: -120px; top: -120px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(227,30,36,.25), transparent 70%); }
     .hero-inner { max-width: 720px; position: relative; z-index: 1; }
     .hero-eyebrow { display: inline-block; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); padding: 0.35rem 0.9rem; border-radius: 999px; font-size: 0.82rem; font-weight: 600; letter-spacing: .04em; margin-bottom: 1.1rem; }
     .hero h1 { font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 800; margin-bottom: 1rem; }
@@ -274,7 +274,7 @@
           </div>
         </div>
         <div class="pathway-card">
-          <div class="pw-head" style="background:linear-gradient(135deg,#c2410c,#DC2626);">
+          <div class="pw-head" style="background:linear-gradient(135deg,#c2410c,#E31E24);">
             <span class="pw-icon">🚀</span>
             <h3>Digital Business</h3>
             <p>Start, market, and manage a business online</p>
@@ -387,7 +387,7 @@
         </div>
         <div class="testimonial">
           <p>"Within 3 weeks I could type fast, use Word and Excel, and send professional emails. I got a new job offer within a month. TIH is a blessing for Liberia."</p>
-          <div class="t-person"><div class="t-avatar" style="background:#DC2626">JB</div><div><div class="t-name">Joseph Blamo</div><div class="t-loc">Buchanan, Liberia</div></div></div>
+          <div class="t-person"><div class="t-avatar" style="background:#E31E24">JB</div><div><div class="t-name">Joseph Blamo</div><div class="t-loc">Buchanan, Liberia</div></div></div>
         </div>
         <div class="testimonial">
           <p>"Living in Maryland County, I never thought I could access quality tech training. TIH made it possible online — and the certificate is verified. I used it on my job application."</p>
@@ -440,6 +440,7 @@
   </section>
 
   <!-- FOOTER -->
+  <svg class="tih-wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,70 C240,110 480,20 720,45 C960,70 1200,105 1440,55 L1440,110 L0,110 Z" fill="#E31E24"/><path d="M0,84 C240,116 480,40 720,62 C960,84 1200,110 1440,72 L1440,110 L0,110 Z" fill="#ffffff"/><path d="M0,94 C260,120 520,58 760,76 C1000,94 1240,112 1440,84 L1440,110 L0,110 Z" fill="#0B2A6B"/></svg>
   <footer class="hub-footer">
     <div class="container">
       <div class="footer-grid">
@@ -473,7 +474,7 @@
     </div>
   </footer>
 
-  <script src="courses-db.js?v=9"></script>
+  <script src="courses-db.js?v=10"></script>
   <script>
     // Mobile menu
     (function () {

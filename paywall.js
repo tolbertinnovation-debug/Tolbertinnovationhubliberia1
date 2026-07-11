@@ -66,7 +66,7 @@ var Paywall = (function () {
       + '<div style="padding:1.4rem 1.5rem;">'
       + '<p style="font-size:.92rem;color:#374151;margin:0 0 1rem;">Access to this course costs <b>US$' + esc(amount) + '</b>. Follow these steps to unlock it:</p>'
       + '<ol style="margin:0 0 1rem 1.1rem;padding:0;font-size:.9rem;color:#374151;line-height:1.7;">'
-      + '<li><b>Pay ' + esc(currencyNote) + '</b> by Mobile Money to:<br><a href="' + telLink + '" style="display:inline-flex;align-items:center;gap:.4rem;background:#eef2ff;border:1px dashed #1E3A8A;border-radius:8px;padding:.55rem .9rem;margin-top:.35rem;font-weight:700;color:#1E3A8A;text-decoration:none;">📞 ' + esc(P.momoNumber) + ' &middot; ' + esc(P.momoName) + '</a><span style="display:block;font-size:.72rem;color:#64748b;margin-top:.25rem;">Tap the number to call</span></li>'
+      + '<li><b>Pay ' + esc(currencyNote) + '</b> by Mobile Money to:<br><a href="' + telLink + '" style="display:inline-flex;align-items:center;gap:.4rem;background:#eaf4ff;border:1px dashed #1E3A8A;border-radius:8px;padding:.55rem .9rem;margin-top:.35rem;font-weight:700;color:#1E3A8A;text-decoration:none;">📞 ' + esc(P.momoNumber) + ' &middot; ' + esc(P.momoName) + '</a><span style="display:block;font-size:.72rem;color:#64748b;margin-top:.25rem;">Tap the number to call</span></li>'
       + '<li style="margin-top:.6rem;">Confirm your payment with the TIH team — by <b>WhatsApp</b>, <b>text</b>, or <b>call</b> (buttons below). Always send your <b>name</b> and <b>Student ID</b>: <b>' + esc(student.id) + '</b>.</li>'
       + '<li style="margin-top:.6rem;">The administrator confirms your payment and sends you a <b>6-character access code</b>.</li>'
       + '<li style="margin-top:.6rem;">Enter the code below to unlock this course.</li>'
@@ -74,7 +74,7 @@ var Paywall = (function () {
       + '<a href="' + wa + '" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#25D366;color:#fff;font-weight:700;text-decoration:none;border-radius:999px;padding:.8rem;min-height:50px;font-size:.92rem;">💬 Send Payment Confirmation on WhatsApp</a>'
       + '<div style="display:flex;gap:.5rem;margin-top:.6rem;">'
       + '<a href="' + telLink + '" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;background:#1E3A8A;color:#fff;font-weight:700;text-decoration:none;border-radius:999px;padding:.75rem;min-height:48px;font-size:.9rem;">📞 Call</a>'
-      + '<a href="' + smsLink + '" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;background:#0f766e;color:#fff;font-weight:700;text-decoration:none;border-radius:999px;padding:.75rem;min-height:48px;font-size:.9rem;">✉️ Text</a>'
+      + '<a href="' + smsLink + '" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;background:#1565d8;color:#fff;font-weight:700;text-decoration:none;border-radius:999px;padding:.75rem;min-height:48px;font-size:.9rem;">✉️ Text</a>'
       + '</div>'
       + '<p style="font-size:.78rem;color:#64748b;margin:.7rem 0 0;text-align:center;">Send your <b>name</b> and <b>Student ID</b> (' + esc(student.id) + ') so we can confirm your payment.</p>'
       + '<button id="tihRequestBtn" style="width:100%;background:#1E3A8A;color:#fff;border:none;border-radius:999px;font-weight:800;font-size:.95rem;padding:.85rem;margin-top:.9rem;cursor:pointer;font-family:inherit;min-height:50px;">📩 I\'ve Paid — Request Access</button>'
@@ -82,8 +82,8 @@ var Paywall = (function () {
       + '<div style="border-top:1px solid #e2e8f0;margin:1.1rem 0 .9rem;"></div>'
       + '<label style="display:block;font-size:.82rem;font-weight:700;color:#374151;margin-bottom:.4rem;">Already got your access code? Enter it here:</label>'
       + '<input id="tihAccessInput" type="text" maxlength="6" placeholder="ACCESS CODE" style="width:100%;padding:.8rem .9rem;border:1.5px solid #e2e8f0;border-radius:10px;font-family:inherit;font-size:1.05rem;text-transform:uppercase;letter-spacing:.2em;text-align:center;min-height:50px;box-sizing:border-box;" />'
-      + '<button id="tihAccessBtn" style="width:100%;background:#DC2626;color:#fff;border:none;border-radius:10px;font-weight:800;font-size:1rem;padding:.85rem;margin-top:.6rem;cursor:pointer;font-family:inherit;min-height:50px;">🔓 Unlock Course</button>'
-      + '<div id="tihAccessFb" style="font-size:.85rem;font-weight:600;color:#dc2626;min-height:1.1em;margin-top:.5rem;"></div>'
+      + '<button id="tihAccessBtn" style="width:100%;background:#E31E24;color:#fff;border:none;border-radius:10px;font-weight:800;font-size:1rem;padding:.85rem;margin-top:.6rem;cursor:pointer;font-family:inherit;min-height:50px;">🔓 Unlock Course</button>'
+      + '<div id="tihAccessFb" style="font-size:.85rem;font-weight:600;color:#e31e24;min-height:1.1em;margin-top:.5rem;"></div>'
       + '<div style="margin-top:1rem;text-align:center;">'
       + '<a href="hub-dashboard.html" style="color:#64748b;font-size:.82rem;text-decoration:none;">← Back to My Dashboard</a>'
       + '</div>'
@@ -146,7 +146,7 @@ var Paywall = (function () {
             reqBtn.textContent = '✅ Request Sent';
           } else {
             reqBtn.disabled = false; reqBtn.textContent = '📩 I\'ve Paid — Request Access';
-            fb.style.color = '#dc2626';
+            fb.style.color = '#e31e24';
             fb.textContent = res && res.offline
               ? 'Could not reach the server. Please use WhatsApp, Text, or Call above.'
               : 'Could not send the request. Please use WhatsApp, Text, or Call above.';

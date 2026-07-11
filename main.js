@@ -58,7 +58,7 @@ async function submitFormToEmail(form) {
   if (!form.checkValidity()) {
     if (feedback) {
       feedback.textContent = 'Please complete all required fields before submitting.';
-      feedback.style.cssText = 'color:#b91c1c;background:#fef2f2;display:block;';
+      feedback.style.cssText = 'color:#b8181d;background:#fef2f2;display:block;';
     }
     form.reportValidity();
     return;
@@ -99,7 +99,7 @@ async function submitFormToEmail(form) {
       feedback.textContent =
         'Your message could not be sent automatically. Please email us directly: ' +
         'tolbertinnovationhub@gmail.com or WhatsApp +231 880 559 227';
-      feedback.style.cssText = 'color:#b91c1c;background:#fef2f2;display:block;';
+      feedback.style.cssText = 'color:#b8181d;background:#fef2f2;display:block;';
     }
   } finally {
     if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = origLabel; }
@@ -475,7 +475,7 @@ function initBackToTop() {
   };
   window.addEventListener('scroll', toggle, { passive: true });
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  btn.addEventListener('mouseenter', () => { btn.style.background = '#DC2626'; });
+  btn.addEventListener('mouseenter', () => { btn.style.background = '#E31E24'; });
   btn.addEventListener('mouseleave', () => { btn.style.background = '#002868'; });
 }
 

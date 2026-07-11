@@ -12,10 +12,10 @@
   --brand-blue: #002868;
   --brand-blue-hover: #003480;
   --brand-blue-mid: #1a4a9c;
-  --brand-blue-light: #2563eb;
-  --brand-blue-pale: #e8f0fb;
-  --brand-red: #DC2626;
-  --brand-red-hover: #b91c1c;
+  --brand-blue-light: #1565d8;
+  --brand-blue-pale: #eaf4ff;
+  --brand-red: #E31E24;
+  --brand-red-hover: #b8181d;
   --brand-red-dark: #991b1b;
   --brand-red-pale: #fee2e2;
   --white: #ffffff;
@@ -26,7 +26,7 @@
 
   /* Backgrounds */
   --bg: #f4f7fc;
-  --bg-alt: #eef2f9;
+  --bg-alt: #EAF4FF;
   --surface: #ffffff;
   --surface-2: #f8fafd;
 
@@ -45,9 +45,9 @@
 
   /* Border Radius */
   --radius-xs: 6px;
-  --radius-sm: 10px;
+  --radius-sm: 12px;
   --radius: 14px;
-  --radius-lg: 18px;
+  --radius-lg: 20px;
   --radius-xl: 24px;
   --radius-full: 9999px;
 
@@ -1748,7 +1748,7 @@ textarea {
     flex-direction: column;
     gap: 0;
     overflow: hidden;
-    background: var(--surface-2, #f0f6fc);
+    background: var(--surface-2, #f8fafc);
     border-radius: var(--radius, 12px);
     margin-top: 0.75rem;
     padding: 0;
@@ -2094,4 +2094,38 @@ textarea {
     width: 100%;
     justify-content: flex-end;
   }
+}
+
+/* ============================================================
+   TIH BANNER DESIGN SYSTEM — signature elements from the
+   promotional banners: split red/blue heading underline,
+   geometric pattern watermark, curved wave divider.
+   ============================================================ */
+.section-header.centered h2::after {
+  content: '';
+  display: block;
+  width: 84px;
+  height: 4px;
+  margin: 0.85rem auto 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--brand-red) 0 50%, var(--brand-blue-light) 50% 100%);
+}
+.section-alt {
+  background-color: var(--bg-alt);
+  background-image: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%231565D8' stroke-opacity='0.07' stroke-width='2'%3E%3Cpath d='M6 6h24v24H6zM14 14h8v8h-8z'/%3E%3Cpath d='M42 42h24v24H42zM50 50h8v8h-8z'/%3E%3Cpath d='M42 6h24M42 14h16M42 22h24M6 42h24M6 50h16M6 58h24'/%3E%3C/g%3E%3C/svg%3E");
+}
+[data-theme="dark"] .section-alt { background-image: none; }
+.tih-wave {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: -1px;
+  line-height: 0;
+}
+.card, .spotlight-card, .news-card, .program-card {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card:hover, .spotlight-card:hover, .news-card:hover, .program-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(11, 31, 58, 0.12);
 }
