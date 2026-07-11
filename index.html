@@ -35,7 +35,7 @@
     .programs-carousel .swiper-button-prev:hover,.programs-carousel .swiper-button-next:hover,.news-carousel .swiper-button-prev:hover,.news-carousel .swiper-button-next:hover{background:var(--brand-blue,#002868);color:#fff;border-color:var(--brand-blue,#002868);}
     @media(max-width:639px){.programs-carousel .swiper-button-prev,.programs-carousel .swiper-button-next,.news-carousel .swiper-button-prev,.news-carousel .swiper-button-next{display:none;}}
 
-    /* ── HERO IMPROVEMENTS ── */
+    /* ── HERO IMPROVEMENTS (legacy) ── */
     .hero-live-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(191,10,48,.15);border:1px solid rgba(191,10,48,.3);color:#ff6b7a;font-size:.82rem;font-weight:700;padding:.35rem .9rem;border-radius:999px;margin-bottom:1rem;}
     .live-dot{width:8px;height:8px;border-radius:50%;background:#ff4a5e;flex-shrink:0;animation:pulse-dot 1.6s ease-in-out infinite;}
     @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(255,74,94,.6);}50%{box-shadow:0 0 0 6px rgba(255,74,94,0);}}
@@ -50,13 +50,6 @@
     .hv-body span{font-size:.82rem;color:rgba(255,255,255,.7);}
     .hv-number{margin-left:auto;font-size:1.5rem;font-weight:800;color:#fbbf24;flex-shrink:0;}
     .hero-divider{height:1px;background:rgba(255,255,255,.12);margin:.5rem 0;}
-
-    /* ── TRUST STRIP ── */
-    .trust-strip-home{background:var(--surface,#fff);border-bottom:1px solid var(--border-light,#e4eaf4);padding:1rem 0;}
-    .trust-strip-home-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem 2.5rem;align-items:center;}
-    .tsh-item{display:flex;align-items:center;gap:.5rem;font-size:.86rem;font-weight:600;color:var(--text-secondary,#4b5563);}
-    .tsh-divider{width:1px;height:20px;background:var(--border-light,#e2e8f0);}
-    @media(max-width:640px){.tsh-divider{display:none;}}
 
     /* ── SPOTLIGHT SECTION ── */
     .spotlight-section{background:linear-gradient(135deg,#f0f4fc 0%,#e8edf8 100%);}
@@ -90,16 +83,8 @@
     .path-steps{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.25rem;}
     .path-step{display:flex;align-items:center;gap:.75rem;font-size:.88rem;color:rgba(255,255,255,.85);}
     .path-step-num{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;color:#fff;flex-shrink:0;}
-    .path-step-arrow{color:rgba(255,255,255,.3);font-size:.7rem;margin-left:.25rem;}
     .path-cta{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;text-decoration:none;font-size:.87rem;font-weight:700;padding:.55rem 1.1rem;border-radius:9px;transition:background .15s;}
     .path-cta:hover{background:rgba(255,255,255,.22);}
-
-    /* ── UPDATED WELCOME TILES ── */
-    .welcome-tiles-grid-6{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;}
-    @media(max-width:700px){.welcome-tiles-grid-6{grid-template-columns:repeat(2,1fr);}}
-
-    /* ── TESTIMONIAL STARS ── */
-    .testimonial-stars{color:#f59e0b;font-size:1rem;margin-bottom:.75rem;letter-spacing:.05em;}
 
     /* ── NEWSLETTER IMPROVED ── */
     .newsletter-section-v2{background:linear-gradient(135deg,#002868 0%,#001030 100%);padding:5rem 0;position:relative;overflow:hidden;}
@@ -180,88 +165,150 @@
 
   <main id="main-content">
 
-    <!-- HERO SECTION -->
-    <section class="hero home-hero">
-      <div class="container">
-        <div class="hero-grid hero-2col">
-          <!-- Left: Content -->
-          <div class="hero-text">
-            <div class="hero-live-badge">
-              <span class="live-dot"></span>
-              Scholarship Applications Open &middot; Deadline July 30, 2026
+    <!-- ═══════════════════════════════════════════════════════════
+         NEW HERO V2 — Floating Animated Badges Design
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="hero-v2" aria-label="Welcome to Tolbert Innovation Hub">
+      <div class="hero-v2-bg" aria-hidden="true"></div>
+      <div class="container hero-v2-inner">
+        <div class="hero-v2-grid">
+          <!-- Left: Text Content -->
+          <div class="hero-v2-text">
+            <div class="hero-v2-badge-row">
+              <span class="hero-v2-live-badge">
+                <span class="hero-v2-live-dot"></span>
+                Applications Open · Deadline July 30, 2026
+              </span>
+              <img src="https://flagcdn.com/w80/lr.png" alt="Liberia flag" class="hero-v2-flag" width="32" height="20" loading="eager" />
             </div>
-            <h1>Transforming Lives Through <span class="hero-highlight">Innovation</span>, Education &amp; Opportunity</h1>
-            <p class="lead">
-              Tolbert Innovation Hub connects Liberian youth with scholarships, world-class exam preparation,
-              18 affordable skill tracks, a digital library, international healthcare access, and grants guidance,
-              creating pathways to a brighter future.
+
+            <h1>Welcome to <span class="tih-red">TIH</span></h1>
+            <p class="hero-v2-tagline">Your Gateway to Education, Opportunity &amp; Innovation</p>
+            <p class="hero-v2-desc">
+              Tolbert Innovation Hub is <strong>Liberia's leading platform</strong> for education, digital skills, scholarships, healthcare access, and technology solutions. Whether you are a student seeking to study abroad, a professional building digital skills, or a family needing international healthcare, <strong>TIH has a program for you</strong>.
             </p>
-            <div class="hero-badges">
-              <span class="hero-badge"><span class="hero-badge-icon">🎓</span> Scholarship Programs</span>
-              <span class="hero-badge"><span class="hero-badge-icon">📚</span> Learning Hub · US$2</span>
-              <span class="hero-badge"><span class="hero-badge-icon">🏥</span> Healthcare Access</span>
-              <span class="hero-badge"><span class="hero-badge-icon">📖</span> Digital Library</span>
+
+            <div class="hero-v2-actions">
+              <a class="hero-v2-cta-primary" href="apply.html">🎓 Apply for Scholarship</a>
+              <a class="hero-v2-cta-secondary" href="learning-hub.html">📚 Explore Learning Hub →</a>
+              <a class="hero-v2-cta-whatsapp" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">💬 WhatsApp Us</a>
             </div>
-            <div class="hero-actions">
-              <a class="btn btn-primary btn-lg" href="apply.html">Apply for Scholarship</a>
-              <a class="btn btn-outline" href="learning-hub.html">Learning Hub →</a>
-              <a class="btn btn-outline" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
-            </div>
-            <div class="impact-inline" style="margin-top:2.5rem;">
-              <div class="impact-item">
+
+            <div class="hero-v2-impact">
+              <div class="hero-v2-impact-item">
                 <span class="impact-number">5,000+</span>
                 <p class="impact-label">Learners Reached</p>
               </div>
-              <div class="impact-item">
+              <div class="hero-v2-impact-item">
                 <span class="impact-number">18</span>
                 <p class="impact-label">Skill Tracks</p>
               </div>
-              <div class="impact-item">
+              <div class="hero-v2-impact-item">
                 <span class="impact-number">US$2</span>
                 <p class="impact-label">Per Course</p>
               </div>
-              <div class="impact-item">
+              <div class="hero-v2-impact-item">
                 <span class="impact-number">15+</span>
-                <p class="impact-label">Countries Reached</p>
+                <p class="impact-label">Countries</p>
               </div>
+            </div>
+
+            <div class="hero-v2-books" style="margin-top:1.5rem;">
+              <span class="hero-v2-book">📖 LEARN. INNOVATE. LEAD.</span>
+              <span class="hero-v2-book">🌍 EMPOWERING AFRICA'S FUTURE</span>
+              <span class="hero-v2-book">🚀 SKILLS TODAY, SUCCESS TOMORROW</span>
             </div>
           </div>
 
-          <!-- Right: Visual Panel (real quick links — must remain exposed to assistive tech) -->
-          <div class="hero-visual" aria-label="Quick links">
-            <a class="hv-card" href="library.html" style="text-decoration:none;">
-              <div class="hv-icon" style="background:rgba(0,40,104,.4);">📖</div>
-              <div class="hv-body">
-                <strong>Digital Library</strong>
-                <span>50+ Educational Resources</span>
+          <!-- Right: Floating Badges Visual -->
+          <div class="hero-v2-visual" aria-hidden="true">
+            <!-- Africa Map Watermark -->
+            <div class="africa-watermark">
+              <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M100 5 C80 5 60 15 50 30 C40 45 30 50 25 65 C20 80 15 90 20 105 C25 120 30 125 35 140 C40 155 45 165 50 180 C55 195 60 210 70 220 C80 230 90 235 100 235 C110 235 120 230 130 220 C140 210 145 195 150 180 C155 165 160 155 165 140 C170 125 175 120 180 105 C185 90 180 80 175 65 C170 50 160 45 150 30 C140 15 120 5 100 5 Z" />
+              </svg>
+            </div>
+
+            <!-- Floating Badge: WASSCE Prep -->
+            <div class="float-badge float-badge-wassce">
+              <span class="float-badge-icon">🎓</span>
+              <span class="float-badge-text">
+                <span class="float-badge-label">WASSCE Prep</span>
+                <span class="float-badge-sublabel">23 Subjects</span>
+              </span>
+            </div>
+
+            <!-- Floating Badge: IELTS Preparation -->
+            <div class="float-badge float-badge-ielts">
+              <span class="float-badge-icon">📘</span>
+              <span class="float-badge-text">
+                <span class="float-badge-label">IELTS Preparation</span>
+                <span class="float-badge-sublabel">Band 7+ Target</span>
+              </span>
+            </div>
+
+            <!-- Floating Badge: Video Lesson -->
+            <div class="float-badge float-badge-video">
+              <span class="float-badge-label">▶ VIDEO LESSON</span>
+              <div class="video-progress">
+                <div class="video-progress-bar"></div>
               </div>
-              <span class="hv-number">NEW</span>
-            </a>
-            <a class="hv-card" href="learning-hub.html" style="text-decoration:none;">
-              <div class="hv-icon" style="background:rgba(0,40,104,.4);">🏫</div>
-              <div class="hv-body">
-                <strong>18 Skill Tracks</strong>
-                <span>180+ Video Lessons</span>
+              <span style="font-size:0.75rem;font-weight:700;">75%</span>
+            </div>
+
+            <!-- Floating Badge: Certificate -->
+            <div class="float-badge float-badge-cert">
+              <span class="float-badge-label" style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;">Certificate</span>
+              <span class="float-badge-label" style="font-size:0.68rem;opacity:0.8;">OF COMPLETION</span>
+              <div class="cert-stamp">🏅</div>
+            </div>
+
+            <!-- Floating Badge: Coding -->
+            <div class="float-badge float-badge-coding">
+              <span class="float-badge-icon">&lt;/&gt;</span>
+              <span class="float-badge-text">
+                <span class="float-badge-label">CODING</span>
+                <span class="float-badge-sublabel">Develop Your Future</span>
+              </span>
+            </div>
+
+            <!-- Floating Badge: Scholarships -->
+            <div class="float-badge float-badge-scholarships">
+              <span class="float-badge-icon">⭐</span>
+              <span class="float-badge-text">
+                <span class="float-badge-label">SCHOLARSHIPS</span>
+                <span class="float-badge-sublabel">&amp; Grants</span>
+              </span>
+            </div>
+
+            <!-- Floating Badge: AI Powered Learning -->
+            <div class="float-badge float-badge-ai">
+              <span class="float-badge-icon">🧠</span>
+              <span class="float-badge-text">
+                <span class="float-badge-label">AI POWERED</span>
+                <span class="float-badge-sublabel">LEARNING</span>
+              </span>
+            </div>
+
+            <!-- Floating Badge: Digital Skills -->
+            <div class="float-badge float-badge-digital">
+              <span class="float-badge-label">🖥 DIGITAL SKILLS</span>
+              <div class="digital-icons">
+                <span>📊</span>
+                <span>🎨</span>
+                <span>🔧</span>
+                <span>🌐</span>
               </div>
-              <span class="hv-number" style="font-size:1rem;color:rgba(255,255,255,.6);">US$2</span>
-            </a>
-            <div class="hero-divider"></div>
-            <a class="hv-card" href="grants.html" style="text-decoration:none;">
-              <div class="hv-icon" style="background:rgba(124,58,237,.3);">💰</div>
-              <div class="hv-body">
-                <strong>2026–2027 Grants</strong>
-                <span>$50M+ in Liberia Funding</span>
-              </div>
-              <span class="hv-number" style="font-size:.82rem;color:rgba(255,255,255,.6);">Updated</span>
-            </a>
-            <a class="hv-card" href="apply.html" style="text-decoration:none;">
-              <div class="hv-icon" style="background:rgba(191,10,48,.4);">🎓</div>
-              <div class="hv-body">
-                <strong>Scholarships Open</strong>
-                <span>Deadline July 30, 2026</span>
-              </div>
-              <span class="hv-number" style="font-size:.82rem;color:#ff6b7a;">Open</span>
-            </a>
+            </div>
+
+            <!-- Floating Badge: TOEFL -->
+            <div class="float-badge float-badge-toefl">
+              <span class="float-badge-icon">📝</span>
+              <span class="float-badge-text">
+                <span class="float-badge-label">TOEFL</span>
+                <span class="float-badge-sublabel">Preparation</span>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -284,57 +331,57 @@
       </div>
     </div>
 
-    <!-- WELCOME INTRODUCTION -->
-    <section class="section" aria-label="Welcome to Tolbert Innovation Hub">
+    <!-- ═══════════════════════════════════════════════════════════
+         WELCOME SECTION V2 — 5 Service Cards
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="section welcome-v2" aria-label="Welcome to Tolbert Innovation Hub">
       <div class="container">
-        <div class="welcome-intro-grid">
-          <div class="reveal">
-            <p class="section-label">Welcome to TIH</p>
-            <h2 style="margin-bottom:1rem;">Your Gateway to Education, Opportunity &amp; Innovation</h2>
-            <p style="font-size:1.05rem;color:var(--text-secondary);line-height:1.8;margin-bottom:1rem;">
-              Tolbert Innovation Hub is Liberia's leading platform for education, digital skills, scholarships, healthcare access, and technology solutions.
-              Whether you are a student seeking to study abroad, a professional building digital skills, or a family needing international healthcare, <strong>TIH has a program for you</strong>.
-            </p>
-            <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:1.5rem;">
-              Every program is built specifically for Liberians and West Africans: practical, accessible, and designed to create real change in your life. Browse all programs below and find the pathway that fits your goals.
-            </p>
-            <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
-              <a href="about.html" class="btn btn-secondary">Learn About TIH</a>
-              <a href="contact.html" class="btn btn-ghost">Talk to Us</a>
-            </div>
-          </div>
-          <div class="welcome-tiles-grid-6 reveal reveal-delay-1">
-            <div class="welcome-tile">
-              <div class="welcome-tile-icon">🎓</div>
-              <p class="welcome-tile-title">Scholarships</p>
-              <p class="welcome-tile-sub">Study Abroad &amp; Fully Funded</p>
-            </div>
-            <div class="welcome-tile">
-              <div class="welcome-tile-icon">💻</div>
-              <p class="welcome-tile-title">Learning Hub</p>
-              <p class="welcome-tile-sub">18 Professional Tracks</p>
-            </div>
-            <div class="welcome-tile">
-              <div class="welcome-tile-icon">📚</div>
-              <p class="welcome-tile-title">Exam Prep</p>
-              <p class="welcome-tile-sub">IELTS, TOEFL &amp; WASSCE</p>
-            </div>
-            <div class="welcome-tile">
-              <div class="welcome-tile-icon">🏥</div>
-              <p class="welcome-tile-title">Healthcare</p>
-              <p class="welcome-tile-sub">International Treatment</p>
-            </div>
-            <div class="welcome-tile">
-              <div class="welcome-tile-icon">📖</div>
-              <p class="welcome-tile-title">Digital Library</p>
-              <p class="welcome-tile-sub">50+ Free Resources</p>
-            </div>
-            <div class="welcome-tile">
-              <div class="welcome-tile-icon">💰</div>
-              <p class="welcome-tile-title">Grants</p>
-              <p class="welcome-tile-sub">2026–2027 Directory</p>
-            </div>
-          </div>
+        <div class="welcome-v2-intro">
+          <p class="section-label">Welcome to TIH</p>
+          <h2>Everything You Need to <span style="color:var(--brand-red);">Grow</span></h2>
+          <p>Every program is built specifically for Liberians and West Africans: practical, accessible, and designed to create real change in your life. Browse all programs below and find the pathway that fits your goals.</p>
+        </div>
+
+        <div class="service-cards-grid">
+          <!-- Study Abroad -->
+          <article class="service-card reveal">
+            <div class="service-card-icon">🎓</div>
+            <h3>STUDY ABROAD</h3>
+            <p>Access scholarships and study in top universities worldwide.</p>
+            <a href="study-abroad.html" class="service-card-link">Learn More</a>
+          </article>
+
+          <!-- Scholarships -->
+          <article class="service-card reveal reveal-delay-1">
+            <div class="service-card-icon">⭐</div>
+            <h3>SCHOLARSHIPS</h3>
+            <p>Find and apply for local and international scholarship opportunities.</p>
+            <a href="fully-funded-scholarship.html" class="service-card-link">Learn More</a>
+          </article>
+
+          <!-- Digital Skills -->
+          <article class="service-card reveal reveal-delay-2">
+            <div class="service-card-icon">💻</div>
+            <h3>DIGITAL SKILLS</h3>
+            <p>Learn in-demand digital skills and advance your career.</p>
+            <a href="learning-hub.html" class="service-card-link">Learn More</a>
+          </article>
+
+          <!-- Healthcare Access -->
+          <article class="service-card reveal reveal-delay-3">
+            <div class="service-card-icon">🏥</div>
+            <h3>HEALTHCARE ACCESS</h3>
+            <p>Get access to quality healthcare and medical referral services.</p>
+            <a href="healthcare.html" class="service-card-link">Learn More</a>
+          </article>
+
+          <!-- Technology Solutions -->
+          <article class="service-card reveal reveal-delay-4">
+            <div class="service-card-icon">⚙️</div>
+            <h3>TECHNOLOGY SOLUTIONS</h3>
+            <p>Innovative technology solutions for schools, businesses &amp; communities.</p>
+            <a href="software.html" class="service-card-link">Learn More</a>
+          </article>
         </div>
       </div>
     </section>
@@ -394,7 +441,7 @@
       </div>
     </section>
 
-    <!-- LATEST NEWS — moved to top after Hero -->
+    <!-- LATEST NEWS -->
     <section class="section" aria-label="Latest News">
       <div class="container">
         <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
@@ -912,7 +959,7 @@
               <div class="testimonial-avatar">MS</div>
               <div>
                 <p class="testimonial-name">Moses Sumo</p>
-                <p class="testimonial-role">Study Abroad Scholar, admitted April 2026 &middot; Monrovia</p>
+                <p class="testimonial-role">Study Abroad Scholar, admitted April 2026 · Monrovia</p>
               </div>
             </div>
           </div>
@@ -923,7 +970,7 @@
               <div class="testimonial-avatar">FK</div>
               <div>
                 <p class="testimonial-name">Fatima Kollie</p>
-                <p class="testimonial-role">IELTS Band 7, Learning Hub Graduate &middot; Paynesville</p>
+                <p class="testimonial-role">IELTS Band 7, Learning Hub Graduate · Paynesville</p>
               </div>
             </div>
           </div>
@@ -934,7 +981,7 @@
               <div class="testimonial-avatar">JT</div>
               <div>
                 <p class="testimonial-name">James Tarr</p>
-                <p class="testimonial-role">Healthcare Referral Program &middot; Buchanan, Grand Bassa</p>
+                <p class="testimonial-role">Healthcare Referral Program · Buchanan, Grand Bassa</p>
               </div>
             </div>
           </div>
@@ -945,7 +992,7 @@
               <div class="testimonial-avatar">AB</div>
               <div>
                 <p class="testimonial-name">Abigail Brownell</p>
-                <p class="testimonial-role">NGO Director, Grant Writing Track &middot; Monrovia</p>
+                <p class="testimonial-role">NGO Director, Grant Writing Track · Monrovia</p>
               </div>
             </div>
           </div>
@@ -972,7 +1019,7 @@
             </div>
             <div>
               <p class="event-title">2026 Scholarship Application Deadline</p>
-              <p class="event-meta">📍 Online &middot; Submit via Portal &nbsp;|&nbsp; 🕐 All Day</p>
+              <p class="event-meta">📍 Online · Submit via Portal &nbsp;|&nbsp; 🕐 All Day</p>
               <span class="event-tag">Scholarships</span>
             </div>
             <a href="apply.html" class="btn btn-secondary btn-sm">Apply Now</a>
