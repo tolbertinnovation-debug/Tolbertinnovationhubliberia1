@@ -5,7 +5,7 @@
    Tolbert Innovation Hub logo, seal, and CEO signature.
    ============================================================ */
 // Official brand assets (hosted images; each has a graceful fallback)
-var TIH_LOGO_URL = 'https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg';
+var TIH_LOGO_URL = 'assets/tih-logo.png';
 var TIH_SIGNATURE_URL = 'https://i.ibb.co/ymwHr8G1/signature-3.png';
 
 function buildCertHTML(name, title, certId, certDate) {

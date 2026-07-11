@@ -1689,7 +1689,7 @@ Or choose a topic below:`;
   }
 
   // ── DOM ───────────────────────────────────────────────────────────────────────
-  const LOGO_URL = 'https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg';
+  const LOGO_URL = 'assets/tih-logo.png';
   const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
   const chatBtn = document.createElement('button');

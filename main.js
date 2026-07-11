@@ -393,7 +393,7 @@ function initNav() {
     brand.textContent = '';
     const logo = document.createElement('img');
     logo.className = 'brand-logo';
-    logo.src = 'https://i.ibb.co/SXJKRq0S/Tolbert-Innovation-Logo.jpg';
+    logo.src = 'assets/tih-logo.png';
     logo.alt = 'Tolbert Innovation Hub logo';
     logo.width = 48;
     logo.height = 48;
