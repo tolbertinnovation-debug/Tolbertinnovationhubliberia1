@@ -222,6 +222,7 @@
         <a href="#pathways">Pathways</a>
         <a href="#tracks">Tracks</a>
         <a href="#wassce">WASSCE</a>
+        <a href="#bible">Bible School</a>
         <a href="#how">How It Works</a>
         <a href="hub-dashboard.html" class="nav-login">Student Login</a>
         <a href="hub-apply.html" class="nav-apply">Apply for Access</a>
@@ -248,7 +249,7 @@
       <div class="lh-visual" aria-label="Learning Hub highlights">
         <div class="lh-glow" aria-hidden="true"></div>
         <img class="lh-emblem" src="assets/tih-logo.png" alt="" aria-hidden="true" />
-        <a class="lh-card lh-f-a" href="#tracks"><span class="lh-ic lh-ic-blue">💻</span><span><strong>21 Courses</strong><small>6 full modules each</small></span></a>
+        <a class="lh-card lh-f-a" href="#tracks"><span class="lh-ic lh-ic-blue">💻</span><span><strong>24 Courses</strong><small>6 full modules each</small></span></a>
         <a class="lh-card lh-c-red lh-f-b" href="#wassce"><span class="lh-ic lh-ic-white">🎓</span><span><strong>WASSCE PRO</strong><small>23 exam subjects</small></span></a>
         <a class="lh-card lh-f-c" href="certificate-verify.html"><span class="lh-ic lh-ic-red">📜</span><span><strong>Certificates</strong><small>Verified online</small></span></a>
         <a class="lh-card lh-c-navy lh-f-d" href="practice-test.html?exam=ielts"><span class="lh-ic lh-ic-white">🧠</span><span><strong>IELTS · TOEFL · SAT</strong><small>Timed practice tests</small></span></a>
@@ -425,6 +426,20 @@
     </div>
   </section>
 
+  <!-- TIH BIBLE SCHOOL -->
+  <section id="bible" style="background:linear-gradient(135deg,#0B1F3A,#123163);color:#fff;">
+    <div class="container">
+      <div class="sec-head">
+        <h2 style="color:#fff;">✝️ TIH Bible School</h2>
+        <p style="color:rgba(255,255,255,.85);">Grow in faith and understanding with our Bible School — three complete, beginner-friendly courses covering Christian foundations and the whole Bible, Old and New Testament. Full lessons, quizzes, and a certificate. Each course unlocks for US$2.</p>
+      </div>
+      <div class="tracks-grid" id="bibleGrid">
+        <!-- Populated below -->
+      </div>
+      <p style="text-align:center;font-size:.85rem;color:rgba(255,255,255,.7);margin-top:1.25rem;">Each course unlocks after you sign in and the TIH team confirms your US$2 Mobile Money payment. No prior Bible knowledge needed — seekers and new believers welcome.</p>
+    </div>
+  </section>
+
   <!-- HOW IT WORKS -->
   <section id="how">
     <div class="container">
@@ -541,7 +556,7 @@
     </div>
   </footer>
 
-  <script src="courses-db.js?v=10"></script>
+  <script src="courses-db.js?v=11"></script>
   <script>
     // Mobile menu
     (function () {
@@ -561,7 +576,7 @@
       try {
         var grid = document.getElementById('tracksGrid');
         var html = '';
-        var ids = Object.keys(COURSES_DB);
+        var ids = Object.keys(COURSES_DB).filter(function (id) { return id.indexOf('bible-') !== 0; });
         for (var i = 0; i < ids.length; i++) {
           var c = COURSES_DB[ids[i]];
           var lessons = 0;
@@ -618,6 +633,24 @@
           + '<span class="t-icon">' + s[2] + '</span>'
           + '<span><span class="t-name">' + s[1] + '</span><br>'
           + '<span class="t-meta">WASSCE subject · US$2</span></span>'
+          + '</a>';
+      }).join('');
+    })();
+
+    // Build TIH Bible School grid → each opens the gated course player (login + US$2)
+    (function () {
+      var grid = document.getElementById('bibleGrid');
+      if (!grid || typeof COURSES_DB === 'undefined') return;
+      var ids = Object.keys(COURSES_DB).filter(function (id) { return id.indexOf('bible-') === 0; });
+      if (!ids.length) { var sec = document.getElementById('bible'); if (sec) sec.style.display = 'none'; return; }
+      grid.innerHTML = ids.map(function (id) {
+        var c = COURSES_DB[id];
+        var lessons = 0;
+        (c.modules || []).forEach(function (m) { lessons += (m.lessons || []).length; });
+        return '<a class="track-chip" href="course-player.html?id=' + id + '">'
+          + '<span class="t-icon">' + (c.icon || '✝️') + '</span>'
+          + '<span><span class="t-name">' + c.title.split(':')[0] + '</span><br>'
+          + '<span class="t-meta">' + lessons + ' lessons · Certificate · US$2</span></span>'
           + '</a>';
       }).join('');
     })();
