@@ -495,6 +495,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safe(initCounters);
   safe(initReveal);
   safe(initBackToTop);
+  safe(initHeroParallax);
 
   // Announcement bar close button
   const announcementClose = document.getElementById('announcement-close');
@@ -544,4 +545,43 @@ function initCookieConsent() {
 
   document.getElementById('cookieAccept').addEventListener('click', () => dismiss(true));
   document.getElementById('cookieReject').addEventListener('click', () => dismiss(false));
+}
+
+// ============================================================
+// Hero mouse parallax — elements with [data-depth] drift subtly
+// toward the cursor. Skipped on touch devices & reduced motion.
+// ============================================================
+function initHeroParallax() {
+  const hero = document.querySelector('.hero-modern');
+  if (!hero) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  const layers = hero.querySelectorAll('[data-depth]');
+  if (!layers.length) return;
+
+  let mx = 0, my = 0, raf = null;
+  const apply = () => {
+    raf = null;
+    layers.forEach((el) => {
+      const d = parseFloat(el.dataset.depth) || 10;
+      const x = mx * d, y = my * d;
+      // preserve the emblem's centering transform
+      if (el.classList.contains('hm-emblem')) {
+        el.style.translate = `${x}px ${y}px`;
+      } else {
+        el.style.translate = `${x}px ${y}px`;
+      }
+    });
+  };
+  hero.addEventListener('mousemove', (e) => {
+    const r = hero.getBoundingClientRect();
+    mx = ((e.clientX - r.left) / r.width - 0.5) * 0.9;
+    my = ((e.clientY - r.top) / r.height - 0.5) * 0.9;
+    if (!raf) raf = requestAnimationFrame(apply);
+  });
+  hero.addEventListener('mouseleave', () => {
+    mx = 0; my = 0;
+    if (!raf) raf = requestAnimationFrame(apply);
+  });
 }

@@ -25,7 +25,7 @@
       display:flex;align-items:center;justify-content:center;
       animation:tih-pulse 2.4s infinite;
     }
-    @keyframes tih-pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(191,10,48,.5)}60%{transform:scale(1.12);box-shadow:0 0 0 6px rgba(191,10,48,0)}}
+    @keyframes tih-pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(227,30,36,.5)}60%{transform:scale(1.12);box-shadow:0 0 0 6px rgba(227,30,36,0)}}
     #tih-chat-win{
       position:fixed;bottom:5.2rem;left:1.5rem;z-index:950;
       width:380px;max-width:calc(100vw - 2rem);

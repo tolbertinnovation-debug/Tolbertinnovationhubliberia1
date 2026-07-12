@@ -41,7 +41,7 @@
     @media(max-width:639px){.programs-carousel .swiper-button-prev,.programs-carousel .swiper-button-next,.news-carousel .swiper-button-prev,.news-carousel .swiper-button-next{display:none;}}
 
     /* ── HERO IMPROVEMENTS ── */
-    .hero-live-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(191,10,48,.15);border:1px solid rgba(191,10,48,.3);color:#ff6b7a;font-size:.82rem;font-weight:700;padding:.35rem .9rem;border-radius:999px;margin-bottom:1rem;}
+    .hero-live-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(227,30,36,.15);border:1px solid rgba(227,30,36,.3);color:#ff6b7a;font-size:.82rem;font-weight:700;padding:.35rem .9rem;border-radius:999px;margin-bottom:1rem;}
     .live-dot{width:8px;height:8px;border-radius:50%;background:#ff4a5e;flex-shrink:0;animation:pulse-dot 1.6s ease-in-out infinite;}
     @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(255,74,94,.6);}50%{box-shadow:0 0 0 6px rgba(255,74,94,0);}}
     .hero-2col{display:grid;grid-template-columns:1fr 420px;gap:3rem;align-items:center;}
@@ -108,7 +108,7 @@
 
     /* ── NEWSLETTER IMPROVED ── */
     .newsletter-section-v2{background:linear-gradient(135deg,#002868 0%,#001030 100%);padding:5rem 0;position:relative;overflow:hidden;}
-    .newsletter-section-v2::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:rgba(191,10,48,.12);pointer-events:none;}
+    .newsletter-section-v2::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:rgba(227,30,36,.12);pointer-events:none;}
     .newsletter-section-v2::after{content:'';position:absolute;bottom:-80px;left:-40px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
     .nl-inner{max-width:640px;margin:0 auto;text-align:center;position:relative;z-index:1;}
     .nl-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.3);color:#fbbf24;font-size:.8rem;font-weight:700;padding:.3rem .85rem;border-radius:999px;margin-bottom:1.25rem;text-transform:uppercase;letter-spacing:.05em;}
@@ -185,91 +185,82 @@
 
   <main id="main-content">
 
-    <!-- HERO SECTION -->
-    <section class="hero home-hero">
+    <!-- HERO SECTION (banner design system: light, animated, floating cards) -->
+    <section class="hero home-hero hero-modern" id="heroTop">
+      <div class="hm-orb hm-orb-1" data-depth="18" aria-hidden="true"></div>
+      <div class="hm-orb hm-orb-2" data-depth="30" aria-hidden="true"></div>
+      <div class="hm-orb hm-orb-3" data-depth="12" aria-hidden="true"></div>
+      <span class="hm-spark hm-spark-1" data-depth="40" aria-hidden="true">🎓</span>
+      <span class="hm-spark hm-spark-2" data-depth="26" aria-hidden="true">&lt;/&gt;</span>
+      <span class="hm-spark hm-spark-3" data-depth="34" aria-hidden="true">🌍</span>
       <div class="container">
         <div class="hero-grid hero-2col">
           <!-- Left: Content -->
           <div class="hero-text">
-            <div class="hero-live-badge">
+            <div class="hero-live-badge hm-fade hm-d1">
               <span class="live-dot"></span>
               Scholarship Applications Open &middot; Deadline July 30, 2026
             </div>
-            <h1>Transforming Lives Through <span class="hero-highlight">Innovation</span>, Education &amp; Opportunity</h1>
-            <p class="lead">
-              Tolbert Innovation Hub connects Liberian youth with scholarships, world-class exam preparation,
-              18 affordable skill tracks, a digital library, international healthcare access, and grants guidance,
-              creating pathways to a brighter future.
+            <h1 class="hm-fade hm-d2">Empowering Liberia Through <span class="hm-red">Education</span>, <span class="hm-blue">Innovation</span>, <span class="hm-red">Technology</span> &amp; <span class="hm-blue">Opportunity</span></h1>
+            <p class="lead hm-fade hm-d3">
+              Tolbert Innovation Hub equips students, professionals, entrepreneurs, and communities with the
+              skills, knowledge, scholarships, technology, and opportunities needed to thrive in the digital economy.
             </p>
-            <div class="hero-badges">
-              <span class="hero-badge"><span class="hero-badge-icon">🎓</span> Scholarship Programs</span>
-              <span class="hero-badge"><span class="hero-badge-icon">📚</span> Learning Hub · US$2</span>
-              <span class="hero-badge"><span class="hero-badge-icon">🏥</span> Healthcare Access</span>
-              <span class="hero-badge"><span class="hero-badge-icon">📖</span> Digital Library</span>
+            <div class="hero-actions hm-fade hm-d4">
+              <a class="btn btn-primary btn-lg" href="#programs">Explore Programs</a>
+              <a class="btn btn-hero-blue btn-lg" href="apply.html">Apply Now</a>
+              <a class="btn btn-outline hm-outline" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
             </div>
-            <div class="hero-actions">
-              <a class="btn btn-primary btn-lg" href="apply.html">Apply for Scholarship</a>
-              <a class="btn btn-outline" href="learning-hub.html">Learning Hub →</a>
-              <a class="btn btn-outline" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
-            </div>
-            <div class="impact-inline" style="margin-top:2.5rem;">
+            <div class="impact-inline hm-fade hm-d5" style="margin-top:2.4rem;">
               <div class="impact-item">
-                <span class="impact-number">5,000+</span>
+                <span class="impact-number" data-target="5000" data-suffix="+">0</span>
                 <p class="impact-label">Learners Reached</p>
               </div>
               <div class="impact-item">
-                <span class="impact-number">18</span>
-                <p class="impact-label">Skill Tracks</p>
+                <span class="impact-number" data-target="44" data-suffix="">0</span>
+                <p class="impact-label">Courses &amp; Subjects</p>
               </div>
               <div class="impact-item">
-                <span class="impact-number">US$2</span>
+                <span class="impact-number" data-prefix="US$" data-target="2" data-suffix="">US$2</span>
                 <p class="impact-label">Per Course</p>
               </div>
               <div class="impact-item">
-                <span class="impact-number">15+</span>
+                <span class="impact-number" data-target="15" data-suffix="+">0</span>
                 <p class="impact-label">Countries Reached</p>
               </div>
             </div>
           </div>
 
-          <!-- Right: Visual Panel (real quick links — must remain exposed to assistive tech) -->
-          <div class="hero-visual" aria-label="Quick links">
-            <a class="hv-card" href="library.html" style="text-decoration:none;">
-              <div class="hv-icon" style="background:rgba(0,40,104,.4);">📖</div>
-              <div class="hv-body">
-                <strong>Digital Library</strong>
-                <span>50+ Educational Resources</span>
-              </div>
-              <span class="hv-number">NEW</span>
+          <!-- Right: floating program cards (real links, banner style) -->
+          <div class="hero-visual hm-visual" aria-label="TIH quick links">
+            <div class="hm-glow" aria-hidden="true"></div>
+            <img class="hm-emblem" src="assets/tih-logo.png" alt="" aria-hidden="true" data-depth="10" />
+            <a class="hm-card hm-float-a" href="wassce.html" data-depth="22">
+              <span class="hm-ic hm-ic-blue">🎓</span>
+              <span class="hm-tx"><strong>WASSCE Prep</strong><small>23 subjects &middot; US$2 each</small></span>
             </a>
-            <a class="hv-card" href="learning-hub.html" style="text-decoration:none;">
-              <div class="hv-icon" style="background:rgba(0,40,104,.4);">🏫</div>
-              <div class="hv-body">
-                <strong>18 Skill Tracks</strong>
-                <span>180+ Video Lessons</span>
-              </div>
-              <span class="hv-number" style="font-size:1rem;color:rgba(255,255,255,.6);">US$2</span>
+            <a class="hm-card hm-card-red hm-float-b" href="learning-hub.html" data-depth="30">
+              <span class="hm-ic hm-ic-white">▶</span>
+              <span class="hm-tx"><strong>Video Lessons</strong>
+                <span class="hm-bar"><i style="width:75%"></i></span>
+              </span>
             </a>
-            <div class="hero-divider"></div>
-            <a class="hv-card" href="grants.html" style="text-decoration:none;">
-              <div class="hv-icon" style="background:rgba(124,58,237,.3);">💰</div>
-              <div class="hv-body">
-                <strong>2026–2027 Grants</strong>
-                <span>$50M+ in Liberia Funding</span>
-              </div>
-              <span class="hv-number" style="font-size:.82rem;color:rgba(255,255,255,.6);">Updated</span>
+            <a class="hm-card hm-float-c" href="certificate-verify.html" data-depth="18">
+              <span class="hm-ic hm-ic-red">📜</span>
+              <span class="hm-tx"><strong>Certificates</strong><small>Verified online</small></span>
             </a>
-            <a class="hv-card" href="apply.html" style="text-decoration:none;">
-              <div class="hv-icon" style="background:rgba(191,10,48,.4);">🎓</div>
-              <div class="hv-body">
-                <strong>Scholarships Open</strong>
-                <span>Deadline July 30, 2026</span>
-              </div>
-              <span class="hv-number" style="font-size:.82rem;color:#ff6b7a;">Open</span>
+            <a class="hm-card hm-card-navy hm-float-d" href="grandpa-ai.html" data-depth="26">
+              <span class="hm-ic hm-ic-white">🧠</span>
+              <span class="hm-tx"><strong>AI Powered Learning</strong><small>Ask Grandpa AI</small></span>
+            </a>
+            <a class="hm-card hm-float-e" href="fully-funded-scholarship.html" data-depth="34">
+              <span class="hm-ic hm-ic-blue">💰</span>
+              <span class="hm-tx"><strong>Scholarships &amp; Grants</strong><small>Fully funded options</small></span>
             </a>
           </div>
         </div>
       </div>
+      <svg class="tih-wave hm-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,50 C240,86 480,10 720,32 C960,54 1200,88 1440,42 L1440,90 L0,90 Z" fill="#E31E24"/><path d="M0,64 C240,92 480,30 720,48 C960,66 1200,88 1440,58 L1440,90 L0,90 Z" fill="#ffffff"/></svg>
     </section>
 
     <!-- TRUST STRIP -->
@@ -460,7 +451,7 @@
     </section>
 
     <!-- SPOTLIGHT: CORE PROGRAMS -->
-    <section class="section spotlight-section" aria-label="Core Programs">
+    <section class="section spotlight-section" id="programs" aria-label="Core Programs">
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">Our Core Programs</p>
