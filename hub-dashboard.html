@@ -219,11 +219,15 @@
         </section>
 
         <section>
-          <h2>📚 My Assigned Courses</h2>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap;margin-bottom:.2rem;">
+            <h2 style="margin:0;">📚 My Courses</h2>
+            <button class="btn btn-primary btn-sm" id="addCourseBtn" type="button">➕ Add a Course</button>
+          </div>
+          <p style="font-size:.82rem;color:var(--muted);margin:.15rem 0 .8rem;">Want to learn something new? Tap <strong>➕ Add a Course</strong> to browse the full catalog and unlock any course for US$2.</p>
           <div class="courses-grid" id="coursesGrid"></div>
           <div class="empty-box" id="coursesEmpty" style="display:none;">
-            No courses assigned yet. The TIH team assigns your courses after onboarding — need help?
-            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="color:var(--primary);font-weight:700;">Chat with us on WhatsApp</a>.
+            You have no courses yet. Tap <strong>➕ Add a Course</strong> above to browse the catalog and add your first one — or
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="color:var(--primary);font-weight:700;">chat with us on WhatsApp</a> for help.
           </div>
         </section>
 
@@ -288,6 +292,23 @@
       <div class="fld"><label>Confirm new password</label><input type="password" id="fp2" /></div>
       <button class="btn btn-primary btn-block" id="fpBtn">Save New Password</button>
       <div class="feedback err" id="fpFb"></div>
+    </div>
+  </div>
+
+  <!-- ADD A COURSE MODAL -->
+  <div class="modal-overlay" id="addCourseModal">
+    <div class="modal" style="max-width:560px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:.6rem;">
+        <h3 style="margin:0;">➕ Add a Course</h3>
+        <button type="button" id="addCourseClose" aria-label="Close" style="background:none;border:none;font-size:1.4rem;line-height:1;cursor:pointer;color:var(--muted);">&times;</button>
+      </div>
+      <p style="font-size:.85rem;color:var(--muted);margin:.5rem 0 .8rem;">Browse the full catalog below and add any course. You unlock it for <strong>US$2</strong> by Mobile Money — pay, then enter your access code or tap <em>“I’ve Paid — Request Access”</em> on the course page.</p>
+      <input type="search" id="addCourseSearch" placeholder="🔍 Search courses — e.g. Bible, web, design, AI…" style="width:100%;padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:inherit;margin-bottom:.6rem;box-sizing:border-box;" />
+      <div id="addCourseList" style="max-height:52vh;overflow-y:auto;"></div>
+      <div id="addCourseEmpty" style="display:none;text-align:center;color:var(--muted);font-size:.88rem;padding:1.4rem 1rem;">🎉 You already have every course in the catalog!</div>
+      <div style="border-top:1px solid var(--border);margin-top:.8rem;padding-top:.7rem;text-align:center;">
+        <a href="learning-hub.html#wassce" style="font-size:.82rem;color:var(--primary);font-weight:700;text-decoration:none;">Looking for WASSCE exam subjects? Browse them here →</a>
+      </div>
     </div>
   </div>
 
@@ -745,6 +766,83 @@
           + '</div>';
       }).join('');
     }
+
+    /* ---- Add a Course: browse the full catalog and unlock a new course ---- */
+    function coursesIHave() {
+      var have = {};
+      if (currentStudent) {
+        (currentStudent.courses || []).forEach(function (c) {
+          var id = (c && typeof c === 'object') ? c.id : c;
+          if (id) have[id] = true;
+        });
+      }
+      try {
+        Object.keys(COURSES_DB).forEach(function (id) { if (HubDB.hasAccess(id)) have[id] = true; });
+      } catch (e) {}
+      return have;
+    }
+    function buildAddCourseList(query) {
+      var listEl = document.getElementById('addCourseList');
+      var emptyEl = document.getElementById('addCourseEmpty');
+      if (!listEl || typeof COURSES_DB === 'undefined') return;
+      var have = coursesIHave();
+      var q = (query || '').trim().toLowerCase();
+      var ids = Object.keys(COURSES_DB).filter(function (id) { return !have[id]; });
+      // Search filter over title + category.
+      if (q) {
+        ids = ids.filter(function (id) {
+          var c = COURSES_DB[id];
+          return (c.title + ' ' + (c.category || '')).toLowerCase().indexOf(q) !== -1;
+        });
+      }
+      // Bible School first, then the rest — grouped only visually via category label.
+      ids.sort(function (a, b) {
+        var ca = COURSES_DB[a].category || '', cb = COURSES_DB[b].category || '';
+        var ba = ca === 'TIH Bible School' ? 0 : 1, bb = cb === 'TIH Bible School' ? 0 : 1;
+        if (ba !== bb) return ba - bb;
+        return COURSES_DB[a].title.localeCompare(COURSES_DB[b].title);
+      });
+      if (!ids.length) {
+        listEl.innerHTML = '';
+        emptyEl.style.display = 'block';
+        emptyEl.textContent = q ? 'No courses match “' + query + '”.' : '🎉 You already have every course in the catalog!';
+        return;
+      }
+      emptyEl.style.display = 'none';
+      listEl.innerHTML = ids.map(function (id) {
+        var c = COURSES_DB[id];
+        var price = (HubDB.priceFor ? HubDB.priceFor(id) : 2);
+        var lessons = 0;
+        (c.modules || []).forEach(function (m) { lessons += (m.lessons || []).length; });
+        return '<div style="display:flex;align-items:center;gap:.7rem;padding:.65rem .2rem;border-bottom:1px solid var(--border);">'
+          + '<div style="font-size:1.6rem;line-height:1;flex-shrink:0;">' + (c.icon || '📘') + '</div>'
+          + '<div style="flex:1;min-width:0;">'
+          + '<div style="font-weight:700;font-size:.9rem;line-height:1.25;">' + esc(c.title.split(':')[0]) + '</div>'
+          + '<div style="font-size:.74rem;color:var(--muted);margin-top:.1rem;">' + esc(c.category || 'Course') + ' · ' + lessons + ' lessons · ' + (c.level || 'All levels') + '</div>'
+          + '</div>'
+          + '<a class="btn btn-orange btn-sm" style="flex-shrink:0;" href="course-player.html?id=' + encodeURIComponent(id) + '">🔓 Add · US$' + price + '</a>'
+          + '</div>';
+      }).join('');
+    }
+    function openAddCourse() {
+      buildAddCourseList('');
+      var s = document.getElementById('addCourseSearch');
+      if (s) s.value = '';
+      document.getElementById('addCourseModal').classList.add('open');
+    }
+    function closeAddCourse() {
+      document.getElementById('addCourseModal').classList.remove('open');
+    }
+    (function () {
+      var btn = document.getElementById('addCourseBtn');
+      if (btn) btn.addEventListener('click', openAddCourse);
+      var close = document.getElementById('addCourseClose');
+      if (close) close.addEventListener('click', closeAddCourse);
+      var overlay = document.getElementById('addCourseModal');
+      if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) closeAddCourse(); });
+      var search = document.getElementById('addCourseSearch');
+      if (search) search.addEventListener('input', function () { buildAddCourseList(search.value); });
+    })();
 
     /* ---- Certificate request / approval code ---- */
     window.requestCert = function (cid) {
