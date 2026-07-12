@@ -222,6 +222,14 @@ function initCounters() {
 // Scroll reveal
 // ============================================================
 function initReveal() {
+  // Auto-tag common cards so every page gets scroll-reveal without markup edits.
+  document.querySelectorAll(
+    '.section .card:not(.reveal), .spotlight-card:not(.reveal), .news-card:not(.reveal), .program-card:not(.reveal), .stat-card:not(.reveal)'
+  ).forEach((el, i) => {
+    el.classList.add('reveal');
+    if (i % 3 === 1) el.classList.add('reveal-delay-1');
+    if (i % 3 === 2) el.classList.add('reveal-delay-2');
+  });
   const reveals = document.querySelectorAll('.reveal');
   if (!reveals.length) return;
 

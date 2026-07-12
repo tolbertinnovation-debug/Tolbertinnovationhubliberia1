@@ -2211,3 +2211,29 @@ textarea {
   .hero-modern, .hm-orb, .hm-spark, .hm-emblem, .hm-glow, .hm-card, .hm-bar i, .hm-fade { animation: none !important; }
   .hm-fade { opacity: 1; transform: none; }
 }
+
+/* ============================================================
+   SUB-PAGE HERO ANIMATION LAYER — every styles.css page hero
+   gets the banner motion: drifting gradient, staggered entrance,
+   red/white wave at its base. Colors unchanged (navy heroes).
+   ============================================================ */
+.hero:not(.hero-modern) {
+  background-size: 200% 200%;
+  animation: heroDriftDark 18s ease-in-out infinite alternate;
+}
+@keyframes heroDriftDark { from { background-position: 0% 30%; } to { background-position: 100% 70%; } }
+.hero:not(.hero-modern)::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 56px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0,44 C240,76 480,10 720,28 C960,46 1200,76 1440,38 L1440,80 L0,80 Z' fill='%23E31E24'/%3E%3Cpath d='M0,58 C240,82 480,28 720,42 C960,56 1200,78 1440,52 L1440,80 L0,80 Z' fill='%23ffffff'/%3E%3C/svg%3E") bottom center / 100% 100% no-repeat;
+  pointer-events: none;
+  z-index: 1;
+}
+.hero h1 { animation: hmUp .8s .12s cubic-bezier(.22,.8,.32,1) backwards; }
+.hero .lead, .hero > .container > p, .hero p.hero-sub { animation: hmUp .8s .28s cubic-bezier(.22,.8,.32,1) backwards; }
+.hero .hero-actions, .hero .hero-badges { animation: hmUp .8s .44s cubic-bezier(.22,.8,.32,1) backwards; }
+@media (prefers-reduced-motion: reduce) {
+  .hero, .hero h1, .hero .lead, .hero .hero-actions, .hero .hero-badges { animation: none !important; }
+}
