@@ -2159,11 +2159,13 @@ textarea {
 .hero-modern .hm-outline { color: var(--brand-blue); border-color: #b9cdea; }
 .hero-modern .hm-outline:hover { border-color: var(--brand-blue-light); color: var(--brand-blue-light); }
 
-/* staggered entrance */
-.hm-fade { opacity: 0; transform: translateY(22px); animation: hmUp .8s cubic-bezier(.22,.8,.32,1) forwards; }
+/* staggered entrance — base state is VISIBLE so a failed/stalled animation
+   (common on very slow mobile connections) can never leave the hero blank.
+   The animation only adds the fade-in as progressive enhancement. */
+.hm-fade { animation: hmUp .8s cubic-bezier(.22,.8,.32,1) both; }
 .hm-d1 { animation-delay: .05s; } .hm-d2 { animation-delay: .18s; } .hm-d3 { animation-delay: .34s; }
 .hm-d4 { animation-delay: .5s; } .hm-d5 { animation-delay: .66s; }
-@keyframes hmUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes hmUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ambient orbs + floating sparks */
 .hm-orb { position: absolute; border-radius: 50%; filter: blur(46px); opacity: .5; pointer-events: none; }

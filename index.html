@@ -1229,5 +1229,30 @@
       });
     })();
   </script>
+  <script>
+    /* ---- Entrance-animation failsafe ----
+       On slow / flaky mobile connections the external scripts (main.js) can
+       fail to load, which would leave scroll-reveal sections and the hero
+       stuck at opacity:0 — the page appears to "disappear". This inline guard
+       is self-contained and guarantees content becomes visible no matter what. */
+    (function () {
+      function show() {
+        try {
+          var r = document.querySelectorAll('.reveal');
+          for (var i = 0; i < r.length; i++) r[i].classList.add('visible');
+          var f = document.querySelectorAll('.hm-fade');
+          for (var j = 0; j < f.length; j++) { f[j].style.opacity = '1'; f[j].style.transform = 'none'; }
+        } catch (e) {}
+      }
+      // No IntersectionObserver support → reveal right away.
+      if (!('IntersectionObserver' in window)) show();
+      // If main.js hasn't revealed content shortly after load, force it visible.
+      window.addEventListener('load', function () { setTimeout(show, 1200); });
+      // Reveal on back/forward (bfcache) restore.
+      window.addEventListener('pageshow', function (e) { if (e.persisted) show(); });
+      // Absolute backstop even if the load event never fires (stalled subresource).
+      setTimeout(show, 4000);
+    })();
+  </script>
 </body>
 </html>

@@ -179,9 +179,10 @@
     .lh-modern .hero-note { color: #5b6b8c; }
     .lh-modern .btn-ghost { border-color: #b9cdea; color: var(--primary); }
     .lh-modern .btn-ghost:hover { border-color: var(--primary); }
-    .lh-fade { opacity: 0; transform: translateY(20px); animation: lhUp .8s cubic-bezier(.22,.8,.32,1) forwards; }
+    /* base state VISIBLE so a failed/stalled animation can never leave the hero blank */
+    .lh-fade { animation: lhUp .8s cubic-bezier(.22,.8,.32,1) both; }
     .lh-d1 { animation-delay: .05s; } .lh-d2 { animation-delay: .18s; } .lh-d3 { animation-delay: .34s; } .lh-d4 { animation-delay: .5s; }
-    @keyframes lhUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes lhUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .lh-orb { position: absolute; border-radius: 50%; filter: blur(44px); opacity: .5; pointer-events: none; }
     .lh-orb-1 { width: 300px; height: 300px; background: #9cc4ff; top: -70px; right: 5%; animation: lhBob 11s ease-in-out infinite alternate; }
     .lh-orb-2 { width: 190px; height: 190px; background: #ffb3b6; bottom: 0; left: -50px; animation: lhBob 13s 1s ease-in-out infinite alternate-reverse; }

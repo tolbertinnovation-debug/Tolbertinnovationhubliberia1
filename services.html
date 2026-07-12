@@ -484,5 +484,26 @@
 
   <script src="main.js"></script>
 <script src="chatbot.js"></script>
+  <script>
+    /* ---- Entrance-animation failsafe ----
+       On slow / flaky mobile connections the external scripts (main.js) can
+       fail to load, leaving scroll-reveal sections and the hero stuck at
+       opacity:0 — the page appears to "disappear". This inline guard is
+       self-contained and guarantees content becomes visible no matter what. */
+    (function () {
+      function show() {
+        try {
+          var r = document.querySelectorAll('.reveal');
+          for (var i = 0; i < r.length; i++) r[i].classList.add('visible');
+          var f = document.querySelectorAll('.hm-fade');
+          for (var j = 0; j < f.length; j++) { f[j].style.opacity = '1'; f[j].style.transform = 'none'; }
+        } catch (e) {}
+      }
+      if (!('IntersectionObserver' in window)) show();
+      window.addEventListener('load', function () { setTimeout(show, 1200); });
+      window.addEventListener('pageshow', function (e) { if (e.persisted) show(); });
+      setTimeout(show, 4000);
+    })();
+  </script>
 </body>
 </html>
