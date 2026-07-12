@@ -488,9 +488,14 @@ h1, .page-title {
 }
 
 .hero h1,
-.hero .page-title {
+.hero .page-title,
+.page-hero h1,
+.page-hero .page-title {
   color: #fff;
 }
+/* page-hero body text: keep it readable on the dark navy hero */
+.page-hero .lead,
+.page-hero > .container > p { color: rgba(255,255,255,.85); }
 
 .hero-highlight {
   color: var(--brand-red);
@@ -2238,4 +2243,44 @@ textarea {
 .hero .hero-actions, .hero .hero-badges { animation: hmUp .8s .44s cubic-bezier(.22,.8,.32,1) backwards; }
 @media (prefers-reduced-motion: reduce) {
   .hero, .hero h1, .hero .lead, .hero .hero-actions, .hero .hero-badges { animation: none !important; }
+}
+
+/* ============================================================
+   .page-hero pages (about, contact, services, team, process,
+   projects, leadership) — mirror the same banner motion the
+   .hero pages already get: drifting gradient, red/white wave,
+   staggered entrance. Base states stay visible (safe on slow nets).
+   ============================================================ */
+.page-hero { position: relative; overflow: hidden; background-size: 200% 200%; animation: heroDriftDark 18s ease-in-out infinite alternate; }
+.page-hero::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 56px; z-index: 1; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0,44 C240,76 480,10 720,28 C960,46 1200,76 1440,38 L1440,80 L0,80 Z' fill='%23E31E24'/%3E%3Cpath d='M0,58 C240,82 480,28 720,42 C960,56 1200,78 1440,52 L1440,80 L0,80 Z' fill='%23ffffff'/%3E%3C/svg%3E") bottom center / 100% 100% no-repeat;
+}
+.page-hero h1 { animation: hmUp .8s .12s cubic-bezier(.22,.8,.32,1) backwards; }
+.page-hero .lead, .page-hero > .container > p { animation: hmUp .8s .28s cubic-bezier(.22,.8,.32,1) backwards; }
+.page-hero .hero-actions, .page-hero .hero-badges { animation: hmUp .8s .44s cubic-bezier(.22,.8,.32,1) backwards; }
+
+/* ============================================================
+   AMBIENT HERO FX — injected by main.js into every inner-page hero
+   (.hero:not(.hero-modern) and .page-hero) so they get the same
+   floating orbs, sparks and geometric watermark as the Home &
+   Learning Hub heroes. Purely decorative; hero text is unaffected.
+   ============================================================ */
+.hero > .hero-fx, .page-hero > .hero-fx { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.hero-fx .hfx-pattern { position: absolute; inset: 0; opacity: .5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='54' height='54' viewBox='0 0 54 54'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.1'%3E%3Crect x='7' y='7' width='15' height='15'/%3E%3Cpath d='M34 12h13M34 18h9'/%3E%3Crect x='33' y='32' width='13' height='13'/%3E%3Cpath d='M7 36h13M7 42h9'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 54px 54px; -webkit-mask-image: radial-gradient(ellipse at 60% 40%, #000, transparent 78%); mask-image: radial-gradient(ellipse at 60% 40%, #000, transparent 78%); }
+.hero-fx .hfx-orb { position: absolute; border-radius: 50%; filter: blur(48px); opacity: .4; }
+.hfx-orb-1 { width: 320px; height: 320px; background: #9cc4ff; top: -100px; right: 5%; animation: hfxBob 12s ease-in-out infinite alternate; }
+.hfx-orb-2 { width: 220px; height: 220px; background: #ff9ea1; bottom: -70px; left: -50px; animation: hfxBob 15s 1s ease-in-out infinite alternate-reverse; }
+.hfx-orb-3 { width: 150px; height: 150px; background: #cfe4ff; top: 34%; left: 46%; animation: hfxBob 10s .5s ease-in-out infinite alternate; }
+.hfx-spark { position: absolute; font-weight: 800; opacity: .16; color: #fff; animation: hfxBob 9s ease-in-out infinite alternate; }
+.hfx-spark-1 { top: 22%; left: 7%; font-size: 1.7rem; }
+.hfx-spark-2 { bottom: 30%; right: 9%; font-size: 1.4rem; animation-duration: 11s; }
+.hfx-spark-3 { top: 62%; left: 32%; font-size: 1.25rem; animation-duration: 8s; }
+@keyframes hfxBob { from { transform: translateY(-15px); } to { transform: translateY(16px); } }
+@media (max-width: 720px) { .hfx-spark { display: none; } .hfx-orb { filter: blur(40px); } }
+@media (prefers-reduced-motion: reduce) {
+  .page-hero, .page-hero h1, .page-hero .lead, .page-hero .hero-actions, .page-hero .hero-badges,
+  .hfx-orb, .hfx-spark { animation: none !important; }
 }

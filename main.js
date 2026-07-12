@@ -503,6 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safe(initCounters);
   safe(initReveal);
   safe(initBackToTop);
+  safe(initInnerHero);
   safe(initHeroParallax);
 
   // Announcement bar close button
@@ -560,36 +561,61 @@ function initCookieConsent() {
 // toward the cursor. Skipped on touch devices & reduced motion.
 // ============================================================
 function initHeroParallax() {
-  const hero = document.querySelector('.hero-modern');
-  if (!hero) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (window.matchMedia('(pointer: coarse)').matches) return;
 
-  const layers = hero.querySelectorAll('[data-depth]');
-  if (!layers.length) return;
+  // Attach cursor parallax to the home hero AND every inner-page hero that
+  // received the ambient FX layer (data-hero-fx).
+  document.querySelectorAll('.hero-modern, [data-hero-fx]').forEach((hero) => {
+    const layers = hero.querySelectorAll('[data-depth]');
+    if (!layers.length) return;
 
-  let mx = 0, my = 0, raf = null;
-  const apply = () => {
-    raf = null;
-    layers.forEach((el) => {
-      const d = parseFloat(el.dataset.depth) || 10;
-      const x = mx * d, y = my * d;
-      // preserve the emblem's centering transform
-      if (el.classList.contains('hm-emblem')) {
-        el.style.translate = `${x}px ${y}px`;
-      } else {
-        el.style.translate = `${x}px ${y}px`;
-      }
+    let mx = 0, my = 0, raf = null;
+    const apply = () => {
+      raf = null;
+      layers.forEach((el) => {
+        const d = parseFloat(el.dataset.depth) || 10;
+        el.style.translate = `${mx * d}px ${my * d}px`;
+      });
+    };
+    hero.addEventListener('mousemove', (e) => {
+      const r = hero.getBoundingClientRect();
+      mx = ((e.clientX - r.left) / r.width - 0.5) * 0.9;
+      my = ((e.clientY - r.top) / r.height - 0.5) * 0.9;
+      if (!raf) raf = requestAnimationFrame(apply);
     });
-  };
-  hero.addEventListener('mousemove', (e) => {
-    const r = hero.getBoundingClientRect();
-    mx = ((e.clientX - r.left) / r.width - 0.5) * 0.9;
-    my = ((e.clientY - r.top) / r.height - 0.5) * 0.9;
-    if (!raf) raf = requestAnimationFrame(apply);
+    hero.addEventListener('mouseleave', () => {
+      mx = 0; my = 0;
+      if (!raf) raf = requestAnimationFrame(apply);
+    });
   });
-  hero.addEventListener('mouseleave', () => {
-    mx = 0; my = 0;
-    if (!raf) raf = requestAnimationFrame(apply);
+}
+
+// ============================================================
+// Inner-page hero FX — inject floating orbs, sparks and a geometric
+// watermark into every sub-page hero so it feels as alive as the
+// Home and Learning Hub heroes. Purely decorative and idempotent;
+// the hero's text/gradient/wave come from CSS and are never touched.
+// ============================================================
+function initInnerHero() {
+  // The home hero (.hero-modern) already has its own richer FX — skip it.
+  const heroes = document.querySelectorAll('.hero:not(.hero-modern), .page-hero');
+  heroes.forEach((hero) => {
+    if (hero.getAttribute('data-hero-fx')) return;        // already enhanced
+    if (hero.querySelector('.hero-fx')) return;
+    hero.setAttribute('data-hero-fx', '1');
+
+    const fx = document.createElement('div');
+    fx.className = 'hero-fx';
+    fx.setAttribute('aria-hidden', 'true');
+    fx.innerHTML =
+      '<span class="hfx-pattern" data-depth="6"></span>' +
+      '<span class="hfx-orb hfx-orb-1" data-depth="20"></span>' +
+      '<span class="hfx-orb hfx-orb-2" data-depth="30"></span>' +
+      '<span class="hfx-orb hfx-orb-3" data-depth="14"></span>' +
+      '<span class="hfx-spark hfx-spark-1" data-depth="40">✦</span>' +
+      '<span class="hfx-spark hfx-spark-2" data-depth="26">◇</span>' +
+      '<span class="hfx-spark hfx-spark-3" data-depth="34">✦</span>';
+    hero.insertBefore(fx, hero.firstChild);
   });
 }
