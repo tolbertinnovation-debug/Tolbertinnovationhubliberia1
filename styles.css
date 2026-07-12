@@ -1936,18 +1936,25 @@ textarea {
 }
 
 .welcome-tile {
+  display: block;
   background: #fff;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
   padding: 1.25rem;
   text-align: center;
   box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
 }
 
-.welcome-tile:hover {
+.welcome-tile:hover,
+.welcome-tile:focus-visible {
   box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  border-color: var(--brand-blue);
+  outline: none;
 }
 
 .welcome-tile-icon {
