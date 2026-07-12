@@ -2156,6 +2156,10 @@ textarea {
 .hero-modern h1 .hm-red { color: var(--brand-red); }
 .hero-modern h1 .hm-blue { color: var(--brand-blue-light); }
 .hero-modern .lead { color: #3b4a63; }
+/* Base hero badge pill (shared so About/Contact/any page match the home hero). */
+.hero-live-badge { display: inline-flex; align-items: center; gap: .5rem; background: rgba(227,30,36,.15); border: 1px solid rgba(227,30,36,.3); color: #ff6b7a; font-size: .82rem; font-weight: 700; padding: .35rem .9rem; border-radius: 999px; margin-bottom: 1rem; }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: #ff4a5e; flex-shrink: 0; animation: pulse-dot 1.6s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100% { box-shadow: 0 0 0 0 rgba(255,74,94,.6); } 50% { box-shadow: 0 0 0 6px rgba(255,74,94,0); } }
 .hero-modern .hero-live-badge { background: #fff; color: var(--brand-red); border: 1px solid #f6c6c8; box-shadow: 0 4px 14px rgba(227,30,36,.10); }
 .hero-modern .impact-number { color: var(--brand-blue); }
 .hero-modern .impact-label { color: #5b6b8c; }
