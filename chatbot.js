@@ -8,15 +8,17 @@
   styleEl.textContent = `
     #tih-chat-btn {
       position:fixed;bottom:1.5rem;left:1.5rem;z-index:950;
-      width:58px;height:58px;border-radius:50%;
-      background:linear-gradient(135deg,#002868 0%,#1a3d8a 100%);
+      width:60px;height:60px;border-radius:50%;
+      background:linear-gradient(135deg,#1565d8 0%,#002868 100%);
       color:#fff;border:none;cursor:pointer;
       display:flex;align-items:center;justify-content:center;
-      box-shadow:0 4px 20px rgba(0,40,104,0.4);
+      box-shadow:0 6px 22px rgba(21,101,216,0.45);
       transition:transform .2s,box-shadow .2s;padding:0;
     }
-    #tih-chat-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(0,40,104,0.55);}
-    #tih-chat-btn svg{width:26px;height:26px;fill:#fff;}
+    #tih-chat-btn::before{content:'';position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(21,101,216,.45);animation:tih-ring 2.8s ease-out infinite;}
+    @keyframes tih-ring{0%{box-shadow:0 0 0 0 rgba(21,101,216,.4)}70%,100%{box-shadow:0 0 0 14px rgba(21,101,216,0)}}
+    #tih-chat-btn:hover{transform:scale(1.1);box-shadow:0 8px 30px rgba(21,101,216,0.6);}
+    #tih-chat-btn svg{width:27px;height:27px;fill:#fff;position:relative;}
     #tih-chat-badge{
       position:absolute;top:-2px;right:-2px;
       width:20px;height:20px;background:#E31E24;
@@ -39,9 +41,10 @@
     }
     #tih-chat-win.open{opacity:1;pointer-events:all;transform:scale(1) translateY(0);}
     .tih-hdr{
-      background:linear-gradient(135deg,#001440 0%,#002868 60%,#1a3d8a 100%);
+      background:linear-gradient(135deg,#0B1F3A 0%,#002868 52%,#1565d8 100%);
       color:#fff;padding:13px 14px 12px;
       display:flex;align-items:center;gap:10px;flex-shrink:0;
+      border-bottom:3px solid #E31E24;
     }
     .tih-hdr-av{
       width:40px;height:40px;border-radius:50%;flex-shrink:0;
@@ -87,20 +90,20 @@
     .bot .tih-av span{font-size:.58rem;font-weight:800;color:#fff;}
     .tih-bub{padding:9px 13px;border-radius:16px;line-height:1.65;max-width:100%;word-wrap:break-word;}
     .bot .tih-bub{background:#fff;color:#1e293b;border-bottom-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.07);}
-    .user .tih-bub{background:linear-gradient(135deg,#002868,#1a3d8a);color:#fff;border-bottom-right-radius:4px;}
+    .user .tih-bub{background:linear-gradient(135deg,#1565d8,#002868);color:#fff;border-bottom-right-radius:4px;}
     .tih-ts{font-size:.66rem;color:#94a3b8;margin-top:2px;padding:0 4px;align-self:flex-end;}
     .tih-qrs{
       display:flex;flex-wrap:wrap;gap:5px;
       padding:3px 6px 6px 47px;align-self:flex-start;max-width:100%;
     }
     .tih-qr{
-      background:#fff;border:1.5px solid #002868;color:#002868;
+      background:#fff;border:1.5px solid #1565d8;color:#1565d8;
       font-size:.76rem;font-weight:600;padding:5px 12px;
       border-radius:20px;cursor:pointer;white-space:nowrap;
       font-family:inherit;transition:all .14s;
-      box-shadow:0 1px 3px rgba(0,40,104,.1);
+      box-shadow:0 1px 3px rgba(21,101,216,.12);
     }
-    .tih-qr:hover{background:#002868;color:#fff;transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,40,104,.25);}
+    .tih-qr:hover{background:#1565d8;color:#fff;transform:translateY(-1px);box-shadow:0 3px 10px rgba(21,101,216,.3);}
     .tih-typing{display:flex;align-items:center;gap:7px;align-self:flex-start;}
     .tih-dots{
       background:#fff;border-radius:16px;border-bottom-left-radius:4px;
@@ -129,13 +132,13 @@
     .tih-inp::placeholder{color:#a1a8b3;}
     .tih-send{
       width:40px;height:40px;border-radius:50%;border:none;flex-shrink:0;
-      background:linear-gradient(135deg,#002868,#1a3d8a);color:#fff;
+      background:linear-gradient(135deg,#1565d8,#002868);color:#fff;
       font-size:.92rem;cursor:pointer;
       display:flex;align-items:center;justify-content:center;
       transition:transform .15s,box-shadow .15s;
-      box-shadow:0 2px 8px rgba(0,40,104,.3);
+      box-shadow:0 2px 8px rgba(21,101,216,.35);
     }
-    .tih-send:hover{transform:scale(1.08);box-shadow:0 4px 14px rgba(0,40,104,.4);}
+    .tih-send:hover{transform:scale(1.08);box-shadow:0 4px 14px rgba(21,101,216,.45);}
     .tih-field{
       align-self:flex-start;width:96%;background:#fff;
       border:1px solid #e2e8f0;border-radius:12px;
@@ -165,6 +168,24 @@
     }
     .tih-page-answer strong{color:#002868;}
     @media(max-width:420px){#tih-chat-win{left:.5rem;right:.5rem;width:auto;}}
+    /* Proactive greeting bubble */
+    #tih-greet{
+      position:fixed;bottom:5.6rem;left:1.5rem;z-index:949;max-width:236px;
+      background:#fff;color:#0b1f3a;border-radius:16px;border-bottom-left-radius:5px;
+      padding:12px 30px 12px 14px;box-shadow:0 14px 36px rgba(11,31,58,.24);
+      border:1px solid #e6e9f2;font-family:'Inter','Segoe UI',sans-serif;
+      font-size:.82rem;line-height:1.5;cursor:pointer;
+      opacity:0;transform:translateY(10px) scale(.96);pointer-events:none;
+      transition:opacity .3s cubic-bezier(.4,0,.2,1),transform .3s cubic-bezier(.4,0,.2,1);
+    }
+    #tih-greet.show{opacity:1;transform:none;pointer-events:all;}
+    #tih-greet strong{color:#E31E24;}
+    #tih-greet::after{content:'';position:absolute;bottom:-7px;left:22px;width:13px;height:13px;
+      background:#fff;border-right:1px solid #e6e9f2;border-bottom:1px solid #e6e9f2;transform:rotate(45deg);}
+    #tih-greet-close{position:absolute;top:6px;right:7px;border:none;background:none;color:#94a3b8;
+      font-size:.85rem;line-height:1;cursor:pointer;padding:2px 4px;border-radius:6px;}
+    #tih-greet-close:hover{background:#f1f5f9;color:#475569;}
+    @media(max-width:420px){#tih-greet{max-width:calc(100vw - 6rem);}}
   `;
   document.head.appendChild(styleEl);
 
@@ -1855,6 +1876,39 @@ Or choose a topic below:`;
     chatWin.classList.contains('open') ? chatWin.classList.remove('open') : openChat()
   );
   document.getElementById('tih-close-btn').addEventListener('click', () => chatWin.classList.remove('open'));
+
+  // ── Proactive greeting bubble (once per browser session) ───────────────────────
+  (function () {
+    try {
+      if (sessionStorage.getItem('tih_greet_shown')) return;
+      var greet = document.createElement('div');
+      greet.id = 'tih-greet';
+      greet.setAttribute('role', 'button');
+      greet.setAttribute('aria-label', 'Open chat — need help?');
+      greet.innerHTML = '<button id="tih-greet-close" aria-label="Dismiss">✕</button>'
+        + '👋 <strong>Need help?</strong> Ask me about scholarships, courses, WASSCE or anything TIH.';
+      document.body.appendChild(greet);
+      var dismissed = false;
+      function hideGreet() {
+        if (dismissed) return;
+        dismissed = true;
+        greet.classList.remove('show');
+        try { sessionStorage.setItem('tih_greet_shown', '1'); } catch (e) {}
+        setTimeout(function () { if (greet.parentNode) greet.remove(); }, 320);
+      }
+      // Show after a short delay, only if the chat hasn't been opened yet.
+      setTimeout(function () {
+        if (!dismissed && !chatWin.classList.contains('open')) greet.classList.add('show');
+      }, 4500);
+      // Auto-dismiss after a while so it isn't nagging.
+      setTimeout(hideGreet, 17000);
+      greet.querySelector('#tih-greet-close').addEventListener('click', function (e) {
+        e.stopPropagation(); hideGreet();
+      });
+      greet.addEventListener('click', function () { hideGreet(); openChat(); });
+      chatBtn.addEventListener('click', hideGreet);
+    } catch (e) { /* non-fatal */ }
+  })();
   document.getElementById('tih-clear-btn').addEventListener('click', () => {
     msgsEl.innerHTML = '';
     flow = null;
