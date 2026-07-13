@@ -760,12 +760,6 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- Announcement bar -->
-  <div id="announcement-bar" style="background:#E31E24;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
-    📝 <strong>WASSCE PRO is FREE</strong>. Complete guides, 2000+ questions, and free TIH tutoring for all Liberian students.
-    <button onclick="this.parentElement.style.display='none'" aria-label="Close announcement" style="position:absolute;right:0.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.2rem 0.4rem;line-height:1;">✕</button>
-  </div>
-
   <!-- NAV -->
   <header class="site-header">
     <div class="container nav-wrap">
@@ -795,26 +789,43 @@
     <!-- ══════════════════════════════════════════
          SECTION 1: HERO
     ══════════════════════════════════════════ -->
-    <section class="wassce-hero" aria-label="WASSCE PRO Hero">
-      <div class="container wassce-hero-inner">
-        <div class="hero-top-row">
-          <div class="wassce-eyebrow">🎓 West Africa's #1 Free WASSCE Prep Platform</div>
-          <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">🌙</button>
-        </div>
-        <h1>Master Your WASSCE. <span style="color:#e31e24;">Pass with Excellence.</span></h1>
-        <p class="lead">Free subject guides, 2000+ practice questions, and timed mock exams for every student writing WAEC in Liberia.</p>
-        <div class="wassce-hero-btns">
-          <a href="#subjects" class="btn-hero-primary">Start Learning →</a>
-          <a href="wassce-mock.html" class="btn-hero-ghost">🎯 Mock Exam</a>
-          <a href="wassce-mock.html" class="btn-hero-ghost">📋 Past Questions</a>
-        </div>
-        <div class="hero-stats-strip" aria-label="Platform statistics">
-          <div class="hs-item"><span class="hs-val">23</span><span class="hs-lbl">Subjects</span></div>
-          <div class="hs-item"><span class="hs-val">2,000+</span><span class="hs-lbl">Questions</span></div>
-          <div class="hs-item"><span class="hs-val">Free</span><span class="hs-lbl">Mock Exams</span></div>
-          <div class="hs-item"><span class="hs-val">100%</span><span class="hs-lbl">Free</span></div>
+    <section class="hero hero-modern" id="wassceHero" aria-label="WASSCE PRO Hero">
+      <div class="hm-orb hm-orb-1" data-depth="18" aria-hidden="true"></div>
+      <div class="hm-orb hm-orb-2" data-depth="30" aria-hidden="true"></div>
+      <div class="hm-orb hm-orb-3" data-depth="12" aria-hidden="true"></div>
+      <span class="hm-spark hm-spark-1" data-depth="40" aria-hidden="true">📐</span>
+      <span class="hm-spark hm-spark-2" data-depth="26" aria-hidden="true">🎯</span>
+      <span class="hm-spark hm-spark-3" data-depth="34" aria-hidden="true">🎓</span>
+      <div class="container">
+        <div class="hero-grid hero-2col">
+          <div class="hero-text">
+            <div class="hero-live-badge hm-fade hm-d1"><span class="live-dot"></span> West Africa's #1 Free WASSCE Prep Platform</div>
+            <h1 class="hm-fade hm-d2">Master Your <span class="hm-red">WASSCE</span>. <span class="hm-blue">Pass with Excellence.</span></h1>
+            <p class="lead hm-fade hm-d3">Free subject guides, 2000+ practice questions, and timed mock exams for every student writing WAEC in Liberia.</p>
+            <div class="hero-actions hm-fade hm-d4">
+              <a href="#subjects" class="btn btn-primary btn-lg">Start Learning →</a>
+              <a href="wassce-mock.html" class="btn btn-hero-blue btn-lg">🎯 Mock Exam</a>
+              <a href="wassce-mock.html" class="btn btn-outline hm-outline">📋 Past Questions</a>
+            </div>
+            <div class="impact-inline hm-fade hm-d5" style="margin-top:2.4rem;">
+              <div class="impact-item"><span class="impact-number" data-target="23" data-suffix="">0</span><p class="impact-label">Subjects</p></div>
+              <div class="impact-item"><span class="impact-number" data-target="2000" data-suffix="+">0</span><p class="impact-label">Questions</p></div>
+              <div class="impact-item"><span class="impact-number">Free</span><p class="impact-label">Mock Exams</p></div>
+              <div class="impact-item"><span class="impact-number" data-target="100" data-suffix="%">0</span><p class="impact-label">Free Access</p></div>
+            </div>
+          </div>
+          <div class="hero-visual hm-visual" aria-label="WASSCE resources">
+            <div class="hm-glow" aria-hidden="true"></div>
+            <img class="hm-emblem" src="assets/tih-logo.png" alt="" aria-hidden="true" data-depth="10" />
+            <a class="hm-card hm-float-a" href="#subjects" data-depth="22"><span class="hm-ic hm-ic-blue">📚</span><span class="hm-tx"><strong>23 Subjects</strong><small>Full WAEC syllabus</small></span></a>
+            <a class="hm-card hm-card-red hm-float-b" href="wassce-mock.html" data-depth="30"><span class="hm-ic hm-ic-white">🎯</span><span class="hm-tx"><strong>Mock Exams</strong><small>Timed &amp; graded</small></span></a>
+            <a class="hm-card hm-float-c" href="wassce-mock.html" data-depth="18"><span class="hm-ic hm-ic-red">📋</span><span class="hm-tx"><strong>Past Questions</strong><small>2000+ practice</small></span></a>
+            <div class="hm-card hm-card-navy hm-float-d" data-depth="26" style="cursor:default;"><span class="hm-ic hm-ic-white">📖</span><span class="hm-tx"><strong>Subject Guides</strong><small>Clear notes</small></span></div>
+            <div class="hm-card hm-float-e" data-depth="34" style="cursor:default;"><span class="hm-ic hm-ic-blue">🎓</span><span class="hm-tx"><strong>Free Tutoring</strong><small>TIH support</small></span></div>
+          </div>
         </div>
       </div>
+      <svg class="tih-wave hm-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,50 C240,86 480,10 720,32 C960,54 1200,88 1440,42 L1440,90 L0,90 Z" fill="#E31E24"/><path d="M0,64 C240,92 480,30 720,48 C960,66 1200,88 1440,58 L1440,90 L0,90 Z" fill="#ffffff"/></svg>
     </section>
 
     <!-- ══════════════════════════════════════════
