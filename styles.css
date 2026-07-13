@@ -1819,45 +1819,48 @@ textarea {
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Upgraded mobile menu rows: icon chip + label + active accent */
+  /* Upgraded mobile menu rows: compact icon chip + label */
   .nav-links a {
     position: relative;
     width: 100%;
-    min-height: 54px;
+    min-height: 44px;
     display: flex;
     align-items: center;
-    gap: 0.85rem;
-    padding: 0.7rem 0.9rem;
-    border-radius: 12px;
-    font-size: 1rem;
+    gap: 0.7rem;
+    padding: 0.45rem 0.65rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
     font-weight: 600;
     color: #1e3a5f;
-    transition: background .16s, color .16s, transform .16s;
+    transition: background .16s, color .16s;
   }
   .nav-links a::before {
     flex-shrink: 0;
-    width: 36px; height: 36px;
+    width: 30px; height: 30px;
     display: inline-flex; align-items: center; justify-content: center;
     background: var(--brand-blue-pale, #eaf4ff);
-    border-radius: 10px;
-    font-size: 1.1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
     line-height: 1;
+  }
+  .nav-links a:not(.nav-cta):not(:last-child) {
+    border-bottom: 1px solid #f1f5f9;
+    border-radius: 0;
   }
   .nav-links a:hover,
   .nav-links a:active {
     background: #f4f8ff;
-    transform: translateX(3px);
   }
   .nav-links a.active {
     background: var(--brand-blue-pale, #eaf4ff);
     color: var(--brand-blue);
     font-weight: 700;
+    border-bottom-color: transparent;
+    border-radius: 10px;
   }
-  .nav-links a.active::after {
-    content: '';
-    position: absolute; left: 0; top: 22%; bottom: 22%;
-    width: 3px; border-radius: 0 3px 3px 0;
-    background: linear-gradient(180deg, #E31E24, #1565d8);
+  .nav-links a.active::before {
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(21,101,216,.25);
   }
   /* Per-item icons — mobile menu only */
   .nav-links a[href="index.html"]::before { content: "🏠"; }
@@ -1874,18 +1877,18 @@ textarea {
   .nav-links a[href="contact.html"]::before { content: "✉️"; }
   /* Apply Now — prominent gradient CTA at the bottom of the menu */
   .nav-links a.nav-cta {
-    margin-top: 0.45rem;
+    margin-top: 0.5rem;
     justify-content: center;
     gap: 0.5rem;
     background: linear-gradient(135deg, #E31E24, #b8181d);
     color: #fff !important;
     font-weight: 800;
-    min-height: 54px;
+    font-size: 1rem;
+    min-height: 50px;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(227,30,36,.3);
+    box-shadow: 0 6px 16px rgba(227,30,36,.28);
   }
-  .nav-links a.nav-cta::before { content: "✍️"; background: rgba(255,255,255,.2); }
-  .nav-links a.nav-cta:hover { transform: translateY(-1px); }
+  .nav-links a.nav-cta::before { content: "✍️"; width: 26px; height: 26px; background: rgba(255,255,255,.2); }
 }
 
 @media (max-width: 920px) {
