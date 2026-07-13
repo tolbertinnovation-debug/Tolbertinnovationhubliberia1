@@ -1441,6 +1441,19 @@ textarea {
   text-align: left;
 }
 
+.footer-signoff {
+  font-size: 0.82rem;
+  color: rgba(200,216,240,0.6);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+.footer-bottom-inner .footer-signoff { text-align: right; }
+@media (max-width: 640px) {
+  .footer-bottom-inner { justify-content: center; text-align: center; }
+  .footer-bottom-inner .footer-signoff,
+  .footer-bottom-inner .copyright-note { text-align: center; }
+}
+
 /* Backwards compat: old footer grid class */
 .footer-grid {
   display: grid;
