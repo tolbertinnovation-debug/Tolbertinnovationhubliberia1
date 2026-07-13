@@ -114,8 +114,12 @@ var HubDB = (function () {
     var app = {
       id: genAppId(),
       submittedAt: nowISO(),
-      status: 'pending', // pending | review | approved | rejected | info-needed
-      statusMessage: '',
+      // Learning Hub applications are auto-approved on submission — the learner's
+      // account is created active, so they can log in and start immediately.
+      status: 'approved', // pending | review | approved | rejected | info-needed
+      statusMessage: 'Approved automatically — your account is ready. Log in and unlock any course or WASSCE subject for US$2.',
+      decidedAt: nowISO(),
+      autoApproved: true,
       notes: [],
       name: data.name, email: data.email, phone: data.phone,
       location: data.location, dob: data.dob,
