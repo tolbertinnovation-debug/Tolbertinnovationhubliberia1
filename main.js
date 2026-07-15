@@ -630,8 +630,30 @@ function buildHeroNetwork(hero, canvas) {
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
   const LINK_DIST = 132;                   // max distance to draw a link (css px)
 
-  let W = 0, H = 0, nodes = [], raf = null, running = false;
+  // Flowing light-streak layer: flow-field particles that leave glowing,
+  // tapering trails as they curve across the hero.
+  const STREAM_N   = isCoarse ? 22 : 60;
+  const TRAIL_LEN  = 28;
+  const STREAM_A   = light ? 0.55 : 0.7;   // peak streak opacity (at the head)
+  const streamRgb  = light ? '21,101,216' : '120,185,255';
+
+  let W = 0, H = 0, nodes = [], streams = [], tick = 0, raf = null, running = false;
   const pointer = { x: -9999, y: -9999, on: false };
+
+  ctx.lineCap = 'round';
+
+  function newStream() {
+    const x = Math.random() * W, y = Math.random() * H;
+    return { x: x, y: y, sp: 1.1 + Math.random() * 1.4,
+             life: 0, max: 90 + Math.random() * 130, trail: [{ x: x, y: y }] };
+  }
+  // Smooth, time-varying vector field — layered sines give flowing curves
+  // without needing a noise library.
+  function flowAngle(x, y) {
+    return (Math.sin(x * 0.0035 + tick * 0.0006) +
+            Math.cos(y * 0.0040 - tick * 0.0008) +
+            Math.sin((x + y) * 0.0022 + tick * 0.0005)) * 1.45;
+  }
 
   function seed() {
     // Node count scales with hero area; capped for performance / touch.
@@ -648,6 +670,8 @@ function buildHeroNetwork(hero, canvas) {
         r: 1.1 + Math.random() * 1.7
       });
     }
+    streams = [];
+    for (let i = 0; i < STREAM_N; i++) streams.push(newStream());
   }
 
   function resize() {
@@ -664,6 +688,7 @@ function buildHeroNetwork(hero, canvas) {
 
   function step() {
     ctx.clearRect(0, 0, W, H);
+    tick++;
 
     // Move + wrap-bounce nodes.
     for (let i = 0; i < nodes.length; i++) {
@@ -719,7 +744,44 @@ function buildHeroNetwork(hero, canvas) {
       ctx.fill();
     }
 
+    // Flowing light streaks — particles ride the vector field and draw a
+    // tapering glowing trail (brightest at the head). Additive on dark heroes.
+    if (!light) ctx.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < streams.length; i++) {
+      const s = nodesStreamStep(streams[i]);
+      const tr = s.trail;
+      for (let k = 1; k < tr.length; k++) {
+        const p0 = tr[k - 1], p1 = tr[k];
+        const head = 1 - k / tr.length;                 // 1 near the head
+        ctx.strokeStyle = 'rgba(' + streamRgb + ',' + (head * STREAM_A).toFixed(3) + ')';
+        ctx.lineWidth = 0.6 + head * 2.8;
+        ctx.beginPath();
+        ctx.moveTo(p0.x, p0.y);
+        ctx.lineTo(p1.x, p1.y);
+        ctx.stroke();
+      }
+      ctx.fillStyle = 'rgba(' + streamRgb + ',' + STREAM_A.toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, 2.1, 0, Math.PI * 2);
+      ctx.fill();
+      if (s.life > s.max || s.x < -40 || s.x > W + 40 || s.y < -40 || s.y > H + 40) {
+        streams[i] = newStream();
+      }
+    }
+    if (!light) ctx.globalCompositeOperation = 'source-over';
+
     raf = requestAnimationFrame(step);
+  }
+
+  // Advance one flow-field particle and extend its trail.
+  function nodesStreamStep(s) {
+    const a = flowAngle(s.x, s.y);
+    s.x += Math.cos(a) * s.sp;
+    s.y += Math.sin(a) * s.sp;
+    s.life++;
+    s.trail.unshift({ x: s.x, y: s.y });
+    if (s.trail.length > TRAIL_LEN) s.trail.pop();
+    return s;
   }
 
   function start() { if (!running) { running = true; raf = requestAnimationFrame(step); } }
