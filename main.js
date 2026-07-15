@@ -762,53 +762,112 @@ function buildHeroNetwork(hero, canvas) {
 // Browsers block audio until the user interacts, so we speak on the
 // first tap/click/scroll/key, and only once per browsing session.
 // ============================================================
+// Prefer a natural-sounding English voice (voices can load lazily).
+function tihPickVoice() {
+  const voices = (window.speechSynthesis && window.speechSynthesis.getVoices()) || [];
+  if (!voices.length) return null;
+  return voices.find(v => /en[-_]?(US|GB)/i.test(v.lang) &&
+           /google|samantha|zira|aria|jenny|natural|female/i.test(v.name))
+      || voices.find(v => /^en/i.test(v.lang))
+      || voices[0];
+}
+// Speak the welcome line now (used by the auto-greeting and the replay button).
+function tihSpeakWelcome() {
+  if (!('speechSynthesis' in window)) return;
+  try {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance('Welcome to Tolbert Innovation Hub');
+    u.lang = 'en-US'; u.rate = 0.95; u.pitch = 1; u.volume = 1;
+    const v = tihPickVoice();
+    if (v) u.voice = v;
+    window.speechSynthesis.speak(u);
+  } catch (e) { /* ignore */ }
+}
+function tihWelcomeMuted() {
+  try { return localStorage.getItem('tih_audio_muted') === '1'; } catch (e) { return false; }
+}
+
 function initWelcomeAudio() {
   if (!('speechSynthesis' in window)) return;                 // unsupported browser
+  buildAudioControl();                                        // replay/mute button, every page
+
   const KEY = 'tih_welcomed';
-  try { if (sessionStorage.getItem(KEY)) return; } catch (e) { /* private mode */ }
+  let already = false;
+  try { already = !!sessionStorage.getItem(KEY); } catch (e) { /* private mode */ }
+  if (already) return;                                        // greet once per session
 
   const events = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
-  let spoken = false;
-
-  const pickVoice = () => {
-    const voices = window.speechSynthesis.getVoices() || [];
-    if (!voices.length) return null;
-    // Prefer a natural-sounding English voice, else any English voice.
-    return voices.find(v => /en[-_]?(US|GB)/i.test(v.lang) &&
-             /google|samantha|zira|aria|jenny|natural|female/i.test(v.name))
-        || voices.find(v => /^en/i.test(v.lang))
-        || voices[0];
-  };
-
-  const say = () => {
-    if (spoken) return;
-    spoken = true;
-    try {
-      window.speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance('Welcome to Tolbert Innovation Hub');
-      u.lang = 'en-US';
-      u.rate = 0.95;
-      u.pitch = 1;
-      u.volume = 1;
-      const v = pickVoice();
-      if (v) u.voice = v;
-      window.speechSynthesis.speak(u);
-    } catch (e) { /* ignore */ }
-  };
+  let done = false, spoke = false;
+  const sayOnce = () => { if (spoke) return; spoke = true; tihSpeakWelcome(); };
 
   const trigger = () => {
+    if (done) return;
+    done = true;
     try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
     events.forEach(ev => window.removeEventListener(ev, trigger));
+    if (tihWelcomeMuted()) return;                            // visitor chose silence
     // Voices can load asynchronously; speak now if ready, else wait briefly.
-    if ((window.speechSynthesis.getVoices() || []).length) {
-      say();
-    } else {
-      window.speechSynthesis.addEventListener('voiceschanged', say, { once: true });
-      setTimeout(say, 300);                                   // fallback if event never fires
+    if ((window.speechSynthesis.getVoices() || []).length) sayOnce();
+    else {
+      window.speechSynthesis.addEventListener('voiceschanged', sayOnce, { once: true });
+      setTimeout(sayOnce, 300);                               // fallback if event never fires
     }
   };
-
   events.forEach(ev => window.addEventListener(ev, trigger, { once: false, passive: true }));
+}
+
+// Small floating control: replay the spoken welcome, or mute it. The mute
+// choice is remembered (localStorage) and suppresses the auto-greeting too.
+function buildAudioControl() {
+  if (!('speechSynthesis' in window)) return;
+  if (document.querySelector('.tih-audio-ctl')) return;       // idempotent
+
+  const SPK_ON  = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">' +
+    '<path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>' +
+    '<path d="M16 8.5a4.5 4.5 0 0 1 0 7M18.6 6a8 8 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+  const SPK_OFF = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">' +
+    '<path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>' +
+    '<path d="M16.5 9.5l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>';
+  const PLAY    = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+
+  const wrap = document.createElement('div');
+  wrap.className = 'tih-audio-ctl';
+
+  const replay = document.createElement('button');
+  replay.type = 'button';
+  replay.className = 'tih-audio-btn tih-audio-replay';
+  replay.title = 'Play welcome again';
+  replay.setAttribute('aria-label', 'Play welcome greeting again');
+  replay.innerHTML = PLAY;
+
+  const mute = document.createElement('button');
+  mute.type = 'button';
+  mute.className = 'tih-audio-btn tih-audio-mute';
+
+  const paint = () => {
+    const m = tihWelcomeMuted();
+    mute.classList.toggle('is-muted', m);
+    mute.innerHTML = m ? SPK_OFF : SPK_ON;
+    mute.title = m ? 'Welcome sound off — click to turn on' : 'Mute welcome sound';
+    mute.setAttribute('aria-label', m ? 'Turn welcome sound on' : 'Mute welcome sound');
+  };
+  paint();
+
+  replay.addEventListener('click', () => {
+    try { localStorage.setItem('tih_audio_muted', '0'); } catch (e) {}
+    paint();
+    tihSpeakWelcome();
+  });
+  mute.addEventListener('click', () => {
+    const m = !tihWelcomeMuted();
+    try { localStorage.setItem('tih_audio_muted', m ? '1' : '0'); } catch (e) {}
+    if (m) { try { window.speechSynthesis.cancel(); } catch (e) {} }
+    paint();
+  });
+
+  wrap.appendChild(replay);
+  wrap.appendChild(mute);
+  document.body.appendChild(wrap);
 }
 
 // ============================================================

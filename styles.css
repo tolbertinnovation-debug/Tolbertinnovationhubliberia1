@@ -1618,6 +1618,41 @@ textarea {
   z-index: 1000;
 }
 
+/* Floating spoken-welcome control (main.js → buildAudioControl): replay / mute,
+   stacked just above the WhatsApp button on the right edge. */
+.tih-audio-ctl {
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tih-audio-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #e3ebf7;
+  background: #fff;
+  color: var(--brand-blue, #002868);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(11,31,58,.16);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+}
+.tih-audio-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(11,31,58,.22); }
+.tih-audio-replay { color: var(--brand-red, #E31E24); }
+.tih-audio-mute.is-muted { background: #fff0f0; color: #c31419; border-color: #f6c6c8; }
+@media (max-width: 680px) {
+  .tih-audio-ctl { right: 20px; bottom: 88px; }
+  .tih-audio-btn { width: 40px; height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) { .tih-audio-btn { transition: none; } }
+
 .whatsapp-float img {
   width: 60px;
   height: 60px;
