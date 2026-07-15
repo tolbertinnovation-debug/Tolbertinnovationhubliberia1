@@ -504,6 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safe(initReveal);
   safe(initBackToTop);
   safe(initInnerHero);
+  safe(initHeroNetwork);
   safe(initHeroParallax);
 
   // Announcement bar close button
@@ -589,6 +590,169 @@ function initHeroParallax() {
       if (!raf) raf = requestAnimationFrame(apply);
     });
   });
+}
+
+// ============================================================
+// Hero particle network — a live "constellation" canvas that drifts
+// behind the hero content: glowing brand-blue nodes joined by thin
+// lines that form and break as the points move, plus a soft cursor
+// spotlight. Attaches to every hero, sits at z-index 0 (content is
+// lifted above it in CSS). Skipped for reduced-motion; pauses when the
+// hero scrolls out of view so it never wastes CPU.
+// ============================================================
+function initHeroNetwork() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('requestAnimationFrame' in window)) return;
+
+  document.querySelectorAll('.hero-modern, .page-hero, .hero:not(.hero-modern)').forEach((hero) => {
+    if (hero.querySelector('canvas.hero-net')) return;      // idempotent
+    const canvas = document.createElement('canvas');
+    canvas.className = 'hero-net';
+    canvas.setAttribute('aria-hidden', 'true');
+    hero.insertBefore(canvas, hero.firstChild);
+    buildHeroNetwork(hero, canvas);
+  });
+}
+
+function buildHeroNetwork(hero, canvas) {
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  // Light heroes (hero-modern) get brand blue on a pale background; dark
+  // heroes get a brighter, airier blue so the nodes read as "glowing".
+  const light = hero.classList.contains('hero-modern');
+  const rgb = light ? '21,101,216' : '150,195,255';
+  const LINE_MAX = light ? 0.26 : 0.34;   // peak line opacity
+  const NODE_A   = light ? 0.55 : 0.7;    // node core opacity
+  const HALO_A   = light ? 0.10 : 0.16;   // node glow opacity
+
+  const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  const LINK_DIST = 132;                   // max distance to draw a link (css px)
+
+  let W = 0, H = 0, nodes = [], raf = null, running = false;
+  const pointer = { x: -9999, y: -9999, on: false };
+
+  function seed() {
+    // Node count scales with hero area; capped for performance / touch.
+    const area = W * H;
+    let n = Math.round(area / 15000);
+    n = Math.max(14, Math.min(n, isCoarse ? 32 : 78));
+    nodes = [];
+    for (let i = 0; i < n; i++) {
+      nodes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.28,
+        vy: (Math.random() - 0.5) * 0.28,
+        r: 1.1 + Math.random() * 1.7
+      });
+    }
+  }
+
+  function resize() {
+    const rect = hero.getBoundingClientRect();
+    W = Math.max(1, Math.round(rect.width));
+    H = Math.max(1, Math.round(rect.height));
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    seed();
+  }
+
+  function step() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Move + wrap-bounce nodes.
+    for (let i = 0; i < nodes.length; i++) {
+      const p = nodes[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < -20) p.x = W + 20; else if (p.x > W + 20) p.x = -20;
+      if (p.y < -20) p.y = H + 20; else if (p.y > H + 20) p.y = -20;
+    }
+
+    // Links between nearby nodes.
+    ctx.lineWidth = 1;
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < LINK_DIST) {
+          const alpha = (1 - d / LINK_DIST) * LINE_MAX;
+          ctx.strokeStyle = 'rgba(' + rgb + ',' + alpha.toFixed(3) + ')';
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+      // Cursor spotlight — brighter links from the pointer to nearby nodes.
+      if (pointer.on) {
+        const dx = a.x - pointer.x, dy = a.y - pointer.y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        const R = LINK_DIST * 1.35;
+        if (d < R) {
+          const alpha = (1 - d / R) * (LINE_MAX + 0.12);
+          ctx.strokeStyle = 'rgba(' + rgb + ',' + alpha.toFixed(3) + ')';
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(pointer.x, pointer.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Nodes: soft halo + solid core (the "bokeh" glow).
+    for (let i = 0; i < nodes.length; i++) {
+      const p = nodes[i];
+      ctx.fillStyle = 'rgba(' + rgb + ',' + HALO_A + ')';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * 3.4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(' + rgb + ',' + NODE_A + ')';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    raf = requestAnimationFrame(step);
+  }
+
+  function start() { if (!running) { running = true; raf = requestAnimationFrame(step); } }
+  function stop() { running = false; if (raf) { cancelAnimationFrame(raf); raf = null; } }
+
+  // Pointer spotlight (skipped on touch — no hover there).
+  if (!isCoarse) {
+    hero.addEventListener('mousemove', (e) => {
+      const r = hero.getBoundingClientRect();
+      pointer.x = e.clientX - r.left;
+      pointer.y = e.clientY - r.top;
+      pointer.on = true;
+    });
+    hero.addEventListener('mouseleave', () => { pointer.on = false; pointer.x = pointer.y = -9999; });
+  }
+
+  // Only animate while the hero is on screen.
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      entries.forEach((en) => { en.isIntersecting ? start() : stop(); });
+    }, { threshold: 0 }).observe(hero);
+  } else {
+    start();
+  }
+
+  // Keep the canvas matched to the hero's size.
+  let rt = null;
+  const onResize = () => { clearTimeout(rt); rt = setTimeout(resize, 150); };
+  window.addEventListener('resize', onResize);
+  if ('ResizeObserver' in window) new ResizeObserver(onResize).observe(hero);
+
+  resize();
+  start();
 }
 
 // ============================================================

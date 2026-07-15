@@ -2388,6 +2388,15 @@ textarea {
    Learning Hub heroes. Purely decorative; hero text is unaffected.
    ============================================================ */
 .hero > .hero-fx, .page-hero > .hero-fx { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+
+/* ============================================================
+   Animated hero particle-network canvas (main.js → initHeroNetwork).
+   Sits at the very back of the hero; content is lifted above it so
+   the drifting brand-blue constellation never overlaps the text.
+   ============================================================ */
+.hero-net { position: absolute; inset: 0; z-index: 0; pointer-events: none; display: block; }
+.hero > .container, .hero-modern > .container, .page-hero > .container { position: relative; z-index: 1; }
+@media (prefers-reduced-motion: reduce) { .hero-net { display: none !important; } }
 .hero-fx .hfx-pattern { position: absolute; inset: 0; opacity: .5;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='54' height='54' viewBox='0 0 54 54'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.1'%3E%3Crect x='7' y='7' width='15' height='15'/%3E%3Cpath d='M34 12h13M34 18h9'/%3E%3Crect x='33' y='32' width='13' height='13'/%3E%3Cpath d='M7 36h13M7 42h9'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 54px 54px; -webkit-mask-image: radial-gradient(ellipse at 60% 40%, #000, transparent 78%); mask-image: radial-gradient(ellipse at 60% 40%, #000, transparent 78%); }
