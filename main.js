@@ -762,7 +762,33 @@ function buildHeroNetwork(hero, canvas) {
 // Browsers block audio until the user interacts, so we speak on the
 // first tap/click/scroll/key, and only once per browsing session.
 // ============================================================
-// Prefer a natural-sounding English voice (voices can load lazily).
+// Recorded welcome greeting (professional voice-over). Loaded on demand so
+// it costs no data until it actually plays.
+var tihWelcomeEl = null;
+function tihWelcomeAudioEl() {
+  if (!tihWelcomeEl) {
+    tihWelcomeEl = new Audio('welcome-message.mp3?v=1');
+    tihWelcomeEl.preload = 'none';
+  }
+  return tihWelcomeEl;
+}
+// Play the recorded greeting; fall back to speech synthesis if it can't play.
+function tihSpeakWelcome() {
+  try {
+    const a = tihWelcomeAudioEl();
+    a.currentTime = 0;
+    const p = a.play();
+    if (p && typeof p.catch === 'function') p.catch(() => tihSpeakWelcomeTTS());
+    return;
+  } catch (e) { /* fall through to TTS */ }
+  tihSpeakWelcomeTTS();
+}
+// Stop whatever is currently greeting (recording or TTS).
+function tihStopWelcome() {
+  try { if (tihWelcomeEl) { tihWelcomeEl.pause(); tihWelcomeEl.currentTime = 0; } } catch (e) {}
+  try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
+}
+// Fallback voice if the recording is unavailable (older/unsupported browsers).
 function tihPickVoice() {
   const voices = (window.speechSynthesis && window.speechSynthesis.getVoices()) || [];
   if (!voices.length) return null;
@@ -771,8 +797,7 @@ function tihPickVoice() {
       || voices.find(v => /^en/i.test(v.lang))
       || voices[0];
 }
-// Speak the welcome line now (used by the auto-greeting and the replay button).
-function tihSpeakWelcome() {
+function tihSpeakWelcomeTTS() {
   if (!('speechSynthesis' in window)) return;
   try {
     window.speechSynthesis.cancel();
@@ -788,7 +813,6 @@ function tihWelcomeMuted() {
 }
 
 function initWelcomeAudio() {
-  if (!('speechSynthesis' in window)) return;                 // unsupported browser
   buildAudioControl();                                        // replay/mute button, every page
 
   const KEY = 'tih_welcomed';
@@ -796,22 +820,16 @@ function initWelcomeAudio() {
   try { already = !!sessionStorage.getItem(KEY); } catch (e) { /* private mode */ }
   if (already) return;                                        // greet once per session
 
-  const events = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
-  let done = false, spoke = false;
-  const sayOnce = () => { if (spoke) return; spoke = true; tihSpeakWelcome(); };
-
+  // Real gestures only (tap/click/key) so the recording is allowed to play.
+  const events = ['pointerdown', 'touchstart', 'keydown'];
+  let done = false;
   const trigger = () => {
     if (done) return;
     done = true;
     try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
     events.forEach(ev => window.removeEventListener(ev, trigger));
     if (tihWelcomeMuted()) return;                            // visitor chose silence
-    // Voices can load asynchronously; speak now if ready, else wait briefly.
-    if ((window.speechSynthesis.getVoices() || []).length) sayOnce();
-    else {
-      window.speechSynthesis.addEventListener('voiceschanged', sayOnce, { once: true });
-      setTimeout(sayOnce, 300);                               // fallback if event never fires
-    }
+    tihSpeakWelcome();
   };
   events.forEach(ev => window.addEventListener(ev, trigger, { once: false, passive: true }));
 }
@@ -819,7 +837,6 @@ function initWelcomeAudio() {
 // Small floating control: replay the spoken welcome, or mute it. The mute
 // choice is remembered (localStorage) and suppresses the auto-greeting too.
 function buildAudioControl() {
-  if (!('speechSynthesis' in window)) return;
   if (document.querySelector('.tih-audio-ctl')) return;       // idempotent
 
   const SPK_ON  = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">' +
@@ -861,7 +878,7 @@ function buildAudioControl() {
   mute.addEventListener('click', () => {
     const m = !tihWelcomeMuted();
     try { localStorage.setItem('tih_audio_muted', m ? '1' : '0'); } catch (e) {}
-    if (m) { try { window.speechSynthesis.cancel(); } catch (e) {} }
+    if (m) tihStopWelcome();
     paint();
   });
 
