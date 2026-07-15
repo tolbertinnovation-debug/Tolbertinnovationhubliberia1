@@ -157,6 +157,12 @@ var HubCloud = (function () {
       method: 'POST', headers: restHeaders(), body: JSON.stringify(args || {})
     }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
   }
+  function restDelete(table, query) {
+    if (!isConfigured() || typeof fetch === 'undefined') return Promise.resolve(false);
+    return fetch(restBase() + table + '?' + query, {
+      method: 'DELETE', headers: restHeaders({ 'Prefer': 'return=minimal' })
+    }).then(function (r) { return r.ok; }).catch(function () { return false; });
+  }
 
   // ---- helpers ----
   function ok(res) {
@@ -294,6 +300,17 @@ var HubCloud = (function () {
   }
   // REST-first (no CDN): registration and login must work on every device.
   function pushStudent(s) { return restUpsert('students', stuRow(s), 'id'); }
+  // ADMIN-FINAL delete: hard-delete the central row; if RLS forbids DELETE,
+  // fall back to a tombstone upsert (status='deleted') that every device
+  // filters out, so a deleted student can never resurrect via sync.
+  function deleteStudent(id) {
+    if (!id) return Promise.resolve(false);
+    return restDelete('students', 'id=eq.' + encodeURIComponent(String(id)))
+      .then(function (ok) {
+        if (ok) return true;
+        return restUpsert('students', { id: String(id), status: 'deleted', updated_at: new Date().toISOString() }, 'id');
+      }).catch(function () { return false; });
+  }
   function fetchStudents() {
     // Admin-only read (RLS): stays on the authenticated SDK.
     return fetchAll('students', 'created_at', false).then(function (rows) {
@@ -446,6 +463,7 @@ var HubCloud = (function () {
     updateApplication: updateApplication,
     fetchApplications: fetchApplications,
     pushStudent: pushStudent,
+    deleteStudent: deleteStudent,
     fetchStudents: fetchStudents,
     studentLogin: studentLogin,
     touchStudentLogin: touchStudentLogin,

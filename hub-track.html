@@ -107,8 +107,8 @@
   </div>
 
   <script src="hub-config.js?v=4"></script>
-  <script src="hub-cloud.js?v=9"></script>
-  <script src="hub-db.js?v=17"></script>
+  <script src="hub-cloud.js?v=10"></script>
+  <script src="hub-db.js?v=18"></script>
   <script>
     (function () {
       function getUrlParam(name) {
@@ -152,7 +152,7 @@
         document.getElementById('sSub').textContent = meta.sub;
         document.getElementById('rId').textContent = app.id;
         document.getElementById('rName').textContent = app.name;
-        document.getElementById('rDate').textContent = (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(app.submittedAt) : (app.submittedAt || ', ');
+        document.getElementById('rDate').textContent = (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(app.submittedAt) : (app.submittedAt || 'N/A');
         var msgBox = document.getElementById('msgBox');
         if (app.statusMessage) {
           msgBox.style.display = 'block';

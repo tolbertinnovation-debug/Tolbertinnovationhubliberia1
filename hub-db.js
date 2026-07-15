@@ -17,7 +17,9 @@ var HubDB = (function () {
     audit: 'tih_hub_audit_log',
     messages: 'tih_hub_message_log',
     settings: 'tih_hub_settings',
-    certRequests: 'tih_hub_cert_requests'
+    certRequests: 'tih_hub_cert_requests',
+    outbox: 'tih_hub_outbox',
+    deletedStudents: 'tih_hub_deleted_students'
   };
 
   var WHATSAPP_NUMBER = '231880559227';
@@ -63,6 +65,74 @@ var HubDB = (function () {
   }
   function cloudEnabled() { return !!cloud(); }
   function fire(promise) { if (promise && promise.catch) promise.catch(function () {}); }
+
+  /* ---- ADMIN OUTBOX (actions are FINAL) ----
+     Every admin-critical write is queued here and retried until the central
+     database confirms it. If the network drops mid-action, the decision still
+     lands when connectivity returns, an admin action is never lost and never
+     silently reverted. Entries survive reloads (localStorage). */
+  function outboxList() { return getJSON(KEYS.outbox, []); }
+  function outboxSave(list) { setJSON(KEYS.outbox, list); }
+  function outboxAdd(type, payload) {
+    var list = outboxList();
+    // Replace any older queued op for the same record so the LAST admin
+    // action is the one that wins (final), no stale ops replaying after it.
+    var key = type + '|' + (payload && (payload.id || payload.student_id || '') );
+    list = list.filter(function (o) { return (o.type + '|' + (o.payload && (o.payload.id || o.payload.student_id || ''))) !== key; });
+    list.push({ type: type, payload: payload, at: nowISO(), tries: 0 });
+    if (list.length > 200) list = list.slice(-200);
+    outboxSave(list);
+    flushOutbox(); // try immediately
+  }
+  var _flushing = false;
+  function outboxExec(op) {
+    var C = cloud();
+    if (!C) return Promise.resolve(false);
+    try {
+      switch (op.type) {
+        case 'student.upsert':  return C.pushStudent(op.payload);
+        case 'student.delete':  return C.deleteStudent(op.payload.id);
+        case 'application.update': return C.updateApplication(op.payload.id, op.payload.changes);
+        case 'certreq.upsert':  return C.pushCertRequest(op.payload);
+        case 'enrollment.upsert': return C.pushEnrollment(op.payload);
+        default: return Promise.resolve(true); // unknown op: drop it
+      }
+    } catch (e) { return Promise.resolve(false); }
+  }
+  function flushOutbox() {
+    if (_flushing || !cloud()) return Promise.resolve();
+    var list = outboxList();
+    if (!list.length) return Promise.resolve();
+    _flushing = true;
+    var remaining = [];
+    var chain = Promise.resolve();
+    list.forEach(function (op) {
+      chain = chain.then(function () {
+        return outboxExec(op).then(function (ok) {
+          if (!ok) { op.tries = (op.tries || 0) + 1; if (op.tries < 50) remaining.push(op); }
+        }).catch(function () { op.tries = (op.tries || 0) + 1; if (op.tries < 50) remaining.push(op); });
+      });
+    });
+    return chain.then(function () {
+      outboxSave(remaining);
+      _flushing = false;
+    }).catch(function () { _flushing = false; });
+  }
+  // Retry pending admin actions on load and every 20s while the page is open.
+  if (typeof window !== 'undefined' && typeof setInterval !== 'undefined') {
+    setTimeout(function () { flushOutbox(); }, 2500);
+    setInterval(function () { flushOutbox(); }, 20000);
+  }
+
+  /* ---- Deleted-student tombstones ----
+     A deleted student must STAY deleted on every device, even if an old
+     cloud row or another device's cache still carries the account. */
+  function deletedIds() { return getJSON(KEYS.deletedStudents, []); }
+  function isDeletedId(id) { return deletedIds().indexOf(id) !== -1; }
+  function tombstone(id) {
+    var list = deletedIds();
+    if (list.indexOf(id) === -1) { list.push(id); if (list.length > 500) list = list.slice(-500); setJSON(KEYS.deletedStudents, list); }
+  }
 
   /* ---- SHA-256 hashing (same approach as classroom.js) ---- */
   function sha256(text) {
@@ -139,7 +209,7 @@ var HubDB = (function () {
         for (var k in changes) { if (changes.hasOwnProperty(k)) list[i][k] = changes[k]; }
         list[i].updatedAt = nowISO();
         saveApplications(list);
-        if (cloud()) fire(cloud().updateApplication(id, changes)); // proper UPDATE keeps cloud in sync
+        outboxAdd('application.update', { id: id, changes: changes }); // FINAL: retried until confirmed
         return list[i];
       }
     }
@@ -166,6 +236,13 @@ var HubDB = (function () {
   function getStudents() {
     var list = getJSON(KEYS.students, []);
     var changed = false;
+    // Deleted accounts never come back: drop tombstoned ids and
+    // tombstone rows (status='deleted') that arrive from the cloud.
+    var dead = deletedIds();
+    var filtered = list.filter(function (s) {
+      return s && s.status !== 'deleted' && dead.indexOf(s.id) === -1;
+    });
+    if (filtered.length !== list.length) { list = filtered; changed = true; }
     list.forEach(function (s) {
       if (!s) return;
       var before = JSON.stringify(s.courses || []);
@@ -263,7 +340,7 @@ var HubDB = (function () {
         for (var k in changes) { if (changes.hasOwnProperty(k)) list[i][k] = changes[k]; }
         list[i].updatedAt = nowISO();
         saveStudents(list);
-        if (cloud()) fire(cloud().pushStudent(list[i])); // keep cloud row current
+        outboxAdd('student.upsert', list[i]); // FINAL: retried until the cloud confirms
         return list[i];
       }
     }
@@ -272,6 +349,8 @@ var HubDB = (function () {
   function deleteStudent(id) {
     var list = getStudents().filter(function (s) { return s.id !== id; });
     saveStudents(list);
+    tombstone(id);                              // never resurrects on this device
+    outboxAdd('student.delete', { id: id });    // FINAL: removed centrally too
   }
   function assignCourse(studentId, courseId, opts) {
     opts = opts || {};
@@ -511,15 +590,23 @@ var HubDB = (function () {
      Refreshes the local caches from the central database so the admin
      panel shows applications/students/requests submitted on any device.
      Resolves to a summary; safe no-op (all zeros) when cloud is off. */
-  // Merge a cloud list with the local list by id. Cloud wins on conflict
-  // (it is the shared source of truth); local-only rows are KEPT and pushed
-  // up to the cloud (back-fill) so nothing is ever lost and records made
-  // before the cloud was configured still arrive centrally.
+  // Merge a cloud list with the local list by id. When BOTH sides have the
+  // record, the NEWER one wins (updatedAt, falling back to the sort key),
+  // so an admin action taken seconds ago is never clobbered by a stale
+  // cloud row that predates it, admin actions are final. Local-only rows
+  // are KEPT and pushed up to the cloud (back-fill) so nothing is lost.
+  function recStamp(r, sortKey) {
+    return String((r && (r.updatedAt || r.decidedAt)) || (sortKey && r && r[sortKey]) || '');
+  }
   function mergeById(cloudList, localList, backfill, sortKey) {
     var byId = {};
     (cloudList || []).forEach(function (c) { byId[c.id] = c; });
     (localList || []).forEach(function (l) {
-      if (!byId[l.id]) { byId[l.id] = l; if (backfill) fire(backfill(l)); } // local-only → upload
+      if (!byId[l.id]) {
+        byId[l.id] = l; if (backfill) fire(backfill(l)); // local-only → upload
+      } else if (recStamp(l, sortKey) > recStamp(byId[l.id], sortKey)) {
+        byId[l.id] = l; if (backfill) fire(backfill(l)); // local newer → wins + re-push
+      }
     });
     var merged = [];
     for (var k in byId) { if (byId.hasOwnProperty(k)) merged.push(byId[k]); }
@@ -544,6 +631,15 @@ var HubDB = (function () {
         saveApplications(mergedApps); out.applications = mergedApps.length;
       }
       if (Array.isArray(studs)) {
+        // Deleted is FINAL: drop tombstoned/deleted rows from the incoming
+        // list and re-issue the central delete for any that still linger.
+        var dead = deletedIds();
+        studs = studs.filter(function (s) {
+          if (!s) return false;
+          if (s.status === 'deleted') return false;
+          if (dead.indexOf(s.id) !== -1) { outboxAdd('student.delete', { id: s.id }); return false; }
+          return true;
+        });
         // Preserve any local-only login history the cloud row lacks.
         var localById = {};
         getStudents().forEach(function (s) { localById[s.id] = s; });
@@ -598,7 +694,7 @@ var HubDB = (function () {
         for (var k in changes) { if (changes.hasOwnProperty(k)) list[i][k] = changes[k]; }
         list[i].decidedAt = nowISO();
         saveCertRequests(list);
-        if (cloud()) fire(cloud().pushCertRequest(list[i]));
+        outboxAdd('certreq.upsert', list[i]); // FINAL: decision retried until confirmed
         return list[i];
       }
     }
@@ -681,16 +777,18 @@ var HubDB = (function () {
       ? COURSES_DB[itemId].title
       : (itemId === 'wassce-all' ? 'WASSCE PRO, All 23 Subjects' : itemId);
     var C = cloud();
-    return C.pushEnrollment({
+    var row = {
       student_id: studentId, item_id: itemId, item_title: title,
       payment_status: 'confirmed', access_granted: true, granted_at: nowISO()
-    }).then(function (ok) {
+    };
+    return C.pushEnrollment(row).then(function (ok) {
       if (ok) fire(C.pushPayment({
         student_id: studentId, item_id: itemId, amount: PAYMENT.amountUSD,
         method: 'Mobile Money', status: 'success', confirmed_by: 'admin'
       }));
+      else outboxAdd('enrollment.upsert', row); // FINAL: grant lands when back online
       return ok;
-    }).catch(function () { return false; });
+    }).catch(function () { outboxAdd('enrollment.upsert', row); return false; });
   }
 
   // Admin revoke: flip a student+item enrollment back to locked in the central
@@ -703,10 +801,14 @@ var HubDB = (function () {
     if (!cloud() || !studentId || !itemId) return Promise.resolve(false);
     var title = (typeof COURSES_DB !== 'undefined' && COURSES_DB[itemId] && COURSES_DB[itemId].title)
       ? COURSES_DB[itemId].title : itemId;
-    return cloud().pushEnrollment({
+    var row = {
       student_id: studentId, item_id: itemId, item_title: title,
       payment_status: 'pending', access_granted: false, granted_at: null
-    }).catch(function () { return false; });
+    };
+    return cloud().pushEnrollment(row).then(function (ok) {
+      if (!ok) outboxAdd('enrollment.upsert', row); // FINAL: revoke lands when back online
+      return ok;
+    }).catch(function () { outboxAdd('enrollment.upsert', row); return false; });
   }
 
   // Learner-initiated access request ("I've paid, please unlock me").
@@ -776,11 +878,11 @@ var HubDB = (function () {
   }
   function fmtDate(iso) {
     var d = _toDate(iso);
-    return d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : ', ';
+    return d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'N/A';
   }
   function fmtDateTime(iso) {
     var d = _toDate(iso);
-    if (!d) return ', ';
+    if (!d) return 'N/A';
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
       + ' · ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
   }
@@ -788,7 +890,7 @@ var HubDB = (function () {
   // falls back to an absolute date after 30 days.
   function timeAgo(iso) {
     var d = _toDate(iso);
-    if (!d) return ', ';
+    if (!d) return 'N/A';
     var s = Math.floor((Date.now() - d.getTime()) / 1000);
     if (s < 0) s = 0;
     if (s < 45) return 'just now';
@@ -849,6 +951,8 @@ var HubDB = (function () {
     cloudEnabled: cloudEnabled,
     syncFromCloud: syncFromCloud,
     hydrateAccountFromCloud: hydrateAccountFromCloud,
+    flushOutbox: flushOutbox,
+    pendingAdminOps: function () { return outboxList().length; },
     // certificate requests / approval
     certCode: certCode,
     getCertRequests: getCertRequests,

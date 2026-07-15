@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=10" />
   <script src="hub-config.js?v=4"></script>
-  <script src="hub-cloud.js?v=9"></script>
+  <script src="hub-cloud.js?v=10"></script>
   <script src="cert-registry.js?v=3"></script>
   <style>
     :root {
@@ -548,10 +548,10 @@
       var successEl = document.getElementById('result-success');
       var failEl = document.getElementById('result-fail');
       failEl.classList.remove('show');
-      document.getElementById('res-name').textContent = cert.studentName || ', ';
-      document.getElementById('res-id').textContent = cert.certId || ', ';
-      document.getElementById('res-course').textContent = (cert.courseTitle || ', ');
-      document.getElementById('res-date').textContent = cert.date || ', ';
+      document.getElementById('res-name').textContent = cert.studentName || 'N/A';
+      document.getElementById('res-id').textContent = cert.certId || 'N/A';
+      document.getElementById('res-course').textContent = (cert.courseTitle || 'N/A');
+      document.getElementById('res-date').textContent = cert.date || 'N/A';
       successEl.classList.add('show');
       successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }

@@ -101,8 +101,8 @@
     .cred-box { background: var(--primary-light); border: 2px dashed var(--primary); border-radius: 10px; padding: 1rem; margin: 1rem 0; font-size: 0.95rem; }
     .cred-box b { font-family: 'Poppins', sans-serif; }
     .modal-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.1rem; }
-    .prog-track { background: #e2e8f0; height: 8px; border-radius: 999px; overflow: hidden; min-width: 80px; }
-    .prog-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #34d399); border-radius: 999px; }
+    .prog-track { display: inline-block; background: #e2e8f0; height: 8px; border-radius: 999px; overflow: hidden; min-width: 80px; vertical-align: middle; }
+    .prog-fill { display: block; height: 100%; background: linear-gradient(90deg, #1565d8, #002868); border-radius: 999px; }
     .course-row { display: flex; align-items: center; gap: 0.7rem; padding: 0.55rem 0; border-bottom: 1px solid #f1f5f9; font-size: 0.85rem; }
     .course-row .cname { flex: 1; font-weight: 600; min-width: 0; }
     .note-item { background: var(--bg); border-radius: 8px; padding: 0.6rem 0.8rem; font-size: 0.83rem; margin-bottom: 0.5rem; }
@@ -212,7 +212,7 @@
         </div>
         <div class="table-scroll">
           <table>
-            <thead><tr><th>Student ID</th><th>Name</th><th>Contact</th><th>Courses</th><th>Last Login</th><th>Status</th><th>Actions</th></tr></thead>
+            <thead><tr><th>Student ID</th><th>Name</th><th>Contact</th><th>Courses</th><th>Progress</th><th>Last Activity</th><th>Last Login</th><th>Status</th><th>Actions</th></tr></thead>
             <tbody id="stuTbody"></tbody>
           </table>
         </div>
@@ -345,8 +345,8 @@
 
   <script src="courses-db.js?v=14"></script>
   <script src="hub-config.js?v=4"></script>
-  <script src="hub-cloud.js?v=9"></script>
-  <script src="hub-db.js?v=17"></script>
+  <script src="hub-cloud.js?v=10"></script>
+  <script src="hub-db.js?v=18"></script>
   <script src="cert-registry.js?v=3"></script>
   <script>
     /* ============ HELPERS ============ */
@@ -354,9 +354,9 @@
     function courseName(id) {
       return (typeof COURSES_DB !== 'undefined' && COURSES_DB[id]) ? COURSES_DB[id].title.split(':')[0] : id;
     }
-    function fmtDate(iso) { return (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(iso) : (iso || ', '); }
-    function fmtDateTime(iso) { return (typeof HubDB !== 'undefined' && HubDB.fmtDateTime) ? HubDB.fmtDateTime(iso) : (iso || ', '); }
-    function timeAgo(iso) { return (typeof HubDB !== 'undefined' && HubDB.timeAgo) ? HubDB.timeAgo(iso) : (iso || ', '); }
+    function fmtDate(iso) { return (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(iso) : (iso || 'N/A'); }
+    function fmtDateTime(iso) { return (typeof HubDB !== 'undefined' && HubDB.fmtDateTime) ? HubDB.fmtDateTime(iso) : (iso || 'N/A'); }
+    function timeAgo(iso) { return (typeof HubDB !== 'undefined' && HubDB.timeAgo) ? HubDB.timeAgo(iso) : (iso || 'N/A'); }
     function openModal(html) {
       document.getElementById('modalBox').innerHTML = html;
       document.getElementById('modalOverlay').classList.add('open');
@@ -400,13 +400,50 @@
       if (who && user && user.email) who.title = 'Cloud: ' + user.email;
       pullCloud();
       subscribeCloud();
+      // Real-time safety net: refresh every 25s even if the live socket drops,
+      // and retry any queued (offline) admin actions so they always land.
+      if (!window._livePoll) window._livePoll = setInterval(function () {
+        pullCloud();
+        if (HubDB.flushOutbox) HubDB.flushOutbox();
+      }, 25000);
+    }
+    /* ---- LIVE STUDENT PROGRESS (from the central DB) ----
+       progress rows are per (student, course): completed_lessons, total_lessons,
+       pct, last_activity_at. This is each STUDENT'S real progress from their own
+       device, not this browser's local data. */
+    var _progByStudent = {};
+    function indexProgress(rows) {
+      _progByStudent = {};
+      (rows || []).forEach(function (r) {
+        if (!r || !r.student_id) return;
+        (_progByStudent[r.student_id] = _progByStudent[r.student_id] || {})[r.course_id] = r;
+      });
+    }
+    function studentProgress(studentId) {
+      var m = _progByStudent[studentId] || {};
+      var ids = Object.keys(m);
+      var sum = 0, n = 0, last = '';
+      ids.forEach(function (cid) {
+        var r = m[cid];
+        sum += (parseInt(r.pct, 10) || 0); n++;
+        if (r.last_activity_at && r.last_activity_at > last) last = r.last_activity_at;
+      });
+      return { courses: m, tracked: n, avgPct: n ? Math.round(sum / n) : 0, lastActivity: last || null };
     }
     function pullCloud() {
-      return HubDB.syncFromCloud().then(function (r) {
+      var progP = (typeof HubCloud !== 'undefined' && HubCloud.fetchProgress)
+        ? HubCloud.fetchProgress().catch(function () { return []; })
+        : Promise.resolve([]);
+      return Promise.all([HubDB.syncFromCloud(), progP]).then(function (res) {
+        var r = res[0];
+        indexProgress(res[1]);
         if (r && r.enabled) {
           renderAll();
           // Live "last updated" stamp so the data visibly reflects real-time sync.
-          setCloudBadge('☁ Live · updated ' + new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit' }), '#dcfce7', '#166534');
+          var pending = HubDB.pendingAdminOps ? HubDB.pendingAdminOps() : 0;
+          setCloudBadge('☁ Live · updated ' + new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit' })
+            + (pending ? ' · ' + pending + ' action' + (pending === 1 ? '' : 's') + ' syncing…' : ''),
+            pending ? '#fef3c7' : '#dcfce7', pending ? '#92400e' : '#166534');
         }
         return r;
       });
@@ -416,7 +453,9 @@
       _syncTimer = setTimeout(function () { _syncTimer = null; pullCloud(); }, 800);
     }
     function subscribeCloud() {
-      ['applications', 'cert_requests', 'enrollments', 'progress'].forEach(function (t) {
+      // students + activities included: any change a learner makes anywhere
+      // (sign-up, login, lesson completed) re-renders this panel live.
+      ['applications', 'cert_requests', 'enrollments', 'progress', 'students', 'activities'].forEach(function (t) {
         _cloudSubs.push(HubCloud.subscribe(t, scheduleSync));
       });
     }
@@ -507,7 +546,7 @@
       }
       var approvedCount = apps.filter(function (a) { return a.status === 'approved'; }).length;
       var decidedCount = apps.filter(function (a) { return a.status === 'approved' || a.status === 'rejected'; }).length;
-      var approvalRate = decidedCount ? Math.round(approvedCount / decidedCount * 100) + '%' : ', ';
+      var approvalRate = decidedCount ? Math.round(approvedCount / decidedCount * 100) + '%' : 'N/A';
 
       document.getElementById('statGrid').innerHTML =
         '<div class="stat-card warn"><b>' + pending + '</b><span>New / Pending Applications</span></div>'
@@ -573,10 +612,10 @@
         + '<div class="kv"><span class="k">Email</span><span class="v">' + esc(a.email) + '</span></div>'
         + '<div class="kv"><span class="k">Phone / WhatsApp</span><span class="v">' + esc(a.phone) + '</span></div>'
         + '<div class="kv"><span class="k">Location</span><span class="v">' + esc(a.location) + '</span></div>'
-        + '<div class="kv"><span class="k">Date of Birth</span><span class="v">' + esc(a.dob || ', ') + '</span></div>'
+        + '<div class="kv"><span class="k">Date of Birth</span><span class="v">' + esc(a.dob || 'N/A') + '</span></div>'
         + '<div class="kv"><span class="k">Education</span><span class="v">' + esc(a.education) + '</span></div>'
-        + '<div class="kv"><span class="k">Occupation</span><span class="v">' + esc(a.occupation || ', ') + '</span></div>'
-        + '<div class="kv"><span class="k">Referral</span><span class="v">' + esc(a.referral || ', ') + '</span></div>'
+        + '<div class="kv"><span class="k">Occupation</span><span class="v">' + esc(a.occupation || 'N/A') + '</span></div>'
+        + '<div class="kv"><span class="k">Referral</span><span class="v">' + esc(a.referral || 'N/A') + '</span></div>'
         + '<div class="kv"><span class="k">Tracks</span><span class="v">' + (a.tracks || []).map(courseName).map(esc).join(', ') + '</span></div>'
         + '<div class="kv"><span class="k">Status</span><span class="v"><span class="pill ' + a.status + '">' + a.status + '</span></span></div>'
         + '<p style="margin:.8rem 0;font-size:.88rem;"><b>Goals:</b> ' + esc(a.goals) + '</p>'
@@ -668,11 +707,20 @@
       });
       document.getElementById('stuEmpty').style.display = list.length ? 'none' : 'block';
       document.getElementById('stuTbody').innerHTML = list.map(function (s) {
+        var lp = studentProgress(s.id); // live, from the student's own devices
+        var progCell = lp.tracked
+          ? '<div style="display:flex;align-items:center;gap:.45rem;min-width:120px;">'
+            + '<span class="prog-track" style="flex:1;min-width:64px;"><span class="prog-fill" style="width:' + lp.avgPct + '%"></span></span>'
+            + '<b style="font-size:.76rem;">' + lp.avgPct + '%</b></div>'
+            + '<div style="font-size:.68rem;color:var(--muted);">' + lp.tracked + ' course' + (lp.tracked === 1 ? '' : 's') + ' tracked</div>'
+          : '<span style="font-size:.74rem;color:var(--muted);">No activity yet</span>';
         return '<tr>'
           + '<td><b>' + esc(s.id) + '</b></td>'
           + '<td>' + esc(s.name) + '</td>'
           + '<td style="font-size:.78rem;">' + esc(s.email) + '<br>' + esc(s.phone || '') + '</td>'
           + '<td>' + (s.courses || []).length + '</td>'
+          + '<td>' + progCell + '</td>'
+          + '<td style="white-space:nowrap;font-size:.78rem;">' + (lp.lastActivity ? timeAgo(lp.lastActivity) : 'N/A') + '</td>'
           + '<td style="white-space:nowrap;">' + (s.lastLoginAt ? timeAgo(s.lastLoginAt) : 'Never') + '</td>'
           + '<td><span class="pill ' + s.status + '">' + s.status + '</span></td>'
           + '<td><div class="row-actions">'
@@ -686,15 +734,35 @@
     window.viewStudent = function (id) {
       var s = HubDB.findStudent(id);
       if (!s) return;
-      var courseRows = (s.courses || []).map(function (c) {
-        var p = HubDB.courseProgress(c.id);
-        return '<div class="course-row">'
-          + '<span class="cname">' + esc(courseName(c.id)) + (c.deadline ? ' <span style="color:var(--secondary);font-size:.72rem;">due ' + fmtDate(c.deadline) + '</span>' : '') + '</span>'
-          + '<span class="prog-track" style="width:90px;"><span class="prog-fill" style="width:' + p.pct + '%"></span></span>'
-          + '<span style="font-size:.76rem;color:var(--muted);width:38px;text-align:right;">' + p.pct + '%</span>'
-          + '<button class="btn btn-red btn-sm" onclick="unassign(\'' + s.id + '\',\'' + c.id + '\')">✕</button>'
+      // Live per-course progress from the STUDENT'S own devices (central DB),
+      // never this browser's local lesson data.
+      var live = studentProgress(s.id);
+      var rowFor = function (cid, extra, removable) {
+        var r = live.courses[cid];
+        var pct = r ? (parseInt(r.pct, 10) || 0) : 0;
+        var detail = r
+          ? (r.completed_lessons || 0) + '/' + (r.total_lessons || 0) + ' lessons'
+            + (r.last_activity_at ? ' · active ' + timeAgo(r.last_activity_at) : '')
+          : 'not started yet';
+        return '<div class="course-row" style="flex-wrap:wrap;">'
+          + '<span class="cname">' + esc(courseName(cid)) + (extra || '') + '</span>'
+          + '<span class="prog-track" style="width:90px;"><span class="prog-fill" style="width:' + pct + '%"></span></span>'
+          + '<span style="font-size:.76rem;color:var(--muted);width:38px;text-align:right;">' + pct + '%</span>'
+          + (removable ? '<button class="btn btn-red btn-sm" onclick="unassign(\'' + s.id + '\',\'' + cid + '\')">✕</button>' : '')
+          + '<div style="flex-basis:100%;font-size:.7rem;color:var(--muted);margin-top:-2px;">' + detail + '</div>'
           + '</div>';
+      };
+      var assignedIds = {};
+      var courseRows = (s.courses || []).map(function (c) {
+        assignedIds[c.id] = true;
+        var extra = c.deadline ? ' <span style="color:var(--secondary);font-size:.72rem;">due ' + fmtDate(c.deadline) + '</span>' : '';
+        return rowFor(c.id, extra, true);
       }).join('') || '<p style="font-size:.83rem;color:var(--muted);">No courses assigned.</p>';
+      // Courses the learner is ACTIVELY studying that weren't formally assigned
+      // (e.g. unlocked via payment): show them too, so nothing is invisible.
+      var extraRows = Object.keys(live.courses).filter(function (cid) { return !assignedIds[cid]; })
+        .map(function (cid) { return rowFor(cid, ' <span style="font-size:.68rem;color:var(--muted);">(self-enrolled)</span>', false); })
+        .join('');
 
       var courseOpts = '';
       try {
@@ -712,12 +780,14 @@
       openModal(
         '<h3>' + esc(s.name) + ' <span style="font-size:.75rem;color:var(--muted);font-weight:500;">' + esc(s.id) + '</span> <button class="x" onclick="closeModal()">✕</button></h3>'
         + '<div class="kv"><span class="k">Email</span><span class="v">' + esc(s.email) + '</span></div>'
-        + '<div class="kv"><span class="k">Phone</span><span class="v">' + esc(s.phone || ', ') + '</span></div>'
-        + '<div class="kv"><span class="k">Location</span><span class="v">' + esc(s.location || ', ') + '</span></div>'
+        + '<div class="kv"><span class="k">Phone</span><span class="v">' + esc(s.phone || 'N/A') + '</span></div>'
+        + '<div class="kv"><span class="k">Location</span><span class="v">' + esc(s.location || 'N/A') + '</span></div>'
         + '<div class="kv"><span class="k">Status</span><span class="v"><span class="pill ' + s.status + '">' + s.status + '</span></span></div>'
         + '<div class="kv"><span class="k">Joined</span><span class="v">' + fmtDate(s.createdAt) + '</span></div>'
         + '<div class="kv"><span class="k">Last Login</span><span class="v">' + (s.lastLoginAt ? fmtDateTime(s.lastLoginAt) : 'Never') + '</span></div>'
-        + '<h3 style="font-size:.9rem;margin:1rem 0 .4rem;">Assigned Courses</h3>' + courseRows
+        + '<div class="kv"><span class="k">Last Activity</span><span class="v">' + (live.lastActivity ? fmtDateTime(live.lastActivity) : 'No learning activity yet') + '</span></div>'
+        + '<h3 style="font-size:.9rem;margin:1rem 0 .4rem;">Assigned Courses <span style="font-size:.68rem;font-weight:600;color:#166534;background:#dcfce7;border-radius:999px;padding:.1rem .5rem;vertical-align:middle;">LIVE progress</span></h3>' + courseRows
+        + (extraRows ? '<h3 style="font-size:.9rem;margin:1rem 0 .4rem;">Also Studying</h3>' + extraRows : '')
         + (courseOpts
             ? '<div style="display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap;align-items:center;">'
               + '<select id="assignSel" style="flex:1;min-width:150px;padding:.5rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;">' + courseOpts + '</select>'
@@ -752,7 +822,7 @@
       viewStudent(sid); renderAll();
     };
     window.unassign = function (sid, cid) {
-      if (!confirm('Remove ' + courseName(cid) + ' from this student?')) return;
+      if (!confirm('Remove ' + courseName(cid) + ' from this student? This decision is FINAL and syncs to their account immediately.')) return;
       HubDB.removeCourse(sid, cid);
       HubDB.audit('Removed course ' + cid, sid);
       viewStudent(sid); renderAll();
@@ -784,7 +854,7 @@
       });
     };
     window.suspendStu = function (sid) {
-      if (!confirm('Suspend this account? The student will not be able to log in.')) return;
+      if (!confirm('Suspend this account? This decision is FINAL and applies on every device immediately, the student will not be able to log in until you re-activate them.')) return;
       HubDB.updateStudent(sid, { status: 'suspended' });
       HubDB.audit('Suspended student', sid);
       viewStudent(sid); renderAll();
@@ -795,7 +865,7 @@
       viewStudent(sid); renderAll();
     };
     window.deleteStu = function (sid) {
-      if (!confirm('Permanently delete this student account? This cannot be undone.')) return;
+      if (!confirm('Permanently DELETE this student account? This decision is FINAL, it is removed from the central database and cannot be undone.')) return;
       HubDB.deleteStudent(sid);
       HubDB.audit('Deleted student', sid);
       closeModal(); renderAll();
@@ -1140,8 +1210,8 @@
         var pub = (typeof CertRegistry !== 'undefined' && CertRegistry.isCloudEnabled())
           ? '<button class="btn btn-green btn-sm" onclick="publishCert(\'' + encodeURIComponent(c.courseId) + '\')">☁ Publish</button>'
           : '';
-        return '<tr><td><b>' + esc(c.certId) + '</b></td><td>' + esc(c.studentName || ', ') + '</td>'
-          + '<td>' + esc((c.courseTitle || '').split(':')[0]) + '</td><td>' + esc(c.date || ', ') + '</td>'
+        return '<tr><td><b>' + esc(c.certId) + '</b></td><td>' + esc(c.studentName || 'N/A') + '</td>'
+          + '<td>' + esc((c.courseTitle || '').split(':')[0]) + '</td><td>' + esc(c.date || 'N/A') + '</td>'
           + '<td><div class="row-actions">'
           + '<a class="btn btn-line btn-sm" href="certificate-verify.html?id=' + encodeURIComponent(c.certId) + '">Verify</a>' + pub
           + '</div></td></tr>';
