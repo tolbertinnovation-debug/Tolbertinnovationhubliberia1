@@ -123,20 +123,37 @@
     @supports (aspect-ratio: 16/9) {
       .video-container { aspect-ratio: 16/9; padding-top: 0; }
     }
-    .video-container iframe { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; border: none; }
-    /* Branded top bar — hides the player's title/share chrome during playback */
+    .video-container iframe, .video-container #ytPlayer { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; border: none; z-index: 1; }
+    /* Branded top bar — covers the player's title/share chrome during playback */
     .video-topbar {
-      position: absolute; top: 0; left: 0; right: 0; height: 38px; z-index: 3;
+      position: absolute; top: 0; left: 0; right: 0; height: 46px; z-index: 5;
       display: none; align-items: center; gap: 0.45rem; padding: 0 0.9rem;
-      background: linear-gradient(180deg, rgba(11,31,58,0.97) 0%, rgba(11,31,58,0.85) 60%, rgba(11,31,58,0) 100%);
-      font-family: 'Poppins', sans-serif; pointer-events: auto;
+      background: linear-gradient(180deg, rgba(11,31,58,0.99) 0%, rgba(11,31,58,0.9) 55%, rgba(11,31,58,0) 100%);
+      font-family: 'Poppins', sans-serif; pointer-events: none;
     }
     .video-container.playing .video-topbar { display: flex; }
     .video-topbar .vt-brand { color: #fff; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.02em; }
     .video-topbar .vt-brand span { color: #ff8a94; }
+    /* Click-shield: blocks tapping any underlying player links; taps toggle play/pause */
+    .video-shield { position: absolute; inset: 0; z-index: 3; display: none; cursor: pointer; background: transparent; }
+    .video-container.playing .video-shield { display: block; }
+    .video-container.fallback .video-shield { display: none; }
+    /* Custom TIH control bar */
+    .video-controls {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 6;
+      display: none; align-items: center; gap: 0.5rem; padding: 0.45rem 0.7rem 0.55rem;
+      background: linear-gradient(0deg, rgba(11,31,58,0.94) 0%, rgba(11,31,58,0.55) 70%, transparent 100%);
+    }
+    .video-container.playing .video-controls { display: flex; }
+    .video-container.fallback .video-controls { display: none; }
+    .video-controls .vc-btn { background: none; border: none; color: #fff; font-size: 1rem; line-height: 1; cursor: pointer; padding: 0.2rem 0.25rem; display: flex; }
+    .video-controls .vc-seek { flex: 1; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.3); cursor: pointer; }
+    .video-controls .vc-seek::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px; border-radius: 50%; background: #E31E24; cursor: pointer; }
+    .video-controls .vc-seek::-moz-range-thumb { width: 13px; height: 13px; border: 0; border-radius: 50%; background: #E31E24; cursor: pointer; }
+    .video-controls .vc-time { color: #fff; font-size: 0.72rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
     /* Custom click-to-play poster — no third-party branding is shown before play */
     .video-poster {
-      position: absolute; inset: 0; z-index: 4; cursor: pointer;
+      position: absolute; inset: 0; z-index: 8; cursor: pointer;
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.85rem;
       text-align: center; padding: 1rem;
       background:
@@ -402,13 +419,17 @@
       <div class="video-scroll" id="videoScroll">
 
         <!-- VIDEO -->
-        <div class="video-container">
-          <iframe id="videoIframe"
-            src="about:blank"
-            title="Course Lesson"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+        <div class="video-container" id="videoContainer">
+          <div id="ytPlayer"></div>
           <div class="video-topbar" aria-hidden="true"><span class="vt-brand">TIH <span>Learning Hub</span></span></div>
+          <div class="video-shield" id="videoShield" aria-hidden="true"></div>
+          <div class="video-controls" id="videoControls" aria-hidden="true">
+            <button id="vcPlay" class="vc-btn" type="button" aria-label="Play or pause">⏸</button>
+            <input id="vcSeek" class="vc-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek" />
+            <span id="vcTime" class="vc-time">0:00 / 0:00</span>
+            <button id="vcMute" class="vc-btn" type="button" aria-label="Mute">🔊</button>
+            <button id="vcFs" class="vc-btn" type="button" aria-label="Fullscreen">⛶</button>
+          </div>
           <div class="video-poster" id="videoPoster" role="button" tabindex="0" aria-label="Play lesson video">
             <div class="vp-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div>
             <div class="vp-title" id="vpTitle">Play lesson video</div>
@@ -582,26 +603,117 @@
   var courseId, course, lessons, quizData, totalLessons, hubStudent = null;
   var currentVideoId = null;
 
-  // Click-to-play: load the video (privacy domain, minimal chrome) only on tap,
-  // then reveal the branded top bar. Keeps the lesson feeling like a TIH player.
-  (function () {
-    function playVideo() {
-      if (!currentVideoId) return;
-      var vid = document.getElementById('videoIframe');
-      var wrap = document.querySelector('.video-container');
-      vid.src = 'https://www.youtube-nocookie.com/embed/' + currentVideoId
-        + '?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&fs=1&color=white&cc_load_policy=0';
-      if (wrap) wrap.classList.add('playing');
-    }
-    document.addEventListener('DOMContentLoaded', function () {
-      var poster = document.getElementById('videoPoster');
-      if (!poster) return;
-      poster.addEventListener('click', playVideo);
-      poster.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playVideo(); }
-      });
-    });
+  /* ============================================================
+     WHITE-LABEL VIDEO PLAYER
+     Uses the IFrame API with controls=0 (no third-party control bar /
+     logo). A transparent shield blocks tapping any underlying links, and
+     a custom TIH control bar handles play/pause, seek, mute & fullscreen.
+     Falls back to a plain embed if the API can't load, so video always
+     works.
+     ============================================================ */
+  var ytPlayer = null, ytReady = false, ytBuilt = false, vcTimer = null, usingFallback = false;
+
+  (function loadYTApi() {
+    if (window.YT && window.YT.Player) { ytReady = true; return; }
+    var s = document.createElement('script');
+    s.src = 'https://www.youtube.com/iframe_api';
+    s.onerror = function () { ytReady = false; };
+    document.head.appendChild(s);
   })();
+  window.onYouTubeIframeAPIReady = function () { ytReady = true; };
+
+  function vFmt(t) { t = Math.max(0, Math.floor(t || 0)); var m = Math.floor(t / 60), s = t % 60; return m + ':' + (s < 10 ? '0' : '') + s; }
+  function vcSetIcon(playing) { var b = document.getElementById('vcPlay'); if (b) b.textContent = playing ? '⏸' : '▶'; }
+  function vcTick() {
+    if (!ytPlayer || !ytPlayer.getDuration) return;
+    var d = ytPlayer.getDuration() || 0, c = ytPlayer.getCurrentTime() || 0;
+    var seek = document.getElementById('vcSeek'), time = document.getElementById('vcTime');
+    if (seek && !seek._dragging) seek.value = d ? Math.round(c / d * 1000) : 0;
+    if (time) time.textContent = vFmt(c) + ' / ' + vFmt(d);
+  }
+  function buildPlayer() {
+    ytPlayer = new YT.Player('ytPlayer', {
+      host: 'https://www.youtube-nocookie.com',
+      videoId: currentVideoId,
+      playerVars: { autoplay: 1, controls: 0, rel: 0, modestbranding: 1, iv_load_policy: 3, playsinline: 1, disablekb: 1, fs: 0, showinfo: 0 },
+      events: {
+        onReady: function (e) { e.target.playVideo(); if (vcTimer) clearInterval(vcTimer); vcTimer = setInterval(vcTick, 500); },
+        onStateChange: function (e) { vcSetIcon(e.data === 1); }
+      }
+    });
+    ytBuilt = true;
+  }
+  function fallbackPlay() {
+    usingFallback = true;
+    var wrap = document.getElementById('videoContainer'); if (wrap) wrap.classList.add('fallback');
+    var host = document.getElementById('ytPlayer');
+    if (host) host.innerHTML = '<iframe title="Course Lesson" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen src="https://www.youtube-nocookie.com/embed/' + currentVideoId + '?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&fs=1"></iframe>';
+  }
+  function startVideo() {
+    if (!currentVideoId) return;
+    var wrap = document.getElementById('videoContainer');
+    if (wrap) wrap.classList.add('playing');
+    if (ytReady && window.YT && window.YT.Player) {
+      if (!ytBuilt) buildPlayer(); else ytPlayer.loadVideoById(currentVideoId);
+      return;
+    }
+    // Give the API a brief window to arrive, else fall back to a plain embed.
+    var waited = 0;
+    var iv = setInterval(function () {
+      waited += 150;
+      if (ytReady && window.YT && window.YT.Player) { clearInterval(iv); if (!ytBuilt) buildPlayer(); else ytPlayer.loadVideoById(currentVideoId); }
+      else if (waited >= 2500) { clearInterval(iv); fallbackPlay(); }
+    }, 150);
+  }
+  function resetVideo() {
+    var wrap = document.getElementById('videoContainer');
+    if (wrap) { wrap.classList.remove('playing'); wrap.classList.remove('fallback'); }
+    if (vcTimer) { clearInterval(vcTimer); vcTimer = null; }
+    try { if (ytBuilt && ytPlayer && ytPlayer.stopVideo) ytPlayer.stopVideo(); } catch (e) {}
+    if (usingFallback) { var host = document.getElementById('ytPlayer'); if (host) host.innerHTML = ''; usingFallback = false; ytBuilt = false; ytPlayer = null; }
+    var seek = document.getElementById('vcSeek'); if (seek) seek.value = 0;
+    var time = document.getElementById('vcTime'); if (time) time.textContent = '0:00 / 0:00';
+    vcSetIcon(true);
+  }
+  function togglePlay() {
+    if (!ytPlayer || !ytPlayer.getPlayerState) return;
+    if (ytPlayer.getPlayerState() === 1) ytPlayer.pauseVideo(); else ytPlayer.playVideo();
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    var poster = document.getElementById('videoPoster');
+    if (poster) {
+      poster.addEventListener('click', startVideo);
+      poster.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startVideo(); } });
+    }
+    var shield = document.getElementById('videoShield');
+    if (shield) shield.addEventListener('click', togglePlay);
+    var play = document.getElementById('vcPlay');
+    if (play) play.addEventListener('click', function (e) { e.stopPropagation(); togglePlay(); });
+    var seek = document.getElementById('vcSeek');
+    if (seek) {
+      seek.addEventListener('input', function () { seek._dragging = true; });
+      seek.addEventListener('change', function () {
+        seek._dragging = false;
+        if (ytPlayer && ytPlayer.getDuration) { var d = ytPlayer.getDuration() || 0; ytPlayer.seekTo(d * (seek.value / 1000), true); }
+      });
+    }
+    var mute = document.getElementById('vcMute');
+    if (mute) mute.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (!ytPlayer || !ytPlayer.isMuted) return;
+      if (ytPlayer.isMuted()) { ytPlayer.unMute(); mute.textContent = '🔊'; } else { ytPlayer.mute(); mute.textContent = '🔇'; }
+    });
+    var fs = document.getElementById('vcFs');
+    if (fs) fs.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var wrap = document.getElementById('videoContainer'); if (!wrap) return;
+      if (document.fullscreenElement || document.webkitFullscreenElement) {
+        (document.exitFullscreen || document.webkitExitFullscreen || function () {}).call(document);
+      } else {
+        (wrap.requestFullscreen || wrap.webkitRequestFullscreen || function () {}).call(wrap);
+      }
+    });
+  });
 
   function loadCourse() {
     try {
@@ -843,15 +955,14 @@
     document.getElementById('lessonMeta').textContent = '📶 Module ' + lesson.module + ' · Lesson ' + (index + 1) + ' of ' + totalLessons;
     // Update video — reading lessons hide the video pane and lead with their notes.
     var videoWrap = document.querySelector('.video-container');
-    var vidEl = document.getElementById('videoIframe');
+    resetVideo(); // stop any previous video and return to the branded poster
     if (lesson.reading) {
-      if (videoWrap) { videoWrap.style.display = 'none'; videoWrap.classList.remove('playing'); }
-      vidEl.src = 'about:blank';
+      if (videoWrap) videoWrap.style.display = 'none';
+      currentVideoId = null;
     } else {
       // Show the branded poster; the real video only loads when the learner taps play,
       // so no third-party player branding is shown up front.
-      if (videoWrap) { videoWrap.style.display = ''; videoWrap.classList.remove('playing'); }
-      vidEl.src = 'about:blank';
+      if (videoWrap) videoWrap.style.display = '';
       currentVideoId = lesson.videoId || 'Tn6-PIqc4UM';
       var vpt = document.getElementById('vpTitle');
       if (vpt) vpt.textContent = lesson.title || 'Play lesson video';
