@@ -776,7 +776,7 @@ function tihSpeakWelcome() {
   if (!('speechSynthesis' in window)) return;
   try {
     window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance('Welcome to Tolbert Innovation Hub');
+    const u = new SpeechSynthesisUtterance('Welcome to Tolbert Innovation Hub, where innovators, entrepreneurs, and students connect with endless opportunities to learn, create, grow, and succeed.');
     u.lang = 'en-US'; u.rate = 0.95; u.pitch = 1; u.volume = 1;
     const v = tihPickVoice();
     if (v) u.voice = v;
