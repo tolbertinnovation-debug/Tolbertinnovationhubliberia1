@@ -169,6 +169,9 @@
       background-size: 160% 160%, 160% 160%, 100% 100%;
       animation: lhDrift 16s ease-in-out infinite alternate; color: var(--text); padding: 4.5rem 0 6.5rem; }
     .hero.lh-modern::after { display: none; }
+    /* Animated particle-network canvas — sits behind the hero content. */
+    .hero-net { position: absolute; inset: 0; z-index: 0; pointer-events: none; display: block; }
+    @media (prefers-reduced-motion: reduce) { .hero-net { display: none !important; } }
     @keyframes lhDrift { 0% { background-position: 0% 0%,100% 100%,0 0; } 100% { background-position: 100% 40%,0% 60%,0 0; } }
     .lh-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 2.5rem; align-items: center; position: relative; z-index: 1; }
     @media (max-width: 900px) { .lh-grid { grid-template-columns: 1fr; } }
@@ -558,6 +561,7 @@
   </footer>
 
   <script src="courses-db.js?v=13"></script>
+  <script src="hero-network.js?v=1"></script>
   <script>
     // Mobile menu
     (function () {
