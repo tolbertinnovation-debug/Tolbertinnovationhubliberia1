@@ -318,6 +318,9 @@ var HubDB = (function () {
       var list = getStudents();
       list.unshift(student);
       saveStudents(list);
+      // A brand-new account must start with a clean slate on this browser,
+      // never inheriting unlocks/progress left behind by a previous user.
+      switchAccountCleanup(student.id);
       // Save to the central DB and WAIT for it (capped at 8s so a slow network
       // never blocks sign-up), so the account exists in the cloud before the
       // learner signs in on another device. Saved locally either way; the
@@ -383,8 +386,41 @@ var HubDB = (function () {
   }
 
   /* ---- Student auth ---- */
+  // Per-learner local state (unlocks, lesson progress, certificates) is
+  // browser storage, it must NEVER leak from one account to another when a
+  // different person signs up / logs in on the same phone or browser.
+  function purgeLearnerState() {
+    try {
+      var kill = [];
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (/^(tih_access_|tih_progress_|tih_cert_|tih_hub_cert_ok_)/.test(k)) kill.push(k);
+      }
+      kill.forEach(function (k) { localStorage.removeItem(k); });
+    } catch (e) {}
+  }
+  // Called whenever an account becomes active on this browser. If it is a
+  // DIFFERENT account than last time, wipe the previous learner's local
+  // unlocks/progress; the cloud then restores this account's real state.
+  function switchAccountCleanup(newId) {
+    var prev = null;
+    try { prev = localStorage.getItem('tih_hub_last_student'); } catch (e) {}
+    if (prev === newId) return;                 // same learner: keep their cache
+    purgeLearnerState();                        // new learner: start clean
+    try { localStorage.setItem('tih_hub_last_student', newId); } catch (e) {}
+  }
+  // Init-time guard: if a page loads with a session that doesn't match the
+  // learner this browser's cache belongs to (any path that skipped the login
+  // flow), clean up immediately so no page ever renders another account's data.
+  (function () {
+    try {
+      var sess = getJSON(KEYS.studentSession, null);
+      if (sess && sess.id) switchAccountCleanup(sess.id);
+    } catch (e) {}
+  })();
   // Finalise a successful login: refresh local cache, set session keys.
   function completeStudentLogin(s) {
+    switchAccountCleanup(s.id); // never inherit another account's unlocks
     s.courses = normCourses(s.courses); // coerce cloud/legacy course shapes
     var list = getStudents();
     var found = false;
@@ -719,7 +755,14 @@ var HubDB = (function () {
     });
   }
   function certApprovedLocal(courseId) {
-    return !!getJSON('tih_hub_cert_ok_' + courseId, null);
+    var rec = getJSON('tih_hub_cert_ok_' + courseId, null);
+    if (!rec) return false;
+    var sess = studentSession();
+    if (sess && sess.id && rec.studentId && rec.studentId !== sess.id) {
+      try { localStorage.removeItem('tih_hub_cert_ok_' + courseId); } catch (e) {}
+      return false;
+    }
+    return true;
   }
   function pendingCertRequest(studentId, courseId) {
     var list = getCertRequests();
@@ -747,8 +790,21 @@ var HubDB = (function () {
       return hex.replace(/[^a-z0-9]/gi, '').slice(0, 6).toUpperCase();
     });
   }
+  // Access is PER STUDENT, not per browser. An unlock record is only valid
+  // for the account that earned it; anything else (another user's leftover,
+  // a record with no owner) is removed so a new account on the same phone
+  // always starts locked. The cloud restores real unlocks on login.
   function hasAccess(itemId) {
-    return !!getJSON('tih_access_' + itemId, null);
+    var rec = getJSON('tih_access_' + itemId, null);
+    if (!rec) return false;
+    var sess = studentSession();
+    if (sess && sess.id) {
+      if (!rec.studentId || rec.studentId !== sess.id) {
+        try { localStorage.removeItem('tih_access_' + itemId); } catch (e) {}
+        return false;
+      }
+    }
+    return true;
   }
   function verifyAccessCode(studentId, itemId, code) {
     return accessCode(studentId, itemId).then(function (expected) {
