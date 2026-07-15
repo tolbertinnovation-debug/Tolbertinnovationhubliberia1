@@ -9,7 +9,7 @@ const newsPosts = [
     date: 'March 8, 2026',
     category: 'Scholarships',
     summary: 'Applications are now open with updated document requirements, guidance sessions, and admission support timelines.',
-    href: 'news-scholarship-2026.html',
+    href: 'news-scholarship-2026',
     image: 'https://i.ibb.co/JW664n2y/Chat-GPT-Image-Mar-8-2026-12-00-34-PM.png',
     imageAlt: 'Students celebrating scholarship opportunities'
   },
@@ -18,7 +18,7 @@ const newsPosts = [
     date: 'March 8, 2026',
     category: 'Announcements',
     summary: 'Students who complete IELTS mock exams can now request certificate processing through the new dedicated certificate workflow.',
-    href: 'news-ielts-certificate-system.html',
+    href: 'news-ielts-certificate-system',
     image: 'https://i.ibb.co/5W4FhDnH/Chat-GPT-Image-Mar-8-2026-08-38-03-PM-1.png',
     imageAlt: 'IELTS classroom completion and certificate announcement'
   },
@@ -27,7 +27,7 @@ const newsPosts = [
     date: 'March 8, 2026',
     category: 'Healthcare Programs',
     summary: 'Tolbert Innovation Hub has expanded healthcare referral support pathways for families seeking treatment coordination in India.',
-    href: 'news-healthcare-referral-expansion.html',
+    href: 'news-healthcare-referral-expansion',
     image: 'https://i.ibb.co/PZtxGS1X/Chat-GPT-Image-Mar-8-2026-01-03-34-PM.png',
     imageAlt: 'Healthcare support and treatment coordination update'
   },
@@ -36,7 +36,7 @@ const newsPosts = [
     date: 'March 8, 2026',
     category: 'Technology Programs',
     summary: 'New technology consultation support helps businesses modernize operations with websites, platforms, and digital process tools.',
-    href: 'news-technology-support-2026.html',
+    href: 'news-technology-support-2026',
     image: 'https://i.ibb.co/wFnGC1NQ/Chat-GPT-Image-Mar-8-2026-12-25-09-PM.png',
     imageAlt: 'Technology innovation and software support update'
   }
@@ -314,7 +314,7 @@ function injectFooterFeaturedNews() {
   if (footerGrid) {
     const card = document.createElement('div');
     card.setAttribute('data-featured-news-footer', 'true');
-    card.innerHTML = '<h3 style="color:#fff;font-size:0.9rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem;">Latest News</h3><p><a href="news.html" style="color:#90bfff">Read the latest updates from Tolbert Innovation Hub →</a></p>';
+    card.innerHTML = '<h3 style="color:#fff;font-size:0.9rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem;">Latest News</h3><p><a href="news" style="color:#90bfff">Read the latest updates from Tolbert Innovation Hub →</a></p>';
     footerGrid.appendChild(card);
   }
 }
@@ -368,11 +368,11 @@ function initNav() {
   if (!navLinks.id) navLinks.id = 'primary-navigation';
 
   // Add news link if missing
-  if (!navLinks.querySelector('a[href="news.html"]')) {
+  if (!navLinks.querySelector('a[href="news"]')) {
     const newsLink = document.createElement('a');
-    newsLink.href = 'news.html';
+    newsLink.href = 'news';
     newsLink.textContent = 'News';
-    const homeLink = navLinks.querySelector('a[href="index.html"]');
+    const homeLink = navLinks.querySelector('a[href="/"]');
     if (homeLink?.nextSibling) {
       homeLink.insertAdjacentElement('afterend', newsLink);
     } else {
@@ -381,13 +381,13 @@ function initNav() {
   }
 
   // Active state for news
-  const isNewsPage = /news(.*)?\.html$/i.test(window.location.pathname.split('/').pop() || '');
+  const isNewsPage = /^news([-.]|$)/i.test(window.location.pathname.split('/').pop() || '');
   if (isNewsPage) {
     navLinks.querySelectorAll('a').forEach((l) => {
       l.classList.remove('active');
       l.removeAttribute('aria-current');
     });
-    const newsNav = navLinks.querySelector('a[href="news.html"]');
+    const newsNav = navLinks.querySelector('a[href="news"]');
     if (newsNav) {
       newsNav.classList.add('active');
       newsNav.setAttribute('aria-current', 'page');
@@ -534,7 +534,7 @@ function initCookieConsent() {
     <div class="cookie-banner-text">
       <strong>🍪 We use cookies</strong> to improve your experience and analyze site traffic.
       By continuing to use this site, you agree to our
-      <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.
+      <a href="privacy">Privacy Policy</a> and <a href="terms">Terms of Service</a>.
     </div>
     <div class="cookie-banner-actions">
       <button class="cookie-btn-reject" id="cookieReject">Decline</button>

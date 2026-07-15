@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -143,12 +144,12 @@
   <!-- TOPBAR -->
   <div class="topbar">
     <div class="topbar-left">
-      <a href="learning-hub.html" class="topbar-back">← <span>Academy</span></a>
+      <a href="learning-hub" class="topbar-back">← <span>Academy</span></a>
       <div class="topbar-divider"></div>
       <div class="topbar-brand">TIH <span>Learning Hub</span></div>
     </div>
     <div class="topbar-right">
-      <a href="learning-hub.html" class="btn-browse">Browse Courses</a>
+      <a href="learning-hub" class="btn-browse">Browse Courses</a>
     </div>
   </div>
 
@@ -200,7 +201,7 @@
         <div class="empty-icon">📜</div>
         <h2>No Certificates Yet</h2>
         <p>Complete a course to earn your first TIH Learning Hub certificate. Each certificate is professionally verified and shareable with employers.</p>
-        <a href="learning-hub.html"><button class="btn-start"> Start Learning Now</button></a>
+        <a href="learning-hub"><button class="btn-start"> Start Learning Now</button></a>
       </div>
     </div>
 
@@ -214,7 +215,7 @@
 
   <!-- FAB -->
   <div class="fab">
-    <button class="fab-btn" title="Browse more courses" onclick="window.location.href='courses.html'">+</button>
+    <button class="fab-btn" title="Browse more courses" onclick="window.location.href='courses'">+</button>
   </div>
 
   <script src="courses-db.js?v=14"></script>
@@ -242,7 +243,7 @@
   // ===== ACCESS CONTROL: must be signed in; only YOUR certificates show =====
   var session = (typeof HubDB !== 'undefined') ? HubDB.studentSession() : null;
   if (!session || !session.id) {
-    window.location.replace('hub-dashboard.html?next=' + encodeURIComponent('my-certificates.html'));
+    window.location.replace('hub-dashboard?next=' + encodeURIComponent('my-certificates'));
   }
   var currentStudent = (session && typeof HubDB !== 'undefined') ? HubDB.findStudent(session.id) : null;
   var currentId = (currentStudent && currentStudent.id) || (session && session.id) || '';
@@ -337,7 +338,7 @@
           '</div>' +
           '<div class="cert-card-footer">' +
           '<button class="btn-dl" onclick="downloadCert(' + "'" + cert.courseId + "'" + ')">⬇ Download</button>' +
-          '<a href="course-player.html?id=' + esc(cert.courseId) + '" class="btn-view">View Course</a>' +
+          '<a href="course-player?id=' + esc(cert.courseId) + '" class="btn-view">View Course</a>' +
           '</div></div>';
       });
       document.getElementById('certsGrid').innerHTML = gridHtml;
@@ -354,7 +355,7 @@
         var course = (typeof COURSES_DB !== 'undefined') ? COURSES_DB[id] : null;
         var meta = COURSE_META[id] || { icon: '🎓', color: '#f3f4f6', accent: '#6b7280' };
         var title = course ? course.title : id;
-        lockedHtml += '<a href="course-player.html?id=' + esc(id) + '" class="locked-card">' +
+        lockedHtml += '<a href="course-player?id=' + esc(id) + '" class="locked-card">' +
           '<div class="locked-icon" style="background:' + meta.color + '">' + meta.icon + '</div>' +
           '<div class="locked-info">' +
           '<div class="locked-title">' + esc(title) + '</div>' +

@@ -114,7 +114,7 @@ function buildCertHTML(name, title, certId, certDate) {
     '</div>' +
     '<div class="meta-strip">' +
     '<span>Credential ID: <b>' + esc(certId) + '</b></span><span class="sep">&#9670;</span>' +
-    '<span>Independently verify this certificate at <b>tolbertinnovationhub.org/certificate-verify.html?id=' + esc(certId) + '</b></span>' +
+    '<span>Independently verify this certificate at <b>tolbertinnovationhub.org/certificate-verify?id=' + esc(certId) + '</b></span>' +
     '</div>' +
     '<div style="position:relative;z-index:2;text-align:center;font-size:6pt;color:#9aa1ad;padding:0 20mm 6mm;letter-spacing:.02em;">Issued by Tolbert Innovation Hub only after completion and administrator approval. This credential is recorded in the official TIH register and can be verified by anyone using the Credential ID above.</div>' +
     '</div>' +

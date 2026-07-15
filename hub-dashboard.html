@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -201,7 +202,7 @@
       <button class="btn btn-primary btn-block" id="loginBtn">Sign In →</button>
       <div class="feedback err" id="loginFeedback"></div>
       <div class="login-help">
-        No account yet? <a href="hub-apply.html">Apply for free access</a><br>
+        No account yet? <a href="hub-apply">Apply for free access</a><br>
         Forgot password? <a href="https://wa.me/231880559227?text=Hello%20TIH%2C%20I%20forgot%20my%20Learning%20Hub%20password.%20My%20Student%20ID%20is%3A%20" target="_blank" rel="noopener noreferrer">Contact support on WhatsApp</a>
       </div>
     </div>
@@ -301,7 +302,7 @@
     <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
       <button class="bn-item active" data-view="home"><span class="ico">🏠</span>Home</button>
-      <a class="bn-item" href="my-certificates.html?v=2"><span class="ico">🏆</span>Certs</a>
+      <a class="bn-item" href="my-certificates?v=2"><span class="ico">🏆</span>Certs</a>
       <a class="bn-item" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer"><span class="ico">💬</span>Support</a>
       <button class="bn-item" data-view="profile"><span class="ico">👤</span>Profile</button>
     </nav>
@@ -331,7 +332,7 @@
       <div id="addCourseList" style="max-height:52vh;overflow-y:auto;"></div>
       <div id="addCourseEmpty" style="display:none;text-align:center;color:var(--muted);font-size:.88rem;padding:1.4rem 1rem;">🎉 You already have every course in the catalog!</div>
       <div style="border-top:1px solid var(--border);margin-top:.8rem;padding-top:.7rem;text-align:center;">
-        <a href="learning-hub.html#wassce" style="font-size:.82rem;color:var(--primary);font-weight:700;text-decoration:none;">Looking for WASSCE exam subjects? Browse them here →</a>
+        <a href="learning-hub#wassce" style="font-size:.82rem;color:var(--primary);font-weight:700;text-decoration:none;">Looking for WASSCE exam subjects? Browse them here →</a>
       </div>
     </div>
   </div>
@@ -373,10 +374,10 @@
         // (unless they still need to change a temporary password first).
         var next = getUrlParam('next');
         if (next && !res.mustChangePassword) {
-          // Full page target (e.g. "wassce-learn.html?s=math") → go straight there.
+          // Full page target (e.g. "wassce-learn?s=math") → go straight there.
           if (/\.html(\?|$)/.test(next)) { window.location.href = next; return; }
           // A course id (including WASSCE "wassce-<subject>") → open the course player.
-          if (/^wassce-/.test(next) || COURSES_DB[next]) { window.location.href = 'course-player.html?id=' + encodeURIComponent(next); return; }
+          if (/^wassce-/.test(next) || COURSES_DB[next]) { window.location.href = 'course-player?id=' + encodeURIComponent(next); return; }
         }
         enterDashboard();
         if (res.mustChangePassword) {
@@ -523,14 +524,14 @@
         var price = (HubDB.priceFor ? HubDB.priceFor(c.id) : 2);
         var isExam = (c.id === 'ielts' || c.id === 'toefl' || c.id === 'sat');
         var practiceLink = (isExam && unlocked)
-          ? ' <a class="btn btn-line btn-sm" href="practice-test.html?exam=' + encodeURIComponent(c.id) + '">🎯 Practice Test</a>' : '';
+          ? ' <a class="btn btn-line btn-sm" href="practice-test?exam=' + encodeURIComponent(c.id) + '">🎯 Practice Test</a>' : '';
         var action;
         if (!unlocked) {
-          action = '<a class="btn btn-orange btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">🔓 Unlock (US$' + price + ')</a>';
+          action = '<a class="btn btn-orange btn-sm" href="course-player?id=' + encodeURIComponent(c.id) + '">🔓 Unlock (US$' + price + ')</a>';
         } else if (isDone) {
-          action = '<a class="btn btn-line btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">Review Course</a>';
+          action = '<a class="btn btn-line btn-sm" href="course-player?id=' + encodeURIComponent(c.id) + '">Review Course</a>';
         } else {
-          action = '<a class="btn btn-orange btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">' + (p.completed > 0 ? 'Continue →' : 'Start Course →') + '</a>';
+          action = '<a class="btn btn-orange btn-sm" href="course-player?id=' + encodeURIComponent(c.id) + '">' + (p.completed > 0 ? 'Continue →' : 'Start Course →') + '</a>';
         }
 
         return '<div class="course-card">'
@@ -576,7 +577,7 @@
           var days = Math.ceil((new Date(c.deadline).getTime() - Date.now()) / 86400000);
           return '<div class="done-row"><span class="dr-name">' + esc(courseMeta(c.id).title) + '</span>'
             + '<span class="deadline-chip' + (days < 0 ? ' overdue' : '') + '">' + (days < 0 ? '⚠ Overdue' : 'Due ' + fmtDate(c.deadline)) + '</span>'
-            + '<a class="btn btn-orange btn-sm" href="course-player.html?id=' + encodeURIComponent(c.id) + '">Go →</a></div>';
+            + '<a class="btn btn-orange btn-sm" href="course-player?id=' + encodeURIComponent(c.id) + '">Go →</a></div>';
         }).join('');
       }
 
@@ -588,8 +589,8 @@
         var certActions;
         if (approved) {
           certActions = '<span class="pill done">✓ Approved</span>'
-            + '<a class="btn btn-primary btn-sm" href="course-player.html?id=' + encodeURIComponent(cid) + '">🏆 Download Certificate</a>'
-            + (item.cert ? '<a class="btn btn-line btn-sm" href="certificate-verify.html?id=' + encodeURIComponent(item.cert.certId) + '">Verify</a>' : '');
+            + '<a class="btn btn-primary btn-sm" href="course-player?id=' + encodeURIComponent(cid) + '">🏆 Download Certificate</a>'
+            + (item.cert ? '<a class="btn btn-line btn-sm" href="certificate-verify?id=' + encodeURIComponent(item.cert.certId) + '">Verify</a>' : '');
         } else if (req && req.status === 'pending') {
           certActions = '<span class="pill progress">⏳ Awaiting Approval</span>'
             + '<span style="display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;">'
@@ -644,7 +645,7 @@
         + '<div class="r-track"><div class="r-fill" style="width:' + r.pct + '%"></div></div>'
         + '<div class="r-meta">' + r.completed + '/' + r.total + ' lessons · ' + r.pct + '% complete</div>'
         + '</div>'
-        + '<a class="r-btn" href="course-player.html?id=' + encodeURIComponent(r.id) + '">' + (started ? '▶ Resume' : '▶ Start') + '</a>';
+        + '<a class="r-btn" href="course-player?id=' + encodeURIComponent(r.id) + '">' + (started ? '▶ Resume' : '▶ Start') + '</a>';
     }
 
     /* ---- Achievements / badges ---- */
@@ -760,7 +761,7 @@
         + '<div class="rc-title">' + esc(meta.title) + '</div>'
         + '<div class="rc-desc">Grow your skills, unlock for US$' + price + '.</div>'
         + '</div>'
-        + '<a class="rc-btn" href="learning-hub.html#courses">Explore →</a>';
+        + '<a class="rc-btn" href="learning-hub#courses">Explore →</a>';
     }
 
     /* ---- WASSCE subjects grid (locked until paid) ---- */
@@ -781,7 +782,7 @@
       grid.innerHTML = WASSCE_SUBJECTS.map(function (s) {
         var unlocked = HubDB.hasAccess('wassce-' + s[0]);
         var pill = unlocked ? '<span class="pill done">✓ Unlocked</span>' : '<span class="pill new">🔒 US$2</span>';
-        var btn = '<a class="btn btn-orange btn-sm" href="course-player.html?id=wassce-' + s[0] + '">' + (unlocked ? 'Study →' : '🔓 Unlock (US$2)') + '</a>';
+        var btn = '<a class="btn btn-orange btn-sm" href="course-player?id=wassce-' + s[0] + '">' + (unlocked ? 'Study →' : '🔓 Unlock (US$2)') + '</a>';
         return '<div class="course-card">'
           + '<div class="cc-top"><div class="cc-icon">' + s[2] + '</div>'
           + '<div><div class="cc-title">' + esc(s[1]) + '</div>'
@@ -844,7 +845,7 @@
           + '<div style="font-weight:700;font-size:.9rem;line-height:1.25;">' + esc(c.title.split(':')[0]) + '</div>'
           + '<div style="font-size:.74rem;color:var(--muted);margin-top:.1rem;">' + esc(c.category || 'Course') + ' · ' + lessons + ' lessons · ' + (c.level || 'All levels') + '</div>'
           + '</div>'
-          + '<a class="btn btn-orange btn-sm" style="flex-shrink:0;" href="course-player.html?id=' + encodeURIComponent(id) + '">🔓 Add · US$' + price + '</a>'
+          + '<a class="btn btn-orange btn-sm" style="flex-shrink:0;" href="course-player?id=' + encodeURIComponent(id) + '">🔓 Add · US$' + price + '</a>'
           + '</div>';
       }).join('');
     }

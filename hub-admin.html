@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -193,7 +194,7 @@
             <tbody id="appsTbody"></tbody>
           </table>
         </div>
-        <div class="empty-state" id="appsEmpty" style="display:none;">No applications yet. Share the <a href="hub-apply.html">application form</a> to get started.</div>
+        <div class="empty-state" id="appsEmpty" style="display:none;">No applications yet. Share the <a href="hub-apply">application form</a> to get started.</div>
       </div>
     </div>
 
@@ -312,7 +313,7 @@
             <tbody id="certTbody"></tbody>
           </table>
         </div>
-        <div class="empty-state" id="certEmpty" style="display:none;">No certificates recorded on this device yet. Certificates are stored in each learner's browser and can be verified at <a href="certificate-verify.html">certificate-verify.html</a>.</div>
+        <div class="empty-state" id="certEmpty" style="display:none;">No certificates recorded on this device yet. Certificates are stored in each learner's browser and can be verified at <a href="certificate-verify">certificate-verify.html</a>.</div>
       </div>
     </div>
 
@@ -653,7 +654,7 @@
       HubDB.audit('Requested more info', id);
       closeModal(); renderAll();
       if (a && confirm('Open WhatsApp to notify ' + a.name + '?')) {
-        window.open(HubDB.waLink(a.phone, 'Hello ' + a.name + ', regarding your TIH Learning Hub application ' + a.id + ': ' + msg + '\n\nReply here or check your status: https://tolbertinnovationhub.org/hub-track.html?id=' + a.id), '_blank');
+        window.open(HubDB.waLink(a.phone, 'Hello ' + a.name + ', regarding your TIH Learning Hub application ' + a.id + ': ' + msg + '\n\nReply here or check your status: https://tolbertinnovationhub.org/hub-track?id=' + a.id), '_blank');
         HubDB.logMessage({ to: a.phone, channel: 'whatsapp', type: 'info-request', target: id });
       }
     };
@@ -680,7 +681,7 @@
         HubDB.updateApplication(id, { status: 'approved', statusMessage: '', studentId: res.student.id });
         HubDB.audit('Approved application → created student ' + res.student.id, id);
         renderAll();
-        var loginUrl = 'https://tolbertinnovationhub.org/hub-dashboard.html';
+        var loginUrl = 'https://tolbertinnovationhub.org/hub-dashboard';
         var waText = 'Welcome to TIH Learning Hub, ' + a.name + '! 🎉\n\nYour application ' + a.id + ' has been APPROVED.\n\nLogin details:\nStudent ID: ' + res.student.id + '\nTemporary password: ' + res.tempPassword + '\n\nLogin here: ' + loginUrl + '\nYou will be asked to set a new password on first login.\n\nYour first courses are already assigned. Happy learning!';
         openModal(
           '<h3>✅ Student Account Created <button class="x" onclick="closeModal()">✕</button></h3>'
@@ -816,7 +817,7 @@
       HubDB.audit('Assigned course ' + cid, sid);
       var s = HubDB.findStudent(sid);
       if (s && s.phone && confirm('Notify ' + s.name + ' on WhatsApp about the new course?')) {
-        window.open(HubDB.waLink(s.phone, 'Hello ' + s.name + '! A new course has been assigned to you on TIH Learning Hub: "' + courseName(cid) + '"' + (deadline ? ' (deadline: ' + deadline + ')' : '') + '. Login to start: https://tolbertinnovationhub.org/hub-dashboard.html'), '_blank');
+        window.open(HubDB.waLink(s.phone, 'Hello ' + s.name + '! A new course has been assigned to you on TIH Learning Hub: "' + courseName(cid) + '"' + (deadline ? ' (deadline: ' + deadline + ')' : '') + '. Login to start: https://tolbertinnovationhub.org/hub-dashboard'), '_blank');
         HubDB.logMessage({ to: s.phone, channel: 'whatsapp', type: 'course-assigned', target: sid });
       }
       viewStudent(sid); renderAll();
@@ -848,7 +849,7 @@
           + '<p style="font-size:.9rem;">New temporary password for <b>' + esc(s.name) + '</b> (shown once):</p>'
           + '<div class="cred-box">Student ID: <b>' + esc(s.id) + '</b><br>Temp password: <b>' + esc(tempPassword) + '</b></div>'
           + '<div class="modal-actions">'
-          + '<a class="btn btn-green" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(s.phone, 'Hello ' + s.name + ', your TIH Learning Hub password was reset.\nStudent ID: ' + s.id + '\nTemporary password: ' + tempPassword + '\nLogin: https://tolbertinnovationhub.org/hub-dashboard.html') + '">💬 Send via WhatsApp</a>'
+          + '<a class="btn btn-green" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(s.phone, 'Hello ' + s.name + ', your TIH Learning Hub password was reset.\nStudent ID: ' + s.id + '\nTemporary password: ' + tempPassword + '\nLogin: https://tolbertinnovationhub.org/hub-dashboard') + '">💬 Send via WhatsApp</a>'
           + '</div>'
         );
       });
@@ -901,7 +902,7 @@
           '<h3>✅ Student Created <button class="x" onclick="closeModal()">✕</button></h3>'
           + '<div class="cred-box">Student ID: <b>' + esc(res.student.id) + '</b><br>Temp password: <b>' + esc(res.tempPassword) + '</b></div>'
           + '<div class="modal-actions">'
-          + '<a class="btn btn-green" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(phone, 'Welcome to TIH Learning Hub, ' + name + '!\nStudent ID: ' + res.student.id + '\nTemporary password: ' + res.tempPassword + '\nLogin: https://tolbertinnovationhub.org/hub-dashboard.html') + '">💬 Send via WhatsApp</a>'
+          + '<a class="btn btn-green" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(phone, 'Welcome to TIH Learning Hub, ' + name + '!\nStudent ID: ' + res.student.id + '\nTemporary password: ' + res.tempPassword + '\nLogin: https://tolbertinnovationhub.org/hub-dashboard') + '">💬 Send via WhatsApp</a>'
           + '<button class="btn btn-line" onclick="viewStudent(\'' + res.student.id + '\')">Manage Student</button>'
           + '</div>'
         );
@@ -1127,7 +1128,7 @@
       HubDB.certCode(stuId, cid).then(function (code) {
         HubDB.audit('Generated cert approval code for ' + cid, stuId);
         var s = HubDB.findStudent(stuId);
-        var waText = 'TIH Learning Hub, Certificate APPROVED! 🎉\n\nYour certificate for "' + courseName(cid) + '" has been approved.\n\nApproval code: ' + code + '\n\nEnter this code on your dashboard (Completed Courses section) to unlock and download your certificate: https://tolbertinnovationhub.org/hub-dashboard.html';
+        var waText = 'TIH Learning Hub, Certificate APPROVED! 🎉\n\nYour certificate for "' + courseName(cid) + '" has been approved.\n\nApproval code: ' + code + '\n\nEnter this code on your dashboard (Completed Courses section) to unlock and download your certificate: https://tolbertinnovationhub.org/hub-dashboard';
         out.innerHTML = '<div class="cred-box">Approval code for <b>' + esc(stuId) + '</b> · ' + esc(courseName(cid)) + ': <b style="font-size:1.2rem;letter-spacing:.1em;">' + code + '</b></div>'
           + '<div class="modal-actions" style="margin-top:.5rem;">'
           + '<a class="btn btn-green btn-sm" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(s ? s.phone : null, waText) + '">💬 Send via WhatsApp</a>'
@@ -1166,7 +1167,7 @@
       HubDB.audit('Approved certificate request ' + id, r.studentId);
       HubDB.certCode(r.studentId, r.courseId).then(function (code) {
         var s = HubDB.findStudent(r.studentId);
-        var waText = 'TIH Learning Hub, Certificate APPROVED! 🎉\n\nYour certificate for "' + courseName(r.courseId) + '" has been approved.\n\nApproval code: ' + code + '\n\nEnter this code on your dashboard to unlock and download your certificate: https://tolbertinnovationhub.org/hub-dashboard.html';
+        var waText = 'TIH Learning Hub, Certificate APPROVED! 🎉\n\nYour certificate for "' + courseName(r.courseId) + '" has been approved.\n\nApproval code: ' + code + '\n\nEnter this code on your dashboard to unlock and download your certificate: https://tolbertinnovationhub.org/hub-dashboard';
         openModal(
           '<h3>✅ Request Approved <button class="x" onclick="closeModal()">✕</button></h3>'
           + '<p style="font-size:.9rem;">Send the approval code to <b>' + esc(s ? s.name : r.studentId) + '</b>:</p>'
@@ -1213,7 +1214,7 @@
         return '<tr><td><b>' + esc(c.certId) + '</b></td><td>' + esc(c.studentName || 'N/A') + '</td>'
           + '<td>' + esc((c.courseTitle || '').split(':')[0]) + '</td><td>' + esc(c.date || 'N/A') + '</td>'
           + '<td><div class="row-actions">'
-          + '<a class="btn btn-line btn-sm" href="certificate-verify.html?id=' + encodeURIComponent(c.certId) + '">Verify</a>' + pub
+          + '<a class="btn btn-line btn-sm" href="certificate-verify?id=' + encodeURIComponent(c.certId) + '">Verify</a>' + pub
           + '</div></td></tr>';
       }).join('');
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -764,22 +765,22 @@
 <!-- Navigation -->
 <header class="site-header">
   <div class="container nav-wrap">
-    <a href="index.html" class="logo" aria-label="TIH Home">
+    <a href="/" class="logo" aria-label="TIH Home">
       <span class="logo-tih">TIH</span><span class="logo-lib">Liberia</span>
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <nav class="nav-links" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="learning-hub.html">Learning Hub</a>
-      <a href="study-abroad.html">Study Abroad</a>
-      <a class="active" href="wassce.html">WASSCE PRO</a>
-      <a href="grants.html">Grants</a>
-        <a href="library.html">Library</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="apply.html" class="nav-cta">Apply Now</a>
+      <a href="/">Home</a>
+      <a href="learning-hub">Learning Hub</a>
+      <a href="study-abroad">Study Abroad</a>
+      <a class="active" href="wassce">WASSCE PRO</a>
+      <a href="grants">Grants</a>
+        <a href="library">Library</a>
+      <a href="about">About</a>
+      <a href="contact">Contact</a>
+      <a href="apply" class="nav-cta">Apply Now</a>
     </nav>
   </div>
 </header>
@@ -953,7 +954,7 @@
 
     <div class="results-actions">
       <button class="btn-retry" onclick="resetExam()">Try Another Mock</button>
-      <a class="btn-study" id="btn-study-weak" href="wassce-learn.html">Study Weak Topics</a>
+      <a class="btn-study" id="btn-study-weak" href="wassce-learn">Study Weak Topics</a>
       <button class="btn-view-results" onclick="scrollToReview()">View Answer Review</button>
     </div>
 
@@ -988,10 +989,10 @@
     <div>
       <h4 class="footer-heading">Programs</h4>
       <ul class="footer-links">
-        <li><a href="study-abroad.html">Study Abroad</a></li>
-        <li><a href="wassce.html">WASSCE PRO</a></li>
-        <li><a href="grants.html">Grants 2026&ndash;2027</a></li>
-        <li><a href="learning-hub.html">TIH Learning Hub</a></li>
+        <li><a href="study-abroad">Study Abroad</a></li>
+        <li><a href="wassce">WASSCE PRO</a></li>
+        <li><a href="grants">Grants 2026&ndash;2027</a></li>
+        <li><a href="learning-hub">TIH Learning Hub</a></li>
       </ul>
     </div>
     <div>
@@ -1536,7 +1537,7 @@ function showResults() {
   document.getElementById('rstat-time').textContent = timeTakenStr;
 
   // Study weak topics link
-  document.getElementById('btn-study-weak').href = `wassce-learn.html?s=${examState.subject}`;
+  document.getElementById('btn-study-weak').href = `wassce-learn?s=${examState.subject}`;
 
   // Answer review
   const reviewList = document.getElementById('review-list');

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -99,7 +100,7 @@
 </head>
 <body>
   <div class="topbar">
-    <a href="hub-dashboard.html" class="brand" style="color:#fff;text-decoration:none;">TIH <span>Learning Hub</span></a>
+    <a href="hub-dashboard" class="brand" style="color:#fff;text-decoration:none;">TIH <span>Learning Hub</span></a>
     <div style="display:flex;align-items:center;gap:.7rem;">
       <span class="timer" id="timer">00:00</span>
       <button class="btn btn-primary btn-sm hidden" id="submitBtn" style="min-height:40px;">Submit Test</button>
@@ -190,7 +191,7 @@
       // flatten MCQ
       flat=[];
       (T.sections||[]).forEach(function(sec){ (sec.questions||[]).forEach(function(qq){ var sh=shuffleQ(qq); flat.push({section:sec.name,q:qq.q,opts:sh.opts,correct:sh.correct,exp:qq.exp}); }); });
-      document.getElementById('backCourseBtn').href='course-player.html?id='+encodeURIComponent(exam);
+      document.getElementById('backCourseBtn').href='course-player?id='+encodeURIComponent(exam);
       // meta chips
       var mr=document.getElementById('metaRow');
       mr.innerHTML = '<span class="chip">⏱ '+T.durationMin+' minutes</span>'

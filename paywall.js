@@ -85,7 +85,7 @@ var Paywall = (function () {
       + '<button id="tihAccessBtn" style="width:100%;background:#E31E24;color:#fff;border:none;border-radius:10px;font-weight:800;font-size:1rem;padding:.85rem;margin-top:.6rem;cursor:pointer;font-family:inherit;min-height:50px;">🔓 Unlock Course</button>'
       + '<div id="tihAccessFb" style="font-size:.85rem;font-weight:600;color:#e31e24;min-height:1.1em;margin-top:.5rem;"></div>'
       + '<div style="margin-top:1rem;text-align:center;">'
-      + '<a href="hub-dashboard.html" style="color:#64748b;font-size:.82rem;text-decoration:none;">← Back to My Dashboard</a>'
+      + '<a href="hub-dashboard" style="color:#64748b;font-size:.82rem;text-decoration:none;">← Back to My Dashboard</a>'
       + '</div>'
       + '</div></div>';
     return o;
@@ -99,12 +99,12 @@ var Paywall = (function () {
 
     var session = HubDB.studentSession();
     if (!session) {
-      window.location.replace('hub-dashboard.html?next=' + currentReturnParam(itemId));
+      window.location.replace('hub-dashboard?next=' + currentReturnParam(itemId));
       return;
     }
     var student = HubDB.findStudent(session.id);
     if (!student || student.status !== 'active') {
-      window.location.replace('hub-dashboard.html?next=' + currentReturnParam(itemId));
+      window.location.replace('hub-dashboard?next=' + currentReturnParam(itemId));
       return;
     }
     if (HubDB.hasAccess(itemId)) return; // already paid & unlocked → allow

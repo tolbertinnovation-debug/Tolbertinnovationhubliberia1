@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -392,8 +393,8 @@
     <div class="topbar-right">
       <a href="#" class="topbar-cert-btn" id="topbarPracticeBtn" style="text-decoration:none;display:none;background:#E31E24;color:#fff;border-color:#E31E24;" title="Take the timed practice test">🎯 Practice Test</a>
       <button class="topbar-cert-btn" id="topbarCertBtn" onclick="showCompletionModal()" title="View &amp; download your certificate">🏆 Certificate</button>
-      <a href="my-certificates.html?v=2" class="topbar-cert-btn" id="topbarMyCertsBtn" style="text-decoration:none;display:none;" title="All my certificates">📜 My Certs</a>
-      <a href="hub-dashboard.html" class="topbar-avatar" title="My Account" id="topbarAvatar" style="text-decoration:none;">?</a>
+      <a href="my-certificates?v=2" class="topbar-cert-btn" id="topbarMyCertsBtn" style="text-decoration:none;display:none;" title="All my certificates">📜 My Certs</a>
+      <a href="hub-dashboard" class="topbar-avatar" title="My Account" id="topbarAvatar" style="text-decoration:none;">?</a>
     </div>
   </div>
 
@@ -581,9 +582,9 @@
       <div class="completion-actions">
         <button class="btn-cert-primary" id="certPrimaryBtn" onclick="printCertificate()">⬇ Download / Print Certificate</button>
         <div class="cert-row">
-          <a href="my-certificates.html?v=2" class="btn-cert-sec">🏆 My Certs</a>
+          <a href="my-certificates?v=2" class="btn-cert-sec">🏆 My Certs</a>
           <button class="btn-cert-sec" onclick="shareCompletion()">🔗 Share</button>
-          <a href="certificate-verify.html" class="btn-cert-sec">🔍 Verify</a>
+          <a href="certificate-verify" class="btn-cert-sec">🔍 Verify</a>
         </div>
       </div>
       <button class="btn-close-completion" onclick="closeCompletionModal()">✕ Close</button>
@@ -724,17 +725,17 @@
     // ===== ACCESS CONTROL: login required, assigned courses only =====
     var hubSession = (typeof HubDB !== 'undefined') ? HubDB.studentSession() : null;
     if (!hubSession) {
-      window.location.replace('hub-dashboard.html?next=' + encodeURIComponent(courseId));
+      window.location.replace('hub-dashboard?next=' + encodeURIComponent(courseId));
       return;
     }
     hubStudent = HubDB.findStudent(hubSession.id);
     if (!hubStudent || hubStudent.status !== 'active') {
-      window.location.replace('hub-dashboard.html?next=' + encodeURIComponent(courseId));
+      window.location.replace('hub-dashboard?next=' + encodeURIComponent(courseId));
       return;
     }
     course = COURSES_DB[courseId];
     if (!course) {
-      document.body.innerHTML = '<div style="padding:3rem;text-align:center;font-family:Inter,sans-serif"><h2 style="color:#002868">Course not found</h2><p style="margin:1rem 0 2rem;color:#6b7280">This course does not exist.</p><a href="learning-hub.html" style="color:#002868;font-weight:700">← Back to Courses</a></div>';
+      document.body.innerHTML = '<div style="padding:3rem;text-align:center;font-family:Inter,sans-serif"><h2 style="color:#002868">Course not found</h2><p style="margin:1rem 0 2rem;color:#6b7280">This course does not exist.</p><a href="learning-hub" style="color:#002868;font-weight:700">← Back to Courses</a></div>';
       return;
     }
 
@@ -774,11 +775,11 @@
 
     // Update topbar
     document.getElementById('topbarTitle').textContent = course.title;
-    document.getElementById('topbarBack').href = 'hub-dashboard.html';
+    document.getElementById('topbarBack').href = 'hub-dashboard';
     // Premium exam-prep courses get a Practice Test entry point.
     if (courseId === 'ielts' || courseId === 'toefl' || courseId === 'sat') {
       var pb = document.getElementById('topbarPracticeBtn');
-      if (pb) { pb.href = 'practice-test.html?exam=' + courseId; pb.style.display = ''; }
+      if (pb) { pb.href = 'practice-test?exam=' + courseId; pb.style.display = ''; }
     }
     // Populate avatar with first letter of logged-in student's name
     (function() {
@@ -990,7 +991,7 @@
     var resBody = lesson.reading
       ? 'This lesson is delivered as a detailed written masterclass in the Overview tab. Read it carefully, use the Notes tab to capture key strategies, and visit the TIH Library for further practice on this topic.'
       : 'This lesson is delivered through the video above. Use the Notes tab to write down the key points as you watch, and visit the TIH Library for further reading on this topic.';
-    document.getElementById('resourcesContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">📂</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">' + resHead + '</p><p style="font-size:0.85rem;">' + resBody + '</p><a href="library.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;background:#1e40af;color:#fff;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px;text-decoration:none;">📚 Open the Library</a></div>';
+    document.getElementById('resourcesContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">📂</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">' + resHead + '</p><p style="font-size:0.85rem;">' + resBody + '</p><a href="library" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;background:#1e40af;color:#fff;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px;text-decoration:none;">📚 Open the Library</a></div>';
     // Q&A, Issue 13 fix: styled empty state with engagement prompt instead of bare placeholder
     document.getElementById('qaContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">💬</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">Have a Question?</p><p style="font-size:0.85rem;">If anything in this lesson is unclear, reach out to a TIH mentor on WhatsApp. We are happy to explain it another way and help you keep moving forward.</p><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;background:#25D366;color:#fff;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px;text-decoration:none;">💬 Ask on WhatsApp</a></div>';
     // Notes
@@ -1397,7 +1398,7 @@
     return (typeof HubDB !== 'undefined') && HubDB.certApprovedLocal(courseId);
   }
   function requestCertReview() {
-    if (typeof HubDB === 'undefined' || !hubStudent) { window.location.href = 'hub-dashboard.html'; return; }
+    if (typeof HubDB === 'undefined' || !hubStudent) { window.location.href = 'hub-dashboard'; return; }
     HubDB.requestCertificate(hubStudent.id, courseId, course.title);
     var waText = 'CERTIFICATE REQUEST, TIH Learning Hub\n'
       + 'Student: ' + hubStudent.name + '\n'
@@ -1435,7 +1436,7 @@
       if (btn) {
         if (pending && pending.status === 'pending') {
           btn.textContent = '⏳ Awaiting Admin Approval, Enter Code on Dashboard';
-          btn.onclick = function () { window.location.href = 'hub-dashboard.html'; };
+          btn.onclick = function () { window.location.href = 'hub-dashboard'; };
         } else {
           btn.textContent = '🏆 Request Certificate Review';
           btn.onclick = requestCertReview;
