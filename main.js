@@ -636,15 +636,15 @@ function buildHeroNetwork(hero, canvas) {
   function seed() {
     // Node count scales with hero area; capped for performance / touch.
     const area = W * H;
-    let n = Math.round(area / 15000);
-    n = Math.max(14, Math.min(n, isCoarse ? 32 : 78));
+    let n = Math.round(area / 8000);
+    n = Math.max(26, Math.min(n, isCoarse ? 60 : 150));
     nodes = [];
     for (let i = 0; i < n; i++) {
       nodes.push({
         x: Math.random() * W,
         y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.28,
-        vy: (Math.random() - 0.5) * 0.28,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
         r: 1.1 + Math.random() * 1.7
       });
     }
