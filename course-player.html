@@ -123,7 +123,8 @@
     @supports (aspect-ratio: 16/9) {
       .video-container { aspect-ratio: 16/9; padding-top: 0; }
     }
-    .video-container iframe.video-container #ytPlayer { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; border: none; z-index: 1; }
+    .video-container iframe,
+    .video-container #ytPlayer { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; border: none; z-index: 1; }
     /* Branded top bar, covers the player's title/share chrome during playback */
     .video-topbar {
       position: absolute; top: 0; left: 0; right: 0; height: 46px; z-index: 5;
@@ -634,6 +635,7 @@
   function buildPlayer() {
     ytPlayer = new YT.Player('ytPlayer', {
       host: 'https://www.youtube-nocookie.com',
+      width: '100%', height: '100%',
       videoId: currentVideoId,
       playerVars: { autoplay: 1, controls: 0, rel: 0, modestbranding: 1, iv_load_policy: 3, playsinline: 1, disablekb: 1, fs: 0, showinfo: 0 },
       events: {
