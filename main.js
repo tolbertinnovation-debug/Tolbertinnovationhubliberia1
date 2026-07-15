@@ -767,7 +767,10 @@ function buildHeroNetwork(hero, canvas) {
 var tihWelcomeEl = null;
 function tihWelcomeAudioEl() {
   if (!tihWelcomeEl) {
-    tihWelcomeEl = new Audio('welcome-message.mp3?v=1');
+    // A page may override the greeting by setting window.TIH_WELCOME_AUDIO
+    // before the first interaction (e.g. the scholarship page).
+    var src = window.TIH_WELCOME_AUDIO || 'welcome-message.mp3?v=1';
+    tihWelcomeEl = new Audio(src);
     tihWelcomeEl.preload = 'none';
   }
   return tihWelcomeEl;
