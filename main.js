@@ -506,6 +506,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safe(initInnerHero);
   safe(initHeroNetwork);
   safe(initHeroParallax);
+  safe(initWelcomeAudio);
 
   // Announcement bar close button
   const announcementClose = document.getElementById('announcement-close');
@@ -753,6 +754,61 @@ function buildHeroNetwork(hero, canvas) {
 
   resize();
   start();
+}
+
+// ============================================================
+// Spoken welcome — greets a visitor with "Welcome to Tolbert
+// Innovation Hub" using the browser's built-in speech synthesis.
+// Browsers block audio until the user interacts, so we speak on the
+// first tap/click/scroll/key, and only once per browsing session.
+// ============================================================
+function initWelcomeAudio() {
+  if (!('speechSynthesis' in window)) return;                 // unsupported browser
+  const KEY = 'tih_welcomed';
+  try { if (sessionStorage.getItem(KEY)) return; } catch (e) { /* private mode */ }
+
+  const events = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
+  let spoken = false;
+
+  const pickVoice = () => {
+    const voices = window.speechSynthesis.getVoices() || [];
+    if (!voices.length) return null;
+    // Prefer a natural-sounding English voice, else any English voice.
+    return voices.find(v => /en[-_]?(US|GB)/i.test(v.lang) &&
+             /google|samantha|zira|aria|jenny|natural|female/i.test(v.name))
+        || voices.find(v => /^en/i.test(v.lang))
+        || voices[0];
+  };
+
+  const say = () => {
+    if (spoken) return;
+    spoken = true;
+    try {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance('Welcome to Tolbert Innovation Hub');
+      u.lang = 'en-US';
+      u.rate = 0.95;
+      u.pitch = 1;
+      u.volume = 1;
+      const v = pickVoice();
+      if (v) u.voice = v;
+      window.speechSynthesis.speak(u);
+    } catch (e) { /* ignore */ }
+  };
+
+  const trigger = () => {
+    try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    events.forEach(ev => window.removeEventListener(ev, trigger));
+    // Voices can load asynchronously; speak now if ready, else wait briefly.
+    if ((window.speechSynthesis.getVoices() || []).length) {
+      say();
+    } else {
+      window.speechSynthesis.addEventListener('voiceschanged', say, { once: true });
+      setTimeout(say, 300);                                   // fallback if event never fires
+    }
+  };
+
+  events.forEach(ev => window.addEventListener(ev, trigger, { once: false, passive: true }));
 }
 
 // ============================================================
