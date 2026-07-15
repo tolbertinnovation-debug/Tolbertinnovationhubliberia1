@@ -568,9 +568,7 @@
         font-weight: 600;
         color: #002868;
       }
-      .form-input,
-      .form-select,
-      .form-textarea {
+      .form-input.form-select.form-textarea {
         font-family: 'Inter', sans-serif;
         font-size: 0.95rem;
         color: #222;
@@ -583,9 +581,7 @@
         width: 100%;
         box-sizing: border-box;
       }
-      .form-input:focus,
-      .form-select:focus,
-      .form-textarea:focus {
+      .form-input:focus.form-select:focus.form-textarea:focus {
         border-color: #002868;
         box-shadow: 0 0 0 3px rgba(0,40,104,0.10);
         background: #fff;
@@ -747,7 +743,7 @@
   <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
   </a>
-  <script src="main.js?v=10"></script>
+  <script src="main.js?v=11"></script>
   <script>
     function handleNewsletterSubmit(e) {
       e.preventDefault();
@@ -755,12 +751,12 @@
       document.getElementById('newsletter-email').value = '';
     }
   </script>
-<script src="chatbot.js?v=2"></script>
+<script src="chatbot.js?v=3"></script>
   <script>
     /* ---- Entrance-animation failsafe ----
        On slow / flaky mobile connections the external scripts (main.js) can
        fail to load, leaving scroll-reveal sections and the hero stuck at
-       opacity:0 — the page appears to "disappear". This inline guard is
+       opacity:0, the page appears to "disappear". This inline guard is
        self-contained and guarantees content becomes visible no matter what. */
     (function () {
       function show() {

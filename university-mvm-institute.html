@@ -74,8 +74,8 @@
     .fg2 { display:flex; flex-direction:column; gap:0.4rem; margin-bottom:1.1rem; }
     .fg2 label { font-size:0.85rem; font-weight:600; color:#374151; }
     .fg2 .req { color:#E31E24; }
-    .fg2 input,.fg2 select,.fg2 textarea { width:100%; padding:0.72rem 0.95rem; border:1.5px solid #e2e8f0; border-radius:8px; background:#f8fafc; color:#0f172a; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:border-color 0.18s,box-shadow 0.18s; appearance:none; -webkit-appearance:none; }
-    .fg2 input:focus,.fg2 select:focus,.fg2 textarea:focus { border-color:#002868; background:#fff; box-shadow:0 0 0 3px rgba(0,40,104,0.1); }
+    .fg2 input.fg2 select.fg2 textarea { width:100%; padding:0.72rem 0.95rem; border:1.5px solid #e2e8f0; border-radius:8px; background:#f8fafc; color:#0f172a; font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; transition:border-color 0.18s,box-shadow 0.18s; appearance:none; -webkit-appearance:none; }
+    .fg2 input:focus.fg2 select:focus.fg2 textarea:focus { border-color:#002868; background:#fff; box-shadow:0 0 0 3px rgba(0,40,104,0.1); }
     .fg2 textarea { resize:vertical; min-height:100px; }
     .fg2 select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 0.9rem center; padding-right:2.5rem; cursor:pointer; }
     .form-feedback { font-size:0.9rem; font-weight:600; margin-top:0.85rem; padding:0.7rem 1rem; border-radius:8px; background:#f1f5f9; display:none; }
@@ -95,7 +95,7 @@
     .bottom-nav-sub { color:rgba(255,255,255,0.55); font-weight:400; }
     .bottom-nav-links { display:flex; gap:1.25rem; flex:1; justify-content:center; }
     .bottom-nav-links a { color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.85rem; font-weight:500; transition:color 0.18s; font-family:'Inter',sans-serif; }
-    .bottom-nav-links a:hover,.bottom-nav-links a.active { color:#fff; }
+    .bottom-nav-links a:hover.bottom-nav-links a.active { color:#fff; }
     .bottom-nav-cta { flex-shrink:0; }
     /* PORTAL FOOTER */
     .portal-footer { background:#0f172a; color:#94a3b8; padding:3rem 0 1.5rem; }
@@ -529,12 +529,12 @@
       </div>
       <div class="portal-footer-bottom">
         <p>© 2026 Tolbert Innovation Hub. All rights reserved. &middot; <a href="contact.html">Privacy</a> &middot; <a href="contact.html">Terms</a></p>
-        <p>Empowering Africa's Future — Never Stop Innovating.</p>
+        <p>Empowering Africa's Future, Never Stop Innovating.</p>
       </div>
     </div>
   </footer>
 
-  <script src="main.js?v=10"></script>
+  <script src="main.js?v=11"></script>
   <script>
   function switchTab(name, btn) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -554,6 +554,6 @@
     res.innerHTML='✅ <strong>Looks Good!</strong> Based on your input, you may be eligible to apply. Book a free counseling session to confirm and get started.';
   }
   </script>
-  <script src="chatbot.js?v=2"></script>
+  <script src="chatbot.js?v=3"></script>
 </body>
 </html>

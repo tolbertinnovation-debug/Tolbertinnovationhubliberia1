@@ -181,8 +181,7 @@
       color: #374151;
       font-size: 0.95rem;
     }
-    .lesson-notes h3,
-    .lesson-notes h4 {
+    .lesson-notes h3.lesson-notes h4 {
       color: #002868;
       margin-top: 1.25rem;
     }
@@ -384,7 +383,7 @@
     }
 
     /* ==========================================
-       VIDEOS TAB — EMBEDDED PLAYERS
+       VIDEOS TAB, EMBEDDED PLAYERS
     ========================================== */
     .video-grid {
       display: grid;
@@ -710,7 +709,7 @@
       <div class="footer-bottom">
         <div class="footer-bottom-inner">
           <p class="copyright-note">&copy; 2026 Tolbert Innovation Hub. All rights reserved. &middot; <a href="contact.html" style="color:rgba(200,216,240,0.7);">Privacy</a> &middot; <a href="contact.html" style="color:rgba(200,216,240,0.7);">Terms</a></p>
-          <p class="footer-signoff">Empowering Africa's Future — Never Stop Innovating.</p>
+          <p class="footer-signoff">Empowering Africa's Future, Never Stop Innovating.</p>
         </div>
       </div>
     </div>
@@ -720,13 +719,13 @@
   <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" style="position:fixed; bottom:1.5rem; right:1.5rem; z-index:999; background:#25D366; color:#fff; border-radius:50%; width:3.5rem; height:3.5rem; display:flex; align-items:center; justify-content:center; font-size:1.6rem; box-shadow:0 4px 18px rgba(0,0,0,0.18); text-decoration:none;">💬</a>
 
   <!-- Data + Scripts -->
-  <script src="wassce-data.js"></script>
-  <script src="hub-config.js?v=3"></script>
-  <script src="hub-cloud.js?v=8"></script>
-  <script src="hub-db.js?v=16"></script>
-  <script src="paywall.js?v=7"></script>
-  <script src="main.js?v=10"></script>
-  <script src="chatbot.js?v=2"></script>
+  <script src="wassce-data.js?v=1"></script>
+  <script src="hub-config.js?v=4"></script>
+  <script src="hub-cloud.js?v=9"></script>
+  <script src="hub-db.js?v=17"></script>
+  <script src="paywall.js?v=8"></script>
+  <script src="main.js?v=11"></script>
+  <script src="chatbot.js?v=3"></script>
 
   <!-- ==========================================
        INLINE PAGE SCRIPT
@@ -984,7 +983,7 @@
         }
       }
 
-      /* ---- Videos tab — embedded YouTube players ---- */
+      /* ---- Videos tab, embedded YouTube players ---- */
       function renderVideos(subject) {
         var grid = document.getElementById('videos-grid');
         if (!grid || !subject || !subject.topics) return;

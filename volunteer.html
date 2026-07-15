@@ -79,9 +79,7 @@
     .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
     .form-group.full { grid-column: 1 / -1; }
     .form-group label { font-size: 0.88rem; font-weight: 600; color: #333; }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
+    .form-group input.form-group select.form-group textarea {
       padding: 0.75rem 1rem;
       border: 2px solid #dde4f0;
       border-radius: 8px;
@@ -92,9 +90,7 @@
       transition: border-color 0.2s;
       background: #fafbff;
     }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { border-color: #002868; background: #fff; }
+    .form-group input:focus.form-group select:focus.form-group textarea:focus { border-color: #002868; background: #fff; }
     .form-group textarea { resize: vertical; min-height: 100px; }
     .form-submit-row { margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
     .form-note { font-size: 0.83rem; color: #888; }
@@ -535,7 +531,7 @@
   <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
   </a>
-  <script src="main.js?v=10"></script>
+  <script src="main.js?v=11"></script>
   <script>
     function handleVolunteerSubmit(e) {
       e.preventDefault();
@@ -547,12 +543,12 @@
       success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   </script>
-<script src="chatbot.js?v=2"></script>
+<script src="chatbot.js?v=3"></script>
   <script>
     /* ---- Entrance-animation failsafe ----
        On slow / flaky mobile connections the external scripts (main.js) can
        fail to load, leaving scroll-reveal sections and the hero stuck at
-       opacity:0 — the page appears to "disappear". This inline guard is
+       opacity:0, the page appears to "disappear". This inline guard is
        self-contained and guarantees content becomes visible no matter what. */
     (function () {
       function show() {

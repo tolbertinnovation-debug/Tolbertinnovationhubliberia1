@@ -15,7 +15,7 @@
     :root {
       --primary: #1E3A8A; --primary-light: #eaf4ff; --secondary: #E31E24;
       --accent: #10B981; --bg: #F8FAFC; --text: #1F2937; --muted: #64748b; --border: #e2e8f0;
-      --radius: 16px; --shadow: 0 4px 16px rgba(30,58,138,.08);
+      --radius: 16px; --shadow: 0 4px 16px rgba(30,58,138.08);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; }
@@ -73,7 +73,7 @@
   <div class="wrap">
     <div class="page-head">
       <h1>Track Your Application</h1>
-      <p>Enter your Application ID (e.g. <strong>TIH-APP-A1B2C3</strong>) — no login needed.</p>
+      <p>Enter your Application ID (e.g. <strong>TIH-APP-A1B2C3</strong>), no login needed.</p>
     </div>
 
     <div class="card">
@@ -106,9 +106,9 @@
     <p class="support-note">Questions? Chat with us on <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">💬 WhatsApp Support</a></p>
   </div>
 
-  <script src="hub-config.js?v=3"></script>
-  <script src="hub-cloud.js?v=8"></script>
-  <script src="hub-db.js?v=16"></script>
+  <script src="hub-config.js?v=4"></script>
+  <script src="hub-cloud.js?v=9"></script>
+  <script src="hub-db.js?v=17"></script>
   <script>
     (function () {
       function getUrlParam(name) {
@@ -152,7 +152,7 @@
         document.getElementById('sSub').textContent = meta.sub;
         document.getElementById('rId').textContent = app.id;
         document.getElementById('rName').textContent = app.name;
-        document.getElementById('rDate').textContent = (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(app.submittedAt) : (app.submittedAt || '—');
+        document.getElementById('rDate').textContent = (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(app.submittedAt) : (app.submittedAt || ', ');
         var msgBox = document.getElementById('msgBox');
         if (app.statusMessage) {
           msgBox.style.display = 'block';

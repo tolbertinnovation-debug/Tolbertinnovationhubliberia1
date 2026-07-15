@@ -1,23 +1,23 @@
 /* ============================================================
-   TIH LEARNING HUB — CONFIGURATION
+   TIH LEARNING HUB, CONFIGURATION
    ------------------------------------------------------------
    One place to switch the whole hub from per-device storage to a
    real, shared database. Fill in the Supabase values below and the
    site gains cross-device application tracking, student login, a
-   live admin dashboard AND public certificate verification — all
+   live admin dashboard AND public certificate verification, all
    from the same project. Until you do, everything works exactly as
    before (per-device), and nothing breaks.
    ============================================================ */
 
 /* ============================================================
-   SUPABASE (central database) — powers cross-device tracking of
+   SUPABASE (central database), powers cross-device tracking of
    applications, students, enrollments, payments, progress,
    certificate requests and public certificate verification, plus
    the live admin dashboard.
 
    Until you paste your values below, the site keeps working
    exactly as before (everything is stored per-device in the
-   browser) — nothing breaks if this is left empty.
+   browser), nothing breaks if this is left empty.
 
    ONE-TIME SETUP (free, ~10 minutes):
      1. Go to https://supabase.com  → "New project" (any name,
@@ -27,12 +27,12 @@
         supabase-schema.sql  from this repo, and click "Run".
      3. Open  Authentication → Users → "Add user":  create ONE
         admin account (email + password) for Samuel. This is what
-        the admin panel signs into. (Turn OFF "Auto-confirm"? No —
+        the admin panel signs into. (Turn OFF "Auto-confirm"? No, 
         leave it ON / mark the user confirmed so you can sign in.)
      4. Open  Project Settings → API.  Copy:
           • "Project URL"      → url  below
           • "anon public" key  → anonKey  below
-        (Never paste the "service_role" key into this file — it is
+        (Never paste the "service_role" key into this file, it is
          a full-access secret and this file is public.)
      5. Commit this file. Central tracking is now live.
    ============================================================ */

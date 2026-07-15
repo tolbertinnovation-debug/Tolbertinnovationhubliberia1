@@ -1,5 +1,5 @@
 /* ============================================================
-   TIH LEARNING HUB — OFFICIAL CERTIFICATE TEMPLATE
+   TIH LEARNING HUB, OFFICIAL CERTIFICATE TEMPLATE
    Shared by course-player.html and my-certificates.html.
    Renders the printable A4-landscape certificate with the official
    Tolbert Innovation Hub logo, seal, and CEO signature.

@@ -28,33 +28,33 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
     /* ── Shared carousel styles ── */
-    .programs-carousel,.news-carousel{overflow:hidden;padding-bottom:3.25rem;margin-bottom:1.5rem;}
-    .programs-carousel .swiper-slide,.news-carousel .swiper-slide{height:auto;}
-    .programs-carousel .swiper-slide .card,.news-carousel .swiper-slide .card{display:flex;flex-direction:column;height:100%;}
-    .programs-carousel .swiper-slide .card .card-link,.programs-carousel .swiper-slide .card .prog-btn-row,.news-carousel .swiper-slide .card .card-link{margin-top:auto;}
-    .programs-carousel .swiper-pagination,.news-carousel .swiper-pagination{bottom:.5rem;}
-    .programs-carousel .swiper-pagination-bullet,.news-carousel .swiper-pagination-bullet{width:8px;height:8px;background:var(--brand-blue);opacity:.28;transition:width .3s ease,opacity .3s ease;border-radius:4px;}
-    .programs-carousel .swiper-pagination-bullet-active,.news-carousel .swiper-pagination-bullet-active{opacity:1;width:24px;}
-    .programs-carousel .swiper-button-prev,.programs-carousel .swiper-button-next,.news-carousel .swiper-button-prev,.news-carousel .swiper-button-next{top:50%;transform:translateY(calc(-50% - 1.5rem));width:40px;height:40px;background:var(--surface,#fff);border:1px solid var(--border-light,#e2e8f0);border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.10);color:var(--brand-blue,#002868);}
-    .programs-carousel .swiper-button-prev::after,.programs-carousel .swiper-button-next::after,.news-carousel .swiper-button-prev::after,.news-carousel .swiper-button-next::after{font-size:13px;font-weight:800;}
-    .programs-carousel .swiper-button-prev:hover,.programs-carousel .swiper-button-next:hover,.news-carousel .swiper-button-prev:hover,.news-carousel .swiper-button-next:hover{background:var(--brand-blue,#002868);color:#fff;border-color:var(--brand-blue,#002868);}
-    @media(max-width:639px){.programs-carousel .swiper-button-prev,.programs-carousel .swiper-button-next,.news-carousel .swiper-button-prev,.news-carousel .swiper-button-next{display:none;}}
+    .programs-carousel.news-carousel{overflow:hidden;padding-bottom:3.25rem;margin-bottom:1.5rem;}
+    .programs-carousel .swiper-slide.news-carousel .swiper-slide{height:auto;}
+    .programs-carousel .swiper-slide .card.news-carousel .swiper-slide .card{display:flex;flex-direction:column;height:100%;}
+    .programs-carousel .swiper-slide .card .card-link.programs-carousel .swiper-slide .card .prog-btn-row.news-carousel .swiper-slide .card .card-link{margin-top:auto;}
+    .programs-carousel .swiper-pagination.news-carousel .swiper-pagination{bottom:.5rem;}
+    .programs-carousel .swiper-pagination-bullet.news-carousel .swiper-pagination-bullet{width:8px;height:8px;background:var(--brand-blue);opacity:.28;transition:width .3s ease,opacity .3s ease;border-radius:4px;}
+    .programs-carousel .swiper-pagination-bullet-active.news-carousel .swiper-pagination-bullet-active{opacity:1;width:24px;}
+    .programs-carousel .swiper-button-prev.programs-carousel .swiper-button-next.news-carousel .swiper-button-prev.news-carousel .swiper-button-next{top:50%;transform:translateY(calc(-50% - 1.5rem));width:40px;height:40px;background:var(--surface,#fff);border:1px solid var(--border-light,#e2e8f0);border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0.10);color:var(--brand-blue,#002868);}
+    .programs-carousel .swiper-button-prev::after.programs-carousel .swiper-button-next::after.news-carousel .swiper-button-prev::after.news-carousel .swiper-button-next::after{font-size:13px;font-weight:800;}
+    .programs-carousel .swiper-button-prev:hover.programs-carousel .swiper-button-next:hover.news-carousel .swiper-button-prev:hover.news-carousel .swiper-button-next:hover{background:var(--brand-blue,#002868);color:#fff;border-color:var(--brand-blue,#002868);}
+    @media(max-width:639px){.programs-carousel .swiper-button-prev.programs-carousel .swiper-button-next.news-carousel .swiper-button-prev.news-carousel .swiper-button-next{display:none;}}
 
     /* ── HERO IMPROVEMENTS ── */
-    .hero-live-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(227,30,36,.15);border:1px solid rgba(227,30,36,.3);color:#ff6b7a;font-size:.82rem;font-weight:700;padding:.35rem .9rem;border-radius:999px;margin-bottom:1rem;}
+    .hero-live-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(227,30,36.15);border:1px solid rgba(227,30,36.3);color:#ff6b7a;font-size:.82rem;font-weight:700;padding:.35rem .9rem;border-radius:999px;margin-bottom:1rem;}
     .live-dot{width:8px;height:8px;border-radius:50%;background:#ff4a5e;flex-shrink:0;animation:pulse-dot 1.6s ease-in-out infinite;}
-    @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(255,74,94,.6);}50%{box-shadow:0 0 0 6px rgba(255,74,94,0);}}
+    @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(255,74,94.6);}50%{box-shadow:0 0 0 6px rgba(255,74,94,0);}}
     .hero-2col{display:grid;grid-template-columns:1fr 420px;gap:3rem;align-items:center;}
     @media(max-width:1024px){.hero-2col{grid-template-columns:1fr;}}
     .hero-visual{display:flex;flex-direction:column;gap:1rem;}
     @media(max-width:1024px){.hero-visual{display:none;}}
-    .hv-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:1.1rem 1.4rem;display:flex;align-items:center;gap:1rem;backdrop-filter:blur(8px);transition:background .2s;}
-    .hv-card:hover{background:rgba(255,255,255,.13);}
+    .hv-card{background:rgba(255,255,255.08);border:1px solid rgba(255,255,255.15);border-radius:14px;padding:1.1rem 1.4rem;display:flex;align-items:center;gap:1rem;backdrop-filter:blur(8px);transition:background .2s;}
+    .hv-card:hover{background:rgba(255,255,255.13);}
     .hv-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
     .hv-body strong{display:block;color:#fff;font-size:.97rem;font-weight:700;line-height:1.2;}
-    .hv-body span{font-size:.82rem;color:rgba(255,255,255,.7);}
+    .hv-body span{font-size:.82rem;color:rgba(255,255,255.7);}
     .hv-number{margin-left:auto;font-size:1.5rem;font-weight:800;color:#fbbf24;flex-shrink:0;}
-    .hero-divider{height:1px;background:rgba(255,255,255,.12);margin:.5rem 0;}
+    .hero-divider{height:1px;background:rgba(255,255,255.12);margin:.5rem 0;}
 
     /* ── TRUST STRIP ── */
     .trust-strip-home{background:var(--surface,#fff);border-bottom:1px solid var(--border-light,#e4eaf4);padding:1rem 0;}
@@ -66,36 +66,36 @@
     /* ── SPOTLIGHT SECTION ── */
     .spotlight-section{background:linear-gradient(135deg,#f0f4fc 0%,#e8edf8 100%);}
     .spotlight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2rem;}
-    .spotlight-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 4px 20px rgba(0,40,104,.1);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;}
-    .spotlight-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,40,104,.15);}
+    .spotlight-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 4px 20px rgba(0,40,104.1);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;}
+    .spotlight-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,40,104.15);}
     .sc-header{padding:1.5rem;color:#fff;position:relative;overflow:hidden;}
-    .sc-header::before{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.08);}
-    .sc-header::after{content:'';position:absolute;right:20px;bottom:-30px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.06);}
-    .sc-badge{background:rgba(255,255,255,.22);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:.22rem .7rem;border-radius:999px;display:inline-block;margin-bottom:.6rem;}
+    .sc-header::before{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255.08);}
+    .sc-header::after{content:'';position:absolute;right:20px;bottom:-30px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255.06);}
+    .sc-badge{background:rgba(255,255,255.22);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:.22rem .7rem;border-radius:999px;display:inline-block;margin-bottom:.6rem;}
     .sc-header h3{color:#fff;margin:0 0 .25rem;font-size:1.2rem;position:relative;z-index:1;}
-    .sc-header p{color:rgba(255,255,255,.85);margin:0;font-size:.9rem;position:relative;z-index:1;}
+    .sc-header p{color:rgba(255,255,255.85);margin:0;font-size:.9rem;position:relative;z-index:1;}
     .sc-icon{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);font-size:3rem;opacity:.25;z-index:0;}
     .sc-body{padding:1.4rem;flex:1;display:flex;flex-direction:column;}
     .sc-features{list-style:none;padding:0;margin:0 0 1.2rem;display:grid;gap:.5rem;}
     .sc-features li{display:flex;align-items:center;gap:.6rem;font-size:.9rem;color:var(--text-secondary,#4b5563);}
     .sc-features li::before{content:'✓';font-weight:800;color:#16a34a;font-size:.9rem;flex-shrink:0;}
     .sc-cta{margin-top:auto;font-weight:700;font-size:.92rem;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;padding:.65rem 1.3rem;border-radius:10px;transition:transform .15s,box-shadow .15s;}
-    .sc-cta:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.15);}
+    .sc-cta:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0.15);}
 
     /* ── LEARNING PATHWAYS ── */
     .path-section{background:linear-gradient(135deg,#000d24,#001f54);padding:5rem 0;}
     .path-section .section-label{color:#ff8a94;}
     .path-section h2{color:#fff;}
-    .path-section .section-intro{color:rgba(255,255,255,.75);}
+    .path-section .section-intro{color:rgba(255,255,255.75);}
     .path-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem;}
-    .path-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:1.75rem;transition:background .2s,transform .2s;}
-    .path-card:hover{background:rgba(255,255,255,.1);transform:translateY(-3px);}
+    .path-card{background:rgba(255,255,255.06);border:1px solid rgba(255,255,255.12);border-radius:18px;padding:1.75rem;transition:background .2s,transform .2s;}
+    .path-card:hover{background:rgba(255,255,255.1);transform:translateY(-3px);}
     .path-goal{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8fbaff;margin-bottom:.6rem;}
     .path-card h3{color:#fff;font-size:1.1rem;margin:0 0 1rem;}
     .path-steps{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.25rem;}
-    .path-step{display:flex;align-items:center;gap:.75rem;font-size:.88rem;color:rgba(255,255,255,.85);}
-    .path-step-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#E31E24,#1565d8);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 2px 8px rgba(21,101,216,.35);}
-    .path-step-arrow{color:rgba(255,255,255,.3);font-size:.7rem;margin-left:.25rem;}
+    .path-step{display:flex;align-items:center;gap:.75rem;font-size:.88rem;color:rgba(255,255,255.85);}
+    .path-step-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#E31E24,#1565d8);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 2px 8px rgba(21,101,216.35);}
+    .path-step-arrow{color:rgba(255,255,255.3);font-size:.7rem;margin-left:.25rem;}
     .path-cta{display:inline-flex;align-items:center;gap:.35rem;background:#E31E24;border:1px solid #E31E24;color:#fff;text-decoration:none;font-size:.87rem;font-weight:700;padding:.6rem 1.2rem;border-radius:9px;transition:background .15s,transform .15s;}
     .path-cta:hover{background:#b8181d;transform:translateY(-2px);}
 
@@ -108,20 +108,20 @@
 
     /* ── NEWSLETTER IMPROVED ── */
     .newsletter-section-v2{background:linear-gradient(135deg,#002868 0%,#001030 100%);padding:5rem 0;position:relative;overflow:hidden;}
-    .newsletter-section-v2::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:rgba(227,30,36,.12);pointer-events:none;}
-    .newsletter-section-v2::after{content:'';position:absolute;bottom:-80px;left:-40px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+    .newsletter-section-v2::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:rgba(227,30,36.12);pointer-events:none;}
+    .newsletter-section-v2::after{content:'';position:absolute;bottom:-80px;left:-40px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255.04);pointer-events:none;}
     .nl-inner{max-width:640px;margin:0 auto;text-align:center;position:relative;z-index:1;}
-    .nl-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(227,30,36,.16);border:1px solid rgba(227,30,36,.35);color:#ff8a94;font-size:.8rem;font-weight:700;padding:.3rem .85rem;border-radius:999px;margin-bottom:1.25rem;text-transform:uppercase;letter-spacing:.05em;}
+    .nl-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(227,30,36.16);border:1px solid rgba(227,30,36.35);color:#ff8a94;font-size:.8rem;font-weight:700;padding:.3rem .85rem;border-radius:999px;margin-bottom:1.25rem;text-transform:uppercase;letter-spacing:.05em;}
     .nl-inner h2{color:#fff;font-size:clamp(1.5rem,3.5vw,2.2rem);margin:0 0 .75rem;}
-    .nl-inner p{color:rgba(255,255,255,.78);max-width:50ch;margin:0 auto 2rem;font-size:1rem;line-height:1.7;}
+    .nl-inner p{color:rgba(255,255,255.78);max-width:50ch;margin:0 auto 2rem;font-size:1rem;line-height:1.7;}
     .nl-form-v2{display:flex;gap:.75rem;max-width:480px;margin:0 auto;}
-    .nl-input-v2{flex:1;padding:.85rem 1.25rem;border:1.5px solid rgba(255,255,255,.2);border-radius:12px;font-size:.97rem;font-family:'Inter',sans-serif;background:rgba(255,255,255,.1);color:#fff;outline:none;transition:border-color .2s,background .2s;}
-    .nl-input-v2::placeholder{color:rgba(255,255,255,.5);}
-    .nl-input-v2:focus{border-color:rgba(21,101,216,.6);background:rgba(255,255,255,.14);}
+    .nl-input-v2{flex:1;padding:.85rem 1.25rem;border:1.5px solid rgba(255,255,255.2);border-radius:12px;font-size:.97rem;font-family:'Inter',sans-serif;background:rgba(255,255,255.1);color:#fff;outline:none;transition:border-color .2s,background .2s;}
+    .nl-input-v2::placeholder{color:rgba(255,255,255.5);}
+    .nl-input-v2:focus{border-color:rgba(21,101,216.6);background:rgba(255,255,255.14);}
     .nl-btn-v2{background:#E31E24;color:#fff;font-weight:700;font-size:.95rem;border:none;border-radius:12px;padding:.85rem 1.6rem;cursor:pointer;white-space:nowrap;transition:background .2s,transform .15s;}
     .nl-btn-v2:hover{background:#a00828;transform:translateY(-2px);}
     .nl-perks{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;}
-    .nl-perk{font-size:.82rem;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:.35rem;}
+    .nl-perk{font-size:.82rem;color:rgba(255,255,255.6);display:flex;align-items:center;gap:.35rem;}
     @media(max-width:500px){.nl-form-v2{flex-direction:column;}.nl-btn-v2{width:100%;}}
 
     /* ── QUICK ACTIONS PANEL ── */
@@ -298,35 +298,35 @@
               <a href="about.html" class="btn btn-secondary">Learn About TIH</a>
               <a href="contact.html" class="btn btn-ghost">Talk to Us</a>
             </div>
-            <img src="https://i.ibb.co/d4G11wMK/file-00000000dcf471f495f6a135b9949246.png" alt="Tolbert Innovation Hub — your gateway to education, opportunity and innovation in Liberia" loading="lazy" decoding="async" style="width:100%;height:auto;display:block;margin:1.75rem 0 0;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104,.14);border:1px solid #e6e9f2;" />
+            <img src="https://i.ibb.co/d4G11wMK/file-00000000dcf471f495f6a135b9949246.png" alt="Tolbert Innovation Hub, your gateway to education, opportunity and innovation in Liberia" loading="lazy" decoding="async" style="width:100%;height:auto;display:block;margin:1.75rem 0 0;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104.14);border:1px solid #e6e9f2;" />
           </div>
           <div class="welcome-tiles-grid-6 reveal reveal-delay-1">
-            <a class="welcome-tile" href="fully-funded-scholarship.html" aria-label="Scholarships — Study Abroad & Fully Funded">
+            <a class="welcome-tile" href="fully-funded-scholarship.html" aria-label="Scholarships, Study Abroad & Fully Funded">
               <div class="welcome-tile-icon">🎓</div>
               <p class="welcome-tile-title">Scholarships</p>
               <p class="welcome-tile-sub">Study Abroad &amp; Fully Funded</p>
             </a>
-            <a class="welcome-tile" href="learning-hub.html" aria-label="Learning Hub — 18 Professional Tracks">
+            <a class="welcome-tile" href="learning-hub.html" aria-label="Learning Hub, 18 Professional Tracks">
               <div class="welcome-tile-icon">💻</div>
               <p class="welcome-tile-title">Learning Hub</p>
               <p class="welcome-tile-sub">18 Professional Tracks</p>
             </a>
-            <a class="welcome-tile" href="wassce.html" aria-label="Exam Prep — IELTS, TOEFL & WASSCE">
+            <a class="welcome-tile" href="wassce.html" aria-label="Exam Prep, IELTS, TOEFL & WASSCE">
               <div class="welcome-tile-icon">📚</div>
               <p class="welcome-tile-title">Exam Prep</p>
               <p class="welcome-tile-sub">IELTS, TOEFL &amp; WASSCE</p>
             </a>
-            <a class="welcome-tile" href="healthcare.html" aria-label="Healthcare — International Treatment">
+            <a class="welcome-tile" href="healthcare.html" aria-label="Healthcare, International Treatment">
               <div class="welcome-tile-icon">🏥</div>
               <p class="welcome-tile-title">Healthcare</p>
               <p class="welcome-tile-sub">International Treatment</p>
             </a>
-            <a class="welcome-tile" href="library.html" aria-label="Digital Library — 50+ Free Resources">
+            <a class="welcome-tile" href="library.html" aria-label="Digital Library, 50+ Free Resources">
               <div class="welcome-tile-icon">📖</div>
               <p class="welcome-tile-title">Digital Library</p>
               <p class="welcome-tile-sub">50+ Free Resources</p>
             </a>
-            <a class="welcome-tile" href="grants.html" aria-label="Grants — 2026–2027 Directory">
+            <a class="welcome-tile" href="grants.html" aria-label="Grants, 2026–2027 Directory">
               <div class="welcome-tile-icon">💰</div>
               <p class="welcome-tile-title">Grants</p>
               <p class="welcome-tile-sub">2026–2027 Directory</p>
@@ -343,7 +343,7 @@
         @media(max-width:860px){.lh-wrap{grid-template-columns:1fr;gap:1.75rem;}}
         .lh-copy .section-label{color:#E31E24;}
         .lh-copy h2{margin:.25rem 0 1rem;line-height:1.15;}
-        .lh-img{width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104,.14);margin:0 0 1.4rem;border:1px solid #e6e9f2;}
+        .lh-img{width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104.14);margin:0 0 1.4rem;border:1px solid #e6e9f2;}
         .lh-copy p.lh-lead{font-size:1.05rem;color:var(--text-secondary);line-height:1.66;margin-bottom:1.1rem;}
         .lh-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin:1.4rem 0 1.6rem;}
         @media(max-width:520px){.lh-stats{grid-template-columns:1fr 1fr;}}
@@ -353,7 +353,7 @@
         .lh-ctas{display:flex;gap:.75rem;flex-wrap:wrap;}
         .lh-features{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
         @media(max-width:520px){.lh-features{grid-template-columns:1fr;}}
-        .lh-feat{background:#fff;border:1px solid #e6e9f2;border-radius:14px;padding:1.1rem;box-shadow:0 4px 16px rgba(0,40,104,.06);}
+        .lh-feat{background:#fff;border:1px solid #e6e9f2;border-radius:14px;padding:1.1rem;box-shadow:0 4px 16px rgba(0,40,104.06);}
         .lh-feat .fi{font-size:1.5rem;display:block;margin-bottom:.5rem;}
         .lh-feat h3{font-size:.98rem;color:#002868;margin:0 0 .3rem;}
         .lh-feat p{font-size:.85rem;color:var(--text-secondary);line-height:1.55;margin:0;}
@@ -362,10 +362,10 @@
         <div class="lh-wrap">
           <div class="lh-copy reveal">
             <p class="section-label">About TIH Learning Hub</p>
-            <h2>Real Skills &amp; Exam Prep — for Just US$2 a Course</h2>
-            <img class="lh-img" src="https://i.ibb.co/BHFC0NJT/file-00000000d0c471f497ad7c8bcae78ca4.png" alt="TIH Learning Hub — learn real skills and WASSCE exam prep on your phone" loading="lazy" decoding="async" />
+            <h2>Real Skills &amp; Exam Prep, for Just US$2 a Course</h2>
+            <img class="lh-img" src="https://i.ibb.co/BHFC0NJT/file-00000000d0c471f497ad7c8bcae78ca4.png" alt="TIH Learning Hub, learn real skills and WASSCE exam prep on your phone" loading="lazy" decoding="async" />
             <p class="lh-lead">
-              The <strong>TIH Learning Hub</strong> is our online school built for Liberians and learners across West Africa. From computer literacy and web development to AI, digital marketing, and full <strong>WASSCE</strong> exam preparation — you learn practical, in-demand skills at a price anyone can afford.
+              The <strong>TIH Learning Hub</strong> is our online school built for Liberians and learners across West Africa. From computer literacy and web development to AI, digital marketing, and full <strong>WASSCE</strong> exam preparation, you learn practical, in-demand skills at a price anyone can afford.
             </p>
             <p style="color:var(--text-secondary);line-height:1.66;margin-bottom:0;">
               You apply online, our team reviews and approves your account, then you unlock any course or WASSCE subject for a one-time <strong>US$2</strong> Mobile Money payment. Learn at your own pace on any phone, and earn a verified certificate you can share with employers.
@@ -382,16 +382,16 @@
             </div>
           </div>
           <div class="lh-features reveal reveal-delay-1">
-            <div class="lh-feat"><span class="fi">🔐</span><h3>Admin-Approved Access</h3><p>Apply online and our team reviews every application — no open sign-ups, so learning stays focused and quality stays high.</p></div>
+            <div class="lh-feat"><span class="fi">🔐</span><h3>Admin-Approved Access</h3><p>Apply online and our team reviews every application, no open sign-ups, so learning stays focused and quality stays high.</p></div>
             <div class="lh-feat"><span class="fi">💵</span><h3>Only US$2 a Course</h3><p>Pay for one course or WASSCE subject at a time via Mobile Money. Unlock exactly what you need, when you need it.</p></div>
-            <div class="lh-feat"><span class="fi">🎥</span><h3>Video Lessons &amp; Quizzes</h3><p>Every lesson has a video, clear notes, and a short quiz — so you truly understand before moving on.</p></div>
+            <div class="lh-feat"><span class="fi">🎥</span><h3>Video Lessons &amp; Quizzes</h3><p>Every lesson has a video, clear notes, and a short quiz, so you truly understand before moving on.</p></div>
             <div class="lh-feat"><span class="fi">🏆</span><h3>Verified Certificates</h3><p>Finish a course, request your certificate, and anyone can confirm it online from any device.</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- LATEST NEWS — moved to top after Hero -->
+    <!-- LATEST NEWS, moved to top after Hero -->
     <section class="section" aria-label="Latest News">
       <div class="container">
         <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
@@ -457,8 +457,8 @@
         <div class="section-header centered">
           <p class="section-label">Our Core Programs</p>
           <h2>Everything You Need to Grow</h2>
-          <p class="section-intro">From world-class education and healthcare access to technology services — TIH's core programs are built to transform lives across Liberia and Africa.</p>
-          <img src="https://i.ibb.co/2YLVHGsM/file-00000000bcc871f4855374280c1e7361.png" alt="TIH core programs — education, healthcare and technology services across Liberia and Africa" loading="lazy" decoding="async" style="width:100%;max-width:780px;height:auto;display:block;margin:1.6rem auto 0;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104,.14);border:1px solid #e6e9f2;" />
+          <p class="section-intro">From world-class education and healthcare access to technology services, TIH's core programs are built to transform lives across Liberia and Africa.</p>
+          <img src="https://i.ibb.co/2YLVHGsM/file-00000000bcc871f4855374280c1e7361.png" alt="TIH core programs, education, healthcare and technology services across Liberia and Africa" loading="lazy" decoding="async" style="width:100%;max-width:780px;height:auto;display:block;margin:1.6rem auto 0;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104.14);border:1px solid #e6e9f2;" />
         </div>
         <div class="spotlight-grid">
 
@@ -467,7 +467,7 @@
             <div class="sc-header" style="background:linear-gradient(135deg,#001535,#002868,#E31E24);">
               <span class="sc-badge">US$2 Per Course</span>
               <h3>🎓 TIH Learning Hub</h3>
-              <p>Affordable skills training with real video lessons, quizzes, and verified certificates — plus IELTS, TOEFL, and WASSCE exam prep, from just US$2 per course.</p>
+              <p>Affordable skills training with real video lessons, quizzes, and verified certificates, plus IELTS, TOEFL, and WASSCE exam prep, from just US$2 per course.</p>
               <span class="sc-icon">🎓</span>
             </div>
             <div class="sc-body">
@@ -573,7 +573,7 @@
           <p class="section-label">All Programs</p>
           <h2>Everything TIH Offers: All in One Place</h2>
           <p class="section-intro">Ten programs built for Liberians and West Africans, covering digital skills, exam prep, scholarships, healthcare, grants, and business innovation. Find your program and take the next step.</p>
-          <img src="https://i.ibb.co/hxtZvRxQ/file-00000000f31471f4a4f7d623b0df55fc.png" alt="Everything TIH offers — all programs in one place" loading="lazy" decoding="async" style="width:100%;max-width:820px;height:auto;display:block;margin:1.6rem auto 0;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104,.14);border:1px solid #e6e9f2;" />
+          <img src="https://i.ibb.co/hxtZvRxQ/file-00000000f31471f4a4f7d623b0df55fc.png" alt="Everything TIH offers, all programs in one place" loading="lazy" decoding="async" style="width:100%;max-width:820px;height:auto;display:block;margin:1.6rem auto 0;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104.14);border:1px solid #e6e9f2;" />
         </div>
 
         <div class="swiper programs-carousel" role="region" aria-label="All Programs" aria-roledescription="carousel">
@@ -636,7 +636,7 @@
                 <div class="program-card-icon" style="background:#e0f2fe;">📖</div>
                 <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#0369a1;margin:0 0 .4rem;">Free Resources · New</p>
                 <h3 style="margin-bottom:.6rem;">TIH Digital Library</h3>
-                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">A searchable library of 50+ free educational resources covering scholarships, grants, business, software, AI, data science, and WASSCE preparation — all curated for Liberian learners.</p>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">A searchable library of 50+ free educational resources covering scholarships, grants, business, software, AI, data science, and WASSCE preparation, all curated for Liberian learners.</p>
                 <ul class="list-tight" style="font-size:.88rem;">
                   <li>Scholarship &amp; grant writing guides</li>
                   <li>Tech, AI &amp; data science ebooks</li>
@@ -743,7 +743,7 @@
         <div style="background:linear-gradient(135deg,#002868,#1a3d8a);border-radius:var(--radius-xl);padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;" class="reveal">
           <div>
             <h3 style="color:#fff;margin-bottom:.3rem;font-size:1.25rem;">Not sure which program is right for you?</h3>
-            <p style="color:rgba(255,255,255,.8);margin:0;font-size:.95rem;">Our team is available on WhatsApp to guide you to the best program for your goals, free of charge.</p>
+            <p style="color:rgba(255,255,255.8);margin:0;font-size:.95rem;">Our team is available on WhatsApp to guide you to the best program for your goals, free of charge.</p>
           </div>
           <div style="display:flex;gap:.75rem;flex-wrap:wrap;max-width:100%;">
             <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex:1 1 auto;justify-content:center;white-space:nowrap;">💬 Chat with Us</a>
@@ -846,7 +846,7 @@
           <p class="section-label">Why Tolbert Innovation Hub</p>
           <h2>More Than Programs: A Movement for Change</h2>
           <p class="section-intro">Inspired by the legacy of President William R. Tolbert Jr., the 20th President of Liberia, remembered for his commitment to rural development, education, and lifting the standard of living for all Liberians, we carry that vision forward through technology, scholarships, and access to opportunity.</p>
-          <img src="https://i.ibb.co/ds2zcHft/file-000000003b2871f48c67c0ef7120286c.png" alt="Tolbert Innovation Hub — more than programs, a movement for change" loading="lazy" decoding="async" style="width:100%;max-width:820px;height:auto;display:block;margin:1.6rem auto 0;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104,.14);border:1px solid #e6e9f2;" />
+          <img src="https://i.ibb.co/ds2zcHft/file-000000003b2871f48c67c0ef7120286c.png" alt="Tolbert Innovation Hub, more than programs, a movement for change" loading="lazy" decoding="async" style="width:100%;max-width:820px;height:auto;display:block;margin:1.6rem auto 0;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104.14);border:1px solid #e6e9f2;" />
         </div>
         <div class="features-grid">
           <div class="feature-item reveal">
@@ -1082,7 +1082,7 @@
             <input class="nl-input-v2" type="email" name="email" placeholder="Your email address" required autocomplete="email" aria-label="Email address for newsletter" />
             <button type="submit" class="nl-btn-v2">Subscribe Free</button>
           </form>
-          <p class="newsletter-feedback" role="status" aria-live="polite" style="min-height:1.4em;margin-top:.75rem;font-size:.9rem;color:rgba(255,255,255,.7);"></p>
+          <p class="newsletter-feedback" role="status" aria-live="polite" style="min-height:1.4em;margin-top:.75rem;font-size:.9rem;color:rgba(255,255,255.7);"></p>
           <div class="nl-perks">
             <span class="nl-perk"><span>✓</span> No spam, ever</span>
             <span class="nl-perk"><span>✓</span> Unsubscribe anytime</span>
@@ -1098,7 +1098,7 @@
         <div class="quick-grid-3">
           <article class="quick-panel card-accent reveal" style="background:linear-gradient(135deg,#002868 0%,#1a3d8a 100%);color:#fff;border:none;">
             <h3 style="color:#fff;">Apply for a Scholarship Today</h3>
-            <p style="color:rgba(255,255,255,.85);">Open applications for 2026 intake. Get guidance through eligibility check, document preparation, and admission letter issuance.</p>
+            <p style="color:rgba(255,255,255.85);">Open applications for 2026 intake. Get guidance through eligibility check, document preparation, and admission letter issuance.</p>
             <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem;">
               <a class="btn btn-primary" href="apply.html">Apply Now</a>
               <a class="btn btn-outline" href="fully-funded-scholarship.html">Fully Funded</a>
@@ -1206,15 +1206,15 @@
 
       <div class="footer-bottom">
         <div class="footer-bottom-inner">
-          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved. &middot; <a href="privacy.html" style="color:rgba(200,216,240,.7);">Privacy Policy</a> &middot; <a href="terms.html" style="color:rgba(200,216,240,.7);">Terms of Service</a></p>
-          <p class="footer-signoff">Empowering Africa's Future — Never Stop Innovating.</p>
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved. &middot; <a href="privacy.html" style="color:rgba(200,216,240.7);">Privacy Policy</a> &middot; <a href="terms.html" style="color:rgba(200,216,240.7);">Terms of Service</a></p>
+          <p class="footer-signoff">Empowering Africa's Future, Never Stop Innovating.</p>
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="main.js?v=10"></script>
-  <script src="chatbot.js?v=2"></script>
+  <script src="main.js?v=11"></script>
+  <script src="chatbot.js?v=3"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     (function () {
@@ -1236,7 +1236,7 @@
     /* ---- Entrance-animation failsafe ----
        On slow / flaky mobile connections the external scripts (main.js) can
        fail to load, which would leave scroll-reveal sections and the hero
-       stuck at opacity:0 — the page appears to "disappear". This inline guard
+       stuck at opacity:0, the page appears to "disappear". This inline guard
        is self-contained and guarantees content becomes visible no matter what. */
     (function () {
       function show() {

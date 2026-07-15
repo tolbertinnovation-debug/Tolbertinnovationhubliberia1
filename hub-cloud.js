@@ -1,17 +1,17 @@
 /* ============================================================
-   TIH LEARNING HUB — CLOUD SYNC (Supabase)
+   TIH LEARNING HUB, CLOUD SYNC (Supabase)
    ------------------------------------------------------------
    A thin, best-effort layer over Supabase (PostgreSQL). When a
    Supabase config is present (see hub-config.js) it mirrors the
    local data to a central database so applications, students,
    enrollments, payments, progress and certificate requests are
    tracked across devices in real time. When no config is present,
-   every function degrades safely to a local-only no-op — no
+   every function degrades safely to a local-only no-op, no
    errors, no blocking, the site behaves exactly as before.
 
    Nothing here ever throws. Reads resolve to [] / null on failure;
    writes resolve to false. The synchronous HubDB interface is
-   untouched — pages keep calling HubDB as they always did, and
+   untouched, pages keep calling HubDB as they always did, and
    HubDB pushes to / pulls from the cloud through this module.
 
    Public API (all safe to call unconfigured):
@@ -48,7 +48,7 @@
 var HubCloud = (function () {
   'use strict';
 
-  // Multiple CDNs — if one is blocked or slow (common on some mobile networks),
+  // Multiple CDNs, if one is blocked or slow (common on some mobile networks),
   // the next is tried. Reliability across devices depends on at least one loading.
   var CDNS = [
     'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2',
@@ -120,7 +120,7 @@ var HubCloud = (function () {
   // ---- REST layer (no CDN / no SDK needed) ----
   // Talks to Supabase's PostgREST API with the built-in fetch(). This is the
   // MOST reliable path on weak networks because it needs no external library to
-  // load — used for the critical access flow (requests, grants, unlock sync).
+  // load, used for the critical access flow (requests, grants, unlock sync).
   function restBase() { return String(_cfg.url).replace(/\/+$/, '') + '/rest/v1/'; }
   function restHeaders(extra) {
     var h = { 'apikey': _cfg.anonKey, 'Authorization': 'Bearer ' + _cfg.anonKey, 'Content-Type': 'application/json' };
@@ -313,13 +313,13 @@ var HubCloud = (function () {
   }
   // Online-authoritative account load: reads this student's enrollments,
   // progress and cert_requests directly (filtered by student_id). This is the
-  // robust path — it works with simple anon SELECT policies and does not depend
+  // robust path, it works with simple anon SELECT policies and does not depend
   // on a custom RPC being installed. Resolves {enrollments, progress, certRequests}.
   function fetchAccountBundle(studentId) {
     var empty = { enrollments: [], progress: [], certRequests: [] };
     if (!studentId) return Promise.resolve(empty);
     var f = 'student_id=eq.' + encodeURIComponent(String(studentId)) + '&select=*';
-    // REST reads — no CDN needed, so grants sync on any device.
+    // REST reads, no CDN needed, so grants sync on any device.
     return Promise.all([
       restSelect('enrollments', f),
       restSelect('progress', f),

@@ -1,17 +1,17 @@
 /* ============================================================
-   TIH LEARNING HUB — CERTIFICATE REGISTRY
+   TIH LEARNING HUB, CERTIFICATE REGISTRY
    ------------------------------------------------------------
    A thin layer over the certificate store. It now uses the SAME
-   central database as the rest of the hub (Supabase — see
+   central database as the rest of the hub (Supabase, see
    hub-config.js and hub-cloud.js): issued certificates are
    published to the public `certificates` table and can be verified
    from any device. When no Supabase config is present, everything
-   degrades safely to local-only behaviour — no errors, no blocking.
+   degrades safely to local-only behaviour, no errors, no blocking.
 
    Requires hub-cloud.js to be loaded first (HubCloud). If it isn't,
    the module still loads and simply reports cloud as disabled.
 
-   Public API (unchanged — all safe to call unconfigured):
+   Public API (unchanged, all safe to call unconfigured):
      CertRegistry.isCloudEnabled()          -> boolean
      CertRegistry.publish(certRecord)       -> Promise<boolean>  (best effort)
      CertRegistry.lookup(certId)            -> Promise<record|null>

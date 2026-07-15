@@ -15,7 +15,7 @@
     :root {
       --primary: #1E3A8A; --primary-light: #eaf4ff; --secondary: #E31E24; --secondary-dark: #b8181d;
       --accent: #10B981; --danger: #e31e24; --bg: #F8FAFC; --text: #1F2937; --muted: #64748b;
-      --border: #e2e8f0; --radius: 16px; --shadow: 0 4px 16px rgba(30,58,138,.08);
+      --border: #e2e8f0; --radius: 16px; --shadow: 0 4px 16px rgba(30,58,138.08);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.55; padding-bottom: 76px; }
@@ -25,7 +25,7 @@
 
     /* LOGIN */
     .login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.25rem; background: linear-gradient(140deg, #0f1f52, var(--primary)); }
-    .login-card { background: #fff; border-radius: 16px; padding: 2rem 1.75rem; width: 100%; max-width: 400px; box-shadow: 0 24px 64px rgba(0,0,0,.3); }
+    .login-card { background: #fff; border-radius: 16px; padding: 2rem 1.75rem; width: 100%; max-width: 400px; box-shadow: 0 24px 64px rgba(0,0,0.3); }
     .login-card .brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--primary); font-size: 1.2rem; margin-bottom: 0.2rem; }
     .login-card .brand span { color: var(--secondary); }
     .login-card .sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.4rem; }
@@ -62,17 +62,17 @@
     .streak-chip { display: inline-flex; align-items: center; gap: 0.35rem; background: #fef2f2; color: #991b1b; font-weight: 700; font-size: 0.8rem; border-radius: 999px; padding: 0.3rem 0.8rem; margin-top: 0.5rem; }
 
     /* RESUME / CONTINUE LEARNING */
-    .resume { background: linear-gradient(135deg, #001a45, #002868 65%, #0b3aa0); color: #fff; border-radius: var(--radius); padding: 1.1rem 1.2rem; margin-bottom: 1.6rem; box-shadow: 0 8px 24px rgba(0,40,104,.22); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-    .resume .r-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .resume { background: linear-gradient(135deg, #001a45, #002868 65%, #0b3aa0); color: #fff; border-radius: var(--radius); padding: 1.1rem 1.2rem; margin-bottom: 1.6rem; box-shadow: 0 8px 24px rgba(0,40,104.22); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .resume .r-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255.14); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
     .resume .r-body { flex: 1; min-width: 180px; }
     .resume .r-eyebrow { font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #fecaca; }
     .resume .r-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1rem; line-height: 1.25; margin: .15rem 0 .5rem; }
-    .resume .r-track { background: rgba(255,255,255,.2); height: 7px; border-radius: 999px; overflow: hidden; }
+    .resume .r-track { background: rgba(255,255,255.2); height: 7px; border-radius: 999px; overflow: hidden; }
     .resume .r-fill { height: 100%; background: linear-gradient(90deg, #e31e24, #f87171); border-radius: 999px; }
-    .resume .r-meta { font-size: .74rem; color: rgba(255,255,255,.8); margin-top: .35rem; }
+    .resume .r-meta { font-size: .74rem; color: rgba(255,255,255.8); margin-top: .35rem; }
     .resume .r-btn { background: var(--secondary); color: #fff; border: none; border-radius: 999px; padding: .7rem 1.3rem; font-weight: 800; font-family: 'Poppins', sans-serif; font-size: .9rem; text-decoration: none; white-space: nowrap; min-height: 46px; display: inline-flex; align-items: center; }
 
-    /* MOMENTUM — level / XP / weekly activity */
+    /* MOMENTUM, level / XP / weekly activity */
     .momentum { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; margin-bottom: 1.6rem; box-shadow: var(--shadow); display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; align-items: center; }
     .mo-level { text-align: center; flex-shrink: 0; }
     .mo-level .ring { width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.25rem; color: #fff; background: conic-gradient(var(--secondary) var(--deg,0deg), #e2e8f0 0deg); position: relative; }
@@ -90,13 +90,13 @@
     .mo-week small { display: block; font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-top: 0.3rem; }
     @media (max-width: 560px) { .momentum { grid-template-columns: auto 1fr; } .mo-week { grid-column: 1 / -1; border-top: 1px solid var(--border); padding-top: 0.7rem; } .week-dots i { width: 12px; height: 12px; } }
 
-    /* RECOMMENDATION — Learn Next */
-    .reco { background: linear-gradient(135deg, #062b1e, #065f46 70%, #10b981); color: #fff; border-radius: var(--radius); padding: 1rem 1.15rem; margin-bottom: 1.6rem; display: flex; align-items: center; gap: 0.9rem; box-shadow: 0 8px 24px rgba(6,95,70,.2); flex-wrap: wrap; }
-    .reco .rc-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,.16); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    /* RECOMMENDATION, Learn Next */
+    .reco { background: linear-gradient(135deg, #062b1e, #065f46 70%, #10b981); color: #fff; border-radius: var(--radius); padding: 1rem 1.15rem; margin-bottom: 1.6rem; display: flex; align-items: center; gap: 0.9rem; box-shadow: 0 8px 24px rgba(6,95,70.2); flex-wrap: wrap; }
+    .reco .rc-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255.16); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
     .reco .rc-body { flex: 1; min-width: 170px; }
     .reco .rc-eyebrow { font-size: .66rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #a7f3d0; }
     .reco .rc-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.98rem; margin: .12rem 0; }
-    .reco .rc-desc { font-size: .76rem; color: rgba(255,255,255,.85); }
+    .reco .rc-desc { font-size: .76rem; color: rgba(255,255,255.85); }
     .reco .rc-btn { background: #fff; color: #065f46; border: none; border-radius: 999px; padding: .6rem 1.15rem; font-weight: 800; font-family: 'Poppins', sans-serif; font-size: .84rem; text-decoration: none; white-space: nowrap; min-height: 42px; display: inline-flex; align-items: center; }
 
     /* ACHIEVEMENTS */
@@ -121,9 +121,9 @@
     .courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
     .course-card { position: relative; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.15rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 0.6rem; overflow: hidden; transition: transform .18s, box-shadow .18s, border-color .18s; }
     .course-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--secondary), var(--primary)); }
-    .course-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(30,58,138,.15); border-color: #cdd9ee; }
+    .course-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(30,58,138.15); border-color: #cdd9ee; }
     .cc-top { display: flex; align-items: center; gap: 0.6rem; }
-    .cc-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; background: linear-gradient(135deg, var(--primary-light), #dbe8ff); box-shadow: inset 0 0 0 1px rgba(30,58,138,.07); flex-shrink: 0; }
+    .cc-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; background: linear-gradient(135deg, var(--primary-light), #dbe8ff); box-shadow: inset 0 0 0 1px rgba(30,58,138.07); flex-shrink: 0; }
     .cc-title { font-weight: 700; font-size: 0.92rem; line-height: 1.3; }
     .cc-meta { font-size: 0.75rem; color: var(--muted); }
     .prog-track { background: #e2e8f0; height: 8px; border-radius: 999px; overflow: hidden; }
@@ -156,9 +156,9 @@
     @media (min-width: 761px) { .bottom-nav { display: none; } body { padding-bottom: 0; } }
 
     /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,.55); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42.55); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
     .modal-overlay.open { display: flex; }
-    .modal { background: #fff; border-radius: 14px; width: 100%; max-width: 420px; padding: 1.5rem; box-shadow: 0 24px 64px rgba(0,0,0,.35); max-height: 90vh; overflow-y: auto; }
+    .modal { background: #fff; border-radius: 14px; width: 100%; max-width: 420px; padding: 1.5rem; box-shadow: 0 24px 64px rgba(0,0,0.35); max-height: 90vh; overflow-y: auto; }
     .modal h3 { color: var(--primary); font-size: 1.02rem; margin-bottom: 0.9rem; }
     .view { display: none; }
     .view.active { display: block; }
@@ -173,7 +173,7 @@
   <div class="login-screen" id="loginScreen">
     <div class="login-card">
       <div class="brand">TIH <span>Learning Hub</span></div>
-      <div class="sub">Student sign in — use the details sent to your WhatsApp/email.</div>
+      <div class="sub">Student sign in, use the details sent to your WhatsApp/email.</div>
       <div class="fld"><label>Student ID or Email</label><input type="text" id="loginId" autocomplete="username" placeholder="TIH-STU-XXXXXX or you@email.com" /></div>
       <div class="fld"><label>Password</label><input type="password" id="loginPass" autocomplete="current-password" /></div>
       <button class="btn btn-primary btn-block" id="loginBtn">Sign In →</button>
@@ -200,7 +200,7 @@
       <div class="view active" id="view-home">
         <div class="welcome">
           <h1 id="welcomeMsg">Welcome back!</h1>
-          <p id="welcomeSub">Keep going — every lesson brings you closer to your goals.</p>
+          <p id="welcomeSub">Keep going, every lesson brings you closer to your goals.</p>
           <span class="streak-chip" id="streakChip" style="display:none;">🔥 <span id="streakText"></span></span>
         </div>
 
@@ -228,13 +228,13 @@
           <p style="font-size:.82rem;color:var(--muted);margin:.15rem 0 .8rem;">Want to learn something new? Tap <strong>➕ Add a Course</strong> to browse the full catalog and unlock any course for US$2.</p>
           <div class="courses-grid" id="coursesGrid"></div>
           <div class="empty-box" id="coursesEmpty" style="display:none;">
-            You have no courses yet. Tap <strong>➕ Add a Course</strong> above to browse the catalog and add your first one — or
+            You have no courses yet. Tap <strong>➕ Add a Course</strong> above to browse the catalog and add your first one, or
             <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="color:var(--primary);font-weight:700;">chat with us on WhatsApp</a> for help.
           </div>
         </section>
 
         <section>
-          <h2>🎓 WASSCE PRO — Exam Prep</h2>
+          <h2>🎓 WASSCE PRO, Exam Prep</h2>
           <p style="font-size:.82rem;color:var(--muted);margin:-0.4rem 0 0.8rem;">Each subject unlocks separately for <strong>US$2</strong>.</p>
           <div class="courses-grid" id="wassceGrid"></div>
         </section>
@@ -304,8 +304,8 @@
         <h3 style="margin:0;">➕ Add a Course</h3>
         <button type="button" id="addCourseClose" aria-label="Close" style="background:none;border:none;font-size:1.4rem;line-height:1;cursor:pointer;color:var(--muted);">&times;</button>
       </div>
-      <p style="font-size:.85rem;color:var(--muted);margin:.5rem 0 .8rem;">Browse the full catalog below and add any course. You unlock it for <strong>US$2</strong> by Mobile Money — pay, then enter your access code or tap <em>“I’ve Paid — Request Access”</em> on the course page.</p>
-      <input type="search" id="addCourseSearch" placeholder="🔍 Search courses — e.g. Bible, web, design, AI…" style="width:100%;padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:inherit;margin-bottom:.6rem;box-sizing:border-box;" />
+      <p style="font-size:.85rem;color:var(--muted);margin:.5rem 0 .8rem;">Browse the full catalog below and add any course. You unlock it for <strong>US$2</strong> by Mobile Money, pay, then enter your access code or tap <em>“I’ve Paid, Request Access”</em> on the course page.</p>
+      <input type="search" id="addCourseSearch" placeholder="🔍 Search courses, e.g. Bible, web, design, AI…" style="width:100%;padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:inherit;margin-bottom:.6rem;box-sizing:border-box;" />
       <div id="addCourseList" style="max-height:52vh;overflow-y:auto;"></div>
       <div id="addCourseEmpty" style="display:none;text-align:center;color:var(--muted);font-size:.88rem;padding:1.4rem 1rem;">🎉 You already have every course in the catalog!</div>
       <div style="border-top:1px solid var(--border);margin-top:.8rem;padding-top:.7rem;text-align:center;">
@@ -314,10 +314,10 @@
     </div>
   </div>
 
-  <script src="courses-db.js?v=13"></script>
-  <script src="hub-config.js?v=3"></script>
-  <script src="hub-cloud.js?v=8"></script>
-  <script src="hub-db.js?v=16"></script>
+  <script src="courses-db.js?v=14"></script>
+  <script src="hub-config.js?v=4"></script>
+  <script src="hub-cloud.js?v=9"></script>
+  <script src="hub-db.js?v=17"></script>
   <script>
     var esc = HubDB.esc;
     var currentStudent = null;
@@ -335,8 +335,8 @@
         duration: c ? (c.duration || '') : ''
       };
     }
-    function fmtDate(iso) { return (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(iso) : (iso || '—'); }
-    function timeAgo(iso) { return (typeof HubDB !== 'undefined' && HubDB.timeAgo) ? HubDB.timeAgo(iso) : (iso || '—'); }
+    function fmtDate(iso) { return (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(iso) : (iso || ', '); }
+    function timeAgo(iso) { return (typeof HubDB !== 'undefined' && HubDB.timeAgo) ? HubDB.timeAgo(iso) : (iso || ', '); }
 
     /* ---- Login flow ---- */
     function doLogin() {
@@ -427,14 +427,14 @@
       document.getElementById('pName').textContent = s.name;
       document.getElementById('pId').textContent = s.id;
       document.getElementById('pEmail').textContent = s.email;
-      document.getElementById('pPhone').textContent = s.phone || '—';
-      document.getElementById('pLoc').textContent = s.location || '—';
+      document.getElementById('pPhone').textContent = s.phone || ', ';
+      document.getElementById('pLoc').textContent = s.location || ', ';
       document.getElementById('pSince').textContent = fmtDate(s.createdAt);
 
       renderCourses(); // instant first paint from the local cache
       // Then load the authoritative account state from the online database so
       // the same account shows the same unlocks, progress and certificates on
-      // any device. Best effort — re-render once the online data arrives.
+      // any device. Best effort, re-render once the online data arrives.
       if (HubDB.hydrateAccountFromCloud) {
         HubDB.hydrateAccountFromCloud(s).then(function () {
           var fresh = HubDB.findStudent(s.id);
@@ -455,7 +455,7 @@
         return c.id && typeof COURSES_DB !== 'undefined' && COURSES_DB[c.id];
       });
       // Also show any course the learner has UNLOCKED (paid / admin-granted) even
-      // if it was never formally assigned — so "Grant ALL Courses" makes every
+      // if it was never formally assigned, so "Grant ALL Courses" makes every
       // unlocked course appear on the dashboard.
       try {
         var have = {};
@@ -558,7 +558,7 @@
         }).join('');
       }
 
-      // Completed — certificate flow: request → admin approval code → download
+      // Completed, certificate flow: request → admin approval code → download
       var doneHtml = completedCourses.map(function (item) {
         var cid = item.c.id;
         var approved = HubDB.certApprovedLocal(cid);
@@ -595,13 +595,13 @@
       });
       assigned.forEach(function (c) {
         var p = HubDB.courseProgress(c.id);
-        if (p.completed > 0) acts.push({ at: null, text: 'Progress in "' + courseMeta(c.id).title + '" — ' + p.completed + '/' + p.total + ' lessons' });
+        if (p.completed > 0) acts.push({ at: null, text: 'Progress in "' + courseMeta(c.id).title + '", ' + p.completed + '/' + p.total + ' lessons' });
       });
       document.getElementById('activityList').innerHTML = acts.length
         ? acts.slice(0, 6).map(function (a) {
             return '<div class="act-row">' + (a.at ? '<span class="when">' + timeAgo(a.at) + '</span>' : '') + '<span>' + esc(a.text) + '</span></div>';
           }).join('')
-        : '<div class="act-row"><span>No activity yet — start your first lesson!</span></div>';
+        : '<div class="act-row"><span>No activity yet, start your first lesson!</span></div>';
 
       renderWassce();
     }
@@ -693,7 +693,7 @@
     }
 
     /* ---- Learn Next recommendation (rule-based, from the catalog) ---- */
-    // Pathway groupings — recommend the next course in the learner's strongest area.
+    // Pathway groupings, recommend the next course in the learner's strongest area.
     var PATHWAYS = {
       tech: ['webdev','design','data','ai','cybersecurity','android'],
       business: ['marketing','entrepreneurship','project-mgmt','leadership'],
@@ -736,7 +736,7 @@
         + '<div class="rc-body">'
         + '<div class="rc-eyebrow">✨ Recommended for you</div>'
         + '<div class="rc-title">' + esc(meta.title) + '</div>'
-        + '<div class="rc-desc">Grow your skills — unlock for US$' + price + '.</div>'
+        + '<div class="rc-desc">Grow your skills, unlock for US$' + price + '.</div>'
         + '</div>'
         + '<a class="rc-btn" href="learning-hub.html#courses">Explore →</a>';
     }
@@ -797,7 +797,7 @@
           return (c.title + ' ' + (c.category || '')).toLowerCase().indexOf(q) !== -1;
         });
       }
-      // Bible School first, then the rest — grouped only visually via category label.
+      // Bible School first, then the rest, grouped only visually via category label.
       ids.sort(function (a, b) {
         var ca = COURSES_DB[a].category || '', cb = COURSES_DB[b].category || '';
         var ba = ca === 'TIH Bible School' ? 0 : 1, bb = cb === 'TIH Bible School' ? 0 : 1;
@@ -850,7 +850,7 @@
     window.requestCert = function (cid) {
       var meta = courseMeta(cid);
       HubDB.requestCertificate(currentStudent.id, cid, meta.title);
-      var waText = 'CERTIFICATE REQUEST — TIH Learning Hub\n'
+      var waText = 'CERTIFICATE REQUEST, TIH Learning Hub\n'
         + 'Student: ' + currentStudent.name + '\n'
         + 'Student ID: ' + currentStudent.id + '\n'
         + 'Course: ' + meta.title + '\n'
@@ -866,7 +866,7 @@
       if (code.length < 6) { fb.textContent = 'Enter the 6-character code.'; return; }
       HubDB.verifyCertCode(currentStudent.id, cid, code).then(function (ok) {
         if (ok) { renderCourses(); }
-        else { fb.textContent = 'Invalid code — check with the TIH team.'; }
+        else { fb.textContent = 'Invalid code, check with the TIH team.'; }
       });
     };
 

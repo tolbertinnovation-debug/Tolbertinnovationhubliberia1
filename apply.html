@@ -120,14 +120,14 @@
     .fg { display: flex; flex-direction: column; gap: 0.42rem; margin-bottom: 1.1rem; }
     .fg label { font-size: 0.86rem; font-weight: 700; color: #374151; }
     .fg .req { color: #E31E24; }
-    .fg input, .fg select, .fg textarea {
+    .fg input.fg select.fg textarea {
       width: 100%; padding: 0.78rem 1rem; border: 1.5px solid #e2e8f0;
       border-radius: 10px; background: #f8fafc; color: #0f172a;
       font-family: 'Inter', sans-serif; font-size: 0.95rem;
       outline: none; transition: border-color 0.18s, box-shadow 0.18s;
       appearance: none; -webkit-appearance: none;
     }
-    .fg input:focus, .fg select:focus, .fg textarea:focus {
+    .fg input:focus.fg select:focus.fg textarea:focus {
       border-color: #002868; background: #fff; box-shadow: 0 0 0 3px rgba(0,40,104,0.1);
     }
     .fg textarea { resize: vertical; min-height: 100px; }
@@ -195,7 +195,7 @@
     /* ── FORM ERROR ── */
     .field-error { color: #E31E24; font-size: 0.8rem; font-weight: 600; margin-top: 0.25rem; display: none; }
     .field-error.show { display: block; }
-    .fg input.invalid, .fg select.invalid, .fg textarea.invalid { border-color: #E31E24; }
+    .fg input.invalid.fg select.invalid.fg textarea.invalid { border-color: #E31E24; }
   </style>
 </head>
 <body>
@@ -506,7 +506,7 @@
                       <select id="a-target-degree" name="targetDegree">
                         <option value="">Select level</option>
                         <option>Undergraduate (UG)</option>
-                        <option>Postgraduate — Master's (PG)</option>
+                        <option>Postgraduate, Master's (PG)</option>
                         <option>PhD / Doctorate</option>
                       </select>
                     </div>
@@ -527,10 +527,10 @@
                       <label for="a-passport">Do you have a valid passport?</label>
                       <select id="a-passport" name="passport">
                         <option value="">Select</option>
-                        <option>Yes — valid for 2+ years</option>
-                        <option>Yes — but expiring within 1 year</option>
-                        <option>No — applying for one</option>
-                        <option>No — need help with this</option>
+                        <option>Yes, valid for 2+ years</option>
+                        <option>Yes, but expiring within 1 year</option>
+                        <option>No, applying for one</option>
+                        <option>No, need help with this</option>
                       </select>
                     </div>
                   </div>
@@ -556,9 +556,9 @@
                       <label for="a-urgency">Urgency</label>
                       <select id="a-urgency" name="urgency">
                         <option value="">Select urgency</option>
-                        <option>Urgent — within 1 month</option>
-                        <option>Soon — within 3 months</option>
-                        <option>Planning ahead — 3–6 months</option>
+                        <option>Urgent, within 1 month</option>
+                        <option>Soon, within 3 months</option>
+                        <option>Planning ahead, 3–6 months</option>
                       </select>
                     </div>
                   </div>
@@ -579,7 +579,7 @@
                         <option>Business Management System</option>
                         <option>Digital Strategy Consultation</option>
                         <option>Mobile App</option>
-                        <option>Not sure — need consultation</option>
+                        <option>Not sure, need consultation</option>
                       </select>
                     </div>
                     <div class="fg">
@@ -641,15 +641,15 @@
                 <div class="apply-card-body">
                   <div class="review-block">
                     <h4>Program</h4>
-                    <div class="review-row"><span class="review-key">Selected Program</span><span class="review-val" id="rv-program">—</span></div>
+                    <div class="review-row"><span class="review-key">Selected Program</span><span class="review-val" id="rv-program"></span></div>
                   </div>
                   <div class="review-block">
                     <h4>Personal Information</h4>
-                    <div class="review-row"><span class="review-key">Full Name</span><span class="review-val" id="rv-name">—</span></div>
-                    <div class="review-row"><span class="review-key">Email</span><span class="review-val" id="rv-email">—</span></div>
-                    <div class="review-row"><span class="review-key">Phone</span><span class="review-val" id="rv-phone">—</span></div>
-                    <div class="review-row"><span class="review-key">County</span><span class="review-val" id="rv-county">—</span></div>
-                    <div class="review-row"><span class="review-key">Education Level</span><span class="review-val" id="rv-edu">—</span></div>
+                    <div class="review-row"><span class="review-key">Full Name</span><span class="review-val" id="rv-name"></span></div>
+                    <div class="review-row"><span class="review-key">Email</span><span class="review-val" id="rv-email"></span></div>
+                    <div class="review-row"><span class="review-key">Phone</span><span class="review-val" id="rv-phone"></span></div>
+                    <div class="review-row"><span class="review-key">County</span><span class="review-val" id="rv-county"></span></div>
+                    <div class="review-row"><span class="review-key">Education Level</span><span class="review-val" id="rv-edu"></span></div>
                   </div>
                   <div style="background:#fffbeb;border:1.5px solid #fde68a;border-radius:10px;padding:1rem 1.25rem;font-size:0.88rem;color:#78350f;margin-bottom:0.5rem;">
                     <strong>⚠️ Document Note:</strong> After submitting, you'll receive an email within 3–5 business days with instructions on which documents to send and how to upload them.
@@ -691,7 +691,7 @@
 
   </main>
 
-  <script src="main.js?v=10"></script>
+  <script src="main.js?v=11"></script>
   <script>
     var currentStep = 1;
     var selectedProgram = '';

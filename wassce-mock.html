@@ -79,7 +79,7 @@
     .setup-card {
       background: var(--card-bg);
       border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+      box-shadow: 0 4px 24px rgba(0,0,0.08);
       padding: 36px;
       margin: -28px auto 32px;
       position: relative;
@@ -186,7 +186,7 @@
       border-radius: 12px;
       padding: 20px;
       text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      box-shadow: 0 2px 8px rgba(0,0,0.06);
       border-top: 3px solid var(--navy);
     }
     .stat-card .stat-value {
@@ -223,7 +223,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      box-shadow: 0 1px 4px rgba(0,0,0.06);
       gap: 12px;
     }
     .result-card .rc-subject {
@@ -270,13 +270,13 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,.2);
+      box-shadow: 0 2px 12px rgba(0,0,0.2);
     }
     .exam-subject-badge {
       font-family: 'Poppins', sans-serif;
       font-weight: 700;
       font-size: .9rem;
-      background: rgba(255,255,255,.15);
+      background: rgba(255,255,255.15);
       padding: 5px 12px;
       border-radius: 20px;
     }
@@ -345,7 +345,7 @@
       border-radius: 14px;
       padding: 30px;
       margin-bottom: 20px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      box-shadow: 0 2px 12px rgba(0,0,0.07);
     }
     .question-number {
       font-size: .8rem;
@@ -406,7 +406,7 @@
       background: var(--card-bg);
       border-radius: 14px;
       padding: 20px 24px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      box-shadow: 0 2px 12px rgba(0,0,0.07);
       margin-bottom: 24px;
     }
     .qgrid-heading {
@@ -461,7 +461,7 @@
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.5);
+      background: rgba(0,0,0.5);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -475,7 +475,7 @@
       padding: 32px;
       max-width: 420px;
       width: 100%;
-      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+      box-shadow: 0 20px 60px rgba(0,0,0.25);
     }
     .modal-box h3 {
       font-family: 'Poppins', sans-serif;
@@ -530,9 +530,9 @@
       font-family: 'Poppins', sans-serif;
       font-size: 1.8rem;
       font-weight: 900;
-      border: 4px solid rgba(255,255,255,.4);
+      border: 4px solid rgba(255,255,255.4);
       margin-bottom: 16px;
-      background: rgba(255,255,255,.15);
+      background: rgba(255,255,255.15);
     }
     .score-pct {
       font-family: 'Poppins', sans-serif;
@@ -572,7 +572,7 @@
       border-radius: 12px;
       padding: 18px 12px;
       text-align: center;
-      box-shadow: 0 4px 16px rgba(0,0,0,.1);
+      box-shadow: 0 4px 16px rgba(0,0,0.1);
     }
     .rstat-card .rstat-val {
       font-family: 'Poppins', sans-serif;
@@ -659,7 +659,7 @@
       padding: 20px 22px;
       margin-bottom: 14px;
       border-left: 4px solid var(--border);
-      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+      box-shadow: 0 1px 4px rgba(0,0,0.05);
     }
     .review-item.ri-correct { border-left-color: var(--green); }
     .review-item.ri-wrong { border-left-color: var(--red); }
@@ -730,7 +730,7 @@
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+      box-shadow: 0 4px 16px rgba(0,0,0.25);
       text-decoration: none;
       z-index: 500;
       transition: transform .2s;
@@ -740,7 +740,7 @@
     /* ── Progress bar inside exam ── */
     .exam-progress-bar {
       height: 4px;
-      background: rgba(255,255,255,.2);
+      background: rgba(255,255,255.2);
       position: relative;
     }
     .exam-progress-bar .bar-fill {
@@ -849,7 +849,7 @@
     <!-- Stats -->
     <div class="stats-strip" id="stats-strip">
       <div class="stat-card">
-        <div class="stat-value" id="stat-best">—</div>
+        <div class="stat-value" id="stat-best"></div>
         <div class="stat-label">Best Score</div>
       </div>
       <div class="stat-card">
@@ -857,7 +857,7 @@
         <div class="stat-label">Mocks Taken</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value" id="stat-avg">—</div>
+        <div class="stat-value" id="stat-avg"></div>
         <div class="stat-label">Average Score</div>
       </div>
     </div>
@@ -946,7 +946,7 @@
         <div class="rstat-lbl">Unanswered</div>
       </div>
       <div class="rstat-card time">
-        <div class="rstat-val" id="rstat-time">—</div>
+        <div class="rstat-val" id="rstat-time"></div>
         <div class="rstat-lbl">Time Taken</div>
       </div>
     </div>
@@ -1032,7 +1032,7 @@ const MOCK_QUESTIONS = {
     { q: "Express 0.00045 in standard form.", opts: ["4.5 × 10⁻⁴","4.5 × 10⁻³","45 × 10⁻⁵","4.5 × 10⁴"], ans: 0, exp: "0.00045 = 4.5 × 10⁻⁴." },
     { q: "P(A) = 0.4, P(B) = 0.3 and the events are independent. Find P(A∩B).", opts: ["0.7","0.12","0.1","0.04"], ans: 1, exp: "P(A∩B) = P(A) × P(B) = 0.4 × 0.3 = 0.12." },
     { q: "A car travels 180 km in 3 hours. Find its speed in km/h.", opts: ["50","60","70","80"], ans: 1, exp: "Speed = Distance/Time = 180/3 = 60 km/h." },
-    { q: "Find the next term in the sequence: 3, 7, 11, 15, ...", opts: ["17","18","19","20"], ans: 2, exp: "Common difference = 4. Next term = 15 + 4 = 19." },
+    { q: "Find the next term in the sequence: 3, 7, 11, 15...", opts: ["17","18","19","20"], ans: 2, exp: "Common difference = 4. Next term = 15 + 4 = 19." },
     { q: "What is the circumference of a circle with radius 7 cm? (Use π = 22/7)", opts: ["22 cm","44 cm","66 cm","88 cm"], ans: 1, exp: "C = 2πr = 2 × (22/7) × 7 = 44 cm." },
     { q: "Factorize: x² − 9", opts: ["(x − 3)²","(x + 3)(x − 3)","(x − 9)(x + 1)","(x + 9)(x − 1)"], ans: 1, exp: "Difference of two squares: x² − 9 = (x+3)(x−3)." },
     { q: "If 3 : 5 = x : 20, find x.", opts: ["10","12","15","8"], ans: 1, exp: "x = (3 × 20)/5 = 12." },
@@ -1245,7 +1245,7 @@ function shuffle(arr) {
 }
 
 /* ═══════════════════════════════════════════════
-   SETUP SCREEN — load stats + recent results
+   SETUP SCREEN, load stats + recent results
 ════════════════════════════════════════════════ */
 function loadSetupStats() {
   const results = JSON.parse(localStorage.getItem('tih_mock_results') || '[]');
@@ -1253,13 +1253,13 @@ function loadSetupStats() {
   const best = localStorage.getItem('tih_best_score');
 
   document.getElementById('stat-total').textContent = total;
-  document.getElementById('stat-best').textContent = best ? best + '%' : '—';
+  document.getElementById('stat-best').textContent = best ? best + '%' : ', ';
 
   if (results.length > 0) {
     const avg = Math.round(results.reduce((s, r) => s + r.score, 0) / results.length);
     document.getElementById('stat-avg').textContent = avg + '%';
   } else {
-    document.getElementById('stat-avg').textContent = '—';
+    document.getElementById('stat-avg').textContent = ', ';
   }
 
   const list = document.getElementById('recent-results-list');
@@ -1547,7 +1547,7 @@ function showResults() {
     const isUnanswered = userAns === undefined;
 
     let itemClass = 'ri-unanswered';
-    let iconChar = '—';
+    let iconChar = ', ';
     if (!isUnanswered && isCorrect) { itemClass = 'ri-correct'; iconChar = '✓'; }
     if (!isUnanswered && !isCorrect) { itemClass = 'ri-wrong'; iconChar = '✗'; }
 
@@ -1638,7 +1638,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-<script src="main.js?v=10"></script>
-<script src="chatbot.js?v=2"></script>
+<script src="main.js?v=11"></script>
+<script src="chatbot.js?v=3"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /* ============================================================
-   TIH LEARNING HUB — PRACTICE TEST BANK
+   TIH LEARNING HUB, PRACTICE TEST BANK
    ------------------------------------------------------------
    Timed, auto-scored practice tests for the premium exam-prep
    courses (IELTS, TOEFL iBT, SAT). Consumed by practice-test.html.
@@ -23,7 +23,7 @@ var PRACTICE_TESTS = {
     durationMin: 35,
     scoreType: 'band',
     passMark: 70,
-    intro: 'A timed IELTS-style practice test covering Reading comprehension, Listening (transcript-based), and Grammar & Vocabulary. Answer every question — there is no penalty for guessing. At the end you will get an estimated band score and a full review with explanations. Writing and Speaking practice prompts with model answers follow the test.',
+    intro: 'A timed IELTS-style practice test covering Reading comprehension, Listening (transcript-based), and Grammar & Vocabulary. Answer every question, there is no penalty for guessing. At the end you will get an estimated band score and a full review with explanations. Writing and Speaking practice prompts with model answers follow the test.',
     sections: [
       { name: 'Reading', questions: [
         { q: 'Read the passage, then answer: "The Sahara, the world’s largest hot desert, was once a green savannah dotted with lakes and wildlife. About 5,000 years ago, slow changes in the Earth’s orbit reduced the region’s rainfall, gradually turning it into desert." According to the passage, what turned the Sahara into a desert?',
@@ -31,10 +31,10 @@ var PRACTICE_TESTS = {
           exp: 'The passage directly states that changes in the Earth’s orbit reduced rainfall, turning the region into desert.' },
         { q: 'Based on the same passage, the statement "The Sahara has always been a desert" is:',
           opts: ['True', 'False', 'Not Given'], correct: 1,
-          exp: 'False — the passage says it "was once a green savannah", which contradicts the statement.' },
+          exp: 'False, the passage says it "was once a green savannah", which contradicts the statement.' },
         { q: 'Based on the same passage, the statement "The Sahara is the largest desert of any kind on Earth" is:',
           opts: ['True', 'False', 'Not Given'], correct: 2,
-          exp: 'Not Given — the passage only says "largest hot desert". It does not say whether it is the largest desert overall (in fact Antarctica is larger), so there is not enough information.' },
+          exp: 'Not Given, the passage only says "largest hot desert". It does not say whether it is the largest desert overall (in fact Antarctica is larger), so there is not enough information.' },
         { q: 'In the passage, the word "dotted" most nearly means:',
           opts: ['covered completely', 'scattered with', 'emptied of', 'painted'], correct: 1,
           exp: '"Dotted with lakes" means lakes were scattered across the landscape.' },
@@ -46,13 +46,13 @@ var PRACTICE_TESTS = {
         { q: 'Transcript: "The library is open from nine in the morning until eight in the evening on weekdays, but it closes at five on Saturdays and is shut all day Sunday." When does the library close on Saturday?',
           opts: ['8:00 p.m.', '9:00 a.m.', '5:00 p.m.', 'It is closed on Saturday'], correct: 2,
           exp: 'The speaker says it "closes at five on Saturdays".' },
-        { q: 'Transcript: "To register, first fill in the online form, then bring your ID to the front desk — sorry, actually you should email the form to us before you come in." What must you do with the form?',
+        { q: 'Transcript: "To register, first fill in the online form, then bring your ID to the front desk, sorry, actually you should email the form to us before you come in." What must you do with the form?',
           opts: ['Bring it to the front desk', 'Email it before coming in', 'Post it by mail', 'Nothing is needed'], correct: 1,
-          exp: 'The speaker corrects the first instruction — the final instruction is to EMAIL the form before coming in. IELTS often uses this "correction" trap.' },
+          exp: 'The speaker corrects the first instruction, the final instruction is to EMAIL the form before coming in. IELTS often uses this "correction" trap.' },
         { q: 'Transcript: "The workshop fee is fifteen dollars for students and thirty dollars for everyone else." How much does a non-student pay?',
           opts: ['$15', '$30', '$50', 'Free'], correct: 1,
           exp: '"Thirty dollars for everyone else" = the non-student fee.' },
-        { q: 'Transcript: "You’ll need a notebook, a pen, and — most importantly — your student card." Which item does the speaker emphasise as most important?',
+        { q: 'Transcript: "You’ll need a notebook, a pen, and, most importantly, your student card." Which item does the speaker emphasise as most important?',
           opts: ['A notebook', 'A pen', 'The student card', 'A laptop'], correct: 2,
           exp: 'The phrase "most importantly" signals the emphasised item: the student card.' }
       ]},
@@ -71,7 +71,7 @@ var PRACTICE_TESTS = {
           exp: '"Tackle" is a strong, formal collocation with "problem", ideal for Writing Task 2.' },
         { q: 'Identify the error: "Despite of the rain, the match continued."',
           opts: ['"Despite of" should be "Despite" or "In spite of"', 'No error', '"continued" should be "continue"', '"the match" should be "a match"'], correct: 0,
-          exp: 'It is either "despite" or "in spite of" — never "despite of".' },
+          exp: 'It is either "despite" or "in spite of", never "despite of".' },
         { q: 'Best linking word: "The plan is expensive. ______, it could save money in the long term."',
           opts: ['Therefore', 'However', 'Because', 'For example'], correct: 1,
           exp: '"However" signals the contrast between "expensive" and "save money".' }
@@ -85,7 +85,7 @@ var PRACTICE_TESTS = {
     speaking: [
       { prompt: 'Speaking Part 2 (Cue Card): Describe a skill you would like to learn. You should say: what the skill is, why you want to learn it, how you would learn it, and how it would help you. You have 1 minute to prepare and should speak for 1–2 minutes.',
         tips: 'Make quick notes against each bullet. Extend each point with a reason, an example, and how you feel. Keep talking until the examiner stops you.',
-        model: 'A skill I would really like to learn is graphic design. I’m interested in it because I run a small online shop, and at the moment I pay someone else to make my posters, which is expensive. I’d learn it through free online courses — for example, the TIH Learning Hub — and by practising with tools like Canva every day. I think it would help me a great deal: I could design my own adverts, respond quickly to trends, and even offer design services to other small businesses to earn extra income. Overall, it’s a practical skill that would give me more independence and open new opportunities.' }
+        model: 'A skill I would really like to learn is graphic design. I’m interested in it because I run a small online shop, and at the moment I pay someone else to make my posters, which is expensive. I’d learn it through free online courses, for example, the TIH Learning Hub, and by practising with tools like Canva every day. I think it would help me a great deal: I could design my own adverts, respond quickly to trends, and even offer design services to other small businesses to earn extra income. Overall, it’s a practical skill that would give me more independence and open new opportunities.' }
     ]
   },
 
@@ -98,7 +98,7 @@ var PRACTICE_TESTS = {
     intro: 'A timed TOEFL iBT-style practice test covering Reading and Listening (transcript-based) comprehension and academic language use. You will receive an estimated 0–120 score and a full review. Integrated Writing and Speaking practice prompts with model responses follow the test.',
     sections: [
       { name: 'Reading', questions: [
-        { q: 'Passage: "Bioluminescence — the production of light by living organisms — is common in the deep ocean, where sunlight cannot reach. Many species use it to attract prey, confuse predators, or communicate with mates." Why is bioluminescence common in the deep ocean, according to the passage?',
+        { q: 'Passage: "Bioluminescence, the production of light by living organisms, is common in the deep ocean, where sunlight cannot reach. Many species use it to attract prey, confuse predators, or communicate with mates." Why is bioluminescence common in the deep ocean, according to the passage?',
           opts: ['Because the water is warm', 'Because sunlight cannot reach there', 'Because there are no predators', 'Because the water is shallow'], correct: 1,
           exp: 'The passage links it to depths "where sunlight cannot reach".' },
         { q: 'The word "confuse" in the passage is closest in meaning to:',
@@ -106,7 +106,7 @@ var PRACTICE_TESTS = {
           exp: '"Confuse predators" means to bewilder or disorient them.' },
         { q: 'Which purpose of bioluminescence is NOT mentioned in the passage?',
           opts: ['Attracting prey', 'Confusing predators', 'Communicating with mates', 'Producing heat for warmth'], correct: 3,
-          exp: 'Negative-factual question: the passage lists prey, predators, and mates — but not warmth.' },
+          exp: 'Negative-factual question: the passage lists prey, predators, and mates, but not warmth.' },
         { q: 'Passage: "Although coffee is often blamed for poor sleep, moderate consumption early in the day has little effect on most adults; the problem arises mainly when caffeine is taken late in the afternoon or evening." What can be inferred?',
           opts: ['Coffee never affects sleep', 'Timing of caffeine matters more than coffee itself for many adults', 'Everyone should stop drinking coffee', 'Coffee improves sleep'], correct: 1,
           exp: 'Inference: the passage contrasts early (little effect) with late (a problem), implying timing is key.' }
@@ -115,20 +115,20 @@ var PRACTICE_TESTS = {
         { q: 'Lecture excerpt: "So, the key point about supply and demand is this: when supply falls but demand stays the same, prices tend to rise." According to the professor, what happens to prices when supply falls and demand is unchanged?',
           opts: ['They fall', 'They rise', 'They stay the same', 'They disappear'], correct: 1,
           exp: 'The professor states prices "tend to rise" when supply falls and demand is unchanged.' },
-        { q: 'Conversation: Student: "I’m worried I’ll miss the deadline." Advisor: "Don’t worry — you can request a one-week extension by emailing your professor before Friday." What is the advisor’s main purpose?',
+        { q: 'Conversation: Student: "I’m worried I’ll miss the deadline." Advisor: "Don’t worry, you can request a one-week extension by emailing your professor before Friday." What is the advisor’s main purpose?',
           opts: ['To criticise the student', 'To reassure the student and give a solution', 'To cancel the assignment', 'To change the professor'], correct: 1,
           exp: 'Function question: the advisor reassures ("Don’t worry") and offers a concrete solution.' },
         { q: 'Lecture: "Photosynthesis converts sunlight, water, and carbon dioxide into glucose and oxygen." Which is a PRODUCT of photosynthesis?',
           opts: ['Sunlight', 'Carbon dioxide', 'Oxygen', 'Water'], correct: 2,
           exp: 'Sunlight, water and CO2 are inputs; glucose and oxygen are the products.' },
-        { q: 'Lecture: "Now, this is important for the exam — write this down." What does the professor imply?',
+        { q: 'Lecture: "Now, this is important for the exam, write this down." What does the professor imply?',
           opts: ['The point is unimportant', 'Students should note this because it may be tested', 'The lecture is over', 'Students may leave'], correct: 1,
           exp: 'Signposting language ("important for the exam") flags a likely test point.' }
       ]},
       { name: 'Academic Language', questions: [
         { q: 'Choose the best academic paraphrase of "a lot of studies show":',
           opts: ['Loads of studies say', 'Numerous studies indicate', 'Studies kinda prove', 'Everyone knows'], correct: 1,
-          exp: '"Numerous studies indicate" is precise and formal — suitable for academic writing.' },
+          exp: '"Numerous studies indicate" is precise and formal, suitable for academic writing.' },
         { q: 'Complete: "The experiment failed; ______, the researchers gained valuable insights.",',
           opts: ['therefore', 'nevertheless', 'because', 'for instance'], correct: 1,
           exp: '"Nevertheless" signals the contrast between failure and gaining insight.' },
@@ -158,7 +158,7 @@ var PRACTICE_TESTS = {
     durationMin: 35,
     scoreType: 'sat1600',
     passMark: 70,
-    intro: 'A timed Digital SAT-style practice test with two areas — Reading & Writing and Math. You will receive an estimated 400–1600 score with a breakdown for each area, plus a full review. Remember: there is no penalty for wrong answers, so never leave a blank.',
+    intro: 'A timed Digital SAT-style practice test with two areas, Reading & Writing and Math. You will receive an estimated 400–1600 score with a breakdown for each area, plus a full review. Remember: there is no penalty for wrong answers, so never leave a blank.',
     sections: [
       { name: 'Reading & Writing', questions: [
         { q: 'Which choice completes the text with the most logical and precise word? "Although the committee’s report was thorough, its recommendations were so ______ that officials struggled to turn them into concrete policy."',
@@ -175,7 +175,7 @@ var PRACTICE_TESTS = {
           exp: '"However" signals the contrast between "most patients" improving and "a small group" not.' },
         { q: 'Punctuation: Which is correct?',
           opts: ['She studied all night, she still felt unprepared.', 'She studied all night; she still felt unprepared.', 'She studied all night she still felt unprepared.', 'She studied all night: she still felt, unprepared.'], correct: 1,
-          exp: 'Two independent clauses need a semicolon (or a period) — a comma alone is a comma splice.' },
+          exp: 'Two independent clauses need a semicolon (or a period), a comma alone is a comma splice.' },
         { q: 'Command of evidence: A student claims a city’s recycling program succeeded. Which finding best supports the claim?',
           opts: ['The program was widely advertised', 'Recycling rates rose from 20% to 55% after the program began', 'The program had a large budget', 'Many people had heard of the program'], correct: 1,
           exp: 'Only the measurable rise in recycling rates directly supports the claim of success.' }

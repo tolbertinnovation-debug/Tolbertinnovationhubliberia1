@@ -1,13 +1,13 @@
 /* ============================================================
-   TIH LEARNING HUB — WASSCE → COURSE ADAPTER
+   TIH LEARNING HUB, WASSCE → COURSE ADAPTER
    ------------------------------------------------------------
    Turns a WASSCE subject (from wassce-data.js) into a normal
    COURSES_DB course so it plays through course-player.html exactly
    like every other course: same card, lessons, quiz, certificate,
    and the same US$2 paid-access gate (courseId = "wassce-<subject>").
 
-   The bulky WASSCE data is loaded lazily — only when a WASSCE course
-   is actually opened — so catalog pages stay light.
+   The bulky WASSCE data is loaded lazily, only when a WASSCE course
+   is actually opened, so catalog pages stay light.
    ============================================================ */
 var WassceCourse = (function () {
   'use strict';
@@ -56,8 +56,8 @@ var WassceCourse = (function () {
     return '<p>This quiz covers <strong>' + esc(name) + '</strong>. You need <strong>70% or higher to pass</strong>'
       + (count === 20 ? ' (14 out of 20)' : ' (7 out of 10)') + ' and you can retake it as many times as you like.</p>'
       + '<h4>Before You Begin</h4><ul><li>Review the lesson notes, key points and exam tips above</li>'
-      + '<li>Watch out for the listed common mistakes — WASSCE examiners test them</li>'
-      + '<li>Read every question carefully before choosing</li></ul><p>Good luck — you are preparing the WAEC way!</p>';
+      + '<li>Watch out for the listed common mistakes, WASSCE examiners test them</li>'
+      + '<li>Read every question carefully before choosing</li></ul><p>Good luck, you are preparing the WAEC way!</p>';
   }
 
   // Construct COURSES_DB[courseId] + LESSON_CONTENT[courseId] from a subject.
@@ -100,17 +100,17 @@ var WassceCourse = (function () {
       ]
     });
     quizzes.final = finalQuiz(topics, topics.length + 1);
-    notes[String(flat)] = quizNote(W.name + ' — the full subject', 20);
+    notes[String(flat)] = quizNote(W.name + ', the full subject', 20);
 
     var course = {
       id: courseId,
       title: 'WASSCE ' + W.name,
-      shortDesc: W.description || ('Complete WASSCE preparation for ' + W.name + ' — lessons, key points, formulas, exam tips and practice.'),
+      shortDesc: W.description || ('Complete WASSCE preparation for ' + W.name + ', lessons, key points, formulas, exam tips and practice.'),
       category: 'WASSCE Exam Prep',
       icon: W.icon || '🎓',
       gradient: 'linear-gradient(135deg,#1e3a5f,#002868)',
       instructor: 'TIH WASSCE Faculty',
-      instructorTitle: 'Tolbert Innovation Hub — WASSCE PRO',
+      instructorTitle: 'Tolbert Innovation Hub, WASSCE PRO',
       instructorBio: 'The TIH WASSCE PRO faculty prepares Liberian students for the West African Senior School Certificate Examination with concise lessons, worked examples and past-question practice.',
       rating: 4.8, reviewCount: 0, students: '',
       duration: (topics.length + 1) + ' modules', level: 'WASSCE',
@@ -123,7 +123,7 @@ var WassceCourse = (function () {
       quizzes: quizzes,
       reviews: [],
       faqs: [
-        { q: 'What does this WASSCE course include?', a: 'A full module for every core topic — video lesson, detailed notes, key points, formulas, exam tips, common mistakes and a 10-question topic quiz — plus a 20-question final assessment. Pass it to earn your TIH certificate.' },
+        { q: 'What does this WASSCE course include?', a: 'A full module for every core topic, video lesson, detailed notes, key points, formulas, exam tips, common mistakes and a 10-question topic quiz, plus a 20-question final assessment. Pass it to earn your TIH certificate.' },
         { q: 'How much does it cost?', a: 'US$2, paid by Mobile Money. After the TIH team confirms your payment you receive an access code to unlock the subject.' }
       ]
     };

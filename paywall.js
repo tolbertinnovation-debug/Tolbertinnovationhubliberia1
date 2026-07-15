@@ -1,5 +1,5 @@
 /* ============================================================
-   TIH LEARNING HUB — PAYWALL / PAID-ACCESS GATE
+   TIH LEARNING HUB, PAYWALL / PAID-ACCESS GATE
    ------------------------------------------------------------
    Locks a course or WASSCE subject until the learner is signed in
    AND has entered a valid access code issued by an administrator
@@ -36,7 +36,7 @@ var Paywall = (function () {
     // Per-item price (premium courses cost more than the US$2 default).
     var amount = (typeof HubDB.priceFor === 'function') ? HubDB.priceFor(opts.itemId) : P.amountUSD;
     var currencyNote = (typeof HubDB.currencyNoteFor === 'function') ? HubDB.currencyNoteFor(opts.itemId) : P.currencyNote;
-    var waText = 'PAYMENT / ACCESS REQUEST — TIH Learning Hub\n'
+    var waText = 'PAYMENT / ACCESS REQUEST, TIH Learning Hub\n'
       + 'Student: ' + (student.name || '') + '\n'
       + 'Student ID: ' + student.id + '\n'
       + 'Item: ' + (opts.itemTitle || opts.itemId) + '\n'
@@ -67,7 +67,7 @@ var Paywall = (function () {
       + '<p style="font-size:.92rem;color:#374151;margin:0 0 1rem;">Access to this course costs <b>US$' + esc(amount) + '</b>. Follow these steps to unlock it:</p>'
       + '<ol style="margin:0 0 1rem 1.1rem;padding:0;font-size:.9rem;color:#374151;line-height:1.7;">'
       + '<li><b>Pay ' + esc(currencyNote) + '</b> by Mobile Money to:<br><a href="' + telLink + '" style="display:inline-flex;align-items:center;gap:.4rem;background:#eaf4ff;border:1px dashed #1E3A8A;border-radius:8px;padding:.55rem .9rem;margin-top:.35rem;font-weight:700;color:#1E3A8A;text-decoration:none;">📞 ' + esc(P.momoNumber) + ' &middot; ' + esc(P.momoName) + '</a><span style="display:block;font-size:.72rem;color:#64748b;margin-top:.25rem;">Tap the number to call</span></li>'
-      + '<li style="margin-top:.6rem;">Confirm your payment with the TIH team — by <b>WhatsApp</b>, <b>text</b>, or <b>call</b> (buttons below). Always send your <b>name</b> and <b>Student ID</b>: <b>' + esc(student.id) + '</b>.</li>'
+      + '<li style="margin-top:.6rem;">Confirm your payment with the TIH team, by <b>WhatsApp</b>, <b>text</b>, or <b>call</b> (buttons below). Always send your <b>name</b> and <b>Student ID</b>: <b>' + esc(student.id) + '</b>.</li>'
       + '<li style="margin-top:.6rem;">The administrator confirms your payment and sends you a <b>6-character access code</b>.</li>'
       + '<li style="margin-top:.6rem;">Enter the code below to unlock this course.</li>'
       + '</ol>'
@@ -77,7 +77,7 @@ var Paywall = (function () {
       + '<a href="' + smsLink + '" style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;background:#1565d8;color:#fff;font-weight:700;text-decoration:none;border-radius:999px;padding:.75rem;min-height:48px;font-size:.9rem;">✉️ Text</a>'
       + '</div>'
       + '<p style="font-size:.78rem;color:#64748b;margin:.7rem 0 0;text-align:center;">Send your <b>name</b> and <b>Student ID</b> (' + esc(student.id) + ') so we can confirm your payment.</p>'
-      + '<button id="tihRequestBtn" style="width:100%;background:#1E3A8A;color:#fff;border:none;border-radius:999px;font-weight:800;font-size:.95rem;padding:.85rem;margin-top:.9rem;cursor:pointer;font-family:inherit;min-height:50px;">📩 I\'ve Paid — Request Access</button>'
+      + '<button id="tihRequestBtn" style="width:100%;background:#1E3A8A;color:#fff;border:none;border-radius:999px;font-weight:800;font-size:.95rem;padding:.85rem;margin-top:.9rem;cursor:pointer;font-family:inherit;min-height:50px;">📩 I\'ve Paid, Request Access</button>'
       + '<div id="tihRequestFb" style="font-size:.84rem;font-weight:600;min-height:1.1em;margin-top:.5rem;text-align:center;"></div>'
       + '<div style="border-top:1px solid #e2e8f0;margin:1.1rem 0 .9rem;"></div>'
       + '<label style="display:block;font-size:.82rem;font-weight:700;color:#374151;margin-bottom:.4rem;">Already got your access code? Enter it here:</label>'
@@ -133,7 +133,7 @@ var Paywall = (function () {
     document.getElementById('tihAccessBtn').addEventListener('click', attempt);
     document.getElementById('tihAccessInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') attempt(); });
 
-    // "I've paid — Request Access": logs a request the admin can grant in one tap.
+    // "I've paid, Request Access": logs a request the admin can grant in one tap.
     var reqBtn = document.getElementById('tihRequestBtn');
     if (reqBtn) {
       reqBtn.addEventListener('click', function () {
@@ -142,10 +142,10 @@ var Paywall = (function () {
         HubDB.requestAccess(itemId).then(function (res) {
           if (res && res.ok) {
             fb.style.color = '#16a34a';
-            fb.textContent = '✅ Request sent! The TIH team will confirm your payment and unlock it — then log in again.';
+            fb.textContent = '✅ Request sent! The TIH team will confirm your payment and unlock it, then log in again.';
             reqBtn.textContent = '✅ Request Sent';
           } else {
-            reqBtn.disabled = false; reqBtn.textContent = '📩 I\'ve Paid — Request Access';
+            reqBtn.disabled = false; reqBtn.textContent = '📩 I\'ve Paid, Request Access';
             fb.style.color = '#e31e24';
             fb.textContent = res && res.offline
               ? 'Could not reach the server. Please use WhatsApp, Text, or Call above.'

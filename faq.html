@@ -38,14 +38,12 @@
       transition: background 0.18s, border-color 0.18s, color 0.18s;
       font-family: 'Inter', sans-serif;
     }
-    .faq-cat-link:hover,
-    .faq-cat-link.active {
+    .faq-cat-link:hover.faq-cat-link.active {
       background: var(--brand-blue);
       border-color: var(--brand-blue);
       color: #fff;
     }
-    .faq-cat-link.red:hover,
-    .faq-cat-link.red.active {
+    .faq-cat-link.red:hover.faq-cat-link.red.active {
       background: var(--brand-red);
       border-color: var(--brand-red);
     }
@@ -596,13 +594,13 @@
   <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
   </a>
-  <script src="main.js?v=10"></script>
-<script src="chatbot.js?v=2"></script>
+  <script src="main.js?v=11"></script>
+<script src="chatbot.js?v=3"></script>
   <script>
     /* ---- Entrance-animation failsafe ----
        On slow / flaky mobile connections the external scripts (main.js) can
        fail to load, leaving scroll-reveal sections and the hero stuck at
-       opacity:0 — the page appears to "disappear". This inline guard is
+       opacity:0, the page appears to "disappear". This inline guard is
        self-contained and guarantees content becomes visible no matter what. */
     (function () {
       function show() {

@@ -1,4 +1,4 @@
-// Tolbert Innovation Hub — TIH Assistant v3.0
+// Tolbert Innovation Hub, TIH Assistant v3.0
 // Professional chatbot with page-context awareness & dynamic page learning
 (function () {
   'use strict';
@@ -191,17 +191,17 @@
 
   // ── PAGE CONTEXT ─────────────────────────────────────────────────────────────
   const PAGE_MAP = [
-    { match:'learning-hub.html', label:'IELTS Module 1 — Orientation',
+    { match:'learning-hub.html', label:'IELTS Module 1, Orientation',
       qr:['📚 What\'s in Module 1','💡 IELTS Study Tips','🏅 Get Certificate','🎓 Scholarship Help','📞 Contact'] },
-    { match:'learning-hub.html', label:'IELTS Module 2 — Reading',
+    { match:'learning-hub.html', label:'IELTS Module 2, Reading',
       qr:['📖 Reading Strategies','💡 Skimming Tips','🏅 Get Certificate','🎓 Scholarship Help','📞 Contact'] },
-    { match:'learning-hub.html', label:'IELTS Module 3 — Writing',
+    { match:'learning-hub.html', label:'IELTS Module 3, Writing',
       qr:['✍️ Writing Task 1 vs 2','💡 Band 7+ Tips','🏅 Get Certificate','🎓 Scholarship','📞 Contact'] },
-    { match:'learning-hub.html', label:'IELTS Module 4 — Listening',
+    { match:'learning-hub.html', label:'IELTS Module 4, Listening',
       qr:['🎧 Listening Tips','💡 Note-Taking','🏅 Get Certificate','🎓 Scholarship','📞 Contact'] },
-    { match:'learning-hub.html', label:'IELTS Module 5 — Speaking',
+    { match:'learning-hub.html', label:'IELTS Module 5, Speaking',
       qr:['🗣️ Speaking Tips','💡 Fluency Advice','🏅 Get Certificate','🎓 Scholarship','📞 Contact'] },
-    { match:'learning-hub.html', label:'IELTS Module 6 — Mock Exam',
+    { match:'learning-hub.html', label:'IELTS Module 6, Mock Exam',
       qr:['📝 Mock Exam Tips','🏅 Request Certificate','🎓 Scholarship','📞 Contact'] },
     { match:'classroom-ielts-module-computer', label:'Computer vs Paper IELTS',
       qr:['💻 Computer-Based Tips','📄 Paper-Based Tips','🏅 Certificate','📞 Contact'] },
@@ -355,7 +355,7 @@
     { id:'greet',
       keywords:['hello','hi','hey','good morning','good evening','good afternoon','howdy','greetings','what can you do','who are you','help me','assist','start','begin'],
       reply:`Hello! 👋 Welcome to <strong>Tolbert Innovation Hub</strong>!<br><br>
-I'm the TIH Assistant — here to help you explore programs, scholarships, free IELTS/TOEFL prep, healthcare referrals, software services, and more.<br><br>
+I'm the TIH Assistant, here to help you explore programs, scholarships, free IELTS/TOEFL prep, healthcare referrals, software services, and more.<br><br>
 What would you like to do today?`,
       qr:['🎓 Browse Programs','🏆 Fully Funded Scholarships','📚 Free Learning Hub','🏥 Healthcare','💻 Software','📞 Contact'] },
 
@@ -363,17 +363,17 @@ What would you like to do today?`,
       keywords:['what is tih','what is tolbert','about tolbert','tell me about','what does tih do','who is tolbert innovation','organization','ngo','nonprofit','what you do','what do you offer','what programs','overview','mission'],
       reply:`🏛️ <strong>About Tolbert Innovation Hub (TIH)</strong><br><br>
 TIH is a Liberian organization founded by <strong>Mr. Samuel S. Tolbert</strong>, inspired by the legacy of <strong>President William R. Tolbert</strong>, that empowers youth through five pillars:<br><br>
-🎓 <strong>Scholarship & Study Abroad</strong> — guidance, document prep &amp; admission support<br>
-🏥 <strong>Healthcare Referral Program</strong> — specialist referrals to India &amp; beyond<br>
-💻 <strong>Software &amp; Digital Innovation</strong> — websites, apps, business systems<br>
-📚 <strong>Free IELTS/TOEFL Classroom</strong> — 6-module courses, 100% free<br>
-🌟 <strong>Empowerment Training</strong> — for youth, students, business owners &amp; innovators<br><br>
+🎓 <strong>Scholarship & Study Abroad</strong>, guidance, document prep &amp; admission support<br>
+🏥 <strong>Healthcare Referral Program</strong>, specialist referrals to India &amp; beyond<br>
+💻 <strong>Software &amp; Digital Innovation</strong>, websites, apps, business systems<br>
+📚 <strong>Free IELTS/TOEFL Classroom</strong>, 6-module courses, 100% free<br>
+🌟 <strong>Empowerment Training</strong>, for youth, students, business owners &amp; innovators<br><br>
 📍 Based in Monrovia, Liberia · 📞 +231 880 559 227`,
       qr:['🎓 Scholarships','🏥 Healthcare','💻 Software','📚 Free Learning Hub','🌟 Empowerment Training','📞 Contact'] },
 
     { id:'founder',
       keywords:['founder','founded','samuel','tolbert','samuel tolbert','who started','who created','ceo','chief executive','leadership','who runs','who is in charge','mr tolbert','mr samuel'],
-      reply:`👤 <strong>Our Founder — Mr. Samuel S. Tolbert</strong><br><br>
+      reply:`👤 <strong>Our Founder, Mr. Samuel S. Tolbert</strong><br><br>
 Tolbert Innovation Hub was founded by <strong>Mr. Samuel S. Tolbert</strong>, who serves as CEO. He built TIH with a mission to bridge the gap between Liberian talent and global opportunity.<br><br>
 Under his leadership, TIH has:<br>
 • Supported <strong>500+</strong> students with scholarship guidance<br>
@@ -385,51 +385,51 @@ Under his leadership, TIH has:<br>
     { id:'team',
       keywords:['team','staff','employees','members','who works','eliza','jerbo','director of programs','angeline','wilah','educational referral','joseph','smith','software','technology lead','esther','alieu','christlove','feature cartee','precelia','administrative','officer','manager','who is on'],
       reply:`👥 <strong>The TIH Team</strong><br><br>
-• <strong>Mr. Samuel S. Tolbert</strong> — Founder &amp; CEO<br>
-• <strong>Eliza V. Jerbo</strong> — Director of Programs<br>
-• <strong>Angeline Wilah</strong> — Educational Referral Manager<br>
-• <strong>Joseph Smith</strong> — Head of Software &amp; Innovation<br>
-• <strong>Esther Boakai</strong> — Chief Administrative Officer<br>
-• <strong>Alieu Saysay</strong> — General Manager<br>
-• <strong>Christlove P. Jaye</strong> — Financial Officer<br>
-• <strong>Feature A. Cartee</strong> — Administrative Assistant<br>
-• <strong>Precelia Jallah</strong> — Media &amp; Communications Officer`,
+• <strong>Mr. Samuel S. Tolbert</strong>, Founder &amp; CEO<br>
+• <strong>Eliza V. Jerbo</strong>, Director of Programs<br>
+• <strong>Angeline Wilah</strong>, Educational Referral Manager<br>
+• <strong>Joseph Smith</strong>, Head of Software &amp; Innovation<br>
+• <strong>Esther Boakai</strong>, Chief Administrative Officer<br>
+• <strong>Alieu Saysay</strong>, General Manager<br>
+• <strong>Christlove P. Jaye</strong>, Financial Officer<br>
+• <strong>Feature A. Cartee</strong>, Administrative Assistant<br>
+• <strong>Precelia Jallah</strong>, Media &amp; Communications Officer`,
       qr:['👥 View Full Team Page','👤 Our Founder','📞 Contact','🔙 Main Menu'] },
 
     { id:'scholarship',
       keywords:['scholarship','study abroad','international school','university abroad','admission','study overseas','apply school','foreign university','higher education','bachelor','master','phd','postgraduate','undergraduate','degree','academic','enroll','university'],
       reply:`🎓 <strong>TIH Study Abroad Program</strong><br><br>
-Tolbert Innovation Hub helps Liberian students study at top universities in <strong>India &amp; North Cyprus</strong> — with a <strong>50% tuition scholarship</strong> on every admission.<br><br>
+Tolbert Innovation Hub helps Liberian students study at top universities in <strong>India &amp; North Cyprus</strong>, with a <strong>50% tuition scholarship</strong> on every admission.<br><br>
 <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:12px 14px;margin:6px 0;">
 🏷️ <strong>TIH 50% Tuition Scholarship</strong><br>
 All 20 partner universities · India &amp; Cyprus<br>
-TIH negotiates directly with each university on your behalf — <em>at no cost to you.</em>
+TIH negotiates directly with each university on your behalf, <em>at no cost to you.</em>
 </div><br>
-🇮🇳 <strong>India</strong> — 15 universities · UG, PG &amp; PhD · From <strong>$900/yr</strong> after scholarship<br>
-🇨🇾 <strong>North Cyprus</strong> — 5 universities · English-medium · From <strong>$1,750/yr</strong> after scholarship<br><br>
+🇮🇳 <strong>India</strong>, 15 universities · UG, PG &amp; PhD · From <strong>$900/yr</strong> after scholarship<br>
+🇨🇾 <strong>North Cyprus</strong>, 5 universities · English-medium · From <strong>$1,750/yr</strong> after scholarship<br><br>
 ✅ <strong>Everything TIH does FREE:</strong><br>
 • University selection &amp; shortlisting<br>
 • Application &amp; document review<br>
 • Offer letter processing<br>
 • Visa guidance &amp; pre-departure support<br><br>
 👇 <strong>Where would you like to study?</strong>`,
-      qr:['🎓 Browse Programs','🇮🇳 Study in India','🇨🇾 Study in Cyprus','📋 Required Documents','📞 Apply Now — Free'] },
+      qr:['🎓 Browse Programs','🇮🇳 Study in India','🇨🇾 Study in Cyprus','📋 Required Documents','📞 Apply Now, Free'] },
 
     // ── STEP-BY-STEP PROGRAM SELECTION FLOW ──────────────────────────────────
 
     { id:'explore_programs',
       keywords:['programs','courses','fields','what programs','what courses','what can i study','available programs','list programs','show programs','study options','program list','courses available','study what','what to study','fields of study','discipline','browse programs','explore programs'],
-      reply:`🎓 <strong>Step 1 of 3 — Choose Your Destination</strong><br><br>
+      reply:`🎓 <strong>Step 1 of 3, Choose Your Destination</strong><br><br>
 TIH partners with <strong>20 universities</strong> in India and Cyprus.<br>
 Where would you like to study?<br><br>
-🇮🇳 <strong>India</strong> — 15 universities · from <strong>$900/yr</strong> (after TIH 50% scholarship)<br>
-🇨🇾 <strong>Cyprus</strong> — 5 universities · European standard · Mediterranean lifestyle<br>
-🌍 <strong>Both</strong> — explore all destinations`,
+🇮🇳 <strong>India</strong>, 15 universities · from <strong>$900/yr</strong> (after TIH 50% scholarship)<br>
+🇨🇾 <strong>Cyprus</strong>, 5 universities · European standard · Mediterranean lifestyle<br>
+🌍 <strong>Both</strong>, explore all destinations`,
       qr:['🇮🇳 Study in India','🇨🇾 Study in Cyprus','🌍 Show All Universities','📞 Talk to an Advisor'] },
 
     { id:'programs_india',
       keywords:['india programs','study india','india field','india courses','programs in india','study in india','what study india'],
-      reply:`🇮🇳 <strong>Step 2 of 3 — Choose Your Field (India)</strong><br><br>
+      reply:`🇮🇳 <strong>Step 2 of 3, Choose Your Field (India)</strong><br><br>
 15 partner universities in India. Select your field of study:<br><br>
 🏥 Medicine &amp; Health Sciences<br>
 ⚙️ Engineering &amp; Technology<br>
@@ -444,7 +444,7 @@ Where would you like to study?<br><br>
 
     { id:'programs_cyprus',
       keywords:['cyprus programs','study cyprus','cyprus field','cyprus courses','programs in cyprus','study in cyprus','what study cyprus'],
-      reply:`🇨🇾 <strong>Step 2 of 3 — Choose Your Field (Cyprus)</strong><br><br>
+      reply:`🇨🇾 <strong>Step 2 of 3, Choose Your Field (Cyprus)</strong><br><br>
 5 partner universities in North Cyprus. Select your field of study:<br><br>
 ⚙️ Engineering &amp; Technology<br>
 💼 Business &amp; Management<br>
@@ -458,24 +458,24 @@ Where would you like to study?<br><br>
 
     { id:'field_medicine',
       keywords:['medicine','medical','mbbs','doctor','health sciences','study medicine','medical school','faculty of medicine','dentistry','dental','bds'],
-      reply:`🏥 <strong>Step 3 of 3 — Medicine &amp; Health Sciences</strong><br><br>
+      reply:`🏥 <strong>Step 3 of 3, Medicine &amp; Health Sciences</strong><br><br>
 <strong>Programs Available:</strong><br>
-• MBBS — Bachelor of Medicine &amp; Surgery (6 years)<br>
-• BDS — Bachelor of Dental Surgery (5 years)<br>
+• MBBS, Bachelor of Medicine &amp; Surgery (6 years)<br>
+• BDS, Bachelor of Dental Surgery (5 years)<br>
 • B.Sc / M.Sc Medicine / Biomedical Sciences<br>
 • Master's in Public Health (MPH)<br><br>
 <strong>🇮🇳 Top India Universities:</strong><br>
-• <strong>Sharda University</strong> (NAAC A+) — from <s>$3,500</s> → <strong>$1,750/yr</strong><br>
-• <strong>SOA University</strong> (NAAC A+) — from <s>$5,500</s> → <strong>$2,750/yr</strong><br><br>
+• <strong>Sharda University</strong> (NAAC A+), from <s>$3,500</s> → <strong>$1,750/yr</strong><br>
+• <strong>SOA University</strong> (NAAC A+), from <s>$5,500</s> → <strong>$2,750/yr</strong><br><br>
 <strong>🇨🇾 Top Cyprus Universities:</strong><br>
-• <strong>Near East University (NEU)</strong> — Full Faculty of Medicine &amp; Pharmacy<br>
-• <strong>Cyprus International University (CIU)</strong> — Health Sciences<br><br>
+• <strong>Near East University (NEU)</strong>, Full Faculty of Medicine &amp; Pharmacy<br>
+• <strong>Cyprus International University (CIU)</strong>, Health Sciences<br><br>
 📅 Deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
 
     { id:'field_engineering',
       keywords:['engineering','engineer','civil engineering','mechanical engineering','electrical engineering','software engineering','chemical engineering','structural','environmental engineering'],
-      reply:`⚙️ <strong>Step 3 of 3 — Engineering &amp; Technology</strong><br><br>
+      reply:`⚙️ <strong>Step 3 of 3, Engineering &amp; Technology</strong><br><br>
 <strong>Programs Available:</strong><br>
 • B.Tech / M.Tech Civil Engineering<br>
 • B.Tech / M.Tech Mechanical Engineering<br>
@@ -483,56 +483,56 @@ Where would you like to study?<br><br>
 • B.Tech / M.Tech Computer Engineering<br>
 • B.Tech Environmental / Chemical Engineering<br><br>
 <strong>🇮🇳 Top India Universities:</strong><br>
-• <strong>LPU</strong> (NAAC A++) — from <s>$2,800</s> → <strong>$1,400/yr</strong><br>
-• <strong>Graphic Era University</strong> (NAAC A+) — from <s>$2,500</s> → <strong>$1,250/yr</strong><br>
-• <strong>Marwadi University</strong> (NAAC A) — from <s>$2,000</s> → <strong>$1,000/yr</strong><br><br>
+• <strong>LPU</strong> (NAAC A++), from <s>$2,800</s> → <strong>$1,400/yr</strong><br>
+• <strong>Graphic Era University</strong> (NAAC A+), from <s>$2,500</s> → <strong>$1,250/yr</strong><br>
+• <strong>Marwadi University</strong> (NAAC A), from <s>$2,000</s> → <strong>$1,000/yr</strong><br><br>
 <strong>🇨🇾 Top Cyprus Universities:</strong><br>
-• <strong>EMU</strong> — Engineering, Civil, Computer, Electrical<br>
-• <strong>NEU</strong> — 200+ programs incl. all Engineering branches<br><br>
+• <strong>EMU</strong>, Engineering, Civil, Computer, Electrical<br>
+• <strong>NEU</strong>, 200+ programs incl. all Engineering branches<br><br>
 📅 Deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
 
     { id:'field_business',
       keywords:['business','management','mba','bba','finance','marketing','accounting','economics','entrepreneurship','international business','human resources'],
-      reply:`💼 <strong>Step 3 of 3 — Business &amp; Management</strong><br><br>
+      reply:`💼 <strong>Step 3 of 3, Business &amp; Management</strong><br><br>
 <strong>Programs Available:</strong><br>
-• BBA — Bachelor of Business Administration<br>
+• BBA, Bachelor of Business Administration<br>
 • B.Com / B.Sc Finance &amp; Accounting<br>
-• MBA — Master of Business Administration<br>
+• MBA, Master of Business Administration<br>
 • M.Sc International Business / Marketing<br>
 • B.Sc / M.Sc Economics<br><br>
 <strong>🇮🇳 Top India Universities:</strong><br>
-• <strong>Amity University</strong> (NAAC A+) — from <s>$4,000</s> → <strong>$2,000/yr</strong><br>
-• <strong>LPU</strong> (NAAC A++) — from <s>$2,800</s> → <strong>$1,400/yr</strong><br>
-• <strong>Sharda University</strong> (NAAC A+) — from <s>$3,500</s> → <strong>$1,750/yr</strong><br><br>
+• <strong>Amity University</strong> (NAAC A+), from <s>$4,000</s> → <strong>$2,000/yr</strong><br>
+• <strong>LPU</strong> (NAAC A++), from <s>$2,800</s> → <strong>$1,400/yr</strong><br>
+• <strong>Sharda University</strong> (NAAC A+), from <s>$3,500</s> → <strong>$1,750/yr</strong><br><br>
 <strong>🇨🇾 Top Cyprus Universities:</strong><br>
-• <strong>GAU</strong> — American-style Business, Kyrenia<br>
-• <strong>NEU / CIU / EMU</strong> — Business &amp; Economics, Nicosia/Famagusta<br><br>
+• <strong>GAU</strong>, American-style Business, Kyrenia<br>
+• <strong>NEU / CIU / EMU</strong>, Business &amp; Economics, Nicosia/Famagusta<br><br>
 📅 Deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
 
     { id:'field_law',
       keywords:['law','legal','llb','llm','lawyer','attorney','legal studies','international law','commercial law','human rights law'],
-      reply:`⚖️ <strong>Step 3 of 3 — Law &amp; Social Sciences</strong><br><br>
+      reply:`⚖️ <strong>Step 3 of 3, Law &amp; Social Sciences</strong><br><br>
 <strong>Programs Available:</strong><br>
-• LLB — Bachelor of Laws (3–5 years)<br>
-• LLM — Master of Laws<br>
+• LLB, Bachelor of Laws (3–5 years)<br>
+• LLM, Master of Laws<br>
 • BA / MA International Relations<br>
 • BA / MA Political Science<br>
 • MA Human Rights &amp; International Law<br><br>
 <strong>🇮🇳 Top India Universities:</strong><br>
-• <strong>Sharda University</strong> (NAAC A+) — from <s>$3,500</s> → <strong>$1,750/yr</strong><br>
-• <strong>SOA University</strong> (NAAC A+) — from <s>$5,500</s> → <strong>$2,750/yr</strong><br>
-• <strong>MATS University</strong> — LLB specialist, from <s>$1,500</s> → <strong>$750/yr</strong><br><br>
+• <strong>Sharda University</strong> (NAAC A+), from <s>$3,500</s> → <strong>$1,750/yr</strong><br>
+• <strong>SOA University</strong> (NAAC A+), from <s>$5,500</s> → <strong>$2,750/yr</strong><br>
+• <strong>MATS University</strong>, LLB specialist, from <s>$1,500</s> → <strong>$750/yr</strong><br><br>
 <strong>🇨🇾 Top Cyprus Universities:</strong><br>
-• <strong>NEU</strong> — International Law, Commercial Law<br>
-• <strong>CIU / EMU</strong> — Law, English medium<br><br>
+• <strong>NEU</strong>, International Law, Commercial Law<br>
+• <strong>CIU / EMU</strong>, Law, English medium<br><br>
 📅 Deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
 
     { id:'field_cs',
       keywords:['computer science','information technology','it','software development','cybersecurity','data science','artificial intelligence','ai','programming','coding','software'],
-      reply:`💻 <strong>Step 3 of 3 — Computer Science &amp; IT</strong><br><br>
+      reply:`💻 <strong>Step 3 of 3, Computer Science &amp; IT</strong><br><br>
 <strong>Programs Available:</strong><br>
 • B.Sc / M.Sc Computer Science<br>
 • B.Sc / M.Sc Information Technology<br>
@@ -540,57 +540,57 @@ Where would you like to study?<br><br>
 • B.Sc / M.Sc Data Science &amp; AI<br>
 • B.Sc Software Engineering<br><br>
 <strong>🇮🇳 Top India Universities:</strong><br>
-• <strong>LPU</strong> (NAAC A++) — from <s>$2,800</s> → <strong>$1,400/yr</strong><br>
-• <strong>Graphic Era University</strong> (NAAC A+) — from <s>$2,500</s> → <strong>$1,250/yr</strong><br>
-• <strong>Amity University</strong> (NAAC A+) — from <s>$4,000</s> → <strong>$2,000/yr</strong><br><br>
+• <strong>LPU</strong> (NAAC A++), from <s>$2,800</s> → <strong>$1,400/yr</strong><br>
+• <strong>Graphic Era University</strong> (NAAC A+), from <s>$2,500</s> → <strong>$1,250/yr</strong><br>
+• <strong>Amity University</strong> (NAAC A+), from <s>$4,000</s> → <strong>$2,000/yr</strong><br><br>
 <strong>🇨🇾 Top Cyprus Universities:</strong><br>
-• <strong>EMU</strong> — Computer Science, Software Engineering, Cybersecurity<br>
-• <strong>NEU / CIU</strong> — IT &amp; Computer Science, Nicosia<br><br>
+• <strong>EMU</strong>, Computer Science, Software Engineering, Cybersecurity<br>
+• <strong>NEU / CIU</strong>, IT &amp; Computer Science, Nicosia<br><br>
 📅 Deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
 
     { id:'field_architecture',
       keywords:['architecture','interior design','urban planning','fine arts','design','building','construction design'],
-      reply:`🏗️ <strong>Step 3 of 3 — Architecture &amp; Design</strong><br><br>
+      reply:`🏗️ <strong>Step 3 of 3, Architecture &amp; Design</strong><br><br>
 <strong>Programs Available:</strong><br>
 • B.Arch / M.Arch Architecture (5 years UG)<br>
 • B.Sc / M.Sc Interior Design<br>
 • B.Sc Urban &amp; Regional Planning<br>
 • BA Fine Arts &amp; Graphic Design<br><br>
 <strong>🇮🇳 Top India Universities:</strong><br>
-• <strong>LPU</strong> (NAAC A++) — B.Arch from <s>$2,800</s> → <strong>$1,400/yr</strong><br>
-• <strong>Amity University</strong> (NAAC A+) — Architecture &amp; Design<br>
-• <strong>Marwadi University</strong> (NAAC A) — Architecture programs<br><br>
+• <strong>LPU</strong> (NAAC A++), B.Arch from <s>$2,800</s> → <strong>$1,400/yr</strong><br>
+• <strong>Amity University</strong> (NAAC A+), Architecture &amp; Design<br>
+• <strong>Marwadi University</strong> (NAAC A), Architecture programs<br><br>
 <strong>🇨🇾 Top Cyprus Universities:</strong><br>
-• <strong>NEU</strong> — Architecture, Interior Design, Fine Arts<br>
-• <strong>EMU</strong> — Architecture &amp; Urban Planning<br>
-• <strong>GAU</strong> — Architecture &amp; Interior Architecture<br><br>
+• <strong>NEU</strong>, Architecture, Interior Design, Fine Arts<br>
+• <strong>EMU</strong>, Architecture &amp; Urban Planning<br>
+• <strong>GAU</strong>, Architecture &amp; Interior Architecture<br><br>
 📅 Deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
 
     { id:'field_nursing',
       keywords:['nursing','pharmacy','pharmacist','nurse','bsc nursing','b pharm','pharmd','physiotherapy','medical lab','dietetics','nutrition'],
-      reply:`💊 <strong>Step 3 of 3 — Nursing &amp; Pharmacy</strong><br><br>
+      reply:`💊 <strong>Step 3 of 3, Nursing &amp; Pharmacy</strong><br><br>
 <strong>Programs Available:</strong><br>
 • B.Sc / M.Sc Nursing (3–4 years)<br>
-• B.Pharm / M.Pharm — Bachelor/Master of Pharmacy<br>
-• Pharm.D — Doctor of Pharmacy (6 years)<br>
+• B.Pharm / M.Pharm, Bachelor/Master of Pharmacy<br>
+• Pharm.D, Doctor of Pharmacy (6 years)<br>
 • B.Sc Physiotherapy<br>
 • B.Sc Medical Lab Technology<br>
 • B.Sc Nutrition &amp; Dietetics<br><br>
 <strong>🇮🇳 Top India Universities:</strong><br>
-• <strong>Desh Bhagat University</strong> — Nursing specialist, from <s>$1,800</s> → <strong>$900/yr</strong><br>
-• <strong>SOA University</strong> (NAAC A+) — Pharmacy &amp; Nursing<br>
-• <strong>PP Savani University</strong> — Nursing &amp; Health Sciences<br><br>
+• <strong>Desh Bhagat University</strong>, Nursing specialist, from <s>$1,800</s> → <strong>$900/yr</strong><br>
+• <strong>SOA University</strong> (NAAC A+), Pharmacy &amp; Nursing<br>
+• <strong>PP Savani University</strong>, Nursing &amp; Health Sciences<br><br>
 <strong>🇨🇾 Top Cyprus Universities:</strong><br>
-• <strong>NEU</strong> — Full Faculty of Pharmacy + Nursing<br>
-• <strong>CIU / EMU</strong> — Health Sciences programs<br><br>
+• <strong>NEU</strong>, Full Faculty of Pharmacy + Nursing<br>
+• <strong>CIU / EMU</strong>, Health Sciences programs<br><br>
 📅 Deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
 
     { id:'field_agriculture',
       keywords:['agriculture','agronomy','farming','agribusiness','food science','food technology','agricultural science','horticulture','forestry'],
-      reply:`🌾 <strong>Step 3 of 3 — Agriculture &amp; Environment</strong><br><br>
+      reply:`🌾 <strong>Step 3 of 3, Agriculture &amp; Environment</strong><br><br>
 <strong>Programs Available:</strong><br>
 • B.Sc / M.Sc Agriculture<br>
 • B.Sc Agribusiness Management<br>
@@ -598,35 +598,35 @@ Where would you like to study?<br><br>
 • B.Sc Horticulture<br>
 • B.Sc Environmental Science<br><br>
 <strong>🇮🇳 Top India Universities:</strong><br>
-• <strong>Desh Bhagat University</strong> — Agriculture specialist, from <s>$1,800</s> → <strong>$900/yr</strong><br>
-• <strong>MATS University</strong> — Agriculture &amp; Science, from <s>$1,500</s> → <strong>$750/yr</strong><br>
-• <strong>Khalsa University</strong> — Agriculture &amp; Sciences, from <s>$1,800</s> → <strong>$900/yr</strong><br><br>
-💡 India is one of the world's leading countries in agricultural research and education — ideal for Liberian students in this field.<br><br>
+• <strong>Desh Bhagat University</strong>, Agriculture specialist, from <s>$1,800</s> → <strong>$900/yr</strong><br>
+• <strong>MATS University</strong>, Agriculture &amp; Science, from <s>$1,500</s> → <strong>$750/yr</strong><br>
+• <strong>Khalsa University</strong>, Agriculture &amp; Sciences, from <s>$1,800</s> → <strong>$900/yr</strong><br><br>
+💡 India is one of the world's leading countries in agricultural research and education, ideal for Liberian students in this field.<br><br>
 📅 Deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
 
     { id:'field_education',
       keywords:['education','teaching','teacher','primary education','educational studies','humanities','arts','social science','counselling','guidance','english teaching'],
-      reply:`📖 <strong>Step 3 of 3 — Education &amp; Humanities</strong><br><br>
+      reply:`📖 <strong>Step 3 of 3, Education &amp; Humanities</strong><br><br>
 <strong>Programs Available:</strong><br>
-• B.Ed / M.Ed — Bachelor/Master of Education<br>
+• B.Ed / M.Ed, Bachelor/Master of Education<br>
 • B.A / M.A English Language Teaching (ELT)<br>
 • B.Sc / M.Sc Guidance &amp; Counselling<br>
 • B.A / M.A Social Sciences<br>
 • B.A / M.A Journalism &amp; Mass Communication<br><br>
 <strong>🇮🇳 Top India Universities:</strong><br>
-• <strong>Royal Global University</strong> — Education &amp; Humanities<br>
-• <strong>LPU</strong> (NAAC A++) — BA/MA &amp; Education programs<br>
-• <strong>Amity University</strong> (NAAC A+) — Media, Communication &amp; Education<br><br>
+• <strong>Royal Global University</strong>, Education &amp; Humanities<br>
+• <strong>LPU</strong> (NAAC A++), BA/MA &amp; Education programs<br>
+• <strong>Amity University</strong> (NAAC A+), Media, Communication &amp; Education<br><br>
 <strong>🇨🇾 Top Cyprus Universities:</strong><br>
-• <strong>NEU</strong> — Primary Education, English Language Teaching<br>
-• <strong>EMU</strong> — Education Faculty, Guidance &amp; Counselling<br><br>
+• <strong>NEU</strong>, Primary Education, English Language Teaching<br>
+• <strong>EMU</strong>, Education Faculty, Guidance &amp; Counselling<br><br>
 📅 Deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
 
     { id:'field_hospitality',
       keywords:['hospitality','hotel management','tourism','travel','gastronomy','event management','hotel','resort','culinary'],
-      reply:`🏨 <strong>Step 3 of 3 — Hospitality &amp; Tourism</strong><br><br>
+      reply:`🏨 <strong>Step 3 of 3, Hospitality &amp; Tourism</strong><br><br>
 <strong>Programs Available:</strong><br>
 • B.Sc Hotel Management<br>
 • B.Sc Tourism &amp; Travel Management<br>
@@ -634,12 +634,12 @@ Where would you like to study?<br><br>
 • MBA Hospitality Management<br>
 • B.Sc Event Management<br><br>
 <strong>🇨🇾 Top Cyprus Universities:</strong><br>
-• <strong>GAU</strong> — Hotel Management, Tourism, Gastronomy — Kyrenia seafront campus<br>
-• <strong>CWU</strong> — Specialised Hospitality School, Famagusta<br>
-• <strong>NEU / EMU</strong> — Tourism programs, Nicosia &amp; Famagusta<br><br>
+• <strong>GAU</strong>, Hotel Management, Tourism, Gastronomy, Kyrenia seafront campus<br>
+• <strong>CWU</strong>, Specialised Hospitality School, Famagusta<br>
+• <strong>NEU / EMU</strong>, Tourism programs, Nicosia &amp; Famagusta<br><br>
 <strong>🇮🇳 India:</strong><br>
-• <strong>LPU</strong> — Hotel Management &amp; Tourism<br><br>
-💡 Cyprus is one of the Mediterranean's top tourism destinations — ideal for hospitality careers.<br><br>
+• <strong>LPU</strong>, Hotel Management &amp; Tourism<br><br>
+💡 Cyprus is one of the Mediterranean's top tourism destinations, ideal for hospitality careers.<br><br>
 📅 Deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','📋 Documents Needed','🏛️ View Universities','🔙 Choose Another Field'] },
 
@@ -671,10 +671,10 @@ No problem! Select another area of study below:`,
 
     { id:'apply_process',
       keywords:['how to apply','application process','steps to apply','how do i apply','apply online','submit application','what are the steps','how long does it take','application procedure','how to register','enrollment process','apply for'],
-      reply:`📝 <strong>How to Apply — Step by Step</strong><br><br>
+      reply:`📝 <strong>How to Apply, Step by Step</strong><br><br>
 <strong>Step 1:</strong> Check your eligibility (age, education, nationality)<br>
 <strong>Step 2:</strong> Prepare documents (transcripts, ID, personal statement, references)<br>
-<strong>Step 3:</strong> Prepare your IELTS/TOEFL score — use our <em>free classroom</em><br>
+<strong>Step 3:</strong> Prepare your IELTS/TOEFL score, use our <em>free classroom</em><br>
 <strong>Step 4:</strong> Submit your application on our website or right here in chat<br>
 <strong>Step 5:</strong> TIH reviews your application within <strong>5–7 business days</strong><br>
 <strong>Step 6:</strong> Receive admission letter or scholarship guidance<br><br>
@@ -691,7 +691,7 @@ Our IELTS classroom has <strong>6 structured modules</strong>:<br>
 • <strong>Module 4:</strong> Listening Skills<br>
 • <strong>Module 5:</strong> Speaking Skills<br>
 • <strong>Module 6:</strong> Full Mock Exam<br><br>
-🆓 <strong>100% free</strong> — no signup required.<br>
+🆓 <strong>100% free</strong>, no signup required.<br>
 🏅 Complete Module 6 to request your <strong>Certificate of Completion</strong> ($5 fee).`,
       qr:['📖 Go to IELTS Classroom','🏅 Request IELTS Certificate','📖 TOEFL Classroom','🔙 Main Menu'] },
 
@@ -705,26 +705,26 @@ Our TOEFL classroom has <strong>6 structured modules</strong>:<br>
 • <strong>Module 4:</strong> Speaking Section<br>
 • <strong>Module 5:</strong> Writing Section<br>
 • <strong>Module 6:</strong> Full Mock Exam<br><br>
-🆓 <strong>100% free</strong> — access instantly, no account needed.<br>
+🆓 <strong>100% free</strong>, access instantly, no account needed.<br>
 🏅 Complete Module 6 to request your <strong>Certificate of Completion</strong> ($5 fee).`,
       qr:['📖 Go to TOEFL Classroom','🏅 Request TOEFL Certificate','📖 IELTS Classroom','🔙 Main Menu'] },
 
     { id:'ielts_tips',
       keywords:['ielts tip','study tip','how to pass ielts','improve ielts','ielts strategy','band 7','band 8','ielts trick','ace ielts','how to score','improve score','reading tip','writing tip','listening tip','speaking tip'],
       reply:`💡 <strong>IELTS Study Tips from TIH</strong><br><br>
-📖 <strong>Reading:</strong> Practice skimming &amp; scanning. Don't read every word — locate keywords fast.<br><br>
-✍️ <strong>Writing:</strong> Task 1 — describe data clearly. Task 2 — structure with intro, 2 body paragraphs, conclusion. Aim for 250+ words.<br><br>
+📖 <strong>Reading:</strong> Practice skimming &amp; scanning. Don't read every word, locate keywords fast.<br><br>
+✍️ <strong>Writing:</strong> Task 1, describe data clearly. Task 2, structure with intro, 2 body paragraphs, conclusion. Aim for 250+ words.<br><br>
 🎧 <strong>Listening:</strong> Read questions before audio plays. Write answers exactly as you hear them.<br><br>
 🗣️ <strong>Speaking:</strong> Speak fluently, don't pause excessively. Use a range of vocabulary. It's OK to self-correct.<br><br>
 ⏱️ <strong>General:</strong> Take a full mock exam weekly. Review every mistake.`,
-      qr:['📖 IELTS Module 2 — Reading','✍️ IELTS Module 3 — Writing','🎧 IELTS Module 4 — Listening','🗣️ IELTS Module 5 — Speaking','🔙 Main Menu'] },
+      qr:['📖 IELTS Module 2, Reading','✍️ IELTS Module 3, Writing','🎧 IELTS Module 4, Listening','🗣️ IELTS Module 5, Speaking','🔙 Main Menu'] },
 
     { id:'classroom',
       keywords:['classroom','free class','free course','online learning','study platform','modules','lesson','practice test','mock exam','exam preparation','english exam','exam prep','language test','free training','online course'],
       reply:`🏫 <strong>TIH Free Learning Hub</strong><br><br>
 We offer two completely free exam preparation tracks:<br><br>
-📗 <strong>IELTS Preparation</strong> — 6 modules covering all 4 skills + mock exam<br>
-📘 <strong>TOEFL Preparation</strong> — 6 modules covering Reading, Listening, Speaking, Writing + mock exam<br><br>
+📗 <strong>IELTS Preparation</strong>, 6 modules covering all 4 skills + mock exam<br>
+📘 <strong>TOEFL Preparation</strong>, 6 modules covering Reading, Listening, Speaking, Writing + mock exam<br><br>
 Also available:<br>
 • Practice tests &amp; quizzes<br>
 • Video lessons<br>
@@ -785,30 +785,30 @@ We help Liberian businesses and organisations modernise with:<br>
 • Process automation &amp; optimisation<br><br>
 🎉 <strong>Website packages include FREE:</strong><br>
 • <strong>1-Year Domain</strong> (your own .com or .org)<br>
-• <strong>Hosting</strong> — we host your site<br>
+• <strong>Hosting</strong>, we host your site<br>
 • <strong>Unlimited Professional Email</strong> (you@yourbusiness.com)<br>
 • <strong>Strong Security</strong> (SSL certificate, firewall protection)<br><br>
-📦 <strong>Packages (50% OFF — limited offer):</strong><br>
-• <strong>Starter</strong> — <s>$150</s> <strong>$75</strong> (basic website)<br>
-• <strong>Professional</strong> — <s>$400</s> <strong>$200</strong> (full web application)<br>
-• <strong>Enterprise</strong> — Custom quote (contact us)`,
+📦 <strong>Packages (50% OFF, limited offer):</strong><br>
+• <strong>Starter</strong>, <s>$150</s> <strong>$75</strong> (basic website)<br>
+• <strong>Professional</strong>, <s>$400</s> <strong>$200</strong> (full web application)<br>
+• <strong>Enterprise</strong>, Custom quote (contact us)`,
       qr:['📝 Request Consultation','💰 View Full Pricing','🗂️ View Portfolio','🔙 Main Menu'] },
 
     { id:'pricing',
       keywords:['price','pricing','cost','fee','how much','payment','pay','charge','rate','package','affordable','expensive','free','discount','budget','amount','money','website price','website cost','hosting','domain','email'],
       reply:`💰 <strong>TIH Fees &amp; Pricing</strong><br><br>
 <strong>Education:</strong><br>
-• Scholarship guidance — <strong>Free</strong><br>
-• IELTS/TOEFL classroom — <strong>100% Free</strong><br>
-• Completion certificate — <strong>$5 USD</strong><br><br>
+• Scholarship guidance, <strong>Free</strong><br>
+• IELTS/TOEFL classroom, <strong>100% Free</strong><br>
+• Completion certificate, <strong>$5 USD</strong><br><br>
 <strong>Website Development (50% OFF):</strong><br>
-• Starter — <s>$150</s> → <strong>$75</strong><br>
-• Professional — <s>$400</s> → <strong>$200</strong><br>
-• Enterprise — <strong>Custom quote</strong><br>
+• Starter, <s>$150</s> → <strong>$75</strong><br>
+• Professional, <s>$400</s> → <strong>$200</strong><br>
+• Enterprise, <strong>Custom quote</strong><br>
 🎁 All website packages include: <strong>Free 1-year domain · Free hosting · Unlimited professional email · Strong security (SSL)</strong><br><br>
 <strong>Healthcare:</strong><br>
-• Program coordination — <strong>Free</strong> (you pay the hospital)<br><br>
-<strong>Donation to TIH:</strong> From $5 — any amount helps!`,
+• Program coordination, <strong>Free</strong> (you pay the hospital)<br><br>
+<strong>Donation to TIH:</strong> From $5, any amount helps!`,
       qr:['💻 Website 50% OFF','🎓 Apply Free','❤️ Donate','📞 Contact','🔙 Main Menu'] },
 
     { id:'contact',
@@ -848,20 +848,20 @@ Your donation helps provide free education, healthcare referrals, and scholarshi
     { id:'events',
       keywords:['event','events','upcoming','workshop','seminar','webinar','schedule','deadline','next event','when','scholarship deadline','information session','register event','join event','calendar'],
       reply:`📅 <strong>Upcoming Events &amp; Deadlines</strong><br><br>
-• 🎓 <strong>Jul 15, 2026</strong> — Scholarship Application Deadline (India &amp; Cyprus 50%)<br>
-• 📚 <strong>Ongoing</strong> — IELTS/TOEFL classroom open 24/7, no deadline<br>
-• 🏥 <strong>Rolling</strong> — Healthcare referral applications open any time<br>
-• 💻 <strong>Rolling</strong> — Software consultations available any time<br><br>
-⚠️ Apply early — document preparation takes time!`,
+• 🎓 <strong>Jul 15, 2026</strong>, Scholarship Application Deadline (India &amp; Cyprus 50%)<br>
+• 📚 <strong>Ongoing</strong>, IELTS/TOEFL classroom open 24/7, no deadline<br>
+• 🏥 <strong>Rolling</strong>, Healthcare referral applications open any time<br>
+• 💻 <strong>Rolling</strong>, Software consultations available any time<br><br>
+⚠️ Apply early, document preparation takes time!`,
       qr:['📝 Apply Before Deadline','🌐 View Events Page','🎓 India & Cyprus 50%','🔙 Main Menu'] },
 
     { id:'news',
       keywords:['news','announcement','update','latest','blog','press','article','new program','launch','expansion','what\'s new','recent'],
       reply:`📰 <strong>Latest News from TIH</strong><br><br>
-• 🎓 <strong>2026 Scholarship Intake Now Open</strong> — updated requirements &amp; guidance sessions available<br>
-• 🏅 <strong>IELTS Certificate System Launched</strong> — students can now request certificates online<br>
-• 🏥 <strong>Healthcare Program Expanded</strong> — more pathways to specialist treatment in India<br>
-• 💻 <strong>Tech Innovation Support</strong> — new digital consultation services for Liberian businesses<br><br>
+• 🎓 <strong>2026 Scholarship Intake Now Open</strong>, updated requirements &amp; guidance sessions available<br>
+• 🏅 <strong>IELTS Certificate System Launched</strong>, students can now request certificates online<br>
+• 🏥 <strong>Healthcare Program Expanded</strong>, more pathways to specialist treatment in India<br>
+• 💻 <strong>Tech Innovation Support</strong>, new digital consultation services for Liberian businesses<br><br>
 Visit our News page for full articles and announcements.`,
       qr:['🌐 View All News','📝 Apply Now','🔙 Main Menu'] },
 
@@ -896,10 +896,10 @@ Contact us to explore partnership opportunities.`,
       reply:`🌟 <strong>TIH Empowerment Training Program</strong><br><br>
 TIH conducts empowerment training designed to unlock potential and build real-world skills.<br><br>
 <strong>Who we train:</strong><br>
-• 🧑‍🎓 <strong>Students</strong> — Academic excellence, goal-setting &amp; career readiness<br>
-• 👩‍💼 <strong>Youth</strong> — Leadership, confidence &amp; life skills development<br>
-• 🏢 <strong>Business Owners</strong> — Growth strategies, digital tools &amp; management skills<br>
-• 💡 <strong>Innovators</strong> — Entrepreneurship, tech adoption &amp; startup mindset<br><br>
+• 🧑‍🎓 <strong>Students</strong>, Academic excellence, goal-setting &amp; career readiness<br>
+• 👩‍💼 <strong>Youth</strong>, Leadership, confidence &amp; life skills development<br>
+• 🏢 <strong>Business Owners</strong>, Growth strategies, digital tools &amp; management skills<br>
+• 💡 <strong>Innovators</strong>, Entrepreneurship, tech adoption &amp; startup mindset<br><br>
 <strong>Training covers:</strong><br>
 • Personal development &amp; leadership<br>
 • Digital skills &amp; technology<br>
@@ -915,7 +915,7 @@ TIH conducts empowerment training designed to unlock potential and build real-wo
 • 🌍 <strong>12+</strong> countries reached through our networks<br>
 • 🏥 <strong>50+</strong> healthcare cases referred to international specialists<br>
 • 💻 <strong>30+</strong> businesses supported with digital solutions<br>
-• 📚 <strong>2</strong> exam tracks (IELTS &amp; TOEFL) — 100% free<br>
+• 📚 <strong>2</strong> exam tracks (IELTS &amp; TOEFL), 100% free<br>
 • 🎓 <strong>3</strong> core programs: Education, Healthcare &amp; Technology<br><br>
 Full report on our <strong>Impact page</strong>.`,
       qr:['🌐 View Impact Report','📰 Success Stories','🔙 Main Menu'] },
@@ -923,9 +923,9 @@ Full report on our <strong>Impact page</strong>.`,
     { id:'success',
       keywords:['success story','testimonial','success','case study','student story','beneficiary','real story','example','results','people helped','who helped','lives changed'],
       reply:`⭐ <strong>Student &amp; Beneficiary Stories</strong><br><br>
-<em>"TIH guided me through the entire scholarship process. I am now studying abroad because of them."</em><br>— <strong>Moses S.</strong>, Scholarship Beneficiary<br><br>
-<em>"The free IELTS classroom is genuinely world-class. I prepared confidently and passed."</em><br>— <strong>Fatima K.</strong>, IELTS Student<br><br>
-<em>"When my family needed specialist treatment, TIH coordinated everything — referrals, hospital contacts, travel."</em><br>— <strong>Joseph T.</strong>, Healthcare Beneficiary`,
+<em>"TIH guided me through the entire scholarship process. I am now studying abroad because of them."</em><br><strong>Moses S.</strong>, Scholarship Beneficiary<br><br>
+<em>"The free IELTS classroom is genuinely world-class. I prepared confidently and passed."</em><br><strong>Fatima K.</strong>, IELTS Student<br><br>
+<em>"When my family needed specialist treatment, TIH coordinated everything, referrals, hospital contacts, travel."</em><br><strong>Joseph T.</strong>, Healthcare Beneficiary`,
       qr:['🌐 More Success Stories','🎓 Apply for Scholarship','🔙 Main Menu'] },
 
     { id:'process',
@@ -950,7 +950,7 @@ The TIH Resource Center provides free study materials for IELTS &amp; TOEFL prep
 • Speaking topic banks<br>
 • Full practice tests<br>
 • Video lesson library<br><br>
-All resources are freely accessible — no account required.`,
+All resources are freely accessible, no account required.`,
       qr:['🌐 Resource Center','📖 IELTS Classroom','📖 TOEFL Classroom','🔙 Main Menu'] },
 
     { id:'location',
@@ -983,14 +983,14 @@ For international scholarships and universities:<br><br>
 • <strong>TOEFL iBT:</strong> Score 79–100+ (varies)<br>
 • <strong>Duolingo:</strong> Also accepted by some programs<br>
 • <strong>Essay test:</strong> Accepted by ICCR instead of IELTS/TOEFL<br><br>
-💡 Use TIH's <strong>free IELTS/TOEFL classroom</strong> to prepare — completely free!`,
+💡 Use TIH's <strong>free IELTS/TOEFL classroom</strong> to prepare, completely free!`,
       qr:['📖 Start IELTS Prep','📖 Start TOEFL Prep','🎓 Scholarship Requirements','🔙 Main Menu'] },
 
     { id:'india',
       keywords:['india','study in india','india university','indian university','india scholarship','india student','visa india','indian college','india education','india medical'],
-      reply:`🇮🇳 <strong>India — Education &amp; Healthcare via TIH</strong><br><br>
+      reply:`🇮🇳 <strong>India, Education &amp; Healthcare via TIH</strong><br><br>
 TIH has strong India connections for both education and healthcare:<br><br>
-🎓 <strong>Education — 50% Scholarship:</strong><br>
+🎓 <strong>Education, 50% Scholarship:</strong><br>
 TIH offers a <strong>50% tuition scholarship</strong> at all partner universities in India (Sharda, LPU, Amity, Khalsa + 13 more). You pay only half the listed tuition!<br><br>
 🏥 <strong>Healthcare:</strong><br>
 TIH works with 8 partner hospitals in India offering specialist treatment in cardiology, oncology, orthopedics, neurology &amp; more.<br><br>
@@ -1001,16 +1001,16 @@ Both are coordinated end-to-end by TIH.`,
       keywords:['deadline','when to apply','last date','closing date','by when','application close','due date','expiry','how long do i have','cut off','submission date','final date'],
       reply:`📅 <strong>Key Application Deadlines</strong><br><br>
 • 🎓 <strong>India &amp; Cyprus 50% Scholarship:</strong> <em>July 15, 2026</em><br>
-• 📚 <strong>IELTS/TOEFL Classroom:</strong> Open year-round — no deadline<br>
-• 🏥 <strong>Healthcare Program:</strong> Rolling — apply anytime<br>
-• 💻 <strong>Software Consultation:</strong> Rolling — apply anytime<br><br>
-⚠️ <strong>Apply early</strong> — document preparation takes time!`,
+• 📚 <strong>IELTS/TOEFL Classroom:</strong> Open year-round, no deadline<br>
+• 🏥 <strong>Healthcare Program:</strong> Rolling, apply anytime<br>
+• 💻 <strong>Software Consultation:</strong> Rolling, apply anytime<br><br>
+⚠️ <strong>Apply early</strong>, document preparation takes time!`,
       qr:['📝 Apply for Scholarship','🎓 India & Cyprus 50%','📚 Free Learning Hub','🔙 Main Menu'] },
 
     { id:'chevening',
       keywords:['chevening','uk scholarship','british scholarship','foreign commonwealth','fcdo','study uk','master uk','uk master','uk government scholarship'],
       reply:`🇬🇧 <strong>Chevening Scholarship (UK)</strong><br><br>
-The UK Government's flagship international scholarship — <strong>Liberia is eligible!</strong><br><br>
+The UK Government's flagship international scholarship, <strong>Liberia is eligible!</strong><br><br>
 ✅ <strong>Coverage:</strong> Full tuition · Monthly allowance · Return airfare · Arrival/departure grant · Thesis grant<br><br>
 ✅ <strong>Requirements:</strong><br>
 • Liberian citizen<br>
@@ -1024,7 +1024,7 @@ The UK Government's flagship international scholarship — <strong>Liberia is el
     { id:'fulbright',
       keywords:['fulbright','us scholarship','usa scholarship','american scholarship','study usa','study america','study united states','fulbright foreign','us government scholarship'],
       reply:`🇺🇸 <strong>Fulbright Foreign Student Program (USA)</strong><br><br>
-The US Government's premier exchange program — <strong>Liberia is eligible!</strong><br><br>
+The US Government's premier exchange program, <strong>Liberia is eligible!</strong><br><br>
 ✅ <strong>Coverage:</strong> Full tuition · Monthly stipend · Airfare · Health insurance · Professional development<br><br>
 ✅ <strong>Requirements:</strong><br>
 • Liberian citizen residing in Liberia<br>
@@ -1037,7 +1037,7 @@ The US Government's premier exchange program — <strong>Liberia is eligible!</s
     { id:'mastercard',
       keywords:['mastercard','mastercard foundation','mcf','mastercard scholar','mastercard scholarship','foundation scholarship'],
       reply:`🌍 <strong>Mastercard Foundation Scholars Program</strong><br><br>
-One of Africa's largest scholarship networks — <strong>Liberian students are eligible!</strong><br><br>
+One of Africa's largest scholarship networks, <strong>Liberian students are eligible!</strong><br><br>
 ✅ <strong>Coverage:</strong> Full tuition at 40+ partner universities · Accommodation &amp; stipend · Mentorship · Return travel<br><br>
 ✅ <strong>Requirements:</strong><br>
 • African citizen (Liberia ✓)<br>
@@ -1050,7 +1050,7 @@ One of Africa's largest scholarship networks — <strong>Liberian students are e
     { id:'daad',
       keywords:['daad','germany scholarship','german scholarship','study germany','study in germany','bmz','german academic'],
       reply:`🇩🇪 <strong>DAAD In-Country / In-Region Programme</strong><br><br>
-Funded by Germany's Federal Ministry — <strong>Sub-Saharan Africa including Liberia!</strong><br><br>
+Funded by Germany's Federal Ministry, <strong>Sub-Saharan Africa including Liberia!</strong><br><br>
 ✅ <strong>Coverage:</strong> Full tuition · Stipend up to €8,920/year · Health insurance · Research allowance · Travel subsidy<br><br>
 ✅ <strong>Requirements:</strong><br>
 • Sub-Saharan African citizen (Liberia ✓)<br>
@@ -1062,7 +1062,7 @@ Funded by Germany's Federal Ministry — <strong>Sub-Saharan Africa including Li
     { id:'pau',
       keywords:['pan african university','pau','african union scholarship','au scholarship','pan african','continental university','african union'],
       reply:`🌐 <strong>Pan African University (PAU) Scholarship</strong><br><br>
-An African Union initiative — full scholarships across Africa. <strong>Liberia is eligible!</strong><br><br>
+An African Union initiative, full scholarships across Africa. <strong>Liberia is eligible!</strong><br><br>
 ✅ <strong>Coverage:</strong> Full tuition · Monthly stipend · On-campus accommodation · Return air ticket · Medical insurance<br><br>
 ✅ <strong>Requirements:</strong><br>
 • AU member state citizen (Liberia ✓)<br>
@@ -1086,7 +1086,7 @@ SHE-CAN empowers young Liberian women to earn <strong>full-ride scholarships</st
 • Strong academic record &amp; demonstrated leadership<br>
 • From a low-opportunity background<br><br>
 📌 <strong>Return Commitment:</strong> Scholars must return to Liberia within 1 year of graduating and work in Liberia for at least 3 years.<br><br>
-📅 Applications open annually — contact TIH for guidance!`,
+📅 Applications open annually, contact TIH for guidance!`,
       qr:['📝 Apply with TIH Help','📋 Requirements','📞 Contact TIH','🔙 More Scholarships'] },
 
     { id:'erasmus_mundus',
@@ -1102,8 +1102,8 @@ A prestigious EU-funded scholarship for <strong>fully funded Master's degrees</s
 • Bachelor's degree (any field matching the program)<br>
 • Strong academic record<br>
 • English proficiency (IELTS/TOEFL)<br>
-• Open to all nationalities — no country restriction<br><br>
-📅 Applications: <strong>Varies by program — typically Oct – Jan</strong>`,
+• Open to all nationalities, no country restriction<br><br>
+📅 Applications: <strong>Varies by program, typically Oct – Jan</strong>`,
       qr:['📝 Apply with TIH Help','📋 Requirements','📞 Contact TIH','🔙 More Scholarships'] },
 
     { id:'gks_korea',
@@ -1126,7 +1126,7 @@ The South Korean Government's flagship scholarship for international students. <
     { id:'mext_japan',
       keywords:['japan scholarship','japanese scholarship','mext','monbukagakusho','study japan','japan government scholarship','japanese government scholarship'],
       reply:`🇯🇵 <strong>Japanese Government (MEXT) Scholarship</strong><br><br>
-Funded by Japan's Ministry of Education — one of the most prestigious government scholarships. <strong>Liberia is eligible</strong> (processed through the Embassy of Japan in Ghana).<br><br>
+Funded by Japan's Ministry of Education, one of the most prestigious government scholarships. <strong>Liberia is eligible</strong> (processed through the Embassy of Japan in Ghana).<br><br>
 ✅ <strong>Coverage (Fully Funded):</strong><br>
 • Full tuition fees<br>
 • Monthly living allowance<br>
@@ -1175,7 +1175,7 @@ TIH provides <strong>visa guidance and document support</strong>:<br><br>
 • 🎓 <strong>Undergraduate:</strong> 3–5 years<br>
 • 🎓 <strong>Postgraduate (Master's):</strong> 1–2 years<br>
 • 🔬 <strong>PhD:</strong> 3–5 years<br>
-• 📚 <strong>IELTS/TOEFL Classroom:</strong> Self-paced — complete any time<br>
+• 📚 <strong>IELTS/TOEFL Classroom:</strong> Self-paced, complete any time<br>
 • 🏥 <strong>Healthcare referral:</strong> Ongoing, case-by-case<br>
 • 💻 <strong>Software project:</strong> 2 weeks – 3 months (by scope)`,
       qr:['🎓 Apply for Scholarship','📚 Free Learning Hub','🔙 Main Menu'] },
@@ -1183,9 +1183,9 @@ TIH provides <strong>visa guidance and document support</strong>:<br><br>
     { id:'age',
       keywords:['age','how old','age requirement','age limit','minimum age','maximum age','am i too old','am i too young','age criteria','over 40','year old','years old'],
       reply:`📅 <strong>Age Requirements by Scholarship</strong><br><br>
-• 🇮🇳🇨🇾 <strong>India &amp; Cyprus (TIH 50%):</strong> No strict age limit — open to all qualified applicants<br>
+• 🇮🇳🇨🇾 <strong>India &amp; Cyprus (TIH 50%):</strong> No strict age limit, open to all qualified applicants<br>
 • 🇬🇧 <strong>Chevening:</strong> No official upper age limit (2+ years work experience required)<br>
-• 🇺🇸 <strong>Fulbright:</strong> No hard limit — typically recent graduates or early career<br>
+• 🇺🇸 <strong>Fulbright:</strong> No hard limit, typically recent graduates or early career<br>
 • 🌍 <strong>Mastercard Foundation:</strong> Typically under 35<br>
 • 🌐 <strong>Pan African University:</strong> Master's → under 35 · PhD → under 40`,
       qr:['📋 Full Requirements','🎓 India & Cyprus 50%','📝 Apply Now','🔙 Main Menu'] },
@@ -1206,24 +1206,24 @@ Exact courses depend on your chosen country and university.`,
       keywords:['personal statement','essay','motivation letter','cover letter','statement of purpose','write essay','how to write','application essay','why do you want','motivation','what to write','sop'],
       reply:`✍️ <strong>Writing Your Personal Statement</strong><br><br>
 A strong personal statement covers 5 key points:<br><br>
-1️⃣ <strong>Who you are</strong> — background, education, experience<br>
-2️⃣ <strong>Why this program</strong> — why this scholarship, country, field<br>
-3️⃣ <strong>Your goals</strong> — career plans and how this degree fits<br>
-4️⃣ <strong>Your impact</strong> — how you'll contribute to Liberia after graduating<br>
-5️⃣ <strong>Why you</strong> — what makes you the strongest candidate<br><br>
-📌 Aim for <strong>500–800 words</strong>. Be specific — avoid generic statements.<br><br>
-💡 <strong>TIH can review your personal statement — contact us!</strong>`,
+1️⃣ <strong>Who you are</strong>, background, education, experience<br>
+2️⃣ <strong>Why this program</strong>, why this scholarship, country, field<br>
+3️⃣ <strong>Your goals</strong>, career plans and how this degree fits<br>
+4️⃣ <strong>Your impact</strong>, how you'll contribute to Liberia after graduating<br>
+5️⃣ <strong>Why you</strong>, what makes you the strongest candidate<br><br>
+📌 Aim for <strong>500–800 words</strong>. Be specific, avoid generic statements.<br><br>
+💡 <strong>TIH can review your personal statement, contact us!</strong>`,
       qr:['📞 Get Help from TIH','💬 WhatsApp for Guidance','📋 Requirements','🔙 Main Menu'] },
 
     { id:'rejection',
       keywords:['rejected','rejection','not selected','failed application','what if i fail','not successful','denied','not accepted','reapply','try again','second chance'],
-      reply:`💪 <strong>If You're Not Selected — Don't Give Up</strong><br><br>
+      reply:`💪 <strong>If You're Not Selected, Don't Give Up</strong><br><br>
 Many successful scholars were rejected before winning their scholarship!<br><br>
 ✅ <strong>What to do:</strong><br>
-• <strong>Reapply next cycle</strong> — most scholarships accept re-applications<br>
-• <strong>Strengthen weak areas</strong> — improve your IELTS/TOEFL score, GPA, or personal statement<br>
-• <strong>Apply for multiple scholarships</strong> simultaneously — Chevening, Fulbright, DAAD, Erasmus, GKS, MEXT, SHE-CAN<br>
-• <strong>Consult TIH</strong> — we review applications and give feedback<br><br>
+• <strong>Reapply next cycle</strong>, most scholarships accept re-applications<br>
+• <strong>Strengthen weak areas</strong>, improve your IELTS/TOEFL score, GPA, or personal statement<br>
+• <strong>Apply for multiple scholarships</strong> simultaneously, Chevening, Fulbright, DAAD, Erasmus, GKS, MEXT, SHE-CAN<br>
+• <strong>Consult TIH</strong>, we review applications and give feedback<br><br>
 📌 TIH offers <strong>free application feedback</strong>. Contact us today!`,
       qr:['📞 Get Application Feedback','🎓 Other Scholarships','📚 Improve IELTS Score','🔙 Main Menu'] },
 
@@ -1240,32 +1240,32 @@ Cyprus costs are slightly higher but still affordable vs. Western Europe.<br><br
 
     { id:'india_cyprus_scholarship',
       keywords:['india scholarship','cyprus scholarship','50 percent','50%','half tuition','india 50','cyprus 50','tih scholarship','scholarship india','scholarship cyprus','how much scholarship','what scholarship india','what scholarship cyprus','india tuition','cyprus tuition'],
-      reply:`🎉 <strong>TIH 50% Tuition Scholarship — India &amp; Cyprus</strong><br><br>
+      reply:`🎉 <strong>TIH 50% Tuition Scholarship, India &amp; Cyprus</strong><br><br>
 TIH offers a <strong>50% scholarship on tuition</strong> at all partner universities in India and Cyprus.<br><br>
-You pay only <strong>half the listed tuition</strong> — TIH covers the rest!<br><br>
+You pay only <strong>half the listed tuition</strong>, TIH covers the rest!<br><br>
 🇮🇳 <strong>India example savings:</strong><br>
 • Sharda: <s>$3,500–$6,000</s> → <strong>$1,750–$3,000/yr</strong><br>
 • LPU: <s>$2,800–$5,000</s> → <strong>$1,400–$2,500/yr</strong><br>
 • Amity: <s>$4,000–$7,500</s> → <strong>$2,000–$3,750/yr</strong><br>
 • Khalsa: <s>$1,800–$3,000</s> → <strong>$900–$1,500/yr</strong><br><br>
 🇨🇾 <strong>Cyprus universities (50% off):</strong><br>
-• Near East University (NEU) — Nicosia<br>
-• Girne American University (GAU) — Kyrenia<br>
-• Eastern Mediterranean University (EMU) — Famagusta<br><br>
+• Near East University (NEU), Nicosia<br>
+• Girne American University (GAU), Kyrenia<br>
+• Eastern Mediterranean University (EMU), Famagusta<br><br>
 📅 Application deadline: <strong>July 15, 2026</strong>`,
       qr:['📝 Apply Now','🏛️ Partner Universities','📋 Requirements','📞 Contact TIH'] },
 
     { id:'can_apply',
       keywords:['can i apply','am i eligible','can liberian apply','do you accept','can i join','can i register','is it open','open to liberians','open for liberia','is liberia included','liberia eligible'],
-      reply:`✅ <strong>Yes — Liberian Students Can Apply!</strong><br><br>
+      reply:`✅ <strong>Yes, Liberian Students Can Apply!</strong><br><br>
 All TIH programs are designed to serve <strong>Liberian citizens</strong>:<br><br>
-• 🎓 <strong>India &amp; Cyprus 50% Scholarship</strong> — Liberian citizens, all ages<br>
-• 🇬🇧 <strong>Chevening (UK)</strong> — Liberian citizens, 2+ years work experience<br>
-• 🇺🇸 <strong>Fulbright (USA)</strong> — Liberian citizens residing in Liberia<br>
-• 🌍 <strong>Mastercard Foundation</strong> — African citizens (Liberia ✓)<br>
-• 📚 <strong>Free Learning Hub</strong> — <strong>Open to everyone, no restrictions!</strong><br>
-• 🏥 <strong>Healthcare</strong> — Open to all Liberians<br>
-• 💻 <strong>Software</strong> — Open to any individual or business`,
+• 🎓 <strong>India &amp; Cyprus 50% Scholarship</strong>, Liberian citizens, all ages<br>
+• 🇬🇧 <strong>Chevening (UK)</strong>, Liberian citizens, 2+ years work experience<br>
+• 🇺🇸 <strong>Fulbright (USA)</strong>, Liberian citizens residing in Liberia<br>
+• 🌍 <strong>Mastercard Foundation</strong>, African citizens (Liberia ✓)<br>
+• 📚 <strong>Free Learning Hub</strong>, <strong>Open to everyone, no restrictions!</strong><br>
+• 🏥 <strong>Healthcare</strong>, Open to all Liberians<br>
+• 💻 <strong>Software</strong>, Open to any individual or business`,
       qr:['📝 Apply for Scholarship','🏆 ICCR Scholarship','📚 Free Learning Hub','🔙 Main Menu'] },
 
     { id:'page_info',
@@ -1284,7 +1284,7 @@ I can answer questions on:<br>
 • How does the healthcare referral work?<br>
 • What software services are offered?<br>
 • Who founded TIH? Where is TIH located?<br><br>
-Just type your question — or visit our <strong>FAQ page</strong> for full written answers.`,
+Just type your question, or visit our <strong>FAQ page</strong> for full written answers.`,
       qr:['🌐 Go to FAQ Page','🎓 Scholarship','📚 Classroom','📞 Contact','🔙 Main Menu'] },
 
     { id:'apply_menu',
@@ -1302,15 +1302,15 @@ I can collect your application right here in this chat. Which program are you ap
       keywords:['apollo','fortis','narayana','medanta','aiims','kokilaben','max healthcare','manipal','partner hospital','which hospital','hospital name','hospital list','hospital partner'],
       reply:`🏥 <strong>TIH Partner Hospitals in India</strong><br><br>
 We work with India's top-ranked hospitals:<br>
-• <strong>Apollo Hospitals</strong> — Chennai<br>
-• <strong>Fortis Healthcare</strong> — Delhi<br>
-• <strong>Narayana Health</strong> — Bangalore<br>
-• <strong>Medanta – The Medicity</strong> — Gurugram<br>
-• <strong>AIIMS New Delhi</strong> — Government premier institute<br>
-• <strong>Kokilaben Dhirubhai Ambani Hospital</strong> — Mumbai<br>
-• <strong>Max Healthcare</strong> — Delhi<br>
-• <strong>Manipal Hospitals</strong> — Bangalore<br><br>
-TIH coordinates your referral — you pay the hospital directly.`,
+• <strong>Apollo Hospitals</strong>, Chennai<br>
+• <strong>Fortis Healthcare</strong>, Delhi<br>
+• <strong>Narayana Health</strong>, Bangalore<br>
+• <strong>Medanta – The Medicity</strong>, Gurugram<br>
+• <strong>AIIMS New Delhi</strong>, Government premier institute<br>
+• <strong>Kokilaben Dhirubhai Ambani Hospital</strong>, Mumbai<br>
+• <strong>Max Healthcare</strong>, Delhi<br>
+• <strong>Manipal Hospitals</strong>, Bangalore<br><br>
+TIH coordinates your referral, you pay the hospital directly.`,
       qr:['🏥 Healthcare Process','💬 Request Consultation','📞 Contact TIH'] },
 
     { id:'university_sharda',
@@ -1322,7 +1322,7 @@ TIH coordinates your referral — you pay the hospital directly.`,
 • 🎉 <strong>TIH 50% Scholarship: $1,750 – $3,000 / year</strong><br>
 • Programs: MBBS, B.Tech, LLB, MBA, PhD<br>
 • Located in Greater Noida, near Delhi<br><br>
-TIH covers 50% of your tuition — you pay the rest!`,
+TIH covers 50% of your tuition, you pay the rest!`,
       qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
 
     { id:'university_lpu',
@@ -1334,7 +1334,7 @@ TIH covers 50% of your tuition — you pay the rest!`,
 • 🎉 <strong>TIH 50% Scholarship: $1,400 – $2,500 / year</strong><br>
 • 300+ programs across all disciplines<br>
 • 600-acre mega-campus in Punjab<br><br>
-TIH covers 50% of your tuition — you pay the rest!`,
+TIH covers 50% of your tuition, you pay the rest!`,
       qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
 
     { id:'university_amity',
@@ -1355,9 +1355,9 @@ Ideal for students seeking a globally connected university.`,
 • Heritage institution founded in <strong>1892</strong><br>
 • Full tuition: $1,800 – $3,000 / year<br>
 • 🎉 <strong>TIH 50% Scholarship: $900 – $1,500 / year</strong><br>
-• Located in <strong>Amritsar</strong> — home of the Golden Temple<br>
+• Located in <strong>Amritsar</strong>, home of the Golden Temple<br>
 • Strong arts, science, and commerce programs<br><br>
-The most affordable option — and even more so with TIH's 50% scholarship!`,
+The most affordable option, and even more so with TIH's 50% scholarship!`,
       qr:['🎓 Apply for Scholarship','📋 Requirements','📞 Contact TIH'] },
 
     { id:'university_neu',
@@ -1388,7 +1388,7 @@ Ideal for students who want an American-style degree in a Mediterranean setting.
       keywords:['eastern mediterranean university','emu','eastern mediterranean','emu famagusta','state university cyprus','famagusta university'],
       reply:`🎓 <strong>Eastern Mediterranean University (EMU)</strong> 🇨🇾<br><br>
 • Located in <strong>Famagusta, North Cyprus</strong><br>
-• North Cyprus's <strong>oldest and most prestigious state university</strong> — established 1979<br>
+• North Cyprus's <strong>oldest and most prestigious state university</strong>, established 1979<br>
 • 20,000+ students from 100+ countries<br>
 • 100+ programs: Engineering, Business, Law, Architecture, Education, Health Sciences, IT &amp; more<br>
 • Full English-medium instruction<br>
@@ -1402,38 +1402,38 @@ The premier choice for Liberian students seeking a world-class degree in the Eas
 We partner with 20+ universities in <strong>India &amp; Cyprus</strong>.<br>
 🎉 <strong>TIH offers 50% tuition scholarship at all partner universities!</strong><br><br>
 🇮🇳 <strong>India:</strong><br>
-• <strong>Sharda University</strong> — NAAC A+, #35 India, from <strong>$1,750/yr</strong><br>
-• <strong>LPU</strong> — NAAC A++, #28 India, from <strong>$1,400/yr</strong><br>
-• <strong>Amity University</strong> — QS #22 India, from <strong>$2,000/yr</strong><br>
-• <strong>Khalsa University</strong> — Heritage 1892, from <strong>$900/yr</strong><br><br>
+• <strong>Sharda University</strong>, NAAC A+, #35 India, from <strong>$1,750/yr</strong><br>
+• <strong>LPU</strong>, NAAC A++, #28 India, from <strong>$1,400/yr</strong><br>
+• <strong>Amity University</strong>, QS #22 India, from <strong>$2,000/yr</strong><br>
+• <strong>Khalsa University</strong>, Heritage 1892, from <strong>$900/yr</strong><br><br>
 🇨🇾 <strong>Cyprus:</strong><br>
-• <strong>Near East University (NEU)</strong> — Nicosia, 200+ programs<br>
-• <strong>Girne American University (GAU)</strong> — Kyrenia, American-style<br>
-• <strong>Eastern Mediterranean University (EMU)</strong> — Famagusta, state university<br><br>
+• <strong>Near East University (NEU)</strong>, Nicosia, 200+ programs<br>
+• <strong>Girne American University (GAU)</strong>, Kyrenia, American-style<br>
+• <strong>Eastern Mediterranean University (EMU)</strong>, Famagusta, state university<br><br>
 Tell us your field of study and we'll recommend the best match!`,
       qr:['🎓 Apply Now','📋 Requirements','🎓 NEU Cyprus','🎓 GAU Cyprus','🎓 EMU Cyprus'] },
 
     { id:'upcoming_events',
       keywords:['event','upcoming','schedule','workshop','session','orientation','calendar','when','next event','upcoming event','event date'],
       reply:`📅 <strong>Upcoming TIH Events (2026)</strong><br><br>
-• <strong>Jul 15</strong> — Scholarship Application Deadline<br>
-• <strong>Jul 20</strong> — IELTS Writing Workshop<br>
-• <strong>Aug 1</strong> — Tech Consultation Day<br>
-• <strong>Aug 15</strong> — Scholarship Information Session<br>
-• <strong>Sep 1</strong> — Healthcare Program Orientation<br>
-• <strong>Sep 15</strong> — TOEFL Mock Exam<br><br>
-Don't miss out — register early to secure your spot!`,
+• <strong>Jul 15</strong>, Scholarship Application Deadline<br>
+• <strong>Jul 20</strong>, IELTS Writing Workshop<br>
+• <strong>Aug 1</strong>, Tech Consultation Day<br>
+• <strong>Aug 15</strong>, Scholarship Information Session<br>
+• <strong>Sep 1</strong>, Healthcare Program Orientation<br>
+• <strong>Sep 15</strong>, TOEFL Mock Exam<br><br>
+Don't miss out, register early to secure your spot!`,
       qr:['📝 Register Now','🎓 Scholarship Deadline','📚 IELTS Workshop','📞 Contact TIH'] },
 
     { id:'mastery_plan',
       keywords:['mastery plan','5 phase','five phase','study plan','ielts plan','toefl plan','120 minutes','daily plan','learning plan','phase 1','phase 2'],
       reply:`📚 <strong>TIH Mastery Plan</strong><br><br>
 Our structured 5-phase program (~120 min/day):<br>
-<strong>Phase 1</strong> — Foundation: Core grammar & vocabulary<br>
-<strong>Phase 2</strong> — Skills Build: Listening, reading, writing, speaking<br>
-<strong>Phase 3</strong> — Practice: Timed exercises per section<br>
-<strong>Phase 4</strong> — Mock Tests: Full exam simulations<br>
-<strong>Phase 5</strong> — Review: Targeted weak-area drilling<br><br>
+<strong>Phase 1</strong>, Foundation: Core grammar & vocabulary<br>
+<strong>Phase 2</strong>, Skills Build: Listening, reading, writing, speaking<br>
+<strong>Phase 3</strong>, Practice: Timed exercises per section<br>
+<strong>Phase 4</strong>, Mock Tests: Full exam simulations<br>
+<strong>Phase 5</strong>, Review: Targeted weak-area drilling<br><br>
 Designed to get you exam-ready in 8–12 weeks.`,
       qr:['📚 Join Free Learning Hub','🎓 Scholarships','📝 Apply Now'] },
 
@@ -1441,10 +1441,10 @@ Designed to get you exam-ready in 8–12 weeks.`,
       keywords:['video','youtube','lesson video','e2 language','ielts liz','magoosh','tst prep','video lesson','watch','tutorial'],
       reply:`🎬 <strong>Free Video Lessons</strong><br><br>
 Our classroom links to the best free YouTube channels:<br>
-• <strong>E2 Language</strong> — IELTS strategies & live classes<br>
-• <strong>IELTS Liz</strong> — Tips, lessons, practice tasks<br>
-• <strong>Magoosh TOEFL</strong> — Full TOEFL prep series<br>
-• <strong>TST Prep</strong> — IELTS writing & speaking breakdown<br><br>
+• <strong>E2 Language</strong>, IELTS strategies & live classes<br>
+• <strong>IELTS Liz</strong>, Tips, lessons, practice tasks<br>
+• <strong>Magoosh TOEFL</strong>, Full TOEFL prep series<br>
+• <strong>TST Prep</strong>, IELTS writing & speaking breakdown<br><br>
 All videos are free and curated by TIH instructors.`,
       qr:['📚 Open Classroom','🎓 Scholarship','📝 Register'] },
 
@@ -1452,10 +1452,10 @@ All videos are free and curated by TIH instructors.`,
       keywords:['study material','pdf','download','vocab pack','vocabulary','notes','handout','workbook','material'],
       reply:`📄 <strong>Downloadable Study Materials</strong><br><br>
 The TIH classroom provides:<br>
-• <strong>PDF lesson notes</strong> — Grammar, reading, writing<br>
-• <strong>Vocabulary packs</strong> — Academic Word List + IELTS/TOEFL wordlists<br>
-• <strong>Writing templates</strong> — Task 1 & Task 2 structures<br>
-• <strong>Speaking cue cards</strong> — Practice prompts<br><br>
+• <strong>PDF lesson notes</strong>, Grammar, reading, writing<br>
+• <strong>Vocabulary packs</strong>, Academic Word List + IELTS/TOEFL wordlists<br>
+• <strong>Writing templates</strong>, Task 1 & Task 2 structures<br>
+• <strong>Speaking cue cards</strong>, Practice prompts<br><br>
 All materials are free to download from the classroom page.`,
       qr:['📚 Open Classroom','📝 Register for Classroom','🎓 Scholarships'] },
 
@@ -1463,11 +1463,11 @@ All materials are free to download from the classroom page.`,
       keywords:['practice test','mock test','mock exam','timed test','auto score','practice exam','simulate exam','test simulation','full test'],
       reply:`📝 <strong>Practice Tests & Mock Exams</strong><br><br>
 TIH's classroom includes:<br>
-• <strong>Timed practice tests</strong> — Real exam conditions<br>
-• <strong>Auto-scored exercises</strong> — Instant feedback<br>
-• <strong>Full mock exams</strong> — Complete IELTS/TOEFL simulations<br>
-• <strong>Progress tracking</strong> — Monitor your improvement over time<br><br>
-Practice as many times as you need — it's completely free!`,
+• <strong>Timed practice tests</strong>, Real exam conditions<br>
+• <strong>Auto-scored exercises</strong>, Instant feedback<br>
+• <strong>Full mock exams</strong>, Complete IELTS/TOEFL simulations<br>
+• <strong>Progress tracking</strong>, Monitor your improvement over time<br><br>
+Practice as many times as you need, it's completely free!`,
       qr:['📚 Open Classroom','🎓 Scholarship','📝 Apply Now'] },
 
     { id:'ucl_scholarship',
@@ -1484,22 +1484,22 @@ TIH can help you prepare a competitive application. Contact us to get started!`,
       keywords:['entertainment','movie','film','stream','watch movie','free movie','net22','dailymotion','moviebox','gomovies','streaming','video stream'],
       reply:`🎬 <strong>Free Entertainment Resources</strong><br><br>
 TIH's entertainment page lists free streaming platforms:<br>
-• <strong>net22.cc</strong> — Free movies & shows<br>
-• <strong>Dailymotion</strong> — Videos & clips<br>
-• <strong>moviebox.ph</strong> — Movie streaming<br>
-• <strong>gomovies.gg</strong> — Free film library<br><br>
+• <strong>net22.cc</strong>, Free movies & shows<br>
+• <strong>Dailymotion</strong>, Videos & clips<br>
+• <strong>moviebox.ph</strong>, Movie streaming<br>
+• <strong>gomovies.gg</strong>, Free film library<br><br>
 Visit the Entertainment page on our website for direct links.`,
       qr:['🌐 Visit Website','📚 Free Learning Hub','🎓 Scholarships'] },
 
     { id:'volunteer_roles',
       keywords:['volunteer role','volunteer position','what volunteer','volunteer job','education mentor','scholarship advisor','technology trainer','healthcare coordinator','content creator','community outreach','how to volunteer','volunteer hours'],
       reply:`🤝 <strong>Volunteer Roles at TIH</strong><br><br>
-• <strong>Education Mentor</strong> — 2–4 hrs/week, guide students<br>
-• <strong>Scholarship Advisor</strong> — 3–5 hrs/week, help with applications<br>
-• <strong>Technology Trainer</strong> — 3–6 hrs/week, teach digital skills<br>
-• <strong>Healthcare Coordinator</strong> — 2–4 hrs/week, support patients<br>
-• <strong>Content Creator</strong> — Flexible, create social/web content<br>
-• <strong>Community Outreach</strong> — Flexible, spread the mission<br><br>
+• <strong>Education Mentor</strong>, 2–4 hrs/week, guide students<br>
+• <strong>Scholarship Advisor</strong>, 3–5 hrs/week, help with applications<br>
+• <strong>Technology Trainer</strong>, 3–6 hrs/week, teach digital skills<br>
+• <strong>Healthcare Coordinator</strong>, 2–4 hrs/week, support patients<br>
+• <strong>Content Creator</strong>, Flexible, create social/web content<br>
+• <strong>Community Outreach</strong>, Flexible, spread the mission<br><br>
 All roles are remote-friendly. Apply via our website!`,
       qr:['📝 Volunteer Now','📞 Contact TIH','🌐 Visit Website'] },
 
@@ -1507,10 +1507,10 @@ All roles are remote-friendly. Apply via our website!`,
       keywords:['partnership type','types of partnership','how to partner','corporate partner','ngo partner','institutional partner','become partner','partnership program'],
       reply:`🤝 <strong>TIH Partnership Programs</strong><br><br>
 We welcome partnerships from:<br>
-• <strong>Corporations</strong> — CSR sponsorships & co-branded programs<br>
-• <strong>NGOs & Nonprofits</strong> — Joint impact initiatives<br>
-• <strong>Universities & Schools</strong> — Academic partnerships & referrals<br>
-• <strong>Government Institutions</strong> — Policy alignment & outreach<br><br>
+• <strong>Corporations</strong>, CSR sponsorships & co-branded programs<br>
+• <strong>NGOs & Nonprofits</strong>, Joint impact initiatives<br>
+• <strong>Universities & Schools</strong>, Academic partnerships & referrals<br>
+• <strong>Government Institutions</strong>, Policy alignment & outreach<br><br>
 Reach out to explore a collaboration that creates lasting impact.`,
       qr:['📞 Contact TIH','📝 Partner With Us','💰 Donate'] },
 
@@ -1518,9 +1518,9 @@ Reach out to explore a collaboration that creates lasting impact.`,
       keywords:['how long','software timeline','website timeline','build time','development time','weeks','when ready','how many weeks','timeline software'],
       reply:`💻 <strong>Software Development Timelines</strong><br><br>
 Typical project timelines at TIH:<br>
-• <strong>Basic website</strong> — 2–4 weeks<br>
-• <strong>Custom software / business systems</strong> — 4–12 weeks<br>
-• <strong>Mobile app</strong> — 6–12 weeks<br><br>
+• <strong>Basic website</strong>, 2–4 weeks<br>
+• <strong>Custom software / business systems</strong>, 4–12 weeks<br>
+• <strong>Mobile app</strong>, 6–12 weeks<br><br>
 🎉 <strong>Website packages are 50% OFF</strong> and include free 1-year domain, hosting, unlimited professional email, and strong security.<br><br>
 We'll give you a precise timeline estimate during your free consultation.`,
       qr:['💻 Book Consultation','💰 View Pricing','📞 Contact TIH'] },
@@ -1528,10 +1528,10 @@ We'll give you a precise timeline estimate during your free consultation.`,
     { id:'donation_tiers',
       keywords:['donation tier','supporter','champion','transformer','monthly donation','donate tier','giving level','how much donate'],
       reply:`💰 <strong>Donation Tiers</strong><br><br>
-Every gift — large or small — changes lives:<br>
-• <strong>Supporter</strong> — Any amount, one-time or recurring<br>
-• <strong>Champion</strong> — Monthly giving commitment<br>
-• <strong>Transformer</strong> — Partnership-level investment<br><br>
+Every gift, large or small, changes lives:<br>
+• <strong>Supporter</strong>, Any amount, one-time or recurring<br>
+• <strong>Champion</strong>, Monthly giving commitment<br>
+• <strong>Transformer</strong>, Partnership-level investment<br><br>
 100% of your donation supports Liberian students and patients. Thank you for making a difference!`,
       qr:['💰 Donate Now','🤝 Become a Partner','📞 Contact TIH'] },
 
@@ -1539,22 +1539,22 @@ Every gift — large or small — changes lives:<br>
       keywords:['ghana','uae','dubai','abu dhabi','healthcare ghana','healthcare uae','which country healthcare','healthcare country','treatment abroad country'],
       reply:`🌍 <strong>TIH Healthcare Destinations</strong><br><br>
 TIH now coordinates medical referrals to:<br>
-• 🇮🇳 <strong>India</strong> — 8 partner hospitals (primary destination)<br>
-• 🇬🇭 <strong>Ghana</strong> — Regional medical access<br>
-• 🇦🇪 <strong>UAE</strong> — Advanced specialist care<br><br>
-We find the right facility, liaise with doctors, and support your travel — you pay the hospital directly.`,
+• 🇮🇳 <strong>India</strong>, 8 partner hospitals (primary destination)<br>
+• 🇬🇭 <strong>Ghana</strong>, Regional medical access<br>
+• 🇦🇪 <strong>UAE</strong>, Advanced specialist care<br><br>
+We find the right facility, liaise with doctors, and support your travel, you pay the hospital directly.`,
       qr:['🏥 Request Healthcare','💬 Contact TIH','🏥 Partner Hospitals'] },
 
     { id:'success_stories',
       keywords:['success story','testimonial','real student','who benefited','moses','abigail','james k','fatima','emmanuel','princess','david','student story','patient story','example student'],
       reply:`⭐ <strong>TIH Success Stories</strong><br><br>
-• <strong>Moses S.</strong> — Studying CS in India, GPA 3.5+<br>
-• <strong>Abigail S.</strong> — Erasmus+ Public Health in Germany<br>
-• <strong>James K.</strong> — Achieved IELTS 6.5 after TIH classroom<br>
-• <strong>Fatima T.</strong> — Life-changing cardiac surgery in India<br>
-• <strong>Emmanuel C.</strong> — Business revenue doubled after TIH software<br>
-• <strong>Princess B.</strong> — TOEFL 87, now pursuing MBA<br>
-• <strong>David W.</strong> — Won $8,000 NGO contract via digital skills<br><br>
+• <strong>Moses S.</strong>, Studying CS in India, GPA 3.5+<br>
+• <strong>Abigail S.</strong>, Erasmus+ Public Health in Germany<br>
+• <strong>James K.</strong>, Achieved IELTS 6.5 after TIH classroom<br>
+• <strong>Fatima T.</strong>, Life-changing cardiac surgery in India<br>
+• <strong>Emmanuel C.</strong>, Business revenue doubled after TIH software<br>
+• <strong>Princess B.</strong>, TOEFL 87, now pursuing MBA<br>
+• <strong>David W.</strong>, Won $8,000 NGO contract via digital skills<br><br>
 You could be next. Let us help you take the step!`,
       qr:['🎓 Apply for Scholarship','🏥 Healthcare','💻 Software','📞 Contact TIH'] },
 
@@ -1565,30 +1565,30 @@ TIH <strong>does not charge for coordination services</strong>. Our role is to:<
 ✅ Identify the right hospital & specialist<br>
 ✅ Facilitate communication & logistics<br>
 ✅ Support you through the process<br><br>
-<strong>You pay the hospital directly</strong> for all medical services. Treatment costs vary by hospital and condition — we help you get a cost estimate before you travel.`,
+<strong>You pay the hospital directly</strong> for all medical services. Treatment costs vary by hospital and condition, we help you get a cost estimate before you travel.`,
       qr:['🏥 Request Healthcare','💬 Ask About Hospitals','📞 Contact TIH'] },
 
     { id:'study_abroad_process',
       keywords:['how does study abroad work','study abroad steps','study abroad process','6 step','six step','step by step scholarship','application process','what happens after apply'],
-      reply:`🎓 <strong>Study Abroad — 6-Step Process</strong><br><br>
+      reply:`🎓 <strong>Study Abroad, 6-Step Process</strong><br><br>
 <strong>1.</strong> Submit your application (online or in-chat)<br>
 <strong>2.</strong> TIH reviews & contacts you within 48 hrs<br>
 <strong>3.</strong> Document preparation & verification<br>
 <strong>4.</strong> University / scholarship matching<br>
 <strong>5.</strong> Application submission to institution<br>
 <strong>6.</strong> Visa support & pre-departure orientation<br><br>
-We guide you at every step — it's completely free!`,
+We guide you at every step, it's completely free!`,
       qr:['📝 Apply Now','📋 Requirements','📞 Contact TIH'] },
 
     { id:'classroom_structure',
       keywords:['classroom structure','how classroom works','what is in classroom','classroom content','classroom feature','free classroom overview','ielts classroom detail','toefl classroom detail'],
-      reply:`📚 <strong>TIH Free Learning Hub — What's Inside</strong><br><br>
+      reply:`📚 <strong>TIH Free Learning Hub, What's Inside</strong><br><br>
 The classroom is organized into 4 sections:<br>
-• <strong>Mastery Plan</strong> — 5-phase daily study schedule (~120 min/day)<br>
-• <strong>Video Lessons</strong> — Curated YouTube channels (E2, IELTS Liz, Magoosh, TST)<br>
-• <strong>Study Materials</strong> — Downloadable PDFs, vocab packs, templates<br>
-• <strong>Practice Tests</strong> — Timed, auto-scored mock exams<br><br>
-100% free. No registration needed to browse — register to track your progress.`,
+• <strong>Mastery Plan</strong>, 5-phase daily study schedule (~120 min/day)<br>
+• <strong>Video Lessons</strong>, Curated YouTube channels (E2, IELTS Liz, Magoosh, TST)<br>
+• <strong>Study Materials</strong>, Downloadable PDFs, vocab packs, templates<br>
+• <strong>Practice Tests</strong>, Timed, auto-scored mock exams<br><br>
+100% free. No registration needed to browse, register to track your progress.`,
       qr:['📚 Open Classroom','📝 Register','🎓 Scholarships','📞 Contact'] },
 
     { id:'fallback', keywords:[], reply:``, qr:[] }
@@ -1598,7 +1598,7 @@ The classroom is organized into 4 sections:<br>
   const FLOWS = {
     scholarship: {
       title:'🎓 Scholarship / Study Abroad',
-      subject:'Chat Application — Scholarship / Study Abroad',
+      subject:'Chat Application, Scholarship / Study Abroad',
       steps:[
         { key:'name',  label:'Full Name',         type:'text',   ph:'As it should appear on documents' },
         { key:'email', label:'Email Address',      type:'email',  ph:'you@example.com' },
@@ -1609,7 +1609,7 @@ The classroom is organized into 4 sections:<br>
     },
     healthcare: {
       title:'🏥 Healthcare Program',
-      subject:'Chat Application — Healthcare Request',
+      subject:'Chat Application, Healthcare Request',
       steps:[
         { key:'name',      label:'Patient / Contact Name',   type:'text',  ph:'Full name' },
         { key:'email',     label:'Email Address',             type:'email', ph:'you@example.com' },
@@ -1619,7 +1619,7 @@ The classroom is organized into 4 sections:<br>
     },
     software: {
       title:'💻 Software Consultation',
-      subject:'Chat Application — Software Consultation',
+      subject:'Chat Application, Software Consultation',
       steps:[
         { key:'name',     label:'Your Name',        type:'text',   ph:'Full name' },
         { key:'email',    label:'Email Address',     type:'email',  ph:'you@example.com' },
@@ -1630,7 +1630,7 @@ The classroom is organized into 4 sections:<br>
     },
     classroom: {
       title:'📚 IELTS / TOEFL Classroom',
-      subject:'Chat Registration — IELTS/TOEFL Classroom',
+      subject:'Chat Registration, IELTS/TOEFL Classroom',
       steps:[
         { key:'name',  label:'Full Name',    type:'text',   ph:'Your full name' },
         { key:'email', label:'Email Address', type:'email',  ph:'you@example.com' },
@@ -1729,7 +1729,7 @@ Or choose a topic below:`;
       <div class="tih-hdr-av"><img src="${LOGO_URL}" alt="TIH" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span style="display:none">TI</span></div>
       <div class="tih-hdr-info">
         <div class="tih-hdr-name">TIH Assistant</div>
-        <div class="tih-hdr-status">Online — Ready to help</div>
+        <div class="tih-hdr-status">Online, Ready to help</div>
       </div>
       <div class="tih-hdr-btns">
         <button class="tih-hdr-btn" id="tih-clear-btn" title="Clear chat" aria-label="Clear chat">🗑</button>
@@ -1869,7 +1869,7 @@ Or choose a topic below:`;
     if (topicsLine) {
       return `Hello! 👋 Welcome to <strong>Tolbert Innovation Hub</strong>!${topicsLine}<br><br>Ask me anything about this page, or about our scholarships, free classroom, healthcare, and software services.`;
     }
-    return `Hello! 👋 Welcome to <strong>Tolbert Innovation Hub</strong>!<br><br>I'm your TIH Assistant — I can answer questions about scholarships, free IELTS/TOEFL prep, healthcare referrals, software services, and more.<br><br>What can I help you with today?`;
+    return `Hello! 👋 Welcome to <strong>Tolbert Innovation Hub</strong>!<br><br>I'm your TIH Assistant, I can answer questions about scholarships, free IELTS/TOEFL prep, healthcare referrals, software services, and more.<br><br>What can I help you with today?`;
   }
 
   chatBtn.addEventListener('click', () =>
@@ -1884,7 +1884,7 @@ Or choose a topic below:`;
       var greet = document.createElement('div');
       greet.id = 'tih-greet';
       greet.setAttribute('role', 'button');
-      greet.setAttribute('aria-label', 'Open chat — need help?');
+      greet.setAttribute('aria-label', 'Open chat, need help?');
       greet.innerHTML = '<button id="tih-greet-close" aria-label="Dismiss">✕</button>'
         + '👋 <strong>Need help?</strong> Ask me about scholarships, courses, WASSCE or anything TIH.';
       document.body.appendChild(greet);
@@ -1929,7 +1929,7 @@ Or choose a topic below:`;
     if (l.includes('talk to human') || l.includes('speak to human') || l.includes('human agent') || l.includes('real person')) {
       type(500, () => botMsg(`👋 <strong>Connect with Our Team</strong><br><br>
 Our team is ready to answer any question you have!<br><br>
-💬 <strong>WhatsApp (fastest — replies in minutes):</strong><br>
+💬 <strong>WhatsApp (fastest, replies in minutes):</strong><br>
 <a href="https://wa.me/231880559227" target="_blank" style="color:#002868;font-weight:700;">+231 880 559 227</a><br><br>
 📧 <strong>Email:</strong> tolbertinnovationhub@gmail.com<br>
 📞 <strong>Call:</strong> +231 778 956 979<br><br>
@@ -1946,13 +1946,13 @@ Our team is ready to answer any question you have!<br><br>
       'go to ielts':          'learning-hub.html',
       'ielts module 1':       'learning-hub.html',
       'ielts module 2':       'learning-hub.html',
-      'module 2 — reading':   'learning-hub.html',
+      'module 2, reading':   'learning-hub.html',
       'ielts module 3':       'learning-hub.html',
-      'module 3 — writing':   'learning-hub.html',
+      'module 3, writing':   'learning-hub.html',
       'ielts module 4':       'learning-hub.html',
-      'module 4 — listening': 'learning-hub.html',
+      'module 4, listening': 'learning-hub.html',
       'ielts module 5':       'learning-hub.html',
-      'module 5 — speaking':  'learning-hub.html',
+      'module 5, speaking':  'learning-hub.html',
       'ielts module 6':       'learning-hub.html',
       'toefl classroom':      'learning-hub.html',
       'start toefl':          'learning-hub.html',
@@ -2024,7 +2024,7 @@ Our team is ready to answer any question you have!<br><br>
       type(500, () => botMsg('Which program are you applying for?', ['🎓 Scholarship / Study Abroad','🏥 Healthcare Request','💻 Software Consultation','📚 IELTS/TOEFL Classroom'])); return;
     }
 
-    // Fall through — use knowledge base
+    // Fall through, use knowledge base
     const { confidence, entry } = findBestMatch(label);
     type(Math.min(700 + label.length * 5, 1100), () => {
       if (confidence !== 'low' && entry.reply) {
@@ -2095,7 +2095,7 @@ Our team is ready to answer any question you have!<br><br>
 
   async function submitFlow() {
     const f = FLOWS[flow.key];
-    const payload = { ...flow.data, _subject: f.subject + ' — Tolbert Innovation Hub', _template:'table', _captcha:'false', Source:'TIH Chatbot' };
+    const payload = { ...flow.data, _subject: f.subject + ', Tolbert Innovation Hub', _template:'table', _captcha:'false', Source:'TIH Chatbot' };
     flow = null;
     type(900, async () => {
       botMsg('Submitting your application… ⏳');

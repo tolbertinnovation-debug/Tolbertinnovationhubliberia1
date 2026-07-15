@@ -1,9 +1,9 @@
 /* ============================================================
-   Standalone hero particle-network animation — a self-initializing,
+   Standalone hero particle-network animation, a self-initializing,
    self-contained copy of the constellation effect used site-wide via
    main.js. Load this on self-contained pages that do NOT include
    main.js (e.g. the Learning Hub) so their hero stays alive too.
-   Do NOT load it together with main.js on the same page — main.js
+   Do NOT load it together with main.js on the same page, main.js
    already builds the same effect (this would double it).
    ============================================================ */
 (function () {

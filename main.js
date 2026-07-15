@@ -1,5 +1,5 @@
 // ============================================================
-// Tolbert Innovation Hub — main.js
+// Tolbert Innovation Hub, main.js
 // ============================================================
 
 // News data
@@ -43,7 +43,7 @@ const newsPosts = [
 ];
 
 // ============================================================
-// Form submission handler — sends all form-card submissions to
+// Form submission handler, sends all form-card submissions to
 // tolbertinnovationhub@gmail.com via Formsubmit.co
 // ============================================================
 const TIH_CONTACT_EMAIL = 'tolbertinnovationhub@gmail.com';
@@ -74,7 +74,7 @@ async function submitFormToEmail(form) {
 
   // Subject line from the form's heading or page title
   const heading = form.querySelector('h3,h2')?.textContent?.trim();
-  data['_subject']  = (heading || document.title) + ' — Tolbert Innovation Hub';
+  data['_subject']  = (heading || document.title) + ', Tolbert Innovation Hub';
   data['_template'] = 'table';
   data['_captcha']  = 'false';
 
@@ -111,7 +111,7 @@ document.querySelectorAll('form.form-card').forEach((form) => {
 });
 
 // ============================================================
-// Newsletter form handler — also forwards email to TIH inbox
+// Newsletter form handler, also forwards email to TIH inbox
 // ============================================================
 document.querySelectorAll('.newsletter-form, #newsletter-form').forEach((form) => {
   form.addEventListener('submit', async (e) => {
@@ -134,11 +134,11 @@ document.querySelectorAll('.newsletter-form, #newsletter-form').forEach((form) =
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
           email,
-          _subject: 'Newsletter Subscription — Tolbert Innovation Hub',
+          _subject: 'Newsletter Subscription, Tolbert Innovation Hub',
           _captcha: 'false'
         })
       });
-    } catch (_) { /* silent — still show success to user */ }
+    } catch (_) { /* silent, still show success to user */ }
 
     if (btn) { btn.textContent = '✓ Subscribed!'; }
     if (input) input.value = '';
@@ -559,7 +559,7 @@ function initCookieConsent() {
 }
 
 // ============================================================
-// Hero mouse parallax — elements with [data-depth] drift subtly
+// Hero mouse parallax, elements with [data-depth] drift subtly
 // toward the cursor. Skipped on touch devices & reduced motion.
 // ============================================================
 function initHeroParallax() {
@@ -594,7 +594,7 @@ function initHeroParallax() {
 }
 
 // ============================================================
-// Hero particle network — a live "constellation" canvas that drifts
+// Hero particle network, a live "constellation" canvas that drifts
 // behind the hero content: glowing brand-blue nodes joined by thin
 // lines that form and break as the points move, plus a soft cursor
 // spotlight. Attaches to every hero, sits at z-index 0 (content is
@@ -691,7 +691,7 @@ function buildHeroNetwork(hero, canvas) {
           ctx.stroke();
         }
       }
-      // Cursor spotlight — brighter links from the pointer to nearby nodes.
+      // Cursor spotlight, brighter links from the pointer to nearby nodes.
       if (pointer.on) {
         const dx = a.x - pointer.x, dy = a.y - pointer.y;
         const d = Math.sqrt(dx * dx + dy * dy);
@@ -726,7 +726,7 @@ function buildHeroNetwork(hero, canvas) {
   function start() { if (!running) { running = true; raf = requestAnimationFrame(step); } }
   function stop() { running = false; if (raf) { cancelAnimationFrame(raf); raf = null; } }
 
-  // Pointer spotlight (skipped on touch — no hover there).
+  // Pointer spotlight (skipped on touch, no hover there).
   if (!isCoarse) {
     hero.addEventListener('mousemove', (e) => {
       const r = hero.getBoundingClientRect();
@@ -757,7 +757,7 @@ function buildHeroNetwork(hero, canvas) {
 }
 
 // ============================================================
-// Spoken welcome — greets a visitor with "Welcome to Tolbert
+// Spoken welcome, greets a visitor with "Welcome to Tolbert
 // Innovation Hub" using the browser's built-in speech synthesis.
 // Browsers block audio until the user interacts, so we speak on the
 // first tap/click/scroll/key, and only once per browsing session.
@@ -848,7 +848,7 @@ function buildAudioControl() {
     const m = tihWelcomeMuted();
     mute.classList.toggle('is-muted', m);
     mute.innerHTML = m ? SPK_OFF : SPK_ON;
-    mute.title = m ? 'Welcome sound off — click to turn on' : 'Mute welcome sound';
+    mute.title = m ? 'Welcome sound off, click to turn on' : 'Mute welcome sound';
     mute.setAttribute('aria-label', m ? 'Turn welcome sound on' : 'Mute welcome sound');
   };
   paint();
@@ -871,13 +871,13 @@ function buildAudioControl() {
 }
 
 // ============================================================
-// Inner-page hero FX — inject floating orbs, sparks and a geometric
+// Inner-page hero FX, inject floating orbs, sparks and a geometric
 // watermark into every sub-page hero so it feels as alive as the
 // Home and Learning Hub heroes. Purely decorative and idempotent;
 // the hero's text/gradient/wave come from CSS and are never touched.
 // ============================================================
 function initInnerHero() {
-  // The home hero (.hero-modern) already has its own richer FX — skip it.
+  // The home hero (.hero-modern) already has its own richer FX, skip it.
   const heroes = document.querySelectorAll('.hero:not(.hero-modern), .page-hero');
   heroes.forEach((hero) => {
     if (hero.getAttribute('data-hero-fx')) return;        // already enhanced

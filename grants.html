@@ -285,18 +285,18 @@
     .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
     .form-label { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); }
     .form-label .required { color: var(--brand-red); margin-left: 2px; }
-    .form-input, .form-select, .form-textarea {
+    .form-input.form-select.form-textarea {
       width: 100%; padding: 0.72rem 0.95rem; border: 1.5px solid var(--border);
       border-radius: var(--radius-sm); background: var(--surface-2); color: var(--text);
       font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5;
       transition: border-color var(--transition), box-shadow var(--transition);
       appearance: none; -webkit-appearance: none;
     }
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
+    .form-input:focus.form-select:focus.form-textarea:focus {
       outline: none; border-color: var(--brand-blue); background: var(--surface);
       box-shadow: 0 0 0 3px rgba(0,40,104,0.1);
     }
-    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-input::placeholder.form-textarea::placeholder { color: var(--text-muted); }
     .form-textarea { resize: vertical; min-height: 120px; }
     .form-select {
       cursor: pointer;
@@ -365,12 +365,12 @@
           <div class="hero-text">
             <div class="hero-live-badge hm-fade hm-d1">
               <span class="live-dot"></span>
-              Grant Directory — Liberia 2026–2027 · Updated June 2026
+              Grant Directory, Liberia 2026–2027 · Updated June 2026
             </div>
             <h1 class="hm-fade hm-d2">Access <span class="hm-red">2026–2027 Funding</span> for Your Business, NGO &amp; <span class="hm-blue">Organization</span></h1>
             <p class="lead hm-fade hm-d3">
               Tolbert Innovation Hub curates verified active grants from the EU, World Bank, AfDB, USAID,
-              UNDP, Canada, Tony Elumelu Foundation, and more — helping Liberian businesses, NGOs,
+              UNDP, Canada, Tony Elumelu Foundation, and more, helping Liberian businesses, NGOs,
               institutes, and organizations find, prepare, and apply at no cost.
             </p>
             <div class="hero-actions hm-fade hm-d4">
@@ -446,7 +446,7 @@
                 <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$13.6 million total program</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Gender-based violence, women empowerment, policy reform</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Registered NGOs, CSOs, women's organizations</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Active 2026–2028 — call via EU Delegation Monrovia</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Active 2026–2028, call via EU Delegation Monrovia</span></div>
               </div>
             </div>
             <div class="gc-footer">
@@ -475,7 +475,7 @@
                 <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$7.3 million program</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Governance, social cohesion, public discourse, CSO capacity</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Liberian NGOs, CSOs, civil society coalitions</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Signed March 2026 — implementation underway</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Signed March 2026, implementation underway</span></div>
               </div>
             </div>
             <div class="gc-footer">
@@ -504,10 +504,10 @@
             <div class="gc-body">
               <p class="gc-desc">Launched July 2025, the AfDB Youth Entrepreneurship Investment Bank (YEIB) begins operations in 2026. The $16M fund targets youth-led agribusinesses, digital services, mining, and tourism in Liberia, aiming to support 30,000+ youth businesses over 17 years.</p>
               <div class="gc-meta">
-                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$16M total fund — individual grants vary</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$16M total fund, individual grants vary</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Agribusiness, digital services, mining, tourism</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Liberian youth ages 18–35, MSMEs, women-led enterprises</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Full operations starting 2026 — apply via YEIB Liberia</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Full operations starting 2026, apply via YEIB Liberia</span></div>
               </div>
             </div>
             <div class="gc-footer">
@@ -534,7 +534,7 @@
             <div class="gc-body">
               <p class="gc-desc">The World Bank approved $137M in March 2026 for Benin, Liberia &amp; Sierra Leone under WARDIP2. The Liberia component strengthens digital infrastructure, creates jobs, and supports digital businesses and startups to scale in the digital economy.</p>
               <div class="gc-meta">
-                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$137M regional program — Liberia component active</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$137M regional program, Liberia component active</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Digital infrastructure, ICT businesses, tech startups, jobs</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Digital SMEs, tech startups, digital entrepreneurs</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">2026–2028 ongoing implementation</span></div>
@@ -567,7 +567,7 @@
                 <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">Co-financing grants + mentorship + technical support</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Business growth, entrepreneurship, sustainable scaling</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Liberian MSMEs and cooperatives across 13 counties</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Cohort V underway — Cohort VI expected late 2026</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Cohort V underway, Cohort VI expected late 2026</span></div>
               </div>
             </div>
             <div class="gc-footer">
@@ -625,9 +625,9 @@
               <p class="gc-desc">The Tony Elumelu Foundation 2026 Entrepreneurship Programme offers $5,000 non-refundable seed capital, 12 weeks of business training, and mentorship to entrepreneurs across all 54 African countries, including Liberia. Since 2015, TEF has funded 24,000+ entrepreneurs generating $4.2B+ in revenue.</p>
               <div class="gc-meta">
                 <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$5,000 non-refundable seed capital + mentorship</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Any sector — business idea or early-stage enterprise</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Any sector, business idea or early-stage enterprise</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">African citizen, age 18+, business 0–3 years old</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">Annual — Jan 1 to Mar 1 each year on TEFConnect.com</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">Annual, Jan 1 to Mar 1 each year on TEFConnect.com</span></div>
               </div>
             </div>
             <div class="gc-footer">
@@ -688,8 +688,8 @@
               <div class="gc-meta">
                 <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">Up to $40,000 per organization</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Mercury-free agriculture, food safety, climate resilience</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">CSOs, CBOs — women &amp; youth involvement preferred</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Open 2026 — apply via UNDP Liberia</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">CSOs, CBOs, women &amp; youth involvement preferred</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Open 2026, apply via UNDP Liberia</span></div>
               </div>
             </div>
             <div class="gc-footer">
@@ -716,10 +716,10 @@
             <div class="gc-body">
               <p class="gc-desc">LIFT Project Phase II provides $3.5M in accessible financing and grants to Liberian-owned businesses in agriculture, manufacturing, and technology that cannot access conventional bank financing. Applied through the Ministry of Commerce &amp; Industry.</p>
               <div class="gc-meta">
-                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$3.5M total — individual amounts vary</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$3.5M total, individual amounts vary</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Agriculture, manufacturing, technology SMEs</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Liberian-owned businesses without bank access</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Phase II open — apply via MoCI</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Phase II open, apply via MoCI</span></div>
               </div>
             </div>
             <div class="gc-footer">
@@ -750,7 +750,7 @@
                 <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">Up to $250,000 per grant</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Social enterprise, community programs, youth &amp; women</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Liberian grassroots orgs, CBOs, social enterprises</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">Rolling basis — check usadf.gov for open calls</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">Rolling basis, check usadf.gov for open calls</span></div>
               </div>
             </div>
             <div class="gc-footer">
@@ -779,7 +779,7 @@
                 <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$5,000 – $10,000 per grant</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Community development, democracy, human rights</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Registered Liberian NGOs &amp; community organizations</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">Annual — check lr.usembassy.gov for open calls</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">Annual, check lr.usembassy.gov for open calls</span></div>
               </div>
             </div>
             <div class="gc-footer">
@@ -911,7 +911,7 @@
             <div class="form-group">
               <label class="form-label" for="grant-type">Organization Type <span class="required">*</span></label>
               <select class="form-select" id="grant-type" name="organizationType" required>
-                <option value="">— Select type —</option>
+                <option value="">Select type, </option>
                 <option>Business / MSME</option>
                 <option>NGO / CSO</option>
                 <option>Institute / Academic</option>
@@ -925,7 +925,7 @@
             <div class="form-group">
               <label class="form-label" for="grant-sector">Sector / Industry <span class="required">*</span></label>
               <select class="form-select" id="grant-sector" name="sector" required>
-                <option value="">— Select sector —</option>
+                <option value="">Select sector, </option>
                 <option>Agriculture / Agribusiness</option>
                 <option>Technology / Digital</option>
                 <option>Health</option>
@@ -944,7 +944,7 @@
           <div class="form-group">
             <label class="form-label" for="grant-amount">Grant Amount Needed</label>
             <select class="form-select" id="grant-amount" name="grantAmount">
-              <option value="">— Select range —</option>
+              <option value="">Select range, </option>
               <option>Under $5,000</option>
               <option>$5,000 – $25,000</option>
               <option>$25,000 – $100,000</option>
@@ -1025,14 +1025,14 @@
       <div class="footer-bottom">
         <div class="footer-bottom-inner">
           <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved. &middot; <a href="contact.html" style="color:rgba(200,216,240,0.7);">Privacy</a> &middot; <a href="contact.html" style="color:rgba(200,216,240,0.7);">Terms</a></p>
-          <p class="footer-signoff">Empowering Africa's Future — Never Stop Innovating.</p>
+          <p class="footer-signoff">Empowering Africa's Future, Never Stop Innovating.</p>
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="main.js?v=10"></script>
-  <script src="chatbot.js?v=2"></script>
+  <script src="main.js?v=11"></script>
+  <script src="chatbot.js?v=3"></script>
   <script>
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.grant-card');

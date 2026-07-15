@@ -1,5 +1,5 @@
 /* ============================================================
-   TIH LEARNING HUB — SHARED DATA LAYER
+   TIH LEARNING HUB, SHARED DATA LAYER
    localStorage-backed store for applications, students, course
    assignments, notifications and the admin audit log.
    Every read/write goes through this file so the storage engine
@@ -114,10 +114,10 @@ var HubDB = (function () {
     var app = {
       id: genAppId(),
       submittedAt: nowISO(),
-      // Learning Hub applications are auto-approved on submission — the learner's
+      // Learning Hub applications are auto-approved on submission, the learner's
       // account is created active, so they can log in and start immediately.
       status: 'approved', // pending | review | approved | rejected | info-needed
-      statusMessage: 'Approved automatically — your account is ready. Log in and unlock any course or WASSCE subject for US$2.',
+      statusMessage: 'Approved automatically, your account is ready. Log in and unlock any course or WASSCE subject for US$2.',
       decidedAt: nowISO(),
       autoApproved: true,
       notes: [],
@@ -148,7 +148,7 @@ var HubDB = (function () {
 
   /* ---- Students ---- */
   // Assigned courses must be objects: [{id, assignedAt, deadline, priority}].
-  // Older self-registered accounts stored bare id strings — coerce them so the
+  // Older self-registered accounts stored bare id strings, coerce them so the
   // dashboard and course player can read c.id (fixes blank "Course not found").
   // WASSCE subjects (wassce-*) are handled by their own grid, not assigned cards.
   function normCourses(courses) {
@@ -185,7 +185,7 @@ var HubDB = (function () {
     return null;
   }
   // Creates a student account (from an approved application or manually).
-  // Returns {student, tempPassword} — the plain temp password exists only here
+  // Returns {student, tempPassword}, the plain temp password exists only here
   // so the admin can deliver it via WhatsApp/email.
   function createStudent(data) {
     var tempPassword = genTempPassword();
@@ -319,7 +319,7 @@ var HubDB = (function () {
     setJSON('tih_student_session', { name: s.name, email: s.email });
     try { localStorage.setItem('tih_student_name', s.name); } catch (e) {}
     // Re-upload the full account (incl. password hash) so any account that was
-    // created before cloud sync — or on a device where the first push failed —
+    // created before cloud sync, or on a device where the first push failed, 
     // is healed into the central DB and can sign in from any device.
     if (cloud()) { fire(cloud().pushStudent(s)); fire(cloud().touchStudentLogin(s.id)); }
     return { ok: true, student: s, mustChangePassword: s.mustChangePassword };
@@ -460,7 +460,7 @@ var HubDB = (function () {
       var enrolls = bundle.enrollments || [], prog = bundle.progress || [], reqs = bundle.certRequests || [];
       var out = { enabled: true, unlocks: 0, progress: 0, certs: certs.length, approvals: 0 };
 
-      // 1) Paid access / unlocks — an item is unlocked once access is granted.
+      // 1) Paid access / unlocks, an item is unlocked once access is granted.
       //    A row that exists but is NOT granted means the admin revoked it, so
       //    lock it again on this device (keeps revokes in sync across devices).
       enrolls.forEach(function (e) {
@@ -474,7 +474,7 @@ var HubDB = (function () {
         }
       });
 
-      // 2) Progress — lessons are gated sequentially, so a completed count of N
+      // 2) Progress, lessons are gated sequentially, so a completed count of N
       //    means lessons 0..N-1 are done. Restore only when the cloud is ahead
       //    of local (never clobber newer local progress that hasn't synced yet).
       prog.forEach(function (p) {
@@ -490,7 +490,7 @@ var HubDB = (function () {
         }
       });
 
-      // 3) Certificate approvals — an approved request unlocks the certificate.
+      // 3) Certificate approvals, an approved request unlocks the certificate.
       reqs.forEach(function (q) {
         if (q.status === 'approved' && q.course_id) {
           setJSON('tih_hub_cert_ok_' + q.course_id, { studentId: id, at: q.decided_at || nowISO() });
@@ -643,7 +643,7 @@ var HubDB = (function () {
      Each locked item (a course id or a WASSCE subject id) is unlocked with a
      6-character code the admin generates for (studentId, itemId) after the
      learner pays via mobile money. The code is deterministic, so the admin can
-     generate it on their device and the learner verifies it on theirs — no
+     generate it on their device and the learner verifies it on theirs, no
      shared backend required. Verified access is stored locally so the learner
      stays unlocked. */
   function accessCode(studentId, itemId) {
@@ -672,14 +672,14 @@ var HubDB = (function () {
 
   // Admin one-tap unlock: record a CONFIRMED enrollment in the central DB for a
   // student + item. The learner's device applies it automatically on next login
-  // (hydrateAccountFromCloud) — no access code needed. Resolves to true on a
+  // (hydrateAccountFromCloud), no access code needed. Resolves to true on a
   // confirmed cloud write, false when offline / cloud unconfigured.
   function adminGrantAccess(studentId, itemId) {
     audit('Granted online access to ' + itemId, studentId);
     if (!cloud() || !studentId || !itemId) return Promise.resolve(false);
     var title = (typeof COURSES_DB !== 'undefined' && COURSES_DB[itemId] && COURSES_DB[itemId].title)
       ? COURSES_DB[itemId].title
-      : (itemId === 'wassce-all' ? 'WASSCE PRO — All 23 Subjects' : itemId);
+      : (itemId === 'wassce-all' ? 'WASSCE PRO, All 23 Subjects' : itemId);
     var C = cloud();
     return C.pushEnrollment({
       student_id: studentId, item_id: itemId, item_title: title,
@@ -709,7 +709,7 @@ var HubDB = (function () {
     }).catch(function () { return false; });
   }
 
-  // Learner-initiated access request ("I've paid — please unlock me").
+  // Learner-initiated access request ("I've paid, please unlock me").
   // Records a PENDING enrollment (payment_status='requested') in the central DB
   // so the admin sees it in the Access Requests list with the learner's name+ID
   // and can grant it with one tap. Resolves {ok}.
@@ -738,7 +738,7 @@ var HubDB = (function () {
     if (!cloud() || !studentId) return;
     var title = (typeof COURSES_DB !== 'undefined' && COURSES_DB[itemId] && COURSES_DB[itemId].title)
       ? COURSES_DB[itemId].title
-      : (itemId === 'wassce-all' ? 'WASSCE PRO — All 23 Subjects' : itemId);
+      : (itemId === 'wassce-all' ? 'WASSCE PRO, All 23 Subjects' : itemId);
     fire(cloud().pushEnrollment({
       student_id: studentId, item_id: itemId, item_title: title,
       payment_status: confirmed ? 'confirmed' : 'pending',
@@ -776,11 +776,11 @@ var HubDB = (function () {
   }
   function fmtDate(iso) {
     var d = _toDate(iso);
-    return d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—';
+    return d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : ', ';
   }
   function fmtDateTime(iso) {
     var d = _toDate(iso);
-    if (!d) return '—';
+    if (!d) return ', ';
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
       + ' · ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
   }
@@ -788,7 +788,7 @@ var HubDB = (function () {
   // falls back to an absolute date after 30 days.
   function timeAgo(iso) {
     var d = _toDate(iso);
-    if (!d) return '—';
+    if (!d) return ', ';
     var s = Math.floor((Date.now() - d.getTime()) / 1000);
     if (s < 0) s = 0;
     if (s < 45) return 'just now';

@@ -418,14 +418,14 @@
     @media (max-width: 520px) { .elig-form-row { grid-template-columns: 1fr; } }
     .elig-group { display: flex; flex-direction: column; gap: 0.38rem; margin-bottom: 1rem; }
     .elig-group label { font-size: 0.85rem; font-weight: 700; color: #374151; }
-    .elig-group select, .elig-group input {
+    .elig-group select.elig-group input {
       padding: 0.78rem 1rem; border: 1.5px solid #e2e8f0;
       border-radius: 10px; background: #f8fafc; color: #0f172a;
       font-family: 'Inter', sans-serif; font-size: 0.94rem;
       outline: none; transition: border-color 0.18s, box-shadow 0.18s;
       width: 100%; appearance: none; -webkit-appearance: none;
     }
-    .elig-group select:focus, .elig-group input:focus { border-color: #002868; background: #fff; box-shadow: 0 0 0 3px rgba(0,40,104,0.1); }
+    .elig-group select:focus.elig-group input:focus { border-color: #002868; background: #fff; box-shadow: 0 0 0 3px rgba(0,40,104,0.1); }
     .elig-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.4rem; cursor: pointer; }
     .elig-result { margin-top: 1.75rem; padding: 1.5rem 1.75rem; border-radius: 12px; display: none; }
     .elig-result.show { display: block; animation: fadeUp 0.3s ease; }
@@ -480,14 +480,14 @@
     .fg2:last-of-type { margin-bottom: 0; }
     .fg2 label { font-size: 0.85rem; font-weight: 700; color: #374151; }
     .fg2 .req { color: #E31E24; }
-    .fg2 input, .fg2 select, .fg2 textarea {
+    .fg2 input.fg2 select.fg2 textarea {
       width: 100%; padding: 0.78rem 1rem; border: 1.5px solid #e2e8f0;
       border-radius: 10px; background: #f8fafc; color: #0f172a;
       font-family: 'Inter', sans-serif; font-size: 0.95rem;
       outline: none; transition: border-color 0.18s, box-shadow 0.18s;
       appearance: none; -webkit-appearance: none;
     }
-    .fg2 input:focus, .fg2 select:focus, .fg2 textarea:focus { border-color: #002868; background: #fff; box-shadow: 0 0 0 3px rgba(0,40,104,0.1); }
+    .fg2 input:focus.fg2 select:focus.fg2 textarea:focus { border-color: #002868; background: #fff; box-shadow: 0 0 0 3px rgba(0,40,104,0.1); }
     .fg2 textarea { resize: vertical; min-height: 110px; }
     .fg2 select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; cursor: pointer; }
     .form-feedback { font-size: 0.9rem; font-weight: 600; margin-top: 0.85rem; padding: 0.75rem 1rem; border-radius: 10px; background: #f1f5f9; display: none; }
@@ -532,8 +532,8 @@
       content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px;
       background: #E31E24; border-radius: 2px; transform: scaleX(0); transition: transform 0.18s;
     }
-    .bottom-nav-links a:hover, .bottom-nav-links a.active { color: #fff; }
-    .bottom-nav-links a:hover::after, .bottom-nav-links a.active::after { transform: scaleX(1); }
+    .bottom-nav-links a:hover.bottom-nav-links a.active { color: #fff; }
+    .bottom-nav-links a:hover::after.bottom-nav-links a.active::after { transform: scaleX(1); }
     .bottom-nav-cta { flex-shrink: 0; }
 
     /* ── FOOTER ── */
@@ -725,7 +725,7 @@
               University Directory 2026
             </div>
             <h1 class="hm-fade hm-d2">Find Your Perfect <span class="hm-blue">University</span> <span class="hm-red">Abroad</span></h1>
-            <p class="lead hm-fade hm-d3">Explore 20 top-ranked partner universities in India and Cyprus. Compare programs, tuition, and scholarships — apply free, with full TIH guidance from start to departure.</p>
+            <p class="lead hm-fade hm-d3">Explore 20 top-ranked partner universities in India and Cyprus. Compare programs, tuition, and scholarships, apply free, with full TIH guidance from start to departure.</p>
             <div class="hero-actions hm-fade hm-d4">
               <a href="#universities" class="btn btn-primary btn-lg">Browse Universities ↓</a>
               <a href="#application-form" class="btn btn-hero-blue btn-lg">Apply for Free →</a>
@@ -1067,7 +1067,7 @@
                     <option>Postgraduate in Cyprus</option>
                     <option>Fully Funded Scholarship</option>
                     <option>General Scholarship</option>
-                    <option>Not sure — need guidance</option>
+                    <option>Not sure, need guidance</option>
                   </select>
                 </div>
               </div>
@@ -1172,7 +1172,7 @@
                 <select id="sa-edu-target" name="targetLevel" required>
                   <option value="">Select target level</option>
                   <option>Undergraduate (UG)</option>
-                  <option>Postgraduate — Master's (PG)</option>
+                  <option>Postgraduate, Master's (PG)</option>
                   <option>PhD / Doctorate</option>
                 </select>
               </div>
@@ -1303,7 +1303,7 @@
       </div>
       <div class="portal-footer-bottom">
         <p>© 2026 Tolbert Innovation Hub. All rights reserved. &middot; <a href="contact.html">Privacy</a> &middot; <a href="contact.html">Terms</a></p>
-        <p>Empowering Africa's Future — Never Stop Innovating.</p>
+        <p>Empowering Africa's Future, Never Stop Innovating.</p>
       </div>
     </div>
   </footer>
@@ -1313,7 +1313,7 @@
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
   </a>
 
-  <script src="main.js?v=10"></script>
+  <script src="main.js?v=11"></script>
   <script>
   const universities = [
     { id:1,  abbr:'GEU',  slug:'graphic-era-university',         name:'Graphic Era University',         city:'Dehradun',        state:'Uttarakhand',   country:'India',  flag:'🇮🇳', rating:4.5, students:'18,000+', programsCount:'200+', accreditation:'NAAC A+',  badgeColor:'#3b82f6', programs:['Computer Science','Engineering','Business','Agriculture'], degrees:['UG','PG','PhD'], tuition:'$2,500–$4,500/yr', scholarship:true, featured:true,  campusTourVideoId:'dBh3p_qAut4' },
@@ -1521,12 +1521,12 @@
 
   renderUniversities();
   </script>
-  <script src="chatbot.js?v=2"></script>
+  <script src="chatbot.js?v=3"></script>
   <script>
     /* ---- Entrance-animation failsafe ----
        On slow / flaky mobile connections the external scripts (main.js) can
        fail to load, leaving scroll-reveal sections and the hero stuck at
-       opacity:0 — the page appears to "disappear". This inline guard is
+       opacity:0, the page appears to "disappear". This inline guard is
        self-contained and guarantees content becomes visible no matter what. */
     (function () {
       function show() {

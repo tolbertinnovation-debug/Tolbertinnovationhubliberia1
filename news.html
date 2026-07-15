@@ -75,7 +75,7 @@
       text-decoration: none;
       transition: all 0.2s;
     }
-    .filter-pill:hover, .filter-pill.active {
+    .filter-pill:hover.filter-pill.active {
       background: #002868;
       color: #fff;
     }
@@ -462,7 +462,7 @@
       <div class="footer-bottom">
         <div class="footer-bottom-inner">
           <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
-          <p class="footer-signoff">Empowering Africa's Future — Never Stop Innovating.</p>
+          <p class="footer-signoff">Empowering Africa's Future, Never Stop Innovating.</p>
         </div>
       </div>
     </div>
@@ -483,13 +483,13 @@
       this.querySelector('input').value = '';
     });
   </script>
-  <script src="main.js?v=10"></script>
-<script src="chatbot.js?v=2"></script>
+  <script src="main.js?v=11"></script>
+<script src="chatbot.js?v=3"></script>
   <script>
     /* ---- Entrance-animation failsafe ----
        On slow / flaky mobile connections the external scripts (main.js) can
        fail to load, leaving scroll-reveal sections and the hero stuck at
-       opacity:0 — the page appears to "disappear". This inline guard is
+       opacity:0, the page appears to "disappear". This inline guard is
        self-contained and guarantees content becomes visible no matter what. */
     (function () {
       function show() {
