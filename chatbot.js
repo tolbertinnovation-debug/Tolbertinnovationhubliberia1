@@ -780,16 +780,20 @@ Your certificate includes: name, score, course title, completion date, certifica
       qr:['📝 Request IELTS Certificate','📝 Request TOEFL Certificate','💰 Payment Methods','🔙 Main Menu'] },
 
     { id:'healthcare',
-      keywords:['healthcare','medical','hospital','treatment','doctor','patient','health','specialist','india treatment','referral','surgery','medical care','sick','illness','disease','hospital referral','medical abroad'],
+      keywords:['healthcare','medical','hospital','treatment','doctor','patient','health','specialist','india treatment','referral','surgery','medical care','sick','illness','disease','hospital referral','medical abroad','medical invitation','invitation letter','medical visa','free invitation','travel arrangement','medical trip'],
       reply:`🏥 <strong>International Healthcare Referral Program</strong><br><br>
-TIH connects Liberian patients and families to quality specialist medical treatment abroad:<br><br>
-• Medical case intake &amp; assessment<br>
-• Specialist referrals to partner hospitals in India<br>
+<div style="background:#ecfeff;border:1.5px solid #67e8f9;border-radius:10px;padding:12px 14px;margin:2px 0 10px;">
+🎁 <strong>FREE Promotion:</strong> get a <strong>free medical invitation</strong> from India's best hospitals, with TIH assisting you throughout the whole process, including <strong>visa processing</strong> and <strong>travel arrangements</strong>.
+</div>
+TIH connects Liberian patients and families to quality specialist treatment in India:<br><br>
+• <strong>Free hospital invitation letter</strong> from a top partner hospital<br>
+• Medical case intake &amp; specialist referral<br>
 • Hospital coordination &amp; appointment scheduling<br>
-• Travel guidance &amp; visa assistance<br>
-• Ongoing patient follow-up support<br><br>
+• <strong>Visa processing assistance</strong><br>
+• <strong>Travel arrangements</strong> &amp; support throughout the journey<br>
+• Ongoing patient follow-up<br><br>
 🏨 <strong>Partner hospitals</strong> specialise in cardiology, oncology, orthopedics, neurology, fertility &amp; more.<br><br>
-To submit a healthcare request, contact us via WhatsApp or the application form.`,
+Payments for treatment are made directly to the hospital. To start, contact us on WhatsApp or submit a healthcare request.`,
       qr:['📝 Submit Healthcare Request','🏨 Partner Hospitals','📞 WhatsApp Us','🔙 Main Menu'] },
 
     { id:'hospitals',
@@ -1032,9 +1036,10 @@ TIH has strong India connections for both education and healthcare:<br><br>
 • <strong>Feeding &amp; medical insurance</strong><br>
 • <strong>US$300 support toward your flight ticket</strong><br>
 💵 Tuition after the 50% scholarship is <strong>US$1,500–US$3,000/year</strong>, paid <strong>directly to the university</strong>.<br><br>
-🏥 <strong>Healthcare:</strong><br>
-TIH works with 8 partner hospitals in India offering specialist treatment in cardiology, oncology, orthopedics, neurology &amp; more.<br><br>
+🏥 <strong>Healthcare, FREE medical invitation:</strong><br>
+Get a <strong>free medical invitation</strong> from India's best hospitals (cardiology, oncology, orthopedics, neurology &amp; more), with TIH assisting throughout, including <strong>visa processing</strong> and <strong>travel arrangements</strong>.<br><br>
 Both are coordinated end-to-end by TIH.`,
+
       qr:['🎓 India 50% Scholarship','🏥 Healthcare in India','📝 Apply','🔙 Main Menu'] },
 
     { id:'deadline',
@@ -1833,7 +1838,7 @@ Or choose a topic below:`;
       { id:'courses', kw:['cours','gratuit','ielts','toefl','wassce','apprendre','formation','classe','leçon','certificat'],
         reply:`📚 <strong>Cours gratuits TIH</strong><br><br>• Préparation IELTS et TOEFL, 6 modules chacun<br>• WASSCE PRO, 23 matières avec vidéos, notes et examens blancs<br>• 18 cours de compétences : informatique, entrepreneuriat, marketing digital…<br><br>🏅 Certificat de fin de formation disponible.<br>👉 <a href="learning-hub" style="color:#002868;font-weight:700;">Ouvrir l’espace d’apprentissage</a>` },
       { id:'healthcare', kw:['santé','médical','hôpital','traitement','malade','médecin','soins'],
-        reply:`🏥 <strong>Programme d’orientation médicale</strong><br><br>TIH met en relation les patients libériens avec des hôpitaux spécialisés en Inde : cardiologie, oncologie, orthopédie, neurologie, fertilité…<br><br>Nous coordonnons le dossier médical, les rendez-vous et le visa.<br>📞 WhatsApp : +231 880 559 227` },
+        reply:`🏥 <strong>Programme d’orientation médicale</strong><br><br>🎁 <strong>Promotion GRATUITE :</strong> obtenez une <strong>invitation médicale gratuite</strong> des meilleurs hôpitaux d’Inde, avec un accompagnement complet, <strong>traitement du visa</strong> et <strong>organisation du voyage</strong> inclus.<br><br>TIH met en relation les patients libériens avec des hôpitaux spécialisés en Inde : cardiologie, oncologie, orthopédie, neurologie, fertilité…<br><br>Nous coordonnons le dossier médical, les rendez-vous, le visa et le voyage. Les paiements se font directement à l’hôpital.<br>📞 WhatsApp : +231 880 559 227` },
       { id:'software', kw:['logiciel','site web','application','développement','prix','tarif','coût','site internet'],
         reply:`💻 <strong>Services logiciels TIH</strong><br><br>Sites web, plateformes d’apprentissage, systèmes de gestion, boutiques e-commerce et applications mobiles.<br><br>📦 Promotion, 70 % DE RÉDUCTION :<br>• Starter <s>500 $</s> 150 $, site web professionnel<br>• Croissance 200 $, plateforme d’apprentissage, gestion d’entreprise, e-commerce &amp; paiements<br>• Complet 300 $, base de données, intégration API &amp; application mobile<br><br>🎁 Chaque pack inclut GRATUITEMENT : domaine 1 an, hébergement, trafic illimité, référencement, sécurité, e-mails professionnels illimités et formation.` },
       { id:'contact', kw:['contact','téléphone','email','e-mail','whatsapp','adresse','joindre','appeler'],
@@ -1851,7 +1856,7 @@ Or choose a topic below:`;
       { id:'courses', kw:['دورة','دورات','مجاني','مجانية','تعلم','ايلتس','توفل','شهادة','درس','دروس'],
         reply:`📚 <strong>دورات TIH المجانية</strong><br><br>• تحضير IELTS وTOEFL، 6 وحدات لكل منهما<br>• WASSCE PRO، 23 مادة مع فيديوهات وملخصات واختبارات<br>• 18 دورة مهارات: الحاسوب، ريادة الأعمال، التسويق الرقمي…<br><br>🏅 شهادة إتمام متاحة.<br>👉 <a href="learning-hub" style="color:#002868;font-weight:700;">افتح منصة التعلم</a>` },
       { id:'healthcare', kw:['صحة','طبي','مستشفى','علاج','مريض','طبيب','صحية'],
-        reply:`🏥 <strong>برنامج الإحالة الطبية</strong><br><br>يربط TIH المرضى الليبيريين بمستشفيات متخصصة في الهند: القلب، الأورام، العظام، الأعصاب، والخصوبة.<br><br>ننسق الملف الطبي والمواعيد والتأشيرة.<br>📞 واتساب: +231 880 559 227` },
+        reply:`🏥 <strong>برنامج الإحالة الطبية</strong><br><br>🎁 <strong>عرض مجاني:</strong> احصل على <strong>دعوة طبية مجانية</strong> من أفضل مستشفيات الهند، مع مساعدة كاملة تشمل <strong>معالجة التأشيرة</strong> و<strong>ترتيبات السفر</strong>.<br><br>يربط TIH المرضى الليبيريين بمستشفيات متخصصة في الهند: القلب، الأورام، العظام، الأعصاب، والخصوبة.<br><br>ننسق الملف الطبي والمواعيد والتأشيرة والسفر. تُدفع تكاليف العلاج مباشرة إلى المستشفى.<br>📞 واتساب: +231 880 559 227` },
       { id:'software', kw:['برمجيات','موقع','تطبيق','برنامج','تطوير','سعر','تكلفة','أسعار'],
         reply:`💻 <strong>خدمات البرمجيات</strong><br><br>مواقع إلكترونية، منصات تعليمية، أنظمة إدارة الأعمال، متاجر إلكترونية، وتطبيقات جوال.<br><br>📦 عرض ترويجي، خصم 70٪:<br>• المبتدئ <s>500$</s> 150$، موقع أعمال احترافي<br>• النمو 200$، منصة تعليمية وإدارة أعمال ومتجر إلكتروني ومدفوعات<br>• المتكامل 300$، قاعدة بيانات وتكامل API وتطبيق جوال<br><br>🎁 كل باقة تشمل مجاناً: نطاقاً لمدة سنة، استضافة، زيارات غير محدودة، أرشفة بمحركات البحث، حماية قوية، بريداً مهنياً غير محدود، وتدريباً.` },
       { id:'contact', kw:['اتصال','تواصل','هاتف','بريد','واتساب','عنوان','رقم'],
