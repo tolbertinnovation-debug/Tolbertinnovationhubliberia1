@@ -4158,3 +4158,506 @@ Therefore, ~450°C is a compromise: reasonably fast rate AND acceptable yield. A
 };
 
 console.log('[WASSCE-DATA] Loaded ' + Object.keys(window.WASSCE_SUBJECTS).length + ' subjects');
+
+
+/* ============================================================
+   WASSCE full-course completion, English Language & Biology.
+   Appends additional fully-built topics (notes, video, key points,
+   exam tips, common mistakes, 10 MCQs, theory) so each subject
+   covers the complete WASSCE syllabus. Runs after WASSCE_SUBJECTS
+   is defined; safe no-op if a subject is missing.
+   ============================================================ */
+(function () {
+  var S = (typeof window !== 'undefined') && window.WASSCE_SUBJECTS;
+  if (!S) return;
+
+  var moreEnglish = [
+    {
+      id: 'lexis_structure_vocabulary',
+      videoId: 'EQ8IYlKX7Iw',
+      name: 'Lexis & Structure: Vocabulary in Context',
+      icon: '📚',
+      lessonNotes:
+        '<h4>Lexis & Structure: The Heart of the Objective Test</h4>' +
+        '<p><strong>Lexis</strong> means the words (vocabulary) of a language, and <strong>structure</strong> means the way words are arranged into grammatical sentences. In WASSCE English, Paper 1 (the Objective Test) is dominated by Lexis & Structure questions, so a strong, exam-ready vocabulary is one of the fastest ways to raise your grade. This section rewards learners who understand <em>meaning in context</em> rather than those who memorise word lists blindly.</p>' +
+        '<h4>Choosing the Word Nearest in Meaning</h4>' +
+        '<p>Many questions give you a word or phrase in a sentence and ask for the option <strong>nearest in meaning</strong>. The trick is that the underlined word may have several meanings, and only the one that fits the sentence is correct. For example, in <em>"The manager will <u>address</u> the workers tomorrow"</em>, <em>address</em> means <em>speak to</em>, not <em>write a location on an envelope</em>. Always read the whole sentence and let context decide.</p>' +
+        '<h4>Word Formation & Parts of Speech</h4>' +
+        '<p>Words change form depending on their job in a sentence, the same root gives a noun, verb, adjective and adverb: <em>beauty (n), beautify (v), beautiful (adj), beautifully (adv)</em>. Knowing common <strong>prefixes</strong> (un-, dis-, mis-, pre-, over-) and <strong>suffixes</strong> (-tion, -ment, -able, -ly, -ness) lets you work out the meaning of unfamiliar words and pick the correct form to complete a sentence.</p>' +
+        '<h4>Register: The Right Word for the Right Situation</h4>' +
+        '<p><strong>Register</strong> is the special vocabulary used in a particular field or occupation. A doctor <em>diagnoses</em> and <em>prescribes</em>; a lawyer <em>files a suit</em> and <em>cross-examines</em>; a farmer <em>ploughs</em>, <em>harrows</em> and <em>harvests</em>. WASSCE regularly tests whether you can match a word to its correct field, so build small vocabulary banks for law, medicine, sports, banking, religion, agriculture, journalism and the sea.</p>' +
+        '<h4>Building Vocabulary the Smart Way</h4>' +
+        '<p>Read widely, newspapers, storybooks and this Learning Hub, and each time you meet a new word, note its <em>meaning</em>, its <em>part of speech</em>, and the <em>words it partners with</em> (collocations such as <em>heavy rain</em>, <em>make a decision</em>). Ten new words a day, used in your own sentences, will transform your objective-test score within a term.</p>',
+      keyPoints: [
+        'Lexis = vocabulary/words; Structure = grammatical arrangement of words. Both dominate Paper 1.',
+        'For "nearest in meaning" questions, let the sentence context decide which meaning of the word applies.',
+        'Prefixes (un-, dis-, mis-, pre-) and suffixes (-tion, -ment, -able, -ly) change a word’s meaning and part of speech.',
+        'Register is field-specific vocabulary: medicine (diagnose, prescribe), law (litigation, verdict), farming (harrow, harvest).',
+        'One root word gives many forms: beauty, beautify, beautiful, beautifully, know which form fits the blank.',
+        'Read widely and record new words with meaning, part of speech and collocations to grow vocabulary fast.'
+      ],
+      formulas: [
+        'Read the WHOLE sentence before choosing "nearest in meaning", context beats the dictionary.',
+        'Substitute each option back into the sentence; the correct one keeps the exact meaning.',
+        'Build register word-banks by field: law, medicine, farming, sports, banking, the sea.',
+        'Learn prefixes/suffixes to decode unfamiliar words instead of guessing.'
+      ],
+      examTips: [
+        'When two options seem correct, pick the one that keeps the sentence’s exact meaning and tone, not just a loose synonym.',
+        'Watch for changes in part of speech: if the blank needs a noun, an adjective option is automatically wrong.',
+        'Do not spend more than 45 seconds on any objective item; flag it and return, every question carries equal marks.',
+        'Learn word families in groups (economy, economic, economical, economise) so you can supply the exact form.'
+      ],
+      commonMistakes: [
+        'Choosing a word that shares a topic with the sentence but does not carry the same meaning.',
+        'Ignoring context and picking the most common meaning of a word that actually has a different meaning here.',
+        'Confusing similar-looking words (affect/effect, principal/principle, stationary/stationery).',
+        'Selecting the wrong part of speech (e.g., an adverb where the sentence needs an adjective).'
+      ],
+      mcq: [
+        { q: 'In the sentence "The chairman will address the gathering", the word "address" means:', options: ['A. write a location', 'B. speak to', 'C. send a parcel', 'D. quarrel with'], answer: 1, explanation: 'In this context "address" means to speak formally to an audience. The postal meaning (write a location) does not fit the sentence.' },
+        { q: 'Choose the option nearest in meaning to "abundant": The farm produced an abundant harvest.', options: ['A. scarce', 'B. plentiful', 'C. poor', 'D. late'], answer: 1, explanation: '"Abundant" means present in large quantity, i.e., plentiful. "Scarce" and "poor" are opposites.' },
+        { q: 'The prefix "mis-" in "misunderstand" adds the meaning of:', options: ['A. again', 'B. before', 'C. wrongly', 'D. after'], answer: 2, explanation: 'The prefix "mis-" means wrongly or badly, so "misunderstand" means to understand wrongly.' },
+        { q: 'Which word belongs to the register of the LAW?', options: ['A. diagnosis', 'B. verdict', 'C. harvest', 'D. penalty kick'], answer: 1, explanation: '"Verdict" is a legal term (the decision of a court). Diagnosis is medical, harvest is agricultural, penalty kick is sport.' },
+        { q: 'The noun form of the verb "decide" is:', options: ['A. decisive', 'B. decisively', 'C. decision', 'D. deciding'], answer: 2, explanation: '"Decision" is the noun. "Decisive" is an adjective and "decisively" is an adverb.' },
+        { q: 'Choose the word OPPOSITE in meaning to "generous":', options: ['A. kind', 'B. wealthy', 'C. stingy', 'D. cheerful'], answer: 2, explanation: '"Stingy" (mean, unwilling to give) is the antonym of "generous". Kind is a synonym.' },
+        { q: 'A doctor who studies and treats children is a:', options: ['A. cardiologist', 'B. paediatrician', 'C. dermatologist', 'D. optician'], answer: 1, explanation: 'A paediatrician specialises in the care of children. Register/specialist-vocabulary question.' },
+        { q: 'Complete correctly: "She was praised for her ___ behaviour."', options: ['A. exemplary', 'B. example', 'C. exemplify', 'D. exemplarily'], answer: 0, explanation: 'The blank needs an adjective to describe "behaviour". "Exemplary" is the adjective form.' },
+        { q: 'The word "novel" in "He read an interesting novel" means:', options: ['A. new', 'B. a long story book', 'C. strange', 'D. beginner'], answer: 1, explanation: 'Here "novel" is a noun meaning a book of long fiction. As an adjective it can mean "new", but context shows the noun meaning.' },
+        { q: 'Choose the correctly spelled word:', options: ['A. definately', 'B. definitely', 'C. definitly', 'D. definetly'], answer: 1, explanation: '"Definitely" is the correct spelling. Spelling accuracy is tested throughout Lexis & Structure.' }
+      ],
+      theory: [
+        { question: 'Explain what is meant by "register" in English and give THREE examples of registers, listing two words that belong to each.', marks: 10, answer: '<p><strong>Register</strong> is the variety of vocabulary and expression appropriate to a particular subject, occupation or situation. Using the correct register shows that a writer or speaker understands the field being discussed.</p><ul><li><strong>Medicine:</strong> diagnosis, prescription (also: symptom, dosage).</li><li><strong>Law:</strong> verdict, litigation (also: plaintiff, adjournment).</li><li><strong>Agriculture:</strong> harrowing, harvesting (also: irrigation, fertiliser).</li></ul><p>A candidate who writes about a court case using words like "verdict", "accused" and "adjourned" is using the correct legal register, while using farming words in that context would be wrong.</p>', markingGuide: 'Definition of register = 2.5 marks. Three correct registers named = 1.5 marks. Two correct words for each register (0.5 each) = 6 marks. Total = 10 marks. Accept any valid registers (sports, banking, religion, the sea, journalism).' },
+        { question: 'Form the noun, adjective and adverb from the verb "beauty/beautify" and use each in a sentence.', marks: 8, answer: '<p><strong>Noun:</strong> beauty, <em>The beauty of the sunrise amazed everyone.</em><br><strong>Adjective:</strong> beautiful, <em>She wore a beautiful dress to the ceremony.</em><br><strong>Adverb:</strong> beautifully, <em>The choir sang beautifully at the concert.</em></p><p>The verb form is <strong>beautify</strong> (<em>They beautified the compound with flowers</em>). Recognising word families lets you supply the exact form a sentence needs.</p>', markingGuide: 'Correct noun, adjective and adverb (1 mark each) = 3 marks. Correct sentence for each showing correct usage (1.5 marks each, rounded) = 5 marks. Total = 8 marks.' }
+      ]
+    },
+    {
+      id: 'synonyms_antonyms_word_classes',
+      videoId: 'X3KhT15XAds',
+      name: 'Synonyms, Antonyms & Word Classes',
+      icon: '🔁',
+      lessonNotes:
+        '<h4>Synonyms and Antonyms</h4>' +
+        '<p>A <strong>synonym</strong> is a word with the <em>same or nearly the same</em> meaning as another word (<em>big / large</em>, <em>happy / joyful</em>). An <strong>antonym</strong> is a word with the <em>opposite</em> meaning (<em>hot / cold</em>, <em>ancient / modern</em>). WASSCE tests both directly ("choose the word nearest in meaning" and "choose the word opposite in meaning"), so mastering them is essential marks.</p>' +
+        '<h4>Near-Synonyms Carry Shades of Meaning</h4>' +
+        '<p>Few synonyms are perfectly identical, each has a slightly different shade or strength. <em>Angry</em>, <em>annoyed</em>, <em>furious</em> and <em>irritated</em> all describe displeasure, but at different intensities. The exam often gives four "similar" options and expects the one whose <em>strength and tone</em> match the sentence. Read carefully.</p>' +
+        '<h4>Word Classes (Parts of Speech)</h4>' +
+        '<p>Every English word belongs to a <strong>word class</strong>: <strong>noun</strong> (name of a person, place or thing), <strong>pronoun</strong> (replaces a noun: he, it, they), <strong>verb</strong> (action or state: run, is), <strong>adjective</strong> (describes a noun: tall), <strong>adverb</strong> (describes a verb/adjective: quickly), <strong>preposition</strong> (shows relationship: on, under), <strong>conjunction</strong> (joins: and, but), and <strong>interjection</strong> (expresses feeling: Oh!). The same word can belong to different classes depending on its use: <em>"a <u>run</u>" (noun)</em> vs <em>"they <u>run</u>" (verb)</em>.</p>' +
+        '<h4>Why Word Classes Matter for Antonym/Synonym Questions</h4>' +
+        '<p>The correct synonym or antonym must belong to the <em>same word class</em> as the tested word. If the underlined word is an adjective, the answer must also be an adjective. A quick check of word class instantly eliminates one or two wrong options.</p>' +
+        '<h4>Study Strategy</h4>' +
+        '<p>Keep a two-column notebook: on the left a word, on the right its synonyms and antonyms. Group opposites in pairs (<em>expand/contract, praise/criticise, generous/stingy</em>). Practising in pairs doubles what you learn from every word.</p>',
+      keyPoints: [
+        'Synonym = same/similar meaning; Antonym = opposite meaning.',
+        'Near-synonyms differ in strength/tone (annoyed < angry < furious), choose the one that matches the sentence.',
+        'The eight word classes: noun, pronoun, verb, adjective, adverb, preposition, conjunction, interjection.',
+        'The correct synonym/antonym must be the SAME word class as the tested word.',
+        'Many words belong to more than one class depending on how they are used in the sentence.',
+        'Learn opposites in pairs (expand/contract, ancient/modern) to double your vocabulary gains.'
+      ],
+      formulas: [
+        'Match the word class first: adjective answer for an adjective question.',
+        'For near-synonyms, match the STRENGTH and tone, not just the topic.',
+        'Learn words in synonym/antonym pairs to memorise twice as fast.',
+        'Substitute the option into the sentence to confirm the meaning still holds.'
+      ],
+      examTips: [
+        'Underline the tested word’s part of speech before scanning the options, wrong classes are instant eliminations.',
+        'For "opposite in meaning", beware the trap option that is a SYNONYM of the tested word.',
+        'When unsure, cross out the two clearly wrong options and choose the better of the remaining two, never leave a blank.',
+        'Revise commonly tested pairs (candid/frank, obscure/clear, novice/expert) before the exam.'
+      ],
+      commonMistakes: [
+        'Choosing a synonym when the question asks for an antonym (and vice versa), always underline the instruction word.',
+        'Picking an option of the wrong part of speech.',
+        'Confusing intensity, choosing "warm" as the opposite of "cold" instead of "hot".',
+        'Assuming two words are exact synonyms when their tone or usage differs.'
+      ],
+      mcq: [
+        { q: 'Choose the SYNONYM of "commence":', options: ['A. end', 'B. begin', 'C. delay', 'D. cancel'], answer: 1, explanation: '"Commence" means to begin/start. "End" is its antonym.' },
+        { q: 'Choose the ANTONYM of "ancient":', options: ['A. old', 'B. modern', 'C. historic', 'D. ruined'], answer: 1, explanation: '"Modern" (recent, present-day) is the opposite of "ancient". "Old" and "historic" are near-synonyms.' },
+        { q: 'What part of speech is the underlined word? "She sang beautifully."', options: ['A. adjective', 'B. noun', 'C. adverb', 'D. verb'], answer: 2, explanation: '"Beautifully" describes HOW she sang (the verb), so it is an adverb.' },
+        { q: 'Choose the SYNONYM of "abundant":', options: ['A. rare', 'B. plentiful', 'C. empty', 'D. costly'], answer: 1, explanation: '"Abundant" means plentiful. "Rare" is its antonym.' },
+        { q: 'Choose the ANTONYM of "generous":', options: ['A. giving', 'B. wealthy', 'C. stingy', 'D. friendly'], answer: 2, explanation: '"Stingy" (unwilling to give) is the opposite of "generous".' },
+        { q: 'In "They will run the business", the word "run" is a:', options: ['A. noun', 'B. verb', 'C. adjective', 'D. adverb'], answer: 1, explanation: 'Here "run" means to manage, an action, so it is a verb. (As a noun it could mean "a run".)' },
+        { q: 'Which word is the strongest in meaning?', options: ['A. warm', 'B. hot', 'C. mild', 'D. cool'], answer: 1, explanation: '"Hot" is the strongest degree of warmth. Recognising intensity helps with near-synonym questions.' },
+        { q: 'Choose the ANTONYM of "expand":', options: ['A. grow', 'B. stretch', 'C. contract', 'D. widen'], answer: 2, explanation: '"Contract" (become smaller) is the opposite of "expand". The others are synonyms.' },
+        { q: 'What word class is "and" in "bread and butter"?', options: ['A. preposition', 'B. conjunction', 'C. adverb', 'D. pronoun'], answer: 1, explanation: '"And" joins two words/ideas, so it is a conjunction.' },
+        { q: 'Choose the SYNONYM of "candid":', options: ['A. secretive', 'B. frank', 'C. rude', 'D. shy'], answer: 1, explanation: '"Candid" means honest and open, i.e., frank. "Secretive" is its antonym.' }
+      ],
+      theory: [
+        { question: 'Define "synonym" and "antonym". Give THREE pairs of synonyms and THREE pairs of antonyms.', marks: 10, answer: '<p>A <strong>synonym</strong> is a word that has the same or nearly the same meaning as another word. An <strong>antonym</strong> is a word that has the opposite meaning to another word.</p><p><strong>Synonym pairs:</strong> begin/commence; happy/joyful; big/large.</p><p><strong>Antonym pairs:</strong> ancient/modern; generous/stingy; expand/contract.</p>', markingGuide: 'Definition of synonym = 2 marks; antonym = 2 marks. Three correct synonym pairs (1 mark each) = 3 marks. Three correct antonym pairs (1 mark each) = 3 marks. Total = 10 marks.' },
+        { question: 'Name the EIGHT parts of speech and give one example of each.', marks: 8, answer: '<p><strong>Noun</strong> (teacher), <strong>Pronoun</strong> (she), <strong>Verb</strong> (write), <strong>Adjective</strong> (tall), <strong>Adverb</strong> (quickly), <strong>Preposition</strong> (under), <strong>Conjunction</strong> (but), <strong>Interjection</strong> (Wow!).</p>', markingGuide: 'One mark for each correctly named part of speech WITH a correct example = 8 marks. Deduct 0.5 if example does not match the class.' }
+      ]
+    },
+    {
+      id: 'idioms_figures_of_speech',
+      videoId: 'YGE0QNN66dI',
+      name: 'Idioms & Figures of Speech',
+      icon: '🎭',
+      lessonNotes:
+        '<h4>Figurative Language in WASSCE English</h4>' +
+        '<p>Writers rarely say everything plainly. They use <strong>idioms</strong> and <strong>figures of speech</strong> to make language vivid, memorable and persuasive. WASSCE tests these both in the objective section (identify or interpret an expression) and in comprehension (explain the meaning of a figurative phrase from the passage). Understanding them also improves your own essay writing.</p>' +
+        '<h4>Idioms</h4>' +
+        '<p>An <strong>idiom</strong> is a fixed expression whose meaning cannot be worked out from the individual words. <em>"To kick the bucket"</em> means to die; <em>"a piece of cake"</em> means something very easy; <em>"to bite the dust"</em> means to fail or be defeated. Because the meaning is not literal, idioms must simply be learned. Keep an idiom notebook and record each with its meaning and a sentence.</p>' +
+        '<h4>Common Figures of Speech</h4>' +
+        '<ul>' +
+        '<li><strong>Simile:</strong> a comparison using <em>like</em> or <em>as</em>, <em>"as brave as a lion"</em>.</li>' +
+        '<li><strong>Metaphor:</strong> a direct comparison without <em>like/as</em>, <em>"He is a lion in battle"</em>.</li>' +
+        '<li><strong>Personification:</strong> giving human qualities to non-human things, <em>"The wind whispered"</em>.</li>' +
+        '<li><strong>Hyperbole:</strong> deliberate exaggeration for effect, <em>"I have told you a million times"</em>.</li>' +
+        '<li><strong>Onomatopoeia:</strong> words that imitate sounds, <em>buzz, hiss, clang</em>.</li>' +
+        '<li><strong>Alliteration:</strong> repetition of the same initial consonant sound, <em>"big brown bear"</em>.</li>' +
+        '<li><strong>Irony:</strong> saying the opposite of what is meant, <em>"What lovely weather!"</em> in a storm.</li>' +
+        '<li><strong>Euphemism:</strong> a mild expression for something unpleasant, <em>"passed away"</em> for died.</li>' +
+        '</ul>' +
+        '<h4>Interpreting Figurative Expressions</h4>' +
+        '<p>When a comprehension passage asks what a figurative phrase means, restate it in <strong>plain, literal language</strong>. If the text says <em>"the news spread like wildfire"</em>, the meaning is that the news spread <em>very quickly</em>. Never repeat the figurative words, explain them.</p>',
+      keyPoints: [
+        'An idiom is a fixed expression whose meaning is not literal (kick the bucket = die).',
+        'Simile compares using like/as; metaphor compares directly without like/as.',
+        'Personification gives human qualities to things; hyperbole is deliberate exaggeration.',
+        'Onomatopoeia imitates sounds (buzz, hiss); alliteration repeats initial consonant sounds.',
+        'Irony says the opposite of what is meant; euphemism softens something unpleasant.',
+        'To interpret a figurative phrase in comprehension, restate its meaning in plain literal English.'
+      ],
+      formulas: [
+        'Like/as present = simile; direct comparison = metaphor.',
+        'Human action on a non-human thing = personification.',
+        'To explain an idiom/figure, give the LITERAL meaning, never repeat the words.',
+        'Keep an idiom notebook: expression + meaning + example sentence.'
+      ],
+      examTips: [
+        'For comprehension, always paraphrase a figurative expression into plain language to score the mark.',
+        'Learn to tell simile from metaphor instantly, the presence of "like" or "as" decides it.',
+        'Do not confuse hyperbole (exaggeration) with a lie, it is exaggeration for effect only.',
+        'Revise the top 40 WAEC idioms; they recur year after year.'
+      ],
+      commonMistakes: [
+        'Explaining an idiom by repeating the same words instead of giving its real meaning.',
+        'Calling a metaphor a simile (or vice versa).',
+        'Taking idioms literally in comprehension (e.g., thinking "kick the bucket" is about a bucket).',
+        'Confusing personification with simple description.'
+      ],
+      mcq: [
+        { q: 'The expression "to kick the bucket" means to:', options: ['A. play football', 'B. die', 'C. get angry', 'D. clean up'], answer: 1, explanation: '"Kick the bucket" is an idiom meaning to die. Its meaning is not literal.' },
+        { q: '"She is as gentle as a dove" is an example of:', options: ['A. metaphor', 'B. simile', 'C. hyperbole', 'D. irony'], answer: 1, explanation: 'The comparison uses "as", making it a simile.' },
+        { q: '"Time is a thief" is an example of:', options: ['A. simile', 'B. metaphor', 'C. onomatopoeia', 'D. euphemism'], answer: 1, explanation: 'It compares time to a thief directly, without like/as, so it is a metaphor.' },
+        { q: '"The angry sea roared and swallowed the boat" uses:', options: ['A. personification', 'B. alliteration', 'C. euphemism', 'D. simile'], answer: 0, explanation: 'The sea is given human/animal actions (roared, swallowed), so it is personification.' },
+        { q: 'Which word is an example of onomatopoeia?', options: ['A. beautiful', 'B. sizzle', 'C. quickly', 'D. mountain'], answer: 1, explanation: '"Sizzle" imitates the sound it names, that is onomatopoeia.' },
+        { q: '"I have a mountain of homework" is an example of:', options: ['A. hyperbole', 'B. metaphor', 'C. irony', 'D. simile'], answer: 0, explanation: 'It exaggerates the amount of homework for effect, that is hyperbole.' },
+        { q: '"Passed away" is a euphemism for:', options: ['A. travelled', 'B. died', 'C. slept', 'D. failed'], answer: 1, explanation: '"Passed away" is a gentle (euphemistic) way of saying "died".' },
+        { q: '"Peter Parker packed plenty peppers" is an example of:', options: ['A. irony', 'B. alliteration', 'C. metaphor', 'D. hyperbole'], answer: 1, explanation: 'The repeated initial "p" sound is alliteration.' },
+        { q: 'Saying "What a brilliant idea!" about a foolish plan is an example of:', options: ['A. irony', 'B. simile', 'C. onomatopoeia', 'D. personification'], answer: 0, explanation: 'Meaning the opposite of the words spoken is irony.' },
+        { q: 'The idiom "a piece of cake" means something that is:', options: ['A. delicious', 'B. very easy', 'C. expensive', 'D. shared'], answer: 1, explanation: '"A piece of cake" means very easy to do.' }
+      ],
+      theory: [
+        { question: 'Explain the difference between a SIMILE and a METAPHOR, giving two examples of each.', marks: 8, answer: '<p>A <strong>simile</strong> compares two things using the words <em>like</em> or <em>as</em>. A <strong>metaphor</strong> compares two things directly by saying one <em>is</em> the other, without using like or as.</p><p><strong>Similes:</strong> "as busy as a bee"; "he ran like the wind".</p><p><strong>Metaphors:</strong> "the classroom was a zoo"; "her voice is music to my ears".</p>', markingGuide: 'Correct definition of simile = 2 marks; metaphor = 2 marks. Two correct similes (1 each) = 2 marks; two correct metaphors (1 each) = 2 marks. Total = 8 marks.' },
+        { question: 'Give the meaning of the following idioms and use ONE in a sentence: (a) to burn the midnight oil (b) to let the cat out of the bag (c) to be in hot water.', marks: 9, answer: '<p>(a) <strong>To burn the midnight oil</strong>, to study or work late into the night. <em>Example: She burned the midnight oil to prepare for her WASSCE.</em><br>(b) <strong>To let the cat out of the bag</strong>, to reveal a secret carelessly.<br>(c) <strong>To be in hot water</strong>, to be in trouble.</p>', markingGuide: 'Correct meaning for each idiom (2 marks each) = 6 marks. Correct sentence using one idiom appropriately = 3 marks. Total = 9 marks.' }
+      ]
+    },
+    {
+      id: 'article_speech_debate_writing',
+      videoId: '9HBl2yjyoKY',
+      name: 'Article, Speech & Debate Writing',
+      icon: '🎤',
+      lessonNotes:
+        '<h4>Beyond the Basic Essay</h4>' +
+        '<p>WASSCE Paper 2 (Essay) offers several formats. Besides the letter and report you have already studied, you may be asked to write an <strong>article</strong>, a <strong>speech</strong>, or a <strong>debate</strong>. Each has its own structure and register, and choosing the format you can handle best is a smart exam decision. Whatever you choose, plan first: a clear plan produces a focused, well-organised answer.</p>' +
+        '<h4>Article Writing</h4>' +
+        '<p>An <strong>article</strong> is written for a newspaper or magazine to inform, discuss or persuade. Structure: a striking <strong>title</strong>, the <strong>writer’s name</strong> (by-line), an <strong>introduction</strong> that hooks the reader, <strong>body paragraphs</strong> each with one main idea, and a <strong>conclusion</strong>. The tone is semi-formal and lively; you may address the reader directly and use rhetorical questions.</p>' +
+        '<h4>Speech Writing</h4>' +
+        '<p>A <strong>speech</strong> is meant to be delivered aloud to an audience. It must open with a <strong>vocative</strong>, a greeting of the dignitaries and audience in order of rank (<em>"The Chairman, the Principal, distinguished guests, fellow students, good morning"</em>). Then state your <strong>topic</strong>, develop your <strong>points</strong> with examples, and end with a memorable <strong>conclusion</strong> and a word of thanks (<em>"Thank you for listening"</em>). Use persuasive, direct language and address the audience as "you".</p>' +
+        '<h4>Debate Writing</h4>' +
+        '<p>A <strong>debate</strong> argues FOR or AGAINST a motion. Begin with the same courtesies as a speech, then <strong>state your stand</strong> clearly (<em>"I stand to support/oppose the motion that…"</em>). Give three or four strong <strong>arguments</strong>, each in its own paragraph with evidence, and, importantly, <strong>anticipate and knock down</strong> the opponents’ likely points. Close with a forceful summary and thanks. Debate language is confident and persuasive, use connectives such as <em>furthermore, moreover, in addition, on the contrary</em>.</p>' +
+        '<h4>Marks Are Won on Content, Organisation, Expression & Mechanics</h4>' +
+        '<p>WASSCE marks continuous writing on Content (ideas), Organisation (structure and paragraphing), Expression (grammar and vocabulary) and Mechanical Accuracy (spelling and punctuation). Follow the correct format, write in clear paragraphs, and keep sentences varied but controlled.</p>',
+      keyPoints: [
+        'Article: title + by-line + hook introduction + one-idea body paragraphs + conclusion; lively semi-formal tone.',
+        'Speech: open with a vocative (greet dignitaries in rank order), develop points, close and thank the audience.',
+        'Debate: greet, state your stand (for/against), give 3–4 arguments, refute the opponents, forceful conclusion.',
+        'Use persuasive connectives: furthermore, moreover, in addition, on the contrary, in conclusion.',
+        'Always PLAN before writing; a clear structure earns Organisation marks.',
+        'Marks are awarded for Content, Organisation, Expression and Mechanical Accuracy, mind all four.'
+      ],
+      formulas: [
+        'Speech opener: greet dignitaries in order of rank, then the audience.',
+        'Debate stand: "I stand to support/oppose the motion that…".',
+        'One main idea per body paragraph, then support it with evidence/examples.',
+        'Close every speech/debate with a summary and a courteous thank-you.'
+      ],
+      examTips: [
+        'Read the question to identify the format required (article, speech or debate) and follow its exact structure.',
+        'Spend 5 minutes planning your three or four points before writing, it prevents rambling.',
+        'In a debate, always refute at least one opposing argument, examiners reward this skill.',
+        'Keep to the word range; very short essays lose content marks and very long ones lose time and accuracy.'
+      ],
+      commonMistakes: [
+        'Writing a speech or debate without the opening vocative/courtesies.',
+        'Forgetting the title and by-line in an article.',
+        'Mixing formats, e.g., writing a letter when a speech is required.',
+        'Poor paragraphing: dumping all ideas into one block loses Organisation marks.'
+      ],
+      mcq: [
+        { q: 'A speech should always begin with a:', options: ['A. conclusion', 'B. vocative (greeting of dignitaries)', 'C. title', 'D. postal address'], answer: 1, explanation: 'A speech opens with a vocative, greeting the chairman, guests and audience in order of rank.' },
+        { q: 'Which feature is essential in an ARTICLE but NOT in a speech?', options: ['A. a title', 'B. a vocative', 'C. thanks to the audience', 'D. a motion'], answer: 0, explanation: 'An article needs a catchy title (and by-line). A vocative and thanks belong to a speech.' },
+        { q: 'In a debate, after the greetings you should first:', options: ['A. thank the audience', 'B. state your stand for or against the motion', 'C. write your address', 'D. give the conclusion'], answer: 1, explanation: 'After courtesies, a debater states clearly whether they support or oppose the motion.' },
+        { q: 'Which connective best introduces an OPPOSING point in a debate?', options: ['A. furthermore', 'B. on the contrary', 'C. similarly', 'D. in addition'], answer: 1, explanation: '"On the contrary" signals a contrasting/opposing idea. The others add similar ideas.' },
+        { q: 'The four qualities WASSCE marks in continuous writing are Content, Organisation, Expression and:', options: ['A. Handwriting', 'B. Length', 'C. Mechanical Accuracy', 'D. Speed'], answer: 2, explanation: 'The four scoring areas are Content, Organisation, Expression and Mechanical Accuracy (spelling/punctuation).' },
+        { q: 'A by-line in an article shows the:', options: ['A. date only', 'B. writer’s name', 'C. word count', 'D. newspaper price'], answer: 1, explanation: 'The by-line states who wrote the article (the writer’s name).' },
+        { q: 'Which is the BEST closing for a speech?', options: ['A. Yours faithfully', 'B. Thank you for listening', 'C. The end', 'D. See you'], answer: 1, explanation: 'A speech closes courteously, e.g., "Thank you for listening." "Yours faithfully" belongs to a formal letter.' },
+        { q: 'The tone of a debate should be:', options: ['A. confident and persuasive', 'B. sad and quiet', 'C. secretive', 'D. careless'], answer: 0, explanation: 'A debate persuades an audience, so the tone must be confident and persuasive.' },
+        { q: 'Refuting the opponents’ points in a debate means to:', options: ['A. agree with them', 'B. argue against and disprove them', 'C. ignore them', 'D. repeat them'], answer: 1, explanation: 'To refute is to argue against and disprove opposing points, a skill examiners reward.' },
+        { q: 'Each body paragraph of a good essay should contain:', options: ['A. as many ideas as possible', 'B. one main idea developed with support', 'C. only a title', 'D. the conclusion'], answer: 1, explanation: 'Good paragraphing = one main idea per paragraph, developed with evidence, earning Organisation marks.' }
+      ],
+      theory: [
+        { question: 'Outline the structure of a good SPEECH, from the opening to the conclusion.', marks: 10, answer: '<p>A good speech is organised as follows:</p><ul><li><strong>Vocative / greetings:</strong> address the dignitaries and audience in order of rank (e.g., "The Chairman, the Principal, distinguished guests, fellow students").</li><li><strong>Introduction:</strong> state the topic/occasion and capture the audience’s attention.</li><li><strong>Body:</strong> present your points one after another in clear paragraphs, each supported with examples or evidence.</li><li><strong>Conclusion:</strong> summarise the message forcefully and leave the audience with a memorable thought.</li><li><strong>Courteous close:</strong> thank the audience, e.g., "Thank you for listening."</li></ul><p>Throughout, the speaker uses direct, persuasive language and addresses the audience as "you".</p>', markingGuide: 'Vocative/greetings = 2 marks; introduction = 2 marks; body with supported points = 3 marks; conclusion = 2 marks; courteous close = 1 mark. Total = 10 marks.' },
+        { question: 'You are to argue FOR the motion: "Examinations should be abolished." Write an introduction and TWO strong arguments.', marks: 10, answer: '<p><strong>Introduction:</strong> "The Chairman, accurate timekeeper, distinguished panel of judges, co-debaters, ladies and gentlemen, good morning. I stand firmly to support the motion that examinations should be abolished."</p><p><strong>Argument 1, Examinations test memory, not understanding:</strong> Many candidates cram facts the night before and forget them soon after, so a single test day is a poor measure of a learner’s true ability. Continuous assessment would reflect real understanding better.</p><p><strong>Argument 2, Examinations cause harmful stress:</strong> The pressure of one decisive exam causes anxiety, sleepless nights and even illness among students, which is unfair and unhealthy. A fairer system would assess learners steadily over time.</p>', markingGuide: 'Correct debate opening with courtesies and clear stand = 3 marks. Two well-developed arguments with support (3.5 marks each) = 7 marks. Total = 10 marks. Accept any two valid, well-argued points.' }
+      ]
+    }
+  ];
+
+  var moreBiology = [
+    {
+      id: 'classification_living_organisms',
+      videoId: '6dub9UGH10Y',
+      name: 'Classification of Living Organisms',
+      icon: '🌳',
+      lessonNotes:
+        '<h4>Why We Classify Living Things</h4>' +
+        '<p>There are millions of different organisms on Earth. <strong>Classification (taxonomy)</strong> is the arrangement of living things into groups based on their similarities and relationships. It helps scientists identify, name and study organisms in an organised way, and it is a core WASSCE Biology topic.</p>' +
+        '<h4>The Classification Hierarchy</h4>' +
+        '<p>Organisms are placed in a series of groups, from the largest and most general to the smallest and most specific: <strong>Kingdom → Phylum (Division in plants) → Class → Order → Family → Genus → Species</strong>. A helpful memory aid is <em>"King Philip Came Over For Good Soup."</em> The <strong>species</strong> is the smallest unit, a group of organisms that can interbreed and produce fertile offspring.</p>' +
+        '<h4>Binomial Nomenclature</h4>' +
+        '<p>Every organism has a two-part scientific name (the <strong>binomial system</strong> of Carl Linnaeus): the <em>genus</em> (capitalised) followed by the <em>species</em> (small letter), both written in italics or underlined, e.g., <em>Homo sapiens</em> (human), <em>Panthera leo</em> (lion). This gives every organism one universal name understood worldwide.</p>' +
+        '<h4>The Five Kingdoms</h4>' +
+        '<ul>' +
+        '<li><strong>Monera:</strong> prokaryotic, single-celled organisms with no true nucleus, e.g., bacteria and blue-green algae.</li>' +
+        '<li><strong>Protista:</strong> eukaryotic, mostly single-celled organisms, e.g., Amoeba, Paramecium, Euglena.</li>' +
+        '<li><strong>Fungi:</strong> eukaryotic, mostly multicellular, feed by saprophytism (on dead matter); no chlorophyll, e.g., mushrooms, moulds, yeast.</li>' +
+        '<li><strong>Plantae:</strong> multicellular, have cellulose cell walls and chlorophyll; make their own food (autotrophic).</li>' +
+        '<li><strong>Animalia:</strong> multicellular, no cell wall, feed on other organisms (heterotrophic), usually able to move.</li>' +
+        '</ul>' +
+        '<h4>Vertebrates and Invertebrates</h4>' +
+        '<p>Within the animal kingdom, <strong>vertebrates</strong> have a backbone (fish, amphibians, reptiles, birds, mammals) and <strong>invertebrates</strong> do not (insects, worms, molluscs). Being able to place a named organism in its correct group is a common exam requirement.</p>',
+      keyPoints: [
+        'Classification (taxonomy) groups organisms by similarities to make identification and study easier.',
+        'Hierarchy: Kingdom → Phylum/Division → Class → Order → Family → Genus → Species (King Philip Came Over For Good Soup).',
+        'Species = organisms that interbreed to produce fertile offspring; the smallest classification unit.',
+        'Binomial nomenclature: Genus (capital) + species (small), italicised/underlined, e.g., Homo sapiens.',
+        'Five kingdoms: Monera, Protista, Fungi, Plantae, Animalia.',
+        'Vertebrates have a backbone (5 classes); invertebrates have no backbone.'
+      ],
+      examTips: [
+        'Learn the classification hierarchy in order using the mnemonic; questions often ask you to arrange or fill in a level.',
+        'Always write scientific names correctly: capital genus, small species, underlined in handwriting.',
+        'Know at least two example organisms and one key feature for each of the five kingdoms.',
+        'Distinguish fungi from plants: fungi have no chlorophyll and feed saprophytically.'
+      ],
+      commonMistakes: [
+        'Writing the species name with a capital letter, only the genus is capitalised.',
+        'Confusing Monera (no true nucleus) with Protista (has a true nucleus).',
+        'Classifying fungi as plants because some look plant-like, fungi have no chlorophyll.',
+        'Reversing the hierarchy (largest to smallest) or omitting a level.'
+      ],
+      mcq: [
+        { q: 'The smallest unit of classification is the:', options: ['A. kingdom', 'B. genus', 'C. species', 'D. family'], answer: 2, explanation: 'The species is the smallest unit, a group that can interbreed to produce fertile offspring.' },
+        { q: 'In the name Panthera leo, the word "Panthera" is the:', options: ['A. species', 'B. genus', 'C. family', 'D. order'], answer: 1, explanation: 'The first (capitalised) word in a binomial name is the genus; "leo" is the species.' },
+        { q: 'Which kingdom contains prokaryotic organisms with no true nucleus?', options: ['A. Protista', 'B. Fungi', 'C. Monera', 'D. Plantae'], answer: 2, explanation: 'Monera (e.g., bacteria) are prokaryotes, they lack a membrane-bound nucleus.' },
+        { q: 'Mushrooms and moulds belong to the kingdom:', options: ['A. Plantae', 'B. Fungi', 'C. Animalia', 'D. Monera'], answer: 1, explanation: 'Fungi lack chlorophyll and feed on dead matter (saprophytic). Mushrooms and moulds are fungi.' },
+        { q: 'Which feature is used to distinguish vertebrates from invertebrates?', options: ['A. presence of legs', 'B. presence of a backbone', 'C. ability to fly', 'D. number of cells'], answer: 1, explanation: 'Vertebrates possess a backbone (vertebral column); invertebrates do not.' },
+        { q: 'The correct order of the classification hierarchy is:', options: ['A. Kingdom, Class, Phylum, Order', 'B. Kingdom, Phylum, Class, Order', 'C. Species, Genus, Family, Order', 'D. Order, Class, Phylum, Kingdom'], answer: 1, explanation: 'From largest to smallest: Kingdom, Phylum, Class, Order, Family, Genus, Species.' },
+        { q: 'Organisms that make their own food using chlorophyll belong mainly to the kingdom:', options: ['A. Animalia', 'B. Fungi', 'C. Plantae', 'D. Monera'], answer: 2, explanation: 'Plantae are autotrophic, they photosynthesise using chlorophyll.' },
+        { q: 'Amoeba and Paramecium are placed in the kingdom:', options: ['A. Monera', 'B. Protista', 'C. Fungi', 'D. Animalia'], answer: 1, explanation: 'They are eukaryotic, single-celled organisms, kingdom Protista.' },
+        { q: 'Which of these is an invertebrate?', options: ['A. frog', 'B. snake', 'C. housefly', 'D. tilapia'], answer: 2, explanation: 'A housefly (an insect) has no backbone, it is an invertebrate. The others are vertebrates.' },
+        { q: 'The system of giving organisms a two-part scientific name is called:', options: ['A. binomial nomenclature', 'B. classification key', 'C. natural selection', 'D. taxonomy hierarchy'], answer: 0, explanation: 'The two-part naming system (genus + species) is binomial nomenclature, introduced by Linnaeus.' }
+      ],
+      theory: [
+        { question: 'State the classification hierarchy from Kingdom to Species and explain what is meant by a "species".', marks: 10, answer: '<p>The classification hierarchy, from the largest to the smallest group, is:</p><p><strong>Kingdom → Phylum (Division) → Class → Order → Family → Genus → Species.</strong></p><p>A <strong>species</strong> is a group of organisms with very similar features that can <strong>interbreed to produce fertile offspring</strong>. It is the smallest and most specific unit of classification. For example, all human beings belong to the species <em>Homo sapiens</em>.</p>', markingGuide: 'Correct hierarchy in the right order = 6 marks (deduct for each level out of place). Correct definition of species (interbreed + fertile offspring) = 4 marks. Total = 10 marks.' },
+        { question: 'Name the five kingdoms of living organisms and give ONE example and ONE characteristic of each.', marks: 10, answer: '<ul><li><strong>Monera</strong>, example: bacteria; characteristic: prokaryotic (no true nucleus).</li><li><strong>Protista</strong>, example: Amoeba; characteristic: eukaryotic, mostly single-celled.</li><li><strong>Fungi</strong>, example: mushroom; characteristic: no chlorophyll, feed saprophytically.</li><li><strong>Plantae</strong>, example: maize; characteristic: has chlorophyll, makes its own food.</li><li><strong>Animalia</strong>, example: dog; characteristic: no cell wall, feeds on other organisms.</li></ul>', markingGuide: 'Each kingdom correctly named = 0.5 mark (2.5). One correct example each = 0.5 mark (2.5). One correct characteristic each = 1 mark (5). Total = 10 marks.' }
+      ]
+    },
+    {
+      id: 'nutrition_digestion_enzymes',
+      videoId: 'TYeFM4NGu2s',
+      name: 'Nutrition, Digestion & Enzymes',
+      icon: '🍽️',
+      lessonNotes:
+        '<h4>Modes of Nutrition</h4>' +
+        '<p><strong>Nutrition</strong> is the process by which organisms obtain and use food for energy, growth and repair. There are two main modes: <strong>autotrophic nutrition</strong> (organisms make their own food, e.g., green plants by photosynthesis) and <strong>heterotrophic nutrition</strong> (organisms feed on other organisms, e.g., animals and fungi).</p>' +
+        '<h4>Classes of Food and a Balanced Diet</h4>' +
+        '<p>A <strong>balanced diet</strong> contains all six food classes in the right proportions: <strong>carbohydrates</strong> (energy), <strong>proteins</strong> (growth and repair), <strong>fats and oils</strong> (energy store, insulation), <strong>vitamins</strong> (protective), <strong>mineral salts</strong> (e.g., calcium for bones, iron for blood), and <strong>water</strong> (medium for reactions). Deficiency diseases result when a class is missing, e.g., lack of vitamin C causes scurvy; lack of protein causes kwashiorkor.</p>' +
+        '<h4>The Human Digestive System</h4>' +
+        '<p><strong>Digestion</strong> is the breakdown of large, insoluble food molecules into small, soluble ones that can be absorbed. Food travels through the <strong>alimentary canal</strong>: mouth → oesophagus → stomach → small intestine → large intestine → rectum → anus. In the <strong>mouth</strong>, teeth chew food (mechanical digestion) and saliva begins starch digestion. In the <strong>stomach</strong>, gastric juice (containing hydrochloric acid and pepsin) digests proteins. Most digestion and <strong>absorption</strong> happen in the <strong>small intestine</strong>, whose walls have finger-like <strong>villi</strong> that greatly increase the surface area for absorbing nutrients into the blood.</p>' +
+        '<h4>Enzymes: Biological Catalysts</h4>' +
+        '<p><strong>Enzymes</strong> are protein catalysts that speed up digestion without being used up. Each enzyme is <strong>specific</strong> to one substrate (the "lock and key" model) and works best at an optimum <strong>temperature</strong> (about 37°C in humans) and <strong>pH</strong>. Key digestive enzymes:</p>' +
+        '<ul>' +
+        '<li><strong>Amylase</strong> (mouth, pancreas): starch → maltose.</li>' +
+        '<li><strong>Protease/Pepsin</strong> (stomach): proteins → amino acids/peptides.</li>' +
+        '<li><strong>Lipase</strong> (pancreas): fats → fatty acids + glycerol.</li>' +
+        '</ul>' +
+        '<p><strong>Bile</strong> (from the liver, stored in the gall bladder) is not an enzyme; it <em>emulsifies</em> fats, breaking them into tiny droplets so lipase can act faster.</p>',
+      keyPoints: [
+        'Autotrophic nutrition = making own food (plants); heterotrophic = feeding on others (animals, fungi).',
+        'A balanced diet has carbohydrates, proteins, fats/oils, vitamins, mineral salts and water in correct proportions.',
+        'Digestion breaks large insoluble molecules into small soluble ones for absorption.',
+        'Enzymes are protein catalysts, specific to their substrate, working best at optimum temperature (~37°C) and pH.',
+        'Amylase digests starch, protease/pepsin digests protein, lipase digests fats.',
+        'Villi in the small intestine increase surface area for absorption; bile emulsifies fats (not an enzyme).'
+      ],
+      examTips: [
+        'Learn each enzyme with its site of action, substrate and product in a table, this is frequently tested.',
+        'Remember bile emulsifies fat but does NOT digest it, a favourite examiner trap.',
+        'Link villi structure (thin walls, large surface area, rich blood supply) to their absorption function.',
+        'For deficiency questions, pair each nutrient with its deficiency disease (protein–kwashiorkor, iron–anaemia).'
+      ],
+      commonMistakes: [
+        'Calling bile an enzyme, it is an emulsifier made by the liver.',
+        'Confusing mechanical digestion (chewing) with chemical digestion (enzymes).',
+        'Saying enzymes are "used up" in a reaction, catalysts are reused.',
+        'Placing protein digestion in the mouth, protein digestion begins in the stomach.'
+      ],
+      mcq: [
+        { q: 'The enzyme that digests starch is:', options: ['A. lipase', 'B. pepsin', 'C. amylase', 'D. protease'], answer: 2, explanation: 'Amylase (in saliva and pancreatic juice) breaks down starch into maltose.' },
+        { q: 'Enzymes are chemically classified as:', options: ['A. carbohydrates', 'B. proteins', 'C. lipids', 'D. vitamins'], answer: 1, explanation: 'Enzymes are proteins that act as biological catalysts.' },
+        { q: 'The main function of villi in the small intestine is to:', options: ['A. produce bile', 'B. increase surface area for absorption', 'C. store food', 'D. kill bacteria'], answer: 1, explanation: 'Villi are finger-like folds that greatly increase the surface area for absorbing digested nutrients.' },
+        { q: 'Bile helps digestion by:', options: ['A. digesting protein', 'B. emulsifying fats', 'C. digesting starch', 'D. neutralising vitamins'], answer: 1, explanation: 'Bile emulsifies fats into small droplets so lipase can digest them faster. Bile itself is not an enzyme.' },
+        { q: 'Deficiency of protein in children causes:', options: ['A. scurvy', 'B. rickets', 'C. kwashiorkor', 'D. night blindness'], answer: 2, explanation: 'Protein deficiency causes kwashiorkor. Scurvy is vitamin C, rickets is vitamin D/calcium.' },
+        { q: 'The optimum temperature for human digestive enzymes is about:', options: ['A. 0°C', 'B. 20°C', 'C. 37°C', 'D. 100°C'], answer: 2, explanation: 'Human enzymes work best around body temperature, 37°C. High temperatures denature them.' },
+        { q: 'Protein digestion begins in the:', options: ['A. mouth', 'B. stomach', 'C. large intestine', 'D. rectum'], answer: 1, explanation: 'The stomach’s pepsin and hydrochloric acid begin protein digestion.' },
+        { q: 'Which food class is the body’s main source of energy?', options: ['A. proteins', 'B. carbohydrates', 'C. vitamins', 'D. minerals'], answer: 1, explanation: 'Carbohydrates are the body’s main and cheapest source of energy.' },
+        { q: 'Lipase digests fats into:', options: ['A. amino acids', 'B. glucose', 'C. fatty acids and glycerol', 'D. maltose'], answer: 2, explanation: 'Lipase breaks fats/oils down into fatty acids and glycerol.' },
+        { q: 'A catalyst such as an enzyme is best described as a substance that:', options: ['A. is destroyed after one reaction', 'B. speeds up a reaction without being used up', 'C. only works once', 'D. provides energy'], answer: 1, explanation: 'A catalyst speeds up a reaction and is not used up, so it can be reused.' }
+      ],
+      theory: [
+        { question: 'Define digestion. Copy and complete the table for THREE digestive enzymes, stating the substrate acted on and the product formed.', marks: 10, answer: '<p><strong>Digestion</strong> is the breakdown of large, insoluble food molecules into small, soluble molecules that can be absorbed into the body.</p><table border="1" cellpadding="4"><tr><th>Enzyme</th><th>Substrate</th><th>Product</th></tr><tr><td>Amylase</td><td>Starch</td><td>Maltose</td></tr><tr><td>Pepsin (protease)</td><td>Proteins</td><td>Peptides/amino acids</td></tr><tr><td>Lipase</td><td>Fats/oils</td><td>Fatty acids + glycerol</td></tr></table>', markingGuide: 'Definition of digestion = 4 marks. Each enzyme row correct (enzyme + substrate + product): 2 marks each = 6 marks. Total = 10 marks.' },
+        { question: 'Explain THREE ways in which the small intestine is adapted for the absorption of digested food.', marks: 9, answer: '<ul><li><strong>Villi and microvilli:</strong> the inner wall is folded into millions of finger-like villi that give a very large surface area for absorption.</li><li><strong>Thin (one-cell-thick) walls:</strong> the villi walls are very thin, so digested nutrients pass through quickly into the blood.</li><li><strong>Rich blood supply:</strong> each villus contains a dense network of capillaries (and a lacteal) that carry absorbed nutrients away rapidly, maintaining a steep concentration gradient.</li></ul><p>It is also long (about 6–7 m in humans), giving food time to be fully absorbed.</p>', markingGuide: 'Each valid adaptation named and correctly explained = 3 marks (identification 1 + explanation 2). Any three of: villi/large surface area, thin walls, rich blood supply, length. Total = 9 marks.' }
+      ]
+    },
+    {
+      id: 'microorganisms_health_disease',
+      videoId: 'XyDlGWmPPEc',
+      name: 'Microorganisms, Health & Disease',
+      icon: '🦠',
+      lessonNotes:
+        '<h4>What Are Microorganisms?</h4>' +
+        '<p><strong>Microorganisms (microbes)</strong> are living things too small to be seen with the naked eye. They include <strong>bacteria</strong>, <strong>viruses</strong>, <strong>fungi</strong> and <strong>protozoa</strong>. Many are harmless or even useful, but some, called <strong>pathogens</strong>, cause disease. This topic is very relevant to health in Liberia and West Africa, where diseases such as malaria, typhoid and cholera are common.</p>' +
+        '<h4>Useful Microorganisms</h4>' +
+        '<p>Not all microbes are harmful. Bacteria and fungi <strong>decompose</strong> dead matter and recycle nutrients in the soil. Yeast is used in <strong>baking</strong> and <strong>brewing</strong> (fermentation). Bacteria are used to make <strong>yoghurt</strong> and <strong>cheese</strong>, and in producing <strong>antibiotics</strong> and sewage treatment.</p>' +
+        '<h4>Pathogens and How Diseases Spread</h4>' +
+        '<p>A <strong>pathogen</strong> is a disease-causing microorganism. Diseases spread (are transmitted) in several ways: through <strong>air</strong> (droplets, e.g., tuberculosis, common cold), <strong>water and food</strong> (e.g., cholera, typhoid), <strong>vectors</strong> such as insects (e.g., <em>Anopheles</em> mosquito spreads malaria; housefly spreads dysentery), <strong>direct contact</strong> (e.g., ringworm), and <strong>body fluids</strong> (e.g., HIV, hepatitis B). Knowing the mode of transmission helps in prevention.</p>' +
+        '<h4>Common Diseases (Cause, Vector, Prevention)</h4>' +
+        '<ul>' +
+        '<li><strong>Malaria:</strong> caused by <em>Plasmodium</em> (a protozoan), spread by the female <em>Anopheles</em> mosquito. Prevent with treated nets, clearing stagnant water, and prompt treatment.</li>' +
+        '<li><strong>Cholera / Typhoid:</strong> bacterial, spread by contaminated water/food. Prevent with clean water, good sanitation and hand-washing.</li>' +
+        '<li><strong>Tuberculosis (TB):</strong> bacterial, spread by air droplets. Prevent by vaccination (BCG) and treating patients.</li>' +
+        '</ul>' +
+        '<h4>The Body’s Defence and Immunity</h4>' +
+        '<p>The body defends itself with the skin (a barrier), white blood cells (which engulf germs and make antibodies), and blood clotting. <strong>Immunity</strong> is the ability to resist a disease. <strong>Vaccination</strong> introduces a weakened/dead pathogen so the body makes antibodies and "memory" cells, giving protection before the real infection. Good <strong>personal and public hygiene</strong>, clean water, proper sanitation and a balanced diet are the foundation of disease prevention.</p>',
+      keyPoints: [
+        'Microorganisms include bacteria, viruses, fungi and protozoa; disease-causing ones are pathogens.',
+        'Useful microbes: decomposition, baking/brewing (yeast), yoghurt/cheese, antibiotics, sewage treatment.',
+        'Transmission routes: air (droplets), water/food, vectors (insects), direct contact, body fluids.',
+        'Malaria = Plasmodium spread by female Anopheles mosquito; cholera/typhoid = contaminated water.',
+        'The body defends with skin, white blood cells (phagocytosis + antibodies) and blood clotting.',
+        'Vaccination gives immunity by triggering antibody and memory-cell production before real infection.'
+      ],
+      examTips: [
+        'Learn each disease as a set: causative organism + mode of transmission + prevention, exactly how questions are framed.',
+        'Distinguish the CAUSE (Plasmodium) from the VECTOR (Anopheles mosquito) of malaria, a very common trap.',
+        'Give practical, local prevention measures (treated nets, boiling water) for full marks.',
+        'Remember viruses are not affected by antibiotics; antibiotics work against bacteria.'
+      ],
+      commonMistakes: [
+        'Saying "the mosquito causes malaria", the mosquito is the vector; Plasmodium is the cause.',
+        'Assuming all microorganisms are harmful, many are useful and essential.',
+        'Confusing immunity gained from vaccination with the disease itself.',
+        'Listing antibiotics as a cure for viral diseases.'
+      ],
+      mcq: [
+        { q: 'The organism that causes malaria is:', options: ['A. the Anopheles mosquito', 'B. Plasmodium', 'C. a virus', 'D. a bacterium'], answer: 1, explanation: 'Malaria is caused by the protozoan Plasmodium; the female Anopheles mosquito is only the vector.' },
+        { q: 'Which microorganism is used in baking bread?', options: ['A. Plasmodium', 'B. yeast', 'C. Amoeba', 'D. virus'], answer: 1, explanation: 'Yeast (a fungus) ferments sugars, releasing carbon dioxide that makes bread rise.' },
+        { q: 'Cholera and typhoid are commonly spread through:', options: ['A. air droplets', 'B. contaminated water and food', 'C. mosquito bites', 'D. body contact'], answer: 1, explanation: 'These are water-borne bacterial diseases spread by contaminated water and food.' },
+        { q: 'An organism that transmits a pathogen from one host to another is called a:', options: ['A. vector', 'B. parasite', 'C. host', 'D. decomposer'], answer: 0, explanation: 'A vector (e.g., a mosquito or housefly) carries and transmits pathogens.' },
+        { q: 'Vaccination protects the body by:', options: ['A. killing all microbes', 'B. stimulating the body to make antibodies and memory cells', 'C. providing food', 'D. cleaning the blood'], answer: 1, explanation: 'A vaccine triggers antibody and memory-cell production, giving immunity before real infection.' },
+        { q: 'Which of these diseases is caused by a virus?', options: ['A. cholera', 'B. tuberculosis', 'C. HIV/AIDS', 'D. typhoid'], answer: 2, explanation: 'HIV/AIDS is caused by a virus. Cholera, TB and typhoid are bacterial.' },
+        { q: 'Antibiotics are effective against:', options: ['A. viruses', 'B. bacteria', 'C. all microbes', 'D. mosquitoes'], answer: 1, explanation: 'Antibiotics kill or stop bacteria; they do NOT work against viruses.' },
+        { q: 'Which is a useful role of microorganisms in the environment?', options: ['A. causing malaria', 'B. decomposing dead matter and recycling nutrients', 'C. blocking rivers', 'D. destroying the ozone'], answer: 1, explanation: 'Decomposer microbes recycle nutrients, keeping ecosystems healthy.' },
+        { q: 'The best way to prevent malaria is to:', options: ['A. drink boiled water only', 'B. sleep under a treated mosquito net and clear stagnant water', 'C. avoid handshakes', 'D. take antibiotics daily'], answer: 1, explanation: 'Controlling the mosquito vector, treated nets and clearing breeding water, prevents malaria.' },
+        { q: 'White blood cells defend the body by:', options: ['A. carrying oxygen', 'B. engulfing germs and producing antibodies', 'C. clotting only', 'D. digesting food'], answer: 1, explanation: 'White blood cells engulf pathogens (phagocytosis) and produce antibodies against them.' }
+      ],
+      theory: [
+        { question: 'For malaria, state (a) the causative organism, (b) the vector, (c) THREE symptoms, and (d) THREE methods of prevention.', marks: 10, answer: '<p>(a) <strong>Causative organism:</strong> <em>Plasmodium</em> (a protozoan).<br>(b) <strong>Vector:</strong> the female <em>Anopheles</em> mosquito.<br>(c) <strong>Symptoms:</strong> high fever, headache, and shivering/cold with sweating (also vomiting, body weakness).<br>(d) <strong>Prevention:</strong> sleep under insecticide-treated nets; clear stagnant/standing water where mosquitoes breed; spray or drain breeding sites and seek prompt treatment.</p>', markingGuide: '(a) causative organism = 2 marks; (b) vector = 2 marks; (c) three symptoms (1 each) = 3 marks; (d) three prevention methods (1 each) = 3 marks. Total = 10 marks.' },
+        { question: 'Describe THREE ways in which the human body defends itself against disease.', marks: 9, answer: '<ul><li><strong>Skin barrier:</strong> the skin forms a physical barrier that keeps most pathogens out; sweat and sebum are slightly acidic and discourage microbes.</li><li><strong>White blood cells:</strong> some white blood cells engulf and destroy germs (phagocytosis), while others produce antibodies that neutralise specific pathogens.</li><li><strong>Blood clotting:</strong> when the skin is cut, platelets help form a clot that seals the wound and prevents pathogens from entering.</li></ul><p>Immunity from previous infection or vaccination also provides ready-made antibodies against specific diseases.</p>', markingGuide: 'Each correctly named and explained defence = 3 marks. Any three of: skin barrier, white blood cells (phagocytosis/antibodies), blood clotting, immunity/vaccination. Total = 9 marks.' }
+      ]
+    },
+    {
+      id: 'adaptation_conservation_resources',
+      videoId: 'j9oYwUMR1Wg',
+      name: 'Adaptation, Conservation & Natural Resources',
+      icon: '🌍',
+      lessonNotes:
+        '<h4>Adaptation</h4>' +
+        '<p><strong>Adaptation</strong> is a feature or behaviour that helps an organism survive and reproduce in its environment. Adaptations may be <strong>structural</strong> (body features, e.g., the camel’s hump stores fat and it has broad feet for sandy ground), <strong>physiological</strong> (internal functioning, e.g., the camel produces little urine to save water), or <strong>behavioural</strong> (actions, e.g., birds migrating to avoid cold). Organisms best adapted to their surroundings are most likely to survive, this is the basis of <strong>natural selection</strong>.</p>' +
+        '<h4>Natural Selection ("Survival of the Fittest")</h4>' +
+        '<p>Within any population there is <strong>variation</strong>. When resources are limited, organisms compete. Those with features best suited to the environment survive, reproduce, and pass on their useful features to offspring; the poorly-adapted are less likely to survive. Over many generations this changes the population, the process Charles Darwin called <strong>natural selection</strong>.</p>' +
+        '<h4>Natural Resources</h4>' +
+        '<p><strong>Natural resources</strong> are useful materials that come from the environment. They are of two kinds: <strong>renewable</strong> resources, which can be replaced naturally within a short time (e.g., forests, water, wind, solar energy, wildlife), and <strong>non-renewable</strong> resources, which take millions of years to form and can be used up (e.g., crude oil, coal, natural gas, minerals like iron and gold). West Africa is rich in both, but they must be used wisely.</p>' +
+        '<h4>Why and How We Conserve</h4>' +
+        '<p><strong>Conservation</strong> is the wise use and protection of natural resources so that they last and continue to support life. Human activities such as <strong>deforestation</strong>, <strong>overfishing</strong>, <strong>bush burning</strong>, <strong>pollution</strong> and <strong>overhunting</strong> destroy habitats and reduce biodiversity. Methods of conservation include:</p>' +
+        '<ul>' +
+        '<li>Establishing <strong>forest reserves</strong>, national parks and game reserves to protect wildlife.</li>' +
+        '<li><strong>Afforestation and reforestation</strong>, planting trees to replace those cut down.</li>' +
+        '<li>Controlling hunting and fishing with <strong>laws, seasons and quotas</strong>.</li>' +
+        '<li>Reducing pollution and practising <strong>recycling</strong> and proper waste disposal.</li>' +
+        '<li>Public <strong>education</strong> on the value of biodiversity and sustainable use.</li>' +
+        '</ul>' +
+        '<p>Conserving resources protects the balance of ecosystems, secures food and materials for the future, and preserves species from extinction.</p>',
+      keyPoints: [
+        'Adaptation = features/behaviour that help an organism survive and reproduce (structural, physiological, behavioural).',
+        'Natural selection: variation + competition means the best-adapted survive and pass on their traits (Darwin).',
+        'Renewable resources replace naturally (forests, water, solar); non-renewable can be used up (oil, coal, minerals).',
+        'Human threats: deforestation, overfishing, bush burning, pollution, overhunting.',
+        'Conservation = wise use and protection so resources last and biodiversity is preserved.',
+        'Conservation methods: reserves/parks, afforestation, hunting/fishing laws, recycling, public education.'
+      ],
+      examTips: [
+        'Classify a named adaptation as structural, physiological or behavioural, a common question.',
+        'For natural selection, use the sequence: variation → competition → survival of the fittest → inheritance.',
+        'Give LOCAL examples of conservation (forest reserves, tree planting, fishing seasons) for full marks.',
+        'Clearly separate renewable from non-renewable resources with correct examples of each.'
+      ],
+      commonMistakes: [
+        'Confusing renewable and non-renewable resources (e.g., calling crude oil renewable).',
+        'Describing adaptation as something an organism "chooses" to do consciously.',
+        'Listing causes of resource loss when asked for conservation METHODS (and vice versa).',
+        'Forgetting that overusing even renewable resources (e.g., overfishing) can destroy them.'
+      ],
+      mcq: [
+        { q: 'A feature that helps an organism survive in its environment is called a(n):', options: ['A. mutation', 'B. adaptation', 'C. reflex', 'D. resource'], answer: 1, explanation: 'An adaptation is a structural, physiological or behavioural feature that aids survival and reproduction.' },
+        { q: 'Which of these is a NON-renewable resource?', options: ['A. forest', 'B. solar energy', 'C. crude oil', 'D. wind'], answer: 2, explanation: 'Crude oil takes millions of years to form and can be used up, it is non-renewable.' },
+        { q: 'The camel’s ability to produce very little urine to save water is an example of what type of adaptation?', options: ['A. structural', 'B. physiological', 'C. behavioural', 'D. artificial'], answer: 1, explanation: 'It involves internal body functioning (excretion), so it is a physiological adaptation.' },
+        { q: 'The process by which the best-adapted organisms survive and reproduce is called:', options: ['A. conservation', 'B. natural selection', 'C. pollution', 'D. classification'], answer: 1, explanation: 'Natural selection, proposed by Darwin, is often summarised as "survival of the fittest".' },
+        { q: 'Planting trees to replace those that have been cut down is called:', options: ['A. deforestation', 'B. afforestation/reforestation', 'C. bush burning', 'D. irrigation'], answer: 1, explanation: 'Afforestation/reforestation is planting trees, an important conservation method.' },
+        { q: 'Which human activity most directly reduces biodiversity?', options: ['A. afforestation', 'B. establishing game reserves', 'C. deforestation', 'D. recycling'], answer: 2, explanation: 'Deforestation destroys habitats, reducing the variety of living things (biodiversity).' },
+        { q: 'A renewable resource is one that:', options: ['A. can never be used', 'B. can be replaced naturally within a short time', 'C. is found only underground', 'D. takes millions of years to form'], answer: 1, explanation: 'Renewable resources (forests, water, solar) are naturally replaced fairly quickly if used wisely.' },
+        { q: 'Setting fishing seasons and quotas is a way of conserving:', options: ['A. minerals', 'B. fish stocks', 'C. crude oil', 'D. sunlight'], answer: 1, explanation: 'Seasons and quotas prevent overfishing, allowing fish populations to recover, conservation of wildlife.' },
+        { q: 'Migration of birds to warmer regions in cold seasons is a(n) ___ adaptation.', options: ['A. structural', 'B. behavioural', 'C. physiological', 'D. chemical'], answer: 1, explanation: 'Migration is an action/behaviour, so it is a behavioural adaptation.' },
+        { q: 'The wise use and protection of natural resources is known as:', options: ['A. exploitation', 'B. conservation', 'C. pollution', 'D. deforestation'], answer: 1, explanation: 'Conservation is the wise use and protection of resources so they last for the future.' }
+      ],
+      theory: [
+        { question: 'Distinguish between renewable and non-renewable resources, giving TWO examples of each, and state THREE methods of conserving natural resources.', marks: 10, answer: '<p><strong>Renewable resources</strong> are those that can be replaced naturally within a short time, e.g., <em>forests</em> and <em>water</em> (also wind, solar energy, wildlife). <strong>Non-renewable resources</strong> take millions of years to form and can be used up, e.g., <em>crude oil</em> and <em>coal</em> (also natural gas, minerals).</p><p><strong>Methods of conservation:</strong></p><ul><li>Establishing forest reserves, national parks and game reserves.</li><li>Afforestation/reforestation, planting trees to replace those cut down.</li><li>Enforcing laws that control hunting and fishing (seasons and quotas), and reducing pollution through recycling.</li></ul>', markingGuide: 'Definition of renewable = 1.5; non-renewable = 1.5. Two examples each (0.5 each) = 2 marks. Three conservation methods (1.67 each) = 5 marks. Total = 10 marks.' },
+        { question: 'Explain how natural selection leads to the survival of well-adapted organisms.', marks: 9, answer: '<ul><li><strong>Variation:</strong> members of a population differ in their features (some are better suited to the environment than others).</li><li><strong>Competition:</strong> resources such as food, space and mates are limited, so organisms compete to survive.</li><li><strong>Survival of the fittest:</strong> organisms with features best adapted to the environment are more likely to survive and reproduce, while poorly-adapted ones die or fail to reproduce.</li><li><strong>Inheritance:</strong> survivors pass on their useful features to their offspring, so over many generations these helpful adaptations become more common in the population.</li></ul>', markingGuide: 'Variation = 2 marks; competition = 2 marks; survival of the fittest = 2.5 marks; inheritance of favourable traits = 2.5 marks. Total = 9 marks.' }
+      ]
+    }
+  ];
+
+  if (S.english && Array.isArray(S.english.topics)) {
+    S.english.topics = S.english.topics.concat(moreEnglish);
+    S.english.totalTopics = S.english.topics.length;
+  }
+  if (S.biology && Array.isArray(S.biology.topics)) {
+    S.biology.topics = S.biology.topics.concat(moreBiology);
+    S.biology.totalTopics = S.biology.topics.length;
+  }
+})();
