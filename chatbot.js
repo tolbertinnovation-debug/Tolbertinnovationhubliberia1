@@ -187,6 +187,27 @@
     #tih-greet-close:hover{background:#f1f5f9;color:#475569;}
     @media(max-width:420px){#tih-greet{max-width:calc(100vw - 6rem);}}
   `;
+  // v4 additions: voice input, language switch, streaming, source chips, RTL
+  styleEl.textContent += `
+    #tih-mic{width:40px;height:40px;border-radius:50%;border:1.5px solid #e2e8f0;flex-shrink:0;
+      background:#f8fafc;cursor:pointer;display:flex;align-items:center;justify-content:center;
+      transition:all .15s;padding:0;}
+    #tih-mic:hover{border-color:#1565d8;background:#eff6ff;}
+    #tih-mic svg{width:18px;height:18px;fill:#002868;}
+    #tih-mic.on{background:#E31E24;border-color:#E31E24;animation:tih-mic-pulse 1.2s infinite;}
+    #tih-mic.on svg{fill:#fff;}
+    @keyframes tih-mic-pulse{0%,100%{box-shadow:0 0 0 0 rgba(227,30,36,.4)}60%{box-shadow:0 0 0 8px rgba(227,30,36,0)}}
+    #tih-lang-btn{font-size:.72rem;font-weight:700;letter-spacing:.02em;white-space:nowrap;}
+    .tih-src{display:inline-flex;align-items:center;gap:4px;background:#eff6ff;border:1px solid #bfdbfe;
+      color:#002868;font-size:.76rem;font-weight:600;padding:4px 10px;border-radius:20px;
+      text-decoration:none;margin:3px 4px 0 0;}
+    .tih-src:hover{background:#dbeafe;}
+    .tih-stream::after{content:'▍';color:#1565d8;animation:tih-blink .8s infinite;}
+    @keyframes tih-blink{50%{opacity:0}}
+    #tih-chat-win[dir="rtl"] .tih-qrs{padding:3px 47px 6px 6px;}
+    #tih-chat-win[dir="rtl"] .tih-inp{text-align:right;}
+    #tih-chat-win[dir="rtl"] .tih-prog{padding:0 47px 2px 0;}
+  `;
   document.head.appendChild(styleEl);
 
   // ── PAGE CONTEXT ─────────────────────────────────────────────────────────────
@@ -1667,7 +1688,9 @@ The classroom is organized into 4 sections:<br>
 
   function findBestMatch(text) {
     const t = normalize(text);
-    const words = t.split(/[\s,?!.;:'"()\[\]]+/).filter(w => w.length > 2);
+    // Stop-words excluded so generic openers ("what", "how", "tell") can't
+    // rack up fragment points against every keyword that contains them.
+    const words = t.split(/[\s,?!.;:'"()\[\]]+/).filter(w => w.length > 2 && !STOP_WORDS.has(w));
     let best = { score:0, entry:null };
 
     for (const entry of KB) {
@@ -1686,9 +1709,9 @@ The classroom is organized into 4 sections:<br>
       if (score > best.score) best = { score, entry };
     }
 
-    if (best.score >= 4) return { confidence:'high',   entry:best.entry };
-    if (best.score >= 1) return { confidence:'medium', entry:best.entry };
-    return                       { confidence:'low',    entry:KB[KB.length-1] };
+    if (best.score >= 4) return { confidence:'high',   entry:best.entry, score:best.score };
+    if (best.score >= 1) return { confidence:'medium', entry:best.entry, score:best.score };
+    return                       { confidence:'low',    entry:KB[KB.length-1], score:0 };
   }
 
   function smartFallback(userText) {
@@ -1707,6 +1730,380 @@ The classroom is organized into 4 sections:<br>
 📧 <strong>Email:</strong> tolbertinnovationhub@gmail.com<br>
 📞 <strong>Call:</strong> +231 778 956 979<br><br>
 Or choose a topic below:`;
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════════
+  //  v4, self-contained smart assistant (no external AI APIs)
+  //  I18N (EN/FR/AR) · SiteIndex (auto crawler + local inverted index)
+  //  SiteSearch (fast ranked retrieval) · conversational answer composer
+  //  History (persistent) · Voice input · streamed typing
+  // ══════════════════════════════════════════════════════════════════════════════
+
+  // ── I18N ──────────────────────────────────────────────────────────────────────
+  const LANG_KEY = 'tih_chat_lang';
+  let lang = 'en';
+  try { const l0 = localStorage.getItem(LANG_KEY); if (['en','fr','ar'].includes(l0)) lang = l0; } catch (e) {}
+
+  const T = {
+    en: {
+      flag:'EN', voice:'en-US', dir:'ltr',
+      status:'Online, Ready to help',
+      placeholder:'Ask me anything about TIH…',
+      micTitle:'Ask by voice', langTitle:'Language: English (click to change)',
+      earlier:'Earlier', today:'Today',
+      welcomeBack:'Welcome back! 👋 Here is our conversation so far. What else can I help you with?',
+      listening:'🎤 Listening… speak now',
+      langSet:'Language set to <strong>English</strong>. How can I help you?',
+      foundIntro:[
+        q => `Great question! Here's what I found on our website about "<em>${q}</em>":`,
+        q => `Here's the most relevant information on our website for "<em>${q}</em>":`,
+        q => `I searched the whole website for "<em>${q}</em>", this matches best:`
+      ],
+      readMore:'Read the full page:', also:'Also related:', note:'',
+      noResult: q => `I couldn't find "<em>${q}</em>" on the website yet, but our team can answer right away:`,
+      contactBlock:`💬 <strong>WhatsApp (fastest):</strong> <a href="https://wa.me/231880559227" target="_blank" rel="noopener" style="color:#002868;font-weight:700;">+231 880 559 227</a><br>📧 <strong>Email:</strong> tolbertinnovationhub@gmail.com<br>📞 <strong>Call:</strong> +231 778 956 979`
+    },
+    fr: {
+      flag:'FR', voice:'fr-FR', dir:'ltr',
+      status:'En ligne, prêt à vous aider',
+      placeholder:'Posez-moi vos questions sur TIH…',
+      micTitle:'Parler au lieu d’écrire', langTitle:'Langue : Français (cliquer pour changer)',
+      earlier:'Plus tôt', today:'Aujourd’hui',
+      welcomeBack:'Content de vous revoir ! 👋 Voici notre conversation. Que puis-je faire d’autre pour vous ?',
+      listening:'🎤 Je vous écoute…',
+      langSet:'Langue définie sur le <strong>français</strong>. Comment puis-je vous aider ?',
+      foundIntro:[
+        q => `Bonne question ! Voici ce que j’ai trouvé sur notre site à propos de « <em>${q}</em> » :`,
+        q => `Voici les informations les plus pertinentes pour « <em>${q}</em> » :`
+      ],
+      readMore:'Lire la page complète :', also:'Voir aussi :',
+      note:'ℹ️ Le contenu du site est en anglais.',
+      noResult: q => `Je n’ai pas encore trouvé « <em>${q}</em> » sur le site, mais notre équipe peut vous répondre immédiatement :`,
+      contactBlock:`💬 <strong>WhatsApp (le plus rapide) :</strong> <a href="https://wa.me/231880559227" target="_blank" rel="noopener" style="color:#002868;font-weight:700;">+231 880 559 227</a><br>📧 <strong>E-mail :</strong> tolbertinnovationhub@gmail.com<br>📞 <strong>Téléphone :</strong> +231 778 956 979`
+    },
+    ar: {
+      flag:'ع', voice:'ar-SA', dir:'rtl',
+      status:'متصل وجاهز للمساعدة',
+      placeholder:'اسألني أي شيء عن TIH…',
+      micTitle:'تحدث بدلاً من الكتابة', langTitle:'اللغة: العربية (انقر للتغيير)',
+      earlier:'سابقاً', today:'اليوم',
+      welcomeBack:'مرحباً بعودتك! 👋 هذه محادثتنا السابقة. كيف يمكنني مساعدتك أيضاً؟',
+      listening:'🎤 أستمع إليك…',
+      langSet:'تم تغيير اللغة إلى <strong>العربية</strong>. كيف يمكنني مساعدتك؟',
+      foundIntro:[
+        q => `سؤال رائع! هذا ما وجدته في موقعنا حول «<em>${q}</em>»:`,
+        q => `إليك أنسب المعلومات في موقعنا حول «<em>${q}</em>»:`
+      ],
+      readMore:'اقرأ الصفحة كاملة:', also:'مواضيع ذات صلة:',
+      note:'ℹ️ محتوى الموقع باللغة الإنجليزية.',
+      noResult: q => `لم أجد «<em>${q}</em>» في الموقع بعد، لكن فريقنا جاهز لمساعدتك فوراً:`,
+      contactBlock:`💬 <strong>واتساب (الأسرع):</strong> <a href="https://wa.me/231880559227" target="_blank" rel="noopener" style="color:#002868;font-weight:700;">+231 880 559 227</a><br>📧 <strong>البريد:</strong> tolbertinnovationhub@gmail.com<br>📞 <strong>هاتف:</strong> +231 778 956 979`
+    }
+  };
+
+  // Localized mini knowledge base for the most common intents (FR / AR).
+  const LKB = {
+    fr: [
+      { id:'greet', kw:['bonjour','salut','bonsoir','coucou','merci','aidez','aide'],
+        reply:`Bonjour ! 👋 Bienvenue chez <strong>Tolbert Innovation Hub</strong> !<br><br>Je peux vous renseigner sur les bourses d’études, les cours gratuits (IELTS, TOEFL, WASSCE…), le programme de santé, les services logiciels et plus encore.<br><br>Comment puis-je vous aider ?` },
+      { id:'about', kw:['propos','qui êtes','organisation','mission','tolbert','que faites'],
+        reply:`🏛️ <strong>À propos de TIH</strong><br><br>Tolbert Innovation Hub est une organisation libérienne fondée par <strong>M. Samuel S. Tolbert</strong>. Nos piliers :<br>🎓 Bourses et études à l’étranger (Inde et Chypre, réduction de 50 %)<br>📚 Cours gratuits : IELTS, TOEFL, WASSCE et plus<br>🏥 Orientation médicale vers des hôpitaux partenaires en Inde<br>💻 Développement de sites web et d’applications<br><br>📍 Monrovia, Libéria · 📞 +231 880 559 227` },
+      { id:'scholarship', kw:['bourse','étude','étranger','université','inde','chypre','étudier','admission','scolarité','diplôme'],
+        reply:`🎓 <strong>Études à l’étranger avec TIH</strong><br><br>Nous aidons les étudiants à intégrer 20 universités partenaires en <strong>Inde et à Chypre du Nord</strong> avec une <strong>bourse de 50 %</strong> sur les frais de scolarité.<br><br>✅ Accompagnement gratuit : choix de l’université, dossier, lettre d’admission, visa.<br>🇮🇳 Inde : à partir de 900 $/an · 🇨🇾 Chypre : à partir de 1 750 $/an<br><br>Contactez-nous sur WhatsApp pour postuler : +231 880 559 227` },
+      { id:'courses', kw:['cours','gratuit','ielts','toefl','wassce','apprendre','formation','classe','leçon','certificat'],
+        reply:`📚 <strong>Cours gratuits TIH</strong><br><br>• Préparation IELTS et TOEFL, 6 modules chacun<br>• WASSCE PRO, 23 matières avec vidéos, notes et examens blancs<br>• 18 cours de compétences : informatique, entrepreneuriat, marketing digital…<br><br>🏅 Certificat de fin de formation disponible.<br>👉 <a href="learning-hub" style="color:#002868;font-weight:700;">Ouvrir l’espace d’apprentissage</a>` },
+      { id:'healthcare', kw:['santé','médical','hôpital','traitement','malade','médecin','soins'],
+        reply:`🏥 <strong>Programme d’orientation médicale</strong><br><br>TIH met en relation les patients libériens avec des hôpitaux spécialisés en Inde : cardiologie, oncologie, orthopédie, neurologie, fertilité…<br><br>Nous coordonnons le dossier médical, les rendez-vous et le visa.<br>📞 WhatsApp : +231 880 559 227` },
+      { id:'software', kw:['logiciel','site web','application','développement','prix','tarif','coût','site internet'],
+        reply:`💻 <strong>Services logiciels TIH</strong><br><br>Sites web, applications mobiles, systèmes de gestion (POS, inventaire, RH), e-commerce.<br><br>📦 Offres (-50 %) : Starter 75 $ · Professionnel 200 $ · Entreprise sur devis.<br>Chaque pack inclut domaine 1 an, hébergement, e-mails professionnels et sécurité SSL.` },
+      { id:'contact', kw:['contact','téléphone','email','e-mail','whatsapp','adresse','joindre','appeler'],
+        reply:`📞 <strong>Contacter TIH</strong><br><br>💬 WhatsApp : <a href="https://wa.me/231880559227" target="_blank" rel="noopener" style="color:#002868;font-weight:700;">+231 880 559 227</a><br>📧 E-mail : tolbertinnovationhub@gmail.com<br>☎️ Téléphone : +231 778 956 979<br>📍 Monrovia, Libéria<br>🕐 Lun–Ven 8h–18h · Sam 9h–15h (GMT)` },
+      { id:'apply', kw:['postuler','candidature','inscrire','inscription','demande','appliquer'],
+        reply:`📝 <strong>Comment postuler</strong><br><br>1️⃣ Vérifiez votre éligibilité<br>2️⃣ Préparez vos documents (relevés, passeport, photo…)<br>3️⃣ Envoyez votre candidature via le <a href="study-abroad" style="color:#002868;font-weight:700;">formulaire en ligne</a> ou WhatsApp<br>4️⃣ Réponse sous 5 à 7 jours ouvrables<br><br>L’accompagnement TIH est gratuit.` }
+    ],
+    ar: [
+      { id:'greet', kw:['مرحبا','اهلا','أهلا','السلام','صباح','مساء','شكرا','مساعدة'],
+        reply:`مرحباً بك! 👋 أهلاً في <strong>Tolbert Innovation Hub</strong>!<br><br>يمكنني مساعدتك بخصوص المنح الدراسية، الدورات المجانية (IELTS، TOEFL، WASSCE)، برنامج الرعاية الصحية، وخدمات البرمجيات.<br><br>كيف يمكنني مساعدتك اليوم؟` },
+      { id:'about', kw:['منظمة','مؤسسة','مهمة','تولبرت','ما هي','ماهي','من أنتم'],
+        reply:`🏛️ <strong>عن TIH</strong><br><br>مؤسسة ليبيرية أسسها <strong>السيد صامويل س. تولبرت</strong>. ركائزنا:<br>🎓 المنح والدراسة في الخارج (الهند وقبرص، خصم 50٪)<br>📚 دورات مجانية: IELTS وTOEFL وWASSCE والمزيد<br>🏥 الإحالة الطبية إلى مستشفيات شريكة في الهند<br>💻 تطوير المواقع والتطبيقات<br><br>📍 مونروفيا، ليبيريا · 📞 +231 880 559 227` },
+      { id:'scholarship', kw:['منحة','منح','دراسة','الخارج','جامعة','الهند','قبرص','قبول','دراسية'],
+        reply:`🎓 <strong>الدراسة في الخارج مع TIH</strong><br><br>نساعد الطلاب على الالتحاق بـ 20 جامعة شريكة في <strong>الهند وشمال قبرص</strong> مع <strong>منحة 50٪</strong> من الرسوم الدراسية.<br><br>✅ خدماتنا مجانية: اختيار الجامعة، تجهيز الملف، خطاب القبول، والتأشيرة.<br>🇮🇳 الهند: من 900$ سنوياً · 🇨🇾 قبرص: من 1750$ سنوياً<br><br>للتقديم تواصل عبر واتساب: +231 880 559 227` },
+      { id:'courses', kw:['دورة','دورات','مجاني','مجانية','تعلم','ايلتس','توفل','شهادة','درس','دروس'],
+        reply:`📚 <strong>دورات TIH المجانية</strong><br><br>• تحضير IELTS وTOEFL، 6 وحدات لكل منهما<br>• WASSCE PRO، 23 مادة مع فيديوهات وملخصات واختبارات<br>• 18 دورة مهارات: الحاسوب، ريادة الأعمال، التسويق الرقمي…<br><br>🏅 شهادة إتمام متاحة.<br>👉 <a href="learning-hub" style="color:#002868;font-weight:700;">افتح منصة التعلم</a>` },
+      { id:'healthcare', kw:['صحة','طبي','مستشفى','علاج','مريض','طبيب','صحية'],
+        reply:`🏥 <strong>برنامج الإحالة الطبية</strong><br><br>يربط TIH المرضى الليبيريين بمستشفيات متخصصة في الهند: القلب، الأورام، العظام، الأعصاب، والخصوبة.<br><br>ننسق الملف الطبي والمواعيد والتأشيرة.<br>📞 واتساب: +231 880 559 227` },
+      { id:'software', kw:['برمجيات','موقع','تطبيق','برنامج','تطوير','سعر','تكلفة','أسعار'],
+        reply:`💻 <strong>خدمات البرمجيات</strong><br><br>مواقع إلكترونية، تطبيقات جوال، أنظمة إدارة الأعمال، ومتاجر إلكترونية.<br><br>📦 الباقات (خصم 50٪): المبتدئ 75$ · الاحترافي 200$ · الشركات حسب الطلب.<br>تشمل كل باقة نطاقاً لمدة سنة، استضافة، بريداً مهنياً، وحماية SSL.` },
+      { id:'contact', kw:['اتصال','تواصل','هاتف','بريد','واتساب','عنوان','رقم'],
+        reply:`📞 <strong>تواصل مع TIH</strong><br><br>💬 واتساب: <a href="https://wa.me/231880559227" target="_blank" rel="noopener" style="color:#002868;font-weight:700;">+231 880 559 227</a><br>📧 البريد: tolbertinnovationhub@gmail.com<br>☎️ هاتف: +231 778 956 979<br>📍 مونروفيا، ليبيريا` },
+      { id:'apply', kw:['تقديم','طلب','تسجيل','سجل','قدم','التحاق'],
+        reply:`📝 <strong>كيفية التقديم</strong><br><br>1️⃣ تحقق من الأهلية<br>2️⃣ جهّز مستنداتك (كشوف الدرجات، جواز السفر، صورة شخصية)<br>3️⃣ أرسل طلبك عبر <a href="study-abroad" style="color:#002868;font-weight:700;">النموذج الإلكتروني</a> أو واتساب<br>4️⃣ الرد خلال 5–7 أيام عمل<br><br>مساعدة TIH مجانية بالكامل.` }
+    ]
+  };
+
+  // Localized suggested-question chips (English uses the page-context chips).
+  const SUGG = {
+    fr: [
+      { l:'🎓 Bourses d’études', intent:'scholarship' },
+      { l:'📚 Cours gratuits',        intent:'courses' },
+      { l:'🏥 Santé',                 intent:'healthcare' },
+      { l:'💻 Logiciels',             intent:'software' },
+      { l:'📞 Contact',               intent:'contact' }
+    ],
+    ar: [
+      { l:'🎓 المنح الدراسية',   intent:'scholarship' },
+      { l:'📚 دورات مجانية',     intent:'courses' },
+      { l:'🏥 الرعاية الصحية',   intent:'healthcare' },
+      { l:'💻 البرمجيات',        intent:'software' },
+      { l:'📞 تواصل معنا',       intent:'contact' }
+    ]
+  };
+
+  const FR_HINT = /\b(bonjour|salut|merci|comment|pourquoi|quel|quelle|quels|combien|où|est-ce|vous|je|suis|veux|voudrais|besoin|aide|bourse|cours|gratuit|université|étudier|santé|prix|inscription|postuler|puis-je|c’est|c'est)\b/gi;
+
+  function detectLang(text) {
+    if (/[؀-ۿ]/.test(text)) return 'ar';
+    const hits = (text.match(FR_HINT) || []).length + (/[àâçéèêëîïôùûüœ]/i.test(text) ? 2 : 0);
+    if (hits >= 2) return 'fr';
+    if (hits >= 1 && lang === 'fr') return 'fr';
+    if (/[a-z]/i.test(text)) return 'en';
+    return lang;
+  }
+
+  function matchLocal(text, lng) {
+    const t = text.toLowerCase();
+    let best = null, bs = 0;
+    (LKB[lng] || []).forEach(e => {
+      let s = 0;
+      e.kw.forEach(k => { if (t.includes(k)) s += k.length > 3 ? 3 : 2; });
+      if (s > bs) { bs = s; best = e; }
+    });
+    return bs >= 2 ? best : null;
+  }
+
+  // ── SITE INDEX, automatic crawler over the whole website ─────────────────────
+  // Crawls same-origin pages in the background, extracts readable text, stores a
+  // compact index in localStorage (24h freshness) and always re-indexes the page
+  // the visitor is on, so newly added content appears without any manual step.
+  const IDX_KEY = 'tih_site_index_v1';
+  const IDX_TTL = 24 * 60 * 60 * 1000;
+  const IDX_MAX_PAGES = 160, IDX_MAX_BLOCKS = 80, IDX_MAX_CHARS = 300;
+  const IDX_SKIP = /^(hub-admin|hub-dashboard|cert-template|course-player|grandpa-ai)$|^books\//;
+  let SITE = null;      // { t: builtAt, pages:[{u,t,blocks:[{h,x,w}]}] }
+  let INV = null;       // Map(token → [[pageIdx, blockIdx], …])
+  let crawling = false;
+  let _introIdx = 0;
+
+  function pageKeyOf(href) {
+    try {
+      const u = new URL(href, window.location.href);
+      if (u.origin !== window.location.origin) return null;
+      let p = u.pathname.replace(/^\/+/, '').replace(/\.html$/, '');
+      return p === '' ? 'index' : p;
+    } catch (e) { return null; }
+  }
+  function crawlAllowed(key) {
+    return !!key && !IDX_SKIP.test(key) &&
+      !/\.(pdf|png|jpe?g|gif|svg|ico|mp3|mp4|webp|css|js|json|xml|txt|webmanifest)$/i.test(key);
+  }
+
+  function extractFromDoc(doc, key) {
+    // Collect links BEFORE stripping chrome, most cross-links live in nav/footer.
+    const links = [];
+    doc.querySelectorAll('a[href]').forEach(a => {
+      const k = pageKeyOf(a.getAttribute('href'));
+      if (crawlAllowed(k)) links.push(k);
+    });
+    ['script','style','noscript','nav','footer','.site-header','#tih-chat-win','#tih-chat-btn','#tih-greet','.cookie-banner']
+      .forEach(sel => { try { doc.querySelectorAll(sel).forEach(n => n.remove()); } catch (e) {} });
+    const title = ((doc.querySelector('title') || {}).textContent || key).trim().replace(/\s+/g, ' ');
+    const blocks = [{ h:'', x:title.slice(0, 140), w:5 }];
+    const desc = doc.querySelector('meta[name="description"]');
+    if (desc && desc.content) blocks.push({ h:'', x:desc.content.trim().slice(0, IDX_MAX_CHARS), w:3 });
+    let section = '';
+    const seen = new Set();
+    doc.querySelectorAll('h1,h2,h3,h4,p,li,td,dt,dd,blockquote,figcaption').forEach(el => {
+      if (blocks.length >= IDX_MAX_BLOCKS) return;
+      const tag = el.tagName.toLowerCase();
+      const text = (el.textContent || '').trim().replace(/\s+/g, ' ');
+      if (!text || seen.has(text)) return;
+      if (tag[0] === 'h') {
+        if (text.length > 2 && text.length < 140) { section = text; seen.add(text); blocks.push({ h:section, x:text, w:4 }); }
+      } else if (text.length > 25 && text.length < 600) {
+        seen.add(text); blocks.push({ h:section, x:text.slice(0, IDX_MAX_CHARS), w:1 });
+      }
+    });
+    return { page:{ u:key, t:title.slice(0, 90), blocks }, links };
+  }
+
+  function saveIndex() {
+    if (!SITE) return;
+    try { localStorage.setItem(IDX_KEY, JSON.stringify(SITE)); }
+    catch (e) {
+      try { // storage full: keep the most important half and retry once
+        SITE.pages = SITE.pages.slice(0, Math.max(20, Math.floor(SITE.pages.length / 2)));
+        localStorage.setItem(IDX_KEY, JSON.stringify(SITE));
+      } catch (e2) {}
+    }
+  }
+  function loadIndexFromStorage() {
+    try {
+      const raw = localStorage.getItem(IDX_KEY);
+      if (!raw) return null;
+      const d = JSON.parse(raw);
+      return (d && Array.isArray(d.pages)) ? d : null;
+    } catch (e) { return null; }
+  }
+  function mergePage(page) {
+    if (!SITE) SITE = { t:0, pages:[] };
+    const i = SITE.pages.findIndex(p => p.u === page.u);
+    if (i >= 0) SITE.pages[i] = page; else SITE.pages.push(page);
+    INV = null;
+  }
+  // Always index the page the visitor is currently on (instant freshness).
+  function indexCurrentPage() {
+    try {
+      const key = pageKeyOf(window.location.href);
+      if (!crawlAllowed(key)) return;
+      const clone = document.implementation.createHTMLDocument('');
+      clone.documentElement.innerHTML = document.documentElement.innerHTML;
+      mergePage(extractFromDoc(clone, key).page);
+      saveIndex();
+    } catch (e) {}
+  }
+
+  function crawlSite() {
+    if (crawling) return;
+    crawling = true;
+    const CORE = ['index','about','academy','study-abroad','fully-funded-scholarship','learning-hub','wassce',
+      'healthcare','software','contact','apply','events','news','impact','team','faq','donate','library',
+      'grants','certifications','success-stories','volunteer','partner-with-us','entertainment',
+      'certificate-verify','hub-apply','academy-blog','privacy','terms'];
+    const seenK = new Set(), queue = [];
+    const enqueue = k => { if (crawlAllowed(k) && !seenK.has(k)) { seenK.add(k); queue.push(k); } };
+    CORE.forEach(enqueue);
+    document.querySelectorAll('a[href]').forEach(a => enqueue(pageKeyOf(a.getAttribute('href'))));
+    const pages = [];
+    const parser = new DOMParser();
+
+    function worker() {
+      if (!queue.length || pages.length >= IDX_MAX_PAGES) return Promise.resolve();
+      const key = queue.shift();
+      return fetch('/' + (key === 'index' ? '' : key), { credentials:'same-origin' })
+        .then(r => (r.ok ? r.text() : Promise.reject()))
+        .then(html => {
+          const out = extractFromDoc(parser.parseFromString(html, 'text/html'), key);
+          pages.push(out.page);
+          out.links.forEach(enqueue);
+        })
+        .catch(() => {})
+        .then(() => new Promise(res => setTimeout(res, 30)))
+        .then(worker);
+    }
+    Promise.all([worker(), worker(), worker()]).then(() => {
+      SITE = { t: Date.now(), pages };
+      indexCurrentPage(); // re-merge live page on top
+      saveIndex();
+      INV = null;
+      crawling = false;
+    });
+  }
+
+  function ensureIndex() {
+    if (!SITE) SITE = loadIndexFromStorage();
+    indexCurrentPage();
+    const stale = !SITE || !SITE.t || (Date.now() - SITE.t > IDX_TTL) || SITE.pages.length < 6;
+    const saveData = navigator.connection && navigator.connection.saveData;
+    if (stale && !saveData) crawlSite();
+  }
+
+  // ── SITE SEARCH, fast local inverted-index retrieval ─────────────────────────
+  const FR_STOP = new Set(['les','des','une','est','que','qui','quoi','pour','avec','vous','nous','dans','comment','pourquoi','quel','quelle','quels','sont','avez','votre','vos','sur','pas','mais','plus','par','aux','ces','cette','tout','tous','etre','avoir','fait','faire','moi','mon','mes','elle','ils','elles','ete','suis']);
+  const AR_STOP = new Set(['في','من','على','إلى','عن','ما','هل','هذا','هذه','ذلك','التي','الذي','أن','إن','كان','كيف','لماذا','أين','متى','هو','هي','أنا','أنت','نحن','لكم','لكن','مع','بعد','قبل','عند','كل','أي']);
+
+  function tokenizeQ(s) {
+    return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .split(/[^a-z0-9؀-ۿ]+/)
+      .filter(w => w.length > 1 && !STOP_WORDS.has(w) && !FR_STOP.has(w) && !AR_STOP.has(w));
+  }
+
+  function buildINV() {
+    INV = new Map();
+    if (!SITE) return;
+    SITE.pages.forEach((p, pi) => p.blocks.forEach((b, bi) => {
+      new Set(tokenizeQ((b.h ? b.h + ' ' : '') + b.x)).forEach(tok => {
+        let a = INV.get(tok);
+        if (!a) { a = []; INV.set(tok, a); }
+        a.push([pi, bi]);
+      });
+    }));
+  }
+
+  function searchSite(query) {
+    if (!SITE) SITE = loadIndexFromStorage();
+    if (!SITE || !SITE.pages.length) return [];
+    if (!INV) buildINV();
+    const toks = [...new Set(tokenizeQ(query))].slice(0, 8);
+    if (!toks.length) return [];
+    const scores = new Map();
+    toks.forEach(tok => {
+      let posts = INV.get(tok);
+      if (!posts && tok.length >= 4) {           // prefix fallback for typos/partials
+        for (const [k, v] of INV) { if (k.startsWith(tok)) { posts = v; break; } }
+      }
+      if (!posts) return;
+      posts.forEach(([pi, bi]) => {
+        const key = pi + ':' + bi;
+        scores.set(key, (scores.get(key) || 0) + SITE.pages[pi].blocks[bi].w + 1);
+      });
+    });
+    const qlow = query.toLowerCase();
+    const cands = [...scores.entries()].sort((a, b) => b[1] - a[1]).slice(0, 40).map(([k, s]) => {
+      const [pi, bi] = k.split(':').map(Number);
+      const b = SITE.pages[pi].blocks[bi];
+      let sc = s;
+      const blow = (b.h + ' ' + b.x).toLowerCase();
+      for (let i = 0; i < toks.length - 1; i++) { if (blow.includes(toks[i] + ' ' + toks[i + 1])) sc += 6; }
+      if (qlow.length > 6 && blow.includes(qlow)) sc += 8;
+      return { pi, score: sc, page: SITE.pages[pi], block: b };
+    }).sort((a, b) => b.score - a.score);
+    const byPage = new Map();
+    cands.forEach(c => { const cur = byPage.get(c.pi); if (!cur || c.score > cur.score) byPage.set(c.pi, c); });
+    return [...byPage.values()].sort((a, b) => b.score - a.score).slice(0, 3);
+  }
+
+  const escAttr = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const shortTitle = t => String(t).split('|')[0].split(':')[0].trim().slice(0, 48) || 'Page';
+
+  function composeSiteAnswer(q, results, lng) {
+    const L = T[lng] || T.en;
+    const intro = L.foundIntro[(_introIdx++) % L.foundIntro.length](escAttr(q).slice(0, 80));
+    const best = results[0];
+    const sec = best.block.h && best.block.h !== best.block.x
+      ? `<strong>${escAttr(best.block.h)}</strong><br>` : '';
+    let html = intro + '<br><br>' + sec +
+      escAttr(best.block.x) + (best.block.x.length >= IDX_MAX_CHARS ? '…' : '') + '<br><br>';
+    if (lng !== 'en' && L.note) html += `<span style="font-size:.78rem;color:#64748b;">${L.note}</span><br><br>`;
+    html += `${L.readMore} <a class="tih-src" href="/${escAttr(best.page.u)}">📄 ${escAttr(shortTitle(best.page.t))}</a>`;
+    if (results.length > 1) {
+      html += `<br>${L.also} ` + results.slice(1).map(r =>
+        `<a class="tih-src" href="/${escAttr(r.page.u)}">📄 ${escAttr(shortTitle(r.page.t))}</a>`).join(' ');
+    }
+    return html;
+  }
+
+  // ── CONVERSATION HISTORY (persistent) ────────────────────────────────────────
+  const HIST_KEY = 'tih_chat_hist_v1', HIST_MAX = 60;
+  let HIST = [];
+  try { HIST = JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); if (!Array.isArray(HIST)) HIST = []; } catch (e) { HIST = []; }
+  function histPush(w, h) {
+    HIST.push({ w, h, t: Date.now() });
+    if (HIST.length > HIST_MAX) HIST = HIST.slice(-HIST_MAX);
+    try { localStorage.setItem(HIST_KEY, JSON.stringify(HIST)); } catch (e) {}
+  }
+  function histClear() {
+    HIST = [];
+    try { localStorage.removeItem(HIST_KEY); } catch (e) {}
   }
 
   // ── DOM ───────────────────────────────────────────────────────────────────────
@@ -1729,9 +2126,10 @@ Or choose a topic below:`;
       <div class="tih-hdr-av"><img src="${LOGO_URL}" alt="TIH" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span style="display:none">TI</span></div>
       <div class="tih-hdr-info">
         <div class="tih-hdr-name">TIH Assistant</div>
-        <div class="tih-hdr-status">Online, Ready to help</div>
+        <div class="tih-hdr-status" id="tih-hdr-status">Online, Ready to help</div>
       </div>
       <div class="tih-hdr-btns">
+        <button class="tih-hdr-btn" id="tih-lang-btn" title="Language" aria-label="Change language">🌐 EN</button>
         <button class="tih-hdr-btn" id="tih-clear-btn" title="Clear chat" aria-label="Clear chat">🗑</button>
         <button class="tih-hdr-btn" id="tih-close-btn" aria-label="Close chat">✕</button>
       </div>
@@ -1740,6 +2138,9 @@ Or choose a topic below:`;
     <div class="tih-msgs" id="tih-msgs" aria-live="polite"></div>
     <div class="tih-foot">
       <input class="tih-inp" id="tih-inp" type="text" placeholder="Ask me anything about TIH…" autocomplete="off" maxlength="300" />
+      <button id="tih-mic" aria-label="Voice input" title="Voice input">
+        <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.31 6-6.72h-1.7z"/></svg>
+      </button>
       <button class="tih-send" id="tih-send" aria-label="Send message">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
       </button>
@@ -1764,33 +2165,73 @@ Or choose a topic below:`;
     return d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
   }
 
-  function botMsg(html, qrs) {
+  const AV_HTML = `<div class="tih-av bot"><img src="${LOGO_URL}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span style="display:none">TI</span></div>`;
+
+  // Typewriter effect: reveals the reply word by word, keeping HTML intact.
+  let _reduceMotion = false;
+  try { _reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  function streamInto(el, html, done) {
+    if (_reduceMotion || html.length > 4500) { el.innerHTML = html; if (done) done(); return; }
+    const parts = html.split(/(<[^>]+>|\s+)/).filter(Boolean);
+    let i = 0, acc = '';
+    el.classList.add('tih-stream');
+    (function step() {
+      let words = 0;
+      while (i < parts.length && words < 3) {
+        const p = parts[i++];
+        acc += p;
+        if (!/^\s+$/.test(p) && p[0] !== '<') words++;
+      }
+      el.innerHTML = acc;
+      scroll();
+      if (i < parts.length) setTimeout(step, 24);
+      else { el.classList.remove('tih-stream'); if (done) done(); }
+    })();
+  }
+
+  // qrs items: plain string (routed through onQR) or {l:label, fn:action}.
+  function botMsg(html, qrs, opts) {
+    opts = opts || {};
     const wrap = document.createElement('div');
     wrap.style.display = 'contents';
 
     const row = document.createElement('div');
     row.className = 'tih-row bot';
-    row.innerHTML = `<div class="tih-av bot"><img src="${LOGO_URL}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span style="display:none">TI</span></div><div class="tih-bub">${html}</div>`;
+    row.innerHTML = `${AV_HTML}<div class="tih-bub"></div>`;
     wrap.appendChild(row);
+    const bub = row.querySelector('.tih-bub');
 
     const tsEl = document.createElement('div');
     tsEl.className = 'tih-ts';
     tsEl.textContent = timeStr();
     wrap.appendChild(tsEl);
-
-    if (qrs && qrs.length) {
-      const bar = document.createElement('div');
-      bar.className = 'tih-qrs';
-      qrs.forEach(label => {
-        const b = document.createElement('button');
-        b.className = 'tih-qr'; b.textContent = label;
-        b.addEventListener('click', () => { bar.remove(); onQR(label); });
-        bar.appendChild(b);
-      });
-      wrap.appendChild(bar);
-    }
     msgsEl.appendChild(wrap);
     scroll();
+
+    const finish = () => {
+      if (qrs && qrs.length) {
+        const bar = document.createElement('div');
+        bar.className = 'tih-qrs';
+        qrs.forEach(item => {
+          const isObj = item && typeof item === 'object';
+          const label = isObj ? item.l : item;
+          const b = document.createElement('button');
+          b.className = 'tih-qr'; b.textContent = label;
+          b.addEventListener('click', () => {
+            bar.remove();
+            if (isObj) { userMsg(label); type(500, item.fn); }
+            else onQR(label);
+          });
+          bar.appendChild(b);
+        });
+        wrap.appendChild(bar);
+        scroll();
+      }
+    };
+
+    if (opts.stream === false) { bub.innerHTML = html; finish(); }
+    else streamInto(bub, html, finish);
+    if (opts.save !== false) histPush('b', html);
   }
 
   function userMsg(text) {
@@ -1806,6 +2247,32 @@ Or choose a topic below:`;
     wrap.appendChild(tsEl);
     msgsEl.appendChild(wrap);
     scroll();
+    histPush('u', esc(text));
+  }
+
+  // Suggested-question chips for the active language.
+  function suggestedChips(excludeId) {
+    if (lang === 'en') return getPageCtx().qr;
+    return (SUGG[lang] || []).filter(c => c.intent !== excludeId).map(c => ({
+      l: c.l,
+      fn: () => {
+        const e = (LKB[lang] || []).find(x => x.id === c.intent);
+        if (e) botMsg(e.reply, suggestedChips(e.id));
+      }
+    }));
+  }
+
+  // Apply a language across the widget (placeholder, status, direction, labels).
+  function setLang(l) {
+    if (!T[l]) l = 'en';
+    lang = l;
+    try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
+    const L = T[l];
+    chatWin.setAttribute('dir', L.dir);
+    inpEl.placeholder = L.placeholder;
+    const st = document.getElementById('tih-hdr-status'); if (st) st.textContent = L.status;
+    const lb = document.getElementById('tih-lang-btn');   if (lb) { lb.textContent = '🌐 ' + L.flag; lb.title = L.langTitle; }
+    const mic = document.getElementById('tih-mic');       if (mic) mic.title = L.micTitle;
   }
 
   function type(delay, cb) {
@@ -1827,15 +2294,32 @@ Or choose a topic below:`;
   }
 
   // ── Open / Close ───────────────────────────────────────────────────────────────
+  function restoreHistory() {
+    divider(T[lang].earlier);
+    HIST.forEach(m => {
+      const row = document.createElement('div');
+      row.className = 'tih-row ' + (m.w === 'b' ? 'bot' : 'user');
+      row.innerHTML = m.w === 'b' ? `${AV_HTML}<div class="tih-bub">${m.h}</div>` : `<div class="tih-bub">${m.h}</div>`;
+      msgsEl.appendChild(row);
+    });
+    scroll();
+    type(500, () => botMsg(T[lang].welcomeBack, suggestedChips(), { save:false, stream:false }));
+  }
+
   function openChat() {
     chatWin.classList.add('open');
     document.getElementById('tih-chat-badge').style.display = 'none';
+    ensureIndex(); // keep the site index warm & fresh
     if (!msgsEl.children.length) {
-      divider('Today');
-      buildPageIndex(); // pre-build index while user reads greeting
-      const pageCtx = getPageCtx();
-      const greeting = buildWelcome(pageCtx);
-      type(800, () => { botMsg(greeting, pageCtx.qr); });
+      if (HIST.length) { restoreHistory(); }
+      else {
+        divider(T[lang].today);
+        buildPageIndex(); // pre-build current-page index while user reads greeting
+        const pageCtx = getPageCtx();
+        const localGreet = lang !== 'en' && (LKB[lang] || []).find(x => x.id === 'greet');
+        const greeting = localGreet ? localGreet.reply : buildWelcome(pageCtx);
+        type(800, () => { botMsg(greeting, suggestedChips(), { save:false }); });
+      }
     }
     setTimeout(() => inpEl.focus(), 280);
   }
@@ -1912,9 +2396,20 @@ Or choose a topic below:`;
   document.getElementById('tih-clear-btn').addEventListener('click', () => {
     msgsEl.innerHTML = '';
     flow = null;
-    divider('Today');
+    histClear();
+    divider(T[lang].today);
     const pageCtx = getPageCtx();
-    type(600, () => botMsg(buildWelcome(pageCtx), pageCtx.qr));
+    const localGreet = lang !== 'en' && (LKB[lang] || []).find(x => x.id === 'greet');
+    type(600, () => botMsg(localGreet ? localGreet.reply : buildWelcome(pageCtx), suggestedChips(), { save:false }));
+  });
+
+  // ── Language switch (EN → FR → AR) ──────────────────────────────────────────
+  document.getElementById('tih-lang-btn').addEventListener('click', () => {
+    const order = ['en', 'fr', 'ar'];
+    setLang(order[(order.indexOf(lang) + 1) % order.length]);
+    if (chatWin.classList.contains('open')) {
+      type(350, () => botMsg(T[lang].langSet, suggestedChips(), { save:false, stream:false }));
+    }
   });
 
   // ── Quick-reply routing ───────────────────────────────────────────────────────
@@ -2120,6 +2615,25 @@ Our team is ready to answer any question you have!<br><br>
     if (flow) { userMsg(text); return; }
     userMsg(text);
 
+    // Detect the visitor's language and reply in it (EN / FR / AR).
+    const msgLang = detectLang(text);
+    if (msgLang !== lang) setLang(msgLang);
+
+    // French / Arabic: localized intents → site-wide search → localized fallback.
+    if (msgLang !== 'en') {
+      const le = matchLocal(text, msgLang);
+      type(Math.min(500 + text.length * 8, 1200), () => {
+        if (le) { botMsg(le.reply, suggestedChips(le.id)); return; }
+        const res = searchSite(text);
+        if (res.length && res[0].score >= 5) {
+          botMsg(composeSiteAnswer(text, res, msgLang), suggestedChips());
+          return;
+        }
+        botMsg(T[msgLang].noResult(escAttr(text).slice(0, 80)) + '<br><br>' + T[msgLang].contactBlock, suggestedChips());
+      });
+      return;
+    }
+
     // Check for "what is on this page" intent
     const tLow = text.toLowerCase();
     const isPageQuery = tLow.includes('this page') || tLow.includes('on this page') || tLow.includes('what is here') ||
@@ -2142,36 +2656,89 @@ Our team is ready to answer any question you have!<br><br>
       }
     }
 
-    const { confidence, entry } = findBestMatch(text);
+    const { confidence, entry, score: kbScore } = findBestMatch(text);
     const delay = Math.min(600 + text.length * 10, 1400);
 
     type(delay, () => {
-      if (confidence === 'high' && entry.reply) {
+      // Site-wide search over the auto-built index of every page.
+      const res = searchSite(text);
+      const strong = res.length && res[0].score >= 6;
+      const siteVeryStrong = res.length && res[0].score >= 10;
+      // Curated answers win, unless the keyword match is thin and the site
+      // index has a clearly stronger, more specific answer.
+      if (confidence === 'high' && entry.reply && !(kbScore < 6 && siteVeryStrong)) {
         botMsg(entry.reply, entry.qr);
-      } else if (confidence === 'medium' && entry.reply) {
+        return;
+      }
+      if (confidence === 'medium' && entry.reply && !strong) {
         const note = `<span style="font-size:.78rem;color:#64748b;display:block;margin-top:8px;border-top:1px solid #e2e8f0;padding-top:6px;">💡 Not exactly what you needed? <a href="https://wa.me/231880559227" target="_blank" style="color:#002868;font-weight:700;">WhatsApp us</a> for a precise answer.</span>`;
         const qrs = [...(entry.qr || [])];
         if (!qrs.includes('💬 Talk to Human')) qrs.push('💬 Talk to Human');
         botMsg(entry.reply + note, qrs);
+        return;
+      }
+      if (res.length && res[0].score >= 5) {
+        botMsg(composeSiteAnswer(text, res, 'en'), getPageCtx().qr);
+        return;
+      }
+      if (confidence === 'medium' && entry.reply) {
+        botMsg(entry.reply, entry.qr);
+        return;
+      }
+      // Current-page content as a last resort before the human fallback.
+      const hits = searchPage(text);
+      if (hits.length) {
+        const pageAnswer = hits.map(h => {
+          const sec = h.section && h.section !== h.text ? `<strong>${esc(h.section)}:</strong> ` : '';
+          return `• ${sec}${esc(h.text.slice(0,200))}${h.text.length>200?'…':''}`;
+        }).join('<br><br>');
+        botMsg(`📄 <strong>From this page:</strong><br><br>${pageAnswer}` +
+          `<br><br><span style="font-size:.78rem;color:#64748b;">Need more help? <a href="https://wa.me/231880559227" target="_blank" style="color:#002868;font-weight:700;">WhatsApp us</a></span>`,
+          getPageCtx().qr);
       } else {
-        // Try page content as last resort
-        const hits = searchPage(text);
-        if (hits.length) {
-          const pageAnswer = hits.map(h => {
-            const sec = h.section && h.section !== h.text ? `<strong>${esc(h.section)}:</strong> ` : '';
-            return `• ${sec}${esc(h.text.slice(0,200))}${h.text.length>200?'…':''}`;
-          }).join('<br><br>');
-          botMsg(`📄 <strong>From this page:</strong><br><br>${pageAnswer}` +
-            `<br><br><span style="font-size:.78rem;color:#64748b;">Need more help? <a href="https://wa.me/231880559227" target="_blank" style="color:#002868;font-weight:700;">WhatsApp us</a></span>`,
-            getPageCtx().qr);
-        } else {
-          botMsg(smartFallback(text), ['🎓 Scholarships','📚 IELTS/TOEFL','🏥 Healthcare','💻 Software','💬 Talk to Human','📞 Contact Info']);
-        }
+        botMsg(smartFallback(text), ['🎓 Scholarships','📚 IELTS/TOEFL','🏥 Healthcare','💻 Software','💬 Talk to Human','📞 Contact Info']);
       }
     });
   }
 
   sendEl.addEventListener('click', send);
   inpEl.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
+
+  // ── Voice input (browser speech recognition, no external service) ────────────
+  (function () {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const mic = document.getElementById('tih-mic');
+    if (!mic) return;
+    if (!SR) { mic.style.display = 'none'; return; }
+    let rec = null, on = false;
+    mic.addEventListener('click', () => {
+      if (on) { try { rec.stop(); } catch (e) {} return; }
+      rec = new SR();
+      rec.lang = T[lang].voice;
+      rec.interimResults = false;
+      rec.maxAlternatives = 1;
+      on = true;
+      mic.classList.add('on');
+      inpEl.placeholder = T[lang].listening;
+      rec.onresult = e => { inpEl.value = (e.results[0][0].transcript || '').trim(); };
+      rec.onend = () => {
+        on = false;
+        mic.classList.remove('on');
+        inpEl.placeholder = T[lang].placeholder;
+        if (inpEl.value.trim()) send();
+      };
+      rec.onerror = () => {
+        on = false;
+        mic.classList.remove('on');
+        inpEl.placeholder = T[lang].placeholder;
+      };
+      try { rec.start(); } catch (e) { on = false; mic.classList.remove('on'); }
+    });
+  })();
+
+  // ── Init: apply saved language, warm the site index in the background ───────
+  setLang(lang);
+  if (document.readyState === 'complete') setTimeout(ensureIndex, 2500);
+  else window.addEventListener('load', () => setTimeout(ensureIndex, 2500));
 
 })();
