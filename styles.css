@@ -1621,8 +1621,8 @@ textarea {
   z-index: 1000;
 }
 
-/* Floating spoken-welcome control (main.js → buildAudioControl): replay / mute,
-   stacked just above the WhatsApp button on the right edge. */
+/* Floating spoken-welcome control (main.js → buildAudioControl): a single
+   play/stop button just above the WhatsApp button on the right edge. */
 .tih-audio-ctl {
   position: fixed;
   right: 24px;
@@ -1648,6 +1648,9 @@ textarea {
   transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
 }
 .tih-audio-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(11,31,58,.22); }
+/* Single play/stop toggle: red Play when idle, blue Stop while speaking. */
+.tih-audio-toggle { color: var(--brand-red, #E31E24); }
+.tih-audio-toggle.is-playing { color: var(--brand-blue, #002868); background: #eef4ff; border-color: #cfe0fb; }
 .tih-audio-replay { color: var(--brand-red, #E31E24); }
 .tih-audio-mute.is-muted { background: #fff0f0; color: #c31419; border-color: #f6c6c8; }
 @media (max-width: 680px) {
