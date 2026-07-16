@@ -17,7 +17,7 @@ const newsPosts = [
     title: 'IELTS Mock Exam Certificate Request System Launched',
     date: 'March 8, 2026',
     category: 'Learning Hub',
-    summary: 'Students who complete IELTS mock exams can now request certificate processing through the new dedicated certificate workflow.',
+    summary: 'Students who complete IELTS mock exams can now request certificate processing through the new dedicated certificate workflow. On the TIH Learning Hub, every course provides a verified certificate after completion.',
     href: 'news-ielts-certificate-system',
     image: 'https://i.ibb.co/cK8tRmqb/file-00000000ea6c71f4be003abaad44bbd5.png',
     imageAlt: 'IELTS Mock Exam Certificate Request System Launched'
