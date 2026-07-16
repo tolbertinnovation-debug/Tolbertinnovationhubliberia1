@@ -4661,3 +4661,311 @@ console.log('[WASSCE-DATA] Loaded ' + Object.keys(window.WASSCE_SUBJECTS).length
     S.biology.totalTopics = S.biology.topics.length;
   }
 })();
+
+
+/* ============================================================
+   WASSCE full-course completion, Mathematics.
+   Appends additional fully-built topics (notes, video, key points,
+   formulas, exam tips, common mistakes, 10 MCQs, theory) so the
+   subject covers the complete WASSCE Core Mathematics syllabus.
+   Self-contained; safe no-op if the subject is missing.
+   ============================================================ */
+(function () {
+  var S = (typeof window !== 'undefined') && window.WASSCE_SUBJECTS;
+  if (!S || !S.mathematics || !Array.isArray(S.mathematics.topics)) return;
+
+  var moreMaths = [
+    {
+      id: 'indices_logarithms_surds',
+      videoId: 'FWSvBEKlt7Y',
+      name: 'Indices, Logarithms & Surds',
+      icon: '🔢',
+      lessonNotes:
+        '<h4>Indices (Powers)</h4>' +
+        '<p>An <strong>index</strong> (plural: indices) tells how many times a number (the base) multiplies itself: in <em>a<sup>m</sup></em>, <em>a</em> is the base and <em>m</em> is the index. The <strong>laws of indices</strong> must be memorised:</p>' +
+        '<ul>' +
+        '<li>a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup> (add indices when multiplying)</li>' +
+        '<li>a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m−n</sup> (subtract when dividing)</li>' +
+        '<li>(a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup></li>' +
+        '<li>a<sup>0</sup> = 1 (any non-zero number to power 0 is 1)</li>' +
+        '<li>a<sup>−n</sup> = 1/a<sup>n</sup> (a negative index means reciprocal)</li>' +
+        '<li>a<sup>1/n</sup> = <sup>n</sup>√a and a<sup>m/n</sup> = (<sup>n</sup>√a)<sup>m</sup></li>' +
+        '</ul>' +
+        '<p><em>Example:</em> Simplify 2<sup>3</sup> × 2<sup>4</sup> = 2<sup>7</sup> = 128. And 27<sup>2/3</sup> = (<sup>3</sup>√27)<sup>2</sup> = 3<sup>2</sup> = 9.</p>' +
+        '<h4>Logarithms</h4>' +
+        '<p>A <strong>logarithm</strong> is the inverse of an index. The statement <em>log<sub>a</sub>b = c</em> means exactly the same as <em>a<sup>c</sup> = b</em>. For example, log<sub>2</sub>8 = 3 because 2<sup>3</sup> = 8. The <strong>laws of logarithms</strong> are:</p>' +
+        '<ul>' +
+        '<li>log(MN) = log M + log N</li>' +
+        '<li>log(M/N) = log M − log N</li>' +
+        '<li>log(M<sup>n</sup>) = n log M</li>' +
+        '<li>log<sub>a</sub>a = 1 and log<sub>a</sub>1 = 0</li>' +
+        '</ul>' +
+        '<p><em>Example:</em> log 6 + log 5 − log 3 = log(6×5÷3) = log 10 = 1 (in base 10).</p>' +
+        '<h4>Surds</h4>' +
+        '<p>A <strong>surd</strong> is a root that cannot be simplified to a whole number, such as √2 or √3; it is an irrational number left in root form. Rules:</p>' +
+        '<ul>' +
+        '<li>√a × √b = √(ab), e.g., √2 × √8 = √16 = 4</li>' +
+        '<li>√a ÷ √b = √(a/b)</li>' +
+        '<li>Like surds add/subtract: 3√5 + 2√5 = 5√5</li>' +
+        '<li><strong>Rationalising:</strong> remove a surd from the denominator by multiplying top and bottom by it, e.g., 1/√2 = √2/2.</li>' +
+        '</ul>' +
+        '<p>Simplify surds by taking out perfect-square factors: √50 = √(25×2) = 5√2.</p>',
+      keyPoints: [
+        'Multiplying powers of the same base: add indices; dividing: subtract indices.',
+        'a⁰ = 1, a⁻ⁿ = 1/aⁿ, and a^(m/n) = (ⁿ√a)^m.',
+        'logₐb = c means aᶜ = b; logs are the inverse of indices.',
+        'log(MN)=logM+logN; log(M/N)=logM−logN; log(Mⁿ)=n·logM.',
+        'A surd is an irrational root left in √ form; √a × √b = √(ab).',
+        'Simplify surds using perfect-square factors (√50 = 5√2) and rationalise surd denominators.'
+      ],
+      formulas: [
+        'aᵐ × aⁿ = aᵐ⁺ⁿ ; aᵐ ÷ aⁿ = aᵐ⁻ⁿ ; (aᵐ)ⁿ = aᵐⁿ',
+        'a⁰ = 1 ; a⁻ⁿ = 1/aⁿ ; a^(m/n) = (ⁿ√a)^m',
+        'logₐb = c ⇔ aᶜ = b ; log(MN)=logM+logN ; log(Mⁿ)=n·logM',
+        '√a×√b=√(ab) ; rationalise: 1/√a = √a/a'
+      ],
+      examTips: [
+        'Convert every log question back to index form (aᶜ=b) if you get stuck, it always works.',
+        'Always simplify a surd fully (take out perfect squares) before giving your final answer.',
+        'Rationalise the denominator, WASSCE marks a surd answer wrong if a root is left below the line.',
+        'Learn that log 10 = 1 and log 1 = 0 (base 10) to shortcut objective questions.'
+      ],
+      commonMistakes: [
+        'Adding indices when dividing (should subtract) or vice versa.',
+        'Writing a⁰ = 0, it equals 1 for any non-zero a.',
+        'Adding unlike surds (√2 + √3 ≠ √5), only LIKE surds combine.',
+        'Forgetting to rationalise the denominator in the final surd answer.'
+      ],
+      mcq: [
+        { q: 'Simplify 3⁴ × 3².', options: ['A. 3⁶', 'B. 3⁸', 'C. 9⁶', 'D. 3²'], answer: 0, explanation: 'Same base multiplied: add indices, 3⁴×3² = 3⁴⁺² = 3⁶.' },
+        { q: 'Evaluate 5⁰.', options: ['A. 0', 'B. 1', 'C. 5', 'D. undefined'], answer: 1, explanation: 'Any non-zero number raised to power 0 equals 1.' },
+        { q: 'Express 2⁻³ as a fraction.', options: ['A. −8', 'B. −6', 'C. 1/8', 'D. 1/6'], answer: 2, explanation: 'A negative index means reciprocal: 2⁻³ = 1/2³ = 1/8.' },
+        { q: 'Evaluate 27^(2/3).', options: ['A. 6', 'B. 9', 'C. 18', 'D. 3'], answer: 1, explanation: '27^(2/3) = (³√27)² = 3² = 9.' },
+        { q: 'If log₂ x = 4, then x =', options: ['A. 6', 'B. 8', 'C. 16', 'D. 32'], answer: 2, explanation: 'log₂x = 4 means 2⁴ = x, so x = 16.' },
+        { q: 'Simplify log 8 + log 5 − log 4 (base 10).', options: ['A. 1', 'B. 2', 'C. log 9', 'D. 10'], answer: 0, explanation: 'log(8×5÷4) = log 10 = 1.' },
+        { q: 'Simplify √72.', options: ['A. 6√2', 'B. 8√3', 'C. 36√2', 'D. 2√6'], answer: 0, explanation: '√72 = √(36×2) = 6√2.' },
+        { q: 'Simplify 2√3 + 5√3.', options: ['A. 7√6', 'B. 10√3', 'C. 7√3', 'D. 7'], answer: 2, explanation: 'Like surds add: (2+5)√3 = 7√3.' },
+        { q: 'Rationalise 6/√3.', options: ['A. 2√3', 'B. 6√3', 'C. √3/6', 'D. 3√6'], answer: 0, explanation: '6/√3 × √3/√3 = 6√3/3 = 2√3.' },
+        { q: 'The value of log₅ 1 is:', options: ['A. 5', 'B. 1', 'C. 0', 'D. undefined'], answer: 2, explanation: 'logₐ1 = 0 for any base, because a⁰ = 1.' }
+      ],
+      theory: [
+        { question: 'Simplify (a) 2⁵ × 2⁻² ÷ 2³ (b) 16^(3/4).', marks: 8, answer: '<p>(a) Using the laws of indices, add and subtract indices of the same base:<br>2⁵ × 2⁻² ÷ 2³ = 2^(5 + (−2) − 3) = 2⁰ = <strong>1</strong>.</p><p>(b) 16^(3/4) = (⁴√16)³ = 2³ = <strong>8</strong>.</p>', markingGuide: '(a) Correct combination of indices to 2⁰ = 4 marks (method 2, answer 2). (b) Correct root then power to 8 = 4 marks. Total = 8 marks.' },
+        { question: 'Given that log 2 = 0.301 and log 3 = 0.477, find, without tables, the value of log 12.', marks: 8, answer: '<p>12 = 2² × 3, so:<br>log 12 = log(2² × 3) = log 2² + log 3 = 2 log 2 + log 3.<br>= 2(0.301) + 0.477 = 0.602 + 0.477 = <strong>1.079</strong>.</p>', markingGuide: 'Expressing 12 as 2²×3 = 2 marks. Applying log laws (2log2 + log3) = 3 marks. Correct substitution and answer 1.079 = 3 marks. Total = 8 marks.' }
+      ]
+    },
+    {
+      id: 'trigonometry_bearings',
+      videoId: '4QCChDZt9bA',
+      name: 'Trigonometry & Bearings',
+      icon: '📐',
+      lessonNotes:
+        '<h4>Trigonometric Ratios (Right-Angled Triangles)</h4>' +
+        '<p><strong>Trigonometry</strong> relates the angles of a triangle to the lengths of its sides. For a right-angled triangle, remember <strong>SOH CAH TOA</strong>:</p>' +
+        '<ul>' +
+        '<li><strong>sin θ = Opposite / Hypotenuse</strong></li>' +
+        '<li><strong>cos θ = Adjacent / Hypotenuse</strong></li>' +
+        '<li><strong>tan θ = Opposite / Adjacent</strong></li>' +
+        '</ul>' +
+        '<p>The <em>hypotenuse</em> is the longest side (opposite the right angle). <em>Opposite</em> and <em>adjacent</em> are named relative to the angle θ you are using.</p>' +
+        '<h4>Special Angles</h4>' +
+        '<p>You should know the exact ratios for 30°, 45° and 60° (e.g., sin 30° = ½, cos 60° = ½, tan 45° = 1, sin 60° = √3/2). These appear frequently and save time.</p>' +
+        '<h4>The Sine Rule and Cosine Rule (Any Triangle)</h4>' +
+        '<p>For a triangle that is <em>not</em> right-angled, use:</p>' +
+        '<ul>' +
+        '<li><strong>Sine Rule:</strong> a/sin A = b/sin B = c/sin C. Use it when you have a side and its opposite angle plus one more piece.</li>' +
+        '<li><strong>Cosine Rule:</strong> a² = b² + c² − 2bc·cos A. Use it for two sides and the included angle, or all three sides.</li>' +
+        '<li><strong>Area of a triangle:</strong> Area = ½·b·c·sin A.</li>' +
+        '</ul>' +
+        '<h4>Angles of Elevation and Depression</h4>' +
+        '<p>The <strong>angle of elevation</strong> is measured upward from the horizontal to an object above; the <strong>angle of depression</strong> is measured downward from the horizontal to an object below. These two angles are equal (alternate angles).</p>' +
+        '<h4>Bearings</h4>' +
+        '<p>A <strong>bearing</strong> gives direction. It is measured <strong>clockwise from the North</strong> and always written with <strong>three digits</strong> (e.g., 045°, 210°). North is 000°/360°, East 090°, South 180°, West 270°. In bearing problems, sketch the North lines at each point, mark the angles, then apply the sine or cosine rule to find distances or bearings.</p>' +
+        '<p><em>Tip:</em> The bearing of B from A and the bearing of A from B differ by 180°.</p>',
+      keyPoints: [
+        'SOH CAH TOA: sinθ=opp/hyp, cosθ=adj/hyp, tanθ=opp/adj (right-angled triangles).',
+        'Know exact ratios of 30°, 45°, 60° (e.g., tan45°=1, sin30°=½, sin60°=√3/2).',
+        'Sine Rule a/sinA=b/sinB=c/sinC; Cosine Rule a²=b²+c²−2bc·cosA for non-right triangles.',
+        'Area of a triangle = ½·b·c·sinA (two sides and included angle).',
+        'Angle of elevation (upward) and depression (downward) from the horizontal are equal.',
+        'Bearings: measured clockwise from North, three digits; bearing of B from A and A from B differ by 180°.'
+      ],
+      formulas: [
+        'sinθ=O/H, cosθ=A/H, tanθ=O/A ; Pythagoras: a²+b²=c²',
+        'Sine Rule: a/sinA = b/sinB = c/sinC',
+        'Cosine Rule: a² = b² + c² − 2bc·cosA',
+        'Area = ½·b·c·sinA ; bearings measured clockwise from North (3 digits)'
+      ],
+      examTips: [
+        'Always draw a clear, labelled diagram, most bearing marks are for a correct sketch with angles.',
+        'Choose the Sine Rule when an angle faces a known side; use the Cosine Rule for two sides + included angle.',
+        'Keep your calculator in DEGREE mode for WASSCE trigonometry.',
+        'For "bearing of A from B", stand at B, face North, and turn clockwise to A.'
+      ],
+      commonMistakes: [
+        'Mixing up opposite and adjacent sides for the angle in use.',
+        'Using the Sine Rule when the Cosine Rule is needed (or vice versa).',
+        'Writing a bearing with fewer than three digits (e.g., 45° instead of 045°).',
+        'Leaving the calculator in radian mode, giving wrong trig values.'
+      ],
+      mcq: [
+        { q: 'In a right-angled triangle, sin θ is defined as:', options: ['A. adjacent/hypotenuse', 'B. opposite/hypotenuse', 'C. opposite/adjacent', 'D. hypotenuse/opposite'], answer: 1, explanation: 'SOH: sine = Opposite ÷ Hypotenuse.' },
+        { q: 'The value of tan 45° is:', options: ['A. 0', 'B. ½', 'C. 1', 'D. √3'], answer: 2, explanation: 'tan 45° = 1 (opposite equals adjacent in a 45° right triangle).' },
+        { q: 'Which rule is best for a triangle given two sides and the included angle?', options: ['A. Sine rule', 'B. Cosine rule', 'C. Pythagoras only', 'D. Area rule'], answer: 1, explanation: 'The Cosine Rule a²=b²+c²−2bc·cosA is used for two sides and the angle between them.' },
+        { q: 'A bearing must be written with:', options: ['A. one digit', 'B. two digits', 'C. three digits', 'D. four digits'], answer: 2, explanation: 'Bearings are always given as three digits, e.g., 007°, 090°, 315°.' },
+        { q: 'The bearing due West is:', options: ['A. 090°', 'B. 180°', 'C. 270°', 'D. 360°'], answer: 2, explanation: 'Measured clockwise from North: East 090°, South 180°, West 270°.' },
+        { q: 'The angle of elevation of the top of a tree from a point is equal to the angle of ___ of the point from the top.', options: ['A. elevation', 'B. depression', 'C. reflection', 'D. rotation'], answer: 1, explanation: 'They are alternate angles, so the elevation equals the depression.' },
+        { q: 'In triangle ABC, if a = 8, b = 6 and angle C = 90°, find c.', options: ['A. 10', 'B. 14', 'C. 2', 'D. 48'], answer: 0, explanation: 'By Pythagoras c² = 8² + 6² = 64 + 36 = 100, so c = 10.' },
+        { q: 'The area of a triangle with sides b, c and included angle A is:', options: ['A. ½bc', 'B. ½bc·sinA', 'C. bc·cosA', 'D. ½(b+c)'], answer: 1, explanation: 'Area = ½·b·c·sinA.' },
+        { q: 'If the bearing of Q from P is 060°, the bearing of P from Q is:', options: ['A. 060°', 'B. 120°', 'C. 240°', 'D. 300°'], answer: 2, explanation: 'Reverse bearing differs by 180°: 060° + 180° = 240°.' },
+        { q: 'cos 60° equals:', options: ['A. ½', 'B. √3/2', 'C. 1', 'D. 0'], answer: 0, explanation: 'cos 60° = ½ (a standard special-angle value).' }
+      ],
+      theory: [
+        { question: 'A ladder 10 m long leans against a vertical wall, making an angle of 65° with the horizontal ground. Calculate, correct to 1 decimal place, how far up the wall the ladder reaches.', marks: 8, answer: '<p>The wall is vertical, so the height reached is the side <em>opposite</em> the 65° angle, and the ladder (10 m) is the hypotenuse. Use sine:</p><p>sin 65° = height / 10<br>height = 10 × sin 65° = 10 × 0.9063 = 9.063<br>Height ≈ <strong>9.1 m</strong>.</p>', markingGuide: 'Correct identification of sine ratio (opp/hyp) = 3 marks. Correct substitution height = 10 sin65° = 3 marks. Correct answer 9.1 m (1 d.p.) = 2 marks. Total = 8 marks.' },
+        { question: 'Two towns P and Q are such that Q is 12 km from P on a bearing of 050°. Town R is 9 km from P on a bearing of 140°. Calculate |QR|, correct to 1 decimal place.', marks: 10, answer: '<p>The angle QPR = 140° − 050° = 90° (angle between the two bearings at P). So triangle PQR is right-angled at P, with PQ = 12 km and PR = 9 km.</p><p>By Pythagoras: QR² = PQ² + PR² = 12² + 9² = 144 + 81 = 225.<br>QR = √225 = <strong>15.0 km</strong>.</p><p>(If the angle at P were not 90°, the Cosine Rule QR² = PQ² + PR² − 2·PQ·PR·cos P would be used.)</p>', markingGuide: 'Correct angle QPR = 90° from the bearings = 3 marks. Correct method (Pythagoras/Cosine Rule) = 3 marks. Correct substitution = 2 marks. Correct answer 15.0 km = 2 marks. Total = 10 marks.' }
+      ]
+    },
+    {
+      id: 'sets_venn_diagrams',
+      videoId: 'iKb4rO9Ps7I',
+      name: 'Sets & Venn Diagrams',
+      icon: '🔵',
+      lessonNotes:
+        '<h4>What Is a Set?</h4>' +
+        '<p>A <strong>set</strong> is a well-defined collection of distinct objects called <strong>elements/members</strong>. Sets are written in curly brackets, e.g., A = {2, 4, 6, 8}. The symbol <strong>∈</strong> means "is a member of" and <strong>∉</strong> means "is not a member of". The number of elements in set A is written <strong>n(A)</strong>.</p>' +
+        '<h4>Types and Notation</h4>' +
+        '<ul>' +
+        '<li><strong>Universal set (U or ξ):</strong> the set of all elements under consideration.</li>' +
+        '<li><strong>Empty/null set (∅ or { }):</strong> a set with no elements.</li>' +
+        '<li><strong>Subset (⊂):</strong> A ⊂ B means every element of A is also in B.</li>' +
+        '<li><strong>Union (A ∪ B):</strong> all elements in A OR B (or both).</li>' +
+        '<li><strong>Intersection (A ∩ B):</strong> elements in BOTH A AND B.</li>' +
+        '<li><strong>Complement (A′):</strong> elements in the universal set that are NOT in A.</li>' +
+        '</ul>' +
+        '<h4>The Key Counting Formula</h4>' +
+        '<p>For two sets: <strong>n(A ∪ B) = n(A) + n(B) − n(A ∩ B)</strong>. We subtract the intersection because the overlap was counted twice. This single formula solves most two-set word problems.</p>' +
+        '<p><em>Example:</em> In a class of 40, 25 study Maths, 20 study Physics and 10 study both. How many study Maths or Physics? n(M ∪ P) = 25 + 20 − 10 = 35. Those studying neither = 40 − 35 = 5.</p>' +
+        '<h4>Venn Diagrams</h4>' +
+        '<p>A <strong>Venn diagram</strong> shows sets as overlapping circles inside a rectangle (the universal set). To solve problems, <strong>fill in the intersection (middle) first</strong>, then work outwards. For three sets, start with the centre (A∩B∩C), then the pairwise overlaps, then the parts belonging to only one set, and finally the region outside all three.</p>' +
+        '<p><em>Strategy:</em> let unknown regions be <em>x</em>, form an equation using the total, and solve. Always check that every region adds up to n(U).</p>',
+      keyPoints: [
+        'A set is a collection of distinct elements; n(A) is the number of elements in A.',
+        'Union A∪B = in A or B; Intersection A∩B = in both; Complement A′ = not in A.',
+        'Two-set formula: n(A∪B) = n(A) + n(B) − n(A∩B).',
+        '"Neither" region = n(U) − n(A∪B).',
+        'To solve Venn problems, fill the intersection/centre FIRST, then work outward.',
+        'For three sets, use the centre (A∩B∩C), then pairwise overlaps, then single regions; regions must total n(U).'
+      ],
+      formulas: [
+        'n(A∪B) = n(A) + n(B) − n(A∩B)',
+        'n(only A) = n(A) − n(A∩B) (two sets)',
+        'Neither = n(U) − n(A∪B)',
+        'Three sets: total = sum of all 8 regions of the Venn diagram'
+      ],
+      examTips: [
+        'Draw the Venn diagram and fill the intersection first, it prevents double-counting.',
+        'Let an unknown region be x, build one equation from the total, and solve.',
+        'Read carefully: "only Maths" is different from "Maths" (which includes the overlap).',
+        'Always confirm all regions add up to the universal set before writing the final answer.'
+      ],
+      commonMistakes: [
+        'Forgetting to subtract the intersection, giving n(A∪B) = n(A)+n(B).',
+        'Confusing "only A" with "A" (the second includes those who also do B).',
+        'Placing numbers in the wrong region when filling a Venn diagram from the outside in.',
+        'Ignoring the "neither" region so the totals do not add up.'
+      ],
+      mcq: [
+        { q: 'If A = {1,2,3,4} and B = {3,4,5,6}, then A ∩ B is:', options: ['A. {1,2}', 'B. {3,4}', 'C. {5,6}', 'D. {1,2,3,4,5,6}'], answer: 1, explanation: 'The intersection is the elements common to both sets: {3,4}.' },
+        { q: 'If A = {1,2,3} and B = {3,4}, then A ∪ B is:', options: ['A. {3}', 'B. {1,2}', 'C. {1,2,3,4}', 'D. { }'], answer: 2, explanation: 'The union is all elements in either set (no repeats): {1,2,3,4}.' },
+        { q: 'The symbol ∅ represents:', options: ['A. the universal set', 'B. the empty set', 'C. a subset', 'D. intersection'], answer: 1, explanation: '∅ (or { }) is the empty/null set with no elements.' },
+        { q: 'For any two sets, n(A∪B) equals:', options: ['A. n(A)+n(B)', 'B. n(A)+n(B)−n(A∩B)', 'C. n(A)−n(B)', 'D. n(A)×n(B)'], answer: 1, explanation: 'We subtract the intersection because it was counted in both n(A) and n(B).' },
+        { q: 'In a group of 30, 18 like tea, 15 like coffee and 8 like both. How many like tea OR coffee?', options: ['A. 25', 'B. 33', 'C. 41', 'D. 23'], answer: 0, explanation: 'n(T∪C) = 18 + 15 − 8 = 25.' },
+        { q: 'Using the data above, how many like NEITHER tea nor coffee?', options: ['A. 8', 'B. 5', 'C. 0', 'D. 10'], answer: 1, explanation: 'Neither = total − (tea or coffee) = 30 − 25 = 5.' },
+        { q: 'A′ (complement of A) means the elements that are:', options: ['A. in A only', 'B. in both A and B', 'C. in U but not in A', 'D. in the empty set'], answer: 2, explanation: 'The complement A′ contains all universal-set elements not in A.' },
+        { q: 'How many elements are in "only A" if n(A)=20 and n(A∩B)=7?', options: ['A. 27', 'B. 13', 'C. 7', 'D. 20'], answer: 1, explanation: 'Only A = n(A) − n(A∩B) = 20 − 7 = 13.' },
+        { q: 'If A ⊂ B and n(A)=4, n(B)=9, then n(A∩B) is:', options: ['A. 4', 'B. 9', 'C. 13', 'D. 5'], answer: 0, explanation: 'If A is a subset of B, then A∩B = A, so n(A∩B) = n(A) = 4.' },
+        { q: 'When solving a two-set Venn problem, you should fill in ___ first.', options: ['A. the region outside both', 'B. the intersection', 'C. set A only', 'D. the universal set number'], answer: 1, explanation: 'Fill the intersection first, then work outward, to avoid double counting.' }
+      ],
+      theory: [
+        { question: 'In a class of 50 students, 30 offer Biology, 24 offer Chemistry and 6 offer neither subject. (a) Represent the information on a Venn diagram. (b) How many students offer BOTH subjects? (c) How many offer Biology only?', marks: 10, answer: '<p>(a) Draw two overlapping circles B and C inside a rectangle (U = 50). Let the number offering both be x. Then Biology only = 30 − x, Chemistry only = 24 − x, and 6 are outside both circles.</p><p>(b) Total offering at least one subject = 50 − 6 = 44. Using n(B∪C) = n(B)+n(C)−n(B∩C):<br>44 = 30 + 24 − x  →  44 = 54 − x  →  x = 54 − 44 = <strong>10</strong>. So 10 offer both subjects.</p><p>(c) Biology only = 30 − x = 30 − 10 = <strong>20 students</strong>.</p>', markingGuide: '(a) Correct Venn diagram with regions labelled (incl. 6 outside) = 3 marks. (b) Correct equation 44 = 54 − x and x = 10 = 4 marks. (c) Biology only = 20 = 3 marks. Total = 10 marks.' },
+        { question: 'Given U = {1,2,3,...,10}, A = {2,4,6,8,10} and B = {1,2,3,4,5}. Find (a) A∩B (b) A∪B (c) A′.', marks: 9, answer: '<p>(a) A∩B = elements in both = <strong>{2, 4}</strong>.</p><p>(b) A∪B = all elements in either = <strong>{1,2,3,4,5,6,8,10}</strong>.</p><p>(c) A′ = elements of U not in A = <strong>{1,3,5,7,9}</strong>.</p>', markingGuide: '(a) {2,4} = 3 marks. (b) {1,2,3,4,5,6,8,10} = 3 marks. (c) {1,3,5,7,9} = 3 marks. Total = 9 marks.' }
+      ]
+    },
+    {
+      id: 'sequences_variation_finance',
+      videoId: '-_myO_Lmdbw',
+      name: 'Sequences, Variation & Financial Maths',
+      icon: '📈',
+      lessonNotes:
+        '<h4>Sequences and Series</h4>' +
+        '<p>A <strong>sequence</strong> is a list of numbers in a definite order; a <strong>series</strong> is their sum. Two types are tested in WASSCE.</p>' +
+        '<p><strong>Arithmetic Progression (AP):</strong> each term differs from the previous by a fixed <em>common difference d</em> (e.g., 3, 7, 11, 15 …, d = 4).</p>' +
+        '<ul>' +
+        '<li>nth term: <strong>T<sub>n</sub> = a + (n − 1)d</strong></li>' +
+        '<li>sum of n terms: <strong>S<sub>n</sub> = n/2 [2a + (n − 1)d]</strong> = n/2 (a + l), where a = first term, l = last term.</li>' +
+        '</ul>' +
+        '<p><strong>Geometric Progression (GP):</strong> each term is the previous term multiplied by a fixed <em>common ratio r</em> (e.g., 2, 6, 18, 54 …, r = 3).</p>' +
+        '<ul>' +
+        '<li>nth term: <strong>T<sub>n</sub> = ar<sup>n−1</sup></strong></li>' +
+        '<li>sum of n terms: <strong>S<sub>n</sub> = a(r<sup>n</sup> − 1)/(r − 1)</strong></li>' +
+        '<li>sum to infinity (when |r| &lt; 1): <strong>S<sub>∞</sub> = a/(1 − r)</strong></li>' +
+        '</ul>' +
+        '<h4>Variation</h4>' +
+        '<p><strong>Variation</strong> describes how one quantity changes with another using a constant k:</p>' +
+        '<ul>' +
+        '<li><strong>Direct:</strong> y ∝ x, so y = kx (as x increases, y increases).</li>' +
+        '<li><strong>Inverse:</strong> y ∝ 1/x, so y = k/x (as x increases, y decreases).</li>' +
+        '<li><strong>Joint:</strong> y varies with two or more variables, e.g., y = kxz.</li>' +
+        '<li><strong>Partial:</strong> y = a + bx (a sum of a constant part and a varying part).</li>' +
+        '</ul>' +
+        '<p><em>Method:</em> write the equation with k, use the given values to find k, then use k to answer the question.</p>' +
+        '<h4>Financial Mathematics</h4>' +
+        '<p><strong>Simple Interest:</strong> I = (P × R × T)/100, where P = principal, R = rate % per year, T = time in years. The amount A = P + I.</p>' +
+        '<p><strong>Compound Interest:</strong> interest is added to the principal each period, so A = P(1 + R/100)<sup>n</sup>, where n = number of periods. Compound interest = A − P. Related ideas include depreciation A = P(1 − R/100)<sup>n</sup>, and everyday percentages such as discount, profit and loss.</p>',
+      keyPoints: [
+        'AP: common difference d; nth term Tₙ = a + (n−1)d; sum Sₙ = n/2[2a + (n−1)d].',
+        'GP: common ratio r; nth term Tₙ = arⁿ⁻¹; sum Sₙ = a(rⁿ−1)/(r−1).',
+        'GP sum to infinity S∞ = a/(1−r), valid only when |r| < 1.',
+        'Direct variation y = kx; inverse y = k/x; joint y = kxz; always find k first.',
+        'Simple Interest I = PRT/100; Amount = P + I.',
+        'Compound Interest amount A = P(1 + R/100)ⁿ; interest = A − P.'
+      ],
+      formulas: [
+        'AP: Tₙ = a + (n−1)d ; Sₙ = n/2[2a + (n−1)d]',
+        'GP: Tₙ = arⁿ⁻¹ ; Sₙ = a(rⁿ−1)/(r−1) ; S∞ = a/(1−r), |r|<1',
+        'Variation: y = kx (direct), y = k/x (inverse); find k, then solve',
+        'S.I. = PRT/100 ; C.I. amount A = P(1 + R/100)ⁿ'
+      ],
+      examTips: [
+        'First decide AP or GP: a constant DIFFERENCE means AP; a constant RATIO means GP.',
+        'For variation, always write the equation with k, substitute to find k, then answer.',
+        'For compound interest, use A = P(1+R/100)ⁿ and remember interest = A − P, not A.',
+        'Check whether the question wants the nth TERM or the SUM of terms, they use different formulas.'
+      ],
+      commonMistakes: [
+        'Using the AP formula for a GP (or vice versa) because the type was not identified.',
+        'Forgetting the "−1" in T_n = a + (n−1)d and T_n = ar^(n−1).',
+        'Giving the compound-interest AMOUNT when the INTEREST (A − P) is asked (or vice versa).',
+        'Not finding the constant k before answering a variation question.'
+      ],
+      mcq: [
+        { q: 'The 10th term of the AP 2, 5, 8, 11, … is:', options: ['A. 27', 'B. 29', 'C. 30', 'D. 32'], answer: 1, explanation: 'a=2, d=3. T₁₀ = 2 + (10−1)×3 = 2 + 27 = 29.' },
+        { q: 'In an AP, the common difference is the:', options: ['A. ratio of terms', 'B. difference between consecutive terms', 'C. first term', 'D. sum of terms'], answer: 1, explanation: 'AP has a constant difference between consecutive terms.' },
+        { q: 'The 5th term of the GP 3, 6, 12, … is:', options: ['A. 24', 'B. 48', 'C. 96', 'D. 15'], answer: 1, explanation: 'a=3, r=2. T₅ = 3 × 2⁴ = 3 × 16 = 48.' },
+        { q: 'The sum to infinity of a GP exists only when:', options: ['A. r > 1', 'B. |r| < 1', 'C. r = 1', 'D. r = 0'], answer: 1, explanation: 'S∞ = a/(1−r) converges only when the common ratio satisfies |r| < 1.' },
+        { q: 'If y varies directly as x and y = 12 when x = 3, then k is:', options: ['A. 4', 'B. 9', 'C. 36', 'D. 15'], answer: 0, explanation: 'y = kx → 12 = k×3 → k = 4.' },
+        { q: 'If y varies inversely as x, then:', options: ['A. y = kx', 'B. y = k/x', 'C. y = x/k', 'D. y = k + x'], answer: 1, explanation: 'Inverse variation: y = k/x.' },
+        { q: 'The simple interest on ₦20,000 at 5% per annum for 2 years is:', options: ['A. ₦1,000', 'B. ₦2,000', 'C. ₦5,000', 'D. ₦4,000'], answer: 1, explanation: 'I = PRT/100 = 20000×5×2/100 = ₦2,000.' },
+        { q: 'The amount on ₦10,000 at 10% per annum compound interest for 2 years is:', options: ['A. ₦12,000', 'B. ₦12,100', 'C. ₦11,000', 'D. ₦20,000'], answer: 1, explanation: 'A = 10000(1+10/100)² = 10000×1.21 = ₦12,100.' },
+        { q: 'The sum of the first 20 terms of the AP 1, 3, 5, … is:', options: ['A. 400', 'B. 380', 'C. 200', 'D. 441'], answer: 0, explanation: 'a=1, d=2. S₂₀ = 20/2[2(1)+(20−1)2] = 10[2+38] = 10×40 = 400.' },
+        { q: 'In the GP 16, 8, 4, …, the common ratio is:', options: ['A. 2', 'B. ½', 'C. −2', 'D. 4'], answer: 1, explanation: 'r = 8/16 = ½ (each term is half the previous).' }
+      ],
+      theory: [
+        { question: 'The 3rd term of an AP is 11 and the 7th term is 27. Find (a) the first term and common difference, (b) the sum of the first 15 terms.', marks: 10, answer: '<p>(a) T₃ = a + 2d = 11 …(i) and T₇ = a + 6d = 27 …(ii).<br>Subtract (i) from (ii): 4d = 16, so <strong>d = 4</strong>. Substitute into (i): a + 8 = 11, so <strong>a = 3</strong>.</p><p>(b) S₁₅ = 15/2[2a + (15−1)d] = 15/2[2(3) + 14(4)] = 15/2[6 + 56] = 15/2 × 62 = 15 × 31 = <strong>465</strong>.</p>', markingGuide: '(a) Two correct equations = 2 marks; solving d=4 and a=3 = 3 marks. (b) Correct sum formula and substitution = 3 marks; correct answer 465 = 2 marks. Total = 10 marks.' },
+        { question: 'A man invests ₦50,000 at 8% per annum. Calculate the interest earned after 3 years if the interest is (a) simple (b) compound (to the nearest naira).', marks: 10, answer: '<p>(a) Simple Interest = PRT/100 = 50000 × 8 × 3 / 100 = <strong>₦12,000</strong>.</p><p>(b) Compound: Amount A = P(1 + R/100)ⁿ = 50000(1 + 8/100)³ = 50000(1.08)³.<br>(1.08)³ = 1.259712, so A = 50000 × 1.259712 = ₦62,985.60.<br>Compound interest = A − P = 62,985.60 − 50,000 = <strong>₦12,986</strong> (to the nearest naira).</p>', markingGuide: '(a) Correct S.I. = ₦12,000 = 4 marks. (b) Correct compound amount using A=P(1+R/100)ⁿ = 3 marks; correct interest A−P ≈ ₦12,986 = 3 marks. Total = 10 marks.' }
+      ]
+    }
+  ];
+
+  S.mathematics.topics = S.mathematics.topics.concat(moreMaths);
+  S.mathematics.totalTopics = S.mathematics.topics.length;
+})();
