@@ -564,76 +564,159 @@
           margin-left: auto;
           margin-right: auto;
         }
+        /* ── Marketing value strip ───────────────────────────────── */
+        .value-strip {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 0.55rem;
+          max-width: 900px;
+          margin: 0 auto 2.25rem;
+        }
+        .value-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.82rem;
+          font-weight: 600;
+          color: #002868;
+          background: rgba(0,40,104,0.05);
+          border: 1px solid rgba(0,40,104,0.12);
+          border-radius: 999px;
+          padding: 0.45rem 0.9rem;
+        }
+        .value-badge span { font-size: 0.95rem; line-height: 1; }
+        .pricing-offer-banner {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+          text-align: center;
+          max-width: 760px;
+          margin: 0 auto 1.75rem;
+          padding: 0.8rem 1.25rem;
+          background: linear-gradient(90deg, rgba(227,30,36,0.08), rgba(0,40,104,0.08));
+          border: 1px dashed rgba(227,30,36,0.4);
+          border-radius: 10px;
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: #b91c1c;
+        }
+        .pricing-price s {
+          display: block;
+          font-size: 1rem;
+          font-weight: 500;
+          color: #9ca3af;
+          margin-bottom: 0.1rem;
+        }
+        .pricing-save {
+          display: inline-block;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: #15803d;
+          background: rgba(22,101,52,0.1);
+          border-radius: 6px;
+          padding: 0.15rem 0.5rem;
+          margin-top: 0.35rem;
+        }
+        .pricing-list li.pricing-highlight::before { content: '★'; color: #E31E24; }
+        .pricing-list li.pricing-highlight { font-weight: 600; color: #111827; }
       </style>
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">Pricing</p>
-          <h2>Service Packages</h2>
-          <p class="section-intro">Transparent, flexible pricing for Liberian businesses of all sizes. All projects include a free consultation.</p>
+          <h2>Website &amp; Software Packages</h2>
+          <p class="section-intro">One simple price gets your business online and growing, no hidden fees, no monthly surprises. Every package is a complete, ready-to-run digital solution built and managed for you.</p>
+        </div>
+
+        <div class="pricing-offer-banner">
+          🔥 Limited-Time Launch Offer, lock in these prices before they rise. Flexible payment plans available.
+        </div>
+
+        <!-- Marketing value strip: what EVERY package includes free -->
+        <div class="value-strip">
+          <div class="value-badge"><span>🌐</span> Free 1-Year Domain</div>
+          <div class="value-badge"><span>☁️</span> Free Hosting</div>
+          <div class="value-badge"><span>📈</span> Unlimited Traffic</div>
+          <div class="value-badge"><span>🔍</span> Listed on All Search Engines</div>
+          <div class="value-badge"><span>🔒</span> Top Security Protection</div>
+          <div class="value-badge"><span>✉️</span> Unlimited Professional Email</div>
+          <div class="value-badge"><span>🎓</span> Free Management Training</div>
         </div>
 
         <div class="pricing-grid">
 
-          <!-- Starter -->
+          <!-- Business Starter, $150 -->
           <div class="pricing-card reveal">
-            <h3 class="pricing-tier">Starter</h3>
-            <p class="pricing-subtitle">For small businesses and individuals</p>
-            <p class="pricing-price">$150 <span>starting from</span></p>
+            <h3 class="pricing-tier">Business Starter</h3>
+            <p class="pricing-subtitle">Get your business online, fast</p>
+            <p class="pricing-price"><s>$300</s>$150 <span>one-time</span></p>
+            <span class="pricing-save">Save 50% today</span>
             <hr class="pricing-divider" />
-            <p class="pricing-includes-label">Includes</p>
+            <p class="pricing-includes-label">Everything you need to launch</p>
             <ul class="pricing-list">
-              <li>Basic Business Website (up to 5 pages)</li>
-              <li>Mobile Responsive Design</li>
-              <li>Contact Form</li>
-              <li>WhatsApp Integration</li>
-              <li>30-day Support</li>
+              <li class="pricing-highlight">Professional Business Website</li>
+              <li>Free 1-Year Domain (.com / .org)</li>
+              <li>Free Hosting</li>
+              <li>Unlimited User Traffic</li>
+              <li>Listed on All Search Engines (SEO)</li>
+              <li>Top Security Protection (SSL &amp; firewall)</li>
+              <li>Unlimited Professional Email</li>
+              <li>Hands-on Management Training</li>
             </ul>
-            <div class="pricing-best-for"><strong>Best for:</strong> Small shops, freelancers, personal brands</div>
+            <div class="pricing-best-for"><strong>Best for:</strong> Shops, startups, churches, personal &amp; professional brands</div>
             <a class="pricing-btn-outline" href="#consultation-form">Get Started</a>
           </div>
 
-          <!-- Professional (Featured) -->
+          <!-- Business Growth, $200 (Featured) -->
           <div class="pricing-card pricing-card-featured reveal reveal-delay-1">
             <span class="pricing-popular-badge">Most Popular</span>
-            <h3 class="pricing-tier">Professional</h3>
-            <p class="pricing-subtitle">For growing businesses</p>
-            <p class="pricing-price">$400 <span>starting from</span></p>
+            <h3 class="pricing-tier">Business Growth</h3>
+            <p class="pricing-subtitle">Sell, teach &amp; manage online</p>
+            <p class="pricing-price"><s>$450</s>$200 <span>one-time</span></p>
+            <span class="pricing-save">Best value, save 55%</span>
             <hr class="pricing-divider" />
-            <p class="pricing-includes-label">Includes</p>
+            <p class="pricing-includes-label">Everything in Starter, plus</p>
             <ul class="pricing-list">
-              <li>Everything in Starter</li>
-              <li>Custom Web Application or Dashboard</li>
-              <li>Database Integration</li>
-              <li>Admin Panel</li>
-              <li>User Authentication</li>
-              <li>3-month Support</li>
+              <li class="pricing-highlight">Online Learning Platform</li>
+              <li class="pricing-highlight">Business Management Platform</li>
+              <li class="pricing-highlight">E-Commerce Website (online store)</li>
+              <li class="pricing-highlight">Payment Integration</li>
+              <li>Free 1-Year Domain, Hosting &amp; Unlimited Traffic</li>
+              <li>All Search Engines + Top Security</li>
+              <li>Unlimited Professional Email</li>
+              <li>Full Management Training</li>
             </ul>
-            <div class="pricing-best-for"><strong>Best for:</strong> Schools, NGOs, growing businesses</div>
+            <div class="pricing-best-for"><strong>Best for:</strong> Retailers, schools, academies, growing businesses</div>
             <a class="pricing-btn-primary" href="#consultation-form">Get Started</a>
           </div>
 
-          <!-- Enterprise -->
+          <!-- Complete Digital, $300 -->
           <div class="pricing-card reveal reveal-delay-2">
-            <h3 class="pricing-tier">Enterprise</h3>
-            <p class="pricing-subtitle">For institutions and large organizations</p>
-            <p class="pricing-price">Custom <span>quote</span></p>
+            <h3 class="pricing-tier">Complete Digital</h3>
+            <p class="pricing-subtitle">Web + mobile app, all-in-one</p>
+            <p class="pricing-price"><s>$650</s>$300 <span>one-time</span></p>
+            <span class="pricing-save">Complete package, save 54%</span>
             <hr class="pricing-divider" />
-            <p class="pricing-includes-label">Includes</p>
+            <p class="pricing-includes-label">Everything in Growth, plus</p>
             <ul class="pricing-list">
-              <li>Full Custom Software System</li>
-              <li>School Management / ERP</li>
-              <li>Multiple User Roles</li>
-              <li>API Integrations</li>
-              <li>Training &amp; Documentation</li>
-              <li>Ongoing Maintenance</li>
+              <li class="pricing-highlight">Database-Driven Website</li>
+              <li class="pricing-highlight">API Integration</li>
+              <li class="pricing-highlight">Mobile App Development</li>
+              <li>Online Learning &amp; Business Management Platforms</li>
+              <li>E-Commerce + Payment Integration</li>
+              <li>Free Domain, Hosting &amp; Unlimited Traffic</li>
+              <li>All Search Engines, Top Security &amp; Unlimited Email</li>
+              <li>Complete Management Training</li>
             </ul>
-            <div class="pricing-best-for"><strong>Best for:</strong> Government institutions, large NGOs, enterprises</div>
-            <a class="pricing-btn-outline" href="#consultation-form">Request Quote</a>
+            <div class="pricing-best-for"><strong>Best for:</strong> Institutions, large NGOs, enterprises &amp; tech startups</div>
+            <a class="pricing-btn-outline" href="#consultation-form">Get Started</a>
           </div>
 
         </div>
 
-        <p class="pricing-note">All prices are in USD. Payment plans available. Final cost depends on specific requirements discussed in consultation.</p>
+        <p class="pricing-note">All prices are in USD and one-time, no monthly fees. Flexible payment plans available. Need something custom or larger? We build tailored enterprise systems too, just <a href="#consultation-form" style="color:#002868;font-weight:600;">request a free consultation</a> and we'll quote your exact requirements.</p>
       </div>
     </section>
 
@@ -858,7 +941,7 @@
     </div>
   </footer>
   <script src="main.js?v=13"></script>
-<script src="chatbot.js?v=4"></script>
+<script src="chatbot.js?v=5"></script>
   <script>
     /* ---- Entrance-animation failsafe ----
        On slow / flaky mobile connections the external scripts (main.js) can
