@@ -757,7 +757,9 @@
           title: l.t,
           dur: l.d,
           module: mi + 1,
-          videoId: l.v || 'Tn6-PIqc4UM',
+          // Real video id only. Quizzes and projects have no video, so we store
+          // null instead of a default clip, the player is hidden for them.
+          videoId: l.v || null,
           // Reading lesson = a content lesson with no video. Its written material
           // (LESSON_CONTENT) becomes the lesson body and the video pane is hidden.
           reading: (!l.v && !l.isQuiz && !l.isProject),
@@ -959,16 +961,20 @@
     // Update video, reading lessons hide the video pane and lead with their notes.
     var videoWrap = document.querySelector('.video-container');
     resetVideo(); // stop any previous video and return to the branded poster
-    if (lesson.reading) {
-      if (videoWrap) videoWrap.style.display = 'none';
-      currentVideoId = null;
-    } else {
+    // Show the video pane ONLY for lessons that actually have a video. Quizzes,
+    // projects without a video, and reading lessons never show a player, so the
+    // learner focuses on the quiz/notes instead of an unrelated clip.
+    var showVideo = !!lesson.videoId && !lesson.isQuiz;
+    if (showVideo) {
       // Show the branded poster; the real video only loads when the learner taps play,
       // so no third-party player branding is shown up front.
       if (videoWrap) videoWrap.style.display = '';
-      currentVideoId = lesson.videoId || 'Tn6-PIqc4UM';
+      currentVideoId = lesson.videoId;
       var vpt = document.getElementById('vpTitle');
       if (vpt) vpt.textContent = lesson.title || 'Play lesson video';
+    } else {
+      if (videoWrap) videoWrap.style.display = 'none';
+      currentVideoId = null;
     }
     document.getElementById('videoScroll').scrollTop = 0;
     // Overview
