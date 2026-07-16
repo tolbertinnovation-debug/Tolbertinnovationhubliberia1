@@ -58,7 +58,7 @@
     .hero-eyebrow { font-size:0.75rem;font-weight:700;letter-spacing:.15em;color:#f59e0b;text-transform:uppercase;margin-bottom:0.6rem; }
     .verify-hero h1 { font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;margin-bottom:0.8rem; }
     .verify-hero h1 span { color:#f59e0b; }
-    .verify-hero p { color:rgba(255,255,255.8);font-size:1.05rem;max-width:55ch;margin:0 auto; }
+    .verify-hero p { color:rgba(255,255,255,.8);font-size:1.05rem;max-width:55ch;margin:0 auto; }
 
     /* BREADCRUMB */
     .breadcrumb { padding:0.9rem 0;border-bottom:1px solid #e5e7eb;background:#f9fafb; }
@@ -68,7 +68,7 @@
 
     /* VERIFY CARD */
     .verify-main { padding:4rem 0; }
-    .verify-box { max-width:760px;margin:0 auto;background:#fff;border-radius:24px;box-shadow:0 8px 48px rgba(0,40,104.12);overflow:hidden; }
+    .verify-box { max-width:760px;margin:0 auto;background:#fff;border-radius:24px;box-shadow:0 8px 48px rgba(0,40,104,.12);overflow:hidden; }
 
     /* TABS */
     .verify-tabs { display:flex;background:#f9fafb;border-bottom:1px solid #e5e7eb; }
@@ -126,7 +126,7 @@
     .sample-section { padding:4rem 0;background:#f8faff; }
     .sample-grid { display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:center; }
     @media(max-width:900px) { .sample-grid { grid-template-columns:1fr; } }
-    .sample-cert { background:#fff;border-radius:16px;padding:2rem 1.8rem;box-shadow:0 20px 60px rgba(0,40,104.15);position:relative;text-align:center; }
+    .sample-cert { background:#fff;border-radius:16px;padding:2rem 1.8rem;box-shadow:0 20px 60px rgba(0,40,104,.15);position:relative;text-align:center; }
     .sample-cert::before { content:'';position:absolute;inset:8px;border:1.5px solid #f59e0b;border-radius:10px;pointer-events:none; }
     .sc-corner { position:absolute;width:16px;height:16px;border-color:#f59e0b;border-style:solid; }
     .sc-corner.tl { top:4px;left:4px;border-width:2.5px 0 0 2.5px;border-radius:5px 0 0 0; }
@@ -157,31 +157,31 @@
     .employer-card p { font-size:0.87rem;color:#6b7280;line-height:1.6; }
 
     /* FOOTER */
-    .academy-footer { background:#0a1628;color:rgba(255,255,255.75);padding:3rem 0 1.5rem; }
+    .academy-footer { background:#0a1628;color:rgba(255,255,255,.75);padding:3rem 0 1.5rem; }
     .footer-inner { max-width:1280px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:2fr repeat(3,1fr);gap:2.5rem;margin-bottom:2rem; }
     .footer-brand-name { font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:0.6rem; }
     .footer-brand-name span { color:#f59e0b; }
     .footer-tagline { font-size:0.85rem;line-height:1.6;margin-bottom:1rem; }
     .footer-social { display:flex;gap:0.5rem; }
-    .social-icon { width:34px;height:34px;background:rgba(255,255,255.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:all .2s;text-decoration:none;color:#fff; }
+    .social-icon { width:34px;height:34px;background:rgba(255,255,255,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:all .2s;text-decoration:none;color:#fff; }
     .social-icon:hover { background:#f59e0b; }
     .footer-col h5 { font-size:0.88rem;font-weight:700;color:#fff;margin-bottom:0.8rem; }
     .footer-col ul { list-style:none;padding:0;margin:0; }
     .footer-col ul li { margin-bottom:0.4rem; }
-    .footer-col ul li a { color:rgba(255,255,255.65);font-size:0.85rem;text-decoration:none;transition:color .2s; }
+    .footer-col ul li a { color:rgba(255,255,255,.65);font-size:0.85rem;text-decoration:none;transition:color .2s; }
     .footer-col ul li a:hover { color:#f59e0b; }
-    .footer-bottom { max-width:1280px;margin:0 auto;padding:1rem 1.5rem 0;border-top:1px solid rgba(255,255,255.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;font-size:0.82rem;color:rgba(255,255,255.45); }
-    .footer-bottom a { color:rgba(255,255,255.6);text-decoration:none; }
+    .footer-bottom { max-width:1280px;margin:0 auto;padding:1rem 1.5rem 0;border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;font-size:0.82rem;color:rgba(255,255,255,.45); }
+    .footer-bottom a { color:rgba(255,255,255,.6);text-decoration:none; }
     .footer-bottom a:hover { color:#f59e0b; }
     @media(max-width:900px) { .footer-inner { grid-template-columns:1fr 1fr; } }
     @media(max-width:600px) { .footer-inner { grid-template-columns:1fr; } }
     /* FLOATING ACTIONS */
     .floating-actions { position:fixed; right:1.5rem; bottom:2rem; display:flex; flex-direction:column; gap:0.75rem; z-index:9000; align-items:center; }
-    .fab-whatsapp { width:52px; height:52px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102.4); text-decoration:none; transition:all .25s; }
-    .fab-whatsapp:hover { transform:scale(1.12) translateY(-2px); box-shadow:0 8px 30px rgba(37,211,102.6); }
-    .fab-top { width:44px; height:44px; background:#002868; border:none; border-radius:50%; color:#fff; font-size:0.7rem; cursor:pointer; box-shadow:0 4px 16px rgba(0,40,104.3); transition:all .25s; opacity:0; pointer-events:none; }
+    .fab-whatsapp { width:52px; height:52px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.4); text-decoration:none; transition:all .25s; }
+    .fab-whatsapp:hover { transform:scale(1.12) translateY(-2px); box-shadow:0 8px 30px rgba(37,211,102,.6); }
+    .fab-top { width:44px; height:44px; background:#002868; border:none; border-radius:50%; color:#fff; font-size:0.7rem; cursor:pointer; box-shadow:0 4px 16px rgba(0,40,104,.3); transition:all .25s; opacity:0; pointer-events:none; }
     .fab-top.show { opacity:1; pointer-events:auto; }
-    .fab-top:hover { background:#001a45; transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,40,104.45); }
+    .fab-top:hover { background:#001a45; transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,40,104,.45); }
     @media(max-width:600px) { .floating-actions { right:1rem; bottom:1.5rem; } .fab-whatsapp { width:48px; height:48px; } .fab-top { width:38px; height:38px; } }
   </style>
 </head>

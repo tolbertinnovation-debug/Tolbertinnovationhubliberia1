@@ -38,10 +38,10 @@
 
     /* ---- PAGE HERO ---- */
     .page-hero { background: linear-gradient(135deg, #001535, #002868 60%, #003080); padding: 3rem 1.5rem 2.5rem; text-align: center; color: var(--white); position: relative; overflow: hidden; }
-    .page-hero::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 320px; height: 320px; background: radial-gradient(circle, rgba(245,158,11.15) 0%, transparent 70%); pointer-events: none; }
-    .hero-icon { font-size: 3rem; margin-bottom: 0.6rem; position: relative; z-index: 1; filter: drop-shadow(0 4px 12px rgba(245,158,11.5)); }
+    .page-hero::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 320px; height: 320px; background: radial-gradient(circle, rgba(245,158,11,.15) 0%, transparent 70%); pointer-events: none; }
+    .hero-icon { font-size: 3rem; margin-bottom: 0.6rem; position: relative; z-index: 1; filter: drop-shadow(0 4px 12px rgba(245,158,11,.5)); }
     .page-hero h1 { font-family: 'Poppins', sans-serif; font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; margin-bottom: 0.4rem; position: relative; z-index: 1; }
-    .page-hero p { color: rgba(255,255,255.78); font-size: 0.95rem; position: relative; z-index: 1; max-width: 480px; margin: 0 auto; }
+    .page-hero p { color: rgba(255,255,255,.78); font-size: 0.95rem; position: relative; z-index: 1; max-width: 480px; margin: 0 auto; }
 
     /* ---- PROGRESS SUMMARY BAR ---- */
     .summary-bar { background: var(--white); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; }
@@ -66,14 +66,14 @@
 
     /* ---- EARNED CERTIFICATE CARD ---- */
     .cert-card { background: var(--white); border-radius: 14px; overflow: hidden; border: 1.5px solid #e5e7eb; transition: all .2s; display: flex; flex-direction: column; }
-    .cert-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,40,104.1); border-color: #c8960c; }
+    .cert-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,40,104,.1); border-color: #c8960c; }
     .cert-card-header { background: linear-gradient(135deg, #001a45, #002868); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.7rem; }
-    .cert-card-icon { font-size: 1.5rem; filter: drop-shadow(0 2px 4px rgba(245,158,11.4)); flex-shrink: 0; }
+    .cert-card-icon { font-size: 1.5rem; filter: drop-shadow(0 2px 4px rgba(245,158,11,.4)); flex-shrink: 0; }
     .cert-card-org { color: var(--white); }
     .cert-card-org-name { font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 800; }
     .cert-card-org-name span { color: #f59e0b; }
-    .cert-card-org-sub { font-size: 0.62rem; color: rgba(255,255,255.65); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 1px; }
-    .cert-card-body { padding: 1rem 1.25rem; flex: 1; border-bottom: 1px solid rgba(200,150,12.2); background: linear-gradient(160deg, #fffef7, #fffceb); }
+    .cert-card-org-sub { font-size: 0.62rem; color: rgba(255,255,255,.65); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 1px; }
+    .cert-card-body { padding: 1rem 1.25rem; flex: 1; border-bottom: 1px solid rgba(200,150,12,.2); background: linear-gradient(160deg, #fffef7, #fffceb); }
     .cert-card-divider { display: flex; align-items: center; gap: 0.35rem; color: #c8960c; font-size: 0.6rem; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
     .cert-card-divider::before.cert-card-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #c8960c 50%, transparent); }
     .cert-card-certifies { font-size: 0.7rem; color: var(--muted); text-align: center; font-style: italic; }
@@ -84,7 +84,7 @@
     .cert-card-verified { display: inline-flex; align-items: center; gap: 0.25rem; background: #d1fae5; color: #065f46; font-size: 0.65rem; font-weight: 700; padding: 0.18rem 0.5rem; border-radius: 50px; }
     .cert-card-footer { padding: 0.85rem 1.25rem; display: flex; gap: 0.5rem; background: var(--white); }
     .btn-dl { flex: 1; background: linear-gradient(135deg, #002868, #0040a8); color: var(--white); border: none; border-radius: 8px; padding: 0.6rem 0.5rem; font-size: 0.82rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; display: flex; align-items: center; justify-content: center; gap: 0.3rem; }
-    .btn-dl:hover { background: linear-gradient(135deg, var(--blue-dark), #002868); box-shadow: 0 4px 12px rgba(0,40,104.3); }
+    .btn-dl:hover { background: linear-gradient(135deg, var(--blue-dark), #002868); box-shadow: 0 4px 12px rgba(0,40,104,.3); }
     .btn-view { background: #f9fafb; color: var(--blue); border: 1.5px solid #dce7ff; border-radius: 8px; padding: 0.6rem 0.75rem; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; white-space: nowrap; }
     .btn-view:hover { background: var(--blue-light); border-color: var(--blue); }
 
@@ -104,16 +104,16 @@
     .empty-state h2 { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
     .empty-state p { font-size: 0.9rem; color: var(--muted); max-width: 380px; margin: 0 auto 1.5rem; line-height: 1.7; }
     .btn-start { background: var(--blue); color: var(--white); border: none; border-radius: 10px; padding: 0.75rem 1.8rem; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: 'Poppins', sans-serif; transition: all .2s; }
-    .btn-start:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,40,104.25); }
+    .btn-start:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,40,104,.25); }
 
     /* ---- NAME EDIT MODAL ---- */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0.55); z-index: 9000; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 9000; align-items: center; justify-content: center; padding: 1rem; }
     .modal-overlay.open { display: flex; }
-    .name-modal { background: var(--white); border-radius: 16px; padding: 2rem; max-width: 420px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0.3); }
+    .name-modal { background: var(--white); border-radius: 16px; padding: 2rem; max-width: 420px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
     .name-modal h3 { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--blue); }
     .name-modal p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.6; }
     .name-modal input { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 1rem; font-family: 'Inter', sans-serif; transition: border-color .2s; }
-    .name-modal input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,40,104.1); }
+    .name-modal input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,40,104,.1); }
     .name-modal-btns { display: flex; gap: 0.6rem; margin-top: 1rem; }
     .btn-save-name { flex: 1; background: var(--blue); color: var(--white); border: none; border-radius: 8px; padding: 0.65rem; font-size: 0.9rem; font-weight: 700; cursor: pointer; font-family: 'Poppins', sans-serif; transition: all .2s; }
     .btn-save-name:hover { background: var(--blue-dark); }
@@ -122,8 +122,8 @@
 
     /* ---- FLOATING CTA ---- */
     .fab { position: fixed; right: 1.5rem; bottom: 2rem; z-index: 99; }
-    .fab-btn { width: 52px; height: 52px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.3rem; border: none; cursor: pointer; box-shadow: 0 4px 16px rgba(0,40,104.35); transition: all .2s; }
-    .fab-btn:hover { background: var(--blue-dark); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,40,104.45); }
+    .fab-btn { width: 52px; height: 52px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.3rem; border: none; cursor: pointer; box-shadow: 0 4px 16px rgba(0,40,104,.35); transition: all .2s; }
+    .fab-btn:hover { background: var(--blue-dark); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,40,104,.45); }
 
     /* ---- RESPONSIVE ---- */
     @media(max-width: 600px) {

@@ -36,7 +36,7 @@
 
     /* LOGIN */
     .login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.25rem; background: linear-gradient(140deg, #0f1f52, var(--primary)); }
-    .login-card { background: #fff; border-radius: 16px; padding: 2rem 1.75rem; width: 100%; max-width: 400px; box-shadow: 0 24px 64px rgba(0,0,0.3); }
+    .login-card { background: #fff; border-radius: 16px; padding: 2rem 1.75rem; width: 100%; max-width: 400px; box-shadow: 0 24px 64px rgba(0,0,0,.3); }
     .login-card .brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--primary); font-size: 1.2rem; margin-bottom: 0.2rem; }
     .login-card .brand span { color: var(--secondary); }
     .login-card .sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.4rem; }
@@ -73,14 +73,14 @@
     .streak-chip { display: inline-flex; align-items: center; gap: 0.35rem; background: #fef2f2; color: #991b1b; font-weight: 700; font-size: 0.8rem; border-radius: 999px; padding: 0.3rem 0.8rem; margin-top: 0.5rem; }
 
     /* RESUME / CONTINUE LEARNING */
-    .resume { background: linear-gradient(135deg, #001a45, #002868 65%, #0b3aa0); color: #fff; border-radius: var(--radius); padding: 1.1rem 1.2rem; margin-bottom: 1.6rem; box-shadow: 0 8px 24px rgba(0,40,104.22); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-    .resume .r-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255.14); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .resume { background: linear-gradient(135deg, #001a45, #002868 65%, #0b3aa0); color: #fff; border-radius: var(--radius); padding: 1.1rem 1.2rem; margin-bottom: 1.6rem; box-shadow: 0 8px 24px rgba(0,40,104,.22); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .resume .r-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
     .resume .r-body { flex: 1; min-width: 180px; }
     .resume .r-eyebrow { font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #fecaca; }
     .resume .r-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1rem; line-height: 1.25; margin: .15rem 0 .5rem; }
-    .resume .r-track { background: rgba(255,255,255.2); height: 7px; border-radius: 999px; overflow: hidden; }
+    .resume .r-track { background: rgba(255,255,255,.2); height: 7px; border-radius: 999px; overflow: hidden; }
     .resume .r-fill { height: 100%; background: linear-gradient(90deg, #e31e24, #f87171); border-radius: 999px; }
-    .resume .r-meta { font-size: .74rem; color: rgba(255,255,255.8); margin-top: .35rem; }
+    .resume .r-meta { font-size: .74rem; color: rgba(255,255,255,.8); margin-top: .35rem; }
     .resume .r-btn { background: var(--secondary); color: #fff; border: none; border-radius: 999px; padding: .7rem 1.3rem; font-weight: 800; font-family: 'Poppins', sans-serif; font-size: .9rem; text-decoration: none; white-space: nowrap; min-height: 46px; display: inline-flex; align-items: center; }
 
     /* MOMENTUM, level / XP / weekly activity */
@@ -102,12 +102,12 @@
     @media (max-width: 560px) { .momentum { grid-template-columns: auto 1fr; } .mo-week { grid-column: 1 / -1; border-top: 1px solid var(--border); padding-top: 0.7rem; } .week-dots i { width: 12px; height: 12px; } }
 
     /* RECOMMENDATION, Learn Next */
-    .reco { background: linear-gradient(135deg, #062b1e, #065f46 70%, #10b981); color: #fff; border-radius: var(--radius); padding: 1rem 1.15rem; margin-bottom: 1.6rem; display: flex; align-items: center; gap: 0.9rem; box-shadow: 0 8px 24px rgba(6,95,70.2); flex-wrap: wrap; }
-    .reco .rc-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255.16); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .reco { background: linear-gradient(135deg, #062b1e, #065f46 70%, #10b981); color: #fff; border-radius: var(--radius); padding: 1rem 1.15rem; margin-bottom: 1.6rem; display: flex; align-items: center; gap: 0.9rem; box-shadow: 0 8px 24px rgba(6,95,70,.2); flex-wrap: wrap; }
+    .reco .rc-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,.16); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
     .reco .rc-body { flex: 1; min-width: 170px; }
     .reco .rc-eyebrow { font-size: .66rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #a7f3d0; }
     .reco .rc-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.98rem; margin: .12rem 0; }
-    .reco .rc-desc { font-size: .76rem; color: rgba(255,255,255.85); }
+    .reco .rc-desc { font-size: .76rem; color: rgba(255,255,255,.85); }
     .reco .rc-btn { background: #fff; color: #065f46; border: none; border-radius: 999px; padding: .6rem 1.15rem; font-weight: 800; font-family: 'Poppins', sans-serif; font-size: .84rem; text-decoration: none; white-space: nowrap; min-height: 42px; display: inline-flex; align-items: center; }
 
     /* ACHIEVEMENTS */
@@ -179,9 +179,9 @@
     @media (min-width: 761px) { .bottom-nav { display: none; } body { padding-bottom: 0; } }
 
     /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42.55); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,.55); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
     .modal-overlay.open { display: flex; }
-    .modal { background: #fff; border-radius: 14px; width: 100%; max-width: 420px; padding: 1.5rem; box-shadow: 0 24px 64px rgba(0,0,0.35); max-height: 90vh; overflow-y: auto; }
+    .modal { background: #fff; border-radius: 14px; width: 100%; max-width: 420px; padding: 1.5rem; box-shadow: 0 24px 64px rgba(0,0,0,.35); max-height: 90vh; overflow-y: auto; }
     .modal h3 { color: var(--primary); font-size: 1.02rem; margin-bottom: 0.9rem; }
     .view { display: none; }
     .view.active { display: block; }

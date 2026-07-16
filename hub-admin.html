@@ -16,7 +16,7 @@
     :root {
       --primary: #1E3A8A; --primary-light: #eaf4ff; --secondary: #E31E24;
       --accent: #10B981; --danger: #e31e24; --bg: #F8FAFC; --text: #1F2937; --muted: #64748b;
-      --border: #e2e8f0; --radius: 16px; --shadow: 0 4px 16px rgba(30,58,138.08);
+      --border: #e2e8f0; --radius: 16px; --shadow: 0 4px 16px rgba(30,58,138,.08);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.55; }
@@ -26,7 +26,7 @@
 
     /* LOGIN */
     .login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.25rem; background: linear-gradient(140deg, #0f1f52, var(--primary)); }
-    .login-card { background: #fff; border-radius: 16px; padding: 2rem 1.75rem; width: 100%; max-width: 400px; box-shadow: 0 24px 64px rgba(0,0,0.3); }
+    .login-card { background: #fff; border-radius: 16px; padding: 2rem 1.75rem; width: 100%; max-width: 400px; box-shadow: 0 24px 64px rgba(0,0,0,.3); }
     .login-card h1 { font-size: 1.3rem; color: var(--primary); margin-bottom: 0.25rem; }
     .login-card .sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.4rem; }
     .fld { margin-bottom: 1rem; }
@@ -91,9 +91,9 @@
     .empty-state { text-align: center; padding: 2.5rem 1rem; color: var(--muted); font-size: 0.9rem; }
 
     /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42.55); z-index: 200; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,.55); z-index: 200; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
     .modal-overlay.open { display: flex; }
-    .modal { background: #fff; border-radius: 14px; width: 100%; max-width: 640px; padding: 1.5rem; box-shadow: 0 24px 64px rgba(0,0,0.35); }
+    .modal { background: #fff; border-radius: 14px; width: 100%; max-width: 640px; padding: 1.5rem; box-shadow: 0 24px 64px rgba(0,0,0,.35); }
     .modal h3 { color: var(--primary); font-size: 1.05rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
     .modal h3 .x { background: none; border: none; font-size: 1.2rem; color: var(--muted); }
     .kv { display: flex; justify-content: space-between; gap: 1rem; padding: 0.45rem 0; border-bottom: 1px solid #f1f5f9; font-size: 0.87rem; }
