@@ -259,7 +259,7 @@
     { match:'impact', label:'Impact Report',
       qr:['📊 View Stats','⭐ Success Stories','🎓 Scholarship','📞 Contact'] },
     { match:'index', label:'TIH Home',
-      qr:['🎓 Scholarships','📚 Free Learning Hub','🏥 Healthcare','💻 Software','📝 Apply Now'] },
+      qr:['💻 Website & Software','🎓 50% Scholarship','📚 Learning Hub','🏥 Healthcare','📝 Apply Now'] },
   ];
 
   function getPageCtx() {
@@ -268,7 +268,7 @@
     for (const p of PAGE_MAP) {
       if (href.includes(p.match)) return p;
     }
-    return { label:'Tolbert Innovation Hub', qr:['🎓 Scholarships','📚 Free Learning Hub','🏥 Healthcare','💻 Software','📝 Apply Now','📞 Contact'] };
+    return { label:'Tolbert Innovation Hub', qr:['💻 Website & Software','🎓 50% Scholarship','📚 Learning Hub','🏥 Healthcare','📝 Apply Now','📞 Contact'] };
   }
 
   // ── PAGE LEARNING ─────────────────────────────────────────────────────────────
@@ -422,12 +422,17 @@ Under his leadership, TIH has:<br>
       reply:`🎓 <strong>TIH Study Abroad Program</strong><br><br>
 Tolbert Innovation Hub helps Liberian students study at top universities in <strong>India &amp; North Cyprus</strong>, with a <strong>50% tuition scholarship</strong> on every admission.<br><br>
 <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:12px 14px;margin:6px 0;">
-🏷️ <strong>TIH 50% Tuition Scholarship</strong><br>
-All 20 partner universities · India &amp; Cyprus<br>
-TIH negotiates directly with each university on your behalf, <em>at no cost to you.</em>
+🏷️ <strong>50% Scholarship Promotion, India Universities</strong><br>
+With our partner universities in India you get:<br>
+• <strong>50% scholarship on tuition</strong><br>
+• <strong>Free accommodation</strong> (selected universities)<br>
+• <strong>Feeding &amp; medical insurance</strong><br>
+• <strong>US$300 support toward your flight ticket</strong><br>
+• Tuition after the 50% scholarship is <strong>US$1,500–US$3,000 per year</strong><br>
+• All tuition and other fees are paid <strong>directly to the university</strong>
 </div><br>
-🇮🇳 <strong>India</strong>, 15 universities · UG, PG &amp; PhD · From <strong>$900/yr</strong> after scholarship<br>
-🇨🇾 <strong>North Cyprus</strong>, 5 universities · English-medium · From <strong>$1,750/yr</strong> after scholarship<br><br>
+🇮🇳 <strong>India</strong>, 15 universities · UG, PG &amp; PhD · $1,500–$3,000/yr after 50% scholarship<br>
+🇨🇾 <strong>North Cyprus</strong>, 5 universities · English-medium<br><br>
 ✅ <strong>Everything TIH does FREE:</strong><br>
 • University selection &amp; shortlisting<br>
 • Application &amp; document review<br>
@@ -1014,8 +1019,11 @@ For international scholarships and universities:<br><br>
       keywords:['india','study in india','india university','indian university','india scholarship','india student','visa india','indian college','india education','india medical'],
       reply:`🇮🇳 <strong>India, Education &amp; Healthcare via TIH</strong><br><br>
 TIH has strong India connections for both education and healthcare:<br><br>
-🎓 <strong>Education, 50% Scholarship:</strong><br>
-TIH offers a <strong>50% tuition scholarship</strong> at all partner universities in India (Sharda, LPU, Amity, Khalsa + 13 more). You pay only half the listed tuition!<br><br>
+🎓 <strong>50% Scholarship Promotion:</strong> a <strong>50% tuition scholarship</strong> at our partner universities in India (Sharda, LPU, Amity, Khalsa + 13 more), plus:<br>
+• <strong>Free accommodation</strong> (selected universities)<br>
+• <strong>Feeding &amp; medical insurance</strong><br>
+• <strong>US$300 support toward your flight ticket</strong><br>
+💵 Tuition after the 50% scholarship is <strong>US$1,500–US$3,000/year</strong>, paid <strong>directly to the university</strong>.<br><br>
 🏥 <strong>Healthcare:</strong><br>
 TIH works with 8 partner hospitals in India offering specialist treatment in cardiology, oncology, orthopedics, neurology &amp; more.<br><br>
 Both are coordinated end-to-end by TIH.`,
@@ -1264,19 +1272,20 @@ Cyprus costs are slightly higher but still affordable vs. Western Europe.<br><br
 
     { id:'india_cyprus_scholarship',
       keywords:['india scholarship','cyprus scholarship','50 percent','50%','half tuition','india 50','cyprus 50','tih scholarship','scholarship india','scholarship cyprus','how much scholarship','what scholarship india','what scholarship cyprus','india tuition','cyprus tuition'],
-      reply:`🎉 <strong>TIH 50% Tuition Scholarship, India &amp; Cyprus</strong><br><br>
-TIH offers a <strong>50% scholarship on tuition</strong> at all partner universities in India and Cyprus.<br><br>
-You pay only <strong>half the listed tuition</strong>, TIH covers the rest!<br><br>
-🇮🇳 <strong>India example savings:</strong><br>
-• Sharda: <s>$3,500–$6,000</s> → <strong>$1,750–$3,000/yr</strong><br>
-• LPU: <s>$2,800–$5,000</s> → <strong>$1,400–$2,500/yr</strong><br>
-• Amity: <s>$4,000–$7,500</s> → <strong>$2,000–$3,750/yr</strong><br>
-• Khalsa: <s>$1,800–$3,000</s> → <strong>$900–$1,500/yr</strong><br><br>
-🇨🇾 <strong>Cyprus universities (50% off):</strong><br>
+      reply:`🎉 <strong>50% Scholarship Promotion, India Universities</strong><br><br>
+Through our partner universities in <strong>India</strong> you get a <strong>50% scholarship on tuition</strong> plus real support to help you settle in:<br><br>
+🎁 <strong>What's included:</strong><br>
+• <strong>50% off tuition</strong> at partner universities<br>
+• <strong>Free accommodation</strong> (selected universities)<br>
+• <strong>Feeding &amp; medical insurance</strong><br>
+• <strong>US$300 support toward your flight ticket</strong><br><br>
+💵 <strong>Tuition after the 50% scholarship:</strong> <strong>US$1,500–US$3,000 per year</strong>.<br>
+All tuition and other fees are paid <strong>directly to the university</strong>, TIH never handles your tuition.<br><br>
+🇨🇾 <strong>North Cyprus</strong> partner universities also offer the 50% tuition scholarship:<br>
 • Near East University (NEU), Nicosia<br>
 • Girne American University (GAU), Kyrenia<br>
 • Eastern Mediterranean University (EMU), Famagusta<br><br>
-📅 Application deadline: <strong>July 15, 2026</strong>`,
+📅 Application deadline: <strong>July 15, 2026</strong>. TIH guidance is 100% free.`,
       qr:['📝 Apply Now','🏛️ Partner Universities','📋 Requirements','📞 Contact TIH'] },
 
     { id:'can_apply',

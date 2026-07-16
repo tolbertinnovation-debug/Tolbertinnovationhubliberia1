@@ -752,6 +752,41 @@
       <svg class="tih-wave hm-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,50 C240,86 480,10 720,32 C960,54 1200,88 1440,42 L1440,90 L0,90 Z" fill="#E31E24"/><path d="M0,64 C240,92 480,30 720,48 C960,66 1200,88 1440,58 L1440,90 L0,90 Z" fill="#ffffff"/></svg>
     </section>
 
+    <!-- SCHOLARSHIP PROMOTION BAND -->
+    <section aria-label="India scholarship promotion" style="background:linear-gradient(120deg,#065f46,#047857 55%,#059669);color:#fff;padding:2rem 0;">
+      <style>
+        .schol-promo-wrap { display:grid; grid-template-columns:auto 1fr; gap:1.5rem; align-items:center; max-width:1080px; margin:0 auto; }
+        .schol-promo-badge { flex-shrink:0; width:104px; height:104px; border-radius:50%; background:#fff; color:#047857; display:flex; flex-direction:column; align-items:center; justify-content:center; line-height:1; box-shadow:0 8px 20px rgba(0,0,0,.22); }
+        .schol-promo-badge b { font-size:2.1rem; font-weight:800; font-family:'Poppins',sans-serif; }
+        .schol-promo-badge span { font-size:0.66rem; font-weight:700; letter-spacing:.1em; margin-top:3px; }
+        .schol-promo-copy h2 { font-size:clamp(1.2rem,2.6vw,1.6rem); margin:0 0 .35rem; color:#fff; line-height:1.25; }
+        .schol-promo-copy > p { margin:0 0 .7rem; font-size:.95rem; color:rgba(255,255,255,.92); }
+        .schol-perks { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:.5rem .9rem; }
+        .schol-perk { display:flex; align-items:flex-start; gap:.5rem; font-size:.88rem; font-weight:600; color:#fff; }
+        .schol-perk span:first-child { font-size:1.05rem; line-height:1.3; }
+        .schol-promo-note { margin:.9rem 0 0; font-size:.8rem; color:rgba(255,255,255,.82); }
+        @media (max-width:640px){ .schol-promo-wrap{ grid-template-columns:1fr; text-align:center; justify-items:center; } .schol-perk{ text-align:left; } }
+      </style>
+      <div class="container">
+        <div class="schol-promo-wrap">
+          <div class="schol-promo-badge"><b>50%</b><span>SCHOLARSHIP</span></div>
+          <div class="schol-promo-copy">
+            <h2>50% Tuition Scholarship at Partner Universities in India</h2>
+            <p>With our partner universities in India, your tuition after the 50% scholarship is just <strong>US$1,500–US$3,000 per year</strong>, paid directly to the university.</p>
+            <div class="schol-perks">
+              <div class="schol-perk"><span>🎓</span><span>50% scholarship on tuition</span></div>
+              <div class="schol-perk"><span>🏠</span><span>Free accommodation (selected universities)</span></div>
+              <div class="schol-perk"><span>🍲</span><span>Feeding &amp; medical insurance</span></div>
+              <div class="schol-perk"><span>✈️</span><span>US$300 support toward your flight ticket</span></div>
+              <div class="schol-perk"><span>🏦</span><span>All fees paid directly to the university</span></div>
+              <div class="schol-perk"><span>🤝</span><span>100% free TIH application guidance</span></div>
+            </div>
+            <p class="schol-promo-note">*Accommodation, feeding, insurance and flight support apply to selected partner universities. Confirm the exact benefits for your chosen university with the TIH team.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- STICKY SEARCH + FILTER BAR -->
     <div class="dir-filter-bar" role="search" aria-label="Filter universities">
       <div class="container">
@@ -1522,7 +1557,7 @@
 
   renderUniversities();
   </script>
-  <script src="chatbot.js?v=6"></script>
+  <script src="chatbot.js?v=7"></script>
   <script>
     /* ---- Entrance-animation failsafe ----
        On slow / flaky mobile connections the external scripts (main.js) can

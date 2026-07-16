@@ -365,6 +365,44 @@
       </div>
     </section>
 
+    <!-- SCHOLARSHIP PROMOTION BANNER -->
+    <section class="promo-banner-section" aria-label="Scholarship promotion, 50% tuition in India" style="padding-top:0;">
+      <style>
+        .promo-banner.promo-scholarship {
+          background: linear-gradient(120deg, #065f46 0%, #047857 50%, #059669 130%);
+          box-shadow: 0 14px 34px rgba(6,95,70,0.28);
+        }
+        .promo-banner.promo-scholarship::after { background: radial-gradient(circle, rgba(255,215,120,0.22), transparent 70%); }
+        .promo-banner.promo-scholarship .promo-badge { color: #047857; }
+        .promo-banner.promo-scholarship .promo-cta { color: #047857; }
+        .promo-perks {
+          display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; margin-top: 0.55rem;
+          font-size: 0.82rem; color: rgba(255,255,255,0.95); font-weight: 600;
+        }
+        .promo-perks span { display: inline-flex; align-items: center; gap: 0.3rem; }
+        @media (max-width: 720px) { .promo-perks { justify-content: center; } }
+      </style>
+      <div class="container">
+        <div class="promo-banner promo-scholarship reveal">
+          <div class="promo-left">
+            <div class="promo-badge"><b>50%</b><span>SCHOLARSHIP</span></div>
+            <div class="promo-copy">
+              <span class="promo-eyebrow">🎓 Study in India, Limited Seats</span>
+              <h2>50% Tuition Scholarship at Partner Universities in India</h2>
+              <p>Tuition after the scholarship is just <strong>$1,500–$3,000/year</strong>, paid directly to the university.</p>
+              <div class="promo-perks">
+                <span>🏠 Free accommodation*</span>
+                <span>🍲 Feeding &amp; medical insurance</span>
+                <span>✈️ $300 flight support</span>
+                <span>🤝 100% free TIH guidance</span>
+              </div>
+            </div>
+          </div>
+          <a class="promo-cta" href="study-abroad">Apply Now →</a>
+        </div>
+      </div>
+    </section>
+
     <!-- WELCOME INTRODUCTION -->
     <section class="section" aria-label="Welcome to Tolbert Innovation Hub">
       <div class="container">
@@ -1299,7 +1337,7 @@
   </footer>
 
   <script src="main.js?v=13"></script>
-  <script src="chatbot.js?v=6"></script>
+  <script src="chatbot.js?v=7"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     (function () {
