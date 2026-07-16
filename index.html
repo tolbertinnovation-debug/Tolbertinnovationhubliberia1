@@ -281,183 +281,115 @@
       </div>
     </div>
 
-    <!-- SOFTWARE PROMOTION BANNER -->
-    <section class="promo-banner-section" aria-label="Website promotion, 70% off">
+    <!-- CURRENT PROMOTIONS, compact 2x2 grid -->
+    <section class="promos-section" aria-label="Current promotions">
       <style>
-        .promo-banner-section { padding: 1.5rem 0; }
-        .promo-banner {
-          position: relative;
-          overflow: hidden;
-          max-width: 1120px;
-          margin: 0 auto;
-          border-radius: 16px;
+        .promos-section { padding: 2rem 0 1.5rem; }
+        .promos-head { text-align: center; margin-bottom: 1.4rem; }
+        .promos-head .section-label { color: #E31E24; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.78rem; }
+        .promos-head h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); margin: 0.25rem 0 0; }
+        .promos-grid {
+          display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem;
+          max-width: 1120px; margin: 0 auto;
+        }
+        .promo-card {
+          position: relative; overflow: hidden; border-radius: 16px; color: #fff;
+          padding: 1.35rem 1.5rem; display: flex; flex-direction: column;
+          box-shadow: 0 12px 30px rgba(0,40,104,0.22);
           background: linear-gradient(120deg, #002868 0%, #0a3a8c 55%, #E31E24 140%);
-          color: #fff;
-          padding: 1.6rem 1.9rem;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1.5rem;
-          flex-wrap: wrap;
-          box-shadow: 0 14px 34px rgba(0,40,104,0.28);
         }
-        .promo-banner::after {
-          content: '';
-          position: absolute;
-          top: -40%; right: -8%;
-          width: 320px; height: 320px;
+        .promo-card::after {
+          content: ''; position: absolute; top: -45%; right: -10%;
+          width: 240px; height: 240px; pointer-events: none;
           background: radial-gradient(circle, rgba(255,255,255,0.16), transparent 70%);
-          pointer-events: none;
         }
-        .promo-left { display: flex; align-items: center; gap: 1.15rem; min-width: 0; }
-        .promo-badge {
-          flex-shrink: 0;
-          display: flex; flex-direction: column; align-items: center; justify-content: center;
-          width: 88px; height: 88px;
-          border-radius: 50%;
-          background: #fff;
-          color: #E31E24;
-          font-family: 'Poppins', sans-serif;
-          line-height: 1;
-          box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-          animation: promo-pulse 2s ease-in-out infinite;
+        .promo-card.pc-scholarship { background: linear-gradient(120deg, #065f46 0%, #047857 50%, #059669 130%); box-shadow: 0 12px 30px rgba(6,95,70,0.24); }
+        .promo-card.pc-learning    { background: linear-gradient(120deg, #5b21b6 0%, #6d28d9 50%, #7c3aed 130%); box-shadow: 0 12px 30px rgba(91,33,182,0.24); }
+        .promo-card.pc-health      { background: linear-gradient(120deg, #0e7490 0%, #0891b2 50%, #06b6d4 130%); box-shadow: 0 12px 30px rgba(14,116,144,0.24); }
+        .pc-top { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.7rem; position: relative; z-index: 1; }
+        .pc-badge {
+          flex-shrink: 0; width: 62px; height: 62px; border-radius: 50%;
+          background: #fff; color: #002868; display: flex; flex-direction: column;
+          align-items: center; justify-content: center; line-height: 1;
+          font-family: 'Poppins', sans-serif; box-shadow: 0 5px 14px rgba(0,0,0,0.2);
         }
-        .promo-badge b { font-size: 1.75rem; font-weight: 800; }
-        .promo-badge span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; margin-top: 2px; }
-        @keyframes promo-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
-        .promo-copy { min-width: 0; }
-        .promo-eyebrow {
+        .pc-badge b { font-size: 1.25rem; font-weight: 800; }
+        .pc-badge span { font-size: 0.52rem; font-weight: 700; letter-spacing: 0.06em; margin-top: 2px; }
+        .promo-card.pc-scholarship .pc-badge { color: #047857; }
+        .promo-card.pc-learning .pc-badge { color: #6d28d9; }
+        .promo-card.pc-health .pc-badge { color: #0e7490; }
+        .pc-eyebrow {
+          font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+          background: rgba(255,255,255,0.18); border-radius: 999px; padding: 0.22rem 0.65rem;
           display: inline-block;
-          font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-          background: rgba(255,255,255,0.16); border-radius: 999px; padding: 0.2rem 0.7rem; margin-bottom: 0.5rem;
         }
-        .promo-copy h2 { font-size: clamp(1.15rem, 2.4vw, 1.55rem); margin: 0 0 0.3rem; color: #fff; line-height: 1.25; }
-        .promo-copy p { margin: 0; font-size: 0.92rem; color: rgba(255,255,255,0.9); }
-        .promo-copy p s { opacity: 0.75; }
-        .promo-cta {
-          flex-shrink: 0;
-          display: inline-flex; align-items: center; gap: 0.5rem;
-          background: #fff; color: #002868;
-          font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.98rem;
-          padding: 0.85rem 1.6rem; border-radius: 999px; text-decoration: none;
-          transition: transform 0.15s ease, box-shadow 0.15s ease;
-          box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+        .promo-card h3 { font-size: 1.06rem; margin: 0 0 0.3rem; color: #fff; line-height: 1.3; position: relative; z-index: 1; }
+        .promo-card p { margin: 0 0 0.85rem; font-size: 0.86rem; color: rgba(255,255,255,0.92); line-height: 1.5; position: relative; z-index: 1; flex: 1; }
+        .promo-card p s { opacity: 0.72; }
+        .pc-cta {
+          align-self: flex-start; display: inline-flex; align-items: center; gap: 0.4rem;
+          background: #fff; color: #002868; font-family: 'Poppins', sans-serif; font-weight: 700;
+          font-size: 0.9rem; padding: 0.62rem 1.25rem; border-radius: 999px; text-decoration: none;
+          transition: transform 0.15s ease, box-shadow 0.15s ease; position: relative; z-index: 1;
+          box-shadow: 0 5px 14px rgba(0,0,0,0.16);
         }
-        .promo-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,0.26); }
-        @media (max-width: 720px) {
-          .promo-banner { flex-direction: column; text-align: center; align-items: center; padding: 1.5rem 1.25rem; }
-          .promo-left { flex-direction: column; text-align: center; }
-          .promo-cta { width: 100%; justify-content: center; }
-        }
+        .pc-cta:hover { transform: translateY(-2px); box-shadow: 0 9px 20px rgba(0,0,0,0.24); }
+        .promo-card.pc-scholarship .pc-cta { color: #047857; }
+        .promo-card.pc-learning .pc-cta { color: #6d28d9; }
+        .promo-card.pc-health .pc-cta { color: #0e7490; }
+        @media (max-width: 720px) { .promos-grid { grid-template-columns: 1fr; } }
       </style>
       <div class="container">
-        <div class="promo-banner reveal">
-          <div class="promo-left">
-            <div class="promo-badge"><b>70%</b><span>OFF</span></div>
-            <div class="promo-copy">
-              <span class="promo-eyebrow">🔥 Limited-Time Promotion</span>
-              <h2>Get Your Professional Website &amp; Business Platform</h2>
-              <p>Complete websites, e-commerce, learning &amp; business platforms, now <strong>from just $150</strong> <s>$500</s>. Free domain, hosting, unlimited email &amp; training included.</p>
-            </div>
-          </div>
-          <a class="promo-cta" href="software#pricing">View Offer →</a>
+        <div class="promos-head reveal">
+          <p class="section-label">🔥 Limited-Time Offers</p>
+          <h2>Current Promotions</h2>
         </div>
-      </div>
-    </section>
+        <div class="promos-grid">
 
-    <!-- SCHOLARSHIP PROMOTION BANNER -->
-    <section class="promo-banner-section" aria-label="Scholarship promotion, 50% tuition in India" style="padding-top:0;">
-      <style>
-        .promo-banner.promo-scholarship {
-          background: linear-gradient(120deg, #065f46 0%, #047857 50%, #059669 130%);
-          box-shadow: 0 14px 34px rgba(6,95,70,0.28);
-        }
-        .promo-banner.promo-scholarship::after { background: radial-gradient(circle, rgba(255,215,120,0.22), transparent 70%); }
-        .promo-banner.promo-scholarship .promo-badge { color: #047857; }
-        .promo-banner.promo-scholarship .promo-cta { color: #047857; }
-        .promo-perks {
-          display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; margin-top: 0.55rem;
-          font-size: 0.82rem; color: rgba(255,255,255,0.95); font-weight: 600;
-        }
-        .promo-perks span { display: inline-flex; align-items: center; gap: 0.3rem; }
-        @media (max-width: 720px) { .promo-perks { justify-content: center; } }
-      </style>
-      <div class="container">
-        <div class="promo-banner promo-scholarship reveal">
-          <div class="promo-left">
-            <div class="promo-badge"><b>50%</b><span>SCHOLARSHIP</span></div>
-            <div class="promo-copy">
-              <span class="promo-eyebrow">🎓 Study in India, Limited Seats</span>
-              <h2>50% Tuition Scholarship at Partner Universities in India</h2>
-              <p>Tuition after the scholarship is just <strong>$1,500–$3,000/year</strong>, paid directly to the university.</p>
-              <div class="promo-perks">
-                <span>🏠 Free accommodation*</span>
-                <span>🍲 Feeding &amp; medical insurance</span>
-                <span>✈️ $300 flight support</span>
-                <span>🤝 100% free TIH guidance</span>
-              </div>
+          <!-- 70% OFF, Website & Software -->
+          <div class="promo-card reveal">
+            <div class="pc-top">
+              <div class="pc-badge"><b>70%</b><span>OFF</span></div>
+              <span class="pc-eyebrow">💻 Website &amp; Software</span>
             </div>
+            <h3>Professional Website &amp; Business Platform</h3>
+            <p>Websites, e-commerce, learning &amp; business platforms from <strong>just $150</strong> <s>$500</s>. Free domain, hosting, unlimited email &amp; training included.</p>
+            <a class="pc-cta" href="software#pricing">View Offer →</a>
           </div>
-          <a class="promo-cta" href="study-abroad">Apply Now →</a>
-        </div>
-      </div>
-    </section>
 
-    <!-- LEARNING HUB PROMOTION BANNER -->
-    <section class="promo-banner-section" aria-label="Learning Hub promotion, 99% off, $2 per course" style="padding-top:0;">
-      <style>
-        .promo-banner.promo-learning {
-          background: linear-gradient(120deg, #5b21b6 0%, #6d28d9 50%, #7c3aed 130%);
-          box-shadow: 0 14px 34px rgba(91,33,182,0.28);
-        }
-        .promo-banner.promo-learning::after { background: radial-gradient(circle, rgba(250,204,21,0.22), transparent 70%); }
-        .promo-banner.promo-learning .promo-badge { color: #6d28d9; }
-        .promo-banner.promo-learning .promo-cta { color: #6d28d9; }
-      </style>
-      <div class="container">
-        <div class="promo-banner promo-learning reveal">
-          <div class="promo-left">
-            <div class="promo-badge"><b>99%</b><span>OFF</span></div>
-            <div class="promo-copy">
-              <span class="promo-eyebrow">📚 TIH Learning Hub, Limited-Time</span>
-              <h2>Every Course Just $2, Real Skills, Exam Prep &amp; Certificates</h2>
-              <p>Full courses worth up to <s>$200</s>, now <strong>only US$2 each</strong>. WASSCE prep, computer &amp; job skills, IELTS/TOEFL and more, with a verified certificate.</p>
+          <!-- 50% Scholarship -->
+          <div class="promo-card pc-scholarship reveal reveal-delay-1">
+            <div class="pc-top">
+              <div class="pc-badge"><b>50%</b><span>SCHOLARSHIP</span></div>
+              <span class="pc-eyebrow">🎓 Study in India</span>
             </div>
+            <h3>50% Tuition Scholarship, India Universities</h3>
+            <p>Tuition just <strong>$1,500–$3,000/yr</strong> (paid to the university), plus free accommodation*, feeding &amp; medical insurance, and <strong>$300 flight support</strong>.</p>
+            <a class="pc-cta" href="study-abroad">Apply Now →</a>
           </div>
-          <a class="promo-cta" href="learning-hub">Start Learning →</a>
-        </div>
-      </div>
-    </section>
 
-    <!-- HEALTHCARE PROMOTION BANNER -->
-    <section class="promo-banner-section" aria-label="Free medical invitation promotion, India" style="padding-top:0;">
-      <style>
-        .promo-banner.promo-health {
-          background: linear-gradient(120deg, #0e7490 0%, #0891b2 50%, #06b6d4 130%);
-          box-shadow: 0 14px 34px rgba(14,116,144,0.28);
-        }
-        .promo-banner.promo-health::after { background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%); }
-        .promo-banner.promo-health .promo-badge { color: #0e7490; }
-        .promo-banner.promo-health .promo-badge b { font-size: 1.5rem; }
-        .promo-banner.promo-health .promo-cta { color: #0e7490; }
-      </style>
-      <div class="container">
-        <div class="promo-banner promo-health reveal">
-          <div class="promo-left">
-            <div class="promo-badge"><b>FREE</b><span>INVITATION</span></div>
-            <div class="promo-copy">
-              <span class="promo-eyebrow">🏥 Healthcare in India, No Cost to Start</span>
-              <h2>Get a Free Medical Invitation from India's Best Hospitals</h2>
-              <p>We arrange your hospital invitation at <strong>no cost</strong>, and support you all the way, including <strong>visa processing</strong> and <strong>travel arrangements</strong>.</p>
-              <div class="promo-perks">
-                <span>🏥 Free hospital invitation</span>
-                <span>🛂 Visa processing help</span>
-                <span>✈️ Travel arrangements</span>
-                <span>🤝 Support throughout</span>
-              </div>
+          <!-- 99% OFF, Learning Hub -->
+          <div class="promo-card pc-learning reveal reveal-delay-1">
+            <div class="pc-top">
+              <div class="pc-badge"><b>99%</b><span>OFF</span></div>
+              <span class="pc-eyebrow">📚 TIH Learning Hub</span>
             </div>
+            <h3>Every Course Just $2</h3>
+            <p>Full courses worth up to <s>$200</s>, now <strong>only US$2 each</strong>. WASSCE prep, computer &amp; job skills, IELTS/TOEFL and more, with a verified certificate.</p>
+            <a class="pc-cta" href="learning-hub">Start Learning →</a>
           </div>
-          <a class="promo-cta" href="healthcare">Get Started →</a>
+
+          <!-- FREE, Medical Invitation -->
+          <div class="promo-card pc-health reveal">
+            <div class="pc-top">
+              <div class="pc-badge"><b>FREE</b><span>INVITATION</span></div>
+              <span class="pc-eyebrow">🏥 Healthcare in India</span>
+            </div>
+            <h3>Free Medical Invitation from India's Best Hospitals</h3>
+            <p>We arrange your hospital invitation at <strong>no cost</strong> and support you all the way, including <strong>visa processing</strong> and <strong>travel arrangements</strong>.</p>
+            <a class="pc-cta" href="healthcare">Get Started →</a>
+          </div>
+
         </div>
       </div>
     </section>
