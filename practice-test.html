@@ -155,6 +155,12 @@
     function getUrlParam(name){ var m=new RegExp('[?&]'+name+'=([^&]*)').exec(window.location.search); return m?decodeURIComponent(m[1].replace(/\+/g,' ')):null; }
     function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
+    // Positional-answer detector, used by shuffleQ(). Defined up here so it is
+    // assigned BEFORE initPractice() runs below (a `var` hoists its declaration
+    // but not its value, so defining it later left it undefined and crashed the
+    // whole test setup with "Cannot read properties of undefined (reading 'test')").
+    var PT_POS_DEP = /\b(all|none|both|any|each) of the (above|following)\b|\bthe above\b|\b(all|none) of these\b|\bboth [a-d] (and|&) [a-d]\b|\b[a-d] (and|or|&) [a-d]\b|\banswers? [a-d]\b|\boptions? [a-d]\b/i;
+
     var exam = (getUrlParam('exam')||'ielts').toLowerCase();
     var T = (typeof PRACTICE_TESTS!=='undefined') ? PRACTICE_TESTS[exam] : null;
     var courseTitle = (typeof COURSES_DB!=='undefined' && COURSES_DB[exam]) ? COURSES_DB[exam].title : (T?T.title:'Practice Test');
@@ -174,7 +180,7 @@
     // Shuffle a question's answer options so the correct one isn't always in the
     // same position. Returns {opts, correct} with the answer remapped. Options that
     // reference a position ("all of the above", "A and B") keep their order.
-    var PT_POS_DEP = /\b(all|none|both|any|each) of the (above|following)\b|\bthe above\b|\b(all|none) of these\b|\bboth [a-d] (and|&) [a-d]\b|\b[a-d] (and|or|&) [a-d]\b|\banswers? [a-d]\b|\boptions? [a-d]\b/i;
+    // (PT_POS_DEP is defined near the top so it exists before initPractice runs.)
     function shuffleQ(qq){
       var opts=(qq.opts||[]).slice();
       var positional=opts.some(function(o){ return PT_POS_DEP.test(String(o)); });
