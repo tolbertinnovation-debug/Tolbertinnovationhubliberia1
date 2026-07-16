@@ -207,6 +207,13 @@
     #tih-chat-win[dir="rtl"] .tih-qrs{padding:3px 47px 6px 6px;}
     #tih-chat-win[dir="rtl"] .tih-inp{text-align:right;}
     #tih-chat-win[dir="rtl"] .tih-prog{padding:0 47px 2px 0;}
+    /* When the chat is open, tuck the floating WhatsApp + welcome-audio buttons
+       out of the way so they never cover the chat input, they return on close. */
+    body.tih-chat-open .whatsapp-float,
+    body.tih-chat-open .tih-audio-ctl{
+      opacity:0 !important;visibility:hidden !important;pointer-events:none !important;
+      transform:translateY(12px);transition:opacity .2s ease, transform .2s ease, visibility .2s ease;
+    }
   `;
   document.head.appendChild(styleEl);
 
@@ -2320,6 +2327,7 @@ Or choose a topic below:`;
 
   function openChat() {
     chatWin.classList.add('open');
+    document.body.classList.add('tih-chat-open'); // hide floating WA/audio buttons
     document.getElementById('tih-chat-badge').style.display = 'none';
     ensureIndex(); // keep the site index warm & fresh
     if (!msgsEl.children.length) {
@@ -2368,10 +2376,14 @@ Or choose a topic below:`;
     return `Hello! 👋 Welcome to <strong>Tolbert Innovation Hub</strong>!<br><br>I'm your TIH Assistant, I can answer questions about scholarships, free IELTS/TOEFL prep, healthcare referrals, software services, and more.<br><br>What can I help you with today?`;
   }
 
+  function closeChat() {
+    chatWin.classList.remove('open');
+    document.body.classList.remove('tih-chat-open'); // restore floating WA/audio buttons
+  }
   chatBtn.addEventListener('click', () =>
-    chatWin.classList.contains('open') ? chatWin.classList.remove('open') : openChat()
+    chatWin.classList.contains('open') ? closeChat() : openChat()
   );
-  document.getElementById('tih-close-btn').addEventListener('click', () => chatWin.classList.remove('open'));
+  document.getElementById('tih-close-btn').addEventListener('click', closeChat);
 
   // ── Proactive greeting bubble (once per browser session) ───────────────────────
   (function () {
