@@ -10,7 +10,7 @@ const newsPosts = [
     category: 'Scholarships',
     summary: 'Applications are now open with updated document requirements, guidance sessions, and admission support timelines.',
     href: 'news-scholarship-2026',
-    image: 'https://i.ibb.co/JW664n2y/Chat-GPT-Image-Mar-8-2026-12-00-34-PM.png',
+    image: 'https://i.ibb.co/QF6t7Ywj/file-00000000253c72468d9345d66d15e843.png',
     imageAlt: 'Students celebrating scholarship opportunities'
   },
   {
@@ -28,7 +28,7 @@ const newsPosts = [
     category: 'Healthcare Programs',
     summary: 'Tolbert Innovation Hub has expanded healthcare referral support pathways for families seeking treatment coordination in India.',
     href: 'news-healthcare-referral-expansion',
-    image: 'https://i.ibb.co/PZtxGS1X/Chat-GPT-Image-Mar-8-2026-01-03-34-PM.png',
+    image: 'https://i.ibb.co/pjbMSz8W/file-00000000d1cc720ca76d4cc0e3dec03c.png',
     imageAlt: 'Healthcare support and treatment coordination update'
   },
   {
@@ -37,7 +37,7 @@ const newsPosts = [
     category: 'Technology Programs',
     summary: 'New technology consultation support helps businesses modernize operations with websites, platforms, and digital process tools.',
     href: 'news-technology-support-2026',
-    image: 'https://i.ibb.co/wFnGC1NQ/Chat-GPT-Image-Mar-8-2026-12-25-09-PM.png',
+    image: 'https://i.ibb.co/B5ppVkyg/file-000000000ee07243ae0c4219a8d5f5e5.png',
     imageAlt: 'Technology innovation and software support update'
   }
 ];
