@@ -811,10 +811,10 @@ We help Liberian businesses and organisations modernise with:<br>
 • <strong>Top Security Protection</strong> (SSL &amp; firewall)<br>
 • <strong>Unlimited Professional Email</strong> (you@yourbusiness.com)<br>
 • <strong>Management Training</strong> so you can run it yourself<br><br>
-📦 <strong>Limited-Time Launch Offer:</strong><br>
-• <strong>Business Starter, $150</strong>, professional business website<br>
-• <strong>Business Growth, $200</strong>, adds online learning platform, business management, e-commerce &amp; payment integration<br>
-• <strong>Complete Digital, $300</strong>, adds database website, API integration &amp; mobile app development<br><br>
+📦 <strong>🔥 Limited-Time Promotion, 70% OFF:</strong><br>
+• <strong>Business Starter, <s>$500</s> $150</strong>, professional business website<br>
+• <strong>Business Growth, <s>$670</s> $200</strong>, adds online learning platform, business management, e-commerce &amp; payment integration<br>
+• <strong>Complete Digital, <s>$1,000</s> $300</strong>, adds database website, API integration &amp; mobile app development<br><br>
 All one-time prices, no monthly fees. Flexible payment plans available.`,
       qr:['📝 Request Consultation','💰 View Full Pricing','🗂️ View Portfolio','🔙 Main Menu'] },
 
@@ -825,15 +825,15 @@ All one-time prices, no monthly fees. Flexible payment plans available.`,
 • Scholarship guidance, <strong>Free</strong><br>
 • IELTS/TOEFL classroom, <strong>100% Free</strong><br>
 • Completion certificate, <strong>$5 USD</strong><br><br>
-<strong>Website Development (Limited-Time Launch Offer):</strong><br>
-• Business Starter, <strong>$150</strong>, professional website<br>
-• Business Growth, <strong>$200</strong>, learning platform, business management, e-commerce &amp; payments<br>
-• Complete Digital, <strong>$300</strong>, database, API integration &amp; mobile app<br>
+<strong>Website Development, 🔥 70% OFF Promotion:</strong><br>
+• Business Starter, <s>$500</s> <strong>$150</strong>, professional website<br>
+• Business Growth, <s>$670</s> <strong>$200</strong>, learning platform, business management, e-commerce &amp; payments<br>
+• Complete Digital, <s>$1,000</s> <strong>$300</strong>, database, API integration &amp; mobile app<br>
 🎁 EVERY package includes FREE: <strong>1-year domain · hosting · unlimited traffic · all search engines (SEO) · top security · unlimited professional email · management training</strong><br><br>
 <strong>Healthcare:</strong><br>
 • Program coordination, <strong>Free</strong> (you pay the hospital)<br><br>
 <strong>Donation to TIH:</strong> From $5, any amount helps!`,
-      qr:['💻 Website 50% OFF','🎓 Apply Free','❤️ Donate','📞 Contact','🔙 Main Menu'] },
+      qr:['💻 Website 70% OFF','🎓 Apply Free','❤️ Donate','📞 Contact','🔙 Main Menu'] },
 
     { id:'contact',
       keywords:['contact','phone','email','whatsapp','reach us','get in touch','office','location','address','hours','call','where are you','how to reach','contact details','monrovia','liberia office'],
@@ -1545,7 +1545,7 @@ Typical project timelines at TIH:<br>
 • <strong>Basic website</strong>, 2–4 weeks<br>
 • <strong>Custom software / business systems</strong>, 4–12 weeks<br>
 • <strong>Mobile app</strong>, 6–12 weeks<br><br>
-🎉 <strong>Website packages are 50% OFF</strong> and include free 1-year domain, hosting, unlimited professional email, and strong security.<br><br>
+🎉 <strong>Website packages are 70% OFF</strong> (limited-time promotion) and include free 1-year domain, hosting, unlimited traffic, all-search-engine listing, top security, unlimited professional email, and management training.<br><br>
 We'll give you a precise timeline estimate during your free consultation.`,
       qr:['💻 Book Consultation','💰 View Pricing','📞 Contact TIH'] },
 
@@ -1818,7 +1818,7 @@ Or choose a topic below:`;
       { id:'healthcare', kw:['santé','médical','hôpital','traitement','malade','médecin','soins'],
         reply:`🏥 <strong>Programme d’orientation médicale</strong><br><br>TIH met en relation les patients libériens avec des hôpitaux spécialisés en Inde : cardiologie, oncologie, orthopédie, neurologie, fertilité…<br><br>Nous coordonnons le dossier médical, les rendez-vous et le visa.<br>📞 WhatsApp : +231 880 559 227` },
       { id:'software', kw:['logiciel','site web','application','développement','prix','tarif','coût','site internet'],
-        reply:`💻 <strong>Services logiciels TIH</strong><br><br>Sites web, plateformes d’apprentissage, systèmes de gestion, boutiques e-commerce et applications mobiles.<br><br>📦 Offre de lancement :<br>• Starter 150 $, site web professionnel<br>• Croissance 200 $, plateforme d’apprentissage, gestion d’entreprise, e-commerce &amp; paiements<br>• Complet 300 $, base de données, intégration API &amp; application mobile<br><br>🎁 Chaque pack inclut GRATUITEMENT : domaine 1 an, hébergement, trafic illimité, référencement, sécurité, e-mails professionnels illimités et formation.` },
+        reply:`💻 <strong>Services logiciels TIH</strong><br><br>Sites web, plateformes d’apprentissage, systèmes de gestion, boutiques e-commerce et applications mobiles.<br><br>📦 Promotion, 70 % DE RÉDUCTION :<br>• Starter <s>500 $</s> 150 $, site web professionnel<br>• Croissance 200 $, plateforme d’apprentissage, gestion d’entreprise, e-commerce &amp; paiements<br>• Complet 300 $, base de données, intégration API &amp; application mobile<br><br>🎁 Chaque pack inclut GRATUITEMENT : domaine 1 an, hébergement, trafic illimité, référencement, sécurité, e-mails professionnels illimités et formation.` },
       { id:'contact', kw:['contact','téléphone','email','e-mail','whatsapp','adresse','joindre','appeler'],
         reply:`📞 <strong>Contacter TIH</strong><br><br>💬 WhatsApp : <a href="https://wa.me/231880559227" target="_blank" rel="noopener" style="color:#002868;font-weight:700;">+231 880 559 227</a><br>📧 E-mail : tolbertinnovationhub@gmail.com<br>☎️ Téléphone : +231 778 956 979<br>📍 Monrovia, Libéria<br>🕐 Lun–Ven 8h–18h · Sam 9h–15h (GMT)` },
       { id:'apply', kw:['postuler','candidature','inscrire','inscription','demande','appliquer'],
@@ -1836,7 +1836,7 @@ Or choose a topic below:`;
       { id:'healthcare', kw:['صحة','طبي','مستشفى','علاج','مريض','طبيب','صحية'],
         reply:`🏥 <strong>برنامج الإحالة الطبية</strong><br><br>يربط TIH المرضى الليبيريين بمستشفيات متخصصة في الهند: القلب، الأورام، العظام، الأعصاب، والخصوبة.<br><br>ننسق الملف الطبي والمواعيد والتأشيرة.<br>📞 واتساب: +231 880 559 227` },
       { id:'software', kw:['برمجيات','موقع','تطبيق','برنامج','تطوير','سعر','تكلفة','أسعار'],
-        reply:`💻 <strong>خدمات البرمجيات</strong><br><br>مواقع إلكترونية، منصات تعليمية، أنظمة إدارة الأعمال، متاجر إلكترونية، وتطبيقات جوال.<br><br>📦 عرض الإطلاق:<br>• المبتدئ 150$، موقع أعمال احترافي<br>• النمو 200$، منصة تعليمية وإدارة أعمال ومتجر إلكتروني ومدفوعات<br>• المتكامل 300$، قاعدة بيانات وتكامل API وتطبيق جوال<br><br>🎁 كل باقة تشمل مجاناً: نطاقاً لمدة سنة، استضافة، زيارات غير محدودة، أرشفة بمحركات البحث، حماية قوية، بريداً مهنياً غير محدود، وتدريباً.` },
+        reply:`💻 <strong>خدمات البرمجيات</strong><br><br>مواقع إلكترونية، منصات تعليمية، أنظمة إدارة الأعمال، متاجر إلكترونية، وتطبيقات جوال.<br><br>📦 عرض ترويجي، خصم 70٪:<br>• المبتدئ <s>500$</s> 150$، موقع أعمال احترافي<br>• النمو 200$، منصة تعليمية وإدارة أعمال ومتجر إلكتروني ومدفوعات<br>• المتكامل 300$، قاعدة بيانات وتكامل API وتطبيق جوال<br><br>🎁 كل باقة تشمل مجاناً: نطاقاً لمدة سنة، استضافة، زيارات غير محدودة، أرشفة بمحركات البحث، حماية قوية، بريداً مهنياً غير محدود، وتدريباً.` },
       { id:'contact', kw:['اتصال','تواصل','هاتف','بريد','واتساب','عنوان','رقم'],
         reply:`📞 <strong>تواصل مع TIH</strong><br><br>💬 واتساب: <a href="https://wa.me/231880559227" target="_blank" rel="noopener" style="color:#002868;font-weight:700;">+231 880 559 227</a><br>📧 البريد: tolbertinnovationhub@gmail.com<br>☎️ هاتف: +231 778 956 979<br>📍 مونروفيا، ليبيريا` },
       { id:'apply', kw:['تقديم','طلب','تسجيل','سجل','قدم','التحاق'],

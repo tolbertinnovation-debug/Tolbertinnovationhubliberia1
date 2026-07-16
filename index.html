@@ -281,6 +281,90 @@
       </div>
     </div>
 
+    <!-- SOFTWARE PROMOTION BANNER -->
+    <section class="promo-banner-section" aria-label="Website promotion, 70% off">
+      <style>
+        .promo-banner-section { padding: 1.5rem 0; }
+        .promo-banner {
+          position: relative;
+          overflow: hidden;
+          max-width: 1120px;
+          margin: 0 auto;
+          border-radius: 16px;
+          background: linear-gradient(120deg, #002868 0%, #0a3a8c 55%, #E31E24 140%);
+          color: #fff;
+          padding: 1.6rem 1.9rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1.5rem;
+          flex-wrap: wrap;
+          box-shadow: 0 14px 34px rgba(0,40,104,0.28);
+        }
+        .promo-banner::after {
+          content: '';
+          position: absolute;
+          top: -40%; right: -8%;
+          width: 320px; height: 320px;
+          background: radial-gradient(circle, rgba(255,255,255,0.16), transparent 70%);
+          pointer-events: none;
+        }
+        .promo-left { display: flex; align-items: center; gap: 1.15rem; min-width: 0; }
+        .promo-badge {
+          flex-shrink: 0;
+          display: flex; flex-direction: column; align-items: center; justify-content: center;
+          width: 88px; height: 88px;
+          border-radius: 50%;
+          background: #fff;
+          color: #E31E24;
+          font-family: 'Poppins', sans-serif;
+          line-height: 1;
+          box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+          animation: promo-pulse 2s ease-in-out infinite;
+        }
+        .promo-badge b { font-size: 1.75rem; font-weight: 800; }
+        .promo-badge span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; margin-top: 2px; }
+        @keyframes promo-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+        .promo-copy { min-width: 0; }
+        .promo-eyebrow {
+          display: inline-block;
+          font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+          background: rgba(255,255,255,0.16); border-radius: 999px; padding: 0.2rem 0.7rem; margin-bottom: 0.5rem;
+        }
+        .promo-copy h2 { font-size: clamp(1.15rem, 2.4vw, 1.55rem); margin: 0 0 0.3rem; color: #fff; line-height: 1.25; }
+        .promo-copy p { margin: 0; font-size: 0.92rem; color: rgba(255,255,255,0.9); }
+        .promo-copy p s { opacity: 0.75; }
+        .promo-cta {
+          flex-shrink: 0;
+          display: inline-flex; align-items: center; gap: 0.5rem;
+          background: #fff; color: #002868;
+          font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.98rem;
+          padding: 0.85rem 1.6rem; border-radius: 999px; text-decoration: none;
+          transition: transform 0.15s ease, box-shadow 0.15s ease;
+          box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+        }
+        .promo-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,0.26); }
+        @media (max-width: 720px) {
+          .promo-banner { flex-direction: column; text-align: center; align-items: center; padding: 1.5rem 1.25rem; }
+          .promo-left { flex-direction: column; text-align: center; }
+          .promo-cta { width: 100%; justify-content: center; }
+        }
+      </style>
+      <div class="container">
+        <div class="promo-banner reveal">
+          <div class="promo-left">
+            <div class="promo-badge"><b>70%</b><span>OFF</span></div>
+            <div class="promo-copy">
+              <span class="promo-eyebrow">🔥 Limited-Time Promotion</span>
+              <h2>Get Your Professional Website &amp; Business Platform</h2>
+              <p>Complete websites, e-commerce, learning &amp; business platforms, now <strong>from just $150</strong> <s>$500</s>. Free domain, hosting, unlimited email &amp; training included.</p>
+            </div>
+          </div>
+          <a class="promo-cta" href="software#pricing">View Offer →</a>
+        </div>
+      </div>
+    </section>
+
     <!-- WELCOME INTRODUCTION -->
     <section class="section" aria-label="Welcome to Tolbert Innovation Hub">
       <div class="container">
@@ -1215,7 +1299,7 @@
   </footer>
 
   <script src="main.js?v=13"></script>
-  <script src="chatbot.js?v=5"></script>
+  <script src="chatbot.js?v=6"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     (function () {
