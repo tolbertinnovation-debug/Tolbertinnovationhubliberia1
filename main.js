@@ -16,11 +16,11 @@ const newsPosts = [
   {
     title: 'IELTS Mock Exam Certificate Request System Launched',
     date: 'March 8, 2026',
-    category: 'Announcements',
+    category: 'Learning Hub',
     summary: 'Students who complete IELTS mock exams can now request certificate processing through the new dedicated certificate workflow.',
     href: 'news-ielts-certificate-system',
-    image: 'https://i.ibb.co/5W4FhDnH/Chat-GPT-Image-Mar-8-2026-08-38-03-PM-1.png',
-    imageAlt: 'IELTS classroom completion and certificate announcement'
+    image: 'https://i.ibb.co/cK8tRmqb/file-00000000ea6c71f4be003abaad44bbd5.png',
+    imageAlt: 'IELTS Mock Exam Certificate Request System Launched'
   },
   {
     title: 'Healthcare Referral Program Expansion Update',
