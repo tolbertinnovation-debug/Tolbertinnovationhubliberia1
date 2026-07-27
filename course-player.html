@@ -1076,6 +1076,25 @@
   })();
 
   // ===== RENDER LESSON =====
+  function generateCourseTopicOverview(lesson, index, lessonBody) {
+    var courseName = escSide((course.title || '').split(':')[0]);
+    var topic = escSide(course.title || 'This course');
+    var about = Array.isArray(course.about) ? course.about : [course.about || course.shortDesc || 'This course builds practical knowledge through guided lessons and practice.'];
+    var aboutHtml = about.filter(Boolean).map(function (paragraph) {
+      return '<p>' + escSide(paragraph) + '</p>';
+    }).join('');
+    var outcomes = (course.learn || []).slice(0, 5).map(function (item) {
+      return '<li>' + escSide(item) + '</li>';
+    }).join('');
+    var module = course.modules[lesson.module - 1];
+    var moduleTitle = module ? escSide(module.title) : 'the current module';
+    return '<div class="lesson-note-intro"><strong>Full topic note: ' + topic + '</strong><br><span>This Overview is the main reading lesson for <strong>' + escSide(lesson.title) + '</strong> in ' + moduleTitle + '. Read it carefully, watch the real video when one is available, and complete the practice task before marking the lesson complete.</span></div>'
+      + '<div class="lesson-note-section"><h4>1. Understanding the course topic</h4>' + aboutHtml + '</div>'
+      + '<div class="lesson-note-section"><h4>2. What you should be able to do</h4><p>By the end of this course, your knowledge should become a practical skill. These are the main outcomes this topic is designed to support:</p><ul class="lesson-note-checklist">' + (outcomes || '<li>Explain the main ideas clearly and apply them to a real situation.</li>') + '</ul></div>'
+      + '<div class="lesson-note-section"><h4>3. Today\'s lesson: ' + escSide(lesson.title) + '</h4>' + lessonBody + '</div>'
+      + '<div class="lesson-note-action"><strong>Topic checkpoint:</strong> In the Notes tab, write what this lesson means in your own words, one example from your school, work, business, or community, and one action you will take to practise the skill.</div>';
+  }
+
   function renderLesson(index) {
     if (!course || !lessons || !lessons[index]) return;
     var lesson = lessons[index];
@@ -1127,16 +1146,13 @@
     // Overview
     var overviewHtml;
     if (lesson.isQuiz) {
-      overviewHtml = '<p>This is the quiz for Module ' + lesson.module + '. You need <strong>70% or higher to pass</strong> (for example 7 out of 10, or 14 out of 20 on the final). Review the lessons if needed, you can retry as many times as you like.</p>';
+      overviewHtml = '<div class="lesson-note-intro"><strong>Module ' + lesson.module + ' knowledge check</strong><br><span>This quiz checks your understanding of the course topic before you continue.</span></div><div class="lesson-note-section"><h4>How to prepare</h4><p>Review the detailed Overview notes from the lessons in this module. You need <strong>70% or higher to pass</strong> (for example 7 out of 10, or 14 out of 20 on the final). You can retry as many times as you like.</p></div>';
     } else if (lesson.isProject) {
-      overviewHtml = '<p>This is the hands-on project for Module ' + lesson.module + '. Apply what you have learned to complete the project as described in the video. Mark it complete when you are done.</p>';
+      overviewHtml = '<div class="lesson-note-intro"><strong>Module ' + lesson.module + ' practical project</strong><br><span>This project turns the course topic into a piece of work you can complete and keep as evidence of your learning.</span></div><div class="lesson-note-section"><h4>Project approach</h4><p>Review the detailed Overview notes from this module, follow the project instructions, and apply the skill to a realistic situation. Record your steps, decisions, and final result in the Notes tab before marking the project complete.</p></div>';
     } else {
       var courseContent = (typeof LESSON_CONTENT !== 'undefined' && LESSON_CONTENT[courseId]) ? LESSON_CONTENT[courseId] : {};
-      if (courseContent[String(index)]) {
-        overviewHtml = courseContent[String(index)];
-      } else {
-        overviewHtml = generateDetailedLessonNote(lesson, index);
-      }
+      var lessonBody = courseContent[String(index)] || generateDetailedLessonNote(lesson, index);
+      overviewHtml = generateCourseTopicOverview(lesson, index, lessonBody);
     }
     document.getElementById('overviewContent').innerHTML = overviewHtml;
     // Resources, Issue 12 fix: styled empty state instead of bare placeholder
