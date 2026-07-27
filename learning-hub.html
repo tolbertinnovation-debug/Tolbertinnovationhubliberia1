@@ -214,9 +214,45 @@
     .track-chip { transition: transform .22s, box-shadow .22s; }
     .track-chip:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(11,31,58,.12); }
     @media (prefers-reduced-motion: reduce) { .lh-modern.lh-orb.lh-emblem.lh-glow.lh-card.lh-fade { animation: none !important; } .lh-fade { opacity: 1; transform: none; } }
+
+    /* ===== PROFESSIONAL POLISH ===== */
+    :focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
+    .hub-header { box-shadow: 0 4px 20px rgba(11,31,58,.06); }
+    .hub-brand { letter-spacing: -.02em; }
+    .hub-brand span { font-weight: 600; }
+    .hero.lh-modern { min-height: 540px; display: flex; align-items: center; }
+    .hero.lh-modern .container { width: min(1160px, 92%); }
+    .hero-inner { max-width: 680px; }
+    .hero h1 { letter-spacing: -.045em; }
+    .hero p { max-width: 610px; }
+    .hero-actions .btn { box-shadow: 0 10px 24px rgba(11,31,58,.12); }
+    .hero-actions .btn-ghost { box-shadow: none; }
+    .stats-band { box-shadow: 0 8px 24px rgba(11,31,58,.05); position: relative; z-index: 2; }
+    .stat { position: relative; }
+    .stat + .stat::before { content: ''; position: absolute; left: 0; top: 25%; height: 50%; border-left: 1px solid var(--border); }
+    .program-card, .pathway-card, .step, .testimonial, .newsletter-box { box-shadow: 0 8px 24px rgba(11,31,58,.06); }
+    .program-card { border-color: #e6edf7; padding: 1.75rem 1.6rem; }
+    .program-card:hover, .pathway-card:hover, .step:hover, .testimonial:hover { border-color: #c8d8ef; }
+    .program-icon { box-shadow: inset 0 0 0 1px rgba(30,58,138,.06); }
+    .tracks-grid { gap: .85rem; }
+    .track-chip { min-height: 76px; border-color: #dce6f3; background: rgba(255,255,255,.72); }
+    .track-chip .t-name { color: #102d57; }
+    .track-chip .t-meta { margin-top: .12rem; display: inline-block; }
+    .cta-band { box-shadow: 0 16px 38px rgba(30,58,138,.18); }
+    .hub-footer { border-top: 4px solid var(--secondary); }
+    @media (max-width: 640px) {
+      .hero.lh-modern { min-height: auto; padding-top: 3.5rem; }
+      .lh-visual { min-height: 300px; margin-top: 1rem; transform: scale(.92); transform-origin: center top; }
+      .hero h1 { letter-spacing: -.035em; }
+      .stat + .stat::before { display: none; }
+      .stat:nth-child(even)::before { display: block; }
+      .hub-nav .nav-apply { box-shadow: 0 8px 18px rgba(227,30,36,.2); }
+    }
   </style>
 </head>
 <body>
+
+  <a class="skip-link" href="#programs">Skip to learning programs</a>
 
   <!-- HEADER -->
   <header class="hub-header">
@@ -232,7 +268,7 @@
         <a href="hub-dashboard" class="nav-login">Student Login</a>
         <a href="hub-apply" class="nav-apply">Apply for Access</a>
       </nav>
-      <button class="hub-menu-btn" id="hubMenuBtn" aria-label="Open menu" aria-expanded="false">☰ Menu</button>
+      <button class="hub-menu-btn" id="hubMenuBtn" aria-label="Open learning hub menu" aria-controls="hubNav" aria-expanded="false">☰ Menu</button>
     </div>
   </header>
 
@@ -348,7 +384,7 @@
         </div>
         <div class="pathway-card">
           <div class="pw-head" style="background:linear-gradient(135deg,#c2410c,#E31E24);">
-            <span class="pw-icon"></span>
+            <span class="pw-icon">📈</span>
             <h3>Digital Business</h3>
             <p>Start, market, and manage a business online</p>
           </div>
