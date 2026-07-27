@@ -495,6 +495,33 @@
     }
     .btn-lib-outline-w:hover { border-color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.1); }
 
+    /* ── PROFESSIONAL LIBRARY POLISH ── */
+    :focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
+    .lib-hero { min-height: 560px; display: flex; align-items: center; }
+    .lib-hero .hero-text { max-width: 700px; }
+    .lib-hero h1 { letter-spacing: -.045em; text-shadow: 0 4px 24px rgba(0,0,0,.16); }
+    .lib-hero .lead { max-width: 620px; }
+    .lib-search-wrap { border: 1px solid #dbe6f5; }
+    .lib-cats { top: 76px; }
+    .lib-featured-grid { gap: 1.5rem; }
+    .lib-book-card { border-radius: 12px; padding: .35rem; }
+    .lib-book-card:hover { transform: translateY(-6px); }
+    .lib-cover { border-radius: 10px; box-shadow: 0 8px 22px rgba(0,0,0,.16); }
+    .lib-book-title { color: #102d57; }
+    .lib-section-alt { background: linear-gradient(135deg,#f7faff 0%,#eef4fc 100%); }
+    .lib-feature-card { box-shadow: 0 8px 24px rgba(0,40,104,.07); }
+    .lib-stats-banner { box-shadow: 0 -8px 28px rgba(0,40,104,.08); }
+    @media (max-width: 920px) { .lib-cats { top: 0; } }
+    @media (max-width: 640px) {
+      .lib-hero { min-height: auto; padding-top: 3.5rem; }
+      .lib-hero h1 { letter-spacing: -.035em; }
+      .lib-search-wrap { flex-wrap: wrap; }
+      .lib-search-input { flex: 1 1 100%; min-height: 50px; }
+      .lib-search-btn { flex: 1; }
+      .lib-search-select { display: block; flex: 1; border-left: 0; border-top: 1px solid #e5e7eb; }
+      .lib-cats { position: sticky; }
+    }
+
     /* ── BOOK DETAIL MODAL ── */
     .lib-modal-overlay {
       position: fixed;
@@ -886,7 +913,7 @@
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <div id="announcement-bar" style="background:#E31E24;color:#fff;text-align:center;padding:0.6rem 1rem;font-size:0.88rem;font-weight:600;position:relative;z-index:1100;">
-    📚 <strong>TIH Digital Library is Live!</strong> Browse 50+ educational resources, completely free for all learners.
+    📚 <strong>TIH Digital Library is Live!</strong> Browse 11 verified books, completely free for all learners.
     <a href="#lib-featured" style="color:#fff;text-decoration:underline;margin-left:0.5rem;">Explore Now →</a>
     <button onclick="this.parentElement.style.display='none'" aria-label="Close announcement" style="position:absolute;right:0.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0.2rem 0.4rem;line-height:1;">✕</button>
   </div>
@@ -929,10 +956,10 @@
           <div class="hero-text">
             <div class="hero-live-badge hm-fade hm-d1"><span class="live-dot"></span> Free Educational Resources for Everyone</div>
             <h1 class="hm-fade hm-d2">TIH <span class="hm-red">Digital</span> <span class="hm-blue">Library</span></h1>
-            <p class="lead hm-fade hm-d3">Explore thousands of educational resources, research papers, eBooks, training manuals, scholarship guides, business resources, and learning materials, all free.</p>
+            <p class="lead hm-fade hm-d3">Explore verified books on IELTS, leadership, communication, business, entrepreneurship, accounting, and personal development, all available as PDFs through the TIH Digital Library.</p>
             <div class="impact-inline hm-fade hm-d5" style="margin-top:1.8rem;">
-              <div class="impact-item"><span class="impact-number" data-target="72" data-suffix="+">0</span><p class="impact-label">Resources Available</p></div>
-              <div class="impact-item"><span class="impact-number" data-target="12" data-suffix="">0</span><p class="impact-label">Categories</p></div>
+              <div class="impact-item"><span class="impact-number" id="availableBookCount">11</span><p class="impact-label">Books Available</p></div>
+              <div class="impact-item"><span class="impact-number" id="availableCategoryCount">5</span><p class="impact-label">Categories</p></div>
               <div class="impact-item"><span class="impact-number" data-target="100" data-suffix="%">0</span><p class="impact-label">Free Access</p></div>
               <div class="impact-item"><span class="impact-number">2026</span><p class="impact-label">Updated</p></div>
             </div>
@@ -992,7 +1019,7 @@
     <section class="lib-section" id="lib-featured">
       <div class="container">
         <div class="lib-section-header">
-          <h2 class="lib-section-title">⭐ Featured Resources</h2>
+          <h2 class="lib-section-title">⭐ Available Books</h2>
           <a href="#lib-shelves" class="lib-see-all">Browse All →</a>
         </div>
         <div id="featuredGrid" class="lib-featured-grid"></div>
@@ -1141,10 +1168,10 @@
       <section class="lib-section" style="background:linear-gradient(135deg,#001535 0%,#002868 50%,#003a8c 100%);color:#fff;">
         <div class="container">
           <div class="lib-section-header">
-            <h2 class="lib-section-title" style="color:#fff;">📥 Free Download Books</h2>
+            <h2 class="lib-section-title" style="color:#fff;">📥 Available PDF Books</h2>
             <span style="font-size:0.8rem;color:rgba(255,255,255,0.7);font-weight:600;">Real books · Click to download PDF</span>
           </div>
-          <p style="color:rgba(255,255,255,0.75);font-size:0.88rem;margin:-0.5rem 0 1.25rem;max-width:64ch;">All books below are legally free to download. Click any book to open the download page. Public domain classics from Project Gutenberg and CC-licensed technical books.</p>
+          <p style="color:rgba(255,255,255,0.75);font-size:0.88rem;margin:-0.5rem 0 1.25rem;max-width:64ch;">Every book below is a verified PDF hosted in the TIH Digital Library. Click any title to read or download it.</p>
           <div class="lib-shelf" id="shelf-freedl"></div>
         </div>
       </section>
@@ -1153,10 +1180,10 @@
       <section class="lib-section lib-section-alt">
         <div class="container">
           <div class="lib-section-header">
-            <h2 class="lib-section-title">📜 Classic Books, Free Public Domain</h2>
+            <h2 class="lib-section-title">📜 Classic Books</h2>
             <span style="font-size:0.8rem;color:#059669;font-weight:700;background:#d1fae5;padding:0.2rem 0.7rem;border-radius:999px;">FREE PDF</span>
           </div>
-          <p style="color:#4b5563;font-size:0.88rem;margin:-0.5rem 0 1.25rem;max-width:64ch;">Public domain classics from Project Gutenberg. These books are over 100 years old, completely free, and still deeply relevant for business, leadership, and personal growth.</p>
+          <p style="color:#4b5563;font-size:0.88rem;margin:-0.5rem 0 1.25rem;max-width:64ch;">This shelf will display verified classic books when they are added to the TIH collection.</p>
           <div class="lib-shelf" id="shelf-classics"></div>
         </div>
       </section>
@@ -1210,8 +1237,8 @@
     <div class="lib-stats-banner">
       <div class="container">
         <div class="lib-stats-row">
-          <div class="lib-stat-item"><span class="big">72+</span><p class="label">Educational Resources</p></div>
-          <div class="lib-stat-item"><span class="big">12</span><p class="label">Subject Categories</p></div>
+          <div class="lib-stat-item"><span class="big" id="availableBookCountBottom">11</span><p class="label">Books Available</p></div>
+          <div class="lib-stat-item"><span class="big" id="availableCategoryCountBottom">5</span><p class="label">Subject Categories</p></div>
           <div class="lib-stat-item"><span class="big">100%</span><p class="label">Free Access</p></div>
           <div class="lib-stat-item"><span class="big">2026</span><p class="label">Regularly Updated</p></div>
         </div>
@@ -1461,6 +1488,23 @@
     {id:66,title:"IELTS Vocabulary Masterclass 8.5",author:"Marc Roche",desc:"A comprehensive IELTS vocabulary guide designed to help you achieve band 8.5 and above. Covers academic word lists, topic-based vocabulary for all IELTS themes, collocations, and exercises to boost your Reading, Writing, Listening and Speaking scores.",year:2023,cat:"scholarships",icon:"📖",bg:"linear-gradient(150deg,#003a8c 0%,#0047AB 100%)",pages:210,size:"2.0 MB",readTime:"4-5 hrs",lang:"English",tags:["ielts","vocabulary","band 8.5","scholarship","english"],featured:true,popular:true,isNew:true,hasPdf:true,readUrl:"https://tolbertinnovationhub.org/books/ielts_vocabulary_masterclass_85_book_ielts_listen.pdf",pdfUrl:"https://tolbertinnovationhub.org/books/ielts_vocabulary_masterclass_85_book_ielts_listen.pdf",source:"TIH Digital Library · Hosted PDF"}
   ];
 
+  // Only books with verified files in /books are displayed on the public page.
+  const VERIFIED_BOOKS = [
+    {id:101,title:"Accounting for Non-Accountants",author:"Unknown author",desc:"A practical introduction to accounting concepts, financial statements, budgeting, and everyday business finance for learners and small-business owners.",year:2026,cat:"business",icon:"🧾",bg:"linear-gradient(150deg,#78350f 0%,#d97706 100%)",pages:"Book",size:"PDF",readTime:"Self-paced",lang:"English",tags:["accounting","finance","business"],hasPdf:true,readUrl:"books/Accounting%20for%20Non-Accountants.pdf",pdfUrl:"books/Accounting%20for%20Non-Accountants.pdf",source:"TIH Digital Library · Hosted PDF"},
+    {id:102,title:"Body Language For Dummies",author:"Elizabeth Kuhnke",desc:"A practical guide to understanding nonverbal communication, reading body language, and communicating with greater confidence in professional and everyday settings.",year:2026,cat:"career",icon:"🤝",bg:"linear-gradient(150deg,#1e3a8a 0%,#1565d8 100%)",pages:"Book",size:"PDF",readTime:"Self-paced",lang:"English",tags:["body language","communication","career"],hasPdf:true,readUrl:"books/Body%20Language%20For%20Dummies%20-%20Elizabeth%20Kuhnke.pdf",pdfUrl:"books/Body%20Language%20For%20Dummies%20-%20Elizabeth%20Kuhnke.pdf",source:"TIH Digital Library · Hosted PDF"},
+    {id:103,title:"Good Leaders Ask Great Questions",author:"John C. Maxwell",desc:"Leadership lessons focused on asking better questions, developing people, and building stronger teams through curiosity and intentional communication.",year:2026,cat:"career",icon:"❓",bg:"linear-gradient(150deg,#1e40af 0%,#1565d8 100%)",pages:"Book",size:"PDF",readTime:"Self-paced",lang:"English",tags:["leadership","communication","career"],hasPdf:true,readUrl:"books/Good%20Leaders%20Ask%20Great%20Question%20-%20John%20C.%20Maxwell.pdf",pdfUrl:"books/Good%20Leaders%20Ask%20Great%20Question%20-%20John%20C.%20Maxwell.pdf",source:"TIH Digital Library · Hosted PDF"},
+    {id:104,title:"How Successful People Lead",author:"John C. Maxwell",desc:"A leadership development resource about influence, trust, teamwork, and the habits that help leaders create lasting positive impact.",year:2026,cat:"career",icon:"🎯",bg:"linear-gradient(150deg,#1e3a8a 0%,#1d4ed8 100%)",pages:"Book",size:"PDF",readTime:"Self-paced",lang:"English",tags:["leadership","success","career"],hasPdf:true,readUrl:"books/How%20Successful%20People%20Lead%20-%20John%20C.%20Maxwell.pdf",pdfUrl:"books/How%20Successful%20People%20Lead%20-%20John%20C.%20Maxwell.pdf",source:"TIH Digital Library · Hosted PDF"},
+    {id:105,title:"IELTS Writing Masterclass 8.5",author:"Marc Roche",desc:"An IELTS Writing resource covering Task 1 and Task 2 strategies, model answers, vocabulary, and techniques for improving writing performance.",year:2023,cat:"scholarships",icon:"✍️",bg:"linear-gradient(150deg,#002868 0%,#1a4a9c 100%)",pages:"Book",size:"PDF",readTime:"5-6 hrs",lang:"English",tags:["ielts","writing","english","scholarship"],featured:true,popular:true,isNew:true,hasPdf:true,readUrl:"books/IELTS_Writing_Masterclass_8_5_compressed.pdf",pdfUrl:"books/IELTS_Writing_Masterclass_8_5_compressed.pdf",source:"TIH Digital Library · Hosted PDF"},
+    {id:106,title:"Invent It, Sell It, Bank It!",author:"Unknown author",desc:"A practical entrepreneurship resource about turning ideas into products, finding customers, and building a sustainable business.",year:2026,cat:"entrepreneurship",icon:"💡",bg:"linear-gradient(150deg,#991b1b 0%,#e31e24 100%)",pages:"Book",size:"PDF",readTime:"Self-paced",lang:"English",tags:["entrepreneurship","business","startup"],hasPdf:true,readUrl:"books/Invent%20It%2C%20Sell%20It%2C%20Bank%20It.pdf",pdfUrl:"books/Invent%20It%2C%20Sell%20It%2C%20Bank%20It.pdf",source:"TIH Digital Library · Hosted PDF"},
+    {id:107,title:"Leaders Eat Last",author:"Simon Sinek",desc:"A leadership and organizational culture book about trust, service, teamwork, and creating environments where people can do their best work.",year:2026,cat:"career",icon:"🌟",bg:"linear-gradient(150deg,#065f46 0%,#059669 100%)",pages:"Book",size:"PDF",readTime:"Self-paced",lang:"English",tags:["leadership","teamwork","career"],hasPdf:true,readUrl:"books/Leaders%20Eat%20Last%20-%20Simon%20Sinek.pdf",pdfUrl:"books/Leaders%20Eat%20Last%20-%20Simon%20Sinek.pdf",source:"TIH Digital Library · Hosted PDF"},
+    {id:108,title:"The 21 Irrefutable Laws of Leadership",author:"John C. Maxwell",desc:"A leadership reference covering principles of influence, vision, momentum, teamwork, and personal growth for emerging and experienced leaders.",year:2026,cat:"career",icon:"📘",bg:"linear-gradient(150deg,#312e81 0%,#4c1d95 100%)",pages:"Book",size:"PDF",readTime:"Self-paced",lang:"English",tags:["leadership","management","career"],hasPdf:true,readUrl:"books/The%2021%20Irrefutable%20Laws%20of%20Lead%20-%20John%20C.%20Maxwell.pdf",pdfUrl:"books/The%2021%20Irrefutable%20Laws%20of%20Lead%20-%20John%20C.%20Maxwell.pdf",source:"TIH Digital Library · Hosted PDF"},
+    {id:109,title:"The 7 Habits of Highly Effective People",author:"Stephen R. Covey",desc:"A personal effectiveness and leadership classic focused on proactive habits, priorities, collaboration, and continual improvement.",year:2026,cat:"career",icon:"✅",bg:"linear-gradient(150deg,#1e3a8a 0%,#2563eb 100%)",pages:"Book",size:"PDF",readTime:"Self-paced",lang:"English",tags:["personal development","leadership","career"],hasPdf:true,readUrl:"books/The%207%20Habits%20of%20Highly%20Effectiv%20-%20Stephen%20R.%20Covey.pdf",pdfUrl:"books/The%207%20Habits%20of%20Highly%20Effectiv%20-%20Stephen%20R.%20Covey.pdf",source:"TIH Digital Library · Hosted PDF"},
+    {id:110,title:"The Lean Startup",author:"Eric Ries",desc:"A startup management guide about experimentation, validated learning, customer feedback, and building products more efficiently.",year:2026,cat:"entrepreneurship",icon:"🚀",bg:"linear-gradient(150deg,#0e7490 0%,#0284c7 100%)",pages:"Book",size:"PDF",readTime:"Self-paced",lang:"English",tags:["startup","entrepreneurship","business"],hasPdf:true,readUrl:"books/The%20Lean%20Startup_%20How%20Today's%20E%20-%20Eric%20Ries.pdf",pdfUrl:"books/The%20Lean%20Startup_%20How%20Today's%20E%20-%20Eric%20Ries.pdf",source:"TIH Digital Library · Hosted PDF"},
+    {id:111,title:"IELTS Vocabulary Masterclass 8.5",author:"Marc Roche",desc:"An IELTS vocabulary resource covering academic vocabulary, topic-based word lists, collocations, and exercises for improving all four language skills.",year:2023,cat:"scholarships",icon:"📖",bg:"linear-gradient(150deg,#003a8c 0%,#0047ab 100%)",pages:"Book",size:"PDF",readTime:"4-5 hrs",lang:"English",tags:["ielts","vocabulary","english","scholarship"],featured:true,popular:true,isNew:true,hasPdf:true,readUrl:"books/ielts_vocabulary_masterclass_85_book_ielts_listen.pdf",pdfUrl:"books/ielts_vocabulary_masterclass_85_book_ielts_listen.pdf",source:"TIH Digital Library · Hosted PDF"}
+  ];
+  BOOKS.length = 0;
+  BOOKS.push(...VERIFIED_BOOKS);
+
   const CATS = [
     {id:"all",label:"All",icon:"📚"},
     {id:"new",label:"New Arrivals",icon:"✨"},
@@ -1559,18 +1603,37 @@
   function renderShelf(elId, books){
     const el = document.getElementById(elId);
     if(!el) return;
-    if(!books.length){ el.innerHTML = '<p style="color:#9ca3af;font-size:0.85rem;padding:1rem;">No resources in this category yet.</p>'; return; }
+    const section = el.closest('.lib-section');
+    if(!books.length){
+      el.innerHTML = '';
+      if(section) section.style.display = 'none';
+      return;
+    }
+    if(section) section.style.display = '';
     el.innerHTML = books.map(b => bookCard(b)).join('');
   }
 
   function renderFeatured(){
-    const featured = BOOKS.filter(b=>b.featured).slice(0,8);
+    const featured = BOOKS;
     const el = document.getElementById('featuredGrid');
     if(!el) return;
     el.innerHTML = featured.map(b => bookCard(b)).join('');
   }
 
+  function updateLibraryStats(){
+    const categories = new Set(BOOKS.map(b=>b.cat));
+    ['availableBookCount','availableBookCountBottom'].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.textContent = BOOKS.length;
+    });
+    ['availableCategoryCount','availableCategoryCountBottom'].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.textContent = categories.size;
+    });
+  }
+
   function renderAllShelves(){
+    updateLibraryStats();
     renderFeatured();
     renderShelf('shelf-new', BOOKS.filter(b=>b.isNew));
     renderShelf('shelf-popular', BOOKS.filter(b=>b.popular));
@@ -1593,7 +1656,8 @@
   function renderCatPills(){
     const wrap = document.getElementById('libCatPills');
     if(!wrap) return;
-    wrap.innerHTML = CATS.map(c=>`<button class="lib-cat-pill${c.id==='all'?' active':''}" data-cat="${c.id}" onclick="filterByCat('${c.id}',this)">${c.icon} ${c.label}</button>`).join('');
+    const available = new Set(BOOKS.map(b=>b.cat));
+    wrap.innerHTML = CATS.filter(c=>c.id==='all'||c.id==='new'||c.id==='popular'||available.has(c.id)).map(c=>`<button class="lib-cat-pill${c.id==='all'?' active':''}" data-cat="${c.id}" onclick="filterByCat('${c.id}',this)">${c.icon} ${c.label}</button>`).join('');
   }
 
   function filterByCat(catId, btn){
