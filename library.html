@@ -313,6 +313,48 @@
       width: 6px;
       background: rgba(0,0,0,0.22);
     }
+    .lib-cover-content {
+      position: relative;
+      z-index: 1;
+      width: 82%;
+      min-height: 72%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      text-align: left;
+      color: #fff;
+    }
+    .lib-cover-brand {
+      font-size: 0.52rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.78;
+    }
+    .lib-cover-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(0.72rem, 1.4vw, 0.98rem);
+      font-weight: 800;
+      line-height: 1.18;
+      text-wrap: balance;
+      text-shadow: 0 2px 5px rgba(0,0,0,.28);
+    }
+    .lib-cover-author {
+      font-size: 0.58rem;
+      line-height: 1.3;
+      color: rgba(255,255,255,.78);
+      margin-top: 0.35rem;
+    }
+    .lib-cover-symbol {
+      position: absolute;
+      right: 0.55rem;
+      bottom: 0.65rem;
+      font-size: 2.2rem;
+      line-height: 1;
+      opacity: .22;
+      filter: grayscale(1) brightness(2);
+    }
 
     .lib-book-title {
       font-family: 'Poppins', sans-serif;
@@ -597,6 +639,9 @@
       font-size: 3.5rem;
       position: relative;
     }
+    .lib-modal-cover .lib-cover-content { width: 78%; min-height: 70%; }
+    .lib-modal-cover .lib-cover-title { font-size: 1.05rem; }
+    .lib-modal-cover .lib-cover-author { font-size: .72rem; }
     .lib-modal-details h2 {
       font-family: 'Poppins', sans-serif;
       font-size: 1.35rem;
@@ -1590,7 +1635,14 @@
         <div class="lib-cover-shine"></div>
         ${book.isNew ? '<span class="lib-new-ribbon">NEW</span>' : ''}
         ${book.hasPdf ? '<span class="lib-pdf-badge">FREE PDF</span>' : ''}
-        <div class="lib-cover-emoji">${book.icon}</div>
+        <div class="lib-cover-content">
+          <span class="lib-cover-brand">TIH Digital Library</span>
+          <div>
+            <div class="lib-cover-title">${book.title}</div>
+            <div class="lib-cover-author">${book.author}</div>
+          </div>
+        </div>
+        <span class="lib-cover-symbol" aria-hidden="true">${book.icon}</span>
         <div class="lib-cover-label">${book.cat.toUpperCase()}</div>
       </div>
       <p class="lib-book-title">${book.title}</p>
@@ -1723,7 +1775,14 @@
         <div class="lib-modal-cover" style="background:${book.bg};">
           <div class="lib-cover-spine"></div>
           <div class="lib-cover-shine"></div>
-          <div style="font-size:4rem;">${book.icon}</div>
+          <div class="lib-cover-content">
+            <span class="lib-cover-brand">TIH Digital Library</span>
+            <div>
+              <div class="lib-cover-title">${book.title}</div>
+              <div class="lib-cover-author">${book.author}</div>
+            </div>
+          </div>
+          <span class="lib-cover-symbol" aria-hidden="true">${book.icon}</span>
           <div style="font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.1em;padding:0 0.5rem;text-align:center;margin-top:0.4rem;">${book.cat}</div>
         </div>
       </div>
