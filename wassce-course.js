@@ -21,15 +21,31 @@ var WassceCourse = (function () {
   }
 
   function notesHtml(t) {
-    var h = t.lessonNotes || '';
+    var topic = esc(t.name || 'this WASSCE topic');
+    var h = '<div class="wassce-note-header"><span class="wassce-note-kicker">WASSCE PRO · Complete lesson note</span>'
+      + '<h3>' + topic + '</h3>'
+      + '<p>Use this note as your main study guide for the topic. Read the explanations slowly, work through every example, then use the key points and exam tips to revise before attempting the quiz.</p></div>'
+      + '<div class="wassce-note-section wassce-study-plan"><h4>How to study this topic</h4><ol>'
+      + '<li>Read the explanation once to understand the main idea and vocabulary.</li>'
+      + '<li>Work through each example on paper before checking the answer.</li>'
+      + '<li>Write down the rule, formula, or method you would use in an exam.</li>'
+      + '<li>Complete the topic quiz without looking back at the note.</li>'
+      + '</ol></div>'
+      + '<div class="wassce-note-section"><h4>Complete topic explanation</h4>' + (t.lessonNotes || '<p>Study the topic explanation below and connect each idea to a worked example.</p>') + '</div>';
     function list(title, arr) {
       if (!arr || !arr.length) return '';
-      return '<h4>' + title + '</h4><ul>' + arr.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
+      return '<div class="wassce-note-section"><h4>' + title + '</h4><ul>' + arr.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
     }
     h += list('Key Points', t.keyPoints);
     h += list('Formulas', t.formulas);
     h += list('Exam Tips', t.examTips);
     h += list('Common Mistakes to Avoid', t.commonMistakes);
+    h += '<div class="wassce-note-section wassce-revision-box"><h4>Before you take the quiz</h4><ul>'
+      + '<li>Explain the topic aloud without reading the note.</li>'
+      + '<li>Redo at least one worked example from memory.</li>'
+      + '<li>Check that you understand the units, signs, labels, or steps required in your subject.</li>'
+      + '<li>Record one question in the Notes tab if any part is still unclear.</li>'
+      + '</ul></div>';
     return h;
   }
 

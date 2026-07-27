@@ -294,6 +294,52 @@
     .overview-text .lesson-note-checklist li::before { content: '✓'; position: absolute; left: .7rem; color: var(--green); font-weight: 800; }
     .overview-text .lesson-note-example { background: #fffaf0; border: 1px solid #f7dca0; border-radius: 10px; padding: .85rem 1rem; }
     .overview-text .lesson-note-action { background: #f0fdf7; border: 1px solid #b7ead2; border-radius: 10px; padding: .85rem 1rem; }
+    .overview-text .wassce-note { max-width: 900px; color: #26364d; font-family: Georgia, 'Times New Roman', serif; font-size: 1.04rem; line-height: 1.9; letter-spacing: .005em; }
+    .overview-text .wassce-note .lesson-note-intro,
+    .overview-text .wassce-note .lesson-note-action,
+    .overview-text .wassce-note .lesson-note-section { font-family: Georgia, 'Times New Roman', serif; }
+    .overview-text .wassce-note .wassce-note-header { padding: 1.35rem 1.45rem; margin-bottom: 1.45rem; border-radius: 14px; background: linear-gradient(135deg, #eff6ff, #ffffff 72%); border: 1px solid #cfe0f7; border-left: 5px solid #002868; }
+    .overview-text .wassce-note .wassce-note-kicker { display: block; margin-bottom: .35rem; color: #b45309; font-family: Inter, sans-serif; font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .overview-text .wassce-note .wassce-note-header h3 { margin: 0 0 .55rem; color: #002868; font-family: Poppins, sans-serif; font-size: clamp(1.35rem, 2.5vw, 1.85rem); line-height: 1.25; }
+    .overview-text .wassce-note .wassce-note-header p { margin: 0; color: #3c506b; font-size: 1rem; line-height: 1.8; }
+    .overview-text .wassce-note .wassce-note-section { margin: 1.6rem 0 0; padding: 1.15rem 1.25rem; border-top: 1px solid #dbe7f5; }
+    .overview-text .wassce-note .wassce-note-section h4 { margin: 0 0 .7rem; color: #002868; font-family: Poppins, sans-serif; font-size: 1.08rem; line-height: 1.4; }
+    .overview-text .wassce-note .wassce-note-section p { color: #26364d; font-size: 1.02rem; line-height: 1.9; margin-bottom: 1rem; }
+    .overview-text .wassce-note .wassce-note-section p:last-child { margin-bottom: 0; }
+    .overview-text .wassce-note .wassce-note-section ul,
+    .overview-text .wassce-note .wassce-note-section ol { margin: .55rem 0 .25rem 1.45rem; padding-left: .6rem; }
+    .overview-text .wassce-note .wassce-note-section li { margin-bottom: .55rem; color: #26364d; font-size: 1rem; line-height: 1.8; }
+    .overview-text .wassce-note .wassce-note-section strong { color: #173f75; }
+    .overview-text .wassce-note .wassce-study-plan { background: #f8fbff; border: 1px solid #dce9f8; border-radius: 12px; }
+    .overview-text .wassce-note .wassce-revision-box { background: #fffbeb; border: 1px solid #f3df9b; border-radius: 12px; }
+    .overview-text .wassce-note sub, .overview-text .wassce-note sup { line-height: 0; }
+    .overview-text .wassce-note h4 + p { margin-top: .1rem; }
+    .overview-text .wassce-note .wassce-table-wrap { width: 100%; overflow-x: auto; margin: 1rem 0 1.25rem; border: 1px solid #cfe0f7; border-radius: 12px; background: #fff; box-shadow: 0 5px 16px rgba(2,24,68,.06); -webkit-overflow-scrolling: touch; }
+    .overview-text .wassce-note table { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 0; font-family: Inter, sans-serif; font-size: .9rem; line-height: 1.55; }
+    .overview-text .wassce-note th { padding: .75rem .85rem; background: #002868; color: #fff; text-align: left; font-family: Poppins, sans-serif; font-size: .78rem; font-weight: 700; letter-spacing: .02em; vertical-align: top; }
+    .overview-text .wassce-note td { padding: .75rem .85rem; color: #26364d; background: #fff; border-top: 1px solid #e4edf8; vertical-align: top; }
+    .overview-text .wassce-note tbody tr:nth-child(even) td { background: #f8fbff; }
+    .overview-text .wassce-note tbody tr:hover td { background: #eef6ff; }
+    .overview-text .wassce-note th:first-child { border-top-left-radius: 10px; }
+    .overview-text .wassce-note th:last-child { border-top-right-radius: 10px; }
+    .overview-text .wassce-note .wassce-diagram { margin: 1.1rem 0 1.35rem; padding: 1rem; border: 1px solid #d8e5f4; border-radius: 12px; background: linear-gradient(145deg,#f8fbff,#ffffff); text-align: center; box-shadow: 0 5px 16px rgba(2,24,68,.05); }
+    .overview-text .wassce-note .wassce-diagram img,
+    .overview-text .wassce-note figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; border-radius: 8px; }
+    .overview-text .wassce-note .wassce-diagram figcaption,
+    .overview-text .wassce-note figure figcaption { margin-top: .7rem; color: #526985; font-family: Inter, sans-serif; font-size: .8rem; line-height: 1.55; }
+    .overview-text .wassce-note .wassce-equation { display: block; margin: 1rem auto; padding: .8rem 1rem; max-width: 680px; overflow-x: auto; border-left: 4px solid #f59e0b; border-radius: 8px; background: #fffbeb; color: #173f75; font-family: 'Courier New', monospace; font-size: .95rem; font-weight: 700; text-align: center; white-space: pre-wrap; }
+    .overview-text .wassce-note .wassce-callout { margin: 1rem 0; padding: .9rem 1rem; border-radius: 10px; background: #eff6ff; border: 1px solid #cfe0f7; color: #26364d; }
+    @media(max-width: 600px) {
+      .overview-text .wassce-note { font-size: .98rem; line-height: 1.8; }
+      .overview-text .wassce-note .wassce-note-header { padding: 1rem; }
+      .overview-text .wassce-note .wassce-note-section { padding: 1rem .8rem; }
+      .overview-text .wassce-note .wassce-note-section p,
+      .overview-text .wassce-note .wassce-note-section li { font-size: .98rem; line-height: 1.8; }
+      .overview-text .wassce-note table { min-width: 500px; font-size: .84rem; }
+      .overview-text .wassce-note th,
+      .overview-text .wassce-note td { padding: .65rem .7rem; }
+      .overview-text .wassce-note .wassce-equation { font-size: .84rem; text-align: left; }
+    }
     .video-unavailable { min-height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; color: rgba(255,255,255,.8); background: radial-gradient(circle at 50% 25%, rgba(21,101,216,.35), transparent 55%), linear-gradient(135deg,#0b1f3a,#002868); }
     .video-unavailable .vu-icon { font-size: 2.6rem; margin-bottom: .7rem; }
     .video-unavailable strong { color: #fff; font-family: 'Poppins',sans-serif; font-size: 1rem; }
@@ -1088,11 +1134,12 @@
     }).join('');
     var module = course.modules[lesson.module - 1];
     var moduleTitle = module ? escSide(module.title) : 'the current module';
-    return '<div class="lesson-note-intro"><strong>Full topic note: ' + topic + '</strong><br><span>This Overview is the main reading lesson for <strong>' + escSide(lesson.title) + '</strong> in ' + moduleTitle + '. Read it carefully, watch the real video when one is available, and complete the practice task before marking the lesson complete.</span></div>'
+    var noteClass = courseId.indexOf('wassce-') === 0 ? ' wassce-note' : '';
+    return '<div class="' + noteClass.trim() + '"><div class="lesson-note-intro"><strong>Full topic note: ' + topic + '</strong><br><span>This Overview is the main reading lesson for <strong>' + escSide(lesson.title) + '</strong> in ' + moduleTitle + '. Read it carefully, watch the real video when one is available, and complete the practice task before marking the lesson complete.</span></div>'
       + '<div class="lesson-note-section"><h4>1. Understanding the course topic</h4>' + aboutHtml + '</div>'
       + '<div class="lesson-note-section"><h4>2. What you should be able to do</h4><p>By the end of this course, your knowledge should become a practical skill. These are the main outcomes this topic is designed to support:</p><ul class="lesson-note-checklist">' + (outcomes || '<li>Explain the main ideas clearly and apply them to a real situation.</li>') + '</ul></div>'
       + '<div class="lesson-note-section"><h4>3. Today\'s lesson: ' + escSide(lesson.title) + '</h4>' + lessonBody + '</div>'
-      + '<div class="lesson-note-action"><strong>Topic checkpoint:</strong> In the Notes tab, write what this lesson means in your own words, one example from your school, work, business, or community, and one action you will take to practise the skill.</div>';
+      + '<div class="lesson-note-action"><strong>Topic checkpoint:</strong> In the Notes tab, write what this lesson means in your own words, one example from your school, work, business, or community, and one action you will take to practise the skill.</div></div>';
   }
 
   function renderLesson(index) {
@@ -1155,6 +1202,25 @@
       overviewHtml = generateCourseTopicOverview(lesson, index, lessonBody);
     }
     document.getElementById('overviewContent').innerHTML = overviewHtml;
+    if (courseId.indexOf('wassce-') === 0) {
+      var noteRoot = document.getElementById('overviewContent');
+      if (noteRoot) {
+        noteRoot.querySelectorAll('table').forEach(function (table) {
+          if (table.parentElement && table.parentElement.classList.contains('wassce-table-wrap')) return;
+          var tableWrap = document.createElement('div');
+          tableWrap.className = 'wassce-table-wrap';
+          table.parentNode.insertBefore(tableWrap, table);
+          tableWrap.appendChild(table);
+        });
+        noteRoot.querySelectorAll('img').forEach(function (image) {
+          if (image.parentElement && image.parentElement.tagName === 'FIGURE') return;
+          var diagram = document.createElement('figure');
+          diagram.className = 'wassce-diagram';
+          image.parentNode.insertBefore(diagram, image);
+          diagram.appendChild(image);
+        });
+      }
+    }
     // Resources, Issue 12 fix: styled empty state instead of bare placeholder
     var resHead = lesson.reading ? 'Read the Lesson Note &amp; Practice' : 'Watch the Video, Then Read the Note';
     var resBody = lesson.reading
