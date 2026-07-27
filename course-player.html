@@ -285,6 +285,19 @@
     .tab-panel.active { display: block; }
     .overview-text p { font-size: 0.9rem; color: #374151; line-height: 1.8; margin-bottom: 0.9rem; }
     .overview-text p:last-child { margin-bottom: 0; }
+    .overview-text { max-width: 860px; }
+    .overview-text .lesson-note-intro { background: linear-gradient(135deg,#eff6ff,#f8fbff); border: 1px solid #cfe0f7; border-left: 4px solid var(--blue); border-radius: 12px; padding: 1rem 1.1rem; margin-bottom: 1.2rem; color: #183b6c; }
+    .overview-text .lesson-note-section { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #e5edf8; }
+    .overview-text .lesson-note-section h4 { margin-top: 0; }
+    .overview-text .lesson-note-checklist { display: grid; gap: .45rem; margin: .5rem 0 1rem 0; padding: 0; list-style: none; }
+    .overview-text .lesson-note-checklist li { padding: .55rem .7rem .55rem 2rem; background: #f8fbff; border: 1px solid #e2ebf7; border-radius: 8px; position: relative; }
+    .overview-text .lesson-note-checklist li::before { content: '✓'; position: absolute; left: .7rem; color: var(--green); font-weight: 800; }
+    .overview-text .lesson-note-example { background: #fffaf0; border: 1px solid #f7dca0; border-radius: 10px; padding: .85rem 1rem; }
+    .overview-text .lesson-note-action { background: #f0fdf7; border: 1px solid #b7ead2; border-radius: 10px; padding: .85rem 1rem; }
+    .video-unavailable { min-height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; color: rgba(255,255,255,.8); background: radial-gradient(circle at 50% 25%, rgba(21,101,216,.35), transparent 55%), linear-gradient(135deg,#0b1f3a,#002868); }
+    .video-unavailable .vu-icon { font-size: 2.6rem; margin-bottom: .7rem; }
+    .video-unavailable strong { color: #fff; font-family: 'Poppins',sans-serif; font-size: 1rem; }
+    .video-unavailable p { max-width: 470px; margin-top: .45rem; font-size: .82rem; line-height: 1.6; color: rgba(255,255,255,.7); }
     .overview-text h4 { font-size: 0.92rem; font-weight: 700; color: var(--blue); margin: 1.1rem 0 0.35rem; }
     .overview-text ul { margin: 0.3rem 0 0.9rem 1.3rem; }
     .overview-text li { font-size: 0.88rem; color: #374151; line-height: 1.75; margin-bottom: 0.3rem; }
@@ -1084,8 +1097,30 @@
       currentVideoId = lesson.videoId;
       var vpt = document.getElementById('vpTitle');
       if (vpt) vpt.textContent = lesson.title || 'Play lesson video';
+      var poster = document.getElementById('videoPoster');
+      if (poster) {
+        poster.style.display = '';
+        poster.innerHTML = '<div class="vp-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div><div class="vp-title" id="vpTitle">' + escSide(lesson.title || 'Play lesson video') + '</div><div class="vp-hint">▶ Tap to play</div>';
+        poster.setAttribute('aria-label', 'Play lesson video');
+        poster.onclick = startVideo;
+        poster.onkeydown = function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startVideo(); } };
+      }
     } else {
-      if (videoWrap) videoWrap.style.display = 'none';
+      if (videoWrap && lesson.reading) {
+        videoWrap.style.display = '';
+        var host = document.getElementById('ytPlayer');
+        if (host) host.innerHTML = '';
+        var unavailable = document.getElementById('videoPoster');
+        if (unavailable) {
+          unavailable.style.display = 'flex';
+          unavailable.innerHTML = '<div class="video-unavailable"><div class="vu-icon">📖</div><strong>Detailed reading lesson</strong><p>This lesson does not have a video attached yet. Read the complete lesson note below, complete the action task, and use the Notes tab to record your understanding.</p></div>';
+          unavailable.setAttribute('aria-label', 'Detailed reading lesson');
+          unavailable.onclick = null;
+          unavailable.onkeydown = null;
+        }
+      } else if (videoWrap) {
+        videoWrap.style.display = 'none';
+      }
       currentVideoId = null;
     }
     document.getElementById('videoScroll').scrollTop = 0;
@@ -1100,15 +1135,15 @@
       if (courseContent[String(index)]) {
         overviewHtml = courseContent[String(index)];
       } else {
-        overviewHtml = '<p>Watch the video carefully and take notes as you go. This lesson builds on what you have learned so far and prepares you for the next stage of the course.</p><p>Use the <strong>Notes</strong> tab to write down key points, questions, or ideas from the video. When you have finished watching and feel confident with the material, click <strong>Mark as Complete</strong> to unlock the next lesson.</p>';
+        overviewHtml = generateDetailedLessonNote(lesson, index);
       }
     }
     document.getElementById('overviewContent').innerHTML = overviewHtml;
     // Resources, Issue 12 fix: styled empty state instead of bare placeholder
-    var resHead = lesson.reading ? 'Learn From the Lesson &amp; Your Notes' : 'Learn From the Video &amp; Your Notes';
+    var resHead = lesson.reading ? 'Read the Lesson Note &amp; Practice' : 'Watch the Video, Then Read the Note';
     var resBody = lesson.reading
-      ? 'This lesson is delivered as a detailed written masterclass in the Overview tab. Read it carefully, use the Notes tab to capture key strategies, and visit the TIH Library for further practice on this topic.'
-      : 'This lesson is delivered through the video above. Use the Notes tab to write down the key points as you watch, and visit the TIH Library for further reading on this topic.';
+      ? 'This lesson includes a detailed written masterclass in the Overview tab. Read each section, complete the action task, and use the Notes tab to record your own examples.'
+      : 'Start the video above, then read the detailed lesson note in the Overview tab. Pause the video when needed, write your own examples, and complete the action task before marking the lesson complete.';
     document.getElementById('resourcesContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">📂</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">' + resHead + '</p><p style="font-size:0.85rem;">' + resBody + '</p><a href="library" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;background:#1e40af;color:#fff;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px;text-decoration:none;">📚 Open the Library</a></div>';
     // Q&A, Issue 13 fix: styled empty state with engagement prompt instead of bare placeholder
     document.getElementById('qaContent').innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);"><div style="font-size:2rem;margin-bottom:0.6rem;">💬</div><p style="font-size:0.9rem;font-weight:600;color:#374151;margin-bottom:0.3rem;">Have a Question?</p><p style="font-size:0.85rem;">If anything in this lesson is unclear, reach out to a TIH mentor on WhatsApp. We are happy to explain it another way and help you keep moving forward.</p><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;background:#25D366;color:#fff;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px;text-decoration:none;">💬 Ask on WhatsApp</a></div>';
@@ -1143,6 +1178,23 @@
     }
     updateNavButtons();
     updateProgressDots();
+  }
+
+  function generateDetailedLessonNote(lesson, index) {
+    var safeTitle = escSide(lesson.title);
+    var safeCourse = escSide((course.title || '').split(':')[0]);
+    var modTitle = '';
+    var module = course.modules[lesson.module - 1];
+    if (module) modTitle = escSide(module.title);
+    var goal = (course.learn && course.learn.length) ? escSide(course.learn[Math.min(index, course.learn.length - 1)]) : 'Build practical knowledge and confidence through guided study and practice.';
+    var requirements = (course.requirements && course.requirements.length) ? course.requirements.slice(0, 2).map(function (r) { return '<li>' + escSide(r) + '</li>'; }).join('') : '<li>Read the lesson carefully and connect the ideas to your own goals.</li><li>Keep a notebook or digital document for examples and questions.</li>';
+    return '<div class="lesson-note-intro"><strong>' + safeTitle + '</strong><br><span>This detailed study note belongs to <strong>' + safeCourse + '</strong>, ' + modTitle + '. Use it alongside the video when available, and return to it during revision.</span></div>'
+      + '<div class="lesson-note-section"><h4>1. What this lesson is about</h4><p>This lesson develops an important part of your progress in <strong>' + safeCourse + '</strong>. The goal is not only to remember definitions, but to understand how the idea works, recognize it in a real situation, and use it correctly. Read slowly, pause after each paragraph, and explain the idea in your own words before moving on.</p><p>By the end of this lesson, you should be able to explain the main idea to another learner, identify at least one practical example, and complete a small task without copying a model answer.</p></div>'
+      + '<div class="lesson-note-section"><h4>2. Learning objective</h4><p>Today\'s focus connects to this course outcome: <strong>' + goal + '</strong> Your job is to connect the lesson topic to that larger skill. Ask yourself: “Where would I use this in school, work, business, or daily life?”</p></div>'
+      + '<div class="lesson-note-section"><h4>3. Study checklist</h4><ul class="lesson-note-checklist"><li>Read the full note once for understanding, without trying to memorize everything.</li><li>Read it a second time and underline or write down unfamiliar words.</li><li>Watch the lesson video if a video is provided, pausing to compare the explanation with the note.</li><li>Write one example from Liberia, your workplace, school, business, or community.</li><li>Explain the main idea aloud in simple language before marking the lesson complete.</li></ul></div>'
+      + '<div class="lesson-note-section"><h4>4. Practical connection</h4><div class="lesson-note-example"><strong>Try this:</strong> Choose a real situation connected to this course. Describe the problem, explain how today\'s lesson helps, and write the first two actions you would take. The strongest learning happens when you move from “I understand” to “I can use it.”</div></div>'
+      + '<div class="lesson-note-section"><h4>5. Prepare for the next lesson</h4><p>Before you continue, review the title of the next lesson and write one question you hope it will answer. Keep the following ideas ready: the meaning of today\'s key concept, the example you created, and any question that remains unclear.</p><ul class="lesson-note-checklist">' + requirements + '</ul></div>'
+      + '<div class="lesson-note-action"><strong>Action task:</strong> Write a 3–5 sentence summary in the Notes tab. Include the main idea, one example, one question, and one way you will apply the skill this week.</div>';
   }
 
   // ===== PROGRESS =====
