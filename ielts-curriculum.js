@@ -55,6 +55,51 @@
     };
     if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT[id] = content;
   });
+  var master = COURSES_DB.ielts;
+  if (master && !master._ieltsPathwayMerged) {
+    var masterNotes = typeof LESSON_CONTENT !== 'undefined' ? (LESSON_CONTENT.ielts || {}) : {};
+    var mergedNotes = {};
+    var flatIndex = 0;
+    (master.modules || []).forEach(function (module) {
+      (module.lessons || []).forEach(function () {
+        if (masterNotes[String(flatIndex)] !== undefined) mergedNotes[String(flatIndex)] = masterNotes[String(flatIndex)];
+        flatIndex += 1;
+      });
+    });
+    var nextModule = (master.modules || []).length + 1;
+    master.quizzes = master.quizzes || {};
+    curriculum.forEach(function (item) {
+      var id = 'ielts-' + item[0] + '-' + item[1];
+      var source = COURSES_DB[id];
+      if (!source) return;
+      (source.modules || []).forEach(function (module) {
+        var copied = { title: 'Module ' + nextModule + ': ' + module.title.replace(/^Module\s+\d+\s*:\s*/i, ''), icon: module.icon, meta: module.meta, lessons: [] };
+        var sourceLessonIndex = 0;
+        (module.lessons || []).forEach(function (lesson) {
+          var copiedLesson = {};
+          Object.keys(lesson).forEach(function (key) { copiedLesson[key] = lesson[key]; });
+          copied.lessons.push(copiedLesson);
+          var sourceKey = String(sourceLessonIndex);
+          var sourceNote = LESSON_CONTENT[id] && LESSON_CONTENT[id][sourceKey];
+          if (sourceNote !== undefined) mergedNotes[String(flatIndex)] = sourceNote;
+          flatIndex += 1;
+          sourceLessonIndex += 1;
+        });
+        master.modules.push(copied);
+        nextModule += 1;
+      });
+      Object.keys(source.quizzes || {}).forEach(function (quizId) { master.quizzes[quizId] = source.quizzes[quizId]; });
+      delete COURSES_DB[id];
+      if (typeof LESSON_CONTENT !== 'undefined') delete LESSON_CONTENT[id];
+    });
+    master.title = 'IELTS Masterclass: Beginner to Band 9';
+    master.shortDesc = 'One complete IELTS pathway covering Beginner, Intermediate, and Advanced preparation across Listening, Reading, Writing, and Speaking.';
+    master.level = 'Intermediate → Advanced';
+    master.duration = '60h+';
+    master.ieltsPathway = true;
+    master._ieltsPathwayMerged = true;
+    if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT.ielts = mergedNotes;
+  }
   if (typeof PRACTICE_TESTS !== 'undefined') {
     curriculum.forEach(function (item) { PRACTICE_TESTS['ielts-' + item[0] + '-' + item[1]] = PRACTICE_TESTS.ielts; });
   }
