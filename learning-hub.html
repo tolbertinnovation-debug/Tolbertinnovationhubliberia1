@@ -619,6 +619,21 @@
         var grid = document.getElementById('tracksGrid');
         var html = '';
         var ids = Object.keys(COURSES_DB).filter(function (id) { return id.indexOf('bible-') !== 0; });
+        var ieltsOrder = ['ielts'];
+        ['beginner', 'intermediate', 'advanced'].forEach(function (level) {
+          for (var n = 1; n <= 15; n++) {
+            var pathwayId = 'ielts-' + level + '-' + n;
+            if (COURSES_DB[pathwayId]) ieltsOrder.push(pathwayId);
+          }
+        });
+        var ieltsSet = {};
+        ieltsOrder.forEach(function (id) { ieltsSet[id] = true; });
+        var regularIds = ids.filter(function (id) { return !ieltsSet[id]; });
+        var orderedIelts = ieltsOrder.filter(function (id) { return ids.indexOf(id) !== -1; });
+        ids = regularIds.slice(0, regularIds.length);
+        var insertionPoint = ids.findIndex(function (id) { return id === 'toefl' || id === 'sat'; });
+        if (insertionPoint < 0) insertionPoint = ids.length;
+        ids.splice.apply(ids, [insertionPoint, 0].concat(orderedIelts));
         for (var i = 0; i < ids.length; i++) {
           var c = COURSES_DB[ids[i]];
           var lessons = 0;
