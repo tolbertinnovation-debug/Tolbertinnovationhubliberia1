@@ -76,47 +76,124 @@ var WassceCourse = (function () {
       + '<li>Read every question carefully before choosing</li></ul><p>Good luck, you are preparing the WAEC way!</p>';
   }
 
+  var CHIEF_EXAMINERS_REVISION = {
+    mathematics: ['Sets', 'Construction', 'Algebraic Expressions', 'Trigonometry', 'Indices and Logarithms', 'Statistics: Pie Charts', 'Plane Geometry', 'Simultaneous Equations', 'Circle Theorems', 'Mensuration', 'Quadratic Graphs', 'Quadratics and Functions'],
+    'integrated science': ['Ecosystems', 'Cells and Cell Division', 'Electronics', 'Force and Motion', 'Acids, Bases and Salts', 'Ionic and Covalent Bonding', 'Crop Production', 'Photosynthesis', 'Farming Systems', 'Transport in Plants', 'Chemical Compounds and IUPAC Names', 'Energy'],
+    english: ['Essay Writing', 'Comprehension', 'Summary Writing', 'Concord', 'Literature', 'Figurative Usage', 'Oral English', 'Idiomatic Expressions'],
+    'social studies': ['Adolescent Health', 'Leadership and Fellowship', 'Self and Personal Development', 'Peacebuilding and Conflict Resolution', 'Sustainable Development', 'Education and Social Change', 'Culture and Environment', 'Marriage', 'National Independence', 'Science and Technology', 'Natural Resources']
+  };
+
+  function revisionKey(value) {
+    return String(value || '').toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, ' ').trim();
+  }
+
+  function revisionSubjectKey(subject, courseId) {
+    var value = revisionKey((subject && subject.name) || courseId.replace(/^wassce-/, ''));
+    if (value.indexOf('math') !== -1) return 'mathematics';
+    if (value.indexOf('integrated') !== -1 && value.indexOf('science') !== -1) return 'integrated science';
+    if (value === 'english' || value.indexOf('english language') !== -1) return 'english';
+    if (value.indexOf('social') !== -1 && value.indexOf('stud') !== -1) return 'social studies';
+    return null;
+  }
+
+  function revisionLessonNotes(subjectName, topicName) {
+    return '<div class="revision-focus-banner"><strong>TIH 2026 WASSCE Revision Focus</strong><p>This lesson focuses on <strong>' + esc(topicName) + '</strong> in ' + esc(subjectName) + '. The topic list was supplied to TIH as examination-preparation guidance. It is not an independent confirmation that WAEC will ask a particular question. Use it together with the official WAEC syllabus, your teacher\'s guidance, and past questions.</p></div>'
+      + '<h4>What to revise</h4><p>Build a clear understanding of the definitions, rules, processes, diagrams, examples, and examination vocabulary connected to <strong>' + esc(topicName) + '</strong>. Do not only memorise headings. Practise explaining the topic, applying it to a new question, and showing complete working where required.</p>'
+      + '<h4>Study method</h4><ol><li>Write the meaning of the key terms in your own words.</li><li>Review one worked example and solve a similar example without looking.</li><li>List common mistakes and check your answer carefully.</li><li>Attempt past questions related to this topic under timed conditions.</li><li>Ask your teacher or mentor about any point you cannot explain clearly.</li></ol>'
+      + '<h4>Revision checkpoint</h4><p>Before leaving this lesson, write a short answer to these questions: What is the main idea? Which rule, process, or structure must I remember? How could the examiner change the wording of the question? What evidence or working would earn full marks?</p>';
+  }
+
+  function addRevisionTopics(courseId, subject) {
+    var key = revisionSubjectKey(subject, courseId);
+    if (!key || !CHIEF_EXAMINERS_REVISION[key]) return subject;
+    var existing = (subject.topics || []).map(function (topic) { return revisionKey(topic.name); });
+    CHIEF_EXAMINERS_REVISION[key].forEach(function (topicName) {
+      if (existing.indexOf(revisionKey(topicName)) !== -1) return;
+      subject.topics.push({
+        id: 'chief_revision_' + revisionKey(topicName).replace(/ /g, '_'),
+        name: topicName,
+        icon: '🎯',
+        revisionOnly: true,
+        lessonNotes: revisionLessonNotes(subject.name, topicName),
+        keyPoints: ['Know the definitions and key vocabulary for ' + topicName + '.', 'Practise applying the topic to unfamiliar questions.', 'Show clear working, labels, explanations, and units where appropriate.'],
+        examTips: ['Read the command word carefully: define, state, explain, calculate, compare, or discuss.', 'Use a clear answer structure and check every part of the question before submitting.'],
+        commonMistakes: ['Memorising a heading without understanding how to apply it.', 'Leaving out working, examples, labels, or explanations required for method marks.'],
+        mcq: []
+      });
+    });
+    subject.totalTopics = subject.topics.length;
+    return subject;
+  }
+
+  function ensureRevisionSubject(courseId) {
+    if (typeof WASSCE_SUBJECTS === 'undefined') return null;
+    var subject = WASSCE_SUBJECTS[courseId.replace(/^wassce-/, '')];
+    if (!subject) {
+      var wanted = revisionKey(courseId.replace(/^wassce-/, ''));
+      var key = Object.keys(CHIEF_EXAMINERS_REVISION).filter(function (candidate) { return wanted.indexOf(candidate.replace(/ /g, '-')) !== -1 || wanted.indexOf(candidate.replace(/ /g, '')) !== -1; })[0];
+      if (!key) return null;
+      subject = WASSCE_SUBJECTS[courseId.replace(/^wassce-/, '')] = {
+        id: courseId.replace(/^wassce-/, ''), name: key.replace(/\b\w/g, function (letter) { return letter.toUpperCase(); }), icon: '🎯', description: 'TIH WASSCE revision course for ' + key + '.', topics: []
+      };
+    }
+    return addRevisionTopics(courseId, subject);
+  }
+
+  function registerRevisionSubjects() {
+    if (typeof WASSCE_SUBJECTS === 'undefined') return;
+    ['wassce-mathematics', 'wassce-english', 'wassce-integrated-science', 'wassce-social-studies'].forEach(function (courseId) {
+      ensureRevisionSubject(courseId);
+    });
+  }
+
   // Construct COURSES_DB[courseId] + LESSON_CONTENT[courseId] from a subject.
   // Structure: one module per topic (lesson + 10-question quiz), then a final
   // module with a 20-question assessment across all topics.
   function build(courseId) {
     if (typeof WASSCE_SUBJECTS === 'undefined' || typeof COURSES_DB === 'undefined') return null;
     var sub = courseId.replace(/^wassce-/, '');
-    var W = WASSCE_SUBJECTS[sub];
+    var W = WASSCE_SUBJECTS[sub] || ensureRevisionSubject(courseId);
     if (!W) return null;
+    addRevisionTopics(courseId, W);
     var topics = W.topics || [];
 
     var modules = [];
     var quizzes = {};
     var notes = {};
     var flat = 0;
+    var hasQuizTopics = false;
     topics.forEach(function (t, i) {
       var quizId = 'mod' + (i + 1);
-      modules.push({
+      var topicLessons = [{ t: (i + 1) + '.1 ' + t.name, d: 'Lesson', v: t.videoId || null }];
+      if (!t.revisionOnly) {
+        topicLessons.push({ t: '📝 Quiz: ' + t.name, d: '10 questions', isQuiz: true, quizId: quizId });
+        hasQuizTopics = true;
+      }
+        modules.push({
         title: 'Module ' + (i + 1) + ': ' + t.name,
         icon: W.icon || '📘',
-        meta: '1 lesson · 10-question quiz',
+          meta: t.revisionOnly ? '1 detailed revision lesson' : '1 lesson · 10-question quiz',
+        lessons: topicLessons
+      });
+      if (!t.revisionOnly) quizzes[quizId] = topicQuiz(t, i + 1);
+      notes[String(flat)] = notesHtml(t);
+      if (t.revisionOnly) flat += 1;
+      else { notes[String(flat + 1)] = quizNote(t.name, 10); flat += 2; }
+    });
+    // Existing full subjects retain the final assessment. Revision-only shells
+    // remain reading courses until subject-specific question banks are added.
+    if (hasQuizTopics) {
+      modules.push({
+        title: 'Module ' + (topics.length + 1) + ': Final Assessment',
+        icon: '🏆',
+        meta: '20-question final · certificate',
         lessons: [
-          { t: (i + 1) + '.1 ' + t.name, d: 'Lesson', v: t.videoId || 'Tn6-PIqc4UM' },
-          { t: '📝 Quiz: ' + t.name, d: '10 questions', isQuiz: true, quizId: quizId }
+          { t: '🏆 Final Assessment & Certificate', d: '20 questions', isQuiz: true, quizId: 'final', isFinal: true }
         ]
       });
-      quizzes[quizId] = topicQuiz(t, i + 1);
-      notes[String(flat)] = notesHtml(t);
-      notes[String(flat + 1)] = quizNote(t.name, 10);
-      flat += 2;
-    });
-    // Final module closes the course (same convention as other courses).
-    modules.push({
-      title: 'Module ' + (topics.length + 1) + ': Final Assessment',
-      icon: '🏆',
-      meta: '20-question final · certificate',
-      lessons: [
-        { t: '🏆 Final Assessment & Certificate', d: '20 questions', isQuiz: true, quizId: 'final', isFinal: true }
-      ]
-    });
-    quizzes.final = finalQuiz(topics, topics.length + 1);
-    notes[String(flat)] = quizNote(W.name + ', the full subject', 20);
+      quizzes.final = finalQuiz(topics, topics.length + 1);
+      notes[String(flat)] = quizNote(W.name + ', the full subject', 20);
+    }
 
     var course = {
       id: courseId,
@@ -164,5 +241,6 @@ var WassceCourse = (function () {
     document.head.appendChild(s);
   }
 
-  return { build: build, ensure: ensure };
+  registerRevisionSubjects();
+  return { build: build, ensure: ensure, registerRevisionSubjects: registerRevisionSubjects };
 })();
