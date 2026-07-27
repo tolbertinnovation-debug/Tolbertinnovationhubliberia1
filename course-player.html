@@ -18,6 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="courses-db.js?v=15"></script>
   <script src="lesson-content.js?v=13"></script>
+  <script src="ielts-curriculum.js?v=1"></script>
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=10"></script>
   <script src="hub-db.js?v=19"></script>
@@ -972,9 +973,9 @@
     document.getElementById('topbarTitle').textContent = course.title;
     document.getElementById('topbarBack').href = 'hub-dashboard';
     // Premium exam-prep courses get a Practice Test entry point.
-    if (courseId === 'ielts' || courseId === 'toefl' || courseId === 'sat') {
+    if (course.mockTest || courseId === 'ielts' || courseId === 'toefl' || courseId === 'sat') {
       var pb = document.getElementById('topbarPracticeBtn');
-      if (pb) { pb.href = 'practice-test?exam=' + courseId; pb.style.display = ''; }
+      if (pb) { pb.href = 'practice-test?exam=' + (course.mockTest || courseId); pb.style.display = ''; }
     }
     // Populate avatar with first letter of logged-in student's name
     (function() {
