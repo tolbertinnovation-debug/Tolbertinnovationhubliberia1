@@ -88,6 +88,11 @@
     }
     .apply-card-header { padding: 2rem 2.25rem 0; border-bottom: 1px solid #f1f5f9; padding-bottom: 1.5rem; }
     .apply-step-label { font-size: 0.78rem; font-weight: 700; color: #002868; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.4rem; }
+    .apply-quick-help { background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%); border: 1px solid #dbeafe; border-radius: 14px; padding: 1rem 1.1rem; margin-bottom: 1.1rem; }
+    .apply-quick-help h3 { font-size: 0.95rem; color: #002868; margin: 0 0 0.45rem; font-family: 'Poppins', sans-serif; }
+    .apply-quick-help p { font-size: 0.86rem; color: #475569; margin: 0; }
+    .apply-quick-help ul { margin: 0.55rem 0 0; padding-left: 1rem; color: #334155; font-size: 0.84rem; }
+    .apply-quick-help li + li { margin-top: 0.35rem; }
     .apply-card-header h2 { font-family: 'Poppins', sans-serif; font-size: 1.35rem; font-weight: 800; color: #0f172a; margin: 0 0 0.35rem; }
     .apply-card-header p { font-size: 0.9rem; color: #64748b; margin: 0; }
     .apply-card-body { padding: 2rem 2.25rem; }
@@ -308,6 +313,15 @@
             <form class="apply-card" id="applyForm" novalidate
                   action="https://formsubmit.co/ajax/tolbertinnovationhub@gmail.com"
                   method="POST">
+              <div class="apply-quick-help" role="note">
+                <h3>Before you begin</h3>
+                <p>Have your email, phone number, and a short personal statement ready. We review every application carefully and follow up within 3–5 business days.</p>
+                <ul>
+                  <li>Choose the program that matches your goals.</li>
+                  <li>Use a working email so we can reach you easily.</li>
+                  <li>You can still edit your details before submitting.</li>
+                </ul>
+              </div>
               <input type="hidden" name="_subject" value="TIH Program Application" />
               <input type="hidden" name="_template" value="table" />
               <input type="hidden" name="_captcha" value="false" />
@@ -317,7 +331,7 @@
                 <div class="apply-card-header">
                   <p class="apply-step-label">Step 1 of 4</p>
                   <h2>Which Program Are You Applying For?</h2>
-                  <p>Select the TIH program you want to join. You can apply for more than one in a follow-up message.</p>
+                  <p>Select the TIH program that best fits your goals. If you’re unsure, we’ll guide you through the next step after you submit.</p>
                 </div>
                 <div class="apply-card-body">
                   <div class="program-grid" role="radiogroup" aria-label="Select a program">
@@ -637,7 +651,7 @@
                 <div class="apply-card-header">
                   <p class="apply-step-label">Step 4 of 4</p>
                   <h2>Review Your Application</h2>
-                  <p>Please review your details before submitting. Click any section below to go back and edit.</p>
+                  <p>Please review your details before submitting. You can still edit anything here before you send it.</p>
                 </div>
                 <div class="apply-card-body">
                   <div class="review-block">

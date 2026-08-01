@@ -26,10 +26,20 @@
     .brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--primary); font-size: 1.05rem; }
     .brand span { color: var(--secondary); }
     .wrap { max-width: 680px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-    .page-head { text-align: center; margin-bottom: 1.75rem; }
+    .page-head { text-align: center; margin-bottom: 1.25rem; }
     .page-head h1 { font-size: clamp(1.5rem, 4vw, 2rem); color: var(--primary); font-weight: 800; margin-bottom: 0.5rem; }
     .page-head p { color: var(--muted); font-size: 0.95rem; }
+    .hero-banner { background: linear-gradient(135deg, #ffffff 0%, #eef6ff 100%); border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px); padding: 1.1rem 1.2rem; margin-bottom: 1rem; box-shadow: var(--shadow); }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(227,30,36,0.1); color: var(--secondary); font-weight: 700; font-size: 0.76rem; letter-spacing: .08em; text-transform: uppercase; padding: 0.42rem 0.7rem; border-radius: 999px; margin-bottom: 0.6rem; }
+    .hero-banner h2 { font-size: 1.1rem; color: var(--primary); margin-bottom: 0.35rem; }
+    .hero-banner p { font-size: 0.9rem; color: var(--muted); }
+    .info-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.65rem; margin-top: 0.85rem; }
+    .info-pill { background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: 0.55rem 0.7rem; font-size: 0.8rem; color: var(--text); font-weight: 600; text-align: center; }
+    .tip-box { background: #fff; border: 1px dashed var(--primary); border-radius: var(--radius); padding: 0.95rem 1rem; margin-bottom: 1rem; box-shadow: var(--shadow); }
+    .tip-box .tip-title { font-weight: 800; color: var(--primary); margin-bottom: 0.35rem; font-size: 0.95rem; }
+    .tip-box ul { padding-left: 1rem; color: var(--muted); font-size: 0.9rem; }
     .card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.75rem 1.5rem; }
+    .form-note { padding: 0.75rem 0.9rem; background: var(--primary-light); border: 1px solid #cfe3ff; border-radius: 10px; color: var(--primary); font-size: 0.84rem; font-weight: 600; margin-bottom: 1rem; }
     .field { margin-bottom: 1.2rem; }
     .field label { display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.35rem; }
     .field label .req { color: var(--secondary); }
@@ -130,6 +140,7 @@
         </div>
         <div class="field">
           <label>Which tracks do you want to learn? <span class="req">*</span> <span style="font-weight:500;color:var(--muted);">(choose one or more)</span></label>
+          <div class="form-note">Pick the subjects or courses that best match your goals. You can always update your preferences later.</div>
           <div class="tracks-select" id="tracksSelect"></div>
         </div>
         <div class="field">
@@ -181,7 +192,7 @@
         <a class="btn-line btn-wa" id="waConfirmBtn" target="_blank" rel="noopener noreferrer">💬 Notify TIH on WhatsApp</a>
         <a class="btn-line btn-track" id="trackBtn">🔍 Track My Application</a>
       </div>
-      <p class="review-note">Your courses unlock for US$2 each after the TIH team confirms your Mobile Money payment. Log in to see your dashboard and next steps.</p>
+      <p class="review-note">Your courses unlock for US$2 each after the TIH team confirms your Mobile Money payment. Log in to see your dashboard and next steps, and keep your email open for updates.</p>
     </div>
   </div>
 
