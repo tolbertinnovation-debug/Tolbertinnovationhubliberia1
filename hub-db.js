@@ -35,7 +35,7 @@ var HubDB = (function () {
 
   // Per-item price overrides (USD). Anything not listed uses PAYMENT.amountUSD (US$3).
   // The premium exam-prep courses are priced higher because of their depth.
-  var PRICE_OVERRIDES = { 'ielts': 20, 'toefl': 20, 'sat': 20 };
+  var PRICE_OVERRIDES = { 'ielts': 25, 'toefl': 25, 'sat': 25 };
   function priceFor(itemId) {
     var id = String(itemId || '').toLowerCase();
     return PRICE_OVERRIDES.hasOwnProperty(id) ? PRICE_OVERRIDES[id] : PAYMENT.amountUSD;
