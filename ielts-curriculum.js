@@ -80,7 +80,10 @@
           Object.keys(lesson).forEach(function (key) { copiedLesson[key] = lesson[key]; });
           copied.lessons.push(copiedLesson);
           var sourceKey = String(sourceLessonIndex);
-          var sourceNote = LESSON_CONTENT[id] && LESSON_CONTENT[id][sourceKey];
+          // Guard LESSON_CONTENT: some pages (e.g. hub-apply) don't load it.
+          // Without this guard the ReferenceError aborted the merge and left
+          // all 15 IELTS courses showing instead of the single master course.
+          var sourceNote = (typeof LESSON_CONTENT !== 'undefined' && LESSON_CONTENT[id]) ? LESSON_CONTENT[id][sourceKey] : undefined;
           if (sourceNote !== undefined) mergedNotes[String(flatIndex)] = sourceNote;
           flatIndex += 1;
           sourceLessonIndex += 1;
