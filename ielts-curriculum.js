@@ -23,6 +23,26 @@
     ['advanced', 14, 'Advanced Speaking', ['Speaking Like a Native','Advanced Topic Discussions','Abstract Ideas','Debate and Argument Skills','Idioms and Collocations','Pronunciation for Band 8+','Speaking Confidence Building']],
     ['advanced', 15, 'IELTS Mastery', ['IELTS Exam Strategies','Time Management','Mock Tests','Error Analysis','Band Score Improvement','Exam Day Preparation & Computer-Based IELTS','Academic vs General IELTS']]
   ];
+  // Relevant IELTS video for every pathway lesson (reuses the vetted English
+  // IELTS videos from the core modules), keyed by module name, so every module
+  // and lesson has a video.
+  var moduleVideo = {
+    'English Foundations': 'h9fxF0LKRyY',
+    'Basic Listening': 'q2odDqMhYOg',
+    'Basic Reading': '7etaXjWJVJg',
+    'Basic Writing': '_LwCwsFDRdE',
+    'Basic Speaking': 'wK5mVNZGYRc',
+    'IELTS Listening Skills': 'gfTqr_9BMjs',
+    'IELTS Reading Skills': 'cNyLs7YWFL8',
+    'IELTS Writing Task 1': 'mTDjuQ-G31I',
+    'IELTS Writing Task 2': '_LwCwsFDRdE',
+    'IELTS Speaking': 'BzhUwBaQK1g',
+    'Advanced Listening': 'RrViOflRWg0',
+    'Advanced Reading': 'SXdMpskBDmA',
+    'Advanced Writing': 'wSbv5bCY4No',
+    'Advanced Speaking': 'QoeKYAqBRtE',
+    'IELTS Mastery': 'NXJa7GFjY3U'
+  };
   var topics = ['Family','Friends','Education','Technology','Environment','Travel','Health','Sports','Culture','Music','Movies','Books','Social Media','Shopping','Food','Hobbies','Work','Business','Leadership','Innovation','Artificial Intelligence','Climate Change','Globalization','Tourism','Transportation','Housing','Community Development','Youth Empowerment','Online Learning','Future Careers'];
   var index = 0;
   function escapeHtml(value) { return String(value).replace(/[&<>"']/g, function (ch) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]; }); }
@@ -42,7 +62,7 @@
     var id = 'ielts-' + item[0] + '-' + item[1];
     var lessons = item[3].map(function (name, lessonIndex) {
       var quizId = id + '-quiz-' + lessonIndex;
-      var lesson = { t: (lessonIndex + 1) + '.1 ' + name, d: 'Lesson', v: null };
+      var lesson = { t: (lessonIndex + 1) + '.1 ' + name, d: 'Video Lesson', v: (moduleVideo[item[2]] || 'tOFm-zoI6-w') };
       lesson.quizId = quizId;
       return lesson;
     });
@@ -102,6 +122,44 @@
     master.ieltsPathway = true;
     master._ieltsPathwayMerged = true;
     if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT.ielts = mergedNotes;
+
+    // Make the "Final Assessment & Certificate" the very last item in the
+    // course. It ships inside an early module, but the certificate step must
+    // come after every lesson. Move it into its own final module and rebuild
+    // the lesson-note index so written notes stay aligned.
+    (function moveFinalAssessmentLast() {
+      var haveLC = (typeof LESSON_CONTENT !== 'undefined') && LESSON_CONTENT.ielts;
+      var notes = haveLC ? LESSON_CONTENT.ielts : null;
+      var k = 0, finalLesson = null, homeModule = null;
+      master.modules.forEach(function (m) {
+        (m.lessons || []).forEach(function (l) {
+          if (haveLC) l.__note = notes[String(k)];
+          k += 1;
+          if (l.isFinal && !finalLesson) { finalLesson = l; homeModule = m; }
+        });
+      });
+      if (finalLesson) {
+        homeModule.lessons = homeModule.lessons.filter(function (l) { return l !== finalLesson; });
+        master.modules = master.modules.filter(function (m) { return (m.lessons || []).length > 0; });
+        master.modules.push({
+          title: 'Final Assessment & Certificate',
+          icon: '🏆',
+          meta: 'Final assessment · certificate',
+          lessons: [finalLesson]
+        });
+      }
+      if (haveLC) {
+        var rebuilt = {}, j = 0;
+        master.modules.forEach(function (m) {
+          (m.lessons || []).forEach(function (l) {
+            if (l.__note !== undefined) rebuilt[String(j)] = l.__note;
+            delete l.__note;
+            j += 1;
+          });
+        });
+        LESSON_CONTENT.ielts = rebuilt;
+      }
+    })();
   }
   if (typeof PRACTICE_TESTS !== 'undefined') {
     curriculum.forEach(function (item) { PRACTICE_TESTS['ielts-' + item[0] + '-' + item[1]] = PRACTICE_TESTS.ielts; });
