@@ -323,6 +323,14 @@ var HubDB = (function () {
       // A brand-new account must start with a clean slate on this browser,
       // never inheriting unlocks/progress left behind by a previous user.
       switchAccountCleanup(student.id);
+      // Sign the new learner in automatically, registration makes them an
+      // active, logged-in student right away (no separate login step).
+      student.lastLoginAt = nowISO();
+      student.loginHistory = [nowISO()];
+      saveStudents(getStudents().map(function (x) { return x.id === student.id ? student : x; }));
+      setJSON(KEYS.studentSession, { id: student.id, name: student.name, email: student.email, at: nowISO() });
+      setJSON('tih_student_session', { name: student.name, email: student.email });
+      try { localStorage.setItem('tih_student_name', student.name); } catch (e) {}
       // Save to the central DB and WAIT for it (capped at 8s so a slow network
       // never blocks sign-up), so the account exists in the cloud before the
       // learner signs in on another device. Saved locally either way; the
