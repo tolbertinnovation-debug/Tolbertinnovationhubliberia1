@@ -319,7 +319,7 @@
 
         <section>
           <h2>🎓 WASSCE PRO, Exam Prep</h2>
-          <p style="font-size:.82rem;color:var(--muted);margin:-0.4rem 0 0.8rem;">Each subject unlocks separately for <strong>US$2</strong>.</p>
+          <p style="font-size:.82rem;color:var(--muted);margin:-0.4rem 0 0.8rem;">Each subject unlocks separately for <strong>US$3</strong>.</p>
           <div class="courses-grid" id="wassceGrid"></div>
         </section>
 
@@ -388,7 +388,7 @@
         <h3 style="margin:0;">➕ Add a Course</h3>
         <button type="button" id="addCourseClose" aria-label="Close" style="background:none;border:none;font-size:1.4rem;line-height:1;cursor:pointer;color:var(--muted);">&times;</button>
       </div>
-      <p style="font-size:.85rem;color:var(--muted);margin:.5rem 0 .8rem;">Browse the full catalog below and add any course. You unlock it for <strong>US$2</strong> by Mobile Money, pay, then enter your access code or tap <em>“I’ve Paid, Request Access”</em> on the course page.</p>
+      <p style="font-size:.85rem;color:var(--muted);margin:.5rem 0 .8rem;">Browse the full catalog below and add any course. You unlock it for <strong>US$3</strong> by Mobile Money, pay, then enter your access code or tap <em>“I’ve Paid, Request Access”</em> on the course page.</p>
       <input type="search" id="addCourseSearch" placeholder="🔍 Search courses, e.g. Bible, web, design, AI…" style="width:100%;padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:inherit;margin-bottom:.6rem;box-sizing:border-box;" />
       <div id="addCourseList" style="max-height:52vh;overflow-y:auto;"></div>
       <div id="addCourseEmpty" style="display:none;text-align:center;color:var(--muted);font-size:.88rem;padding:1.4rem 1rem;">🎉 You already have every course in the catalog!</div>
@@ -398,10 +398,10 @@
     </div>
   </div>
 
-  <script src="courses-db.js?v=15"></script><script src="ielts-curriculum.js?v=1"></script>
+  <script src="courses-db.js?v=16"></script><script src="ielts-curriculum.js?v=1"></script>
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=10"></script>
-  <script src="hub-db.js?v=23"></script>
+  <script src="hub-db.js?v=24"></script>
   <script>
     var esc = HubDB.esc;
     var currentStudent = null;
@@ -845,11 +845,11 @@
     function renderWassce() {
       var grid = document.getElementById('wassceGrid');
       if (!grid) return;
-      // Each WASSCE subject is unlocked individually with its own US$2 payment.
+      // Each WASSCE subject is unlocked individually with its own US$3 payment.
       grid.innerHTML = WASSCE_SUBJECTS.map(function (s) {
         var unlocked = HubDB.hasAccess('wassce-' + s[0]);
-        var pill = unlocked ? '<span class="pill done">✓ Unlocked</span>' : '<span class="pill new">🔒 US$2</span>';
-        var btn = '<a class="btn btn-orange btn-sm" href="course-player?id=wassce-' + s[0] + '">' + (unlocked ? 'Study →' : '🔓 Unlock (US$2)') + '</a>';
+        var pill = unlocked ? '<span class="pill done">✓ Unlocked</span>' : '<span class="pill new">🔒 US$3</span>';
+        var btn = '<a class="btn btn-orange btn-sm" href="course-player?id=wassce-' + s[0] + '">' + (unlocked ? 'Study →' : '🔓 Unlock (US$3)') + '</a>';
         return '<div class="course-card" data-course="wassce-' + esc(s[0]) + '">'
           + '<div class="cc-cover" style="background:linear-gradient(135deg,#071f48,#1565d8)"><div class="cc-icon">' + s[2] + '</div><div class="cc-cover-label">WASSCE PRO<strong>Exam Prep</strong></div></div>'
           + '<div class="cc-top"><div><div class="cc-title">' + esc(s[1]) + '</div>'

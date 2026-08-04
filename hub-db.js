@@ -27,13 +27,13 @@ var HubDB = (function () {
   // Paid-access settings. Every course and WASSCE subject is locked until the
   // learner pays and an administrator issues a matching access code.
   var PAYMENT = {
-    amountUSD: 2,
+    amountUSD: 3,
     momoNumber: '0880559227',
     momoName: 'Samuel Tolbert',
-    currencyNote: 'US$2 (or the Liberian dollar equivalent)'
+    currencyNote: 'US$3 (or L$500)'
   };
 
-  // Per-item price overrides (USD). Anything not listed uses PAYMENT.amountUSD (US$2).
+  // Per-item price overrides (USD). Anything not listed uses PAYMENT.amountUSD (US$3).
   // The premium exam-prep courses are priced higher because of their depth.
   var PRICE_OVERRIDES = { 'ielts': 20, 'toefl': 20, 'sat': 20 };
   function priceFor(itemId) {
@@ -42,7 +42,8 @@ var HubDB = (function () {
   }
   // Human-friendly payment note for a specific item (used by the paywall overlay).
   function currencyNoteFor(itemId) {
-    return 'US$' + priceFor(itemId) + ' (or the Liberian dollar equivalent)';
+    var p = priceFor(itemId);
+    return 'US$' + p + (p === PAYMENT.amountUSD ? ' (or L$500)' : ' (or the Liberian dollar equivalent)');
   }
 
   function getJSON(key, fallback) {

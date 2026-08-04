@@ -753,12 +753,12 @@ Our TOEFL classroom has <strong>6 structured modules</strong>:<br>
       qr:['📖 IELTS Module 2, Reading','✍️ IELTS Module 3, Writing','🎧 IELTS Module 4, Listening','🗣️ IELTS Module 5, Speaking','🔙 Main Menu'] },
 
     { id:'classroom',
-      keywords:['classroom','free class','free course','online learning','study platform','modules','lesson','practice test','mock exam','exam preparation','english exam','exam prep','language test','free training','online course','learning hub','course','courses','course price','course cost','$2 course','2 dollar course','skills course','take a course','online courses','tih courses','99% off','99 off'],
+      keywords:['classroom','free class','free course','online learning','study platform','modules','lesson','practice test','mock exam','exam preparation','english exam','exam prep','language test','free training','online course','learning hub','course','courses','course price','course cost','$3 course','2 dollar course','skills course','take a course','online courses','tih courses','99% off','99 off'],
       reply:`🏫 <strong>TIH Learning Hub</strong><br><br>
 <div style="background:#f5f3ff;border:1.5px solid #c4b5fd;border-radius:10px;padding:12px 14px;margin:2px 0 10px;">
-🔥 <strong>99% OFF Promotion:</strong> every full course is now <strong>just US$2</strong> (worth up to $200), including a verified <strong>Certificate of Completion</strong>.
+🔥 <strong>99% OFF Promotion:</strong> every full course is now <strong>just US$3</strong> (worth up to $300), including a verified <strong>Certificate of Completion</strong>.
 </div>
-📚 <strong>What you can learn for $2 a course:</strong><br>
+📚 <strong>What you can learn for $3 a course:</strong><br>
 • WASSCE PRO, 23 subjects with videos, notes &amp; exams<br>
 • Computer &amp; digital skills, entrepreneurship, digital marketing + more<br>
 • IELTS &amp; TOEFL preparation, 6 modules each + mock exam<br>
@@ -838,7 +838,7 @@ All one-time prices, no monthly fees. Flexible payment plans available.`,
       keywords:['price','pricing','cost','fee','how much','payment','pay','charge','rate','package','affordable','expensive','free','discount','budget','amount','money','website price','website cost','hosting','domain','email'],
       reply:`💰 <strong>TIH Fees &amp; Pricing</strong><br><br>
 <strong>Education:</strong><br>
-• 🔥 <strong>Learning Hub courses, 99% OFF, just $2 each</strong> (worth up to $200) with certificate<br>
+• 🔥 <strong>Learning Hub courses, 99% OFF, just $3 each</strong> (worth up to $300) with certificate<br>
 • Scholarship guidance, <strong>Free</strong><br>
 • IELTS/TOEFL classroom, <strong>Free to study</strong><br>
 • Completion certificate, <strong>$5 USD</strong><br><br>

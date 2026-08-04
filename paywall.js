@@ -33,7 +33,7 @@ var Paywall = (function () {
 
   function buildOverlay(opts, student) {
     var P = HubDB.PAYMENT;
-    // Per-item price (premium courses cost more than the US$2 default).
+    // Per-item price (premium courses cost more than the US$3 default).
     var amount = (typeof HubDB.priceFor === 'function') ? HubDB.priceFor(opts.itemId) : P.amountUSD;
     var currencyNote = (typeof HubDB.currencyNoteFor === 'function') ? HubDB.currencyNoteFor(opts.itemId) : P.currencyNote;
     var waText = 'PAYMENT / ACCESS REQUEST, TIH Learning Hub\n'

@@ -4,7 +4,7 @@
    Turns a WASSCE subject (from wassce-data.js) into a normal
    COURSES_DB course so it plays through course-player.html exactly
    like every other course: same card, lessons, quiz, certificate,
-   and the same US$2 paid-access gate (courseId = "wassce-<subject>").
+   and the same US$3 paid-access gate (courseId = "wassce-<subject>").
 
    The bulky WASSCE data is loaded lazily, only when a WASSCE course
    is actually opened, so catalog pages stay light.
@@ -207,7 +207,7 @@ var WassceCourse = (function () {
       instructorBio: 'The TIH WASSCE PRO faculty prepares Liberian students for the West African Senior School Certificate Examination with concise lessons, worked examples and past-question practice.',
       rating: 4.8, reviewCount: 0, students: '',
       duration: (topics.length + 1) + ' modules', level: 'WASSCE',
-      price: '$2', origPrice: '', isFree: false, badge: '',
+      price: '$3', origPrice: '', isFree: false, badge: '',
       certId: 'TIH-2026-WAS-' + sub.replace(/[^a-z0-9]/gi, '').slice(0, 4).toUpperCase(),
       learn: (topics.map(function (t) { return 'Master: ' + t.name; })).slice(0, 8),
       requirements: ['A phone or computer with internet', 'Interest in passing the WASSCE ' + W.name + ' exam'],
