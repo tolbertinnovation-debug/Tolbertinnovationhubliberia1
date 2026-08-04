@@ -35,7 +35,7 @@ var HubDB = (function () {
 
   // Per-item price overrides (USD). Anything not listed uses PAYMENT.amountUSD (US$3).
   // The premium exam-prep courses are priced higher because of their depth.
-  var PRICE_OVERRIDES = { 'ielts': 25, 'toefl': 25, 'sat': 25, 'entrepreneurship': 5 };
+  var PRICE_OVERRIDES = { 'ielts': 25, 'toefl': 25, 'sat': 25, 'entrepreneurship': 5, 'webdev': 5 };
   // Liberian-dollar equivalents shown next to the US price where a fixed rate
   // is published; other prices fall back to a generic note.
   var LRD_EQUIV = { 3: 'L$500', 5: 'L$950' };

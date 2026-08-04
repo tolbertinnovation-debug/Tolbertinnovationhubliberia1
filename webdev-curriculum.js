@@ -277,10 +277,10 @@
     students: ex.students || 'TIH developers',
     duration: '160h+',
     level: 'Beginner → Advanced',
-    price: ex.price || 'FREE',
+    price: '$5',
     origPrice: ex.origPrice || '$200',
-    isFree: (ex.isFree !== false),
-    badge: ex.badge || 'free',
+    isFree: false,
+    badge: 'premium',
     certId: 'TIH-2026-WEB-0001',
     learn: [
       'Build responsive websites with HTML5, CSS3 and modern JavaScript',
