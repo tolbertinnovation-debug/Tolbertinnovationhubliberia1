@@ -35,7 +35,10 @@ var HubDB = (function () {
 
   // Per-item price overrides (USD). Anything not listed uses PAYMENT.amountUSD (US$3).
   // The premium exam-prep courses are priced higher because of their depth.
-  var PRICE_OVERRIDES = { 'ielts': 25, 'toefl': 25, 'sat': 25 };
+  var PRICE_OVERRIDES = { 'ielts': 25, 'toefl': 25, 'sat': 25, 'entrepreneurship': 5 };
+  // Liberian-dollar equivalents shown next to the US price where a fixed rate
+  // is published; other prices fall back to a generic note.
+  var LRD_EQUIV = { 3: 'L$500', 5: 'L$950' };
   function priceFor(itemId) {
     var id = String(itemId || '').toLowerCase();
     return PRICE_OVERRIDES.hasOwnProperty(id) ? PRICE_OVERRIDES[id] : PAYMENT.amountUSD;
@@ -43,7 +46,7 @@ var HubDB = (function () {
   // Human-friendly payment note for a specific item (used by the paywall overlay).
   function currencyNoteFor(itemId) {
     var p = priceFor(itemId);
-    return 'US$' + p + (p === PAYMENT.amountUSD ? ' (or L$500)' : ' (or the Liberian dollar equivalent)');
+    return 'US$' + p + (LRD_EQUIV[p] ? ' (or ' + LRD_EQUIV[p] + ')' : ' (or the Liberian dollar equivalent)');
   }
 
   function getJSON(key, fallback) {

@@ -289,10 +289,10 @@
     students: ex.students || 'TIH founders',
     duration: '120h+',
     level: 'All Levels',
-    price: ex.price || 'FREE',
+    price: '$5',
     origPrice: ex.origPrice || '$150',
-    isFree: (ex.isFree !== false),
-    badge: ex.badge || 'free',
+    isFree: false,
+    badge: 'premium',
     certId: 'TIH-2026-ENT-0001',
     learn: [
       'Build an entrepreneurial mindset and find validated business ideas',
