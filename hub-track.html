@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <title>Track Your Application | TIH Learning Hub</title>
-  <meta name="description" content="Check the status of your TIH Learning Hub application using your Application ID." />
+  <meta name="description" content="Check the status of your TIH Learning Hub application using your Student ID." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -76,12 +76,12 @@
   <div class="wrap">
     <div class="page-head">
       <h1>Track Your Application</h1>
-      <p>Enter your Application ID (e.g. <strong>TIH-APP-A1B2C3</strong>), no login needed.</p>
+      <p>Enter your Student ID (e.g. <strong>TIH-STU-A1B2C3</strong>), no login needed.</p>
     </div>
 
     <div class="card">
       <div class="search-row">
-        <input type="text" id="appIdInput" placeholder="TIH-APP-XXXXXX" autocomplete="off" />
+        <input type="text" id="appIdInput" placeholder="TIH-STU-XXXXXX" autocomplete="off" />
         <button id="checkBtn">Check</button>
       </div>
       <div class="hint">Your ID was shown when you applied, and sent in your confirmation message.</div>
@@ -97,7 +97,7 @@
           <div class="s-label" id="sLabel"></div>
           <div class="s-sub" id="sSub"></div>
         </div>
-        <div class="detail-row"><span class="k">Application ID</span><span class="v" id="rId"></span></div>
+        <div class="detail-row"><span class="k">Student ID</span><span class="v" id="rId"></span></div>
         <div class="detail-row"><span class="k">Applicant</span><span class="v" id="rName"></span></div>
         <div class="detail-row"><span class="k">Submitted</span><span class="v" id="rDate"></span></div>
         <div class="detail-row"><span class="k">Estimated Review Time</span><span class="v">3–5 business days</span></div>
@@ -111,7 +111,7 @@
 
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=10"></script>
-  <script src="hub-db.js?v=21"></script>
+  <script src="hub-db.js?v=22"></script>
   <script>
     (function () {
       function getUrlParam(name) {
@@ -153,7 +153,7 @@
         document.getElementById('sIcon').textContent = meta.icon;
         document.getElementById('sLabel').textContent = meta.label;
         document.getElementById('sSub').textContent = meta.sub;
-        document.getElementById('rId').textContent = app.id;
+        document.getElementById('rId').textContent = app.studentId || app.id;
         document.getElementById('rName').textContent = app.name;
         document.getElementById('rDate').textContent = (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(app.submittedAt) : (app.submittedAt || 'N/A');
         var msgBox = document.getElementById('msgBox');

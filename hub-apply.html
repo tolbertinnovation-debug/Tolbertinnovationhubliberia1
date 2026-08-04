@@ -187,7 +187,7 @@
         <div class="label">Your Login</div>
         <div style="font-size:.95rem;font-weight:700;color:var(--primary);word-break:break-all;">📧 <span id="loginEmailDisplay"></span></div>
         <div style="font-size:.82rem;color:var(--muted);margin-top:.35rem;">Password: the one you just created</div>
-        <div style="font-size:.82rem;color:var(--muted);margin-top:.5rem;">Application ID: <strong id="appIdDisplay"></strong></div>
+        <div style="font-size:.82rem;color:var(--muted);margin-top:.5rem;">Student ID: <strong id="appIdDisplay"></strong></div>
       </div>
       <div class="confirm-actions">
         <a class="btn-line btn-track" id="loginNowBtn" href="hub-dashboard" style="background:var(--secondary);">▶ Log In Now</a>
@@ -201,7 +201,7 @@
   <script src="courses-db.js?v=15"></script><script src="ielts-curriculum.js?v=1"></script>
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=10"></script>
-  <script src="hub-db.js?v=21"></script>
+  <script src="hub-db.js?v=22"></script>
   <script>
     // WASSCE subjects (shown as their own group in the application form).
     var WASSCE_APPLY = [
@@ -264,7 +264,7 @@
           return (typeof COURSES_DB !== 'undefined' && COURSES_DB[id]) ? COURSES_DB[id].title.split(':')[0] : id;
         }).join(', ');
         var waText = 'NEW TIH LEARNING HUB APPLICATION\n'
-          + 'Application ID: ' + app.id + '\n'
+          + 'Student ID: ' + (app.studentId || app.id) + '\n'
           + 'Name: ' + name + '\n'
           + 'Email: ' + email + '\n'
           + 'Phone: ' + phone + '\n'
@@ -274,9 +274,9 @@
           + 'Goals: ' + goals;
 
         document.getElementById('loginEmailDisplay').textContent = email;
-        document.getElementById('appIdDisplay').textContent = app.id;
+        document.getElementById('appIdDisplay').textContent = app.studentId || app.id;
         document.getElementById('waConfirmBtn').href = HubDB.waLink(null, waText);
-        document.getElementById('trackBtn').href = 'hub-track?id=' + encodeURIComponent(app.id);
+        document.getElementById('trackBtn').href = 'hub-track?id=' + encodeURIComponent(app.studentId || app.id);
 
         document.getElementById('formCard').style.display = 'none';
         document.getElementById('confirmCard').classList.add('show');
@@ -333,6 +333,7 @@
           }
           // Link the application to the new student account.
           try { HubDB.updateApplication(app.id, { studentId: res.student.id }); } catch (err) {}
+          app.studentId = res.student.id; // surface the Student ID on the confirmation + tracking
           showConfirm(app, name, email, phone, location, education, goals, tracks);
         }).catch(function () {
           submitBtn.disabled = false;

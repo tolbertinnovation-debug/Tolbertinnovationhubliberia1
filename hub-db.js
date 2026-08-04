@@ -174,8 +174,10 @@ var HubDB = (function () {
   function findApplication(id) {
     id = String(id || '').trim().toUpperCase();
     var list = getApplications();
+    // Match by the application's own id OR the Student ID it is linked to,
+    // so learners can track using the Student ID shown after they apply.
     for (var i = 0; i < list.length; i++) {
-      if (list[i].id === id) return list[i];
+      if (list[i].id === id || String(list[i].studentId || '').toUpperCase() === id) return list[i];
     }
     return null;
   }
