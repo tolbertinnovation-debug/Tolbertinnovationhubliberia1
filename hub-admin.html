@@ -128,12 +128,12 @@
     <div class="login-card">
       <h1>🛡️ TIH Admin Panel</h1>
       <div class="sub">TIH staff only. All actions are logged.</div>
-      <div class="fld"><label>Username</label><input type="text" id="adminUser" autocomplete="username" /></div>
+      <div class="fld"><label>Admin email</label><input type="text" id="adminUser" autocomplete="username" placeholder="you@example.com" /></div>
       <div class="fld"><label>Password</label><input type="password" id="adminPass" autocomplete="current-password" /></div>
       <button class="btn btn-primary btn-block" id="adminLoginBtn">Sign In</button>
       <div class="feedback err" id="loginFeedback"></div>
       <div class="default-cred-note" id="defaultCredNote" style="display:none;">
-        First time here? Use the default credentials <b>tihadmin</b> / <b>TIH-Admin-2026</b>, then change the password immediately in Settings.
+        Sign in with your <b>TIH cloud admin email &amp; password</b> (created in Supabase → Authentication) so your login works on every device. If the cloud admin account isn’t set up yet, you can still use the temporary on-device login <b>tihadmin</b> / <b>TIH-Admin-2026</b> — set up the cloud account right after.
       </div>
     </div>
   </div>
@@ -349,7 +349,7 @@
   <script src="courses-db.js?v=18"></script>
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=10"></script>
-  <script src="hub-db.js?v=28"></script>
+  <script src="hub-db.js?v=29"></script>
   <script src="cert-registry.js?v=3"></script>
   <script>
     /* ============ HELPERS ============ */
@@ -500,16 +500,38 @@
     document.getElementById('adminLoginBtn').addEventListener('click', doLogin);
     document.getElementById('adminPass').addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(); });
     function doLogin() {
-      var u = document.getElementById('adminUser').value;
+      var u = (document.getElementById('adminUser').value || '').trim();
       var p = document.getElementById('adminPass').value;
+      var fb = document.getElementById('loginFeedback');
+      var cloudOn = (typeof HubDB !== 'undefined' && HubDB.cloudEnabled && HubDB.cloudEnabled());
+      // Primary path: sign in with the cloud (Supabase Auth) admin account, so
+      // the credential lives in the cloud and works on every device. We treat an
+      // email-style username as a cloud sign-in.
+      if (cloudOn && /@/.test(u) && typeof HubCloud !== 'undefined' && HubCloud.adminSignIn) {
+        fb.className = 'feedback'; fb.textContent = 'Signing in…';
+        HubCloud.adminSignIn(u, p).then(function (res) {
+          if (res && res.ok) {
+            if (HubDB.setAdminSession) HubDB.setAdminSession(u);
+            HubDB.audit('Admin signed in (cloud)');
+            fb.textContent = '';
+            enterShell();
+          } else {
+            fb.className = 'feedback err';
+            fb.textContent = (res && res.error) ? res.error : 'Cloud sign-in failed.';
+          }
+        });
+        return;
+      }
+      // Fallback: legacy on-device login (kept so you are never locked out while
+      // the Supabase admin user is being set up).
       HubDB.adminLogin(u, p).then(function (res) {
-        if (!res.ok) { document.getElementById('loginFeedback').textContent = res.error; return; }
+        if (!res.ok) { fb.className = 'feedback err'; fb.textContent = res.error; return; }
         HubDB.audit('Admin signed in');
         enterShell();
         if (res.isDefaultPassword) {
           switchPanel('settings');
           document.getElementById('passFeedback').className = 'feedback err';
-          document.getElementById('passFeedback').textContent = 'You are using the default password, change it now.';
+          document.getElementById('passFeedback').textContent = 'You are using the default on-device password. Set up the Supabase cloud admin account (Settings → Central Database) so your login works on every device.';
         }
       });
     }

@@ -507,6 +507,13 @@ var HubDB = (function () {
       });
     });
   }
+  // Start an admin session from a cloud (Supabase Auth) sign-in. The durable
+  // credential lives in Supabase Auth; this only records "who is signed in on
+  // this device" so the shell can render — the Supabase client keeps the real
+  // session token itself.
+  function setAdminSession(username) {
+    setJSON(KEYS.adminSession, { username: username || 'admin', at: nowISO(), cloud: true });
+  }
   function adminSession() { return getJSON(KEYS.adminSession, null); }
   function adminLogout() { try { localStorage.removeItem(KEYS.adminSession); } catch (e) {} }
   function changeAdminPassword(newPassword) {
@@ -1008,6 +1015,7 @@ var HubDB = (function () {
     // admin auth
     ensureAdminAccount: ensureAdminAccount,
     adminLogin: adminLogin,
+    setAdminSession: setAdminSession,
     adminSession: adminSession,
     adminLogout: adminLogout,
     changeAdminPassword: changeAdminPassword,
