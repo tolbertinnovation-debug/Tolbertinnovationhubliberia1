@@ -6,7 +6,7 @@
    wassce-history-curriculum.js. */
 (function () {
   if (typeof COURSES_DB === 'undefined') return;
-  var CID = 'wassce-civic';
+  var CID = 'wassce-civic-education';
   if (COURSES_DB[CID] && COURSES_DB[CID]._wassceCivicFull) return;
 
   // No dedicated WASSCE Civic Education videos exist; reuse the economics
@@ -274,7 +274,7 @@
     ],
     modules: modules,
     quizzes: quizzes,
-    mockTest: 'wassce-civic',
+    mockTest: 'wassce-civic-education',
     _wassceCivicFull: true
   };
 

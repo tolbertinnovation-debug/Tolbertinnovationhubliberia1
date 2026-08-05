@@ -7,7 +7,7 @@
    Modelled on wassce-biology-curriculum.js. */
 (function () {
   if (typeof COURSES_DB === 'undefined') return;
-  var CID = 'wassce-healthsci';
+  var CID = 'wassce-health-science';
   if (COURSES_DB[CID] && COURSES_DB[CID]._wassceHSciFull) return;
 
   // Vetted biology-domain videos (anatomy/physiology/disease overlap) plus the
@@ -276,7 +276,7 @@
     ],
     modules: modules,
     quizzes: quizzes,
-    mockTest: 'wassce-healthsci',
+    mockTest: 'wassce-health-science',
     _wassceHSciFull: true
   };
 

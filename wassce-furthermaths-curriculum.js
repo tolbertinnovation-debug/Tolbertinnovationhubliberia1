@@ -6,7 +6,7 @@
    wassce-mathematics-curriculum.js. */
 (function () {
   if (typeof COURSES_DB === 'undefined') return;
-  var CID = 'wassce-furthermaths';
+  var CID = 'wassce-further-maths';
   if (COURSES_DB[CID] && COURSES_DB[CID]._wassceFMathFull) return;
 
   // Vetted WASSCE Mathematics videos plus the mechanics video (for the mechanics
@@ -273,7 +273,7 @@
     ],
     modules: modules,
     quizzes: quizzes,
-    mockTest: 'wassce-furthermaths',
+    mockTest: 'wassce-further-maths',
     _wassceFMathFull: true
   };
 
