@@ -27,20 +27,23 @@ var HubDB = (function () {
   // Paid-access settings. Every course and WASSCE subject is locked until the
   // learner pays and an administrator issues a matching access code.
   var PAYMENT = {
-    amountUSD: 3,
+    amountUSD: 5,
     momoNumber: '0880559227',
     momoName: 'Samuel Tolbert',
-    currencyNote: 'US$3 (or L$500)'
+    currencyNote: 'US$5 (or L$950)'
   };
 
-  // Per-item price overrides (USD). Anything not listed uses PAYMENT.amountUSD (US$3).
-  // The premium exam-prep courses are priced higher because of their depth.
-  var PRICE_OVERRIDES = { 'ielts': 25, 'toefl': 25, 'sat': 25, 'entrepreneurship': 5, 'webdev': 5 };
+  // Pricing tiers (USD):
+  //   • WASSCE subjects (ids beginning "wassce-")  → US$3 / L$500
+  //   • Premium exam-prep (IELTS, TOEFL, SAT)      → US$25
+  //   • Every other course                          → US$5 / L$950 (PAYMENT.amountUSD)
+  var PRICE_OVERRIDES = { 'ielts': 25, 'toefl': 25, 'sat': 25 };
   // Liberian-dollar equivalents shown next to the US price where a fixed rate
   // is published; other prices fall back to a generic note.
   var LRD_EQUIV = { 3: 'L$500', 5: 'L$950' };
   function priceFor(itemId) {
     var id = String(itemId || '').toLowerCase();
+    if (id.indexOf('wassce-') === 0) return 3; // all WASSCE subjects are US$3 / L$500
     return PRICE_OVERRIDES.hasOwnProperty(id) ? PRICE_OVERRIDES[id] : PAYMENT.amountUSD;
   }
   // Human-friendly payment note for a specific item (used by the paywall overlay).
@@ -853,7 +856,7 @@ var HubDB = (function () {
     };
     return C.pushEnrollment(row).then(function (ok) {
       if (ok) fire(C.pushPayment({
-        student_id: studentId, item_id: itemId, amount: PAYMENT.amountUSD,
+        student_id: studentId, item_id: itemId, amount: priceFor(itemId),
         method: 'Mobile Money', status: 'success', confirmed_by: 'admin'
       }));
       else outboxAdd('enrollment.upsert', row); // FINAL: grant lands when back online
@@ -918,7 +921,7 @@ var HubDB = (function () {
     }));
     if (confirmed) {
       fire(cloud().pushPayment({
-        student_id: studentId, item_id: itemId, amount: PAYMENT.amountUSD,
+        student_id: studentId, item_id: itemId, amount: priceFor(itemId),
         method: 'Mobile Money', status: 'success', confirmed_by: 'admin'
       }));
     }
