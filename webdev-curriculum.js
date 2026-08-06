@@ -13,11 +13,15 @@
   // Each ID below is a well-known, topic-matched YouTube tutorial for that skill
   // (freeCodeCamp / Traversy / Net Ninja / Web Dev Simplified full courses).
   var V = {
+    orientation: 'dzRSvcJ_qZs', // Web Development Explained: Frontend/Backend/Full-Stack
+    internet: 'zN8YNNHcaZc',    // How does the internet work? (Full Course)
+    internet2: '7_LPdttKXPc',   // How the Internet Works in 5 Minutes
     html: 'pQN-pnXPaVg',   // freeCodeCamp — HTML Full Course
     css: 'OXGznpKZ_sA',    // freeCodeCamp — CSS Full Course
     js: 'PkZNo7MFNFg',     // freeCodeCamp — JavaScript Full Course
     git: 'RGOj5yH7evk',    // freeCodeCamp — Git & GitHub for Beginners
     git2: 'SWYqp7iY_Tc',   // Traversy — Git & GitHub Crash Course
+    uiux: 'jwCmIBJ8Jtc',   // freeCodeCamp — Figma UI Design Course for Beginners
     react: 'x4rFhThSX04',  // freeCodeCamp — Learn React JS Full Tutorial
     react2: 'TtPXvEcE11E', // React Full Course — Beginner to Pro
     node: 'Oe421EPjeBE',   // freeCodeCamp — Node.js & Express Full Course
@@ -25,16 +29,27 @@
     auth: 'SnoAwLP1a-0',   // Net Ninja — Node Auth (JWT)
     auth2: 'mbsmsi7l3r4',  // Web Dev Simplified — JWT Authentication
     api: 'zmIv9fpg9u0',    // REST API in Node & Express (CRUD)
-    api2: 'l8WPWK9mS5M'    // Build a REST API with Node & Express
+    api2: 'l8WPWK9mS5M',   // Build a REST API with Node & Express
+    deploy: 'NBrQp6-721c', // How To Deploy a Website (to the internet)
+    deploy2: 'Dt9BVYjBLpg',// How To Deploy a Website on Netlify
+    testing: 'H0XScE08hy8',// Debugging JavaScript — Chrome DevTools 101
+    testing2: 'Y3u2groOG-A',// Chrome DevTools Complete Course
+    ai: '2pFPJYdPM7Q',     // Introduction to GitHub Copilot — Tutorial for Beginners
+    ai2: 'n0NlxUyA7FI',    // Getting started with GitHub Copilot
+    seo: 'xsVTqzratPs',    // Complete SEO Course for Beginners (Ahrefs)
+    seo2: 'kaWZXRts9ls',   // SEO Full Course for Beginners
+    career: 'TCgKGPr0trA', // How to get clients as a freelance web developer
+    career2: 'UFu7Ydow3TA' // Build a Freelance Portfolio Website (beginners)
   };
-  // Every module gets its own on-topic video. Concept-only modules without a
-  // dedicated single-topic clip (orientation, internet, uiux, deploy, testing,
-  // ai, seo, career) are taught as READING lessons — rich classroom notes —
-  // rather than showing a video from an unrelated subject.
+  // Every module now has its own on-topic video, so learners see video from
+  // Module 1 onward. Modules with two ids alternate them across their lessons.
   var VIDEOS = {
+    orientation: [V.orientation], internet: [V.internet, V.internet2],
     html: [V.html], css: [V.css], js: [V.js], git: [V.git, V.git2],
-    react: [V.react, V.react2], node: [V.node], db: [V.db],
+    uiux: [V.uiux], react: [V.react, V.react2], node: [V.node], db: [V.db],
     auth: [V.auth, V.auth2], api: [V.api, V.api2],
+    deploy: [V.deploy, V.deploy2], testing: [V.testing, V.testing2],
+    ai: [V.ai, V.ai2], seo: [V.seo, V.seo2], career: [V.career, V.career2],
     projects: [V.react, V.html], capstone: [V.react, V.node]
   };
 
