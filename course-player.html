@@ -1047,6 +1047,33 @@
     });
     totalLessons = lessons.length;
 
+    // ===== Off-topic video guard (applies to every course) =====
+    // Many courses reuse a small pool of videos across modules. If a module has
+    // no video that is UNIQUE to it (every one of its content videos also plays
+    // in another module), those clips are "borrowed" from other topics, so we
+    // teach that module as READING lessons (rich notes, video pane hidden)
+    // instead of showing a video from an unrelated subject.
+    (function () {
+      var vidModules = {}; // videoId -> { moduleNum: true }
+      lessons.forEach(function (l) {
+        if (l.videoId && !l.isQuiz && !l.isProject) {
+          (vidModules[l.videoId] = vidModules[l.videoId] || {})[l.module] = true;
+        }
+      });
+      var moduleHasDedicated = {};
+      lessons.forEach(function (l) {
+        if (l.videoId && !l.isQuiz && !l.isProject) {
+          if (Object.keys(vidModules[l.videoId]).length === 1) moduleHasDedicated[l.module] = true;
+        }
+      });
+      lessons.forEach(function (l) {
+        if (l.videoId && !l.isQuiz && !l.isProject && !moduleHasDedicated[l.module]) {
+          l.videoId = null;      // become a reading lesson
+          l.reading = true;
+        }
+      });
+    })();
+
     // Copy quiz data from DB
     quizData = course.quizzes || {};
 
