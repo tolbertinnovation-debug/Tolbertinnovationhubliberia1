@@ -123,6 +123,14 @@
     .lt-price.free { color: #065f46; background: #d1fae5; }
     .lt-go { font-size: .82rem; font-weight: 800; color: var(--secondary); white-space: nowrap; }
     .lt-card:hover .lt-go { text-decoration: underline; }
+    .lt-ribbon { position: absolute; top: .55rem; right: .55rem; z-index: 2; font-size: .62rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: .2rem .5rem; border-radius: 999px; color: #fff; box-shadow: 0 3px 8px rgba(0,0,0,.2); }
+    .lt-ribbon.pop { background: linear-gradient(135deg,#f59e0b,#ef4444); }
+    .lt-ribbon.new { background: linear-gradient(135deg,#10b981,#059669); }
+    /* Hero rotating highlight ticker */
+    .hero-ticker { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem; background: rgba(0,40,104,.06); border: 1px solid rgba(0,40,104,.12); border-radius: 999px; padding: .5rem .95rem; font-size: .88rem; font-weight: 700; color: var(--primary); max-width: 100%; }
+    .hero-ticker .ht-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; flex-shrink: 0; box-shadow: 0 0 0 0 rgba(16,185,129,.5); animation: htpulse 1.8s infinite; }
+    @keyframes htpulse { 0%{box-shadow:0 0 0 0 rgba(16,185,129,.5)} 70%{box-shadow:0 0 0 7px rgba(16,185,129,0)} 100%{box-shadow:0 0 0 0 rgba(16,185,129,0)} }
+    #heroTicker { transition: opacity .4s ease; }
 
     /* CAREER PATHWAYS */
     .pathways-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
@@ -147,12 +155,31 @@
 
     /* TESTIMONIALS */
     .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
-    .testimonial { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
-    .testimonial p { font-size: 0.92rem; color: var(--text); font-style: italic; margin-bottom: 1rem; }
+    .testimonial { position: relative; background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 1.6rem 1.5rem 1.4rem; box-shadow: var(--shadow); }
+    .testimonial::before { content: '\201C'; position: absolute; top: .35rem; right: 1.1rem; font-family: Georgia, serif; font-size: 3.4rem; line-height: 1; color: var(--primary); opacity: .12; }
+    .t-stars { color: #f59e0b; font-size: .95rem; letter-spacing: .06em; margin-bottom: .7rem; }
+    .testimonial p { font-size: 0.95rem; color: var(--text); font-style: italic; margin-bottom: 1.1rem; line-height: 1.6; }
     .t-person { display: flex; align-items: center; gap: 0.7rem; }
     .t-avatar { width: 42px; height: 42px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; }
     .t-name { font-size: 0.88rem; font-weight: 700; }
     .t-loc { font-size: 0.78rem; color: var(--muted); }
+    /* FAQ accordion */
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: .7rem; }
+    .faq { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color .15s; }
+    .faq[open] { border-color: var(--primary); }
+    .faq summary { cursor: pointer; list-style: none; padding: 1rem 1.1rem; font-weight: 700; color: var(--primary); font-size: .95rem; display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: '+'; font-size: 1.35rem; color: var(--muted); font-weight: 700; line-height: 1; flex-shrink: 0; }
+    .faq[open] summary::after { content: '\2212'; }
+    .faq .faq-a { padding: 0 1.1rem 1.1rem; color: var(--text); font-size: .9rem; line-height: 1.62; }
+    /* Sticky mobile Apply button */
+    .sticky-apply { display: none; }
+    @media (max-width: 768px) {
+      .sticky-apply { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; align-items: center; gap: .6rem; padding: .6rem .9rem calc(.6rem + env(safe-area-inset-bottom, 0px)); background: rgba(255,255,255,.97); backdrop-filter: blur(8px); border-top: 1px solid var(--border); box-shadow: 0 -6px 22px rgba(11,31,58,.12); }
+      .sticky-apply .sa-text { flex: 1; font-size: .8rem; font-weight: 800; color: var(--primary); line-height: 1.25; }
+      .sticky-apply .btn { padding: .65rem 1.1rem; white-space: nowrap; }
+      body { padding-bottom: 70px; }
+    }
 
     /* CTA BAND */
     .cta-band { background: linear-gradient(135deg, var(--primary), #2b4cad); color: #fff; border-radius: var(--radius); padding: 2.75rem 2rem; text-align: center; }
@@ -309,6 +336,7 @@
           <a href="hub-apply" class="btn btn-orange">Apply for Access →</a>
           <a href="hub-dashboard" class="btn btn-ghost">Student Login</a>
         </div>
+        <div class="hero-ticker lh-fade lh-d4" aria-live="polite"><span class="ht-dot"></span><span id="heroTicker">Earn a Professional Certificate on every course</span></div>
         <div class="hero-note lh-fade lh-d4">Applying is free. WASSCE subjects cost US$3 / 500 LRD and other courses US$5 / 950 LRD, unlocking after the TIH team confirms your Mobile Money payment.</div>
       </div>
       <div class="lh-visual" aria-label="Learning Hub highlights">
@@ -515,7 +543,7 @@
       </div>
       <div class="steps">
         <div class="step"><div class="step-num">1</div><h3>Apply Online</h3><p>Fill the free application form. It takes 5 minutes, tell us your goals and pick the tracks you want.</p></div>
-        <div class="step"><div class="step-num">2</div><h3>Admin Review</h3><p>Our team reviews every application within 3–5 business days. Track your status anytime with your Student ID.</p></div>
+        <div class="step"><div class="step-num">2</div><h3>Instant Approval</h3><p>Your account is approved automatically the moment you apply, no waiting. Log in right away with your email and password.</p></div>
         <div class="step"><div class="step-num">3</div><h3>Pay &amp; Unlock</h3><p>Approved? Log in, then pay by Mobile Money — US$3 / 500 LRD for WASSCE subjects or US$5 / 950 LRD for other courses. The TIH team confirms your payment and unlocks it for you.</p></div>
         <div class="step"><div class="step-num">4</div><h3>Learn &amp; Get Certified</h3><p>Complete the lessons in order and pass the quizzes. Your <strong>Professional Certificate is issued instantly</strong> at 100% — download it right away, no waiting and no approval needed.</p></div>
       </div>
@@ -611,17 +639,38 @@
       </div>
       <div class="testimonials">
         <div class="testimonial">
-          <p>"Before TIH I was afraid to touch a computer. Now I use Excel at work every day and my boss is impressed. This free platform changed my career completely."</p>
-          <div class="t-person"><div class="t-avatar" style="background:#1E3A8A">FK</div><div><div class="t-name">Fatima Kamara</div><div class="t-loc">Monrovia, Liberia</div></div></div>
+          <div class="t-stars">★★★★★</div>
+          <p>"Before TIH I was afraid to touch a computer. Now I use Excel at work every day and my boss is impressed. This platform changed my career completely."</p>
+          <div class="t-person"><div class="t-avatar" style="background:#1E3A8A">FK</div><div><div class="t-name">Fatima Kamara</div><div class="t-loc">📍 Monrovia, Liberia</div></div></div>
         </div>
         <div class="testimonial">
+          <div class="t-stars">★★★★★</div>
           <p>"Within 3 weeks I could type fast, use Word and Excel, and send professional emails. I got a new job offer within a month. TIH is a blessing for Liberia."</p>
-          <div class="t-person"><div class="t-avatar" style="background:#E31E24">JB</div><div><div class="t-name">Joseph Blamo</div><div class="t-loc">Buchanan, Liberia</div></div></div>
+          <div class="t-person"><div class="t-avatar" style="background:#E31E24">JB</div><div><div class="t-name">Joseph Blamo</div><div class="t-loc">📍 Buchanan, Liberia</div></div></div>
         </div>
         <div class="testimonial">
+          <div class="t-stars">★★★★★</div>
           <p>"Living in Maryland County, I never thought I could access quality tech training. TIH made it possible online, and the certificate is verified. I used it on my job application."</p>
-          <div class="t-person"><div class="t-avatar" style="background:#10B981">TS</div><div><div class="t-name">Thomas Sirleaf</div><div class="t-loc">Harper, Maryland County</div></div></div>
+          <div class="t-person"><div class="t-avatar" style="background:#10B981">TS</div><div><div class="t-name">Thomas Sirleaf</div><div class="t-loc">📍 Harper, Maryland County</div></div></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="background:#fff;border-top:1px solid var(--border);">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know before you start.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq"><summary>How much do the courses cost?</summary><div class="faq-a">Applying is free. WASSCE subjects unlock for <strong>US$3 / L$500</strong> each, and every other course for <strong>US$5 / L$950</strong>, paid by Mobile Money. IELTS, TOEFL and SAT prep are US$25.</div></details>
+        <details class="faq"><summary>Do I get a certificate?</summary><div class="faq-a">Yes. Every course is a complete program and you earn a verifiable <strong>Professional Certificate the moment you reach 100%</strong>, download it instantly, no waiting and no approval needed.</div></details>
+        <details class="faq"><summary>How do I become a member?</summary><div class="faq-a">Register free, complete any <strong>3 courses</strong> and earn their certificates, then share the certificates with us. We contact you and email your membership form and details, unlocking job placement, contracts, networking, free live training and mentorship.</div></details>
+        <details class="faq"><summary>Can I learn on my phone?</summary><div class="faq-a">Absolutely. The whole platform is built for phones and works even on limited data, so you can learn from anywhere in Liberia.</div></details>
+        <details class="faq"><summary>How do I pay?</summary><div class="faq-a">By Mobile Money. After you apply and log in, choose a course and pay; the TIH team confirms your payment and unlocks it for you.</div></details>
+        <details class="faq"><summary>Do I need any experience to start?</summary><div class="faq-a">No. Most courses start at beginner level and guide you step by step, all the way to job-ready skills.</div></details>
       </div>
     </div>
   </section>
@@ -631,7 +680,7 @@
     <div class="container">
       <div class="cta-band">
         <h2>Ready to Start Learning?</h2>
-        <p>Applications are reviewed within 3–5 business days. Approved learners pay by Mobile Money — US$3 / 500 LRD for WASSCE subjects or US$5 / 950 LRD for other courses — to unlock full access.</p>
+        <p>Apply free in about 5 minutes and get approved instantly. Then pay by Mobile Money — US$3 / 500 LRD for WASSCE subjects or US$5 / 950 LRD for other courses — to unlock full access.</p>
         <a href="hub-apply" class="btn btn-orange">Apply for Free Access →</a>
       </div>
     </div>
@@ -667,6 +716,12 @@
       </div>
     </div>
   </section>
+
+  <!-- STICKY MOBILE APPLY BAR -->
+  <div class="sticky-apply">
+    <span class="sa-text">Start free — apply in 5 minutes</span>
+    <a href="hub-apply" class="btn btn-orange">Apply Free →</a>
+  </div>
 
   <!-- FOOTER -->
   <svg class="tih-wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,70 C240,110 480,20 720,45 C960,70 1200,105 1440,55 L1440,110 L0,110 Z" fill="#E31E24"/><path d="M0,84 C240,116 480,40 720,62 C960,84 1200,110 1440,72 L1440,110 L0,110 Z" fill="#ffffff"/><path d="M0,94 C260,120 520,58 760,76 C1000,94 1240,112 1440,84 L1440,110 L0,110 Z" fill="#0B2A6B"/></svg>
@@ -706,6 +761,26 @@
   <script src="courses-db.js?v=18"></script><script src="ielts-curriculum.js?v=3"></script><script src="toefl-curriculum.js?v=1"></script><script src="sat-curriculum.js?v=1"></script><script src="entrepreneurship-curriculum.js?v=2"></script><script src="webdev-curriculum.js?v=2"></script><script src="design-curriculum.js?v=1"></script><script src="android-curriculum.js?v=1"></script><script src="cybersecurity-curriculum.js?v=1"></script><script src="projectmgmt-curriculum.js?v=1"></script><script src="leadership-curriculum.js?v=1"></script><script src="grantwriting-curriculum.js?v=1"></script><script src="complit-curriculum.js?v=1"></script><script src="englishsuccess-curriculum.js?v=1"></script><script src="agritech-curriculum.js?v=1"></script><script src="ai-curriculum.js?v=1"></script><script src="data-curriculum.js?v=1"></script><script src="marketing-curriculum.js?v=1"></script><script src="office-curriculum.js?v=1"></script><script src="finlit-curriculum.js?v=1"></script><script src="healthtech-curriculum.js?v=1"></script><script src="remotework-curriculum.js?v=1"></script><script src="bible-curriculum.js?v=1"></script>
   <script src="hero-network.js?v=2"></script>
   <script>
+    // Hero rotating highlight ticker
+    (function () {
+      var el = document.getElementById('heroTicker');
+      if (!el) return;
+      var msgs = [
+        'Earn a Professional Certificate on every course',
+        'Learn on any phone, even on limited data',
+        'Membership: get jobs, contracts & networking',
+        'Free live training, workshops & mentorship',
+        'WASSCE PRO across 23 exam subjects',
+        'Made in Liberia, for Liberian learners 🇱🇷'
+      ];
+      var i = 0;
+      setInterval(function () {
+        i = (i + 1) % msgs.length;
+        el.style.opacity = '0';
+        setTimeout(function () { el.textContent = msgs[i]; el.style.opacity = '1'; }, 380);
+      }, 3200);
+    })();
+
     // Mobile menu
     (function () {
       var btn = document.getElementById('hubMenuBtn');
@@ -746,11 +821,15 @@
           if (/^(ielts|toefl|sat)/.test(id)) return { label: 'US$25', free: false };
           return { label: 'US$5', free: false };
         };
+        var POPULAR = { 'computer-literacy':1, 'ai':1, 'data':1, 'webdev':1, 'design':1, 'marketing':1 };
+        var NEW = { 'grant-writing':1, 'agritech':1, 'healthtech':1, 'remotework':1, 'finlit':1 };
         var cats = {};
         for (var i = 0; i < ids.length; i++) {
           var c = COURSES_DB[ids[i]];
           var lessons = 0;
           (c.modules || []).forEach(function (m) { lessons += (m.lessons || []).length; });
+          var ribbon = POPULAR[ids[i]] ? '<span class="lt-ribbon pop">🔥 Popular</span>'
+                     : (NEW[ids[i]] ? '<span class="lt-ribbon new">✨ New</span>' : '');
           var cat = c.category || 'General';
           cats[cat] = (cats[cat] || 0) + 1;
           var grad = c.gradient || 'linear-gradient(135deg,#123d78,#1e5e9e)';
@@ -762,7 +841,7 @@
           bits.push(lessons + ' lessons');
           if (c.level) bits.push(c.level);
           html += '<a class="lt-card" href="hub-apply" data-cat="' + esc(cat) + '" data-search="' + esc((title + ' ' + cat).toLowerCase()) + '">'
-            + '<div class="lt-top" style="background:' + esc(grad) + '">'
+            + '<div class="lt-top" style="background:' + esc(grad) + '">' + ribbon
             + '<span class="lt-ico">' + (c.icon || '📘') + '</span>'
             + '<span class="lt-cat">' + esc(cat) + '</span></div>'
             + '<div class="lt-body">'
