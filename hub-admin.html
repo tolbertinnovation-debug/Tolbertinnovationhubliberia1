@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://formsubmit.co https://formspree.io https://restcountries.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co https://formspree.io; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="color-scheme" content="light" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
@@ -20,6 +21,7 @@
       --accent: #10B981; --danger: #e31e24; --bg: #F8FAFC; --text: #1F2937; --muted: #64748b;
       --border: #e2e8f0; --radius: 16px; --shadow: 0 4px 16px rgba(30,58,138,.08);
     }
+    html { color-scheme: light; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.55; }
     h1,h2,h3 { font-family: 'Poppins', sans-serif; }
@@ -33,9 +35,11 @@
     .login-card .sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.4rem; }
     .fld { margin-bottom: 1rem; }
     .fld label { display: block; font-size: 0.83rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .fld input.fld select.fld textarea { width: 100%; padding: 0.7rem 0.85rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.92rem; font-family: inherit; min-height: 46px; }
-    .fld textarea { min-height: 90px; resize: vertical; }
-    .fld input:focus.fld select:focus.fld textarea:focus { outline: none; border-color: var(--primary); }
+    .fld input, .fld select, .fld textarea { width: 100%; padding: 0.8rem 0.95rem; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.95rem; font-family: inherit; color: var(--text); background: #fff; min-height: 50px; transition: border-color .15s, box-shadow .15s; }
+    .fld input::placeholder, .fld textarea::placeholder { color: #94a3b8; opacity: 1; }
+    .fld input:hover, .fld select:hover, .fld textarea:hover { border-color: #cbd5e1; }
+    .fld textarea { min-height: 90px; resize: vertical; line-height: 1.6; }
+    .fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,58,138,.12); }
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; border: none; border-radius: 8px; font-weight: 700; font-size: 0.88rem; padding: 0.6rem 1.1rem; min-height: 42px; transition: opacity .15s; }
     .btn:hover { opacity: .88; }
     .btn-primary { background: var(--primary); color: #fff; }
