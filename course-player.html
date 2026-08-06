@@ -257,6 +257,12 @@
     .video-shield { position: absolute; inset: 0; z-index: 3; display: none; cursor: pointer; background: transparent; }
     .video-container.playing .video-shield { display: block; }
     .video-container.fallback .video-shield { display: none; }
+    /* Auto-hide the brand strip + controls while watching so the video (and any
+       on-screen text in it) is never covered; a tap brings them back. */
+    .video-container.playing .video-topbar,
+    .video-container.playing .video-controls { transition: opacity .3s ease; }
+    .video-container.playing.chrome-hidden .video-topbar,
+    .video-container.playing.chrome-hidden .video-controls { opacity: 0; pointer-events: none; }
     /* Custom TIH control bar */
     .video-controls {
       position: absolute; left: 0; right: 0; bottom: 0; z-index: 6;
@@ -864,6 +870,28 @@
   })();
   window.onYouTubeIframeAPIReady = function () { ytReady = true; };
 
+  // Turn OFF YouTube's (often garbled) auto-captions so they never overlap the
+  // control bar or the on-screen text inside the lesson video.
+  function killCaptions(p) {
+    if (!p) return;
+    try { p.unloadModule('captions'); } catch (e) {}
+    try { p.unloadModule('cc'); } catch (e) {}
+    try { p.setOption('captions', 'track', {}); } catch (e) {}
+  }
+  // Auto-hide the brand strip + controls a few seconds into playback (revealed
+  // again on tap) so the full video stays visible while watching.
+  var chromeTimer = null;
+  function showChrome() {
+    var wrap = document.getElementById('videoContainer'); if (!wrap) return;
+    wrap.classList.remove('chrome-hidden');
+    if (chromeTimer) { clearTimeout(chromeTimer); chromeTimer = null; }
+    var playing = false;
+    try { playing = ytPlayer && ytPlayer.getPlayerState && ytPlayer.getPlayerState() === 1; } catch (e) {}
+    if (playing) chromeTimer = setTimeout(function () {
+      var w = document.getElementById('videoContainer');
+      if (w && w.classList.contains('playing')) w.classList.add('chrome-hidden');
+    }, 3200);
+  }
   function vFmt(t) { t = Math.max(0, Math.floor(t || 0)); var m = Math.floor(t / 60), s = t % 60; return m + ':' + (s < 10 ? '0' : '') + s; }
   function vcSetIcon(playing) { var b = document.getElementById('vcPlay'); if (b) b.textContent = playing ? '⏸' : '▶'; }
   function vcTick() {
@@ -878,10 +906,10 @@
       host: 'https://www.youtube-nocookie.com',
       width: '100%', height: '100%',
       videoId: currentVideoId,
-      playerVars: { autoplay: 1, controls: 0, rel: 0, modestbranding: 1, iv_load_policy: 3, playsinline: 1, disablekb: 1, fs: 0, showinfo: 0 },
+      playerVars: { autoplay: 1, controls: 0, rel: 0, modestbranding: 1, iv_load_policy: 3, cc_load_policy: 0, playsinline: 1, disablekb: 1, fs: 0, showinfo: 0 },
       events: {
-        onReady: function (e) { e.target.playVideo(); if (vcTimer) clearInterval(vcTimer); vcTimer = setInterval(vcTick, 500); },
-        onStateChange: function (e) { vcSetIcon(e.data === 1); }
+        onReady: function (e) { e.target.playVideo(); killCaptions(e.target); showChrome(); if (vcTimer) clearInterval(vcTimer); vcTimer = setInterval(vcTick, 500); },
+        onStateChange: function (e) { vcSetIcon(e.data === 1); if (e.data === 1) { killCaptions(e.target); } showChrome(); }
       }
     });
     ytBuilt = true;
@@ -890,7 +918,7 @@
     usingFallback = true;
     var wrap = document.getElementById('videoContainer'); if (wrap) wrap.classList.add('fallback');
     var host = document.getElementById('ytPlayer');
-    if (host) host.innerHTML = '<iframe title="Course Lesson" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen src="https://www.youtube-nocookie.com/embed/' + currentVideoId + '?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&fs=1"></iframe>';
+    if (host) host.innerHTML = '<iframe title="Course Lesson" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen src="https://www.youtube-nocookie.com/embed/' + currentVideoId + '?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&playsinline=1&fs=1"></iframe>';
   }
   function startVideo() {
     if (!currentVideoId) return;
@@ -910,7 +938,8 @@
   }
   function resetVideo() {
     var wrap = document.getElementById('videoContainer');
-    if (wrap) { wrap.classList.remove('playing'); wrap.classList.remove('fallback'); }
+    if (wrap) { wrap.classList.remove('playing'); wrap.classList.remove('fallback'); wrap.classList.remove('chrome-hidden'); }
+    if (chromeTimer) { clearTimeout(chromeTimer); chromeTimer = null; }
     if (vcTimer) { clearInterval(vcTimer); vcTimer = null; }
     try { if (ytBuilt && ytPlayer && ytPlayer.stopVideo) ytPlayer.stopVideo(); } catch (e) {}
     if (usingFallback) { var host = document.getElementById('ytPlayer'); if (host) host.innerHTML = ''; usingFallback = false; ytBuilt = false; ytPlayer = null; }
@@ -929,26 +958,32 @@
       poster.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startVideo(); } });
     }
     var shield = document.getElementById('videoShield');
-    if (shield) shield.addEventListener('click', togglePlay);
+    // Tap reveals the hidden controls first; a second tap (while visible) toggles play.
+    if (shield) shield.addEventListener('click', function () {
+      var wrap = document.getElementById('videoContainer');
+      if (wrap && wrap.classList.contains('chrome-hidden')) { showChrome(); return; }
+      togglePlay(); showChrome();
+    });
     var play = document.getElementById('vcPlay');
-    if (play) play.addEventListener('click', function (e) { e.stopPropagation(); togglePlay(); });
+    if (play) play.addEventListener('click', function (e) { e.stopPropagation(); togglePlay(); showChrome(); });
     var seek = document.getElementById('vcSeek');
     if (seek) {
-      seek.addEventListener('input', function () { seek._dragging = true; });
+      seek.addEventListener('input', function () { seek._dragging = true; showChrome(); });
       seek.addEventListener('change', function () {
         seek._dragging = false;
         if (ytPlayer && ytPlayer.getDuration) { var d = ytPlayer.getDuration() || 0; ytPlayer.seekTo(d * (seek.value / 1000), true); }
+        showChrome();
       });
     }
     var mute = document.getElementById('vcMute');
     if (mute) mute.addEventListener('click', function (e) {
-      e.stopPropagation();
+      e.stopPropagation(); showChrome();
       if (!ytPlayer || !ytPlayer.isMuted) return;
       if (ytPlayer.isMuted()) { ytPlayer.unMute(); mute.textContent = '🔊'; } else { ytPlayer.mute(); mute.textContent = '🔇'; }
     });
     var fs = document.getElementById('vcFs');
     if (fs) fs.addEventListener('click', function (e) {
-      e.stopPropagation();
+      e.stopPropagation(); showChrome();
       var wrap = document.getElementById('videoContainer'); if (!wrap) return;
       if (document.fullscreenElement || document.webkitFullscreenElement) {
         (document.exitFullscreen || document.webkitExitFullscreen || function () {}).call(document);
