@@ -11,12 +11,15 @@
   if (!COURSES_DB.webdev || COURSES_DB.webdev._webdevFullBuilt) return;
 
   var V = ['pfYQz5pnFmo', 'kX3TfdUqpuU', 'AJrkz0pzRV4', 'YhoK5y0HgPk', 'fYq5PXgSsbE', 'dT3aujtzBe4', 'dJvPTRXyc6s', '5fb2aPlgoys', 'RjtarcWFc6A', 'PWqS4NBhEY8', 'H0XScE08hy8', 'e5AwNU3Y2es', 'orAS-MBh5f4', 'ubw2hdQIl4E', 'y71CdVq5SvI', 'Jz_wyVdWKm8', 'AhxvJbG-kSA', 'TCgKGPr0trA'];
+  // Only skills with genuinely on-topic videos are mapped. Modules without a
+  // verified topic video (auth, api, deploy, testing, ai, seo, career) are
+  // deliberately taught as READING lessons — rich classroom notes, no off-topic
+  // clip — rather than showing a video from an unrelated subject.
   var VIDEOS = {
     orientation: [V[0], V[1]], internet: [V[1], V[2]], html: [V[0], V[3]], css: [V[4], V[5]],
     js: [V[6], V[7]], git: [V[8], V[9]], uiux: [V[10], V[11]], react: [V[12], V[13]],
-    node: [V[14], V[15]], db: [V[16], V[17]], auth: [V[6], V[14]], api: [V[15], V[16]],
-    deploy: [V[8], V[17]], testing: [V[6], V[7]], ai: [V[0], V[12]], seo: [V[10], V[2]],
-    career: [V[1], V[11]], projects: [V[3], V[4]], capstone: [V[12], V[14]], assessment: [V[0]]
+    node: [V[14], V[15]], db: [V[16], V[17]],
+    projects: [V[3], V[4]], capstone: [V[12], V[14]]
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment
@@ -206,7 +209,7 @@
   curriculum.forEach(function (mod) {
     var num = mod[0], title = mod[1], icon = mod[2], skill = mod[3], type = mod[4], names = mod[5];
     var moduleTitle = 'Module ' + num + ': ' + title;
-    var pool = VIDEOS[skill] || VIDEOS.assessment;
+    var pool = VIDEOS[skill] || null;   // null → reading lessons (no video)
     var lessons = [], idx = 0;
 
     names.forEach(function (name) {
@@ -239,18 +242,19 @@
       }
       if (type === 'projects' || isProjectName(name)) {
         idx += 1;
-        var pv = pool[idx % pool.length];
+        var pv = (pool && pool.length) ? pool[idx % pool.length] : null;
         lessons.push({ t: '🛠️ ' + name, d: 'Project', isProject: true, v: pv });
         notes[String(flat)] = projectBrief(moduleTitle, name);
         flat += 1; projectCount += 1;
         return;
       }
-      // Content lesson: video + note + paired practice quiz.
+      // Content lesson: video (when the module has an on-topic one) or a reading
+      // lesson (no video) + note + paired practice quiz.
       idx += 1;
-      var v = pool[idx % pool.length];
-      lessons.push({ t: num + '.' + idx + ' ' + name, d: 'Video Lesson', v: v, isQuiz: false });
+      var v = (pool && pool.length) ? pool[idx % pool.length] : null;
+      lessons.push({ t: num + '.' + idx + ' ' + name, d: v ? 'Video Lesson' : 'Reading Lesson', v: v, isQuiz: false });
       notes[String(flat)] = note(moduleTitle, skill, name, notePos++);
-      flat += 1; videoCount += 1;
+      flat += 1; if (v) videoCount += 1;
       var pqid = 'web-m' + num + '-q' + flat;
       quizzes[pqid] = practiceQuiz(skill, name);
       lessons.push({ t: '📝 Practice: ' + name, d: '3 questions', isQuiz: true, quizId: pqid });
