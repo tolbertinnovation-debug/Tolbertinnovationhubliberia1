@@ -339,18 +339,45 @@ var HubCloud = (function () {
       loginHistory: [], adminNotes: r.admin_notes || []
     };
   }
-  // REST-first (no CDN): registration and login must work on every device.
-  function pushStudent(s) { return restUpsert('students', stuRow(s), 'id'); }
-  // ADMIN-FINAL delete: hard-delete the central row; if RLS forbids DELETE,
-  // fall back to a tombstone upsert (status='deleted') that every device
-  // filters out, so a deleted student can never resurrect via sync.
-  function deleteStudent(id) {
+  // Write a student row. In ADMIN context (adminHash present) it goes through the
+  // admin_upsert_student RPC so we can drop the blanket anon UPDATE policy that
+  // let anyone rewrite any account. In STUDENT context (registration / login
+  // heal, no adminHash) it uses the anon INSERT path (a brand-new id), which the
+  // stu_insert_anon policy still allows.
+  function pushStudent(s, adminHash) {
+    var row = stuRow(s);
+    if (adminHash) {
+      return restRpc('admin_upsert_student', { p_hash: adminHash, p_student: row }).then(function (r) {
+        if (r === true) return true;
+        return restUpsert('students', row, 'id'); // fallback (RPC absent / pre-migration)
+      }).catch(function () { return restUpsert('students', row, 'id'); });
+    }
+    return restUpsert('students', row, 'id');
+  }
+  // Self-service password change, proving the current hash. Lets us drop the
+  // blanket anon UPDATE. Resolves true / false / null(absent-or-unreachable).
+  function studentSetPasswordRpc(id, oldHash, newHash) {
+    return restRpc('student_set_password', { p_id: String(id || ''), p_old_hash: oldHash, p_new_hash: newHash })
+      .then(function (r) { return (r === true) ? true : (r === false ? false : null); })
+      .catch(function () { return null; });
+  }
+  // ADMIN-FINAL delete. Prefer the admin RPC (hard delete, definer rights);
+  // fall back to the old REST delete / tombstone for pre-migration compatibility.
+  function deleteStudent(id, adminHash) {
     if (!id) return Promise.resolve(false);
-    return restDelete('students', 'id=eq.' + encodeURIComponent(String(id)))
-      .then(function (ok) {
-        if (ok) return true;
-        return restUpsert('students', { id: String(id), status: 'deleted', updated_at: new Date().toISOString() }, 'id');
-      }).catch(function () { return false; });
+    var legacy = function () {
+      return restDelete('students', 'id=eq.' + encodeURIComponent(String(id)))
+        .then(function (ok) {
+          if (ok) return true;
+          return restUpsert('students', { id: String(id), status: 'deleted', updated_at: new Date().toISOString() }, 'id');
+        }).catch(function () { return false; });
+    };
+    if (adminHash) {
+      return restRpc('admin_delete_student', { p_hash: adminHash, p_id: String(id) })
+        .then(function (r) { return (r === true) ? true : legacy(); })
+        .catch(function () { return legacy(); });
+    }
+    return legacy();
   }
   function fetchStudents() {
     // Admin-only read (RLS): stays on the authenticated SDK.
@@ -551,6 +578,7 @@ var HubCloud = (function () {
     fetchStudents: fetchStudents,
     adminListStudents: adminListStudents,
     studentLogin: studentLogin,
+    studentSetPasswordRpc: studentSetPasswordRpc,
     touchStudentLogin: touchStudentLogin,
     fetchAccountBundle: fetchAccountBundle,
     pushEnrollment: pushEnrollment,

@@ -97,8 +97,8 @@ var HubDB = (function () {
     if (!C) return Promise.resolve(false);
     try {
       switch (op.type) {
-        case 'student.upsert':  return C.pushStudent(op.payload);
-        case 'student.delete':  return C.deleteStudent(op.payload.id);
+        case 'student.upsert':  return C.pushStudent(op.payload, adminAcctHash());
+        case 'student.delete':  return C.deleteStudent(op.payload.id, adminAcctHash());
         case 'application.update': return C.updateApplication(op.payload.id, op.payload.changes, adminAcctHash());
         case 'certreq.upsert':  return C.pushCertRequest(op.payload);
         case 'certreq.update':  return C.updateCertRequest(op.payload.id, op.payload.changes, adminAcctHash());
@@ -479,9 +479,31 @@ var HubDB = (function () {
     try { localStorage.removeItem(KEYS.studentSession); } catch (e) {}
   }
   function changeStudentPassword(studentId, newPassword) {
-    return sha256(newPassword).then(function (hash) {
-      updateStudent(studentId, { passwordHash: hash, mustChangePassword: false });
-      return true;
+    return sha256(newPassword).then(function (newHash) {
+      var s = findStudent(studentId);
+      var oldHash = s && s.passwordHash;
+      var C = cloud();
+      // Server-verified change: prove the current password via student_set_password.
+      // This lets us drop the blanket anon UPDATE that allowed account takeover.
+      if (C && C.studentSetPasswordRpc && oldHash) {
+        return C.studentSetPasswordRpc(studentId, oldHash, newHash).then(function (r) {
+          if (r === true) {
+            // Update this device's cached copy only — no anon write needed.
+            var list = getStudents();
+            for (var i = 0; i < list.length; i++) {
+              if (list[i].id === studentId) { list[i].passwordHash = newHash; list[i].mustChangePassword = false; list[i].updatedAt = nowISO(); saveStudents(list); break; }
+            }
+            return { ok: true };
+          }
+          if (r === false) return { ok: false, error: 'Could not verify your current password. Please sign in again and retry.' };
+          // r === null: RPC not installed / unreachable — legacy local+anon path.
+          updateStudent(studentId, { passwordHash: newHash, mustChangePassword: false });
+          return { ok: true };
+        }).catch(function () { updateStudent(studentId, { passwordHash: newHash, mustChangePassword: false }); return { ok: true }; });
+      }
+      // Offline / cloud unconfigured: local only.
+      updateStudent(studentId, { passwordHash: newHash, mustChangePassword: false });
+      return { ok: true };
     });
   }
 

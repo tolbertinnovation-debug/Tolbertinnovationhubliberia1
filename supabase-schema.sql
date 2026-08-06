@@ -169,14 +169,17 @@ drop policy if exists app_all_admin on public.applications;
 create policy app_all_admin on public.applications
   for all to authenticated using (true) with check (true);
 
--- STUDENTS: learners self-register and update their own row (insert/update);
--- reads stay closed (login goes through the student_login RPC below).
+-- STUDENTS: learners self-register (INSERT a brand-new row). Reads stay closed
+-- (login goes through the student_login RPC). There is deliberately NO anon
+-- UPDATE policy: a learner changes their own password via student_set_password
+-- and the admin edits/deletes via admin_upsert_student / admin_delete_student
+-- (all SECURITY DEFINER, below). This closes the account-takeover hole where
+-- anyone with the public anon key could rewrite any student row.
 drop policy if exists stu_insert_anon on public.students;
 create policy stu_insert_anon on public.students
   for insert to anon, authenticated with check (true);
+-- Remove the old blanket anon UPDATE (safe to run even if it never existed).
 drop policy if exists stu_update_anon on public.students;
-create policy stu_update_anon on public.students
-  for update to anon, authenticated using (true) with check (true);
 drop policy if exists stu_all_admin on public.students;
 create policy stu_all_admin on public.students
   for all to authenticated using (true) with check (true);
@@ -436,6 +439,85 @@ begin
   return found;
 end $$;
 grant execute on function public.admin_update_cert_request(text, text, text, text) to anon, authenticated;
+
+-- ============================================================
+-- LEARNER ACCOUNT WRITES (close the anon UPDATE hole on students)
+-- Previously stu_update_anon let ANY caller with the public key rewrite ANY
+-- student row (password takeover). These SECURITY DEFINER RPCs replace it:
+--   • a learner changes their OWN password by proving the current hash;
+--   • the admin creates/edits/deletes any student, gated by the admin hash.
+-- After deploying the client that calls these, drop stu_update_anon (below).
+-- ============================================================
+
+-- Learner self-service password change (also used for first-login / after an
+-- admin reset). Requires the current hash, so no one else can change it.
+create or replace function public.student_set_password(p_id text, p_old_hash text, p_new_hash text)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare n int;
+begin
+  update public.students
+     set password_hash = p_new_hash, must_change_password = false, updated_at = now()
+   where id = p_id and password_hash = p_old_hash;
+  get diagnostics n = row_count;
+  return n > 0;
+end $$;
+grant execute on function public.student_set_password(text, text, text) to anon, authenticated;
+
+-- Admin create/edit any student (gated by the admin hash). Password hash is
+-- preserved when the incoming row doesn't carry one, so edits never wipe it.
+create or replace function public.admin_upsert_student(p_hash text, p_student jsonb)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if not public.is_admin_hash(p_hash) then return false; end if;
+  insert into public.students (id, created_at, updated_at, status, name, email, phone, location,
+    application_id, password_hash, must_change_password, courses, last_login_at, admin_notes)
+  values (
+    p_student->>'id',
+    coalesce((p_student->>'created_at')::timestamptz, now()),
+    now(),
+    coalesce(p_student->>'status', 'active'),
+    coalesce(p_student->>'name', ''),
+    p_student->>'email', p_student->>'phone', p_student->>'location',
+    p_student->>'application_id', p_student->>'password_hash',
+    coalesce((p_student->>'must_change_password')::boolean, true),
+    coalesce(p_student->'courses', '[]'::jsonb),
+    nullif(p_student->>'last_login_at','')::timestamptz,
+    coalesce(p_student->'admin_notes', '[]'::jsonb))
+  on conflict (id) do update set
+    updated_at = now(),
+    status = excluded.status, name = excluded.name, email = excluded.email,
+    phone = excluded.phone, location = excluded.location,
+    application_id = excluded.application_id,
+    password_hash = coalesce(excluded.password_hash, public.students.password_hash),
+    must_change_password = excluded.must_change_password,
+    courses = excluded.courses,
+    last_login_at = coalesce(excluded.last_login_at, public.students.last_login_at),
+    admin_notes = excluded.admin_notes;
+  return true;
+end $$;
+grant execute on function public.admin_upsert_student(text, jsonb) to anon, authenticated;
+
+-- Admin hard-delete a student (gated by the admin hash).
+create or replace function public.admin_delete_student(p_hash text, p_id text)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if not public.is_admin_hash(p_hash) then return false; end if;
+  delete from public.students where id = p_id;
+  return true;
+end $$;
+grant execute on function public.admin_delete_student(text, text) to anon, authenticated;
 
 -- ============================================================
 -- SECURE ACCOUNT BUNDLE (online-authoritative student data)
