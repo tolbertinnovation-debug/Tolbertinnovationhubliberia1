@@ -102,18 +102,25 @@ Run the `PART B` block. This drops the over‑permissive anon policies. After th
 
 Rollback for Part B is at the bottom of the SQL file if anything misbehaves.
 
-### Step 4 — Choose the unlock model, then I remove the legacy code path
-Pick one; tell me which and I'll finish the client + remove the computable‑code path:
+### Step 4 — Unlock model: **ADMIN‑GRANT‑ONLY** (chosen)
 
-- **(A) Admin‑grant‑only (recommended, simplest & most secure):** learner pays →
-  taps "I've paid, request access" → admin taps **Grant** (already exists via
-  `adminGrantAccess`, authenticated) → learner's device hydrates the unlock on
-  next login. No codes to manage. I remove the code‑entry UI and
-  `accessCode()`/`verifyAccessCode` deterministic logic entirely.
-- **(B) Random server codes:** admin generates a code (inserts into
-  `access_codes`) and gives it to the learner, who redeems it via
-  `redeem_access_code`. Keeps a code workflow but the code is unguessable. I add
-  a small "Generate code" button to the admin panel.
+Final learner flow: pay → tap **"I've paid, request access"** → admin sees it in
+the **Access Requests** queue → taps **Grant** (`adminGrantAccess`, authenticated)
+→ the learner's device hydrates the unlock on next login. No codes anywhere.
+
+Client changes I make in lockstep with Part B:
+- **`requestAccess`** → call the new **`request_access` RPC** instead of writing
+  the pending enrollment directly (so it still works after `enr_write_anon` is
+  dropped). The admin's Access Requests queue is unchanged (still reads
+  `enrollments` where `payment_status='requested'`).
+- **Remove the computable‑code path entirely** — delete `accessCode()` and the
+  deterministic branch of `verifyAccessCode()`, and remove the code‑entry UI on
+  the course player / dashboard. (`redeem_access_code` stays in the DB, unused,
+  as an optional future path — harmless.)
+- Keep `adminGrantAccess` / `adminRevokeAccess` as‑is (authenticated).
+
+> The `access_codes` table + `redeem_access_code` RPC from Part A stay installed
+> but unused under this model — no need to remove them.
 
 ---
 
@@ -124,8 +131,17 @@ Pick one; tell me which and I'll finish the client + remove the computable‑cod
   Turnstile on the apply/login forms. See `SECURITY-AUDIT.md` §5.
 
 ## Current status
-- ✅ `supabase-hardening.sql` committed (Part A additive, Part B lock‑down, rollback).
+- ✅ `supabase-hardening.sql` committed — Part A (RPCs incl. `request_access`),
+  Part B lock‑down, rollback.
+- ✅ Unlock model chosen: **admin‑grant‑only**.
 - ✅ This runbook committed.
-- ⏳ Client patch (Step 2) is specified above and **ready to deploy in lockstep** —
-  I'll apply and test it the moment Part A exists (a Supabase branch is perfect
-  for verifying without touching production).
+- ⏳ Client patch (Step 2 + the admin‑grant‑only changes in Step 4) is specified
+  and **ready to deploy in lockstep** — I apply and test it the moment Part A
+  exists (a Supabase branch is perfect for verifying without touching production).
+
+## Your next action
+1. Run **Part A** of `supabase-hardening.sql` (Supabase → SQL Editor), plus the
+   `enrollments_student_item_uidx` index. Additive and safe; a Branch is ideal.
+2. Tell me it's applied → I deploy + verify the backward‑compatible client patch.
+3. Run **Part B** → the holes are closed.
+4. I remove the computable‑code path and finish the admin‑grant‑only wiring.

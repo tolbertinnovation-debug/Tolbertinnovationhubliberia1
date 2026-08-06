@@ -87,6 +87,29 @@ begin
 end $$;
 grant execute on function public.redeem_access_code(text, text) to anon, authenticated;
 
+-- 2b) Learner "I've paid, please unlock" -> writes a PENDING enrollment that
+--     shows up in the admin's Access Requests queue. Grants NOTHING on its own
+--     (admin must tap Grant). Definer rights let us drop the anon enrollment write.
+create or replace function public.request_access(p_student_id text, p_item_id text, p_item_title text)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if not exists (select 1 from public.students s where s.id = p_student_id) then
+    return false;
+  end if;
+  insert into public.enrollments (student_id, item_id, item_title, payment_status, access_granted, granted_at)
+    values (p_student_id, p_item_id, p_item_title, 'requested', false, null)
+    on conflict (student_id, item_id) do update
+      set payment_status = case when public.enrollments.access_granted
+                                then public.enrollments.payment_status
+                                else 'requested' end;  -- never downgrade a granted row
+  return true;
+end $$;
+grant execute on function public.request_access(text, text, text) to anon, authenticated;
+
 -- 3) Learner sets a new password (first login / change), proving the old hash.
 --    Lets us drop the blanket anon UPDATE on students (HIGH-1).
 create or replace function public.student_set_password(p_student_id text, p_old_hash text, p_new_hash text)
