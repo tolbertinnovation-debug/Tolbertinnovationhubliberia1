@@ -1226,24 +1226,74 @@
   })();
 
   // ===== RENDER LESSON =====
+  // True when this is the first CONTENT lesson (not quiz/project) of its module.
+  function isFirstContentLessonOfModule(index, moduleNum) {
+    if (typeof lessons === 'undefined') return index === 0;
+    for (var j = 0; j < index; j++) {
+      var lj = lessons[j];
+      if (lj && lj.module === moduleNum && !lj.isQuiz && !lj.isProject) return false;
+    }
+    return true;
+  }
+  function lessonObjectiveText(index) {
+    var arr = course.learn || [];
+    if (!arr.length) return 'Use today’s idea correctly in a simple, real task.';
+    return escSide(arr[Math.min(index, arr.length - 1)]);
+  }
+  // Course Introduction — shown once, on the very first lesson.
+  function courseIntroBlock() {
+    var topic = escSide((course.title || 'This course').split(':')[0]);
+    var about = Array.isArray(course.about) ? course.about : [course.about || course.shortDesc || 'This course builds practical, job-ready skills step by step, starting from the very basics.'];
+    var aboutHtml = about.filter(Boolean).map(function (p) { return '<p>' + escSide(p) + '</p>'; }).join('');
+    var outcomes = (course.learn || []).slice(0, 6).map(function (x) { return '<li>' + escSide(x) + '</li>'; }).join('') || '<li>Build real, practical skills you can use immediately.</li>';
+    var modCount = (course.modules || []).length;
+    return '<div class="study-note" style="border-left:5px solid #10b981;">'
+      + '<div class="lesson-note-intro"><strong>👋 Welcome to ' + topic + '</strong><br><span>Start here. This short introduction explains what you will learn, why it matters, and how the course works, no prior experience needed.</span></div>'
+      + '<div class="lesson-note-section"><h4>What this course is about</h4>' + aboutHtml + '</div>'
+      + '<div class="lesson-note-section"><h4>Why it matters</h4><p>These skills are practical and in demand. You will learn them in a clear, beginner-friendly order, so even if you are starting from zero you can follow along and succeed.</p></div>'
+      + '<div class="lesson-note-section"><h4>What you will be able to do</h4><ul class="lesson-note-checklist">' + outcomes + '</ul></div>'
+      + '<div class="lesson-note-section"><h4>Your learning journey</h4><p>This course has <strong>' + modCount + ' modules</strong>. You move step by step from the basics to more advanced topics. Every lesson introduces an idea, shows a demonstration, gives you practice, and checks your understanding with a short quiz. You finish with projects and a final assessment, and earn your <strong>Professional Certificate</strong> the moment you reach 100%.</p></div>'
+      + '</div>';
+  }
+  // Module Introduction — shown on the first content lesson of each module.
+  function moduleIntroBlock(lesson) {
+    var mod = (course.modules || [])[lesson.module - 1];
+    var mt = mod ? escSide(mod.title) : 'this module';
+    var connect = lesson.module > 1
+      ? 'It builds on what you learned in the earlier modules and prepares you for what comes next.'
+      : 'It lays the foundation for everything that follows in this course.';
+    return '<div class="study-note" style="border-left:5px solid #1565d8;">'
+      + '<div class="lesson-note-intro"><strong>📘 Module ' + lesson.module + ': ' + mt + '</strong><br><span>A quick look at what this module covers before your first lesson.</span></div>'
+      + '<div class="lesson-note-section"><h4>What this module is about</h4><p>This module focuses on <strong>' + mt + '</strong>. ' + connect + '</p></div>'
+      + '<div class="lesson-note-section"><h4>Why it matters &amp; how it connects</h4><p>Take it one clear step at a time, each idea links back to the fundamentals and forward to the more advanced skills ahead. Mastering this module makes the rest of the course much easier.</p></div>'
+      + '<div class="lesson-note-section"><h4>Module objectives</h4><p>By the end of this module you should be able to explain its key ideas in your own words, complete the practice tasks, and pass the module quiz with <strong>70% or more</strong>.</p></div>'
+      + '</div>';
+  }
+  // Every lesson follows the full classroom format so all courses teach the same
+  // beginner-first way: objectives → intro → key terms → concept → demonstration
+  // → practice → summary → assignment → resources (+ course/module intros).
   function generateCourseTopicOverview(lesson, index, lessonBody) {
-    var courseName = escSide((course.title || '').split(':')[0]);
-    var topic = escSide(course.title || 'This course');
-    var about = Array.isArray(course.about) ? course.about : [course.about || course.shortDesc || 'This course builds practical knowledge through guided lessons and practice.'];
-    var aboutHtml = about.filter(Boolean).map(function (paragraph) {
-      return '<p>' + escSide(paragraph) + '</p>';
-    }).join('');
-    var outcomes = (course.learn || []).slice(0, 5).map(function (item) {
-      return '<li>' + escSide(item) + '</li>';
-    }).join('');
-    var module = course.modules[lesson.module - 1];
-    var moduleTitle = module ? escSide(module.title) : 'the current module';
+    var topic = escSide((course.title || 'This course').split(':')[0]);
+    var mod = (course.modules || [])[lesson.module - 1];
+    var moduleTitle = mod ? escSide(mod.title) : 'the current module';
     var noteClass = 'study-note' + (courseId.indexOf('wassce-') === 0 ? ' wassce-note' : '');
-    return '<div class="' + noteClass + '"><div class="lesson-note-intro"><strong>Full topic note: ' + topic + '</strong><br><span>This Overview is the main reading lesson for <strong>' + escSide(lesson.title) + '</strong> in ' + moduleTitle + '. Read it carefully, watch the real video when one is available, and complete the practice task before marking the lesson complete.</span></div>'
-      + '<div class="lesson-note-section"><h4>1. Understanding the course topic</h4>' + aboutHtml + '</div>'
-      + '<div class="lesson-note-section"><h4>2. What you should be able to do</h4><p>By the end of this course, your knowledge should become a practical skill. These are the main outcomes this topic is designed to support:</p><ul class="lesson-note-checklist">' + (outcomes || '<li>Explain the main ideas clearly and apply them to a real situation.</li>') + '</ul></div>'
-      + '<div class="lesson-note-section"><h4>3. Today\'s lesson: ' + escSide(lesson.title) + '</h4>' + lessonBody + '</div>'
-      + '<div class="lesson-note-action"><strong>Topic checkpoint:</strong> In the Notes tab, write what this lesson means in your own words, one example from your school, work, business, or community, and one action you will take to practise the skill.</div></div>';
+    var lead = '';
+    if (lesson.module === 1 && isFirstContentLessonOfModule(index, 1)) lead += courseIntroBlock();
+    if (isFirstContentLessonOfModule(index, lesson.module)) lead += moduleIntroBlock(lesson);
+    var t = escSide(lesson.title);
+    var body = '<div class="' + noteClass + '">'
+      + '<div class="lesson-note-intro"><strong>📖 Lesson: ' + t + '</strong><br><span>Part of ' + moduleTitle + ' · ' + topic + '. Read each section in order, watch the video when one is available, then complete the practice and assignment before marking the lesson complete.</span></div>'
+      + '<div class="lesson-note-section"><h4>1. Learning objectives</h4><p>By the end of this lesson you should be able to:</p><ul class="lesson-note-checklist"><li>Explain the main idea of <strong>' + t + '</strong> in simple words.</li><li>Recognise where it is used in real life.</li><li>' + lessonObjectiveText(index) + '</li></ul></div>'
+      + '<div class="lesson-note-section"><h4>2. Introduction</h4><p>This lesson introduces <strong>' + t + '</strong>. Before any practice, be sure you understand <em>what</em> it is, <em>why</em> it exists, and <em>where</em> it is used. Read slowly and explain each idea to yourself before moving on, do not rush.</p></div>'
+      + '<div class="lesson-note-section"><h4>3. Key terms to know</h4><p>As you read, write down every new or unfamiliar word with its meaning in the <strong>Notes</strong> tab. Never move past a term you cannot explain, look it up or ask a mentor first. Understanding the words is half of understanding the topic.</p></div>'
+      + '<div class="lesson-note-section"><h4>4. Explanation of the concept</h4>' + lessonBody + '</div>'
+      + '<div class="lesson-note-section"><h4>5. Demonstration</h4><div class="lesson-note-example"><strong>Watch &amp; follow:</strong> If a video is provided above, watch it and pause to match each step with this note. Then repeat the same example yourself, step by step, without skipping anything.</div></div>'
+      + '<div class="lesson-note-section"><h4>6. Practical activity</h4><p>Now try it yourself. Start with the simplest version of the task, then repeat it with a small change. Use a real example from your school, work, business, or community so the skill sticks.</p></div>'
+      + '<div class="lesson-note-section"><h4>7. Summary &amp; recap</h4><p>Recap the lesson in one or two sentences: what the idea is, why it matters, and one place you would use it. If you cannot summarise it yet, read section 4 again. A short quiz at the end of this module will check your understanding.</p></div>'
+      + '<div class="lesson-note-section"><h4>8. Assignment</h4><div class="lesson-note-action"><strong>Do this:</strong> In the Notes tab, write a 3–5 sentence summary in your own words, give one real example, and complete one practice task based on this lesson. Keep it as evidence of your learning.</div></div>'
+      + '<div class="lesson-note-section"><h4>9. Recommended resources</h4><p>Open the <strong>Resources</strong> tab for the TIH Library (extra reading and past materials). If anything is unclear, use the <strong>Q&amp;A</strong> tab to ask a TIH mentor on WhatsApp, we are happy to explain it another way.</p></div>'
+      + '</div>';
+    return lead + body;
   }
 
   function renderLesson(index) {
