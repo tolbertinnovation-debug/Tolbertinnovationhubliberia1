@@ -181,6 +181,7 @@
       <!-- Cert Requests hidden: certificates now issue automatically on course completion (no approval needed). Kept in the DOM for any legacy pending requests. -->
       <button class="tab" data-panel="certreq" style="display:none;">📋 Cert Requests <span class="badge" id="certReqBadge" style="display:none;"></span></button>
       <button class="tab" data-panel="certs">🏆 Certificates</button>
+      <button class="tab" data-panel="payments">💰 Payments</button>
       <button class="tab" data-panel="audit">📜 Audit Log</button>
       <button class="tab" data-panel="settings">⚙️ Settings</button>
     </div>
@@ -344,6 +345,25 @@
       </div>
     </div>
 
+    <!-- PAYMENTS -->
+    <div class="panel" id="panel-payments">
+      <h2>Payments</h2>
+      <div class="table-card" style="padding:1rem 1.1rem;margin-bottom:1.2rem;">
+        <div id="payStatus" style="font-size:.86rem;font-weight:700;"></div>
+        <p style="font-size:.82rem;color:var(--muted);margin-top:.35rem;">Online payments made through Flutterwave (Lonestar MTN MoMo, Orange Money or card). A successful payment unlocks the course automatically — no manual approval needed. See <b>PAYMENTS-SETUP.md</b> to turn this on.</p>
+        <button class="btn" id="payRefreshBtn" style="margin-top:.6rem;">↻ Refresh</button>
+      </div>
+      <div class="table-card">
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Date</th><th>Student</th><th>Course</th><th>Amount</th><th>Method</th><th>Status</th><th>Reference</th></tr></thead>
+            <tbody id="payTbody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="payEmpty" style="display:none;">No payments recorded yet.</div>
+      </div>
+    </div>
+
     <!-- AUDIT -->
     <div class="panel" id="panel-audit">
       <h2>Audit Log</h2>
@@ -373,7 +393,7 @@
 
   <script src="courses-db.js?v=18"></script>
   <script src="hub-config.js?v=4"></script>
-  <script src="hub-cloud.js?v=15"></script>
+  <script src="hub-cloud.js?v=16"></script>
   <script src="hub-db.js?v=37"></script>
   <script src="cert-registry.js?v=3"></script>
   <script>
@@ -571,6 +591,7 @@
       document.querySelectorAll('.panel').forEach(function (p) { p.classList.toggle('active', p.id === 'panel-' + key); });
       renderAll();
       if (key === 'access' && typeof renderAccessRequests === 'function') renderAccessRequests();
+      if (key === 'payments' && typeof renderPayments === 'function') renderPayments();
     }
     document.querySelectorAll('.tab').forEach(function (t) {
       t.addEventListener('click', function () { switchPanel(t.getAttribute('data-panel')); });
@@ -1186,6 +1207,54 @@
       HubDB.adminRevokeAccess(stuId, itemId).then(function () { renderAccessRequests(); });
     };
     document.getElementById('acReqRefreshBtn').addEventListener('click', function () { _acHealTried = {}; renderAccessRequests(); });
+
+    /* ============ RENDER: PAYMENTS ============ */
+    function renderPayments() {
+      var tbody = document.getElementById('payTbody');
+      var empty = document.getElementById('payEmpty');
+      var status = document.getElementById('payStatus');
+      if (!tbody) return;
+      var payCfg = (window.TIH_PAYMENTS_CONFIG || {});
+      if (status) {
+        status.innerHTML = payCfg.enabled
+          ? '☁ Online payments ON (Flutterwave · ' + esc(payCfg.currency || 'USD') + ')'
+          : '⏸ Online payments are OFF — see PAYMENTS-SETUP.md to enable Flutterwave.';
+      }
+      if (typeof HubCloud === 'undefined' || !HubCloud.isEnabled()) {
+        tbody.innerHTML = ''; if (empty) { empty.style.display = 'block'; empty.textContent = 'Connect the cloud database to see payments.'; }
+        return;
+      }
+      var sess = HubDB.adminSession();
+      var hash = sess && sess.hash;
+      if (!hash) { tbody.innerHTML = ''; if (empty) { empty.style.display = 'block'; empty.textContent = 'Sign in as admin to view payments.'; } return; }
+      tbody.innerHTML = '<tr><td colspan="7" style="color:var(--muted);">Loading…</td></tr>';
+      HubCloud.adminListPayments(hash).then(function (rows) {
+        if (!Array.isArray(rows) || !rows.length) {
+          tbody.innerHTML = ''; if (empty) { empty.style.display = 'block'; empty.textContent = 'No payments recorded yet.'; }
+          return;
+        }
+        if (empty) empty.style.display = 'none';
+        tbody.innerHTML = rows.map(function (p) {
+          var when = p.created_at ? new Date(p.created_at).toLocaleString() : '';
+          var amt = (p.currency || 'USD') + ' ' + (p.amount != null ? p.amount : '');
+          var st = String(p.status || 'pending');
+          var color = st === 'success' ? '#0d8a3f' : (st === 'pending' ? '#b7791f' : '#b91c1c');
+          return '<tr>'
+            + '<td style="white-space:nowrap;">' + esc(when) + '</td>'
+            + '<td>' + esc(p.student_name || p.student_id || '') + '</td>'
+            + '<td>' + esc(p.item_title || p.item_id || '') + '</td>'
+            + '<td style="white-space:nowrap;font-weight:700;">' + esc(amt) + '</td>'
+            + '<td>' + esc(p.method || '') + '</td>'
+            + '<td style="font-weight:700;color:' + color + ';text-transform:capitalize;">' + esc(st) + '</td>'
+            + '<td style="font-family:monospace;font-size:.78rem;">' + esc(p.tx_ref || p.reference || '') + '</td>'
+            + '</tr>';
+        }).join('');
+      }).catch(function () {
+        tbody.innerHTML = '<tr><td colspan="7" style="color:#b91c1c;">Could not load payments.</td></tr>';
+      });
+    }
+    var payRefreshBtn = document.getElementById('payRefreshBtn');
+    if (payRefreshBtn) payRefreshBtn.addEventListener('click', renderPayments);
 
     /* ============ RENDER: CERTIFICATE REQUESTS ============ */
     function populateCodeCourses() {

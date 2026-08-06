@@ -40,3 +40,29 @@ window.TIH_SUPABASE_CONFIG = {
   url: "https://oracluubhmxobcnsvcxz.supabase.co",
   anonKey: "sb_publishable_tPiTlfiFlSJedb1VMsrjNA_sZ10Bri8"
 };
+
+/* ============================================================
+   PAYMENTS (Flutterwave) — lets learners pay for a course with
+   Lonestar MTN MoMo, Orange Money or card, then get access
+   automatically.  See PAYMENTS-SETUP.md for the full step-by-step.
+
+   SECURITY: only the PUBLIC key and the function URL live here —
+   both are safe to publish.  The SECRET key NEVER goes in this
+   file; it lives only in your Supabase Edge Function secrets.
+
+   Leave  enabled:false  until you have created your Flutterwave
+   account, added the secret key to Supabase and deployed the two
+   Edge Functions.  While it is false the site behaves exactly as
+   before (the existing request-access / deposit flow), so nothing
+   breaks.  Flip it to true only when you are ready to take money.
+   ============================================================ */
+window.TIH_PAYMENTS_CONFIG = {
+  enabled: false,                 // ← flip to true when keys are live and tested
+  provider: "flutterwave",
+  publicKey: "",                  // ← paste your Flutterwave PUBLIC key (FLWPUBK... — safe to publish)
+  // Base URL of the Supabase Edge Functions that hold the secret key.
+  functionsBase: "https://oracluubhmxobcnsvcxz.supabase.co/functions/v1",
+  // Currency to charge in. Flutterwave Liberia settles mobile money in LRD;
+  // cards can be charged in USD. "USD" or "LRD".
+  currency: "USD"
+};

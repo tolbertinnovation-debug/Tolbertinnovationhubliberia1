@@ -51,6 +51,12 @@ var Paywall = (function () {
     var telLink = 'tel:' + contactIntl;
     var smsLink = 'sms:' + contactIntl + '?body=' + encodeURIComponent(smsText);
 
+    // "Pay Online Now" — only when online payments (Flutterwave) are enabled.
+    var payOnlineBlock = (typeof HubPay !== 'undefined' && HubPay.enabled())
+      ? ('<button id="tihPayOnlineBtn" style="width:100%;background:linear-gradient(135deg,#16a34a,#0d8a3f);color:#fff;border:none;border-radius:12px;font-weight:800;font-size:1rem;padding:.95rem;cursor:pointer;font-family:inherit;min-height:54px;box-shadow:0 8px 20px rgba(13,138,63,.28);">💳 Pay Online Now &middot; Unlock Instantly</button>'
+        + '<div style="text-align:center;font-size:.76rem;color:#64748b;margin:.45rem 0 1.1rem;">Lonestar MTN MoMo &middot; Orange Money &middot; Card — your course unlocks automatically</div>')
+      : '';
+
     var o = document.createElement('div');
     o.id = 'tihPaywall';
     o.setAttribute('role', 'dialog');
@@ -64,7 +70,9 @@ var Paywall = (function () {
       + '<div style="font-size:.85rem;color:rgba(255,255,255,.82);margin-top:.25rem;">' + esc(opts.itemTitle || opts.itemId) + '</div>'
       + '</div>'
       + '<div style="padding:1.4rem 1.5rem;">'
-      + '<p style="font-size:.92rem;color:#374151;margin:0 0 1rem;">Access to this course costs <b>US$' + esc(amount) + '</b>. Follow these steps to unlock it:</p>'
+      + '<p style="font-size:.92rem;color:#374151;margin:0 0 1rem;">Access to this course costs <b>US$' + esc(amount) + '</b>.</p>'
+      + payOnlineBlock
+      + '<p style="font-size:.92rem;color:#374151;margin:0 0 1rem;">' + (payOnlineBlock ? 'Prefer to pay manually? ' : '') + 'Follow these steps to unlock it:</p>'
       + '<ol style="margin:0 0 1rem 1.1rem;padding:0;font-size:.9rem;color:#374151;line-height:1.7;">'
       + '<li><b>Pay ' + esc(currencyNote) + '</b> by Mobile Money to:<br><a href="' + telLink + '" style="display:inline-flex;align-items:center;gap:.4rem;background:#eaf4ff;border:1px dashed #1E3A8A;border-radius:8px;padding:.55rem .9rem;margin-top:.35rem;font-weight:700;color:#1E3A8A;text-decoration:none;">📞 ' + esc(P.momoNumber) + ' &middot; ' + esc(P.momoName) + '</a><span style="display:block;font-size:.72rem;color:#64748b;margin-top:.25rem;">Tap the number to call</span></li>'
       + '<li style="margin-top:.6rem;">Confirm your payment with the TIH team, by <b>WhatsApp</b>, <b>text</b>, or <b>call</b> (buttons below). Always send your <b>name</b> and <b>Student ID</b>: <b>' + esc(student.id) + '</b>.</li>'
@@ -132,6 +140,21 @@ var Paywall = (function () {
     }
     document.getElementById('tihAccessBtn').addEventListener('click', attempt);
     document.getElementById('tihAccessInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') attempt(); });
+
+    // "Pay Online Now": secure hosted checkout (Flutterwave) → auto-unlock.
+    var payBtn = document.getElementById('tihPayOnlineBtn');
+    if (payBtn && typeof HubPay !== 'undefined') {
+      payBtn.addEventListener('click', function () {
+        payBtn.disabled = true; payBtn.textContent = 'Starting secure checkout…';
+        HubPay.startCheckout(itemId, { itemTitle: opts.itemTitle || itemId }).then(function (res) {
+          if (!res || !res.ok) {
+            payBtn.disabled = false; payBtn.innerHTML = '💳 Pay Online Now &middot; Unlock Instantly';
+            var fb = document.getElementById('tihRequestFb');
+            if (fb) { fb.style.color = '#e31e24'; fb.textContent = (res && res.error) || 'Could not start online payment. Please use the manual steps below.'; }
+          }
+        });
+      });
+    }
 
     // "I've paid, Request Access": logs a request the admin can grant in one tap.
     var reqBtn = document.getElementById('tihRequestBtn');

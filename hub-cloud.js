@@ -396,6 +396,13 @@ var HubCloud = (function () {
       return data.map(stuFromRow);
     }).catch(function () { return null; });
   }
+  // Payments (Flutterwave). Hash-gated read for the admin "Payments" tab.
+  function adminListPayments(adminHash) {
+    if (!adminHash) return Promise.resolve(null);
+    return restRpc('admin_list_payments', { p_hash: adminHash }).then(function (data) {
+      return Array.isArray(data) ? data : null;
+    }).catch(function () { return null; });
+  }
   // Secure cross-device login via the SECURITY DEFINER RPC, over plain fetch.
   function studentLogin(login, passwordHash) {
     return restRpc('student_login', { p_login: String(login || ''), p_hash: passwordHash })
@@ -577,6 +584,7 @@ var HubCloud = (function () {
     deleteStudent: deleteStudent,
     fetchStudents: fetchStudents,
     adminListStudents: adminListStudents,
+    adminListPayments: adminListPayments,
     studentLogin: studentLogin,
     studentSetPasswordRpc: studentSetPasswordRpc,
     touchStudentLogin: touchStudentLogin,
