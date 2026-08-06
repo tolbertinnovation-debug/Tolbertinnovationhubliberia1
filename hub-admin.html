@@ -132,9 +132,6 @@
       <div class="fld"><label>Password</label><input type="password" id="adminPass" autocomplete="current-password" /></div>
       <button class="btn btn-primary btn-block" id="adminLoginBtn">Sign In</button>
       <div class="feedback err" id="loginFeedback"></div>
-      <div class="default-cred-note" id="defaultCredNote" style="display:none;">
-        Sign in with your <b>TIH cloud admin email &amp; password</b> (created in Supabase → Authentication). Your login then works on every device.
-      </div>
     </div>
   </div>
 
@@ -493,8 +490,7 @@
         });
       };
     }
-    HubDB.ensureAdminAccount().then(function (acct) {
-      if (acct.isDefaultPassword) document.getElementById('defaultCredNote').style.display = 'block';
+    HubDB.ensureAdminAccount().then(function () {
       if (HubDB.adminSession()) enterShell();
     });
     document.getElementById('adminLoginBtn').addEventListener('click', doLogin);
