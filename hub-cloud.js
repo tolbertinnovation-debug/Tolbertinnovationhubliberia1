@@ -262,13 +262,39 @@ var HubCloud = (function () {
   // New submissions are a plain insert (anon-safe: the RLS insert policy
   // covers it, and a freshly-generated id never conflicts).
   function pushApplication(a) { return restInsert('applications', appRow(a)); }
-  function updateApplication(id, changes) {
+  function updateApplication(id, changes, adminHash) {
+    // Prefer the admin-hash RPC (REST) so decisions persist under the local
+    // admin login; fall back to the authenticated SDK update if the RPC is
+    // absent (older DB) or a cloud session happens to exist.
+    if (adminHash) {
+      return restRpc('admin_update_application', {
+        p_hash: adminHash, p_id: String(id),
+        p_status: ('status' in changes) ? changes.status : null,
+        p_message: ('statusMessage' in changes) ? changes.statusMessage : null,
+        p_notes: ('notes' in changes) ? (changes.notes || []) : null
+      }).then(function (r) {
+        if (r === true) return true;
+        return sdkUpdateApplication(id, changes);
+      }).catch(function () { return sdkUpdateApplication(id, changes); });
+    }
+    return sdkUpdateApplication(id, changes);
+  }
+  function sdkUpdateApplication(id, changes) {
     var c = {};
     if ('status' in changes) c.status = changes.status;
     if ('statusMessage' in changes) c.status_message = changes.statusMessage;
     if ('notes' in changes) c.notes = changes.notes;
     c.updated_at = new Date().toISOString();
     return update('applications', String(id), c);
+  }
+  // Full applications list over plain REST, gated by the admin password hash.
+  // Resolves an array, or null (RPC missing / wrong hash) so the caller falls back.
+  function adminListApplications(adminHash) {
+    if (!adminHash) return Promise.resolve(null);
+    return restRpc('admin_list_applications', { p_hash: adminHash }).then(function (data) {
+      if (!Array.isArray(data)) return null;
+      return data.map(appFromRow);
+    }).catch(function () { return null; });
   }
   function fetchApplications() {
     return fetchAll('applications', 'submitted_at', false).then(function (rows) {
@@ -398,7 +424,22 @@ var HubCloud = (function () {
     };
   }
   function pushCertRequest(r) { return restUpsert('cert_requests', crqRow(r), 'id'); }
-  function updateCertRequest(id, changes) {
+  function updateCertRequest(id, changes, adminHash) {
+    // Prefer the admin-hash RPC (REST) so approve/decline persists under the
+    // local admin login; fall back to the SDK update if the RPC is absent.
+    if (adminHash) {
+      return restRpc('admin_update_cert_request', {
+        p_hash: adminHash, p_id: String(id),
+        p_status: ('status' in changes) ? changes.status : null,
+        p_reason: ('reason' in changes) ? changes.reason : null
+      }).then(function (r) {
+        if (r === true) return true;
+        return sdkUpdateCertRequest(id, changes);
+      }).catch(function () { return sdkUpdateCertRequest(id, changes); });
+    }
+    return sdkUpdateCertRequest(id, changes);
+  }
+  function sdkUpdateCertRequest(id, changes) {
     var c = {};
     if ('status' in changes) c.status = changes.status;
     if ('reason' in changes) c.reason = changes.reason;
@@ -486,6 +527,7 @@ var HubCloud = (function () {
     adminUser: adminUser,
     pushApplication: pushApplication,
     updateApplication: updateApplication,
+    adminListApplications: adminListApplications,
     fetchApplications: fetchApplications,
     pushStudent: pushStudent,
     deleteStudent: deleteStudent,

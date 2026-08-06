@@ -312,6 +312,67 @@ as $$
 $$;
 grant execute on function public.admin_list_students(text) to anon, authenticated;
 
+-- Admin applications roster + status updates. Same admin-hash gate as the
+-- roster above: the applications table stays closed to anonymous read/update,
+-- but the admin panel can list and decide on applications over plain REST with
+-- the local login (no Supabase Auth session / CDN needed).
+create or replace function public.admin_list_applications(p_hash text)
+returns jsonb
+language sql
+security definer
+set search_path = public
+as $$
+  select case
+    when p_hash = '46935534a9c4202ff6bac36a19daba14eb6f9eafc4ece4568fcbe7fa9777b1a5'
+    then coalesce(
+      (select jsonb_agg(to_jsonb(a) order by a.submitted_at desc) from public.applications a),
+      '[]'::jsonb)
+    else null
+  end;
+$$;
+grant execute on function public.admin_list_applications(text) to anon, authenticated;
+
+create or replace function public.admin_update_application(
+  p_hash text, p_id text, p_status text, p_message text, p_notes jsonb)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if p_hash <> '46935534a9c4202ff6bac36a19daba14eb6f9eafc4ece4568fcbe7fa9777b1a5' then
+    return false;
+  end if;
+  update public.applications set
+    status         = coalesce(p_status,  status),
+    status_message = coalesce(p_message, status_message),
+    notes          = coalesce(p_notes,   notes),
+    updated_at     = now()
+  where id = p_id;
+  return found;
+end $$;
+grant execute on function public.admin_update_application(text, text, text, text, jsonb) to anon, authenticated;
+
+create or replace function public.admin_update_cert_request(
+  p_hash text, p_id text, p_status text, p_reason text)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if p_hash <> '46935534a9c4202ff6bac36a19daba14eb6f9eafc4ece4568fcbe7fa9777b1a5' then
+    return false;
+  end if;
+  update public.cert_requests set
+    status     = coalesce(p_status, status),
+    reason     = coalesce(p_reason, reason),
+    decided_at = now()
+  where id = p_id;
+  return found;
+end $$;
+grant execute on function public.admin_update_cert_request(text, text, text, text) to anon, authenticated;
+
 -- ============================================================
 -- SECURE ACCOUNT BUNDLE (online-authoritative student data)
 -- The learner re-sends their login + password hash; on a match the

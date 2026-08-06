@@ -99,8 +99,9 @@ var HubDB = (function () {
       switch (op.type) {
         case 'student.upsert':  return C.pushStudent(op.payload);
         case 'student.delete':  return C.deleteStudent(op.payload.id);
-        case 'application.update': return C.updateApplication(op.payload.id, op.payload.changes);
+        case 'application.update': return C.updateApplication(op.payload.id, op.payload.changes, adminAcctHash());
         case 'certreq.upsert':  return C.pushCertRequest(op.payload);
+        case 'certreq.update':  return C.updateCertRequest(op.payload.id, op.payload.changes, adminAcctHash());
         case 'enrollment.upsert': return C.pushEnrollment(op.payload);
         default: return Promise.resolve(true); // unknown op: drop it
       }
@@ -691,8 +692,13 @@ var HubDB = (function () {
           return (list && list.length) ? list : C.fetchStudents();
         }).catch(function () { return C.fetchStudents(); })
       : C.fetchStudents();
+    var appsP = (C.adminListApplications && adminAcctHash())
+      ? C.adminListApplications(adminAcctHash()).then(function (list) {
+          return list ? list : C.fetchApplications();
+        }).catch(function () { return C.fetchApplications(); })
+      : C.fetchApplications();
     return Promise.all([
-      C.fetchApplications().catch(function () { return null; }),
+      appsP.catch(function () { return null; }),
       studentsP.catch(function () { return null; }),
       C.fetchCertRequests().catch(function () { return null; })
     ]).then(function (r) {
@@ -766,7 +772,9 @@ var HubDB = (function () {
         for (var k in changes) { if (changes.hasOwnProperty(k)) list[i][k] = changes[k]; }
         list[i].decidedAt = nowISO();
         saveCertRequests(list);
-        outboxAdd('certreq.upsert', list[i]); // FINAL: decision retried until confirmed
+        // Decision is an UPDATE to an existing row: route through the admin RPC
+        // (an anon upsert can't update cert_requests — no anon UPDATE policy).
+        outboxAdd('certreq.update', { id: id, changes: changes }); // FINAL: retried until confirmed
         return list[i];
       }
     }
