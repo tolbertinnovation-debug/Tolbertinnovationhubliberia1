@@ -317,6 +317,17 @@ var HubCloud = (function () {
       return rows.map(stuFromRow);
     });
   }
+  // Full roster over plain REST, gated by the admin password hash via the
+  // admin_list_students SECURITY DEFINER RPC. Works with the local admin login
+  // (no Supabase Auth session, no CDN). Resolves an array on success, or null
+  // when the RPC is absent / the hash is wrong, so the caller can fall back.
+  function adminListStudents(adminHash) {
+    if (!adminHash) return Promise.resolve(null);
+    return restRpc('admin_list_students', { p_hash: adminHash }).then(function (data) {
+      if (!Array.isArray(data)) return null;
+      return data.map(stuFromRow);
+    }).catch(function () { return null; });
+  }
   // Secure cross-device login via the SECURITY DEFINER RPC, over plain fetch.
   function studentLogin(login, passwordHash) {
     return restRpc('student_login', { p_login: String(login || ''), p_hash: passwordHash })
@@ -479,6 +490,7 @@ var HubCloud = (function () {
     pushStudent: pushStudent,
     deleteStudent: deleteStudent,
     fetchStudents: fetchStudents,
+    adminListStudents: adminListStudents,
     studentLogin: studentLogin,
     touchStudentLogin: touchStudentLogin,
     fetchAccountBundle: fetchAccountBundle,

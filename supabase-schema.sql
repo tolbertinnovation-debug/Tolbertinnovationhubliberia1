@@ -287,6 +287,31 @@ as $$
 $$;
 grant execute on function public.student_touch_login(text) to anon, authenticated;
 
+-- Admin roster: returns every student (minus the password hash) ONLY when the
+-- caller passes the admin password hash. Lets the admin panel list all learners
+-- over plain REST — no Supabase Auth session and no CDN library needed — while
+-- the students table stays closed to anonymous SELECT (password hashes never
+-- leave the server). A wrong/absent hash returns NULL so the client falls back
+-- to its local list. Update p_hash below if you change the admin password:
+--   select encode(digest('YOUR-NEW-ADMIN-PASSWORD','sha256'),'hex');   -- needs pgcrypto
+create or replace function public.admin_list_students(p_hash text)
+returns jsonb
+language sql
+security definer
+set search_path = public
+as $$
+  select case
+    when p_hash = '46935534a9c4202ff6bac36a19daba14eb6f9eafc4ece4568fcbe7fa9777b1a5'
+    then coalesce(
+      (select jsonb_agg((to_jsonb(s) - 'password_hash') order by s.created_at desc)
+         from public.students s
+        where s.status is distinct from 'deleted'),
+      '[]'::jsonb)
+    else null
+  end;
+$$;
+grant execute on function public.admin_list_students(text) to anon, authenticated;
+
 -- ============================================================
 -- SECURE ACCOUNT BUNDLE (online-authoritative student data)
 -- The learner re-sends their login + password hash; on a match the

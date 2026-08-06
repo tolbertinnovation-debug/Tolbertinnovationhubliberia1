@@ -676,12 +676,24 @@ var HubDB = (function () {
     return merged;
   }
 
+  function adminAcctHash() {
+    var acct = getJSON(KEYS.adminAccount, null);
+    return (acct && acct.passwordHash) || null;
+  }
   function syncFromCloud() {
     if (!cloud()) return Promise.resolve({ enabled: false, applications: 0, students: 0, certRequests: 0 });
     var C = cloud();
+    // Prefer the REST roster RPC (works with the local admin login, no cloud
+    // session / CDN needed); fall back to the authenticated SDK read if the RPC
+    // isn't installed yet or returns nothing.
+    var studentsP = (C.adminListStudents && adminAcctHash())
+      ? C.adminListStudents(adminAcctHash()).then(function (list) {
+          return (list && list.length) ? list : C.fetchStudents();
+        }).catch(function () { return C.fetchStudents(); })
+      : C.fetchStudents();
     return Promise.all([
       C.fetchApplications().catch(function () { return null; }),
-      C.fetchStudents().catch(function () { return null; }),
+      studentsP.catch(function () { return null; }),
       C.fetchCertRequests().catch(function () { return null; })
     ]).then(function (r) {
       var apps = r[0], studs = r[1], reqs = r[2];
