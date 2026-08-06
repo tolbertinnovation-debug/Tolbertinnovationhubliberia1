@@ -70,6 +70,8 @@ create table if not exists public.enrollments (
   student_id     text not null,
   item_id        text not null,                     -- course id or 'wassce-all'
   item_title     text,
+  student_name   text,                              -- denormalized: who requested
+  student_phone  text,                              -- denormalized: for payment follow-up
   payment_status text default 'pending',            -- pending|paid|confirmed
   payment_reference text,
   access_granted boolean default false,
@@ -77,6 +79,11 @@ create table if not exists public.enrollments (
   created_at     timestamptz not null default now(),
   unique (student_id, item_id)
 );
+-- Existing databases: add the denormalized name/phone so the admin's Access
+-- Requests list can show WHO requested without reading the students table
+-- (which anon/local-admin cannot, by RLS). Safe to run repeatedly.
+alter table public.enrollments add column if not exists student_name  text;
+alter table public.enrollments add column if not exists student_phone text;
 
 -- ---------- PAYMENTS ----------
 create table if not exists public.payments (

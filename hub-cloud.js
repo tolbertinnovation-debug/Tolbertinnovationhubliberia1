@@ -348,7 +348,21 @@ var HubCloud = (function () {
 
   // ---- enrollments / payments ----
   // REST-first (no CDN dependency) so unlock requests/grants work on any device.
-  function pushEnrollment(row) { return restUpsert('enrollments', row, 'student_id,item_id'); }
+  // The row may carry denormalized student_name/student_phone so the admin can
+  // show WHO requested without reading the (RLS-protected) students table. If the
+  // database predates those columns the upsert 400s, so we retry once without
+  // them — the request still lands, just without the inline name.
+  function pushEnrollment(row) {
+    return restUpsert('enrollments', row, 'student_id,item_id').then(function (ok) {
+      if (ok) return true;
+      if (row && (row.student_name != null || row.student_phone != null)) {
+        var lean = {};
+        for (var k in row) { if (row.hasOwnProperty(k) && k !== 'student_name' && k !== 'student_phone') lean[k] = row[k]; }
+        return restUpsert('enrollments', lean, 'student_id,item_id');
+      }
+      return false;
+    });
+  }
   function pushPayment(row) { return restInsert('payments', row); }
   function fetchEnrollments() { return restSelect('enrollments', 'select=*&order=created_at.desc'); }
 

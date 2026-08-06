@@ -857,8 +857,10 @@ var HubDB = (function () {
       ? COURSES_DB[itemId].title
       : (itemId === 'wassce-all' ? 'WASSCE PRO, All 23 Subjects' : itemId);
     var C = cloud();
+    var gs = findStudent(studentId);
     var row = {
       student_id: studentId, item_id: itemId, item_title: title,
+      student_name: (gs && gs.name) || '', student_phone: (gs && gs.phone) || '',
       payment_status: 'confirmed', access_granted: true, granted_at: nowISO()
     };
     return C.pushEnrollment(row).then(function (ok) {
@@ -905,6 +907,7 @@ var HubDB = (function () {
       : (itemId.indexOf('wassce-') === 0 ? 'WASSCE: ' + itemId.slice(7) : itemId);
     return cloud().pushEnrollment({
       student_id: sess.id, item_id: itemId, item_title: title,
+      student_name: s.name || sess.name || '', student_phone: (s && s.phone) || '',
       payment_status: 'requested', access_granted: false, granted_at: null
     }).then(function (ok) {
       fire(cloud().logActivity({

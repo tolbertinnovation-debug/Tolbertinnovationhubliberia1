@@ -349,8 +349,8 @@
 
   <script src="courses-db.js?v=18"></script>
   <script src="hub-config.js?v=4"></script>
-  <script src="hub-cloud.js?v=10"></script>
-  <script src="hub-db.js?v=29"></script>
+  <script src="hub-cloud.js?v=11"></script>
+  <script src="hub-db.js?v=30"></script>
   <script src="cert-registry.js?v=3"></script>
   <script>
     /* ============ HELPERS ============ */
@@ -1109,10 +1109,13 @@
         var missing = [];
         box.innerHTML = reqs.map(function (e) {
           var s = HubDB.findStudent(e.student_id);
-          if (!s) missing.push(e.student_id);
-          var name = s ? s.name : 'Registered learner';
+          // Prefer the name carried on the request itself (works even when this
+          // admin device can't read the RLS-protected students table); fall back
+          // to a local lookup, then to a neutral label.
+          if (!s && !e.student_name) missing.push(e.student_id);
+          var name = e.student_name || (s && s.name) || 'Registered learner';
           var email = (s && s.email) ? s.email : '';
-          var phone = (s && s.phone) ? s.phone : '';
+          var phone = e.student_phone || (s && s.phone) || '';
           return '<div style="display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap;border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;margin-bottom:.5rem;">'
             + '<div style="min-width:170px;"><b>' + esc(name) + '</b>'
             + '<br><span style="color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.02em;">STUDENT ID</span> '
