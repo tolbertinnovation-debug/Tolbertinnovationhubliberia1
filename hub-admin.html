@@ -350,7 +350,7 @@
   <script src="courses-db.js?v=18"></script>
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=14"></script>
-  <script src="hub-db.js?v=33"></script>
+  <script src="hub-db.js?v=34"></script>
   <script src="cert-registry.js?v=3"></script>
   <script>
     /* ============ HELPERS ============ */
@@ -522,17 +522,13 @@
         });
         return;
       }
-      // Fallback: legacy on-device login (kept so you are never locked out while
-      // the Supabase admin user is being set up).
+      // Username sign-in: verified server-side (app_admins via admin_login RPC).
+      // No default credentials exist; a wrong password or no connection fails closed.
       HubDB.adminLogin(u, p).then(function (res) {
         if (!res.ok) { fb.className = 'feedback err'; fb.textContent = res.error; return; }
         HubDB.audit('Admin signed in');
+        fb.textContent = '';
         enterShell();
-        if (res.isDefaultPassword) {
-          switchPanel('settings');
-          document.getElementById('passFeedback').className = 'feedback err';
-          document.getElementById('passFeedback').textContent = 'You are using the default on-device password. Set up the Supabase cloud admin account (Settings → Central Database) so your login works on every device.';
-        }
       });
     }
     document.getElementById('logoutBtn').addEventListener('click', function () {

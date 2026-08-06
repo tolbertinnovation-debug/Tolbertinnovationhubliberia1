@@ -486,46 +486,30 @@ var HubDB = (function () {
   }
 
   /* ---- Admin auth ---- */
-  var DEFAULT_ADMIN_USER = 'tihadmin';
-  var DEFAULT_ADMIN_PASS = 'TIH-Admin-2026';
+  // No default credentials exist anywhere in this code. The admin username and
+  // password live ONLY server-side (app_admins) and are verified by the
+  // admin_login RPC. ensureAdminAccount is retained as a no-op for callers but
+  // never provisions an on-device account.
   function ensureAdminAccount() {
-    var acct = getJSON(KEYS.adminAccount, null);
-    if (acct) return Promise.resolve(acct);
-    return sha256(DEFAULT_ADMIN_PASS).then(function (hash) {
-      var fresh = { username: DEFAULT_ADMIN_USER, passwordHash: hash, isDefaultPassword: true, createdAt: nowISO() };
-      setJSON(KEYS.adminAccount, fresh);
-      return fresh;
-    });
+    return Promise.resolve(getJSON(KEYS.adminAccount, null));
   }
   function adminLogin(username, password) {
     return sha256(password).then(function (hash) {
       var C = cloud();
-      // Primary: verify against the server (app_admins via admin_login RPC).
-      // The credential lives server-side — no default password in this code.
-      if (C && C.adminLoginRpc) {
-        return C.adminLoginRpc(username, hash).then(function (r) {
-          if (r === true) {
-            setJSON(KEYS.adminSession, { username: String(username).trim(), hash: hash, at: nowISO(), cloud: true });
-            return { ok: true };
-          }
-          if (r === false) return { ok: false, error: 'Invalid admin credentials.' };
-          // r === null: the RPC isn't installed / unreachable yet — fall back to
-          // the on-device check so setup isn't a lockout. Removed once configured.
-          return legacyAdminLogin(username, password, hash);
-        }).catch(function () { return legacyAdminLogin(username, password, hash); });
+      // Credentials are verified server-side (app_admins via admin_login RPC).
+      // There is NO on-device fallback: a wrong password is rejected, and if the
+      // server can't be reached the admin simply cannot sign in (fail closed).
+      if (!C || !C.adminLoginRpc) {
+        return { ok: false, error: 'Admin sign-in needs an internet connection. Please reconnect and try again.' };
       }
-      return legacyAdminLogin(username, password, hash);
-    });
-  }
-  // On-device fallback ONLY when the server login RPC is unavailable. Kept so the
-  // panel is never bricked mid-migration; unreachable once app_admins exists.
-  function legacyAdminLogin(username, password, hash) {
-    return ensureAdminAccount().then(function (acct) {
-      if (String(username).trim().toLowerCase() !== acct.username.toLowerCase() || hash !== acct.passwordHash) {
-        return { ok: false, error: 'Invalid admin credentials.' };
-      }
-      setJSON(KEYS.adminSession, { username: acct.username, hash: hash, at: nowISO() });
-      return { ok: true, isDefaultPassword: !!acct.isDefaultPassword };
+      return C.adminLoginRpc(username, hash).then(function (r) {
+        if (r === true) {
+          setJSON(KEYS.adminSession, { username: String(username).trim(), hash: hash, at: nowISO(), cloud: true });
+          return { ok: true };
+        }
+        if (r === false) return { ok: false, error: 'Invalid admin credentials.' };
+        return { ok: false, error: 'Could not reach the secure login service. Check your connection and try again.' };
+      }).catch(function () { return { ok: false, error: 'Network error signing in. Check your connection and try again.' }; });
     });
   }
   // Start an admin session from a cloud (Supabase Auth) sign-in. The durable
@@ -540,7 +524,7 @@ var HubDB = (function () {
   function changeAdminPassword(newPassword) {
     return sha256(newPassword).then(function (newHash) {
       var sess = getJSON(KEYS.adminSession, null);
-      var user = (sess && sess.username) || DEFAULT_ADMIN_USER;
+      var user = (sess && sess.username) || 'admin';
       var oldHash = (sess && sess.hash) || (getJSON(KEYS.adminAccount, null) || {}).passwordHash;
       var C = cloud();
       // Rotate the server-side credential (app_admins) so it changes everywhere
