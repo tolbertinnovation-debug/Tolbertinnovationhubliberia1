@@ -132,7 +132,7 @@
     <div class="login-card">
       <h1>🛡️ TIH Admin Panel</h1>
       <div class="sub">TIH staff only. All actions are logged.</div>
-      <div class="fld"><label>Admin email</label><input type="text" id="adminUser" autocomplete="username" placeholder="you@example.com" /></div>
+      <div class="fld"><label>Admin username</label><input type="text" id="adminUser" autocomplete="username" placeholder="your admin username" /></div>
       <div class="fld"><label>Password</label><input type="password" id="adminPass" autocomplete="current-password" /></div>
       <button class="btn btn-primary btn-block" id="adminLoginBtn">Sign In</button>
       <div class="feedback err" id="loginFeedback"></div>
@@ -349,8 +349,8 @@
 
   <script src="courses-db.js?v=18"></script>
   <script src="hub-config.js?v=4"></script>
-  <script src="hub-cloud.js?v=13"></script>
-  <script src="hub-db.js?v=32"></script>
+  <script src="hub-cloud.js?v=14"></script>
+  <script src="hub-db.js?v=33"></script>
   <script src="cert-registry.js?v=3"></script>
   <script>
     /* ============ HELPERS ============ */
@@ -1343,9 +1343,11 @@
       var fb = document.getElementById('passFeedback');
       if (p1.length < 10) { fb.className = 'feedback err'; fb.textContent = 'Password must be at least 10 characters.'; return; }
       if (p1 !== p2) { fb.className = 'feedback err'; fb.textContent = 'Passwords do not match.'; return; }
-      HubDB.changeAdminPassword(p1).then(function () {
+      fb.className = 'feedback'; fb.textContent = 'Updating…';
+      HubDB.changeAdminPassword(p1).then(function (res) {
+        if (res && res.ok === false) { fb.className = 'feedback err'; fb.textContent = res.error || 'Could not update password.'; return; }
         HubDB.audit('Changed admin password');
-        fb.className = 'feedback ok'; fb.textContent = '✓ Password updated.';
+        fb.className = 'feedback ok'; fb.textContent = '✓ Password updated. Use it next time you sign in.';
         document.getElementById('newAdminPass').value = '';
         document.getElementById('newAdminPass2').value = '';
       });

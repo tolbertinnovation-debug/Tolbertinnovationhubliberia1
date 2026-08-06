@@ -287,13 +287,77 @@ as $$
 $$;
 grant execute on function public.student_touch_login(text) to anon, authenticated;
 
--- Admin roster: returns every student (minus the password hash) ONLY when the
--- caller passes the admin password hash. Lets the admin panel list all learners
--- over plain REST — no Supabase Auth session and no CDN library needed — while
--- the students table stays closed to anonymous SELECT (password hashes never
--- leave the server). A wrong/absent hash returns NULL so the client falls back
--- to its local list. Update p_hash below if you change the admin password:
---   select encode(digest('YOUR-NEW-ADMIN-PASSWORD','sha256'),'hex');   -- needs pgcrypto
+-- ============================================================
+-- SECURE ADMIN CREDENTIALS (no default password lives in the client)
+-- The admin username + password hash live here, in a table closed to anon.
+-- Login and password changes go through SECURITY DEFINER RPCs; every admin
+-- data RPC below is gated by is_admin_hash() so it follows this one credential.
+-- Seed / rotate the credential with (password is hashed inside Postgres, so it
+-- never travels in plaintext to anyone):
+--   create extension if not exists pgcrypto;
+--   insert into public.app_admins (username, password_hash)
+--   values ('YOUR_USERNAME', encode(digest('YOUR_STRONG_PASSWORD','sha256'),'hex'))
+--   on conflict (username) do update set password_hash = excluded.password_hash;
+-- ============================================================
+create table if not exists public.app_admins (
+  username      text primary key,
+  password_hash text not null,
+  created_at    timestamptz not null default now(),
+  updated_at    timestamptz not null default now()
+);
+alter table public.app_admins enable row level security;
+-- No anon/authenticated policies at all: the table is reachable ONLY through the
+-- SECURITY DEFINER functions below, never by a direct client read/write.
+
+-- True when the given hash matches ANY admin. Single source of truth for the
+-- admin data RPCs, so changing the password updates every gate at once.
+create or replace function public.is_admin_hash(p_hash text)
+returns boolean
+language sql
+security definer
+set search_path = public
+as $$
+  select exists (select 1 from public.app_admins where password_hash = p_hash);
+$$;
+grant execute on function public.is_admin_hash(text) to anon, authenticated;
+
+-- Verify an admin login (username + password hash). Returns true / false.
+create or replace function public.admin_login(p_user text, p_hash text)
+returns boolean
+language sql
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1 from public.app_admins
+    where lower(username) = lower(trim(p_user)) and password_hash = p_hash
+  );
+$$;
+grant execute on function public.admin_login(text, text) to anon, authenticated;
+
+-- Rotate the admin password: requires the current hash, so only the signed-in
+-- admin can change it. Returns true on success.
+create or replace function public.admin_set_password(p_user text, p_old_hash text, p_new_hash text)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare n int;
+begin
+  update public.app_admins
+     set password_hash = p_new_hash, updated_at = now()
+   where lower(username) = lower(trim(p_user)) and password_hash = p_old_hash;
+  get diagnostics n = row_count;
+  return n > 0;
+end $$;
+grant execute on function public.admin_set_password(text, text, text) to anon, authenticated;
+
+-- Admin roster: returns every student (minus the password hash) ONLY for a valid
+-- admin credential. Lets the admin panel list all learners over plain REST — no
+-- Supabase Auth session and no CDN library needed — while the students table
+-- stays closed to anonymous SELECT (password hashes never leave the server).
+-- A non-admin hash returns NULL so the client falls back to its local list.
 create or replace function public.admin_list_students(p_hash text)
 returns jsonb
 language sql
@@ -301,7 +365,7 @@ security definer
 set search_path = public
 as $$
   select case
-    when p_hash = '46935534a9c4202ff6bac36a19daba14eb6f9eafc4ece4568fcbe7fa9777b1a5'
+    when public.is_admin_hash(p_hash)
     then coalesce(
       (select jsonb_agg((to_jsonb(s) - 'password_hash') order by s.created_at desc)
          from public.students s
@@ -323,7 +387,7 @@ security definer
 set search_path = public
 as $$
   select case
-    when p_hash = '46935534a9c4202ff6bac36a19daba14eb6f9eafc4ece4568fcbe7fa9777b1a5'
+    when public.is_admin_hash(p_hash)
     then coalesce(
       (select jsonb_agg(to_jsonb(a) order by a.submitted_at desc) from public.applications a),
       '[]'::jsonb)
@@ -340,7 +404,7 @@ security definer
 set search_path = public
 as $$
 begin
-  if p_hash <> '46935534a9c4202ff6bac36a19daba14eb6f9eafc4ece4568fcbe7fa9777b1a5' then
+  if not public.is_admin_hash(p_hash) then
     return false;
   end if;
   update public.applications set
@@ -361,7 +425,7 @@ security definer
 set search_path = public
 as $$
 begin
-  if p_hash <> '46935534a9c4202ff6bac36a19daba14eb6f9eafc4ece4568fcbe7fa9777b1a5' then
+  if not public.is_admin_hash(p_hash) then
     return false;
   end if;
   update public.cert_requests set

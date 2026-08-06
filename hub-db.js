@@ -498,14 +498,34 @@ var HubDB = (function () {
     });
   }
   function adminLogin(username, password) {
+    return sha256(password).then(function (hash) {
+      var C = cloud();
+      // Primary: verify against the server (app_admins via admin_login RPC).
+      // The credential lives server-side — no default password in this code.
+      if (C && C.adminLoginRpc) {
+        return C.adminLoginRpc(username, hash).then(function (r) {
+          if (r === true) {
+            setJSON(KEYS.adminSession, { username: String(username).trim(), hash: hash, at: nowISO(), cloud: true });
+            return { ok: true };
+          }
+          if (r === false) return { ok: false, error: 'Invalid admin credentials.' };
+          // r === null: the RPC isn't installed / unreachable yet — fall back to
+          // the on-device check so setup isn't a lockout. Removed once configured.
+          return legacyAdminLogin(username, password, hash);
+        }).catch(function () { return legacyAdminLogin(username, password, hash); });
+      }
+      return legacyAdminLogin(username, password, hash);
+    });
+  }
+  // On-device fallback ONLY when the server login RPC is unavailable. Kept so the
+  // panel is never bricked mid-migration; unreachable once app_admins exists.
+  function legacyAdminLogin(username, password, hash) {
     return ensureAdminAccount().then(function (acct) {
-      return sha256(password).then(function (hash) {
-        if (String(username).trim().toLowerCase() !== acct.username.toLowerCase() || hash !== acct.passwordHash) {
-          return { ok: false, error: 'Invalid admin credentials.' };
-        }
-        setJSON(KEYS.adminSession, { username: acct.username, at: nowISO() });
-        return { ok: true, isDefaultPassword: !!acct.isDefaultPassword };
-      });
+      if (String(username).trim().toLowerCase() !== acct.username.toLowerCase() || hash !== acct.passwordHash) {
+        return { ok: false, error: 'Invalid admin credentials.' };
+      }
+      setJSON(KEYS.adminSession, { username: acct.username, hash: hash, at: nowISO() });
+      return { ok: true, isDefaultPassword: !!acct.isDefaultPassword };
     });
   }
   // Start an admin session from a cloud (Supabase Auth) sign-in. The durable
@@ -518,12 +538,27 @@ var HubDB = (function () {
   function adminSession() { return getJSON(KEYS.adminSession, null); }
   function adminLogout() { try { localStorage.removeItem(KEYS.adminSession); } catch (e) {} }
   function changeAdminPassword(newPassword) {
-    return sha256(newPassword).then(function (hash) {
-      var acct = getJSON(KEYS.adminAccount, null) || { username: DEFAULT_ADMIN_USER, createdAt: nowISO() };
-      acct.passwordHash = hash;
-      acct.isDefaultPassword = false;
-      setJSON(KEYS.adminAccount, acct);
-      return true;
+    return sha256(newPassword).then(function (newHash) {
+      var sess = getJSON(KEYS.adminSession, null);
+      var user = (sess && sess.username) || DEFAULT_ADMIN_USER;
+      var oldHash = (sess && sess.hash) || (getJSON(KEYS.adminAccount, null) || {}).passwordHash;
+      var C = cloud();
+      // Rotate the server-side credential (app_admins) so it changes everywhere
+      // and all admin data RPCs follow the new password automatically.
+      if (C && C.adminSetPasswordRpc && oldHash) {
+        return C.adminSetPasswordRpc(user, oldHash, newHash).then(function (ok) {
+          if (!ok) return { ok: false, error: 'Could not update the password on the server. Check your connection and try again.' };
+          if (sess) { sess.hash = newHash; setJSON(KEYS.adminSession, sess); }
+          var acct = getJSON(KEYS.adminAccount, null) || { username: user, createdAt: nowISO() };
+          acct.passwordHash = newHash; acct.isDefaultPassword = false; setJSON(KEYS.adminAccount, acct);
+          return { ok: true };
+        }).catch(function () { return { ok: false, error: 'Network error updating the password.' }; });
+      }
+      // Local-only fallback (cloud not configured).
+      var acct2 = getJSON(KEYS.adminAccount, null) || { username: user, createdAt: nowISO() };
+      acct2.passwordHash = newHash; acct2.isDefaultPassword = false; setJSON(KEYS.adminAccount, acct2);
+      if (sess) { sess.hash = newHash; setJSON(KEYS.adminSession, sess); }
+      return { ok: true };
     });
   }
 
@@ -678,6 +713,10 @@ var HubDB = (function () {
   }
 
   function adminAcctHash() {
+    // The hash proven at login gates the admin data RPCs. Prefer the session
+    // hash (server-verified login); fall back to the local account hash.
+    var sess = getJSON(KEYS.adminSession, null);
+    if (sess && sess.hash) return sess.hash;
     var acct = getJSON(KEYS.adminAccount, null);
     return (acct && acct.passwordHash) || null;
   }

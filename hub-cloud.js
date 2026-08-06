@@ -204,6 +204,21 @@ var HubCloud = (function () {
       }).catch(function () { return null; });
     });
   }
+  // ---- server-verified admin login (REST, no CDN / no Supabase Auth needed) ----
+  // Credentials live server-side in app_admins; verification is a SECURITY
+  // DEFINER RPC. Resolves true (valid), false (wrong), or null (RPC absent /
+  // unreachable) so the caller can keep a local anti-lockout fallback until the
+  // RPC is installed.
+  function adminLoginRpc(username, hash) {
+    return restRpc('admin_login', { p_user: String(username || '').trim(), p_hash: hash })
+      .then(function (r) { return (r === true) ? true : (r === false ? false : null); })
+      .catch(function () { return null; });
+  }
+  function adminSetPasswordRpc(username, oldHash, newHash) {
+    return restRpc('admin_set_password', { p_user: String(username || '').trim(), p_old_hash: oldHash, p_new_hash: newHash })
+      .then(function (r) { return r === true; })
+      .catch(function () { return false; });
+  }
 
   // ---- generic table writes (best effort) ----
   function upsert(table, row, onConflict) {
@@ -524,6 +539,8 @@ var HubCloud = (function () {
     ready: ready,
     adminSignIn: adminSignIn,
     adminSignOut: adminSignOut,
+    adminLoginRpc: adminLoginRpc,
+    adminSetPasswordRpc: adminSetPasswordRpc,
     adminUser: adminUser,
     pushApplication: pushApplication,
     updateApplication: updateApplication,
