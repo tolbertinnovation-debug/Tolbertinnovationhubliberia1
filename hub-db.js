@@ -395,11 +395,15 @@ var HubDB = (function () {
     s.courses = s.courses.filter(function (c) { return c.id !== courseId; });
     return updateStudent(s.id, { courses: s.courses });
   }
-  function resetStudentPassword(studentId) {
-    var tempPassword = genTempPassword();
-    return sha256(tempPassword).then(function (hash) {
+  // Admin resets a learner's password. Pass a chosen password, or leave blank to
+  // auto-generate one. mustChangePassword is set so the learner is forced to pick
+  // their own on next login. The write goes through admin_upsert_student (admin
+  // hash), so it works with the locked-down students table.
+  function resetStudentPassword(studentId, chosenPassword) {
+    var pw = (chosenPassword && String(chosenPassword).trim()) || genTempPassword();
+    return sha256(pw).then(function (hash) {
       updateStudent(studentId, { passwordHash: hash, mustChangePassword: true });
-      return tempPassword;
+      return pw;
     });
   }
 

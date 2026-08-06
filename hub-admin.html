@@ -350,7 +350,7 @@
   <script src="courses-db.js?v=18"></script>
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=15"></script>
-  <script src="hub-db.js?v=35"></script>
+  <script src="hub-db.js?v=36"></script>
   <script src="cert-registry.js?v=3"></script>
   <script>
     /* ============ HELPERS ============ */
@@ -860,18 +860,35 @@
       viewStudent(sid);
     };
     window.resetPass = function (sid) {
-      if (!confirm('Generate a new temporary password for this student?')) return;
-      HubDB.resetStudentPassword(sid).then(function (tempPassword) {
-        HubDB.audit('Reset student password', sid);
-        var s = HubDB.findStudent(sid);
-        openModal(
-          '<h3>🔑 Password Reset <button class="x" onclick="closeModal()">✕</button></h3>'
-          + '<p style="font-size:.9rem;">New temporary password for <b>' + esc(s.name) + '</b> (shown once):</p>'
-          + '<div class="cred-box">Student ID: <b>' + esc(s.id) + '</b><br>Temp password: <b>' + esc(tempPassword) + '</b></div>'
-          + '<div class="modal-actions">'
-          + '<a class="btn btn-green" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(s.phone, 'Hello ' + s.name + ', your TIH Learning Hub password was reset.\nStudent ID: ' + s.id + '\nTemporary password: ' + tempPassword + '\nLogin: https://tolbertinnovationhub.org/hub-dashboard') + '">💬 Send via WhatsApp</a>'
-          + '</div>'
-        );
+      var s = HubDB.findStudent(sid);
+      if (!s) return;
+      openModal(
+        '<h3>🔑 Reset Password <button class="x" onclick="closeModal()">✕</button></h3>'
+        + '<p style="font-size:.9rem;">Set a new password for <b>' + esc(s.name) + '</b>. They will be required to choose their own the next time they sign in.</p>'
+        + '<div class="fld"><label>New password (leave blank to auto-generate)</label><input type="text" id="rpNew" placeholder="e.g. Learner2026 — or leave blank" autocomplete="off" /></div>'
+        + '<div id="rpFb" class="feedback err" style="min-height:1.1em;"></div>'
+        + '<div class="modal-actions">'
+        + '<button class="btn btn-primary" id="rpDoBtn">🔑 Reset Password</button>'
+        + '<button class="btn btn-line" onclick="closeModal()">Cancel</button>'
+        + '</div>'
+      );
+      document.getElementById('rpDoBtn').addEventListener('click', function () {
+        var chosen = (document.getElementById('rpNew').value || '').trim();
+        var fb = document.getElementById('rpFb');
+        if (chosen && chosen.length < 6) { fb.textContent = 'Password must be at least 6 characters (or leave blank to auto-generate).'; return; }
+        this.disabled = true; fb.className = 'feedback'; fb.textContent = 'Resetting…';
+        HubDB.resetStudentPassword(sid, chosen || null).then(function (newPassword) {
+          HubDB.audit('Reset student password', sid);
+          openModal(
+            '<h3>✅ Password Reset <button class="x" onclick="closeModal()">✕</button></h3>'
+            + '<p style="font-size:.9rem;">Share this with <b>' + esc(s.name) + '</b>. They must change it to their own on first login.</p>'
+            + '<div class="cred-box">Student ID: <b>' + esc(s.id) + '</b><br>New password: <b>' + esc(newPassword) + '</b></div>'
+            + '<div class="modal-actions">'
+            + '<button class="btn btn-line" onclick="navigator.clipboard&&navigator.clipboard.writeText(\'' + esc(s.id) + ' / ' + esc(newPassword) + '\');this.textContent=\'✓ Copied\'">📋 Copy</button>'
+            + '<a class="btn btn-green" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(s.phone, 'Hello ' + s.name + ', your TIH Learning Hub password was reset.\nStudent ID: ' + s.id + '\nNew password: ' + newPassword + '\nLogin: https://tolbertinnovationhub.org/hub-dashboard\nPlease change it after you sign in.') + '">💬 Send via WhatsApp</a>'
+            + '</div>'
+          );
+        });
       });
     };
     window.suspendStu = function (sid) {
