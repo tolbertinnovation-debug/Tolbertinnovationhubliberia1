@@ -120,6 +120,7 @@
     .lt-meta { font-size: .74rem; color: var(--muted); margin-bottom: .8rem; line-height: 1.5; }
     .lt-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
     .lt-price { font-weight: 800; font-size: .8rem; color: var(--primary); background: var(--primary-light); border-radius: 999px; padding: .3rem .72rem; white-space: nowrap; }
+    .lt-price s { color: #94a3b8; font-weight: 600; margin-right: .3rem; text-decoration-thickness: 1.5px; }
     .lt-price.free { color: #065f46; background: #d1fae5; }
     .lt-go { font-size: .82rem; font-weight: 800; color: var(--secondary); white-space: nowrap; }
     .lt-card:hover .lt-go { text-decoration: underline; }
@@ -384,7 +385,7 @@
     <div class="container">
       <div class="sec-head">
         <h2>WASSCE PRO, Exam Preparation</h2>
-        <p>Complete WASSCE preparation across 23 subjects, full lessons, key points, past-question practice and mock tests. Each subject is a complete course with a Professional Certificate on completion, and unlocks separately for <strong>US$3 / L$500</strong>.</p>
+        <p>Complete WASSCE preparation across 23 subjects, full lessons, key points, past-question practice and mock tests. Each subject is a complete course with a Professional Certificate on completion, and unlocks separately for just <s style="color:#94a3b8;">US$30</s> <strong>US$3 / L$500</strong>.</p>
       </div>
       <div class="tracks-grid" id="wassceGrid">
         <!-- Populated below -->
@@ -525,7 +526,7 @@
     <div class="container">
       <div class="sec-head">
         <h2 style="color:#fff;">✝️ TIH Bible School</h2>
-        <p style="color:rgba(255,255,255,.85);">Grow in faith and understanding with our Bible School, three complete, beginner-friendly courses covering Christian foundations and the whole Bible, Old and New Testament. Full lessons, quizzes, and a Professional Certificate on completion. Each course unlocks for <strong>US$5 / L$950</strong>.</p>
+        <p style="color:rgba(255,255,255,.85);">Grow in faith and understanding with our Bible School, three complete, beginner-friendly courses covering Christian foundations and the whole Bible, Old and New Testament. Full lessons, quizzes, and a Professional Certificate on completion. Each course unlocks for just <s style="color:rgba(255,255,255,.6);">US$49</s> <strong>US$5 / L$950</strong>.</p>
       </div>
       <div class="tracks-grid" id="bibleGrid">
         <!-- Populated below -->
@@ -817,9 +818,12 @@
         ids.splice.apply(ids, [insertionPoint, 0].concat(orderedIelts));
         var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); };
         var priceFor = function (id, c) {
-          if (c.isFree || c.price === 'FREE') return { label: 'FREE', free: true };
-          if (/^(ielts|toefl|sat)/.test(id)) return { label: 'US$25', free: false };
-          return { label: 'US$5', free: false };
+          // Paid model: exam-prep US$25, every other course US$5 (WASSCE is a
+          // separate grid at US$3). Legacy "isFree" flags are ignored on purpose.
+          var newNum = (/^(ielts|toefl|sat)/.test(id)) ? 25 : 5;
+          var was = parseInt(String(c.origPrice || '').replace(/[^0-9]/g, ''), 10) || 0;
+          if (!was || was < newNum * 2) was = (newNum === 25 ? 99 : 49);
+          return { free: false, newLabel: 'US$' + newNum, wasLabel: 'US$' + was };
         };
         var POPULAR = { 'computer-literacy':1, 'ai':1, 'data':1, 'webdev':1, 'design':1, 'marketing':1 };
         var NEW = { 'grant-writing':1, 'agritech':1, 'healthtech':1, 'remotework':1, 'finlit':1 };
@@ -847,7 +851,7 @@
             + '<div class="lt-body">'
             + '<div class="lt-title">' + esc(title) + '</div>'
             + '<div class="lt-meta">' + esc(bits.join(' · ')) + '</div>'
-            + '<div class="lt-foot"><span class="lt-price' + (pr.free ? ' free' : '') + '">' + pr.label + '</span><span class="lt-go">View →</span></div>'
+            + '<div class="lt-foot"><span class="lt-price' + (pr.free ? ' free' : '') + '"><s>' + pr.wasLabel + '</s> ' + pr.newLabel + '</span><span class="lt-go">View →</span></div>'
             + '</div></a>';
         }
         grid.innerHTML = html;
@@ -913,7 +917,7 @@
         return '<a class="track-chip" href="course-player?id=wassce-' + s[0] + '">'
           + '<span class="t-icon">' + s[2] + '</span>'
           + '<span><span class="t-name">' + s[1] + '</span><br>'
-          + '<span class="t-meta">WASSCE subject · US$3 / L$500</span></span>'
+          + '<span class="t-meta">WASSCE subject · <s style="color:#94a3b8;">US$30</s> <b style="color:var(--primary);">US$3 / L$500</b></span></span>'
           + '</a>';
       }).join('');
     })();
@@ -931,7 +935,7 @@
         return '<a class="track-chip" href="course-player?id=' + id + '">'
           + '<span class="t-icon">' + (c.icon || '✝️') + '</span>'
           + '<span><span class="t-name">' + c.title.split(':')[0] + '</span><br>'
-          + '<span class="t-meta">' + lessons + ' lessons · Certificate · US$5 / L$950</span></span>'
+          + '<span class="t-meta">' + lessons + ' lessons · Certificate · <s style="color:#94a3b8;">US$49</s> <b style="color:var(--primary);">US$5 / L$950</b></span></span>'
           + '</a>';
       }).join('');
     })();
