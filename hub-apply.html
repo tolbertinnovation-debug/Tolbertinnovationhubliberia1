@@ -4,6 +4,7 @@
   <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://formsubmit.co https://formspree.io https://restcountries.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co https://formspree.io; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -21,6 +22,7 @@
       --radius: 16px; --shadow: 0 4px 16px rgba(30,58,138,.08);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { color-scheme: light; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; }
     h1,h2,h3 { font-family: 'Poppins', sans-serif; }
     a { color: var(--primary); text-decoration: none; font-weight: 600; }
@@ -45,9 +47,12 @@
     .field { margin-bottom: 1.2rem; }
     .field label { display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.35rem; }
     .field label .req { color: var(--secondary); }
-    .field input.field select.field textarea { width: 100%; padding: 0.75rem 0.9rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: inherit; background: #fff; min-height: 48px; }
-    .field textarea { min-height: 110px; resize: vertical; }
-    .field input:focus.field select:focus.field textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,58,138,.1); }
+    .field input, .field select, .field textarea { width: 100%; padding: 0.8rem 0.95rem; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.95rem; font-family: inherit; color: var(--text); background: #fff; min-height: 50px; line-height: 1.5; transition: border-color .15s, box-shadow .15s; -webkit-appearance: none; appearance: none; }
+    .field textarea { min-height: 132px; resize: vertical; line-height: 1.65; font-family: inherit; }
+    .field input::placeholder, .field textarea::placeholder { color: #94a3b8; font-family: inherit; opacity: 1; }
+    .field input:hover, .field select:hover, .field textarea:hover { border-color: #cbd5e1; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,58,138,.12); }
+    .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2364748b' d='M6 8 0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer; }
     .field .hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; }
     .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 560px) { .row-2 { grid-template-columns: 1fr; } }
