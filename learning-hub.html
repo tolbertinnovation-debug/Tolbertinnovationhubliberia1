@@ -313,50 +313,19 @@
     </div>
   </div>
 
-  <!-- PROGRAMS -->
-  <section id="programs">
+  <!-- TRACKS -->
+  <section class="tracks-section" id="tracks">
     <div class="container">
       <div class="sec-head">
-        <h2>One Hub. Every Opportunity.</h2>
-        <p>TIH Learning Hub connects you to everything Tolbert Innovation Hub offers, from affordable courses to scholarships and grants guidance.</p>
+        <h2 id="tracksHeading">Learning Tracks</h2>
+        <p>Each track is a <strong>complete course</strong> with video lessons, notes, quizzes and a capstone project, and awards a <strong>Professional Certificate</strong> the moment you complete it. Assigned to you by the TIH team based on your goals.</p>
       </div>
-      <div class="programs-grid">
-        <div class="program-card">
-          <div class="program-icon">🎓</div>
-          <h3>Scholarships</h3>
-          <p>Fully-funded and partial scholarships to universities in India, Cyprus, Turkey and beyond, with hands-on application support.</p>
-          <a href="scholarship">Explore Scholarships →</a>
-        </div>
-        <div class="program-card">
-          <div class="program-icon">✈️</div>
-          <h3>Study Abroad</h3>
-          <p>Step-by-step guidance for admission letters, visas, IELTS/TOEFL prep and pre-departure orientation.</p>
-          <a href="study-abroad">Study Abroad →</a>
-        </div>
-        <div class="program-card">
-          <div class="program-icon">📚</div>
-          <h3>Skill Courses</h3>
-          <p>18 skill tracks with video lessons, quizzes and projects, computer skills, business, AI, cybersecurity and more. Just US$5 / 950 LRD per course.</p>
-          <a href="#tracks">View Tracks →</a>
-        </div>
-        <div class="program-card">
-          <div class="program-icon">🏥</div>
-          <h3>Healthcare Access</h3>
-          <p>International healthcare referrals and support for students and families seeking treatment abroad.</p>
-          <a href="healthcare">Healthcare →</a>
-        </div>
-        <div class="program-card">
-          <div class="program-icon">📖</div>
-          <h3>Digital Library</h3>
-          <p>Free e-books, past papers, WASSCE prep materials and research resources, downloadable for offline reading.</p>
-          <a href="library">Open Library →</a>
-        </div>
-        <div class="program-card">
-          <div class="program-icon">💰</div>
-          <h3>Grants Guidance</h3>
-          <p>Learn to find funding and write winning proposals for your business, NGO or community project.</p>
-          <a href="grants">Grants →</a>
-        </div>
+      <div style="max-width:460px;margin:0 auto 1.5rem;">
+        <input id="trackSearch" type="search" placeholder="🔍 Search tracks, e.g. web, design, AI, WASSCE…" aria-label="Search learning tracks" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--border);border-radius:12px;font-size:.95rem;font-family:inherit;" />
+        <p id="trackSearchEmpty" style="display:none;text-align:center;color:var(--muted);font-size:.9rem;margin-top:1rem;">No tracks match your search. Try another word.</p>
+      </div>
+      <div class="tracks-grid" id="tracksGrid">
+        <!-- Populated from COURSES_DB -->
       </div>
     </div>
   </section>
@@ -440,19 +409,50 @@
     </div>
   </section>
 
-  <!-- TRACKS -->
-  <section class="tracks-section" id="tracks">
+  <!-- PROGRAMS -->
+  <section id="programs">
     <div class="container">
       <div class="sec-head">
-        <h2 id="tracksHeading">Learning Tracks</h2>
-        <p>Each track is a <strong>complete course</strong> with video lessons, notes, quizzes and a capstone project, and awards a <strong>Professional Certificate</strong> the moment you complete it. Assigned to you by the TIH team based on your goals.</p>
+        <h2>One Hub. Every Opportunity.</h2>
+        <p>TIH Learning Hub connects you to everything Tolbert Innovation Hub offers, from affordable courses to scholarships and grants guidance.</p>
       </div>
-      <div style="max-width:460px;margin:0 auto 1.5rem;">
-        <input id="trackSearch" type="search" placeholder="🔍 Search tracks, e.g. web, design, AI, WASSCE…" aria-label="Search learning tracks" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--border);border-radius:12px;font-size:.95rem;font-family:inherit;" />
-        <p id="trackSearchEmpty" style="display:none;text-align:center;color:var(--muted);font-size:.9rem;margin-top:1rem;">No tracks match your search. Try another word.</p>
-      </div>
-      <div class="tracks-grid" id="tracksGrid">
-        <!-- Populated from COURSES_DB -->
+      <div class="programs-grid">
+        <div class="program-card">
+          <div class="program-icon">🎓</div>
+          <h3>Scholarships</h3>
+          <p>Fully-funded and partial scholarships to universities in India, Cyprus, Turkey and beyond, with hands-on application support.</p>
+          <a href="scholarship">Explore Scholarships →</a>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">✈️</div>
+          <h3>Study Abroad</h3>
+          <p>Step-by-step guidance for admission letters, visas, IELTS/TOEFL prep and pre-departure orientation.</p>
+          <a href="study-abroad">Study Abroad →</a>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">📚</div>
+          <h3>Skill Courses</h3>
+          <p>18 skill tracks with video lessons, quizzes and projects, computer skills, business, AI, cybersecurity and more. Just US$5 / 950 LRD per course.</p>
+          <a href="#tracks">View Tracks →</a>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">🏥</div>
+          <h3>Healthcare Access</h3>
+          <p>International healthcare referrals and support for students and families seeking treatment abroad.</p>
+          <a href="healthcare">Healthcare →</a>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">📖</div>
+          <h3>Digital Library</h3>
+          <p>Free e-books, past papers, WASSCE prep materials and research resources, downloadable for offline reading.</p>
+          <a href="library">Open Library →</a>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">💰</div>
+          <h3>Grants Guidance</h3>
+          <p>Learn to find funding and write winning proposals for your business, NGO or community project.</p>
+          <a href="grants">Grants →</a>
+        </div>
       </div>
     </div>
   </section>
