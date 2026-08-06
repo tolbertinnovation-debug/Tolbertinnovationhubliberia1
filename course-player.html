@@ -1747,24 +1747,11 @@
     renderLesson(currentLessonIndex);
   }
 
-  // ===== CERTIFICATE APPROVAL GATE =====
-  // Certificates are issued on request: the student requests review, the
-  // TIH admin approves, and only then can the certificate be generated.
-  function certIsApproved() {
-    return (typeof HubDB !== 'undefined') && HubDB.certApprovedLocal(courseId);
-  }
-  function requestCertReview() {
-    if (typeof HubDB === 'undefined' || !hubStudent) { window.location.href = 'hub-dashboard'; return; }
-    HubDB.requestCertificate(hubStudent.id, courseId, course.title);
-    var waText = 'CERTIFICATE REQUEST, TIH Learning Hub\n'
-      + 'Student: ' + hubStudent.name + '\n'
-      + 'Student ID: ' + hubStudent.id + '\n'
-      + 'Course: ' + course.title + '\n'
-      + 'Course ID: ' + courseId + '\n'
-      + 'All lessons and quizzes completed. Please review my certificate request.';
-    window.open(HubDB.waLink(null, waText), '_blank');
-    var btn = document.getElementById('certPrimaryBtn');
-    if (btn) { btn.textContent = '⏳ Request Sent, Awaiting Admin Approval'; btn.disabled = true; }
+  // ===== CERTIFICATE (issued instantly on completion) =====
+  // No admin approval needed: the certificate unlocks automatically the moment
+  // the learner has finished every lesson and quiz in the course.
+  function courseIsComplete() {
+    return totalLessons > 0 && completedLessons.length >= totalLessons;
   }
 
   // The certificate name is ALWAYS the official account name set by the admin.
@@ -1781,28 +1768,19 @@
     var od = document.getElementById('certOfficialName');
     if (od) od.textContent = official || '(name not set, contact TIH)';
     document.getElementById('certNameDisplay').textContent = official || 'Your Name';
-    // Adapt the primary action to the approval state
     var btn = document.getElementById('certPrimaryBtn');
     var subtitle = document.getElementById('completionSubtitle');
-    if (certIsApproved()) {
-      if (official) saveCertificate(official);
+    if (courseIsComplete()) {
+      if (official) saveCertificate(official);            // record it right away
       if (btn) { btn.textContent = '⬇ Download / Print Certificate'; btn.disabled = false; btn.onclick = printCertificate; }
+      if (subtitle) subtitle.textContent = 'Congratulations! You\'ve completed the course — your certificate is ready to download.';
     } else {
-      var pending = (typeof HubDB !== 'undefined' && hubStudent) ? HubDB.pendingCertRequest(hubStudent.id, courseId) : null;
-      if (btn) {
-        if (pending && pending.status === 'pending') {
-          btn.textContent = '⏳ Awaiting Admin Approval, Enter Code on Dashboard';
-          btn.onclick = function () { window.location.href = 'hub-dashboard'; };
-        } else {
-          btn.textContent = '🏆 Request Certificate Review';
-          btn.onclick = requestCertReview;
-        }
-        btn.disabled = false;
-      }
-      if (subtitle) subtitle.textContent = 'Course complete! Request your certificate, the TIH team reviews every request before issuing.';
+      // Opened before finishing (shouldn't normally happen): nudge to finish.
+      if (btn) { btn.textContent = '🔒 Finish all lessons to unlock'; btn.disabled = true; btn.onclick = null; }
+      if (subtitle) subtitle.textContent = 'Complete every lesson and quiz to unlock your certificate — you\'re almost there!';
     }
     document.getElementById('completionModal').classList.add('open');
-    launchConfetti();
+    if (courseIsComplete()) launchConfetti();
   }
   function closeCompletionModal() {
     document.getElementById('completionModal').classList.remove('open');
@@ -1858,8 +1836,8 @@
 
   // ===== DOWNLOAD CERTIFICATE (A4 LANDSCAPE IN NEW WINDOW) =====
   function printCertificate() {
-    if (!certIsApproved()) {
-      alert('Your certificate must be approved by the TIH team before it can be downloaded.\n\nRequest a review from the completion screen, then enter the approval code you receive on your dashboard.');
+    if (!courseIsComplete()) {
+      alert('Please finish all lessons and quizzes first — your certificate unlocks automatically at 100% completion.');
       return;
     }
     var name = certName();
