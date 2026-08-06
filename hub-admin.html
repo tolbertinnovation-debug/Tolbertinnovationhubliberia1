@@ -178,7 +178,8 @@
       <button class="tab" data-panel="apps">📥 Applications <span class="badge" id="appsBadge" style="display:none;"></span></button>
       <button class="tab" data-panel="students">👥 Students</button>
       <button class="tab" data-panel="access">💳 Access Codes</button>
-      <button class="tab" data-panel="certreq">📋 Cert Requests <span class="badge" id="certReqBadge" style="display:none;"></span></button>
+      <!-- Cert Requests hidden: certificates now issue automatically on course completion (no approval needed). Kept in the DOM for any legacy pending requests. -->
+      <button class="tab" data-panel="certreq" style="display:none;">📋 Cert Requests <span class="badge" id="certReqBadge" style="display:none;"></span></button>
       <button class="tab" data-panel="certs">🏆 Certificates</button>
       <button class="tab" data-panel="audit">📜 Audit Log</button>
       <button class="tab" data-panel="settings">⚙️ Settings</button>
