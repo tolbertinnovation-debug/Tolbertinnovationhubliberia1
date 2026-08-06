@@ -10,16 +10,32 @@
   if (typeof COURSES_DB === 'undefined') return;
   if (!COURSES_DB.webdev || COURSES_DB.webdev._webdevFullBuilt) return;
 
-  var V = ['pfYQz5pnFmo', 'kX3TfdUqpuU', 'AJrkz0pzRV4', 'YhoK5y0HgPk', 'fYq5PXgSsbE', 'dT3aujtzBe4', 'dJvPTRXyc6s', '5fb2aPlgoys', 'RjtarcWFc6A', 'PWqS4NBhEY8', 'H0XScE08hy8', 'e5AwNU3Y2es', 'orAS-MBh5f4', 'ubw2hdQIl4E', 'y71CdVq5SvI', 'Jz_wyVdWKm8', 'AhxvJbG-kSA', 'TCgKGPr0trA'];
-  // Only skills with genuinely on-topic videos are mapped. Modules without a
-  // verified topic video (auth, api, deploy, testing, ai, seo, career) are
-  // deliberately taught as READING lessons — rich classroom notes, no off-topic
-  // clip — rather than showing a video from an unrelated subject.
+  // Each ID below is a well-known, topic-matched YouTube tutorial for that skill
+  // (freeCodeCamp / Traversy / Net Ninja / Web Dev Simplified full courses).
+  var V = {
+    html: 'pQN-pnXPaVg',   // freeCodeCamp — HTML Full Course
+    css: 'OXGznpKZ_sA',    // freeCodeCamp — CSS Full Course
+    js: 'PkZNo7MFNFg',     // freeCodeCamp — JavaScript Full Course
+    git: 'RGOj5yH7evk',    // freeCodeCamp — Git & GitHub for Beginners
+    git2: 'SWYqp7iY_Tc',   // Traversy — Git & GitHub Crash Course
+    react: 'x4rFhThSX04',  // freeCodeCamp — Learn React JS Full Tutorial
+    react2: 'TtPXvEcE11E', // React Full Course — Beginner to Pro
+    node: 'Oe421EPjeBE',   // freeCodeCamp — Node.js & Express Full Course
+    db: 'Www6cTUymCY',     // MongoDB Tutorial for Beginners — Full Course
+    auth: 'SnoAwLP1a-0',   // Net Ninja — Node Auth (JWT)
+    auth2: 'mbsmsi7l3r4',  // Web Dev Simplified — JWT Authentication
+    api: 'zmIv9fpg9u0',    // REST API in Node & Express (CRUD)
+    api2: 'l8WPWK9mS5M'    // Build a REST API with Node & Express
+  };
+  // Every module gets its own on-topic video. Concept-only modules without a
+  // dedicated single-topic clip (orientation, internet, uiux, deploy, testing,
+  // ai, seo, career) are taught as READING lessons — rich classroom notes —
+  // rather than showing a video from an unrelated subject.
   var VIDEOS = {
-    orientation: [V[0], V[1]], internet: [V[1], V[2]], html: [V[0], V[3]], css: [V[4], V[5]],
-    js: [V[6], V[7]], git: [V[8], V[9]], uiux: [V[10], V[11]], react: [V[12], V[13]],
-    node: [V[14], V[15]], db: [V[16], V[17]],
-    projects: [V[3], V[4]], capstone: [V[12], V[14]]
+    html: [V.html], css: [V.css], js: [V.js], git: [V.git, V.git2],
+    react: [V.react, V.react2], node: [V.node], db: [V.db],
+    auth: [V.auth, V.auth2], api: [V.api, V.api2],
+    projects: [V.react, V.html], capstone: [V.react, V.node]
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment
