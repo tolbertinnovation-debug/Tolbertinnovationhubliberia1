@@ -79,6 +79,8 @@
 
     /* SECTIONS */
     section { padding: 3.75rem 0; }
+    .mb-card { transition: transform .16s ease, background .16s ease; }
+    .mb-card:hover { transform: translateY(-3px); background: rgba(255,255,255,.14) !important; }
     .sec-head { text-align: center; max-width: 640px; margin: 0 auto 2.5rem; }
     .sec-head h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); font-weight: 800; color: var(--primary); margin-bottom: 0.6rem; }
     .sec-head p { color: var(--muted); font-size: 0.98rem; }
@@ -443,7 +445,7 @@
     <div class="container">
       <div class="sec-head">
         <h2 id="tracksHeading">Learning Tracks</h2>
-        <p>Each track includes video lessons, notes, quizzes, a capstone project and a verified TIH certificate on completion. Assigned to you by the TIH team based on your goals.</p>
+        <p>Each track is a <strong>complete course</strong> with video lessons, notes, quizzes and a capstone project, and awards a <strong>Professional Certificate</strong> the moment you complete it. Assigned to you by the TIH team based on your goals.</p>
       </div>
       <div style="max-width:460px;margin:0 auto 1.5rem;">
         <input id="trackSearch" type="search" placeholder="🔍 Search tracks, e.g. web, design, AI, WASSCE…" aria-label="Search learning tracks" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--border);border-radius:12px;font-size:.95rem;font-family:inherit;" />
@@ -460,7 +462,7 @@
     <div class="container">
       <div class="sec-head">
         <h2>WASSCE PRO, Exam Preparation</h2>
-        <p>Full WASSCE preparation across 23 subjects, lessons, key points, past-question practice and mock tests. Each subject unlocks separately for US$2.</p>
+        <p>Complete WASSCE preparation across 23 subjects, full lessons, key points, past-question practice and mock tests. Each subject is a complete course with a Professional Certificate on completion, and unlocks separately for <strong>US$3 / L$500</strong>.</p>
       </div>
       <div class="tracks-grid" id="wassceGrid">
         <!-- Populated below -->
@@ -474,7 +476,7 @@
     <div class="container">
       <div class="sec-head">
         <h2 style="color:#fff;">✝️ TIH Bible School</h2>
-        <p style="color:rgba(255,255,255,.85);">Grow in faith and understanding with our Bible School, three complete, beginner-friendly courses covering Christian foundations and the whole Bible, Old and New Testament. Full lessons, quizzes, and a certificate. Each course unlocks for US$2.</p>
+        <p style="color:rgba(255,255,255,.85);">Grow in faith and understanding with our Bible School, three complete, beginner-friendly courses covering Christian foundations and the whole Bible, Old and New Testament. Full lessons, quizzes, and a Professional Certificate on completion. Each course unlocks for <strong>US$5 / L$950</strong>.</p>
       </div>
       <div class="tracks-grid" id="bibleGrid">
         <!-- Populated below -->
@@ -493,8 +495,45 @@
       <div class="steps">
         <div class="step"><div class="step-num">1</div><h3>Apply Online</h3><p>Fill the free application form. It takes 5 minutes, tell us your goals and pick the tracks you want.</p></div>
         <div class="step"><div class="step-num">2</div><h3>Admin Review</h3><p>Our team reviews every application within 3–5 business days. Track your status anytime with your Student ID.</p></div>
-        <div class="step"><div class="step-num">3</div><h3>Pay &amp; Unlock</h3><p>Approved? Log in, then pay by Mobile Money — US$3 / 500 LRD for WASSCE subjects or US$5 / 950 LRD for other courses. The TIH team confirms your payment and sends an access code to unlock it.</p></div>
-        <div class="step"><div class="step-num">4</div><h3>Learn &amp; Get Certified</h3><p>Complete lessons in order, pass the quizzes, then request your certificate, every certificate is reviewed and approved by the TIH team before it is issued.</p></div>
+        <div class="step"><div class="step-num">3</div><h3>Pay &amp; Unlock</h3><p>Approved? Log in, then pay by Mobile Money — US$3 / 500 LRD for WASSCE subjects or US$5 / 950 LRD for other courses. The TIH team confirms your payment and unlocks it for you.</p></div>
+        <div class="step"><div class="step-num">4</div><h3>Learn &amp; Get Certified</h3><p>Complete the lessons in order and pass the quizzes. Your <strong>Professional Certificate is issued instantly</strong> at 100% — download it right away, no waiting and no approval needed.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP BENEFITS -->
+  <section id="membership" style="background:linear-gradient(140deg,#071f48 0%,#0a2f74 55%,#123d78 100%);color:#fff;position:relative;overflow:hidden;">
+    <div class="container">
+      <div class="sec-head">
+        <span style="display:inline-block;background:rgba(255,255,255,.15);color:#fff;font-weight:800;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:.4rem 1rem;border-radius:999px;margin-bottom:.9rem;">More than a course</span>
+        <h2 style="color:#fff;">Join the TIH Membership</h2>
+        <p style="color:rgba(255,255,255,.86);">Every course is a <strong style="color:#fff;">complete, professional program</strong> that awards a verifiable <strong style="color:#fff;">Professional Certificate</strong> on completion. But your membership goes further — we help you turn your new skills into real income and opportunity.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;max-width:1000px;margin:0 auto;">
+        <div class="mb-card" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:1.5rem 1.35rem;">
+          <div style="font-size:2rem;margin-bottom:.55rem;">💼</div>
+          <h3 style="color:#fff;font-size:1.06rem;margin-bottom:.4rem;font-family:'Poppins',sans-serif;">Job Placement Support</h3>
+          <p style="color:rgba(255,255,255,.8);font-size:.9rem;margin:0;line-height:1.55;">We connect certified members to real employers and job openings across Liberia and beyond.</p>
+        </div>
+        <div class="mb-card" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:1.5rem 1.35rem;">
+          <div style="font-size:2rem;margin-bottom:.55rem;">📄</div>
+          <h3 style="color:#fff;font-size:1.06rem;margin-bottom:.4rem;font-family:'Poppins',sans-serif;">Contracts &amp; Gigs</h3>
+          <p style="color:rgba(255,255,255,.8);font-size:.9rem;margin:0;line-height:1.55;">Access paid contracts, freelance projects and business opportunities shared with our members first.</p>
+        </div>
+        <div class="mb-card" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:1.5rem 1.35rem;">
+          <div style="font-size:2rem;margin-bottom:.55rem;">🤝</div>
+          <h3 style="color:#fff;font-size:1.06rem;margin-bottom:.4rem;font-family:'Poppins',sans-serif;">Professional Networking</h3>
+          <p style="color:rgba(255,255,255,.8);font-size:.9rem;margin:0;line-height:1.55;">Join a growing community of professionals, mentors and partners, and grow your career together.</p>
+        </div>
+        <div class="mb-card" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:1.5rem 1.35rem;">
+          <div style="font-size:2rem;margin-bottom:.55rem;">🎓</div>
+          <h3 style="color:#fff;font-size:1.06rem;margin-bottom:.4rem;font-family:'Poppins',sans-serif;">Recognized Certificates</h3>
+          <p style="color:rgba(255,255,255,.8);font-size:.9rem;margin:0;line-height:1.55;">Earn verifiable Professional Certificates that employers can confirm online, on every completed course.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:1.9rem;">
+        <a href="hub-apply" class="btn btn-orange">Join the Membership →</a>
+        <p style="color:rgba(255,255,255,.7);font-size:.85rem;margin-top:.85rem;">Applying is free. Start a complete course today and unlock your membership benefits.</p>
       </div>
     </div>
   </section>

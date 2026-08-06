@@ -197,7 +197,7 @@ var HubDB = (function () {
       // Learning Hub applications are auto-approved on submission, the learner's
       // account is created active, so they can log in and start immediately.
       status: 'approved', // pending | review | approved | rejected | info-needed
-      statusMessage: 'Approved automatically, your account is ready. Log in and unlock any course or WASSCE subject for US$2.',
+      statusMessage: 'Approved automatically, your account is ready. Every course is complete with a Professional Certificate. Log in and unlock any WASSCE subject for US$3 / L$500 or any other course for US$5 / L$950.',
       decidedAt: nowISO(),
       autoApproved: true,
       notes: [],

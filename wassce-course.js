@@ -217,7 +217,7 @@ var WassceCourse = (function () {
       reviews: [],
       faqs: [
         { q: 'What does this WASSCE course include?', a: 'A full module for every core topic, video lesson, detailed notes, key points, formulas, exam tips, common mistakes and a 10-question topic quiz, plus a 20-question final assessment. Pass it to earn your TIH certificate.' },
-        { q: 'How much does it cost?', a: 'US$2, paid by Mobile Money. After the TIH team confirms your payment you receive an access code to unlock the subject.' }
+        { q: 'How much does it cost?', a: 'US$3 / L$500 per subject, paid by Mobile Money. After the TIH team confirms your payment your subject unlocks. This is a complete course, and you earn a Professional Certificate the moment you finish it.' }
       ]
     };
     COURSES_DB[courseId] = course;

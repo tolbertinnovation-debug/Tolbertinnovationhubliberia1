@@ -90,7 +90,7 @@ create table if not exists public.payments (
   id           uuid primary key default gen_random_uuid(),
   student_id   text,
   item_id      text,
-  amount       numeric(10,2) not null default 2.00,
+  amount       numeric(10,2) not null default 5.00,   -- actual amount is always set by the client (priceFor)
   method       text default 'Mobile Money',
   reference    text,                                -- Mobile Money transaction id
   status       text default 'pending',              -- pending|success|failed
