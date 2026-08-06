@@ -14,11 +14,26 @@
 
   var V = ['GMsl-wR-wmM', 'tL6V3hNdbVY', 'VCvIlKM39-w', 'lYi30bL0AMo', 'GH7lLHcshqQ', 'ENxQLZO0sRw', '0nIf9hqrBzc', 'ByQRri_LTUE', 'Yp9VxTWMj7g', 'emhvQrFbNBA', 'mW4JgyCQ8EI', 'a1uKxBaq3Jk', 'hvFx_gocMug', '_OQ-qVLkJ0Y', '_1PAOSCbzqE', 'cyRF479o1iU'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], grants: [V[1], V[2]], finding: [V[2], V[3]], readiness: [V[3], V[4]],
-    needs: [V[4], V[5]], proposal: [V[5], V[6]], planning: [V[6], V[7]], budget: [V[7], V[8]],
-    review: [V[8], V[9]], fundraising: [V[9], V[10]], fundstrategy: [V[10], V[11]], digital: [V[11], V[12]],
-    donor: [V[12], V[13]], management: [V[13], V[14]], mande: [V[14], V[15]], tech: [V[0], V[11]],
-    career: [V[1], V[15]], projects: [V[5], V[9]], capstone: [V[0], V[6]], assessment: [V[0]]
+    orientation: ['GMsl-wR-wmM'],
+    grants: ['syYVRUHK9MA'],
+    finding: ['OsX8OF6gEj0'],
+    readiness: ['zFJO5ZEyEZY'],
+    needs: ['FoDljgKE-v8'],
+    proposal: ['fDVkTSHTzzY'],
+    planning: ['CEgiENI_mtc'],
+    budget: ['0nIf9hqrBzc'],
+    review: ['muF9DIjfmtE'],
+    fundraising: ['EfHqXRydAzY'],
+    fundstrategy: ['hJdvu00XiF0'],
+    digital: ['yAJ_HrYCf6Y'],
+    donor: ['hI2VBkyldbk'],
+    management: ['hvFx_gocMug'],
+    mande: ['HaKuRzN4k9A'],
+    tech: ['hMCmcIMkI8U'],
+    career: ['CdQyQusFNP8'],
+    projects: ['e48RvBlnLfM'],
+    capstone: ['e48RvBlnLfM'],
+    assessment: ['e48RvBlnLfM']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment

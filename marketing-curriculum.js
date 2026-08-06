@@ -14,11 +14,26 @@
 
   var V = ['iRjXccj4yRo', 'gqRdIEIlzNs', '8LX60gToxrM', 'WR_5_gJVA2c', 'VPDe8XL7Mh8', 'C5ddo63kHHI', '-CsBl3tv-X0', 'u0r3y1q0fLQ', '2fBxrhV3Nk0', 'mKu6FI53BxE', 'xGpwhYiDCSg', '1pejHrRIzAY', 'mGJyCH5BIi8', 'K6AEFYA5QuM', 'yLNSQyExhTU', 'gxz13n0CGzo', 'RwqyuFnFzII', 'lviXtSN-iUw'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], fundamentals: [V[1], V[2]], branding: [V[2], V[3]], social: [V[3], V[4]],
-    seo: [V[4], V[5]], sem: [V[5], V[6]], email: [V[6], V[7]], content: [V[7], V[8]],
-    website: [V[8], V[9]], analytics: [V[9], V[10]], ecommerce: [V[10], V[11]], ai: [V[11], V[12]],
-    ads: [V[12], V[13]], crm: [V[13], V[14]], strategy: [V[14], V[15]], freelance: [V[15], V[16]],
-    career: [V[16], V[17]], projects: [V[3], V[12]], capstone: [V[0], V[9]], assessment: [V[0]]
+    orientation: ['cZ-5phWZujI'],
+    fundamentals: ['avE-uvLPSN4'],
+    branding: ['wMfo-F0Zdus'],
+    social: ['oG6HXDpsu9o'],
+    seo: ['xsVTqzratPs'],
+    sem: ['AtiAlWIw6Zg'],
+    email: ['J0CEiuOfON0'],
+    content: ['dKH77jn8vZA'],
+    website: ['MnUWG3VLufI'],
+    analytics: ['9STi7dge0VU'],
+    ecommerce: ['B7yqNvFLZgY'],
+    ai: ['kunkYTKFNtI'],
+    ads: ['uUlU5G1Nda0'],
+    crm: ['Ci_qMjf8JRg'],
+    strategy: ['RvFTNnOyWZ0'],
+    freelance: ['qSNyTGuq7Q4'],
+    career: ['kH0Wc6NBAu0'],
+    projects: ['0VtSDWsqJbM'],
+    capstone: ['0VtSDWsqJbM'],
+    assessment: ['0VtSDWsqJbM']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment

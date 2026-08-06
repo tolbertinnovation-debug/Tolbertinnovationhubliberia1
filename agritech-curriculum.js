@@ -14,11 +14,26 @@
 
   var V = ['ev-4uQzdTXI', 'QijsZjlvxh4', 'l8nFgIhK7bw', 'yoeVcRlj1WI', 'GcPdvSj6CbE', 'dsYo9rBPQGo', 'gHfEm1z-3iY', 'pun14jec_Xk', 'EEcy1swBlRo', 'qwNVNE83Udo', 'XyGtTvH_NXY', 'sdMZ_HCAGO4', 'niYA0qrUJiE', 'WUvWHlCsDk4', 'BHoG5zhPj7Y', 'WgqAejCz2gM'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], agri: [V[1], V[2]], digital: [V[2], V[3]], climate: [V[3], V[4]],
-    farmmgmt: [V[4], V[5]], precision: [V[5], V[6]], iot: [V[6], V[7]], drones: [V[7], V[8]],
-    data: [V[8], V[9]], agribusiness: [V[9], V[10]], marketing: [V[10], V[11]], foodsafety: [V[11], V[12]],
-    finance: [V[12], V[13]], ai: [V[13], V[14]], policy: [V[14], V[15]], professional: [V[0], V[10]],
-    projects: [V[5], V[8]], career: [V[1], V[15]], capstone: [V[0], V[9]], assessment: [V[0]]
+    orientation: ['5y6iu4-xdFc'],
+    agri: ['8P72xIx4teA'],
+    digital: ['_egBWcIX964'],
+    climate: ['MX97GhUKE_8'],
+    farmmgmt: ['cwZXdGPxUmg'],
+    precision: ['hCW5RWqi9L8'],
+    iot: ['5y6iu4-xdFc'],
+    drones: ['5y6iu4-xdFc'],
+    data: ['5y6iu4-xdFc'],
+    agribusiness: ['5y6iu4-xdFc'],
+    marketing: ['5y6iu4-xdFc'],
+    foodsafety: ['5y6iu4-xdFc'],
+    finance: ['5y6iu4-xdFc'],
+    ai: ['5y6iu4-xdFc'],
+    policy: ['5y6iu4-xdFc'],
+    professional: ['5y6iu4-xdFc'],
+    projects: ['5y6iu4-xdFc'],
+    career: ['5y6iu4-xdFc'],
+    capstone: ['5y6iu4-xdFc'],
+    assessment: ['5y6iu4-xdFc']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment

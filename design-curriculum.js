@@ -12,11 +12,24 @@
 
   var V = ['FpwZTl3dCZE', 'BMDDGuUBO94', 'HFVTZ7J0W1E', '_ApwkN8BVsc', 'ZB_LneYCkPU', 'DSbGwruIcfc', 'OKkWRpoIFuw', '0jzrqhsXwLo', '2R5fH8iKAXc', 'A4VePn0CAl4', '9CnrknQsg5E', 'qelg3fYlxAE', 'DxLR2CFFys0', 'vaqBJ2dX-Cs', 'BSxg87CoOu4', 't1FdvLveV08', 'fbHP9pF8J2A', 'wHAVsrn4Adc'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], fundamentals: [V[2], V[3]], canva: [V[4], V[5]], canva_adv: [V[6], V[7]],
-    social: [V[8], V[9]], marketing: [V[10], V[11]], ps_basics: [V[12], V[13]], ps_edit: [V[14], V[15]],
-    ps_design: [V[16], V[17]], logo: [V[2], V[10]], print: [V[11], V[13]], manip: [V[14], V[16]],
-    advertising: [V[8], V[10]], ai: [V[6], V[0]], freelance: [V[1], V[9]], projects: [V[4], V[12]],
-    capstone: [V[5], V[15]], assessment: [V[0]]
+    orientation: ['9QTCvayLhCA'],
+    fundamentals: ['UmHMVU6dceA'],
+    canva: ['jzWxBuvwuwQ'],
+    canva_adv: ['mhosBZG7NJQ'],
+    social: ['gIxvnDMYQPg'],
+    marketing: ['VZvCvWwV_mM'],
+    ps_basics: ['pFyOznL9UvA'],
+    ps_edit: ['61mkx_OV61s'],
+    ps_design: ['qvQie2QP5Vg'],
+    logo: ['9QTCvayLhCA'],
+    print: ['Srzj2v7ah9c'],
+    manip: ['9QTCvayLhCA'],
+    advertising: ['9QTCvayLhCA'],
+    ai: ['9QTCvayLhCA'],
+    freelance: ['9Rz2DWRcmH8'],
+    projects: ['9QTCvayLhCA'],
+    capstone: ['9QTCvayLhCA'],
+    assessment: ['9QTCvayLhCA']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment

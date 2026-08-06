@@ -14,11 +14,26 @@
 
   var V = ['EuWTrvT_YyY', '3eIlHtHDGDs', 'rGG-In7PAEk', '7_vMFvnGTlc', 'bsuP2dD3rec', '9NUjHBNWe9M', 'QiVSIvB1xis', 'cwPaqUC1jT4', 'ycyySK5bdRg', 'nbhZE_mza2g', 'u0--Ye7bUP4', 'TzNQkMTHKuM', '4wQ0KmttgcQ', 'oT4emh72fuA', 'DQPHzp2ezpw', 'VFMPLeC7h0I', 'S0i4CdKi1i4', 'Y5waTxDKZ3c'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], windows: [V[1], V[2]], word: [V[2], V[3]], excel: [V[3], V[4]],
-    advexcel: [V[4], V[5]], ppt: [V[5], V[6]], outlook: [V[6], V[7]], onenote: [V[7], V[8]],
-    teams: [V[8], V[9]], onedrive: [V[9], V[10]], copilot: [V[10], V[11]], collab: [V[11], V[12]],
-    docs: [V[12], V[13]], data: [V[13], V[14]], productivity: [V[14], V[15]], comms: [V[15], V[16]],
-    career: [V[16], V[17]], projects: [V[2], V[3]], capstone: [V[0], V[5]], assessment: [V[0]]
+    orientation: ['IUAq9r5B9Go'],
+    windows: ['irk0adNl5c0'],
+    word: ['EuWTrvT_YyY'],
+    excel: ['Vl0H-qTclOg'],
+    advexcel: ['Mkkb5Bk6Z-Y'],
+    ppt: ['l5Ij7nUy9UQ'],
+    outlook: ['4e_ghbyXcJ0'],
+    onenote: ['aSF_QAeMoD8'],
+    teams: ['VDDPoYOQYfM'],
+    onedrive: ['njJr751_tP4'],
+    copilot: ['0_mqsU7yh5Q'],
+    collab: ['z2d_qv83kiQ'],
+    docs: ['vO2Mbyu4NSM'],
+    data: ['iG6lN9aBrcM'],
+    productivity: ['CjT6ilNc2BQ'],
+    comms: ['CcesWgk_VMc'],
+    career: ['xXUwu2MDaV8'],
+    projects: ['iUqbhkJWt_4'],
+    capstone: ['iUqbhkJWt_4'],
+    assessment: ['iUqbhkJWt_4']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment

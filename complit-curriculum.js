@@ -13,11 +13,25 @@
 
   var V = ['NARrnGza4kA', 'qIRRiM6Ibno', 'QTeX0Za2Ur8', 'k-EID5_2D9U', 'bSBLF66cCN0', 'iLMUrr0C_0c', 'PEB9jEXh0X4', 'NZlemQPeo0Q', 'EuWTrvT_YyY', 'Vl0H-qTclOg', 'DzPhjLPLLeg', 'CBPe_IFxJWc', 'ey4dXseAODE', 'dOZDQpulyCQ', 'CQFXF6bbeI8', '5kedqr2Ds-E', 'ZeY62YV_6rs', 'aEJ7QGrJshA', 'YCb2icQuv8Y', 'KR1WYQEehwc', 'KfScugUnSSM'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], hardware: [V[1], V[2]], os: [V[3], V[4]], files: [V[4], V[5]],
-    typing: [V[5], V[6]], word: [V[6], V[7]], excel: [V[8], V[9]], ppt: [V[10], V[11]],
-    internet: [V[12], V[13]], email: [V[13], V[14]], cloud: [V[15], V[16]], cyber: [V[16], V[17]],
-    productivity: [V[17], V[18]], ai: [V[18], V[19]], maintenance: [V[19], V[20]], workplace: [V[0], V[7]],
-    projects: [V[6], V[8]], capstone: [V[0], V[10]], assessment: [V[0]]
+    orientation: ['eEo_aacpwCw'],
+    hardware: ['RzQtbFb0KIk'],
+    os: ['8d9FY3LpR4E'],
+    files: ['7oE1-PmNd8E'],
+    typing: ['TrM_1Gpx-44'],
+    word: ['EuWTrvT_YyY'],
+    excel: ['Vl0H-qTclOg'],
+    ppt: ['l5Ij7nUy9UQ'],
+    internet: ['0OOe18OzSFc'],
+    email: ['PEB9jEXh0X4'],
+    cloud: ['6RGwLYJxiuA'],
+    cyber: ['aRbKFCY4tjE'],
+    productivity: ['o1c9rr3G4hg'],
+    ai: ['poM2n8fBcag'],
+    maintenance: ['hDaLJmFDAwI'],
+    workplace: ['hPEgaVN1Mpg'],
+    projects: ['rtnPIb6Dszk'],
+    capstone: ['rtnPIb6Dszk'],
+    assessment: ['rtnPIb6Dszk']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment

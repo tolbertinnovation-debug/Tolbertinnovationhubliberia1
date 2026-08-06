@@ -13,9 +13,16 @@
 
   var V = ['2uNvA48yvv0', 'Pau88PAPD7Q', 'ZmthxqxuFQI', '2C7u8onP7t4', 'nQEEQKgX6hg', 'guAaA1-CxT4', 'wSqtotgaNAc', 'IFxzKqMFeE0', 'qIw-yFC-HNU', 's3v2nNT7Um8', 'USkACkbmRi4', 'LCW387dqgvA', 'CbEeC8xXdZ8', 'i4FAekxeS_o', 'AWof6O0vp3o', 'ZbtgBp4X3ZE'];
   var VIDEOS = {
-    intro: [V[0], V[1]], budgeting: [V[1], V[2]], banking: [V[2], V[3]], credit: [V[3], V[4]],
-    investing: [V[4], V[5]], insurance: [V[5], V[6]], taxes: [V[6], V[7]], business: [V[7], V[8]],
-    digital: [V[8], V[9]], capstone: [V[10], V[11]]
+    intro: ['bWZ1wNsZ6sw'],
+    budgeting: ['D9NRbQOQvbk'],
+    banking: ['OdYxJBuglhs'],
+    credit: ['vdTjK_HE6SI'],
+    investing: ['bfENsVP77VQ'],
+    insurance: ['dVuduWgOH20'],
+    taxes: ['AtqGzVdOWrE'],
+    business: ['pBskwj7UJgE'],
+    digital: ['yuUheEQbeXo'],
+    capstone: ['DTcpqkIAD94']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

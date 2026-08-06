@@ -14,11 +14,26 @@
   // Vetted entrepreneurship videos reused from the core course, grouped by theme.
   var V = ['4hshq-o0vSI', 'Th8JoIan4dg', 'KCEWgq8S9gM', 'ReM1uqmVfP0', 'XK9XYa5-MCw', 'fj6zbwAXpzE', 'Cw58F0k8BDg', '7Ljc6NoNg6M', 'Tk-RdCFSrKU', 'UWqzT95Lkno', '8_6uU6KgexE', 'HL80lXafRL0', 'hZI83oKyDq0', 'hFJQjlMEcqk', 'Wzwpou8d7v4', '4OO3MXzqNII', '9B-gyOi8CZs', '71TriLlszpU'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], mindset: [V[2], V[3]], ideas: [V[4], V[5]], research: [V[6], V[7]],
-    model: [V[8], V[9]], product: [V[10], V[11]], marketing: [V[12], V[13]], sales: [V[14], V[15]],
-    finance: [V[16], V[17]], funding: [V[0], V[2]], legal: [V[1], V[3]], operations: [V[4], V[6]],
-    hr: [V[5], V[7]], tech: [V[8], V[10]], communication: [V[9], V[11]], planning: [V[12], V[16]],
-    launch: [V[13], V[14]], growth: [V[15], V[17]], projects: [V[4], V[12]], assessment: [V[0]]
+    orientation: ['UEngvxZ11sw'],
+    mindset: ['kQcJEFPbabs'],
+    ideas: ['9jIbsTLyC0c'],
+    research: ['gfnxXtV8P4U'],
+    model: ['QoAOzMTLP5s'],
+    product: ['V0tIpLcEoLo'],
+    marketing: ['tvYDYtQhreo'],
+    sales: ['Ak53spL0e-A'],
+    finance: ['cSuH88mDAFs'],
+    funding: ['xCeiGfIvQkA'],
+    legal: ['spbmT61D6Bk'],
+    operations: ['DEuzzLled6k'],
+    hr: ['4YRchaXY2-M'],
+    tech: ['GUQNQnJrabk'],
+    communication: ['10YgTqd9M9Y'],
+    planning: ['yf59-oV-4Bw'],
+    launch: ['EBFWu2ze12Q'],
+    growth: ['bu0WBMavBgE'],
+    projects: ['Ri0Pe1Y6lwM'],
+    assessment: ['Ri0Pe1Y6lwM']
   };
 
   // [moduleNum, title, icon, skillKey, [lesson names]]

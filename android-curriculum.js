@@ -13,11 +13,25 @@
 
   var V = ['2lwmKjkz-DE', 'wCwCsJSCy8Y', '2LWSxWsPUCY', 'ISbyj5nFIUk', 'TwVzuHhQfbk', 'Oc4MDMHRzwY', 'l9ui4Lfgr-E', 'gaPoV4z5wng', 'bHlLYhSrXvc', '_5LgIrd4O5g', 'BEvOBTaYUm0', 'WOKrelHPefc', 'l7hGtIzGRRM', 'EQvLP5BThZ0', 'bOd3wO0uFr8', '7kzttk9lj3U', 'ZIWuTgbQiQg', 'TrHILjGEEvY'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], kotlin: [V[2], V[3]], studio: [V[1], V[4]], ui: [V[5], V[6]],
-    interaction: [V[7], V[8]], navigation: [V[8], V[9]], storage: [V[10], V[11]], firebase: [V[12], V[13]],
-    networking: [V[14], V[15]], media: [V[16], V[17]], material: [V[5], V[6]], auth: [V[12], V[10]],
-    testing: [V[4], V[15]], publishing: [V[0], V[16]], ai: [V[2], V[14]], career: [V[1], V[17]],
-    projects: [V[3], V[7]], capstone: [V[9], V[13]], assessment: [V[0]]
+    orientation: ['FjrKMcnKahY'],
+    kotlin: ['F9UC9DY-vIU'],
+    studio: ['DzST9xWs4g4'],
+    ui: ['UKI-mpESErQ'],
+    interaction: ['4RUZ01ptcYk'],
+    navigation: ['l-jdSOUpSIA'],
+    storage: ['jjGjkElvcfc'],
+    firebase: ['HYzw8LFvmw4'],
+    networking: ['Qk-Tej0ZQas'],
+    media: ['ondCeqlAwEI'],
+    material: ['BEvOBTaYUm0'],
+    auth: ['dsst_TKgClY'],
+    testing: ['2I6fuD20qlY'],
+    publishing: ['WOKrelHPefc'],
+    ai: ['RKbmqSRc0z0'],
+    career: ['XdcdCZoYRL8'],
+    projects: ['0kwcXtAq4Yo'],
+    capstone: ['0kwcXtAq4Yo'],
+    assessment: ['0kwcXtAq4Yo']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment

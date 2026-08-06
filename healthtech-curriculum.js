@@ -14,9 +14,16 @@
 
   var V = ['_EqfLDZc28Q', 'HoWvf76JdX8', '9ewgr1BD0Rw', '2xuNOPU3zhg', 'Qus5MFg-tDk', 'Lfhl0ip14CI', 'V0Nt395JQQg', 'n4ga1YzwWNY', 'WOXrMOzK_A4', 'SkzILojGPos', 'MRLAyC5L2Rg', 'GWiiZWb69Sw', 'aofsdpjvK7w', 'NAFSRKYJTjM', '7oqFhxXHI7A', '_5nWyEAFl2M'];
   var VIDEOS = {
-    intro: [V[0], V[1]], systems: [V[1], V[2]], ehr: [V[2], V[3]], telehealth: [V[3], V[4]],
-    hit: [V[4], V[5]], security: [V[5], V[6]], ai: [V[6], V[7]], admin: [V[7], V[8]],
-    projects: [V[9], V[10]], capstone: [V[11], V[12]]
+    intro: ['i-SRBFzJvV0'],
+    systems: ['aqgSgzikh0g'],
+    ehr: ['W0w31NPCu0g'],
+    telehealth: ['4iSElJn4490'],
+    hit: ['ZvqhcsttxRQ'],
+    security: ['DW5TQGADwcQ'],
+    ai: ['6oDBRbU1Zqg'],
+    admin: ['5f8pA9YFMYk'],
+    projects: ['4KYqqrWIS68'],
+    capstone: ['4KYqqrWIS68']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

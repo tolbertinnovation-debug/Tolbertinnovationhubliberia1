@@ -14,11 +14,26 @@
 
   var V = ['4AetJ7xJTdw', 'BBVsrdwuLeE', 'tBAbIobh3uo', 'ZNOJ1RSJa4c', 'zBLsjez-D3s', 'q8qmJeBxk4Q', 'gsEmGSVU7cA', 'edmfgGseslg', '3Tu1jN65slw', 'GlN51CS_udI', 'ralOdKh2eAw', 'A2TwNWiYIMI', '-3mFnAk9sbw', 'PAthQKLhBTs', 'u03GxFNE-5Y', 'xi2aBP0LnV4'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], grammar: [V[1], V[2]], vocab: [V[2], V[3]], reading: [V[3], V[4]],
-    listening: [V[4], V[5]], speaking: [V[5], V[6]], writing: [V[6], V[7]], academic: [V[7], V[8]],
-    professional: [V[8], V[9]], presentation: [V[9], V[10]], workplace: [V[10], V[11]], research: [V[11], V[12]],
-    digital: [V[12], V[13]], career: [V[13], V[14]], leadership: [V[14], V[15]], international: [V[15], V[0]],
-    exam: [V[4], V[3]], projects: [V[6], V[8]], capstone: [V[0], V[7]], assessment: [V[0]]
+    orientation: ['A04SlloTmHM'],
+    grammar: ['AVYfyTvc9KY'],
+    vocab: ['WEh-zMurp_I'],
+    reading: ['NIHmVJv9IGw'],
+    listening: ['bEB8-SWMYhI'],
+    speaking: ['I2ThEG1JBYM'],
+    writing: ['GAJO_gpRe6c'],
+    academic: ['Ycsx3yyf8zI'],
+    professional: ['p_zVwrFelBQ'],
+    presentation: ['eIho2S0ZahI'],
+    workplace: ['nMbyWcilhpY'],
+    research: ['wdmSo2_e18A'],
+    digital: ['y2kg3MOk1sY'],
+    career: ['ISnxs-NlRYg'],
+    leadership: ['qp0HIF3SfI4'],
+    international: ['FFxbvib6aVw'],
+    exam: ['4V0wKH6hd30'],
+    projects: ['sPlxi2n-w8o'],
+    capstone: ['sPlxi2n-w8o'],
+    assessment: ['sPlxi2n-w8o']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment

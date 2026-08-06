@@ -14,9 +14,16 @@
 
   var V = ['7oM-Nfl8CtQ', 'Tn6-PIqc4UM', '9NzTAZPra3A', '8gNUUK6fwX4', 'rErBcmM1wDk', 'DvMNG6MUlGI', '2GzslyLAD1E', '9uU-i5ZI-_U', 'FTOpohYyn1o', 'cZ_nqaptW88', 'vSsVueEptN4', 'gw428ygPNiY', 'rk9nCnLpreU', 'd7Ms-a2Z9mY', 'Oos9UXRvr28'];
   var VIDEOS = {
-    intro: [V[0], V[2]], workspace: [V[2], V[3]], platforms: [V[3], V[4]], clients: [V[4], V[5]],
-    mgmt: [V[5], V[6]], tools: [V[6], V[7]], branding: [V[7], V[8]], finance: [V[8], V[9]],
-    ai: [V[9], V[10]], capstone: [V[11], V[12]]
+    intro: ['KR1WYQEehwc'],
+    workspace: ['SZqos8wheEg'],
+    platforms: ['X9HzntPbFdg'],
+    clients: ['Jp1vCz2xjWI'],
+    mgmt: ['fwOYp6Csfno'],
+    tools: ['8FmTGAtXvKA'],
+    branding: ['nViAim00B9M'],
+    finance: ['gw428ygPNiY'],
+    ai: ['KcLTXee0iPc'],
+    capstone: ['jv3KcY-jIyI']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

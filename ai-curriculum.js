@@ -14,11 +14,26 @@
 
   var V = ['Yq0QkCxoTHM', 'xvpeMdAs9pE', '1PaJ28oVOAI', 'mTzZod7cBj4', '89EPPtzZHxE', 'YPOsbQzAPiI', 'V2Gmt1fEue4', 'qDtif1zxbkY', 'REqOxDfw914', 'OA4UP4O1hz0', 'sAhIne0U1Os', 'qpp1G0iEL_c', 'fWuzA77Mvzw', 'p6Z2d3T-fLM', 'MoPIkfscD3A', 'cXnPxN06boY', '-LCkwnpUilI', 'x9Pl1XM4K7A', 'rGSmG7qp2Eg'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], fundamentals: [V[1], V[2]], genai: [V[2], V[3]], prompt: [V[3], V[4]],
-    tools: [V[4], V[5]], writing: [V[5], V[6]], creative: [V[6], V[7]], ml: [V[7], V[8]],
-    business: [V[8], V[9]], education: [V[9], V[10]], dev: [V[10], V[11]], automation: [V[11], V[12]],
-    ethics: [V[12], V[13]], industries: [V[13], V[14]], data: [V[14], V[15]], entrepreneur: [V[15], V[16]],
-    career: [V[16], V[17]], projects: [V[2], V[8]], capstone: [V[0], V[18]], assessment: [V[0]]
+    orientation: ['eMhSj4ZRDkg'],
+    fundamentals: ['VGFpV3Qj4as'],
+    genai: ['VfxTH3U7-ns'],
+    prompt: ['dE5isWx82WU'],
+    tools: ['tIttdEx_adw'],
+    writing: ['fQQzPf2y2l8'],
+    creative: ['_VyHeSbTYhQ'],
+    ml: ['i_LwzRVP7bg'],
+    business: ['Ha4vG0plpUA'],
+    education: ['MqffbpjhriQ'],
+    dev: ['5yBTxOpT4PE'],
+    automation: ['gFSkmD8vbfg'],
+    ethics: ['A_QG2L6GS4Q'],
+    industries: ['U6ulo3W7K1Q'],
+    data: ['QWJ-QYzGeCY'],
+    entrepreneur: ['rOUs76wtv60'],
+    career: ['4g1n_cuME1w'],
+    projects: ['XZdY15sHUa8'],
+    capstone: ['d4ug1MfZo1U'],
+    assessment: ['XZdY15sHUa8']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment

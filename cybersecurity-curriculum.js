@@ -11,11 +11,26 @@
 
   var V = ['4lwiQ5hXwCo', 'ltBWJIhcjpA', 'kb_scuDUHls', 'wX75Z-4MEoM', 'HPDgPg4aWqs', 'AwEZP2KQPJ8', '9DrnMjs5UVA', 'x43N_p0QGXU', 'Jzr0Jdnq_EI', 'Is2RcF0FJL4', 'V7qVZD1z9pA', 'pOfCmL1YRIQ', 'Qt9lhzFhW_c', '4PJPWC8qWG0', 'cEb79PGWCL8', 'rEnJYNkUde0', 'v7BNtpw53AA', '3Kq1MIfTWCE'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], netfund: [V[2], V[3]], fundamentals: [V[4], V[5]], linux: [V[6], V[7]],
-    netsec: [V[8], V[9]], threats: [V[10], V[11]], vuln: [V[12], V[13]], ethical: [V[14], V[15]],
-    websec: [V[16], V[17]], wireless: [V[8], V[3]], crypto: [V[4], V[10]], cloud: [V[5], V[9]],
-    forensics: [V[12], V[16]], secops: [V[11], V[13]], tools: [V[6], V[14]], seccode: [V[17], V[4]],
-    career: [V[1], V[15]], projects: [V[2], V[8]], capstone: [V[9], V[13]], assessment: [V[0]]
+    orientation: ['HZzXbxajz80'],
+    netfund: ['k9ZigsW9il0'],
+    fundamentals: ['aRbKFCY4tjE'],
+    linux: ['IkuPKJmhTi4'],
+    netsec: ['k-k1cfIOLnQ'],
+    threats: ['gNEmteNwfXc'],
+    vuln: ['hIbkwnOteTc'],
+    ethical: ['9DrnMjs5UVA'],
+    websec: ['pScXZaUnRYA'],
+    wireless: ['tyEqHhM1pjQ'],
+    crypto: ['2oXKjPwBSUk'],
+    cloud: ['lEvKQR1E8IE'],
+    forensics: ['X50Qkm9-d8M'],
+    secops: ['UdTM8NW9nBI'],
+    tools: ['AoFo7wGkEro'],
+    seccode: ['p34y1wm4Ul0'],
+    career: ['ReU50qbZdfE'],
+    projects: ['2pOAzLVtSl8'],
+    capstone: ['2pOAzLVtSl8'],
+    assessment: ['2pOAzLVtSl8']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment

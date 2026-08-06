@@ -14,11 +14,26 @@
 
   var V = ['tYW6X5qwnMw', 'Q-JClqIR5a4', 'kKbTi9_1lTg', 'L4UTybPoyn4', 'SI6cOkDOoyE', 'o0w1941xkjY', 'LerIITWNgvI', '0X1FiNxlHh0', 'AAZgoKAqGE0', 'XjiRF_6cvcA', 'cyGuic7_ivo', 'f8uw94S-yc4', '_TMM0lhukBg', 't3GjwVWapGo', 'GsRgHt4IIBU', 'eBXm0_8-rwU', 'mBRHe1sRiZM', '_zAiKx69kE0'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], fundamentals: [V[1], V[2]], strategy: [V[3], V[4]], comms: [V[5], V[6]],
-    team: [V[7], V[8]], culture: [V[8], V[9]], operations: [V[9], V[10]], finance: [V[10], V[11]],
-    marketing: [V[11], V[12]], innovation: [V[12], V[13]], negotiation: [V[13], V[14]], hr: [V[14], V[15]],
-    performance: [V[15], V[16]], entrepreneur: [V[3], V[16]], tech: [V[16], V[17]], ethics: [V[2], V[5]],
-    career: [V[1], V[17]], projects: [V[4], V[10]], capstone: [V[0], V[8]], assessment: [V[0]]
+    orientation: ['V3VYtT4Fw2g'],
+    fundamentals: ['qwN5Zx7Fusc'],
+    strategy: ['wsICRlfpq4I'],
+    comms: ['9OljCrnnFTc'],
+    team: ['UOgrO2OfSxE'],
+    culture: ['6uLN9dVfOBI'],
+    operations: ['vVXMUfUUZqA'],
+    finance: ['aJsmJsd6GIw'],
+    marketing: ['SBbXgupLut8'],
+    innovation: ['xGsxO2VAT9I'],
+    negotiation: ['UfBV9eLWoN0'],
+    hr: ['bI9RZjF-538'],
+    performance: ['VgW5wlu4lM0'],
+    entrepreneur: ['74G18CucAFA'],
+    tech: ['1SbW4ibmMso'],
+    ethics: ['j8E_zcLMTLw'],
+    career: ['G94F9HGiYwY'],
+    projects: ['Fnp6gsSjWpE'],
+    capstone: ['Fnp6gsSjWpE'],
+    assessment: ['Fnp6gsSjWpE']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment
