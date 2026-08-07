@@ -11,16 +11,16 @@
 
   // Vetted WASSCE Chemistry videos (reused from the WASSCE science subjects).
   var VIDEOS = {
-    intro: ['YuLcbCcy3EM', 'anIXbbZyJ38'],
-    atomic: ['YuLcbCcy3EM', 'WqvV8zDRvRw'],
-    bonding: ['WqvV8zDRvRw', 'YuLcbCcy3EM'],
-    reactions: ['anIXbbZyJ38', 'WqvV8zDRvRw'],
-    acids: ['k1NjBnAJHD4', 'anIXbbZyJ38'],
-    organic: ['apZKzImLjJg', 'WqvV8zDRvRw'],
-    physical: ['anIXbbZyJ38', 'k1NjBnAJHD4'],
-    environmental: ['k1NjBnAJHD4', 'apZKzImLjJg'],
-    practical: ['k1NjBnAJHD4', 'anIXbbZyJ38'],
-    final: ['YuLcbCcy3EM', 'apZKzImLjJg']
+    intro: ['IvE0vkTdN-I'],
+    atomic: ['Q2i9o9PdSIE'],
+    bonding: ['YPUosyliWNo'],
+    reactions: ['g4bvNDyIkLU'],
+    acids: ['lUNm_h6vm9s'],
+    organic: ['B_ketdzJtY8'],
+    physical: ['B9DuTNaPm4M'],
+    environmental: ['i6gsgbFUyhY'],
+    practical: ['IvE0vkTdN-I'],
+    final: ['IvE0vkTdN-I']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

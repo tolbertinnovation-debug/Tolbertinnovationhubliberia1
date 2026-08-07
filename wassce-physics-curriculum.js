@@ -11,16 +11,16 @@
 
   // Vetted WASSCE Physics videos (reused from the WASSCE science subjects).
   var VIDEOS = {
-    intro: ['NUjBMBEN0-Q', 'I160ovOATZM'],
-    mechanics: ['NUjBMBEN0-Q', 'XdxGfBSBDt4'],
-    matter: ['NUjBMBEN0-Q', '49lu5umQ0Aw'],
-    heat: ['XdxGfBSBDt4', 'I160ovOATZM'],
-    waves: ['XdxGfBSBDt4', '0CFJEDsRhlc'],
-    electricity: ['49lu5umQ0Aw', 'NUjBMBEN0-Q'],
-    modern: ['I160ovOATZM', '49lu5umQ0Aw'],
-    practical: ['NUjBMBEN0-Q', 'XdxGfBSBDt4'],
-    exampractice: ['49lu5umQ0Aw', 'I160ovOATZM'],
-    final: ['NUjBMBEN0-Q', '0CFJEDsRhlc']
+    intro: ['W8M1XwwkOXQ'],
+    mechanics: ['aD58U3Ib0ng'],
+    matter: ['BoNFDjVq0-8'],
+    heat: ['bM4ykIumlss'],
+    waves: ['Io-HXZTepH4'],
+    electricity: ['AJdEjg7ss7o'],
+    modern: ['HUz-DGVIMnU'],
+    practical: ['W8M1XwwkOXQ'],
+    exampractice: ['W8M1XwwkOXQ'],
+    final: ['W8M1XwwkOXQ']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

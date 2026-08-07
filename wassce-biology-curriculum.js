@@ -11,16 +11,16 @@
 
   // Vetted WASSCE Biology videos (reused from the WASSCE science subjects).
   var VIDEOS = {
-    intro: ['PmmbycoOpdI', '7z4UCQ1FfjY'],
-    cell: ['PmmbycoOpdI', 'X60_b2wiGfQ'],
-    orglife: ['X60_b2wiGfQ', '7z4UCQ1FfjY'],
-    physiology: ['7z4UCQ1FfjY', 'PmmbycoOpdI'],
-    plant: ['X60_b2wiGfQ', 'LTXAnxsUYK0'],
-    genetics: ['ty-gdbfwqPc', 'PmmbycoOpdI'],
-    ecology: ['LTXAnxsUYK0', 'X60_b2wiGfQ'],
-    microbes: ['PmmbycoOpdI', '7z4UCQ1FfjY'],
-    practical: ['PmmbycoOpdI', 'LTXAnxsUYK0'],
-    final: ['ty-gdbfwqPc', '7z4UCQ1FfjY']
+    intro: ['Ixv4EuGMI7I'],
+    cell: ['RBwZpQmLhlw'],
+    orglife: ['cjR5zPrVjTc'],
+    physiology: ['pah1fIt13fg'],
+    plant: ['yf8Zt4LHnhI'],
+    genetics: ['0Rd1LWYnm2c'],
+    ecology: ['_NEIq-uoBb8'],
+    microbes: ['_NEIq-uoBb8'],
+    practical: ['zYb7nd99X-0'],
+    final: ['Ixv4EuGMI7I']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

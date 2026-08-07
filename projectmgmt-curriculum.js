@@ -15,11 +15,26 @@
 
   var V = ['iopMMoHstJM', 'SPj-Luod9tI', 'PyR2VLP3xnA', 'YDxAKKVdMVM', 'EyPFi0YO32M', 'r1szmmkUPH8', '1rQT1R3S2BQ', 'boIRGwGJ-Ds', 'KmEMtUzMlIk', 'gSOdc2Y5tTk', 'bV9yUQV6D60', 'vzqDTSZOTic', 'C5b_4aFeF2E', '00Rbll3ZNk0', 'ktSzxVEnTZ8', '521iU9T4TBg', 'fAC7up3jc3k', 'UQ71PhWRDEQ'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], fundamentals: [V[1], V[2]], initiation: [V[3], V[4]], planning: [V[4], V[5]],
-    scope: [V[6], V[7]], time: [V[7], V[8]], cost: [V[8], V[9]], quality: [V[9], V[10]], risk: [V[10], V[11]],
-    comms: [V[11], V[12]], leadership: [V[12], V[13]], agile: [V[13], V[14]], monitoring: [V[14], V[15]],
-    closure: [V[15], V[16]], software: [V[16], V[17]], analysis: [V[2], V[6]], professional: [V[0], V[12]],
-    career: [V[1], V[17]], projects: [V[3], V[10]], assessment: [V[0]]
+    orientation: ['7UJBRFGLhJE'],
+    fundamentals: ['cLXkOYaZ_K0'],
+    initiation: ['hIhTtzo0eBg'],
+    planning: ['sf-inTpymjg'],
+    scope: ['ZV4kTkMzl38'],
+    time: ['UYbShgphnhA'],
+    cost: ['8xxkA20ycck'],
+    quality: ['1rQT1R3S2BQ'],
+    risk: ['52tOs1qv3Vg'],
+    comms: ['bV9yUQV6D60'],
+    leadership: ['MUtUmwbQSkw'],
+    agile: ['J-psYRsMZ1A'],
+    monitoring: ['QLCHxvyx8ZA'],
+    closure: ['jDSmwr_kGz8'],
+    software: ['iKsO9zx9n2Q'],
+    analysis: ['68bWRSO8PYc'],
+    professional: ['UYZaFInbQEY'],
+    career: ['UYZaFInbQEY'],
+    projects: ['7UJBRFGLhJE'],
+    assessment: ['7UJBRFGLhJE']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment

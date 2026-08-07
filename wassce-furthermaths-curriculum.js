@@ -12,16 +12,16 @@
   // Vetted WASSCE Mathematics videos plus the mechanics video (for the mechanics
   // module). Content, notes and quizzes are Further-Maths-specific.
   var VIDEOS = {
-    intro: ['Ldsgc2gOUUk', 'wKJIf_hIhiM'],
-    algebra: ['Ldsgc2gOUUk', 'eI4kou5y4hM'],
-    functions: ['Ldsgc2gOUUk', 'S2sDP--x0Wc'],
-    coordgeom: ['S2sDP--x0Wc', 'Ldsgc2gOUUk'],
-    trigvec: ['S2sDP--x0Wc', 'Qptd9T7_vCs'],
-    calculus: ['Ldsgc2gOUUk', 'S2sDP--x0Wc'],
-    stats: ['Qptd9T7_vCs', 'eI4kou5y4hM'],
-    mechanics: ['NUjBMBEN0-Q', 'S2sDP--x0Wc'],
-    exampractice: ['Qptd9T7_vCs', 'Ldsgc2gOUUk'],
-    final: ['Ldsgc2gOUUk', 'NUjBMBEN0-Q']
+    intro: ['E46f8ErIbd0'],
+    algebra: ['7FxqG9X9NDg'],
+    functions: ['kvU9sOzT2mk'],
+    coordgeom: ['kvU9sOzT2mk'],
+    trigvec: ['da2rkb3RYYM'],
+    calculus: ['WsQQvHm4lSw'],
+    stats: ['s7Y4nfbatAY'],
+    mechanics: ['WsQQvHm4lSw'],
+    exampractice: ['E46f8ErIbd0'],
+    final: ['E46f8ErIbd0']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

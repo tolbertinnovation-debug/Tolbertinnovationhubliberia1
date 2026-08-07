@@ -11,16 +11,16 @@
 
   // Vetted WASSCE Mathematics videos (reused from the WASSCE Mathematics subject).
   var VIDEOS = {
-    intro: ['wKJIf_hIhiM', 'Ldsgc2gOUUk'],
-    numeration: ['wKJIf_hIhiM', 'eI4kou5y4hM'],
-    algebra: ['Ldsgc2gOUUk', 'Qptd9T7_vCs'],
-    geometry: ['S2sDP--x0Wc', 'Ldsgc2gOUUk'],
-    trig: ['S2sDP--x0Wc', 'Qptd9T7_vCs'],
-    stats: ['Qptd9T7_vCs', 'S2sDP--x0Wc'],
-    finance: ['eI4kou5y4hM', 'wKJIf_hIhiM'],
-    exampractice: ['Qptd9T7_vCs', 'Ldsgc2gOUUk'],
-    revision: ['eI4kou5y4hM', 'S2sDP--x0Wc'],
-    final: ['Ldsgc2gOUUk', 'Qptd9T7_vCs']
+    intro: ['UcvYa3AXb1w'],
+    numeration: ['4githHo8dwg'],
+    algebra: ['JucSVDuV0mg'],
+    geometry: ['TLjR6uir-5A'],
+    trig: ['PUB0TaZ7bhA'],
+    stats: ['sQqniayndb4'],
+    finance: ['U3vM5_NdfmA'],
+    exampractice: ['UcvYa3AXb1w'],
+    revision: ['UcvYa3AXb1w'],
+    final: ['UcvYa3AXb1w']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

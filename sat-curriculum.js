@@ -12,14 +12,14 @@
 
   // Vetted SAT videos reused from the core course, grouped by skill area.
   var VIDEOS = {
-    orientation: ['2aiVO9FoGg4', 'HXP17Be8TRY', 'MUcULumd2hM'],
-    rw: ['Pw5uTD3_FKw', 'POcYofMngBw', '4jgnbFnXiYs', 'lo7LFbac_9o'],
-    grammar: ['vrPbC9fao6Y', 'zvczFfWx40k', 'lo7LFbac_9o'],
-    math: ['i0bBokmVtWw', 'gMGQHSUFRCU', 'XKu4sgpHWN8', 'yqcyspQ6HSg'],
-    adv_math: ['XKu4sgpHWN8', 'yqcyspQ6HSg', 'i0bBokmVtWw'],
-    data: ['gMGQHSUFRCU', 'i0bBokmVtWw', 'yqcyspQ6HSg'],
-    geometry: ['IhWiMWq3VhE', 'bUVI0iK740o', 'gMGQHSUFRCU'],
-    strategy: ['2aiVO9FoGg4', 'MUcULumd2hM', 'HXP17Be8TRY']
+    orientation: ['5ZzfqzZj_X8'],
+    rw: ['fiOHFtl60ns'],
+    grammar: ['NLz8CRdMvuI'],
+    math: ['xhCNDDV-eoA'],
+    adv_math: ['KiEdjUw6rs0'],
+    data: ['rFVm6ABV73A'],
+    geometry: ['l8bVS3hDHxs'],
+    strategy: ['5ZzfqzZj_X8']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]

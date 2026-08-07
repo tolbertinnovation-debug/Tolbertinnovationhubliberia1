@@ -12,16 +12,16 @@
 
   // Vetted Bible-teaching videos reused from the three original courses.
   var VIDEOS = {
-    faith: ['eAvYmE2YYIU', 'ak06MSETeo4'],
-    ot: ['ALsluAKBZ-c', 'F4isSyennFo', 'jH_aojNJM3E', 'tp5MIrMZFqo', 'JqOqJlFF_eU', 'xQwnH8th_fs'],
-    nt: ['Q0BrP8bqj0c', 'XIb_dCIxzr0', 'CGbNw855ksw', 'ej_6dVdJSIU', 'lXF2nBEkgUE', '5nvVVcYD-0w'],
-    herm: ['GQI72THyO5I', 'QxOeq3of3O4'],
-    doctrine: ['G_OlRWGLdnw', 'B0O525zOstQ', 'Kq3-bwr25j4'],
-    prayer: ['7_CGP-12AE0', '3Dv4-n6OYGI'],
-    evangelism: ['Zy2AQlK6C5k', 'e5LBsYy_4EM'],
-    leadership: ['AzmYV8GNAIM', 'QJOju5Dw0V0'],
-    preaching: ['d0A6Uchb1F8', 'qjbYnCadoGw'],
-    capstone: ['FwZejz71UrA', 'MkETkRv9tG8']
+    faith: ['uayJ7Mvy2rM'],
+    ot: ['ALsluAKBZ-c'],
+    nt: ['Q0BrP8bqj0c'],
+    herm: ['u-ufxWzVgeY'],
+    doctrine: ['ez-PL1vN-Is'],
+    prayer: ['kR1XI1Xydjo'],
+    evangelism: ['j3n9FD0fsaA'],
+    leadership: ['n5sP4j2hT8E'],
+    preaching: ['yk3eK2LgTNE'],
+    capstone: ['uayJ7Mvy2rM']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

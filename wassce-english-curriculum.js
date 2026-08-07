@@ -11,16 +11,16 @@
 
   // Vetted WASSCE English videos (reused from the WASSCE English subject).
   var VIDEOS = {
-    intro: ['uINcnwJX2PA', 'k22bbGbEyHI'],
-    grammar: ['k22bbGbEyHI', 'U_c-ZkV460E'],
-    vocab: ['k22bbGbEyHI', 'Z9AqetXxkRA'],
-    essay: ['Z9AqetXxkRA', 'U_c-ZkV460E'],
-    comprehension: ['uINcnwJX2PA', 'k22bbGbEyHI'],
-    summary: ['uINcnwJX2PA', 'Z9AqetXxkRA'],
-    oral: ['Pnc3OUGufRk', 'k22bbGbEyHI'],
-    exampractice: ['uINcnwJX2PA', 'Z9AqetXxkRA'],
-    revision: ['k22bbGbEyHI', 'uINcnwJX2PA'],
-    final: ['Z9AqetXxkRA', 'uINcnwJX2PA']
+    intro: ['UI3vHVRphX8'],
+    grammar: ['PZvqsyS-mRg'],
+    vocab: ['fE0W18Yz9hM'],
+    essay: ['w6yanrc1a_g'],
+    comprehension: ['eKaVhOnMjm8'],
+    summary: ['w6yanrc1a_g'],
+    oral: ['4vLk9LsLMZ4'],
+    exampractice: ['UI3vHVRphX8'],
+    revision: ['UI3vHVRphX8'],
+    final: ['UI3vHVRphX8']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

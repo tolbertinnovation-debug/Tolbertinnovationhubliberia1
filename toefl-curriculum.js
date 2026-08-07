@@ -10,15 +10,15 @@
 
   // Vetted English/TOEFL videos reused from the core course, grouped by skill.
   var VIDEOS = {
-    orientation: ['i8p28izQNdQ', 'fGrxgRAISlM', '_URwZza44rA', '3nrujcxJSNs'],
-    grammar: ['h9fxF0LKRyY', 'fGrxgRAISlM', 'i8p28izQNdQ', '_LwCwsFDRdE'],
-    vocab: ['fE0W18Yz9hM', 'nMfDRilzxGw', 'lhDpoCYmnNQ'],
-    reading: ['UrsAfqDc_jI', 'aXAEeeyaeuo', '7etaXjWJVJg', 'cNyLs7YWFL8', 'SXdMpskBDmA'],
-    listening: ['EXAbraAOdBQ', 'il_l3WGEZho', 'q2odDqMhYOg', 'gfTqr_9BMjs', 'RrViOflRWg0'],
-    speaking: ['RUfPjA7UODU', 'C4J96Q-JzwM', 'wK5mVNZGYRc', 'BzhUwBaQK1g', 'QoeKYAqBRtE'],
-    writing: ['KvBauox4auk', 'QL4r78VQq1M', 'mTDjuQ-G31I', '_LwCwsFDRdE', 'wSbv5bCY4No'],
-    pronunciation: ['wK5mVNZGYRc', 'BzhUwBaQK1g', 'QoeKYAqBRtE', 'RUfPjA7UODU'],
-    strategy: ['oygHNmHfaIk', '_URwZza44rA', 'tIpP4M1kvvE', 'zBLsjez-D3s']
+    orientation: ['1LpVb3lYaKk'],
+    grammar: ['KVScWx0O2gI'],
+    vocab: ['fE0W18Yz9hM'],
+    reading: ['eKaVhOnMjm8'],
+    listening: ['C0_sud-fw0k'],
+    speaking: ['Gxyo1gSJFRM'],
+    writing: ['_Hd3IwnOEfs'],
+    pronunciation: ['lRkLTJTnvYw'],
+    strategy: ['1LpVb3lYaKk']
   };
 
   // [moduleNum, title, icon, skillKey, [lesson names]]

@@ -14,11 +14,26 @@
 
   var V = ['Nf6S6tUHOXw', 'Yov488pacDc', 'kIZkNDKllws', 'sVZiU9QHdB4', '2s-zPZKERP4', 'dvbLrwD2SpA', 'nGQfc0V3NXk', 'gPHzXAncp5I', 'VaOhNqNtGGE', 'kp_Mb4E-nig', 'lGhxfC0_g9c', 'cjjAJM1o5E8', 'H79S8YDuYUU', 'n9LNj8IEyQs', 'QXzopqpHlSs', '1gOQYLgGpKA', 'x7mzOYEn0XA', 'EYd36SJrCrg', '9n-_vIAT-GY', 'iNaDxZXc_Ao'];
   var VIDEOS = {
-    orientation: [V[0], V[1]], fundamentals: [V[1], V[2]], excel: [V[2], V[3]], formulas: [V[3], V[4]],
-    advexcel: [V[4], V[5]], sheets: [V[5], V[6]], advsheets: [V[6], V[7]], cleaning: [V[7], V[8]],
-    viz: [V[8], V[9]], powerbi: [V[9], V[10]], advpowerbi: [V[10], V[11]], bi: [V[11], V[12]],
-    stats: [V[12], V[13]], ai: [V[13], V[14]], storytelling: [V[14], V[15]], sql: [V[15], V[16]],
-    career: [V[16], V[17]], projects: [V[3], V[9]], capstone: [V[0], V[11]], assessment: [V[0]]
+    orientation: ['r-uOLxNrNk8'],
+    fundamentals: ['dUrt-YC6BXM'],
+    excel: ['Vl0H-qTclOg'],
+    formulas: ['ZwiQ0W5lTEg'],
+    advexcel: ['XbyiTh-6k9Q'],
+    sheets: ['G93P4DxryVE'],
+    advsheets: ['qwFdBRRFuS4'],
+    cleaning: ['sV5lwAJ7vnQ'],
+    viz: ['QPbSc_IfYTo'],
+    powerbi: ['wM0Vpq5Vu_I'],
+    advpowerbi: ['dp9CcBf9B9g'],
+    bi: ['c7LrqSxjJQQ'],
+    stats: ['lcKXpUdoxUU'],
+    ai: ['UkIdRsKagaI'],
+    storytelling: ['tCagxT4Wy8M'],
+    sql: ['zpAGbu9mSL4'],
+    career: ['SfE3aO3LWi0'],
+    projects: ['VX6kCjwdNPw'],
+    capstone: ['VX6kCjwdNPw'],
+    assessment: ['r-uOLxNrNk8']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment
