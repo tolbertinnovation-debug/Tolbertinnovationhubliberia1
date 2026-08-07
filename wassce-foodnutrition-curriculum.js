@@ -12,16 +12,16 @@
   // Vetted biology (nutrition/physiology) + AgriTech (food) videos reused from
   // the TIH courses. Content, notes and quizzes are fully Food-&-Nutrition-specific.
   var VIDEOS = {
-    intro: ['7z4UCQ1FfjY', 'X60_b2wiGfQ'],
-    nutrients: ['X60_b2wiGfQ', '7z4UCQ1FfjY'],
-    humannutrition: ['7z4UCQ1FfjY', 'PmmbycoOpdI'],
-    preparation: ['BHoG5zhPj7Y', 'EEcy1swBlRo'],
-    hygiene: ['PmmbycoOpdI', '7z4UCQ1FfjY'],
-    catering: ['EEcy1swBlRo', 'QijsZjlvxh4'],
-    family: ['LTXAnxsUYK0', 'X60_b2wiGfQ'],
-    practical: ['QijsZjlvxh4', 'WgqAejCz2gM'],
-    exampractice: ['X60_b2wiGfQ', '7z4UCQ1FfjY'],
-    final: ['7z4UCQ1FfjY', 'X60_b2wiGfQ']
+    intro: ['60q6FCx3CH4'],
+    nutrients: ['6BZkdRfkUCU'],
+    humannutrition: ['N50jLY2JGe0'],
+    preparation: ['P6W8kwmwcno'],
+    hygiene: ['_S8pQqrpXCc'],
+    catering: ['ifv_o6nlENg'],
+    family: ['60q6FCx3CH4'],
+    practical: ['60q6FCx3CH4'],
+    exampractice: ['60q6FCx3CH4'],
+    final: ['60q6FCx3CH4']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

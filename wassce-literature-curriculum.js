@@ -11,16 +11,16 @@
 
   // Vetted English-domain videos (reused from the WASSCE English subject).
   var VIDEOS = {
-    intro: ['uINcnwJX2PA', 'Z9AqetXxkRA'],
-    devices: ['Z9AqetXxkRA', 'U_c-ZkV460E'],
-    poetry: ['Pnc3OUGufRk', 'Z9AqetXxkRA'],
-    drama: ['U_c-ZkV460E', 'Z9AqetXxkRA'],
-    prose: ['uINcnwJX2PA', 'U_c-ZkV460E'],
-    african: ['Z9AqetXxkRA', 'uINcnwJX2PA'],
-    nonafrican: ['U_c-ZkV460E', 'k22bbGbEyHI'],
-    essay: ['Z9AqetXxkRA', 'U_c-ZkV460E'],
-    revision: ['k22bbGbEyHI', 'uINcnwJX2PA'],
-    final: ['Z9AqetXxkRA', 'uINcnwJX2PA']
+    intro: ['5K7Vdxtvd4k'],
+    devices: ['YTNscPnlb-o'],
+    poetry: ['fbK72UkUCV4'],
+    drama: ['XJSKHwVYsvk'],
+    prose: ['AbZO_rhI3qQ'],
+    african: ['1-cI7N4pgB4'],
+    nonafrican: ['5K7Vdxtvd4k'],
+    essay: ['YTNscPnlb-o'],
+    revision: ['5K7Vdxtvd4k'],
+    final: ['5K7Vdxtvd4k']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

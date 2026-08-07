@@ -12,16 +12,16 @@
   // Vetted economics + finance + marketing videos reused from the TIH courses.
   // Content, notes and quizzes are fully Commerce-specific.
   var VIDEOS = {
-    intro: ['VrmgfY7sP08', '2C7u8onP7t4'],
-    trade: ['VrmgfY7sP08', 'LHXcZ-dtsXY'],
-    business: ['2C7u8onP7t4', 'AWof6O0vp3o'],
-    banking: ['zqHXZPVDbzg', 'hHqoC97hFXY'],
-    transport: ['LHXcZ-dtsXY', 'VrmgfY7sP08'],
-    international: ['LHXcZ-dtsXY', 'w_W3mJszXws'],
-    marketing: ['-CsBl3tv-X0', 'K6AEFYA5QuM'],
-    office: ['AWof6O0vp3o', '2C7u8onP7t4'],
-    exampractice: ['hHqoC97hFXY', 'VrmgfY7sP08'],
-    final: ['VrmgfY7sP08', '2C7u8onP7t4']
+    intro: ['tjmp7lmX6jU'],
+    trade: ['dl61XzFMDos'],
+    business: ['gpTTQFZbEds'],
+    banking: ['_Re48DtFb3Y'],
+    transport: ['qblRohvJkqQ'],
+    international: ['DYyc8g6Ol6Q'],
+    marketing: ['vIuisH5OtZs'],
+    office: ['q9UjYpHp2Vk'],
+    exampractice: ['tjmp7lmX6jU'],
+    final: ['tjmp7lmX6jU']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

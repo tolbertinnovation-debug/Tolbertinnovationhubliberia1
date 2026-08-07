@@ -12,16 +12,16 @@
   // Vetted finance (Financial Literacy) + Excel (MS Office) videos reused from
   // the TIH courses. Content, notes and quizzes are fully accounting-specific.
   var VIDEOS = {
-    intro: ['2C7u8onP7t4', 'AWof6O0vp3o'],
-    bookkeeping: ['2uNvA48yvv0', 'CbEeC8xXdZ8'],
-    cashbook: ['CbEeC8xXdZ8', 'IFxzKqMFeE0'],
-    statements: ['IFxzKqMFeE0', 'LCW387dqgvA'],
-    partnership: ['LCW387dqgvA', 'Pau88PAPD7Q'],
-    cost: ['Pau88PAPD7Q', 'USkACkbmRi4'],
-    publicsector: ['hHqoC97hFXY', '2C7u8onP7t4'],
-    ethics: ['3eIlHtHDGDs', '4wQ0KmttgcQ'],
-    exampractice: ['7_vMFvnGTlc', 'USkACkbmRi4'],
-    final: ['2C7u8onP7t4', 'AWof6O0vp3o']
+    intro: ['fBTv5wcnIq8'],
+    bookkeeping: ['pKpdibyljR4'],
+    cashbook: ['3TYJa9D38ds'],
+    statements: ['Fi1wkUczuyk'],
+    partnership: ['Fi1wkUczuyk'],
+    cost: ['Fi1wkUczuyk'],
+    publicsector: ['Fi1wkUczuyk'],
+    ethics: ['Fi1wkUczuyk'],
+    exampractice: ['fBTv5wcnIq8'],
+    final: ['fBTv5wcnIq8']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

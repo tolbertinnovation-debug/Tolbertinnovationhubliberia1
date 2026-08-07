@@ -12,16 +12,16 @@
   // Vetted Digital Marketing course videos reused from the TIH courses.
   // Content, notes and quizzes are fully Marketing-specific.
   var VIDEOS = {
-    intro: ['-CsBl3tv-X0', '1pejHrRIzAY'],
-    fundamentals: ['1pejHrRIzAY', '2fBxrhV3Nk0'],
-    consumer: ['2fBxrhV3Nk0', '8LX60gToxrM'],
-    product: ['8LX60gToxrM', 'C5ddo63kHHI'],
-    pricing: ['C5ddo63kHHI', 'K6AEFYA5QuM'],
-    promotion: ['K6AEFYA5QuM', 'RwqyuFnFzII'],
-    sales: ['RwqyuFnFzII', 'VPDe8XL7Mh8'],
-    entrepreneurship: ['VPDe8XL7Mh8', 'WR_5_gJVA2c'],
-    exampractice: ['gqRdIEIlzNs', 'WR_5_gJVA2c'],
-    final: ['-CsBl3tv-X0', '1pejHrRIzAY']
+    intro: ['i1xz5Kv-7VY'],
+    fundamentals: ['ve_hFDt1FkM'],
+    consumer: ['rYJQCI7PbSE'],
+    product: ['KOdgOB6EKww'],
+    pricing: ['s7HLF1dAyNw'],
+    promotion: ['nqsp6P94ThY'],
+    sales: ['nqsp6P94ThY'],
+    entrepreneurship: ['i1xz5Kv-7VY'],
+    exampractice: ['i1xz5Kv-7VY'],
+    final: ['i1xz5Kv-7VY']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

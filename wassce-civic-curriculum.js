@@ -13,16 +13,16 @@
   // governance video and the vetted English-domain pool (reading/essay skills).
   // Content, notes and quizzes are fully civic-education-specific.
   var VIDEOS = {
-    intro: ['uINcnwJX2PA', 'Z9AqetXxkRA'],
-    citizenship: ['Z9AqetXxkRA', 'uINcnwJX2PA'],
-    rights: ['U_c-ZkV460E', 'Z9AqetXxkRA'],
-    democracy: ['w_W3mJszXws', 'U_c-ZkV460E'],
-    constitution: ['w_W3mJszXws', 'uINcnwJX2PA'],
-    peace: ['uINcnwJX2PA', 'U_c-ZkV460E'],
-    development: ['hHqoC97hFXY', 'LHXcZ-dtsXY'],
-    leadership: ['Z9AqetXxkRA', 'w_W3mJszXws'],
-    exampractice: ['Z9AqetXxkRA', 'U_c-ZkV460E'],
-    final: ['w_W3mJszXws', 'uINcnwJX2PA']
+    intro: ['iyxi4d21tAM'],
+    citizenship: ['BFkYCFtrZBw'],
+    rights: ['CFtqrmwpv0M'],
+    democracy: ['fbAAHa6NJF4'],
+    constitution: ['7bTPvvYGq8M'],
+    peace: ['xGfOlaS_CMA'],
+    development: ['fbAAHa6NJF4'],
+    leadership: ['BFkYCFtrZBw'],
+    exampractice: ['iyxi4d21tAM'],
+    final: ['iyxi4d21tAM']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

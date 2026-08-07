@@ -13,16 +13,16 @@
   // Cybersecurity courses. Content, notes and quizzes are fully
   // Computer-Science-specific.
   var VIDEOS = {
-    intro: ['5kedqr2Ds-E', 'CBPe_IFxJWc'],
-    systems: ['CBPe_IFxJWc', 'CQFXF6bbeI8'],
-    software: ['CQFXF6bbeI8', 'DzPhjLPLLeg'],
-    data: ['DzPhjLPLLeg', 'EuWTrvT_YyY'],
-    programming: ['EuWTrvT_YyY', 'KR1WYQEehwc'],
-    database: ['KR1WYQEehwc', 'CQFXF6bbeI8'],
-    networks: ['5kedqr2Ds-E', 'EuWTrvT_YyY'],
-    cyber: ['3Kq1MIfTWCE', 'OA4UP4O1hz0'],
-    practical: ['CBPe_IFxJWc', 'DzPhjLPLLeg'],
-    final: ['5kedqr2Ds-E', 'KR1WYQEehwc']
+    intro: ['-uleG_Vecis'],
+    systems: ['uFJnSp9Bi1g'],
+    software: ['kK7L2ISGucM'],
+    data: ['O9CXnbkWkpI'],
+    programming: ['arVXuL8Z4qw'],
+    database: ['U3hcc0jt_Ro'],
+    networks: ['RY32wSQDekE'],
+    cyber: ['RY32wSQDekE'],
+    practical: ['-uleG_Vecis'],
+    final: ['-uleG_Vecis']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

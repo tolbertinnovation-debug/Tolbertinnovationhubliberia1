@@ -11,16 +11,16 @@
 
   // Vetted WASSCE Economics videos (reused from the WASSCE Economics subject).
   var VIDEOS = {
-    intro: ['VrmgfY7sP08', 'hHqoC97hFXY'],
-    principles: ['VrmgfY7sP08', 'w_W3mJszXws'],
-    demand: ['VrmgfY7sP08', 'hHqoC97hFXY'],
-    business: ['w_W3mJszXws', 'VrmgfY7sP08'],
-    money: ['zqHXZPVDbzg', 'w_W3mJszXws'],
-    publicfinance: ['w_W3mJszXws', 'hHqoC97hFXY'],
-    trade: ['LHXcZ-dtsXY', 'VrmgfY7sP08'],
-    population: ['hHqoC97hFXY', 'LHXcZ-dtsXY'],
-    exampractice: ['VrmgfY7sP08', 'w_W3mJszXws'],
-    final: ['hHqoC97hFXY', 'zqHXZPVDbzg']
+    intro: ['-vx_uhaglzo'],
+    principles: ['lvMVVrkBQB0'],
+    demand: ['2bc4rwjdfNg'],
+    business: ['rrZGYLSl6xc'],
+    money: ['d6sd_ma7zjk'],
+    publicfinance: ['3AqiXbJW3Nw'],
+    trade: ['YiZn5fpPHgY'],
+    population: ['worSLxQkFGM'],
+    exampractice: ['-vx_uhaglzo'],
+    final: ['-vx_uhaglzo']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

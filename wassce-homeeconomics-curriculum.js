@@ -13,16 +13,16 @@
   // reused from the TIH courses. Content, notes and quizzes are fully
   // Home-Economics-specific.
   var VIDEOS = {
-    intro: ['7z4UCQ1FfjY', '2C7u8onP7t4'],
-    family: ['7z4UCQ1FfjY', 'PmmbycoOpdI'],
-    food: ['X60_b2wiGfQ', '7z4UCQ1FfjY'],
-    clothing: ['0jzrqhsXwLo', '2R5fH8iKAXc'],
-    homemgmt: ['2C7u8onP7t4', 'AWof6O0vp3o'],
-    consumer: ['AWof6O0vp3o', '2C7u8onP7t4'],
-    housing: ['9CnrknQsg5E', '0jzrqhsXwLo'],
-    entrepreneurship: ['-CsBl3tv-X0', '2C7u8onP7t4'],
-    exampractice: ['7z4UCQ1FfjY', 'X60_b2wiGfQ'],
-    final: ['7z4UCQ1FfjY', '2C7u8onP7t4']
+    intro: ['Z46OXb6tTbA'],
+    family: ['HypYEV_XU74'],
+    food: ['lseFSvAimLY'],
+    clothing: ['pnToglmaW44'],
+    homemgmt: ['Wf918dnrDRU'],
+    consumer: ['cIurPdVD_vk'],
+    housing: ['Wf918dnrDRU'],
+    entrepreneurship: ['Z46OXb6tTbA'],
+    exampractice: ['Z46OXb6tTbA'],
+    final: ['Z46OXb6tTbA']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

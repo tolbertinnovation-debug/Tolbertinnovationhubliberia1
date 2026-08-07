@@ -14,16 +14,16 @@
   // English pool for exam-practice. Content, notes and quizzes are fully
   // Health-Science-specific.
   var VIDEOS = {
-    intro: ['7z4UCQ1FfjY', 'PmmbycoOpdI'],
-    anatomy: ['7z4UCQ1FfjY', 'PmmbycoOpdI'],
-    personal: ['7z4UCQ1FfjY', 'X60_b2wiGfQ'],
-    nutrition: ['X60_b2wiGfQ', '7z4UCQ1FfjY'],
-    disease: ['PmmbycoOpdI', '7z4UCQ1FfjY'],
-    environmental: ['LTXAnxsUYK0', 'X60_b2wiGfQ'],
-    firstaid: ['7z4UCQ1FfjY', 'PmmbycoOpdI'],
-    family: ['7z4UCQ1FfjY', 'ty-gdbfwqPc'],
-    exampractice: ['Z9AqetXxkRA', 'uINcnwJX2PA'],
-    final: ['7z4UCQ1FfjY', 'PmmbycoOpdI']
+    intro: ['snlG7EWds2o'],
+    anatomy: ['uBGl2BujkPQ'],
+    personal: ['pHZJziziY-I'],
+    nutrition: ['2abzaahKreE'],
+    disease: ['fk8cqO4meKo'],
+    environmental: ['lUfMp91-i48'],
+    firstaid: ['snlG7EWds2o'],
+    family: ['snlG7EWds2o'],
+    exampractice: ['snlG7EWds2o'],
+    final: ['snlG7EWds2o']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

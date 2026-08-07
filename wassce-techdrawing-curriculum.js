@@ -12,16 +12,16 @@
   // Vetted geometry (maths) + design videos reused from the TIH courses.
   // Content, notes and quizzes are fully Technical-Drawing-specific.
   var VIDEOS = {
-    intro: ['S2sDP--x0Wc', '0jzrqhsXwLo'],
-    instruments: ['0jzrqhsXwLo', '2R5fH8iKAXc'],
-    geometry: ['S2sDP--x0Wc', '9CnrknQsg5E'],
-    ortho: ['2R5fH8iKAXc', 'S2sDP--x0Wc'],
-    isometric: ['9CnrknQsg5E', 'A4VePn0CAl4'],
-    sections: ['A4VePn0CAl4', 'BMDDGuUBO94'],
-    building: ['BMDDGuUBO94', 'BSxg87CoOu4'],
-    cad: ['BSxg87CoOu4', 'DSbGwruIcfc'],
-    exampractice: ['Z9AqetXxkRA', 'S2sDP--x0Wc'],
-    final: ['S2sDP--x0Wc', '0jzrqhsXwLo']
+    intro: ['FsuYINdMXtg'],
+    instruments: ['YIWLG8Gqz8M'],
+    geometry: ['FjgHCYLMbjg'],
+    ortho: ['JvW5bb8yZc8'],
+    isometric: ['gpEA7qqBgRE'],
+    sections: ['QrqjYLlzAnY'],
+    building: ['JvW5bb8yZc8'],
+    cad: ['FsuYINdMXtg'],
+    exampractice: ['FsuYINdMXtg'],
+    final: ['FsuYINdMXtg']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

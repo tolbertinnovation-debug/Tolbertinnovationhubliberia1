@@ -13,16 +13,16 @@
   // English-domain reading/essay pool (rather than another faith's videos).
   // Content, notes and quizzes are fully IRS-specific.
   var VIDEOS = {
-    intro: ['uINcnwJX2PA', 'Z9AqetXxkRA'],
-    quran: ['Z9AqetXxkRA', 'U_c-ZkV460E'],
-    hadith: ['U_c-ZkV460E', 'k22bbGbEyHI'],
-    seerah: ['uINcnwJX2PA', 'U_c-ZkV460E'],
-    aqidah: ['Z9AqetXxkRA', 'uINcnwJX2PA'],
-    ibadah: ['U_c-ZkV460E', 'Z9AqetXxkRA'],
-    law: ['k22bbGbEyHI', 'U_c-ZkV460E'],
-    society: ['uINcnwJX2PA', 'k22bbGbEyHI'],
-    exampractice: ['Z9AqetXxkRA', 'U_c-ZkV460E'],
-    final: ['uINcnwJX2PA', 'Z9AqetXxkRA']
+    intro: ['CInpn_K5TvE'],
+    quran: ['3p_rQ1z0k1M'],
+    hadith: ['FvMKppojw-Q'],
+    seerah: ['DW-00ckCAPI'],
+    aqidah: ['CM8SOlfd7z8'],
+    ibadah: ['OviGlDU34Rw'],
+    law: ['O3_XQHz698E'],
+    society: ['CInpn_K5TvE'],
+    exampractice: ['CInpn_K5TvE'],
+    final: ['CInpn_K5TvE']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

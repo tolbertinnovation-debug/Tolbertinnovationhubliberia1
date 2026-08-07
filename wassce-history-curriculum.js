@@ -13,16 +13,16 @@
   // pool (reading/essay skills apply to a reading- and essay-heavy humanities
   // subject). Content, notes and quizzes are fully history-specific.
   var VIDEOS = {
-    intro: ['uINcnwJX2PA', 'Z9AqetXxkRA'],
-    precolonial: ['uINcnwJX2PA', 'U_c-ZkV460E'],
-    westafrica: ['U_c-ZkV460E', 'Z9AqetXxkRA'],
-    colonial: ['Z9AqetXxkRA', 'uINcnwJX2PA'],
-    liberia: ['uINcnwJX2PA', 'k22bbGbEyHI'],
-    modernafrica: ['U_c-ZkV460E', 'uINcnwJX2PA'],
-    world: ['Z9AqetXxkRA', 'U_c-ZkV460E'],
-    skills: ['Z9AqetXxkRA', 'U_c-ZkV460E'],
-    revision: ['k22bbGbEyHI', 'uINcnwJX2PA'],
-    final: ['Z9AqetXxkRA', 'uINcnwJX2PA']
+    intro: ['OyU6vjsy9CU'],
+    precolonial: ['hBECGqt_krw'],
+    westafrica: ['TCJOLfcKf8s'],
+    colonial: ['X6Zsq2DsMuw'],
+    liberia: ['nN3xEcl8byA'],
+    modernafrica: ['F2KbHDkoRRM'],
+    world: ['C0X0JX2hXVk'],
+    skills: ['OyU6vjsy9CU'],
+    revision: ['OyU6vjsy9CU'],
+    final: ['OyU6vjsy9CU']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

@@ -13,16 +13,16 @@
   // video and the vetted English-domain pool (reading/essay skills). Content,
   // notes and quizzes are fully Government-specific.
   var VIDEOS = {
-    intro: ['uINcnwJX2PA', 'Z9AqetXxkRA'],
-    concepts: ['w_W3mJszXws', 'uINcnwJX2PA'],
-    constitution: ['w_W3mJszXws', 'U_c-ZkV460E'],
-    systems: ['w_W3mJszXws', 'uINcnwJX2PA'],
-    parties: ['w_W3mJszXws', 'Z9AqetXxkRA'],
-    admin: ['w_W3mJszXws', 'hHqoC97hFXY'],
-    international: ['LHXcZ-dtsXY', 'w_W3mJszXws'],
-    african: ['uINcnwJX2PA', 'w_W3mJszXws'],
-    exampractice: ['Z9AqetXxkRA', 'U_c-ZkV460E'],
-    final: ['w_W3mJszXws', 'uINcnwJX2PA']
+    intro: ['qhUdQekcK6w'],
+    concepts: ['JI11KV91ZO0'],
+    constitution: ['CY90zqmdWg8'],
+    systems: ['sn9H0dCZD60'],
+    parties: ['MF5uaerHPzg'],
+    admin: ['48EYath0xxg'],
+    international: ['HQlyWnyVN7I'],
+    african: ['lLoNwx-L_mM'],
+    exampractice: ['qhUdQekcK6w'],
+    final: ['qhUdQekcK6w']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

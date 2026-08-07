@@ -14,16 +14,16 @@
   // pool (reading/map/essay skills) plus economics videos for the human/economic
   // and regional modules. Content, notes and quizzes are fully geography-specific.
   var VIDEOS = {
-    intro: ['uINcnwJX2PA', 'Z9AqetXxkRA'],
-    maps: ['U_c-ZkV460E', 'uINcnwJX2PA'],
-    physical: ['uINcnwJX2PA', 'U_c-ZkV460E'],
-    climate: ['Z9AqetXxkRA', 'uINcnwJX2PA'],
-    human: ['hHqoC97hFXY', 'VrmgfY7sP08'],
-    environmental: ['LHXcZ-dtsXY', 'uINcnwJX2PA'],
-    regional: ['LHXcZ-dtsXY', 'hHqoC97hFXY'],
-    fieldwork: ['U_c-ZkV460E', 'Z9AqetXxkRA'],
-    exampractice: ['Z9AqetXxkRA', 'U_c-ZkV460E'],
-    final: ['uINcnwJX2PA', 'Z9AqetXxkRA']
+    intro: ['lIZUWpi0iOw'],
+    maps: ['81ZY04FZTGQ'],
+    physical: ['vlVVaZhRAEA'],
+    climate: ['VMdNIj2Ori0'],
+    human: ['zcueWVvHMR4'],
+    environmental: ['-B__LUluVv0'],
+    regional: ['hOgZh2S6ZiI'],
+    fieldwork: ['81ZY04FZTGQ'],
+    exampractice: ['lIZUWpi0iOw'],
+    final: ['lIZUWpi0iOw']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

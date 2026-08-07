@@ -12,16 +12,16 @@
   // Vetted Bible / Christian Studies videos reused from the TIH Bible course.
   // Content, notes and quizzes are fully CRS-specific.
   var VIDEOS = {
-    intro: ['3Dv4-n6OYGI', '5nvVVcYD-0w'],
-    oldtestament: ['5nvVVcYD-0w', '7_CGP-12AE0'],
-    newtestament: ['7_CGP-12AE0', 'ALsluAKBZ-c'],
-    earlychurch: ['ALsluAKBZ-c', 'AzmYV8GNAIM'],
-    doctrines: ['AzmYV8GNAIM', 'B0O525zOstQ'],
-    ethics: ['B0O525zOstQ', 'CGbNw855ksw'],
-    churchsociety: ['CGbNw855ksw', 'F4isSyennFo'],
-    interpretation: ['F4isSyennFo', 'FwZejz71UrA'],
-    exampractice: ['FwZejz71UrA', 'GQI72THyO5I'],
-    final: ['GQI72THyO5I', '3Dv4-n6OYGI']
+    intro: ['yEtR2ouw76c'],
+    oldtestament: ['NR29yHJxnxI'],
+    newtestament: ['Kahy3Hddejw'],
+    earlychurch: ['onHIpArMENU'],
+    doctrines: ['ez-PL1vN-Is'],
+    ethics: ['4dBSGzaJnm0'],
+    churchsociety: ['1mwYFj-esR0'],
+    interpretation: ['NPP3hJFj7z0'],
+    exampractice: ['yEtR2ouw76c'],
+    final: ['yEtR2ouw76c']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects

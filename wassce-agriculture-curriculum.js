@@ -12,16 +12,16 @@
   // Vetted AgriTech videos plus biology plant/ecology videos reused from the TIH
   // courses. Content, notes and quizzes are fully Agricultural-Science-specific.
   var VIDEOS = {
-    intro: ['BHoG5zhPj7Y', 'X60_b2wiGfQ'],
-    soil: ['EEcy1swBlRo', 'GcPdvSj6CbE'],
-    crop: ['X60_b2wiGfQ', 'QijsZjlvxh4'],
-    animal: ['7z4UCQ1FfjY', 'WUvWHlCsDk4'],
-    engineering: ['WgqAejCz2gM', 'XyGtTvH_NXY'],
-    economics: ['dsYo9rBPQGo', 'BHoG5zhPj7Y'],
-    forestry: ['LTXAnxsUYK0', 'X60_b2wiGfQ'],
-    practical: ['QijsZjlvxh4', 'EEcy1swBlRo'],
-    exampractice: ['GcPdvSj6CbE', 'dsYo9rBPQGo'],
-    final: ['BHoG5zhPj7Y', 'X60_b2wiGfQ']
+    intro: ['aO3PCncVR0c'],
+    soil: ['y34d27RdEUM'],
+    crop: ['KOsS2-3oboc'],
+    animal: ['bM2yFP8pA_s'],
+    engineering: ['mFGGtEaxRC4'],
+    economics: ['ICH9yUu9mL4'],
+    forestry: ['DrptnY2KbD4'],
+    practical: ['aO3PCncVR0c'],
+    exampractice: ['aO3PCncVR0c'],
+    final: ['aO3PCncVR0c']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects
