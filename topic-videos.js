@@ -1,58 +1,77 @@
 /* ============================================================
-   TIH LEARNING HUB — PER-TOPIC VIDEO OVERRIDES
+   TIH LEARNING HUB — VIDEO OVERRIDES (module + topic)
    ------------------------------------------------------------
-   Pin a specific YouTube video to an individual TOPIC (lesson) of
-   any course, without touching the course curriculum files.
+   Pin YouTube videos to a course without editing curriculum files.
+   Two layers, most-specific wins:
 
-   HOW TO ADD VIDEOS
-   -----------------
-   Under a course id, list  "Exact Topic Title": "<youtube link or id>".
-   You can paste the FULL YouTube link (watch, youtu.be, embed, or
-   mobile) OR just the 11-character video id — both work.
+     MODULES[courseId][moduleNumber] = "<link or id>"
+        → default video for EVERY content topic in that module.
 
-     'wassce-government': {
-       'Introduction to WASSCE Government': 'https://www.youtube.com/watch?v=9dGuLxosuI8',
-       'Sovereignty': '_OLnPbcm0jE',
-     },
+     TOPICS[courseId]["Exact Topic Title"] = "<link or id>"
+        → pins ONE topic; overrides the module default.
 
-   Notes:
-   • The topic title match ignores the "3.1 " numbering, emojis, and
-     upper/lower case — so "How the Internet Works" matches the lesson
-     shown as "1.4 How the Internet Works".
-   • Playlist-only links (…/playlist?list=…) are skipped automatically,
-     because the player embeds ONE video per lesson — give the single
-     watch link you want to show.
-   • A topic that isn't listed keeps whatever video its module already
-     has, so you can add these gradually.
+   You can paste a FULL YouTube link (watch, youtu.be, embed, mobile,
+   shorts) OR a bare 11-character id — both are accepted. Playlist-only
+   links are ignored (the player shows one video per lesson).
+
+   Title match ignores the "3.1 " numbering, emojis and case, so
+   "Types of Computers" matches the lesson shown as "2.2 Types of
+   Computers". Module numbers are the course's REAL module numbers.
    ============================================================ */
 (function () {
-  // Extract a bare 11-char video id from a URL or an id. Returns '' if none.
   function vid(u) {
     u = String(u || '').trim();
-    if (/^[A-Za-z0-9_-]{11}$/.test(u)) return u;                 // already an id
-    var m = u.match(/[?&]v=([A-Za-z0-9_-]{11})/) ||              // watch?v=
-            u.match(/youtu\.be\/([A-Za-z0-9_-]{11})/) ||          // youtu.be/
-            u.match(/\/embed\/([A-Za-z0-9_-]{11})/) ||            // /embed/
-            u.match(/\/shorts\/([A-Za-z0-9_-]{11})/) ||           // /shorts/
-            u.match(/\/live\/([A-Za-z0-9_-]{11})/);               // /live/
-    return m ? m[1] : '';                                         // playlists → ''
+    if (/^[A-Za-z0-9_-]{11}$/.test(u)) return u;
+    var m = u.match(/[?&]v=([A-Za-z0-9_-]{11})/) ||
+            u.match(/youtu\.be\/([A-Za-z0-9_-]{11})/) ||
+            u.match(/\/embed\/([A-Za-z0-9_-]{11})/) ||
+            u.match(/\/shorts\/([A-Za-z0-9_-]{11})/) ||
+            u.match(/\/live\/([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : '';
   }
 
-  // ---- Add your per-topic videos below (keyed by course id) ----
-  var TOPICS = {
-    // 'course-id': {
-    //   'Topic Title': 'https://www.youtube.com/watch?v=XXXXXXXXXXX',
-    // },
+  // ---- Per-MODULE default videos (keyed by real module number) ----
+  var MODULES = {
+    'computer-literacy': {
+      2: 'https://youtu.be/Xpk67YzOn5w',   // Introduction to Computers
+      3: 'https://youtu.be/8K7ioTEieps',   // Operating System Basics (Windows)
+      4: 'https://youtu.be/8K7ioTEieps',   // File & Folder Management
+      6: 'https://youtu.be/k1VUZEVuDJ8',   // Microsoft Word
+      7: 'https://youtu.be/Vl0H-qTclOg',   // Microsoft Excel
+      8: 'https://youtu.be/u7Tku3_RGPs',   // Microsoft PowerPoint
+      9: 'https://youtu.be/zh4jY6YJ2Mc',   // Internet & Web Browsing
+      10: 'https://youtu.be/l0eM9Vq9GJU',  // Email & Online Communication
+      12: 'https://youtu.be/inWWhr5tnEA',  // Cybersecurity Basics
+      14: 'https://youtu.be/2ePf9rue1Ao',  // AI & Emerging Technologies
+      15: 'https://youtu.be/8K7ioTEieps'   // Basic Computer Maintenance
+    }
   };
 
-  // Normalize every value to a bare id; drop entries with no usable id.
-  var out = {};
-  Object.keys(TOPICS).forEach(function (cid) {
-    out[cid] = {};
-    Object.keys(TOPICS[cid]).forEach(function (topic) {
-      var id = vid(TOPICS[cid][topic]);
-      if (id) out[cid][topic] = id;
+  // ---- Per-TOPIC exceptions (override the module default) ----
+  var TOPICS = {
+    'computer-literacy': {
+      'Video Conferencing': 'https://youtu.be/5mN2m5QYSeA', // Google Meet
+      'Online Meetings': 'https://youtu.be/hIkCmbvAHQQ',    // Zoom
+      'Google Drive': 'https://youtu.be/gs7QvB8m0Ho',
+      'Google Workspace': 'https://youtu.be/gs7QvB8m0Ho',
+      'Phishing': 'https://youtu.be/XBkzBrXlle0',
+      'Using ChatGPT': 'https://youtu.be/T9aRN5JkmL8',
+      'AI Productivity Tools': 'https://youtu.be/T9aRN5JkmL8'
+    }
+  };
+
+  // Normalize all values to bare ids; drop entries with no usable id.
+  function normMap(src) {
+    var out = {};
+    Object.keys(src || {}).forEach(function (cid) {
+      out[cid] = {};
+      Object.keys(src[cid]).forEach(function (k) {
+        var id = vid(src[cid][k]);
+        if (id) out[cid][k] = id;
+      });
     });
-  });
-  window.TIH_TOPIC_VIDEOS = out;
+    return out;
+  }
+  window.TIH_MODULE_VIDEOS = normMap(MODULES);
+  window.TIH_TOPIC_VIDEOS = normMap(TOPICS);
 })();

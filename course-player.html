@@ -72,7 +72,7 @@
   <script src="cert-registry.js?v=3"></script>
   <script src="paywall.js?v=10"></script>
   <script src="wassce-course.js?v=6"></script>
-  <script src="topic-videos.js?v=1"></script>
+  <script src="topic-videos.js?v=2"></script>
   <script src="cert-template.js?v=5"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1054,26 +1054,30 @@
     // across modules, and the guard was blanking out entire courses' videos.
     // Every content lesson that carries a video id now shows its video.
 
-    // ===== Per-topic video overrides (topic-videos.js) =====
-    // Lets us pin a specific YouTube video to an individual TOPIC (lesson),
-    // keyed by its title, without editing any curriculum builder. Matching is
-    // tolerant of the "3.1 " numbering prefix and case/spacing. A matched
-    // content lesson always becomes a video lesson.
+    // ===== Video overrides (topic-videos.js) =====
+    // Two layers, applied in order so the more specific one wins:
+    //   1. TIH_MODULE_VIDEOS[courseId][moduleNumber] — a default video for
+    //      every content topic in that module.
+    //   2. TIH_TOPIC_VIDEOS[courseId][topicTitle]    — pins one topic (wins).
+    // Neither touches curriculum builders. Title matching ignores the "3.1 "
+    // numbering, leading emoji, and case. A matched lesson becomes a video.
     (function () {
-      var byCourse = (typeof window !== 'undefined' && window.TIH_TOPIC_VIDEOS && window.TIH_TOPIC_VIDEOS[courseId]) || null;
-      if (!byCourse) return;
       function normTopic(s) {
         return String(s || '')
-          .replace(/^[^0-9a-zA-Z]+/, '')      // strip leading emoji/symbols
-          .replace(/^\s*[\d]+(?:\.[\d]+)*\s+/, '') // strip "3.1 " numbering
+          .replace(/^[^0-9a-zA-Z]+/, '')            // strip leading emoji/symbols
+          .replace(/^\s*[\d]+(?:\.[\d]+)*\s+/, '')  // strip "3.1 " numbering
           .replace(/\s+/g, ' ').trim().toLowerCase();
       }
-      var norm = {};
-      Object.keys(byCourse).forEach(function (k) { norm[normTopic(k)] = byCourse[k]; });
+      var modMap = (typeof window !== 'undefined' && window.TIH_MODULE_VIDEOS && window.TIH_MODULE_VIDEOS[courseId]) || null;
+      var topRaw = (typeof window !== 'undefined' && window.TIH_TOPIC_VIDEOS && window.TIH_TOPIC_VIDEOS[courseId]) || null;
+      if (!modMap && !topRaw) return;
+      var topMap = {};
+      if (topRaw) Object.keys(topRaw).forEach(function (k) { topMap[normTopic(k)] = topRaw[k]; });
       lessons.forEach(function (l) {
         if (l.isQuiz) return;
-        var vid = norm[normTopic(l.title)];
-        if (vid) { l.videoId = vid; l.reading = false; }
+        if (modMap && !l.isProject && modMap[l.module]) { l.videoId = modMap[l.module]; l.reading = false; }
+        var t = topMap[normTopic(l.title)];
+        if (t) { l.videoId = t; l.reading = false; }
       });
     })();
 
