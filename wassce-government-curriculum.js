@@ -13,16 +13,16 @@
   // video and the vetted English-domain pool (reading/essay skills). Content,
   // notes and quizzes are fully Government-specific.
   var VIDEOS = {
-    intro: ['qhUdQekcK6w'],
-    concepts: ['JI11KV91ZO0'],
-    constitution: ['CY90zqmdWg8'],
-    systems: ['sn9H0dCZD60'],
-    parties: ['MF5uaerHPzg'],
-    admin: ['48EYath0xxg'],
-    international: ['HQlyWnyVN7I'],
-    african: ['lLoNwx-L_mM'],
-    exampractice: ['qhUdQekcK6w'],
-    final: ['qhUdQekcK6w']
+    intro: ['9dGuLxosuI8'],
+    concepts: ['rqlsRHrxaDU'],
+    constitution: ['BFwr0kliVPU'],
+    systems: ['uUqeAsogI70'],
+    parties: ['IxjmDcHFRoE'],
+    admin: ['rTTjxXgkp7M'],
+    international: ['j7ctp4bfjhs'],
+    african: ['FudD6VMbw3g'],
+    exampractice: ['1MYwhCWczh0'],
+    final: ['yl-NavDhcrE']
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects
