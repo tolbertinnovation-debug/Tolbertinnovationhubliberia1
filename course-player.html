@@ -946,8 +946,16 @@
     if (wrap) { wrap.classList.remove('playing'); wrap.classList.remove('fallback'); wrap.classList.remove('chrome-hidden'); }
     if (chromeTimer) { clearTimeout(chromeTimer); chromeTimer = null; }
     if (vcTimer) { clearInterval(vcTimer); vcTimer = null; }
-    try { if (ytBuilt && ytPlayer && ytPlayer.stopVideo) ytPlayer.stopVideo(); } catch (e) {}
-    if (usingFallback) { var host = document.getElementById('ytPlayer'); if (host) host.innerHTML = ''; usingFallback = false; ytBuilt = false; ytPlayer = null; }
+    // Fully tear down the previous player. Reusing it made the FIRST video keep
+    // playing on every later lesson, so we always rebuild a clean mount point and
+    // let the next lesson build its own player with its own video id.
+    try { if (ytPlayer && ytPlayer.destroy) ytPlayer.destroy(); } catch (e) {}
+    ytPlayer = null; ytBuilt = false; usingFallback = false;
+    var container = document.getElementById('videoContainer');
+    var old = document.getElementById('ytPlayer');
+    var fresh = document.createElement('div'); fresh.id = 'ytPlayer';
+    if (old && old.parentNode) old.parentNode.replaceChild(fresh, old);
+    else if (container) container.insertBefore(fresh, container.firstChild);
     var seek = document.getElementById('vcSeek'); if (seek) seek.value = 0;
     var time = document.getElementById('vcTime'); if (time) time.textContent = '0:00 / 0:00';
     vcSetIcon(true);
