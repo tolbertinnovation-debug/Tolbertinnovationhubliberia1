@@ -72,6 +72,7 @@
   <script src="cert-registry.js?v=3"></script>
   <script src="paywall.js?v=10"></script>
   <script src="wassce-course.js?v=6"></script>
+  <script src="topic-videos.js?v=1"></script>
   <script src="cert-template.js?v=5"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1052,6 +1053,29 @@
     // module was removed — most courses intentionally reuse a topic video pool
     // across modules, and the guard was blanking out entire courses' videos.
     // Every content lesson that carries a video id now shows its video.
+
+    // ===== Per-topic video overrides (topic-videos.js) =====
+    // Lets us pin a specific YouTube video to an individual TOPIC (lesson),
+    // keyed by its title, without editing any curriculum builder. Matching is
+    // tolerant of the "3.1 " numbering prefix and case/spacing. A matched
+    // content lesson always becomes a video lesson.
+    (function () {
+      var byCourse = (typeof window !== 'undefined' && window.TIH_TOPIC_VIDEOS && window.TIH_TOPIC_VIDEOS[courseId]) || null;
+      if (!byCourse) return;
+      function normTopic(s) {
+        return String(s || '')
+          .replace(/^[^0-9a-zA-Z]+/, '')      // strip leading emoji/symbols
+          .replace(/^\s*[\d]+(?:\.[\d]+)*\s+/, '') // strip "3.1 " numbering
+          .replace(/\s+/g, ' ').trim().toLowerCase();
+      }
+      var norm = {};
+      Object.keys(byCourse).forEach(function (k) { norm[normTopic(k)] = byCourse[k]; });
+      lessons.forEach(function (l) {
+        if (l.isQuiz) return;
+        var vid = norm[normTopic(l.title)];
+        if (vid) { l.videoId = vid; l.reading = false; }
+      });
+    })();
 
     // Copy quiz data from DB
     quizData = course.quizzes || {};
