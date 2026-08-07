@@ -1082,12 +1082,19 @@
       var modMap = (typeof window !== 'undefined' && window.TIH_MODULE_VIDEOS && window.TIH_MODULE_VIDEOS[courseId]) || null;
       var topRaw = (typeof window !== 'undefined' && window.TIH_TOPIC_VIDEOS && window.TIH_TOPIC_VIDEOS[courseId]) || null;
       if (!modMap && !topRaw) return;
-      var topMap = {};
-      if (topRaw) Object.keys(topRaw).forEach(function (k) { topMap[normTopic(k)] = topRaw[k]; });
+      // Topic keys may be plain ("Images") or module-qualified ("M8:Images"),
+      // the latter to disambiguate a title that repeats across modules.
+      var topPlain = {}, topMod = {};
+      if (topRaw) Object.keys(topRaw).forEach(function (k) {
+        var m = String(k).match(/^\s*M(\d+)\s*[:|]\s*(.+)$/i);
+        if (m) topMod[m[1] + '|' + normTopic(m[2])] = topRaw[k];
+        else topPlain[normTopic(k)] = topRaw[k];
+      });
       lessons.forEach(function (l) {
         if (l.isQuiz) return;
         if (modMap && !l.isProject && modMap[l.module]) { l.videoId = modMap[l.module]; l.reading = false; }
-        var t = topMap[normTopic(l.title)];
+        var nt = normTopic(l.title);
+        var t = topMod[l.module + '|' + nt] || topPlain[nt];
         if (t) { l.videoId = t; l.reading = false; }
       });
     })();
