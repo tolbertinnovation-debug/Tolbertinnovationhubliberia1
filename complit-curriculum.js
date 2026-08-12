@@ -1,198 +1,175 @@
-/* TIH Complete Computer Literacy Professional Certificate curriculum.
-   Rebuilds COURSES_DB['computer-literacy'] into the full 20-module program
-   taking a complete beginner to a confident digital user: computer basics,
-   operating systems, files, typing, Microsoft Word/Excel/PowerPoint, internet,
-   email, cloud, cybersecurity, digital productivity, AI, maintenance,
-   workplace skills, practical projects, a capstone and a graduation module.
-   Every content lesson has a video + printable notes; project lessons carry
-   briefs and downloadable practice files. Modelled on complit builder. */
+/* TIH Complete Computer Literacy Professional Certificate.
+   Rebuilds COURSES_DB['computer-literacy'] into a 15-module beginner program:
+   computer basics, first-time use, Windows, files & folders, the internet,
+   online safety, email, Word, Excel, PowerPoint, Google Workspace, video
+   conferencing, maintenance, digital work skills, and a final practical
+   project + assessment with a Certificate. Every content lesson has a video +
+   printable classroom notes and a short practice quiz. Modelled on
+   aicyber-curriculum.js. Per-topic videos are supplied via topic-videos.js. */
 (function () {
-  if (typeof COURSES_DB === 'undefined') return;
   var CID = 'computer-literacy';
-  if (!COURSES_DB[CID] || COURSES_DB[CID]._clFullBuilt) return;
+  if (typeof COURSES_DB === 'undefined') return;
+  if (!COURSES_DB[CID]) return;
+  if (COURSES_DB[CID]._clFullBuilt) return;
 
-  var V = ['NARrnGza4kA', 'qIRRiM6Ibno', 'QTeX0Za2Ur8', 'k-EID5_2D9U', 'bSBLF66cCN0', 'iLMUrr0C_0c', 'PEB9jEXh0X4', 'NZlemQPeo0Q', 'EuWTrvT_YyY', 'Vl0H-qTclOg', 'DzPhjLPLLeg', 'CBPe_IFxJWc', 'ey4dXseAODE', 'dOZDQpulyCQ', 'CQFXF6bbeI8', '5kedqr2Ds-E', 'ZeY62YV_6rs', 'aEJ7QGrJshA', 'YCb2icQuv8Y', 'KR1WYQEehwc', 'KfScugUnSSM'];
+  // Module-default videos (a strong full tutorial per module). Per-topic
+  // exceptions are layered on top from topic-videos.js.
   var VIDEOS = {
-    orientation: ['eEo_aacpwCw'],
-    hardware: ['RzQtbFb0KIk'],
-    os: ['8d9FY3LpR4E'],
-    files: ['7oE1-PmNd8E'],
-    typing: ['TrM_1Gpx-44'],
-    word: ['EuWTrvT_YyY'],
-    excel: ['Vl0H-qTclOg'],
-    ppt: ['l5Ij7nUy9UQ'],
-    internet: ['0OOe18OzSFc'],
-    email: ['PEB9jEXh0X4'],
-    cloud: ['6RGwLYJxiuA'],
-    cyber: ['aRbKFCY4tjE'],
-    productivity: ['o1c9rr3G4hg'],
-    ai: ['poM2n8fBcag'],
-    maintenance: ['hDaLJmFDAwI'],
-    workplace: ['hPEgaVN1Mpg'],
-    projects: ['rtnPIb6Dszk'],
-    capstone: ['rtnPIb6Dszk'],
-    assessment: ['rtnPIb6Dszk']
+    hardware: ['Xpk67YzOn5w'], basics: ['Xpk67YzOn5w'], windows: ['26QPDBe-NB8'],
+    files: ['HbgzrKJvDRw'], internet: ['7_LPdttKXPc'], security: ['XBkzBrXlle0'],
+    email: ['l0eM9Vq9GJU'], word: ['S-nHYzK-BVg'], excel: ['Vl0H-qTclOg'],
+    ppt: ['u7Tku3_RGPs'], gworkspace: ['gs7QvB8m0Ho'], video: ['5mN2m5QYSeA'],
+    maintenance: ['8K7ioTEieps'], work: ['S-nHYzK-BVg'], assessment: ['Vl0H-qTclOg']
   };
 
-  // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment
+  // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|assessment
   var curriculum = [
-    [1, 'Course Orientation', '🧭', 'orientation', 'content', ['Welcome to the Course', 'What is Computer Literacy?', 'Importance of Digital Skills', 'Careers That Require Computer Skills', 'Course Roadmap', 'Setting Learning Goals', 'Computer Lab Rules', 'Final Capstone Project', 'Certificate Requirements']],
-    [2, 'Introduction to Computers', '🖥️', 'hardware', 'content', ['What is a Computer?', 'Types of Computers', 'Computer Hardware', 'Input Devices', 'Output Devices', 'Storage Devices', 'Software vs. Hardware', 'Operating Systems', 'Computer Boot Process', 'Computer Terminology']],
-    [3, 'Operating System Basics', '🪟', 'os', 'content', ['Introduction to Windows', 'Desktop Navigation', 'Start Menu', 'Taskbar', 'File Explorer', 'Control Panel', 'System Settings', 'Installing & Uninstalling Programs', 'User Accounts', 'Windows Updates']],
-    [4, 'File & Folder Management', '🗂️', 'files', 'content', ['Creating Files', 'Creating Folders', 'Copying Files', 'Moving Files', 'Renaming Files', 'Deleting Files', 'Restoring Deleted Files', 'Compressing Files (ZIP)', 'File Organization', 'Backup Strategies']],
-    [5, 'Keyboard & Typing Skills', '⌨️', 'typing', 'content', ['Keyboard Layout', 'Home Row Technique', 'Typing Accuracy', 'Typing Speed Improvement', 'Keyboard Shortcuts', 'Numeric Keypad', 'Function Keys', 'Practice Exercises']],
-    [6, 'Microsoft Word', '📝', 'word', 'content', ['Introduction to Microsoft Word', 'Creating Documents', 'Formatting Text', 'Paragraph Formatting', 'Page Layout', 'Tables', 'Images', 'Headers & Footers', 'Page Numbers', 'Spell Check', 'Mail Merge', 'Printing Documents', 'Word Project']],
-    [7, 'Microsoft Excel', '📊', 'excel', 'content', ['Introduction to Excel', 'Worksheets & Workbooks', 'Data Entry', 'Cell Formatting', 'Basic Formulas', 'Functions (SUM, AVERAGE, MIN, MAX)', 'Charts', 'Sorting & Filtering', 'Printing Worksheets', 'Excel Project']],
-    [8, 'Microsoft PowerPoint', '📽️', 'ppt', 'content', ['Introduction to PowerPoint', 'Creating Presentations', 'Slide Layouts', 'Themes', 'Images & Icons', 'SmartArt', 'Charts', 'Animations', 'Transitions', 'Presenting Slides', 'PowerPoint Project']],
-    [9, 'Internet & Web Browsing', '🌐', 'internet', 'content', ['What is the Internet?', 'Web Browsers', 'Search Engines', 'Effective Online Searching', 'Downloading Files', 'Uploading Files', 'Browser Settings', 'Bookmarks', 'Safe Browsing', 'Internet Practice']],
-    [10, 'Email & Online Communication', '✉️', 'email', 'content', ['Creating an Email Account', 'Sending Emails', 'Receiving Emails', 'Attachments', 'Email Etiquette', 'Calendar Basics', 'Video Conferencing', 'Online Meetings', 'Instant Messaging', 'Collaboration Tools']],
-    [11, 'Cloud Computing & Online Storage', '☁️', 'cloud', 'content', ['What is Cloud Computing?', 'Google Drive', 'OneDrive', 'Dropbox', 'Uploading Files', 'Sharing Files', 'Collaborative Editing', 'Cloud Storage Security']],
-    [12, 'Cybersecurity Basics', '🔒', 'cyber', 'content', ['Password Security', 'Two-Factor Authentication', 'Malware', 'Viruses', 'Phishing', 'Safe Downloads', 'Data Privacy', 'Device Security', 'Antivirus Software', 'Safe Internet Practices']],
-    [13, 'Digital Productivity', '⚡', 'productivity', 'content', ['Time Management Apps', 'Google Workspace', 'Microsoft 365', 'Online Collaboration', 'Note-Taking Apps', 'Task Management', 'File Sharing', 'Digital Organization']],
-    [14, 'AI & Emerging Technologies', '🤖', 'ai', 'content', ['Introduction to Artificial Intelligence', 'Using ChatGPT', 'AI Productivity Tools', 'AI for Writing', 'AI for Research', 'AI for Presentations', 'Responsible AI Use', 'Future Technology Trends']],
-    [15, 'Basic Computer Maintenance', '🛠️', 'maintenance', 'content', ['Cleaning Your Computer', 'Software Updates', 'Installing Applications', 'Uninstalling Applications', 'Disk Cleanup', 'Storage Management', 'Basic Troubleshooting', 'Computer Performance Optimization']],
-    [16, 'Professional Workplace Skills', '💼', 'workplace', 'content', ['Business Communication', 'Resume Writing', 'Job Application Preparation', 'Professional Email Writing', 'Office Etiquette', 'Workplace Collaboration', 'Time Management', 'Digital Professionalism']],
-    [17, 'Practical Computer Projects', '🏗️', 'projects', 'projects', ['Create a Professional Letter', 'Build an Excel Budget', 'Design a PowerPoint Presentation', 'Create a Resume', 'Prepare an Invoice', 'Organize Digital Files', 'Research Project', 'Online Collaboration Project', 'Email Communication Exercise', 'Digital Portfolio']],
-    [18, 'Career Development', '📈', 'workplace', 'content', ['Essential Digital Skills for Employment', 'Freelancing Opportunities', 'LinkedIn Basics', 'Building a Professional Portfolio', 'Interview Preparation', 'Workplace Technology', 'Continuous Learning', 'Career Planning']],
-    [19, 'Capstone Project', '🎓', 'capstone', 'projects', ['Project Planning', 'Word Document Creation', 'Excel Spreadsheet Development', 'PowerPoint Presentation', 'Online Research', 'Cloud File Sharing', 'Final Presentation', 'Portfolio Submission']],
-    [20, 'Assessments & Graduation', '🏆', 'assessment', 'assessment', ['Computer Fundamentals Assessment', 'Microsoft Word Assessment', 'Microsoft Excel Assessment', 'Microsoft PowerPoint Assessment', 'Internet & Email Assessment', 'Cybersecurity Assessment', 'Midterm Examination', 'Final Examination', 'Practical Skills Assessment', 'Capstone Project Evaluation', 'Certificate Requirements', 'Certificate of Completion']]
+    [1, 'Introduction to Computers', '🖥️', 'hardware', 'content', ['What Is a Computer?', 'Types of Computers', 'Parts of a Computer', 'Computer Hardware', 'Computer Software', 'Hardware vs. Software', 'Input Devices', 'Output Devices', 'Storage Devices', 'Computer Memory: RAM and ROM']],
+    [2, 'Using a Computer for the First Time', '🖱️', 'basics', 'content', ['Starting and Shutting Down a Computer', 'Using the Keyboard', 'Using a Computer Mouse', 'Understanding the Desktop', 'Using Windows Icons', 'Using the Taskbar', 'Opening and Closing Programs', 'Using Windows Search']],
+    [3, 'Windows Operating System', '🪟', 'windows', 'content', ['What Is an Operating System?', 'Introduction to Windows', 'Windows Desktop', 'Windows Settings', 'Control Panel', 'Installing Software', 'Uninstalling Software', 'Windows Updates']],
+    [4, 'Files and Folders', '📁', 'files', 'content', ['What Are Files and Folders?', 'Creating a Folder', 'Renaming Files and Folders', 'Copying and Moving Files', 'Deleting Files and Folders', 'Using Recycle Bin', 'Searching for Files', 'Organizing Your Files']],
+    [5, 'Internet Fundamentals', '🌐', 'internet', 'content', ['What Is the Internet?', 'How the Internet Works', 'What Is a Web Browser?', 'Using Google Chrome', 'Using Search Engines', 'Effective Google Searching', 'Opening and Managing Web Pages', 'Downloading Files From the Internet']],
+    [6, 'Internet Safety and Digital Security', '🔒', 'security', 'content', ['Internet Safety Basics', 'Creating Strong Passwords', 'Two-Factor Authentication', 'Recognizing Phishing Scams', 'Avoiding Online Scams', 'Protecting Personal Information Online', 'Safe Downloads', 'Computer Viruses and Malware']],
+    [7, 'Email and Online Communication', '✉️', 'email', 'content', ['What Is Email?', 'Creating a Gmail Account', 'Understanding the Gmail Interface', 'Sending an Email', 'Replying to an Email', 'Email Attachments', 'Managing Email', 'Email Etiquette']],
+    [8, 'Microsoft Word', '📝', 'word', 'content', ['Introduction to Microsoft Word', 'Creating a Word Document', 'Typing and Editing Text', 'Formatting Text', 'Using Styles and Headings', 'Creating Lists', 'Inserting Pictures', 'Creating Tables', 'Page Layout and Margins', 'Headers, Footers and Page Numbers', 'Saving a Word Document', 'Printing and Saving as PDF']],
+    [9, 'Microsoft Excel', '📊', 'excel', 'content', ['Introduction to Microsoft Excel', 'Understanding the Excel Interface', 'Workbooks and Worksheets', 'Rows, Columns and Cells', 'Entering Data', 'Formatting Cells', 'Basic Excel Formulas', 'Excel Functions', 'Sorting Data', 'Filtering Data', 'Creating Charts', 'Creating a Simple Spreadsheet Project']],
+    [10, 'Microsoft PowerPoint', '📽️', 'ppt', 'content', ['Introduction to Microsoft PowerPoint', 'Understanding the PowerPoint Interface', 'Creating a Presentation', 'Adding and Editing Slides', 'Adding Text and Images', 'Themes and Templates', 'Slide Transitions', 'Animations', 'Adding Audio and Video', 'Presenting a Slide Show']],
+    [11, 'Google Workspace', '🗂️', 'gworkspace', 'content', ['What Is Google Workspace?', 'Google Drive', 'Uploading Files to Google Drive', 'Organizing Google Drive Files', 'Sharing Files and Folders', 'Google Docs', 'Google Sheets', 'Google Slides']],
+    [12, 'Video Conferencing and Online Collaboration', '🎥', 'video', 'content', ['Introduction to Google Meet', 'Joining a Google Meet Meeting', 'Creating a Google Meet Meeting', 'Using the Camera and Microphone', 'Sharing Your Screen', 'Introduction to Zoom', 'Joining a Zoom Meeting', 'Using Zoom for Online Classes and Meetings']],
+    [13, 'Computer Maintenance and Troubleshooting', '🛠️', 'maintenance', 'content', ['Keeping Your Computer Clean and Organized', 'Installing and Updating Software', 'Windows Updates', 'Backing Up Important Files', 'Managing Computer Storage', 'Basic Computer Troubleshooting', 'Common Windows Problems', 'Safe Computer Maintenance']],
+    [14, 'Digital Skills for Work', '💼', 'work', 'content', ['Creating a Professional Document', 'Creating a Professional Spreadsheet', 'Creating a Professional Presentation', 'Professional Email Communication', 'Managing Digital Files', 'Online Collaboration', 'Digital Workplace Safety']],
+    [15, 'Final Practical Project & Assessment', '🏆', 'assessment', 'assessment', ['Computer Literacy Practical Project', 'Microsoft Word Practical Assessment', 'Microsoft Excel Practical Assessment', 'Microsoft PowerPoint Practical Assessment', 'Internet and Email Practical Assessment', 'Final Computer Literacy Examination', 'Final Certificate']]
   ];
 
+  var PROJECT_DESC = {
+    'Computer Literacy Practical Project': 'Create and organize a professional project folder containing documents, spreadsheets and presentation files.',
+    'Microsoft Word Practical Assessment': 'Create and format a professional document.',
+    'Microsoft Excel Practical Assessment': 'Create a spreadsheet using formulas, formatting and charts.',
+    'Microsoft PowerPoint Practical Assessment': 'Create and present a professional presentation.',
+    'Internet and Email Practical Assessment': 'Demonstrate safe Internet searching, email communication and file attachments.'
+  };
+
   function esc(v) { return String(v).replace(/[&<>"']/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]; }); }
-  function isProjectName(name) { return /(?:Project|Assignment|Presentation|Simulation)$/.test(name.trim()); }
 
-  var skillLabel = { orientation: 'computer literacy foundations', hardware: 'computer hardware & basics', os: 'the Windows operating system', files: 'file & folder management', typing: 'keyboard & typing skills', word: 'Microsoft Word', excel: 'Microsoft Excel', ppt: 'Microsoft PowerPoint', internet: 'internet & web browsing', email: 'email & online communication', cloud: 'cloud computing & storage', cyber: 'cybersecurity basics', productivity: 'digital productivity', ai: 'AI & emerging technologies', maintenance: 'computer maintenance', workplace: 'professional workplace skills', projects: 'practical computer projects', capstone: 'your capstone project', assessment: 'your skills' };
-
-  var FILES = '<div class="study-callout"><strong>📎 Practice files:</strong> download the practice file/worksheet for this lesson, follow along on your own computer, then Print → Save as PDF to keep your notes offline.</div>';
+  var skillLabel = { hardware: 'computer basics', basics: 'using a computer', windows: 'the Windows operating system', files: 'file & folder management', internet: 'using the internet', security: 'online safety & security', email: 'email & communication', word: 'Microsoft Word', excel: 'Microsoft Excel', ppt: 'Microsoft PowerPoint', gworkspace: 'Google Workspace', video: 'video conferencing & collaboration', maintenance: 'computer maintenance', work: 'digital work skills', assessment: 'your skills' };
 
   function note(moduleTitle, skill, name, position) {
     var label = skillLabel[skill] || 'computer skills';
-    var focus = position % 2 ? 'hands-on practice, real examples and doing it yourself' : 'understanding the concept, following the steps and practising on a computer';
-    var showFiles = /word|excel|ppt|typing|files|projects/.test(skill);
+    var focus = position % 2 ? 'clear steps, real examples and hands-on practice' : 'understanding the idea, then doing it yourself on a computer';
     return '<div class="study-note">' +
-      '<div class="revision-banner"><strong>Computer Literacy · ' + esc(moduleTitle) + '</strong><span>Zero to confident</span></div>' +
+      '<div class="revision-banner"><strong>Computer Literacy · ' + esc(moduleTitle) + '</strong><span>Beginner-friendly</span></div>' +
       '<h3>' + esc(name) + '</h3>' +
-      '<p>This lesson builds <strong>' + esc(label) + '</strong> through ' + focus + '. Watch the video, study the steps below, then complete the two practice exercises before the short quiz.</p>' +
-      '<h4>Key points</h4><ul>' +
-      '<li>Understand what <em>' + esc(name) + '</em> is and when you use it.</li>' +
-      '<li>Follow the step-by-step method shown in the video.</li>' +
-      '<li>Do it yourself on a computer — practice builds real confidence.</li></ul>' +
-      (showFiles ? FILES : '<div class="study-callout"><strong>TIH task:</strong> Apply <em>' + esc(name) + '</em> to a real task for your school, work, business or home.</div>') +
-      '<h4>Practice exercises</h4><ol>' +
-      '<li><strong>Exercise 1:</strong> Follow the steps for <em>' + esc(name) + '</em> on your own computer.</li>' +
-      '<li><strong>Exercise 2:</strong> Repeat it from memory and note one thing you found tricky.</li></ol>' +
-      '<p><strong>Printable notes:</strong> Use your browser’s Print → Save as PDF to keep an offline copy for revision.</p>' +
-      '<p><strong>Module connection:</strong> This lesson is part of <em>' + esc(moduleTitle) + '</em> on your path to becoming a confident digital user.</p>' +
+      '<p>This lesson builds <strong>' + esc(label) + '</strong> through ' + focus + '. Watch the video, follow along on your own computer, then complete the two practice steps before the short quiz.</p>' +
+      '<h4>Learning objectives</h4><ul>' +
+      '<li>Understand what <em>' + esc(name) + '</em> is and why it is useful.</li>' +
+      '<li>Do it yourself, step by step, on a real computer.</li>' +
+      '<li>Feel confident using it for school, work or daily life.</li></ul>' +
+      '<h4>Practice steps</h4><ol>' +
+      '<li><strong>Step 1:</strong> Watch the video and repeat each step yourself as you go.</li>' +
+      '<li><strong>Step 2:</strong> Do it once more without the video, then write one sentence in the Notes tab about what you learned.</li></ol>' +
+      '<p><strong>Printable notes:</strong> use your browser’s Print → Save as PDF to keep an offline copy.</p>' +
+      '<p><strong>Module connection:</strong> part of <em>' + esc(moduleTitle) + '</em> on your path to the Computer Literacy Certificate.</p>' +
       '</div>';
   }
 
-  function projectBrief(moduleTitle, name) {
-    return '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Hands-on project</span></div>' +
+  function projectBrief(moduleTitle, name, desc) {
+    return '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Practical project</span></div>' +
       '<h3>' + esc(name) + '</h3>' +
-      '<p>This is a practical project. Complete it on a real computer and save your work for your digital portfolio.</p>' +
-      '<h4>What to do</h4><ol><li>Open the right program (Word, Excel, PowerPoint, browser or email).</li><li>Create <em>' + esc(name) + '</em> step by step using the skills you have learned.</li><li>Save it, check it, and add the file to your digital portfolio folder.</li></ol>' +
-      FILES +
-      '<p><strong>Deliverable:</strong> A finished, saved file added to your digital portfolio.</p></div>';
+      '<p>' + esc(desc || 'Complete this hands-on task on a real computer and save your work as evidence of your learning.') + '</p>' +
+      '<h4>What to do</h4><ol><li>Plan what you will create.</li><li>Do the task step by step using the skills from the course.</li><li>Save your file (and Print → Save as PDF where useful) and add it to your portfolio.</li></ol>' +
+      '<p><strong>Deliverable:</strong> your finished file, saved and ready to submit.</p></div>';
   }
 
   var BANK = {
     general: [
-      { q: 'Computer literacy means being able to:', opts: ['Build computers only', 'Use computers and digital tools confidently for real tasks', 'Only play games', 'Repair hardware only'], correct: 1, exp: 'It is the ability to use computers effectively for everyday and work tasks.' },
-      { q: 'Digital skills are important because they:', opts: ['Are only for programmers', 'Are needed in education, business and most jobs today', 'Are outdated', 'Only matter for gaming'], correct: 1, exp: 'Digital skills are essential across school, work and daily life.' },
-      { q: 'The best way to learn computer skills is to:', opts: ['Only watch videos', 'Practise hands-on on a real computer', 'Memorise menus', 'Avoid mistakes'], correct: 1, exp: 'Hands-on practice builds real confidence and skill.' },
-      { q: 'A digital portfolio is:', opts: ['A paper file', 'A collection of your digital work to show your skills', 'A game', 'An email'], correct: 1, exp: 'It showcases the documents and projects you can produce.' },
-      { q: 'Saving your work often prevents:', opts: ['Nothing', 'Losing your work if the computer closes or crashes', 'Faster typing', 'Better graphics'], correct: 1, exp: 'Regular saving protects against data loss.' },
-      { q: 'The capstone project helps you:', opts: ['Skip learning', 'Apply all your skills to one real task', 'Only take a quiz', 'Memorise terms'], correct: 1, exp: 'The capstone brings together everything you learned.' }
+      { q: 'Computer literacy means:', opts: ['Building computers', 'Being able to use a computer confidently for everyday tasks', 'Only gaming', 'Fixing hardware'], correct: 1, exp: 'Computer literacy is confidently using a computer for real tasks.' },
+      { q: 'To keep your work safe you should:', opts: ['Never save', 'Save your files often', 'Turn off the screen', 'Delete everything'], correct: 1, exp: 'Saving often protects your work from loss.' },
+      { q: 'A good habit online is to:', opts: ['Share passwords', 'Use strong passwords and think before you click', 'Click every link', 'Ignore updates'], correct: 1, exp: 'Strong passwords and careful clicking keep you safe.' },
+      { q: 'The best way to learn a computer skill is to:', opts: ['Only read', 'Watch, then practise it yourself', 'Memorise without doing', 'Skip practice'], correct: 1, exp: 'Doing it yourself builds real, lasting skill.' },
+      { q: 'If something goes wrong you should first:', opts: ['Panic', 'Stay calm and try basic troubleshooting (e.g. restart)', 'Throw the PC away', 'Delete files'], correct: 1, exp: 'Calm, basic troubleshooting solves most small problems.' },
+      { q: 'Backing up your files means:', opts: ['Deleting them', 'Keeping a copy somewhere safe', 'Printing them', 'Hiding them'], correct: 1, exp: 'A backup is a safe copy in case the original is lost.' }
     ],
     hardware: [
-      { q: 'A keyboard and mouse are examples of:', opts: ['Output devices', 'Input devices', 'Storage devices', 'Software'], correct: 1, exp: 'Input devices send data into the computer.' },
-      { q: 'A monitor and printer are examples of:', opts: ['Input devices', 'Output devices', 'Storage devices', 'Networks'], correct: 1, exp: 'Output devices show or produce results.' },
-      { q: 'Hardware refers to:', opts: ['Programs', 'The physical parts of a computer', 'The internet', 'Files'], correct: 1, exp: 'Hardware is the physical equipment; software is the programs.' },
-      { q: 'Which is a storage device?', opts: ['Monitor', 'Hard drive / USB flash drive', 'Mouse', 'Speaker'], correct: 1, exp: 'Storage devices keep data (hard drive, SSD, USB).' },
-      { q: 'The operating system is:', opts: ['A physical part', 'The main software that runs the computer', 'A printer', 'A website'], correct: 1, exp: 'The OS manages hardware and runs programs (e.g. Windows).' },
-      { q: 'The CPU is often called the computer’s:', opts: ['Screen', 'Brain (it processes instructions)', 'Keyboard', 'Speaker'], correct: 1, exp: 'The CPU processes instructions — the "brain".' }
+      { q: 'Hardware is:', opts: ['Programs you run', 'The physical parts of a computer', 'The internet', 'A password'], correct: 1, exp: 'Hardware is the physical equipment; software is the programs.' },
+      { q: 'An input device is used to:', opts: ['Show output', 'Put information into the computer (e.g. keyboard)', 'Store files', 'Print'], correct: 1, exp: 'Input devices (keyboard, mouse) send data in.' },
+      { q: 'RAM is:', opts: ['Permanent storage', 'Temporary working memory', 'A monitor', 'A network'], correct: 1, exp: 'RAM is fast, temporary memory used while working.' },
+      { q: 'A storage device (e.g. hard drive) is used to:', opts: ['Type text', 'Keep files even when the power is off', 'Show the screen', 'Connect to Wi-Fi'], correct: 1, exp: 'Storage keeps data permanently between sessions.' },
+      { q: 'A monitor is an example of:', opts: ['An input device', 'An output device', 'Storage', 'A network'], correct: 1, exp: 'A monitor outputs (displays) information to you.' },
+      { q: 'Software is:', opts: ['Physical parts', 'The programs and apps that run on a computer', 'A cable', 'A screen'], correct: 1, exp: 'Software is the instructions/programs the computer runs.' }
     ],
-    os: [
-      { q: 'In Windows, the File Explorer is used to:', opts: ['Browse the web', 'Manage files and folders', 'Send email', 'Edit photos only'], correct: 1, exp: 'File Explorer browses and manages files/folders.' },
-      { q: 'The Taskbar usually shows:', opts: ['Only the time', 'Open programs and quick access icons', 'Only files', 'The BIOS'], correct: 1, exp: 'The taskbar shows running/pinned apps and the clock.' },
-      { q: 'To find programs and settings you often use the:', opts: ['Recycle Bin', 'Start Menu', 'Printer', 'Webcam'], correct: 1, exp: 'The Start Menu launches apps and settings.' },
-      { q: 'System settings let you:', opts: ['Only play music', 'Change how the computer works (display, sound, accounts)', 'Write essays', 'Nothing'], correct: 1, exp: 'Settings/Control Panel configure the system.' },
-      { q: 'Windows updates are important because they:', opts: ['Slow the PC only', 'Improve security and fix problems', 'Delete files', 'Are optional and useless'], correct: 1, exp: 'Updates patch security holes and fix bugs.' },
-      { q: 'A user account helps by:', opts: ['Sharing all data publicly', 'Keeping each person’s files and settings separate', 'Removing the OS', 'Disabling the mouse'], correct: 1, exp: 'Accounts separate users’ files and settings securely.' }
+    windows: [
+      { q: 'An operating system (like Windows) is:', opts: ['A game', 'The software that runs the whole computer', 'A website', 'A printer'], correct: 1, exp: 'The OS manages the computer and runs your programs.' },
+      { q: 'The taskbar in Windows is used to:', opts: ['Type essays', 'Open and switch between programs', 'Store files only', 'Encrypt data'], correct: 1, exp: 'The taskbar launches and switches apps.' },
+      { q: 'Windows Settings/Control Panel let you:', opts: ['Only play music', 'Change how the computer works and looks', 'Delete Windows', 'Browse the web'], correct: 1, exp: 'Settings control the computer’s configuration.' },
+      { q: 'Keeping Windows updated helps to:', opts: ['Slow the PC', 'Fix bugs and improve security', 'Delete files', 'Remove the OS'], correct: 1, exp: 'Updates patch security holes and fix problems.' },
+      { q: 'To remove a program you:', opts: ['Delete random files', 'Use uninstall in Settings/Control Panel', 'Turn off the PC', 'Rename it'], correct: 1, exp: 'Uninstalling cleanly removes a program.' },
+      { q: 'The desktop is:', opts: ['A type of file', 'The main screen with icons and the taskbar', 'A printer', 'A browser'], correct: 1, exp: 'The desktop is your main working screen.' }
     ],
     files: [
-      { q: 'A folder is used to:', opts: ['Delete files', 'Organize and group related files', 'Print', 'Browse the web'], correct: 1, exp: 'Folders organise files so you can find them.' },
-      { q: 'Deleted files usually go first to the:', opts: ['Cloud', 'Recycle Bin (can be restored)', 'Printer', 'Internet'], correct: 1, exp: 'The Recycle Bin holds deleted files until emptied.' },
-      { q: 'Compressing files (ZIP) is useful to:', opts: ['Make them bigger', 'Reduce size and bundle files together', 'Delete them', 'Print them'], correct: 1, exp: 'ZIP reduces size and groups files for sharing.' },
-      { q: 'A backup is:', opts: ['A deleted file', 'A saved copy to protect against loss', 'A virus', 'A printer'], correct: 1, exp: 'Backups protect your data if something goes wrong.' },
-      { q: 'Good file organization means:', opts: ['Everything on the desktop', 'Clear folders and consistent names', 'Random names', 'No folders'], correct: 1, exp: 'Structured folders and names make files easy to find.' },
-      { q: 'To keep a copy and place a file elsewhere you:', opts: ['Delete it', 'Copy and paste it', 'Rename it only', 'Print it'], correct: 1, exp: 'Copy keeps the original and duplicates it elsewhere.' }
-    ],
-    word: [
-      { q: 'Microsoft Word is used mainly for:', opts: ['Spreadsheets', 'Creating and formatting documents', 'Presentations', 'Databases'], correct: 1, exp: 'Word is a word processor for documents.' },
-      { q: 'To make text bold you can press:', opts: ['Ctrl+B', 'Ctrl+P', 'Ctrl+S', 'Ctrl+Z'], correct: 0, exp: 'Ctrl+B toggles bold.' },
-      { q: 'Spell check helps you:', opts: ['Print faster', 'Find and fix spelling mistakes', 'Add images', 'Save the file'], correct: 1, exp: 'Spell check flags likely spelling errors.' },
-      { q: 'Mail Merge is used to:', opts: ['Delete emails', 'Create many personalised documents/letters from a list', 'Send one email', 'Format a chart'], correct: 1, exp: 'Mail Merge personalises documents for many recipients.' },
-      { q: 'Headers and footers appear:', opts: ['In the middle', 'At the top and bottom of every page', 'Only page one', 'Never'], correct: 1, exp: 'They repeat at the top/bottom of pages.' },
-      { q: 'To keep your document you should:', opts: ['Close without saving', 'Save it (Ctrl+S)', 'Delete it', 'Print only'], correct: 1, exp: 'Ctrl+S saves your work.' }
-    ],
-    excel: [
-      { q: 'Microsoft Excel is used mainly for:', opts: ['Documents', 'Spreadsheets, data and calculations', 'Slides', 'Email'], correct: 1, exp: 'Excel handles data, tables and calculations.' },
-      { q: 'A formula in Excel begins with:', opts: ['A letter', 'An equals sign (=)', 'A space', 'A comma'], correct: 1, exp: 'Formulas start with = , e.g. =A1+B1.' },
-      { q: 'The SUM function is used to:', opts: ['Count words', 'Add up a range of numbers', 'Sort text', 'Print'], correct: 1, exp: '=SUM(A1:A10) adds the range.' },
-      { q: 'The AVERAGE function returns the:', opts: ['Largest value', 'Mean of the numbers', 'Smallest value', 'Count'], correct: 1, exp: 'AVERAGE gives the arithmetic mean.' },
-      { q: 'A cell reference like A1 means:', opts: ['Row A, column 1', 'Column A, row 1', 'A formula', 'A chart'], correct: 1, exp: 'Columns are letters, rows are numbers: A1 = column A, row 1.' },
-      { q: 'Charts in Excel are used to:', opts: ['Hide data', 'Visualise data graphically', 'Delete data', 'Print faster'], correct: 1, exp: 'Charts turn numbers into visual insights.' }
-    ],
-    ppt: [
-      { q: 'Microsoft PowerPoint is used to:', opts: ['Do calculations', 'Create presentations/slides', 'Write long documents', 'Send email'], correct: 1, exp: 'PowerPoint builds slide presentations.' },
-      { q: 'A good slide should be:', opts: ['Full of text', 'Clear and visual with key points', 'All one colour', 'Blank'], correct: 1, exp: 'Slides work best with concise, visual content.' },
-      { q: 'Transitions control:', opts: ['How text is spelled', 'How one slide changes to the next', 'The file size', 'The printer'], correct: 1, exp: 'Transitions animate the change between slides.' },
-      { q: 'Animations are used to:', opts: ['Delete slides', 'Add movement to elements on a slide', 'Save the file', 'Print'], correct: 1, exp: 'Animations reveal or emphasise slide elements.' },
-      { q: 'To start a slideshow you press:', opts: ['F5 (or Slide Show)', 'Ctrl+B', 'Delete', 'Ctrl+Z'], correct: 0, exp: 'F5 starts the presentation from the beginning.' },
-      { q: 'SmartArt helps you:', opts: ['Do maths', 'Show ideas/processes as diagrams', 'Send email', 'Sort data'], correct: 1, exp: 'SmartArt turns lists into visual diagrams.' }
+      { q: 'A folder is used to:', opts: ['Print pages', 'Organize and group your files', 'Connect to Wi-Fi', 'Edit photos'], correct: 1, exp: 'Folders keep related files organized together.' },
+      { q: 'To keep the same file in two places you can:', opts: ['Delete it', 'Copy it', 'Rename it', 'Hide it'], correct: 1, exp: 'Copying leaves the original and makes a duplicate.' },
+      { q: 'The Recycle Bin holds:', opts: ['New files', 'Files you deleted (until emptied)', 'Programs', 'Websites'], correct: 1, exp: 'Deleted files wait in the Recycle Bin so you can restore them.' },
+      { q: 'A clear file name helps you:', opts: ['Lose files', 'Find your files again easily', 'Slow the PC', 'Encrypt data'], correct: 1, exp: 'Good names make files easy to find later.' },
+      { q: 'Moving a file (cut and paste) means:', opts: ['Two copies exist', 'It goes from one place to another', 'It is deleted', 'It is printed'], correct: 1, exp: 'Moving relocates the file without leaving a copy.' },
+      { q: 'Organizing files into folders makes work:', opts: ['Harder', 'Faster and tidier', 'Slower', 'Impossible'], correct: 1, exp: 'Good organization saves time and avoids losing work.' }
     ],
     internet: [
-      { q: 'A web browser is used to:', opts: ['Do spreadsheets', 'Access and view websites', 'Print only', 'Edit photos'], correct: 1, exp: 'Browsers (Chrome, Edge) open websites.' },
-      { q: 'A search engine (e.g. Google) helps you:', opts: ['Delete files', 'Find information online', 'Format documents', 'Send email only'], correct: 1, exp: 'Search engines find web pages matching your query.' },
-      { q: 'Effective searching uses:', opts: ['Whole paragraphs', 'Specific keywords', 'Random letters', 'Only images'], correct: 1, exp: 'Focused keywords give better results.' },
-      { q: 'Bookmarks let you:', opts: ['Delete websites', 'Save and quickly return to web pages', 'Print pages', 'Block sites'], correct: 1, exp: 'Bookmarks save pages for quick access.' },
-      { q: 'Safe browsing means you:', opts: ['Click every link', 'Avoid suspicious sites and downloads', 'Share passwords', 'Ignore HTTPS'], correct: 1, exp: 'Be cautious with unknown links and downloads.' },
-      { q: 'A secure website address starts with:', opts: ['http://', 'https:// (with a padlock)', 'ftp only', 'www only'], correct: 1, exp: 'HTTPS encrypts the connection (look for the padlock).' }
+      { q: 'A web browser is used to:', opts: ['Type documents', 'View websites on the internet', 'Store files', 'Print'], correct: 1, exp: 'A browser (e.g. Chrome) opens websites.' },
+      { q: 'A search engine (e.g. Google) helps you:', opts: ['Delete files', 'Find information on the internet', 'Edit photos', 'Turn off the PC'], correct: 1, exp: 'Search engines find pages that match your query.' },
+      { q: 'A good search uses:', opts: ['One vague word', 'Clear, specific keywords', 'Only punctuation', 'Your password'], correct: 1, exp: 'Specific keywords give better search results.' },
+      { q: 'A website address (URL) is:', opts: ['A password', 'The location of a page on the web', 'A file type', 'A printer'], correct: 1, exp: 'A URL is the address you type to reach a site.' },
+      { q: 'Downloading a file means:', opts: ['Sending it away', 'Saving it from the internet to your computer', 'Deleting it', 'Printing it'], correct: 1, exp: 'Downloading copies a file from the web to your device.' },
+      { q: 'A safe website usually starts with:', opts: ['http://', 'https:// (with a padlock)', 'ftp only', 'nothing'], correct: 1, exp: 'HTTPS with a padlock indicates an encrypted connection.' }
+    ],
+    security: [
+      { q: 'A strong password is:', opts: ['1234', 'Long, unique and hard to guess', 'Your name', 'password'], correct: 1, exp: 'Long, unique passwords resist guessing and cracking.' },
+      { q: 'Two-factor authentication adds security by:', opts: ['Using one password', 'Requiring a second proof (e.g. a code)', 'Removing passwords', 'Sharing codes'], correct: 1, exp: '2FA adds a second step so a stolen password is not enough.' },
+      { q: 'Phishing is:', opts: ['A safe email', 'A fake message that tricks you into giving information', 'A browser', 'A file type'], correct: 1, exp: 'Phishing uses fake messages to steal your information.' },
+      { q: 'You should share your password with:', opts: ['Everyone', 'No one', 'Friends', 'Websites that ask'], correct: 1, exp: 'Never share passwords — keep them private.' },
+      { q: 'To protect your information online you should:', opts: ['Click every link', 'Think before you click and share carefully', 'Post your details publicly', 'Disable updates'], correct: 1, exp: 'Careful clicking and sharing protects your data.' },
+      { q: 'Malware is:', opts: ['Helpful software', 'Harmful software like viruses', 'A browser', 'A password'], correct: 1, exp: 'Malware is malicious software that can harm your device.' }
     ],
     email: [
-      { q: 'To send a file with an email you use an:', opts: ['Attachment', 'Animation', 'Formula', 'Bookmark'], correct: 0, exp: 'Attachments send files along with the message.' },
-      { q: 'Email etiquette includes:', opts: ['No subject line', 'A clear subject, greeting and polite tone', 'ALL CAPS', 'No signature ever'], correct: 1, exp: 'Clear, polite, well-structured emails are professional.' },
-      { q: 'The "CC" field is used to:', opts: ['Hide recipients', 'Copy others on the email openly', 'Delete the email', 'Attach files'], correct: 1, exp: 'CC copies additional recipients visibly.' },
-      { q: 'Video conferencing tools include:', opts: ['Excel', 'Zoom and Microsoft Teams', 'Notepad', 'Paint'], correct: 1, exp: 'Zoom/Teams host online meetings.' },
-      { q: 'A professional email address looks like:', opts: ['coolguy123@', 'firstname.lastname@…', 'random letters', 'no name'], correct: 1, exp: 'Use your name for a professional impression.' },
-      { q: 'Before sending an important email you should:', opts: ['Send immediately', 'Proofread it and check the recipient', 'Delete it', 'Add many colours'], correct: 1, exp: 'Check content and recipient before sending.' }
+      { q: 'Email is used to:', opts: ['Print photos', 'Send and receive messages online', 'Store the OS', 'Scan disks'], correct: 1, exp: 'Email sends and receives digital messages.' },
+      { q: 'An attachment is:', opts: ['A password', 'A file sent with an email', 'A website', 'A folder'], correct: 1, exp: 'Attachments are files sent along with a message.' },
+      { q: 'Reply All sends the message to:', opts: ['Only the sender', 'Everyone on the message', 'No one', 'Your printer'], correct: 1, exp: 'Reply All messages every recipient — use it carefully.' },
+      { q: 'Good email etiquette includes:', opts: ['No subject ever', 'A clear subject and polite, brief message', 'Shouting in capitals', 'Sharing passwords'], correct: 1, exp: 'Clear subjects and polite, concise writing are good practice.' },
+      { q: 'A suspicious email asking for your password is likely:', opts: ['Safe', 'Phishing — do not respond', 'From your bank always', 'Helpful'], correct: 1, exp: 'Legitimate services do not ask for your password by email.' },
+      { q: 'To keep your inbox tidy you can:', opts: ['Never delete', 'Organize with folders/labels and delete junk', 'Reply to spam', 'Turn off email'], correct: 1, exp: 'Folders/labels and clearing junk keep email manageable.' }
     ],
-    cloud: [
-      { q: 'Cloud computing lets you:', opts: ['Only work offline', 'Store and access files over the internet', 'Print only', 'Avoid the internet'], correct: 1, exp: 'The cloud stores data on internet servers you can access anywhere.' },
-      { q: 'Google Drive and OneDrive are examples of:', opts: ['Browsers', 'Cloud storage services', 'Printers', 'Antivirus'], correct: 1, exp: 'They store files online.' },
-      { q: 'Sharing a cloud file lets others:', opts: ['Nothing', 'View or edit it with a link/permission', 'Delete your PC', 'Print automatically'], correct: 1, exp: 'You control view/edit access via sharing settings.' },
-      { q: 'Collaborative editing means:', opts: ['One person only', 'Several people editing the same file together', 'No editing', 'Offline only'], correct: 1, exp: 'Cloud docs allow real-time co-editing.' },
-      { q: 'A benefit of the cloud is:', opts: ['Files lost if PC breaks', 'Access from any device and automatic backup', 'No security', 'No sharing'], correct: 1, exp: 'Cloud files are accessible anywhere and backed up.' },
-      { q: 'To protect cloud files you should:', opts: ['Share your password', 'Use strong passwords and careful sharing', 'Make everything public', 'Disable login'], correct: 1, exp: 'Strong passwords and careful sharing keep cloud data safe.' }
+    word: [
+      { q: 'Microsoft Word is used to:', opts: ['Do calculations', 'Create and format documents', 'Edit videos', 'Browse the web'], correct: 1, exp: 'Word is a word processor for documents.' },
+      { q: 'To make text bold you:', opts: ['Delete it', 'Select it and click Bold (or Ctrl+B)', 'Print it', 'Rename it'], correct: 1, exp: 'Select text, then apply Bold formatting.' },
+      { q: 'Headings and styles help to:', opts: ['Hide text', 'Structure a document clearly', 'Slow typing', 'Encrypt files'], correct: 1, exp: 'Styles/headings give documents clear structure.' },
+      { q: 'To keep your document you must:', opts: ['Close without saving', 'Save it (Ctrl+S)', 'Print only', 'Delete it'], correct: 1, exp: 'Saving stores your document to keep your work.' },
+      { q: 'To share a document that looks the same everywhere, save as:', opts: ['A photo', 'PDF', 'A password', 'A website'], correct: 1, exp: 'PDF preserves layout across devices.' },
+      { q: 'A table in Word is used to:', opts: ['Play audio', 'Organize information in rows and columns', 'Encrypt data', 'Send email'], correct: 1, exp: 'Tables arrange information neatly in a grid.' }
     ],
-    cyber: [
-      { q: 'A strong password is:', opts: ['12345', 'Long, unique and hard to guess', 'Your name', 'password'], correct: 1, exp: 'Long, unique passwords resist guessing.' },
-      { q: 'Two-factor authentication (2FA):', opts: ['Weakens security', 'Adds a second step to protect your login', 'Removes passwords', 'Is only for banks'], correct: 1, exp: '2FA adds a second verification step.' },
-      { q: 'Phishing is:', opts: ['A sport', 'Fake messages trying to steal your information', 'A browser', 'A backup'], correct: 1, exp: 'Phishing tricks you into revealing data.' },
-      { q: 'Antivirus software helps by:', opts: ['Deleting all files', 'Detecting and removing malware', 'Slowing the internet', 'Sending spam'], correct: 1, exp: 'Antivirus finds and removes malicious software.' },
-      { q: 'You should download software only from:', opts: ['Any pop-up', 'Trusted, official sources', 'Random links', 'Email attachments from strangers'], correct: 1, exp: 'Official sources reduce malware risk.' },
-      { q: 'Protecting data privacy means:', opts: ['Sharing everything', 'Being careful what personal info you share online', 'Posting passwords', 'Ignoring settings'], correct: 1, exp: 'Limit and control the personal data you share.' }
+    excel: [
+      { q: 'Microsoft Excel is used to:', opts: ['Write essays', 'Work with data in rows and columns', 'Edit videos', 'Browse the web'], correct: 1, exp: 'Excel is a spreadsheet for data and calculations.' },
+      { q: 'A cell is:', opts: ['A whole file', 'A single box where a row and column meet', 'A folder', 'A printer'], correct: 1, exp: 'A cell is one box identified by its column and row.' },
+      { q: 'A formula in Excel usually starts with:', opts: ['A letter', 'An equals sign (=)', 'A space', 'A hashtag'], correct: 1, exp: 'Formulas begin with = , e.g. =A1+A2.' },
+      { q: 'SUM is a function that:', opts: ['Deletes data', 'Adds up numbers', 'Prints', 'Sorts text'], correct: 1, exp: '=SUM(...) adds a range of numbers.' },
+      { q: 'A chart in Excel helps you:', opts: ['Hide data', 'Show data visually', 'Encrypt files', 'Send email'], correct: 1, exp: 'Charts turn numbers into a visual picture.' },
+      { q: 'Sorting data lets you:', opts: ['Lose it', 'Arrange it in order (e.g. A–Z)', 'Delete it', 'Print it'], correct: 1, exp: 'Sorting arranges rows in a chosen order.' }
+    ],
+    ppt: [
+      { q: 'PowerPoint is used to:', opts: ['Do accounts', 'Create slide presentations', 'Edit code', 'Browse the web'], correct: 1, exp: 'PowerPoint makes slide-based presentations.' },
+      { q: 'A theme in PowerPoint controls:', opts: ['Your password', 'The overall look (colours/fonts) of slides', 'The internet', 'Storage'], correct: 1, exp: 'Themes set a consistent design for all slides.' },
+      { q: 'Transitions are:', opts: ['File types', 'Effects between slides', 'Passwords', 'Printers'], correct: 1, exp: 'Transitions animate the move from one slide to the next.' },
+      { q: 'Good slides usually have:', opts: ['Lots of tiny text', 'Clear, short points and visuals', 'No titles', 'Only paragraphs'], correct: 1, exp: 'Concise points and visuals communicate best.' },
+      { q: 'Slide Show view is used to:', opts: ['Edit only', 'Present the slides full screen', 'Delete slides', 'Print'], correct: 1, exp: 'Slide Show plays the presentation full screen.' },
+      { q: 'Adding images to slides helps to:', opts: ['Confuse people', 'Support and illustrate your points', 'Slow the PC', 'Hide content'], correct: 1, exp: 'Relevant images strengthen your message.' }
     ]
   };
 
   function bankKey(skill) {
-    var map = { orientation: 'general', hardware: 'hardware', os: 'os', files: 'files', typing: 'general', word: 'word', excel: 'excel', ppt: 'ppt', internet: 'internet', email: 'email', cloud: 'cloud', cyber: 'cyber', productivity: 'general', ai: 'general', maintenance: 'os', workplace: 'general', projects: 'general', capstone: 'general', assessment: 'general' };
+    var map = { hardware: 'hardware', basics: 'windows', windows: 'windows', files: 'files', internet: 'internet', security: 'security', email: 'email', word: 'word', excel: 'excel', ppt: 'ppt', gworkspace: 'files', video: 'internet', maintenance: 'windows', work: 'general', assessment: 'general' };
     return map[skill] || 'general';
   }
   function pickQuestions(key, count) {
     var pool = BANK[key] || BANK.general;
-    var mixed = BANK.general.concat(BANK.hardware, BANK.os, BANK.files, BANK.word, BANK.excel, BANK.ppt, BANK.internet, BANK.email, BANK.cloud, BANK.cyber);
+    var mixed = BANK.general.concat(BANK.hardware, BANK.windows, BANK.files, BANK.internet, BANK.security, BANK.email, BANK.word, BANK.excel, BANK.ppt);
     var out = [];
     for (var i = 0; i < count; i++) { out.push(i < pool.length ? pool[i] : mixed[i % mixed.length]); }
     return out;
@@ -200,15 +177,6 @@
   function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
   function practiceQuiz(key, name) { return { title: 'Practice: ' + name, moduleNum: 1, questions: pickQuestions(key, 3).map(cloneQ) }; }
   function assessmentQuiz(key, name, count) { return { title: name, moduleNum: 1, questions: pickQuestions(key, count).map(cloneQ) }; }
-  function assessmentKey(name) {
-    if (/Word/i.test(name)) return 'word';
-    if (/Excel/i.test(name)) return 'excel';
-    if (/PowerPoint/i.test(name)) return 'ppt';
-    if (/Internet|Email/i.test(name)) return 'internet';
-    if (/Cybersecurity/i.test(name)) return 'cyber';
-    if (/Fundamentals|Computer/i.test(name)) return 'hardware';
-    return 'general';
-  }
 
   var modules = [], quizzes = {}, notes = {};
   var flat = 0, notePos = 0;
@@ -222,38 +190,27 @@
     var lessons = [], idx = 0;
 
     names.forEach(function (name) {
-      if (/^Certificate of Completion$/i.test(name)) {
-        var qid = 'cl-m' + num + '-final';
-        quizzes[qid] = assessmentQuiz('general', 'Graduation Assessment', 15);
-        quizzes[qid].isFinal = true;
-        lessons.push({ t: '🏆 ' + name, d: '15 questions', isQuiz: true, quizId: qid, isFinal: true });
-        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>This is the final graduation assessment. Pass it to complete the program and unlock your TIH Certificate of Completion.</p></div>';
-        flat += 1; quizCount += 1;
-        return;
-      }
-      if (/^Certificate Requirements$/i.test(name)) {
-        idx += 1;
-        lessons.push({ t: num + '.' + idx + ' ' + name, d: 'Resource', v: null, isQuiz: false });
-        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>To graduate and earn your TIH Certificate of Completion you must:</p><ul><li>Complete the lessons in Modules 1–18.</li><li>Complete the practical projects in Module 17 (10 real-world projects).</li><li>Complete the capstone in Module 19 and submit your digital portfolio.</li><li>Pass the skill assessments, the Midterm and Final Examinations, the Practical Skills Assessment and the Capstone Evaluation.</li><li>Pass the final Certificate of Completion assessment.</li></ul></div>';
-        flat += 1;
-        return;
-      }
       if (type === 'assessment') {
-        var akey = assessmentKey(name);
-        var big = /Examination|Exam|Evaluation/i.test(name);
-        var count = big ? (/Final/i.test(name) ? 20 : 15) : 8;
-        var aid = 'cl-m' + num + '-a' + flat;
-        quizzes[aid] = assessmentQuiz(akey, name, count);
-        lessons.push({ t: (big ? '🧪 ' : '📝 ') + name, d: count + ' questions', isQuiz: true, quizId: aid });
-        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Assessment</span></div><h3>' + esc(name) + '</h3><p>Complete this ' + (big ? 'examination' : 'assessment') + ', then review every answer explanation to strengthen your weak areas.</p></div>';
-        flat += 1; quizCount += 1; if (big) examCount += 1;
-        return;
-      }
-      if (type === 'projects' || isProjectName(name)) {
-        idx += 1;
-        var pv = pool[idx % pool.length];
-        lessons.push({ t: '🛠️ ' + name, d: 'Project', isProject: true, v: pv });
-        notes[String(flat)] = projectBrief(moduleTitle, name);
+        if (/Final Certificate|Certificate of Completion/i.test(name)) {
+          var qid = 'cl-m' + num + '-final';
+          quizzes[qid] = assessmentQuiz('general', 'Final Certificate Assessment', 15);
+          quizzes[qid].isFinal = true;
+          lessons.push({ t: '🏆 ' + name, d: '15 questions', isQuiz: true, quizId: qid, isFinal: true });
+          notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>This is the final assessment. Pass it, along with the practical projects, to complete the program and earn your <strong>Complete Computer Literacy Professional Certificate</strong>.</p></div>';
+          flat += 1; quizCount += 1;
+          return;
+        }
+        if (/Examination|Exam/i.test(name)) {
+          var eid = 'cl-m' + num + '-a' + flat;
+          quizzes[eid] = assessmentQuiz('general', name, 20);
+          lessons.push({ t: '🧪 ' + name, d: '20 questions', isQuiz: true, quizId: eid });
+          notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Final examination</span></div><h3>' + esc(name) + '</h3><p>Complete this final examination, then review every answer explanation to strengthen weak areas.</p></div>';
+          flat += 1; quizCount += 1; examCount += 1;
+          return;
+        }
+        // Practical project / assessment tasks (hands-on, no quiz)
+        lessons.push({ t: '🛠️ ' + name, d: 'Practical project', isProject: true, v: null });
+        notes[String(flat)] = projectBrief(moduleTitle, name, PROJECT_DESC[name]);
         flat += 1; projectCount += 1;
         return;
       }
@@ -265,19 +222,19 @@
       var pqid = 'cl-m' + num + '-q' + flat;
       quizzes[pqid] = practiceQuiz(key, name);
       lessons.push({ t: '📝 Practice: ' + name, d: '3 questions', isQuiz: true, quizId: pqid });
-      notes[String(flat)] = '<p><strong>Quick check:</strong> Review the notes and complete the two practice exercises, then answer these to confirm you understood <em>' + esc(name) + '</em>.</p>';
+      notes[String(flat)] = '<p><strong>Quick check:</strong> follow the two practice steps, then answer these to confirm you understood <em>' + esc(name) + '</em>.</p>';
       flat += 1; quizCount += 1;
     });
 
     modules.push({ title: moduleTitle, icon: icon, meta: lessons.length + ' lessons', lessons: lessons });
   });
 
-  var ex = COURSES_DB[CID];
+  var ex = COURSES_DB[CID] || {};
   COURSES_DB[CID] = {
     id: CID,
     title: 'Complete Computer Literacy Professional Certificate',
-    shortDesc: 'A full 20-module program from complete beginner to confident digital user: computer basics, Windows, files, typing, Microsoft Word/Excel/PowerPoint, internet, email, cloud, cybersecurity, digital productivity, AI, maintenance, workplace skills, 10 real-world projects, a capstone and a Certificate of Completion.',
-    category: 'Computer Literacy',
+    shortDesc: ex.shortDesc || 'A complete beginner-to-confident computer course: computer basics, Windows, files, the internet, online safety, email, Microsoft Word, Excel & PowerPoint, Google Workspace, video conferencing, maintenance and digital work skills — with hands-on projects, a final practical assessment and a Professional Certificate.',
+    category: ex.category || 'Computer Literacy',
     icon: ex.icon || '💻',
     gradient: ex.gradient || 'linear-gradient(135deg,#1e3a5f,#002868)',
     instructor: ex.instructor,
@@ -286,30 +243,29 @@
     rating: ex.rating || 4.9,
     reviewCount: ex.reviewCount || 0,
     students: ex.students || 'TIH learners',
-    duration: '140h+',
-    level: 'Beginner → Confident',
+    duration: '80h+',
+    level: 'Beginner',
     price: ex.price || 'FREE',
     origPrice: ex.origPrice || '$120',
     isFree: (ex.isFree !== false),
     badge: ex.badge || 'free',
     certId: 'TIH-2026-COMPLIT-0001',
     learn: [
-      'Operate a computer and Windows confidently and manage files',
-      'Type efficiently and use keyboard shortcuts',
+      'Use a computer and Windows confidently from scratch',
+      'Manage files and folders, and stay safe and secure online',
+      'Send professional email and communicate online',
       'Create documents, spreadsheets and presentations in Microsoft Office',
-      'Browse the internet safely, use email and online communication tools',
-      'Use cloud storage, protect your devices and apply cybersecurity basics',
-      'Apply digital and AI tools, and build workplace-ready digital skills'
+      'Use Google Workspace, video conferencing and online collaboration',
+      'Maintain and troubleshoot a computer, and apply digital skills at work'
     ],
-    requirements: [
-      'No prior experience required — we start from the very basics',
-      'Access to a computer (Windows recommended) to practise',
-      'Willingness to practise each skill hands-on'
+    requirements: ex.requirements || [
+      'No prior experience needed — this course starts from zero',
+      'Access to a computer (Windows recommended) and the internet'
     ],
-    about: [
-      'This is the complete TIH Computer Literacy Professional Certificate, rebuilt into twenty modules that take you from your first day on a computer to confident digital work.',
-      'Every content lesson has a video and printable notes with downloadable practice files; ten real-world projects and a capstone build a digital portfolio you can show employers.',
-      'Software & tools: Microsoft Windows, Word, Excel, PowerPoint and Outlook, Google Chrome, Google Workspace, OneDrive, Zoom, Microsoft Teams and ChatGPT. You finish with a portfolio and — after the graduation assessment — a Certificate of Completion.'
+    about: ex.about || [
+      'This is the complete TIH Computer Literacy Professional Certificate, rebuilt into fifteen beginner-friendly modules that take you from switching on a computer to confident, employable digital skills.',
+      'Every content lesson has a video and printable classroom notes, with a short quiz to check your understanding.',
+      'You finish with a hands-on practical project, a final practical assessment and — on success — a Professional Certificate.'
     ],
     modules: modules,
     quizzes: quizzes,
