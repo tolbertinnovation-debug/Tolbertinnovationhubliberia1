@@ -76,6 +76,7 @@
   <script src="paywall.js?v=10"></script>
   <script src="wassce-course.js?v=6"></script>
   <script src="topic-videos.js?v=6"></script>
+  <script src="complit-notes.js?v=1"></script>
   <script src="cert-template.js?v=5"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1324,6 +1325,15 @@
   // Every lesson follows the full classroom format so all courses teach the same
   // beginner-first way: objectives → intro → key terms → concept → demonstration
   // → practice → summary → assignment → resources (+ course/module intros).
+  // Normalize a lesson/topic title for matching authored notes (ignores the
+  // "1.1 " numbering, leading emoji/symbols, punctuation and case).
+  function noteKey(s) {
+    return String(s || '')
+      .replace(/^[^0-9a-zA-Z]+/, '')
+      .replace(/^\s*[\d]+(?:\.[\d]+)*\s+/, '')
+      .replace(/[^a-z0-9]+/gi, ' ')
+      .replace(/\s+/g, ' ').trim().toLowerCase();
+  }
   function generateCourseTopicOverview(lesson, index, lessonBody) {
     var topic = escSide((course.title || 'This course').split(':')[0]);
     var mod = (course.modules || [])[lesson.module - 1];
@@ -1403,9 +1413,22 @@
     } else if (lesson.isProject) {
       overviewHtml = '<div class="lesson-note-intro"><strong>Module ' + lesson.module + ' practical project</strong><br><span>This project turns the course topic into a piece of work you can complete and keep as evidence of your learning.</span></div><div class="lesson-note-section"><h4>Project approach</h4><p>Review the detailed Overview notes from this module, follow the project instructions, and apply the skill to a realistic situation. Record your steps, decisions, and final result in the Notes tab before marking the project complete.</p></div>';
     } else {
-      var courseContent = (typeof LESSON_CONTENT !== 'undefined' && LESSON_CONTENT[courseId]) ? LESSON_CONTENT[courseId] : {};
-      var lessonBody = courseContent[String(index)] || generateDetailedLessonNote(lesson, index);
-      overviewHtml = generateCourseTopicOverview(lesson, index, lessonBody);
+      // Authored per-topic teaching notes (complit-notes.js etc.) render as-is —
+      // a real textbook-style explanation — instead of the generic template.
+      var authored = null;
+      var NB = (typeof window !== 'undefined' && window.TIH_LESSON_NOTES && window.TIH_LESSON_NOTES[courseId]) || null;
+      if (NB) {
+        var nk = noteKey(lesson.title);
+        var keys = Object.keys(NB);
+        for (var ki = 0; ki < keys.length; ki++) { if (noteKey(keys[ki]) === nk) { authored = NB[keys[ki]]; break; } }
+      }
+      if (authored) {
+        overviewHtml = authored;
+      } else {
+        var courseContent = (typeof LESSON_CONTENT !== 'undefined' && LESSON_CONTENT[courseId]) ? LESSON_CONTENT[courseId] : {};
+        var lessonBody = courseContent[String(index)] || generateDetailedLessonNote(lesson, index);
+        overviewHtml = generateCourseTopicOverview(lesson, index, lessonBody);
+      }
     }
     document.getElementById('overviewContent').innerHTML = overviewHtml;
     if (!lesson.isQuiz && !lesson.isProject) {
