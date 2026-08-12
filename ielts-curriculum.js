@@ -50,7 +50,21 @@
     var focus = position % 2 ? 'accuracy, vocabulary, and clear organisation' : 'understanding the task, planning, and confident performance';
     return '<div class="study-note"><div class="revision-banner"><strong>IELTS ' + escapeHtml(level.label) + ' pathway</strong><span>' + escapeHtml(level.band) + '</span></div><h3>' + escapeHtml(lessonName) + '</h3><p>This lesson builds ' + escapeHtml(focus) + ' through practical IELTS preparation. Study the model approach, practise with a timer, and record one improvement in your notebook.</p><h4>Study checklist</h4><ul><li>Learn the key language and task pattern for this lesson.</li><li>Complete one untimed example, then repeat it under exam conditions.</li><li>Review your errors and write one action for your next practice session.</li></ul><div class="study-callout"><strong>TIH practice task:</strong> Apply <em>' + escapeHtml(lessonName) + '</em> to a Liberia, school, work, family, or community example and explain your answer clearly.</div><p><strong>Module connection:</strong> This lesson is part of <em>' + escapeHtml(moduleName) + '</em>. Strong IELTS performance comes from combining this skill with Listening, Reading, Writing, and Speaking practice.</p></div>';
   }
+  // Authored per-topic quiz questions (topic-quizzes.js) take priority so every
+  // IELTS topic has its OWN distinct questions. Falls back to the generic
+  // template below if a topic has no authored set.
+  function normQ(s) { return String(s || '').replace(/[^a-z0-9]+/gi, ' ').replace(/\s+/g, ' ').trim().toLowerCase(); }
+  var TQ = (typeof window !== 'undefined' && window.TIH_TOPIC_QUIZZES && window.TIH_TOPIC_QUIZZES['ielts']) || null;
+  var TQ_norm = null;
+  function topicQuestions(name) {
+    if (!TQ) return null;
+    if (!TQ_norm) { TQ_norm = {}; Object.keys(TQ).forEach(function (k) { TQ_norm[normQ(k)] = TQ[k]; }); }
+    var arr = TQ_norm[normQ(name)];
+    return (arr && arr.length) ? arr.map(function (q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }) : null;
+  }
   function quiz(name, level) {
+    var authored = topicQuestions(name);
+    if (authored) return { title: 'Practice Quiz: ' + name, moduleNum: 1, questions: authored };
     return { title: 'Practice Quiz: ' + name, moduleNum: 1, questions: [
       { q: 'What is the main goal when practising ' + name + '?', opts: ['To memorise without understanding','To use the skill accurately under realistic conditions','To avoid reviewing mistakes','To write as much as possible'], correct: 1, exp: 'IELTS practice should develop accurate, timed performance and include error review.' },
       { q: 'Which habit best supports progress at ' + level.label + ' level?', opts: ['Skip difficult tasks','Practise once and never review','Use feedback to improve the next attempt','Only study vocabulary lists'], correct: 2, exp: 'Feedback and targeted revision turn practice into measurable progress.' },
