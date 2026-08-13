@@ -218,7 +218,7 @@
         </div>
         <div class="table-scroll">
           <table>
-            <thead><tr><th>App ID</th><th>Name</th><th>Location</th><th>Tracks</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+            <thead><tr><th>App ID</th><th>Student ID</th><th>Name</th><th>Location</th><th>Tracks</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
             <tbody id="appsTbody"></tbody>
           </table>
         </div>
@@ -639,19 +639,43 @@
     }
 
     /* ============ RENDER: APPLICATIONS ============ */
+    // Index students so each application shows the Student ID it was issued.
+    // Matches by the application id stored on the student, then by email.
+    function indexStudentsByApp() {
+      var byApp = {}, byEmail = {};
+      HubDB.getStudents().forEach(function (s) {
+        if (s.applicationId) byApp[s.applicationId] = s;
+        if (s.email) byEmail[String(s.email).toLowerCase()] = s;
+      });
+      return { byApp: byApp, byEmail: byEmail };
+    }
+    function studentIdForApp(a, idx) {
+      if (a.studentId) return a.studentId;
+      var s = idx.byApp[a.id] || idx.byEmail[String(a.email || '').toLowerCase()];
+      return s ? s.id : '';
+    }
     function renderApps() {
       var q = (document.getElementById('appSearch').value || '').toLowerCase();
       var f = document.getElementById('appFilter').value;
+      var idx = indexStudentsByApp();
       var apps = HubDB.getApplications().filter(function (a) {
         if (f && a.status !== f) return false;
-        if (q && (a.name + ' ' + a.email + ' ' + a.id).toLowerCase().indexOf(q) === -1) return false;
+        var sid = studentIdForApp(a, idx);
+        if (q && (a.name + ' ' + a.email + ' ' + a.id + ' ' + sid).toLowerCase().indexOf(q) === -1) return false;
         return true;
       });
       var tbody = document.getElementById('appsTbody');
       document.getElementById('appsEmpty').style.display = apps.length ? 'none' : 'block';
       tbody.innerHTML = apps.map(function (a) {
+        var sid = studentIdForApp(a, idx);
+        var sidCell = sid
+          ? '<b style="color:#0b6b3a;">' + esc(sid) + '</b>'
+          : (a.status === 'approved'
+              ? '<button class="btn btn-orange btn-sm" onclick="issueStudentId(\'' + a.id + '\')">Issue ID</button>'
+              : '<span style="color:var(--muted);font-size:.78rem;">—</span>');
         return '<tr>'
           + '<td><b>' + esc(a.id) + '</b></td>'
+          + '<td style="white-space:nowrap;">' + sidCell + '</td>'
           + '<td>' + esc(a.name) + '<br><span style="color:var(--muted);font-size:.76rem;">' + esc(a.email) + '</span></td>'
           + '<td>' + esc(a.location) + '</td>'
           + '<td style="font-size:.78rem;">' + (a.tracks || []).map(courseName).map(esc).join(', ') + '</td>'
@@ -684,6 +708,7 @@
         + '<div class="kv"><span class="k">Occupation</span><span class="v">' + esc(a.occupation || 'N/A') + '</span></div>'
         + '<div class="kv"><span class="k">Referral</span><span class="v">' + esc(a.referral || 'N/A') + '</span></div>'
         + '<div class="kv"><span class="k">Tracks</span><span class="v">' + (a.tracks || []).map(courseName).map(esc).join(', ') + '</span></div>'
+        + '<div class="kv"><span class="k">Student ID</span><span class="v">' + (function () { var sid = studentIdForApp(a, indexStudentsByApp()); return sid ? '<b>' + esc(sid) + '</b>' : '<span style="color:var(--muted);">Not issued yet</span>'; })() + '</span></div>'
         + '<div class="kv"><span class="k">Status</span><span class="v"><span class="pill ' + a.status + '">' + a.status + '</span></span></div>'
         + '<p style="margin:.8rem 0;font-size:.88rem;"><b>Goals:</b> ' + esc(a.goals) + '</p>'
         + '<h3 style="font-size:.9rem;margin:1rem 0 .5rem;">Internal Notes</h3>' + (notes || '<p style="font-size:.82rem;color:var(--muted);">No notes yet.</p>')
@@ -735,17 +760,17 @@
         HubDB.logMessage({ to: a.phone, channel: 'whatsapp', type: 'rejection', target: id });
       }
     };
-    window.approveApp = function (id) {
-      var a = HubDB.findApplication(id);
-      if (!a) return;
-      if (!confirm('Approve ' + a.name + ' and create their student account?')) return;
-      HubDB.createStudent({
+    // Creates the student account for an application, gives them a Student ID,
+    // assigns their tracks, links the ID back onto the application, and shows
+    // the credentials to deliver. Shared by Approve and Issue ID.
+    function createStudentForApp(a) {
+      return HubDB.createStudent({
         name: a.name, email: a.email, phone: a.phone, location: a.location, applicationId: a.id
       }).then(function (res) {
         // Assign requested tracks automatically
         (a.tracks || []).forEach(function (cid) { HubDB.assignCourse(res.student.id, cid); });
-        HubDB.updateApplication(id, { status: 'approved', statusMessage: '', studentId: res.student.id });
-        HubDB.audit('Approved application → created student ' + res.student.id, id);
+        HubDB.updateApplication(a.id, { status: 'approved', statusMessage: '', studentId: res.student.id });
+        HubDB.audit('Approved application → created student ' + res.student.id, a.id);
         renderAll();
         var loginUrl = 'https://tolbertinnovationhub.org/hub-dashboard';
         var waText = 'Welcome to TIH Learning Hub, ' + a.name + '! 🎉\n\nYour application ' + a.id + ' has been APPROVED.\n\nLogin details:\nStudent ID: ' + res.student.id + '\nTemporary password: ' + res.tempPassword + '\n\nLogin here: ' + loginUrl + '\nYou will be asked to set a new password on first login.\n\nYour first courses are already assigned. Happy learning!';
@@ -761,6 +786,30 @@
         );
         HubDB.logMessage({ to: a.phone, channel: 'whatsapp', type: 'credentials', target: res.student.id });
       });
+    }
+    window.approveApp = function (id) {
+      var a = HubDB.findApplication(id);
+      if (!a) return;
+      if (!confirm('Approve ' + a.name + ' and create their student account?')) return;
+      createStudentForApp(a);
+    };
+    // Give an already-approved applicant a Student ID if they somehow don't have
+    // one yet. If a student record already exists for them, just link its ID.
+    window.issueStudentId = function (id) {
+      var a = HubDB.findApplication(id);
+      if (!a) return;
+      var existing = null;
+      HubDB.getStudents().forEach(function (s) {
+        if (s.applicationId === a.id || (s.email && a.email && String(s.email).toLowerCase() === String(a.email).toLowerCase())) existing = s;
+      });
+      if (existing) {
+        HubDB.updateApplication(id, { studentId: existing.id });
+        HubDB.audit('Linked existing student ' + existing.id + ' to application', id);
+        renderAll();
+        return;
+      }
+      if (!confirm('Give ' + a.name + ' a Student ID and create their account?')) return;
+      createStudentForApp(a);
     };
 
     /* ============ RENDER: STUDENTS ============ */
