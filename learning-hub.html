@@ -818,11 +818,12 @@
         ids.splice.apply(ids, [insertionPoint, 0].concat(orderedIelts));
         var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); };
         var priceFor = function (id, c) {
-          // Paid model: exam-prep US$25, every other course US$5 (WASSCE is a
-          // separate grid at US$3). Legacy "isFree" flags are ignored on purpose.
-          var newNum = (/^(ielts|toefl|sat)/.test(id)) ? 25 : 5;
+          // Paid model: IELTS US$50, other exam-prep (TOEFL/SAT) US$25, every
+          // other course US$5 (WASSCE is a separate grid at US$3). Legacy
+          // "isFree" flags are ignored on purpose.
+          var newNum = (/^ielts/.test(id)) ? 50 : ((/^(toefl|sat)/.test(id)) ? 25 : 5);
           var was = parseInt(String(c.origPrice || '').replace(/[^0-9]/g, ''), 10) || 0;
-          if (!was || was < newNum * 2) was = (newNum === 25 ? 99 : 49);
+          if (!was || was < newNum * 2) was = (newNum >= 50 ? 150 : (newNum === 25 ? 99 : 49));
           return { free: false, newLabel: 'US$' + newNum, wasLabel: 'US$' + was };
         };
         var POPULAR = { 'computer-literacy':1, 'ai':1, 'data':1, 'webdev':1, 'design':1, 'marketing':1 };
