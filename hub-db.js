@@ -35,9 +35,10 @@ var HubDB = (function () {
 
   // Pricing tiers (USD):
   //   • WASSCE subjects (ids beginning "wassce-")  → US$3 / L$500
-  //   • Premium exam-prep (IELTS, TOEFL, SAT)      → US$25
+  //   • IELTS prep                                  → US$50
+  //   • Premium exam-prep (TOEFL, SAT)              → US$25
   //   • Every other course                          → US$5 / L$950 (PAYMENT.amountUSD)
-  var PRICE_OVERRIDES = { 'ielts': 25, 'toefl': 25, 'sat': 25 };
+  var PRICE_OVERRIDES = { 'ielts': 50, 'toefl': 25, 'sat': 25 };
   // Liberian-dollar equivalents shown next to the US price where a fixed rate
   // is published; other prices fall back to a generic note.
   var LRD_EQUIV = { 3: 'L$500', 5: 'L$950' };
