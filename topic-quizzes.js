@@ -13,12 +13,12 @@
   {
    "q": "What best describes what a computer does with information?",
    "opts": [
-    "It only stores paper documents",
     "It takes in data, processes it, and gives out results",
+    "It only stores paper documents",
     "It only makes phone calls",
     "It only prints photos"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "A computer accepts input data, processes it, and produces output, which is its basic job."
   },
   {
@@ -35,12 +35,12 @@
   {
    "q": "A computer is an electronic device that follows a set of what to complete tasks?",
    "opts": [
-    "Instructions",
-    "Colors",
     "Smells",
+    "Colors",
+    "Instructions",
     "Sounds"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "A computer follows instructions (programs) to carry out its tasks."
   }
  ],
@@ -50,10 +50,10 @@
    "opts": [
     "Desktop",
     "Server",
-    "Laptop",
-    "Mainframe"
+    "Mainframe",
+    "Laptop"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "A laptop is portable and runs on a battery, so it can be carried and used anywhere."
   },
   {
@@ -84,33 +84,33 @@
    "q": "Which part of a desktop computer shows you pictures and text on a screen?",
    "opts": [
     "Keyboard",
-    "Monitor",
     "Mouse",
+    "Monitor",
     "Speaker"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "The monitor is the screen that displays what the computer is doing."
   },
   {
    "q": "Which part is often called the brain or main box that holds the important components?",
    "opts": [
-    "System unit (tower)",
+    "Power cable",
     "Mouse pad",
     "Monitor stand",
-    "Power cable"
+    "System unit (tower)"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "The system unit or tower houses the main parts like the processor and memory."
   },
   {
    "q": "Which part do you use to type letters and numbers into the computer?",
    "opts": [
-    "Monitor",
-    "Speaker",
     "Keyboard",
+    "Speaker",
+    "Monitor",
     "Webcam"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "The keyboard is the part you use to type letters, numbers, and symbols."
   }
  ],
@@ -129,12 +129,12 @@
   {
    "q": "What is the best definition of hardware?",
    "opts": [
-    "The physical parts of a computer you can touch",
-    "The instructions a computer follows",
     "A password you type in",
+    "The instructions a computer follows",
+    "The physical parts of a computer you can touch",
     "A website you visit"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Hardware refers to the physical, touchable components of a computer."
   },
   {
@@ -153,12 +153,12 @@
   {
    "q": "Which of these is an example of computer software?",
    "opts": [
-    "A mouse",
-    "A monitor",
     "A word processing program",
+    "A monitor",
+    "A mouse",
     "A USB cable"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "A word processing program is software, a set of instructions, not a physical part."
   },
   {
@@ -175,12 +175,12 @@
   {
    "q": "Which type of software runs the whole computer and lets other programs work, like Windows?",
    "opts": [
-    "Operating system",
-    "A printer",
     "A cable",
+    "A printer",
+    "Operating system",
     "A speaker"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "The operating system is the main software that manages the computer and other programs."
   }
  ],
@@ -188,34 +188,34 @@
   {
    "q": "What is the main difference between hardware and software?",
    "opts": [
-    "Hardware is physical and can be touched; software is programs and instructions",
+    "There is no difference",
     "Hardware is free and software costs money",
     "Hardware is only for laptops; software is only for phones",
-    "There is no difference"
+    "Hardware is physical and can be touched; software is programs and instructions"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Hardware is the touchable physical parts, while software is the programs and instructions."
   },
   {
    "q": "Which pair correctly shows hardware and then software?",
    "opts": [
-    "A web browser and a keyboard",
     "A monitor and a web browser",
+    "A web browser and a keyboard",
     "A song and a photo",
     "A mouse and a printer"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "A monitor is hardware and a web browser is software, so this pair is correct."
   },
   {
    "q": "A photo editing app is an example of what, and the screen it appears on is what?",
    "opts": [
     "Both are hardware",
-    "Both are software",
     "The app is software and the screen is hardware",
+    "Both are software",
     "The app is hardware and the screen is software"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "The app is software while the physical screen is hardware."
   }
  ],
@@ -224,11 +224,11 @@
    "q": "What is an input device used for?",
    "opts": [
     "Sending information out of the computer",
-    "Putting information into the computer",
     "Storing files permanently",
+    "Putting information into the computer",
     "Powering the computer"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "An input device is used to put data and commands into the computer."
   },
   {
@@ -236,10 +236,10 @@
    "opts": [
     "Printer",
     "Speaker",
-    "Microphone",
-    "Monitor"
+    "Monitor",
+    "Microphone"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "A microphone inputs sound into the computer, so it is an input device."
   },
   {
@@ -280,12 +280,12 @@
   {
    "q": "Which output device lets you hear sound from the computer?",
    "opts": [
-    "Speaker",
+    "Webcam",
     "Scanner",
     "Keyboard",
-    "Webcam"
+    "Speaker"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "A speaker outputs sound so you can hear it from the computer."
   }
  ],
@@ -293,12 +293,12 @@
   {
    "q": "What is the main purpose of a storage device?",
    "opts": [
-    "To display images on the screen",
     "To keep files and data saved for later use",
+    "To display images on the screen",
     "To type letters",
     "To play sound"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Storage devices keep your files and data saved so you can use them later."
   },
   {
@@ -329,11 +329,11 @@
    "q": "What does RAM do while you are using the computer?",
    "opts": [
     "Stores files permanently even when power is off",
-    "Temporarily holds the programs and data you are currently using",
+    "Connects to the internet",
     "Prints your documents",
-    "Connects to the internet"
+    "Temporarily holds the programs and data you are currently using"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "RAM temporarily holds the data and programs in use, and it clears when power is off."
   },
   {
@@ -364,22 +364,22 @@
    "q": "What is the correct first step to start a desktop computer?",
    "opts": [
     "Unplug the power cable",
-    "Press the power button on the system unit",
     "Close all the windows",
+    "Press the power button on the system unit",
     "Remove the mouse"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "You start a computer by pressing its power button to turn it on."
   },
   {
    "q": "Why is it important to shut down properly instead of just unplugging the computer?",
    "opts": [
     "It makes the screen bigger",
-    "It helps avoid losing your work and damaging files",
+    "It changes the wallpaper",
     "It charges the battery faster",
-    "It changes the wallpaper"
+    "It helps avoid losing your work and damaging files"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Shutting down properly saves your work and protects files from being damaged."
   },
   {
@@ -398,34 +398,34 @@
   {
    "q": "Which key do you press to make a letter capital while holding it down?",
    "opts": [
-    "Shift",
     "Spacebar",
+    "Shift",
     "Enter",
     "Tab"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Holding the Shift key while pressing a letter makes it a capital letter."
   },
   {
    "q": "Which key adds a blank space between words?",
    "opts": [
     "Enter",
-    "Spacebar",
     "Esc",
+    "Spacebar",
     "Caps Lock"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "The spacebar inserts a space between words when typing."
   },
   {
    "q": "What does the Backspace key do while typing?",
    "opts": [
     "Saves the file",
-    "Deletes the character to the left of the cursor",
+    "Opens a new program",
     "Makes text bold",
-    "Opens a new program"
+    "Deletes the character to the left of the cursor"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Backspace erases the character just to the left of the cursor."
   }
  ],
@@ -433,34 +433,34 @@
   {
    "q": "What does a single left click of the mouse usually do to an item?",
    "opts": [
-    "Deletes it",
     "Selects it",
+    "Deletes it",
     "Prints it",
     "Renames it"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "A single left click normally selects an item on the screen."
   },
   {
    "q": "How do you usually open a program or file from an icon on the desktop?",
    "opts": [
-    "Double-click it",
     "Shake the mouse",
+    "Double-click it",
     "Right-click once and wait",
     "Scroll over it"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Double-clicking an icon opens the program or file it represents."
   },
   {
    "q": "What is the scroll wheel in the middle of the mouse mainly used for?",
    "opts": [
     "Turning off the computer",
-    "Moving a page up and down",
     "Typing letters",
+    "Moving a page up and down",
     "Changing the volume of speakers"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "The scroll wheel moves the page or list up and down."
   }
  ],
@@ -468,12 +468,12 @@
   {
    "q": "What is the desktop on a computer?",
    "opts": [
-    "The main screen you see after the computer starts, with icons and a background",
+    "A storage device",
     "A physical table for the computer",
     "A type of printer",
-    "A storage device"
+    "The main screen you see after the computer starts, with icons and a background"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "The desktop is the main screen shown after startup, holding icons and the background."
   },
   {
@@ -490,12 +490,12 @@
   {
    "q": "The picture or color shown behind the icons on the desktop is called the what?",
    "opts": [
-    "Wallpaper or background",
     "Printer",
+    "Wallpaper or background",
     "Hard drive",
     "Cursor"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "The background image or color of the desktop is called the wallpaper or background."
   }
  ],
@@ -503,34 +503,34 @@
   {
    "q": "What does a desktop icon represent?",
    "opts": [
-    "A shortcut to a program, file, or folder",
-    "The computer's electricity",
     "A keyboard key",
+    "The computer's electricity",
+    "A shortcut to a program, file, or folder",
     "The internet speed"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "An icon is a small picture that represents a program, file, or folder you can open."
   },
   {
    "q": "Which mouse action do you normally use to open the program an icon stands for?",
    "opts": [
-    "Double-click the icon",
+    "Hover without clicking",
     "Right-click and choose Delete",
     "Scroll on the icon",
-    "Hover without clicking"
+    "Double-click the icon"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Double-clicking an icon opens the program or file it represents."
   },
   {
    "q": "What usually happens when you right-click an icon?",
    "opts": [
-    "The computer shuts down",
     "A menu of options appears",
+    "The computer shuts down",
     "The icon is deleted immediately",
     "The screen turns off"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Right-clicking an icon opens a menu with options like Open, Rename, or Delete."
   }
  ],
@@ -538,34 +538,34 @@
   {
    "q": "Where is the taskbar usually located on a Windows screen?",
    "opts": [
-    "Along the bottom of the screen",
     "In the middle of the screen",
+    "Along the bottom of the screen",
     "Inside the mouse",
     "On the keyboard"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "The taskbar normally runs along the bottom edge of the Windows screen."
   },
   {
    "q": "What can you see and do using the taskbar?",
    "opts": [
     "Only turn off the monitor",
-    "See open programs and switch between them",
     "Change the mouse batteries",
+    "See open programs and switch between them",
     "Print a document by itself"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "The taskbar shows your open programs and lets you switch between them."
   },
   {
    "q": "Which button, usually found at the left of the taskbar, opens the menu of programs?",
    "opts": [
-    "The Start button",
+    "The power cable",
     "The Backspace key",
     "The scroll wheel",
-    "The power cable"
+    "The Start button"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "The Start button on the taskbar opens the menu to find and launch programs."
   }
  ],
@@ -584,23 +584,23 @@
   {
    "q": "Which button do you click to close a program window in Windows?",
    "opts": [
-    "The X in the top-right corner of the window",
     "The Spacebar",
+    "The X in the top-right corner of the window",
     "The green plus sign",
     "The scroll wheel"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Clicking the X in the top-right corner of the window closes that program."
   },
   {
    "q": "Why should you save your work before closing a program?",
    "opts": [
     "To make the window bigger",
-    "So you do not lose your unsaved changes",
     "To change the wallpaper",
+    "So you do not lose your unsaved changes",
     "To speed up the internet"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Saving before closing keeps your changes so they are not lost."
   }
  ],
@@ -608,23 +608,23 @@
   {
    "q": "What is the main purpose of Windows Search?",
    "opts": [
-    "To find programs, files, and settings on the computer",
+    "To charge the battery",
     "To print documents",
     "To turn up the volume",
-    "To charge the battery"
+    "To find programs, files, and settings on the computer"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Windows Search helps you quickly find programs, files, and settings."
   },
   {
    "q": "Where do you usually find the Search box in Windows?",
    "opts": [
-    "Inside the mouse",
     "Next to the Start button on the taskbar",
+    "Inside the mouse",
     "On the back of the monitor",
     "Inside the keyboard keys"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "The Search box is usually on the taskbar right next to the Start button."
   },
   {
@@ -643,34 +643,34 @@
   {
    "q": "What is the main job of an operating system on a computer?",
    "opts": [
-    "To manage the hardware and let you run programs",
-    "To connect two computers with a cable",
     "To type documents for you automatically",
+    "To connect two computers with a cable",
+    "To manage the hardware and let you run programs",
     "To make the screen brighter only"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "An operating system manages the computer's hardware and provides a way to run software programs."
   },
   {
    "q": "Which of these is an example of an operating system?",
    "opts": [
     "Microsoft Word",
-    "Windows",
+    "A printer",
     "Google Chrome",
-    "A printer"
+    "Windows"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Windows is an operating system, while Word and Chrome are programs that run on top of it."
   },
   {
    "q": "Without an operating system, what would happen when you turn on a computer?",
    "opts": [
-    "It would run faster than normal",
-    "It would still open your files",
     "You could not use programs or control the hardware",
+    "It would still open your files",
+    "It would run faster than normal",
     "It would print automatically"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "The operating system is required to control the hardware and run programs, so nothing useful would work without it."
   }
  ],
@@ -679,33 +679,33 @@
    "q": "Which company makes the Windows operating system?",
    "opts": [
     "Apple",
-    "Google",
+    "Microsoft",
     "Facebook",
-    "Microsoft"
+    "Google"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "Windows is developed and sold by Microsoft."
   },
   {
    "q": "Why is the Windows operating system called \"Windows\"?",
    "opts": [
-    "Because it shows programs in rectangular window frames on the screen",
-    "Because it only works near a real window",
     "Because it was made of glass",
+    "Because it only works near a real window",
+    "Because it shows programs in rectangular window frames on the screen",
     "Because it cleans your files like a window"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Windows displays programs inside rectangular frames called windows, which is where the name comes from."
   },
   {
    "q": "What do you usually see first after Windows finishes starting up?",
    "opts": [
     "A blank black screen forever",
-    "The desktop",
+    "The inside of the computer",
     "A printed page",
-    "The inside of the computer"
+    "The desktop"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "After Windows starts, it shows the desktop, your main working screen with icons and the taskbar."
   }
  ],
@@ -713,34 +713,34 @@
   {
    "q": "On the Windows desktop, what is the bar usually found along the bottom of the screen called?",
    "opts": [
-    "The menu bar",
-    "The scroll bar",
     "The taskbar",
+    "The scroll bar",
+    "The menu bar",
     "The title bar"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "The taskbar sits at the bottom of the desktop and holds the Start button and open programs."
   },
   {
    "q": "What are the small pictures on the desktop that you double-click to open programs or files called?",
    "opts": [
-    "Icons",
     "Buttons on the keyboard",
+    "Icons",
     "Passwords",
     "Folders inside the printer"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Icons are the small pictures on the desktop that you double-click to open programs or files."
   },
   {
    "q": "Which button do you click to find your programs and shut down or restart the computer?",
    "opts": [
     "The Delete key",
-    "The Start button",
     "The volume button",
+    "The Start button",
     "The power cable"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "The Start button opens the Start menu, where you find programs and options to shut down or restart."
   }
  ],
@@ -750,10 +750,10 @@
    "opts": [
     "To play music videos",
     "To write long letters",
-    "To change how your computer works and looks",
-    "To make phone calls"
+    "To make phone calls",
+    "To change how your computer works and looks"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "The Settings app lets you change computer options such as display, sound, network, and accounts."
   },
   {
@@ -771,11 +771,11 @@
    "q": "Which keyboard shortcut quickly opens the Windows Settings app?",
    "opts": [
     "Ctrl plus C",
-    "Alt plus F4",
     "Windows key plus I",
+    "Alt plus F4",
     "Ctrl plus P"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Pressing the Windows key together with the letter I opens the Settings app quickly."
   }
  ],
@@ -783,34 +783,34 @@
   {
    "q": "What is the Control Panel in Windows used for?",
    "opts": [
-    "To adjust and manage computer settings and hardware",
-    "To draw pictures",
     "To send emails",
+    "To draw pictures",
+    "To adjust and manage computer settings and hardware",
     "To charge the battery faster"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "The Control Panel is a tool for adjusting and managing computer settings and hardware."
   },
   {
    "q": "Which task is commonly done from the Control Panel?",
    "opts": [
     "Watching a movie",
-    "Uninstalling a program",
+    "Writing a school essay",
     "Taking a photo with a camera",
-    "Writing a school essay"
+    "Uninstalling a program"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "The Control Panel includes Programs and Features, where you can uninstall installed software."
   },
   {
    "q": "How is the Control Panel different from the newer Settings app?",
    "opts": [
-    "The Control Panel can only play games",
     "The Control Panel is an older tool for detailed system settings",
+    "The Control Panel can only play games",
     "The Control Panel only works without electricity",
     "The Control Panel is only for printing"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "The Control Panel is the older Windows tool that still offers many detailed system and hardware settings."
   }
  ],
@@ -840,12 +840,12 @@
   {
    "q": "To stay safe when installing software, where should you get programs from?",
    "opts": [
-    "Trusted official websites or app stores",
+    "A broken link that gives errors",
     "Any random pop-up advertisement",
     "Unknown email attachments from strangers",
-    "A broken link that gives errors"
+    "Trusted official websites or app stores"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Downloading only from trusted official sources helps protect your computer from viruses and fake programs."
   }
  ],
@@ -853,12 +853,12 @@
   {
    "q": "What does uninstalling a program do?",
    "opts": [
-    "It makes the program open faster",
     "It removes the program from your computer",
+    "It makes the program open faster",
     "It prints the program on paper",
     "It sends the program to a friend"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Uninstalling removes a program and its files from the computer."
   },
   {
@@ -876,11 +876,11 @@
    "q": "Which is the correct way to uninstall a program in Windows?",
    "opts": [
     "Delete its desktop shortcut only",
-    "Use Settings or Control Panel to uninstall it properly",
     "Unplug the computer",
+    "Use Settings or Control Panel to uninstall it properly",
     "Turn off the monitor"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Deleting the shortcut does not remove the program; you should uninstall it through Settings or Control Panel."
   }
  ],
@@ -889,11 +889,11 @@
    "q": "What is the main purpose of Windows Updates?",
    "opts": [
     "To delete all your files",
-    "To fix problems and improve security in Windows",
+    "To turn the computer into a phone",
     "To make the keyboard bigger",
-    "To turn the computer into a phone"
+    "To fix problems and improve security in Windows"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Windows Updates fix bugs, close security holes, and improve how Windows works."
   },
   {
@@ -923,34 +923,34 @@
   {
    "q": "What is a file on a computer?",
    "opts": [
-    "A single item that stores data, such as a document or photo",
-    "A physical drawer in a desk",
     "The computer's power button",
+    "A physical drawer in a desk",
+    "A single item that stores data, such as a document or photo",
     "A type of internet cable"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "A file is a single stored item of data, like a document, photo, song, or video."
   },
   {
    "q": "What is a folder used for on a computer?",
    "opts": [
     "To make the computer louder",
-    "To hold and organize files together",
+    "To charge the battery",
     "To connect to Wi-Fi",
-    "To charge the battery"
+    "To hold and organize files together"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "A folder is a container that holds and organizes related files together."
   },
   {
    "q": "How can you tell what kind of file something is?",
    "opts": [
-    "By its weight",
-    "By its color only",
     "By its file extension, like .docx or .jpg",
+    "By its color only",
+    "By its weight",
     "By how loud it is"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "The file extension at the end of the name, such as .docx or .jpg, tells you the file type."
   }
  ],
@@ -958,12 +958,12 @@
   {
    "q": "Why would you create a new folder?",
    "opts": [
-    "To keep related files organized in one place",
     "To delete the computer",
+    "To keep related files organized in one place",
     "To make the screen darker",
     "To turn off Windows"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "A new folder gives you a place to group related files so they are organized and easy to find."
   },
   {
@@ -980,12 +980,12 @@
   {
    "q": "What should you do right after creating a new folder?",
    "opts": [
-    "Give it a clear name that describes what it holds",
+    "Print it on paper",
     "Leave it named \"New folder\" forever with no thought",
     "Immediately delete it",
-    "Print it on paper"
+    "Give it a clear name that describes what it holds"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Naming a new folder clearly helps you remember what files it is meant to hold."
   }
  ],
@@ -993,34 +993,34 @@
   {
    "q": "Why would you rename a file or folder?",
    "opts": [
-    "To make it disappear",
     "To give it a clearer name that is easy to understand",
+    "To make it disappear",
     "To make the computer faster",
     "To connect to the internet"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Renaming lets you give a file or folder a clearer, more meaningful name."
   },
   {
    "q": "Which key can you press to start renaming a selected file in Windows?",
    "opts": [
-    "F2",
     "The spacebar",
+    "F2",
     "The Windows key",
     "Caps Lock"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Pressing F2 on a selected file lets you type a new name for it."
   },
   {
    "q": "When renaming a file, what should you usually avoid changing?",
    "opts": [
     "The first letter",
-    "The file extension, such as .jpg or .docx",
     "Making the name shorter",
+    "The file extension, such as .jpg or .docx",
     "Using capital letters"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Changing the file extension can stop the file from opening correctly, so it is best left unchanged."
   }
  ],
@@ -1028,34 +1028,34 @@
   {
    "q": "What is the difference between copying and moving a file?",
    "opts": [
-    "Copying makes a duplicate; moving relocates the original",
+    "There is no difference at all",
     "Copying deletes the file; moving prints it",
     "They both erase the file",
-    "There is no difference at all"
+    "Copying makes a duplicate; moving relocates the original"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Copying leaves the original and makes a duplicate, while moving takes the original to a new place."
   },
   {
    "q": "Which keyboard shortcut is used to copy a selected file?",
    "opts": [
-    "Ctrl plus V",
     "Ctrl plus C",
+    "Ctrl plus V",
     "Ctrl plus P",
     "Ctrl plus Z"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Ctrl plus C copies the selected item, and Ctrl plus V pastes it."
   },
   {
    "q": "After copying a file with Ctrl plus C, what do you press to place it in a new folder?",
    "opts": [
-    "Ctrl plus V to paste it",
     "Ctrl plus X to cut it",
+    "Ctrl plus V to paste it",
     "The Delete key",
     "The Escape key"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Ctrl plus V pastes the copied file into the new location."
   }
  ],
@@ -1064,33 +1064,33 @@
    "q": "When you delete a file in Windows, where does it usually go first?",
    "opts": [
     "It disappears forever right away",
-    "The Recycle Bin",
     "The printer",
+    "The Recycle Bin",
     "The internet"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Deleted files normally go to the Recycle Bin first, so they can be restored if needed."
   },
   {
    "q": "Which key is a quick way to delete a selected file?",
    "opts": [
-    "The Delete key",
+    "Caps Lock",
     "The Enter key",
     "The Shift key alone",
-    "Caps Lock"
+    "The Delete key"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Pressing the Delete key sends the selected file to the Recycle Bin."
   },
   {
    "q": "What happens if you delete a folder that has files inside it?",
    "opts": [
-    "Only the folder name changes",
     "The files inside are deleted along with the folder",
+    "Only the folder name changes",
     "Nothing happens at all",
     "The files get printed"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Deleting a folder also deletes all the files stored inside it."
   }
  ],
@@ -1098,34 +1098,34 @@
   {
    "q": "What is the main purpose of the Recycle Bin?",
    "opts": [
-    "To hold deleted files so you can restore them if needed",
     "To store new programs",
+    "To hold deleted files so you can restore them if needed",
     "To connect to Wi-Fi",
     "To make files bigger"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "The Recycle Bin holds deleted files temporarily so you can restore them if you change your mind."
   },
   {
    "q": "How can you get a deleted file back from the Recycle Bin?",
    "opts": [
     "Print the Recycle Bin",
-    "Right-click the file and choose Restore",
     "Turn off the computer",
+    "Right-click the file and choose Restore",
     "Rename the Recycle Bin"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Right-clicking a file in the Recycle Bin and choosing Restore returns it to its original place."
   },
   {
    "q": "What happens when you empty the Recycle Bin?",
    "opts": [
-    "The files are permanently removed from the computer",
+    "The files are emailed to you",
     "The files move to the desktop",
     "The files are printed",
-    "The files are emailed to you"
+    "The files are permanently removed from the computer"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Emptying the Recycle Bin permanently deletes the files, so they can no longer be easily restored."
   }
  ],
@@ -1144,23 +1144,23 @@
   {
    "q": "Where can you type to search for files inside File Explorer?",
    "opts": [
-    "The search box in the top-right corner",
     "The power button",
+    "The search box in the top-right corner",
     "The volume slider",
     "The title of the window"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "File Explorer has a search box in the top-right corner where you type what you are looking for."
   },
   {
    "q": "If you cannot remember a file's full name, what can help you find it?",
    "opts": [
-    "Typing part of the name or a keyword from it",
-    "Turning off the screen",
     "Deleting all your folders",
+    "Turning off the screen",
+    "Typing part of the name or a keyword from it",
     "Unplugging the mouse"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Typing part of the name or a keyword still lets the search show matching files."
   }
  ],
@@ -1168,12 +1168,12 @@
   {
    "q": "Why is it important to organize your files well?",
    "opts": [
-    "So you can find what you need quickly and easily",
+    "So the screen turns off",
     "So the computer uses more electricity",
     "So files become louder",
-    "So the screen turns off"
+    "So you can find what you need quickly and easily"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Good organization means you can find your files quickly instead of searching everywhere."
   },
   {
@@ -1190,12 +1190,12 @@
   {
    "q": "Where is a sensible place to keep your personal documents in Windows?",
    "opts": [
-    "Inside the Documents folder",
     "Inside the Recycle Bin",
+    "Inside the Documents folder",
     "On the power button",
     "Inside the printer"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "The Documents folder is a built-in place designed for storing your personal documents."
   }
  ],
@@ -1203,12 +1203,12 @@
   {
    "q": "What is the internet?",
    "opts": [
-    "A global network that connects millions of computers together",
-    "A single computer owned by one company",
     "A program you install on your phone",
+    "A single computer owned by one company",
+    "A global network that connects millions of computers together",
     "A type of electric cable only found in cities"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "The internet is a worldwide network that links many computers so they can share information."
   },
   {
@@ -1216,21 +1216,21 @@
    "opts": [
     "Cook food faster on a stove",
     "Charge a phone battery without electricity",
-    "Send email and visit websites",
-    "Make a room cooler like a fan"
+    "Make a room cooler like a fan",
+    "Send email and visit websites"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "The internet lets people communicate and reach websites, such as sending email or browsing pages."
   },
   {
    "q": "What do you usually need to connect a device to the internet?",
    "opts": [
-    "A printer",
+    "An internet connection such as mobile data or Wi-Fi",
     "A second monitor",
     "A microphone",
-    "An internet connection such as mobile data or Wi-Fi"
+    "A printer"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "To reach the internet a device needs a connection like mobile data or a Wi-Fi link to a provider."
   }
  ],
@@ -1251,21 +1251,21 @@
    "opts": [
     "The keyboard used to type addresses",
     "The cable that carries electricity to your home",
-    "A person who fixes broken phones",
-    "A powerful computer that stores and delivers websites or files"
+    "A powerful computer that stores and delivers websites or files",
+    "A person who fixes broken phones"
    ],
-   "correct": 3,
+   "correct": 2,
    "exp": "A server is a computer that holds websites and data and sends them to users when requested."
   },
   {
    "q": "How does information usually travel across the internet between computers?",
    "opts": [
-    "It is split into small pieces called data packets",
+    "It stays on one computer and never moves",
     "It is carried by hand on a USB stick",
     "It is broadcast only through radio songs",
-    "It stays on one computer and never moves"
+    "It is split into small pieces called data packets"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Data is broken into small packets that travel across the network and are put back together at the other end."
   }
  ],
@@ -1273,12 +1273,12 @@
   {
    "q": "What is a web browser?",
    "opts": [
-    "A machine that prints documents",
-    "A cable that connects to the wall",
     "A program used to open and view websites",
+    "A cable that connects to the wall",
+    "A machine that prints documents",
     "A folder where photos are saved"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "A web browser is the software you use to open and view websites on the internet."
   },
   {
@@ -1295,12 +1295,12 @@
   {
    "q": "In a browser, where do you type a website address like www.example.com?",
    "opts": [
-    "In the address bar at the top",
-    "On the power button",
     "Inside the printer settings",
+    "On the power button",
+    "In the address bar at the top",
     "In the phone's contact list"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "You type a website address into the address bar at the top of the browser to visit it."
   }
  ],
@@ -1319,12 +1319,12 @@
   {
    "q": "What is a bookmark in Google Chrome used for?",
    "opts": [
-    "To increase your internet speed",
-    "To delete a website forever",
     "To save a website so you can return to it easily later",
+    "To delete a website forever",
+    "To increase your internet speed",
     "To change the screen brightness"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "A bookmark saves a website's address so you can quickly open it again in the future."
   },
   {
@@ -1345,32 +1345,32 @@
    "opts": [
     "Making phone calls without a SIM card",
     "Charging your laptop battery",
-    "Printing documents in color",
-    "Finding websites and information by typing keywords"
+    "Finding websites and information by typing keywords",
+    "Printing documents in color"
    ],
-   "correct": 3,
+   "correct": 2,
    "exp": "A search engine helps you find websites and information by typing words about what you want."
   },
   {
    "q": "Which of these is a well-known search engine?",
    "opts": [
-    "Google",
+    "USB drive",
     "Notepad",
     "Paint",
-    "USB drive"
+    "Google"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Google is one of the most widely used search engines."
   },
   {
    "q": "After you type words into a search engine and press Enter, what do you get?",
    "opts": [
-    "A phone call from the website owner",
     "A list of results linking to related websites",
+    "A phone call from the website owner",
     "A new email in your inbox automatically",
     "A printed copy of the page"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "The search engine shows a list of results with links to websites that match your words."
   }
  ],
@@ -1379,22 +1379,22 @@
    "q": "To get better search results, what kind of words should you type?",
    "opts": [
     "Long full sentences with polite greetings",
-    "Random letters and numbers",
     "Clear keywords about exactly what you want",
+    "Random letters and numbers",
     "Only your own name"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Using clear keywords about your topic helps the search engine find the most useful results."
   },
   {
    "q": "What does putting a phrase inside quotation marks, like \"clean water project\", do in a Google search?",
    "opts": [
-    "Searches for those exact words in that exact order",
-    "Hides the results from other people",
     "Translates the words into French",
+    "Hides the results from other people",
+    "Searches for those exact words in that exact order",
     "Deletes the words from your history"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Quotation marks tell Google to look for that exact phrase rather than the words separately."
   },
   {
@@ -1402,10 +1402,10 @@
    "opts": [
     "Give up and turn off the computer",
     "Type the same words many times",
-    "Try different or more specific keywords",
-    "Search only using capital letters"
+    "Search only using capital letters",
+    "Try different or more specific keywords"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "Changing your keywords to be more specific often gives better and more relevant results."
   }
  ],
@@ -1413,12 +1413,12 @@
   {
    "q": "What is a browser tab?",
    "opts": [
-    "A button that turns off the screen",
+    "A separate open web page inside the same browser window",
     "A file saved on your desktop",
     "The name of your internet provider",
-    "A separate open web page inside the same browser window"
+    "A button that turns off the screen"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "A tab is one open web page, and you can have several tabs open at once in the same window."
   },
   {
@@ -1437,10 +1437,10 @@
    "opts": [
     "Prints the page",
     "Saves the page as your home screen",
-    "Deletes your password",
-    "Loads the current page again to show the latest version"
+    "Loads the current page again to show the latest version",
+    "Deletes your password"
    ],
-   "correct": 3,
+   "correct": 2,
    "exp": "Refresh reloads the page so you see the most up-to-date content."
   }
  ],
@@ -1448,23 +1448,23 @@
   {
    "q": "What does it mean to download a file from the internet?",
    "opts": [
-    "To copy a file from the internet onto your device",
+    "To send a file to a printer far away",
     "To delete a file from your phone",
     "To turn your screen brightness up",
-    "To send a file to a printer far away"
+    "To copy a file from the internet onto your device"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Downloading means copying a file from the internet and saving it onto your own device."
   },
   {
    "q": "After you download a file in Chrome, where can you usually find it?",
    "opts": [
-    "Inside the phone's battery",
-    "Only on another person's computer",
     "In the Downloads folder or download list",
+    "Only on another person's computer",
+    "Inside the phone's battery",
     "In the calculator app"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Downloaded files are normally saved in the Downloads folder and shown in the browser's download list."
   },
   {
@@ -1483,12 +1483,12 @@
   {
    "q": "Which of these is a smart internet safety habit?",
    "opts": [
-    "Keeping personal details like your password private",
-    "Sharing your password with strangers online",
     "Clicking every link you receive",
+    "Sharing your password with strangers online",
+    "Keeping personal details like your password private",
     "Using the same simple password everywhere"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Keeping personal details such as passwords private is a basic and important safety habit."
   },
   {
@@ -1505,12 +1505,12 @@
   {
    "q": "Why should you be careful about what you post publicly online?",
    "opts": [
-    "Because posts make your phone heavier",
-    "Because posting uses no data at all",
     "Because anyone, including strangers, may be able to see it",
+    "Because posting uses no data at all",
+    "Because posts make your phone heavier",
     "Because it changes your phone number"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Public posts can be seen by many people you do not know, so share carefully."
   }
  ],
@@ -1531,21 +1531,21 @@
    "opts": [
     "It makes your screen slower",
     "It uses more electricity",
-    "It makes passwords easier to remember, which is always good",
-    "If one account is broken into, all your accounts are at risk"
+    "If one account is broken into, all your accounts are at risk",
+    "It makes passwords easier to remember, which is always good"
    ],
-   "correct": 3,
+   "correct": 2,
    "exp": "Reusing one password means a single leak can expose all of your accounts at once."
   },
   {
    "q": "Which detail should you avoid using in a password?",
    "opts": [
-    "Your birthday or your name",
+    "Uppercase and lowercase letters",
     "A random mix of characters",
     "A long phrase only you know",
-    "Uppercase and lowercase letters"
+    "Your birthday or your name"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Personal details like your name or birthday are easy for others to guess or find."
   }
  ],
@@ -1553,34 +1553,34 @@
   {
    "q": "What is two-factor authentication (2FA)?",
    "opts": [
-    "Using two computers at the same time",
     "A second security step, like a code, added on top of your password",
+    "Using two computers at the same time",
     "A way to double your internet speed",
     "Logging in twice a day"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "2FA adds a second step, such as a one-time code, so a password alone is not enough to log in."
   },
   {
    "q": "With 2FA turned on, how is a code often sent to you when you log in?",
    "opts": [
     "Printed on your keyboard",
-    "Written inside the phone battery",
     "By a text message or an authenticator app",
+    "Written inside the phone battery",
     "Sent by regular postal mail only"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "The extra code usually arrives by SMS text or through an authenticator app on your phone."
   },
   {
    "q": "Why does two-factor authentication make your account safer?",
    "opts": [
-    "Even if someone steals your password, they still need the second code",
-    "It hides your account from you",
     "It removes the need for any password",
+    "It hides your account from you",
+    "Even if someone steals your password, they still need the second code",
     "It makes your phone charge faster"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "A thief with only your password still cannot get in without the second code, so your account stays protected."
   }
  ],
@@ -1590,21 +1590,21 @@
    "opts": [
     "Teach you how to swim",
     "Improve your phone's camera",
-    "Trick you into giving personal details like passwords",
-    "Give you free airtime with no catch"
+    "Give you free airtime with no catch",
+    "Trick you into giving personal details like passwords"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "Phishing messages try to trick you into revealing private details such as passwords or bank numbers."
   },
   {
    "q": "Which sign suggests a message might be a phishing scam?",
    "opts": [
-    "It comes from a saved contact you called yesterday",
+    "It urgently demands your password and threatens to close your account",
     "It has your correct full name only",
     "It contains no links at all",
-    "It urgently demands your password and threatens to close your account"
+    "It comes from a saved contact you called yesterday"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "Urgent threats demanding your password are a common phishing trick to make you act without thinking."
   },
   {
@@ -1625,32 +1625,32 @@
    "opts": [
     "Pay immediately before the deal ends",
     "Send extra money to get two phones",
-    "Share your bank password to speed it up",
-    "Be suspicious, because deals that seem too good to be true are often scams"
+    "Be suspicious, because deals that seem too good to be true are often scams",
+    "Share your bank password to speed it up"
    ],
-   "correct": 3,
+   "correct": 2,
    "exp": "Offers that seem too good to be true are often scams, so be cautious before paying."
   },
   {
    "q": "Which of these is a common warning sign of an online scam?",
    "opts": [
-    "Pressure to pay quickly and secretly",
+    "Paying only after you receive the item",
     "A seller with clear contact details and reviews",
     "Being allowed to ask questions first",
-    "Paying only after you receive the item"
+    "Pressure to pay quickly and secretly"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Scammers often pressure you to pay fast and in secret so you cannot check if it is real."
   },
   {
    "q": "How can you reduce the risk of being scammed when buying online?",
    "opts": [
-    "Always pay strangers in advance without checking",
-    "Ignore all warning signs",
     "Only buy from trusted sellers and check reviews first",
+    "Ignore all warning signs",
+    "Always pay strangers in advance without checking",
     "Give your password to prove you are serious"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Sticking to trusted sellers and checking reviews helps you avoid dishonest offers."
   }
  ],
@@ -1669,12 +1669,12 @@
   {
    "q": "A website you do not trust asks for your full bank details to view an article. What should you do?",
    "opts": [
-    "Refuse and leave the website",
-    "Give the details so you can read it",
     "Share the details with friends too",
+    "Give the details so you can read it",
+    "Refuse and leave the website",
     "Post the details publicly"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "You should never give bank details to an untrusted site; the safe choice is to refuse and leave."
   },
   {
@@ -1693,12 +1693,12 @@
   {
    "q": "What is the safest place to download apps to your phone?",
    "opts": [
-    "Random pop-up ads on websites",
-    "Any link sent by a stranger",
     "An official app store like Google Play",
+    "Any link sent by a stranger",
+    "Random pop-up ads on websites",
     "A shared USB from someone you do not know"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Official app stores check apps for safety, so they are much safer than random links or pop-ups."
   },
   {
@@ -1717,10 +1717,10 @@
    "opts": [
     "Install it even if you do not know where it came from",
     "Turn off the screen",
-    "Download it several more times first",
-    "Make sure it comes from a source you trust"
+    "Make sure it comes from a source you trust",
+    "Download it several more times first"
    ],
-   "correct": 3,
+   "correct": 2,
    "exp": "Installing only files from trusted sources helps protect your device from viruses."
   }
  ],
@@ -1728,34 +1728,34 @@
   {
    "q": "What is a computer virus?",
    "opts": [
-    "A harmful program that can damage your device or steal data",
+    "A word for a slow keyboard",
     "A helpful tool that speeds up your computer",
     "A type of internet cable",
-    "A word for a slow keyboard"
+    "A harmful program that can damage your device or steal data"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "A computer virus is harmful software that can damage your device or steal your information."
   },
   {
    "q": "Which of these helps protect a computer from viruses and malware?",
    "opts": [
-    "Opening every email attachment from strangers",
     "Using antivirus software and keeping it updated",
+    "Opening every email attachment from strangers",
     "Turning off the screen at night",
     "Sharing your password widely"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Antivirus software that is kept up to date helps find and block harmful programs."
   },
   {
    "q": "How does malware often get onto a device?",
    "opts": [
     "By charging the battery normally",
-    "By using the calculator app",
     "Through unsafe downloads or clicking bad links",
+    "By using the calculator app",
     "By adjusting the screen brightness"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Malware commonly spreads through unsafe downloads and clicking harmful links, so be careful what you open."
   }
  ],
@@ -1763,34 +1763,34 @@
   {
    "q": "What does the word email stand for?",
    "opts": [
-    "Electronic mail",
-    "Extra mail",
     "Easy mail",
+    "Extra mail",
+    "Electronic mail",
     "Express mail"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Email is short for electronic mail, messages sent over the internet."
   },
   {
    "q": "What do you mainly need in order to send and receive email?",
    "opts": [
     "A printer and paper",
-    "An email address and internet access",
+    "A fax machine",
     "A postage stamp",
-    "A fax machine"
+    "An email address and internet access"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "You need an email address and an internet connection to use email."
   },
   {
    "q": "Which of these is an example of a valid email address?",
    "opts": [
-    "www.gmail.com",
-    "john smith",
     "kofi@gmail.com",
+    "john smith",
+    "www.gmail.com",
     "0776543210"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "A valid email address has a name, the @ sign, and a domain like gmail.com."
   }
  ],
@@ -1798,23 +1798,23 @@
   {
    "q": "Which company provides the Gmail email service?",
    "opts": [
-    "Google",
     "Apple",
+    "Google",
     "Facebook",
     "Microsoft"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Gmail is the free email service made by Google."
   },
   {
    "q": "When creating a Gmail account, why should your password be strong?",
    "opts": [
     "So it looks nice",
-    "To keep your account safe from others",
     "So Google can read it easily",
+    "To keep your account safe from others",
     "To make sign-in slower"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "A strong password protects your account from people trying to break in."
   },
   {
@@ -1822,10 +1822,10 @@
    "opts": [
     "@yahoo.com",
     "@hotmail.com",
-    "@gmail.com",
-    "@google.org"
+    "@google.org",
+    "@gmail.com"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "Every Gmail account address ends with @gmail.com."
   }
  ],
@@ -1833,34 +1833,34 @@
   {
    "q": "In Gmail, which folder holds the emails other people have sent to you?",
    "opts": [
-    "Sent",
+    "Inbox",
     "Trash",
     "Drafts",
-    "Inbox"
+    "Sent"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "The Inbox is where incoming emails from others arrive."
   },
   {
    "q": "Where does Gmail keep messages you have already sent to others?",
    "opts": [
-    "The Sent folder",
     "The Inbox",
+    "The Sent folder",
     "The Spam folder",
     "The Bin"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Copies of emails you send are stored in the Sent folder."
   },
   {
    "q": "What is the Spam folder in Gmail used for?",
    "opts": [
     "Storing your photos",
-    "Holding unwanted or junk mail",
     "Keeping your contacts",
+    "Holding unwanted or junk mail",
     "Saving drafts"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Gmail moves suspected junk and unwanted messages into the Spam folder."
   }
  ],
@@ -1870,10 +1870,10 @@
    "opts": [
     "Subject",
     "Body",
-    "To",
-    "Attach"
+    "Attach",
+    "To"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "The address of the person you are writing to goes in the To field."
   },
   {
@@ -1891,11 +1891,11 @@
    "q": "After writing your message, which button actually delivers the email?",
    "opts": [
     "Delete",
-    "Save",
     "Send",
+    "Save",
     "Print"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Clicking Send delivers your email to the receiver."
   }
  ],
@@ -1904,22 +1904,22 @@
    "q": "What does the Reply button do?",
    "opts": [
     "Deletes the message",
-    "Sends a response back to the sender",
     "Prints the message",
+    "Sends a response back to the sender",
     "Blocks the sender"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Reply lets you write back to the person who sent you the email."
   },
   {
    "q": "You get an email sent to five people. Which option answers everyone at once?",
    "opts": [
     "Reply",
-    "Reply All",
+    "Archive",
     "Forward",
-    "Archive"
+    "Reply All"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Reply All sends your response to the sender and all other recipients."
   },
   {
@@ -1939,33 +1939,33 @@
    "q": "Which icon do you usually click to attach a file to an email?",
    "opts": [
     "A star",
-    "A trash can",
     "A paperclip",
+    "A trash can",
     "A magnifying glass"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "The paperclip icon is used to attach a file to your email."
   },
   {
    "q": "Which of these can be sent as an email attachment?",
    "opts": [
-    "A photo or document file",
-    "The internet itself",
     "Your monitor",
+    "The internet itself",
+    "A photo or document file",
     "A phone call"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "You can attach files such as photos, documents, or PDFs to an email."
   },
   {
    "q": "Someone sent you a document attached to an email. What should you do to open it?",
    "opts": [
     "Delete the whole email",
-    "Click or tap the attachment to open or download it",
+    "Change your password",
     "Reply with no message",
-    "Change your password"
+    "Click or tap the attachment to open or download it"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Clicking the attachment lets you view or download the file that was sent."
   }
  ],
@@ -1973,23 +1973,23 @@
   {
    "q": "What happens when you delete an email?",
    "opts": [
-    "It is printed",
     "It moves to the Trash or Bin",
+    "It is printed",
     "It is sent to everyone",
     "It becomes a draft"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Deleted emails go to the Trash or Bin before being removed for good."
   },
   {
    "q": "What is a good way to find one old email among many?",
    "opts": [
-    "Use the search bar at the top",
     "Delete all your emails",
+    "Use the search bar at the top",
     "Turn off the internet",
     "Restart the computer"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "The search bar lets you type words to quickly find a specific email."
   },
   {
@@ -2009,33 +2009,33 @@
    "q": "Why is it polite to fill in a clear subject line?",
    "opts": [
     "It hides your name",
-    "It helps the reader know what your email is about",
+    "It adds a picture",
     "It makes the email longer",
-    "It adds a picture"
+    "It helps the reader know what your email is about"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "A clear subject line helps the reader understand your message quickly."
   },
   {
    "q": "How should you write a professional email?",
    "opts": [
-    "All in capital letters",
-    "With rude words",
     "Politely and with correct spelling",
+    "With rude words",
+    "All in capital letters",
     "Without any greeting"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Polite wording and good spelling make your email respectful and clear."
   },
   {
    "q": "Writing an email entirely in CAPITAL LETTERS can seem like you are doing what?",
    "opts": [
-    "Shouting at the reader",
     "Being very polite",
+    "Shouting at the reader",
     "Saving space",
     "Attaching a file"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "All capital letters is often read as shouting and is considered rude."
   }
  ],
@@ -2044,33 +2044,33 @@
    "q": "What is Microsoft Word mainly used for?",
    "opts": [
     "Editing videos",
-    "Creating and editing text documents",
     "Sending phone calls",
+    "Creating and editing text documents",
     "Playing music"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Word is a word processor for writing and editing text documents."
   },
   {
    "q": "Which type of file is Microsoft Word best for making?",
    "opts": [
-    "A letter or report",
+    "A song recording",
     "A spreadsheet of numbers",
     "A slideshow presentation",
-    "A song recording"
+    "A letter or report"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Word is designed for text documents like letters and reports."
   },
   {
    "q": "Which company makes Microsoft Word?",
    "opts": [
-    "Google",
-    "Apple",
     "Microsoft",
+    "Apple",
+    "Google",
     "Adobe"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Microsoft Word is made by the Microsoft company."
   }
  ],
@@ -2078,23 +2078,23 @@
   {
    "q": "In Word, what do you usually choose to begin a new empty document?",
    "opts": [
-    "Blank document",
     "Print Preview",
+    "Blank document",
     "Close",
     "Undo"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Choosing Blank document opens a fresh, empty page to start typing."
   },
   {
    "q": "What is a template in Word?",
    "opts": [
     "A broken file",
-    "A ready-made design you can start from",
     "A printer setting",
+    "A ready-made design you can start from",
     "A password"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "A template gives you a pre-made layout so you do not start from nothing."
   },
   {
@@ -2102,10 +2102,10 @@
    "opts": [
     "View",
     "Insert",
-    "File",
-    "Review"
+    "Review",
+    "File"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "The File menu holds the New option for creating documents."
   }
  ],
@@ -2113,34 +2113,34 @@
   {
    "q": "Which key removes the character just to the left of the cursor?",
    "opts": [
-    "Enter",
     "Backspace",
+    "Enter",
     "Shift",
     "Tab"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "The Backspace key deletes the character before the cursor."
   },
   {
    "q": "What does the blinking line in your document show?",
    "opts": [
     "The internet speed",
-    "The battery level",
     "Where your text will appear when you type",
+    "The battery level",
     "The page number"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "The blinking cursor marks the spot where typed text will be inserted."
   },
   {
    "q": "If you make a mistake, which action reverses your last change?",
    "opts": [
-    "Undo",
-    "Print",
     "Save",
+    "Print",
+    "Undo",
     "Zoom"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Undo reverses your most recent action, fixing a mistake quickly."
   }
  ],
@@ -2149,11 +2149,11 @@
    "q": "Which button makes selected text bold?",
    "opts": [
     "A letter U",
-    "A letter B",
+    "A letter A",
     "A letter I",
-    "A letter A"
+    "A letter B"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "The B button makes text bold, giving it a thicker, darker look."
   },
   {
@@ -2171,11 +2171,11 @@
    "q": "The letter I button in the formatting toolbar makes text what?",
    "opts": [
     "Underlined",
-    "Bigger",
     "Italic (slanted)",
+    "Bigger",
     "Red"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "The I button makes text italic, giving it a slanted style."
   }
  ],
@@ -2183,34 +2183,34 @@
   {
    "q": "What is a heading style mainly used for?",
    "opts": [
-    "To mark titles and section names",
-    "To delete text",
     "To print the page",
+    "To delete text",
+    "To mark titles and section names",
     "To attach a file"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Heading styles label titles and sections so the document is organized."
   },
   {
    "q": "What is one benefit of using built-in styles instead of formatting each line by hand?",
    "opts": [
     "It uses more paper",
-    "It keeps the whole document looking consistent",
+    "It turns off spelling check",
     "It hides your text",
-    "It turns off spelling check"
+    "It keeps the whole document looking consistent"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Styles apply the same look everywhere, keeping the document consistent."
   },
   {
    "q": "Heading styles can help Word automatically create what?",
    "opts": [
-    "A phone call",
-    "A photo album",
     "A table of contents",
+    "A photo album",
+    "A phone call",
     "A password"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Word can build a table of contents from the headings you apply."
   }
  ],
@@ -2218,34 +2218,34 @@
   {
    "q": "Which kind of list uses small dots in front of each item?",
    "opts": [
-    "A bulleted list",
     "A numbered list",
+    "A bulleted list",
     "A table",
     "A heading"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "A bulleted list places a dot before each item and shows no order."
   },
   {
    "q": "When should you use a numbered list instead of bullets?",
    "opts": [
-    "When the order of steps matters",
-    "When you want no order at all",
     "When adding a picture",
+    "When you want no order at all",
+    "When the order of steps matters",
     "When printing"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Numbered lists show a clear order, good for steps or ranked items."
   },
   {
    "q": "How do you usually add a new item to a list in Word?",
    "opts": [
     "Press Delete",
-    "Press Enter to start a new line",
+    "Change the font color",
     "Close the file",
-    "Change the font color"
+    "Press Enter to start a new line"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Pressing Enter creates the next line, which becomes a new list item."
   }
  ],
@@ -2288,34 +2288,34 @@
   {
    "q": "What is a table in Word made up of?",
    "opts": [
-    "Rows and columns of cells",
+    "A single long line",
     "Only pictures",
     "Only headings",
-    "A single long line"
+    "Rows and columns of cells"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "A table is a grid of rows and columns, and each box is a cell."
   },
   {
    "q": "What is one good use for a table?",
    "opts": [
-    "Playing videos",
     "Organizing information neatly, like a schedule",
+    "Playing videos",
     "Sending an email",
     "Turning off the computer"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Tables arrange information in rows and columns so it is easy to read."
   },
   {
    "q": "The small box where one row and one column meet is called what?",
    "opts": [
     "A page",
-    "A margin",
     "A cell",
+    "A margin",
     "A font"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "A cell is the single box formed where a row crosses a column."
   }
  ],
@@ -2323,34 +2323,34 @@
   {
    "q": "What are the margins of a page?",
    "opts": [
-    "The blank space around the edges of the text",
-    "The page number",
     "The pictures",
+    "The page number",
+    "The blank space around the edges of the text",
     "The heading color"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Margins are the empty borders between the text and the paper edges."
   },
   {
    "q": "What does page orientation decide?",
    "opts": [
     "The font size",
-    "Whether the page is upright (portrait) or sideways (landscape)",
+    "The spelling",
     "The printer ink color",
-    "The spelling"
+    "Whether the page is upright (portrait) or sideways (landscape)"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Orientation sets the page as tall portrait or wide landscape."
   },
   {
    "q": "Which layout is usually taller than it is wide?",
    "opts": [
-    "Landscape",
-    "Sideways",
     "Portrait",
+    "Sideways",
+    "Landscape",
     "Square"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Portrait orientation makes the page taller than it is wide."
   }
  ],
@@ -2358,23 +2358,23 @@
   {
    "q": "Where does a header appear on a page?",
    "opts": [
-    "At the top of the page",
     "In the middle of the text",
+    "At the top of the page",
     "At the bottom of the page",
     "On the back only"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "A header sits in the top margin, repeating on each page."
   },
   {
    "q": "Where does a footer appear on a page?",
    "opts": [
     "At the top",
-    "At the bottom of the page",
     "In the center",
+    "At the bottom of the page",
     "Off the page"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "A footer sits in the bottom margin of every page."
   },
   {
@@ -2382,10 +2382,10 @@
    "opts": [
     "It changes the font",
     "It deletes text",
-    "Pages are numbered in order without typing each one",
-    "It adds pictures"
+    "It adds pictures",
+    "Pages are numbered in order without typing each one"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "Automatic page numbers count the pages for you and update as you edit."
   }
  ],
@@ -2428,34 +2428,34 @@
   {
    "q": "Before printing, which feature lets you see how the page will look on paper?",
    "opts": [
-    "Print Preview",
+    "Zoom out only",
     "Spell Check",
     "Undo",
-    "Zoom out only"
+    "Print Preview"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Print Preview shows how the document will appear before you print it."
   },
   {
    "q": "What is one advantage of saving a document as a PDF?",
    "opts": [
-    "It can never be opened",
     "It keeps the same layout on almost any device",
+    "It can never be opened",
     "It deletes your text",
     "It only works on printers"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "A PDF keeps the layout looking the same when opened on different devices."
   },
   {
    "q": "In Word, saving as a PDF is usually done through which menu?",
    "opts": [
     "Home",
-    "Insert",
     "File",
+    "Insert",
     "Review"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "The File menu offers Save As or Export options to create a PDF."
   }
  ],
@@ -2463,34 +2463,34 @@
   {
    "q": "What is Microsoft Excel mainly used for?",
    "opts": [
-    "Working with numbers and data in a spreadsheet",
-    "Editing photos and drawings",
     "Sending emails to friends",
+    "Editing photos and drawings",
+    "Working with numbers and data in a spreadsheet",
     "Playing music files"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Excel is a spreadsheet program designed to organize, calculate, and analyze numbers and data."
   },
   {
    "q": "What file type does an Excel document typically use?",
    "opts": [
     ".docx",
-    ".xlsx",
+    ".pptx",
     ".mp3",
-    ".pptx"
+    ".xlsx"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Modern Excel workbooks are saved with the .xlsx file extension."
   },
   {
    "q": "Which of these tasks is Excel BEST suited for?",
    "opts": [
-    "Writing a long story",
-    "Recording a phone call",
     "Creating a monthly budget with automatic totals",
+    "Recording a phone call",
+    "Writing a long story",
     "Designing a logo"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Excel's ability to calculate automatically makes it ideal for budgets and numeric records."
   }
  ],
@@ -2499,11 +2499,11 @@
    "q": "What is the strip of tabs and buttons across the top of Excel called?",
    "opts": [
     "The Taskbar",
-    "The Status bar",
+    "The Ribbon",
     "The Scroll bar",
-    "The Ribbon"
+    "The Status bar"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "The Ribbon holds Excel's command tabs such as Home, Insert, and Formulas."
   },
   {
@@ -2533,34 +2533,34 @@
   {
    "q": "What is the difference between a workbook and a worksheet?",
    "opts": [
-    "They are exactly the same thing",
     "A workbook is the whole file; a worksheet is one page inside it",
+    "They are exactly the same thing",
     "A worksheet contains many workbooks",
     "A workbook can hold only one worksheet"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "A workbook is the entire Excel file, and it can contain many worksheets (tabs)."
   },
   {
    "q": "Where do you click to switch between worksheets in a workbook?",
    "opts": [
-    "The sheet tabs at the bottom",
     "The Ribbon at the top",
+    "The sheet tabs at the bottom",
     "The Name Box",
     "The vertical scroll bar"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Sheet tabs at the bottom of the window let you move between worksheets."
   },
   {
    "q": "How can you add a new worksheet to a workbook?",
    "opts": [
-    "Click the plus (+) button next to the sheet tabs",
-    "Press the Escape key",
     "Close and reopen the file",
+    "Press the Escape key",
+    "Click the plus (+) button next to the sheet tabs",
     "Change the zoom level"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Clicking the plus (+) sign beside the existing sheet tabs inserts a new worksheet."
   }
  ],
@@ -2569,33 +2569,33 @@
    "q": "How are columns labelled in Excel?",
    "opts": [
     "With numbers like 1, 2, 3",
-    "With letters like A, B, C",
+    "With colours",
     "With Roman numerals",
-    "With colours"
+    "With letters like A, B, C"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Columns run vertically and are identified by letters such as A, B, and C."
   },
   {
    "q": "What is a cell in Excel?",
    "opts": [
-    "A whole row of data",
-    "The name of the file",
     "The box where a row and a column meet",
+    "The name of the file",
+    "A whole row of data",
     "A type of chart"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "A cell is the single box formed where a row and a column intersect, such as B3."
   },
   {
    "q": "How are rows labelled in Excel?",
    "opts": [
     "With letters like A, B, C",
-    "With the days of the week",
+    "With numbers like 1, 2, 3",
     "With plus and minus signs",
-    "With numbers like 1, 2, 3"
+    "With the days of the week"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "Rows run horizontally and are identified by numbers such as 1, 2, and 3."
   }
  ],
@@ -2625,12 +2625,12 @@
   {
    "q": "Which key cancels what you are typing before you confirm it?",
    "opts": [
-    "The Tab key",
     "The Escape key",
+    "The Tab key",
     "The Spacebar",
     "The Enter key"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Pressing Escape cancels the current entry and restores the cell's previous content."
   }
  ],
@@ -2638,34 +2638,34 @@
   {
    "q": "Which button would you use to make the text in a cell bold?",
    "opts": [
-    "The B button on the Home tab",
     "The scroll bar",
+    "The B button on the Home tab",
     "The Name Box",
     "The plus (+) tab button"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "The B (Bold) button on the Home tab makes selected cell text bold."
   },
   {
    "q": "What does merging cells do?",
    "opts": [
-    "Joins several cells into one larger cell",
-    "Deletes the selected cells",
     "Splits one cell into many",
+    "Deletes the selected cells",
+    "Joins several cells into one larger cell",
     "Changes numbers into text"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Merge combines two or more selected cells into a single larger cell, often used for titles."
   },
   {
    "q": "How can you add a background colour to a cell?",
    "opts": [
     "Press the Enter key",
-    "Use the Fill Color tool on the Home tab",
+    "Use the Formula Bar",
     "Rename the worksheet",
-    "Use the Formula Bar"
+    "Use the Fill Color tool on the Home tab"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "The Fill Color (paint bucket) tool on the Home tab shades a cell's background."
   }
  ],
@@ -2673,23 +2673,23 @@
   {
    "q": "What symbol must every Excel formula begin with?",
    "opts": [
-    "A hash (#)",
-    "A dollar sign ($)",
     "An equals sign (=)",
+    "A dollar sign ($)",
+    "A hash (#)",
     "A question mark (?)"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Every formula in Excel starts with an equals sign (=) so Excel knows to calculate it."
   },
   {
    "q": "What will the formula =5+3 display in a cell?",
    "opts": [
     "5+3",
-    "53",
+    "8",
     "Error",
-    "8"
+    "53"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "Excel calculates 5 plus 3 and shows the result, 8."
   },
   {
@@ -2719,23 +2719,23 @@
   {
    "q": "What does the =AVERAGE(B1:B5) function calculate?",
    "opts": [
-    "The largest number in the range",
     "The mean (average) of the numbers in B1 to B5",
+    "The largest number in the range",
     "The number of cells in the range",
     "The smallest number"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "AVERAGE adds the values and divides by how many there are to give the mean."
   },
   {
    "q": "Which function would you use to count how many cells contain numbers?",
    "opts": [
-    "=COUNT()",
     "=MAX()",
+    "=COUNT()",
     "=BOLD()",
     "=SORT()"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "The COUNT function returns how many cells in a range contain numeric values."
   }
  ],
@@ -2743,34 +2743,34 @@
   {
    "q": "What does sorting data in Excel do?",
    "opts": [
-    "Arranges rows in a chosen order, such as A to Z",
-    "Deletes duplicate rows",
     "Changes the font colour",
+    "Deletes duplicate rows",
+    "Arranges rows in a chosen order, such as A to Z",
     "Adds up all the numbers"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Sorting rearranges rows into an order like alphabetical or smallest to largest."
   },
   {
    "q": "To sort names alphabetically from A to Z, which option do you choose?",
    "opts": [
     "Sort Z to A",
-    "Sort A to Z",
+    "Merge Cells",
     "Filter",
-    "Merge Cells"
+    "Sort A to Z"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Sort A to Z places text in ascending alphabetical order."
   },
   {
    "q": "Which tab of the Ribbon contains the Sort buttons?",
    "opts": [
-    "The Design tab",
-    "The Help tab",
     "The Data tab",
+    "The Help tab",
+    "The Design tab",
     "The Review tab"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Sort and Filter commands are found on the Data tab of the Ribbon."
   }
  ],
@@ -2779,11 +2779,11 @@
    "q": "What is the main purpose of filtering data?",
    "opts": [
     "To permanently delete rows you do not want",
-    "To change the colour of the sheet",
+    "To show only the rows that match a condition and hide the rest",
     "To create a chart",
-    "To show only the rows that match a condition and hide the rest"
+    "To change the colour of the sheet"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "Filtering temporarily hides rows that do not match your chosen criteria without deleting them."
   },
   {
@@ -2813,34 +2813,34 @@
   {
    "q": "What must you usually do first before inserting a chart?",
    "opts": [
-    "Close the workbook",
     "Select the data you want to chart",
+    "Close the workbook",
     "Delete all the numbers",
     "Rename the file"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "You highlight the data range first so Excel knows what to plot in the chart."
   },
   {
    "q": "Which chart type is best for showing parts of a whole, like percentages of a budget?",
    "opts": [
-    "A pie chart",
     "A line chart",
+    "A pie chart",
     "A scatter chart",
     "A bar of text"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "A pie chart shows how individual parts make up a whole, ideal for percentages."
   },
   {
    "q": "On which Ribbon tab do you find the buttons to insert a chart?",
    "opts": [
-    "The Insert tab",
-    "The Home tab",
     "The View tab",
+    "The Home tab",
+    "The Insert tab",
     "The Formulas tab"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Chart buttons are located in the Charts group on the Insert tab."
   }
  ],
@@ -2849,33 +2849,33 @@
    "q": "In a simple sales spreadsheet, which formula would total a column of daily sales in D2 to D8?",
    "opts": [
     "=TOTAL(D2 D8)",
-    "=SUM(D2:D8)",
+    "=COUNT(D2:D8)",
     "D2+D8 only",
-    "=COUNT(D2:D8)"
+    "=SUM(D2:D8)"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "=SUM(D2:D8) adds every value in that column to give the overall total."
   },
   {
    "q": "What is a good first step when building a spreadsheet project?",
    "opts": [
-    "Change the screen brightness",
-    "Print the empty sheet",
     "Add column headings that label your data",
+    "Print the empty sheet",
+    "Change the screen brightness",
     "Delete the worksheet"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Clear column headings label each type of data and keep the project organized."
   },
   {
    "q": "Why would you save your spreadsheet project regularly while working?",
    "opts": [
     "To make the file smaller",
-    "To change the column letters",
+    "To avoid losing your work if the power goes out",
     "To delete your formulas",
-    "To avoid losing your work if the power goes out"
+    "To change the column letters"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "Saving often protects your work from being lost during power cuts or crashes."
   }
  ],
@@ -2905,12 +2905,12 @@
   {
    "q": "What file extension does a PowerPoint presentation normally use?",
    "opts": [
-    ".xlsx",
     ".pptx",
+    ".xlsx",
     ".txt",
     ".jpg"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "PowerPoint presentations are saved with the .pptx file extension."
   }
  ],
@@ -2918,34 +2918,34 @@
   {
    "q": "What does the pane on the left side of PowerPoint usually show?",
    "opts": [
-    "Small thumbnails of all your slides",
     "A calculator",
+    "Small thumbnails of all your slides",
     "The internet browser",
     "A list of emails"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "The left pane displays thumbnails of the slides so you can navigate the deck."
   },
   {
    "q": "What is the large central area where you build the current slide called?",
    "opts": [
-    "The slide pane (editing area)",
-    "The Ribbon",
     "The status bar",
+    "The Ribbon",
+    "The slide pane (editing area)",
     "The Name Box"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "The main central slide pane is where you add and arrange content on the active slide."
   },
   {
    "q": "Where can you type speaker notes that only the presenter sees?",
    "opts": [
     "In the slide title",
-    "In the Notes area below the slide",
+    "In a chart",
     "On the Ribbon",
-    "In a chart"
+    "In the Notes area below the slide"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "The Notes pane beneath the slide holds reminders visible to the presenter, not the audience."
   }
  ],
@@ -2953,23 +2953,23 @@
   {
    "q": "When you start a new PowerPoint file, what does the first slide usually contain?",
    "opts": [
-    "A finished chart",
-    "A video clip",
     "A title and subtitle placeholder",
+    "A video clip",
+    "A finished chart",
     "A spreadsheet"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "New presentations open with a title slide that has placeholders for a title and subtitle."
   },
   {
    "q": "What is a quick way to start a presentation that already has a design?",
    "opts": [
     "Turn off the computer",
-    "Delete all slides first",
+    "Choose a template when creating the file",
     "Open Excel instead",
-    "Choose a template when creating the file"
+    "Delete all slides first"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "Templates provide ready-made designs so you can start with formatting already applied."
   },
   {
@@ -2999,23 +2999,23 @@
   {
    "q": "What does a slide 'layout' control?",
    "opts": [
-    "The colour of the printer ink",
     "The arrangement of placeholders like title and content on a slide",
+    "The colour of the printer ink",
     "The speed of your computer",
     "The file name"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "A layout sets where titles, text, and content boxes are positioned on a slide."
   },
   {
    "q": "How can you change the order of slides in your presentation?",
    "opts": [
-    "Drag a slide thumbnail up or down in the left pane",
     "Rename the file",
+    "Drag a slide thumbnail up or down in the left pane",
     "Press Caps Lock",
     "Delete the whole presentation"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Dragging a slide's thumbnail in the left pane moves it to a new position."
   }
  ],
@@ -3023,34 +3023,34 @@
   {
    "q": "Where do you usually type text on a slide?",
    "opts": [
-    "Inside a text box or placeholder",
-    "In the Name Box",
     "On the Ribbon",
+    "In the Name Box",
+    "Inside a text box or placeholder",
     "In the status bar"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Text goes into text boxes or the placeholders provided on the slide."
   },
   {
    "q": "Which Ribbon tab lets you insert a picture onto a slide?",
    "opts": [
     "The View tab",
-    "The Insert tab",
+    "The Help tab",
     "The Review tab",
-    "The Help tab"
+    "The Insert tab"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "The Insert tab contains the Pictures button for adding images to a slide."
   },
   {
    "q": "After adding an image, how do you make it larger or smaller without distorting it?",
    "opts": [
-    "Type a new file name",
-    "Press the Enter key",
     "Drag a corner handle of the image",
+    "Press the Enter key",
+    "Type a new file name",
     "Change the slide number"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Dragging a corner handle resizes an image evenly, keeping its proportions."
   }
  ],
@@ -3059,11 +3059,11 @@
    "q": "What does applying a theme to a presentation change?",
    "opts": [
     "The number of slides",
-    "The file location",
+    "The colours, fonts, and overall look of the slides",
     "The speaker notes",
-    "The colours, fonts, and overall look of the slides"
+    "The file location"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "A theme sets a coordinated set of colours, fonts, and effects across all slides."
   },
   {
@@ -3093,34 +3093,34 @@
   {
    "q": "What is a slide transition?",
    "opts": [
-    "A formula that adds numbers",
     "The visual effect shown when moving from one slide to the next",
+    "A formula that adds numbers",
     "The name of the file",
     "A way to delete slides"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "A transition is the animation effect that plays as one slide changes to the next."
   },
   {
    "q": "On which Ribbon tab do you find slide transition effects?",
    "opts": [
-    "The Transitions tab",
     "The Formulas tab",
+    "The Transitions tab",
     "The Data tab",
     "The Home tab"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Transition effects are located on the Transitions tab of the Ribbon."
   },
   {
    "q": "What is good advice about using transitions in a presentation?",
    "opts": [
-    "Keep them simple and consistent so they do not distract the audience",
-    "Use a different flashy effect on every single slide",
     "Never save the file after adding them",
+    "Use a different flashy effect on every single slide",
+    "Keep them simple and consistent so they do not distract the audience",
     "Only use them in Excel"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Simple, consistent transitions look professional and keep the audience focused on your message."
   }
  ],
@@ -3129,33 +3129,33 @@
    "q": "What does an animation do in PowerPoint?",
    "opts": [
     "Adds up numbers in a column",
-    "Adds movement or effects to items on a single slide",
+    "Prints the slides",
     "Changes the file name",
-    "Prints the slides"
+    "Adds movement or effects to items on a single slide"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Animations control how individual elements like text or images appear and move on one slide."
   },
   {
    "q": "What is the difference between an animation and a transition?",
    "opts": [
-    "They are exactly the same",
-    "An animation deletes slides",
     "An animation affects objects on a slide; a transition affects moving between slides",
+    "An animation deletes slides",
+    "They are exactly the same",
     "A transition only works in Excel"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Animations move objects within a slide, while transitions play when changing from one slide to another."
   },
   {
    "q": "Which type of animation makes text appear onto a slide?",
    "opts": [
     "An Exit effect",
-    "A Sort effect",
+    "An Entrance effect",
     "A Fill effect",
-    "An Entrance effect"
+    "A Sort effect"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "Entrance effects bring an object onto the slide, such as making text fade or fly in."
   }
  ],
@@ -3185,12 +3185,12 @@
   {
    "q": "After inserting audio, what small control appears so you can play it?",
    "opts": [
-    "A new worksheet tab",
     "A play button and audio icon on the slide",
+    "A new worksheet tab",
     "A Formula Bar",
     "A pie chart"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Inserted audio shows a speaker icon with a play button so you can preview or play the sound."
   }
  ],
@@ -3198,34 +3198,34 @@
   {
    "q": "Which key starts the slide show from the beginning?",
    "opts": [
-    "F5",
     "Escape",
+    "F5",
     "Caps Lock",
     "Delete"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Pressing F5 launches the slide show from the first slide in full screen."
   },
   {
    "q": "During a slide show, how do you move to the next slide?",
    "opts": [
-    "Press the spacebar, Enter, or the right arrow key",
-    "Press Caps Lock",
     "Close the program",
+    "Press Caps Lock",
+    "Press the spacebar, Enter, or the right arrow key",
     "Type a formula"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "The spacebar, Enter, or the right arrow key advances to the next slide."
   },
   {
    "q": "Which key exits the slide show and returns to editing?",
    "opts": [
     "The F5 key",
-    "The Escape key",
+    "The B key",
     "The Tab key",
-    "The B key"
+    "The Escape key"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Pressing Escape ends the full-screen slide show and returns to the normal editing view."
   }
  ],
@@ -3233,34 +3233,34 @@
   {
    "q": "What is Google Workspace?",
    "opts": [
-    "A single video game app",
-    "A type of computer keyboard",
     "A collection of online tools like Gmail, Drive, Docs, and Meet",
+    "A type of computer keyboard",
+    "A single video game app",
     "A brand of mobile phone"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Google Workspace is a bundle of cloud-based productivity tools such as Gmail, Drive, Docs, Sheets, and Meet."
   },
   {
    "q": "What do you mainly need to use Google Workspace tools?",
    "opts": [
     "A special gaming console",
-    "A printer connected to the computer",
+    "A Google account and internet connection",
     "A paid television subscription",
-    "A Google account and internet connection"
+    "A printer connected to the computer"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "Google Workspace runs in the browser, so you mainly need a Google account and an internet connection."
   },
   {
    "q": "Where are files created in Google Workspace usually stored?",
    "opts": [
-    "In the cloud on Google's servers",
-    "On the computer's screen brightness setting",
     "Only on paper",
+    "On the computer's screen brightness setting",
+    "In the cloud on Google's servers",
     "Inside the mouse"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Google Workspace saves your work in the cloud, so you can reach it from any device with your account."
   }
  ],
@@ -3269,33 +3269,33 @@
    "q": "What is Google Drive mainly used for?",
    "opts": [
     "Playing music CDs",
-    "Storing files and folders online",
+    "Measuring internet speed",
     "Charging your phone battery",
-    "Measuring internet speed"
+    "Storing files and folders online"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Google Drive is a cloud storage service for keeping files and folders online."
   },
   {
    "q": "How much free storage does a standard Google account usually include across Drive, Gmail, and Photos?",
    "opts": [
-    "Unlimited",
+    "15 GB",
     "2 GB",
     "500 GB",
-    "15 GB"
+    "Unlimited"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "A standard free Google account comes with 15 GB of storage shared across Drive, Gmail, and Photos."
   },
   {
    "q": "What is an advantage of storing files in Google Drive instead of only on one computer?",
    "opts": [
     "The files print automatically every night",
-    "It makes the computer run cooler",
     "You can open them from any device with internet",
+    "It makes the computer run cooler",
     "It removes the need for a password forever"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Because Drive files live in the cloud, you can access them from any device that has internet."
   }
  ],
@@ -3303,34 +3303,34 @@
   {
    "q": "Which button in Google Drive lets you add a file from your computer?",
    "opts": [
-    "The New button (then File upload)",
-    "The Delete button",
     "The Print button",
+    "The Delete button",
+    "The New button (then File upload)",
     "The Zoom button"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Clicking New and then File upload lets you add files from your computer to Drive."
   },
   {
    "q": "Besides clicking New, what is another quick way to upload a file into Drive?",
    "opts": [
     "Shake the mouse three times",
-    "Drag and drop the file into the Drive window",
+    "Type the file name into the address bar",
     "Turn the monitor off and on",
-    "Type the file name into the address bar"
+    "Drag and drop the file into the Drive window"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "You can drag a file from your computer and drop it directly into the open Drive window to upload it."
   },
   {
    "q": "After a file finishes uploading to Google Drive, where can you find it?",
    "opts": [
-    "Only inside the trash",
+    "In your Drive file list, ready to open or share",
     "Deleted from Google after one hour",
     "Printed on paper automatically",
-    "In your Drive file list, ready to open or share"
+    "Only inside the trash"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "An uploaded file appears in your Drive file list where you can open, move, or share it."
   }
  ],
@@ -3339,33 +3339,33 @@
    "q": "What do you create in Google Drive to group related files together?",
    "opts": [
     "A screenshot",
-    "A password",
     "A folder",
+    "A password",
     "A ringtone"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Folders let you group related files together so your Drive stays organized."
   },
   {
    "q": "How can you move a file into a folder in Google Drive?",
    "opts": [
     "Print it and scan it back",
-    "Drag the file onto the folder or use Move to",
     "Rename the computer",
+    "Drag the file onto the folder or use Move to",
     "Delete it and upload again"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "You can drag a file onto a folder or right-click and choose Move to in order to organize it."
   },
   {
    "q": "Why is naming files clearly helpful in Google Drive?",
    "opts": [
-    "It makes files easier to find later by searching",
+    "It gives you more free storage",
     "It changes the file's color",
     "It makes the file open faster on the internet",
-    "It gives you more free storage"
+    "It makes files easier to find later by searching"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Clear file names make it much easier to search for and find your files later."
   }
  ],
@@ -3373,34 +3373,34 @@
   {
    "q": "What do you usually click to share a file in Google Drive?",
    "opts": [
-    "The Refresh arrow",
-    "The Battery icon",
     "The Share button",
+    "The Battery icon",
+    "The Refresh arrow",
     "The Volume slider"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "The Share button lets you give other people access to your file or folder."
   },
   {
    "q": "To let someone change your document, which permission should you give them?",
    "opts": [
     "Viewer",
-    "Printer",
+    "Editor",
     "Blocked",
-    "Editor"
+    "Printer"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "The Editor permission allows the person to make changes to the document."
   },
   {
    "q": "What does giving someone Viewer access mean?",
    "opts": [
-    "They can only look at the file but not change it",
-    "They can delete your whole Drive",
     "They automatically own the file",
+    "They can delete your whole Drive",
+    "They can only look at the file but not change it",
     "They can change your password"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Viewer access lets a person open and read the file but not edit it."
   }
  ],
@@ -3409,33 +3409,33 @@
    "q": "What kind of program is Google Docs?",
    "opts": [
     "A calculator for numbers only",
-    "A word processor for writing documents",
+    "A music player",
     "A photo-editing tool",
-    "A music player"
+    "A word processor for writing documents"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Google Docs is an online word processor used for writing and editing documents."
   },
   {
    "q": "How does Google Docs usually save your work?",
    "opts": [
-    "Only when you print it",
+    "Automatically as you type",
     "Once a week",
     "Never, you must retype it",
-    "Automatically as you type"
+    "Only when you print it"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "Google Docs saves your changes automatically in the cloud as you type."
   },
   {
    "q": "What can two people do at the same time in one Google Doc?",
    "opts": [
     "Only one person is ever allowed to open it",
-    "They must email the file back and forth",
     "They can type and edit together in real time",
+    "They must email the file back and forth",
     "They can only read but never write"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Google Docs allows multiple people to edit the same document together in real time."
   }
  ],
@@ -3443,34 +3443,34 @@
   {
    "q": "What is Google Sheets mainly used for?",
    "opts": [
-    "Working with numbers and data in rows and columns",
-    "Writing long letters",
     "Recording videos",
+    "Writing long letters",
+    "Working with numbers and data in rows and columns",
     "Sending text messages"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Google Sheets is a spreadsheet program for organizing and calculating data in rows and columns."
   },
   {
    "q": "In Google Sheets, what must you usually type before a formula like a sum?",
    "opts": [
     "A question mark (?)",
-    "An equals sign (=)",
+    "A dollar bill",
     "The word please",
-    "A dollar bill"
+    "An equals sign (=)"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Formulas in Google Sheets start with an equals sign, for example =SUM(A1:A5)."
   },
   {
    "q": "What is the box where a row and a column meet called?",
    "opts": [
-    "A tab",
+    "A cell",
     "A folder",
     "A slide",
-    "A cell"
+    "A tab"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "The box where a row and column meet is called a cell, and it holds one piece of data."
   }
  ],
@@ -3479,33 +3479,33 @@
    "q": "What is Google Slides used to create?",
    "opts": [
     "Email inboxes",
-    "Spreadsheets of numbers",
     "Presentations made of slides",
+    "Spreadsheets of numbers",
     "Printed photographs only"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Google Slides is used to build presentations made up of individual slides."
   },
   {
    "q": "What is each page of a Google Slides presentation called?",
    "opts": [
     "A cell",
-    "A slide",
     "A folder",
+    "A slide",
     "A tab"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Each individual page in the presentation is called a slide."
   },
   {
    "q": "How do you show a Google Slides presentation full screen to an audience?",
    "opts": [
-    "Click Slideshow (Present)",
+    "Change the internet speed",
     "Press the power button",
     "Delete the first slide",
-    "Change the internet speed"
+    "Click Slideshow (Present)"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Clicking Slideshow or Present displays your slides full screen for the audience."
   }
  ],
@@ -3513,34 +3513,34 @@
   {
    "q": "What is Google Meet used for?",
    "opts": [
-    "Editing photos",
-    "Printing documents",
     "Online video meetings and calls",
+    "Printing documents",
+    "Editing photos",
     "Storing files only"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Google Meet is a tool for holding online video meetings and calls."
   },
   {
    "q": "What do you mainly need to join a Google Meet video call?",
    "opts": [
     "A USB flash drive",
-    "A television remote",
+    "A camera, microphone, and internet connection",
     "A paper calendar",
-    "A camera, microphone, and internet connection"
+    "A television remote"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "A camera, microphone, and internet connection let you take part in a Google Meet video call."
   },
   {
    "q": "Google Meet is part of which set of tools?",
    "opts": [
-    "Google Workspace",
-    "A cooking app",
     "A weather station",
+    "A cooking app",
+    "Google Workspace",
     "A car dashboard"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Google Meet is one of the tools included in Google Workspace."
   }
  ],
@@ -3549,33 +3549,33 @@
    "q": "What is one common way to join a Google Meet meeting?",
    "opts": [
     "Turning off your computer",
-    "Clicking the meeting link someone sent you",
+    "Calling the phone company",
     "Printing the invitation",
-    "Calling the phone company"
+    "Clicking the meeting link someone sent you"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Clicking the shared meeting link opens Google Meet and lets you join."
   },
   {
    "q": "If you have only a meeting code, where do you enter it?",
    "opts": [
-    "In the printer settings",
+    "In the Meet box that says Enter a code or link",
     "In the volume control",
     "In the file name",
-    "In the Meet box that says Enter a code or link"
+    "In the printer settings"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "You type the meeting code into the box on the Meet page that asks for a code or link."
   },
   {
    "q": "What button do you usually click to enter the meeting after opening the link?",
    "opts": [
     "Delete",
-    "Shut down",
     "Join now (Ask to join)",
+    "Shut down",
     "Refresh"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "You click Join now, or Ask to join, to enter the meeting."
   }
  ],
@@ -3583,34 +3583,34 @@
   {
    "q": "Which option starts a brand new Google Meet meeting?",
    "opts": [
-    "New meeting",
-    "Delete account",
     "Print page",
+    "Delete account",
+    "New meeting",
     "Log out"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Clicking New meeting lets you start a new Google Meet call."
   },
   {
    "q": "After you start a meeting, how do you invite others to join?",
    "opts": [
     "Restart your computer",
-    "Share the meeting link or code with them",
+    "Turn off the internet",
     "Change your wallpaper",
-    "Turn off the internet"
+    "Share the meeting link or code with them"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "You invite people by sharing the meeting link or code so they can join."
   },
   {
    "q": "Which Google tool lets you schedule a Meet meeting for a future date and time?",
    "opts": [
-    "Google Maps",
+    "Google Calendar",
     "Google Photos",
     "Google Translate",
-    "Google Calendar"
+    "Google Maps"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "Google Calendar lets you schedule a meeting and automatically adds a Meet link."
   }
  ],
@@ -3619,33 +3619,33 @@
    "q": "What does the microphone icon with a line through it usually mean in a meeting?",
    "opts": [
     "The meeting has ended",
-    "Your camera is broken",
     "Your microphone is muted",
+    "Your camera is broken",
     "Your battery is full"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "A microphone icon with a line through it means your microphone is muted and others cannot hear you."
   },
   {
    "q": "What should you do so others can see you during a video call?",
    "opts": [
     "Mute your microphone",
-    "Turn on your camera",
     "Close the browser",
+    "Turn on your camera",
     "Lower the screen brightness"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Turning on your camera lets other people in the meeting see you."
   },
   {
    "q": "Why is it polite to mute your microphone when you are not speaking?",
    "opts": [
-    "It reduces background noise for everyone",
+    "It gives you more storage",
     "It saves the computer's paper",
     "It makes your camera clearer",
-    "It gives you more storage"
+    "It reduces background noise for everyone"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Muting when you are not talking cuts background noise so everyone can hear the speaker clearly."
   }
  ],
@@ -3653,34 +3653,34 @@
   {
    "q": "In Google Meet, which option lets you show your screen to others?",
    "opts": [
-    "Turn off camera",
-    "Leave call",
     "Present now",
+    "Leave call",
+    "Turn off camera",
     "Raise hand"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "The Present now option shares your screen with the other people in the meeting."
   },
   {
    "q": "When sharing your screen, what can you usually choose to share?",
    "opts": [
     "Only the wallpaper color",
-    "Only the meeting clock",
+    "Your entire screen, a window, or a single tab",
     "Just your microphone",
-    "Your entire screen, a window, or a single tab"
+    "Only the meeting clock"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "You can choose to share your whole screen, a single window, or one browser tab."
   },
   {
    "q": "What should you do when you finish sharing your screen?",
    "opts": [
-    "Click Stop sharing (Stop presenting)",
-    "Delete the meeting",
     "Turn off the computer",
+    "Delete the meeting",
+    "Click Stop sharing (Stop presenting)",
     "Change your password"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Clicking Stop sharing ends the screen share so others stop seeing your screen."
   }
  ],
@@ -3689,33 +3689,33 @@
    "q": "What is Zoom mainly used for?",
    "opts": [
     "Editing spreadsheets",
-    "Online video meetings and classes",
+    "Charging batteries",
     "Printing photos",
-    "Charging batteries"
+    "Online video meetings and classes"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Zoom is a platform for online video meetings, classes, and webinars."
   },
   {
    "q": "To use Zoom on a computer or phone, what do you usually do first?",
    "opts": [
-    "Format the hard drive",
+    "Install the Zoom app or open it in a browser",
     "Buy a new printer",
     "Disconnect the internet",
-    "Install the Zoom app or open it in a browser"
+    "Format the hard drive"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "You typically install the Zoom app or open Zoom in a web browser before joining a meeting."
   },
   {
    "q": "What piece of information identifies a specific Zoom meeting?",
    "opts": [
     "A file name",
-    "A phone battery level",
     "A Meeting ID",
+    "A phone battery level",
     "A printer model"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Each Zoom meeting has a Meeting ID that identifies it so people can join the right call."
   }
  ],
@@ -3723,34 +3723,34 @@
   {
    "q": "What is the easiest way to join a Zoom meeting someone invited you to?",
    "opts": [
-    "Click the Zoom link they sent",
-    "Turn off your monitor",
     "Print the invitation",
+    "Turn off your monitor",
+    "Click the Zoom link they sent",
     "Restart the router"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Clicking the Zoom invitation link opens the app and takes you into the meeting."
   },
   {
    "q": "If you join Zoom without a link, what two things do you usually need to enter?",
    "opts": [
     "Your printer name and ink level",
-    "Meeting ID and passcode",
+    "A photo and a video",
     "Your home address and age",
-    "A photo and a video"
+    "Meeting ID and passcode"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Joining manually usually requires the Meeting ID and the meeting passcode."
   },
   {
    "q": "When joining a Zoom meeting, what is a Waiting Room?",
    "opts": [
-    "A type of camera",
+    "A place where you wait until the host lets you in",
     "A room to store files",
     "A setting that turns off sound",
-    "A place where you wait until the host lets you in"
+    "A type of camera"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "The Waiting Room holds you until the meeting host admits you into the call."
   }
  ],
@@ -3759,33 +3759,33 @@
    "q": "Which Zoom feature lets students send written messages during a class?",
    "opts": [
     "The Print button",
-    "The Battery meter",
     "The Chat",
+    "The Battery meter",
     "The Wallpaper setting"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "The Chat feature lets participants type and send written messages during the meeting."
   },
   {
    "q": "What is the Raise Hand feature useful for in an online class?",
    "opts": [
     "Turning off the internet",
-    "Telling the teacher you want to speak or ask a question",
     "Deleting the meeting",
+    "Telling the teacher you want to speak or ask a question",
     "Changing the screen color"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Raise Hand signals to the host that you want to speak or ask a question without interrupting."
   },
   {
    "q": "Why should students usually mute their microphones during a Zoom class?",
    "opts": [
-    "To reduce background noise so the teacher is heard clearly",
+    "To speed up the internet",
     "To make the video sharper",
     "To earn extra storage",
-    "To speed up the internet"
+    "To reduce background noise so the teacher is heard clearly"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Muting when not speaking keeps background noise down so everyone can hear the teacher clearly."
   }
  ],
@@ -3793,34 +3793,34 @@
   {
    "q": "Why is it a good idea to gently clean dust out of your computer's vents and fan openings?",
    "opts": [
-    "It makes the screen brighter",
     "It stops the computer from overheating",
+    "It makes the screen brighter",
     "It increases your internet speed",
     "It adds more storage space"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Dust blocks airflow, so cleaning the vents helps the computer stay cool and avoid overheating."
   },
   {
    "q": "What is the best way to keep your files easy to find on the computer?",
    "opts": [
     "Save everything to the Desktop in one big pile",
-    "Delete files as soon as you finish them",
     "Organize files into clearly named folders",
+    "Delete files as soon as you finish them",
     "Rename every file with random numbers"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Grouping files into clearly named folders makes them quick to locate later."
   },
   {
    "q": "What should you use to safely wipe fingerprints off your computer screen?",
    "opts": [
-    "A soft, slightly damp microfiber cloth",
-    "Plenty of water poured on the screen",
     "A rough kitchen scrubbing sponge",
+    "Plenty of water poured on the screen",
+    "A soft, slightly damp microfiber cloth",
     "Cooking oil on a paper towel"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "A soft microfiber cloth cleans the screen without scratching it or letting liquid get inside."
   }
  ],
@@ -3839,23 +3839,23 @@
   {
    "q": "Why should you keep your installed software updated?",
    "opts": [
-    "Updates make the computer heavier",
-    "Updates delete all your files",
     "Updates fix security holes and bugs",
+    "Updates delete all your files",
+    "Updates make the computer heavier",
     "Updates change your password automatically"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Updates repair security weaknesses and errors, keeping the program safer and working better."
   },
   {
    "q": "During installation, what should you do before clicking Next on each screen?",
    "opts": [
-    "Read the prompts so you don't install unwanted extras",
     "Close the window immediately",
+    "Read the prompts so you don't install unwanted extras",
     "Turn off the computer",
     "Ignore everything and click as fast as possible"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Reading each screen lets you refuse bundled toolbars or unwanted extra programs."
   }
  ],
@@ -3864,11 +3864,11 @@
    "q": "What does it mean to back up your files?",
    "opts": [
     "To permanently delete them",
-    "To keep an extra copy in another place",
     "To make the files smaller",
+    "To keep an extra copy in another place",
     "To email them to strangers"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "A backup is a spare copy kept somewhere else so you don't lose the files."
   },
   {
@@ -3876,21 +3876,21 @@
    "opts": [
     "Only the Recycle Bin",
     "Written on a piece of paper",
-    "A USB flash drive or cloud storage",
-    "Nowhere, since backups are not needed"
+    "Nowhere, since backups are not needed",
+    "A USB flash drive or cloud storage"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "A USB drive or cloud storage safely holds a second copy of your files."
   },
   {
    "q": "Why is keeping a backup on the cloud helpful?",
    "opts": [
-    "It makes your typing faster",
+    "You can reach your files even if your computer is lost or damaged",
     "It prevents the computer from turning on",
     "It uses no internet at all",
-    "You can reach your files even if your computer is lost or damaged"
+    "It makes your typing faster"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "Cloud backups stay safe online, so you can recover files even if the device is lost or broken."
   }
  ],
@@ -3899,11 +3899,11 @@
    "q": "What usually happens when your computer's storage becomes almost full?",
    "opts": [
     "The computer gets brand new features",
-    "The screen becomes larger",
     "The computer can slow down and struggle to save files",
+    "The screen becomes larger",
     "The internet becomes faster"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "A nearly full drive leaves little room to work, which slows the computer and blocks new saves."
   },
   {
@@ -3911,21 +3911,21 @@
    "opts": [
     "Install more games",
     "Increase the screen brightness",
-    "Change the desktop wallpaper",
-    "Empty the Recycle Bin and remove files you no longer need"
+    "Empty the Recycle Bin and remove files you no longer need",
+    "Change the desktop wallpaper"
    ],
-   "correct": 3,
+   "correct": 2,
    "exp": "Deleting unneeded files and emptying the Recycle Bin recovers storage space."
   },
   {
    "q": "How can you check how much storage space is left on your computer?",
    "opts": [
-    "By looking at This PC to see used and free space",
+    "By turning the monitor off",
     "By counting the keys on the keyboard",
     "By reading the mouse label",
-    "By turning the monitor off"
+    "By looking at This PC to see used and free space"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "This PC shows each drive with how much space is used and how much is free."
   }
  ],
@@ -3933,23 +3933,23 @@
   {
    "q": "What is often a good first step when a program suddenly freezes or the computer misbehaves?",
    "opts": [
-    "Throw the computer away",
+    "Restart the computer",
     "Unplug the internet cable forever",
     "Pour water on the keyboard",
-    "Restart the computer"
+    "Throw the computer away"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "Restarting clears temporary glitches and fixes many common problems."
   },
   {
    "q": "Your computer will not turn on at all. What should you check first?",
    "opts": [
-    "Whether the power cable is plugged in and switched on",
     "Whether the wallpaper is nice",
+    "Whether the power cable is plugged in and switched on",
     "Whether the mouse is clean",
     "Whether the speakers are loud"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Checking the power connection first rules out the simplest reason it won't start."
   },
   {
@@ -3968,34 +3968,34 @@
   {
    "q": "A program has stopped responding and is frozen. Which tool can help you close it?",
    "opts": [
-    "Task Manager",
+    "The web browser",
     "The Calculator",
     "The Recycle Bin",
-    "The web browser"
+    "Task Manager"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Task Manager lets you select a frozen program and end the task."
   },
   {
    "q": "Your computer is running very slowly. Which of these could commonly cause it?",
    "opts": [
-    "Having a clean desktop",
+    "Too many programs open at the same time",
     "Using a wireless mouse",
     "Having a large monitor",
-    "Too many programs open at the same time"
+    "Having a clean desktop"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "Many open programs use up memory and processing power, slowing the computer down."
   },
   {
    "q": "You cannot connect to the internet. What is a reasonable thing to check?",
    "opts": [
     "The color of the desktop",
-    "The number of files on the drive",
     "Whether Wi-Fi is turned on and connected",
+    "The number of files on the drive",
     "The font size in Word"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Confirming Wi-Fi is on and connected addresses one of the most common causes of no internet."
   }
  ],
@@ -4003,12 +4003,12 @@
   {
    "q": "What should you do before cleaning the inside or hardware of a computer?",
    "opts": [
-    "Turn it off and unplug it from power",
-    "Spray water inside it",
     "Open every program first",
+    "Spray water inside it",
+    "Turn it off and unplug it from power",
     "Increase the volume"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Shutting down and unplugging prevents electric shock and damage while you clean."
   },
   {
@@ -4016,21 +4016,21 @@
    "opts": [
     "Resting a cup of water on the laptop",
     "Cleaning the screen with lots of water",
-    "Keeping drinks far away from the keyboard",
-    "Storing juice near the vents"
+    "Storing juice near the vents",
+    "Keeping drinks far away from the keyboard"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "Keeping drinks away avoids spills that can damage the keyboard and internal parts."
   },
   {
    "q": "Why is it wise to protect your computer with a surge protector or stabilizer?",
    "opts": [
-    "It makes files load faster",
     "It guards against damage from power surges",
+    "It makes files load faster",
     "It adds more storage",
     "It brightens the screen"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "A surge protector shields the computer from sudden voltage spikes that can harm it."
   }
  ],
@@ -4038,12 +4038,12 @@
   {
    "q": "Which feature helps a long professional document look organized with clear section titles?",
    "opts": [
-    "Using heading styles for section titles",
     "Typing everything in capital letters",
+    "Using heading styles for section titles",
     "Using ten different fonts",
     "Removing all spaces"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Heading styles give sections a clear, consistent, professional structure."
   },
   {
@@ -4051,10 +4051,10 @@
    "opts": [
     "Bright rainbow colors on every word",
     "Many spelling mistakes",
-    "Random picture placement",
-    "Consistent fonts, spacing, and correct spelling"
+    "Consistent fonts, spacing, and correct spelling",
+    "Random picture placement"
    ],
-   "correct": 3,
+   "correct": 2,
    "exp": "Consistent formatting and correct spelling make a document look neat and trustworthy."
   },
   {
@@ -4085,22 +4085,22 @@
    "q": "What is a good way to make column data easy to understand in a spreadsheet?",
    "opts": [
     "Leave every column blank",
-    "Mix numbers and words in one cell",
     "Add clear headings at the top of each column",
+    "Mix numbers and words in one cell",
     "Hide all the columns"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Clear column headings tell the reader what each set of numbers means."
   },
   {
    "q": "Which spreadsheet feature helps you present numbers visually to compare them?",
    "opts": [
-    "Inserting a chart",
-    "Deleting the rows",
     "Changing the file name",
+    "Deleting the rows",
+    "Inserting a chart",
     "Turning off the screen"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "A chart turns numbers into a picture that makes comparisons easy to see."
   }
  ],
@@ -4131,11 +4131,11 @@
    "q": "Which mode do you use to display a presentation full screen to an audience?",
    "opts": [
     "Print Preview",
-    "Spell Check",
     "Slide Show mode",
+    "Spell Check",
     "Save As"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Slide Show mode presents the slides full screen for the audience."
   }
  ],
@@ -4143,12 +4143,12 @@
   {
    "q": "What should a professional email always include to tell the reader what it is about?",
    "opts": [
-    "A clear subject line",
-    "A blank subject",
     "Only emojis",
+    "A blank subject",
+    "A clear subject line",
     "A random number"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "A clear subject line quickly tells the reader the purpose of the email."
   },
   {
@@ -4165,12 +4165,12 @@
   {
    "q": "What is the best practice before sending a work email?",
    "opts": [
-    "Send it without reading",
-    "Attach random files",
     "Check the recipient address and proofread the message",
+    "Attach random files",
+    "Send it without reading",
     "Write in all capital letters"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Checking the address and proofreading prevents mistakes and embarrassing errors."
   }
  ],
@@ -4179,33 +4179,33 @@
    "q": "What is the benefit of giving your files clear, descriptive names?",
    "opts": [
     "It makes the computer faster",
-    "It adds more storage",
+    "It helps you find and recognize files easily",
     "It changes the file type",
-    "It helps you find and recognize files easily"
+    "It adds more storage"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "Descriptive names let you identify and find the right file at a glance."
   },
   {
    "q": "What does a file extension like .docx or .jpg tell you?",
    "opts": [
-    "The type of file it is",
-    "The size of your screen",
     "Your internet speed",
+    "The size of your screen",
+    "The type of file it is",
     "The battery level"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "The extension shows the file type, such as a Word document or an image."
   },
   {
    "q": "Which is a good way to organize related work files?",
    "opts": [
-    "Group them into folders and subfolders by project",
+    "Delete them after saving",
     "Scatter them across the desktop",
     "Give them all the same name",
-    "Delete them after saving"
+    "Group them into folders and subfolders by project"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Folders and subfolders grouped by project keep related files together and easy to manage."
   }
  ],
@@ -4224,23 +4224,23 @@
   {
    "q": "Which tool would you use for an online video meeting with coworkers?",
    "opts": [
-    "A video conferencing app like Zoom or Google Meet",
     "A calculator",
+    "A video conferencing app like Zoom or Google Meet",
     "A photo printer",
     "The Recycle Bin"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Video conferencing apps let teams meet and talk face to face online."
   },
   {
    "q": "When sharing a document online, what setting decides who can open it?",
    "opts": [
-    "The sharing or permission settings",
-    "The font color",
     "The battery level",
+    "The font color",
+    "The sharing or permission settings",
     "The screen brightness"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Sharing permissions control who can view or edit the document."
   }
  ],
@@ -4248,34 +4248,34 @@
   {
    "q": "Why should you use a strong, unique password for work accounts?",
    "opts": [
-    "To make them harder for others to guess or steal",
+    "To change the wallpaper",
     "To slow down the computer",
     "To use more electricity",
-    "To change the wallpaper"
+    "To make them harder for others to guess or steal"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Strong, unique passwords make it much harder for anyone to break into your accounts."
   },
   {
    "q": "You receive a work email asking for your password with a suspicious link. What should you do?",
    "opts": [
-    "Reply with your password",
-    "Forward it to all coworkers",
     "Do not click and report it as possible phishing",
+    "Forward it to all coworkers",
+    "Reply with your password",
     "Click the link quickly"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Legitimate workplaces never ask for passwords by email, so treat it as phishing and report it."
   },
   {
    "q": "What is a safe habit when you step away from your work computer?",
    "opts": [
     "Leave it fully open and logged in",
-    "Turn up the volume",
+    "Lock the screen so others cannot use it",
     "Remove the keyboard",
-    "Lock the screen so others cannot use it"
+    "Turn up the volume"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "Locking the screen protects your work and data while you are away."
   }
  ]
@@ -4296,23 +4296,23 @@
   {
    "q": "Which group of letters are the vowels in English?",
    "opts": [
-    "A, E, I, O, U",
+    "L, M, N, O, P",
     "B, C, D, F, G",
     "A, B, C, D, E",
-    "L, M, N, O, P"
+    "A, E, I, O, U"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "A, E, I, O, U are the five vowels; all other letters are consonants."
   },
   {
    "q": "Which word contains a silent letter?",
    "opts": [
-    "cat",
     "knife",
+    "cat",
     "dog",
     "run"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "In knife the letter k is silent, so it is pronounced nife."
   }
  ],
@@ -4343,11 +4343,11 @@
    "q": "Choose the correct article: I saw ___ elephant at the zoo.",
    "opts": [
     "a",
-    "an",
+    "no article",
     "the",
-    "no article"
+    "an"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Elephant begins with a vowel sound, so it takes an."
   }
  ],
@@ -4355,12 +4355,12 @@
   {
    "q": "In the sentence The dog runs fast, which word is a verb?",
    "opts": [
-    "dog",
     "runs",
+    "dog",
     "fast",
     "the"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Runs is the action word, which makes it the verb."
   },
   {
@@ -4391,22 +4391,22 @@
    "q": "What is the opposite (antonym) of the word big?",
    "opts": [
     "large",
-    "small",
+    "tall",
     "huge",
-    "tall"
+    "small"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Small is the opposite of big; large and huge are synonyms of big."
   },
   {
    "q": "Which word means the same as happy?",
    "opts": [
-    "sad",
-    "angry",
     "glad",
+    "angry",
+    "sad",
     "tired"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Glad is a synonym of happy."
   },
   {
@@ -4426,11 +4426,11 @@
    "q": "What is the basic word order of a simple English sentence?",
    "opts": [
     "Verb, Subject, Object",
-    "Subject, Verb, Object",
     "Object, Verb, Subject",
+    "Subject, Verb, Object",
     "Subject, Object, Verb"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "English follows Subject, Verb, Object order, as in She eats rice."
   },
   {
@@ -4438,21 +4438,21 @@
    "opts": [
     "Running in the park.",
     "The tall boy.",
-    "Birds fly.",
-    "Because it rained."
+    "Because it rained.",
+    "Birds fly."
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "Birds fly has both a subject and a verb, making it a complete sentence."
   },
   {
    "q": "In the sentence Mary reads books, which word is the object?",
    "opts": [
-    "Mary",
-    "reads",
     "books",
+    "reads",
+    "Mary",
     "none"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Books receives the action of the verb reads, so it is the object."
   }
  ],
@@ -4471,23 +4471,23 @@
   {
    "q": "If a shopkeeper asks How much is this?, what are they asking about?",
    "opts": [
-    "the price",
-    "the color",
     "the size",
+    "the color",
+    "the price",
     "the time"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "How much is this? asks about the price of an item."
   },
   {
    "q": "Which reply best answers the question Would you like some water?",
    "opts": [
     "It is Monday.",
-    "Yes, please.",
+    "The store is open.",
     "My name is Sam.",
-    "The store is open."
+    "Yes, please."
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Yes, please is a natural, polite reply accepting the offer."
   }
  ],
@@ -4495,34 +4495,34 @@
   {
    "q": "Which greeting is most suitable early in the morning?",
    "opts": [
-    "Good night",
-    "Good afternoon",
     "Good morning",
+    "Good afternoon",
+    "Good night",
     "Goodbye"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Good morning is used to greet someone before noon."
   },
   {
    "q": "How do you politely respond to Nice to meet you?",
    "opts": [
-    "Nice to meet you too.",
     "No, thank you.",
+    "Nice to meet you too.",
     "I am fine, go away.",
     "It is raining."
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Nice to meet you too returns the polite greeting."
   },
   {
    "q": "Which sentence correctly introduces yourself?",
    "opts": [
     "This is my friend Ama.",
-    "My name is John.",
     "She is a teacher.",
+    "My name is John.",
     "They live in Monrovia."
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "My name is John introduces yourself by giving your own name."
   }
  ],
@@ -4531,33 +4531,33 @@
    "q": "How do you write the number fifteen in digits?",
    "opts": [
     "50",
-    "15",
+    "500",
     "5",
-    "500"
+    "15"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Fifteen is written as 15."
   },
   {
    "q": "What time is it when the clock shows half past three?",
    "opts": [
-    "3:15",
     "3:30",
+    "3:15",
     "3:45",
     "2:30"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Half past three means thirty minutes after three, which is 3:30."
   },
   {
    "q": "Which of these is a correct way to say a date?",
    "opts": [
-    "The twelfth of August",
     "The twelve of August",
+    "The twelfth of August",
     "August twelve day",
     "The month August twelve"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Dates use ordinal numbers, so the twelfth of August is correct."
   }
  ],
@@ -4566,33 +4566,33 @@
    "q": "What do you call your mother's brother?",
    "opts": [
     "cousin",
-    "uncle",
     "nephew",
+    "uncle",
     "grandfather"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Your mother's brother is your uncle."
   },
   {
    "q": "Who is your sibling?",
    "opts": [
-    "your brother or sister",
+    "your friend",
     "your teacher",
     "your neighbour",
-    "your friend"
+    "your brother or sister"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "A sibling is a brother or sister."
   },
   {
    "q": "What word describes the child of your aunt or uncle?",
    "opts": [
-    "niece",
-    "grandchild",
     "cousin",
+    "grandchild",
+    "niece",
     "in-law"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "The child of your aunt or uncle is your cousin."
   }
  ],
@@ -4611,23 +4611,23 @@
   {
    "q": "Which adjective describes someone's personality rather than appearance?",
    "opts": [
-    "generous",
-    "short",
     "slim",
+    "short",
+    "generous",
     "bald"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Generous describes a personality trait, while the others describe appearance."
   },
   {
    "q": "Complete the sentence: She has long, curly ___.",
    "opts": [
     "eyes",
-    "hair",
+    "shoes",
     "hands",
-    "shoes"
+    "hair"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Long and curly are words used to describe hair."
   }
  ],
@@ -4635,12 +4635,12 @@
   {
    "q": "When someone spells a name aloud in a listening test, what should you write?",
    "opts": [
-    "only the first letter",
     "each letter in order",
+    "only the first letter",
     "just a summary",
     "the meaning of the name"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "You must note each letter in order to record the spelled name correctly."
   },
   {
@@ -4658,11 +4658,11 @@
    "q": "Why is it important to listen for small differences like fifteen and fifty?",
    "opts": [
     "they mean the same",
-    "they sound similar but are different numbers",
     "they are both spellings of names",
+    "they sound similar but are different numbers",
     "they are never used"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Fifteen and fifty sound alike but are very different numbers, so careful listening matters."
   }
  ],
@@ -4671,33 +4671,33 @@
    "q": "If you are told to turn left at the traffic lights, which way do you go?",
    "opts": [
     "to the right",
-    "to the left",
+    "backwards",
     "straight ahead",
-    "backwards"
+    "to the left"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Turn left means you go to your left side."
   },
   {
    "q": "What does the instruction go straight on mean?",
    "opts": [
-    "stop walking",
     "continue forward without turning",
+    "stop walking",
     "turn around",
     "turn right"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Go straight on means keep moving forward in the same direction."
   },
   {
    "q": "If the bank is opposite the school, where is it?",
    "opts": [
     "next to the school",
-    "behind the school",
     "on the other side facing the school",
+    "behind the school",
     "inside the school"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Opposite means directly across, facing the school from the other side."
   }
  ],
@@ -4706,33 +4706,33 @@
    "q": "In a listening test, what does a speaker usually mean by Could you repeat that?",
    "opts": [
     "they want you to leave",
-    "they did not hear and want it said again",
     "they agree fully",
+    "they did not hear and want it said again",
     "they are ending the talk"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Could you repeat that? asks the other person to say something again."
   },
   {
    "q": "A speaker says the meeting is put off until Friday. What happened to the meeting?",
    "opts": [
     "it was cancelled forever",
-    "it was moved to a later time",
+    "it is happening now",
     "it started early",
-    "it is happening now"
+    "it was moved to a later time"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Put off is a phrasal verb meaning to postpone, so it moved to a later time."
   },
   {
    "q": "If someone says I am afraid I cannot make it, what do they mean?",
    "opts": [
-    "they are scared",
     "they cannot attend",
+    "they are scared",
     "they are lost",
     "they will arrive early"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "I cannot make it politely means the person is unable to attend."
   }
  ],
@@ -4752,22 +4752,22 @@
    "q": "If told Do not write more than three words, what is an acceptable answer?",
    "opts": [
     "a five word phrase",
-    "a two word phrase",
     "a full sentence",
+    "a two word phrase",
     "a paragraph"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "A two word phrase obeys the limit of no more than three words."
   },
   {
    "q": "The instruction says Choose two answers. How many should you select?",
    "opts": [
     "one",
-    "two",
+    "all of them",
     "three",
-    "all of them"
+    "two"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Choose two answers means you must select exactly two."
   }
  ],
@@ -4775,12 +4775,12 @@
   {
    "q": "In note completion, why should you predict the type of word before listening?",
    "opts": [
-    "to guess the whole answer",
     "to know if you need a noun, number, or date",
+    "to guess the whole answer",
     "to finish faster without listening",
     "to change the question"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Predicting the word type helps you catch the right kind of answer when you hear it."
   },
   {
@@ -4798,11 +4798,11 @@
    "q": "What should you do if you miss one answer during note completion?",
    "opts": [
     "stop the whole test",
-    "keep listening for the next answers",
     "write anything random and panic",
+    "keep listening for the next answers",
     "go back and replay it"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "You cannot replay the audio, so keep going and focus on the following answers."
   }
  ],
@@ -4810,23 +4810,23 @@
   {
    "q": "On a form, what usually goes in the field labelled Surname?",
    "opts": [
-    "your family or last name",
+    "your address",
     "your first name",
     "your age",
-    "your address"
+    "your family or last name"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Surname means your family name or last name."
   },
   {
    "q": "A form asks for Date of Birth. What information is needed?",
    "opts": [
-    "today's date",
     "the day you were born",
+    "today's date",
     "your appointment date",
     "the year you started school"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Date of Birth is the day, month, and year you were born."
   },
   {
@@ -4846,33 +4846,33 @@
    "q": "What is the main purpose of skimming a text?",
    "opts": [
     "to find one specific number",
-    "to get the general idea quickly",
     "to memorise every word",
+    "to get the general idea quickly",
     "to check spelling"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Skimming means reading quickly to understand the overall or general idea."
   },
   {
    "q": "When would you use scanning?",
    "opts": [
-    "to find a specific name or date fast",
+    "to translate the text",
     "to enjoy a story slowly",
     "to understand the writer's mood",
-    "to translate the text"
+    "to find a specific name or date fast"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Scanning is used to locate specific information such as a name, number, or date."
   },
   {
    "q": "Which reading skill helps you answer How many people attended? most efficiently?",
    "opts": [
-    "skimming",
     "scanning",
+    "skimming",
     "reading every word",
     "reading the title only"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Scanning quickly locates the specific number needed to answer the question."
   }
  ],
@@ -4880,34 +4880,34 @@
   {
    "q": "Where is the main idea of a paragraph often found?",
    "opts": [
-    "in the first or topic sentence",
     "hidden in the middle only",
+    "in the first or topic sentence",
     "never stated",
     "only in the last word"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "The main idea is frequently expressed in the topic sentence, often the first sentence."
   },
   {
    "q": "What is the main idea of a paragraph?",
    "opts": [
     "a small supporting detail",
-    "the most important point it makes",
     "an example given",
+    "the most important point it makes",
     "the longest sentence"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "The main idea is the central and most important point of the paragraph."
   },
   {
    "q": "Which of these is a supporting detail rather than a main idea?",
    "opts": [
     "Exercise improves health.",
-    "For example, walking strengthens the heart.",
+    "Health matters to everyone.",
     "Staying healthy is important.",
-    "Health matters to everyone."
+    "For example, walking strengthens the heart."
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "The example about walking supports and explains the broader main idea."
   }
  ],
@@ -4938,11 +4938,11 @@
    "q": "If an advert says Sale ends Sunday, what information is this giving?",
    "opts": [
     "the price",
-    "the deadline for the offer",
     "the shop's name",
+    "the deadline for the offer",
     "the product colour"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Sale ends Sunday tells you the last day, or deadline, of the offer."
   }
  ],
@@ -4950,12 +4950,12 @@
   {
    "q": "What does the Subject line of an email tell you?",
    "opts": [
-    "the topic of the email",
+    "the password",
     "the sender's home address",
     "the time you must reply",
-    "the password"
+    "the topic of the email"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "The subject line briefly states what the email is about."
   },
   {
@@ -4985,34 +4985,34 @@
   {
    "q": "What is usually the best way to start reading a short article for meaning?",
    "opts": [
-    "read the title and first paragraph",
-    "read only the last word",
     "count the paragraphs",
+    "read only the last word",
+    "read the title and first paragraph",
     "look at nothing"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "The title and first paragraph often reveal the article's topic and main point."
   },
   {
    "q": "If an article asks a question in its title, what is the writer likely to do in the text?",
    "opts": [
     "ignore the question",
-    "answer or discuss that question",
+    "list only names",
     "change the language",
-    "list only names"
+    "answer or discuss that question"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "A question title signals that the article will explore or answer that question."
   },
   {
    "q": "What does the conclusion of a short article usually do?",
    "opts": [
-    "introduce a brand new topic",
     "sum up the main point",
+    "introduce a brand new topic",
     "list the writer's address",
     "start the story"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "The conclusion usually summarises or restates the main point of the article."
   }
  ],
@@ -5032,22 +5032,22 @@
    "q": "Using context, what does the underlined word mean in The arid desert had almost no water?",
    "opts": [
     "very wet",
-    "very dry",
     "very cold",
+    "very dry",
     "very crowded"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "The clue almost no water shows that arid means very dry."
   },
   {
    "q": "What does the prefix un- usually add to a word, as in unhappy?",
    "opts": [
     "makes it plural",
-    "makes it a negative or opposite",
+    "makes it a question",
     "makes it past tense",
-    "makes it a question"
+    "makes it a negative or opposite"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "The prefix un- reverses the meaning, so unhappy means not happy."
   }
  ],
@@ -5055,34 +5055,34 @@
   {
    "q": "Which of the following is a complete, correctly written sentence?",
    "opts": [
-    "Because the weather was hot.",
-    "Running to the market every morning.",
     "The students finished their exam on time.",
+    "Running to the market every morning.",
+    "Because the weather was hot.",
     "When we arrived at the school."
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "It has a subject (The students) and a complete verb phrase (finished), so it stands alone as a full sentence."
   },
   {
    "q": "What is the minimum a group of words needs to be a complete sentence in English?",
    "opts": [
-    "A subject and a complete verb",
     "At least ten words",
+    "A subject and a complete verb",
     "A comma and a conjunction",
     "An adjective and an adverb"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Every complete sentence must contain a subject and a finite verb that together express a full idea."
   },
   {
    "q": "Which sentence correctly joins two complete ideas without an error?",
    "opts": [
     "I studied hard, I passed the test.",
-    "I studied hard, and I passed the test.",
     "I studied hard passed the test.",
+    "I studied hard, and I passed the test.",
     "I studied, hard so passed test."
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "A comma plus the coordinating conjunction 'and' correctly links two independent clauses."
   }
  ],
@@ -5091,11 +5091,11 @@
    "q": "What is the main job of a topic sentence in a paragraph?",
    "opts": [
     "To give a final example",
-    "To state the main idea of the paragraph",
+    "To list references and sources",
     "To ask the reader a question",
-    "To list references and sources"
+    "To state the main idea of the paragraph"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "The topic sentence introduces and controls the central idea that the rest of the paragraph develops."
   },
   {
@@ -5113,11 +5113,11 @@
    "q": "Which word best signals that you are adding a supporting point in a paragraph?",
    "opts": [
     "However",
-    "Nevertheless",
+    "Furthermore",
     "Instead",
-    "Furthermore"
+    "Nevertheless"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "'Furthermore' adds and reinforces an idea, while the others signal contrast."
   }
  ],
@@ -5126,33 +5126,33 @@
    "q": "Which sentence best describes a place using vivid detail?",
    "opts": [
     "The market is a place.",
-    "The market was busy, with colourful stalls and the smell of fresh fish.",
     "I went to the market.",
+    "The market was busy, with colourful stalls and the smell of fresh fish.",
     "The market is good."
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "It uses specific sensory details (colourful stalls, smell of fresh fish) to paint a clear picture."
   },
   {
    "q": "Which group of words are prepositions useful for describing where things are located?",
    "opts": [
-    "beside, opposite, near",
+    "happy, sad, tired",
     "quickly, slowly, well",
     "run, walk, sit",
-    "happy, sad, tired"
+    "beside, opposite, near"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "'Beside', 'opposite' and 'near' are prepositions of place that show location."
   },
   {
    "q": "When describing a place in IELTS Speaking, what should you also include besides its appearance?",
    "opts": [
-    "Only its exact map coordinates",
-    "Nothing more than one adjective",
     "How you feel about it and why it is special",
+    "Nothing more than one adjective",
+    "Only its exact map coordinates",
     "A list of unrelated places"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Adding your feelings and reasons extends your answer and shows a fuller range of language."
   }
  ],
@@ -5161,22 +5161,22 @@
    "q": "Which greeting is most appropriate for an informal email to a friend?",
    "opts": [
     "Dear Sir or Madam,",
-    "To Whom It May Concern,",
     "Hi Musu,",
+    "To Whom It May Concern,",
     "Respected Manager,"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "'Hi Musu,' is a friendly, casual opening suited to writing to a friend."
   },
   {
    "q": "Which closing best fits an informal email?",
    "opts": [
     "Yours faithfully,",
-    "See you soon,",
     "I remain your obedient servant,",
+    "See you soon,",
     "Yours sincerely,"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "'See you soon,' is a relaxed, friendly sign-off appropriate for informal messages."
   },
   {
@@ -5195,34 +5195,34 @@
   {
    "q": "Which sentence uses subject-verb agreement correctly?",
    "opts": [
-    "She go to school every day.",
+    "My brother lives in Monrovia.",
     "The children plays outside.",
     "He walk to work.",
-    "My brother lives in Monrovia."
+    "She go to school every day."
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "The singular subject 'My brother' correctly takes the singular verb form 'lives'."
   },
   {
    "q": "Which sentence uses the article correctly?",
    "opts": [
-    "I saw an elephant at the zoo.",
     "I saw a elephant at the zoo.",
+    "I saw an elephant at the zoo.",
     "I saw an dog in the yard.",
     "I saw a apple on the table."
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "'An' is used before words beginning with a vowel sound, such as 'elephant'."
   },
   {
    "q": "Which sentence uses the correct past tense?",
    "opts": [
     "Yesterday I buyed new shoes.",
-    "Yesterday I bought new shoes.",
     "Yesterday I buy new shoes.",
+    "Yesterday I bought new shoes.",
     "Yesterday I have buy new shoes."
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "'Bought' is the correct irregular past tense of 'buy'."
   }
  ],
@@ -5232,21 +5232,21 @@
    "opts": [
     "My name is Sarah, but you can call me Sarah.",
     "Names.",
-    "My full name is Sarah Kollie, and people usually call me Sarah.",
-    "Why do you want to know my name?"
+    "Why do you want to know my name?",
+    "My full name is Sarah Kollie, and people usually call me Sarah."
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "It gives the full name and a natural extra detail, showing fluency and confidence."
   },
   {
    "q": "Which question is the examiner LEAST likely to ask during a Part 1 self-introduction?",
    "opts": [
-    "Where are you from?",
-    "Do you work or study?",
     "Can you explain quantum physics in detail?",
+    "Do you work or study?",
+    "Where are you from?",
     "What do you do in your free time?"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Part 1 covers familiar personal topics, not complex academic explanations."
   },
   {
@@ -5266,11 +5266,11 @@
    "q": "Which sentence correctly describes a family member using present tense?",
    "opts": [
     "My mother work as a nurse.",
-    "My mother works as a nurse.",
     "My mother working as a nurse.",
+    "My mother works as a nurse.",
     "My mother worked as a nurse now."
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "The singular subject 'My mother' takes 'works' in the present simple tense."
   },
   {
@@ -5278,21 +5278,21 @@
    "opts": [
     "Yes.",
     "No.",
-    "Yes, very close. We eat dinner together every evening and share our news.",
-    "I don't know."
+    "I don't know.",
+    "Yes, very close. We eat dinner together every evening and share our news."
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "It answers directly and adds a specific reason, extending the response naturally."
   },
   {
    "q": "Which word correctly completes: 'My father's brother is my ___.'?",
    "opts": [
-    "nephew",
     "uncle",
+    "nephew",
     "cousin",
     "grandfather"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Your father's brother is your uncle."
   }
  ],
@@ -5322,12 +5322,12 @@
   {
    "q": "Which phrase best expresses how long you have done a hobby?",
    "opts": [
-    "I have played football since I was ten.",
+    "I will play football since ten.",
     "I am playing football ten years ago.",
     "I play football yesterday for years.",
-    "I will play football since ten."
+    "I have played football since I was ten."
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "The present perfect with 'since' correctly shows an action continuing from a point in the past until now."
   }
  ],
@@ -5335,34 +5335,34 @@
   {
    "q": "Which is the most natural way to answer a question about your favourite school subject?",
    "opts": [
-    "School.",
     "My favourite subject was biology because I loved learning about living things.",
+    "School.",
     "Yes, I went to school.",
     "Subjects are many."
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "It answers directly and gives a reason, which extends the response effectively."
   },
   {
    "q": "Which sentence correctly uses the past tense to describe school life?",
    "opts": [
     "I go to primary school in Gbarnga.",
-    "I goes to primary school in Gbarnga.",
     "I went to primary school in Gbarnga.",
+    "I goes to primary school in Gbarnga.",
     "I gone to primary school in Gbarnga."
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "'Went' is the correct simple past tense of 'go' for describing past school life."
   },
   {
    "q": "Which word best describes a teacher who explains things clearly and patiently?",
    "opts": [
     "boring",
-    "supportive",
     "careless",
+    "supportive",
     "strict"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "'Supportive' positively describes a helpful, patient teacher."
   }
  ],
@@ -5372,10 +5372,10 @@
    "opts": [
     "Work.",
     "Yes, I work.",
-    "I am a teacher, and I teach English at a secondary school in Monrovia.",
-    "Job."
+    "Job.",
+    "I am a teacher, and I teach English at a secondary school in Monrovia."
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "It states the job and adds detail about where and what you do, extending the answer."
   },
   {
@@ -5393,11 +5393,11 @@
    "q": "Which phrase best describes something you like about your job?",
    "opts": [
     "The most boring part is helping people.",
-    "I hate helping people the most.",
+    "What I enjoy most is helping people every day.",
     "Helping people is my worst part.",
-    "What I enjoy most is helping people every day."
+    "I hate helping people the most."
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "'What I enjoy most is...' clearly and positively highlights a good aspect of the job."
   }
  ],
@@ -5406,33 +5406,33 @@
    "q": "In IELTS Speaking, what does 'fluency' mainly refer to?",
    "opts": [
     "Speaking with a perfect British accent",
-    "Speaking smoothly at a natural pace without too many pauses",
     "Using only very long words",
+    "Speaking smoothly at a natural pace without too many pauses",
     "Speaking as fast as possible"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Fluency is about speaking smoothly and continuously at a natural pace, not about accent or speed."
   },
   {
    "q": "Which is a useful filler phrase to keep speaking naturally while you think?",
    "opts": [
-    "Well, let me think about that for a moment.",
+    "Silence for ten seconds.",
     "I don't know, stop.",
     "No comment.",
-    "Silence for ten seconds."
+    "Well, let me think about that for a moment."
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "A natural filler phrase buys thinking time while keeping your speech flowing."
   },
   {
    "q": "Which habit most improves fluency for a Liberian IELTS learner?",
    "opts": [
-    "Memorising long answers word for word",
-    "Only reading silently",
     "Speaking English regularly and practising every day",
+    "Only reading silently",
+    "Memorising long answers word for word",
     "Never making any mistakes"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Regular spoken practice builds the automatic ease that fluency requires."
   }
  ],
@@ -5463,11 +5463,11 @@
    "q": "If you are unsure of the answer in the listening MCQ, what is the best strategy?",
    "opts": [
     "Leave it blank forever",
-    "Make your best guess and move on",
+    "Write all four options",
     "Stop the whole test",
-    "Write all four options"
+    "Make your best guess and move on"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "There is no penalty for wrong answers, so guessing and moving on avoids missing later questions."
   }
  ],
@@ -5511,33 +5511,33 @@
    "q": "In IELTS Listening table completion, why should you read the column and row headings first?",
    "opts": [
     "To decorate the table",
-    "To predict what type of information each gap needs",
+    "Because they are the answers",
     "To count the total boxes",
-    "Because they are the answers"
+    "To predict what type of information each gap needs"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Headings tell you whether a gap needs a name, number, date or other detail, so you listen for the right thing."
   },
   {
    "q": "If a table gap is under a heading called 'Price', what should you listen for?",
    "opts": [
-    "A person's name",
     "A cost or amount of money",
+    "A person's name",
     "A colour",
     "A day of the week"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "The 'Price' heading signals that the missing information is a cost or amount of money."
   },
   {
    "q": "What must you always check about the number of words allowed in table completion?",
    "opts": [
     "The examiner's name",
-    "The colour of the paper",
     "The word limit stated in the instructions",
+    "The colour of the paper",
     "The date of the test"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Answers that exceed the stated word limit are marked wrong, so you must follow it exactly."
   }
  ],
@@ -5546,33 +5546,33 @@
    "q": "In IELTS Listening sentence completion, what should your answer do?",
    "opts": [
     "Change the meaning of the sentence",
-    "Fit grammatically and make sense in the sentence",
     "Always be a full paragraph",
+    "Fit grammatically and make sense in the sentence",
     "Ignore the words around the gap"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "The word you write must fit the grammar and meaning of the surrounding sentence."
   },
   {
    "q": "If the instruction says 'Write NO MORE THAN TWO WORDS', which answer is acceptable?",
    "opts": [
     "a very large modern building",
-    "modern building",
+    "the modern building over there",
     "building that is modern and large",
-    "the modern building over there"
+    "modern building"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "'Modern building' is two words and respects the stated limit."
   },
   {
    "q": "Why is it important to predict the type of word needed before listening?",
    "opts": [
-    "It wastes time",
+    "It helps you recognise the answer, such as a noun or number, when you hear it",
     "It is against the rules",
     "It changes the recording",
-    "It helps you recognise the answer, such as a noun or number, when you hear it"
+    "It wastes time"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "Predicting the word type primes you to catch the correct answer as the audio plays."
   }
  ],
@@ -5604,10 +5604,10 @@
    "opts": [
     "Your imagination",
     "Any dictionary",
-    "The words you hear in the recording",
-    "The other test sections"
+    "The other test sections",
+    "The words you hear in the recording"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "Summary completion answers must come from words actually spoken in the recording."
   }
  ],
@@ -5615,34 +5615,34 @@
   {
    "q": "IELTS Academic Listening Section 4 typically features what kind of recording?",
    "opts": [
-    "A casual chat between two friends",
     "A university lecture or academic monologue",
+    "A casual chat between two friends",
     "A song on the radio",
     "A shopping advertisement"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Section 4 is usually a single-speaker academic lecture on a study-related topic."
   },
   {
    "q": "What listening skill is especially important for academic lectures?",
    "opts": [
     "Ignoring signposting language",
-    "Only listening to the first sentence",
     "Recognising signposting words that show the structure of the talk",
+    "Only listening to the first sentence",
     "Counting the speaker's pauses"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Signposting words like 'firstly' and 'in conclusion' guide you through the lecture's structure."
   },
   {
    "q": "Why is note-taking practice valuable for academic listening?",
    "opts": [
-    "It helps you follow and record key points as you listen once",
-    "It lets you replay the audio",
     "It removes the need to listen",
+    "It lets you replay the audio",
+    "It helps you follow and record key points as you listen once",
     "It gives you extra time on the test"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "The audio plays only once, so quick note-taking captures key points before they pass."
   }
  ],
@@ -5661,23 +5661,23 @@
   {
    "q": "Why does a Matching Headings list usually contain more headings than paragraphs?",
    "opts": [
-    "To reward guessing",
-    "Because some paragraphs need two headings",
     "Because extra headings act as distractors that are not used",
+    "Because some paragraphs need two headings",
+    "To reward guessing",
     "Because the order is always reversed"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "There are extra headings that will not be used, so you must reject the distractors."
   },
   {
    "q": "What is the best strategy for tackling a Matching Headings question?",
    "opts": [
-    "Read the headings first, then skim each paragraph for its main idea",
     "Match headings to random paragraphs quickly",
+    "Read the headings first, then skim each paragraph for its main idea",
     "Only read the first line of the passage",
     "Choose headings that share the most words with the paragraph"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Reading headings first then identifying each paragraph's main idea avoids being tricked by shared vocabulary."
   }
  ],
@@ -5697,22 +5697,22 @@
    "q": "You should mark a statement 'False' when it does what to the information in the passage?",
    "opts": [
     "Repeats it using synonyms",
-    "Directly contradicts it",
+    "Leaves it unmentioned",
     "Adds extra detail not in the text",
-    "Leaves it unmentioned"
+    "Directly contradicts it"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "'False' applies when the statement clearly contradicts what the passage states."
   },
   {
    "q": "These questions ask you to judge statements against what?",
    "opts": [
-    "The writer's opinions and claims",
     "The factual information stated in the passage",
+    "The writer's opinions and claims",
     "Your general knowledge of the topic",
     "Other students' answers"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "True/False/Not Given tests factual information given in the text, not the writer's views or your knowledge."
   }
  ],
@@ -5721,33 +5721,33 @@
    "q": "How does Yes/No/Not Given differ from True/False/Not Given?",
    "opts": [
     "It uses numbers instead of letters",
-    "It only appears in listening tests",
+    "It tests the writer's opinions or claims rather than facts",
     "It has five possible answers",
-    "It tests the writer's opinions or claims rather than facts"
+    "It only appears in listening tests"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "Yes/No/Not Given focuses on the writer's views and claims, whereas True/False/Not Given tests facts."
   },
   {
    "q": "You should answer 'Yes' when the statement does what?",
    "opts": [
     "Contradicts the writer's opinion",
-    "Agrees with the writer's opinion or claim",
     "Is not discussed by the writer",
+    "Agrees with the writer's opinion or claim",
     "Is grammatically correct"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "'Yes' means the statement agrees with the opinion or claim the writer expresses."
   },
   {
    "q": "What does 'Not Given' mean in a Yes/No/Not Given task?",
    "opts": [
     "The writer strongly disagrees",
-    "The writer expresses no view on that point",
+    "The statement is only partly true",
     "The statement is false",
-    "The statement is only partly true"
+    "The writer expresses no view on that point"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "'Not Given' means the writer states no opinion on that particular point."
   }
  ],
@@ -5755,34 +5755,34 @@
   {
    "q": "In a Matching Information task, what are you asked to do?",
    "opts": [
-    "Put paragraphs in chronological order",
     "Find which paragraph contains a specific piece of information",
+    "Put paragraphs in chronological order",
     "Choose a heading for the whole passage",
     "Correct grammar mistakes in the text"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "You locate which paragraph holds a stated detail such as an example, reason or comparison."
   },
   {
    "q": "Why can Matching Information questions be time-consuming?",
    "opts": [
     "You must translate each paragraph",
-    "There is only one paragraph to read",
+    "The information may appear in any paragraph, and paragraphs can be used more than once",
     "The answers are always in order",
-    "The information may appear in any paragraph, and paragraphs can be used more than once"
+    "There is only one paragraph to read"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "The details are not in passage order and a paragraph may be the answer to more than one question."
   },
   {
    "q": "Which skill is most useful for Matching Information questions?",
    "opts": [
-    "Scanning for specific details like examples or reasons",
-    "Memorising the whole passage",
     "Guessing based on the title",
+    "Memorising the whole passage",
+    "Scanning for specific details like examples or reasons",
     "Reading only the conclusion"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "Scanning helps you quickly locate the specific type of information described in each question."
   }
  ],
@@ -5801,23 +5801,23 @@
   {
    "q": "What must you check carefully before writing a diagram label?",
    "opts": [
-    "The colour of the diagram",
     "The word limit stated in the instructions",
+    "The colour of the diagram",
     "The author's name",
     "The number of paragraphs"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Instructions set a word limit, so exceeding it makes the answer incorrect."
   },
   {
    "q": "Which reading skill helps you match labels to parts of a diagram?",
    "opts": [
-    "Locating the paragraph that describes that part of the process or object",
     "Reading the passage backwards",
+    "Locating the paragraph that describes that part of the process or object",
     "Counting the words in each paragraph",
     "Ignoring the passage and using logic"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "You find where the passage describes that component, then take the correct word from it."
   }
  ],
@@ -5827,32 +5827,32 @@
    "opts": [
     "Memorise every word",
     "Find one specific number",
-    "Correct the writer's argument",
-    "Get the general idea and structure quickly"
+    "Get the general idea and structure quickly",
+    "Correct the writer's argument"
    ],
-   "correct": 3,
+   "correct": 2,
    "exp": "Skimming gives you the overall gist and organisation before you read for detail."
   },
   {
    "q": "In IELTS, what is scanning used for?",
    "opts": [
     "Understanding the main argument",
-    "Locating specific details such as names, dates or figures",
+    "Summarising the conclusion",
     "Judging the writer's tone",
-    "Summarising the conclusion"
+    "Locating specific details such as names, dates or figures"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Scanning means searching quickly for particular pieces of information like dates or names."
   },
   {
    "q": "Why is it unwise to spend too long on one difficult question in the Reading test?",
    "opts": [
-    "The test has no time limit",
     "All questions carry equal marks, so you may miss easier ones",
+    "The test has no time limit",
     "Difficult questions are worth more points",
     "You lose marks for skipping"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Every question is worth one mark, so managing time lets you secure the easier answers."
   }
  ],
@@ -5861,22 +5861,22 @@
    "q": "In Academic Writing Task 1, what should your introduction do?",
    "opts": [
     "Give your personal opinion on the topic",
-    "List every number in the data",
+    "Paraphrase what the chart or graph shows",
     "Predict future trends",
-    "Paraphrase what the chart or graph shows"
+    "List every number in the data"
    ],
-   "correct": 3,
+   "correct": 1,
    "exp": "A Task 1 introduction paraphrases the question by restating what the visual presents."
   },
   {
    "q": "What is the minimum word count for Writing Task 1?",
    "opts": [
     "100 words",
-    "150 words",
     "200 words",
+    "150 words",
     "250 words"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Task 1 requires at least 150 words; writing fewer loses marks."
   },
   {
@@ -5884,10 +5884,10 @@
    "opts": [
     "An overview of main trends",
     "Key supporting figures",
-    "Your personal opinion or recommendations",
-    "An accurate paraphrase of the task"
+    "An accurate paraphrase of the task",
+    "Your personal opinion or recommendations"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "Task 1 is a factual report, so personal opinions and recommendations do not belong."
   }
  ],
@@ -5895,12 +5895,12 @@
   {
    "q": "What is the purpose of an overview sentence in a Task 1 answer about a chart?",
    "opts": [
-    "To describe every single data point",
+    "To summarise the most noticeable trends or features",
     "To give the exact source of the data",
     "To offer a solution to a problem",
-    "To summarise the most noticeable trends or features"
+    "To describe every single data point"
    ],
-   "correct": 3,
+   "correct": 0,
    "exp": "The overview highlights the main, most striking features without listing all details."
   },
   {
@@ -5918,11 +5918,11 @@
    "q": "How should you select which figures to include from a detailed chart?",
    "opts": [
     "Include every number shown",
-    "Choose the most significant or representative figures",
     "Only include the smallest values",
+    "Choose the most significant or representative figures",
     "Avoid numbers altogether"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "You select key, representative figures to support your description rather than listing them all."
   }
  ],
@@ -5932,10 +5932,10 @@
    "opts": [
     "Reading out each cell in order",
     "Describing the table's colours",
-    "Identifying the highest and lowest values or clearest patterns",
-    "Explaining why the data was collected"
+    "Explaining why the data was collected",
+    "Identifying the highest and lowest values or clearest patterns"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "A strong overview points out extremes and overall patterns rather than every cell."
   },
   {
@@ -5952,12 +5952,12 @@
   {
    "q": "Which language is useful for comparing values in a table?",
    "opts": [
-    "Comparatives and superlatives such as higher, the highest",
     "Only past continuous verbs",
+    "Comparatives and superlatives such as higher, the highest",
     "Conditional sentences with 'if'",
     "Direct speech quotations"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Comparatives and superlatives let you compare and rank the values clearly."
   }
  ],
@@ -5977,22 +5977,22 @@
    "q": "Which phrase correctly describes a segment making up 50 percent of a pie chart?",
    "opts": [
     "A small fraction",
-    "Half of the total",
+    "Roughly one tenth",
     "A slight majority above 90 percent",
-    "Roughly one tenth"
+    "Half of the total"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Fifty percent equals half of the total amount shown."
   },
   {
    "q": "When two pie charts show the same categories at different dates, what should you do?",
    "opts": [
-    "Describe only the first chart",
     "Compare how the proportions changed between the two dates",
+    "Describe only the first chart",
     "Add up all the percentages",
     "Ignore the smaller segments"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "With two dated pie charts you compare the shifts in proportion over time."
   }
  ],
@@ -6001,33 +6001,33 @@
    "q": "Line graphs are especially good for showing what?",
    "opts": [
     "Parts of a whole",
-    "The exact location of places",
     "Trends and changes over time",
+    "The exact location of places",
     "Steps in a process"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Line graphs illustrate how values rise, fall or fluctuate over a period."
   },
   {
    "q": "Which phrase best describes a line that goes up quickly?",
    "opts": [
     "A gradual decline",
-    "A sharp increase",
     "Remained stable",
+    "A sharp increase",
     "A slight dip"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "A quick upward movement is described as a sharp or rapid increase."
   },
   {
    "q": "How would you describe a line that stays at the same level over time?",
    "opts": [
     "It plummeted",
-    "It remained stable or leveled off",
+    "It fluctuated wildly",
     "It soared",
-    "It fluctuated wildly"
+    "It remained stable or leveled off"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "A flat, unchanging line means the value remained stable or leveled off."
   }
  ],
@@ -6035,12 +6035,12 @@
   {
    "q": "Bar charts are most useful for doing what?",
    "opts": [
-    "Showing a continuous trend every second",
-    "Displaying stages of a natural cycle",
     "Comparing quantities across different categories",
+    "Displaying stages of a natural cycle",
+    "Showing a continuous trend every second",
     "Giving directions on a map"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Bar charts compare amounts between separate categories or groups."
   },
   {
@@ -6058,11 +6058,11 @@
    "q": "What is a good approach when a bar chart has many categories?",
    "opts": [
     "Describe each bar one by one with no grouping",
-    "Group similar bars and highlight notable comparisons",
     "Only mention the middle bar",
+    "Group similar bars and highlight notable comparisons",
     "Convert the bars into a pie chart"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Grouping bars and highlighting key comparisons produces a clearer, higher-scoring report."
   }
  ],
@@ -6072,10 +6072,10 @@
    "opts": [
     "Personal opinions and 'I think'",
     "Comparatives such as bigger than",
-    "The passive voice and sequencing words like first, then, finally",
-    "Percentages of a whole"
+    "Percentages of a whole",
+    "The passive voice and sequencing words like first, then, finally"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "Processes are usually described with the passive voice and sequence markers to show stages."
   },
   {
@@ -6092,12 +6092,12 @@
   {
    "q": "For a process with no dates, which tense is usually appropriate?",
    "opts": [
-    "Present simple",
     "Past perfect",
+    "Present simple",
     "Future continuous",
     "Past continuous"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Timeless processes are normally described in the present simple, often passive."
   }
  ],
@@ -6116,12 +6116,12 @@
   {
    "q": "Which language is most useful for describing locations on a map?",
    "opts": [
-    "Prepositions of place such as to the north of, next to, opposite",
+    "Sequencers like firstly and finally only",
     "Comparatives like faster than",
     "Percentages and fractions",
-    "Sequencers like firstly and finally only"
+    "Prepositions of place such as to the north of, next to, opposite"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Prepositions of place and direction help describe where features are located."
   },
   {
@@ -6141,33 +6141,33 @@
    "q": "Which structure correctly compares two values that are very close?",
    "opts": [
     "Far higher than",
-    "Twice as high as",
     "Slightly higher than",
+    "Twice as high as",
     "Nowhere near"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "'Slightly higher than' expresses a small difference between two close values."
   },
   {
    "q": "To say two figures are exactly equal, which phrase is best?",
    "opts": [
-    "The same as",
-    "Far more than",
     "A fraction of",
+    "Far more than",
+    "The same as",
     "Considerably less than"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "'The same as' shows that two values are equal."
   },
   {
    "q": "Which word signals a contrast between two data points?",
    "opts": [
-    "Whereas",
+    "Similarly",
     "Because",
     "Therefore",
-    "Similarly"
+    "Whereas"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "'Whereas' introduces a contrast, highlighting a difference between two figures."
   }
  ],
@@ -6175,34 +6175,34 @@
   {
    "q": "Which word is a synonym for a large increase in Task 1 writing?",
    "opts": [
-    "Plunge",
-    "Dip",
     "Surge",
+    "Dip",
+    "Plunge",
     "Plateau"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "'Surge' means a strong, large increase, while the others describe falls or flatness."
   },
   {
    "q": "Which pair correctly matches a verb of decrease with its noun form?",
    "opts": [
-    "To decline / a decline",
     "To rise / a rise",
+    "To decline / a decline",
     "To grow / a growth",
     "To climb / a climb"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "'Decline' is a decrease as both verb and noun; the others describe increases."
   },
   {
    "q": "Which adverb best describes a very small change in data?",
    "opts": [
-    "Marginally",
-    "Dramatically",
     "Substantially",
+    "Dramatically",
+    "Marginally",
     "Steeply"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "'Marginally' means by a very small amount, unlike the others which show large change."
   }
  ],
@@ -6211,11 +6211,11 @@
    "q": "In a standard IELTS Task 2 essay, what is the main purpose of the introduction?",
    "opts": [
     "To list every idea you will mention in detail",
-    "To paraphrase the question and state your overall response",
+    "To write the conclusion early",
     "To give your personal life story",
-    "To write the conclusion early"
+    "To paraphrase the question and state your overall response"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "A good introduction rephrases the task and previews your position or approach."
   },
   {
@@ -6246,33 +6246,33 @@
    "q": "In an opinion (agree/disagree) essay, what must you make clear from the start?",
    "opts": [
     "That you have no opinion",
-    "Your own clear position on the statement",
     "Only the opposing view",
+    "Your own clear position on the statement",
     "A summary of every possible view without choosing"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Opinion essays require you to state and maintain one clear position throughout."
   },
   {
    "q": "Which phrase best introduces your personal stance in an opinion essay?",
    "opts": [
     "Some people might possibly think somewhere that",
-    "In my view, the benefits clearly outweigh the drawbacks",
+    "Everyone always agrees on this issue",
     "It is impossible to say anything at all",
-    "Everyone always agrees on this issue"
+    "In my view, the benefits clearly outweigh the drawbacks"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "A phrase like In my view directly signals your clear personal position."
   },
   {
    "q": "What is a common mistake that weakens an opinion essay?",
    "opts": [
-    "Giving reasons that support your view",
-    "Staying on topic throughout",
     "Switching your position and sounding unsure",
+    "Staying on topic throughout",
+    "Giving reasons that support your view",
     "Using a clear thesis statement"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Changing your position mid-essay confuses the reader and lowers the task response score."
   }
  ],
@@ -6292,22 +6292,22 @@
    "q": "How should the two opposing views usually be organised?",
    "opts": [
     "Both views crammed into one sentence",
-    "One view per body paragraph",
     "Randomly mixed with no structure",
+    "One view per body paragraph",
     "Only in the conclusion"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Dedicating one body paragraph to each view keeps the discussion clear and balanced."
   },
   {
    "q": "Which linking phrase best introduces the second, contrasting view?",
    "opts": [
     "For example",
-    "On the other hand",
+    "As a result",
     "In conclusion",
-    "As a result"
+    "On the other hand"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "On the other hand signals a shift to the opposing viewpoint in a discussion essay."
   }
  ],
@@ -6315,34 +6315,34 @@
   {
    "q": "What two main elements must a problem-solution essay address?",
    "opts": [
-    "Only advantages and disadvantages",
     "The causes or problems and their solutions",
+    "Only advantages and disadvantages",
     "A story and a poem",
     "Two opposing opinions only"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "This essay type requires identifying the problem(s) and proposing realistic solution(s)."
   },
   {
    "q": "Which of these is the best way to present a solution?",
    "opts": [
-    "State it and explain how it would help",
     "Only name it with no explanation",
+    "State it and explain how it would help",
     "List ten solutions in one line",
     "Ignore whether it is realistic"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "A strong solution is explained and shown to address the stated problem effectively."
   },
   {
    "q": "Which verb tense or form is most useful when proposing solutions?",
    "opts": [
     "Past simple for finished events",
-    "Modal verbs like should and could",
     "Only the present perfect",
+    "Modal verbs like should and could",
     "No verbs at all"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Modals such as should and could express suggestions and recommended actions clearly."
   }
  ],
@@ -6352,21 +6352,21 @@
    "opts": [
     "Only the advantages",
     "Only the disadvantages",
-    "Both the benefits and the drawbacks",
-    "A single unrelated opinion"
+    "A single unrelated opinion",
+    "Both the benefits and the drawbacks"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "This essay type requires a balanced treatment of both positive and negative points."
   },
   {
    "q": "If the prompt asks whether advantages outweigh disadvantages, what must you also do?",
    "opts": [
-    "Refuse to decide",
     "Give a clear judgement on which side is stronger",
+    "Refuse to decide",
     "Only describe advantages",
     "Copy the question word for word"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "An outweigh question requires you to weigh the sides and state a clear conclusion."
   },
   {
@@ -6386,33 +6386,33 @@
    "q": "What is the key feature of a two-part (direct) question essay?",
    "opts": [
     "It asks one simple yes or no question",
-    "It contains two separate questions you must both answer",
     "It only requires a description",
+    "It contains two separate questions you must both answer",
     "It has no questions to answer"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Two-part questions pose two distinct questions, and both must be answered fully."
   },
   {
    "q": "How should the body of a two-part question essay usually be organised?",
    "opts": [
     "Answer only the first question",
-    "One body paragraph for each question",
+    "Ignore the questions and give your hobbies",
     "Answer both questions in the conclusion only",
-    "Ignore the questions and give your hobbies"
+    "One body paragraph for each question"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Devoting one paragraph to each question ensures both are addressed clearly."
   },
   {
    "q": "What happens to your score if you answer only one of the two questions?",
    "opts": [
-    "Nothing changes",
     "Your task response score drops for an incomplete answer",
+    "Nothing changes",
     "You automatically get top marks",
     "The essay becomes an opinion essay"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Failing to answer both parts leaves the task incomplete and lowers task achievement."
   }
  ],
@@ -6443,11 +6443,11 @@
    "q": "Which word is used to add a similar supporting point?",
    "opts": [
     "Nevertheless",
-    "Furthermore",
+    "Despite",
     "Whereas",
-    "Despite"
+    "Furthermore"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Furthermore adds another point in the same direction as the previous idea."
   }
  ],
@@ -6455,34 +6455,34 @@
   {
    "q": "What does coherence in writing mainly refer to?",
    "opts": [
-    "Using very long sentences",
     "Ideas being logically organised and easy to follow",
+    "Using very long sentences",
     "Writing as fast as possible",
     "Using many rare words"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Coherence is about clear, logical organisation so the reader can follow your ideas."
   },
   {
    "q": "Which technique helps create cohesion between sentences?",
    "opts": [
-    "Referencing with pronouns like it and this",
     "Starting every sentence the same way",
+    "Referencing with pronouns like it and this",
     "Removing all linking words",
     "Changing the topic each sentence"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Reference words such as it and this link sentences and avoid repetition, aiding cohesion."
   },
   {
    "q": "Why is overusing linking words a problem for cohesion?",
    "opts": [
     "It makes writing sound natural",
-    "It can seem mechanical and forced",
     "It always raises your score",
+    "It can seem mechanical and forced",
     "It shortens the essay"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Too many connectors sound artificial; cohesion should feel natural, not forced."
   }
  ],
@@ -6491,11 +6491,11 @@
    "q": "What kinds of topics does IELTS Speaking Part 1 usually cover?",
    "opts": [
     "Abstract global politics in depth",
-    "Familiar personal topics like home, work, and hobbies",
+    "A formal academic debate",
     "A two-minute uninterrupted talk",
-    "A formal academic debate"
+    "Familiar personal topics like home, work, and hobbies"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Part 1 asks short questions about familiar everyday topics such as home and hobbies."
   },
   {
@@ -6525,34 +6525,34 @@
   {
    "q": "How long should you speak in the Speaking Part 2 cue card task?",
    "opts": [
-    "About 1 to 2 minutes",
-    "Exactly 10 seconds",
     "Around 10 minutes",
+    "Exactly 10 seconds",
+    "About 1 to 2 minutes",
     "As long as you like"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "In Part 2 you speak for one to two minutes on the cue card topic."
   },
   {
    "q": "How much preparation time do you get before speaking in Part 2?",
    "opts": [
     "No time at all",
-    "One minute to make notes",
+    "Five minutes",
     "Fifteen minutes",
-    "Five minutes"
+    "One minute to make notes"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Candidates get one minute to prepare and can make notes before speaking."
   },
   {
    "q": "What is the best use of the bullet points on the cue card?",
    "opts": [
-    "Ignore them completely",
     "Use them to structure and develop your talk",
+    "Ignore them completely",
     "Read them aloud word for word only",
     "Answer only the first one"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "The bullet prompts help you organise and expand your two-minute response."
   }
  ],
@@ -6560,34 +6560,34 @@
   {
    "q": "How do Part 3 questions differ from Part 1 questions?",
    "opts": [
-    "They are more abstract and require deeper opinions",
     "They are simpler and more personal",
+    "They are more abstract and require deeper opinions",
     "They require only yes or no",
     "They involve no speaking"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Part 3 explores abstract ideas linked to the Part 2 topic and needs developed answers."
   },
   {
    "q": "Which skill is especially important in Part 3?",
    "opts": [
     "Memorising a scripted speech",
-    "Justifying opinions and discussing ideas in depth",
     "Giving one-word answers",
+    "Justifying opinions and discussing ideas in depth",
     "Avoiding any examples"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Part 3 rewards explaining, justifying, and analysing ideas rather than short replies."
   },
   {
    "q": "If you do not understand a Part 3 question, what should you do?",
    "opts": [
     "Stay silent",
-    "Politely ask the examiner to rephrase it",
+    "Answer a Part 1 question instead",
     "Change to a different topic",
-    "Answer a Part 1 question instead"
+    "Politely ask the examiner to rephrase it"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Asking for clarification is acceptable and better than answering the wrong question."
   }
  ],
@@ -6595,34 +6595,34 @@
   {
    "q": "What is the best strategy to expand a short speaking answer?",
    "opts": [
-    "Repeat the same sentence twice",
     "Add reasons, examples, or details",
+    "Repeat the same sentence twice",
     "Speak more quietly",
     "Stop after one word"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Adding reasons and examples develops your answer and shows language range."
   },
   {
    "q": "Which technique naturally extends an answer about a preference?",
    "opts": [
-    "Explaining why and giving an example",
     "Saying only yes",
+    "Explaining why and giving an example",
     "Changing the subject",
     "Listing unrelated facts"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "Explaining the reason and adding an example turns a short reply into a full answer."
   },
   {
    "q": "Why is expanding answers important for your speaking score?",
    "opts": [
     "It fills silence with noise only",
-    "It demonstrates fluency, vocabulary, and grammar range",
     "It confuses the examiner",
+    "It demonstrates fluency, vocabulary, and grammar range",
     "It shortens the test"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Developed answers give the examiner more language to assess across all criteria."
   }
  ],
@@ -6631,22 +6631,22 @@
    "q": "What does word stress refer to in English pronunciation?",
    "opts": [
     "Saying every syllable equally loud",
-    "Emphasising a particular syllable in a word",
+    "Whispering all words",
     "Speaking as fast as possible",
-    "Whispering all words"
+    "Emphasising a particular syllable in a word"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Word stress means giving greater emphasis to one syllable, which affects clarity."
   },
   {
    "q": "Why is intonation important when speaking English?",
    "opts": [
-    "It has no effect on meaning",
     "The rise and fall of the voice conveys meaning and attitude",
+    "It has no effect on meaning",
     "It only matters in writing",
     "It makes speech slower only"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Intonation, the voice rising and falling, helps express meaning, questions, and emotion."
   },
   {
@@ -6666,22 +6666,22 @@
    "q": "What does fluency mean in the IELTS Speaking test?",
    "opts": [
     "Speaking without any pauses ever",
-    "Speaking smoothly at a natural pace with few hesitations",
     "Using only very long words",
+    "Speaking smoothly at a natural pace with few hesitations",
     "Talking as loudly as possible"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Fluency is speaking at a natural pace with logical flow and minimal hesitation."
   },
   {
    "q": "Which habit harms fluency the most?",
    "opts": [
     "Using linking phrases to connect ideas",
-    "Frequently stopping to search for perfect words",
+    "Giving relevant examples",
     "Speaking in complete sentences",
-    "Giving relevant examples"
+    "Frequently stopping to search for perfect words"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Constant long pauses to find words break the natural flow and reduce fluency."
   },
   {
@@ -6712,22 +6712,22 @@
    "q": "What is a collocation?",
    "opts": [
     "A spelling rule",
-    "Words that naturally go together, like heavy rain",
     "A type of grammar tense",
+    "Words that naturally go together, like heavy rain",
     "A punctuation mark"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Collocations are natural word pairings such as heavy rain or make a decision."
   },
   {
    "q": "Which is better for showing vocabulary range when describing something good?",
    "opts": [
     "Saying good every time",
-    "Using varied words like excellent, beneficial, or impressive",
+    "Using only the word nice",
     "Avoiding adjectives entirely",
-    "Using only the word nice"
+    "Using varied words like excellent, beneficial, or impressive"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Varying your word choice instead of repeating good demonstrates a wider vocabulary."
   }
  ],
@@ -6735,12 +6735,12 @@
   {
    "q": "In the IELTS Listening test, which strategy best helps you cope with an unfamiliar accent such as Australian or Scottish?",
    "opts": [
-    "Focus only on the exact vowel sounds you expect from your own accent",
     "Concentrate on stressed content words and overall meaning rather than every phoneme",
+    "Focus only on the exact vowel sounds you expect from your own accent",
     "Ask the invigilator to slow the recording down",
     "Ignore the speaker and rely on reading the questions"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Tracking stressed content words and meaning lets you follow speakers despite accent variation, since key information falls on stressed syllables."
   },
   {
@@ -6757,12 +6757,12 @@
   {
    "q": "Why does IELTS deliberately include a range of native-speaker accents in the Listening recordings?",
    "opts": [
-    "To reflect the real international English learners will encounter and test genuine comprehension",
-    "To make the test harder for no reason",
     "Because only British examiners are available",
+    "To make the test harder for no reason",
+    "To reflect the real international English learners will encounter and test genuine comprehension",
     "To test the candidate's own pronunciation"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "IELTS uses varied accents to assess whether candidates can understand English as it is genuinely spoken across different regions."
   }
  ],
@@ -6771,22 +6771,22 @@
    "q": "Before a Listening section begins, what is the most effective use of the time given to read the questions?",
    "opts": [
     "Memorising the instructions word for word",
-    "Predicting the type of word or information each gap needs, such as a number, name or noun",
+    "Translating each question into your first language",
     "Writing random guesses in every blank",
-    "Translating each question into your first language"
+    "Predicting the type of word or information each gap needs, such as a number, name or noun"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Anticipating the grammatical type and content of each answer primes you to catch it when the audio reaches that point."
   },
   {
    "q": "A gap in a form reads: 'Deposit required: $______'. What should you predict the answer will be?",
    "opts": [
-    "A person's name",
-    "A date of the week",
     "A number or amount of money",
+    "A date of the week",
+    "A person's name",
     "An adjective describing quality"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "The dollar sign and the word 'deposit' signal that a numerical monetary amount is required in the gap."
   },
   {
@@ -6817,22 +6817,22 @@
    "q": "Two speakers discuss a project; one says 'I suppose it could work, but...'. What attitude does this convey?",
    "opts": [
     "Full and enthusiastic agreement",
-    "Hesitant or partial agreement with reservations",
+    "Indifference to the topic",
     "Complete rejection of the idea",
-    "Indifference to the topic"
+    "Hesitant or partial agreement with reservations"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "'I suppose... but' expresses tentative acceptance qualified by doubt, signalling reservation rather than firm agreement."
   },
   {
    "q": "In a discussion, how can tone of voice help you identify a speaker's opinion when the words seem neutral?",
    "opts": [
-    "Tone is irrelevant in IELTS Listening",
     "Falling intonation and stress can reveal sarcasm, doubt or enthusiasm behind the words",
+    "Tone is irrelevant in IELTS Listening",
     "Tone only tells you the speaker's gender",
     "Tone always means the answer is negative"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Intonation and stress carry attitudinal meaning, so they can reveal an opinion that the literal words do not state."
   }
  ],
@@ -6852,22 +6852,22 @@
    "q": "Section 4 gives no mid-section pause; what is the best way to keep pace with the lecture?",
    "opts": [
     "Stop writing and just listen passively",
-    "Read ahead, follow the signposting language, and note answers as they occur",
     "Wait until the end and recall everything from memory",
+    "Read ahead, follow the signposting language, and note answers as they occur",
     "Focus only on the first and last sentences"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Because there is no pause, continuously reading ahead and following signposts keeps you aligned with the audio in real time."
   },
   {
    "q": "A lecturer says 'This brings us to the crux of the matter'. What does this indicate?",
    "opts": [
     "The lecture is ending immediately",
-    "The most important or central point is about to be made",
+    "An unrelated tangent is beginning",
     "The speaker is repeating an earlier example",
-    "An unrelated tangent is beginning"
+    "The most important or central point is about to be made"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "'The crux of the matter' flags the central, most important point, so the following information is likely to be tested."
   }
  ],
@@ -6875,12 +6875,12 @@
   {
    "q": "To reach Band 7+ in Listening, how should you handle distractors where a speaker corrects an earlier number or fact?",
    "opts": [
-    "Always write the first number you hear",
     "Listen to the whole utterance and record the corrected, final piece of information",
+    "Always write the first number you hear",
     "Write both numbers in the gap",
     "Skip the question entirely"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Speakers often self-correct, so the valid answer is the final revised information, not the first figure mentioned."
   },
   {
@@ -6898,11 +6898,11 @@
    "q": "For matching and multiple-choice tasks, why is paraphrase recognition crucial at Band 7+?",
    "opts": [
     "Because the audio never uses the exact words from the question",
-    "Because the recording usually restates ideas using synonyms rather than repeating the question wording",
     "Because paraphrases are only used in the Reading test",
+    "Because the recording usually restates ideas using synonyms rather than repeating the question wording",
     "Because the answers are always the words printed on the page"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "The correct option is typically signalled by a synonym or rephrasing, so hearing paraphrases rather than exact words is essential."
   }
  ],
@@ -6911,22 +6911,22 @@
    "q": "After practice tests, what review technique most improves advanced listening accuracy?",
    "opts": [
     "Only checking your final band score",
-    "Analysing why each wrong answer was missed and relistening to that exact segment",
+    "Memorising the answer key",
     "Discarding the transcript entirely",
-    "Memorising the answer key"
+    "Analysing why each wrong answer was missed and relistening to that exact segment"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Diagnosing the cause of each error and relistening builds the specific skills that were failing, unlike simply noting the score."
   },
   {
    "q": "When reviewing, you find you consistently misspell answers you heard correctly. What is the priority fix?",
    "opts": [
-    "Listen to more recordings only",
     "Practise accurate spelling and singular/plural endings, since these lose marks despite correct hearing",
+    "Listen to more recordings only",
     "Ignore it because meaning is enough",
     "Change to a different accent"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Correct comprehension is wasted if spelling or grammatical endings are wrong, so targeted spelling practice recovers those marks."
   },
   {
@@ -6946,33 +6946,33 @@
    "q": "Critical reading in IELTS mainly requires you to do what beyond understanding the literal text?",
    "opts": [
     "Memorise every sentence",
-    "Evaluate the writer's purpose, assumptions and the strength of their evidence",
     "Count the paragraphs",
+    "Evaluate the writer's purpose, assumptions and the strength of their evidence",
     "Translate the passage accurately"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Critical reading means assessing purpose, assumptions and evidence rather than only decoding the surface meaning."
   },
   {
    "q": "A passage states a claim and then adds 'though this remains contested'. A critical reader concludes that the writer is doing what?",
    "opts": [
     "Fully endorsing the claim as proven fact",
-    "Acknowledging that the claim is disputed and not settled",
+    "Quoting someone else's opinion word for word",
     "Rejecting the claim outright",
-    "Quoting someone else's opinion word for word"
+    "Acknowledging that the claim is disputed and not settled"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "The phrase 'remains contested' signals the writer views the claim as debatable rather than established."
   },
   {
    "q": "Which question best reflects critical reading when evaluating a source cited in a passage?",
    "opts": [
-    "How many words are in the sentence?",
     "Is the evidence sufficient and relevant to support the writer's conclusion?",
+    "How many words are in the sentence?",
     "What colour is associated with the topic?",
     "How is the word spelled?"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Judging whether evidence adequately supports the conclusion is a core act of critical evaluation."
   }
  ],
@@ -6992,22 +6992,22 @@
    "q": "Why should advanced readers avoid subvocalising (silently pronouncing every word) during timed reading?",
    "opts": [
     "It improves comprehension of every word",
-    "It slows reading speed to speaking pace, wasting limited exam time",
     "It is required by the IELTS rules",
+    "It slows reading speed to speaking pace, wasting limited exam time",
     "It helps locate answers faster"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Subvocalising caps your speed at talking pace, which is far too slow for the time pressure of the Reading test."
   },
   {
    "q": "When you first receive a Reading passage, what is the most efficient initial step?",
    "opts": [
     "Read every word from start to finish before looking at questions",
-    "Skim headings, first sentences and structure to build a mental map before answering",
+    "Answer questions in random order without reading",
     "Translate the title",
-    "Answer questions in random order without reading"
+    "Skim headings, first sentences and structure to build a mental map before answering"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "A quick skim of structure and topic sentences creates a map that makes locating answers much faster."
   }
  ],
@@ -7015,12 +7015,12 @@
   {
    "q": "An inference question in IELTS Reading asks you to identify what?",
    "opts": [
-    "Information stated word for word in the text",
     "A conclusion that is strongly implied but not directly stated",
+    "Information stated word for word in the text",
     "The number of paragraphs",
     "The writer's nationality"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Inference questions test conclusions logically implied by the text rather than statements written explicitly."
   },
   {
@@ -7038,11 +7038,11 @@
    "q": "A passage says a policy 'was quietly withdrawn after months of public criticism'. What can you reasonably infer?",
    "opts": [
     "The policy was highly successful",
-    "The government wished to avoid drawing attention to reversing an unpopular policy",
     "The policy is still fully in force",
+    "The government wished to avoid drawing attention to reversing an unpopular policy",
     "The criticism came only from other governments"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "'Quietly withdrawn after criticism' implies deliberate low-profile reversal of an unpopular measure, which is a supported inference."
   }
  ],
@@ -7051,22 +7051,22 @@
    "q": "In a Yes/No/Not Given task about the writer's views, when should you select 'Not Given'?",
    "opts": [
     "When the statement contradicts the writer",
-    "When the writer expresses no opinion on that specific claim in the passage",
+    "Whenever the statement is long",
     "When the statement matches the writer exactly",
-    "Whenever the statement is long"
+    "When the writer expresses no opinion on that specific claim in the passage"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "'Not Given' applies when the passage offers no information confirming or contradicting the writer's view on that point."
   },
   {
    "q": "How do you distinguish the writer's own opinion from an opinion the writer merely reports?",
    "opts": [
-    "They are always the same thing",
     "Look for reporting verbs and attribution such as 'critics argue', which signal others' views not the writer's",
+    "They are always the same thing",
     "Assume every opinion is the writer's",
     "Only the first opinion in the passage is the writer's"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Attribution phrases like 'critics argue' mark someone else's view, which must not be mistaken for the writer's own stance."
   },
   {
@@ -7086,33 +7086,33 @@
    "q": "When a dense academic passage uses heavy nominalisation (nouns formed from verbs), what helps comprehension?",
    "opts": [
     "Skipping the sentence entirely",
-    "Mentally converting the nouns back into their verb forms to see the underlying action",
     "Reading only the first word of each line",
+    "Mentally converting the nouns back into their verb forms to see the underlying action",
     "Counting the syllables"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Turning nominalisations back into verbs unpacks who does what, clarifying dense academic sentences."
   },
   {
    "q": "In a long, complex sentence with several subordinate clauses, how do you find the core meaning?",
    "opts": [
     "Read only the subordinate clauses",
-    "Identify the main subject and main verb of the independent clause first",
+    "Ignore all punctuation",
     "Assume the last clause is the main idea",
-    "Ignore all punctuation"
+    "Identify the main subject and main verb of the independent clause first"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Locating the main subject and verb of the independent clause reveals the sentence's core message before the modifiers."
   },
   {
    "q": "Cohesive devices such as 'nevertheless' and 'consequently' in academic texts primarily help you to do what?",
    "opts": [
-    "Increase your reading speed automatically",
     "Track the logical relationships between ideas, such as contrast or cause",
+    "Increase your reading speed automatically",
     "Identify the writer's age",
     "Find spelling errors"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Linking words signal logical relations like contrast or cause, guiding you through the argument's structure."
   }
  ],
@@ -7132,22 +7132,22 @@
    "q": "You are stuck on one difficult question with time running out. What is the best action?",
    "opts": [
     "Spend as long as needed until you solve it",
-    "Make your best guess, mark it, and move on to secure other answers",
     "Leave it and all following questions blank",
+    "Make your best guess, mark it, and move on to secure other answers",
     "Restart the passage from the beginning"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Guessing and moving on protects easier marks, since there is no penalty for wrong answers in IELTS."
   },
   {
    "q": "Why is it risky to leave transferring answers to the very last minute in the Reading test?",
    "opts": [
     "Because there is a separate transfer time as in Listening",
-    "Because there is no extra transfer time, so you must write answers on the sheet as you go or reserve time",
+    "Because pencils are not allowed",
     "Because the answer sheet is optional",
-    "Because pencils are not allowed"
+    "Because there is no extra transfer time, so you must write answers on the sheet as you go or reserve time"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Unlike Listening, Reading gives no extra transfer time, so failing to record answers within the hour loses marks."
   }
  ],
@@ -7155,12 +7155,12 @@
   {
    "q": "What is the recommended paragraph structure for a Band 7+ Task 2 opinion essay?",
    "opts": [
-    "One long paragraph covering everything",
     "Introduction, two or three developed body paragraphs, and a conclusion",
+    "One long paragraph covering everything",
     "Only an introduction and conclusion",
     "A list of bullet points"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "A clear introduction, well-developed body paragraphs and a conclusion give the logical organisation examiners reward."
   },
   {
@@ -7178,11 +7178,11 @@
    "q": "For a high band, how should the introduction to a Task 2 essay end?",
    "opts": [
     "With an unrelated question",
-    "With a clear thesis statement that outlines your position or the essay's direction",
     "With a personal anecdote about your family",
+    "With a clear thesis statement that outlines your position or the essay's direction",
     "With a copied sentence from the prompt"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "A clear thesis at the end of the introduction signals your position and structures the whole essay."
   }
  ],
@@ -7191,22 +7191,22 @@
    "q": "Which sentence shows the most precise, high-band use of vocabulary?",
    "opts": [
     "The problem is very very big and bad",
-    "The issue has escalated into a significant public health crisis",
+    "It is a big big issue for people",
     "The thing got worse and stuff",
-    "It is a big big issue for people"
+    "The issue has escalated into a significant public health crisis"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "'Escalated into a significant public health crisis' uses precise collocation and register expected at Band 7+."
   },
   {
    "q": "Why can overusing memorised 'high-level' words actually lower a Writing score?",
    "opts": [
-    "Examiners dislike long words on principle",
     "Words used inaccurately or with wrong collocation reduce the lexical resource mark",
+    "Examiners dislike long words on principle",
     "It always improves the score",
     "Long words are banned in IELTS"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Lexical resource rewards accurate, natural word choice, so misused advanced words damage rather than help the score."
   },
   {
@@ -7226,33 +7226,33 @@
    "q": "Which feature is characteristic of an appropriate academic writing style in Task 2?",
    "opts": [
     "Contractions like 'don't' and 'can't'",
-    "A formal, impersonal tone avoiding slang and contractions",
     "Emojis and exclamation marks",
+    "A formal, impersonal tone avoiding slang and contractions",
     "Very casual chatty language"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Academic style favours a formal, impersonal tone and avoids contractions, slang and informal punctuation."
   },
   {
    "q": "Which sentence is written in the most appropriate academic register?",
    "opts": [
     "Loads of people reckon the plan's a total mess",
-    "Many people believe the plan is fundamentally flawed",
+    "The plan? Not great, honestly",
     "The plan is rubbish and everyone knows it",
-    "The plan? Not great, honestly"
+    "Many people believe the plan is fundamentally flawed"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "'Many people believe the plan is fundamentally flawed' is formal and objective, matching academic register."
   },
   {
    "q": "To maintain objectivity in academic writing, how should you usually present a debatable claim?",
    "opts": [
-    "As an absolute fact with no hedging",
     "With cautious, hedged language such as 'this suggests' or 'it may indicate'",
+    "As an absolute fact with no hedging",
     "With exclamation marks for emphasis",
     "As a rhetorical shout"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Hedging with phrases like 'this suggests' conveys appropriate academic caution about debatable claims."
   }
  ],
@@ -7272,22 +7272,22 @@
    "q": "What punctuation is normally needed when a subordinate clause begins the sentence?",
    "opts": [
     "No punctuation at all",
-    "A comma after the subordinate clause and before the main clause",
     "A semicolon before it",
+    "A comma after the subordinate clause and before the main clause",
     "A full stop in the middle"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "A fronted subordinate clause is separated from the main clause by a comma, as in 'Because it rained, we stayed.'"
   },
   {
    "q": "Which word functions as a relative pronoun introducing a subordinate clause?",
    "opts": [
     "and",
-    "which",
+    "or",
     "but",
-    "or"
+    "which"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "'Which' introduces a relative clause, e.g. 'the report, which was late, was accurate', whereas 'and/but/or' are coordinating conjunctions."
   }
  ],
@@ -7295,34 +7295,34 @@
   {
    "q": "In a Task 1 report describing a graph, what should the overview paragraph contain?",
    "opts": [
-    "Every single data point in detail",
     "The most significant general trends or key features without specific figures",
+    "Every single data point in detail",
     "Your personal opinion on the data",
     "A conclusion recommending action"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "The overview summarises the main trends and standout features, which is essential for a high Task Achievement score."
   },
   {
    "q": "Which phrase best describes a sharp increase in a line graph?",
    "opts": [
     "remained stable",
-    "rose gradually",
     "surged dramatically",
+    "rose gradually",
     "declined slightly"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "'Surged dramatically' accurately conveys a sharp, steep increase in the data."
   },
   {
    "q": "When comparing data across years, which grammar structure is most appropriate for a completed change in the past?",
    "opts": [
     "Present continuous, e.g. 'is rising'",
-    "Past simple, e.g. 'rose from 20 to 40 percent'",
     "Future tense, e.g. 'will rise'",
+    "Past simple, e.g. 'rose from 20 to 40 percent'",
     "Present perfect continuous for everything"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Data describing a finished period uses the past simple, such as 'rose from 20 to 40 percent'."
   }
  ],
@@ -7331,22 +7331,22 @@
    "q": "When studying a Band 9 sample essay, what is the most useful thing to analyse?",
    "opts": [
     "The handwriting style",
-    "How ideas are developed, linked and supported with relevant examples",
+    "The colour of the ink",
     "The exact number of words on each line",
-    "The colour of the ink"
+    "How ideas are developed, linked and supported with relevant examples"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Examining idea development, cohesion and support teaches the transferable skills that produce a high band."
   },
   {
    "q": "A model essay fully addresses every part of the task prompt. Which marking criterion does this most directly satisfy?",
    "opts": [
-    "Pronunciation",
     "Task Response (Task Achievement)",
+    "Pronunciation",
     "Handwriting neatness",
     "Spelling only"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Fully answering all parts of the prompt is the core of the Task Response criterion."
   },
   {
@@ -7366,33 +7366,33 @@
    "q": "Which is a common error that lowers the Grammatical Range and Accuracy score?",
    "opts": [
     "Using a variety of correct sentence structures",
-    "Frequent subject-verb agreement errors such as 'the results shows'",
     "Accurate use of commas",
+    "Frequent subject-verb agreement errors such as 'the results shows'",
     "Correct spelling of common words"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "'The results shows' is a subject-verb agreement error, and repeated such mistakes lower the grammar score."
   },
   {
    "q": "Writing far below the minimum word count in Task 2 primarily causes what?",
    "opts": [
     "A higher band for being concise",
-    "A penalty because the task cannot be fully developed",
+    "An automatic Band 9",
     "No effect on the score",
-    "An automatic Band 9"
+    "A penalty because the task cannot be fully developed"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Underlength essays are penalised because they cannot develop ideas fully, harming Task Response."
   },
   {
    "q": "Which habit most damages the Coherence and Cohesion score?",
    "opts": [
-    "Using clear topic sentences",
     "Overusing or misusing linking words like 'moreover' in almost every sentence",
+    "Using clear topic sentences",
     "Organising ideas into paragraphs",
     "Referencing ideas with pronouns correctly"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Mechanically overusing linkers makes writing feel artificial and disjointed, harming cohesion rather than helping it."
   }
  ],
@@ -7412,22 +7412,22 @@
    "q": "A Task 2 prompt asks you to discuss both views and give your opinion. What must a high-band response include?",
    "opts": [
     "Only your own opinion",
-    "A balanced discussion of both views plus a clearly stated personal opinion",
     "Only one of the two views",
+    "A balanced discussion of both views plus a clearly stated personal opinion",
     "Neither view, just background facts"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "The instruction requires both views to be discussed and your own opinion stated, or the task is incomplete."
   },
   {
    "q": "In Task 1, why must you avoid inventing reasons or opinions about why data changed?",
    "opts": [
     "Because speculation is rewarded",
-    "Because Task 1 requires objective reporting of the data, not personal explanation",
+    "Because opinions raise the vocabulary score",
     "Because you must always give recommendations",
-    "Because opinions raise the vocabulary score"
+    "Because Task 1 requires objective reporting of the data, not personal explanation"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Task 1 is an objective report of the visual data, so adding invented causes or opinions harms Task Achievement."
   }
  ],
@@ -7435,12 +7435,12 @@
   {
    "q": "Which feature most helps English sound natural rather than robotic in the Speaking test?",
    "opts": [
-    "Speaking as slowly as possible",
     "Using connected speech and word linking",
+    "Speaking as slowly as possible",
     "Pausing after every single word",
     "Memorising long scripted answers"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Connected speech, where words link smoothly together, is a key marker of natural, fluent English."
   },
   {
@@ -7472,10 +7472,10 @@
    "opts": [
     "Say you do not know and stop",
     "Give a one-word answer only",
-    "Reason aloud, giving examples and considering different sides",
-    "Change the subject to something easier"
+    "Change the subject to something easier",
+    "Reason aloud, giving examples and considering different sides"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "Part 3 rewards developed reasoning, examples and balanced viewpoints rather than short or evasive answers."
   },
   {
@@ -7493,11 +7493,11 @@
    "q": "What does an examiner look for when a Part 3 question asks you to speculate about the future?",
    "opts": [
     "A memorised paragraph",
-    "Definite facts only",
     "Use of tentative language such as 'might', 'could' or 'is likely to'",
+    "Definite facts only",
     "A refusal to guess"
    ],
-   "correct": 2,
+   "correct": 1,
    "exp": "Speculation calls for tentative, hypothetical language like 'might' and 'is likely to' to sound precise and natural."
   }
  ],
@@ -7506,33 +7506,33 @@
    "q": "How can you make an abstract idea like 'freedom' clearer when speaking?",
    "opts": [
     "Repeat the word many times",
-    "Give a concrete example or situation to illustrate it",
     "Define it using a dictionary quote",
+    "Give a concrete example or situation to illustrate it",
     "Avoid the topic entirely"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "A concrete example anchors an abstract concept and shows you can develop ideas clearly."
   },
   {
    "q": "Which sentence best expresses an abstract idea with precision?",
    "opts": [
     "Happiness is a thing that is good",
-    "Happiness often depends less on wealth than on strong relationships",
+    "I think happiness maybe yes",
     "Happiness happy people",
-    "I think happiness maybe yes"
+    "Happiness often depends less on wealth than on strong relationships"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "This option states an abstract claim clearly and adds a comparative idea, showing controlled expression."
   },
   {
    "q": "When discussing an abstract concept, why is comparing two ideas useful?",
    "opts": [
-    "It fills time without meaning",
     "It shows depth by weighing relationships between ideas",
+    "It fills time without meaning",
     "It is required to reach Band 5",
     "It avoids giving any opinion"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Comparing ideas demonstrates the analytical depth examiners reward in higher bands."
   }
  ],
@@ -7552,22 +7552,22 @@
    "q": "Which phrase best concedes a point before rebutting it?",
    "opts": [
     "That is completely wrong",
-    "While that may be true, the bigger issue is...",
     "I refuse to answer that",
+    "While that may be true, the bigger issue is...",
     "You are correct, so I stop"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Conceding then rebutting ('While that may be true...') shows sophisticated, balanced argument skills."
   },
   {
    "q": "Why should you avoid saying only 'I agree' in a debate-style question?",
    "opts": [
     "It is grammatically wrong",
-    "It gives no reasoning and limits your band score",
+    "It uses too many words",
     "Agreement is forbidden in IELTS",
-    "It uses too many words"
+    "It gives no reasoning and limits your band score"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Bare agreement shows no development; examiners want reasons and extended responses."
   }
  ],
@@ -7586,23 +7586,23 @@
   {
    "q": "What does the idiom 'to be over the moon' mean?",
    "opts": [
-    "To be extremely happy",
     "To be very tired",
+    "To be extremely happy",
     "To be confused",
     "To be in space"
    ],
-   "correct": 0,
+   "correct": 1,
    "exp": "'Over the moon' is an idiom meaning extremely happy or delighted."
   },
   {
    "q": "Why should idioms be used carefully in the Speaking test?",
    "opts": [
     "They are banned by IELTS",
-    "Used wrongly or too often they sound forced and unnatural",
     "They always raise your score",
+    "Used wrongly or too often they sound forced and unnatural",
     "They only work in Writing"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Idioms help only when used accurately and naturally; forced overuse sounds unnatural to examiners."
   }
  ],
@@ -7611,22 +7611,22 @@
    "q": "Which pronunciation feature most affects meaning and is key at Band 8+?",
    "opts": [
     "Speaking in a monotone",
-    "Correct word and sentence stress",
+    "Speaking extremely fast",
     "Adding an accent from a film",
-    "Speaking extremely fast"
+    "Correct word and sentence stress"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Accurate word and sentence stress carries meaning and is essential for a high pronunciation band."
   },
   {
    "q": "What is intonation and why does it matter for Band 8+?",
    "opts": [
-    "The speed of speech only",
     "The rise and fall of the voice that signals meaning and attitude",
+    "The speed of speech only",
     "The volume of your voice",
     "The number of words per minute"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Intonation, the rise and fall of the voice, conveys meaning and attitude, a Band 8+ requirement."
   },
   {
@@ -7646,33 +7646,33 @@
    "q": "If you do not understand a Speaking question, what should you do?",
    "opts": [
     "Stay silent until time runs out",
-    "Politely ask the examiner to repeat or rephrase it",
     "Answer a different question you prefer",
+    "Politely ask the examiner to repeat or rephrase it",
     "Guess and speak about anything"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Politely asking for repetition is allowed and shows composure rather than losing marks."
   },
   {
    "q": "Which practice best reduces nervousness before the Speaking test?",
    "opts": [
     "Avoiding speaking until test day",
-    "Regular timed practice with a partner or recording",
+    "Learning only difficult vocabulary",
     "Memorising full answers word for word",
-    "Learning only difficult vocabulary"
+    "Regular timed practice with a partner or recording"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Frequent realistic practice builds fluency and calm; memorised scripts sound unnatural under pressure."
   },
   {
    "q": "If you make a small grammar slip while speaking, what is best?",
    "opts": [
-    "Stop and apologise repeatedly",
     "Self-correct briefly and keep going naturally",
+    "Stop and apologise repeatedly",
     "Start the whole answer again",
     "Switch to your first language"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "A quick self-correction and continued flow shows control; dwelling on errors harms fluency."
   }
  ],
@@ -7692,11 +7692,11 @@
    "q": "In Reading, what is 'skimming' used for?",
    "opts": [
     "Reading every word slowly",
-    "Getting the general idea or gist of a passage quickly",
     "Finding one specific number",
+    "Getting the general idea or gist of a passage quickly",
     "Memorising the whole text"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Skimming gives the overall gist quickly, helping you locate where answers are before reading closely."
   },
   {
@@ -7704,10 +7704,10 @@
    "opts": [
     "Leave it blank forever",
     "Spend all remaining time on it",
-    "Guess or mark it, move on, and return later",
-    "Give up on the whole section"
+    "Give up on the whole section",
+    "Guess or mark it, move on, and return later"
    ],
-   "correct": 2,
+   "correct": 3,
    "exp": "There is no penalty for guessing, so move on and return, ensuring you attempt every question."
   }
  ],
@@ -7715,12 +7715,12 @@
   {
    "q": "In Writing, how should you split the 60 minutes between Task 1 and Task 2?",
    "opts": [
-    "30 minutes each",
     "About 20 minutes on Task 1 and 40 on Task 2",
+    "30 minutes each",
     "40 on Task 1 and 20 on Task 2",
     "All 60 on Task 1"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Task 2 is worth more marks, so spend about 20 minutes on Task 1 and 40 on Task 2."
   },
   {
@@ -7737,12 +7737,12 @@
   {
    "q": "Why should you not spend too long on a single Listening answer?",
    "opts": [
-    "The recording keeps moving and you may miss later answers",
-    "There is extra time to relisten",
     "Each answer is worth ten marks",
+    "There is extra time to relisten",
+    "The recording keeps moving and you may miss later answers",
     "The examiner pauses for you"
    ],
-   "correct": 0,
+   "correct": 2,
    "exp": "The audio plays once and continues, so lingering on one answer risks missing the next ones."
   }
  ],
@@ -7751,22 +7751,22 @@
    "q": "What is the main purpose of taking full mock tests before IELTS?",
    "opts": [
     "To memorise the real exam answers",
-    "To build stamina and practise timing under real conditions",
+    "To guarantee a Band 9",
     "To avoid studying grammar",
-    "To guarantee a Band 9"
+    "To build stamina and practise timing under real conditions"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Mock tests build exam stamina and let you rehearse timing under realistic conditions."
   },
   {
    "q": "For a mock test to be useful, how should it be taken?",
    "opts": [
-    "With no time limit and open notes",
     "Under strict timed, exam-like conditions",
+    "With no time limit and open notes",
     "Only the sections you enjoy",
     "With a friend giving the answers"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "Realistic timed conditions make the practice diagnostic and prepare you for real pressure."
   },
   {
@@ -7786,33 +7786,33 @@
    "q": "What is the best first step in analysing your practice errors?",
    "opts": [
     "Ignore them and move on",
-    "Group them by type, such as grammar or spelling",
     "Blame the difficulty of the test",
+    "Group them by type, such as grammar or spelling",
     "Only count how many were wrong"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Grouping errors by type reveals patterns so you can target your weakest areas."
   },
   {
    "q": "If you repeatedly lose marks for verb tenses, what should you do?",
    "opts": [
     "Avoid using verbs",
-    "Focus targeted practice on that specific grammar point",
+    "Only write short sentences",
     "Accept it as impossible to fix",
-    "Only write short sentences"
+    "Focus targeted practice on that specific grammar point"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Targeted practice on the recurring weakness is the efficient way to raise your score."
   },
   {
    "q": "Why keep an error log during IELTS preparation?",
    "opts": [
-    "To increase the number of mistakes",
     "To track recurring weaknesses and measure progress",
+    "To increase the number of mistakes",
     "Because the examiner checks it",
     "To fill up your notebook"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "An error log exposes recurring weaknesses and shows measurable progress over time."
   }
  ],
@@ -7832,22 +7832,22 @@
    "q": "To move from Band 6 to 7 in Speaking, what should you improve?",
    "opts": [
     "Speaking only in short answers",
-    "Fluency and using a wider range of structures accurately",
     "Memorising more idioms only",
+    "Fluency and using a wider range of structures accurately",
     "Slowing down to almost silence"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Band 7 needs greater fluency and a wider range of accurate grammar, not just memorised phrases."
   },
   {
    "q": "Which is a realistic way to gain marks in Reading?",
    "opts": [
-    "Improving skimming and scanning speed",
+    "Translating every word first",
     "Reading each passage three times",
     "Answering only easy questions",
-    "Translating every word first"
+    "Improving skimming and scanning speed"
    ],
-   "correct": 0,
+   "correct": 3,
    "exp": "Faster, accurate skimming and scanning lets you answer more questions in the limited time."
   }
  ],
@@ -7855,12 +7855,12 @@
   {
    "q": "What identity document is normally required to enter the IELTS test?",
    "opts": [
-    "A school report card",
     "The valid passport or ID used at registration",
+    "A school report card",
     "A recent electricity bill",
     "A photocopy of any ID"
    ],
-   "correct": 1,
+   "correct": 0,
    "exp": "You must bring the same valid passport or national ID you registered with to be admitted."
   },
   {
@@ -7878,11 +7878,11 @@
    "q": "In computer-based IELTS, how is the Speaking test usually conducted?",
    "opts": [
     "By typing your answers",
-    "Face to face or via video with a real examiner",
     "By a fully automated robot only",
+    "Face to face or via video with a real examiner",
     "It is cancelled"
    ],
-   "correct": 1,
+   "correct": 2,
    "exp": "Speaking remains a live conversation with a real examiner, in person or by video call."
   }
  ],
@@ -7891,22 +7891,22 @@
    "q": "How do the Writing tasks differ between Academic and General Training?",
    "opts": [
     "They are identical",
-    "Academic Task 1 describes a graph or chart; General Task 1 is a letter",
+    "Academic only has one task",
     "General has no Writing test",
-    "Academic only has one task"
+    "Academic Task 1 describes a graph or chart; General Task 1 is a letter"
    ],
-   "correct": 1,
+   "correct": 3,
    "exp": "Academic Task 1 describes visual data, while General Training Task 1 asks you to write a letter."
   },
   {
    "q": "Which module has the same test for both Academic and General candidates?",
    "opts": [
-    "Reading",
-    "Writing",
     "Listening and Speaking",
+    "Writing",
+    "Reading",
     "None of them"
    ],
-   "correct": 2,
+   "correct": 0,
    "exp": "Listening and Speaking are identical for both versions; only Reading and Writing differ."
   },
   {
