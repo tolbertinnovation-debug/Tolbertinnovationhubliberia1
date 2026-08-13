@@ -212,8 +212,34 @@
     return out;
   }
   function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
-  function practiceQuiz(key, name) { return { title: 'Practice: ' + name, moduleNum: 1, questions: pickQuestions(key, 3).map(cloneQ) }; }
-  function assessmentQuiz(key, name, count) { return { title: name, moduleNum: 1, questions: pickQuestions(key, count).map(cloneQ) }; }
+  // Authored per-topic quiz questions (topic-quizzes.js) take priority so every
+  // topic has its OWN distinct questions. Falls back to the skill BANK.
+  function normQ(s) { return String(s || '').replace(/[^a-z0-9]+/gi, ' ').replace(/\s+/g, ' ').trim().toLowerCase(); }
+  var TQ = (typeof window !== 'undefined' && window.TIH_TOPIC_QUIZZES && window.TIH_TOPIC_QUIZZES['english-success']) || null;
+  var TQ_norm = null;
+  function topicQuestions(name) {
+    if (!TQ) return null;
+    if (!TQ_norm) { TQ_norm = {}; Object.keys(TQ).forEach(function (k) { TQ_norm[normQ(k)] = TQ[k]; }); }
+    var arr = TQ_norm[normQ(name)];
+    return (arr && arr.length) ? arr.map(cloneQ) : null;
+  }
+  function allAuthoredQuestions() {
+    if (!TQ) return null;
+    var out = []; Object.keys(TQ).forEach(function (k) { (TQ[k] || []).forEach(function (q) { out.push(q); }); });
+    return out.length ? out : null;
+  }
+  function spreadPick(pool, count) {
+    var out = [], n = pool.length; if (!n) return out;
+    var step = Math.max(1, Math.floor(n / count));
+    for (var i = 0, idx = 0; i < count; i++, idx += step) { out.push(pool[idx % n]); }
+    return out;
+  }
+  function practiceQuiz(key, name) { return { title: 'Practice: ' + name, moduleNum: 1, questions: topicQuestions(name) || pickQuestions(key, 3).map(cloneQ) }; }
+  function assessmentQuiz(key, name, count) {
+    var pool = allAuthoredQuestions();
+    var qs = pool ? spreadPick(pool, count).map(cloneQ) : pickQuestions(key, count).map(cloneQ);
+    return { title: name, moduleNum: 1, questions: qs };
+  }
   function assessmentKey(name) {
     if (/Grammar/i.test(name)) return 'grammar';
     if (/Vocabulary/i.test(name)) return 'vocab';
