@@ -352,5 +352,38 @@
       });
     })();
   </script>
+<!-- Show/hide password toggle (added to every password field on the page) -->
+<script>
+(function () {
+  function addToggle(input) {
+    if (!input || input.getAttribute('data-pwtoggle')) return;
+    input.setAttribute('data-pwtoggle', '1');
+    var wrap = document.createElement('div');
+    wrap.style.position = 'relative';
+    wrap.style.width = '100%';
+    input.parentNode.insertBefore(wrap, input);
+    wrap.appendChild(input);
+    input.style.paddingRight = '3.6rem';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = 'Show';
+    btn.setAttribute('aria-label', 'Show password');
+    btn.style.cssText = 'position:absolute;right:.55rem;top:50%;transform:translateY(-50%);background:none;border:0;color:#1e3a8a;font-weight:800;font-size:.8rem;cursor:pointer;font-family:inherit;padding:.25rem .35rem;line-height:1;';
+    btn.addEventListener('click', function () {
+      var reveal = input.type === 'password';
+      input.type = reveal ? 'text' : 'password';
+      btn.textContent = reveal ? 'Hide' : 'Show';
+      btn.setAttribute('aria-label', reveal ? 'Hide password' : 'Show password');
+    });
+    wrap.appendChild(btn);
+  }
+  function init() {
+    var list = document.querySelectorAll('input[type="password"]');
+    for (var i = 0; i < list.length; i++) addToggle(list[i]);
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
 </body>
 </html>
