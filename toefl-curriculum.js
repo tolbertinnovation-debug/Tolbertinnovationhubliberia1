@@ -155,13 +155,39 @@
     return out;
   }
 
+  // Authored per-topic quiz questions (topic-quizzes.js) take priority so every
+  // TOEFL topic has its OWN distinct questions. Falls back to the skill BANK if
+  // a topic has no authored set.
+  function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
+  function normQ(s) { return String(s || '').replace(/[^a-z0-9]+/gi, ' ').replace(/\s+/g, ' ').trim().toLowerCase(); }
+  var TQ = (typeof window !== 'undefined' && window.TIH_TOPIC_QUIZZES && window.TIH_TOPIC_QUIZZES['toefl']) || null;
+  var TQ_norm = null;
+  function topicQuestions(name) {
+    if (!TQ) return null;
+    if (!TQ_norm) { TQ_norm = {}; Object.keys(TQ).forEach(function (k) { TQ_norm[normQ(k)] = TQ[k]; }); }
+    var arr = TQ_norm[normQ(name)];
+    return (arr && arr.length) ? arr.map(cloneQ) : null;
+  }
+  function allAuthoredQuestions() {
+    if (!TQ) return null;
+    var out = []; Object.keys(TQ).forEach(function (k) { (TQ[k] || []).forEach(function (q) { out.push(q); }); });
+    return out.length ? out : null;
+  }
+  function spreadPick(pool, count) {
+    var out = [], n = pool.length; if (!n) return out;
+    var step = Math.max(1, Math.floor(n / count));
+    for (var i = 0, idx = 0; i < count; i++, idx += step) { out.push(pool[idx % n]); }
+    return out;
+  }
   function practiceQuiz(skill, name) {
-    var qs = pickQuestions(skill, 3).map(function (item) { return { q: item.q, opts: item.opts.slice(), correct: item.correct, exp: item.exp }; });
+    var authored = topicQuestions(name);
+    var qs = authored || pickQuestions(skill, 3).map(cloneQ);
     return { title: 'Practice: ' + name, moduleNum: 1, questions: qs };
   }
 
   function assessmentQuiz(skill, name, count) {
-    var qs = pickQuestions(skill, count).map(function (item) { return { q: item.q, opts: item.opts.slice(), correct: item.correct, exp: item.exp }; });
+    var pool = allAuthoredQuestions();
+    var qs = pool ? spreadPick(pool, count).map(cloneQ) : pickQuestions(skill, count).map(cloneQ);
     return { title: name, moduleNum: 1, questions: qs };
   }
 
