@@ -148,9 +148,12 @@
       font-size: 1.45rem; background: linear-gradient(135deg, #EAF4FF, #d5e6ff);
       box-shadow: inset 0 0 0 1.5px rgba(21,101,216,.18); flex-shrink: 0;
     }
-    .cc-cover { min-height: 116px; margin: -.15rem -.1rem .1rem; padding: 1rem; border-radius: 11px; display: flex; align-items: flex-end; justify-content: space-between; position: relative; overflow: hidden; color: #fff; background: #123d78; }
+    .cc-cover { min-height: 116px; margin: -.15rem -.1rem .1rem; padding: 1rem; border-radius: 11px; display: flex; align-items: flex-end; justify-content: space-between; position: relative; overflow: hidden; color: #fff; background: #123d78; background-size: cover; background-position: center; }
     .cc-cover::before { content: ''; position: absolute; width: 150px; height: 150px; right: -45px; top: -75px; border: 1px solid rgba(255,255,255,.24); border-radius: 50%; box-shadow: 0 0 0 18px rgba(255,255,255,.06), 0 0 0 36px rgba(255,255,255,.04); }
     .cc-cover::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.16) 100%); pointer-events: none; }
+    .cc-cover.has-img { min-height: 140px; }
+    .cc-cover.has-img::before { display: none; }
+    .cc-cover.has-img::after { background: linear-gradient(180deg, rgba(0,0,0,.1) 0%, rgba(0,0,0,.55) 100%); }
     .cc-cover .cc-icon { position: relative; z-index: 1; width: 52px; height: 52px; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.16); box-shadow: 0 8px 18px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.2); backdrop-filter: blur(8px); }
     .cc-cover-label { position: relative; z-index: 1; max-width: 58%; text-align: right; font-size: .65rem; line-height: 1.25; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.82); }
     .cc-cover-label strong { display: block; color: #fff; font: 800 .86rem 'Poppins', sans-serif; letter-spacing: -.01em; text-transform: none; margin-top: .15rem; }
@@ -615,9 +618,13 @@
           action = '<a class="btn btn-orange btn-sm" href="course-player?id=' + encodeURIComponent(c.id) + '">' + (p.completed > 0 ? 'Continue →' : 'Start Course →') + '</a>';
         }
 
+        var coverImg = COURSES_DB[c.id].cardImage || COURSES_DB[c.id].image || '';
+        var coverStyle = coverImg
+          ? 'background-image:url(\'' + esc(coverImg) + '\')'
+          : 'background:' + (COURSES_DB[c.id].gradient || 'linear-gradient(135deg,#123d78,#1e5e9e)');
         return '<div class="course-card" data-course="' + esc(c.id) + '">'
-          + '<div class="cc-cover" style="background:' + (COURSES_DB[c.id].gradient || 'linear-gradient(135deg,#123d78,#1e5e9e)') + '">' 
-          + '<div class="cc-icon">' + meta.icon + '</div><div class="cc-cover-label">' + esc(COURSES_DB[c.id].category || 'TIH Learning Hub') + '<strong>' + esc(COURSES_DB[c.id].level || 'All levels') + '</strong></div></div>'
+          + '<div class="cc-cover' + (coverImg ? ' has-img' : '') + '" style="' + coverStyle + '">'
+          + (coverImg ? '' : '<div class="cc-icon">' + meta.icon + '</div>') + '<div class="cc-cover-label">' + esc(COURSES_DB[c.id].category || 'TIH Learning Hub') + '<strong>' + esc(COURSES_DB[c.id].level || 'All levels') + '</strong></div></div>'
           + '<div class="cc-top"><div><div class="cc-title">' + esc(meta.title) + '</div>'
           + '<div class="cc-meta">' + (unlocked ? statusPill : '<span class="pill new">🔒 Locked · ' + priceHTML(c.id, price) + '</span>') + prioPill + '</div></div></div>'
           + '<div class="cc-learning-support"><span>📖 Detailed notes</span><span>▶ ' + videoLessons + ' video lessons</span></div>'
