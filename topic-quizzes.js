@@ -15764,7 +15764,7 @@
    "exp": "A competitive, evolving regional job market makes deliberate career planning and skill development especially important for new graduates."
   }
  ],
- "The Public Health Job Market in West Africa": [
+ "The Public Health Job Market": [
   {
    "q": "Which type of organization is typically one of the largest employers of public health professionals in Liberia?",
    "opts": [

@@ -15,7 +15,7 @@
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|assessment
   var curriculum = [
-    [1, 'Launch Your Public Health Career', '🚀', 'orientation', 'content', ['Welcome to the Course', 'The Public Health Job Market in West Africa', 'Career Pathways in Public Health', 'Key Public Health Job Roles', 'Assessing Your Skills and Strengths', 'Setting SMART Career Goals', 'Building Your Career Plan']],
+    [1, 'Launch Your Public Health Career', '🚀', 'orientation', 'content', ['Welcome to the Course', 'The Public Health Job Market', 'Career Pathways in Public Health', 'Key Public Health Job Roles', 'Assessing Your Skills and Strengths', 'Setting SMART Career Goals', 'Building Your Career Plan']],
     [2, 'Core Public Health Skills Employers Want', '🔬', 'skills', 'content', ['Epidemiology Essentials', 'Biostatistics and Data Literacy', 'Disease Surveillance', 'Health Promotion and Education', 'Health Systems and Policy', 'Environmental and Occupational Health', 'Global Health and One Health']],
     [3, 'Your Professional Documents', '📄', 'documents', 'content', ['Writing a Public Health CV', 'Writing a Cover Letter', 'Personal Statements and Motivation Letters', 'Building a Professional Portfolio', 'Creating a Strong LinkedIn Profile', 'References and Recommendation Letters']],
     [4, 'Finding the Right Job', '🔎', 'jobsearch', 'content', ['Where to Find Public Health Jobs', 'Working with NGOs and INGOs', 'Ministry of Health and Government Roles', 'WHO, UN and International Agencies', 'Fellowships, Internships and Volunteering', 'Networking for Public Health Professionals', 'Using Job Boards and Alerts']],

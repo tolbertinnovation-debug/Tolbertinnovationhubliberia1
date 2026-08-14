@@ -494,7 +494,7 @@
     },
     'ph-career': {
       "M1:Welcome to the Course": "5aww-Bpgkf4",
-      "M1:The Public Health Job Market in West Africa": "iYSZoemyndk",
+      "M1:The Public Health Job Market": "iYSZoemyndk",
       "M1:Career Pathways in Public Health": "G8rx-drU6r4",
       "M1:Key Public Health Job Roles": "83BVNZWLrtM",
       "M1:Assessing Your Skills and Strengths": "yLfYa3PGTGM",
