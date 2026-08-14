@@ -1,5 +1,5 @@
 /* TIH — Authored per-topic quiz questions. Each topic has its OWN set of 3
-   distinct multiple-choice questions. Builders (complit/ielts/toefl/english)
+   distinct multiple-choice questions. Builders (complit/ielts/toefl/english/ph-career)
    look these up by topic title; final exams sample across the pool. Falls back
    to generic questions if a topic is missing here. */
 (function () {
@@ -15728,4 +15728,1932 @@
   }
  ]
 };
+  window.TIH_TOPIC_QUIZZES['ph-career'] = {
+ "Welcome to the Course": [
+  {
+   "q": "What is the primary goal of this course, Career Success for Public Health Graduates?",
+   "opts": [
+    "To help public health graduates build the skills and plans needed to launch and grow their careers",
+    "To teach clinical surgery skills",
+    "To provide funding for NGOs in Liberia",
+    "To certify graduates as medical doctors"
+   ],
+   "correct": 0,
+   "exp": "The course is designed to equip public health graduates with career-building skills, planning tools, and technical knowledge for professional success."
+  },
+  {
+   "q": "Which of the following best describes how a learner should approach this course to get the most value?",
+   "opts": [
+    "Skip the applied exercises and only read theory",
+    "Actively complete the self-assessments, goal-setting, and planning activities",
+    "Memorize every fact without reflecting on personal goals",
+    "Wait until the end to attempt any activities"
+   ],
+   "correct": 1,
+   "exp": "The course is built around applied activities like self-assessment and goal-setting, so active participation produces the most career benefit."
+  },
+  {
+   "q": "Why is a career-focused course particularly valuable for public health graduates in Liberia and West Africa?",
+   "opts": [
+    "Because there are no public health employers in the region",
+    "Because all graduates are automatically hired by the Ministry of Health",
+    "Because navigating a competitive and evolving job market benefits from deliberate planning and skill-building",
+    "Because career planning is only useful outside Africa"
+   ],
+   "correct": 2,
+   "exp": "A competitive, evolving regional job market makes deliberate career planning and skill development especially important for new graduates."
+  }
+ ],
+ "The Public Health Job Market in West Africa": [
+  {
+   "q": "Which type of organization is typically one of the largest employers of public health professionals in Liberia?",
+   "opts": [
+    "Private airlines",
+    "Textile factories",
+    "Commercial banks",
+    "The Ministry of Health and county health teams"
+   ],
+   "correct": 3,
+   "exp": "The Ministry of Health along with county health teams is a major public sector employer of public health workers in Liberia."
+  },
+  {
+   "q": "A graduate wants to work in emergency outbreak response and program funding. Which sector is she most likely to target?",
+   "opts": [
+    "INGOs and multilateral agencies such as WHO and UNICEF",
+    "Local grocery retail",
+    "Automobile manufacturing",
+    "Real estate development"
+   ],
+   "correct": 0,
+   "exp": "INGOs and multilateral agencies like WHO and UNICEF fund and lead much outbreak response and public health programming in the region."
+  },
+  {
+   "q": "Which factor has notably shaped demand for public health professionals in West Africa in recent years?",
+   "opts": [
+    "A decline in all infectious diseases",
+    "Major outbreaks such as Ebola and Lassa fever increasing demand for surveillance and response capacity",
+    "The elimination of NGOs from the region",
+    "A complete shift away from data-driven programs"
+   ],
+   "correct": 1,
+   "exp": "Outbreaks like Ebola and Lassa fever have driven investment in surveillance, response, and the workforce needed to support them."
+  }
+ ],
+ "Career Pathways in Public Health": [
+  {
+   "q": "Which of the following is an example of a technical or specialist career pathway in public health?",
+   "opts": [
+    "Retail cashier",
+    "General office receptionist",
+    "Epidemiologist focusing on disease investigation",
+    "Airline pilot"
+   ],
+   "correct": 2,
+   "exp": "An epidemiologist is a technical specialist pathway centered on investigating disease patterns and outbreaks."
+  },
+  {
+   "q": "A public health graduate enjoys coordinating teams, budgets, and donor reporting rather than lab work. Which pathway fits best?",
+   "opts": [
+    "Laboratory bench scientist",
+    "Vaccine cold-chain repair technician only",
+    "Clinical surgery",
+    "Program or project management"
+   ],
+   "correct": 3,
+   "exp": "Program and project management pathways center on coordinating teams, budgets, and reporting, matching this graduate's interests."
+  },
+  {
+   "q": "Why is it useful to think of public health careers as pathways rather than a single fixed job?",
+   "opts": [
+    "Because professionals often move across roles such as research, management, and policy over time",
+    "Because pathways never change and require no planning",
+    "Because only one job exists in public health",
+    "Because pathways prevent any skill development"
+   ],
+   "correct": 0,
+   "exp": "Viewing careers as pathways reflects the reality that professionals commonly progress and shift across research, management, and policy roles."
+  }
+ ],
+ "Key Public Health Job Roles": [
+  {
+   "q": "What is the main responsibility of a Monitoring and Evaluation (M&E) officer?",
+   "opts": [
+    "Prescribing medication to patients",
+    "Tracking program performance and measuring whether interventions achieve their objectives",
+    "Driving ambulances",
+    "Managing hospital pharmacies exclusively"
+   ],
+   "correct": 1,
+   "exp": "An M&E officer tracks indicators and evaluates whether programs are meeting their intended objectives."
+  },
+  {
+   "q": "A county health team needs someone to investigate a suspected cholera cluster and identify its source. Which role is most appropriate?",
+   "opts": [
+    "Communications intern",
+    "Finance clerk",
+    "Field epidemiologist",
+    "Logistics driver"
+   ],
+   "correct": 2,
+   "exp": "A field epidemiologist is trained to investigate clusters, trace sources, and guide the outbreak response."
+  },
+  {
+   "q": "Which role focuses primarily on designing community campaigns and behavior-change messaging?",
+   "opts": [
+    "Biostatistician",
+    "Procurement officer",
+    "Data server administrator",
+    "Health promotion or health education officer"
+   ],
+   "correct": 3,
+   "exp": "A health promotion or health education officer designs campaigns and messaging to encourage healthier community behaviors."
+  }
+ ],
+ "Assessing Your Skills and Strengths": [
+  {
+   "q": "What is the main purpose of conducting a personal skills self-assessment early in career planning?",
+   "opts": [
+    "To identify your strengths and gaps so you can target growth and suitable roles",
+    "To avoid ever learning new skills",
+    "To guarantee a specific salary",
+    "To replace the need for any qualifications"
+   ],
+   "correct": 0,
+   "exp": "A self-assessment reveals strengths and gaps, allowing you to focus development efforts and pursue well-matched roles."
+  },
+  {
+   "q": "Which of the following is an example of a transferable soft skill valued across public health roles?",
+   "opts": [
+    "Ownership of a specific brand of microscope",
+    "Written and verbal communication",
+    "Living in a particular county",
+    "Owning a personal vehicle"
+   ],
+   "correct": 1,
+   "exp": "Communication is a transferable soft skill that strengthens performance across nearly all public health roles."
+  },
+  {
+   "q": "A graduate realizes she is strong in data analysis but weak in report writing. What is the most constructive next step?",
+   "opts": [
+    "Ignore the weakness and hope it never matters",
+    "Abandon public health entirely",
+    "Set a targeted plan to build report-writing skills while leveraging her data strength",
+    "Only apply for jobs requiring no writing forever"
+   ],
+   "correct": 2,
+   "exp": "Recognizing a gap should lead to a targeted development plan that also builds on existing strengths."
+  }
+ ],
+ "Setting SMART Career Goals": [
+  {
+   "q": "In the SMART framework, what does the M stand for?",
+   "opts": [
+    "Motivational",
+    "Managerial",
+    "Mandatory",
+    "Measurable"
+   ],
+   "correct": 3,
+   "exp": "The M in SMART stands for Measurable, meaning the goal has clear criteria to track progress."
+  },
+  {
+   "q": "Which of the following is the best example of a SMART career goal?",
+   "opts": [
+    "I will complete a certificate in M&E within six months to qualify for a data officer role",
+    "I want to be successful someday",
+    "I will get better at things",
+    "I hope to maybe work in health"
+   ],
+   "correct": 0,
+   "exp": "This goal is specific, measurable, time-bound, and tied to a concrete career outcome, meeting the SMART criteria."
+  },
+  {
+   "q": "Why does the T (Time-bound) element strengthen a career goal?",
+   "opts": [
+    "It removes any need for effort",
+    "It sets a deadline that creates focus and lets you track progress",
+    "It makes the goal impossible to measure",
+    "It guarantees external funding"
+   ],
+   "correct": 1,
+   "exp": "A deadline provides focus and a reference point for measuring whether you are on track."
+  }
+ ],
+ "Building Your Career Plan": [
+  {
+   "q": "What is a career plan primarily meant to do?",
+   "opts": [
+    "Lock you into one job for life with no flexibility",
+    "Replace the need to apply for jobs",
+    "Map the steps, skills, and milestones needed to reach your career goals over time",
+    "Predict the exact salary of every role"
+   ],
+   "correct": 2,
+   "exp": "A career plan maps the sequence of steps, skills, and milestones that move you toward your goals."
+  },
+  {
+   "q": "A recent graduate's goal is to become a county surveillance officer in three years. Which element belongs in her career plan?",
+   "opts": [
+    "Only her favorite food choices",
+    "The color scheme of her office",
+    "A list of unrelated hobbies",
+    "Short-term milestones like gaining field experience and learning surveillance tools"
+   ],
+   "correct": 3,
+   "exp": "Concrete short-term milestones such as field experience and surveillance training bridge the gap to the longer-term goal."
+  },
+  {
+   "q": "Why should a career plan be reviewed and updated periodically?",
+   "opts": [
+    "Because circumstances, skills, and opportunities change over time",
+    "Because plans must never be looked at again once written",
+    "Because updating a plan is illegal",
+    "Because employers forbid planning"
+   ],
+   "correct": 0,
+   "exp": "Regular review keeps the plan relevant as your skills, opportunities, and circumstances evolve."
+  }
+ ],
+ "Epidemiology Essentials": [
+  {
+   "q": "Epidemiology is best defined as the study of what?",
+   "opts": [
+    "The chemical structure of medicines",
+    "The distribution and determinants of health and disease in populations",
+    "The management of hospital finances",
+    "The design of medical buildings"
+   ],
+   "correct": 1,
+   "exp": "Epidemiology studies how health and disease are distributed in populations and the factors that determine them."
+  },
+  {
+   "q": "During a suspected Ebola outbreak, a team lists cases by person, place, and time to describe the pattern. What is this called?",
+   "opts": [
+    "Laboratory synthesis",
+    "Randomized controlled trial",
+    "Descriptive epidemiology",
+    "Financial auditing"
+   ],
+   "correct": 2,
+   "exp": "Organizing cases by person, place, and time is the core of descriptive epidemiology, which characterizes an outbreak."
+  },
+  {
+   "q": "Which measure expresses the number of new cases of a disease occurring in a population over a specific period?",
+   "opts": [
+    "Prevalence",
+    "Case fatality budget",
+    "Sensitivity",
+    "Incidence"
+   ],
+   "correct": 3,
+   "exp": "Incidence measures the number of new cases arising in a population during a defined time period."
+  }
+ ],
+ "Biostatistics and Data Literacy": [
+  {
+   "q": "Which measure of central tendency is most affected by extreme outlier values in a dataset?",
+   "opts": [
+    "The mean",
+    "The median",
+    "The mode",
+    "The range only"
+   ],
+   "correct": 0,
+   "exp": "The mean is pulled toward extreme values, making it the most sensitive to outliers among these measures."
+  },
+  {
+   "q": "A county health team collects malaria data with KoBoToolbox on tablets. What is a key biostatistics benefit of this approach?",
+   "opts": [
+    "It removes the need for any analysis",
+    "It enables cleaner, structured digital data that is easier to validate and analyze",
+    "It guarantees no data errors ever",
+    "It makes statistics unnecessary"
+   ],
+   "correct": 1,
+   "exp": "Digital collection tools like KoBoToolbox produce structured data that is easier to validate, clean, and analyze."
+  },
+  {
+   "q": "If a survey reports that 40 percent of respondents own a bed net, what type of measure is this?",
+   "opts": [
+    "A standard deviation",
+    "A p-value",
+    "A proportion or percentage",
+    "A correlation coefficient"
+   ],
+   "correct": 2,
+   "exp": "A percentage expressing a part of the whole is a proportion, a basic descriptive summary of categorical data."
+  }
+ ],
+ "Disease Surveillance": [
+  {
+   "q": "What is the primary purpose of disease surveillance?",
+   "opts": [
+    "To sell medicines",
+    "To replace laboratories entirely",
+    "To build hospitals",
+    "To continuously collect and analyze health data so outbreaks can be detected and acted on early"
+   ],
+   "correct": 3,
+   "exp": "Surveillance provides ongoing data collection and analysis so that outbreaks are detected and responded to promptly."
+  },
+  {
+   "q": "Liberia uses the IDSR strategy promoted by WHO in Africa. What does IDSR stand for?",
+   "opts": [
+    "Integrated Disease Surveillance and Response",
+    "Internal Data Storage Registry",
+    "International Drug Supply Rules",
+    "Independent District Sanitation Review"
+   ],
+   "correct": 0,
+   "exp": "IDSR stands for Integrated Disease Surveillance and Response, WHO's framework for strengthening surveillance in Africa."
+  },
+  {
+   "q": "A health facility reports a single suspected Lassa fever case immediately rather than waiting for a weekly summary. This is an example of what?",
+   "opts": [
+    "Routine annual census",
+    "Case-based or immediate notifiable reporting",
+    "Financial reporting",
+    "Passive advertising"
+   ],
+   "correct": 1,
+   "exp": "Priority diseases like Lassa fever require immediate case-based notification so response can begin without delay."
+  }
+ ],
+ "Health Promotion and Education": [
+  {
+   "q": "What is the central aim of health promotion?",
+   "opts": [
+    "To treat advanced diseases surgically",
+    "To sell hospital insurance",
+    "To enable people and communities to increase control over and improve their health",
+    "To reduce the number of health workers"
+   ],
+   "correct": 2,
+   "exp": "Health promotion empowers people and communities to gain greater control over the factors that affect their health."
+  },
+  {
+   "q": "A team wants to increase handwashing during a cholera outbreak in a rural county. Which approach best reflects effective health education?",
+   "opts": [
+    "Using complex medical jargon in English only",
+    "Blaming the community for the outbreak",
+    "Distributing no information at all",
+    "Engaging community members with clear, culturally relevant messages and local languages"
+   ],
+   "correct": 3,
+   "exp": "Effective health education uses clear, culturally relevant messaging in local languages and engages the community respectfully."
+  },
+  {
+   "q": "Which of the following is an example of a behavior-change communication channel used in community health promotion?",
+   "opts": [
+    "Community radio and peer educators",
+    "Locked filing cabinets",
+    "Hospital accounting software",
+    "Vehicle maintenance logs"
+   ],
+   "correct": 0,
+   "exp": "Community radio and peer educators are common channels for delivering behavior-change communication at the community level."
+  }
+ ],
+ "Health Systems and Policy": [
+  {
+   "q": "According to the WHO framework, which of the following is one of the health system building blocks?",
+   "opts": [
+    "Weather forecasting",
+    "Health workforce",
+    "Road construction",
+    "Foreign currency exchange"
+   ],
+   "correct": 1,
+   "exp": "The health workforce is one of WHO's six building blocks of a health system, alongside financing, information, and others."
+  },
+  {
+   "q": "A national policy aims for universal health coverage. What does universal health coverage primarily mean?",
+   "opts": [
+    "All care is delivered in one central hospital",
+    "Only wealthy citizens receive care",
+    "Everyone can access needed health services without suffering financial hardship",
+    "Health services are provided only during outbreaks"
+   ],
+   "correct": 2,
+   "exp": "Universal health coverage means all people can obtain the health services they need without financial hardship."
+  },
+  {
+   "q": "Why is health policy important for the work of a county health team in Liberia?",
+   "opts": [
+    "It has no effect on daily operations",
+    "It prevents any data collection",
+    "It only concerns private companies",
+    "It sets priorities, standards, and resource allocation that guide how services are delivered"
+   ],
+   "correct": 3,
+   "exp": "Health policy defines the priorities, standards, and resource decisions that shape how county-level services are delivered."
+  }
+ ],
+ "Environmental and Occupational Health": [
+  {
+   "q": "Environmental health primarily focuses on what?",
+   "opts": [
+    "The relationship between people's health and factors in their physical environment such as water, air, and sanitation",
+    "Stock market performance",
+    "Interior decoration of clinics",
+    "The pricing of imported cars"
+   ],
+   "correct": 0,
+   "exp": "Environmental health addresses how physical environmental factors like water, air, and sanitation affect human health."
+  },
+  {
+   "q": "Poor sanitation and unsafe drinking water in a community most directly increase the risk of which condition?",
+   "opts": [
+    "Fractured bones",
+    "Diarrheal diseases such as cholera",
+    "Color blindness",
+    "Hearing loss from noise"
+   ],
+   "correct": 1,
+   "exp": "Contaminated water and poor sanitation are leading causes of diarrheal diseases such as cholera."
+  },
+  {
+   "q": "A health worker reusing needles without protection faces a workplace hazard. Which field addresses protecting workers from such job-related risks?",
+   "opts": [
+    "Astronomy",
+    "Marketing",
+    "Occupational health",
+    "Agriculture economics"
+   ],
+   "correct": 2,
+   "exp": "Occupational health focuses on identifying and preventing hazards that threaten the health and safety of workers."
+  }
+ ],
+ "Global Health and One Health": [
+  {
+   "q": "The One Health approach is based on which core idea?",
+   "opts": [
+    "Human health can be studied in complete isolation",
+    "Health issues never cross borders",
+    "Only animal health matters",
+    "The health of people, animals, and the environment are interconnected"
+   ],
+   "correct": 3,
+   "exp": "One Health recognizes that human, animal, and environmental health are interconnected and must be addressed together."
+  },
+  {
+   "q": "Why is the One Health approach especially relevant to outbreaks like Ebola and Lassa fever in West Africa?",
+   "opts": [
+    "Because these are zoonotic diseases that spread from animals to humans",
+    "Because these diseases only affect plants",
+    "Because they have no environmental component",
+    "Because they cannot be prevented in any way"
+   ],
+   "correct": 0,
+   "exp": "Ebola and Lassa fever are zoonotic diseases spread from animals to humans, making the One Health approach essential."
+  },
+  {
+   "q": "What does the term global health emphasize compared with a purely national view?",
+   "opts": [
+    "Only the health of a single village",
+    "Health issues that transcend borders and require cross-country cooperation",
+    "Ignoring international collaboration",
+    "Focusing solely on personal finances"
+   ],
+   "correct": 1,
+   "exp": "Global health emphasizes health challenges that cross national borders and call for international cooperation."
+  }
+ ],
+ "Writing a Public Health CV": [
+  {
+   "q": "A public health graduate in Monrovia is applying for an epidemiologist post with the National Public Health Institute of Liberia (NPHIL). What belongs at the very top of a well-structured CV?",
+   "opts": [
+    "A detailed list of hobbies and personal interests",
+    "The names and phone numbers of three references",
+    "Full name and up-to-date contact details with a brief professional summary",
+    "A photograph and national ID number"
+   ],
+   "correct": 2,
+   "exp": "The top of a CV should immediately identify you and orient the reader, so name, contact details, and a short professional summary come first."
+  },
+  {
+   "q": "When describing your role in a county-level immunization campaign, which bullet point is strongest on a public health CV?",
+   "opts": [
+    "Was responsible for helping with vaccines in the county",
+    "Involved in immunization activities for some time",
+    "Did vaccination work as part of the health team",
+    "Coordinated a measles campaign across 15 health facilities, reaching over 8,000 children under five"
+   ],
+   "correct": 3,
+   "exp": "Strong CV bullets use action verbs and quantified results, which show measurable impact rather than vague responsibility."
+  },
+  {
+   "q": "Why should a public health CV be tailored for each specific job application rather than sent as one generic document?",
+   "opts": [
+    "Tailoring lets you highlight the skills and experience most relevant to that particular role",
+    "Employers legally require a new CV for every post",
+    "A generic CV is always longer and therefore looks more impressive",
+    "It prevents other organizations from copying your CV"
+   ],
+   "correct": 0,
+   "exp": "Tailoring foregrounds the qualifications a specific employer is seeking, making your relevance obvious and improving shortlisting chances."
+  }
+ ],
+ "Writing a Cover Letter": [
+  {
+   "q": "What is the main purpose of a cover letter accompanying a job application to an INGO like the International Rescue Committee?",
+   "opts": [
+    "To repeat your CV word for word so nothing is missed",
+    "To explain why you are a strong fit for this specific role and organization",
+    "To list every job you have ever held in chronological order",
+    "To state your expected salary and start date only"
+   ],
+   "correct": 1,
+   "exp": "A cover letter connects your skills and motivation to the specific role and employer, adding context the CV alone cannot convey."
+  },
+  {
+   "q": "A cover letter for a Ministry of Health M&E officer position should ideally be addressed how?",
+   "opts": [
+    "To Whom It May Concern, with no further detail",
+    "Dear Sir or Madam, and nothing more",
+    "To the named hiring manager or recruiter where their name is known",
+    "Hello, followed by the applicant's own name"
+   ],
+   "correct": 2,
+   "exp": "Addressing the letter to a named person shows initiative and research, making the application feel personal and considered."
+  },
+  {
+   "q": "Which is the best way to close the final paragraph of a cover letter?",
+   "opts": [
+    "Demand an interview within one week or you will withdraw",
+    "Apologize for taking up the reader's time",
+    "Restate your full home address and phone number again",
+    "Thank the reader and express genuine interest in discussing your fit further"
+   ],
+   "correct": 3,
+   "exp": "A strong close thanks the reader and signals enthusiasm for next steps, leaving a positive, professional final impression."
+  }
+ ],
+ "Personal Statements and Motivation Letters": [
+  {
+   "q": "A graduate is writing a motivation letter for a Master of Public Health scholarship. What should the letter primarily convey?",
+   "opts": [
+    "Your motivation, relevant experiences, and how the program fits your goals",
+    "A complete transcript of every course grade received",
+    "A promise to accept any job the funder later offers",
+    "A list of every extracurricular club at your undergraduate school"
+   ],
+   "correct": 0,
+   "exp": "A motivation letter should articulate why you want the opportunity and how it aligns with your experiences and future goals."
+  },
+  {
+   "q": "How does a personal statement typically differ from a standard cover letter?",
+   "opts": [
+    "A personal statement is always shorter than one paragraph",
+    "A personal statement focuses more on your story, values, and long-term aspirations",
+    "A personal statement must never mention any specific experiences",
+    "A personal statement is written entirely in the third person"
+   ],
+   "correct": 1,
+   "exp": "Personal statements emphasize your narrative, motivations, and aspirations, going deeper into who you are than a job-focused cover letter."
+  },
+  {
+   "q": "Which opening for a fellowship motivation letter is most effective?",
+   "opts": [
+    "A generic sentence stating you saw the fellowship advertised online",
+    "A dictionary definition of the word public health",
+    "A specific, vivid moment that sparked your commitment to public health",
+    "A complaint about how competitive the fellowship is"
+   ],
+   "correct": 2,
+   "exp": "A concrete, personal opening moment engages the reader and authentically establishes your genuine commitment to the field."
+  }
+ ],
+ "Building a Professional Portfolio": [
+  {
+   "q": "What is the primary value of a professional portfolio for a public health graduate?",
+   "opts": [
+    "It replaces the need for a CV or cover letter entirely",
+    "It is only useful for artists and designers, not health professionals",
+    "It guarantees a job offer from any organization",
+    "It provides concrete evidence of your skills through samples of real work"
+   ],
+   "correct": 3,
+   "exp": "A portfolio demonstrates your capabilities with tangible work samples, giving employers proof beyond claims made in a CV."
+  },
+  {
+   "q": "Which item would be most appropriate to include in a public health professional portfolio?",
+   "opts": [
+    "A copy of a health promotion brochure you designed for a community campaign",
+    "Personal family photographs from a recent holiday",
+    "Screenshots of unrelated social media banter",
+    "A list of your favorite films and music"
+   ],
+   "correct": 0,
+   "exp": "Work products like a health promotion brochure directly showcase relevant public health skills and accomplishments."
+  },
+  {
+   "q": "Before including a data report from a former employer in your portfolio, what should you do?",
+   "opts": [
+    "Publish it publicly to prove it is real",
+    "Ensure sensitive or confidential information is removed or permission is obtained",
+    "Add your own logo over the organization's name",
+    "Nothing, since all work you touched is yours to share"
+   ],
+   "correct": 1,
+   "exp": "Confidential or sensitive data must be removed or cleared with permission to respect ethics, privacy, and employer trust."
+  }
+ ],
+ "Creating a Strong LinkedIn Profile": [
+  {
+   "q": "What makes an effective LinkedIn headline for a recent public health graduate in Liberia?",
+   "opts": [
+    "Simply the word Unemployed",
+    "A long paragraph listing all your coursework",
+    "A concise description of your focus, such as Public Health Graduate | Epidemiology and Disease Surveillance",
+    "Your full residential address"
+   ],
+   "correct": 2,
+   "exp": "A focused headline signaling your field and interests helps recruiters and connections quickly understand your professional identity."
+  },
+  {
+   "q": "Why is a professional profile photo recommended on LinkedIn?",
+   "opts": [
+    "Profiles without photos are automatically deleted",
+    "Photos increase your salary automatically",
+    "It allows you to skip filling in your work experience",
+    "A clear, professional photo makes your profile more approachable and trustworthy"
+   ],
+   "correct": 3,
+   "exp": "A professional headshot builds credibility and approachability, and profiles with photos receive significantly more engagement."
+  },
+  {
+   "q": "How can a public health graduate best use LinkedIn to find opportunities?",
+   "opts": [
+    "Engage with relevant posts, follow key organizations like WHO, and connect thoughtfully with professionals",
+    "Send identical copy-paste messages demanding jobs from strangers",
+    "Only add family members as connections",
+    "Leave the profile blank to appear mysterious"
+   ],
+   "correct": 0,
+   "exp": "Active, thoughtful engagement and following relevant organizations builds a network and surfaces opportunities over time."
+  }
+ ],
+ "References and Recommendation Letters": [
+  {
+   "q": "Who makes the most appropriate professional reference for a public health graduate applying to a county health team?",
+   "opts": [
+    "A close childhood friend with no work connection",
+    "A former supervisor or lecturer who can speak to your skills and work ethic",
+    "A family member who knows you well",
+    "A celebrity you admire but have never met"
+   ],
+   "correct": 1,
+   "exp": "Supervisors and lecturers can credibly attest to your professional abilities and character from direct experience."
+  },
+  {
+   "q": "What is the correct etiquette before listing someone as a reference?",
+   "opts": [
+    "List them without asking, as a surprise",
+    "Only use references who have passed away",
+    "Ask their permission and confirm they are willing to speak positively",
+    "Choose references you have never actually met"
+   ],
+   "correct": 2,
+   "exp": "Always ask permission first so the reference is prepared, willing, and able to give a strong, informed endorsement."
+  },
+  {
+   "q": "To help a referee write a strong recommendation letter, what should you provide them?",
+   "opts": [
+    "Nothing, so the letter stays completely neutral",
+    "Only your phone number",
+    "A pre-written letter they must sign without reading",
+    "The job description, your CV, and key points you hope they can highlight"
+   ],
+   "correct": 3,
+   "exp": "Sharing the job details and your CV helps the referee tailor a relevant, specific, and compelling recommendation."
+  }
+ ],
+ "Where to Find Public Health Jobs": [
+  {
+   "q": "Which website is a widely used source for humanitarian and public health job listings across Liberia and West Africa?",
+   "opts": [
+    "ReliefWeb",
+    "A local restaurant review site",
+    "A personal gaming forum",
+    "A used-car marketplace"
+   ],
+   "correct": 0,
+   "exp": "ReliefWeb is a leading platform that aggregates humanitarian and public health vacancies from NGOs, UN agencies, and INGOs."
+  },
+  {
+   "q": "Beyond online job boards, what is an effective way for a graduate to learn about public health openings?",
+   "opts": [
+    "Waiting passively for employers to call",
+    "Networking with professionals and staying in touch with former lecturers and colleagues",
+    "Refusing to tell anyone you are job hunting",
+    "Only checking jobs once a year"
+   ],
+   "correct": 1,
+   "exp": "Many roles are filled through networks, so maintaining professional relationships surfaces opportunities that may never be advertised widely."
+  },
+  {
+   "q": "Where would you look to find vacancies posted directly by the Government of Liberia's health sector?",
+   "opts": [
+    "Only through paid text-message services",
+    "A random personal blog with no affiliation",
+    "The Ministry of Health website and official government notice boards",
+    "An international sports news site"
+   ],
+   "correct": 2,
+   "exp": "Government health vacancies are typically announced through the Ministry of Health's official channels and public notices."
+  }
+ ],
+ "Working with NGOs and INGOs": [
+  {
+   "q": "What does the acronym INGO stand for in the humanitarian and public health sector?",
+   "opts": [
+    "Internal National Government Office",
+    "International Network of Governors",
+    "Independent National Growth Organization",
+    "International Non-Governmental Organization"
+   ],
+   "correct": 3,
+   "exp": "INGO stands for International Non-Governmental Organization, referring to non-profits operating across multiple countries."
+  },
+  {
+   "q": "Which of the following is an example of an INGO that commonly recruits public health staff in Liberia?",
+   "opts": [
+    "Partners in Health",
+    "The local city bus company",
+    "A neighborhood grocery store",
+    "A private mobile phone retailer"
+   ],
+   "correct": 0,
+   "exp": "Partners in Health is an INGO with health programming in Liberia that regularly recruits public health professionals."
+  },
+  {
+   "q": "When applying to NGOs, why is it important to understand an organization's mission and values?",
+   "opts": [
+    "Because you can then ignore the job requirements",
+    "So you can align your application to show genuine fit with their goals",
+    "Because missions are legally confidential",
+    "So you can copy their mission into your CV as your own"
+   ],
+   "correct": 1,
+   "exp": "Aligning your application with the organization's mission demonstrates genuine commitment and a strong cultural fit."
+  }
+ ],
+ "Ministry of Health and Government Roles": [
+  {
+   "q": "In Liberia's decentralized health system, which body manages health services at the local level?",
+   "opts": [
+    "A private insurance company",
+    "The United Nations Security Council",
+    "County Health Teams",
+    "The national football federation"
+   ],
+   "correct": 2,
+   "exp": "County Health Teams coordinate and deliver health services at the county level under the Ministry of Health's decentralized structure."
+  },
+  {
+   "q": "What is often a distinctive advantage of pursuing a career within the Ministry of Health?",
+   "opts": [
+    "Guaranteed international travel every month",
+    "The highest salary of any sector without exception",
+    "Automatic exemption from any performance review",
+    "Opportunity to shape national health policy and serve the public system directly"
+   ],
+   "correct": 3,
+   "exp": "Government roles offer a direct chance to influence national health policy and strengthen the public health system."
+  },
+  {
+   "q": "Recruitment for civil service public health posts in Liberia typically requires what?",
+   "opts": [
+    "Following formal application procedures, often through the Civil Service Agency and Ministry channels",
+    "No documents at all, just a verbal request",
+    "A personal recommendation from a foreign head of state",
+    "Payment of a fee to secure the position"
+   ],
+   "correct": 0,
+   "exp": "Government positions follow formal, merit-based procedures administered through official channels such as the Civil Service Agency."
+  }
+ ],
+ "WHO, UN and International Agencies": [
+  {
+   "q": "What is the primary mandate of the World Health Organization (WHO)?",
+   "opts": [
+    "To sell pharmaceutical products for profit",
+    "To direct and coordinate international health within the United Nations system",
+    "To manage global financial markets",
+    "To organize international sporting events"
+   ],
+   "correct": 1,
+   "exp": "WHO is the UN's specialized agency responsible for directing and coordinating international public health efforts."
+  },
+  {
+   "q": "Which UN agency focuses specifically on the health and wellbeing of children and mothers?",
+   "opts": [
+    "The International Monetary Fund",
+    "UNESCO",
+    "UNICEF",
+    "The World Trade Organization"
+   ],
+   "correct": 2,
+   "exp": "UNICEF is the UN agency dedicated to advancing the rights, health, and wellbeing of children and mothers worldwide."
+  },
+  {
+   "q": "Where should a graduate look for entry points into UN careers such as WHO country office roles?",
+   "opts": [
+    "A single newspaper classified once a decade",
+    "Only through word of mouth at social gatherings",
+    "Random unofficial websites promising guaranteed UN jobs for a fee",
+    "Official UN and agency careers portals, including UN Volunteers and Junior Professional programs"
+   ],
+   "correct": 3,
+   "exp": "Official UN careers portals and programs like UN Volunteers and JPO schemes are legitimate entry points into UN careers."
+  }
+ ],
+ "Fellowships, Internships and Volunteering": [
+  {
+   "q": "What is a key benefit of completing a public health fellowship or internship early in your career?",
+   "opts": [
+    "It builds practical experience, skills, and professional networks",
+    "It guarantees a permanent job with no further effort",
+    "It removes the need to ever update your CV again",
+    "It exempts you from all future interviews"
+   ],
+   "correct": 0,
+   "exp": "Fellowships and internships provide hands-on experience, skill development, and networks that strengthen future job prospects."
+  },
+  {
+   "q": "A graduate volunteers with a community health outreach program while job hunting. How should this be viewed on a CV?",
+   "opts": [
+    "As a waste of time that should be hidden",
+    "As valuable relevant experience demonstrating skills and commitment",
+    "As something only worth mentioning if paid",
+    "As irrelevant unless it was overseas"
+   ],
+   "correct": 1,
+   "exp": "Volunteering demonstrates real skills, initiative, and commitment, making it valuable and worth featuring on a CV."
+  },
+  {
+   "q": "Which is an example of a well-known fellowship relevant to public health professionals in Africa?",
+   "opts": [
+    "A one-day social media challenge",
+    "A local weekend cooking class",
+    "The Africa CDC Kofi Annan Global Health Leadership Fellowship",
+    "A neighborhood raffle draw"
+   ],
+   "correct": 2,
+   "exp": "The Africa CDC fellowship is a recognized structured program that develops public health leadership across the continent."
+  }
+ ],
+ "Networking for Public Health Professionals": [
+  {
+   "q": "What is the most accurate description of professional networking?",
+   "opts": [
+    "Demanding favors from as many strangers as possible",
+    "Collecting business cards without ever following up",
+    "Only speaking to people who can give you a job today",
+    "Building genuine, mutually beneficial relationships within your field over time"
+   ],
+   "correct": 3,
+   "exp": "Effective networking is about cultivating authentic, reciprocal professional relationships rather than one-off transactional requests."
+  },
+  {
+   "q": "How can attending a public health conference in the region support your career?",
+   "opts": [
+    "It lets you meet peers, learn new developments, and form useful connections",
+    "It is purely for tourism with no professional value",
+    "It automatically results in a promotion",
+    "It replaces the need for any qualifications"
+   ],
+   "correct": 0,
+   "exp": "Conferences expose you to new knowledge and peers, creating relationships and visibility that advance your career."
+  },
+  {
+   "q": "After meeting a senior epidemiologist at an event, what is a good networking follow-up?",
+   "opts": [
+    "Never contact them again to avoid bothering them",
+    "Send a brief, polite message thanking them and referencing your conversation",
+    "Immediately ask them to give you their own job",
+    "Add them then send twenty messages the same day"
+   ],
+   "correct": 1,
+   "exp": "A courteous, specific follow-up reinforces the connection and keeps the relationship warm without being demanding."
+  }
+ ],
+ "Using Job Boards and Alerts": [
+  {
+   "q": "What is the main advantage of setting up job alerts on a platform like ReliefWeb or LinkedIn?",
+   "opts": [
+    "It writes your applications automatically for you",
+    "It guarantees you will be hired for any listed role",
+    "It notifies you of relevant new vacancies so you can apply promptly",
+    "It hides jobs from other applicants"
+   ],
+   "correct": 2,
+   "exp": "Job alerts deliver timely notifications of matching vacancies, helping you apply early before deadlines pass."
+  },
+  {
+   "q": "When configuring a job alert for public health roles, which approach yields the most useful results?",
+   "opts": [
+    "Using no keywords at all so you see every job on earth",
+    "Disabling all filters and email notifications",
+    "Only searching for the single word job",
+    "Using specific keywords and filters like public health, Liberia, and monitoring and evaluation"
+   ],
+   "correct": 3,
+   "exp": "Specific keywords and filters narrow results to genuinely relevant roles, saving time and improving match quality."
+  },
+  {
+   "q": "Why should you still verify a vacancy's legitimacy even when it appears on a job board?",
+   "opts": [
+    "Because scams exist, and legitimate employers never ask for payment to apply",
+    "Because all job boards are completely fake",
+    "Because verifying is legally required before reading any post",
+    "Because job boards only list expired positions"
+   ],
+   "correct": 0,
+   "exp": "Verifying protects you from scams, and a genuine employer will never require payment as a condition of applying."
+  }
+ ],
+ "Preparing for a Public Health Interview": [
+  {
+   "q": "You have an interview next week for an M&E Officer role with a county health team in Bong County. Which preparation step will most directly help you answer questions about the organization's work?",
+   "opts": [
+    "Memorizing the entire Ministry of Health organogram",
+    "Researching the organization's current projects, funders, and recent reports",
+    "Preparing a list of salary demands to open with",
+    "Buying a new phone to take notes during the interview"
+   ],
+   "correct": 1,
+   "exp": "Researching the organization's active projects, donors, and published reports lets you tailor your answers and show genuine, informed interest."
+  },
+  {
+   "q": "What is the best way to prepare specific evidence of your accomplishments before an interview?",
+   "opts": [
+    "Rely on memory to recall achievements on the spot",
+    "List only your academic grades and certificates",
+    "Prepare 4 to 6 concrete stories with measurable results you can adapt to different questions",
+    "Prepare one very long story covering your whole career"
+   ],
+   "correct": 2,
+   "exp": "Having several concise, result-focused stories ready lets you match relevant evidence to whatever the interviewer asks."
+  },
+  {
+   "q": "Why should a candidate prepare thoughtful questions to ask the interviewer at the end?",
+   "opts": [
+    "It is a legal requirement in most NGOs",
+    "It fills time so the interview lasts longer",
+    "It allows the candidate to avoid answering difficult questions",
+    "It signals genuine interest and helps the candidate assess the role and organization"
+   ],
+   "correct": 3,
+   "exp": "Well-prepared questions demonstrate engagement and help you judge whether the role and organization are a good fit for you."
+  }
+ ],
+ "Common Interview Questions and Answers": [
+  {
+   "q": "When asked \"Tell me about yourself\" in a public health interview, the strongest response is:",
+   "opts": [
+    "A focused summary of your relevant experience, skills, and why you fit this role",
+    "A detailed account of your childhood and family background",
+    "A complaint about how your last employer treated you",
+    "A recitation of your full CV line by line"
+   ],
+   "correct": 0,
+   "exp": "A concise, role-relevant summary of your experience and fit keeps the answer professional and shows why you suit the position."
+  },
+  {
+   "q": "An interviewer asks about your greatest weakness. What is the most effective approach?",
+   "opts": [
+    "Claim you have no weaknesses",
+    "Name a genuine weakness and describe concrete steps you are taking to improve it",
+    "Give a strength disguised as a weakness, such as being a perfectionist",
+    "Blame the weakness on poor training at your previous job"
+   ],
+   "correct": 1,
+   "exp": "Naming a real weakness alongside the steps you take to address it shows self-awareness and a commitment to growth."
+  },
+  {
+   "q": "For the question \"Why do you want to work for us?\", the best answer connects:",
+   "opts": [
+    "Your need for any job to pay your bills",
+    "The generous salary and allowances the role offers",
+    "The organization's mission and work to your own skills and career goals",
+    "The short commute from your home to the office"
+   ],
+   "correct": 2,
+   "exp": "Linking the organization's mission to your skills and goals shows you have researched them and are motivated by more than convenience."
+  }
+ ],
+ "Behavioral (STAR) Interviews": [
+  {
+   "q": "In the STAR method for answering behavioral questions, what do the four letters stand for?",
+   "opts": [
+    "Situation, Target, Analysis, Recommendation",
+    "Strategy, Timeline, Assessment, Report",
+    "Skill, Talent, Attitude, Reference",
+    "Situation, Task, Action, Result"
+   ],
+   "correct": 3,
+   "exp": "STAR stands for Situation, Task, Action, and Result, giving a structured way to describe past experiences."
+  },
+  {
+   "q": "A candidate describes a data-quality problem during a measles campaign but never says what they actually did about it. Which part of STAR is missing?",
+   "opts": [
+    "Action",
+    "Task",
+    "Situation",
+    "Result"
+   ],
+   "correct": 0,
+   "exp": "The Action step describes the specific things the candidate personally did, which is missing here."
+  },
+  {
+   "q": "Which of these is the strongest \"Result\" statement in a STAR answer?",
+   "opts": [
+    "The team worked very hard and everyone was happy",
+    "We reduced data-entry errors by 40 percent within two months and cut reporting delays",
+    "Things improved a lot after my involvement",
+    "The supervisor said I did a good job on the project"
+   ],
+   "correct": 1,
+   "exp": "A strong Result is specific and measurable, such as a 40 percent error reduction, rather than vague or opinion-based."
+  }
+ ],
+ "Technical and Case Interviews": [
+  {
+   "q": "In a technical interview for a data role, you are asked to explain how you would clean a messy KoBoToolbox dataset. The best answer first:",
+   "opts": [
+    "Immediately starts running statistical tests",
+    "Deletes any row that looks unusual without checking",
+    "Describes checking for missing values, duplicates, outliers, and inconsistent codes before analysis",
+    "States that clean data is the responsibility of field staff only"
+   ],
+   "correct": 2,
+   "exp": "Systematically checking for missing values, duplicates, outliers, and coding inconsistencies is the foundation of data cleaning before analysis."
+  },
+  {
+   "q": "During a case interview you are asked how to estimate the number of children needing vaccination in a rural district with no census. The best approach is to:",
+   "opts": [
+    "Refuse to answer because the data does not exist",
+    "Insist that only the Ministry of Health can provide the figure",
+    "Guess a single round number quickly",
+    "Break the problem into assumptions, such as population size and proportion under five, and reason step by step"
+   ],
+   "correct": 3,
+   "exp": "Case interviews assess structured reasoning, so breaking the estimate into stated assumptions and working through them logically is what interviewers want to see."
+  },
+  {
+   "q": "When you do not know the answer to a technical question during an interview, the most professional response is to:",
+   "opts": [
+    "Explain your reasoning, state what you would do to find out, and stay honest",
+    "Stay silent until the interviewer moves on",
+    "Pretend you know and give a confident but wrong answer",
+    "End the interview immediately"
+   ],
+   "correct": 0,
+   "exp": "Honestly reasoning through the problem and explaining how you would find the answer shows integrity and problem-solving ability."
+  }
+ ],
+ "Virtual and Panel Interviews": [
+  {
+   "q": "Before a virtual interview on Zoom for an INGO position, which technical check is most important?",
+   "opts": [
+    "Setting a colorful animated background",
+    "Testing your internet connection, camera, microphone, and finding a quiet, well-lit space",
+    "Memorizing the interviewer's full biography",
+    "Turning off your camera to save bandwidth throughout"
+   ],
+   "correct": 1,
+   "exp": "Testing your connection, audio, video, and environment beforehand prevents technical disruptions that could undermine your interview."
+  },
+  {
+   "q": "In a panel interview with several county health team members, how should you handle answering a question asked by one panelist?",
+   "opts": [
+    "Look only at the person who asked and ignore the others",
+    "Ask the most senior person to repeat the question first",
+    "Answer to the asker but make eye contact with the whole panel as you respond",
+    "Direct your full answer only to the most senior panelist"
+   ],
+   "correct": 2,
+   "exp": "Addressing the asker while including the whole panel with your gaze shows respect and engages everyone in the room."
+  },
+  {
+   "q": "During a virtual interview your internet briefly cuts out mid-answer. The best response when reconnected is to:",
+   "opts": [
+    "Pretend nothing happened and continue from a random point",
+    "Blame the interviewer's connection for the problem",
+    "End the call and reschedule for another week",
+    "Apologize briefly, confirm where you were cut off, and continue calmly"
+   ],
+   "correct": 3,
+   "exp": "A brief apology and calmly confirming where to resume keeps the interview professional and on track."
+  }
+ ],
+ "Salary Negotiation": [
+  {
+   "q": "When is generally the best time to discuss specific salary figures during a hiring process?",
+   "opts": [
+    "After you have received a job offer or when the employer raises it",
+    "In the very first minute of the first interview",
+    "Before you have even submitted your application",
+    "Only after you have already signed the contract"
+   ],
+   "correct": 0,
+   "exp": "Negotiating once an offer is on the table gives you the most leverage, because the employer has already decided they want you."
+  },
+  {
+   "q": "How should you decide on a reasonable salary range to request for an M&E role with a Monrovia-based NGO?",
+   "opts": [
+    "Ask for the highest figure you can imagine regardless of the market",
+    "Research typical pay for similar roles, your experience, and the organization's sector",
+    "Accept whatever is first offered without any research",
+    "Base it only on what a friend earns in a different country"
+   ],
+   "correct": 1,
+   "exp": "Grounding your range in market rates, your experience, and the sector makes your request credible and realistic."
+  },
+  {
+   "q": "If an NGO says its salary scale is fixed and cannot be changed, a good negotiation strategy is to:",
+   "opts": [
+    "Walk away from the offer immediately",
+    "Demand the fixed figure be doubled anyway",
+    "Explore non-salary benefits such as training, transport, or professional development",
+    "Accept and complain about it to colleagues later"
+   ],
+   "correct": 2,
+   "exp": "When base pay is fixed, negotiating benefits like training, allowances, or development opportunities can still improve the overall package."
+  }
+ ],
+ "Following Up After an Interview": [
+  {
+   "q": "What is the recommended timing for sending a thank-you message after an interview?",
+   "opts": [
+    "Never, because it appears desperate",
+    "At least two weeks later so you do not seem eager",
+    "Only after you have received the final decision",
+    "Within about 24 hours of the interview"
+   ],
+   "correct": 3,
+   "exp": "Sending a thank-you note within roughly 24 hours keeps you fresh in the interviewer's mind and shows professionalism."
+  },
+  {
+   "q": "A strong post-interview thank-you email should include:",
+   "opts": [
+    "Appreciation for their time and a brief reminder of your fit for the role",
+    "A demand for an immediate hiring decision",
+    "A long list of all your grievances about the process",
+    "A request to lower the job's requirements for you"
+   ],
+   "correct": 0,
+   "exp": "Thanking the interviewer and briefly reinforcing your suitability reminds them of your value without being pushy."
+  },
+  {
+   "q": "If two weeks pass after the stated decision date with no response, the most appropriate action is to:",
+   "opts": [
+    "Call the office repeatedly every day until they answer",
+    "Send one polite follow-up email asking for a status update",
+    "Post publicly on social media complaining about the delay",
+    "Assume rejection and never contact them again"
+   ],
+   "correct": 1,
+   "exp": "A single polite follow-up email after the expected date shows continued interest while respecting the employer's process."
+  }
+ ],
+ "Monitoring and Evaluation (M&E)": [
+  {
+   "q": "In an M&E logframe, which of these is an example of an indicator rather than an outcome?",
+   "opts": [
+    "Improved maternal health in the county",
+    "Mothers feel more supported by health workers",
+    "Percentage of pregnant women attending at least four antenatal care visits",
+    "The community values skilled birth attendance"
+   ],
+   "correct": 2,
+   "exp": "An indicator is a specific, measurable metric such as the percentage of women completing four ANC visits, unlike the broader outcome statement."
+  },
+  {
+   "q": "What is the key difference between monitoring and evaluation?",
+   "opts": [
+    "Monitoring is done once at the end; evaluation is continuous",
+    "Monitoring is only for donors; evaluation is only for staff",
+    "They are two words for exactly the same activity",
+    "Monitoring tracks ongoing progress routinely; evaluation assesses results and impact at specific points"
+   ],
+   "correct": 3,
+   "exp": "Monitoring is the continuous routine tracking of activities, while evaluation periodically judges whether outcomes and impact were achieved."
+  },
+  {
+   "q": "In a results chain, which sequence is correct from start to end?",
+   "opts": [
+    "Input, Activity, Output, Outcome, Impact",
+    "Impact, Outcome, Output, Activity, Input",
+    "Output, Input, Activity, Impact, Outcome",
+    "Activity, Input, Impact, Output, Outcome"
+   ],
+   "correct": 0,
+   "exp": "The standard results chain flows from Inputs to Activities to Outputs to Outcomes and finally to Impact."
+  }
+ ],
+ "Project and Program Management": [
+  {
+   "q": "A project manager at a county health program creates a schedule showing tasks, durations, and dependencies over time. This tool is a:",
+   "opts": [
+    "Logframe",
+    "Gantt chart",
+    "Balance sheet",
+    "SWOT analysis"
+   ],
+   "correct": 1,
+   "exp": "A Gantt chart displays tasks against a timeline with their durations and dependencies, making it ideal for scheduling."
+  },
+  {
+   "q": "Which set best describes the classic triple constraint in project management?",
+   "opts": [
+    "Inputs, outputs, and outcomes",
+    "Staff, donors, and vehicles",
+    "Scope, time, and cost",
+    "Risk, quality, and reporting"
+   ],
+   "correct": 2,
+   "exp": "The triple constraint balances scope, time, and cost, and changing one usually affects the others."
+  },
+  {
+   "q": "During implementation of an immunization project, a key supplier of cold-chain equipment is delayed. The best project-management response is to:",
+   "opts": [
+    "Ignore it and hope it resolves itself",
+    "Wait until the donor report is due to mention it",
+    "Cancel the entire project immediately",
+    "Consult the risk register and activate a mitigation plan such as an alternative supplier"
+   ],
+   "correct": 3,
+   "exp": "Good project management anticipates such risks in a risk register and responds with a prepared mitigation plan rather than ignoring the problem."
+  }
+ ],
+ "Grant and Proposal Writing": [
+  {
+   "q": "In a grant proposal, the section that explains the specific issue your project will address and why it matters is the:",
+   "opts": [
+    "Problem statement or needs assessment",
+    "Budget narrative",
+    "Executive summary of the organization",
+    "Sustainability plan"
+   ],
+   "correct": 0,
+   "exp": "The problem statement or needs assessment defines the specific issue and justifies why the project is needed."
+  },
+  {
+   "q": "A donor asks that your objectives be SMART. Which objective best meets that standard?",
+   "opts": [
+    "Improve health in the county soon",
+    "Train 120 community health volunteers in ORS use across 3 districts by December 2026",
+    "Help as many people as possible whenever we can",
+    "Reduce disease significantly over the coming years"
+   ],
+   "correct": 1,
+   "exp": "The objective naming a number, activity, location, and deadline is Specific, Measurable, Achievable, Relevant, and Time-bound."
+  },
+  {
+   "q": "Why is a sustainability plan important in a proposal to a funder like WHO or a bilateral donor?",
+   "opts": [
+    "It guarantees the project will never need money again",
+    "It replaces the need for a budget",
+    "It shows how benefits will continue after donor funding ends",
+    "It is only decorative and rarely read"
+   ],
+   "correct": 2,
+   "exp": "A sustainability plan demonstrates how project benefits will be maintained after the grant period ends, which funders value highly."
+  }
+ ],
+ "Report Writing": [
+  {
+   "q": "In a public health project report, the section that gives a brief, standalone overview of the whole report for busy decision-makers is the:",
+   "opts": [
+    "Annexes",
+    "Methodology",
+    "Reference list",
+    "Executive summary"
+   ],
+   "correct": 3,
+   "exp": "The executive summary provides a concise overview of the report so that busy readers can grasp the key points quickly."
+  },
+  {
+   "q": "When presenting quarterly indicator data in a report, the most effective practice is to:",
+   "opts": [
+    "Use clear tables or charts with a short interpretation of what the data mean",
+    "Include every raw data record in the main text",
+    "Write only long paragraphs of numbers with no visuals",
+    "Leave out targets so results always look positive"
+   ],
+   "correct": 0,
+   "exp": "Presenting data in clear tables or charts with a brief interpretation helps readers understand results at a glance."
+  },
+  {
+   "q": "Which of these best reflects good practice for the recommendations section of an M&E report?",
+   "opts": [
+    "Recommendations unrelated to the findings",
+    "Actionable recommendations that follow directly from the report's findings",
+    "A restatement of the introduction word for word",
+    "Only recommendations that require more funding"
+   ],
+   "correct": 1,
+   "exp": "Recommendations should flow logically from the findings and be actionable so readers know what to do next."
+  }
+ ],
+ "Data Collection Tools (KoBoToolbox & ODK)": [
+  {
+   "q": "In KoBoToolbox or ODK, which feature helps prevent enumerators from entering an age of 250 years?",
+   "opts": [
+    "A skip logic on the name field",
+    "Changing the question to a text type",
+    "A validation constraint setting an allowed numeric range",
+    "Adding a photo question instead"
+   ],
+   "correct": 2,
+   "exp": "A validation constraint restricts entries to an allowed range, blocking impossible values like an age of 250."
+  },
+  {
+   "q": "What does \"skip logic\" (relevance) do in a KoBoToolbox form?",
+   "opts": [
+    "Automatically submits the form to the server",
+    "Translates the form into another language",
+    "Deletes all responses that contain errors",
+    "Shows or hides questions based on previous answers"
+   ],
+   "correct": 3,
+   "exp": "Skip logic, or relevance, displays or hides questions depending on earlier responses, keeping surveys efficient and relevant."
+  },
+  {
+   "q": "A key advantage of collecting data with KoBoToolbox or ODK on mobile devices instead of paper is that they:",
+   "opts": [
+    "Allow offline data collection and reduce transcription errors from paper entry",
+    "Never require any staff training",
+    "Guarantee that respondents always tell the truth",
+    "Remove the need for any data cleaning afterward"
+   ],
+   "correct": 0,
+   "exp": "Mobile tools like KoBoToolbox and ODK support offline collection and reduce the transcription errors that come with re-entering paper forms."
+  }
+ ],
+ "Data Analysis with Excel and SPSS": [
+  {
+   "q": "In Excel, which function would you use to count how many survey respondents in a column selected \"Yes\"?",
+   "opts": [
+    "SUM",
+    "COUNTIF",
+    "VLOOKUP",
+    "CONCATENATE"
+   ],
+   "correct": 1,
+   "exp": "COUNTIF counts the cells that meet a specified condition, such as those equal to \"Yes\"."
+  },
+  {
+   "q": "In SPSS, which variable measurement level should you assign to a variable coded 1 for male and 2 for female?",
+   "opts": [
+    "Scale",
+    "Ordinal",
+    "Nominal",
+    "Continuous"
+   ],
+   "correct": 2,
+   "exp": "Sex has categories with no inherent order, so it is a nominal variable even though it is coded with numbers."
+  },
+  {
+   "q": "You want to compare mean antenatal-visit counts between two counties in SPSS to see if the difference is statistically significant. A suitable test is:",
+   "opts": [
+    "A CONCATENATE formula",
+    "A pie chart",
+    "A frequency table only",
+    "An independent-samples t-test"
+   ],
+   "correct": 3,
+   "exp": "An independent-samples t-test compares the means of a continuous variable between two independent groups."
+  }
+ ],
+ "Community Engagement and Mobilization": [
+  {
+   "q": "Before launching a hygiene-promotion campaign in a rural community, the most important first step for meaningful engagement is to:",
+   "opts": [
+    "Consult community leaders and members to understand local needs and gain trust",
+    "Deliver a fixed message decided entirely at head office",
+    "Distribute flyers only, in English, and leave",
+    "Wait until the campaign fails before involving the community"
+   ],
+   "correct": 0,
+   "exp": "Consulting community leaders and members first builds trust and ensures the campaign responds to real local needs."
+  },
+  {
+   "q": "Why are community health volunteers or town criers often central to mobilization in Liberian communities?",
+   "opts": [
+    "They are cheaper than printing any materials",
+    "They are trusted local voices who can reach people in their own language and context",
+    "They eliminate the need for any health facilities",
+    "They only work with international staff"
+   ],
+   "correct": 1,
+   "exp": "Trusted local figures can communicate in the community's own language and context, making health messages more credible and accepted."
+  },
+  {
+   "q": "Which approach best reflects genuine community participation rather than token involvement?",
+   "opts": [
+    "Informing the community of decisions already finalized",
+    "Collecting signatures only for a donor report",
+    "Involving community members in planning, decisions, and feedback throughout the project",
+    "Inviting the community to a single closing ceremony"
+   ],
+   "correct": 2,
+   "exp": "Genuine participation means engaging community members in planning, decision-making, and feedback across the whole project, not just informing them."
+  }
+ ],
+ "Building Data Dashboards": [
+  {
+   "q": "The primary purpose of a data dashboard for a county health team is to:",
+   "opts": [
+    "Store the raw survey forms permanently",
+    "Serve as a backup of the SPSS software",
+    "Replace the need to collect any data",
+    "Present key indicators visually so managers can monitor performance at a glance"
+   ],
+   "correct": 3,
+   "exp": "A dashboard visualizes key indicators so decision-makers can quickly monitor performance and spot issues."
+  },
+  {
+   "q": "When choosing a chart to show the trend of monthly malaria cases over a year, the best option is usually a:",
+   "opts": [
+    "Line chart",
+    "Pie chart",
+    "Single large number",
+    "Word cloud"
+   ],
+   "correct": 0,
+   "exp": "A line chart is ideal for showing how a value changes over time, such as monthly case counts across a year."
+  },
+  {
+   "q": "Which design practice makes a health dashboard most effective for its users?",
+   "opts": [
+    "Cramming as many charts as possible onto one screen",
+    "Focusing on a few key indicators with clear labels and consistent colors",
+    "Using a different color scheme for every single chart",
+    "Hiding the reporting period and data source"
+   ],
+   "correct": 1,
+   "exp": "Focusing on a few key indicators with clear labels and consistent colors keeps the dashboard readable and actionable."
+  }
+ ],
+ "Scientific and Technical Writing": [
+  {
+   "q": "In a scientific manuscript following the IMRaD structure, where should you state whether your intervention significantly reduced malaria incidence?",
+   "opts": [
+    "Introduction",
+    "Methods",
+    "Results",
+    "Acknowledgements"
+   ],
+   "correct": 2,
+   "exp": "The Results section reports the findings and statistical outcomes, while interpretation of their meaning belongs in the Discussion."
+  },
+  {
+   "q": "A Ministry of Health officer is writing a surveillance report and wants the language to be clear and professional. Which sentence best reflects good technical writing?",
+   "opts": [
+    "It was felt by us that maybe the numbers might be going up a bit.",
+    "Cases did a big jump recently which is not good at all for us.",
+    "The situation regarding cases is honestly quite alarming and terrible.",
+    "Confirmed cholera cases increased from 12 to 47 between weeks 3 and 6."
+   ],
+   "correct": 3,
+   "exp": "Good technical writing is precise, concrete, and quantified, stating exactly what changed and over what period without vague or emotive language."
+  },
+  {
+   "q": "Why is it important to cite sources properly in a technical public health document?",
+   "opts": [
+    "To give credit, allow verification, and avoid plagiarism",
+    "To make the document longer and appear more scholarly",
+    "Because reviewers require at least 50 references",
+    "To hide weaknesses in your own data"
+   ],
+   "correct": 0,
+   "exp": "Citation credits original authors, lets readers verify claims, and protects the writer from plagiarism, which is the ethical and scholarly standard."
+  }
+ ],
+ "Presenting Data and Findings": [
+  {
+   "q": "You want to show how the proportion of fully immunized children differs across Liberia's 15 counties. Which chart type is most appropriate?",
+   "opts": [
+    "A single pie chart with 15 slices",
+    "A bar chart comparing counties",
+    "A line graph with counties on the x-axis",
+    "A scatter plot of two immunization variables"
+   ],
+   "correct": 1,
+   "exp": "A bar chart is best for comparing a single measure across many discrete categories, whereas a 15-slice pie chart is hard to read."
+  },
+  {
+   "q": "What is the main purpose of a well-designed data visualization in a public health presentation?",
+   "opts": [
+    "To display every data point you collected",
+    "To make the slide look colorful and busy",
+    "To communicate a clear message quickly to the audience",
+    "To prove how much analysis you performed"
+   ],
+   "correct": 2,
+   "exp": "A good visualization distills data into a clear, quickly grasped message rather than overwhelming the audience with detail."
+  },
+  {
+   "q": "When presenting a trend of maternal mortality over ten years, which practice is misleading and should be avoided?",
+   "opts": [
+    "Labeling the axes with units and years",
+    "Using a line graph for the time trend",
+    "Noting the data source below the chart",
+    "Truncating the y-axis so small changes look dramatic"
+   ],
+   "correct": 3,
+   "exp": "Truncating or manipulating the y-axis exaggerates changes and misleads the audience, undermining honest data presentation."
+  }
+ ],
+ "Writing Policy Briefs": [
+  {
+   "q": "What primarily distinguishes a policy brief from a scientific journal article?",
+   "opts": [
+    "A policy brief targets decision-makers with concise, actionable recommendations",
+    "A policy brief must be at least 20 pages long",
+    "A policy brief avoids any mention of evidence",
+    "A policy brief is only written by academics"
+   ],
+   "correct": 0,
+   "exp": "A policy brief is short and aimed at busy decision-makers, translating evidence into clear, actionable recommendations rather than exhaustive academic detail."
+  },
+  {
+   "q": "Which element is essential in an effective policy brief submitted to the Ministry of Health?",
+   "opts": [
+    "A detailed literature review of 100 studies",
+    "Clear, specific, and feasible policy recommendations",
+    "The author's full academic CV",
+    "Raw data tables with no interpretation"
+   ],
+   "correct": 1,
+   "exp": "The core value of a policy brief lies in offering clear, feasible recommendations that decision-makers can act upon."
+  },
+  {
+   "q": "Where in a policy brief should the key message appear so a busy official grasps it immediately?",
+   "opts": [
+    "Only in the final paragraph",
+    "Buried in the methods section",
+    "In an executive summary or up front",
+    "In a footnote"
+   ],
+   "correct": 2,
+   "exp": "Because officials may read only the beginning, the key message belongs in an executive summary or opening section for immediate impact."
+  }
+ ],
+ "Public Speaking and Presentations": [
+  {
+   "q": "You have 10 minutes to present findings to district health officers. What is the best way to manage your slides?",
+   "opts": [
+    "Use 40 dense slides so nothing is left out",
+    "Read every word on each slide aloud",
+    "Avoid slides entirely and read from a script",
+    "Use a few clear slides with key points and speak to them"
+   ],
+   "correct": 3,
+   "exp": "A few uncluttered slides that support your spoken points keep the audience engaged and fit the time limit better than dense or read-aloud slides."
+  },
+  {
+   "q": "Which technique most effectively reduces nervousness before speaking to a large audience?",
+   "opts": [
+    "Preparing and rehearsing your talk in advance",
+    "Memorizing the talk word-for-word only minutes before",
+    "Avoiding eye contact with everyone",
+    "Speaking as fast as possible to finish quickly"
+   ],
+   "correct": 0,
+   "exp": "Thorough preparation and rehearsal build familiarity and confidence, which are the most reliable ways to reduce speaking anxiety."
+  },
+  {
+   "q": "During a community health talk in a rural Liberian setting, how should you handle technical jargon?",
+   "opts": [
+    "Use as much jargon as possible to sound expert",
+    "Explain concepts in plain, accessible language",
+    "Refuse to answer questions to save time",
+    "Speak only in formal academic English"
+   ],
+   "correct": 1,
+   "exp": "Communicating in plain, accessible language ensures the community audience understands the message, which is the goal of the talk."
+  }
+ ],
+ "Facilitating Meetings and Trainings": [
+  {
+   "q": "What is the primary purpose of setting an agenda before a stakeholder meeting?",
+   "opts": [
+    "To make the meeting appear more formal",
+    "To prevent participants from speaking",
+    "To keep the meeting focused and use time efficiently",
+    "To satisfy a bureaucratic requirement only"
+   ],
+   "correct": 2,
+   "exp": "An agenda structures the discussion, keeps it on track, and ensures the group uses its time efficiently toward clear objectives."
+  },
+  {
+   "q": "As a facilitator of a training for community health workers, how should you handle one participant dominating the discussion?",
+   "opts": [
+    "Let them continue since they seem confident",
+    "End the session early to avoid conflict",
+    "Publicly criticize them in front of the group",
+    "Gently redirect and invite quieter participants to contribute"
+   ],
+   "correct": 3,
+   "exp": "A skilled facilitator manages participation by tactfully redirecting dominant voices and drawing in quieter members so everyone contributes."
+  },
+  {
+   "q": "Which practice best confirms that trainees have actually learned a new clinical skill?",
+   "opts": [
+    "Having them demonstrate or practice the skill",
+    "Asking if everyone understood and moving on",
+    "Handing out a certificate at the end",
+    "Reading the manual aloud to them"
+   ],
+   "correct": 0,
+   "exp": "Having trainees demonstrate or practice the skill provides evidence of competence, unlike simply asking whether they understood."
+  }
+ ],
+ "Working with the Media and the Public": [
+  {
+   "q": "During an Ebola outbreak, a journalist asks about a rumor you cannot yet confirm. What is the best response?",
+   "opts": [
+    "Deny everything to avoid panic",
+    "Say what is known, acknowledge uncertainty, and promise updates",
+    "Refuse to speak to the media at all",
+    "Speculate freely to fill the silence"
+   ],
+   "correct": 1,
+   "exp": "Honest communication that shares confirmed facts, admits what is not yet known, and commits to updates builds public trust during a crisis."
+  },
+  {
+   "q": "What is a key advantage of preparing clear key messages before a media interview?",
+   "opts": [
+    "It lets you avoid answering any questions",
+    "It guarantees the story will be positive",
+    "It ensures your main points are communicated accurately and consistently",
+    "It replaces the need to understand the topic"
+   ],
+   "correct": 2,
+   "exp": "Prepared key messages help you convey your most important points clearly and consistently, even if questions go in unexpected directions."
+  },
+  {
+   "q": "Which approach best builds public trust in a health campaign against a disease outbreak?",
+   "opts": [
+    "Using fear and blame to force compliance",
+    "Withholding bad news indefinitely",
+    "Sharing information only with government officials",
+    "Providing accurate, timely, and culturally respectful information"
+   ],
+   "correct": 3,
+   "exp": "Accurate, timely, and culturally respectful communication fosters trust and cooperation, which is essential to an effective health campaign."
+  }
+ ],
+ "Continuing Education and Certifications": [
+  {
+   "q": "Why do many public health professionals pursue continuing education throughout their careers?",
+   "opts": [
+    "To keep skills current with evolving evidence and practice",
+    "Certificates are only needed once at graduation",
+    "It is legally forbidden to stop learning",
+    "Employers ignore additional qualifications"
+   ],
+   "correct": 0,
+   "exp": "Continuing education keeps professionals up to date as evidence, technologies, and guidelines evolve, maintaining competence over a career."
+  },
+  {
+   "q": "A field epidemiologist in West Africa wants structured, practical outbreak-response training. Which program is most relevant?",
+   "opts": [
+    "A creative writing certificate",
+    "The Field Epidemiology Training Program (FETP)",
+    "A graphic design diploma",
+    "A basic typing course"
+   ],
+   "correct": 1,
+   "exp": "The Field Epidemiology Training Program is designed specifically to build applied outbreak investigation and surveillance skills."
+  },
+  {
+   "q": "What is a practical first step when choosing a certification to invest limited time and money in?",
+   "opts": [
+    "Pick the most expensive one available",
+    "Choose whichever has the shortest name",
+    "Align it with your career goals and recognized credibility",
+    "Select one unrelated to public health for variety"
+   ],
+   "correct": 2,
+   "exp": "Selecting a credible certification aligned with your career goals ensures your limited time and money produce real professional value."
+  }
+ ],
+ "Applying for an MPH or PhD Abroad": [
+  {
+   "q": "Which component most strongly conveys your research fit and motivation in an MPH or PhD application?",
+   "opts": [
+    "The color of your application folder",
+    "The font you choose",
+    "The number of pages in your CV",
+    "A well-written personal or research statement"
+   ],
+   "correct": 3,
+   "exp": "A clear personal or research statement communicates your goals, fit, and motivation, which admissions committees weigh heavily."
+  },
+  {
+   "q": "A Liberian graduate needs funding for a PhD abroad. Which is a well-known scholarship route to explore?",
+   "opts": [
+    "Chevening, Fulbright, or Mastercard Foundation scholarships",
+    "Applying only with personal savings",
+    "Assuming all foreign study is automatically free",
+    "Waiting for a random email offer"
+   ],
+   "correct": 0,
+   "exp": "Chevening, Fulbright, and Mastercard Foundation scholarships are established, competitive funding routes for graduate study abroad."
+  },
+  {
+   "q": "Why should you contact potential PhD supervisors before formally applying to many programs?",
+   "opts": [
+    "It is required to pay them a fee",
+    "To confirm research-interest alignment and possible supervision",
+    "To skip the application entirely",
+    "Because applications are decided by lottery"
+   ],
+   "correct": 1,
+   "exp": "Reaching out early confirms that a supervisor shares your research interests and has capacity, which strengthens a PhD application."
+  }
+ ],
+ "Leadership and Management Skills": [
+  {
+   "q": "What best distinguishes leadership from management in a health program?",
+   "opts": [
+    "Management is only for junior staff",
+    "They are identical terms with no difference",
+    "Leadership sets vision and inspires; management organizes resources and tasks",
+    "Leadership means never delegating"
+   ],
+   "correct": 2,
+   "exp": "Leadership focuses on vision and motivating people, while management focuses on organizing resources and processes; effective programs need both."
+  },
+  {
+   "q": "A county health team leader notices declining staff morale. Which action best reflects good leadership?",
+   "opts": [
+    "Ignore it and hope it improves",
+    "Blame the staff publicly for poor results",
+    "Threaten dismissals to enforce discipline",
+    "Listen to staff concerns and address them collaboratively"
+   ],
+   "correct": 3,
+   "exp": "Good leaders listen to their team and address concerns collaboratively, which rebuilds morale and trust more effectively than threats."
+  },
+  {
+   "q": "Why is delegation an important management skill for a program manager?",
+   "opts": [
+    "It develops staff and lets the manager focus on priorities",
+    "It shifts blame onto subordinates",
+    "It means avoiding all responsibility",
+    "It is only used when a manager is lazy"
+   ],
+   "correct": 0,
+   "exp": "Effective delegation builds staff capacity and frees the manager to concentrate on higher-level priorities, strengthening the whole team."
+  }
+ ],
+ "Professional Ethics and Integrity": [
+  {
+   "q": "A supervisor pressures you to alter program data to show better coverage results for a donor report. What is the ethical response?",
+   "opts": [
+    "Change the data since the supervisor ordered it",
+    "Refuse and report the honest figures",
+    "Delete the data so no one can check",
+    "Report inflated numbers only to that one donor"
+   ],
+   "correct": 1,
+   "exp": "Integrity requires reporting honest data and refusing to falsify results, even under pressure from a superior."
+  },
+  {
+   "q": "Which situation represents a conflict of interest that should be disclosed?",
+   "opts": [
+    "Attending a routine staff meeting",
+    "Reading a published research article",
+    "Recommending a supplier in which you hold a financial stake",
+    "Taking your approved annual leave"
+   ],
+   "correct": 2,
+   "exp": "A personal financial stake in a supplier you recommend is a conflict of interest that must be disclosed to preserve transparency and trust."
+  },
+  {
+   "q": "Why is protecting the confidentiality of patient health records an ethical obligation?",
+   "opts": [
+    "It makes records harder to organize",
+    "It allows staff to avoid documentation",
+    "It is only important for wealthy patients",
+    "It respects privacy and maintains trust in the health system"
+   ],
+   "correct": 3,
+   "exp": "Safeguarding confidentiality respects patient privacy and sustains public trust, which is a core ethical duty in health care."
+  }
+ ],
+ "Mentorship: Finding and Being a Mentor": [
+  {
+   "q": "What is the most useful quality to look for when choosing a professional mentor?",
+   "opts": [
+    "Someone with relevant experience willing to guide you",
+    "Someone who shares your exact age",
+    "Someone who will do your work for you",
+    "Someone who lives in the same town only"
+   ],
+   "correct": 0,
+   "exp": "An effective mentor has relevant experience and the willingness to guide your growth, which matters far more than age or location."
+  },
+  {
+   "q": "As a mentee, how can you make the mentoring relationship most productive?",
+   "opts": [
+    "Wait passively for the mentor to solve everything",
+    "Come prepared with specific goals and questions",
+    "Contact the mentor only when in crisis",
+    "Expect the mentor to find you a job directly"
+   ],
+   "correct": 1,
+   "exp": "Mentees who arrive with clear goals and specific questions make the relationship focused and productive, respecting the mentor's time."
+  },
+  {
+   "q": "What is a key benefit that mentors themselves often gain from mentoring others?",
+   "opts": [
+    "A guaranteed salary increase",
+    "Complete control over the mentee's career",
+    "Reflection, leadership growth, and fresh perspectives",
+    "Freedom from all their own responsibilities"
+   ],
+   "correct": 2,
+   "exp": "Mentoring helps mentors sharpen leadership skills, reflect on their own practice, and gain fresh perspectives from those they guide."
+  }
+ ],
+ "Work-Life Balance and Avoiding Burnout": [
+  {
+   "q": "Which set of signs is most characteristic of professional burnout?",
+   "opts": [
+    "Increased energy and enthusiasm",
+    "Improved concentration and mood",
+    "A sudden desire for more overtime",
+    "Chronic exhaustion, cynicism, and reduced effectiveness"
+   ],
+   "correct": 3,
+   "exp": "Burnout is defined by emotional exhaustion, cynicism or detachment, and a decline in professional effectiveness."
+  },
+  {
+   "q": "An outbreak-response worker has been on call for weeks without rest. Which is the healthiest strategy to prevent burnout?",
+   "opts": [
+    "Set boundaries, rest, and seek support when overloaded",
+    "Skip all breaks to prove dedication",
+    "Rely on caffeine to work longer hours",
+    "Hide the stress and never ask for help"
+   ],
+   "correct": 0,
+   "exp": "Setting boundaries, taking rest, and seeking support are proven strategies to sustain wellbeing and prevent burnout."
+  },
+  {
+   "q": "Why is protecting work-life balance important for long-term career success, not just personal wellbeing?",
+   "opts": [
+    "It has no effect on job performance",
+    "Sustained wellbeing supports better performance and career longevity",
+    "It signals a lack of commitment to employers",
+    "It only benefits people who dislike their jobs"
+   ],
+   "correct": 1,
+   "exp": "Maintaining balance sustains energy and focus over time, supporting stronger performance and a longer, more successful career."
+  }
+ ],
+ "Building a Lasting Professional Network": [
+  {
+   "q": "What is the most effective mindset for building a lasting professional network?",
+   "opts": [
+    "Collect as many contacts as possible and never follow up",
+    "Only contact people when you need a favor",
+    "Focus on genuine, mutually beneficial relationships over time",
+    "Avoid connecting with peers at your own level"
+   ],
+   "correct": 2,
+   "exp": "Lasting networks are built on genuine, reciprocal relationships nurtured over time, not on one-sided or purely transactional contacts."
+  },
+  {
+   "q": "After meeting a WHO regional officer at a conference, what is a good networking follow-up?",
+   "opts": [
+    "Never contact them so as not to bother them",
+    "Add them to a mass marketing email list",
+    "Immediately ask them for a job the next day",
+    "Send a brief, personalized message referencing your conversation"
+   ],
+   "correct": 3,
+   "exp": "A short, personalized follow-up referencing your conversation reinforces the connection and keeps the relationship warm and genuine."
+  },
+  {
+   "q": "How can professional associations help a public health graduate build their network?",
+   "opts": [
+    "They offer events, resources, and connections in the field",
+    "They isolate members from one another",
+    "They only benefit senior staff",
+    "They discourage collaboration among members"
+   ],
+   "correct": 0,
+   "exp": "Professional associations provide conferences, resources, and peer connections that expand a graduate's professional network in the field."
+  }
+ ]
+};
+
 })();
