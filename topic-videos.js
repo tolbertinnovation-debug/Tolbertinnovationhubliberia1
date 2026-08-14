@@ -17,6 +17,24 @@
   }
   var MODULES = {};
   var TOPICS = {
+    'english-success': {
+      "M8:Research Essays": 'UuOWNNvupik',
+      "M8:Reports": '4N7LlWsKlUw',
+      "M8:Literature Reviews": 'zIYC6zG265E',
+      "M8:Summaries": 'oDBabCxxulY',
+      "M8:Paraphrasing": 'oiM0x0ApVL8',
+      "M8:Referencing & Citations": 'jmIKlioF32Q',
+      "M8:Avoiding Plagiarism": 'uQhVDH9p7aU',
+      "M9:Business Emails": 'znDwZf3nUv4',
+      "M9:Letters": 'egeyiUpFsaw',
+      "M9:Memorandums": 'G_jErsVxjpM',
+      "M9:Meeting Minutes": 'lmBWZAm90Vs',
+      "M9:Reports": 'V8uF1EoIneE',
+      "M9:Proposals": 'e6CNEFV2nkU',
+      "M9:Resume (CV) Writing": 'ldsElF34YqM',
+      "M9:Cover Letters": 'NUhDP30IRKk',
+      "M9:LinkedIn Profile Writing": 'OKF7ZeWNrfg'
+    },
     'toefl': {
       "M1:Welcome to the Course": 'VA2tNnTSs2A',
       "M1:How to Study Effectively": 'TjPFZaMe2yw',
