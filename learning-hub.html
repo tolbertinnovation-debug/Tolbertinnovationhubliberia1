@@ -113,6 +113,11 @@
     .lt-card:hover { transform: translateY(-5px); box-shadow: 0 18px 38px rgba(11,31,58,.16); }
     .lt-top { min-height: 76px; display: flex; align-items: center; gap: .65rem; padding: 0 1rem; color: #fff; position: relative; overflow: hidden; }
     .lt-top::after { content: ''; position: absolute; width: 120px; height: 120px; right: -40px; top: -55px; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; }
+    .lt-top.has-img { min-height: 152px; padding: 0; align-items: flex-end; }
+    .lt-top.has-img::after { display: none; }
+    .lt-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0; }
+    .lt-top.has-img::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(0,0,0,.5), rgba(0,0,0,0) 55%); }
+    .lt-top.has-img .lt-cat { position: relative; z-index: 2; margin: .55rem .8rem; padding: .22rem .55rem; background: rgba(0,0,0,.42); border-radius: 6px; }
     .lt-ico { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.32); display: grid; place-items: center; font-size: 1.4rem; flex-shrink: 0; position: relative; z-index: 1; }
     .lt-cat { font-size: .64rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.94); position: relative; z-index: 1; line-height: 1.3; }
     .lt-body { padding: .85rem 1rem 1rem; display: flex; flex-direction: column; flex: 1; }
@@ -757,7 +762,7 @@
     </div>
   </footer>
 
-  <script src="courses-db.js?v=20"></script><script src="ielts-curriculum.js?v=3"></script><script src="toefl-curriculum.js?v=2"></script><script src="sat-curriculum.js?v=2"></script><script src="entrepreneurship-curriculum.js?v=3"></script><script src="webdev-curriculum.js?v=5"></script><script src="design-curriculum.js?v=2"></script><script src="android-curriculum.js?v=2"></script><script src="cybersecurity-curriculum.js?v=2"></script><script src="aicyber-curriculum.js?v=1"></script><script src="publichealth-curriculum.js?v=2"></script><script src="projectmgmt-curriculum.js?v=2"></script><script src="leadership-curriculum.js?v=2"></script><script src="grantwriting-curriculum.js?v=2"></script><script src="complit-curriculum.js?v=3"></script><script src="englishsuccess-curriculum.js?v=2"></script><script src="agritech-curriculum.js?v=2"></script><script src="ai-curriculum.js?v=2"></script><script src="data-curriculum.js?v=2"></script><script src="marketing-curriculum.js?v=2"></script><script src="office-curriculum.js?v=2"></script><script src="finlit-curriculum.js?v=2"></script><script src="healthtech-curriculum.js?v=2"></script><script src="remotework-curriculum.js?v=2"></script><script src="bible-curriculum.js?v=2"></script>
+  <script src="courses-db.js?v=20"></script><script src="ielts-curriculum.js?v=3"></script><script src="toefl-curriculum.js?v=2"></script><script src="sat-curriculum.js?v=2"></script><script src="entrepreneurship-curriculum.js?v=3"></script><script src="webdev-curriculum.js?v=5"></script><script src="design-curriculum.js?v=2"></script><script src="android-curriculum.js?v=2"></script><script src="cybersecurity-curriculum.js?v=2"></script><script src="aicyber-curriculum.js?v=1"></script><script src="publichealth-curriculum.js?v=3"></script><script src="projectmgmt-curriculum.js?v=2"></script><script src="leadership-curriculum.js?v=2"></script><script src="grantwriting-curriculum.js?v=2"></script><script src="complit-curriculum.js?v=3"></script><script src="englishsuccess-curriculum.js?v=2"></script><script src="agritech-curriculum.js?v=2"></script><script src="ai-curriculum.js?v=2"></script><script src="data-curriculum.js?v=2"></script><script src="marketing-curriculum.js?v=2"></script><script src="office-curriculum.js?v=2"></script><script src="finlit-curriculum.js?v=2"></script><script src="healthtech-curriculum.js?v=2"></script><script src="remotework-curriculum.js?v=2"></script><script src="bible-curriculum.js?v=2"></script>
   <script src="hero-network.js?v=2"></script>
   <script>
     // Hero rotating highlight ticker
@@ -819,9 +824,9 @@
           // Paid model: IELTS US$50, other exam-prep (TOEFL/SAT) US$25, every
           // other course US$5 (WASSCE is a separate grid at US$3). Legacy
           // "isFree" flags are ignored on purpose.
-          var newNum = (/^ielts/.test(id)) ? 50 : ((/^(toefl|sat)/.test(id)) ? 25 : 5);
+          var newNum = (/^ielts/.test(id)) ? 50 : ((/^ph-career/.test(id)) ? 100 : ((/^(toefl|sat)/.test(id)) ? 25 : 5));
           var was = parseInt(String(c.origPrice || '').replace(/[^0-9]/g, ''), 10) || 0;
-          if (!was || was < newNum * 2) was = (newNum >= 50 ? 150 : (newNum === 25 ? 99 : 49));
+          if (!was || was < newNum * 2) was = (newNum >= 100 ? 250 : (newNum >= 50 ? 150 : (newNum === 25 ? 99 : 49)));
           return { free: false, newLabel: 'US$' + newNum, wasLabel: 'US$' + was };
         };
         var POPULAR = { 'computer-literacy':1, 'ai':1, 'data':1, 'webdev':1, 'design':1, 'marketing':1 };
@@ -843,10 +848,12 @@
           if (c.students) bits.push('👥 ' + c.students);
           bits.push(lessons + ' lessons');
           if (c.level) bits.push(c.level);
+          var cardImg = c.cardImage || c.image || '';
+          var topInner = cardImg
+            ? ('<img class="lt-img" src="' + esc(cardImg) + '" alt="' + esc(title) + '" loading="lazy">' + ribbon + '<span class="lt-cat">' + esc(cat) + '</span>')
+            : (ribbon + '<span class="lt-ico">' + (c.icon || '📘') + '</span><span class="lt-cat">' + esc(cat) + '</span>');
           html += '<a class="lt-card" href="hub-apply" data-cat="' + esc(cat) + '" data-search="' + esc((title + ' ' + cat).toLowerCase()) + '">'
-            + '<div class="lt-top" style="background:' + esc(grad) + '">' + ribbon
-            + '<span class="lt-ico">' + (c.icon || '📘') + '</span>'
-            + '<span class="lt-cat">' + esc(cat) + '</span></div>'
+            + '<div class="lt-top' + (cardImg ? ' has-img' : '') + '" style="background:' + esc(grad) + '">' + topInner + '</div>'
             + '<div class="lt-body">'
             + '<div class="lt-title">' + esc(title) + '</div>'
             + '<div class="lt-meta">' + esc(bits.join(' · ')) + '</div>'
