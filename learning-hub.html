@@ -850,7 +850,7 @@
           if (c.level) bits.push(c.level);
           var cardImg = c.cardImage || c.image || '';
           var topInner = cardImg
-            ? ('<img class="lt-img" src="' + esc(cardImg) + '" alt="' + esc(title) + '" loading="lazy">' + ribbon + '<span class="lt-cat">' + esc(cat) + '</span>')
+            ? ('<img class="lt-img" src="' + esc(cardImg) + '?v=2" alt="' + esc(title) + '" loading="lazy">' + ribbon + '<span class="lt-cat">' + esc(cat) + '</span>')
             : (ribbon + '<span class="lt-ico">' + (c.icon || '📘') + '</span><span class="lt-cat">' + esc(cat) + '</span>');
           html += '<a class="lt-card" href="hub-apply" data-cat="' + esc(cat) + '" data-search="' + esc((title + ' ' + cat).toLowerCase()) + '">'
             + '<div class="lt-top' + (cardImg ? ' has-img' : '') + '" style="background:' + esc(grad) + '">' + topInner + '</div>'
