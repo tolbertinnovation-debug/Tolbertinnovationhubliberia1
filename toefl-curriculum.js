@@ -248,6 +248,8 @@
     shortDesc: 'A full 10-module TOEFL iBT programme: grammar, vocabulary, Reading, Listening, Speaking, Writing, pronunciation, exam strategy, 50+ quizzes, full mock tests and a final Certificate Assessment.',
     category: 'Exam Preparation',
     icon: '🎓',
+    image: existing.image,
+    cardImage: existing.cardImage,
     gradient: 'linear-gradient(135deg,#7c2d12,#b45309,#f59e0b)',
     instructor: existing.instructor,
     instructorTitle: existing.instructorTitle,

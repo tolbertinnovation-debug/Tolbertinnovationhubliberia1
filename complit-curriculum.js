@@ -263,6 +263,8 @@
     shortDesc: ex.shortDesc || 'A complete beginner-to-confident computer course: computer basics, Windows, files, the internet, online safety, email, Microsoft Word, Excel & PowerPoint, Google Workspace, video conferencing, maintenance and digital work skills — with hands-on projects, a final practical assessment and a Professional Certificate.',
     category: ex.category || 'Computer Literacy',
     icon: ex.icon || '💻',
+    image: ex.image,
+    cardImage: ex.cardImage,
     gradient: ex.gradient || 'linear-gradient(135deg,#1e3a5f,#002868)',
     instructor: ex.instructor,
     instructorTitle: ex.instructorTitle,
