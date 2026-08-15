@@ -152,6 +152,7 @@
     .cc-cover::before { content: ''; position: absolute; width: 150px; height: 150px; right: -45px; top: -75px; border: 1px solid rgba(255,255,255,.24); border-radius: 50%; box-shadow: 0 0 0 18px rgba(255,255,255,.06), 0 0 0 36px rgba(255,255,255,.04); }
     .cc-cover::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.16) 100%); pointer-events: none; }
     .cc-cover.has-img { min-height: 140px; }
+    .cc-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0; }
     .cc-cover.has-img::before { display: none; }
     .cc-cover.has-img::after { background: linear-gradient(180deg, rgba(0,0,0,.04) 0%, rgba(0,0,0,.30) 100%); }
     .cc-cover .cc-icon { position: relative; z-index: 1; width: 52px; height: 52px; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.16); box-shadow: 0 8px 18px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.2); backdrop-filter: blur(8px); }
@@ -873,10 +874,19 @@
       // Each WASSCE subject is unlocked individually with its own US$3 payment.
       grid.innerHTML = WASSCE_SUBJECTS.map(function (s) {
         var unlocked = HubDB.hasAccess('wassce-' + s[0]);
+        var art = (typeof window !== 'undefined' && window.TIH_WASSCE_ART)
+          ? window.TIH_WASSCE_ART[s[0]] : '';
         var pill = unlocked ? '<span class="pill done">✓ Unlocked</span>' : '<span class="pill new">🔒 <s style="color:#94a3b8;font-weight:600;">US$30</s> US$3</span>';
         var btn = '<a class="btn btn-orange btn-sm" href="course-player?id=wassce-' + s[0] + '">' + (unlocked ? 'Study →' : '🔓 Unlock (US$3)') + '</a>';
         return '<div class="course-card" data-course="wassce-' + esc(s[0]) + '">'
-          + '<div class="cc-cover" style="background:linear-gradient(135deg,#071f48,#1565d8)"><div class="cc-icon">' + s[2] + '</div><div class="cc-cover-label">WASSCE PRO<strong>Exam Prep</strong></div></div>'
+          // Subject cover art when we have it. All 23 render at once here, so
+          // the image is a lazy <img> rather than a CSS background: only the
+          // cards a student actually scrolls to cost them any data.
+          + '<div class="cc-cover' + (art ? ' has-img' : '') + '" style="background:linear-gradient(135deg,#071f48,#1565d8)">'
+          + (art
+              ? '<img class="cc-img" src="' + esc(art) + '-card.jpg?v=1" alt="' + esc(s[1]) + '" loading="lazy">'
+              : '<div class="cc-icon">' + s[2] + '</div><div class="cc-cover-label">WASSCE PRO<strong>Exam Prep</strong></div>')
+          + '</div>'
           + '<div class="cc-top"><div><div class="cc-title">' + esc(s[1]) + '</div>'
           + '<div class="cc-meta">' + pill + '</div></div></div>'
           + '<div class="cc-actions">' + btn + '</div>'

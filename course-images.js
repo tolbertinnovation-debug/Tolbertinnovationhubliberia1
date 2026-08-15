@@ -11,8 +11,6 @@
    courses only need one line in this file. Load it after the curriculum
    scripts and before any page code that renders cards. */
 (function () {
-  if (typeof COURSES_DB === 'undefined') return;
-
   // course id -> image basename ("<base>-banner.jpg" / "<base>-card.jpg")
   var ART = {
     'ielts': 'ielts',
@@ -41,6 +39,28 @@
     'accounting-bookkeeping': 'accounting-bookkeeping',
     'ai-cybersecurity': 'ai-cybersecurity'
   };
+
+  /* WASSCE subject art. The dashboard renders its WASSCE grid from a
+     hardcoded subject list rather than COURSES_DB, so the ids are exposed
+     here for it to look up. Art files follow "wassce-<id>-banner.jpg" and
+     "wassce-<id>-card.jpg". */
+  var WASSCE = ['mathematics', 'english', 'biology', 'chemistry', 'physics',
+    'economics', 'civic-education', 'accounts', 'commerce', 'marketing',
+    'literature', 'government', 'geography', 'history', 'crs', 'irs',
+    'agriculture', 'further-maths', 'health-science', 'food-nutrition',
+    'technical-drawing', 'computer-science', 'home-economics'];
+
+  var WASSCE_ART = {};
+  WASSCE.forEach(function (sid) {
+    WASSCE_ART[sid] = 'wassce-' + sid;
+    ART['wassce-' + sid] = 'wassce-' + sid; // if a COURSES_DB entry exists
+  });
+  // Exposed before the COURSES_DB guard below: the WASSCE grid is driven by a
+  // hardcoded subject list, so its art must resolve even on a page that never
+  // loads courses-db.js.
+  if (typeof window !== 'undefined') window.TIH_WASSCE_ART = WASSCE_ART;
+
+  if (typeof COURSES_DB === 'undefined') return;
 
   var applied = 0;
   Object.keys(ART).forEach(function (id) {
