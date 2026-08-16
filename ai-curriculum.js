@@ -6,7 +6,9 @@
    AI across industries, data literacy, AI entrepreneurship, career, projects,
    a capstone and a graduation module. Every content lesson has a video +
    printable notes; project lessons carry briefs and downloadable resources.
-   Modelled on complit-curriculum.js. */
+   Modelled on complit-curriculum.js.
+
+   Updated: Richer teaching content + Liberia/West Africa examples for core Fundamentals. */
 (function () {
   if (typeof COURSES_DB === 'undefined') return;
   var CID = 'ai';
@@ -60,7 +62,7 @@
     [20, 'Assessments & Graduation', '🎓', 'assessment', 'assessment', ['AI Fundamentals Assessment', 'Prompt Engineering Assessment', 'Generative AI Assessment', 'AI Ethics Assessment', 'AI Productivity Assessment', 'Business AI Assessment', 'Midterm Examination', 'Final Examination', 'Capstone Project Evaluation', 'Portfolio Review', 'Certificate Requirements', 'Certificate of Completion']]
   ];
 
-  function esc(v) { return String(v).replace(/[&<>"']/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]; }); }
+  function esc(v) { return String(v).replace(/[&<>"']/g, function (ch) { return { '&': '&', '<': '<', '>': '>', '"': '"', "'": '&#39;' }[ch]; }); }
   function isAssessment(name) { return /(?:Test|Quiz|Exam|Examination|Assessment)$/.test(name.trim()); }
   function isProjectName(name) { return /(?:Project|Assignment|Presentation|Simulation)$/.test(name.trim()); }
 
@@ -69,7 +71,7 @@
   var TEMPLATES = {
     prompt: '<h4>📥 Resource: Prompt Library</h4><p>Reusable prompt patterns:</p><ul><li><strong>Role:</strong> "Act as a [role]. Help me [task]."</li><li><strong>Context + task:</strong> "Here is [context]. Now [do X] in [format]."</li><li><strong>Few-shot:</strong> give 2–3 examples, then the new input.</li><li><strong>Chain-of-thought:</strong> "Think step by step, then give the answer."</li><li><strong>Refine:</strong> "Improve this by [criteria]: [text]."</li></ul>',
     toolkit: '<h4>📥 Guide: AI Toolkit</h4><ul><li><strong>Chat/reasoning:</strong> ChatGPT, Claude, Gemini, Copilot</li><li><strong>Research:</strong> Perplexity, NotebookLM</li><li><strong>Creativity:</strong> Canva AI, Adobe Firefly</li><li><strong>Coding:</strong> GitHub Copilot</li><li><strong>Automation:</strong> Zapier, Make, Notion AI</li><li>Always check outputs and cite/verify sources.</li></ul>',
-    business: '<h4>📥 Template: Business AI Use Case</h4><ul><li>Problem/opportunity</li><li>Where AI helps (task &amp; data)</li><li>Tool/approach chosen</li><li>Expected benefit (time/cost/quality)</li><li>Risks &amp; responsible-use checks</li><li>Success metric</li></ul>',
+    business: '<h4>📥 Template: Business AI Use Case</h4><ul><li>Problem/opportunity</li><li>Where AI helps (task & data)</li><li>Tool/approach chosen</li><li>Expected benefit (time/cost/quality)</li><li>Risks & responsible-use checks</li><li>Success metric</li></ul>',
     ethics: '<h4>📥 Checklist: Responsible AI</h4><ul><li>Is the data/use fair and unbiased?</li><li>Is it transparent (people know AI is used)?</li><li>Is privacy and security protected?</li><li>Do I have rights to inputs/outputs (copyright)?</li><li>Have I verified accuracy (no blind trust)?</li><li>Does it comply with rules/regulations?</li></ul>'
   };
   function templateFor(name) {
@@ -80,10 +82,204 @@
     return '';
   }
 
+  /* ========== RICH DETAILED NOTES FOR CORE AI FUNDAMENTALS ==========
+     Liberia / West Africa examples included throughout. */
+  var RICH_NOTES = {
+    'What is Artificial Intelligence?':
+      '<div class="study-note">' +
+      '<div class="revision-banner"><strong>AI Fundamentals · Module 1: Course Orientation</strong><span>Use AI responsibly</span></div>' +
+      '<h3>What is Artificial Intelligence?</h3>' +
+      '<p><strong>Learning objectives:</strong> By the end of this lesson you will be able to define AI in plain language, distinguish Narrow AI from General AI, and give at least three real examples of AI already used in Liberia and West Africa.</p>' +
+      '<h4>1. Simple definition</h4>' +
+      '<p>Artificial Intelligence (AI) is the ability of computers and software to perform tasks that normally require human intelligence. These tasks include recognising patterns, understanding language, making recommendations, and solving problems.</p>' +
+      '<p>AI is <em>not</em> a robot with feelings. Today’s AI is software that has been trained on large amounts of data so it can make useful predictions or generate content.</p>' +
+      '<h4>2. Narrow AI vs General AI</h4>' +
+      '<table border="1" cellpadding="8" style="border-collapse:collapse;width:100%;margin:1rem 0">' +
+      '<tr><th>Type</th><th>What it means</th><th>Examples</th></tr>' +
+      '<tr><td><strong>Narrow AI</strong> (also called Weak AI)</td><td>Designed for one specific job</td><td>Mobile money fraud detection, WhatsApp chatbots, face unlock on phones, Google Maps traffic prediction</td></tr>' +
+      '<tr><td><strong>General AI</strong> (also called Strong AI)</td><td>Would match or exceed human intelligence across almost every task</td><td>Does not exist yet</td></tr>' +
+      '</table>' +
+      '<p>Everything you use today (ChatGPT, Gemini, Copilot, recommendation systems) is Narrow AI.</p>' +
+      '<h4>3. AI already present in Liberia & West Africa</h4>' +
+      '<ul>' +
+      '<li><strong>Mobile money</strong> (Orange Money, Lonestar MTN MoMo): systems detect unusual transactions to reduce fraud.</li>' +
+      '<li><strong>Agriculture</strong>: apps that help farmers identify crop diseases from photos and get weather-based advice.</li>' +
+      '<li><strong>Healthcare</strong>: AI-supported tools that help diagnose malaria or tuberculosis from images or symptoms in clinics with few specialists.</li>' +
+      '<li><strong>Education</strong>: language learning apps and adaptive practice quizzes used by students preparing for WASSCE and university entrance.</li>' +
+      '<li><strong>Small business</strong>: inventory and sales prediction tools that help market traders and shop owners plan better.</li>' +
+      '</ul>' +
+      '<h4>4. AI vs traditional computer programs</h4>' +
+      '<table border="1" cellpadding="8" style="border-collapse:collapse;width:100%;margin:1rem 0">' +
+      '<tr><th>Traditional program</th><th>AI system</th></tr>' +
+      '<tr><td>Follows exact rules written by a programmer</td><td>Learns patterns from data</td></tr>' +
+      '<tr><td>Same input always produces the same output</td><td>Can improve as it sees more examples</td></tr>' +
+      '<tr><td>Example: a calculator</td><td>Example: a system that predicts which customers might stop using a mobile money service</td></tr>' +
+      '</table>' +
+      '<h4>5. Practice task (Liberia context)</h4>' +
+      '<p>Think of one problem in your community, school, or small business. Write one sentence answering: “How could an AI system help with this problem?” Example: “An AI system could help a clinic in Monrovia prioritise patients who need urgent malaria testing.”</p>' +
+      '<h4>6. Quick check</h4>' +
+      '<ol>' +
+      '<li>What is the difference between Narrow AI and General AI?</li>' +
+      '<li>Name two examples of AI already used in West Africa.</li>' +
+      '<li>Why is today’s AI not “conscious”?</li>' +
+      '</ol>' +
+      '<p><strong>Printable notes:</strong> Use your browser’s Print → Save as PDF.</p>' +
+      '</div>',
+
+    'How AI Works':
+      '<div class="study-note">' +
+      '<div class="revision-banner"><strong>AI Fundamentals · Module 2: AI Fundamentals</strong><span>Use AI responsibly</span></div>' +
+      '<h3>How AI Works</h3>' +
+      '<p><strong>Learning objectives:</strong> Understand the basic cycle of data → learning → prediction, and see how this cycle appears in everyday Liberian and West African examples.</p>' +
+      '<h4>1. The simple cycle</h4>' +
+      '<ol>' +
+      '<li><strong>Data</strong> – examples the system can learn from (photos of healthy vs diseased cassava leaves, past mobile-money transactions, student quiz results).</li>' +
+      '<li><strong>Learning / Training</strong> – the system finds patterns in that data.</li>' +
+      '<li><strong>Prediction or Generation</strong> – when given new input, the system uses the patterns to make a useful output (diagnose a leaf, flag a suspicious transfer, suggest the next study topic).</li>' +
+      '</ol>' +
+      '<h4>2. Liberia examples of the cycle</h4>' +
+      '<ul>' +
+      '<li><strong>Crop disease app</strong>: thousands of photos of healthy and diseased plants → system learns visual patterns → farmer takes a new photo and receives a diagnosis + treatment advice.</li>' +
+      '<li><strong>Mobile money fraud detection</strong>: history of normal and fraudulent transactions → system learns what “unusual” looks like → new transaction is scored as low or high risk.</li>' +
+      '<li><strong>School practice app</strong>: records of which questions students get wrong → system learns common weak areas → recommends targeted practice for a WASSCE candidate.</li>' +
+      '</ul>' +
+      '<h4>3. Why data quality matters</h4>' +
+      '<p>“Garbage in, garbage out.” If the training data is incomplete, biased, or wrong, the AI will make poor decisions. Example: an agricultural AI trained only on large commercial farms may give bad advice to smallholder farmers in rural Liberia.</p>' +
+      '<h4>4. Practice task</h4>' +
+      '<p>Pick one of the three examples above. Write the three steps (Data → Learning → Prediction) in your own words for that example.</p>' +
+      '<p><strong>Printable notes:</strong> Use your browser’s Print → Save as PDF.</p>' +
+      '</div>',
+
+    'Types of AI':
+      '<div class="study-note">' +
+      '<div class="revision-banner"><strong>AI Fundamentals · Module 1: Course Orientation</strong><span>Use AI responsibly</span></div>' +
+      '<h3>Types of AI</h3>' +
+      '<p><strong>Learning objectives:</strong> Be able to name the main types of AI you will meet and match each type to a practical use case relevant to Liberia.</p>' +
+      '<h4>1. By capability</h4>' +
+      '<ul>' +
+      '<li><strong>Narrow (Weak) AI</strong> – specialised systems (all current commercial AI).</li>' +
+      '<li><strong>General (Strong) AI</strong> – human-level across many domains (not yet achieved).</li>' +
+      '<li><strong>Superintelligence</strong> – far beyond human intelligence (theoretical).</li>' +
+      '</ul>' +
+      '<h4>2. By technique (what you will actually use)</h4>' +
+      '<ul>' +
+      '<li><strong>Machine Learning</strong> – systems that improve from data.</li>' +
+      '<li><strong>Deep Learning</strong> – machine learning that uses multi-layer neural networks (powers modern image recognition and large language models).</li>' +
+      '<li><strong>Generative AI</strong> – creates new content (text, images, audio, code) from prompts.</li>' +
+      '<li><strong>Rule-based / Expert systems</strong> – older approach that follows hand-written rules.</li>' +
+      '</ul>' +
+      '<h4>3. Liberia-relevant mapping</h4>' +
+      '<table border="1" cellpadding="8" style="border-collapse:collapse;width:100%;margin:1rem 0">' +
+      '<tr><th>Technique</th><th>Possible use in Liberia</th></tr>' +
+      '<tr><td>Machine Learning</td><td>Predicting which students need extra support before WASSCE</td></tr>' +
+      '<tr><td>Deep Learning</td><td>Identifying plant diseases from smartphone photos</td></tr>' +
+      '<tr><td>Generative AI</td><td>Drafting business proposals, lesson plans, or customer messages in English or local languages</td></tr>' +
+      '</table>' +
+      '<h4>4. Practice task</h4>' +
+      '<p>Write one sentence for each of the three techniques above, describing a useful application you would like to see in your community or workplace.</p>' +
+      '<p><strong>Printable notes:</strong> Use your browser’s Print → Save as PDF.</p>' +
+      '</div>',
+
+    'AI in Everyday Life':
+      '<div class="study-note">' +
+      '<div class="revision-banner"><strong>AI Fundamentals · Module 2: AI Fundamentals</strong><span>Use AI responsibly</span></div>' +
+      '<h3>AI in Everyday Life</h3>' +
+      '<p><strong>Learning objectives:</strong> Recognise the many places AI already appears in daily life in Liberia and West Africa, and begin to evaluate when its use is helpful or risky.</p>' +
+      '<h4>1. Common places you already meet AI</h4>' +
+      '<ul>' +
+      '<li><strong>Phones</strong> – face unlock, voice assistants, photo organisation, spam call blocking.</li>' +
+      '<li><strong>Messaging & social media</strong> – content recommendations, translation, spam filters, auto-captions.</li>' +
+      '<li><strong>Mobile money & banking</strong> – fraud detection, credit scoring for small loans, customer chatbots.</li>' +
+      '<li><strong>Transport & maps</strong> – traffic prediction, route suggestions, ride-hailing matching.</li>' +
+      '<li><strong>Shopping</strong> – product recommendations, price comparison tools.</li>' +
+      '<li><strong>Education</strong> – adaptive quizzes, language practice apps, automated essay feedback.</li>' +
+      '</ul>' +
+      '<h4>2. Liberia-focused examples</h4>' +
+      '<ul>' +
+      '<li>A market woman in Duala or Red Light Market receiving a mobile-money loan decision that used past transaction patterns.</li>' +
+      '<li>A student in Monrovia using an AI writing assistant to improve a scholarship application letter.</li>' +
+      '<li>A clinic using an AI tool to help prioritise patients or interpret lab results when a specialist is not available.</li>' +
+      '<li>A farmer using a phone app that analyses a photo of cassava leaves and suggests treatment.</li>' +
+      '</ul>' +
+      '<h4>3. Questions to ask about any AI system</h4>' +
+      '<ol>' +
+      '<li>What problem is it trying to solve?</li>' +
+      '<li>What data was it trained on? Could that data be biased against certain groups?</li>' +
+      '<li>Who is responsible if the AI makes a wrong decision?</li>' +
+      '<li>Does the user know that AI is being used?</li>' +
+      '</ol>' +
+      '<h4>4. Practice task</h4>' +
+      '<p>List three AI systems you have used in the last week (even if you did not notice them at the time). For one of them, answer the four questions above.</p>' +
+      '<p><strong>Printable notes:</strong> Use your browser’s Print → Save as PDF.</p>' +
+      '</div>',
+
+    'AI Myths & Misconceptions':
+      '<div class="study-note">' +
+      '<div class="revision-banner"><strong>AI Fundamentals · Module 2: AI Fundamentals</strong><span>Use AI responsibly</span></div>' +
+      '<h3>AI Myths & Misconceptions</h3>' +
+      '<p><strong>Learning objectives:</strong> Identify common myths about AI and replace them with accurate, practical understanding so you can use AI confidently and responsibly.</p>' +
+      '<h4>Myth 1: “AI is conscious and thinks like a human”</h4>' +
+      '<p><strong>Reality:</strong> Current AI systems are statistical pattern-matchers. They do not have feelings, desires, or understanding. They predict the next word or pixel based on patterns in training data.</p>' +
+      '<h4>Myth 2: “AI will take all the jobs in Liberia”</h4>' +
+      '<p><strong>Reality:</strong> AI will change many jobs and automate some tasks, but it also creates new roles (AI tool users, data preparers, prompt engineers, local AI solution builders). People who learn to use AI well will have an advantage.</p>' +
+      '<h4>Myth 3: “AI is always right”</h4>' +
+      '<p><strong>Reality:</strong> AI can “hallucinate” (produce confident but wrong answers), reflect bias in its training data, and fail on unusual cases. Always verify important outputs.</p>' +
+      '<h4>Myth 4: “Only big companies or rich countries can benefit from AI”</h4>' +
+      '<p><strong>Reality:</strong> Many powerful AI tools are free or low-cost and work on ordinary smartphones. Students, teachers, farmers, and small business owners in Liberia can already use them productively.</p>' +
+      '<h4>Myth 5: “Using AI is cheating”</h4>' +
+      '<p><strong>Reality:</strong> Using AI as a tool (like a calculator or spell-checker) is not cheating when the human remains responsible for the final work and for learning. Hiding AI use when originality is required, or submitting AI work as fully your own without understanding it, is problematic.</p>' +
+      '<h4>Practice task</h4>' +
+      '<p>Choose one myth above that you or someone you know believed. Write two sentences explaining the corrected understanding in your own words.</p>' +
+      '<p><strong>Printable notes:</strong> Use your browser’s Print → Save as PDF.</p>' +
+      '</div>',
+
+    'Large Language Models (LLMs)':
+      '<div class="study-note">' +
+      '<div class="revision-banner"><strong>AI Fundamentals · Module 2: AI Fundamentals</strong><span>Use AI responsibly</span></div>' +
+      '<h3>Large Language Models (LLMs)</h3>' +
+      '<p><strong>Learning objectives:</strong> Explain what an LLM is, how it is trained at a high level, and how to use one effectively and responsibly for study and work in Liberia.</p>' +
+      '<h4>1. What is an LLM?</h4>' +
+      '<p>A Large Language Model is an AI system trained on enormous amounts of text so that it can understand and generate human language. Popular examples include ChatGPT (OpenAI), Gemini (Google), Claude (Anthropic), and Microsoft Copilot.</p>' +
+      '<h4>2. How it roughly works</h4>' +
+      '<p>The model is trained to predict the next word (or token) in a sequence. After seeing billions of examples, it becomes surprisingly good at answering questions, writing drafts, translating, summarising, and more. It does not “know” facts the way a human does; it has learned statistical patterns about language.</p>' +
+      '<h4>3. Practical uses for learners and professionals in Liberia</h4>' +
+      '<ul>' +
+      '<li>Drafting and improving scholarship or job application letters</li>' +
+      '<li>Explaining difficult concepts in simpler English or step-by-step</li>' +
+      '<li>Practising English writing and receiving feedback</li>' +
+      '<li>Brainstorming business ideas or marketing messages for a small shop</li>' +
+      '<li>Summarising long articles or reports</li>' +
+      '<li>Generating practice questions for WASSCE or other exams (then verifying accuracy)</li>' +
+      '</ul>' +
+      '<h4>4. Important limitations</h4>' +
+      '<ul>' +
+      '<li>Can invent plausible-sounding but false information (hallucination)</li>' +
+      '<li>Knowledge has a cut-off date and may not include the latest local events</li>' +
+      '<li>May reflect biases present in its training data</li>' +
+      '<li>Should not be trusted blindly for medical, legal, or financial decisions</li>' +
+      '</ul>' +
+      '<h4>5. Practice task</h4>' +
+      '<p>Open any free LLM (ChatGPT, Gemini, or Copilot). Ask it to explain a topic you are studying in simple English suitable for a Liberian secondary-school student. Then ask it to give two practice questions on the same topic. Check whether the explanation and questions are accurate.</p>' +
+      '<p><strong>Printable notes:</strong> Use your browser’s Print → Save as PDF.</p>' +
+      '</div>'
+  };
+
   function note(moduleTitle, skill, name, position) {
+    // Prefer rich detailed notes when available
+    if (RICH_NOTES[name]) {
+      return RICH_NOTES[name];
+    }
+
     var label = skillLabel[skill] || 'AI skills';
     var focus = position % 2 ? 'hands-on practice with real AI tools and responsible use' : 'understanding the concept, applying it with a tool and reviewing the result';
     var tpl = templateFor(name);
+
+    // Enhanced default note with Liberia flavour for fundamentals & orientation
+    var liberiaHint = '';
+    if (skill === 'fundamentals' || skill === 'orientation') {
+      liberiaHint = '<p><strong>Liberia / West Africa connection:</strong> Think about how this concept could help students, farmers, small businesses, clinics, or mobile-money users in Liberia. Always verify AI outputs before acting on them.</p>';
+    }
+
     return '<div class="study-note">' +
       '<div class="revision-banner"><strong>AI Fundamentals · ' + esc(moduleTitle) + '</strong><span>Use AI responsibly</span></div>' +
       '<h3>' + esc(name) + '</h3>' +
@@ -92,9 +288,10 @@
       '<li>Understand what <em>' + esc(name) + '</em> is and where it is useful.</li>' +
       '<li>See how professionals apply it with popular AI tools.</li>' +
       '<li>Try it yourself with a real AI tool — and always check the output.</li></ul>' +
-      (tpl ? '<div class="study-callout">' + tpl + '<p style="margin-top:.5rem"><strong>Downloadable:</strong> Print → Save as PDF to keep this resource.</p></div>' : '<div class="study-callout"><strong>TIH task:</strong> Apply <em>' + esc(name) + '</em> to a real task in your studies, work or business — and verify the AI’s output.</div>') +
+      liberiaHint +
+      (tpl ? '<div class="study-callout">' + tpl + '<p style="margin-top:.5rem"><strong>Downloadable:</strong> Print → Save as PDF to keep this resource.</p></div>' : '<div class="study-callout"><strong>TIH task:</strong> Apply <em>' + esc(name) + '</em> to a real task in your studies, work or business in Liberia — and verify the AI’s output.</div>') +
       '<h4>Hands-on exercises</h4><ol>' +
-      '<li><strong>Exercise 1:</strong> Use an AI tool to practise <em>' + esc(name) + '</em> on a real example.</li>' +
+      '<li><strong>Exercise 1:</strong> Use an AI tool to practise <em>' + esc(name) + '</em> on a real example relevant to Liberia or West Africa.</li>' +
       '<li><strong>Exercise 2:</strong> Improve the result, then note one strength and one limitation of the AI.</li></ol>' +
       '<p><strong>Printable notes:</strong> Use your browser’s Print → Save as PDF to keep an offline copy for revision.</p>' +
       '<p><strong>Module connection:</strong> This lesson is part of <em>' + esc(moduleTitle) + '</em> on your path to becoming an AI-literate professional.</p>' +
@@ -105,7 +302,7 @@
     var tpl = templateFor(name);
     return '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Hands-on AI project</span></div>' +
       '<h3>' + esc(name) + '</h3>' +
-      '<p>This is a practical AI project. Build it with real AI tools, use AI responsibly, and add it to your AI portfolio.</p>' +
+      '<p>This is a practical AI project. Build it with real AI tools, use AI responsibly, and add it to your AI portfolio. Prefer examples that could help a student, farmer, small business, clinic, or community in Liberia.</p>' +
       '<h4>What to do</h4><ol><li>Define the goal and choose the right AI tool(s).</li><li>Build the workflow/output, iterating on your prompts.</li><li>Verify accuracy, note ethical considerations, and finalise it for your portfolio.</li></ol>' +
       (tpl ? '<div class="study-callout">' + tpl + '</div>' : '<div class="study-callout"><strong>Deliverable:</strong> A working AI-powered output/workflow (with your prompts) for your portfolio.</div>') +
       '<p><strong>Downloadable:</strong> Print → Save as PDF to keep your work and resources offline.</p></div>';
