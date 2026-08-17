@@ -1,40 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIH Digital Library | Tolbert Innovation Hub</title>
-<link rel="icon" href="/favicon.ico" sizes="any" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <title>TIH Digital Library | Tolbert Innovation Hub</title>
+  <meta name="description" content="TIH Digital Library — 11 verified free PDF books on leadership, IELTS, business and entrepreneurship." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=11" />
+  <style>
+    .lib-hero{background:linear-gradient(135deg,#001535 0%,#002868 50%,#003a8c 100%);color:#fff;padding:4rem 0 3rem;position:relative}
+    .lib-hero h1{font-family:Poppins,sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin:0 0 0.75rem}
+    .lib-hero h1 span{color:#fcd34d}
+    .lib-hero .lead{color:rgba(255,255,255,.85);max-width:560px;line-height:1.6;margin:0 0 1.5rem}
+    .lib-search-wrap{display:flex;max-width:640px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.25)}
+    .lib-search-input{flex:1;border:0;outline:0;padding:.9rem 1.1rem;font-size:1rem;font-family:Inter,sans-serif}
+    .lib-search-btn{background:#E31E24;color:#fff;border:0;padding:.9rem 1.4rem;font-weight:700;font-family:Poppins,sans-serif;cursor:pointer}
+    .lib-cats{background:#fff;border-bottom:1px solid #e4eaf4;position:sticky;top:0;z-index:50}
+    .lib-cats-inner{display:flex;gap:.4rem;overflow-x:auto;padding:.7rem 0;scrollbar-width:none}
+    .lib-cat-pill{flex:0 0 auto;border:1.5px solid #e4eaf4;border-radius:999px;padding:.4rem 1rem;font-size:.82rem;font-weight:600;font-family:Poppins,sans-serif;background:none;color:#4b5563;cursor:pointer}
+    .lib-cat-pill.active,.lib-cat-pill:hover{background:#002868;border-color:#002868;color:#fff}
+    .lib-section{padding:2.5rem 0}
+    .lib-section-title{font-family:Poppins,sans-serif;font-size:1.25rem;font-weight:700;margin:0 0 1.25rem}
+    .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1.25rem}
+    .lib-book-card{cursor:pointer;transition:transform .2s}
+    .lib-book-card:hover{transform:translateY(-4px)}
+    .lib-cover{width:100%;aspect-ratio:2/3;border-radius:10px;position:relative;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.18);margin-bottom:.6rem;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+    .lib-cover-title{font-family:Poppins,sans-serif;font-size:.85rem;font-weight:800;line-height:1.2;padding:0 .6rem;text-align:center;text-shadow:0 2px 4px rgba(0,0,0,.3)}
+    .lib-cover-author{font-size:.65rem;opacity:.85;margin-top:.3rem}
+    .lib-pdf-badge{position:absolute;bottom:0;left:0;right:0;background:rgba(5,150,105,.92);color:#fff;font-size:.55rem;font-weight:800;text-align:center;padding:.2rem;letter-spacing:.06em}
+    .lib-book-title{font-family:Poppins,sans-serif;font-size:.82rem;font-weight:700;margin:0 0 .2rem;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .lib-book-author{font-size:.72rem;color:#6b7280;margin:0 0 .3rem}
+    .lib-cat-badge{font-size:.65rem;font-weight:700;padding:.15rem .5rem;border-radius:999px;text-transform:uppercase}
+    .lib-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s}
+    .lib-modal-overlay.open{opacity:1;pointer-events:all}
+    .lib-modal-box{background:#fff;border-radius:16px;width:100%;max-width:720px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+    .lib-modal-header{padding:1.25rem 1.5rem;border-bottom:1px solid #e4eaf4;position:relative}
+    .lib-modal-close{position:absolute;top:1rem;right:1rem;background:rgba(0,0,0,.08);border:none;border-radius:50%;width:36px;height:36px;font-size:1.1rem;cursor:pointer}
+    .lib-modal-body{display:grid;grid-template-columns:160px 1fr;gap:1.5rem;padding:1.5rem}
+    @media(max-width:560px){.lib-modal-body{grid-template-columns:1fr}}
+    .lib-modal-actions{display:flex;gap:.75rem;flex-wrap:wrap;padding:0 1.5rem 1.5rem}
+    .btn-read{background:#002868;color:#fff;border:none;padding:.7rem 1.3rem;border-radius:8px;font-weight:700;font-family:Poppins,sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}
+    .btn-download{background:#E31E24;color:#fff;border:none;padding:.7rem 1.3rem;border-radius:8px;font-weight:700;font-family:Poppins,sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}
+    .btn-fav{background:none;border:2px solid #e4eaf4;padding:.7rem 1rem;border-radius:8px;font-weight:600;cursor:pointer}
+    .btn-fav.active{border-color:#E31E24;color:#E31E24}
+    .lib-toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:#111827;color:#fff;padding:.75rem 1.5rem;border-radius:8px;font-weight:600;z-index:9999;transition:transform .3s}
+    .lib-toast.show{transform:translateX(-50%) translateY(0)}
+  </style>
 </head>
 <body>
-<p id="status" style="font-family:system-ui;padding:2rem;text-align:center;color:#002868;">Loading TIH Digital Library…</p>
-<script src="libchunk1.js"></script>
-<script src="libchunk2.js"></script>
-<script src="libchunk3.js"></script>
-<script src="libchunk4.js"></script>
-<script src="libchunk5.js"></script>
-<script>
-(function(){
-  var parts = window.__LIB_B64_PARTS || [];
-  var expected = 5;
-  if(parts.length < expected){
-    document.getElementById("status").textContent = "Library loading… please refresh once. (parts: " + parts.length + "/" + expected + ")";
-    return;
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="announcement-bar" style="background:#E31E24;color:#fff;text-align:center;padding:.55rem 1rem;font-size:.88rem;font-weight:600;position:relative;z-index:100">
+    📚 <strong>TIH Digital Library is Live!</strong> 11 verified free PDF books for all learners.
+    <button onclick="this.parentElement.style.display='none'" aria-label="Close" style="position:absolute;right:.8rem;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer">✕</button>
+  </div>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="learning-hub">Learning Hub</a>
+        <a href="study-abroad">Study Abroad</a>
+        <a href="fully-funded-scholarship">Fully Funded</a>
+        <a href="wassce">WASSCE PRO</a>
+        <a href="grants">Grants</a>
+        <a class="active" aria-current="page" href="library">Library</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+        <a href="apply" class="nav-cta">Apply Now</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰ Menu</button>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="lib-hero">
+      <div class="container">
+        <p style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fcd34d;margin:0 0 .75rem">Free Educational Resources</p>
+        <h1>TIH <span>Digital</span> Library</h1>
+        <p class="lead">11 verified books on IELTS, leadership, communication, business and entrepreneurship — free PDFs for every learner.</p>
+        <form class="lib-search-wrap" id="libSearchForm" onsubmit="return false;">
+          <input type="search" class="lib-search-input" id="libSearchInput" placeholder="Search books, authors, topics…" aria-label="Search library" />
+          <button type="submit" class="lib-search-btn" onclick="doSearch()">🔍 Search</button>
+        </form>
+        <div style="display:flex;gap:2rem;margin-top:1.5rem;flex-wrap:wrap">
+          <div><span style="font-size:1.4rem;font-weight:800;color:#fcd34d" id="bookCount">11</span><br><span style="font-size:.78rem;opacity:.7">Books</span></div>
+          <div><span style="font-size:1.4rem;font-weight:800;color:#fcd34d">5</span><br><span style="font-size:.78rem;opacity:.7">Categories</span></div>
+          <div><span style="font-size:1.4rem;font-weight:800;color:#fcd34d">100%</span><br><span style="font-size:.78rem;opacity:.7">Free</span></div>
+        </div>
+      </div>
+    </section>
+    <nav class="lib-cats" aria-label="Categories">
+      <div class="container"><div class="lib-cats-inner" id="libCatPills"></div></div>
+    </nav>
+    <section class="lib-section" id="lib-featured">
+      <div class="container">
+        <h2 class="lib-section-title">⭐ Available Books</h2>
+        <div id="featuredGrid" class="lib-grid"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container" style="padding:2rem 0;text-align:center">
+      <p style="color:rgba(200,216,240,.8);font-size:.85rem">© 2026 Tolbert Innovation Hub · <a href="privacy" style="color:inherit">Privacy</a> · <a href="terms" style="color:inherit">Terms</a></p>
+    </div>
+  </footer>
+  <div class="lib-modal-overlay" id="bookModal" role="dialog" aria-modal="true">
+    <div class="lib-modal-box">
+      <div class="lib-modal-header">
+        <button class="lib-modal-close" onclick="closeBookModal()" aria-label="Close">✕</button>
+        <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#6b7280;margin:0">TIH Digital Library</p>
+        <h2 id="modalBookTitle" style="font-family:Poppins,sans-serif;font-size:1rem;font-weight:700;margin:.25rem 0 0">Book</h2>
+      </div>
+      <div class="lib-modal-body" id="bookModalBody"></div>
+      <div class="lib-modal-actions" id="bookModalActions"></div>
+    </div>
+  </div>
+  <div class="lib-toast" id="libToast"></div>
+  <script src="main.js?v=17"></script>
+  <script>
+  const BOOKS = [{"id": 101, "title": "Accounting for Non-Accountants", "author": "Unknown author", "desc": "A practical introduction to accounting concepts, financial statements, budgeting, and everyday business finance for learners and small-business owners.", "cat": "business", "icon": "🧾", "bg": "linear-gradient(150deg,#78350f 0%,#d97706 100%)", "pdf": "books/Accounting%20for%20Non-Accountants.pdf", "tags": ["accounting", "finance", "business"]}, {"id": 102, "title": "Body Language For Dummies", "author": "Elizabeth Kuhnke", "desc": "A practical guide to understanding nonverbal communication, reading body language, and communicating with greater confidence.", "cat": "career", "icon": "🤝", "bg": "linear-gradient(150deg,#1e3a8a 0%,#1565d8 100%)", "pdf": "books/Body%20Language%20For%20Dummies%20-%20Elizabeth%20Kuhnke.pdf", "tags": ["body language", "communication", "career"]}, {"id": 103, "title": "Good Leaders Ask Great Questions", "author": "John C. Maxwell", "desc": "Leadership lessons focused on asking better questions, developing people, and building stronger teams.", "cat": "career", "icon": "❓", "bg": "linear-gradient(150deg,#1e40af 0%,#1565d8 100%)", "pdf": "books/Good%20Leaders%20Ask%20Great%20Question%20-%20John%20C.%20Maxwell.pdf", "tags": ["leadership", "communication"]}, {"id": 104, "title": "How Successful People Lead", "author": "John C. Maxwell", "desc": "A leadership development resource about influence, trust, teamwork, and the habits that help leaders create lasting positive impact.", "cat": "career", "icon": "🎯", "bg": "linear-gradient(150deg,#1e3a8a 0%,#1d4ed8 100%)", "pdf": "books/How%20Successful%20People%20Lead%20-%20John%20C.%20Maxwell.pdf", "tags": ["leadership", "success"]}, {"id": 105, "title": "IELTS Writing Masterclass 8.5", "author": "Marc Roche", "desc": "An IELTS Writing resource covering Task 1 and Task 2 strategies, model answers, vocabulary, and techniques for improving writing performance.", "cat": "scholarships", "icon": "✍️", "bg": "linear-gradient(150deg,#002868 0%,#1a4a9c 100%)", "pdf": "books/IELTS_Writing_Masterclass_8_5_compressed.pdf", "tags": ["ielts", "writing", "english"], "featured": true, "isNew": true}, {"id": 106, "title": "Invent It, Sell It, Bank It!", "author": "Unknown author", "desc": "A practical entrepreneurship resource about turning ideas into products, finding customers, and building a sustainable business.", "cat": "entrepreneurship", "icon": "💡", "bg": "linear-gradient(150deg,#991b1b 0%,#e31e24 100%)", "pdf": "books/Invent%20It%2C%20Sell%20It%2C%20Bank%20It.pdf", "tags": ["entrepreneurship", "startup"]}, {"id": 107, "title": "Leaders Eat Last", "author": "Simon Sinek", "desc": "A leadership and organizational culture book about trust, service, teamwork, and creating environments where people can do their best work.", "cat": "career", "icon": "🌟", "bg": "linear-gradient(150deg,#065f46 0%,#059669 100%)", "pdf": "books/Leaders%20Eat%20Last%20-%20Simon%20Sinek.pdf", "tags": ["leadership", "teamwork"]}, {"id": 108, "title": "The 21 Irrefutable Laws of Leadership", "author": "John C. Maxwell", "desc": "A leadership reference covering principles of influence, vision, momentum, teamwork, and personal growth.", "cat": "career", "icon": "📘", "bg": "linear-gradient(150deg,#312e81 0%,#4c1d95 100%)", "pdf": "books/The%2021%20Irrefutable%20Laws%20of%20Lead%20-%20John%20C.%20Maxwell.pdf", "tags": ["leadership", "management"]}, {"id": 109, "title": "The 7 Habits of Highly Effective People", "author": "Stephen R. Covey", "desc": "A personal effectiveness and leadership classic focused on proactive habits, priorities, collaboration, and continual improvement.", "cat": "career", "icon": "✅", "bg": "linear-gradient(150deg,#1e3a8a 0%,#2563eb 100%)", "pdf": "books/The%207%20Habits%20of%20Highly%20Effectiv%20-%20Stephen%20R.%20Covey.pdf", "tags": ["personal development", "leadership"]}, {"id": 110, "title": "The Lean Startup", "author": "Eric Ries", "desc": "A startup management guide about experimentation, validated learning, customer feedback, and building products more efficiently.", "cat": "entrepreneurship", "icon": "🚀", "bg": "linear-gradient(150deg,#0e7490 0%,#0284c7 100%)", "pdf": "books/The%20Lean%20Startup_%20How%20Today's%20E%20-%20Eric%20Ries.pdf", "tags": ["startup", "entrepreneurship"]}, {"id": 111, "title": "IELTS Vocabulary Masterclass 8.5", "author": "Marc Roche", "desc": "An IELTS vocabulary resource covering academic vocabulary, topic-based word lists, collocations, and exercises for improving all four language skills.", "cat": "scholarships", "icon": "📖", "bg": "linear-gradient(150deg,#003a8c 0%,#0047ab 100%)", "pdf": "books/ielts_vocabulary_masterclass_85_book_ielts_listen.pdf", "tags": ["ielts", "vocabulary", "english"], "featured": true, "isNew": true}];
+  const CAT_COLORS = {scholarships:"#002868",business:"#d97706",entrepreneurship:"#b8181d",career:"#1565d8"};
+  const CATS = [{id:"all",label:"All",icon:"📚"},{id:"scholarships",label:"Scholarships",icon:"🎓"},{id:"business",label:"Business",icon:"💼"},{id:"entrepreneurship",label:"Entrepreneurship",icon:"🚀"},{id:"career",label:"Career / Leadership",icon:"📈"}];
+
+  function getFavs(){ try{return JSON.parse(localStorage.getItem('tih_lib_favs')||'[]')}catch(e){return[]} }
+  function saveFavs(a){ localStorage.setItem('tih_lib_favs',JSON.stringify(a)) }
+  function isFav(id){ return getFavs().includes(id) }
+  function toggleFav(id){
+    let f=getFavs(); const i=f.indexOf(id);
+    if(i===-1){f.push(id);showToast('Added to Favorites ❤️')}else{f.splice(i,1);showToast('Removed from Favorites')}
+    saveFavs(f); document.querySelectorAll('.btn-fav[data-id="'+id+'"]').forEach(b=>{b.classList.toggle('active',f.includes(id))});
   }
-  try {
-    var ordered = [];
-    for(var i=0;i<expected;i++) ordered.push(parts[i] || "");
-    var bin = atob(ordered.join(""));
-    var bytes = new Uint8Array(bin.length);
-    for(var i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
-    var html = new TextDecoder("utf-8").decode(bytes);
-    document.open();
-    document.write(html);
-    document.close();
-  } catch(e) {
-    document.getElementById("status").textContent = "Failed to load library: " + e.message;
+  function showToast(m){ const t=document.getElementById('libToast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2800) }
+
+  function bookCard(b){
+    const c=CAT_COLORS[b.cat]||'#002868';
+    return `<div class="lib-book-card" onclick="openBook(${b.id})" tabindex="0" role="button" aria-label="Open ${b.title}" onkeydown="if(event.key==='Enter')openBook(${b.id})">
+      <div class="lib-cover" style="background:${b.bg}">
+        <div class="lib-cover-title">${b.title}</div>
+        <div class="lib-cover-author">${b.author}</div>
+        <span class="lib-pdf-badge">FREE PDF</span>
+      </div>
+      <p class="lib-book-title">${b.title}</p>
+      <p class="lib-book-author">${b.author}</p>
+      <span class="lib-cat-badge" style="background:${c}18;color:${c}">${b.cat}</span>
+    </div>`;
   }
-})();
-</script>
+
+  function renderGrid(list){
+    document.getElementById('featuredGrid').innerHTML = list.map(bookCard).join('') || '<p style="color:#6b7280">No books match your search.</p>';
+    document.getElementById('bookCount').textContent = list.length;
+  }
+  function renderPills(){
+    document.getElementById('libCatPills').innerHTML = CATS.map(c=>`<button class="lib-cat-pill${c.id==='all'?' active':''}" data-cat="${c.id}" onclick="filterCat('${c.id}',this)">${c.icon} ${c.label}</button>`).join('');
+  }
+  function filterCat(id,btn){
+    document.querySelectorAll('.lib-cat-pill').forEach(p=>p.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+    renderGrid(id==='all'?BOOKS:BOOKS.filter(b=>b.cat===id));
+  }
+  function doSearch(){
+    const q=(document.getElementById('libSearchInput').value||'').trim().toLowerCase();
+    if(!q){ renderGrid(BOOKS); return }
+    renderGrid(BOOKS.filter(b=>b.title.toLowerCase().includes(q)||b.author.toLowerCase().includes(q)||(b.tags||[]).some(t=>t.includes(q))||b.cat.includes(q)));
+  }
+  document.getElementById('libSearchInput').addEventListener('keydown',e=>{ if(e.key==='Enter') doSearch() });
+
+  function openBook(id){
+    const b=BOOKS.find(x=>x.id===id); if(!b) return;
+    const c=CAT_COLORS[b.cat]||'#002868'; const fav=isFav(id);
+    document.getElementById('modalBookTitle').textContent=b.title;
+    document.getElementById('bookModalBody').innerHTML=`
+      <div><div class="lib-cover" style="background:${b.bg};max-width:160px;margin:0 auto"><div class="lib-cover-title">${b.title}</div><div class="lib-cover-author">${b.author}</div><span class="lib-pdf-badge">FREE PDF</span></div></div>
+      <div>
+        <span class="lib-cat-badge" style="background:${c}18;color:${c};margin-bottom:.5rem;display:inline-block">${b.cat}</span>
+        <h2 style="font-family:Poppins,sans-serif;font-size:1.25rem;font-weight:800;margin:0 0 .4rem">${b.title}</h2>
+        <p style="color:#6b7280;margin:0 0 .75rem">by <strong>${b.author}</strong></p>
+        <p style="font-size:.9rem;line-height:1.65;color:#4b5563">${b.desc}</p>
+        <p style="font-size:.8rem;color:#059669;margin-top:.75rem"><strong>✓ Free & legal</strong> · TIH Digital Library hosted PDF</p>
+      </div>`;
+    document.getElementById('bookModalActions').innerHTML=`
+      <a href="${b.pdf}" target="_blank" rel="noopener" class="btn-read">📖 Read / Open PDF</a>
+      <a href="${b.pdf}" download class="btn-download">⬇️ Download PDF</a>
+      <button class="btn-fav${fav?' active':''}" data-id="${id}" onclick="toggleFav(${id})">${fav?'❤️':'🤍'} Favorite</button>`;
+    document.getElementById('bookModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeBookModal(){ document.getElementById('bookModal').classList.remove('open'); document.body.style.overflow='' }
+  document.getElementById('bookModal').addEventListener('click',function(e){ if(e.target===this) closeBookModal() });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeBookModal() });
+
+  renderPills();
+  renderGrid(BOOKS);
+  </script>
+  <script src="book-covers-data.js"></script>
+  <script src="cover101-p1.js"></script>
+  <script src="cover101-p2.js"></script>
+  <script src="library-cover-enhance.js"></script>
 </body>
 </html>
