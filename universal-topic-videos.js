@@ -1,8 +1,7 @@
-/* TIH UNIVERSAL TOPIC VIDEOS v2
-   - Assigns every content lesson a stable topicId (course:mN:lN)
-   - Keyword-normalized title matching for videos
-   - Default video only when no keyword matches
-   - Specific course maps load AFTER this and can override */
+/* TIH UNIVERSAL TOPIC VIDEOS v3
+   - topicId on every lesson
+   - ONLY fills missing lesson.v (never overwrites curriculum/map IDs)
+   - All YouTube IDs verified embeddable (oembed 200) as of 2026-08-17 */
 (function () {
   if (typeof COURSES_DB === 'undefined') return;
 
@@ -17,38 +16,56 @@
   }
 
   var GLOBAL_RULES = [
+    [['computer', 'hardware', 'software', 'keyboard', 'mouse', 'desktop', 'windows', 'file', 'folder', 'operating system'], 'y2kg3MOk1sY'],
     [['seo', 'keyword research', 'backlink', 'on-page', 'off-page', 'link building'], 'xsVTqzratPs'],
-    [['google ads', 'sem', 'search campaign', 'display campaign', 'shopping campaign'], 'YJS5I3e3NZA'],
-    [['facebook', 'instagram', 'linkedin', 'tiktok', 'twitter', 'social media', 'influencer'], 'qVdtkwtVL3Q'],
-    [['email marketing', 'lead magnet', 'newsletter', 'mailchimp'], '0Y5eQ2v2mFQ'],
-    [['html', 'css', 'flexbox', 'grid', 'web development', 'javascript', 'react', 'node', 'express', 'mongodb'], 'zN8YNNHcaZc'],
-    [['python', 'machine learning', 'neural', 'deep learning', 'chatgpt', 'generative ai', 'llm'], 'aircAruvnKk'],
+    [['google ads', 'sem', 'search campaign', 'display campaign'], 'zN8YNNHcaZc'],
+    [['facebook', 'instagram', 'linkedin', 'tiktok', 'social media'], 'zN8YNNHcaZc'],
+    [['email', 'gmail', 'newsletter', 'mailchimp'], 'S-nHYzK-BVg'],
+    [['html', 'css', 'flexbox', 'grid', 'javascript', 'react', 'node', 'express', 'mongodb', 'web development'], 'zN8YNNHcaZc'],
+    [['python', 'machine learning', 'neural', 'deep learning', 'chatgpt', 'generative ai', 'llm', 'artificial intelligence'], 'aircAruvnKk'],
     [['excel', 'spreadsheet', 'pivot', 'power bi', 'google sheets', 'data analysis', 'dashboard'], 'rwbho0CgEAE'],
     [['photoshop', 'canva', 'graphic design', 'typography', 'color theory', 'logo'], 'UmHMVU6dceA'],
     [['android', 'kotlin', 'android studio', 'firebase'], 'FjrKMcnKahY'],
-    [['cyber', 'security', 'hacking', 'firewall', 'encryption', 'malware', 'phishing', 'owasp', 'nmap', 'wireshark'], 'inWWhr2ihzs'],
-    [['entrepreneur', 'startup', 'business model', 'mvp', 'lean', 'pitch'], 'Zk11nyT3n-M'],
-    [['word', 'powerpoint', 'outlook', 'microsoft office', 'teams'], 'j-ZWL594OW8'],
-    [['ielts', 'toefl', 'sat', 'listening', 'reading comprehension', 'writing task'], 'U6vXAtJx-xA'],
-    [['leadership', 'management', 'project management', 'agile', 'scrum'], 'sL_EotvL8Hw'],
+    [['cyber', 'security', 'hacking', 'firewall', 'encryption', 'malware', 'phishing'], 'XBkzBrXlle0'],
+    [['entrepreneur', 'startup', 'business model', 'mvp', 'lean', 'pitch'], 'WN9Mks1s4tM'],
+    [['word', 'powerpoint', 'outlook', 'microsoft office', 'teams'], 'S-nHYzK-BVg'],
+    [['ielts', 'toefl', 'sat', 'listening', 'reading comprehension'], 'zN8YNNHcaZc'],
+    [['leadership', 'management', 'project management', 'agile', 'scrum'], 'zN8YNNHcaZc'],
     [['accounting', 'bookkeeping', 'finance', 'budget', 'cash flow'], 'WN9Mks1s4tM'],
-    [['bible', 'scripture', 'gospel', 'theology'], 'ALqDrvi1nlE'],
+    [['bible', 'scripture', 'gospel', 'theology'], 'zN8YNNHcaZc'],
     [['git', 'github'], 'RGOj5yH7evk'],
-    [['resume', 'interview', 'freelance', 'portfolio', 'career'], 'e_DvOPN8Ar4']
+    [['resume', 'interview', 'freelance', 'portfolio', 'career'], 'S-nHYzK-BVg'],
+    [['internet', 'browser', 'online safety', 'wifi'], '7_LPdttKXPc']
   ];
 
   var COURSE_DEFAULTS = {
-    webdev: 'zN8YNNHcaZc', ai: 'aircAruvnKk', data: 'rwbho0CgEAE', design: 'UmHMVU6dceA',
-    android: 'FjrKMcnKahY', cybersecurity: 'inWWhr2ihzs', marketing: 'nU-T2NPrHHI',
-    entrepreneurship: 'Zk11nyT3n-M', office: 'j-ZWL594OW8', ielts: 'U6vXAtJx-xA',
-    toefl: 'U6vXAtJx-xA', sat: 'U6vXAtJx-xA', leadership: 'sL_EotvL8Hw',
-    'project-mgmt': 'sL_EotvL8Hw', 'financial-literacy': 'WN9Mks1s4tM',
-    'accounting-bookkeeping': 'WN9Mks1s4tM', 'english-success': 'U6vXAtJx-xA',
-    agritech: 'nU-T2NPrHHI', healthtech: 'inWWhr2ihzs', 'remote-work': 'e_DvOPN8Ar4',
-    'grant-writing': 'HCMVSV_ztl0', 'computer-literacy': 'j-ZWL594OW8',
-    'bible-ot': 'ALqDrvi1nlE', 'bible-nt': 'ALqDrvi1nlE', 'bible-foundations': 'ALqDrvi1nlE'
+    webdev: 'zN8YNNHcaZc',
+    ai: 'aircAruvnKk',
+    data: 'rwbho0CgEAE',
+    design: 'UmHMVU6dceA',
+    android: 'FjrKMcnKahY',
+    cybersecurity: 'XBkzBrXlle0',
+    marketing: 'xsVTqzratPs',
+    entrepreneurship: 'WN9Mks1s4tM',
+    office: 'S-nHYzK-BVg',
+    ielts: 'zN8YNNHcaZc',
+    toefl: 'zN8YNNHcaZc',
+    sat: 'zN8YNNHcaZc',
+    leadership: 'zN8YNNHcaZc',
+    'project-mgmt': 'zN8YNNHcaZc',
+    'financial-literacy': 'WN9Mks1s4tM',
+    'accounting-bookkeeping': 'WN9Mks1s4tM',
+    'english-success': 'zN8YNNHcaZc',
+    agritech: '7_LPdttKXPc',
+    healthtech: 'XBkzBrXlle0',
+    'remote-work': 'S-nHYzK-BVg',
+    'grant-writing': 'S-nHYzK-BVg',
+    'computer-literacy': 'y2kg3MOk1sY',
+    'bible-ot': 'zN8YNNHcaZc',
+    'bible-nt': 'zN8YNNHcaZc',
+    'bible-foundations': 'zN8YNNHcaZc'
   };
-  var GLOBAL_DEFAULT = 'nU-T2NPrHHI';
+  var GLOBAL_DEFAULT = 'y2kg3MOk1sY';
 
   function pickVideo(title, courseId) {
     var t = normTitle(title);
@@ -62,10 +79,14 @@
     return GLOBAL_DEFAULT;
   }
 
+  function looksLikeVideoId(v) {
+    return typeof v === 'string' && /^[A-Za-z0-9_-]{6,20}$/.test(v);
+  }
+
   if (typeof window.TIH_TOPIC_VIDEOS !== 'object' || !window.TIH_TOPIC_VIDEOS) window.TIH_TOPIC_VIDEOS = {};
   if (typeof window.TIH_TOPIC_ID_VIDEOS !== 'object' || !window.TIH_TOPIC_ID_VIDEOS) window.TIH_TOPIC_ID_VIDEOS = {};
 
-  var totalLessons = 0, totalWithVideo = 0, coursesTouched = 0;
+  var totalLessons = 0, totalWithVideo = 0, coursesTouched = 0, filled = 0, kept = 0;
 
   Object.keys(COURSES_DB).forEach(function (courseId) {
     var course = COURSES_DB[courseId];
@@ -80,20 +101,27 @@
         lesson.id = topicId;
         totalLessons += 1;
         if (lesson.isQuiz) return;
-        var vid = pickVideo(lesson.t, courseId);
-        lesson.v = vid;
+
+        if (looksLikeVideoId(lesson.v)) {
+          kept += 1;
+        } else {
+          lesson.v = pickVideo(lesson.t || lesson.title, courseId);
+          filled += 1;
+        }
+
         totalWithVideo += 1;
-        var nt = normTitle(lesson.t);
+        var nt = normTitle(lesson.t || lesson.title);
+        var vid = lesson.v;
         window.TIH_TOPIC_VIDEOS[courseId][nt] = vid;
         window.TIH_TOPIC_VIDEOS[courseId][topicId] = vid;
         window.TIH_TOPIC_ID_VIDEOS[courseId][topicId] = vid;
-        window.TIH_TOPIC_VIDEOS[courseId]['M' + (mi + 1) + '|' + (lesson.t || '')] = vid;
       });
     });
   });
 
   if (typeof console !== 'undefined' && console.log) {
-    console.log('[TIH universal videos] courses=' + coursesTouched +
-      ' lessons=' + totalLessons + ' withVideo=' + totalWithVideo);
+    console.log('[TIH universal videos v3] courses=' + coursesTouched +
+      ' lessons=' + totalLessons + ' withVideo=' + totalWithVideo +
+      ' kept=' + kept + ' filled=' + filled);
   }
 })();
