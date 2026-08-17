@@ -24,5 +24,7 @@ document.write('<script src="ent-nd-1.js?v=1"><\/script>');
 document.write('<script src="ent-nd-2.js?v=1"><\/script>');
 document.write('<script src="ent-nd-3.js?v=1"><\/script>');
 document.write('<script src="ent-nd-4.js?v=1"><\/script>');
+document.write('<script src="ent-nd-5.js?v=1"><\/script>');
+document.write('<script src="ent-nd-6.js?v=1"><\/script>');
 document.write('<script src="ent-notes-runtime.js?v=1"><\/script>');
 document.write('<script src="interactive-lesson-quiz.js?v=1"><\/script>');
