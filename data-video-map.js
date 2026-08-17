@@ -1,5 +1,4 @@
-/* TIH Data Analysis course — specific YouTube video per topic.
-   Runs after data-curriculum.js. Course id: data */
+/* TIH Data Analysis course — specific YouTube video per topic. v2 */
 (function () {
   if (typeof COURSES_DB === 'undefined' || !COURSES_DB.data || !COURSES_DB.data.modules) return;
 
