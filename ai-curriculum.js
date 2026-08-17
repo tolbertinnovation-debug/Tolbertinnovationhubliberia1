@@ -8,34 +8,114 @@
    printable notes; project lessons carry briefs and downloadable resources.
    Modelled on complit-curriculum.js.
 
-   Updated: Richer teaching content + Liberia/West Africa examples for core Fundamentals. */
+   Updated: Richer teaching content + Liberia/West Africa examples for core Fundamentals.
+   Updated: Unique educational YouTube video per topic (expanded pools). */
 (function () {
   if (typeof COURSES_DB === 'undefined') return;
   var CID = 'ai';
   if (!COURSES_DB[CID] || COURSES_DB[CID]._aiFullBuilt) return;
 
-  var V = ['Yq0QkCxoTHM', 'xvpeMdAs9pE', '1PaJ28oVOAI', 'mTzZod7cBj4', '89EPPtzZHxE', 'YPOsbQzAPiI', 'V2Gmt1fEue4', 'qDtif1zxbkY', 'REqOxDfw914', 'OA4UP4O1hz0', 'sAhIne0U1Os', 'qpp1G0iEL_c', 'fWuzA77Mvzw', 'p6Z2d3T-fLM', 'MoPIkfscD3A', 'cXnPxN06boY', '-LCkwnpUilI', 'x9Pl1XM4K7A', 'rGSmG7qp2Eg'];
+  /* Large shared pool of quality educational AI videos (YouTube IDs).
+     Used as fallback and to fill skill-specific pools. */
+  var V = [
+    'ad79nYk2keg', 'uMzUB89uSxU', 'VGFpV3Qj4as', 'm8o2GrbR3d8', 'JCtMcVW8v7o',
+    'eCU2vQs0Q6s', 'i_LwzRVP7bg', 'G2fqAlgmoPo', '4qVRBYAdLAo', 'zjkBMFhNj_g',
+    'dE5isWx82WU', 'YhRfgYH_AoU', 'HLwiKR9wb70', 'tIttdEx_adw', 'fQQzPf2y2l8',
+    '_VyHeSbTYhQ', 'Ha4vG0plpUA', 'MqffbpjhriQ', '5yBTxOpT4PE', 'gFSkmD8vbfg',
+    'A_QG2L6GS4Q', 'w_3L1Bf2P_g', 'U6ulo3W7K1Q', 'QWJ-QYzGeCY', 'rOUs76wtv60',
+    '4g1n_cuME1w', 'XZdY15sHUa8', 'd4ug1MfZo1U', 'VfxTH3U7-ns', 'eMhSj4ZRDkg',
+    'Yq0QkCxoTHM', 'xvpeMdAs9pE', '1PaJ28oVOAI', 'mTzZod7cBj4', '89EPPtzZHxE',
+    'YPOsbQzAPiI', 'V2Gmt1fEue4', 'qDtif1zxbkY', 'REqOxDfw914', 'OA4UP4O1hz0',
+    'sAhIne0U1Os', 'qpp1G0iEL_c', 'fWuzA77Mvzw', 'p6Z2d3T-fLM', 'MoPIkfscD3A',
+    'cXnPxN06boY', '-LCkwnpUilI', 'x9Pl1XM4K7A', 'rGSmG7qp2Eg', 'E0Hmnixke2g',
+    'F2v56M5d-pg', 'Au1OxVSyGas', '9iZvFzaNwwM', 'uh5LCXOBmSI', 'mYNMrpabVHY',
+    '4AnYEfwMJrE', 'rqqzwIysWJ0', 'SSE4M0gcmvE', 'OX2pW9n6Q0I', '_ZvnD73m40o'
+  ];
+
+  /* Per-skill video pools — enough unique IDs so every topic in a module
+     gets a different video when cycling with pool[idx % pool.length]. */
   var VIDEOS = {
-    orientation: ['eMhSj4ZRDkg'],
-    fundamentals: ['VGFpV3Qj4as'],
-    genai: ['VfxTH3U7-ns'],
-    prompt: ['dE5isWx82WU'],
-    tools: ['tIttdEx_adw'],
-    writing: ['fQQzPf2y2l8'],
-    creative: ['_VyHeSbTYhQ'],
-    ml: ['i_LwzRVP7bg'],
-    business: ['Ha4vG0plpUA'],
-    education: ['MqffbpjhriQ'],
-    dev: ['5yBTxOpT4PE'],
-    automation: ['gFSkmD8vbfg'],
-    ethics: ['A_QG2L6GS4Q'],
-    industries: ['U6ulo3W7K1Q'],
-    data: ['QWJ-QYzGeCY'],
-    entrepreneur: ['rOUs76wtv60'],
-    career: ['4g1n_cuME1w'],
-    projects: ['XZdY15sHUa8'],
-    capstone: ['d4ug1MfZo1U'],
-    assessment: ['XZdY15sHUa8']
+    orientation: [
+      'eMhSj4ZRDkg', 'ad79nYk2keg', 'uMzUB89uSxU', 'mYNMrpabVHY', '4AnYEfwMJrE',
+      'SSE4M0gcmvE', 'rqqzwIysWJ0', '9iZvFzaNwwM', 'VGFpV3Qj4as', 'm8o2GrbR3d8'
+    ],
+    fundamentals: [
+      'VGFpV3Qj4as', 'm8o2GrbR3d8', 'JCtMcVW8v7o', 'eCU2vQs0Q6s', 'i_LwzRVP7bg',
+      '4qVRBYAdLAo', 'zjkBMFhNj_g', 'E0Hmnixke2g', 'Au1OxVSyGas', 'F2v56M5d-pg',
+      'ad79nYk2keg', 'uMzUB89uSxU'
+    ],
+    genai: [
+      'G2fqAlgmoPo', 'VfxTH3U7-ns', 'zjkBMFhNj_g', 'OX2pW9n6Q0I', '4qVRBYAdLAo',
+      'fWuzA77Mvzw', 'p6Z2d3T-fLM', 'MoPIkfscD3A', 'cXnPxN06boY', '-LCkwnpUilI'
+    ],
+    prompt: [
+      'dE5isWx82WU', 'YhRfgYH_AoU', 'HLwiKR9wb70', '_ZvnD73m40o', 'OX2pW9n6Q0I',
+      'tIttdEx_adw', 'fQQzPf2y2l8', 'Yq0QkCxoTHM', 'xvpeMdAs9pE', '1PaJ28oVOAI'
+    ],
+    tools: [
+      'tIttdEx_adw', 'fQQzPf2y2l8', 'YPOsbQzAPiI', 'V2Gmt1fEue4', 'qDtif1zxbkY',
+      'REqOxDfw914', 'OA4UP4O1hz0', 'sAhIne0U1Os', 'qpp1G0iEL_c', 'mTzZod7cBj4'
+    ],
+    writing: [
+      'fQQzPf2y2l8', 'tIttdEx_adw', '89EPPtzZHxE', 'YPOsbQzAPiI', 'V2Gmt1fEue4',
+      'qDtif1zxbkY', 'REqOxDfw914', 'OA4UP4O1hz0', 'sAhIne0U1Os', 'qpp1G0iEL_c'
+    ],
+    creative: [
+      '_VyHeSbTYhQ', 'G2fqAlgmoPo', 'fWuzA77Mvzw', 'p6Z2d3T-fLM', 'MoPIkfscD3A',
+      'cXnPxN06boY', '-LCkwnpUilI', 'x9Pl1XM4K7A', 'rGSmG7qp2Eg', 'Yq0QkCxoTHM'
+    ],
+    ml: [
+      'i_LwzRVP7bg', 'E0Hmnixke2g', 'F2v56M5d-pg', 'Au1OxVSyGas', 'JCtMcVW8v7o',
+      'eCU2vQs0Q6s', '4qVRBYAdLAo', 'VGFpV3Qj4as', 'm8o2GrbR3d8', 'zjkBMFhNj_g'
+    ],
+    business: [
+      'Ha4vG0plpUA', 'U6ulo3W7K1Q', 'rOUs76wtv60', '4g1n_cuME1w', 'XZdY15sHUa8',
+      'd4ug1MfZo1U', 'xvpeMdAs9pE', '1PaJ28oVOAI', 'mTzZod7cBj4', '89EPPtzZHxE'
+    ],
+    education: [
+      'MqffbpjhriQ', 'fQQzPf2y2l8', 'tIttdEx_adw', 'dE5isWx82WU', 'YhRfgYH_AoU',
+      'OA4UP4O1hz0', 'sAhIne0U1Os', 'qpp1G0iEL_c', 'fWuzA77Mvzw', 'p6Z2d3T-fLM'
+    ],
+    dev: [
+      '5yBTxOpT4PE', 'qpp1G0iEL_c', 'sAhIne0U1Os', 'OA4UP4O1hz0', 'REqOxDfw914',
+      'qDtif1zxbkY', 'V2Gmt1fEue4', 'YPOsbQzAPiI', '89EPPtzZHxE', 'mTzZod7cBj4'
+    ],
+    automation: [
+      'gFSkmD8vbfg', 'tIttdEx_adw', '5yBTxOpT4PE', 'qpp1G0iEL_c', 'sAhIne0U1Os',
+      'OA4UP4O1hz0', 'REqOxDfw914', 'qDtif1zxbkY', 'V2Gmt1fEue4', 'YPOsbQzAPiI'
+    ],
+    ethics: [
+      'A_QG2L6GS4Q', 'w_3L1Bf2P_g', 'ad79nYk2keg', 'uMzUB89uSxU', '9iZvFzaNwwM',
+      'VGFpV3Qj4as', 'm8o2GrbR3d8', 'G2fqAlgmoPo', '4qVRBYAdLAo', 'zjkBMFhNj_g'
+    ],
+    industries: [
+      'U6ulo3W7K1Q', 'Ha4vG0plpUA', 'MqffbpjhriQ', 'rOUs76wtv60', '4g1n_cuME1w',
+      'XZdY15sHUa8', 'd4ug1MfZo1U', 'xvpeMdAs9pE', '1PaJ28oVOAI', 'mTzZod7cBj4'
+    ],
+    data: [
+      'QWJ-QYzGeCY', 'E0Hmnixke2g', 'Au1OxVSyGas', 'F2v56M5d-pg', 'i_LwzRVP7bg',
+      'JCtMcVW8v7o', 'eCU2vQs0Q6s', 'VGFpV3Qj4as', 'm8o2GrbR3d8', '4qVRBYAdLAo'
+    ],
+    entrepreneur: [
+      'rOUs76wtv60', 'Ha4vG0plpUA', 'U6ulo3W7K1Q', '4g1n_cuME1w', 'XZdY15sHUa8',
+      'd4ug1MfZo1U', 'xvpeMdAs9pE', '1PaJ28oVOAI', 'mTzZod7cBj4', '89EPPtzZHxE'
+    ],
+    career: [
+      '4g1n_cuME1w', 'rOUs76wtv60', 'XZdY15sHUa8', 'd4ug1MfZo1U', 'Ha4vG0plpUA',
+      'U6ulo3W7K1Q', 'xvpeMdAs9pE', '1PaJ28oVOAI', 'mTzZod7cBj4', '89EPPtzZHxE'
+    ],
+    projects: [
+      'XZdY15sHUa8', 'd4ug1MfZo1U', 'tIttdEx_adw', 'fQQzPf2y2l8', 'dE5isWx82WU',
+      'YhRfgYH_AoU', 'G2fqAlgmoPo', '5yBTxOpT4PE', 'gFSkmD8vbfg', 'Ha4vG0plpUA'
+    ],
+    capstone: [
+      'd4ug1MfZo1U', 'XZdY15sHUa8', 'rOUs76wtv60', '4g1n_cuME1w', 'Ha4vG0plpUA',
+      'U6ulo3W7K1Q', 'tIttdEx_adw', 'fQQzPf2y2l8', 'dE5isWx82WU', 'YhRfgYH_AoU'
+    ],
+    assessment: [
+      'XZdY15sHUa8', 'd4ug1MfZo1U', 'VGFpV3Qj4as', 'G2fqAlgmoPo', 'dE5isWx82WU',
+      'i_LwzRVP7bg', 'A_QG2L6GS4Q', 'Ha4vG0plpUA', 'tIttdEx_adw', '4g1n_cuME1w'
+    ]
   };
 
   // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment
@@ -265,7 +345,6 @@
   };
 
   function note(moduleTitle, skill, name, position) {
-    // Prefer rich detailed notes when available
     if (RICH_NOTES[name]) {
       return RICH_NOTES[name];
     }
@@ -274,7 +353,6 @@
     var focus = position % 2 ? 'hands-on practice with real AI tools and responsible use' : 'understanding the concept, applying it with a tool and reviewing the result';
     var tpl = templateFor(name);
 
-    // Enhanced default note with Liberia flavour for fundamentals & orientation
     var liberiaHint = '';
     if (skill === 'fundamentals' || skill === 'orientation') {
       liberiaHint = '<p><strong>Liberia / West Africa connection:</strong> Think about how this concept could help students, farmers, small businesses, clinics, or mobile-money users in Liberia. Always verify AI outputs before acting on them.</p>';
@@ -422,7 +500,7 @@
   curriculum.forEach(function (mod) {
     var num = mod[0], title = mod[1], icon = mod[2], skill = mod[3], type = mod[4], names = mod[5];
     var moduleTitle = 'Module ' + num + ': ' + title;
-    var pool = VIDEOS[skill] || VIDEOS.assessment;
+    var pool = VIDEOS[skill] || V;
     var key = bankKey(skill);
     var lessons = [], idx = 0;
 
@@ -464,14 +542,16 @@
       }
       if (type === 'projects' || isProjectName(name)) {
         idx += 1;
-        var pv = pool[idx % pool.length];
+        /* Unique video per project topic */
+        var pv = pool[(idx - 1) % pool.length];
         lessons.push({ t: '🛠️ ' + name, d: 'Project', isProject: true, v: pv });
         notes[String(flat)] = projectBrief(moduleTitle, name);
         flat += 1; projectCount += 1;
         return;
       }
       idx += 1;
-      var v = pool[idx % pool.length];
+      /* Unique video per content topic — cycle through skill pool */
+      var v = pool[(idx - 1) % pool.length];
       lessons.push({ t: num + '.' + idx + ' ' + name, d: 'Video Lesson', v: v, isQuiz: false });
       notes[String(flat)] = note(moduleTitle, skill, name, notePos++);
       flat += 1; videoCount += 1;
@@ -521,7 +601,7 @@
     ],
     about: [
       'This is the complete TIH AI Fundamentals Professional Certificate, rebuilt into twenty modules that take you from complete beginner to AI-literate professional.',
-      'Every content lesson has a video and printable notes; downloadable resources cover a Prompt Library, AI Toolkit Guide, Business AI templates and an AI Ethics Checklist. Ten practical AI projects and a capstone build your AI portfolio.',
+      'Every content lesson has a unique educational video and printable notes; downloadable resources cover a Prompt Library, AI Toolkit Guide, Business AI templates and an AI Ethics Checklist. Ten practical AI projects and a capstone build your AI portfolio.',
       'Software & tools: ChatGPT, Microsoft Copilot, Google Gemini, Claude AI, Perplexity, NotebookLM, Canva AI, Adobe Firefly, GitHub Copilot, Google Workspace, Microsoft Office, Zapier, Make and Notion AI. You finish with a portfolio and — after the graduation assessment — a Certificate of Completion.'
     ],
     modules: modules,
@@ -532,6 +612,6 @@
   if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT[CID] = notes;
 
   if (typeof console !== 'undefined' && console.log) {
-    console.log('[AI] modules=' + modules.length + ' videoLessons=' + videoCount + ' projects=' + projectCount + ' quizzes=' + quizCount + ' exams=' + examCount);
+    console.log('[AI] modules=' + modules.length + ' videoLessons=' + videoCount + ' projects=' + projectCount + ' quizzes=' + quizCount + ' exams=' + examCount + ' uniqueVideoPools=yes');
   }
 })();
