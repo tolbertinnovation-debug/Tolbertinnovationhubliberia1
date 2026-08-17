@@ -11,7 +11,7 @@ window.TIH_PAYMENTS_CONFIG = {
   currency: "USD"
 };
 /* Fix YouTube Error 153 before maps load */
-document.write('<script src="yt-embed-fix.js?v=1"><\/script>');
+document.write('<script src="yt-embed-fix.js?v=2"><\/script>');
 /* Specific course maps first, then universal (fills gaps + all other courses) */
 document.write('<script src="webdev-video-map.js?v=2"><\/script>');
 document.write('<script src="data-video-map.js?v=2"><\/script>');

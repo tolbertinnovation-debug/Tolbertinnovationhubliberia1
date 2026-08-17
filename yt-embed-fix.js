@@ -35,9 +35,6 @@
     if (wrapPlayer() || ++n > 80) clearInterval(iv);
   }, 100);
 
-  // Also patch plain iframe fallbacks created later
-  var _append = Element.prototype.appendChild;
-  // Prefer intercepting innerHTML on ytPlayer via MutationObserver
   try {
     var obs = new MutationObserver(function (muts) {
       muts.forEach(function (m) {
@@ -58,4 +55,35 @@
       obs.observe(document.documentElement, { childList: true, subtree: true });
     }
   } catch (e) {}
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var poster = document.getElementById('videoPoster');
+    if (!poster) return;
+    poster.addEventListener('click', function () {
+      setTimeout(function () {
+        var host = document.getElementById('ytPlayer');
+        if (!host) return;
+        var id = window.currentVideoId;
+        if (!id) return;
+        setTimeout(function () {
+          try {
+            if (window.ytPlayer && window.ytPlayer.getPlayerState && window.ytPlayer.getPlayerState() === 1) return;
+          } catch (e) {}
+          var wrap = document.getElementById('videoContainer');
+          if (wrap) {
+            wrap.classList.add('playing');
+            wrap.classList.add('fallback');
+          }
+          host.innerHTML =
+            '<iframe title="Course Lesson" referrerpolicy="strict-origin-when-cross-origin" ' +
+            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+            'allowfullscreen src="https://www.youtube.com/embed/' +
+            id +
+            '?autoplay=1&rel=0&modestbranding=1&playsinline=1&fs=1&enablejsapi=1&origin=' +
+            encodeURIComponent(window.location.origin) +
+            '"></iframe>';
+        }, 2800);
+      }, 100);
+    }, true);
+  });
 })();
