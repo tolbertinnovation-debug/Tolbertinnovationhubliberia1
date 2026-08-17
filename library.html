@@ -15,7 +15,7 @@
 <script>
 (function(){
   var parts = window.__LIB_B64_PARTS || [];
-  if(parts.length < 5){ document.body.innerHTML = "<p>Error loading library parts ("+parts.length+"/5).</p>"; return; }
+  if(parts.length < 5){ document.body.innerHTML = "<p>Error loading library parts ("+parts.length+"/5). Please hard-refresh.</p>"; return; }
   var b64 = parts.join("");
   try {
     var bin = atob(b64);
