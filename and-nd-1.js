@@ -17,7 +17,7 @@ a("Installing Android Studio","Module 1: Course Orientation","Installing Android
 
 a("Setting Up the Development Environment","Module 1: Course Orientation","Setting up the development environment configures JDK/SDK paths, emulator images, and any required plugins so projects build and run reliably.","<p>Confirm SDK location, create a virtual device, and run the default template app once before coding lessons.</p>");
 
-a("Creating Your First Android Project","Module 1: Course Orientation","Creating your first Android project uses the New Project wizard to generate a minimal app with a main activity, layout, and Gradle configuration.</p>","<p>Choose Empty Activity (or similar), set package name carefully, and run on the emulator to confirm the toolchain works.</p>");
+a("Creating Your First Android Project","Module 1: Course Orientation","Creating your first Android project uses the New Project wizard to generate a minimal app with a main activity, layout, and Gradle configuration.","<p>Choose Empty Activity (or similar), set package name carefully, and run on the emulator to confirm the toolchain works.</p>");
 
 a("Course Roadmap","Module 1: Course Orientation","The course roadmap sequences Kotlin foundations, Studio skills, UI and interaction, navigation, storage, Firebase, APIs, media, Material Design, security, testing, publishing, AI tools, career skills, ten apps, and a capstone.","<p>Each module feeds the next; projects consolidate skills into portfolio pieces.</p>");
 
@@ -27,7 +27,7 @@ a("Introduction to Kotlin","Module 2: Programming Fundamentals with Kotlin","Kot
 
 a("Variables and Data Types","Module 2: Programming Fundamentals with Kotlin","Variables store values; Kotlin uses <code>val</code> (read-only) and <code>var</code> (mutable). Common types include Int, Double, Boolean, and String.","<pre style=\"background:#0f172a;color:#e2e8f0;padding:.8rem;border-radius:8px;overflow:auto\"><code>val name = \"TIH\"\nvar count = 0\ncount += 1</code></pre>");
 
-a("Operators","Module 2: Programming Fundamentals with Kotlin","Operators perform arithmetic, comparison, and logical operations on values—essential for conditions, calculations, and control flow.","<p>Examples: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>==</code>, <code>!=</code>, <code>&amp;&amp;</code>, <code>||</code>.</p>");
+a("Operators","Module 2: Programming Fundamentals with Kotlin","Operators perform arithmetic, comparison, and logical operations on values—essential for conditions, calculations, and control flow.","<p>Examples: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>==</code>, <code>!=</code>, <code>&&</code>, <code>||</code>.</p>");
 
 a("User Input","Module 2: Programming Fundamentals with Kotlin","User input in console Kotlin is often read via <code>readLine()</code>; in Android apps, input comes from UI widgets such as EditText.","<p>Always validate and convert input (e.g., string to Int) before using it in logic.</p>");
 
