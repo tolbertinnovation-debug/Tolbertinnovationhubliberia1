@@ -19,5 +19,5 @@ a("Implementation Strategy","Module 19: Capstone Leadership Project","Sequence m
 
 a("Final Presentation","Module 19: Capstone Leadership Project","Present the case as an executive would—problem, options, recommendation, risks, ask.","<p>Rehearse timing; anticipate hard questions.</p>");
 
-a("Executive Review","Module syn 19: Capstone Leadership Project","Defend the recommendation under critical review and capture feedback into a revised plan.","<p>Respond with data and composure, not defensiveness.</p>");
+a("Executive Review","Module 19: Capstone Leadership Project","Defend the recommendation under critical review and capture feedback into a revised plan.","<p>Respond with data and composure, not defensiveness.</p>");
 })();
