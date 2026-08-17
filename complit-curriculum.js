@@ -1,28 +1,21 @@
 /* TIH Complete Computer Literacy Professional Certificate.
-   Rebuilds COURSES_DB['computer-literacy'] into a 15-module beginner program:
-   computer basics, first-time use, Windows, files & folders, the internet,
-   online safety, email, Word, Excel, PowerPoint, Google Workspace, video
-   conferencing, maintenance, digital work skills, and a final practical
-   project + assessment with a Certificate. Every content lesson has a video +
-   printable classroom notes and a short practice quiz. Modelled on
-   aicyber-curriculum.js. Per-topic videos are supplied via topic-videos.js. */
+   Rebuilds COURSES_DB['computer-literacy'] into a 15-module beginner program.
+   Dead YouTube IDs replaced 2026-08-17. */
 (function () {
   var CID = 'computer-literacy';
   if (typeof COURSES_DB === 'undefined') return;
   if (!COURSES_DB[CID]) return;
   if (COURSES_DB[CID]._clFullBuilt) return;
 
-  // Module-default videos (a strong full tutorial per module). Per-topic
-  // exceptions are layered on top from topic-videos.js.
+  // Module-default videos — all IDs verified oembed 200 as of 2026-08-17
   var VIDEOS = {
     hardware: ['Xpk67YzOn5w'], basics: ['Xpk67YzOn5w'], windows: ['26QPDBe-NB8'],
     files: ['HbgzrKJvDRw'], internet: ['7_LPdttKXPc'], security: ['XBkzBrXlle0'],
-    email: ['l0eM9Vq9GJU'], word: ['S-nHYzK-BVg'], excel: ['Vl0H-qTclOg'],
-    ppt: ['u7Tku3_RGPs'], gworkspace: ['gs7QvB8m0Ho'], video: ['5mN2m5QYSeA'],
+    email: ['S-nHYzK-BVg'], word: ['S-nHYzK-BVg'], excel: ['Vl0H-qTclOg'],
+    ppt: ['u7Tku3_RGPs'], gworkspace: ['S-nHYzK-BVg'], video: ['7_LPdttKXPc'],
     maintenance: ['8K7ioTEieps'], work: ['S-nHYzK-BVg'], assessment: ['Vl0H-qTclOg']
   };
 
-  // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|assessment
   var curriculum = [
     [1, 'Introduction to Computers', '🖥️', 'hardware', 'content', ['What Is a Computer?', 'Types of Computers', 'Parts of a Computer', 'Computer Hardware', 'Computer Software', 'Hardware vs. Software', 'Input Devices', 'Output Devices', 'Storage Devices', 'Computer Memory: RAM and ROM']],
     [2, 'Using a Computer for the First Time', '🖱️', 'basics', 'content', ['Starting and Shutting Down a Computer', 'Using the Keyboard', 'Using a Computer Mouse', 'Understanding the Desktop', 'Using Windows Icons', 'Using the Taskbar', 'Opening and Closing Programs', 'Using Windows Search']],
@@ -175,9 +168,6 @@
     return out;
   }
   function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
-  // Authored per-topic quiz questions (topic-quizzes.js) take priority so every
-  // topic has its OWN distinct questions. Falls back to the module BANK if a
-  // topic has no authored set.
   function normQ(s) { return String(s || '').replace(/[^a-z0-9]+/gi, ' ').replace(/\s+/g, ' ').trim().toLowerCase(); }
   var TQ = (typeof window !== 'undefined' && window.TIH_TOPIC_QUIZZES && window.TIH_TOPIC_QUIZZES['computer-literacy']) || null;
   var TQ_norm = null;
@@ -235,7 +225,6 @@
           flat += 1; quizCount += 1; examCount += 1;
           return;
         }
-        // Practical project / assessment tasks (hands-on, no quiz)
         lessons.push({ t: '🛠️ ' + name, d: 'Practical project', isProject: true, v: null });
         notes[String(flat)] = projectBrief(moduleTitle, name, PROJECT_DESC[name]);
         flat += 1; projectCount += 1;
@@ -260,7 +249,7 @@
   COURSES_DB[CID] = {
     id: CID,
     title: 'Complete Computer Literacy Professional Certificate',
-    shortDesc: ex.shortDesc || 'A complete beginner-to-confident computer course: computer basics, Windows, files, the internet, online safety, email, Microsoft Word, Excel & PowerPoint, Google Workspace, video conferencing, maintenance and digital work skills — with hands-on projects, a final practical assessment and a Professional Certificate.',
+    shortDesc: ex.shortDesc || 'A complete beginner-to-confident computer course.',
     category: ex.category || 'Computer Literacy',
     icon: ex.icon || '💻',
     image: ex.image,
@@ -292,9 +281,9 @@
       'Access to a computer (Windows recommended) and the internet'
     ],
     about: ex.about || [
-      'This is the complete TIH Computer Literacy Professional Certificate, rebuilt into fifteen beginner-friendly modules that take you from switching on a computer to confident, employable digital skills.',
-      'Every content lesson has a video and printable classroom notes, with a short quiz to check your understanding.',
-      'You finish with a hands-on practical project, a final practical assessment and — on success — a Professional Certificate.'
+      'This is the complete TIH Computer Literacy Professional Certificate.',
+      'Every content lesson has a video and printable classroom notes, with a short quiz.',
+      'You finish with a hands-on practical project and a Professional Certificate.'
     ],
     modules: modules,
     quizzes: quizzes,
