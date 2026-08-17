@@ -1,2 +1,2 @@
 window.__LIB_B64_PARTS = window.__LIB_B64_PARTS || [];
-window.__LIB_B64_PARTS[1] = "PLACEHOLDER_REPLACE_WITH_FULL";
+window.__LIB_B64_PARTS[1] = "PLACEHOLDER";
