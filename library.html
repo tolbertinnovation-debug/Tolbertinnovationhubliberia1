@@ -1,17 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.[^\/]+\.html$/i,'/');if(n&&n!==p){history.replaceState(null,'',n)}}catch(e){}})();</script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TIH Digital Library | Tolbert Innovation Hub</title>
-  <link rel="stylesheet" href="styles.css?v=17">
-  <!-- Restored older full library page. Cover scripts for book 101 remain available. -->
+<meta charset="UTF-8">
+<title>TIH Digital Library — Loading…</title>
+<style>body{font-family:system-ui;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#0f172a;color:#e2e8f0} .box{text-align:center} .spin{width:40px;height:40px;border:3px solid #334155;border-top-color:#38bdf8;border-radius:50%;animation:s 0.8s linear infinite;margin:0 auto 1rem}@keyframes s{to{transform:rotate(360deg)}}</style>
 </head>
 <body>
-  <p style="padding:2rem;text-align:center">Restoring full library page... If this persists, the full content push is in progress. The original cover for the first book is still available via the previous minimal version if needed.</p>
-  <script src="cover101-p1.js"></script>
-  <script src="cover101-p2.js"></script>
-  <script src="library-cover-enhance.js"></script>
+<div class="box"><div class="spin"></div><p>Loading TIH Digital Library…</p></div>
+<script src="libp1.js"></script>
+<script src="libp2.js"></script>
+<script src="libp3.js"></script>
+<script src="libp4.js"></script>
+<script src="libp5.js"></script>
+<script src="libp6.js"></script>
+<script src="libp7.js"></script>
+<script src="libp8.js"></script>
+<script src="libp9.js"></script>
+<script src="libp10.js"></script>
+<script src="libp11.js"></script>
+<script src="libp12.js"></script>
+<script src="libp13.js"></script>
+<script src="libp14.js"></script>
+<script src="libp15.js"></script>
+<script src="libp16.js"></script>
+<script src="libp17.js"></script>
+<script src="libp18.js"></script>
+<script src="libp19.js"></script>
+<script src="libp20.js"></script>
+<script>
+(function(){
+  var parts = window.__LIB_B64_PARTS || [];
+  if(parts.length < 20){ document.body.innerHTML = "<p style='padding:2rem;text-align:center;color:#e2e8f0'>Library parts loading ("+parts.length+"/20).<br>Hard-refresh in a moment, or the original cover for the first book is ready in the previous version.</p>"; return; }
+  var b64 = parts.join("");
+  try {
+    var bin = atob(b64);
+    var bytes = new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+    var html = new TextDecoder("utf-8").decode(bytes);
+    document.open();
+    document.write(html);
+    document.close();
+  } catch(e) {
+    document.body.innerHTML = "<p>Failed to decode library: "+e.message+"</p>";
+  }
+})();
+</script>
 </body>
 </html>
