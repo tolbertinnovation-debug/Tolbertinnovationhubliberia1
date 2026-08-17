@@ -1,16 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TIH Digital Library | Tolbert Innovation Hub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIH Digital Library | Tolbert Innovation Hub</title>
+<link rel="icon" href="/favicon.ico" sizes="any" />
 </head>
 <body>
-<p>Loading restored library… if this stays, refresh.</p>
+<p id="status" style="font-family:system-ui;padding:2rem;text-align:center;color:#002868;">Loading TIH Digital Library…</p>
+<script src="libchunk1.js"></script>
+<script src="libchunk2.js"></script>
+<script src="libchunk3.js"></script>
+<script src="libchunk4.js"></script>
+<script src="libchunk5.js"></script>
 <script>
-// Temporary - full content follows in next update if needed
-location.replace('https://raw.githubusercontent.com/tolbertinnovation-debug/Tolbertinnovationhubliberia1/767d5b2e815d9d0902b5d2e70fc162a455cc74d3/library.html');
+(function(){
+  var parts = window.__LIB_B64_PARTS || [];
+  var expected = 5;
+  if(parts.length < expected){
+    document.getElementById("status").textContent = "Library loading… please refresh once. (parts: " + parts.length + "/" + expected + ")";
+    return;
+  }
+  try {
+    var ordered = [];
+    for(var i=0;i<expected;i++) ordered.push(parts[i] || "");
+    var bin = atob(ordered.join(""));
+    var bytes = new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+    var html = new TextDecoder("utf-8").decode(bytes);
+    document.open();
+    document.write(html);
+    document.close();
+  } catch(e) {
+    document.getElementById("status").textContent = "Failed to load library: " + e.message;
+  }
+})();
 </script>
 </body>
 </html>
