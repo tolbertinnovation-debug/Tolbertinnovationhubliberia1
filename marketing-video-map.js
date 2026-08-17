@@ -1,102 +1,42 @@
-/* TIH MARKETING — specific YouTube video per topic. Course id: marketing */
+/* TIH MARKETING — keyword video map (100% coverage). Course id: marketing */
 (function () {
   if (typeof COURSES_DB === 'undefined' || !COURSES_DB.marketing || !COURSES_DB.marketing.modules) return;
-  var MAP = {
-    'Welcome to the Course': 'nU-T2NPrHHI',
-    'What is Digital Marketing?': 'nU-T2NPrHHI',
-    'Career Opportunities in Digital Marketing': 'e_DvOPN8Ar4',
-    'Types of Digital Marketing': 'nU-T2NPrHHI',
-    'Digital Marketing Trends': 'nU-T2NPrHHI',
-    'Course Roadmap': 'nU-T2NPrHHI',
-    'Setting Learning Goals': 'nU-T2NPrHHI',
-    'Final Capstone Project': 'nU-T2NPrHHI',
-    'Certificate Requirements': 'nU-T2NPrHHI',
-    'Principles of Marketing': 'nU-T2NPrHHI',
-    'Consumer Behavior': 'nU-T2NPrHHI',
-    'Target Audience Identification': 'nU-T2NPrHHI',
-    'Market Research': 'nU-T2NPrHHI',
-    'Competitor Analysis': 'nU-T2NPrHHI',
-    'Branding Fundamentals': 'sI4Gkh0G9CM',
-    'Customer Journey': 'nU-T2NPrHHI',
-    'Marketing Funnel': 'nU-T2NPrHHI',
-    'Value Proposition': 'sI4Gkh0G9CM',
-    'Marketing Strategy': 'nU-T2NPrHHI',
-    'Building a Brand': 'sI4Gkh0G9CM',
-    'Brand Identity': 'sI4Gkh0G9CM',
-    'Brand Positioning': 'sI4Gkh0G9CM',
-    'Brand Storytelling': 'sI4Gkh0G9CM',
-    'Content Marketing Strategy': 'C6lGyQX-f2A',
-    'Content Planning': 'C6lGyQX-f2A',
-    'Editorial Calendars': 'C6lGyQX-f2A',
-    'Content Repurposing': 'C6lGyQX-f2A',
-    'Content Distribution': 'C6lGyQX-f2A',
-    'Brand Management Project': 'sI4Gkh0G9CM',
-    'Introduction to Social Media Marketing': 'qVdtkwtVL3Q',
-    'Facebook Marketing': 'qVdtkwtVL3Q',
-    'Instagram Marketing': 'qVdtkwtVL3Q',
-    'LinkedIn Marketing': 'qVdtkwtVL3Q',
-    'X (Twitter) Marketing': 'qVdtkwtVL3Q',
-    'TikTok Marketing': 'qVdtkwtVL3Q',
-    'YouTube Marketing': 'qVdtkwtVL3Q',
-    'WhatsApp Business': 'qVdtkwtVL3Q',
-    'Social Media Content Planning': 'qVdtkwtVL3Q',
-    'Community Management': 'qVdtkwtVL3Q',
-    'Influencer Marketing': 'qVdtkwtVL3Q',
-    'Social Media Analytics': 'sXpjE_G7o8Y',
-    'Social Media Campaign Project': 'qVdtkwtVL3Q',
-    'Introduction to SEO': 'xsVTqzratPs',
-    'Keyword Research': 'xsVTqzratPs',
-    'On-Page SEO': 'xsVTqzratPs',
-    'Off-Page SEO': 'xsVTqzratPs',
-    'Technical SEO': 'xsVTqzratPs',
-    'Local SEO': 'xsVTqzratPs',
-    'SEO Tools': 'xsVTqzratPs',
-    'Content Optimization': 'xsVTqzratPs',
-    'Link Building': 'xsVTqzratPs',
-    'SEO Audit Project': 'xsVTqzratPs',
-    'Introduction to Google Ads': 'YJS5I3e3NZA',
-    'Keyword Targeting': 'YJS5I3e3NZA',
-    'Search Campaigns': 'YJS5I3e3NZA',
-    'Display Campaigns': 'YJS5I3e3NZA',
-    'Video Campaigns': 'YJS5I3e3NZA',
-    'Shopping Campaigns': 'YJS5I3e3NZA',
-    'Campaign Budgeting': 'YJS5I3e3NZA',
-    'Ad Copywriting': 'C6lGyQX-f2A',
-    'Campaign Optimization': 'YJS5I3e3NZA',
-    'SEM Project': 'YJS5I3e3NZA',
-    'Email Marketing Fundamentals': '0Y5eQ2v2mFQ',
-    'Building an Email List': '0Y5eQ2v2mFQ',
-    'Lead Magnets': '0Y5eQ2v2mFQ',
-    'Email Campaign Planning': '0Y5eQ2v2mFQ',
-    'Email Design': '0Y5eQ2v2mFQ',
-    'Automation': '0Y5eQ2v2mFQ',
-    'Personalization': '0Y5eQ2v2mFQ',
-    'Segmentation': '0Y5eQ2v2mFQ',
-    'A/B Testing': '0Y5eQ2v2mFQ',
-    'Email Analytics': 'sXpjE_G7o8Y',
-    'Copywriting Fundamentals': 'C6lGyQX-f2A',
-    'Landing Page Design': 'nU-T2NPrHHI',
-    'Conversion Optimization': 'nU-T2NPrHHI',
-    'Google Analytics': 'sXpjE_G7o8Y',
-    'KPIs & Metrics': 'sXpjE_G7o8Y',
-    'E-Commerce Marketing': 'nU-T2NPrHHI',
-    'AI for Digital Marketing': 'n5b8BMrtEJ8',
-    'ChatGPT for Marketing': 'n5b8BMrtEJ8',
-    'CRM Basics': 'sXpjE_G7o8Y',
-    'Freelancing in Marketing': 'e_DvOPN8Ar4',
-    'Building a Portfolio': 'e_DvOPN8Ar4',
-    'Certificate of Completion': 'nU-T2NPrHHI'
-  };
-  function cleanTitle(t) {
-    return String(t || '').replace(/^[^0-9a-zA-Z]+/, '').replace(/^\s*[\d]+(?:\.[\d]+)*\s+/, '').replace(/^(Practice|Project):\s*/i, '').replace(/\s+/g, ' ').trim();
+  var RULES = [
+  [["seo","keyword","backlink","on-page","off-page","link building"], "xsVTqzratPs"],
+  [["google ads","sem","search campaign","display campaign","shopping","campaign budget","ad copy"], "YJS5I3e3NZA"],
+  [["facebook","instagram","linkedin","tiktok","twitter","youtube marketing","whatsapp","social media","influencer","community"], "qVdtkwtVL3Q"],
+  [["email","lead magnet","newsletter","segmentation","a/b testing"], "0Y5eQ2v2mFQ"],
+  [["content","copywrit","blog","editorial","repurpos","podcast","canva","storytell"], "C6lGyQX-f2A"],
+  [["brand"], "sI4Gkh0G9CM"],
+  [["analytics","kpi","google analytics","metric","performance","measurement"], "sXpjE_G7o8Y"],
+  [["crm"], "sXpjE_G7o8Y"],
+  [["ai ","chatgpt","prompt"], "n5b8BMrtEJ8"],
+  [["e-commerce","ecommerce","landing","website","conversion"], "nU-T2NPrHHI"],
+  [["freelance","portfolio","career","resume","interview"], "e_DvOPN8Ar4"]
+];
+  var DEFAULT_VID = 'nU-T2NPrHHI';
+  function pick(title) {
+    var t = String(title || '').toLowerCase();
+    for (var i = 0; i < RULES.length; i++) {
+      var keys = RULES[i][0], vid = RULES[i][1];
+      for (var j = 0; j < keys.length; j++) {
+        if (t.indexOf(keys[j]) !== -1) return vid;
+      }
+    }
+    return DEFAULT_VID;
   }
-  var applied = 0;
+  var applied = 0, prev = null, changes = 0;
   COURSES_DB.marketing.modules.forEach(function (mod) {
     (mod.lessons || []).forEach(function (lesson) {
       if (lesson.isQuiz) return;
-      var key = cleanTitle(lesson.t);
-      if (MAP[key]) { lesson.v = MAP[key]; applied += 1; }
+      var vid = pick(lesson.t);
+      lesson.v = vid;
+      applied += 1;
+      if (prev && prev !== vid) changes += 1;
+      prev = vid;
     });
   });
-  if (typeof console !== 'undefined' && console.log) console.log('[MARKETING videos] applied specific video to ' + applied + ' lessons');
+  if (typeof console !== 'undefined' && console.log) {
+    console.log('[MARKETING videos] applied to ' + applied + ' lessons (' + changes + ' video changes between topics)');
+  }
 })();

@@ -1,102 +1,36 @@
-/* TIH ENTREPRENEURSHIP — specific YouTube video per topic. Course id: entrepreneurship */
+/* TIH ENTREPRENEURSHIP — keyword video map (100% coverage). Course id: entrepreneurship */
 (function () {
   if (typeof COURSES_DB === 'undefined' || !COURSES_DB.entrepreneurship || !COURSES_DB.entrepreneurship.modules) return;
-  var MAP = {
-    'Welcome to the Program': 'Zk11nyT3n-M',
-    'How to Study This Course': 'Zk11nyT3n-M',
-    'What is Entrepreneurship?': 'Zk11nyT3n-M',
-    'What is a Startup?': 'Zk11nyT3n-M',
-    'Entrepreneur vs. Business Owner': 'Zk11nyT3n-M',
-    'Types of Entrepreneurs': 'Zk11nyT3n-M',
-    'Startup Success Stories': 'Zk11nyT3n-M',
-    'Course Roadmap': 'Zk11nyT3n-M',
-    'Final Capstone Project': 'Zk11nyT3n-M',
-    'Developing an Entrepreneurial Mindset': 'Zk11nyT3n-M',
-    'Creativity and Innovation': 'Zk11nyT3n-M',
-    'Identifying Opportunities': 'Zk11nyT3n-M',
-    'Solving Real Problems': 'Zk11nyT3n-M',
-    'Growth Mindset': 'Zk11nyT3n-M',
-    'Leadership Skills': 'Zk11nyT3n-M',
-    'Decision Making': 'Zk11nyT3n-M',
-    'Critical Thinking': 'Zk11nyT3n-M',
-    'Time Management': 'Zk11nyT3n-M',
-    'Personal Productivity': 'sPevHD2Y7xU',
-    'Finding Business Ideas': 'Zk11nyT3n-M',
-    'Problem Identification': 'Zk11nyT3n-M',
-    'Brainstorming Techniques': 'Zk11nyT3n-M',
-    'Market Gap Analysis': 'nU-T2NPrHHI',
-    'Design Thinking': 'Zk11nyT3n-M',
-    'Customer Discovery': 'sPevHD2Y7xU',
-    'Customer Interviews': 'sPevHD2Y7xU',
-    'Idea Validation': 'sPevHD2Y7xU',
-    'Product-Market Fit': 'nU-T2NPrHHI',
-    'Selecting the Best Business Idea': 'Zk11nyT3n-M',
-    'Introduction to Market Research': 'nU-T2NPrHHI',
-    'Primary Research': 'sPevHD2Y7xU',
-    'Secondary Research': 'sPevHD2Y7xU',
-    'Customer Personas': 'sPevHD2Y7xU',
-    'Target Market': 'nU-T2NPrHHI',
-    'Industry Analysis': 'Zk11nyT3n-M',
-    'Competitor Analysis': 'sPevHD2Y7xU',
-    'SWOT Analysis': 'sPevHD2Y7xU',
-    'Market Trends': 'nU-T2NPrHHI',
-    'Research Report': 'sPevHD2Y7xU',
-    'Business Model Basics': 'sPevHD2Y7xU',
-    'Business Model Canvas': 'sPevHD2Y7xU',
-    'Value Proposition': 'sPevHD2Y7xU',
-    'Customer Segments': 'sPevHD2Y7xU',
-    'Customer Relationships': 'sPevHD2Y7xU',
-    'Channels': 'Zk11nyT3n-M',
-    'Revenue Streams': 'WN9Mks1s4tM',
-    'Cost Structure': 'WN9Mks1s4tM',
-    'Key Resources': 'Zk11nyT3n-M',
-    'Key Activities': 'Zk11nyT3n-M',
-    'Key Partners': 'Zk11nyT3n-M',
-    'Business Model Review': 'sPevHD2Y7xU',
-    'Product Design': 'sPevHD2Y7xU',
-    'Service Design': 'Zk11nyT3n-M',
-    'Minimum Viable Product (MVP)': 'sPevHD2Y7xU',
-    'Prototyping': 'sPevHD2Y7xU',
-    'User Testing': 'sPevHD2Y7xU',
-    'Iteration': 'sPevHD2Y7xU',
-    'Product Development Process': 'sPevHD2Y7xU',
-    'Branding Basics': 'nU-T2NPrHHI',
-    'Brand Identity': 'nU-T2NPrHHI',
-    'Marketing Strategy': 'nU-T2NPrHHI',
-    'Digital Marketing': 'nU-T2NPrHHI',
-    'Social Media Marketing': 'nU-T2NPrHHI',
-    'Content Marketing': 'nU-T2NPrHHI',
-    'Sales Fundamentals': 'nU-T2NPrHHI',
-    'Sales Funnel': 'nU-T2NPrHHI',
-    'Pricing Strategies': 'WN9Mks1s4tM',
-    'Startup Finance Basics': 'WN9Mks1s4tM',
-    'Bootstrapping': 'WN9Mks1s4tM',
-    'Funding Options': 'WN9Mks1s4tM',
-    'Investors & Pitching': 'HCMVSV_ztl0',
-    'Pitch Deck': 'HCMVSV_ztl0',
-    'Legal Basics for Startups': 'Zk11nyT3n-M',
-    'Business Registration': 'Zk11nyT3n-M',
-    'Contracts': 'Zk11nyT3n-M',
-    'Operations Management': 'Zk11nyT3n-M',
-    'Building a Team': 'Zk11nyT3n-M',
-    'AI for Entrepreneurs': 'n5b8BMrtEJ8',
-    'Business Plan Writing': 'Zk11nyT3n-M',
-    'Launch Strategy': 'Zk11nyT3n-M',
-    'Scaling the Business': 'Zk11nyT3n-M',
-    'Business Model Canvas Project': 'sPevHD2Y7xU',
-    'Pitch Deck Project': 'HCMVSV_ztl0',
-    'Certificate of Completion': 'Zk11nyT3n-M'
-  };
-  function cleanTitle(t) {
-    return String(t || '').replace(/^[^0-9a-zA-Z]+/, '').replace(/^\s*[\d]+(?:\.[\d]+)*\s+/, '').replace(/^(Practice|Project):\s*/i, '').replace(/\s+/g, ' ').trim();
+  var RULES = [
+  [["customer","validation","interview","persona","discovery","mvp","lean","canvas","prototype"], "sPevHD2Y7xU"],
+  [["finance","funding","invest","cash","revenue","cost","pricing","bootstrapp"], "WN9Mks1s4tM"],
+  [["pitch","deck"], "HCMVSV_ztl0"],
+  [["market","brand","content","social","sales","funnel"], "nU-T2NPrHHI"],
+  [["ai ","chatgpt"], "n5b8BMrtEJ8"]
+];
+  var DEFAULT_VID = 'Zk11nyT3n-M';
+  function pick(title) {
+    var t = String(title || '').toLowerCase();
+    for (var i = 0; i < RULES.length; i++) {
+      var keys = RULES[i][0], vid = RULES[i][1];
+      for (var j = 0; j < keys.length; j++) {
+        if (t.indexOf(keys[j]) !== -1) return vid;
+      }
+    }
+    return DEFAULT_VID;
   }
-  var applied = 0;
+  var applied = 0, prev = null, changes = 0;
   COURSES_DB.entrepreneurship.modules.forEach(function (mod) {
     (mod.lessons || []).forEach(function (lesson) {
       if (lesson.isQuiz) return;
-      var key = cleanTitle(lesson.t);
-      if (MAP[key]) { lesson.v = MAP[key]; applied += 1; }
+      var vid = pick(lesson.t);
+      lesson.v = vid;
+      applied += 1;
+      if (prev && prev !== vid) changes += 1;
+      prev = vid;
     });
   });
-  if (typeof console !== 'undefined' && console.log) console.log('[ENTREPRENEURSHIP videos] applied specific video to ' + applied + ' lessons');
+  if (typeof console !== 'undefined' && console.log) {
+    console.log('[ENTREPRENEURSHIP videos] applied to ' + applied + ' lessons (' + changes + ' video changes between topics)');
+  }
 })();
