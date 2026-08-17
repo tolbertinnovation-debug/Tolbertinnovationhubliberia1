@@ -22,3 +22,4 @@ document.write('<script src="marketing-video-map.js?v=2"><\/script>');
 document.write('<script src="entrepreneurship-video-map.js?v=2"><\/script>');
 document.write('<script src="office-video-map.js?v=2"><\/script>');
 document.write('<script src="universal-topic-videos.js?v=1"><\/script>');
+document.write('<script src="courses-cloud-loader.js?v=1"><\/script>');
