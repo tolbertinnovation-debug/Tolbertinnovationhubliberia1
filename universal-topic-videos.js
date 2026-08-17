@@ -9,9 +9,9 @@
   function normTitle(s) {
     return String(s || '')
       .replace(/^[^0-9a-zA-Z]+/, '')
-      .replace(/^\\s*[\\d]+(?:\\.[\\d]+)*\\s+/, '')
-      .replace(/^(Practice|Project):\\s*/i, '')
-      .replace(/\\s+/g, ' ')
+      .replace(/^\s*[\d]+(?:\.[\d]+)*\s+/, '')
+      .replace(/^(Practice|Project):\s*/i, '')
+      .replace(/\s+/g, ' ')
       .trim()
       .toLowerCase();
   }
