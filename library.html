@@ -1,16 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <title>TIH Digital Library</title>
+<meta charset="UTF-8">
+<title>TIH Digital Library</title>
 </head>
 <body>
-<p>PLACEHOLDER - content too large for single tool arg, will use push_files instead</p>
+<script src="libp1.js"></script>
+<script src="libp2.js"></script>
+<script src="libp3.js"></script>
+<script src="libp4.js"></script>
+<script src="libp5.js"></script>
+<script src="libp6.js"></script>
+<script src="libp7.js"></script>
+<script src="libp8.js"></script>
+<script src="libp9.js"></script>
+<script src="libp10.js"></script>
+<script src="libp11.js"></script>
+<script src="libp12.js"></script>
+<script src="libp13.js"></script>
+<script src="libp14.js"></script>
+<script src="libp15.js"></script>
+<script src="libp16.js"></script>
+<script src="libp17.js"></script>
+<script src="libp18.js"></script>
+<script src="libp19.js"></script>
+<script src="libp20.js"></script>
+<script>
+(function(){
+  var parts = window.__LIB_B64_PARTS || [];
+  if(parts.length < 20){
+    document.body.textContent = "Library loading… please refresh once.";
+    return;
+  }
+  try {
+    var bin = atob(parts.join(""));
+    var bytes = new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+    var html = new TextDecoder("utf-8").decode(bytes);
+    document.open();
+    document.write(html);
+    document.close();
+  } catch(e) {
+    document.body.textContent = "Failed to load library: " + e.message;
+  }
+})();
+</script>
 </body>
 </html>
