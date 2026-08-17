@@ -1,18 +1,17 @@
-/* TIH UNIVERSAL TOPIC VIDEOS
-   - Assigns every content lesson a stable topicId
-   - Maps each topic to a YouTube video (keyword rules + course-specific maps)
-   - Fills TIH_TOPIC_VIDEOS for course-player override layer
-   - Default video only when no rule matches
-   Runs after all *-curriculum.js scripts. */
+/* TIH UNIVERSAL TOPIC VIDEOS v2
+   - Assigns every content lesson a stable topicId (course:mN:lN)
+   - Keyword-normalized title matching for videos
+   - Default video only when no keyword matches
+   - Specific course maps load AFTER this and can override */
 (function () {
   if (typeof COURSES_DB === 'undefined') return;
 
   function normTitle(s) {
     return String(s || '')
       .replace(/^[^0-9a-zA-Z]+/, '')
-      .replace(/^\s*[\d]+(?:\.[\d]+)*\s+/, '')
-      .replace(/^(Practice|Project):\s*/i, '')
-      .replace(/\s+/g, ' ')
+      .replace(/^\\s*[\\d]+(?:\\.[\\d]+)*\\s+/, '')
+      .replace(/^(Practice|Project):\\s*/i, '')
+      .replace(/\\s+/g, ' ')
       .trim()
       .toLowerCase();
   }
@@ -39,31 +38,15 @@
   ];
 
   var COURSE_DEFAULTS = {
-    webdev: 'zN8YNNHcaZc',
-    ai: 'aircAruvnKk',
-    data: 'rwbho0CgEAE',
-    design: 'UmHMVU6dceA',
-    android: 'FjrKMcnKahY',
-    cybersecurity: 'inWWhr2ihzs',
-    marketing: 'nU-T2NPrHHI',
-    entrepreneurship: 'Zk11nyT3n-M',
-    office: 'j-ZWL594OW8',
-    ielts: 'U6vXAtJx-xA',
-    toefl: 'U6vXAtJx-xA',
-    sat: 'U6vXAtJx-xA',
-    leadership: 'sL_EotvL8Hw',
-    'project-mgmt': 'sL_EotvL8Hw',
-    'financial-literacy': 'WN9Mks1s4tM',
-    'accounting-bookkeeping': 'WN9Mks1s4tM',
-    'english-success': 'U6vXAtJx-xA',
-    agritech: 'nU-T2NPrHHI',
-    healthtech: 'inWWhr2ihzs',
-    'remote-work': 'e_DvOPN8Ar4',
-    'grant-writing': 'HCMVSV_ztl0',
-    'computer-literacy': 'j-ZWL594OW8',
-    'bible-ot': 'ALqDrvi1nlE',
-    'bible-nt': 'ALqDrvi1nlE',
-    'bible-foundations': 'ALqDrvi1nlE'
+    webdev: 'zN8YNNHcaZc', ai: 'aircAruvnKk', data: 'rwbho0CgEAE', design: 'UmHMVU6dceA',
+    android: 'FjrKMcnKahY', cybersecurity: 'inWWhr2ihzs', marketing: 'nU-T2NPrHHI',
+    entrepreneurship: 'Zk11nyT3n-M', office: 'j-ZWL594OW8', ielts: 'U6vXAtJx-xA',
+    toefl: 'U6vXAtJx-xA', sat: 'U6vXAtJx-xA', leadership: 'sL_EotvL8Hw',
+    'project-mgmt': 'sL_EotvL8Hw', 'financial-literacy': 'WN9Mks1s4tM',
+    'accounting-bookkeeping': 'WN9Mks1s4tM', 'english-success': 'U6vXAtJx-xA',
+    agritech: 'nU-T2NPrHHI', healthtech: 'inWWhr2ihzs', 'remote-work': 'e_DvOPN8Ar4',
+    'grant-writing': 'HCMVSV_ztl0', 'computer-literacy': 'j-ZWL594OW8',
+    'bible-ot': 'ALqDrvi1nlE', 'bible-nt': 'ALqDrvi1nlE', 'bible-foundations': 'ALqDrvi1nlE'
   };
   var GLOBAL_DEFAULT = 'nU-T2NPrHHI';
 
@@ -79,12 +62,8 @@
     return GLOBAL_DEFAULT;
   }
 
-  if (typeof window.TIH_TOPIC_VIDEOS !== 'object' || !window.TIH_TOPIC_VIDEOS) {
-    window.TIH_TOPIC_VIDEOS = {};
-  }
-  if (typeof window.TIH_TOPIC_ID_VIDEOS !== 'object' || !window.TIH_TOPIC_ID_VIDEOS) {
-    window.TIH_TOPIC_ID_VIDEOS = {};
-  }
+  if (typeof window.TIH_TOPIC_VIDEOS !== 'object' || !window.TIH_TOPIC_VIDEOS) window.TIH_TOPIC_VIDEOS = {};
+  if (typeof window.TIH_TOPIC_ID_VIDEOS !== 'object' || !window.TIH_TOPIC_ID_VIDEOS) window.TIH_TOPIC_ID_VIDEOS = {};
 
   var totalLessons = 0, totalWithVideo = 0, coursesTouched = 0;
 
@@ -101,10 +80,7 @@
         lesson.id = topicId;
         totalLessons += 1;
         if (lesson.isQuiz) return;
-        var vid = lesson.v;
-        if (!vid) {
-          vid = pickVideo(lesson.t, courseId);
-        }
+        var vid = pickVideo(lesson.t, courseId);
         lesson.v = vid;
         totalWithVideo += 1;
         var nt = normTitle(lesson.t);
