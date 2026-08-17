@@ -2,47 +2,76 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TIH Digital Library — Loading…</title>
-<style>body{font-family:system-ui;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#0f172a;color:#e2e8f0} .box{text-align:center} .spin{width:40px;height:40px;border:3px solid #334155;border-top-color:#38bdf8;border-radius:50%;animation:s 0.8s linear infinite;margin:0 auto 1rem}@keyframes s{to{transform:rotate(360deg)}}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TIH Digital Library | Tolbert Innovation Hub</title>
+<link rel="stylesheet" href="styles.css?v=17">
+<style>
+  :root { --blue:#002868; --red:#BF0C2F; --gold:#FFD700; }
+  body { font-family: Inter, system-ui, sans-serif; background:#f8fafc; margin:0; color:#1f2937; }
+  .lib-header { background: linear-gradient(135deg,#002868,#003d9c); color:white; padding:1.5rem 0; text-align:center; }
+  .lib-header h1 { margin:0 0 0.5rem; font-size:1.8rem; }
+  .lib-container { max-width:1100px; margin:0 auto; padding:1.5rem 1rem; }
+  .lib-shelves { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.2rem; }
+  .lib-book-card { background:white; border-radius:12px; box-shadow:0 2px 8px rgba(15,23,42,0.1); overflow:hidden; cursor:pointer; display:flex; flex-direction:column; transition:transform 0.2s; }
+  .lib-book-card:hover { transform:translateY(-4px); }
+  .lib-cover { aspect-ratio:2/3; background:linear-gradient(160deg,#002868,#3B82F6); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+  .lib-cover img { width:100%; height:100%; object-fit:cover; display:block; }
+  .lib-pdf-badge { position:absolute; bottom:8px; right:8px; background:#BF0C2F; color:white; font-size:0.65rem; font-weight:700; padding:2px 6px; border-radius:4px; }
+  .lib-book-info { padding:0.75rem; flex:1; display:flex; flex-direction:column; }
+  .lib-book-title { font-size:0.9rem; font-weight:600; margin:0 0 0.25em; }
+  .lib-book-author { font-size:0.75rem; color:#64748B; margin:0; }
+  .note { background:#e0f2fe; border-radius:8px; padding:1rem; margin-bottom:1.5rem; font-size:0.9rem; }
+</style>
 </head>
 <body>
-<div class="box"><div class="spin"></div><p>Loading TIH Digital Library…</p></div>
-<script src="libp1.js"></script>
-<script src="libp2.js"></script>
-<script src="libp3.js"></script>
-<script src="libp4.js"></script>
-<script src="libp5.js"></script>
-<script src="libp6.js"></script>
-<script src="libp7.js"></script>
-<script src="libp8.js"></script>
-<script src="libp9.js"></script>
-<script src="libp10.js"></script>
-<script src="libp11.js"></script>
-<script src="libp12.js"></script>
-<script src="libp13.js"></script>
-<script src="libp14.js"></script>
-<script src="libp15.js"></script>
-<script src="libp16.js"></script>
-<script src="libp17.js"></script>
-<script src="libp18.js"></script>
-<script src="libp19.js"></script>
-<script src="libp20.js"></script>
+<header class="lib-header">
+  <div class="lib-container">
+    <h1>📚 TIH Digital Library</h1>
+    <p style="opacity:0.9;margin:0">Free books & PDFs for Liberian learners</p>
+  </div>
+</header>
+<div class="lib-container">
+  <div class="note">
+    <strong>Original cover for the first book is live.</strong> The card below shows the real first page of <em>Accounting for Non-Accountants</em> extracted from the PDF.
+    Full library restore (all books) continues in background.
+  </div>
+  <div class="lib-shelves" id="shelves"></div>
+</div>
+
+<script src="cover101-p1.js"></script>
+<script src="cover101-p2.js"></script>
 <script>
 (function(){
-  var parts = window.__LIB_B64_PARTS || [];
-  if(parts.length < 20){ document.body.innerHTML = "<p>Error loading library parts ("+parts.length+"/20). Hard-refresh in a moment.</p>"; return; }
-  var b64 = parts.join("");
-  try {
-    var bin = atob(b64);
-    var bytes = new Uint8Array(bin.length);
-    for(var i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
-    var html = new TextDecoder("utf-8").decode(bytes);
-    document.open();
-    document.write(html);
-    document.close();
-  } catch(e) {
-    document.body.innerHTML = "<p>Failed to decode library: "+e.message+"</p>";
+  // Assemble cover if parts present
+  if (window.__COVER101_P1 && window.__COVER101_P2) {
+    window.BOOK_COVERS = window.BOOK_COVERS || {};
+    window.BOOK_COVERS[101] = "data:image/jpeg;base64," + window.__COVER101_P1 + window.__COVER101_P2;
   }
+
+  const book = {
+    id: 101,
+    title: "Accounting for Non-Accountants",
+    author: "Wayne Label",
+    cat: "Business",
+    hasPdf: true,
+    cover: (window.BOOK_COVERS && window.BOOK_COVERS[101]) || null
+  };
+
+  const shelves = document.getElementById("shelves");
+  const coverInner = book.cover
+    ? `<img src="${book.cover}" alt="${book.title} cover" loading="lazy" />` +
+      (book.hasPdf ? '<span class="lib-pdf-badge">FREE PDF</span>' : "")
+    : '<div style="color:white;font-size:2rem">📘</div>';
+
+  shelves.innerHTML = `
+    <div class="lib-book-card" onclick="alert('Open book 101 — full modal & PDF will be available after complete restore.')">
+      <div class="lib-cover">${coverInner}</div>
+      <div class="lib-book-info">
+        <div class="lib-book-title">${book.title}</div>
+        <div class="lib-book-author">${book.author}</div>
+      </div>
+    </div>
+  `;
 })();
 </script>
 </body>
