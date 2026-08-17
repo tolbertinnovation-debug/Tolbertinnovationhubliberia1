@@ -66,3 +66,19 @@ window.TIH_PAYMENTS_CONFIG = {
   // cards can be charged in USD. "USD" or "LRD".
   currency: "USD"
 };
+
+/* ============================================================
+   PER-TOPIC VIDEO MAPS (AI, Data Analysis, Full-Stack Web Dev)
+   Loaded here with cache-busted URLs so Cloudflare cannot keep
+   serving stale curriculum-only video pools. Maps overwrite
+   lesson.v after curriculum builders run (script order in
+   course-player.html places hub-config after those curricula).
+   ============================================================ */
+(function () {
+  try {
+    document.write('<script src="webdev-video-map.js?v=2"><\/script>');
+    document.write('<script src="data-video-map.js?v=2"><\/script>');
+    document.write('<script src="ai-video-map.js?v=3"><\/script>');
+    document.write('<script src="ai-topic-videos.js?v=3"><\/script>');
+  } catch (e) {}
+})();
