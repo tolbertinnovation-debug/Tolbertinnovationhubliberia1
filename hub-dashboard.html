@@ -17,13 +17,13 @@ a{color:#93c5fd}
 <script>
 (function(){
   var CDN='https://cdn.jsdelivr.net/gh/tolbertinnovation-debug/Tolbertinnovationhubliberia1@7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html';
-  var PARTS=17;
+  var PARTS=6;
   function fail(m){var s=document.getElementById('spin');if(s)s.style.display='none';document.getElementById('msg').innerHTML=(m||'Could not load.')+' <a href="'+CDN+'">Open dashboard</a>';}
   function writeHtml(html){document.open();document.write(html);document.close();}
   function loadCdn(){return fetch(CDN,{cache:'no-store',mode:'cors'}).then(function(r){if(!r.ok)throw new Error('CDN');return r.text();}).then(writeHtml);}
   function loadPayload(){
     return Promise.all(Array.from({length:PARTS},function(_,i){
-      return fetch('hub-dashboard.p'+i+'.b64?v=3',{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('p'+i);return r.text();});
+      return fetch('hd.p'+i+'.b64?v=1',{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('p'+i);return r.text();});
     })).then(function(parts){
       var b64=parts.join('').replace(/\s+/g,'');
       if(b64.length<1000)throw new Error('short');
