@@ -11,26 +11,26 @@
   if (typeof COURSES_DB === 'undefined') return;
   if (!COURSES_DB.android || COURSES_DB.android._androidFullBuilt) return;
 
-  var V = ['2lwmKjkz-DE', 'wCwCsJSCy8Y', '2LWSxWsPUCY', 'ISbyj5nFIUk', 'TwVzuHhQfbk', 'Oc4MDMHRzwY', 'l9ui4Lfgr-E', 'gaPoV4z5wng', 'bHlLYhSrXvc', '_5LgIrd4O5g', 'BEvOBTaYUm0', 'WOKrelHPefc', 'l7hGtIzGRRM', 'EQvLP5BThZ0', 'bOd3wO0uFr8', '7kzttk9lj3U', 'ZIWuTgbQiQg', 'TrHILjGEEvY'];
+  var V = ['blKkRoZPxLc', 'FlBhpm9aRUg', 'DzST9xWs4g4', 'UKI-mpESErQ', '4RUZ01ptcYk', 'l-jdSOUpSIA', 'jjGjkElvcfc', 'HYzw8LFvmw4', 'KJSBsRKqNwU', 'ondCeqlAwEI', 'BEvOBTaYUm0', 'wm626abfMM8', '2I6fuD20qlY', 'WOKrelHPefc', 'RKbmqSRc0z0', 'XdcdCZoYRL8', '0kwcXtAq4Yo'];
   var VIDEOS = {
-    orientation: ['FjrKMcnKahY'],
-    kotlin: ['F9UC9DY-vIU'],
-    studio: ['DzST9xWs4g4'],
-    ui: ['UKI-mpESErQ'],
-    interaction: ['4RUZ01ptcYk'],
+    orientation: ['blKkRoZPxLc', 'oSim9fBFy-E', 'FGi8mcc2tGw', 'DzST9xWs4g4', '_aVmQu6FLZE'],
+    kotlin: ['FlBhpm9aRUg', 'mnkzx3TwbV8', 'F9UC9DY-vIU', '8QeEOpCefPY', 'DsKFhuaqBqY', 'cg4vf4jgWtE', 'yraYTV1AIs8'],
+    studio: ['DzST9xWs4g4', 'FGi8mcc2tGw', '_aVmQu6FLZE', '2I6fuD20qlY'],
+    ui: ['UKI-mpESErQ', 'WE274e3Ip20', 'BEvOBTaYUm0', '4RUZ01ptcYk'],
+    interaction: ['4RUZ01ptcYk', 'CAPlP2QcHnM', 'l-jdSOUpSIA'],
     navigation: ['l-jdSOUpSIA'],
-    storage: ['jjGjkElvcfc'],
-    firebase: ['HYzw8LFvmw4'],
-    networking: ['Qk-Tej0ZQas'],
+    storage: ['jjGjkElvcfc', 'vj92yFW-pZo', 'm-TMpWvPnBM'],
+    firebase: ['HYzw8LFvmw4', 'wm626abfMM8', 'SpSzRgbhTa4'],
+    networking: ['KJSBsRKqNwU', 'Qk-Tej0ZQas'],
     media: ['ondCeqlAwEI'],
     material: ['BEvOBTaYUm0'],
-    auth: ['dsst_TKgClY'],
+    auth: ['wm626abfMM8', 'SpSzRgbhTa4', 'dsst_TKgClY'],
     testing: ['2I6fuD20qlY'],
     publishing: ['WOKrelHPefc'],
-    ai: ['RKbmqSRc0z0'],
+    ai: ['RKbmqSRc0z0', 'HYzw8LFvmw4'],
     career: ['XdcdCZoYRL8'],
-    projects: ['0kwcXtAq4Yo'],
-    capstone: ['0kwcXtAq4Yo'],
+    projects: ['Hi4a2Pk5RJA', 'h8vI2yw2eR8', 'BVAslimaGSk', 'pXZR0QiwvrU', 'Xi2bv01Gdqc', 'eHCzGVup74o', 'UvaVJ0EseP0', 'eXH3Gh9cP74', '0kwcXtAq4Yo'],
+    capstone: ['0kwcXtAq4Yo', 'UKI-mpESErQ', 'vj92yFW-pZo', 'wm626abfMM8', 'KJSBsRKqNwU', '2I6fuD20qlY', 'WOKrelHPefc', 'XdcdCZoYRL8'],
     assessment: ['0kwcXtAq4Yo']
   };
 
@@ -57,39 +57,39 @@
     [19, 'Assessments & Graduation', '🏆', 'assessment', 'assessment', ['Kotlin Assessment', 'Android UI Assessment', 'Database Assessment', 'Firebase Assessment', 'API Assessment', 'Midterm Examination', 'Final Examination', 'Complete App Evaluation', 'Portfolio Review', 'Certificate Requirements', 'Certificate of Completion']]
   ];
 
-  function esc(v) { return String(v).replace(/[&<>"']/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]; }); }
+  function esc(v) { return String(v).replace(/[&<>\"']/g, function (ch) { return { '&': '&', '<': '<', '>': '>', '\"': '"', \"'\": '&#39;' }[ch]; }); }
   function isProjectName(name) { return /(?:Project|Assignment|Presentation|App|Tracker|Application)$/.test(name.trim()); }
 
   var skillLabel = { orientation: 'Android development foundations', kotlin: 'Kotlin programming', studio: 'Android Studio', ui: 'Android UI', interaction: 'user interaction', navigation: 'app navigation', storage: 'data storage', firebase: 'Firebase', networking: 'networking & APIs', media: 'media & device features', material: 'Material Design', auth: 'authentication & security', testing: 'testing & debugging', publishing: 'publishing to Google Play', ai: 'AI developer tools', career: 'freelancing & career', projects: 'building real apps', capstone: 'your capstone app', assessment: 'your skills' };
 
   function codeFor(name) {
     var C = null;
-    if (/Introduction to Kotlin|Variables and Data Types/i.test(name)) C = 'fun main() {\n    val name: String = "TIH"   // read-only\n    var count: Int = 0            // mutable\n    count += 1\n    println("$name $count")\n}';
-    else if (/^Functions$/i.test(name)) C = 'fun add(a: Int, b: Int): Int {\n    return a + b\n}\n\nfun main() {\n    println(add(2, 3)) // 5\n}';
-    else if (/Classes and Objects|Object-Oriented/i.test(name)) C = 'class Student(val name: String, var score: Int) {\n    fun passed() = score >= 50\n}\n\nval s = Student("Ama", 72)\nprintln(s.passed()) // true';
-    else if (/Conditional Statements/i.test(name)) C = 'val score = 72\nval grade = when {\n    score >= 70 -> "A"\n    score >= 50 -> "B"\n    else -> "F"\n}';
-    else if (/XML Layouts|TextView|Button/i.test(name)) C = '<Button\n    android:id="@+id/submitBtn"\n    android:layout_width="wrap_content"\n    android:layout_height="wrap_content"\n    android:text="Submit" />';
-    else if (/Click Events/i.test(name)) C = 'submitBtn.setOnClickListener {\n    Toast.makeText(this, "Clicked!", Toast.LENGTH_SHORT).show()\n}';
-    else if (/Room Database|CRUD Operations/i.test(name)) C = '@Entity\ndata class Note(\n    @PrimaryKey(autoGenerate = true) val id: Int = 0,\n    val text: String\n)';
-    else if (/Retrofit|REST APIs|Fetching Data/i.test(name)) C = 'interface ApiService {\n    @GET("posts")\n    suspend fun getPosts(): List<Post>\n}';
-    else if (/Firebase Authentication|Login System/i.test(name)) C = 'auth.signInWithEmailAndPassword(email, password)\n    .addOnSuccessListener { /* logged in */ }\n    .addOnFailureListener { e -> /* handle error */ }';
+    if (/Introduction to Kotlin|Variables and Data Types/i.test(name)) C = 'fun main() {\\n    val name: String = \"TIH\"   // read-only\\n    var count: Int = 0            // mutable\\n    count += 1\\n    println(\"$name $count\")\\n}';
+    else if (/^Functions$/i.test(name)) C = 'fun add(a: Int, b: Int): Int {\\n    return a + b\\n}\\n\\nfun main() {\\n    println(add(2, 3)) // 5\\n}';
+    else if (/Classes and Objects|Object-Oriented/i.test(name)) C = 'class Student(val name: String, var score: Int) {\\n    fun passed() = score >= 50\\n}\\n\\nval s = Student(\"Ama\", 72)\\nprintln(s.passed()) // true';
+    else if (/Conditional Statements/i.test(name)) C = 'val score = 72\\nval grade = when {\\n    score >= 70 -> \"A\"\\n    score >= 50 -> \"B\"\\n    else -> \"F\"\\n}';
+    else if (/XML Layouts|TextView|Button/i.test(name)) C = '<Button\\n    android:id=\"@+id/submitBtn\"\\n    android:layout_width=\"wrap_content\"\\n    android:layout_height=\"wrap_content\"\\n    android:text=\"Submit\" />';
+    else if (/Click Events/i.test(name)) C = 'submitBtn.setOnClickListener {\\n    Toast.makeText(this, \"Clicked!\", Toast.LENGTH_SHORT).show()\\n}';
+    else if (/Room Database|CRUD Operations/i.test(name)) C = '@Entity\\ndata class Note(\\n    @PrimaryKey(autoGenerate = true) val id: Int = 0,\\n    val text: String\\n)';
+    else if (/Retrofit|REST APIs|Fetching Data/i.test(name)) C = 'interface ApiService {\\n    @GET(\"posts\")\\n    suspend fun getPosts(): List<Post>\\n}';
+    else if (/Firebase Authentication|Login System/i.test(name)) C = 'auth.signInWithEmailAndPassword(email, password)\\n    .addOnSuccessListener { /* logged in */ }\\n    .addOnFailureListener { e -> /* handle error */ }';
     if (!C) return '';
-    return '<h4>💾 Starter code (Kotlin)</h4><pre style="background:#0f172a;color:#e2e8f0;padding:.9rem;border-radius:8px;overflow:auto;font-size:.82rem;line-height:1.5"><code>' + esc(C) + '</code></pre><p>Copy this into Android Studio, run it, and Print → Save as PDF to keep it with your notes.</p>';
+    return '<h4>💾 Starter code (Kotlin)</h4><pre style=\"background:#0f172a;color:#e2e8f0;padding:.9rem;border-radius:8px;overflow:auto;font-size:.82rem;line-height:1.5\"><code>' + esc(C) + '</code></pre><p>Copy this into Android Studio, run it, and Print → Save as PDF to keep it with your notes.</p>';
   }
 
   function note(moduleTitle, skill, name, position) {
     var label = skillLabel[skill] || 'Android skills';
     var focus = position % 2 ? 'hands-on coding, real examples and a working app feature' : 'understanding the concept, building it step by step and testing on the emulator';
     var code = codeFor(name);
-    return '<div class="study-note">' +
-      '<div class="revision-banner"><strong>Android Development · ' + esc(moduleTitle) + '</strong><span>Kotlin + Android Studio</span></div>' +
+    return '<div class=\"study-note\">' +
+      '<div class=\"revision-banner\"><strong>Android Development · ' + esc(moduleTitle) + '</strong><span>Kotlin + Android Studio</span></div>' +
       '<h3>' + esc(name) + '</h3>' +
       '<p>This lesson builds <strong>' + esc(label) + '</strong> through ' + focus + '. Watch the video, study the notes, then complete the two coding exercises before the short quiz.</p>' +
       '<h4>Key points</h4><ul>' +
       '<li>Understand what <em>' + esc(name) + '</em> is and where it fits in an Android app.</li>' +
       '<li>Follow the example in Android Studio and read the code carefully.</li>' +
       '<li>Build it yourself and run it on the emulator or a real device.</li></ul>' +
-      (code ? '<div class="study-callout">' + code + '</div>' : '') +
+      (code ? '<div class=\"study-callout\">' + code + '</div>' : '') +
       '<h4>Coding exercises</h4><ol>' +
       '<li><strong>Exercise 1:</strong> Recreate the example for <em>' + esc(name) + '</em> and run it.</li>' +
       '<li><strong>Exercise 2:</strong> Change one thing and predict, then check, the result on the emulator.</li></ol>' +
@@ -99,11 +99,11 @@
   }
 
   function projectBrief(moduleTitle, name) {
-    return '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Hands-on app build</span></div>' +
+    return '<div class=\"study-note\"><div class=\"revision-banner\"><strong>' + esc(moduleTitle) + '</strong><span>Hands-on app build</span></div>' +
       '<h3>' + esc(name) + '</h3>' +
       '<p>This is a practical build. Follow the video and notes, then create <em>' + esc(name) + '</em> yourself in Android Studio and push the source code to GitHub for your portfolio.</p>' +
       '<h4>What to build</h4><ol><li>Plan the screens, data and features.</li><li>Build the UI, then add logic, storage and any API/Firebase.</li><li>Test on the emulator, fix bugs, then export the APK and add it to your portfolio.</li></ol>' +
-      '<div class="study-callout"><strong>Deliverable:</strong> A working Android app with its Kotlin source code on GitHub — a portfolio-ready application. Download project files and Print → Save as PDF for the brief.</div>' +
+      '<div class=\"study-callout\"><strong>Deliverable:</strong> A working Android app with its Kotlin source code on GitHub — a portfolio-ready application. Download project files and Print → Save as PDF for the brief.</div>' +
       '</div>';
   }
 
@@ -120,7 +120,7 @@
       { q: 'Which keyword declares a read-only value in Kotlin?', opts: ['var', 'val', 'let', 'def'], correct: 1, exp: 'val is read-only; var is mutable.' },
       { q: 'Kotlin functions are declared with:', opts: ['function', 'fun', 'def', 'func'], correct: 1, exp: 'fun declares a function in Kotlin.' },
       { q: 'A Kotlin class is defined with the keyword:', opts: ['struct', 'class', 'object only', 'type'], correct: 1, exp: 'class defines a class; objects are instances.' },
-      { q: 'A "data class" in Kotlin is useful because it:', opts: ['Cannot hold data', 'Auto-generates equals/hashCode/toString', 'Is only for UI', 'Runs the app'], correct: 1, exp: 'Data classes auto-generate common methods.' },
+      { q: 'A \"data class\" in Kotlin is useful because it:', opts: ['Cannot hold data', 'Auto-generates equals/hashCode/toString', 'Is only for UI', 'Runs the app'], correct: 1, exp: 'Data classes auto-generate common methods.' },
       { q: 'Which handles multiple branches cleanly in Kotlin?', opts: ['when', 'switchif', 'select', 'branch'], correct: 0, exp: 'when is Kotlin’s powerful switch-like expression.' },
       { q: 'A Kotlin List created with listOf() is:', opts: ['Mutable', 'Read-only (immutable)', 'A database', 'A function'], correct: 1, exp: 'listOf() is read-only; mutableListOf() can change.' }
     ],
@@ -230,14 +230,14 @@
         quizzes[qid] = assessmentQuiz('general', 'Graduation Assessment', 15);
         quizzes[qid].isFinal = true;
         lessons.push({ t: '🏆 ' + name, d: '15 questions', isQuiz: true, quizId: qid, isFinal: true });
-        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>This is the final graduation assessment. Pass it to complete the program and unlock your TIH Certificate of Completion.</p></div>';
+        notes[String(flat)] = '<div class=\"study-note\"><div class=\"revision-banner\"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>This is the final graduation assessment. Pass it to complete the program and unlock your TIH Certificate of Completion.</p></div>';
         flat += 1; quizCount += 1;
         return;
       }
       if (/^Certificate Requirements$/i.test(name)) {
         idx += 1;
         lessons.push({ t: num + '.' + idx + ' ' + name, d: 'Resource', v: null, isQuiz: false });
-        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>To graduate and earn your TIH Certificate of Completion you must:</p><ul><li>Complete the lessons in Modules 1–16.</li><li>Build the apps in Module 17 (10 real-world Android applications).</li><li>Complete the industry capstone in Module 18 and present it.</li><li>Pass the skill assessments, the Midterm and Final Examinations, the Complete App Evaluation and Portfolio Review.</li><li>Pass the final Certificate of Completion assessment.</li></ul></div>';
+        notes[String(flat)] = '<div class=\"study-note\"><div class=\"revision-banner\"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>To graduate and earn your TIH Certificate of Completion you must:</p><ul><li>Complete the lessons in Modules 1–16.</li><li>Build the apps in Module 17 (10 real-world Android applications).</li><li>Complete the industry capstone in Module 18 and present it.</li><li>Pass the skill assessments, the Midterm and Final Examinations, the Complete App Evaluation and Portfolio Review.</li><li>Pass the final Certificate of Completion assessment.</li></ul></div>';
         flat += 1;
         return;
       }
@@ -248,7 +248,7 @@
         var aid = 'and-m' + num + '-a' + flat;
         quizzes[aid] = assessmentQuiz(akey, name, count);
         lessons.push({ t: (big ? '🧪 ' : '📝 ') + name, d: count + ' questions', isQuiz: true, quizId: aid });
-        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Assessment</span></div><h3>' + esc(name) + '</h3><p>Complete this ' + (big ? 'examination' : 'assessment') + ', then review every answer explanation to strengthen your weak areas.</p></div>';
+        notes[String(flat)] = '<div class=\"study-note\"><div class=\"revision-banner\"><strong>' + esc(moduleTitle) + '</strong><span>Assessment</span></div><h3>' + esc(name) + '</h3><p>Complete this ' + (big ? 'examination' : 'assessment') + ', then review every answer explanation to strengthen your weak areas.</p></div>';
         flat += 1; quizCount += 1; if (big) examCount += 1;
         return;
       }
