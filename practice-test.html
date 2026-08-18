@@ -1,1 +1,100 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="robots" content="noindex,nofollow"/>
+  <title>Practice Test | TIH Learning Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <script src="courses-db.js?v=21"></script>
+  <script src="hub-config.js?v=4"></script>
+  <script src="hub-cloud.js?v=16"></script>
+  <script src="hub-db.js?v=38"></script>
+  <script src="hub-pay.js?v=1"></script>
+  <script src="paywall.js?v=10"></script>
+  <script src="ielts-listening-q.js?v=2"></script>
+  <script src="ielts-reading-q.js?v=2"></script>
+  <script src="ielts-grammar-q.js?v=2"></script>
+  <script src="ielts-writing-q.js?v=3"></script>
+  <script src="ielts-speaking-q.js?v=2"></script>
+  <script src="toefl-bank.js?v=5"></script>
+  <script src="sat-bank.js?v=1"></script>
+  <script src="practice-tests.js?v=8"></script>
+  <style>
+:root{
+  --exam-blue:#0B3D91;
+  --exam-blue-d:#072a66;
+  --exam-accent:#C8102E;
+  --exam-green:#0B7A54;
+  --exam-bg:#E8EDF5;
+  --exam-panel:#FFFFFF;
+  --exam-text:#1A2332;
+  --exam-muted:#5A6A7E;
+  --exam-border:#C5D0E0;
+  --exam-flag:#F5A623;
+  --exam-answered:#0B3D91;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--exam-bg);color:var(--exam-text);line-height:1.5;min-height:100vh}
+button{font-family:inherit;cursor:pointer}
+.hidden{display:none!important}
+
+/* ===== EXAM TOP BAR (real-test style) ===== */
+.exam-top{
+  background:var(--exam-blue);
+  color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.55rem 1rem;gap:.75rem;
+  position:sticky;top:0;z-index:50;
+  box-shadow:0 2px 8px rgba(0,0,0,.18);
+  min-height:48px;
+}
+.exam-top .left{display:flex;align-items:center;gap:.75rem;min-width:0}
+.exam-top .logo{font-family:Poppins,sans-serif;font-weight:800;font-size:.88rem;letter-spacing:.02em;white-space:nowrap}
+.exam-top .logo em{font-style:normal;opacity:.7;font-weight:600}
+.exam-top .sec-label{
+  font-size:.78rem;font-weight:600;background:rgba(255,255,255,.15);
+  padding:.25rem .65rem;border-radius:4px;white-space:nowrap;
+}
+.exam-top .q-count{font-size:.85rem;font-weight:600;opacity:.95}
+.exam-top .right{display:flex;align-items:center;gap:.6rem}
+.exam-timer{
+  font-variant-numeric:tabular-nums;font-weight:800;font-size:1rem;
+  background:rgba(0,0,0,.25);padding:.3rem .75rem;border-radius:4px;
+  min-width:4.2rem;text-align:center;
+}
+.exam-timer.warn{background:#C8102E;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.75}}
+
+/* ===== INTRO / PICKER ===== */
+.wrap{max-width:880px;margin:0 auto;padding:1.25rem 1rem 5rem}
+.panel{
+  background:var(--exam-panel);border:1px solid var(--exam-border);
+  border-radius:8px;padding:1.35rem 1.4rem;margin-bottom:1rem;
+  box-shadow:0 1px 4px rgba(11,61,145,.06);
+}
+.eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--exam-accent)}
+h1.title{font-family:Poppins,sans-serif;font-size:clamp(1.25rem,3.5vw,1.75rem);color:var(--exam-blue);margin:.25rem 0 .5rem}
+.lead{color:var(--exam-muted);font-size:.92rem;margin-bottom:.9rem}
+.sec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.65rem;margin:1rem 0}
+.sec-card{
+  border:1.5px solid var(--exam-border);border-radius:8px;padding:.9rem;
+  background:#fff;text-align:center;cursor:pointer;transition:.12s;
+  font-family:inherit;color:var(--exam-text);
+}
+.sec-card:hover{border-color:var(--exam-blue);box-shadow:0 3px 12px rgba(11,61,145,.12)}
+.sec-card.full{border-color:var(--exam-accent);background:linear-gradient(180deg,#fff8f8,#fff)}
+.sec-card h4{font-family:Poppins,sans-serif;font-size:.95rem;color:var(--exam-blue);margin:0 0 .2rem}
+.sec-card.full h4{color:var(--exam-accent)}
+.sec-card p{font-size:.75rem;color:var(--exam-muted);margin:0;line-height:1.35}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.35rem;
+  border:none;border-radius:6px;font-weight:700;font-size:.9rem;
+  padding:.7rem 1.25rem;min-height:44px;text-decoration:none;
+}
+.btn-primary{background:var(--exam-blue);color:#fff}
+.btn-primary:hover{background:var(--exam-blue-d)}
+.btn-accent{background:var(--exam-accent);color:#fff}
+.btn-line{background:#fff;border:1.5px solid var(--exam-border);color:var(--exam-text)}
+.btn-sm{padding:.45rem .85rem;min-height:36px;font-size:.82rem}
