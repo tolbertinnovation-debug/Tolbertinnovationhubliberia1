@@ -1,6 +1,6 @@
 /* TIH Complete Digital Marketing Professional Certificate — unique educational YouTube video per topic.
    Course id: marketing.
-   Sources: HubSpot, Google Analytics, Neil Patel, Rank Math, Google Ads, Shopify, and trusted education channels.
+   Sources: HubSpot, Google Analytics, Neil Patel, Rank Math, Google Ads, Shopify, WsCube Tech, and trusted education channels.
    Each content topic has its own video so Next/Previous advances to a different lesson video. */
 (function () {
   if (typeof COURSES_DB === 'undefined' || !COURSES_DB.marketing || !COURSES_DB.marketing.modules) return;
@@ -140,16 +140,16 @@
     "E-Commerce Project": "B7yqNvFLZgY",
 
     /* ========== Module 12: AI for Digital Marketing ========== */
-    "ChatGPT for Marketing": "kunkYTKFNtI",
-    "AI Content Creation": "kunkYTKFNtI",
+    "ChatGPT for Marketing": "RNncLTc7Tzs",
+    "AI Content Creation": "EagiaXuJZuQ",
     "AI Image Generation": "hhCPi9NJ3-I",
-    "AI Video Creation": "gpredwdvi5k",
-    "AI Copywriting": "kunkYTKFNtI",
+    "AI Video Creation": "HmgmPfOEPKw",
+    "AI Copywriting": "7_HLhPVJNIw",
     "Marketing Automation": "sjAkl8pwLgg",
     "AI Analytics": "cTAMNIkNveo",
-    "Responsible AI Use": "kunkYTKFNtI",
-    "AI Marketing Workflow": "kunkYTKFNtI",
-    "AI Marketing Project": "kunkYTKFNtI",
+    "Responsible AI Use": "RNncLTc7Tzs",
+    "AI Marketing Workflow": "EagiaXuJZuQ",
+    "AI Marketing Project": "RNncLTc7Tzs",
 
     /* ========== Module 13: Advertising & Media Buying ========== */
     "Facebook Ads": "GUgVNQYiNOQ",
@@ -169,45 +169,45 @@
     "Lead Management": "YR0iITd5md0",
     "Sales Funnels": "JjQ2fa4Arxg",
     "Customer Retention": "8VUWyMVK2Uc",
-    "Customer Support": "8VUWyMVK2Uc",
+    "Customer Support": "MXAnRBKjqH4",
     "Loyalty Programs": "8VUWyMVK2Uc",
     "CRM Software": "8VUWyMVK2Uc",
-    "Customer Experience": "8VUWyMVK2Uc",
+    "Customer Experience": "JjQ2fa4Arxg",
     "CRM Project": "8VUWyMVK2Uc",
 
     /* ========== Module 15: Marketing Strategy & Growth ========== */
     "Marketing Planning": "RvFTNnOyWZ0",
     "Budgeting": "Yw6stObrrAI",
     "Campaign Planning": "RvFTNnOyWZ0",
-    "Product Launch Strategy": "RvFTNnOyWZ0",
+    "Product Launch Strategy": "jVgYgN0zcWs",
     "Market Expansion": "RvFTNnOyWZ0",
-    "Business Growth Strategies": "RvFTNnOyWZ0",
+    "Business Growth Strategies": "jVgYgN0zcWs",
     "Partnership Marketing": "RvFTNnOyWZ0",
     "Crisis Communication": "RvFTNnOyWZ0",
     "Marketing Leadership": "RvFTNnOyWZ0",
     "Strategic Marketing Project": "RvFTNnOyWZ0",
 
     /* ========== Module 16: Freelancing & Agency ========== */
-    "Becoming a Freelance Marketer": "qSNyTGuq7Q4",
-    "Building a Portfolio": "qSNyTGuq7Q4",
-    "Pricing Services": "qSNyTGuq7Q4",
-    "Finding Clients": "qSNyTGuq7Q4",
-    "Proposal Writing": "qSNyTGuq7Q4",
-    "Client Management": "qSNyTGuq7Q4",
+    "Becoming a Freelance Marketer": "RZnnvwnrEYs",
+    "Building a Portfolio": "RZnnvwnrEYs",
+    "Pricing Services": "RZnnvwnrEYs",
+    "Finding Clients": "RZnnvwnrEYs",
+    "Proposal Writing": "RZnnvwnrEYs",
+    "Client Management": "RZnnvwnrEYs",
     "Agency Operations": "qSNyTGuq7Q4",
-    "Service Packaging": "qSNyTGuq7Q4",
-    "Contracts & Invoicing": "qSNyTGuq7Q4",
-    "Freelancing Project": "qSNyTGuq7Q4",
+    "Service Packaging": "RZnnvwnrEYs",
+    "Contracts & Invoicing": "RZnnvwnrEYs",
+    "Freelancing Project": "RZnnvwnrEYs",
 
     /* ========== Module 17: Career Development ========== */
     "Resume Writing": "kH0Wc6NBAu0",
-    "LinkedIn Optimization": "0E-q3CpuelU",
-    "Building a Marketing Portfolio": "qSNyTGuq7Q4",
+    "LinkedIn Optimization": "PYYhJeu7gEo",
+    "Building a Marketing Portfolio": "RZnnvwnrEYs",
     "Interview Preparation": "kH0Wc6NBAu0",
-    "Professional Certifications": "kH0Wc6NBAu0",
-    "Personal Branding": "wMfo-F0Zdus",
-    "Networking": "kH0Wc6NBAu0",
-    "Career Growth Roadmap": "kH0Wc6NBAu0",
+    "Professional Certifications": "jVgYgN0zcWs",
+    "Personal Branding": "OR36eRViZkM",
+    "Networking": "Oa3MlnglIjE",
+    "Career Growth Roadmap": "PYYhJeu7gEo",
 
     /* ========== Module 18: Real-World Projects ========== */
     "Social Media Marketing Campaign": "UBI1YIuGiUs",
@@ -218,7 +218,7 @@
     "Content Marketing Strategy": "zks1MFJsyUc",
     "Website Optimization": "HEsIfihl1E0",
     "Marketing Analytics Dashboard": "cTAMNIkNveo",
-    "Product Launch Campaign": "RvFTNnOyWZ0",
+    "Product Launch Campaign": "jVgYgN0zcWs",
     "Integrated Marketing Campaign": "jVgYgN0zcWs",
 
     /* ========== Module 19: Capstone ========== */
