@@ -141,6 +141,18 @@
     startTimer();
     renderQ();
     bindNav();
+    showShortcutHint();
+  }
+
+  function showShortcutHint() {
+    if (document.getElementById('shortcutHint')) return;
+    var main = document.querySelector('.exam-main');
+    if (!main) return;
+    var d = document.createElement('div');
+    d.id = 'shortcutHint';
+    d.style.cssText = 'font-size:0.75rem;color:#5A6A7E;margin:0 0 0.75rem;padding:0.4rem 0.6rem;background:#F8FAFC;border-radius:4px';
+    d.textContent = 'Keys: 1–4 select answer · ←/P previous · →/N next · F flag · Enter review (last Q)';
+    main.insertBefore(d, main.firstChild);
   }
 
   function startFull() {
@@ -160,6 +172,7 @@
     startTimer();
     renderQ();
     bindNav();
+    showShortcutHint();
   }
 
   function startSelfCheck(kind) {
@@ -229,6 +242,61 @@
       renderQ();
     };
     document.getElementById('confirmSubmit').onclick = finishTest;
+
+    if (!window._tihKeyBound) {
+      window._tihKeyBound = true;
+      document.addEventListener('keydown', function (e) {
+        if (submitted || selfCheckMode) return;
+        var examView = document.getElementById('examView');
+        if (!examView || examView.classList.contains('hidden')) return;
+        if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+        var k = e.key;
+        if (k === 'ArrowRight' || k === 'n' || k === 'N') {
+          e.preventDefault();
+          if (current < flat.length - 1) { current++; renderQ(); }
+          else showReviewScreen();
+        } else if (k === 'ArrowLeft' || k === 'p' || k === 'P' || k === 'b' || k === 'B') {
+          e.preventDefault();
+          if (current > 0) { current--; renderQ(); }
+        } else if (k === 'f' || k === 'F') {
+          e.preventDefault();
+          flags[current] = !flags[current];
+          renderQ();
+        } else if (k >= '1' && k <= '4') {
+          e.preventDefault();
+          var idx = parseInt(k, 10) - 1;
+          var qq = flat[current];
+          if (qq && qq.opts && idx < qq.opts.length) {
+            answers[current] = idx;
+            renderQ();
+          }
+        } else if (k === 'Enter' && current >= flat.length - 1) {
+          e.preventDefault();
+          showReviewScreen();
+        }
+      });
+    }
+  }
+
+  function extractTranscript(text) {
+    var m = String(text || '').match(/transcript\)?\s*:\s*["']([^"']+)["']/i);
+    if (m) return m[1];
+    m = String(text || '').match(/(?:Recording|Conversation|Lecture|Announcement|Advisor|Professor|Student|Tutor|Librarian|TA|Officer)[^:]*:\s*["']?([^"'\n]+)/i);
+    if (m) return m[1].replace(/["']$/,'').trim();
+    var t = String(text || '').replace(/^PASSAGE[—\-].*?\n+/i,'').replace(/\n.*$/,'').trim();
+    return t.length > 20 ? t : '';
+  }
+
+  function speakText(text) {
+    if (!window.speechSynthesis) {
+      alert('Speech not supported in this browser. Read the transcript on screen.');
+      return;
+    }
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.9;
+    u.lang = 'en-US';
+    window.speechSynthesis.speak(u);
   }
 
   function renderQ() {
@@ -239,6 +307,11 @@
     var typeBadge = qq.type ? ('<span class="q-type">' + esc(qq.type) + '</span>') : '';
     var stem = qq.html ? qq.q : esc(qq.q);
     var h = typeBadge + '<div class="q-stem' + (qq.html ? ' q-html' : '') + '">' + stem + '</div>';
+    var transcript = extractTranscript(qq.q || '');
+    var isListening = /listening|detail|function|attitude/i.test(qq.type || '') || /transcript|Recording|Conversation|Lecture|Announcement/i.test(qq.q || '');
+    if (isListening && transcript) {
+      h += '<button type="button" class="btn btn-sm btn-line" id="listenBtn" style="margin:0.4rem 0 0.75rem">▶ Listen to transcript</button>';
+    }
     h += '<div class="opts">';
     (qq.opts || []).forEach(function (o, i) {
       var sel = answers[current] === i ? ' selected' : '';
@@ -246,6 +319,13 @@
     });
     h += '</div>';
     document.getElementById('qContent').innerHTML = h;
+    var listenBtn = document.getElementById('listenBtn');
+    if (listenBtn) {
+      listenBtn.onclick = function () {
+        var t = extractTranscript(flat[current].q || '');
+        if (t) speakText(t);
+      };
+    }
     document.querySelectorAll('#qContent .opt input').forEach(function (inp) {
       inp.addEventListener('change', function () {
         answers[current] = parseInt(inp.value, 10);
