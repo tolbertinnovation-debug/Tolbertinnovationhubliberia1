@@ -54,6 +54,7 @@
     document.getElementById('examEyebrow').textContent = (T.title || 'Practice Test').toUpperCase();
     document.getElementById('examTitle').textContent = T.title || 'Practice Test';
     document.getElementById('examIntro').textContent = T.intro || 'Choose a section to begin.';
+    renderProgressSummary();
     renderSectionPicker();
     if (sectionParam) {
       var found = (T.sections || []).find(function (s) { return s.id === sectionParam; });
@@ -69,6 +70,29 @@
       var raw = localStorage.getItem('tih_pt_best_' + exam + '_' + secId);
       return raw ? JSON.parse(raw) : null;
     } catch (e) { return null; }
+  }
+
+  function renderProgressSummary() {
+    var intro = document.getElementById('examIntro');
+    if (!intro) return;
+    var secs = (T.sections || []).map(function (s) { return s.id; });
+    secs.push('full');
+    var parts = [];
+    secs.forEach(function (id) {
+      var b = getBest(id);
+      if (b) {
+        var label = id === 'full' ? 'Full Test' : id.charAt(0).toUpperCase() + id.slice(1);
+        parts.push(label + ': ' + b.display);
+      }
+    });
+    var old = document.getElementById('progressSummary');
+    if (old) old.remove();
+    if (parts.length === 0) return;
+    var div = document.createElement('div');
+    div.id = 'progressSummary';
+    div.style.cssText = 'margin:0.75rem 0 0;padding:0.65rem 0.85rem;background:#F0F5FF;border:1px solid #C5D0E0;border-radius:6px;font-size:0.85rem;color:#1A2332';
+    div.innerHTML = '<strong style="color:#0B3D91">Your best scores</strong> — ' + parts.join(' · ');
+    intro.parentNode.insertBefore(div, intro.nextSibling);
   }
 
   function renderSectionPicker() {
@@ -302,7 +326,6 @@
     h += scoreLabel;
     h += '<p style="margin:.75rem 0;color:var(--exam-muted)">' + correct + ' / ' + flat.length + ' correct (' + pct + '%)</p>';
 
-    // Skill breakdown by question type
     var byType = {};
     feedback.forEach(function (f) {
       var t = f.type || 'general';
@@ -322,7 +345,6 @@
       h += '</div>';
     }
 
-    // Coaching line
     var coach = '';
     if (pct >= 85) coach = 'Excellent. Next: practise under stricter time pressure and tackle the hardest inference items.';
     else if (pct >= 70) coach = 'Strong base. Review missed inference and vocabulary questions carefully.';
@@ -341,7 +363,6 @@
     h += '<div style="margin-top:1.25rem"><a class="btn btn-primary" href="practice-test.html?exam=' + esc(exam) + '">Try another section</a></div>';
     document.getElementById('resultsPanel').innerHTML = h;
 
-    // Save best score
     try {
       var secId = (activeSection && activeSection.id) ? activeSection.id : 'full';
       var key = 'tih_pt_best_' + exam + '_' + secId;
