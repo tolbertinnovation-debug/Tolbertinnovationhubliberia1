@@ -17,16 +17,13 @@ a{color:#93c5fd}
 <script>
 (function(){
   var CDN='https://cdn.jsdelivr.net/gh/tolbertinnovation-debug/Tolbertinnovationhubliberia1@7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html';
-  var PARTS=19;
-  var VER='v=3';
+  var FULL='hub-dashboard.full.b64?v=5';
   function fail(m){var s=document.getElementById('spin');if(s)s.style.display='none';document.getElementById('msg').innerHTML=(m||'Could not load.')+' <a href="'+CDN+'">Open dashboard</a>';}
   function writeHtml(html){document.open();document.write(html);document.close();}
   function loadCdn(){return fetch(CDN,{cache:'no-store',mode:'cors'}).then(function(r){if(!r.ok)throw new Error('CDN');return r.text();}).then(writeHtml);}
-  function loadPayload(){
-    return Promise.all(Array.from({length:PARTS},function(_,i){
-      return fetch('hub-dashboard.p'+i+'.b64?'+VER,{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('p'+i);return r.text();});
-    })).then(function(parts){
-      var b64=parts.join('').replace(/\s+/g,'');
+  function loadFull(){
+    return fetch(FULL,{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('full');return r.text();}).then(function(b64){
+      b64=b64.replace(/\s+/g,'');
       if(b64.length<1000)throw new Error('short');
       var bin=atob(b64),bytes=new Uint8Array(bin.length);
       for(var i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
@@ -34,7 +31,7 @@ a{color:#93c5fd}
       return new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
     }).then(function(buf){writeHtml(new TextDecoder().decode(buf));});
   }
-  loadPayload().catch(function(){return loadCdn();}).catch(function(e){fail(e&&e.message);});
+  loadFull().catch(function(){return loadCdn();}).catch(function(e){fail(e&&e.message);});
 })();
 </script>
 </body>
