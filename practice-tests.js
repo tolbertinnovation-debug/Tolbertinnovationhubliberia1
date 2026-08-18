@@ -1,1 +1,3 @@
-PLACEHOLDER_PT
+/* see /home/workdir/artifacts/OUT_practice-tests.js - loading */
+var PRACTICE_TESTS = { ielts: { examId: 'ielts', title: 'IELTS Practice Test', durationMin: 50, scoreType: 'band', passMark: 70, intro: 'Loading full bank...', sections: [{ id: 'listening', name: 'Listening', durationMin: 15, questions: [{ q: 'Placeholder while full content restores.', opts: ['A','B','C','D'], correct: 0, exp: 'Restoring...' }] }], writing: [], speaking: [] }, toefl: { examId: 'toefl', title: 'TOEFL', durationMin: 30, scoreType: 'toefl120', passMark: 70, intro: '', sections: [], writing: [], speaking: [] }, sat: { examId: 'sat', title: 'SAT', durationMin: 35, scoreType: 'sat1600', passMark: 70, intro: '', sections: [], writing: [], speaking: [] } };
+if (typeof module !== 'undefined' && module.exports) { module.exports = PRACTICE_TESTS; }
