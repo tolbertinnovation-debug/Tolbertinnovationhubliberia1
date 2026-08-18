@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Dashboard | TIH Learning Hub</title>
-  <meta http-equiv="refresh" content="0;url=https://raw.githubusercontent.com/tolbertinnovation-debug/Tolbertinnovationhubliberia1/7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html">
-  <p>Restoring dashboard… If this persists, contact TIH support.</p>
+  <style>body{font-family:system-ui,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#0B1F3A;color:#fff}p{opacity:.8}</style>
+</head>
+<body>
+  <p id="msg">Loading Learning Hub dashboard…</p>
+  <script>
+  (function () {
+    var SRC = 'https://cdn.jsdelivr.net/gh/tolbertinnovation-debug/Tolbertinnovationhubliberia1@7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html';
+    fetch(SRC, { cache: 'no-store' }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.text();
+    }).then(function (html) {
+      document.open();
+      document.write(html);
+      document.close();
+    }).catch(function (err) {
+      document.getElementById('msg').textContent = 'Could not load dashboard. Please refresh or contact TIH support. (' + err.message + ')';
+    });
+  })();
+  </script>
+</body>
 </html>
