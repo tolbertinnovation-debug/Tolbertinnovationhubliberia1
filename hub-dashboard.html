@@ -16,44 +16,24 @@ a{color:#93c5fd}
 <div class="box"><div class="spin" id="spin"></div><p id="msg">Loading Learning Hub dashboard…</p></div>
 <script>
 (function(){
-  var CDN = 'https://cdn.jsdelivr.net/gh/tolbertinnovation-debug/Tolbertinnovationhubliberia1@7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html';
-  function fail(m){
-    var s=document.getElementById('spin'); if(s)s.style.display='none';
-    document.getElementById('msg').innerHTML = (m||'Could not load dashboard.') +
-      ' <a href="'+CDN+'">Open dashboard</a>';
-  }
-  function writeHtml(html){ document.open(); document.write(html); document.close(); }
-  function loadCdn(){
-    return fetch(CDN,{cache:'no-store',mode:'cors'}).then(function(r){
-      if(!r.ok) throw new Error('CDN HTTP '+r.status);
-      return r.text();
-    }).then(writeHtml);
-  }
+  var CDN='https://cdn.jsdelivr.net/gh/tolbertinnovation-debug/Tolbertinnovationhubliberia1@7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html';
+  var PARTS=17;
+  function fail(m){var s=document.getElementById('spin');if(s)s.style.display='none';document.getElementById('msg').innerHTML=(m||'Could not load.')+' <a href="'+CDN+'">Open dashboard</a>';}
+  function writeHtml(html){document.open();document.write(html);document.close();}
+  function loadCdn(){return fetch(CDN,{cache:'no-store',mode:'cors'}).then(function(r){if(!r.ok)throw new Error('CDN');return r.text();}).then(writeHtml);}
   function loadPayload(){
-    var PARTS=5;
     return Promise.all(Array.from({length:PARTS},function(_,i){
-      return fetch('hub-dashboard.payload.'+i+'.b64?v=2',{cache:'no-store'}).then(function(r){
-        if(!r.ok) throw new Error('part '+i);
-        return r.text();
-      });
+      return fetch('hub-dashboard.p'+i+'.b64?v=3',{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('p'+i);return r.text();});
     })).then(function(parts){
       var b64=parts.join('').replace(/\s+/g,'');
-      if(b64.indexOf('PLACEHOLDER')===0 || b64.length < 1000) throw new Error('payload not ready');
-      var bin=atob(b64), bytes=new Uint8Array(bin.length);
-      for(var i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
-      if(typeof DecompressionStream==='undefined') throw new Error('no DecompressionStream');
-      var ds=new DecompressionStream('gzip');
-      var stream=new Blob([bytes]).stream().pipeThrough(ds);
-      return new Response(stream).arrayBuffer();
-    }).then(function(buf){
-      writeHtml(new TextDecoder().decode(buf));
-    });
+      if(b64.length<1000)throw new Error('short');
+      var bin=atob(b64),bytes=new Uint8Array(bin.length);
+      for(var i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+      if(typeof DecompressionStream==='undefined')throw new Error('browser');
+      return new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+    }).then(function(buf){writeHtml(new TextDecoder().decode(buf));});
   }
-  loadPayload().catch(function(){
-    return loadCdn();
-  }).catch(function(e){
-    fail('Load error: '+(e&&e.message));
-  });
+  loadPayload().catch(function(){return loadCdn();}).catch(function(e){fail(e&&e.message);});
 })();
 </script>
 </body>
