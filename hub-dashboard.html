@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Dashboard | TIH Learning Hub</title>
-  <style>body{font-family:system-ui,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#0B1F3A;color:#fff}p{opacity:.8}</style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Dashboard | TIH Learning Hub</title>
 </head>
 <body>
-  <p id="msg">Loading Learning Hub dashboard…</p>
-  <script>
-  (function () {
-    var SRC = 'https://cdn.jsdelivr.net/gh/tolbertinnovation-debug/Tolbertinnovationhubliberia1@7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html';
-    fetch(SRC, { cache: 'no-store' }).then(function (r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.text();
-    }).then(function (html) {
-      document.open();
-      document.write(html);
-      document.close();
-    }).catch(function (err) {
-      document.getElementById('msg').textContent = 'Could not load dashboard. Please refresh or contact TIH support. (' + err.message + ')';
-    });
-  })();
-  </script>
+<p style="font-family:system-ui;text-align:center;margin-top:3rem;color:#64748b">Loading dashboard…</p>
+<script src="hub-dashboard.chunk.0.js?v=1"></script>
+<script src="hub-dashboard.chunk.1.js?v=1"></script>
+<script src="hub-dashboard.chunk.2.js?v=1"></script>
+<script src="hub-dashboard.chunk.3.js?v=1"></script>
+<script src="hub-dashboard.chunk.4.js?v=1"></script>
+<script src="hub-dashboard.chunk.5.js?v=1"></script>
+<script src="hub-dashboard.chunk.6.js?v=1"></script>
+<script src="hub-dashboard.chunk.7.js?v=1"></script>
+<script>
+(function(){
+  var c = window.TIH_HD_CHUNKS || [];
+  var html = '';
+  for (var i = 0; i < c.length; i++) {
+    if (typeof c[i] !== 'string') { document.body.innerHTML = '<p style="color:red;text-align:center;margin-top:3rem">Dashboard failed to load (missing chunk ' + i + ').</p>'; return; }
+    html += c[i];
+  }
+  document.open();
+  document.write(html);
+  document.close();
+})();
+</script>
 </body>
 </html>
