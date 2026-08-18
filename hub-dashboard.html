@@ -6,35 +6,54 @@
 <title>My Dashboard | TIH Learning Hub</title>
 <style>
 body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif;background:#0B1F3A;color:#e2e8f0}
-.box{text-align:center;padding:2rem}
+.box{text-align:center;padding:2rem;max-width:420px}
 .spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.2);border-top-color:#E31E24;border-radius:50%;margin:0 auto 1rem;animation:s .8s linear infinite}
 @keyframes s{to{transform:rotate(360deg)}}
+a{color:#93c5fd}
 </style>
 </head>
 <body>
 <div class="box"><div class="spin" id="spin"></div><p id="msg">Loading Learning Hub dashboard…</p></div>
 <script>
 (function(){
-  var PARTS = 5;
-  function fail(m){var s=document.getElementById('spin');if(s)s.style.display='none';document.getElementById('msg').textContent=m||'Could not load dashboard.';}
-  Promise.all(Array.from({length:PARTS},function(_,i){
-    return fetch('hub-dashboard.payload.'+i+'.b64?v=1',{cache:'no-store'}).then(function(r){
-      if(!r.ok)throw new Error('part '+i+' HTTP '+r.status);
+  var CDN = 'https://cdn.jsdelivr.net/gh/tolbertinnovation-debug/Tolbertinnovationhubliberia1@7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html';
+  function fail(m){
+    var s=document.getElementById('spin'); if(s)s.style.display='none';
+    document.getElementById('msg').innerHTML = (m||'Could not load dashboard.') +
+      ' <a href="'+CDN+'">Open dashboard</a>';
+  }
+  function writeHtml(html){ document.open(); document.write(html); document.close(); }
+  function loadCdn(){
+    return fetch(CDN,{cache:'no-store',mode:'cors'}).then(function(r){
+      if(!r.ok) throw new Error('CDN HTTP '+r.status);
       return r.text();
+    }).then(writeHtml);
+  }
+  function loadPayload(){
+    var PARTS=5;
+    return Promise.all(Array.from({length:PARTS},function(_,i){
+      return fetch('hub-dashboard.payload.'+i+'.b64?v=2',{cache:'no-store'}).then(function(r){
+        if(!r.ok) throw new Error('part '+i);
+        return r.text();
+      });
+    })).then(function(parts){
+      var b64=parts.join('').replace(/\s+/g,'');
+      if(b64.indexOf('PLACEHOLDER')===0 || b64.length < 1000) throw new Error('payload not ready');
+      var bin=atob(b64), bytes=new Uint8Array(bin.length);
+      for(var i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
+      if(typeof DecompressionStream==='undefined') throw new Error('no DecompressionStream');
+      var ds=new DecompressionStream('gzip');
+      var stream=new Blob([bytes]).stream().pipeThrough(ds);
+      return new Response(stream).arrayBuffer();
+    }).then(function(buf){
+      writeHtml(new TextDecoder().decode(buf));
     });
-  })).then(function(parts){
-    var b64=parts.join('').replace(/\s+/g,'');
-    var bin=atob(b64),bytes=new Uint8Array(bin.length);
-    for(var i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
-    if(typeof DecompressionStream==='undefined'){fail('Please use Chrome, Edge, Firefox, or Safari.');return;}
-    var ds=new DecompressionStream('gzip');
-    var stream=new Blob([bytes]).stream().pipeThrough(ds);
-    return new Response(stream).arrayBuffer();
-  }).then(function(buf){
-    if(!buf)return;
-    var html=new TextDecoder().decode(buf);
-    document.open();document.write(html);document.close();
-  }).catch(function(e){fail('Load error: '+(e&&e.message));});
+  }
+  loadPayload().catch(function(){
+    return loadCdn();
+  }).catch(function(e){
+    fail('Load error: '+(e&&e.message));
+  });
 })();
 </script>
 </body>
