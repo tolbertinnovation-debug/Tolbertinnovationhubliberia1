@@ -1,8 +1,8 @@
-/* TIH Healthcare Technology & Telehealth: loader + formal notes for ALL modules. */
+/* TIH Healthcare Technology & Telehealth: formal notes ALL modules + deep IoMT security. */
 (function () {
   if (typeof COURSES_DB === 'undefined') return;
   var CID = 'healthtech';
-  if (COURSES_DB[CID] && COURSES_DB[CID]._htFullBuilt && COURSES_DB[CID]._htAllNotes) return;
+  if (COURSES_DB[CID] && COURSES_DB[CID]._htFullBuilt && COURSES_DB[CID]._htIoMTDeep) return;
 
   var BETTER_VIDEOS = {
     intro: ['sKivn2q4DBc', 't7GB8CG4EoE', 'XCgwfv0DUoc', 'i-SRBFzJvV0'],
@@ -57,7 +57,7 @@
     'Artificial Intelligence in Healthcare': 'Artificial intelligence in healthcare is the use of algorithms that learn from data to support tasks such as image analysis, risk prediction, triage, and administrative automation.',
     'AI Clinical Decision Support': 'AI clinical decision support applies machine learning or similar methods to suggest diagnoses, alerts, or treatment options that a qualified clinician must still verify.',
     'Wearable Health Devices': 'Wearable health devices are sensors worn by patients that measure metrics such as heart rate, activity, or glucose and can share data with care teams.',
-    'Internet of Medical Things (IoMT)': 'The Internet of Medical Things is the network of connected medical devices and sensors that collect and exchange health data for monitoring and care.',
+    'Internet of Medical Things (IoMT)': 'The Internet of Medical Things (IoMT) is the network of connected medical devices and sensors—including wearables, monitors, infusion pumps, imaging systems, and home-care equipment—that collect and exchange health data for monitoring, diagnosis support, and care delivery.',
     'Robotics in Healthcare': 'Robotics in healthcare includes machines that assist surgery, logistics, rehabilitation, or disinfection under human supervision.',
     'Future Trends in Digital Health': 'Future trends in digital health include wider telehealth, AI-assisted care, home-based monitoring, interoperable records, and patient-facing digital tools.',
     'Healthcare Administration Basics': 'Healthcare administration is the management of operations, staff, resources, and compliance so that a facility can deliver care efficiently and safely.',
@@ -74,13 +74,27 @@
     'Introduction to EHR': '<p>EHRs store demographics, problems, medications, allergies, notes, labs, and imaging in a shareable digital form. Benefits include legibility, availability, and decision support. Risks include data entry burden and privacy breaches if access is poorly controlled.</p>',
     'Telemedicine Fundamentals': '<p>Telemedicine focuses on clinical services at a distance. Modalities include real-time video, audio-only where allowed, and store-and-forward (e.g. images reviewed later). Licensing, reimbursement, and privacy rules vary by jurisdiction and must be followed.</p>',
     'Virtual Consultations': '<p>Prepare the environment: private space, tested audio/video, verified identity, and documented consent. Confirm what can and cannot be assessed remotely. Document the encounter and arrange in-person follow-up when needed.</p>',
-    'Remote Patient Monitoring': '<p>Devices measure blood pressure, glucose, weight, or oxygen and send data to the care team. RPM supports chronic disease management when thresholds, alerts, and response protocols are clear. Patient training and data quality matter.</p>',
-    'Patient Data Protection': '<p>Health data is highly sensitive. Protect it with access controls, encryption, staff training, and need-to-know sharing. Never use real patient data in training exercises. Report suspected breaches according to policy and law.</p>',
-    'Cybersecurity in Healthcare': '<p>Healthcare is a frequent target for ransomware and phishing. Defences include strong authentication, patching, backups, network segmentation, and continuous staff awareness. One compromised account can expose many records.</p>',
+    'Remote Patient Monitoring': '<p>Devices measure blood pressure, glucose, weight, or oxygen and send data to the care team. RPM supports chronic disease management when thresholds, alerts, and response protocols are clear. Patient training and data quality matter. RPM devices are part of the broader IoMT and must be secured like other connected medical devices.</p>',
+    'Patient Data Protection': '<p>Health data is highly sensitive. Protect it with access controls, encryption, staff training, and need-to-know sharing. Never use real patient data in training exercises. Report suspected breaches according to policy and law. Connected devices that hold or transmit patient data extend the same duty of protection to the device and its network path.</p>',
+    'Cybersecurity in Healthcare': '<p>Healthcare is a frequent target for ransomware and phishing. Defences include strong authentication, patching, backups, network segmentation, and continuous staff awareness. One compromised account or device can expose many records or disrupt care. IoMT devices often share networks with IT systems; isolating them reduces the blast radius of an incident.</p>',
+    'Password & Access Management': '<p>Use unique accounts, strong passwords, and multi-factor authentication where possible. Never share logins. Apply least privilege so staff and devices only access what they need. Default or hardcoded passwords on medical devices are a major risk and must be changed at deployment.</p>',
+    'Secure Data Sharing': '<p>Share health information only through authorised, encrypted channels and only with those who need it for care. Avoid consumer messaging apps for clinical data unless the facility has approved a secure solution. Document disclosures according to policy.</p>',
+    'Data Backup & Recovery': '<p>Regular, tested backups protect against ransomware, hardware failure, and accidental deletion. Recovery plans should prioritise systems that affect patient safety. Know how long restoration takes and what manual workarounds apply during downtime.</p>',
+    'Ethical Use of Health Data': '<p>Process data lawfully, for legitimate care or approved research, with consent where required. Avoid secondary uses that patients would not expect. Fairness matters when algorithms or analytics influence care decisions.</p>',
     'Clinical Decision Support Systems': '<p>CDSS may flag allergies, suggest dosing, or highlight abnormal results. Alerts should be relevant and not excessive. Clinicians remain accountable for final decisions; CDSS supports, it does not replace, professional judgement.</p>',
     'Interoperability': '<p>When systems cannot exchange data, care is fragmented and tests are repeated. Standards and interfaces allow labs, pharmacies, and clinics to share information securely. True interoperability requires both technical links and agreed meaning of data.</p>',
     'Artificial Intelligence in Healthcare': '<p>AI can assist with imaging, risk scores, and workflow automation. Models reflect their training data and can be biased or wrong. Use AI with validation, human oversight, and clear accountability for patient safety.</p>',
-    'Healthcare Ethics': '<p>Respect patient autonomy (consent and choice), promote benefit, avoid harm, and treat people fairly. Technology decisions—who gets access, how data is used—must align with these principles and with applicable law.</p>'
+    'Healthcare Ethics': '<p>Respect patient autonomy (consent and choice), promote benefit, avoid harm, and treat people fairly. Technology decisions—who gets access, how data is used—must align with these principles and with applicable law.</p>',
+    'Wearable Health Devices': '<p>Wearables measure activity, heart rate, sleep, or glucose and may sync to phones or clinical platforms. They improve engagement and remote monitoring but introduce privacy and security questions: who owns the data, how it is encrypted, and whether the device can be updated. Treat clinical-grade wearables as IoMT assets with appropriate access control and patching.</p>',
+    'Internet of Medical Things (IoMT)':
+      '<p>IoMT includes wearables, bedside monitors, infusion pumps, imaging systems, implantable devices, and home-care sensors that connect to networks to exchange health data. Connectivity enables continuous monitoring and remote care, but it also creates cybersecurity and patient-safety risks that traditional IT security alone does not fully address.</p>' +
+      '<p><strong>Why IoMT security is different:</strong> Compromised devices can affect therapy (dose, stimulation, alarms), not only data confidentiality. Many devices have limited CPU, memory, and battery, making strong security hard. They often remain in service for years on outdated software. Home and bedside placement increases physical access risk. Flat networks allow a weak device to become a path into hospital systems.</p>' +
+      '<p><strong>Main threats:</strong> (1) Device-level — default/hardcoded passwords, insecure firmware updates, physical tampering, battery-drain attacks, rogue devices. (2) Network — unencrypted traffic, lateral movement, weak remote access. (3) Data — unauthorised access, interception of vitals or commands. (4) Supply chain — compromised components, missing Software Bill of Materials (SBOM), end-of-life devices without patches. (5) Clinical impact — altered readings, ransomware downtime, delayed care.</p>' +
+      '<p><strong>Core controls:</strong> Full inventory of connected devices; network micro-segmentation (isolate IoMT from general IT); change all default credentials; unique identity and least privilege; managed firmware updates; disable unused ports; encrypt data in transit; monitor for anomalous behaviour; demand SBOM and security commitments from vendors; staff training and patient-safety–aware incident plans. Prefer devices designed with secure boot and signed updates where available.</p>' +
+      '<p><strong>Practical checklist:</strong> Know every connected medical device; segment the network; eliminate default passwords; patch on a controlled schedule; encrypt traffic; monitor behaviour; require vendor security evidence; train staff; use sample data only in training. Align with facility policy and applicable regulation (e.g. medical device cybersecurity guidance in your jurisdiction).</p>' +
+      '<p>This course is educational and is not medical advice. Security decisions for real devices must follow facility policy, manufacturer instructions, and professional/regulatory requirements.</p>',
+    'EHR Privacy & Security':
+      '<p>EHR systems hold comprehensive patient histories. Protect them with role-based access, audit logs, encryption, and session timeouts. Staff must not share passwords or leave sessions open. Physical access to workstations and removable media also matters. Breaches can harm patients and trigger legal and regulatory consequences.</p>'
   };
 
   function esc(v) {
@@ -92,6 +106,7 @@
   function formalNote(moduleTitle, name) {
     var def = TOPIC_DEF[name] || (name + ' is an essential concept within healthcare technology and telehealth practice that every professional should understand thoroughly.');
     var deep = DEEP_BODY[name] || ('<p>In professional digital healthcare, <strong>' + esc(name) + '</strong> supports safer, more accessible, and more efficient care when applied with privacy, ethics, and clinical accountability.</p><p>This course is educational and is not medical advice. Always follow facility policy, professional guidelines, and privacy law. Use sample data only in practice.</p>');
+    var isIoMT = (name === 'Internet of Medical Things (IoMT)');
     return '<div class="study-note">' +
       '<div class="revision-banner"><strong>Healthcare Technology & Telehealth · ' + esc(moduleTitle) + '</strong><span>Formal Study Note</span></div>' +
       '<h3>' + esc(name) + '</h3>' +
@@ -99,31 +114,37 @@
       '<h4>2. Detailed Explanation</h4>' + deep +
       '<h4>3. Why This Topic Matters</h4><ul>' +
       '<li>Digital tools shape access, quality, and safety of care.</li>' +
-      '<li>Privacy and ethics are non-negotiable when handling health data.</li>' +
-      '<li>Well-designed workflows reduce errors and improve patient experience.</li>' +
+      '<li>Privacy and cybersecurity are non-negotiable when handling health data and connected devices.</li>' +
+      '<li>Well-designed workflows and network controls reduce errors and limit the impact of incidents.</li>' +
       '<li>Skills transfer across clinics, hospitals, telehealth programmes, and health IT roles.</li></ul>' +
       '<h4>4. Key Concepts</h4><ul>' +
       '<li>Definition and scope of <em>' + esc(name) + '</em>.</li>' +
       '<li>Links to patient safety, privacy, and care quality.</li>' +
-      '<li>Tools, standards, and workflows used in practice.</li>' +
+      (isIoMT ? '<li>Threat categories: device, network, data, supply chain, clinical impact.</li><li>Controls: inventory, segmentation, credentials, updates, encryption, monitoring, vendor requirements.</li>' : '<li>Tools, standards, and workflows used in practice.</li>') +
       '<li>Practical application with sample (non-real) data only.</li>' +
       '<li>Common errors that risk privacy, safety, or compliance.</li></ul>' +
       '<h4>5. Practical Application</h4>' +
-      '<p>After the video, apply <strong>' + esc(name) + '</strong> in a simulation using fictional patient data only. Document steps and privacy safeguards.</p>' +
-      '<div class="study-callout"><strong>TIH practice task:</strong> Apply <em>' + esc(name) + '</em> to a realistic clinic or telehealth scenario with sample data only. Never use real patient data.</div>' +
+      '<p>After the video, apply <strong>' + esc(name) + '</strong> in a simulation using fictional patient data only. Document steps and privacy/security safeguards.</p>' +
+      '<div class="study-callout"><strong>TIH practice task:</strong> ' +
+      (isIoMT
+        ? 'List three IoMT device types that might appear in a Liberian clinic or hospital, note one security risk for each, and propose one practical control (e.g. change default password, isolate on a separate network). Use sample scenarios only—never real patient or facility credentials.'
+        : 'Apply <em>' + esc(name) + '</em> to a realistic clinic or telehealth scenario with sample data only. Never use real patient data.') +
+      '</div>' +
       '<h4>6. Common Mistakes</h4><ul>' +
       '<li>Using real patient data in training or demos.</li>' +
+      '<li>Leaving default passwords on devices or sharing staff logins.</li>' +
+      '<li>Connecting medical devices to flat, unsegmented networks.</li>' +
       '<li>Skipping identity verification, consent, or private settings in telehealth.</li>' +
-      '<li>Sharing logins or ignoring least-privilege access.</li>' +
-      '<li>Treating AI or decision support as a substitute for clinical judgement.</li></ul>' +
+      '<li>Treating AI or decision support as a substitute for clinical judgement.</li>' +
+      '<li>Ignoring vendor end-of-support dates for connected equipment.</li></ul>' +
       '<h4>7. Summary</h4>' +
-      '<p><strong>' + esc(name) + '</strong> is foundational for healthcare technology practice. Mastery supports the Complete Healthcare Technology & Telehealth Professional Certificate—always within ethics, privacy, and professional standards.</p>' +
+      '<p><strong>' + esc(name) + '</strong> is foundational for healthcare technology practice. Mastery supports the Complete Healthcare Technology & Telehealth Professional Certificate—always within ethics, privacy, cybersecurity, and professional standards.</p>' +
       '<h4>8. Study Actions</h4><ol>' +
-      '<li>Watch the video and note tools, workflows, and privacy points.</li>' +
+      '<li>Watch the video and note tools, workflows, threats, and controls.</li>' +
       '<li>Write the definition in your own words.</li>' +
-      '<li>Complete exercises with sample data only.</li>' +
+      '<li>Complete the practice task with sample data only.</li>' +
       '<li>Take the practice quiz that follows this lesson.</li></ol>' +
-      '<div class="study-callout"><strong>Important:</strong> This course is educational and is not medical advice. Follow facility policy, privacy law, and clinical guidelines.</div>' +
+      '<div class="study-callout"><strong>Important:</strong> This course is educational and is not medical advice. Follow facility policy, privacy law, manufacturer guidance, and clinical guidelines for any real system or device.</div>' +
       '<p><strong>Module context:</strong> This lesson belongs to <em>' + esc(moduleTitle) + '</em>.</p></div>';
   }
 
@@ -167,7 +188,8 @@
     });
 
     course._htAllNotes = true;
-    console.log('[HEALTHTECH] Formal notes applied for ALL modules');
+    course._htIoMTDeep = true;
+    console.log('[HEALTHTECH] Deep IoMT security notes + Module 6-7 security expansions applied');
   }
 
   function loadAndEnhance() {
@@ -175,7 +197,7 @@
     s.src = 'https://cdn.jsdelivr.net/gh/tolbertinnovation-debug/Tolbertinnovationhubliberia1@17b8ccf2b6be305143484f91230590cafc608858/healthtech-curriculum.js';
     s.onload = function () {
       try { applyEnhancements(); } catch (e) { console.warn('[HEALTHTECH] enhance', e); }
-      console.log('[HEALTHTECH] Full curriculum + all-module formal notes ready');
+      console.log('[HEALTHTECH] Full curriculum + IoMT deep notes ready');
     };
     s.onerror = function () { console.error('[HEALTHTECH] CDN load failed'); };
     document.head.appendChild(s);
