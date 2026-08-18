@@ -64,14 +64,23 @@
     }
   }
 
+  function getBest(secId) {
+    try {
+      var raw = localStorage.getItem('tih_pt_best_' + exam + '_' + secId);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+
   function renderSectionPicker() {
     var grid = document.getElementById('secGrid');
     var h = '';
     (T.sections || []).forEach(function (s) {
       var n = (s.questions || []).length;
+      var best = getBest(s.id);
+      var bestLine = best ? (' · Best ' + best.display) : '';
       h += '<button class="sec-card" data-id="' + esc(s.id) + '">';
       h += '<h4>' + esc(s.name) + '</h4>';
-      h += '<p>' + n + ' Q · ' + (s.durationMin || 15) + ' min</p></button>';
+      h += '<p>' + n + ' Q · ' + (s.durationMin || 15) + ' min' + bestLine + '</p></button>';
     });
     if (T.writing && T.writing.length) {
       h += '<button class="sec-card" data-id="writing"><h4>Writing</h4><p>Self-check · models</p></button>';
@@ -292,6 +301,35 @@
     var h = '<div class="eyebrow">Results</div><h2 style="font-family:Poppins;color:var(--exam-blue)">' + esc(activeSection.name) + '</h2>';
     h += scoreLabel;
     h += '<p style="margin:.75rem 0;color:var(--exam-muted)">' + correct + ' / ' + flat.length + ' correct (' + pct + '%)</p>';
+
+    // Skill breakdown by question type
+    var byType = {};
+    feedback.forEach(function (f) {
+      var t = f.type || 'general';
+      if (!byType[t]) byType[t] = { ok: 0, total: 0 };
+      byType[t].total++;
+      if (f.ok) byType[t].ok++;
+    });
+    var typeKeys = Object.keys(byType);
+    if (typeKeys.length > 1) {
+      h += '<h3 style="margin:1rem 0 .4rem;font-size:1rem">Skill breakdown</h3>';
+      h += '<div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.75rem">';
+      typeKeys.forEach(function (t) {
+        var b = byType[t];
+        var p = Math.round((b.ok / b.total) * 100);
+        h += '<span style="font-size:.78rem;background:#E8EDF5;padding:.25rem .55rem;border-radius:4px">' + esc(t) + ': ' + b.ok + '/' + b.total + ' (' + p + '%)</span>';
+      });
+      h += '</div>';
+    }
+
+    // Coaching line
+    var coach = '';
+    if (pct >= 85) coach = 'Excellent. Next: practise under stricter time pressure and tackle the hardest inference items.';
+    else if (pct >= 70) coach = 'Strong base. Review missed inference and vocabulary questions carefully.';
+    else if (pct >= 55) coach = 'Solid foundation. Prioritise factual and main-idea questions, then add inference.';
+    else coach = 'Keep going section by section. Master factual detail first, then move to inference and attitude.';
+    h += '<p style="font-size:.9rem;color:var(--exam-muted);margin:.5rem 0 1rem">' + coach + '</p>';
+
     h += '<h3 style="margin:1rem 0 .5rem;font-size:1rem">Question feedback</h3>';
     feedback.forEach(function (f) {
       h += '<div class="feedback-item ' + (f.ok ? 'correct' : 'wrong') + '">';
@@ -302,6 +340,17 @@
     });
     h += '<div style="margin-top:1.25rem"><a class="btn btn-primary" href="practice-test.html?exam=' + esc(exam) + '">Try another section</a></div>';
     document.getElementById('resultsPanel').innerHTML = h;
+
+    // Save best score
+    try {
+      var secId = (activeSection && activeSection.id) ? activeSection.id : 'full';
+      var key = 'tih_pt_best_' + exam + '_' + secId;
+      var prev = null;
+      try { prev = JSON.parse(localStorage.getItem(key)); } catch (e) {}
+      var display = (T.scoreType === 'band') ? pctToBand(pct) : (T.scoreType === 'toefl120' ? (Math.round(pct * 1.2) + '/120') : (pct + '%'));
+      var cur = { pct: pct, display: display, at: new Date().toISOString() };
+      if (!prev || cur.pct > prev.pct) localStorage.setItem(key, JSON.stringify(cur));
+    } catch (e) {}
   }
 
   function pctToBand(pct) {
@@ -323,6 +372,7 @@
     items.forEach(function (s, i) {
       h += '<div class="panel" style="margin-top:1rem">';
       h += '<h4 style="color:var(--exam-blue)">Task ' + (i + 1) + '</h4>';
+      if (s.chartHtml) h += s.chartHtml;
       h += '<p style="white-space:pre-wrap;margin:.5rem 0">' + esc(s.prompt) + '</p>';
       if (s.checklist) {
         h += '<ul style="margin:.4rem 0 .6rem 1.1rem;font-size:.88rem">';
