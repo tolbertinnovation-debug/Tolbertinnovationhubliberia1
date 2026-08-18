@@ -1,180 +1,183 @@
-/* TIH Complete Digital Marketing Professional Certificate — one educational YouTube video per topic.
-   Course id: marketing. */
+/* TIH Complete Digital Marketing Professional Certificate — unique educational YouTube video per topic.
+   Course id: marketing.
+   Sources: HubSpot, Google Analytics, Neil Patel, Rank Math, WsCube Tech, Shopify, and other trusted education channels.
+   Each content topic has its own video so Next/Previous advances to a different lesson video. */
 (function () {
   if (typeof COURSES_DB === 'undefined' || !COURSES_DB.marketing || !COURSES_DB.marketing.modules) return;
   var MAP = {
-    /* Module 1 */
-    "Welcome to the Course": "cZ-5phWZujI",
-    "What is Digital Marketing?": "cZ-5phWZujI",
-    "Career Opportunities in Digital Marketing": "cZ-5phWZujI",
-    "Types of Digital Marketing": "cZ-5phWZujI",
-    "Digital Marketing Trends": "cZ-5phWZujI",
-    "Course Roadmap": "cZ-5phWZujI",
-    "Setting Learning Goals": "cZ-5phWZujI",
+    /* ========== Module 1: Course Orientation ========== */
+    "Welcome to the Course": "YhK_PGhdPe8",
+    "What is Digital Marketing?": "YhK_PGhdPe8",
+    "Career Opportunities in Digital Marketing": "jVgYgN0zcWs",
+    "Types of Digital Marketing": "nkNHn0VqVBA",
+    "Digital Marketing Trends": "KEnCy4bQR3Y",
+    "Course Roadmap": "jVgYgN0zcWs",
+    "Setting Learning Goals": "YhK_PGhdPe8",
     "Final Capstone Project": "0VtSDWsqJbM",
-    "Certificate Requirements": "cZ-5phWZujI",
+    "Certificate Requirements": "YhK_PGhdPe8",
 
-    /* Module 2 */
+    /* ========== Module 2: Marketing Fundamentals ========== */
     "Principles of Marketing": "avE-uvLPSN4",
-    "Consumer Behavior": "avE-uvLPSN4",
-    "Target Audience Identification": "avE-uvLPSN4",
-    "Market Research": "avE-uvLPSN4",
+    "Consumer Behavior": "5UKSqXmvJP0",
+    "Target Audience Identification": "y6Gk8gwda84",
+    "Market Research": "ZHZ2d271UFo",
     "Competitor Analysis": "avE-uvLPSN4",
     "Branding Fundamentals": "wMfo-F0Zdus",
-    "Customer Journey": "avE-uvLPSN4",
-    "Marketing Funnel": "avE-uvLPSN4",
+    "Customer Journey": "JjQ2fa4Arxg",
+    "Marketing Funnel": "YR0iITd5md0",
     "Value Proposition": "avE-uvLPSN4",
-    "Marketing Strategy": "avE-uvLPSN4",
+    "Marketing Strategy": "RvFTNnOyWZ0",
 
-    /* Module 3 */
+    /* ========== Module 3: Branding & Content Strategy ========== */
     "Building a Brand": "wMfo-F0Zdus",
     "Brand Identity": "wMfo-F0Zdus",
-    "Brand Positioning": "wMfo-F0Zdus",
-    "Brand Storytelling": "wMfo-F0Zdus",
+    "Brand Positioning": "jDAqIFdjMFU",
+    "Brand Storytelling": "zrXLEQ7mlco",
     "Content Marketing Strategy": "dKH77jn8vZA",
-    "Content Planning": "dKH77jn8vZA",
+    "Content Planning": "zks1MFJsyUc",
     "Editorial Calendars": "dKH77jn8vZA",
-    "Content Repurposing": "dKH77jn8vZA",
-    "Content Distribution": "dKH77jn8vZA",
+    "Content Repurposing": "cJbKV2_B-xc",
+    "Content Distribution": "zks1MFJsyUc",
     "Brand Management Project": "wMfo-F0Zdus",
 
-    /* Module 4 */
+    /* ========== Module 4: Social Media Marketing ========== */
     "Introduction to Social Media Marketing": "oG6HXDpsu9o",
     "Facebook Marketing": "oG6HXDpsu9o",
-    "Instagram Marketing": "oG6HXDpsu9o",
-    "LinkedIn Marketing": "oG6HXDpsu9o",
+    "Instagram Marketing": "gpredwdvi5k",
+    "LinkedIn Marketing": "gpredwdvi5k",
     "X (Twitter) Marketing": "oG6HXDpsu9o",
-    "TikTok Marketing": "oG6HXDpsu9o",
+    "TikTok Marketing": "gpredwdvi5k",
     "YouTube Marketing": "oG6HXDpsu9o",
     "WhatsApp Business": "oG6HXDpsu9o",
-    "Social Media Content Planning": "oG6HXDpsu9o",
+    "Social Media Content Planning": "so_J2lTejIA",
     "Community Management": "oG6HXDpsu9o",
     "Influencer Marketing": "oG6HXDpsu9o",
     "Social Media Analytics": "oG6HXDpsu9o",
     "Social Media Campaign Project": "oG6HXDpsu9o",
 
-    /* Module 5 */
-    "Introduction to SEO": "xsVTqzratPs",
-    "Keyword Research": "xsVTqzratPs",
-    "On-Page SEO": "xsVTqzratPs",
-    "Off-Page SEO": "xsVTqzratPs",
-    "Technical SEO": "xsVTqzratPs",
-    "Local SEO": "xsVTqzratPs",
-    "SEO Tools": "xsVTqzratPs",
-    "Content Optimization": "xsVTqzratPs",
-    "Link Building": "xsVTqzratPs",
-    "SEO Audit Project": "xsVTqzratPs",
+    /* ========== Module 5: Search Engine Optimization (SEO) ========== */
+    "Introduction to SEO": "pIbQfOcsEsE",
+    "Keyword Research": "CYicoAcAi0A",
+    "On-Page SEO": "PXDPqXHLSOY",
+    "Off-Page SEO": "_AsN-j85PaA",
+    "Technical SEO": "utLaKIJKygA",
+    "Local SEO": "cznm78evsO8",
+    "SEO Tools": "Q_lySNxCag0",
+    "Content Optimization": "zks1MFJsyUc",
+    "Link Building": "_AsN-j85PaA",
+    "SEO Audit Project": "k04rHijEPSw",
 
-    /* Module 6 */
+    /* ========== Module 6: Search Engine Marketing (SEM) ========== */
     "Introduction to Google Ads": "AtiAlWIw6Zg",
-    "Keyword Targeting": "AtiAlWIw6Zg",
+    "Keyword Targeting": "CYicoAcAi0A",
     "Search Campaigns": "AtiAlWIw6Zg",
-    "Display Campaigns": "AtiAlWIw6Zg",
-    "Video Campaigns": "AtiAlWIw6Zg",
+    "Display Campaigns": "Yw6stObrrAI",
+    "Video Campaigns": "gpredwdvi5k",
     "Shopping Campaigns": "AtiAlWIw6Zg",
-    "Campaign Budgeting": "AtiAlWIw6Zg",
+    "Campaign Budgeting": "Yw6stObrrAI",
     "Ad Copywriting": "AtiAlWIw6Zg",
-    "Campaign Optimization": "AtiAlWIw6Zg",
+    "Campaign Optimization": "Yw6stObrrAI",
     "SEM Project": "AtiAlWIw6Zg",
 
-    /* Module 7 */
-    "Email Marketing Fundamentals": "J0CEiuOfON0",
-    "Building an Email List": "J0CEiuOfON0",
-    "Lead Magnets": "J0CEiuOfON0",
-    "Email Campaign Planning": "J0CEiuOfON0",
-    "Email Design": "J0CEiuOfON0",
-    "Automation": "J0CEiuOfON0",
-    "Personalization": "J0CEiuOfON0",
-    "Segmentation": "J0CEiuOfON0",
-    "A/B Testing": "J0CEiuOfON0",
-    "Email Analytics": "J0CEiuOfON0",
+    /* ========== Module 7: Email Marketing ========== */
+    "Email Marketing Fundamentals": "9SjEIbud-_k",
+    "Building an Email List": "KozmudtOIFE",
+    "Lead Magnets": "YR0iITd5md0",
+    "Email Campaign Planning": "qYzmG_7nx3Y",
+    "Email Design": "dRTt69nCFlo",
+    "Automation": "sjAkl8pwLgg",
+    "Personalization": "JKrlUNFrhhg",
+    "Segmentation": "JKrlUNFrhhg",
+    "A/B Testing": "94gHaHKmD4Q",
+    "Email Analytics": "-4VPi-a8jkQ",
 
-    /* Module 8 */
+    /* ========== Module 8: Content Creation ========== */
     "Copywriting Fundamentals": "dKH77jn8vZA",
-    "Blog Writing": "dKH77jn8vZA",
-    "Social Media Copy": "dKH77jn8vZA",
-    "Video Content": "dKH77jn8vZA",
+    "Blog Writing": "zks1MFJsyUc",
+    "Social Media Copy": "oG6HXDpsu9o",
+    "Video Content": "gpredwdvi5k",
     "Podcast Marketing": "dKH77jn8vZA",
     "Graphic Design Basics": "dKH77jn8vZA",
     "Canva for Marketing": "dKH77jn8vZA",
-    "Visual Storytelling": "dKH77jn8vZA",
-    "Content Scheduling": "dKH77jn8vZA",
+    "Visual Storytelling": "zrXLEQ7mlco",
+    "Content Scheduling": "so_J2lTejIA",
     "Content Portfolio Project": "dKH77jn8vZA",
 
-    /* Module 9 */
+    /* ========== Module 9: Website & Landing Pages ========== */
     "Website Basics": "MnUWG3VLufI",
     "WordPress Fundamentals": "MnUWG3VLufI",
     "Landing Page Design": "MnUWG3VLufI",
     "User Experience (UX)": "MnUWG3VLufI",
     "Conversion Optimization": "MnUWG3VLufI",
     "Call-to-Action (CTA)": "MnUWG3VLufI",
-    "Website Speed": "MnUWG3VLufI",
+    "Website Speed": "cznm78evsO8",
     "Mobile Optimization": "MnUWG3VLufI",
-    "Lead Generation Forms": "MnUWG3VLufI",
+    "Lead Generation Forms": "YR0iITd5md0",
     "Website Optimization Project": "MnUWG3VLufI",
 
-    /* Module 10 */
-    "Introduction to Analytics": "9STi7dge0VU",
-    "Google Analytics": "9STi7dge0VU",
-    "Google Search Console": "9STi7dge0VU",
+    /* ========== Module 10: Analytics & Performance ========== */
+    "Introduction to Analytics": "GG5xBwbje1E",
+    "Google Analytics": "cTAMNIkNveo",
+    "Google Search Console": "UuE37-MM1ws",
     "Key Performance Indicators (KPIs)": "9STi7dge0VU",
-    "Conversion Tracking": "9STi7dge0VU",
-    "Campaign Reporting": "9STi7dge0VU",
-    "Dashboard Creation": "9STi7dge0VU",
-    "Data Interpretation": "9STi7dge0VU",
+    "Conversion Tracking": "47mpnwPQ10I",
+    "Campaign Reporting": "nUQEo-HXZgc",
+    "Dashboard Creation": "IBDARZDJdoU",
+    "Data Interpretation": "cTAMNIkNveo",
     "ROI Measurement": "9STi7dge0VU",
-    "Analytics Project": "9STi7dge0VU",
+    "Analytics Project": "cTAMNIkNveo",
 
-    /* Module 11 */
+    /* ========== Module 11: E-Commerce Marketing ========== */
     "Introduction to E-Commerce": "B7yqNvFLZgY",
     "Product Listings": "B7yqNvFLZgY",
     "Online Store Optimization": "B7yqNvFLZgY",
     "Customer Reviews": "B7yqNvFLZgY",
-    "Shopping Ads": "B7yqNvFLZgY",
-    "Sales Funnels": "B7yqNvFLZgY",
+    "Shopping Ads": "AtiAlWIw6Zg",
+    "Sales Funnels": "JjQ2fa4Arxg",
     "Payment Integration": "B7yqNvFLZgY",
     "Customer Retention": "B7yqNvFLZgY",
-    "E-Commerce Analytics": "B7yqNvFLZgY",
+    "E-Commerce Analytics": "cTAMNIkNveo",
     "E-Commerce Project": "B7yqNvFLZgY",
 
-    /* Module 12 */
+    /* ========== Module 12: AI for Digital Marketing ========== */
     "ChatGPT for Marketing": "kunkYTKFNtI",
     "AI Content Creation": "kunkYTKFNtI",
     "AI Image Generation": "kunkYTKFNtI",
     "AI Video Creation": "kunkYTKFNtI",
     "AI Copywriting": "kunkYTKFNtI",
-    "Marketing Automation": "kunkYTKFNtI",
-    "AI Analytics": "kunkYTKFNtI",
+    "Marketing Automation": "sjAkl8pwLgg",
+    "AI Analytics": "cTAMNIkNveo",
     "Responsible AI Use": "kunkYTKFNtI",
     "AI Marketing Workflow": "kunkYTKFNtI",
     "AI Marketing Project": "kunkYTKFNtI",
 
-    /* Module 13 */
-    "Facebook Ads": "uUlU5G1Nda0",
-    "Instagram Ads": "uUlU5G1Nda0",
-    "LinkedIn Ads": "uUlU5G1Nda0",
-    "YouTube Ads": "uUlU5G1Nda0",
-    "TikTok Ads": "uUlU5G1Nda0",
-    "Display Advertising": "uUlU5G1Nda0",
-    "Retargeting Campaigns": "uUlU5G1Nda0",
-    "Budget Management": "uUlU5G1Nda0",
-    "Ad Performance Optimization": "uUlU5G1Nda0",
-    "Advertising Campaign Project": "uUlU5G1Nda0",
+    /* ========== Module 13: Advertising & Media Buying ========== */
+    "Facebook Ads": "GUgVNQYiNOQ",
+    "Instagram Ads": "gpredwdvi5k",
+    "LinkedIn Ads": "gpredwdvi5k",
+    "YouTube Ads": "gpredwdvi5k",
+    "TikTok Ads": "gpredwdvi5k",
+    "Display Advertising": "Yw6stObrrAI",
+    "Retargeting Campaigns": "GUgVNQYiNOQ",
+    "Budget Management": "Yw6stObrrAI",
+    "Ad Performance Optimization": "GUgVNQYiNOQ",
+    "Advertising Campaign Project": "GUgVNQYiNOQ",
 
-    /* Module 14 */
-    "Introduction to CRM": "Ci_qMjf8JRg",
-    "Customer Lifecycle": "Ci_qMjf8JRg",
-    "Lead Management": "Ci_qMjf8JRg",
-    "Sales Funnels": "Ci_qMjf8JRg",
-    "Customer Support": "Ci_qMjf8JRg",
-    "Loyalty Programs": "Ci_qMjf8JRg",
-    "CRM Software": "Ci_qMjf8JRg",
-    "Customer Experience": "Ci_qMjf8JRg",
-    "CRM Project": "Ci_qMjf8JRg",
+    /* ========== Module 14: CRM ========== */
+    "Introduction to CRM": "8VUWyMVK2Uc",
+    "Customer Lifecycle": "JjQ2fa4Arxg",
+    "Lead Management": "YR0iITd5md0",
+    "Sales Funnels": "JjQ2fa4Arxg",
+    "Customer Retention": "8VUWyMVK2Uc",
+    "Customer Support": "8VUWyMVK2Uc",
+    "Loyalty Programs": "8VUWyMVK2Uc",
+    "CRM Software": "8VUWyMVK2Uc",
+    "Customer Experience": "8VUWyMVK2Uc",
+    "CRM Project": "8VUWyMVK2Uc",
 
-    /* Module 15 */
+    /* ========== Module 15: Marketing Strategy & Growth ========== */
     "Marketing Planning": "RvFTNnOyWZ0",
-    "Budgeting": "RvFTNnOyWZ0",
+    "Budgeting": "Yw6stObrrAI",
     "Campaign Planning": "RvFTNnOyWZ0",
     "Product Launch Strategy": "RvFTNnOyWZ0",
     "Market Expansion": "RvFTNnOyWZ0",
@@ -184,7 +187,7 @@
     "Marketing Leadership": "RvFTNnOyWZ0",
     "Strategic Marketing Project": "RvFTNnOyWZ0",
 
-    /* Module 16 */
+    /* ========== Module 16: Freelancing & Agency ========== */
     "Becoming a Freelance Marketer": "qSNyTGuq7Q4",
     "Building a Portfolio": "qSNyTGuq7Q4",
     "Pricing Services": "qSNyTGuq7Q4",
@@ -196,36 +199,36 @@
     "Contracts & Invoicing": "qSNyTGuq7Q4",
     "Freelancing Project": "qSNyTGuq7Q4",
 
-    /* Module 17 */
+    /* ========== Module 17: Career Development ========== */
     "Resume Writing": "kH0Wc6NBAu0",
     "LinkedIn Optimization": "kH0Wc6NBAu0",
     "Building a Marketing Portfolio": "kH0Wc6NBAu0",
     "Interview Preparation": "kH0Wc6NBAu0",
     "Professional Certifications": "kH0Wc6NBAu0",
-    "Personal Branding": "kH0Wc6NBAu0",
+    "Personal Branding": "wMfo-F0Zdus",
     "Networking": "kH0Wc6NBAu0",
     "Career Growth Roadmap": "kH0Wc6NBAu0",
 
-    /* Module 18 projects */
+    /* ========== Module 18: Real-World Projects ========== */
     "Social Media Marketing Campaign": "oG6HXDpsu9o",
-    "SEO Optimization Project": "xsVTqzratPs",
+    "SEO Optimization Project": "k04rHijEPSw",
     "Google Ads Campaign": "AtiAlWIw6Zg",
-    "Facebook Ads Campaign": "uUlU5G1Nda0",
-    "Email Marketing Campaign": "J0CEiuOfON0",
-    "Content Marketing Strategy": "dKH77jn8vZA",
+    "Facebook Ads Campaign": "GUgVNQYiNOQ",
+    "Email Marketing Campaign": "qYzmG_7nx3Y",
+    "Content Marketing Strategy": "zks1MFJsyUc",
     "Website Optimization": "MnUWG3VLufI",
-    "Marketing Analytics Dashboard": "9STi7dge0VU",
+    "Marketing Analytics Dashboard": "cTAMNIkNveo",
     "Product Launch Campaign": "RvFTNnOyWZ0",
-    "Integrated Marketing Campaign": "0VtSDWsqJbM",
+    "Integrated Marketing Campaign": "jVgYgN0zcWs",
 
-    /* Module 19 capstone */
-    "Market Research": "avE-uvLPSN4",
+    /* ========== Module 19: Capstone ========== */
+    "Market Research": "ZHZ2d271UFo",
     "Brand Development": "wMfo-F0Zdus",
     "Marketing Strategy": "RvFTNnOyWZ0",
     "Content Creation": "dKH77jn8vZA",
     "Social Media Campaign": "oG6HXDpsu9o",
-    "Paid Advertising Plan": "uUlU5G1Nda0",
-    "Analytics Report": "9STi7dge0VU",
+    "Paid Advertising Plan": "GUgVNQYiNOQ",
+    "Analytics Report": "cTAMNIkNveo",
     "Final Presentation": "0VtSDWsqJbM"
   };
 
