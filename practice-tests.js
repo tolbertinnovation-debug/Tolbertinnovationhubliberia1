@@ -1,3 +1,15 @@
-/* see /home/workdir/artifacts/OUT_practice-tests.js - loading */
-var PRACTICE_TESTS = { ielts: { examId: 'ielts', title: 'IELTS Practice Test', durationMin: 50, scoreType: 'band', passMark: 70, intro: 'Loading full bank...', sections: [{ id: 'listening', name: 'Listening', durationMin: 15, questions: [{ q: 'Placeholder while full content restores.', opts: ['A','B','C','D'], correct: 0, exp: 'Restoring...' }] }], writing: [], speaking: [] }, toefl: { examId: 'toefl', title: 'TOEFL', durationMin: 30, scoreType: 'toefl120', passMark: 70, intro: '', sections: [], writing: [], speaking: [] }, sat: { examId: 'sat', title: 'SAT', durationMin: 35, scoreType: 'sat1600', passMark: 70, intro: '', sections: [], writing: [], speaking: [] } };
-if (typeof module !== 'undefined' && module.exports) { module.exports = PRACTICE_TESTS; }
+/* Assembles PRACTICE_TESTS from base64 chunks (pt-data-*.js) */
+(function(){
+  var parts = window.__TIH_PT_CHUNKS || [];
+  if (!parts.length) { console.error('TIH practice test data missing'); return; }
+  var b64 = parts.join('');
+  try {
+    var bin = atob(b64);
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    var text = new TextDecoder('utf-8').decode(bytes);
+    (0, eval)(text);
+  } catch (e) {
+    console.error('TIH practice test assemble failed', e);
+  }
+})();
