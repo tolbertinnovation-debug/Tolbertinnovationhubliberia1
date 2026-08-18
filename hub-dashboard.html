@@ -1,32 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>My Dashboard | TIH Learning Hub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard | TIH Learning Hub</title>
+  <style>
+    body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      font-family: Inter, system-ui, sans-serif; background: #0B1F3A; color: #e2e8f0; }
+    .box { text-align: center; padding: 2rem; max-width: 420px; }
+    .spin { width: 36px; height: 36px; border: 3px solid rgba(255,255,255,.2); border-top-color: #E31E24;
+      border-radius: 50%; margin: 0 auto 1rem; animation: s .8s linear infinite; }
+    @keyframes s { to { transform: rotate(360deg); } }
+    a { color: #93c5fd; }
+  </style>
 </head>
 <body>
-<p style="font-family:system-ui;text-align:center;margin-top:3rem;color:#64748b">Loading dashboard…</p>
-<script src="hub-dashboard.chunk.0.js?v=1"></script>
-<script src="hub-dashboard.chunk.1.js?v=1"></script>
-<script src="hub-dashboard.chunk.2.js?v=1"></script>
-<script src="hub-dashboard.chunk.3.js?v=1"></script>
-<script src="hub-dashboard.chunk.4.js?v=1"></script>
-<script src="hub-dashboard.chunk.5.js?v=1"></script>
-<script src="hub-dashboard.chunk.6.js?v=1"></script>
-<script src="hub-dashboard.chunk.7.js?v=1"></script>
-<script>
-(function(){
-  var c = window.TIH_HD_CHUNKS || [];
-  var html = '';
-  for (var i = 0; i < c.length; i++) {
-    if (typeof c[i] !== 'string') { document.body.innerHTML = '<p style="color:red;text-align:center;margin-top:3rem">Dashboard failed to load (missing chunk ' + i + ').</p>'; return; }
-    html += c[i];
-  }
-  document.open();
-  document.write(html);
-  document.close();
-})();
-</script>
+  <div class="box">
+    <div class="spin" id="spin"></div>
+    <p id="msg">Loading Learning Hub dashboard…</p>
+    <p id="fallback" style="display:none;font-size:.9rem;opacity:.85;line-height:1.5">
+      If this takes too long, <a id="direct" href="https://cdn.jsdelivr.net/gh/tolbertinnovation-debug/Tolbertinnovationhubliberia1@7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html">open the dashboard directly</a>
+      or message TIH on WhatsApp.
+    </p>
+  </div>
+  <script>
+  (function () {
+    var sources = [
+      'https://cdn.jsdelivr.net/gh/tolbertinnovation-debug/Tolbertinnovationhubliberia1@7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html',
+      'https://raw.githubusercontent.com/tolbertinnovation-debug/Tolbertinnovationhubliberia1/7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html'
+    ];
+    var i = 0;
+    function fail() {
+      document.getElementById('spin').style.display = 'none';
+      document.getElementById('msg').textContent = 'Could not load the dashboard automatically.';
+      document.getElementById('fallback').style.display = 'block';
+    }
+    function tryNext() {
+      if (i >= sources.length) return fail();
+      var src = sources[i++];
+      fetch(src, { cache: 'no-store', mode: 'cors' }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
+      }).then(function (html) {
+        document.open();
+        document.write(html);
+        document.close();
+      }).catch(function () { tryNext(); });
+    }
+    tryNext();
+    setTimeout(function () {
+      if (document.getElementById('fallback')) document.getElementById('fallback').style.display = 'block';
+    }, 6000);
+  })();
+  </script>
 </body>
 </html>
