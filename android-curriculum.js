@@ -1,15 +1,7 @@
 /* TIH Complete Android App Development Program (Kotlin) curriculum.
-   Rebuilds COURSES_DB.android into the full 19-module program: Kotlin,
-   Android Studio, UI, interaction, navigation, data storage, Firebase,
-   networking, media & device features, Material Design, auth & security,
-   testing, publishing, AI tools, freelancing, 10 real-world apps, an industry
-   capstone and a graduation module with exams and a Certificate of Completion.
-   Every content lesson has a video + printable notes (with code snippets);
-   project lessons carry briefs and downloadable source code. Modelled on
-   webdev-curriculum.js.
-
-   UPDATED: Large unique question banks + seeded shuffle so every topic
-   receives a different set of practice questions. */
+   Rebuilds COURSES_DB.android into the full 19-module program.
+   Every content lesson has a video + formal detailed study notes +
+   unique practice quiz. Projects carry briefs. */
 (function () {
   if (typeof COURSES_DB === 'undefined') return;
   if (!COURSES_DB.android || COURSES_DB.android._androidFullBuilt) return;
@@ -37,7 +29,6 @@
     assessment: ['0kwcXtAq4Yo']
   };
 
-  // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment
   var curriculum = [
     [1, 'Course Orientation', '🧭', 'orientation', 'content', ['Welcome to the Course', 'What is Android App Development?', 'Career Opportunities in Android Development', 'Android Ecosystem Overview', 'Installing Android Studio', 'Setting Up the Development Environment', 'Creating Your First Android Project', 'Course Roadmap', 'Final Capstone Project']],
     [2, 'Programming Fundamentals with Kotlin', '🟣', 'kotlin', 'content', ['Introduction to Kotlin', 'Variables and Data Types', 'Operators', 'User Input', 'Conditional Statements', 'Loops', 'Functions', 'Arrays', 'Lists', 'Object-Oriented Programming Basics', 'Classes and Objects', 'Practice Exercises']],
@@ -60,10 +51,147 @@
     [19, 'Assessments & Graduation', '🏆', 'assessment', 'assessment', ['Kotlin Assessment', 'Android UI Assessment', 'Database Assessment', 'Firebase Assessment', 'API Assessment', 'Midterm Examination', 'Final Examination', 'Complete App Evaluation', 'Portfolio Review', 'Certificate Requirements', 'Certificate of Completion']]
   ];
 
-  function esc(v) { return String(v).replace(/[&<>"']/g, function (ch) { return { '&': '&', '<': '<', '>': '>', '"': '"', "'": '&#39;' }[ch]; }); }
+  function esc(v) {
+    return String(v).replace(/[&<>"']/g, function (ch) {
+      return { '&': '&', '<': '<', '>': '>', '"': '"', "'": '&#39;' }[ch];
+    });
+  }
   function isProjectName(name) { return /(?:Project|Assignment|Presentation|App|Tracker|Application)$/.test(name.trim()); }
 
-  var skillLabel = { orientation: 'Android development foundations', kotlin: 'Kotlin programming', studio: 'Android Studio', ui: 'Android UI', interaction: 'user interaction', navigation: 'app navigation', storage: 'data storage', firebase: 'Firebase', networking: 'networking & APIs', media: 'media & device features', material: 'Material Design', auth: 'authentication & security', testing: 'testing & debugging', publishing: 'publishing to Google Play', ai: 'AI developer tools', career: 'freelancing & career', projects: 'building real apps', capstone: 'your capstone app', assessment: 'your skills' };
+  var skillLabel = {
+    orientation: 'Android development foundations',
+    kotlin: 'Kotlin programming',
+    studio: 'Android Studio',
+    ui: 'Android user interface design',
+    interaction: 'user interaction and event handling',
+    navigation: 'app navigation and screen flow',
+    storage: 'local data storage and persistence',
+    firebase: 'Firebase backend services',
+    networking: 'networking and REST APIs',
+    media: 'media and device features',
+    material: 'Material Design',
+    auth: 'authentication and security',
+    testing: 'testing and debugging',
+    publishing: 'publishing to Google Play',
+    ai: 'AI-assisted development tools',
+    career: 'freelancing and career development',
+    projects: 'building real-world applications',
+    capstone: 'capstone project development',
+    assessment: 'skill assessment'
+  };
+
+  /* ---------- Detailed topic knowledge base for formal notes ---------- */
+  var TOPIC_DEF = {
+    'Welcome to the Course': 'The Complete Android App Development Program is a structured, beginner-to-professional learning path that teaches modern Android development using the Kotlin programming language and Android Studio.',
+    'What is Android App Development?': 'Android app development is the process of creating software applications that run on devices powered by the Android operating system, using languages such as Kotlin or Java and tools provided by Google.',
+    'Career Opportunities in Android Development': 'Career opportunities in Android development include roles such as junior or senior Android developer, mobile engineer, freelance app developer, and technical lead in companies that build mobile products.',
+    'Android Ecosystem Overview': 'The Android ecosystem comprises the Android operating system, Google Play Store, Android Studio, Jetpack libraries, Material Design, and a global community of developers and device manufacturers.',
+    'Installing Android Studio': 'Android Studio is the official Integrated Development Environment (IDE) for Android application development, providing project templates, a visual layout editor, emulator, debugger, and build tools.',
+    'Setting Up the Development Environment': 'Setting up the development environment involves installing Android Studio, configuring the Android SDK, creating virtual devices (emulators), and ensuring the computer meets the required system specifications.',
+    'Creating Your First Android Project': 'Creating a first Android project introduces the standard project structure, the main activity, the layout file, and the process of building and running an application on an emulator or physical device.',
+    'Course Roadmap': 'The course roadmap outlines the progressive sequence of modules from Kotlin fundamentals through user interface design, data storage, networking, Firebase, testing, publishing, and a final capstone project.',
+    'Introduction to Kotlin': 'Kotlin is a modern, statically typed programming language developed by JetBrains and officially supported by Google as the preferred language for Android application development.',
+    'Variables and Data Types': 'Variables are named storage locations that hold values, while data types define the kind of data a variable can store, such as integers, floating-point numbers, strings, and Boolean values.',
+    'Operators': 'Operators are special symbols that perform operations on variables and values, including arithmetic, comparison, logical, and assignment operations.',
+    'User Input': 'User input refers to data entered by the person using the application, typically captured through text fields, buttons, or other interactive controls.',
+    'Conditional Statements': 'Conditional statements allow a program to make decisions by executing different blocks of code depending on whether a specified condition evaluates to true or false.',
+    'Loops': 'Loops are control structures that repeatedly execute a block of code as long as a given condition remains true or until a collection has been fully traversed.',
+    'Functions': 'A function is a reusable block of code that performs a specific task, optionally accepts parameters, and may return a result.',
+    'Arrays': 'An array is a fixed-size collection that stores multiple values of the same type in a contiguous sequence, accessible by numeric index.',
+    'Lists': 'A list is an ordered collection that can grow or shrink in size and may contain duplicate elements, commonly used for dynamic sequences of data.',
+    'Object-Oriented Programming Basics': 'Object-oriented programming (OOP) is a paradigm that organises software design around objects, which combine data (properties) and behaviour (methods).',
+    'Classes and Objects': 'A class is a blueprint that defines the structure and behaviour of objects, while an object is a concrete instance of a class created at runtime.',
+    'XML Layouts': 'XML layouts are hierarchical descriptions of an Android user interface written in Extensible Markup Language, defining the arrangement and appearance of visual components.',
+    'TextView': 'A TextView is a user-interface component that displays read-only text to the user on the screen.',
+    'EditText': 'An EditText is an interactive text field that allows the user to enter and edit textual information.',
+    'Button': 'A Button is a clickable user-interface element that triggers an action when pressed by the user.',
+    'ImageView': 'An ImageView is a component designed to display images, such as icons, photographs, or illustrations, within an Android layout.',
+    'RecyclerView': 'RecyclerView is a flexible and efficient view group that displays large sets of data in a scrollable list or grid by recycling item views as the user scrolls.',
+    'ScrollView': 'A ScrollView is a container that allows its content to be scrolled vertically when the content exceeds the visible area of the screen.',
+    'ConstraintLayout': 'ConstraintLayout is a flexible layout manager that positions and sizes widgets according to constraints relative to other widgets or the parent container.',
+    'LinearLayout': 'LinearLayout is a layout that arranges its child views in a single direction, either horizontally or vertically.',
+    'RelativeLayout': 'RelativeLayout is a layout that positions child views relative to each other or relative to the parent container.',
+    'CardView': 'CardView is a Material Design component that presents content inside a card with rounded corners and elevation (shadow).',
+    'Material Design Components': 'Material Design Components are a set of ready-to-use, customisable user-interface elements that implement Google’s Material Design guidelines.',
+    'Click Events': 'Click events are user interactions that occur when a view, such as a button, is tapped, and are handled by registering a click listener in code.',
+    'Input Validation': 'Input validation is the process of checking that data entered by the user meets required rules before it is accepted or processed by the application.',
+    'Toast Messages': 'A Toast is a short, temporary message that appears near the bottom of the screen to provide simple feedback to the user.',
+    'Dialog Boxes': 'Dialog boxes are small windows that prompt the user to make a decision or enter additional information before continuing.',
+    'Menus': 'Menus provide a structured list of options or actions that the user can select, commonly appearing as options menus or context menus.',
+    'Navigation Drawer': 'A navigation drawer is a sliding panel that displays the main navigation options of an application, typically accessible from the left edge of the screen.',
+    'Bottom Navigation': 'Bottom navigation is a persistent bar at the bottom of the screen that allows the user to switch between a small number of top-level destinations.',
+    'Intents': 'An Intent is a messaging object used to request an action from another application component, such as starting an activity or sending data.',
+    'Activities': 'An Activity represents a single screen with a user interface and is one of the fundamental building blocks of an Android application.',
+    'Fragments': 'A Fragment represents a reusable portion of a user interface that can be embedded within an activity and managed independently.',
+    'Activity Lifecycle': 'The activity lifecycle is a set of states and callback methods that describe how an activity is created, started, resumed, paused, stopped, and destroyed.',
+    'Fragment Lifecycle': 'The fragment lifecycle defines the states a fragment passes through as it is attached, created, started, resumed, paused, stopped, and destroyed within its host activity.',
+    'Navigation Component': 'The Navigation Component is a Jetpack library that simplifies implementing navigation between destinations in an Android application, including handling the back stack.',
+    'Passing Data Between Screens': 'Passing data between screens involves transferring information from one activity or fragment to another, commonly using Intent extras or Safe Args.',
+    'Deep Links': 'Deep links are URIs that take the user directly to specific content within an application rather than simply launching the app’s main screen.',
+    'SharedPreferences': 'SharedPreferences is a lightweight key-value storage mechanism used for saving small amounts of primitive data such as settings and user preferences.',
+    'Internal Storage': 'Internal storage is a private file-storage area on the device that is accessible only to the application that created the files.',
+    'External Storage': 'External storage refers to shared storage areas (including SD cards and emulated external storage) that may be accessible by other applications and the user.',
+    'SQLite Database': 'SQLite is a lightweight, file-based relational database engine embedded in Android that allows applications to store structured data using SQL.',
+    'Room Database': 'Room is a persistence library that provides an abstraction layer over SQLite, enabling compile-time verification of SQL queries and easier database access.',
+    'CRUD Operations': 'CRUD stands for Create, Read, Update, and Delete—the four basic operations performed on persistent data.',
+    'Data Persistence': 'Data persistence is the ability of an application to retain data after the application or device is closed or restarted.',
+    'Offline Storage': 'Offline storage enables an application to function and retain data even when a network connection is unavailable.',
+    'Introduction to Firebase': 'Firebase is a comprehensive mobile and web application development platform provided by Google that offers backend services such as authentication, databases, storage, and analytics.',
+    'Firebase Authentication': 'Firebase Authentication is a service that provides backend services and easy-to-use SDKs for authenticating users with email, phone numbers, and popular identity providers.',
+    'Firestore Database': 'Cloud Firestore is a flexible, scalable NoSQL cloud database that stores data in documents organised into collections and synchronises data across client applications in real time.',
+    'Firebase Realtime Database': 'The Firebase Realtime Database is a cloud-hosted NoSQL database that stores data as JSON and synchronises it in real time to every connected client.',
+    'Firebase Storage': 'Firebase Storage is a powerful, simple object storage service designed for storing user-generated content such as images, audio, and video.',
+    'Cloud Messaging (Push Notifications)': 'Firebase Cloud Messaging (FCM) is a cross-platform messaging solution that allows applications to send and receive push notifications and data messages reliably.',
+    'Firebase Analytics': 'Firebase Analytics (Google Analytics for Firebase) is a free app measurement solution that provides insight into user behaviour and application performance.',
+    'Introduction to REST APIs': 'A REST API (Representational State Transfer Application Programming Interface) is an architectural style for designing networked applications that use standard HTTP methods to access and manipulate resources.',
+    'JSON': 'JSON (JavaScript Object Notation) is a lightweight, text-based data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.',
+    'Retrofit': 'Retrofit is a type-safe HTTP client library for Android and Java that simplifies the process of consuming REST APIs by converting HTTP API endpoints into Java/Kotlin interfaces.',
+    'Fetching Data': 'Fetching data refers to the process of retrieving information from a remote server or local source, typically over a network using HTTP requests.',
+    'Sending Data': 'Sending data involves transmitting information from the client application to a remote server, commonly using HTTP methods such as POST or PUT.',
+    'Error Handling': 'Error handling is the systematic process of detecting, responding to, and recovering from errors that occur during program execution, especially network and data operations.',
+    'API Authentication': 'API authentication is the process of verifying the identity of a client application or user before granting access to protected resources on a server.',
+    'Material Design Principles': 'Material Design is a design language developed by Google that provides a unified system of guidelines, components, and tools for creating visually consistent and usable digital experiences.',
+    'Themes': 'A theme is a collection of attributes that define the overall visual appearance of an application, including colours, typography, and shape.',
+    'Colors': 'Colour in Material Design is used purposefully to express brand identity, hierarchy, and interactive states while maintaining accessibility.',
+    'Typography': 'Typography refers to the style, arrangement, and appearance of text; Material Design provides a type scale that ensures readability and visual hierarchy.',
+    'Animations': 'Animations are purposeful motion effects that help users understand changes in the interface, provide feedback, and enhance the sense of continuity.',
+    'Responsive Layouts': 'Responsive layouts adapt the arrangement and size of user-interface elements to different screen sizes, orientations, and device types.',
+    'Dark Mode': 'Dark mode is a colour scheme that uses light text and icons on a dark background, reducing eye strain in low-light environments and saving power on OLED screens.',
+    'User Registration': 'User registration is the process by which a new user creates an account in an application, typically by providing credentials such as email and password.',
+    'Login System': 'A login system authenticates a returning user by verifying the credentials they supply against stored account information.',
+    'Password Security': 'Password security encompasses practices and technologies that protect user passwords from unauthorised access, including hashing, salting, and secure transmission.',
+    'Biometric Authentication': 'Biometric authentication uses unique biological characteristics, such as fingerprints or facial features, to verify a user’s identity.',
+    'Secure Data Storage': 'Secure data storage involves protecting sensitive information at rest through encryption and appropriate access controls.',
+    'App Permissions': 'App permissions are declared capabilities that an application must request in order to access sensitive device features or user data.',
+    'Security Best Practices': 'Security best practices are recommended techniques and habits that reduce the risk of vulnerabilities and protect user data throughout the application lifecycle.',
+    'Debugging Apps': 'Debugging is the systematic process of identifying, analysing, and correcting defects or unexpected behaviour in software.',
+    'Unit Testing': 'Unit testing is a software testing method in which individual units or components of code are tested in isolation to verify that they behave as expected.',
+    'UI Testing': 'UI testing verifies that the graphical user interface of an application functions correctly from the user’s perspective.',
+    'Performance Testing': 'Performance testing evaluates how an application behaves under various conditions of load, measuring responsiveness, stability, and resource consumption.',
+    'Crash Analysis': 'Crash analysis is the examination of crash reports and stack traces to determine the root cause of application failures.',
+    'Memory Management': 'Memory management refers to the techniques used to allocate, use, and release memory efficiently so that an application remains stable and responsive.',
+    'App Optimization': 'App optimisation is the practice of improving an application’s speed, size, battery usage, and overall efficiency.',
+    'Preparing for Release': 'Preparing for release involves final testing, configuring release build settings, generating signed artefacts, and assembling store listing assets.',
+    'App Signing': 'App signing is the process of digitally signing an Android application package with a private key so that the system and users can verify its authenticity and integrity.',
+    'Versioning': 'Versioning is the practice of assigning unique version codes and version names to each release of an application to track updates and compatibility.',
+    'Creating App Icons': 'An app icon is the visual symbol that represents the application on the device home screen and in the Play Store; it must follow platform design guidelines.',
+    'Feature Graphics': 'Feature graphics are promotional images displayed prominently on an application’s Google Play Store listing.',
+    'Screenshots': 'Screenshots are images of the application’s user interface that illustrate key features and are required for the store listing.',
+    'Writing App Descriptions': 'An app description is the textual content on the store listing that explains the purpose, features, and benefits of the application to potential users.',
+    'Publishing to Google Play': 'Publishing to Google Play is the process of uploading a signed application bundle or APK, completing the store listing, and releasing the application to users through the Google Play Console.',
+    'App Updates': 'App updates are new versions of an application that are published to deliver bug fixes, performance improvements, or new features to existing users.',
+    'Using ChatGPT for Coding': 'ChatGPT is a large language model that can assist developers by explaining concepts, generating code examples, reviewing logic, and suggesting solutions to programming problems.',
+    'GitHub Copilot': 'GitHub Copilot is an AI-powered code completion tool that suggests whole lines or blocks of code inside the editor based on the context of the file being written.',
+    'Firebase AI Features': 'Firebase offers AI-related capabilities and integrations that help developers add intelligent features such as predictions, recommendations, or generative experiences to their applications.',
+    'Building a Developer Portfolio': 'A developer portfolio is a curated collection of projects, code samples, and professional information that demonstrates a developer’s skills and experience to potential employers or clients.',
+    'Publishing Projects on GitHub': 'Publishing projects on GitHub involves creating repositories, writing clear README documentation, and sharing source code so that others can view, learn from, or contribute to the work.',
+    'Writing Technical Documentation': 'Technical documentation is written material that explains how a software system works, how to use it, and how to maintain or extend it.',
+    'Creating a Resume': 'A professional resume is a concise document that summarises a person’s education, skills, experience, and achievements for the purpose of seeking employment.',
+    'Preparing for Interviews': 'Interview preparation includes reviewing technical concepts, practising coding problems, understanding common behavioural questions, and researching the target company.',
+    'Freelancing Platforms': 'Freelancing platforms are online marketplaces that connect independent developers with clients who need software development services.',
+    'Working with Clients': 'Working with clients involves clear communication, requirement gathering, setting expectations, delivering work on schedule, and maintaining professional relationships.',
+    'Pricing Mobile App Projects': 'Pricing mobile app projects requires estimating the scope of work, complexity, time required, and market rates to propose a fair and sustainable fee.'
+  };
 
   function codeFor(name) {
     var C = null;
@@ -77,41 +205,82 @@
     else if (/Retrofit|REST APIs|Fetching Data/i.test(name)) C = 'interface ApiService {\n    @GET("posts")\n    suspend fun getPosts(): List<Post>\n}';
     else if (/Firebase Authentication|Login System/i.test(name)) C = 'auth.signInWithEmailAndPassword(email, password)\n    .addOnSuccessListener { /* logged in */ }\n    .addOnFailureListener { e -> /* handle error */ }';
     if (!C) return '';
-    return '<h4>💾 Starter code (Kotlin)</h4><pre style="background:#0f172a;color:#e2e8f0;padding:.9rem;border-radius:8px;overflow:auto;font-size:.82rem;line-height:1.5"><code>' + esc(C) + '</code></pre><p>Copy this into Android Studio, run it, and Print → Save as PDF to keep it with your notes.</p>';
+    return '<h4>Illustrative Code Example</h4><pre style="background:#0f172a;color:#e2e8f0;padding:.9rem;border-radius:8px;overflow:auto;font-size:.82rem;line-height:1.5"><code>' + esc(C) + '</code></pre><p>Copy the example into Android Studio, run it, and observe the result. Then modify one part and predict the outcome.</p>';
   }
 
   function note(moduleTitle, skill, name, position) {
-    var label = skillLabel[skill] || 'Android skills';
-    var focus = position % 2 ? 'hands-on coding, real examples and a working app feature' : 'understanding the concept, building it step by step and testing on the emulator';
+    var label = skillLabel[skill] || 'Android development';
+    var def = TOPIC_DEF[name] || (name + ' is an important concept within ' + label + ' that every Android developer should understand thoroughly.');
     var code = codeFor(name);
+
     return '<div class="study-note">' +
-      '<div class="revision-banner"><strong>Android Development · ' + esc(moduleTitle) + '</strong><span>Kotlin + Android Studio</span></div>' +
+      '<div class="revision-banner"><strong>Android Development · ' + esc(moduleTitle) + '</strong><span>Formal Study Note</span></div>' +
       '<h3>' + esc(name) + '</h3>' +
-      '<p>This lesson builds <strong>' + esc(label) + '</strong> through ' + focus + '. Watch the video, study the notes, then complete the two coding exercises before the short quiz.</p>' +
-      '<h4>Key points</h4><ul>' +
-      '<li>Understand what <em>' + esc(name) + '</em> is and where it fits in an Android app.</li>' +
-      '<li>Follow the example in Android Studio and read the code carefully.</li>' +
-      '<li>Build it yourself and run it on the emulator or a real device.</li></ul>' +
+
+      '<h4>1. Definition</h4>' +
+      '<p>' + esc(def) + '</p>' +
+
+      '<h4>2. Detailed Explanation</h4>' +
+      '<p>In the context of professional Android application development, <strong>' + esc(name) + '</strong> plays a central role in building reliable, maintainable, and user-friendly applications. A clear understanding of this topic enables a developer to make informed design decisions, write correct code, and avoid common pitfalls that lead to bugs or poor user experience.</p>' +
+      '<p>The concept is closely related to the broader skill of <em>' + esc(label) + '</em>. Mastery of this topic supports later modules in the programme and is frequently examined in technical interviews and practical assessments.</p>' +
+
+      '<h4>3. Why This Topic Matters</h4>' +
+      '<ul>' +
+      '<li>It forms part of the foundational knowledge expected of a competent Android developer.</li>' +
+      '<li>Correct application of the concept improves application quality, performance, and maintainability.</li>' +
+      '<li>Employers and clients look for demonstrated understanding of such core topics.</li>' +
+      '<li>It prepares you for more advanced subjects that appear later in the course.</li>' +
+      '</ul>' +
+
+      '<h4>4. Key Concepts and Sub-topics</h4>' +
+      '<ul>' +
+      '<li>Precise definition and scope of <em>' + esc(name) + '</em>.</li>' +
+      '<li>Relationship to other components of an Android application.</li>' +
+      '<li>Standard patterns and recommended practices.</li>' +
+      '<li>Common variations and when each variation is appropriate.</li>' +
+      '<li>Integration with Kotlin language features and Android Jetpack libraries where relevant.</li>' +
+      '</ul>' +
+
+      '<h4>5. Practical Application</h4>' +
+      '<p>After studying the accompanying video lesson, you should be able to apply <strong>' + esc(name) + '</strong> in a real Android Studio project. Practice by recreating the demonstrated example, then modify it to solve a slightly different problem. Record your observations in the Notes tab.</p>' +
+
       (code ? '<div class="study-callout">' + code + '</div>' : '') +
-      '<h4>Coding exercises</h4><ol>' +
-      '<li><strong>Exercise 1:</strong> Recreate the example for <em>' + esc(name) + '</em> and run it.</li>' +
-      '<li><strong>Exercise 2:</strong> Change one thing and predict, then check, the result on the emulator.</li></ol>' +
-      '<p><strong>Printable notes:</strong> Use your browser’s Print → Save as PDF to keep an offline copy of these notes and code.</p>' +
-      '<p><strong>Module connection:</strong> This lesson is part of <em>' + esc(moduleTitle) + '</em> on your path to publishing real Android apps.</p>' +
+
+      '<h4>6. Common Mistakes to Avoid</h4>' +
+      '<ul>' +
+      '<li>Memorising syntax without understanding the underlying purpose.</li>' +
+      '<li>Copying code without testing it on an emulator or device.</li>' +
+      '<li>Ignoring official documentation and relying solely on incomplete examples.</li>' +
+      '<li>Skipping the practice exercises and the short quiz that follow this lesson.</li>' +
+      '</ul>' +
+
+      '<h4>7. Summary</h4>' +
+      '<p><strong>' + esc(name) + '</strong> is a core topic within ' + esc(label) + '. A solid grasp of its definition, purpose, and correct usage is essential for progressing through the Complete Android App Development Program and for building professional-quality applications.</p>' +
+
+      '<h4>8. Study Actions</h4>' +
+      '<ol>' +
+      '<li>Watch the video carefully and pause to examine any code shown.</li>' +
+      '<li>Read this note again and write the definition in your own words.</li>' +
+      '<li>Complete the two coding exercises in Android Studio.</li>' +
+      '<li>Take the practice quiz that follows this lesson to confirm your understanding.</li>' +
+      '</ol>' +
+
+      '<p><strong>Module context:</strong> This lesson belongs to <em>' + esc(moduleTitle) + '</em>. Use your browser’s Print → Save as PDF if you wish to keep an offline copy of these notes.</p>' +
       '</div>';
   }
 
   function projectBrief(moduleTitle, name) {
-    return '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Hands-on app build</span></div>' +
+    return '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Hands-on Project Brief</span></div>' +
       '<h3>' + esc(name) + '</h3>' +
-      '<p>This is a practical build. Follow the video and notes, then create <em>' + esc(name) + '</em> yourself in Android Studio and push the source code to GitHub for your portfolio.</p>' +
-      '<h4>What to build</h4><ol><li>Plan the screens, data and features.</li><li>Build the UI, then add logic, storage and any API/Firebase.</li><li>Test on the emulator, fix bugs, then export the APK and add it to your portfolio.</li></ol>' +
-      '<div class="study-callout"><strong>Deliverable:</strong> A working Android app with its Kotlin source code on GitHub — a portfolio-ready application. Download project files and Print → Save as PDF for the brief.</div>' +
+      '<h4>Project Definition</h4>' +
+      '<p>This project requires you to design, implement, test, and document a complete Android application that demonstrates the skills acquired in preceding modules.</p>' +
+      '<h4>Objectives</h4>' +
+      '<ol><li>Plan the screens, data model, and core features.</li><li>Build a polished user interface following Material Design guidelines.</li><li>Implement the required logic, local or cloud storage, and any network features.</li><li>Test thoroughly on an emulator and, if possible, a physical device.</li><li>Publish the source code to a public GitHub repository with a clear README.</li></ol>' +
+      '<div class="study-callout"><strong>Deliverable:</strong> A working Android application together with its Kotlin source code on GitHub. This project forms part of your professional portfolio.</div>' +
       '</div>';
   }
 
-  /* ========== LARGE UNIQUE QUESTION BANKS ==========
-     Many more questions per skill so different topics receive different sets. */
+  /* ========== LARGE UNIQUE QUESTION BANKS ========== */
   var BANK = {
     general: [
       { q: 'Android apps in this course are built mainly with:', opts: ['Swift', 'Kotlin', 'Python', 'PHP'], correct: 1, exp: 'Kotlin is the modern, official language for Android.' },
@@ -285,8 +454,6 @@
     return map[skill] || 'general';
   }
 
-  /* Seeded shuffle so the same topic always gets the same questions,
-     but different topics get different combinations. */
   function hashStr(s) {
     var h = 0;
     for (var i = 0; i < s.length; i++) { h = ((h << 5) - h) + s.charCodeAt(i); h |= 0; }
@@ -306,10 +473,8 @@
   }
   function pickQuestions(key, count, topicName) {
     var pool = (BANK[key] || BANK.general).slice();
-    // Mix in a few from neighbouring banks for extra variety when pool is small
     var extra = BANK.general.concat(BANK.kotlin || [], BANK.ui || []);
     var combined = pool.concat(extra);
-    // Remove exact duplicates by question text
     var seen = {};
     var unique = [];
     combined.forEach(function (q) {
@@ -390,7 +555,7 @@
       var pqid = 'and-m' + num + '-q' + flat;
       quizzes[pqid] = practiceQuiz(key, name);
       lessons.push({ t: '📝 Practice: ' + name, d: '3 questions', isQuiz: true, quizId: pqid });
-      notes[String(flat)] = '<p><strong>Quick check:</strong> Review the notes, type out the code and complete the two exercises, then answer these to confirm you understood <em>' + esc(name) + '</em>.</p>';
+      notes[String(flat)] = '<p><strong>Quick check:</strong> Review the formal study notes, complete the coding exercises, then answer these questions to confirm you understood <em>' + esc(name) + '</em>.</p>';
       flat += 1; quizCount += 1;
     });
 
@@ -433,7 +598,7 @@
     ],
     about: [
       'This is the complete TIH Android App Development Program, rebuilt into nineteen modules that take you from Kotlin basics to publishing full apps on Google Play.',
-      'Every content lesson has a video and printable notes with Kotlin code; ten real-world apps and an industry capstone build your portfolio, and you learn Firebase, networking, security, testing, publishing, AI tools and freelancing.',
+      'Every content lesson has a video and formal detailed study notes with Kotlin code; ten real-world apps and an industry capstone build your portfolio, and you learn Firebase, networking, security, testing, publishing, AI tools and freelancing.',
       'Software & tools: Android Studio, Kotlin, Firebase, Git & GitHub, Postman, Figma, SQLite & Room, Google Play Console and Material Design Components. You finish with a portfolio of apps and — after the graduation assessment — a Certificate of Completion.'
     ],
     modules: modules,
