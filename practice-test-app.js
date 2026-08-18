@@ -5,10 +5,11 @@
     return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : null;
   }
   function esc(s) {
+    var a = String.fromCharCode(38);
     return String(s == null ? '' : s)
-      .replace(/&/g, String.fromCharCode(38)+'amp;')
-      .replace(/</g, String.fromCharCode(38)+'lt;')
-      .replace(/>/g, String.fromCharCode(38)+'gt;');
+      .replace(/&/g, a + 'amp;')
+      .replace(/</g, a + 'lt;')
+      .replace(/>/g, a + 'gt;');
   }
 
   var PT_POS_DEP = /\b(all|none|both|any|each) of the (above|following)\b|\bthe above\b|\b(all|none) of these\b|\bboth [a-d] (and|&) [a-d]\b|\b[a-d] (and|or|&) [a-d]\b|\banswers? [a-d]\b|\boptions? [a-d]\b/i;
