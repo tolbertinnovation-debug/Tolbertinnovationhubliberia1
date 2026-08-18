@@ -15,8 +15,36 @@
     writing: window.TIH_IELTS_WRITING || [],
     speaking: window.TIH_IELTS_SPEAKING || []
   };
-  var toefl = window.TIH_TOEFL_BANK || { examId: 'toefl', title: 'TOEFL iBT Practice Test', durationMin: 30, scoreType: 'toefl120', passMark: 70, intro: '', sections: [], writing: [], speaking: [] };
-  var sat = window.TIH_SAT_BANK || { examId: 'sat', title: 'Digital SAT Practice Test', durationMin: 35, scoreType: 'sat1600', passMark: 70, intro: '', sections: [], writing: [], speaking: [] };
+
+  // TOEFL: prefer full structured bank if present; otherwise empty shell
+  var toefl = window.TIH_TOEFL_BANK || {
+    examId: 'toefl',
+    title: 'TOEFL iBT Practice Test',
+    durationMin: 45,
+    scoreType: 'toefl120',
+    passMark: 70,
+    intro: 'Choose a section to practise, or take the Full Test. Reading, Listening, and Academic Language are timed and auto-scored with an estimated 0–120 score. Writing and Speaking are self-check with model answers.',
+    sections: [],
+    writing: [],
+    speaking: []
+  };
+  // Ensure intro is section-picker friendly if bank was loaded
+  if (window.TIH_TOEFL_BANK && (!toefl.intro || toefl.intro.indexOf('Choose a section') < 0)) {
+    toefl.intro = 'Choose a section to practise, or take the Full Test. Reading, Listening, and Academic Language are timed and auto-scored with an estimated 0–120 score. Writing and Speaking are self-check with model answers.';
+  }
+
+  var sat = window.TIH_SAT_BANK || {
+    examId: 'sat',
+    title: 'Digital SAT Practice Test',
+    durationMin: 35,
+    scoreType: 'sat1600',
+    passMark: 70,
+    intro: '',
+    sections: [],
+    writing: [],
+    speaking: []
+  };
+
   window.PRACTICE_TESTS = { ielts: ielts, toefl: toefl, sat: sat };
   if (typeof module !== 'undefined' && module.exports) { module.exports = window.PRACTICE_TESTS; }
 })();
