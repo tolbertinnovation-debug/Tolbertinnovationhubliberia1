@@ -10,6 +10,10 @@ window.TIH_PAYMENTS_CONFIG = {
   functionsBase: "https://oracluubhmxobcnsvcxz.supabase.co/functions/v1",
   currency: "USD"
 };
+/* All courses: 3 weeks to complete */
+window.TIH_COURSE_DURATION_WEEKS = 3;
+window.TIH_COURSE_DURATION_LABEL = '3 weeks';
+document.write('<script src="course-duration-3weeks.js?v=1"><\/script>');
 /* Per-topic videos for all mapped courses */
 document.write('<script src="webdev-video-map.js?v=2"><\/script>');
 document.write('<script src="data-video-map.js?v=2"><\/script>');
