@@ -10,7 +10,7 @@
     "What is Digital Marketing?": "YhK_PGhdPe8",
     "Career Opportunities in Digital Marketing": "jVgYgN0zcWs",
     "Types of Digital Marketing": "nkNHn0VqVBA",
-    "Digital Marketing Trends": "KEnCy4bQR3Y",
+    "Digital Marketing Trends": "eUH9rADF1EM",
     "Course Roadmap": "jVgYgN0zcWs",
     "Setting Learning Goals": "YhK_PGhdPe8",
     "Final Capstone Project": "0VtSDWsqJbM",
@@ -183,7 +183,7 @@
     "Market Expansion": "RvFTNnOyWZ0",
     "Business Growth Strategies": "jVgYgN0zcWs",
     "Partnership Marketing": "RvFTNnOyWZ0",
-    "Crisis Communication": "RvFTNnOyWZ0",
+    "Crisis Communication": "8MvCJ7EpBUA",
     "Marketing Leadership": "RvFTNnOyWZ0",
     "Strategic Marketing Project": "RvFTNnOyWZ0",
 
