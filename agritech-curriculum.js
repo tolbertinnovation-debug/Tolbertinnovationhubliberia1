@@ -1,337 +1,314 @@
-/* TIH Complete AgriTech & Digital Agriculture Professional Certificate.
-   Rebuilds COURSES_DB.agritech into the full 20-module program taking a
-   beginner to an AgriTech & digital agriculture professional: agriculture
-   fundamentals, digital transformation, climate-smart farming, farm
-   management, precision agriculture, IoT, drones, farm data & analytics,
-   agribusiness, digital marketing, food safety, finance, AI, policy,
-   professional skills, real-world projects, a capstone and a graduation module.
-   Every content lesson has a video + printable notes; project lessons carry
-   briefs and downloadable templates. Modelled on complit-curriculum.js. */
+/* TIH AgriTech: full curriculum loader + formal notes for ALL modules. */
 (function () {
   if (typeof COURSES_DB === 'undefined') return;
   var CID = 'agritech';
-  if (!COURSES_DB[CID] || COURSES_DB[CID]._atFullBuilt) return;
+  if (COURSES_DB[CID] && COURSES_DB[CID]._atFullBuilt && COURSES_DB[CID]._atAllModuleNotes) return;
 
-  var V = ['ev-4uQzdTXI', 'QijsZjlvxh4', 'l8nFgIhK7bw', 'yoeVcRlj1WI', 'GcPdvSj6CbE', 'dsYo9rBPQGo', 'gHfEm1z-3iY', 'pun14jec_Xk', 'EEcy1swBlRo', 'qwNVNE83Udo', 'XyGtTvH_NXY', 'sdMZ_HCAGO4', 'niYA0qrUJiE', 'WUvWHlCsDk4', 'BHoG5zhPj7Y', 'WgqAejCz2gM'];
-  var VIDEOS = {
-    orientation: ['5y6iu4-xdFc'],
-    agri: ['8P72xIx4teA'],
-    digital: ['_egBWcIX964'],
-    climate: ['MX97GhUKE_8'],
-    farmmgmt: ['cwZXdGPxUmg'],
-    precision: ['hCW5RWqi9L8'],
-    iot: ['5y6iu4-xdFc'],
-    drones: ['5y6iu4-xdFc'],
-    data: ['5y6iu4-xdFc'],
-    agribusiness: ['5y6iu4-xdFc'],
-    marketing: ['5y6iu4-xdFc'],
-    foodsafety: ['5y6iu4-xdFc'],
-    finance: ['5y6iu4-xdFc'],
-    ai: ['5y6iu4-xdFc'],
-    policy: ['5y6iu4-xdFc'],
-    professional: ['5y6iu4-xdFc'],
-    projects: ['5y6iu4-xdFc'],
-    career: ['5y6iu4-xdFc'],
-    capstone: ['5y6iu4-xdFc'],
-    assessment: ['5y6iu4-xdFc']
+  var BETTER_VIDEOS = {
+    orientation: ['cGCRrj226aY', 'Ghympu2zFYo', '5y6iu4-xdFc'],
+    agri: ['w3ps30chvgQ', 'ICv9o3dexrc', '8P72xIx4teA'],
+    digital: ['cGCRrj226aY', 'Ghympu2zFYo', '_egBWcIX964'],
+    climate: ['i0V2xzEw44Y', 'YGu_09HH-Xo', 'Ze-knAp93Q4', 'MX97GhUKE_8'],
+    farmmgmt: ['cwZXdGPxUmg', 'w3ps30chvgQ'],
+    precision: ['uF0I7cPruIc', 'l2dw7HUnedg', '0951MdaqzxI', 'hCW5RWqi9L8'],
+    iot: ['OL7TNx9RquE', '73CB-L_KNSw', 'vmSn0s7uivk'],
+    drones: ['yIVC-Q0cfHw', 'fhTe1APV0Uw', 'a2-qLUJNG-4'],
+    data: ['lt5oNi9gVEs', 'F9ML_BBVIj0', 'cGCRrj226aY'],
+    agribusiness: ['Ghympu2zFYo', 'cwZXdGPxUmg'],
+    marketing: ['Ghympu2zFYo', 'cGCRrj226aY'],
+    foodsafety: ['i0V2xzEw44Y', '8P72xIx4teA'],
+    finance: ['cwZXdGPxUmg', 'Ghympu2zFYo'],
+    ai: ['cGCRrj226aY', 'EWT2nqpMFNw', 'uF0I7cPruIc'],
+    policy: ['i0V2xzEw44Y', 'YGu_09HH-Xo'],
+    professional: ['cwZXdGPxUmg', 'Ghympu2zFYo'],
+    projects: ['uF0I7cPruIc', 'OL7TNx9RquE', 'yIVC-Q0cfHw'],
+    career: ['Ghympu2zFYo', 'cGCRrj226aY'],
+    capstone: ['uF0I7cPruIc', 'OL7TNx9RquE', 'i0V2xzEw44Y'],
+    assessment: ['cGCRrj226aY']
   };
 
-  // [moduleNum, title, icon, skillKey, type, [lesson names]]  type: content|projects|assessment
-  var curriculum = [
-    [1, 'Course Orientation', '🧭', 'orientation', 'content', ['Welcome to the Course', 'What is AgriTech?', 'What is Digital Agriculture?', 'Careers in AgriTech', 'The Future of Agriculture', 'Course Roadmap', 'Learning Resources', 'Final Capstone Project', 'Certificate Requirements']],
-    [2, 'Introduction to Agriculture', '🌱', 'agri', 'content', ['Fundamentals of Agriculture', 'Crop Production', 'Livestock Production', 'Agricultural Systems', 'Soil Science Basics', 'Plant Biology', 'Farm Ecosystems', 'Agricultural Terminology', 'Food Security', 'Sustainable Agriculture']],
-    [3, 'Digital Transformation in Agriculture', '📡', 'digital', 'content', ['Digital Agriculture Overview', 'Smart Farming Concepts', 'Precision Agriculture', 'Digital Farm Management', 'Agricultural Innovation', 'Data-Driven Farming', 'Farm Automation', 'Agricultural Information Systems', 'Emerging Technologies', 'AgriTech Trends']],
-    [4, 'Climate-Smart Agriculture', '🌍', 'climate', 'content', ['Climate Change and Agriculture', 'Climate-Smart Farming', 'Water Conservation', 'Soil Conservation', 'Sustainable Irrigation', 'Crop Rotation', 'Organic Farming', 'Carbon Farming', 'Biodiversity Conservation', 'Environmental Stewardship']],
-    [5, 'Farm Management', '📋', 'farmmgmt', 'content', ['Farm Planning', 'Resource Management', 'Farm Budgeting', 'Record Keeping', 'Farm Productivity', 'Labor Management', 'Farm Safety', 'Agricultural Risk Management', 'Farm Performance Evaluation', 'Farm Business Planning']],
-    [6, 'Precision Agriculture', '🎯', 'precision', 'content', ['GPS in Agriculture', 'Geographic Information Systems (GIS)', 'Remote Sensing', 'Yield Monitoring', 'Variable Rate Technology', 'Precision Irrigation', 'Soil Mapping', 'Precision Crop Management', 'Precision Livestock Farming', 'Precision Agriculture Project']],
-    [7, 'Internet of Things (IoT) in Agriculture', '📶', 'iot', 'content', ['Introduction to IoT', 'Smart Sensors', 'Soil Moisture Sensors', 'Weather Stations', 'Smart Irrigation Systems', 'Livestock Monitoring', 'Greenhouse Automation', 'IoT Data Collection', 'IoT Farm Management', 'IoT Case Studies']],
-    [8, 'Drones & Remote Monitoring', '🚁', 'drones', 'content', ['Drone Technology', 'Agricultural Drone Applications', 'Crop Monitoring', 'Field Mapping', 'Crop Health Assessment', 'Pest Detection', 'Drone Safety', 'Drone Regulations', 'Drone Data Analysis', 'Drone Demonstration Project']],
-    [9, 'Farm Data & Analytics', '📊', 'data', 'content', ['Data Collection', 'Farm Management Software', 'Spreadsheet Analysis', 'Agricultural Dashboards', 'Data Visualization', 'Yield Analysis', 'Financial Analysis', 'Decision-Making Using Data', 'Predictive Agriculture', 'Data Analytics Project']],
-    [10, 'Agribusiness & Entrepreneurship', '💼', 'agribusiness', 'content', ['Agribusiness Fundamentals', 'Agricultural Value Chains', 'Market Research', 'Business Model Development', 'Financial Planning', 'Agricultural Marketing', 'Branding Farm Products', 'Accessing Agricultural Finance', 'Agribusiness Innovation', 'Business Plan Development']],
-    [11, 'Digital Marketing for Agriculture', '📣', 'marketing', 'content', ['Social Media Marketing', 'Farm Branding', 'E-Commerce for Agriculture', 'Online Marketplaces', 'Customer Relationship Management', 'Digital Advertising', 'Content Marketing', 'Agricultural Storytelling', 'Sales Strategies', 'Marketing Campaign Project']],
-    [12, 'Food Safety & Quality Management', '✅', 'foodsafety', 'content', ['Food Safety Principles', 'Good Agricultural Practices (GAP)', 'Post-Harvest Handling', 'Food Storage', 'Food Processing Basics', 'Quality Assurance', 'Traceability Systems', 'Food Standards & Compliance']],
-    [13, 'Agricultural Finance & Investment', '💰', 'finance', 'content', ['Agricultural Economics', 'Farm Budgeting', 'Financial Statements', 'Investment Planning', 'Agricultural Loans', 'Insurance in Agriculture', 'Grant Opportunities', 'Financial Risk Management']],
-    [14, 'AI & Emerging Technologies in Agriculture', '🤖', 'ai', 'content', ['Artificial Intelligence in Agriculture', 'Machine Learning Basics', 'Computer Vision for Farming', 'Predictive Analytics', 'Robotics in Agriculture', 'Blockchain in Agriculture', 'AI Farm Management Tools', 'Future Trends in AgriTech']],
-    [15, 'Agricultural Policies & Sustainability', '🏛️', 'policy', 'content', ['Agricultural Policies', 'Land Use Management', 'Sustainable Development Goals (SDGs)', 'Environmental Regulations', 'Agricultural Cooperatives', 'Rural Development', 'Gender in Agriculture', 'Agricultural Extension Services']],
-    [16, 'Professional Skills', '🌟', 'professional', 'content', ['Business Communication', 'Leadership', 'Project Management', 'Proposal Writing', 'Report Writing', 'Teamwork', 'Problem Solving', 'Professional Ethics']],
-    [17, 'Real-World AgriTech Projects', '🏗️', 'projects', 'projects', ['Smart Farm Design', 'Precision Farming Plan', 'Digital Farm Record System', 'Irrigation Management Plan', 'Agribusiness Startup Plan', 'Farm Marketing Campaign', 'Climate-Smart Agriculture Project', 'Data Analytics Project', 'Community Agriculture Initiative', 'Agricultural Innovation Pitch']],
-    [18, 'Career Development', '📈', 'career', 'content', ['Building an AgriTech Portfolio', 'Resume Writing', 'LinkedIn Optimization', 'Interview Preparation', 'Freelancing Opportunities', 'Consulting Opportunities', 'Professional Certifications', 'Career Growth Plan']],
-    [19, 'Capstone Project', '🎓', 'capstone', 'projects', ['Identify an Agricultural Challenge', 'Conduct Farm Research', 'Design a Digital Agriculture Solution', 'Develop an Agribusiness Plan', 'Present a Precision Farming Strategy', 'Prepare a Budget', 'Final Presentation', 'Project Evaluation']],
-    [20, 'Assessments & Graduation', '🏆', 'assessment', 'assessment', ['Agriculture Fundamentals Assessment', 'Precision Agriculture Assessment', 'IoT & Drone Technology Assessment', 'Farm Management Assessment', 'Agribusiness Assessment', 'Data Analytics Assessment', 'Midterm Examination', 'Final Examination', 'Capstone Project Evaluation', 'Portfolio Review', 'Certificate Requirements', 'Certificate of Completion']]
-  ];
-
-  function esc(v) { return String(v).replace(/[&<>"']/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]; }); }
-  function isProjectName(name) { return /(?:Project|Assignment|Presentation|Simulation)$/.test(name.trim()); }
-
-  var skillLabel = { orientation: 'AgriTech foundations', agri: 'agriculture fundamentals', digital: 'digital transformation in agriculture', climate: 'climate-smart agriculture', farmmgmt: 'farm management', precision: 'precision agriculture', iot: 'IoT in agriculture', drones: 'drones & remote monitoring', data: 'farm data & analytics', agribusiness: 'agribusiness & entrepreneurship', marketing: 'digital marketing for agriculture', foodsafety: 'food safety & quality', finance: 'agricultural finance & investment', ai: 'AI & emerging technologies', policy: 'agricultural policy & sustainability', professional: 'professional skills', projects: 'applied AgriTech projects', career: 'AgriTech careers', capstone: 'your capstone project', assessment: 'your knowledge' };
-
-  var TEMPLATES = {
-    budget: '<h4>📥 Template: Farm Budget</h4><ul><li>Income: crops/livestock (units × price)</li><li>Variable costs: seed, feed, fertiliser, labour, fuel</li><li>Fixed costs: land, equipment, insurance</li><li>Gross margin &amp; net profit</li><li>Cash-flow by season/month</li></ul>',
-    record: '<h4>📥 Template: Crop Record Book</h4><ul><li>Field/plot ID &amp; crop</li><li>Planting date, variety, inputs used</li><li>Activities (irrigation, spraying, weeding) &amp; dates</li><li>Pest/disease observations</li><li>Harvest date, yield &amp; sales</li></ul>',
-    business: '<h4>📥 Template: Agribusiness Plan</h4><ol><li>Executive summary</li><li>Product/enterprise &amp; value chain</li><li>Market &amp; customers</li><li>Marketing &amp; sales plan</li><li>Operations &amp; production plan</li><li>Financial plan &amp; funding</li><li>Risks &amp; sustainability</li></ol>',
-    precision: '<h4>📥 Checklist: Precision Farming</h4><ul><li>Define management zones (soil, yield)</li><li>Collect GPS/GIS &amp; sensor data</li><li>Apply variable-rate inputs</li><li>Monitor with remote sensing/drones</li><li>Analyse yield vs inputs</li><li>Adjust for next season</li></ul>',
-    irrigation: '<h4>📥 Tool: Irrigation Planning</h4><ul><li>Crop water requirement (stage-based)</li><li>Soil type &amp; moisture level</li><li>Water source &amp; system (drip/sprinkler)</li><li>Schedule (frequency &amp; volume)</li><li>Monitoring with soil-moisture sensors</li></ul>',
-    gis: '<h4>📥 Resource: GIS Practice Data</h4><p>Practise in QGIS/Google Earth with:</p><ul><li>A field boundary map (draw your plot)</li><li>Soil &amp; slope layers</li><li>Yield points to map zones</li><li>Label features and calculate area</li></ul>',
-    proposal: '<h4>📥 Template: Proposal</h4><ul><li>Problem/need &amp; evidence</li><li>Objectives &amp; activities</li><li>Timeline &amp; responsibilities</li><li>Budget &amp; justification</li><li>Expected impact &amp; sustainability</li></ul>'
+  var TOPIC_DEF = {
+    'Welcome to the Course': 'The Complete AgriTech & Digital Agriculture Professional Certificate is a structured programme that trains learners to apply digital tools, data, and modern practices to improve farm productivity, sustainability, and agribusiness performance.',
+    'What is AgriTech?': 'AgriTech is the use of technology and innovation—including sensors, data, software, machinery, and biotechnology—to improve agricultural production, farm management, and food-system performance.',
+    'What is Digital Agriculture?': 'Digital agriculture is the application of digital technologies such as data analytics, connectivity, AI, and platforms to collect, analyse, and act on farm and value-chain information.',
+    'Careers in AgriTech': 'Careers in AgriTech include precision agriculture specialist, farm data analyst, IoT technician, drone operator, agribusiness advisor, and digital extension officer.',
+    'The Future of Agriculture': 'The future of agriculture is shaped by digitalisation, climate adaptation, resource efficiency, and value-chain integration.',
+    'Fundamentals of Agriculture': 'Agriculture is the science and practice of cultivating plants and rearing animals for food, fibre, and other products.',
+    'Crop Production': 'Crop production is the cultivation of plants for food, feed, fibre, or industrial use, covering land preparation through harvest.',
+    'Livestock Production': 'Livestock production is the rearing of animals for meat, milk, eggs, fibre, or draft power.',
+    'Agricultural Systems': 'Agricultural systems are organised combinations of crops, livestock, land, labour, and technology under given environmental and market conditions.',
+    'Soil Science Basics': 'Soil science studies soil formation, classification, properties, and its role in plant growth and ecosystems.',
+    'Plant Biology': 'Plant biology is the study of plant structure, function, growth, and reproduction.',
+    'Farm Ecosystems': 'A farm ecosystem is the interacting system of soil, water, plants, animals, and microorganisms on a farm.',
+    'Agricultural Terminology': 'Agricultural terminology is the specialised vocabulary used to describe crops, livestock, practices, equipment, and markets.',
+    'Food Security': 'Food security exists when all people have physical, social and economic access to sufficient, safe and nutritious food.',
+    'Sustainable Agriculture': 'Sustainable agriculture meets present needs for food and fibre while protecting the environment and long-term farm viability.',
+    'Digital Agriculture Overview': 'Digital agriculture covers data, sensors, connectivity, software, and analytics that transform farm planning, monitoring, and management.',
+    'Smart Farming Concepts': 'Smart farming uses connected devices, data, and automation to manage farm operations in real time.',
+    'Digital Farm Management': 'Digital farm management uses software and digital records to plan, track, and analyse production, inputs, labour, and finances.',
+    'Agricultural Innovation': 'Agricultural innovation is the adoption of new practices, technologies, or business models that improve productivity, resilience, or profitability.',
+    'Data-Driven Farming': 'Data-driven farming bases agronomic and business decisions on measured data rather than guesswork alone.',
+    'Farm Automation': 'Farm automation uses machines, controllers, and software to perform or assist irrigation, feeding, climate control, or field operations.',
+    'Agricultural Information Systems': 'Agricultural information systems collect, store, process, and share data to support farmer, advisor, and policy decisions.',
+    'Emerging Technologies': 'Emerging technologies in agriculture include AI, advanced sensors, robotics, blockchain, and new connectivity options.',
+    'AgriTech Trends': 'AgriTech trends include precision tools, digital marketplaces, climate services, and integrated data platforms.',
+    'Climate Change and Agriculture': 'Climate change affects crops, livestock, and farming systems through temperature, rainfall, and extremes; agriculture also contributes emissions.',
+    'Climate-Smart Farming': 'Climate-smart agriculture sustainably increases productivity, builds resilience, and reduces greenhouse gas emissions where possible.',
+    'Water Conservation': 'Water conservation reduces waste and improves efficiency of water use for crops and livestock while protecting water resources.',
+    'Soil Conservation': 'Soil conservation protects soil from erosion and degradation and maintains structure, organic matter, and fertility.',
+    'Sustainable Irrigation': 'Sustainable irrigation meets crop needs while minimising waste, energy use, and harm to water sources.',
+    'Crop Rotation': 'Crop rotation grows different crops in sequence on the same land to improve fertility, break pest cycles, and reduce risk.',
+    'Organic Farming': 'Organic farming relies on natural processes, avoids synthetic fertilisers and pesticides, and emphasises soil health and biodiversity.',
+    'Carbon Farming': 'Carbon farming increases capture and storage of carbon in soils and biomass while supporting productivity.',
+    'Biodiversity Conservation': 'Biodiversity conservation protects the variety of life on farms that supports pollination, pest control, and resilience.',
+    'Environmental Stewardship': 'Environmental stewardship is responsible use and protection of natural resources so production continues without degrading ecosystems.',
+    'Farm Planning': 'Farm planning sets production and business goals and decides how land, labour, capital, and technology will be used.',
+    'Resource Management': 'Resource management is the efficient allocation of land, water, labour, capital, and inputs without unnecessary waste.',
+    'Farm Budgeting': 'Farm budgeting estimates expected income, costs, and profit for an enterprise or whole farm over a defined period.',
+    'Record Keeping': 'Record keeping systematically stores data on activities, inputs, outputs, costs, and results for better decisions.',
+    'Farm Productivity': 'Farm productivity measures output relative to inputs such as land, labour, or capital.',
+    'Labor Management': 'Labour management plans, organises, and supervises people so farm tasks are completed safely and productively.',
+    'Farm Safety': 'Farm safety protects workers and visitors from injury and health hazards through practices, training, and equipment.',
+    'Agricultural Risk Management': 'Agricultural risk management identifies and controls threats such as weather, pests, prices, and disease.',
+    'Farm Performance Evaluation': 'Farm performance evaluation reviews production and financial results against targets to guide improvement.',
+    'Farm Business Planning': 'Farm business planning produces a written plan covering markets, production, operations, finance, and risks.',
+    'GPS in Agriculture': 'GPS provides accurate location data for field mapping, machinery guidance, yield mapping, and variable-rate application.',
+    'Geographic Information Systems (GIS)': 'GIS captures, stores, analyses, and displays spatially referenced farm data for mapping and management zones.',
+    'Remote Sensing': 'Remote sensing acquires information about land or crops from satellites, aircraft, or drones without physical contact.',
+    'Yield Monitoring': 'Yield monitoring measures and maps crop yield during harvest to identify spatial variability.',
+    'Variable Rate Technology': 'Variable Rate Technology applies inputs at different rates across a field according to site-specific needs.',
+    'Precision Irrigation': 'Precision irrigation applies water at variable rates based on crop need, soil condition, and sensor or map data.',
+    'Soil Mapping': 'Soil mapping collects and displays soil types and properties across a farm to support site-specific management.',
+    'Precision Crop Management': 'Precision crop management applies agronomic decisions—seeding, nutrients, protection—using spatial data and variability within fields.',
+    'Precision Livestock Farming': 'Precision livestock farming uses sensors and data to monitor individual or group animal health, behaviour, and productivity.',
+    'Introduction to IoT': 'IoT in agriculture is networks of sensors and devices that collect and exchange farm data to support monitoring and automation.',
+    'Smart Sensors': 'Smart sensors measure environmental or biological conditions and transmit data for analysis and decision-making.',
+    'Soil Moisture Sensors': 'Soil moisture sensors measure water content in the soil to guide when and how much to irrigate.',
+    'Weather Stations': 'Farm weather stations measure local temperature, rainfall, humidity, and wind to support irrigation and risk decisions.',
+    'Smart Irrigation Systems': 'Smart irrigation systems use sensor and weather data with controllers to apply water automatically and efficiently.',
+    'Livestock Monitoring': 'Livestock monitoring uses sensors or tags to track location, activity, and health for earlier problem detection.',
+    'Greenhouse Automation': 'Greenhouse automation uses sensors and controllers to regulate temperature, humidity, ventilation, and irrigation.',
+    'IoT Data Collection': 'IoT data collection is the automated gathering of sensor readings into platforms for monitoring, alerts, and analysis.',
+    'IoT Farm Management': 'IoT farm management integrates sensor networks with dashboards and controls to manage irrigation, climate, or livestock remotely.',
+    'Drone Technology': 'Agricultural drone technology uses unmanned aerial vehicles with cameras or sensors to map fields and monitor crops.',
+    'Agricultural Drone Applications': 'Drone applications include field mapping, crop scouting, vegetation indexing, and targeted observation.',
+    'Crop Monitoring': 'Crop monitoring is regular observation of growth, health, and stress to detect problems early.',
+    'Field Mapping': 'Field mapping creates accurate spatial representations of boundaries and features using GPS, GIS, or drones.',
+    'Crop Health Assessment': 'Crop health assessment evaluates plant condition using visual checks, tests, or indices such as NDVI.',
+    'Pest Detection': 'Pest detection identifies insects, diseases, or weeds so control can be targeted and timely.',
+    'Drone Safety': 'Drone safety covers checks and behaviours that protect people, property, and aircraft during agricultural flights.',
+    'Drone Regulations': 'Drone regulations are legal rules on registration, pilot qualification, airspace, and privacy for UAV operations.',
+    'Drone Data Analysis': 'Drone data analysis processes imagery into maps and indices that support fertiliser, irrigation, or scouting decisions.',
+    'Data Collection': 'Farm data collection systematically gathers weather, soil, crop, livestock, input, and output information.',
+    'Farm Management Software': 'Farm management software helps plan, record, track, and analyse operations, finances, and performance.',
+    'Spreadsheet Analysis': 'Spreadsheet analysis organises farm data and calculates totals, ratios, and relationships between inputs and outputs.',
+    'Agricultural Dashboards': 'Agricultural dashboards display key metrics in one view for quick monitoring and decisions.',
+    'Data Visualization': 'Data visualization presents farm data in charts and maps so patterns and problems are easy to see.',
+    'Yield Analysis': 'Yield analysis examines output data over time and across fields to find trends and improvement opportunities.',
+    'Financial Analysis': 'Financial analysis reviews income, costs, cash flow, and profitability to assess business health.',
+    'Decision-Making Using Data': 'Decision-making using data chooses agronomic or business actions based on measured evidence.',
+    'Predictive Agriculture': 'Predictive agriculture uses data and models to forecast yields, pests, weather impacts, or demand.',
+    'Agribusiness Fundamentals': 'Agribusiness covers businesses involved in producing, processing, distributing, and marketing agricultural products.',
+    'Agricultural Value Chains': 'An agricultural value chain is the full sequence of activities from production through processing to the consumer.',
+    'Market Research': 'Market research studies customers, demand, prices, and competitors to inform product and sales decisions.',
+    'Business Model Development': 'Business model development designs how a farm or agribusiness creates, delivers, and captures value.',
+    'Financial Planning': 'Financial planning projects income, expenses, capital needs, and funding sources for sustainable growth.',
+    'Agricultural Marketing': 'Agricultural marketing moves products from farm to buyer through grading, packaging, pricing, and distribution.',
+    'Branding Farm Products': 'Branding creates a distinct name and reputation that helps customers recognise and prefer farm products.',
+    'Accessing Agricultural Finance': 'Accessing agricultural finance means obtaining loans, grants, or capital for operations, equipment, or expansion.',
+    'Agribusiness Innovation': 'Agribusiness innovation introduces new products, processes, or models that improve competitiveness.',
+    'Business Plan Development': 'Business plan development produces a document describing opportunity, market, operations, and financial projections.',
+    'Social Media Marketing': 'Social media marketing uses platforms to promote farm products, build relationships, and generate sales.',
+    'Farm Branding': 'Farm branding is consistent presentation of the farm name, story, and values across channels.',
+    'E-Commerce for Agriculture': 'E-commerce is buying and selling farm products or inputs through online platforms and digital payments.',
+    'Online Marketplaces': 'Online marketplaces are digital platforms where sellers offer agricultural products to buyers.',
+    'Customer Relationship Management': 'CRM tracks customer contacts and purchases to improve service and repeat business.',
+    'Digital Advertising': 'Digital advertising is paid promotion through social, search, or display channels.',
+    'Content Marketing': 'Content marketing shares useful stories and information to attract and retain customers.',
+    'Agricultural Storytelling': 'Agricultural storytelling communicates the farm’s people and practices to build trust with buyers.',
+    'Sales Strategies': 'Sales strategies are planned approaches for reaching buyers, presenting offers, and closing sales.',
+    'Food Safety Principles': 'Food safety principles prevent contamination with hazards from farm through distribution.',
+    'Good Agricultural Practices (GAP)': 'GAP are principles for on-farm production and post-harvest processes that yield safe, healthy products.',
+    'Post-Harvest Handling': 'Post-harvest handling includes cleaning, sorting, packing, cooling, and transport that preserve quality.',
+    'Food Storage': 'Food storage holds products under conditions that limit spoilage, pests, and quality loss.',
+    'Food Processing Basics': 'Food processing transforms raw products into more stable or valuable forms through drying, milling, or packaging.',
+    'Quality Assurance': 'Quality assurance is systematic checks ensuring products meet standards for safety, grade, and consistency.',
+    'Traceability Systems': 'Traceability systems record the path of a product from farm to consumer for origin and safety.',
+    'Food Standards & Compliance': 'Food standards and compliance are legal and voluntary requirements for safety, labelling, and quality.',
+    'Agricultural Economics': 'Agricultural economics studies resource allocation in farming and food systems, including costs, prices, and policy.',
+    'Financial Statements': 'Financial statements include income statement, balance sheet, and cash-flow summary of farm performance.',
+    'Investment Planning': 'Investment planning evaluates capital purchases based on returns, risk, and available funds.',
+    'Agricultural Loans': 'Agricultural loans are credit products for production, equipment, or land, often matched to seasonal cash flow.',
+    'Insurance in Agriculture': 'Insurance provides compensation for specified losses such as crop failure or livestock death.',
+    'Grant Opportunities': 'Grant opportunities are non-repayable funds for agricultural projects under defined donor conditions.',
+    'Financial Risk Management': 'Financial risk management controls threats to cash flow and solvency including price and credit risk.',
+    'Artificial Intelligence in Agriculture': 'AI in agriculture uses systems that learn from data for crop diagnosis, yield prediction, and automation support.',
+    'Machine Learning Basics': 'Machine learning enables computer systems to learn patterns from data and improve predictions without explicit programming for every case.',
+    'Computer Vision for Farming': 'Computer vision uses cameras and algorithms to interpret images for counting, disease detection, or weed identification.',
+    'Predictive Analytics': 'Predictive analytics applies models to farm data to forecast yield, disease risk, or demand.',
+    'Robotics in Agriculture': 'Robotics uses automated machines for weeding, harvesting, milking, or material handling.',
+    'Blockchain in Agriculture': 'Blockchain uses distributed ledgers to record product history for supply-chain trust and traceability.',
+    'AI Farm Management Tools': 'AI farm management tools use artificial intelligence to support planning, diagnostics, and recommendations.',
+    'Future Trends in AgriTech': 'Future trends include wider AI, autonomy, climate services, digital marketplaces, and integrated data platforms.',
+    'Agricultural Policies': 'Agricultural policies are government rules and programmes that shape production, trade, land use, and farmer support.',
+    'Land Use Management': 'Land use management plans allocation of land among farming, forestry, settlement, and conservation.',
+    'Sustainable Development Goals (SDGs)': 'The SDGs are a global framework of seventeen goals including zero hunger and climate action.',
+    'Environmental Regulations': 'Environmental regulations limit pollution and set standards for practices that affect land, water, and biodiversity.',
+    'Agricultural Cooperatives': 'Agricultural cooperatives are member-owned organisations providing inputs, marketing, processing, or credit.',
+    'Rural Development': 'Rural development improves economic opportunity, infrastructure, and quality of life in rural areas.',
+    'Gender in Agriculture': 'Gender in agriculture examines differences in roles and access to resources and how equality improves food security.',
+    'Agricultural Extension Services': 'Extension services provide education and advice to farmers to improve practices and adopt innovations.',
+    'Business Communication': 'Business communication is clear professional exchange of information supporting coordination and accountability.',
+    'Leadership': 'Leadership sets direction, motivates people, and advances farm or organisational goals while building trust.',
+    'Project Management': 'Project management plans and controls resources to deliver agricultural projects on time and on budget.',
+    'Proposal Writing': 'Proposal writing prepares structured requests for funding presenting problem, solution, plan, and budget.',
+    'Report Writing': 'Report writing produces evidence-based documents recording activities, results, and recommendations.',
+    'Teamwork': 'Teamwork is coordinated effort of people with different skills to achieve shared farm or project goals.',
+    'Problem Solving': 'Problem solving defines a problem, generates options, chooses action, and reviews results.',
+    'Professional Ethics': 'Professional ethics are standards of honesty, fairness, safety, and responsibility in AgriTech and farming.',
+    'Building an AgriTech Portfolio': 'An AgriTech portfolio is a collection of projects and analyses that demonstrates practical skill to employers or clients.',
+    'Resume Writing': 'Resume writing prepares a concise summary of education, skills, and experience for agricultural roles.',
+    'LinkedIn Optimization': 'LinkedIn optimization improves a professional profile to increase visibility to employers in agriculture and technology.',
+    'Interview Preparation': 'Interview preparation researches the employer and practises examples that show competence for the role.',
+    'Freelancing Opportunities': 'Freelancing includes independent paid work such as mapping, analysis, training, or advisory services.',
+    'Consulting Opportunities': 'Consulting provides expert advice on digital agriculture or agribusiness to clients on project or retainer basis.',
+    'Professional Certifications': 'Professional certifications verify knowledge in areas such as GIS, drones, or farm software.',
+    'Career Growth Plan': 'A career growth plan is a personal roadmap of skills and milestones toward long-term AgriTech goals.'
   };
-  function templateFor(name) {
-    if (/Farm Budget|Farm Budgeting|Prepare a Budget/i.test(name)) return TEMPLATES.budget;
-    if (/Record Keeping|Crop Record|Digital Farm Record/i.test(name)) return TEMPLATES.record;
-    if (/Business Plan Development|Agribusiness Startup Plan|Develop an Agribusiness Plan|Business Model Development/i.test(name)) return TEMPLATES.business;
-    if (/Precision Crop Management|Precision Farming Plan|Precision Agriculture Project|Present a Precision Farming Strategy/i.test(name)) return TEMPLATES.precision;
-    if (/Irrigation|Sustainable Irrigation|Precision Irrigation|Irrigation Management Plan/i.test(name)) return TEMPLATES.irrigation;
-    if (/Geographic Information Systems|GIS|Soil Mapping|Field Mapping/i.test(name)) return TEMPLATES.gis;
-    if (/Proposal Writing/i.test(name)) return TEMPLATES.proposal;
-    return '';
+
+  var DEEP_BODY = {
+    'What is AgriTech?': '<p>AgriTech spans hardware, software, and biological innovation. It amplifies farming knowledge with better measurement and control. Start from a clear problem—water waste, low yields, high labour cost—rather than technology for its own sake.</p>',
+    'What is Digital Agriculture?': '<p>Digital agriculture links field, store, and market data into decisions. Connectivity, data quality, and farmer capacity determine impact. Offline-first tools and SMS services remain important where connectivity is limited.</p>',
+    'Precision Agriculture': '<p>Precision agriculture treats the field as variable. Measuring variability and responding with the right input at the right place and time raises efficiency and cuts waste. Components include GPS, GIS, sensing, decision support, and variable-rate application.</p>',
+    'GPS in Agriculture': '<p>GPS enables guidance, mapping, and geo-referenced sampling. Auto-steer reduces overlap and saves fuel and seed. Higher accuracy (RTK) supports controlled traffic and precise placement.</p>',
+    'Geographic Information Systems (GIS)': '<p>GIS stores layers of boundaries, soils, yield, and history for analysis and prescription maps. QGIS and Google Earth support learning; commercial platforms link maps to operations.</p>',
+    'Remote Sensing': '<p>Satellites and drones observe crop condition and stress. NDVI and similar indices highlight vigour differences. Always confirm with ground checks before major input decisions.</p>',
+    'Variable Rate Technology': '<p>VRT changes input rates across the field from prescription maps or sensors. It needs good data, clear agronomic rules, and accurate equipment—otherwise it wastes money.</p>',
+    'Introduction to IoT': '<p>IoT connects sensors and devices so data is collected and actions triggered remotely. A typical stack includes sensors, gateway, connectivity, platform, and dashboard. Power and durability matter outdoors.</p>',
+    'Soil Moisture Sensors': '<p>Sensors estimate root-zone water to schedule irrigation and avoid stress or over-watering. Install at relevant depths in representative soils; set crop- and soil-specific thresholds.</p>',
+    'Smart Irrigation Systems': '<p>Systems link sensors and weather to valves or pumps. Include fail-safes, filtration, and operator training. Design for realistic power and connectivity.</p>',
+    'Drone Technology': '<p>UAVs collect imagery quickly for mapping and scouting. Multirotors suit small fields; fixed-wing cover larger areas. Flight planning, weather, and regulations are essential.</p>',
+    'Crop Health Assessment': '<p>Visual checks, tissue tests, and indices such as NDVI judge vigour and stress. Indices show relative difference—they do not diagnose the cause without ground truthing.</p>',
+    'Climate-Smart Farming': '<p>Three pillars: productivity, resilience, and mitigation. Practices include improved varieties, water harvesting, agroforestry, and better livestock management. Local context decides fit.</p>',
+    'Water Conservation': '<p>Efficient irrigation, mulching, rainwater harvesting, and scheduling by need cut waste. Where water is scarce, conservation is both environmental and economic priority.</p>',
+    'Soil Conservation': '<p>Cover crops, reduced tillage, contours, and organic matter protect soil and hold water and nutrients for long-term yields.</p>',
+    'Farm Planning': '<p>Plans set realistic production and cash-flow targets, match enterprises to resources, and include contingencies. Written plans help with family, workers, and lenders.</p>',
+    'Farm Budgeting': '<p>Budgets estimate income and costs by enterprise and season. They show what makes money, where to cut costs, and capital needed before sales.</p>',
+    'Record Keeping': '<p>Consistent records of planting, inputs, labour, yields, and sales turn experience into data. Used paper books beat abandoned sophisticated software.</p>',
+    'Data Collection': '<p>Collect only what supports decisions, with clear units, dates, and locations. Training and simple protocols improve quality.</p>',
+    'Farm Management Software': '<p>Software centralises plans, inventories, tasks, and finances. Match tools to farm size, connectivity, and language; expand as habits form.</p>',
+    'Agribusiness Fundamentals': '<p>Agribusiness spans inputs, production, processing, logistics, and retail. Understanding the chain helps capture more value.</p>',
+    'Agricultural Value Chains': '<p>Mapping the chain reveals who captures value and where losses occur. Upgrading often means coordination, standards, or processing.</p>',
+    'Food Safety Principles': '<p>Prevent contamination through hygiene, clean water, storage, and hazard separation. One incident can destroy market access.</p>',
+    'Good Agricultural Practices (GAP)': '<p>GAP covers site, water, inputs, harvest, and worker hygiene. Certification can open premium markets but needs records and audits.</p>',
+    'Artificial Intelligence in Agriculture': '<p>AI learns from images and sensor data for diagnosis and prediction. Human oversight remains essential; models can fail under new conditions.</p>',
+    'Agricultural Extension Services': '<p>Extension connects research and farmer experience. Digital channels expand reach; trust still depends on people who know the community.</p>',
+    'Building an AgriTech Portfolio': '<p>Show real maps, analyses, and plans—not only certificates. Document problem, method, and result for each piece of work.</p>'
+  };
+
+  function esc(v) {
+    return String(v).replace(/[&<>"']/g, function (ch) {
+      return { '&': '&', '<': '<', '>': '>', '"': '"', "'": '&#39;' }[ch];
+    });
   }
 
-  function note(moduleTitle, skill, name, position) {
-    var label = skillLabel[skill] || 'AgriTech skills';
-    var focus = position % 2 ? 'practical technique, real farm examples and hands-on application' : 'understanding the concept, applying it on a farm and reviewing the result';
-    var tpl = templateFor(name);
+  function formalNote(moduleTitle, name) {
+    var def = TOPIC_DEF[name] || (name + ' is an essential concept within modern agriculture and digital farm management that every AgriTech practitioner should understand thoroughly.');
+    var deep = DEEP_BODY[name] || ('<p>In professional AgriTech practice, <strong>' + esc(name) + '</strong> supports better productivity, resource use, and climate resilience. Apply it with clear objectives, appropriate tools, and local context in mind.</p>');
     return '<div class="study-note">' +
-      '<div class="revision-banner"><strong>AgriTech · ' + esc(moduleTitle) + '</strong><span>Digital agriculture</span></div>' +
+      '<div class="revision-banner"><strong>AgriTech & Digital Agriculture · ' + esc(moduleTitle) + '</strong><span>Formal Study Note</span></div>' +
       '<h3>' + esc(name) + '</h3>' +
-      '<p>This lesson builds <strong>' + esc(label) + '</strong> through ' + focus + '. Watch the video, study the notes, then complete the two exercises before the short quiz.</p>' +
-      '<h4>Key points</h4><ul>' +
-      '<li>Understand what <em>' + esc(name) + '</em> is and why it matters for modern farming.</li>' +
-      '<li>See how farmers and agribusinesses apply it in the real world.</li>' +
-      '<li>Apply it to a real or sample farm and note one decision it improves.</li></ul>' +
-      (tpl ? '<div class="study-callout">' + tpl + '<p style="margin-top:.5rem"><strong>Downloadable:</strong> Print → Save as PDF to keep this template.</p></div>' : '<div class="study-callout"><strong>TIH task:</strong> Apply <em>' + esc(name) + '</em> to a real Liberian farm, cooperative or agribusiness.</div>') +
-      '<h4>Exercises</h4><ol>' +
-      '<li><strong>Exercise 1:</strong> Apply <em>' + esc(name) + '</em> to a sample farm or dataset.</li>' +
-      '<li><strong>Exercise 2:</strong> Explain how it improves productivity, sustainability or profit.</li></ol>' +
-      '<p><strong>Printable notes:</strong> Use your browser’s Print → Save as PDF to keep an offline copy for revision.</p>' +
-      '<p><strong>Module connection:</strong> This lesson is part of <em>' + esc(moduleTitle) + '</em> on your path to becoming an AgriTech professional.</p>' +
-      '</div>';
+      '<h4>1. Definition</h4><p>' + esc(def) + '</p>' +
+      '<h4>2. Detailed Explanation</h4>' + deep +
+      '<h4>3. Why This Topic Matters</h4><ul>' +
+      '<li>Modern farms compete on efficiency, data, and sustainability.</li>' +
+      '<li>Strong performance improves yields, reduces waste, and builds resilience.</li>' +
+      '<li>Markets and regulators increasingly expect digital and sustainable practices.</li>' +
+      '<li>Skills transfer across smallholder farms, cooperatives, and commercial agribusiness.</li></ul>' +
+      '<h4>4. Key Concepts</h4><ul>' +
+      '<li>Definition and scope of <em>' + esc(name) + '</em>.</li>' +
+      '<li>Links to other digital agriculture and farm management practices.</li>' +
+      '<li>Tools, data sources, and standards used in the field.</li>' +
+      '<li>Practical application steps on a real or sample farm.</li>' +
+      '<li>Common errors that waste inputs, data, or investment.</li></ul>' +
+      '<h4>5. Practical Application</h4>' +
+      '<p>After the video, apply <strong>' + esc(name) + '</strong> to a real or realistic farm. Document steps, data needed, and one decision this practice would improve.</p>' +
+      '<div class="study-callout"><strong>TIH practice task:</strong> Apply <em>' + esc(name) + '</em> to a Liberian farm, cooperative, or agribusiness and note the expected benefit.</div>' +
+      '<h4>6. Common Mistakes</h4><ul>' +
+      '<li>Adopting tools without a clear problem or management question.</li>' +
+      '<li>Collecting data that is never analysed or used.</li>' +
+      '<li>Ignoring local context, costs, connectivity, and capacity.</li>' +
+      '<li>Skipping calibration, ground-truthing, or safety and legal requirements.</li></ul>' +
+      '<h4>7. Summary</h4>' +
+      '<p><strong>' + esc(name) + '</strong> is a core topic for professional AgriTech practice. Mastery of its definition and application supports success in the Complete AgriTech & Digital Agriculture Professional Certificate.</p>' +
+      '<h4>8. Study Actions</h4><ol>' +
+      '<li>Watch the video and note tools, data, and examples.</li>' +
+      '<li>Write the definition in your own words.</li>' +
+      '<li>Complete practical exercises for a sample or real farm.</li>' +
+      '<li>Take the practice quiz that follows this lesson.</li></ol>' +
+      '<p><strong>Module context:</strong> This lesson belongs to <em>' + esc(moduleTitle) + '</em>.</p></div>';
   }
 
-  function projectBrief(moduleTitle, name) {
-    var tpl = templateFor(name);
-    return '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Hands-on AgriTech project</span></div>' +
-      '<h3>' + esc(name) + '</h3>' +
-      '<p>This is a practical project. Produce the deliverable for a real or realistic farm/agribusiness and add it to your digital farm portfolio.</p>' +
-      '<h4>What to do</h4><ol><li>Define the farm/context, the goal and the data you need.</li><li>Build the plan/design/analysis using the tools from the course.</li><li>Review it, quantify the expected benefit, and finalise it professionally.</li></ol>' +
-      (tpl ? '<div class="study-callout">' + tpl + '</div>' : '<div class="study-callout"><strong>Deliverable:</strong> A complete farm plan/design/analysis document for your portfolio.</div>') +
-      '<p><strong>Downloadable:</strong> Print → Save as PDF to keep your work and templates offline.</p></div>';
-  }
+  function applyEnhancements() {
+    if (!COURSES_DB[CID] || !COURSES_DB[CID]._atFullBuilt) return;
+    var course = COURSES_DB[CID];
+    var notes = (typeof LESSON_CONTENT !== 'undefined' && LESSON_CONTENT[CID]) ? LESSON_CONTENT[CID] : {};
+    var skillKeys = ['orientation','agri','digital','climate','farmmgmt','precision','iot','drones','data','agribusiness','marketing','foodsafety','finance','ai','policy','professional','projects','career','capstone','assessment'];
 
-  var BANK = {
-    general: [
-      { q: 'AgriTech refers to:', opts: ['Only tractors', 'Using technology to improve agriculture', 'Only chemicals', 'Avoiding farming'], correct: 1, exp: 'AgriTech applies technology to make farming more productive and sustainable.' },
-      { q: 'Digital agriculture uses tools such as:', opts: ['Only hand tools', 'Data, sensors, GPS, drones and software', 'Only animals', 'None'], correct: 1, exp: 'Digital agriculture combines data and digital tools on the farm.' },
-      { q: 'A key benefit of AgriTech is:', opts: ['Lower yields', 'Better decisions, higher yields and less waste', 'More guesswork', 'Higher costs only'], correct: 1, exp: 'Technology improves decisions, efficiency and yields.' },
-      { q: 'The best way to learn AgriTech is to:', opts: ['Only read', 'Apply concepts to a real or sample farm', 'Avoid data', 'Memorise terms'], correct: 1, exp: 'Hands-on application builds real AgriTech skill.' },
-      { q: 'Sustainable food production aims to:', opts: ['Deplete resources', 'Meet needs today without harming the future', 'Ignore the environment', 'Reduce all output'], correct: 1, exp: 'Sustainability balances production with environmental care.' },
-      { q: 'The capstone project helps you:', opts: ['Skip work', 'Apply the whole program to a real agricultural challenge', 'Only take a quiz', 'Memorise terms'], correct: 1, exp: 'The capstone integrates everything into one real solution.' }
-    ],
-    agri: [
-      { q: 'Soil health is important because it:', opts: ['Does not matter', 'Directly affects crop growth and yield', 'Only affects colour', 'Is only for flowers'], correct: 1, exp: 'Healthy soil supports strong, productive crops.' },
-      { q: 'Crop rotation helps by:', opts: ['Depleting soil', 'Improving soil fertility and reducing pests', 'Wasting land', 'Doing nothing'], correct: 1, exp: 'Rotation restores nutrients and breaks pest cycles.' },
-      { q: 'Food security means people have:', opts: ['No food', 'Reliable access to enough safe, nutritious food', 'Only imported food', 'Only cash crops'], correct: 1, exp: 'Food security is reliable access to adequate, safe food.' },
-      { q: 'Livestock production involves:', opts: ['Only crops', 'Raising animals for food and products', 'Only fishing', 'Only trees'], correct: 1, exp: 'Livestock production raises animals for meat, milk, eggs, etc.' },
-      { q: 'A farm ecosystem includes:', opts: ['Only crops', 'Soil, water, plants, animals and their interactions', 'Only machines', 'Only the farmer'], correct: 1, exp: 'It is the living and non-living system on the farm.' },
-      { q: 'Sustainable agriculture focuses on:', opts: ['Short-term profit only', 'Long-term productivity, environment and community', 'Ignoring soil', 'Maximum chemicals'], correct: 1, exp: 'It balances economic, environmental and social goals.' }
-    ],
-    digital: [
-      { q: 'Smart farming means using:', opts: ['No technology', 'Data and connected devices to manage the farm', 'Only manual labour', 'Guesswork'], correct: 1, exp: 'Smart farming uses data and connected tech to optimise the farm.' },
-      { q: 'Data-driven farming makes decisions based on:', opts: ['Feelings', 'Collected farm and environmental data', 'Random choice', 'Tradition only'], correct: 1, exp: 'Decisions come from real data, not guesswork.' },
-      { q: 'Farm automation can:', opts: ['Increase manual work', 'Reduce repetitive tasks and improve efficiency', 'Lower yields', 'Do nothing'], correct: 1, exp: 'Automation handles repetitive tasks efficiently.' },
-      { q: 'Digital farm management software helps you:', opts: ['Lose records', 'Plan, track and analyse farm operations', 'Avoid planning', 'Only chat'], correct: 1, exp: 'It centralises planning, records and analysis.' },
-      { q: 'An emerging AgriTech trend is:', opts: ['Less data', 'AI, IoT sensors and precision agriculture', 'Only hand tools', 'No innovation'], correct: 1, exp: 'AI, IoT and precision ag are key emerging trends.' },
-      { q: 'Agricultural information systems store and manage:', opts: ['Only photos', 'Farm data for better decisions', 'Nothing', 'Only music'], correct: 1, exp: 'They manage data to support decision-making.' }
-    ],
-    climate: [
-      { q: 'Climate-smart agriculture aims to:', opts: ['Ignore climate', 'Increase productivity while adapting to and reducing climate impact', 'Waste water', 'Cut all output'], correct: 1, exp: 'CSA boosts yields, builds resilience and cuts emissions.' },
-      { q: 'Water conservation on a farm includes:', opts: ['Wasting water', 'Efficient irrigation like drip systems', 'Flooding fields always', 'Ignoring rainfall'], correct: 1, exp: 'Efficient irrigation conserves water.' },
-      { q: 'Soil conservation practices include:', opts: ['Bare soil', 'Cover crops, mulching and reduced tillage', 'Constant ploughing', 'Removing all plants'], correct: 1, exp: 'They protect soil from erosion and loss.' },
-      { q: 'Organic farming avoids:', opts: ['All plants', 'Synthetic chemicals in favour of natural methods', 'Soil', 'Water'], correct: 1, exp: 'Organic farming relies on natural inputs and methods.' },
-      { q: 'Carbon farming helps by:', opts: ['Releasing more carbon', 'Capturing/storing carbon in soil and plants', 'Ignoring emissions', 'Burning fields'], correct: 1, exp: 'It sequesters carbon, aiding climate mitigation.' },
-      { q: 'Biodiversity on a farm:', opts: ['Is harmful', 'Supports pollination, pest control and resilience', 'Should be removed', 'Does nothing'], correct: 1, exp: 'Diverse ecosystems make farms more resilient.' }
-    ],
-    farmmgmt: [
-      { q: 'Farm record keeping helps you:', opts: ['Forget everything', 'Track activities, costs and yields for better decisions', 'Avoid planning', 'Only for tax'], correct: 1, exp: 'Records support analysis and better management.' },
-      { q: 'A farm budget helps you:', opts: ['Spend randomly', 'Plan income, costs and profit', 'Ignore finances', 'Lose money'], correct: 1, exp: 'Budgets plan and control farm finances.' },
-      { q: 'Agricultural risk management addresses risks like:', opts: ['None', 'Weather, pests, price and disease', 'Only theft', 'Only fuel'], correct: 1, exp: 'Farms face weather, pest, market and disease risks.' },
-      { q: 'Farm productivity measures:', opts: ['Nothing', 'Output relative to inputs (e.g. yield per hectare)', 'Only rainfall', 'Only labour hours'], correct: 1, exp: 'Productivity relates output to resources used.' },
-      { q: 'Good resource management means:', opts: ['Wasting inputs', 'Using land, water, labour and inputs efficiently', 'Ignoring costs', 'Overusing chemicals'], correct: 1, exp: 'Efficient use of resources raises profitability.' },
-      { q: 'Farm safety practices protect:', opts: ['Nothing', 'Workers from injury and hazards', 'Only machines', 'Only crops'], correct: 1, exp: 'Safety practices protect people on the farm.' }
-    ],
-    precision: [
-      { q: 'Precision agriculture applies inputs:', opts: ['Uniformly everywhere', 'Where and when they are needed, using data', 'Randomly', 'Never'], correct: 1, exp: 'It targets inputs precisely to save cost and boost yield.' },
-      { q: 'GPS in agriculture is used for:', opts: ['Cooking', 'Accurate field mapping and guidance', 'Nothing', 'Only phones'], correct: 1, exp: 'GPS enables precise positioning and mapping.' },
-      { q: 'GIS is used to:', opts: ['Play games', 'Map and analyse spatial farm data', 'Send email', 'Cook'], correct: 1, exp: 'GIS maps and analyses geographic farm data.' },
-      { q: 'Remote sensing gathers data using:', opts: ['Hand tools', 'Satellites or drones from a distance', 'Only soil tests', 'Guessing'], correct: 1, exp: 'Remote sensing captures field data from above.' },
-      { q: 'Variable Rate Technology (VRT) applies inputs:', opts: ['The same everywhere', 'At different rates across the field as needed', 'Never', 'Only once'], correct: 1, exp: 'VRT varies input rates by zone need.' },
-      { q: 'Yield monitoring helps farmers:', opts: ['Ignore results', 'See where yields are high/low to improve', 'Waste seed', 'Do nothing'], correct: 1, exp: 'Yield maps reveal where to improve.' }
-    ],
-    iot: [
-      { q: 'IoT in agriculture means:', opts: ['No devices', 'Connected sensors/devices sharing farm data', 'Only tractors', 'Only phones'], correct: 1, exp: 'IoT links sensors and devices to collect and act on data.' },
-      { q: 'A soil moisture sensor helps you:', opts: ['Guess watering', 'Know when and how much to irrigate', 'Ignore soil', 'Only measure air'], correct: 1, exp: 'It guides precise, efficient irrigation.' },
-      { q: 'A weather station on a farm provides:', opts: ['Nothing', 'Local weather data for decisions', 'Only the time', 'Only photos'], correct: 1, exp: 'Local weather data supports planning and spraying decisions.' },
-      { q: 'Smart irrigation systems:', opts: ['Waste water', 'Water crops automatically based on data', 'Never work', 'Only manual'], correct: 1, exp: 'They irrigate based on sensor/weather data.' },
-      { q: 'Livestock monitoring devices track:', opts: ['Nothing', 'Animal health, location and activity', 'Only the weather', 'Only crops'], correct: 1, exp: 'They monitor animal health and behaviour.' },
-      { q: 'Greenhouse automation controls:', opts: ['Nothing', 'Temperature, humidity and irrigation automatically', 'Only lights outdoors', 'Only doors'], correct: 1, exp: 'Automation maintains ideal growing conditions.' }
-    ],
-    drones: [
-      { q: 'Agricultural drones are used to:', opts: ['Deliver mail only', 'Map fields and monitor crop health', 'Cook', 'Nothing'], correct: 1, exp: 'Drones map fields and assess crop health from above.' },
-      { q: 'Drone crop monitoring can detect:', opts: ['Nothing', 'Stress, pests and uneven growth early', 'Only colours', 'Only weather'], correct: 1, exp: 'Drones spot problems early for quick action.' },
-      { q: 'Before flying a drone you should:', opts: ['Ignore rules', 'Know and follow local drone regulations', 'Fly anywhere', 'Skip safety'], correct: 1, exp: 'Follow regulations and safety rules when flying.' },
-      { q: 'Field mapping with drones produces:', opts: ['Nothing', 'Accurate maps and imagery of the field', 'Only sound', 'Only text'], correct: 1, exp: 'Drones create detailed field maps and orthomosaics.' },
-      { q: 'Drone data analysis turns images into:', opts: ['Nothing', 'Useful insights (e.g. vegetation indices like NDVI)', 'Only photos to delete', 'Music'], correct: 1, exp: 'Analysis converts imagery into actionable indices.' },
-      { q: 'Drone safety includes:', opts: ['Flying near people carelessly', 'Checking the aircraft, weather and airspace', 'Ignoring battery', 'No planning'], correct: 1, exp: 'Safe operation checks equipment, weather and airspace.' }
-    ],
-    data: [
-      { q: 'Farm data analytics helps you:', opts: ['Guess', 'Turn farm data into better decisions', 'Ignore data', 'Only store files'], correct: 1, exp: 'Analytics converts data into decisions.' },
-      { q: 'A spreadsheet is useful for:', opts: ['Only drawing', 'Recording and analysing farm data', 'Playing music', 'Nothing'], correct: 1, exp: 'Spreadsheets record and calculate farm data.' },
-      { q: 'Data visualization (charts) helps you:', opts: ['Hide data', 'See trends and patterns quickly', 'Delete data', 'Confuse people'], correct: 1, exp: 'Charts reveal trends at a glance.' },
-      { q: 'Predictive agriculture uses data to:', opts: ['Look only at the past', 'Forecast yields, weather or pests', 'Ignore the future', 'Do nothing'], correct: 1, exp: 'It forecasts future outcomes to plan ahead.' },
-      { q: 'An agricultural dashboard shows:', opts: ['Nothing', 'Key farm metrics in one view', 'Only photos', 'Only email'], correct: 1, exp: 'Dashboards summarise key metrics for quick decisions.' },
-      { q: 'Good decision-making with data requires:', opts: ['Bad data', 'Accurate, relevant data and clear analysis', 'Guessing', 'Ignoring results'], correct: 1, exp: 'Reliable data plus analysis drives good decisions.' }
-    ],
-    agribusiness: [
-      { q: 'An agricultural value chain covers:', opts: ['Only farming', 'All steps from farm to consumer (input, produce, process, market)', 'Only selling', 'Only transport'], correct: 1, exp: 'The value chain spans inputs to the final consumer.' },
-      { q: 'Market research helps an agribusiness:', opts: ['Guess demand', 'Understand customers, demand and competition', 'Ignore buyers', 'Set no price'], correct: 1, exp: 'Research reveals what the market needs and pays.' },
-      { q: 'Branding farm products helps you:', opts: ['Blend in', 'Stand out and build customer trust', 'Lower quality', 'Hide the product'], correct: 1, exp: 'A brand differentiates and builds trust.' },
-      { q: 'Accessing agricultural finance can come from:', opts: ['Nowhere', 'Loans, grants, cooperatives and investors', 'Only cash under the bed', 'Only gifts'], correct: 1, exp: 'Finance sources include loans, grants and investors.' },
-      { q: 'A business plan for a farm should include:', opts: ['Nothing', 'Market, operations, finance and risks', 'Only a logo', 'Only the crop'], correct: 1, exp: 'A plan covers market, operations, finance and risk.' },
-      { q: 'Adding value (e.g. processing) usually:', opts: ['Lowers income', 'Increases the price/income from produce', 'Wastes crops', 'Does nothing'], correct: 1, exp: 'Processing and packaging raise the value captured.' }
-    ]
-  };
+    if (course.modules && course.modules.length) {
+      course.modules.forEach(function (mod, mi) {
+        var pool = BETTER_VIDEOS[skillKeys[mi] || 'assessment'] || BETTER_VIDEOS.assessment;
+        var vi = 0;
+        if (!mod.lessons) return;
+        mod.lessons.forEach(function (les) {
+          if (les.v && !les.isQuiz) { les.v = pool[vi % pool.length]; vi++; }
+        });
+      });
+    }
 
-  function bankKey(skill) {
-    var map = { orientation: 'general', agri: 'agri', digital: 'digital', climate: 'climate', farmmgmt: 'farmmgmt', precision: 'precision', iot: 'iot', drones: 'drones', data: 'data', agribusiness: 'agribusiness', marketing: 'agribusiness', foodsafety: 'agri', finance: 'farmmgmt', ai: 'digital', policy: 'general', professional: 'general', projects: 'general', career: 'general', capstone: 'general', assessment: 'general' };
-    return map[skill] || 'general';
-  }
-  function pickQuestions(key, count) {
-    var pool = BANK[key] || BANK.general;
-    var mixed = BANK.general.concat(BANK.agri, BANK.digital, BANK.climate, BANK.farmmgmt, BANK.precision, BANK.iot, BANK.drones, BANK.data, BANK.agribusiness);
-    var out = [];
-    for (var i = 0; i < count; i++) { out.push(i < pool.length ? pool[i] : mixed[i % mixed.length]); }
-    return out;
-  }
-  function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
-  function practiceQuiz(key, name) { return { title: 'Practice: ' + name, moduleNum: 1, questions: pickQuestions(key, 3).map(cloneQ) }; }
-  function assessmentQuiz(key, name, count) { return { title: name, moduleNum: 1, questions: pickQuestions(key, count).map(cloneQ) }; }
-  function assessmentKey(name) {
-    if (/Precision/i.test(name)) return 'precision';
-    if (/IoT|Drone/i.test(name)) return 'iot';
-    if (/Farm Management/i.test(name)) return 'farmmgmt';
-    if (/Agribusiness/i.test(name)) return 'agribusiness';
-    if (/Data Analytics/i.test(name)) return 'data';
-    if (/Agriculture Fundamentals|Fundamentals/i.test(name)) return 'agri';
-    return 'general';
-  }
-
-  var modules = [], quizzes = {}, notes = {};
-  var flat = 0, notePos = 0;
-  var videoCount = 0, quizCount = 0, projectCount = 0, examCount = 0;
-
-  curriculum.forEach(function (mod) {
-    var num = mod[0], title = mod[1], icon = mod[2], skill = mod[3], type = mod[4], names = mod[5];
-    var moduleTitle = 'Module ' + num + ': ' + title;
-    var pool = VIDEOS[skill] || VIDEOS.assessment;
-    var key = bankKey(skill);
-    var lessons = [], idx = 0;
-
-    names.forEach(function (name) {
-      if (/^Certificate of Completion$/i.test(name)) {
-        var qid = 'at-m' + num + '-final';
-        quizzes[qid] = assessmentQuiz('general', 'Graduation Assessment', 15);
-        quizzes[qid].isFinal = true;
-        lessons.push({ t: '🏆 ' + name, d: '15 questions', isQuiz: true, quizId: qid, isFinal: true });
-        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>This is the final graduation assessment. Pass it to complete the program and unlock your TIH Certificate of Completion.</p></div>';
-        flat += 1; quizCount += 1;
-        return;
+    Object.keys(notes).forEach(function (k) {
+      var n = notes[k];
+      if (typeof n !== 'string') return;
+      var replaced = false;
+      Object.keys(TOPIC_DEF).forEach(function (title) {
+        if (!replaced && n.indexOf(title) !== -1) {
+          var modMatch = n.match(/Module \d+:[^<]+/);
+          var modTitle = modMatch ? modMatch[0].replace(/<[^>]+>/g, '').trim() : 'AgriTech Course';
+          notes[k] = formalNote(modTitle, title);
+          replaced = true;
+        }
+      });
+      // Fallback: any content lesson note without formal structure gets generic formal note from heading
+      if (!replaced && n.indexOf('1. Definition') === -1 && n.indexOf('<h3>') !== -1) {
+        var hm = n.match(/<h3>([^<]+)<\/h3>/);
+        if (hm) {
+          var modMatch2 = n.match(/Module \d+:[^<]+/);
+          var modTitle2 = modMatch2 ? modMatch2[0].replace(/<[^>]+>/g, '').trim() : 'AgriTech Course';
+          notes[k] = formalNote(modTitle2, hm[1].trim());
+        }
       }
-      if (/^Certificate Requirements$/i.test(name)) {
-        idx += 1;
-        lessons.push({ t: num + '.' + idx + ' ' + name, d: 'Resource', v: null, isQuiz: false });
-        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>To graduate and earn your TIH Certificate of Completion you must:</p><ul><li>Complete the lessons in Modules 1–18.</li><li>Complete the real-world AgriTech projects in Module 17 (10 projects).</li><li>Complete the capstone in Module 19 and submit your digital farm portfolio.</li><li>Pass the skill assessments, the Midterm and Final Examinations, the Capstone Evaluation and the Portfolio Review.</li><li>Pass the final Certificate of Completion assessment.</li></ul></div>';
-        flat += 1;
-        return;
-      }
-      if (type === 'assessment') {
-        var akey = assessmentKey(name);
-        var big = /Examination|Exam|Evaluation|Review/i.test(name);
-        var count = big ? (/Final/i.test(name) ? 20 : 15) : 8;
-        var aid = 'at-m' + num + '-a' + flat;
-        quizzes[aid] = assessmentQuiz(akey, name, count);
-        lessons.push({ t: (big ? '🧪 ' : '📝 ') + name, d: count + ' questions', isQuiz: true, quizId: aid });
-        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Assessment</span></div><h3>' + esc(name) + '</h3><p>Complete this ' + (big ? 'examination/review' : 'assessment') + ', then review every answer explanation to strengthen your weak areas.</p></div>';
-        flat += 1; quizCount += 1; if (big) examCount += 1;
-        return;
-      }
-      if (type === 'projects' || isProjectName(name)) {
-        idx += 1;
-        var pv = pool[idx % pool.length];
-        lessons.push({ t: '🛠️ ' + name, d: 'Project', isProject: true, v: pv });
-        notes[String(flat)] = projectBrief(moduleTitle, name);
-        flat += 1; projectCount += 1;
-        return;
-      }
-      idx += 1;
-      var v = pool[idx % pool.length];
-      lessons.push({ t: num + '.' + idx + ' ' + name, d: 'Video Lesson', v: v, isQuiz: false });
-      notes[String(flat)] = note(moduleTitle, skill, name, notePos++);
-      flat += 1; videoCount += 1;
-      var pqid = 'at-m' + num + '-q' + flat;
-      quizzes[pqid] = practiceQuiz(key, name);
-      lessons.push({ t: '📝 Practice: ' + name, d: '3 questions', isQuiz: true, quizId: pqid });
-      notes[String(flat)] = '<p><strong>Quick check:</strong> Review the notes and complete the two exercises, then answer these to confirm you understood <em>' + esc(name) + '</em>.</p>';
-      flat += 1; quizCount += 1;
     });
 
-    modules.push({ title: moduleTitle, icon: icon, meta: lessons.length + ' lessons', lessons: lessons });
-  });
+    course._atEnhanced = true;
+    course._atDeepNotes = true;
+    course._atAllModuleNotes = true;
+    console.log('[AGRITECH] Formal notes applied for ALL modules');
+  }
 
-  var ex = COURSES_DB[CID];
-  COURSES_DB[CID] = {
-    id: CID,
-    title: 'Complete AgriTech & Digital Agriculture Professional Certificate',
-    shortDesc: 'A full 20-module program from beginner to AgriTech professional: agriculture fundamentals, digital transformation, climate-smart farming, farm management, precision agriculture, IoT, drones, farm data & analytics, agribusiness, digital marketing, food safety, finance, AI, policy, 10 real-world projects, a capstone and a Certificate of Completion.',
-    category: 'Agriculture & Technology',
-    icon: ex.icon || '🌾',
-    gradient: ex.gradient || 'linear-gradient(135deg,#3f6212,#84cc16)',
-    instructor: ex.instructor,
-    instructorTitle: ex.instructorTitle,
-    instructorBio: ex.instructorBio,
-    rating: ex.rating || 4.9,
-    reviewCount: ex.reviewCount || 0,
-    students: ex.students || 'TIH agri-learners',
-    duration: '150h+',
-    level: 'Beginner → Professional',
-    price: ex.price || 'FREE',
-    origPrice: ex.origPrice || '$95',
-    isFree: (ex.isFree !== false),
-    badge: ex.badge || 'free',
-    certId: 'TIH-2026-AGRITECH-0001',
-    learn: [
-      'Understand modern farming, digital agriculture and climate-smart practices',
-      'Manage farms with planning, budgeting, records and risk management',
-      'Apply precision agriculture, IoT sensors and drones for monitoring',
-      'Collect and analyse farm data to make better decisions',
-      'Build an agribusiness with value chains, marketing and finance',
-      'Use AI and emerging AgriTech, and build a digital farm portfolio'
-    ],
-    requirements: [
-      'No prior experience required — we start from the basics',
-      'A device with a spreadsheet; internet for tools and research',
-      'Interest in applying digital skills to farming and agribusiness'
-    ],
-    about: [
-      'This is the complete TIH AgriTech & Digital Agriculture Professional Certificate, rebuilt into twenty modules that take you from the basics to professional practice in modern, digital agriculture.',
-      'Every content lesson has a video and printable notes; downloadable resources cover Farm Budget templates, Crop Record Books, Business Plan templates, Precision Farming checklists, Irrigation Planning tools, GIS practice data and Proposal templates. Ten real-world projects and a capstone build your portfolio.',
-      'Software & tools: Microsoft Excel, Google Sheets, QGIS, Google Earth, farm management software, ChatGPT, Canva, drone mapping software, weather/climate apps and IoT dashboards. You finish with a portfolio and — after the graduation assessment — a Certificate of Completion.'
-    ],
-    modules: modules,
-    quizzes: quizzes,
-    _atFullBuilt: true
-  };
+  function loadAndEnhance() {
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/gh/tolbertinnovation-debug/Tolbertinnovationhubliberia1@6358c3b2342ca4e0e91e90170c5a06030cf26967/agritech-curriculum.js';
+    s.onload = function () {
+      try { applyEnhancements(); } catch (e) { console.warn('[AGRITECH] enhance', e); }
+      console.log('[AGRITECH] Full curriculum + all-module formal notes ready');
+    };
+    s.onerror = function () { console.error('[AGRITECH] CDN load failed'); };
+    document.head.appendChild(s);
+  }
 
-  if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT[CID] = notes;
-
-  if (typeof console !== 'undefined' && console.log) {
-    console.log('[AGRITECH] modules=' + modules.length + ' videoLessons=' + videoCount + ' projects=' + projectCount + ' quizzes=' + quizCount + ' exams=' + examCount);
+  if (COURSES_DB[CID] && COURSES_DB[CID]._atFullBuilt) {
+    try { applyEnhancements(); } catch (e) {}
+  } else {
+    loadAndEnhance();
   }
 })();

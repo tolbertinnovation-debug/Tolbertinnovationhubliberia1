@@ -13,53 +13,248 @@
   <script src="hub-db.js?v=38"></script>
   <script src="hub-pay.js?v=1"></script>
   <script src="paywall.js?v=10"></script>
-  <script src="ielts-listening-q.js?v=4"></script>
-  <script src="ielts-reading-q.js?v=4"></script>
+  <script src="ielts-listening-q.js?v=3"></script>
+  <script src="ielts-reading-q.js?v=3"></script>
   <script src="ielts-grammar-q.js?v=3"></script>
   <script src="ielts-writing-q.js?v=4"></script>
   <script src="ielts-speaking-q.js?v=3"></script>
-  <script src="toefl-bank.js?v=6"></script>
+  <script src="toefl-bank.js?v=5"></script>
   <script src="sat-bank.js?v=1"></script>
-  <script src="practice-tests.js?v=10"></script>
+  <script src="practice-tests.js?v=9"></script>
   <style>
-:root{--exam-blue:#0B3D91;--exam-blue-d:#072a66;--exam-accent:#C8102E;--exam-green:#0B7A54;--exam-bg:#E8EDF5;--exam-panel:#FFFFFF;--exam-text:#1A2332;--exam-muted:#5A6A7E;--exam-border:#C5D0E0;--exam-flag:#F5A623;--exam-answered:#0B3D91}
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Inter,system-ui,sans-serif;background:var(--exam-bg);color:var(--exam-text);line-height:1.5;min-height:100vh}button{font-family:inherit;cursor:pointer}.hidden{display:none!important}
-.exam-top{background:var(--exam-blue);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:.55rem 1rem;gap:.75rem;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,.18);min-height:48px}
-.exam-top .left{display:flex;align-items:center;gap:.75rem;min-width:0}.exam-top .logo{font-family:Poppins,sans-serif;font-weight:800;font-size:.88rem;letter-spacing:.02em;white-space:nowrap}.exam-top .logo em{font-style:normal;opacity:.7;font-weight:600}
-.exam-top .sec-label{font-size:.78rem;font-weight:600;background:rgba(255,255,255,.15);padding:.25rem .65rem;border-radius:4px;white-space:nowrap}.exam-top .q-count{font-size:.85rem;font-weight:600;opacity:.95}.exam-top .right{display:flex;align-items:center;gap:.6rem}
-.exam-timer{font-variant-numeric:tabular-nums;font-weight:800;font-size:1rem;background:rgba(0,0,0,.25);padding:.3rem .75rem;border-radius:4px;min-width:4.2rem;text-align:center}.exam-timer.warn{background:#C8102E;animation:pulse 1s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.75}}
-.wrap{max-width:880px;margin:0 auto;padding:1.25rem 1rem 5rem}.panel{background:var(--exam-panel);border:1px solid var(--exam-border);border-radius:8px;padding:1.35rem 1.4rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(11,61,145,.06)}
-.eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--exam-accent)}h1.title{font-family:Poppins,sans-serif;font-size:clamp(1.25rem,3.5vw,1.75rem);color:var(--exam-blue);margin:.25rem 0 .5rem}.lead{color:var(--exam-muted);font-size:.92rem;margin-bottom:.9rem}
+:root{
+  --exam-blue:#0B3D91;
+  --exam-blue-d:#072a66;
+  --exam-accent:#C8102E;
+  --exam-green:#0B7A54;
+  --exam-bg:#E8EDF5;
+  --exam-panel:#FFFFFF;
+  --exam-text:#1A2332;
+  --exam-muted:#5A6A7E;
+  --exam-border:#C5D0E0;
+  --exam-flag:#F5A623;
+  --exam-answered:#0B3D91;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--exam-bg);color:var(--exam-text);line-height:1.5;min-height:100vh}
+button{font-family:inherit;cursor:pointer}
+.hidden{display:none!important}
+
+/* ===== EXAM TOP BAR (real-test style) ===== */
+.exam-top{
+  background:var(--exam-blue);
+  color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.55rem 1rem;gap:.75rem;
+  position:sticky;top:0;z-index:50;
+  box-shadow:0 2px 8px rgba(0,0,0,.18);
+  min-height:48px;
+}
+.exam-top .left{display:flex;align-items:center;gap:.75rem;min-width:0}
+.exam-top .logo{font-family:Poppins,sans-serif;font-weight:800;font-size:.88rem;letter-spacing:.02em;white-space:nowrap}
+.exam-top .logo em{font-style:normal;opacity:.7;font-weight:600}
+.exam-top .sec-label{
+  font-size:.78rem;font-weight:600;background:rgba(255,255,255,.15);
+  padding:.25rem .65rem;border-radius:4px;white-space:nowrap;
+}
+.exam-top .q-count{font-size:.85rem;font-weight:600;opacity:.95}
+.exam-top .right{display:flex;align-items:center;gap:.6rem}
+.exam-timer{
+  font-variant-numeric:tabular-nums;font-weight:800;font-size:1rem;
+  background:rgba(0,0,0,.25);padding:.3rem .75rem;border-radius:4px;
+  min-width:4.2rem;text-align:center;
+}
+.exam-timer.warn{background:#C8102E;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.75}}
+
+/* ===== INTRO / PICKER ===== */
+.wrap{max-width:880px;margin:0 auto;padding:1.25rem 1rem 5rem}
+.panel{
+  background:var(--exam-panel);border:1px solid var(--exam-border);
+  border-radius:8px;padding:1.35rem 1.4rem;margin-bottom:1rem;
+  box-shadow:0 1px 4px rgba(11,61,145,.06);
+}
+.eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--exam-accent)}
+h1.title{font-family:Poppins,sans-serif;font-size:clamp(1.25rem,3.5vw,1.75rem);color:var(--exam-blue);margin:.25rem 0 .5rem}
+.lead{color:var(--exam-muted);font-size:.92rem;margin-bottom:.9rem}
 .sec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.65rem;margin:1rem 0}
-.sec-card{border:1.5px solid var(--exam-border);border-radius:8px;padding:.9rem;background:#fff;text-align:center;cursor:pointer;transition:.12s;font-family:inherit;color:var(--exam-text)}
-.sec-card:hover{border-color:var(--exam-blue);box-shadow:0 3px 12px rgba(11,61,145,.12)}.sec-card.full{border-color:var(--exam-accent);background:linear-gradient(180deg,#fff8f8,#fff)}
-.sec-card h4{font-family:Poppins,sans-serif;font-size:.95rem;color:var(--exam-blue);margin:0 0 .2rem}.sec-card.full h4{color:var(--exam-accent)}.sec-card p{font-size:.75rem;color:var(--exam-muted);margin:0;line-height:1.35}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;border:none;border-radius:6px;font-weight:700;font-size:.9rem;padding:.7rem 1.25rem;min-height:44px;text-decoration:none}
-.btn-primary{background:var(--exam-blue);color:#fff}.btn-primary:hover{background:var(--exam-blue-d)}.btn-accent{background:var(--exam-accent);color:#fff}.btn-line{background:#fff;border:1.5px solid var(--exam-border);color:var(--exam-text)}.btn-sm{padding:.45rem .85rem;min-height:36px;font-size:.82rem}
-.exam-body{display:flex;flex-direction:column;min-height:calc(100vh - 48px)}.exam-main{flex:1;padding:1rem;max-width:920px;margin:0 auto;width:100%}
-.q-card{background:#fff;border:1px solid var(--exam-border);border-radius:8px;padding:1.1rem 1.2rem;margin-bottom:1rem}
-.q-num{font-size:.75rem;font-weight:700;color:var(--exam-muted);margin-bottom:.35rem}.q-type{display:inline-block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:#E8EDF5;color:var(--exam-blue);padding:.15rem .45rem;border-radius:3px;margin-bottom:.4rem}
-.q-stem{font-size:.95rem;line-height:1.55;margin-bottom:.85rem;white-space:pre-wrap}.q-html .q-stem,.q-html{line-height:1.5}.q-html p{margin:.4rem 0}
-.opts{display:flex;flex-direction:column;gap:.45rem}.opt{display:flex;align-items:flex-start;gap:.6rem;padding:.65rem .75rem;border:1.5px solid var(--exam-border);border-radius:6px;cursor:pointer;background:#fff;transition:.1s;text-align:left;font-size:.9rem}
-.opt:hover{border-color:var(--exam-blue)}.opt.selected{border-color:var(--exam-blue);background:#F0F5FF}.opt input{margin-top:.2rem;accent-color:var(--exam-blue)}.opt span{flex:1}
-.exam-table{width:100%;border-collapse:collapse;margin:.75rem 0;font-size:.9rem;background:#fff}.exam-table th,.exam-table td{border:1px solid #C5D0E0;padding:.45rem .65rem;text-align:center}.exam-table th{background:#0B3D91;color:#fff;font-weight:700}.exam-table tr:nth-child(even) td{background:#F0F4FA}.exam-chart{margin:.75rem 0;text-align:center}.exam-passage{margin:.5rem 0}
-.exam-bottom{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--exam-border);padding:.5rem .75rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem;box-shadow:0 -2px 10px rgba(0,0,0,.06);z-index:40}
-.exam-bottom .controls{display:flex;gap:.4rem}.ctrl-btn{border:1.5px solid var(--exam-border);background:#fff;border-radius:5px;padding:.4rem .7rem;font-size:.82rem;font-weight:600;color:var(--exam-text)}.ctrl-btn:hover{border-color:var(--exam-blue)}.ctrl-btn.next{background:var(--exam-blue);color:#fff;border-color:var(--exam-blue)}.ctrl-btn.flag{border-color:var(--exam-flag);color:#B87A00}.ctrl-btn.flag.on{background:var(--exam-flag);color:#fff;border-color:var(--exam-flag)}.ctrl-btn.submit{background:var(--exam-accent);color:#fff;border-color:var(--exam-accent)}
-.nav-btns{display:flex;flex-wrap:wrap;gap:.25rem;justify-content:center;max-width:55%;overflow:auto}.nav-btn{width:28px;height:28px;border-radius:4px;border:1px solid var(--exam-border);background:#fff;font-size:.72rem;font-weight:600;color:var(--exam-muted)}.nav-btn.current{border-color:var(--exam-blue);background:var(--exam-blue);color:#fff}.nav-btn.answered{background:#E8F0FE;border-color:var(--exam-answered);color:var(--exam-answered)}.nav-btn.flagged{border-color:var(--exam-flag);background:#FFF8E7;color:#B87A00}.nav-btn.answered.flagged{background:#FFF8E7;border-color:var(--exam-flag)}
-#reviewView .review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:.35rem;margin:1rem 0}.review-cell{width:36px;height:36px;border-radius:5px;border:1.5px solid var(--exam-border);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;cursor:pointer;background:#fff}.review-cell.answered{background:#E8F0FE;border-color:var(--exam-blue);color:var(--exam-blue)}.review-cell.flagged{background:#FFF8E7;border-color:var(--exam-flag);color:#B87A00}.review-cell.unanswered{background:#fff;border-color:#ddd;color:#999}
-.legend{display:flex;gap:1rem;font-size:.78rem;color:var(--exam-muted);margin:.5rem 0}.legend span{display:flex;align-items:center;gap:.3rem}.legend i{width:14px;height:14px;border-radius:3px;border:1px solid #ccc;display:inline-block}
-.score-big{font-family:Poppins,sans-serif;font-size:2.4rem;font-weight:800;color:var(--exam-blue)}.band-badge{display:inline-block;background:var(--exam-green);color:#fff;padding:.3rem .8rem;border-radius:6px;font-weight:700}.feedback-item{border-left:3px solid var(--exam-border);padding:.5rem .75rem;margin:.4rem 0;background:#fafbfc}.feedback-item.correct{border-color:var(--exam-green)}.feedback-item.wrong{border-color:var(--exam-accent)}.model{display:none;margin-top:.5rem;padding:.75rem;background:#F0F5FF;border-radius:6px;font-size:.88rem;white-space:pre-wrap}.model.show{display:block}.reveal-btn{font-size:.8rem;color:var(--exam-blue);background:none;border:none;text-decoration:underline;cursor:pointer;padding:0}
-@media (max-width:600px){.exam-top{flex-wrap:wrap;padding:.4rem .6rem}.nav-btns{max-width:40%}.exam-bottom{flex-wrap:wrap}}
-@media print{.exam-top,.exam-bottom,#introView,#examView,#reviewView{display:none!important}#resultsView{display:block!important}}
+.sec-card{
+  border:1.5px solid var(--exam-border);border-radius:8px;padding:.9rem;
+  background:#fff;text-align:center;cursor:pointer;transition:.12s;
+  font-family:inherit;color:var(--exam-text);
+}
+.sec-card:hover{border-color:var(--exam-blue);box-shadow:0 3px 12px rgba(11,61,145,.12)}
+.sec-card.full{border-color:var(--exam-accent);background:linear-gradient(180deg,#fff8f8,#fff)}
+.sec-card h4{font-family:Poppins,sans-serif;font-size:.95rem;color:var(--exam-blue);margin:0 0 .2rem}
+.sec-card.full h4{color:var(--exam-accent)}
+.sec-card p{font-size:.75rem;color:var(--exam-muted);margin:0;line-height:1.35}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.35rem;
+  border:none;border-radius:6px;font-weight:700;font-size:.9rem;
+  padding:.7rem 1.25rem;min-height:44px;text-decoration:none;
+}
+.btn-primary{background:var(--exam-blue);color:#fff}
+.btn-primary:hover{background:var(--exam-blue-d)}
+.btn-accent{background:var(--exam-accent);color:#fff}
+.btn-line{background:#fff;border:1.5px solid var(--exam-border);color:var(--exam-text)}
+.btn-sm{padding:.45rem .85rem;min-height:36px;font-size:.82rem}
+
+/* ===== EXAM BODY ===== */
+.exam-body{display:flex;flex-direction:column;min-height:calc(100vh - 48px)}
+.exam-main{flex:1;padding:1rem;max-width:920px;margin:0 auto;width:100%}
+.q-card{
+  background:#fff;border:1px solid var(--exam-border);border-radius:8px;
+  padding:1.1rem 1.2rem;margin-bottom:1rem;
+}
+.q-num{font-size:.75rem;font-weight:700;color:var(--exam-muted);margin-bottom:.35rem}
+.q-type{
+  display:inline-block;font-size:.68rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;background:#E8EDF5;color:var(--exam-blue);
+  padding:.15rem .45rem;border-radius:3px;margin-bottom:.4rem;
+}
+.q-stem{font-size:.95rem;line-height:1.55;margin-bottom:.85rem;white-space:pre-wrap}
+.q-html .q-stem,.q-html{line-height:1.5}
+.q-html p{margin:.4rem 0}
+.opts{display:flex;flex-direction:column;gap:.45rem}
+.opt{
+  display:flex;align-items:flex-start;gap:.6rem;padding:.65rem .75rem;
+  border:1.5px solid var(--exam-border);border-radius:6px;cursor:pointer;
+  background:#fff;transition:.1s;text-align:left;font-size:.9rem;
+}
+.opt:hover{border-color:var(--exam-blue)}
+.opt.selected{border-color:var(--exam-blue);background:#F0F5FF}
+.opt input{margin-top:.2rem;accent-color:var(--exam-blue)}
+.opt span{flex:1}
+
+/* tables & charts */
+.exam-table{width:100%;border-collapse:collapse;margin:.75rem 0;font-size:.9rem;background:#fff}
+.exam-table th,.exam-table td{border:1px solid #C5D0E0;padding:.45rem .65rem;text-align:center}
+.exam-table th{background:#0B3D91;color:#fff;font-weight:700}
+.exam-table tr:nth-child(even) td{background:#F0F4FA}
+.exam-chart{margin:.75rem 0;text-align:center}
+.exam-passage{margin:.5rem 0}
+
+/* ===== BOTTOM NAV ===== */
+.exam-bottom{
+  position:sticky;bottom:0;background:#fff;border-top:1px solid var(--exam-border);
+  padding:.5rem .75rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  box-shadow:0 -2px 10px rgba(0,0,0,.06);z-index:40;
+}
+.exam-bottom .controls{display:flex;gap:.4rem}
+.ctrl-btn{
+  border:1.5px solid var(--exam-border);background:#fff;border-radius:5px;
+  padding:.4rem .7rem;font-size:.82rem;font-weight:600;color:var(--exam-text);
+}
+.ctrl-btn:hover{border-color:var(--exam-blue)}
+.ctrl-btn.next{background:var(--exam-blue);color:#fff;border-color:var(--exam-blue)}
+.ctrl-btn.flag{border-color:var(--exam-flag);color:#B87A00}
+.ctrl-btn.flag.on{background:var(--exam-flag);color:#fff;border-color:var(--exam-flag)}
+.ctrl-btn.submit{background:var(--exam-accent);color:#fff;border-color:var(--exam-accent)}
+.nav-btns{display:flex;flex-wrap:wrap;gap:.25rem;justify-content:center;max-width:55%;overflow:auto}
+.nav-btn{
+  width:28px;height:28px;border-radius:4px;border:1px solid var(--exam-border);
+  background:#fff;font-size:.72rem;font-weight:600;color:var(--exam-muted);
+}
+.nav-btn.current{border-color:var(--exam-blue);background:var(--exam-blue);color:#fff}
+.nav-btn.answered{background:#E8F0FE;border-color:var(--exam-answered);color:var(--exam-answered)}
+.nav-btn.flagged{border-color:var(--exam-flag);background:#FFF8E7;color:#B87A00}
+.nav-btn.answered.flagged{background:#FFF8E7;border-color:var(--exam-flag)}
+
+/* ===== REVIEW ===== */
+#reviewView .review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:.35rem;margin:1rem 0}
+.review-cell{
+  width:36px;height:36px;border-radius:5px;border:1.5px solid var(--exam-border);
+  display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;
+  cursor:pointer;background:#fff;
+}
+.review-cell.answered{background:#E8F0FE;border-color:var(--exam-blue);color:var(--exam-blue)}
+.review-cell.flagged{background:#FFF8E7;border-color:var(--exam-flag);color:#B87A00}
+.review-cell.unanswered{background:#fff;border-color:#ddd;color:#999}
+.legend{display:flex;gap:1rem;font-size:.78rem;color:var(--exam-muted);margin:.5rem 0}
+.legend span{display:flex;align-items:center;gap:.3rem}
+.legend i{width:14px;height:14px;border-radius:3px;border:1px solid #ccc;display:inline-block}
+
+/* results */
+.score-big{font-family:Poppins,sans-serif;font-size:2.4rem;font-weight:800;color:var(--exam-blue)}
+.band-badge{display:inline-block;background:var(--exam-green);color:#fff;padding:.3rem .8rem;border-radius:6px;font-weight:700}
+.feedback-item{border-left:3px solid var(--exam-border);padding:.5rem .75rem;margin:.4rem 0;background:#fafbfc}
+.feedback-item.correct{border-color:var(--exam-green)}
+.feedback-item.wrong{border-color:var(--exam-accent)}
+.model{display:none;margin-top:.5rem;padding:.75rem;background:#F0F5FF;border-radius:6px;font-size:.88rem;white-space:pre-wrap}
+.model.show{display:block}
+.reveal-btn{font-size:.8rem;color:var(--exam-blue);background:none;border:none;text-decoration:underline;cursor:pointer;padding:0}
+
+@media (max-width:600px){
+  .exam-top{flex-wrap:wrap;padding:.4rem .6rem}
+  .nav-btns{max-width:40%}
+  .exam-bottom{flex-wrap:wrap}
+}
 </style>
 </head>
 <body>
-<div class="exam-top" id="examTop"><div class="left"><div class="logo">TIH <em>Exam</em></div><span class="sec-label" id="secLabel">Practice</span><span class="q-count" id="qCount"></span></div><div class="right"><div class="exam-timer" id="timer">--:--</div></div></div>
-<div class="wrap" id="introView"><div class="panel"><div class="eyebrow" id="examEyebrow">Practice Test</div><h1 class="title" id="examTitle">Loading…</h1><p class="lead" id="examIntro"></p><div class="sec-grid" id="secGrid"></div></div></div>
-<div class="exam-body hidden" id="examView"><div class="exam-main"><div class="q-card" id="qCard"><div class="q-num" id="qNum"></div><div id="qContent"></div></div></div></div>
-<div class="wrap hidden" id="reviewView"><div class="panel"><h2 style="font-family:Poppins,sans-serif;color:var(--exam-blue);margin-bottom:.35rem">Review before submit</h2><p style="color:var(--exam-muted);font-size:.9rem;margin-bottom:.6rem">Check unanswered or flagged questions before submitting.</p><div class="legend"><span><i style="background:#E8F0FE;border-color:var(--exam-blue)"></i> Answered</span><span><i style="background:#FFF8E7;border-color:var(--exam-flag)"></i> Flagged</span><span><i style="background:#fff;border-color:#ddd"></i> Unanswered</span></div><div class="review-grid" id="reviewGrid"></div><div style="margin-top:1.25rem;display:flex;gap:.6rem;flex-wrap:wrap"><button class="btn btn-line" id="backToExam">← Back to questions</button><button class="btn btn-accent" id="confirmSubmit">Submit answers</button></div></div></div>
-<div class="wrap hidden" id="resultsView"><div class="panel" id="resultsPanel"></div></div>
-<div class="exam-bottom hidden" id="examBottom"><div class="controls"><button class="ctrl-btn" id="prevBtn">← Back</button></div><div class="nav-btns" id="navGrid"></div><div class="controls"><button class="ctrl-btn flag" id="flagBtn">⚑ Flag</button><button class="ctrl-btn next" id="nextBtn">Next →</button><button class="ctrl-btn submit hidden" id="submitBtn">Review</button></div></div>
-<script src="practice-test-app.js?v=10"></script>
+
+<div class="exam-top" id="examTop">
+  <div class="left">
+    <div class="logo">TIH <em>Exam</em></div>
+    <span class="sec-label" id="secLabel">Practice</span>
+    <span class="q-count" id="qCount"></span>
+  </div>
+  <div class="right">
+    <div class="exam-timer" id="timer">--:--</div>
+  </div>
+</div>
+
+<div class="wrap" id="introView">
+  <div class="panel">
+    <div class="eyebrow" id="examEyebrow">Practice Test</div>
+    <h1 class="title" id="examTitle">Loading…</h1>
+    <p class="lead" id="examIntro"></p>
+    <div class="sec-grid" id="secGrid"></div>
+  </div>
+</div>
+
+<div class="exam-body hidden" id="examView">
+  <div class="exam-main">
+    <div class="q-card" id="qCard">
+      <div class="q-num" id="qNum"></div>
+      <div id="qContent"></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap hidden" id="reviewView">
+  <div class="panel">
+    <h2 style="font-family:Poppins,sans-serif;color:var(--exam-blue);margin-bottom:.35rem">Review before submit</h2>
+    <p style="color:var(--exam-muted);font-size:.9rem;margin-bottom:.6rem">Check unanswered or flagged questions before submitting. Click a number to jump back.</p>
+    <div class="legend">
+      <span><i style="background:#E8F0FE;border-color:var(--exam-blue)"></i> Answered</span>
+      <span><i style="background:#FFF8E7;border-color:var(--exam-flag)"></i> Flagged</span>
+      <span><i style="background:#fff;border-color:#ddd"></i> Unanswered</span>
+    </div>
+    <div class="review-grid" id="reviewGrid"></div>
+    <div style="margin-top:1.25rem;display:flex;gap:.6rem;flex-wrap:wrap">
+      <button class="btn btn-line" id="backToExam">← Back to questions</button>
+      <button class="btn btn-accent" id="confirmSubmit">Submit answers</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap hidden" id="resultsView">
+  <div class="panel" id="resultsPanel"></div>
+</div>
+
+<div class="exam-bottom hidden" id="examBottom">
+  <div class="controls">
+    <button class="ctrl-btn" id="prevBtn">← Back</button>
+  </div>
+  <div class="nav-btns" id="navGrid"></div>
+  <div class="controls">
+    <button class="ctrl-btn flag" id="flagBtn">⚑ Flag</button>
+    <button class="ctrl-btn next" id="nextBtn">Next →</button>
+    <button class="ctrl-btn submit hidden" id="submitBtn">Review</button>
+  </div>
+</div>
+
+<script src="practice-test-app.js?v=6"></script>
 </body>
 </html>

@@ -13,40 +13,15 @@ window.TIH_PAYMENTS_CONFIG = {
 /* All courses: 3 weeks to complete */
 window.TIH_COURSE_DURATION_WEEKS = 3;
 window.TIH_COURSE_DURATION_LABEL = '3 weeks';
-window.TIH_COURSE_DURATION_FULL = '3 weeks to complete';
-
-/* Per-topic videos for all mapped courses.
-   Each video-map file (e.g. webdev-video-map.js) mutates
-   COURSES_DB.<id>.modules directly and requires that course's curriculum
-   builder to have already run, so this waits for DOMContentLoaded — which
-   fires only after every script on the page has executed, including ones
-   loaded with `defer` (some pages defer their heavy curriculum scripts so
-   a slow connection can't freeze the page before it, which delays exactly
-   when those builders finish relative to a plain blocking script here).
-   Scripts are appended with async=false so they still execute in this
-   fixed order relative to each other, but appending only happens after
-   DOMContentLoaded so none of them block the parser beforehand — the
-   original document.write() version forced the browser to fetch and run
-   each one synchronously, one at a time, stalling the rest of the page
-   (including a login form's own script) behind eleven network round trips. */
-document.addEventListener('DOMContentLoaded', function () {
-  var files = [
-    'course-duration-3weeks.js?v=2',
-    'webdev-video-map.js?v=2',
-    'data-video-map.js?v=2',
-    'ai-video-map.js?v=3',
-    'ai-topic-videos.js?v=3',
-    'design-video-map.js?v=1',
-    'android-video-map.js?v=1',
-    'cyber-video-map.js?v=1',
-    'marketing-video-map.js?v=5',
-    'entrepreneurship-video-map.js?v=1',
-    'office-video-map.js?v=1'
-  ];
-  files.forEach(function (src) {
-    var s = document.createElement('script');
-    s.src = src;
-    s.async = false; // preserve load order among themselves
-    document.head.appendChild(s);
-  });
-});
+document.write('<script src="course-duration-3weeks.js?v=1"><\/script>');
+/* Per-topic videos for all mapped courses */
+document.write('<script src="webdev-video-map.js?v=2"><\/script>');
+document.write('<script src="data-video-map.js?v=2"><\/script>');
+document.write('<script src="ai-video-map.js?v=3"><\/script>');
+document.write('<script src="ai-topic-videos.js?v=3"><\/script>');
+document.write('<script src="design-video-map.js?v=1"><\/script>');
+document.write('<script src="android-video-map.js?v=1"><\/script>');
+document.write('<script src="cyber-video-map.js?v=1"><\/script>');
+document.write('<script src="marketing-video-map.js?v=5"><\/script>');
+document.write('<script src="entrepreneurship-video-map.js?v=1"><\/script>');
+document.write('<script src="office-video-map.js?v=1"><\/script>');
