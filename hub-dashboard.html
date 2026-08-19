@@ -402,13 +402,72 @@
     </div>
   </div>
 
-  <script defer src="courses-db.js?v=21"></script><script defer src="ielts-curriculum.js?v=4"></script><script defer src="toefl-curriculum.js?v=4"></script><script defer src="sat-curriculum.js?v=2"></script><script defer src="entrepreneurship-curriculum.js?v=3"></script><script defer src="webdev-curriculum.js?v=5"></script><script defer src="design-curriculum.js?v=2"></script><script defer src="android-curriculum.js?v=2"></script><script defer src="cybersecurity-curriculum.js?v=2"></script><script defer src="aicyber-curriculum.js?v=1"></script><script defer src="publichealth-curriculum.js?v=3"></script><script defer src="projectmgmt-curriculum.js?v=2"></script><script defer src="leadership-curriculum.js?v=2"></script><script defer src="grantwriting-curriculum.js?v=2"></script><script defer src="complit-curriculum.js?v=5"></script><script defer src="englishsuccess-curriculum.js?v=2"></script><script defer src="agritech-curriculum.js?v=2"></script><script defer src="ai-curriculum.js?v=2"></script><script defer src="data-curriculum.js?v=2"></script><script defer src="marketing-curriculum.js?v=2"></script><script defer src="office-curriculum.js?v=2"></script><script defer src="finlit-curriculum.js?v=2"></script><script defer src="healthtech-curriculum.js?v=2"></script><script defer src="remotework-curriculum.js?v=2"></script><script defer src="bible-curriculum.js?v=2"></script><script defer src="course-images.js?v=1"></script>
+  <!-- Course catalog + curricula are NOT loaded here: on a slow connection
+       downloading and executing ~2.3 MB of course JS up front froze the
+       login form. They load once, after a successful sign-in, via
+       loadCourseData() before the dashboard renders its course cards. -->
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=16"></script>
   <script src="hub-db.js?v=38"></script>
   <script src="hub-pay.js?v=1"></script>
   <script>
     var esc = HubDB.esc;
+
+    /* ---- Deferred course-catalog loader ----
+       The 25 curriculum builders + courses-db.js + course-images.js total
+       ~2.3 MB. Loading them on the login screen meant a learner on a slow
+       phone connection had to download and (worse) let the phone execute all
+       of that JavaScript before the main thread was free to accept a single
+       keystroke -- the login form looked frozen. None of it is needed to sign
+       in; it is only needed to render course cards afterwards. So we load it
+       exactly once, on demand, after enterDashboard(). Scripts append with
+       async=false to preserve their original execution order. */
+    var __TIH_COURSE_SCRIPTS = [
+      'courses-db.js?v=21',
+      'ielts-curriculum.js?v=4',
+      'toefl-curriculum.js?v=4',
+      'sat-curriculum.js?v=2',
+      'entrepreneurship-curriculum.js?v=3',
+      'webdev-curriculum.js?v=5',
+      'design-curriculum.js?v=2',
+      'android-curriculum.js?v=2',
+      'cybersecurity-curriculum.js?v=2',
+      'aicyber-curriculum.js?v=1',
+      'publichealth-curriculum.js?v=3',
+      'projectmgmt-curriculum.js?v=2',
+      'leadership-curriculum.js?v=2',
+      'grantwriting-curriculum.js?v=2',
+      'complit-curriculum.js?v=5',
+      'englishsuccess-curriculum.js?v=2',
+      'agritech-curriculum.js?v=2',
+      'ai-curriculum.js?v=2',
+      'data-curriculum.js?v=2',
+      'marketing-curriculum.js?v=2',
+      'office-curriculum.js?v=2',
+      'finlit-curriculum.js?v=2',
+      'healthtech-curriculum.js?v=2',
+      'remotework-curriculum.js?v=2',
+      'bible-curriculum.js?v=2',
+      'course-images.js?v=1'
+    ];
+    var __coursesReady = false, __coursesLoading = null;
+    function loadCourseData() {
+      if (__coursesReady) return Promise.resolve();
+      if (__coursesLoading) return __coursesLoading;
+      __coursesLoading = new Promise(function (resolve) {
+        var i = 0;
+        (function next() {
+          if (i >= __TIH_COURSE_SCRIPTS.length) { __coursesReady = true; resolve(); return; }
+          var el = document.createElement('script');
+          el.src = __TIH_COURSE_SCRIPTS[i++];
+          el.async = false;
+          el.onload = next;
+          el.onerror = next;   // one 404 must not stall the whole dashboard
+          document.head.appendChild(el);
+        })();
+      });
+      return __coursesLoading;
+    }
     // "Was → now" discount label: struck original beside the current price.
     // Original comes from the course's listed value (origPrice); falls back to a
     // sensible multiple so every course shows an encouraging price drop.
@@ -534,17 +593,25 @@
       document.getElementById('pLoc').textContent = s.location || 'N/A';
       document.getElementById('pSince').textContent = fmtDate(s.createdAt);
 
-      renderCourses(); // instant first paint from the local cache
-      // Then load the authoritative account state from the online database so
-      // the same account shows the same unlocks, progress and certificates on
-      // any device. Best effort, re-render once the online data arrives.
-      if (HubDB.hydrateAccountFromCloud) {
-        HubDB.hydrateAccountFromCloud(s).then(function () {
-          var fresh = HubDB.findStudent(s.id);
-          if (fresh) currentStudent = fresh;
-          renderCourses();
-        });
+      // Course catalog JS (~2.3 MB) is loaded here, AFTER sign-in, rather than
+      // on the login screen. Show a brief loading note, then render once ready.
+      var grid = document.getElementById('coursesGrid');
+      if (grid && typeof COURSES_DB === 'undefined') {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:2rem 1rem;font-size:.9rem;">Loading your courses…</div>';
       }
+      loadCourseData().then(function () {
+        renderCourses(); // instant paint from the local cache
+        // Then reconcile with the authoritative online account state so the
+        // same account shows the same unlocks, progress and certificates on
+        // any device. Best effort, re-render once the online data arrives.
+        if (HubDB.hydrateAccountFromCloud) {
+          HubDB.hydrateAccountFromCloud(s).then(function () {
+            var fresh = HubDB.findStudent(s.id);
+            if (fresh) currentStudent = fresh;
+            renderCourses();
+          });
+        }
+      });
     }
 
     function renderCourses() {
