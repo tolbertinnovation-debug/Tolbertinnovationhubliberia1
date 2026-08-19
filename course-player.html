@@ -79,6 +79,7 @@
   <script src="wassce-course.js?v=6"></script>
   <script src="topic-videos.js?v=11"></script>
   <script src="tih-notes-runtime.js?v=1"></script>
+  <script src="tih-video-runtime.js?v=1"></script>
   <script src="complit-notes.js?v=2"></script>
   <script src="ielts-notes.js?v=1"></script>
   <script src="toefl-notes.js?v=1"></script>
@@ -1080,7 +1081,7 @@
     //   2. TIH_TOPIC_VIDEOS[courseId][topicTitle]    — pins one topic (wins).
     // Neither touches curriculum builders. Title matching ignores the "3.1 "
     // numbering, leading emoji, and case. A matched lesson becomes a video.
-    (function () {
+    function applyVideoOverrides() {
       function normTopic(s) {
         return String(s || '')
           .replace(/^[^0-9a-zA-Z]+/, '')            // strip leading emoji/symbols
@@ -1105,7 +1106,19 @@
         var t = topMod[l.module + '|' + nt] || topPlain[nt];
         if (t) { l.videoId = t; l.reading = false; }
       });
-    })();
+    }
+    applyVideoOverrides();
+
+    // Late-arriving per-course video map (videos/<id>-videos.js, fetched by
+    // tih-video-runtime.js). Re-apply and repaint once it lands.
+    window.tihApplyVideoOverrides = function () {
+      try {
+        if (!lessons || !lessons.length) return;
+        applyVideoOverrides();
+        buildSidebar();
+        renderLesson(currentLessonIndex);
+      } catch (e) {}
+    };
 
     // Copy quiz data from DB
     quizData = course.quizzes || {};
