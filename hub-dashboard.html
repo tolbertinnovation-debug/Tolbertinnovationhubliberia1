@@ -423,31 +423,16 @@
        in; it is only needed to render course cards afterwards. So we load it
        exactly once, on demand, after enterDashboard(). Scripts append with
        async=false to preserve their original execution order. */
-    /* Two-phase load so the dashboard is usable fast on a slow connection.
-       PHASE 1 (core, ~0.7 MB): courses-db.js already holds every course's
-       title, category, level, price and module list, and course-images.js
-       stamps the cover art — enough to paint the My Courses cards and the
-       WASSCE grid. loadCourseData() resolves as soon as this finishes so the
-       user sees their courses in seconds, not after the full ~2.3 MB.
-       PHASE 2 (builders, ~1.6 MB, background): the 25 curriculum builders add
-       the complete per-lesson data (exact lesson counts, quizzes). They load
-       after phase 1 without blocking, and the dashboard re-renders for exact
-       counts once they arrive. course-images.js is re-run at the end because
-       several builders rebuild their COURSES_DB entry from scratch and would
-       otherwise drop the cover art. If phase 2 never finishes on a very slow
-       link, the dashboard still works fully on the phase-1 data. */
-    var __TIH_CORE_SCRIPTS = ['courses-db.js?v=21', 'course-images.js?v=1'];
-    var __TIH_BUILDER_SCRIPTS = [
-      'ielts-curriculum.js?v=4', 'toefl-curriculum.js?v=4', 'sat-curriculum.js?v=2',
-      'entrepreneurship-curriculum.js?v=3', 'webdev-curriculum.js?v=5', 'design-curriculum.js?v=2',
-      'android-curriculum.js?v=2', 'cybersecurity-curriculum.js?v=2', 'aicyber-curriculum.js?v=1',
-      'publichealth-curriculum.js?v=3', 'projectmgmt-curriculum.js?v=2', 'leadership-curriculum.js?v=2',
-      'grantwriting-curriculum.js?v=2', 'complit-curriculum.js?v=5', 'englishsuccess-curriculum.js?v=2',
-      'agritech-curriculum.js?v=2', 'ai-curriculum.js?v=2', 'data-curriculum.js?v=2',
-      'marketing-curriculum.js?v=2', 'office-curriculum.js?v=2', 'finlit-curriculum.js?v=2',
-      'healthtech-curriculum.js?v=2', 'remotework-curriculum.js?v=2', 'bible-curriculum.js?v=2',
-      'course-images.js?v=1'   // re-stamp cover art after builders rebuild their entries
-    ];
+    /* The dashboard only needs to draw the My Courses cards, the Add-a-Course
+       catalog and the WASSCE grid — title, category, level, price, cover art
+       and lesson counts. The full courses-db.js (~674 KB) + 25 curriculum
+       builders (~1.6 MB) exist for the course PLAYER, and on a very slow
+       connection (some learners are on ~1-16 KB/s) downloading megabytes
+       before a card appears is unusable. So the dashboard loads only
+       courses-lite.js (~22 KB, accurate card data + lesson counts for all
+       courses) plus course-images.js (cover art + the WASSCE art map). The
+       course player still loads the full curricula when a lesson is opened. */
+    var __TIH_CORE_SCRIPTS = ['courses-lite.js?v=1', 'course-images.js?v=1'];
     function __loadScripts(list) {
       return new Promise(function (resolve) {
         var i = 0;
@@ -457,22 +442,17 @@
           el.src = list[i++];
           el.async = false;      // keep execution order
           el.onload = next;
-          el.onerror = next;     // one 404 must not stall the whole chain
+          el.onerror = next;     // one 404 must not stall the chain
           document.head.appendChild(el);
         })();
       });
     }
-    var __coursesReady = false, __coursesLoading = null, __buildersReady = false;
+    var __coursesReady = false, __coursesLoading = null;
     function loadCourseData() {
       if (__coursesReady) return Promise.resolve();
       if (__coursesLoading) return __coursesLoading;
       __coursesLoading = __loadScripts(__TIH_CORE_SCRIPTS).then(function () {
-        __coursesReady = true;                 // dashboard usable now
-        // Phase 2 in the background: refine with full curricula, then re-render.
-        __loadScripts(__TIH_BUILDER_SCRIPTS).then(function () {
-          __buildersReady = true;
-          try { if (currentStudent) renderCourses(); } catch (e) {}
-        });
+        __coursesReady = true;
       });
       return __coursesLoading;
     }
