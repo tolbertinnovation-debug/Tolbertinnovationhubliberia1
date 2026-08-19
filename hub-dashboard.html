@@ -1,1 +1,86 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Dashboard | TIH Learning Hub</title>
+<style>
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif;background:#0B1F3A;color:#e2e8f0}
+.box{text-align:center;padding:2rem;max-width:420px}
+.spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.2);border-top-color:#E31E24;border-radius:50%;margin:0 auto 1rem;animation:s .8s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}
+a{color:#93c5fd}
+.btn{display:inline-block;margin-top:1rem;background:#E31E24;color:#fff;font-weight:700;padding:.7rem 1.4rem;border-radius:999px;text-decoration:none;border:none;cursor:pointer;font-size:.95rem}
+.btn2{display:inline-block;margin-top:.6rem;background:transparent;color:#93c5fd;border:1.5px solid rgba(147,197,253,.4);font-weight:600;padding:.55rem 1.1rem;border-radius:999px;text-decoration:none;font-size:.88rem}
+#status{font-size:.85rem;color:#94a3b8;margin-top:.75rem}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="spin" id="spin"></div>
+  <p id="msg">Loading sign-in…</p>
+  <p id="status">Please wait a few seconds</p>
+</div>
+<script>
+(function(){
+  var CDN = 'https://cdn.jsdelivr.net/gh/tolbertinnovation-debug/Tolbertinnovationhubliberia1@7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html';
+  var RAW = 'https://raw.githubusercontent.com/tolbertinnovation-debug/Tolbertinnovationhubliberia1/7ab3b7480583a6a026a7cd45aa1c7a041ed69552/hub-dashboard.html';
+  var statusEl = document.getElementById('status');
+  var msgEl = document.getElementById('msg');
+  var spinEl = document.getElementById('spin');
+  function setStatus(t){ if(statusEl) statusEl.textContent = t; }
+  function fail(detail){
+    if(spinEl) spinEl.style.display='none';
+    msgEl.innerHTML = 'Could not load login.' + (detail ? '<br><small style="color:#94a3b8">'+detail+'</small>' : '');
+    setStatus('');
+    var box = document.querySelector('.box');
+    var a1=document.createElement('a'); a1.className='btn'; a1.href=CDN; a1.textContent='Open login (direct)'; box.appendChild(a1);
+    var a2=document.createElement('a'); a2.className='btn2'; a2.href='learning-hub'; a2.textContent='← Back'; box.appendChild(a2);
+    var a3=document.createElement('button'); a3.className='btn2'; a3.type='button'; a3.textContent='Try again'; a3.onclick=function(){location.reload();}; box.appendChild(a3);
+  }
+  function fetchText(url, ms){
+    var ctrl = typeof AbortController!=='undefined' ? new AbortController() : null;
+    var t = setTimeout(function(){ if(ctrl) ctrl.abort(); }, ms||15000);
+    return fetch(url,{cache:'no-store',mode:'cors',signal:ctrl?ctrl.signal:undefined})
+      .then(function(r){ clearTimeout(t); if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+      .catch(function(e){ clearTimeout(t); throw e; });
+  }
+  /* Strip 26 heavy course scripts BEFORE the browser parses them.
+     On slow mobile data those scripts freeze the login form so you cannot type. */
+  function optimize(html){
+    if(!html || html.length < 5000) throw new Error('incomplete');
+    var heavy = /<script src="courses-db\.js\?v=21"><\/script>[\s\S]*?<script src="course-images\.js\?v=1"><\/script>/;
+    if(!heavy.test(html)) {
+      if(html.indexOf('Sign In') < 0 && html.indexOf('loginId') < 0) throw new Error('not login page');
+      return html;
+    }
+    var deferred = "\n<script>\nwindow.__TIH_COURSE_SCRIPTS=['courses-db.js?v=21','ielts-curriculum.js?v=4','toefl-curriculum.js?v=4','sat-curriculum.js?v=2','entrepreneurship-curriculum.js?v=3','webdev-curriculum.js?v=5','design-curriculum.js?v=2','android-curriculum.js?v=2','cybersecurity-curriculum.js?v=2','aicyber-curriculum.js?v=1','publichealth-curriculum.js?v=3','projectmgmt-curriculum.js?v=2','leadership-curriculum.js?v=2','grantwriting-curriculum.js?v=2','complit-curriculum.js?v=5','englishsuccess-curriculum.js?v=2','agritech-curriculum.js?v=2','ai-curriculum.js?v=2','data-curriculum.js?v=2','marketing-curriculum.js?v=2','office-curriculum.js?v=2','finlit-curriculum.js?v=2','healthtech-curriculum.js?v=2','remotework-curriculum.js?v=2','bible-curriculum.js?v=2','course-images.js?v=1'];\nwindow.__TIH_COURSES_READY=false;window.__TIH_COURSES_LOADING=null;\nwindow.loadCourseData=function(){if(window.__TIH_COURSES_READY)return Promise.resolve();if(window.__TIH_COURSES_LOADING)return window.__TIH_COURSES_LOADING;window.__TIH_COURSES_LOADING=new Promise(function(resolve){var list=window.__TIH_COURSE_SCRIPTS||[],i=0;function next(){if(i>=list.length){window.__TIH_COURSES_READY=true;resolve();return;}var s=document.createElement('script');s.src=list[i++];s.onload=next;s.onerror=next;document.head.appendChild(s);}next();});return window.__TIH_COURSES_LOADING;};\n<\/script>\n";
+    html = html.replace(heavy, deferred);
+    html = html.replace(
+      "function enterDashboard() {\n      document.getElementById('loginScreen').style.display = 'none';",
+      "function enterDashboard() {\n      document.getElementById('loginScreen').style.display = 'none';\n      if (typeof loadCourseData === 'function') {\n        loadCourseData().then(function () {\n          try { if (typeof renderCourses === 'function') renderCourses(); } catch (e) {}\n          try { if (typeof refreshDashboard === 'function') refreshDashboard(); } catch (e) {}\n        });\n      }"
+    );
+    html = html.replace(
+      '.fld input { width: 100%; padding: 0.75rem 0.9rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: inherit; min-height: 48px; }',
+      '.fld input { width: 100%; padding: 0.75rem 0.9rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: inherit; min-height: 48px; pointer-events: auto !important; -webkit-user-select: text; user-select: text; }'
+    );
+    return html;
+  }
+  function writeHtml(html){
+    html = optimize(html);
+    document.open();
+    document.write(html);
+    document.close();
+  }
+  setStatus('Loading…');
+  fetchText(CDN, 16000)
+    .then(writeHtml)
+    .catch(function(){
+      setStatus('Retrying…');
+      return fetchText(RAW, 16000).then(writeHtml);
+    })
+    .catch(function(e){ fail(e && e.message ? e.message : 'network'); });
+})();
+</script>
+</body>
+</html>
