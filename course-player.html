@@ -22,53 +22,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="courses-db.js?v=21"></script>
-  <script src="lesson-content.js?v=13"></script>
-  <script src="topic-quizzes.js?v=6"></script>
-  <script src="ielts-curriculum.js?v=4"></script>
-  <script src="toefl-curriculum.js?v=4"></script>
-  <script src="sat-curriculum.js?v=2"></script>
-  <script src="entrepreneurship-curriculum.js?v=3"></script>
-  <script src="webdev-curriculum.js?v=5"></script>
-  <script src="design-curriculum.js?v=2"></script>
-  <script src="android-curriculum.js?v=2"></script>
-  <script src="cybersecurity-curriculum.js?v=2"></script><script src="aicyber-curriculum.js?v=1"></script><script src="publichealth-curriculum.js?v=3"></script>
-  <script src="projectmgmt-curriculum.js?v=2"></script>
-  <script src="leadership-curriculum.js?v=2"></script>
-  <script src="grantwriting-curriculum.js?v=2"></script>
-  <script src="complit-curriculum.js?v=5"></script>
-  <script src="englishsuccess-curriculum.js?v=3"></script>
-  <script src="agritech-curriculum.js?v=2"></script>
-  <script src="ai-curriculum.js?v=2"></script>
-  <script src="data-curriculum.js?v=2"></script>
-  <script src="marketing-curriculum.js?v=2"></script>
-  <script src="office-curriculum.js?v=2"></script>
-  <script src="finlit-curriculum.js?v=2"></script>
-  <script src="healthtech-curriculum.js?v=2"></script>
-  <script src="remotework-curriculum.js?v=2"></script>
-  <script src="bible-curriculum.js?v=2"></script>
-  <script src="wassce-english-curriculum.js?v=2"></script>
-  <script src="wassce-mathematics-curriculum.js?v=2"></script>
-  <script src="wassce-biology-curriculum.js?v=2"></script>
-  <script src="wassce-chemistry-curriculum.js?v=2"></script>
-  <script src="wassce-physics-curriculum.js?v=2"></script>
-  <script src="wassce-economics-curriculum.js?v=2"></script>
-  <script src="wassce-literature-curriculum.js?v=2"></script>
-  <script src="wassce-history-curriculum.js?v=2"></script>
-  <script src="wassce-geography-curriculum.js?v=2"></script>
-  <script src="wassce-furthermaths-curriculum.js?v=2"></script>
-  <script src="wassce-civic-curriculum.js?v=2"></script>
-  <script src="wassce-government-curriculum.js?v=3"></script>
-  <script src="wassce-healthsci-curriculum.js?v=2"></script>
-  <script src="wassce-computer-curriculum.js?v=2"></script>
-  <script src="wassce-techdrawing-curriculum.js?v=2"></script>
-  <script src="wassce-agriculture-curriculum.js?v=2"></script>
-  <script src="wassce-accounts-curriculum.js?v=2"></script>
-  <script src="wassce-marketing-curriculum.js?v=2"></script>
-  <script src="wassce-commerce-curriculum.js?v=2"></script>
-  <script src="wassce-foodnutrition-curriculum.js?v=2"></script>
-  <script src="wassce-homeeconomics-curriculum.js?v=2"></script>
-  <script src="wassce-crs-curriculum.js?v=2"></script>
-  <script src="wassce-irs-curriculum.js?v=2"></script>
+  <!-- Per-course data loader. Replaces 47 curriculum builders, lesson-content.js
+       and topic-quizzes.js, which used to load in full on every lesson view. -->
+  <script src="tih-course-loader.js?v=1"></script>
   <script src="course-images.js?v=1"></script>
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=16"></script>
@@ -77,7 +33,9 @@
   <script src="cert-registry.js?v=3"></script>
   <script src="paywall.js?v=10"></script>
   <script src="wassce-course.js?v=6"></script>
-  <script src="topic-videos.js?v=11"></script>
+  <!-- topic-videos.js used to document.write() 49 course-specific scripts here.
+       tih-course-loader.js now fetches only the ones the open course needs. -->
+  <script src="interactive-lesson-quiz.js?v=1"></script>
   <script src="tih-notes-runtime.js?v=1"></script>
   <script src="tih-video-runtime.js?v=1"></script>
   <!-- The five authored note bundles (762 KB combined) are fetched on demand
@@ -1375,11 +1333,18 @@
   // synthesizes the course into COURSES_DB first; normal courses run immediately.
   (function boot() {
     var bootId = getUrlParam('id') || 'computer-literacy';
-    if (typeof WassceCourse !== 'undefined') {
-      WassceCourse.ensure(bootId, function () { loadCourse(); init(); });
-    } else {
-      loadCourse(); init();
+    function start() {
+      if (typeof WassceCourse !== 'undefined') {
+        WassceCourse.ensure(bootId, function () { loadCourse(); init(); });
+      } else {
+        loadCourse(); init();
+      }
     }
+    // This course's notes, quiz bank and curriculum builder are fetched on
+    // demand; boot once they are in place, or immediately if the loader is
+    // absent (in which case nothing was stripped from the page either).
+    if (typeof TihCourseLoader !== 'undefined') TihCourseLoader.ensure(bootId, start);
+    else start();
   })();
 
   // ===== RENDER LESSON =====
