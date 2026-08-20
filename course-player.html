@@ -1523,9 +1523,24 @@
     var authored = null;
     var NB = (typeof window !== 'undefined' && window.TIH_LESSON_NOTES && window.TIH_LESSON_NOTES[courseId]) || null;
     if (NB) {
+      // Keys are plain ("Inference Questions") or module-qualified
+      // ("M5:Inference Questions"), the same convention TIH_TOPIC_VIDEOS uses.
+      // 50 topic titles repeat across modules in 16 courses -- TOEFL teaches
+      // Inference Questions in both Reading and Listening -- and without the
+      // qualified form both lessons were served one note for two skills.
       var nk = noteKey(lesson.title);
+      var plainHit = null, modHit = null;
       var keys = Object.keys(NB);
-      for (var ki = 0; ki < keys.length; ki++) { if (noteKey(keys[ki]) === nk) { authored = NB[keys[ki]]; break; } }
+      for (var ki = 0; ki < keys.length; ki++) {
+        var rawKey = keys[ki];
+        var mq = String(rawKey).match(/^\s*M(\d+)\s*[:|]\s*(.+)$/i);
+        if (mq) {
+          if (parseInt(mq[1], 10) === lesson.module && noteKey(mq[2]) === nk) { modHit = NB[rawKey]; break; }
+        } else if (!plainHit && noteKey(rawKey) === nk) {
+          plainHit = NB[rawKey];
+        }
+      }
+      authored = modHit || plainHit;
     }
     var overviewHtml;
     if (authored) {
