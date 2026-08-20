@@ -22,8 +22,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="courses-db.js?v=21"></script>
-  <!-- Per-course data loader. Replaces 47 curriculum builders, lesson-content.js
-       and topic-quizzes.js, which used to load in full on every lesson view. -->
+  <!-- Per-course data loader. Replaces the 47 curriculum builders and the
+       whole-site lesson-content.js / topic-quizzes.js bundles that used to
+       load in full on every lesson view; their data now lives split by
+       course under content/ and quizzes/. -->
   <script src="tih-course-loader.js?v=1"></script>
   <script src="course-images.js?v=1"></script>
   <script src="hub-config.js?v=4"></script>
@@ -33,7 +35,7 @@
   <script src="cert-registry.js?v=3"></script>
   <script src="paywall.js?v=10"></script>
   <script src="wassce-course.js?v=6"></script>
-  <!-- topic-videos.js used to document.write() 49 course-specific scripts here.
+  <!-- 49 course-specific scripts used to be document.write()n in here.
        tih-course-loader.js now fetches only the ones the open course needs. -->
   <script src="interactive-lesson-quiz.js?v=1"></script>
   <script src="tih-notes-runtime.js?v=1"></script>

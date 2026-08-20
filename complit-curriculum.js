@@ -175,7 +175,7 @@
     return out;
   }
   function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
-  // Authored per-topic quiz questions (topic-quizzes.js) take priority so every
+  // Authored per-topic quiz questions (quizzes/<id>-quizzes.js) take priority so every
   // topic has its OWN distinct questions. Falls back to the module BANK if a
   // topic has no authored set.
   function normQ(s) { return String(s || '').replace(/[^a-z0-9]+/gi, ' ').replace(/\s+/g, ' ').trim().toLowerCase(); }
