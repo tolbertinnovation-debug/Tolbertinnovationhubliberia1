@@ -9,7 +9,7 @@ a("Finding Business Ideas","Module 3: Idea Generation & Validation","Finding bus
 
 a("Problem Identification","Module 3: Idea Generation & Validation","Problem identification isolates a specific, painful, frequent issue experienced by a defined group of people—stated in their language, not product jargon.","<p>A strong problem statement names who suffers, what fails, and what it costs them (time, money, risk, status).</p>");
 
-a("Brainstorming Techniques","Module 3: Idea Generation & Validation","Brainstorming techniques are structured methods for generating many candidate solutions before judging them—quantity first, evaluation second.","<ul><li>Time-boxed idea dumps</li><li>"How might we…" prompts</li><li>Constraint-based challenges (e.g., no app, offline only)</li></ul>");
+a("Brainstorming Techniques","Module 3: Idea Generation & Validation","Brainstorming techniques are structured methods for generating many candidate solutions before judging them—quantity first, evaluation second.","<ul><li>Time-boxed idea dumps</li><li>“How might we…” prompts</li><li>Constraint-based challenges (e.g., no app, offline only)</li></ul>");
 
 a("Market Gap Analysis","Module 3: Idea Generation & Validation","Market gap analysis compares existing offerings with customer needs to find underserved segments, features, price points, or channels.","<p>Gaps can be geographic, demographic, quality-based, or channel-based. Confirm that a gap is large enough and reachable.</p>");
 

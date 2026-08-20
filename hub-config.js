@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
     'ai-video-map.js?v=3',
     'ai-topic-videos.js?v=3',
     'design-video-map.js?v=1',
-    'android-video-map.js?v=1',
+    /* android-video-map.js retired: Android now uses the per-topic map in
+       videos/android-videos.js, loaded on demand by tih-video-runtime.js. */
     'cyber-video-map.js?v=1',
     'marketing-video-map.js?v=5',
     'entrepreneurship-video-map.js?v=1',

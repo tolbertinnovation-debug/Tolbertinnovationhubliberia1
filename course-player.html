@@ -80,11 +80,9 @@
   <script src="topic-videos.js?v=11"></script>
   <script src="tih-notes-runtime.js?v=1"></script>
   <script src="tih-video-runtime.js?v=1"></script>
-  <script src="complit-notes.js?v=2"></script>
-  <script src="ielts-notes.js?v=1"></script>
-  <script src="toefl-notes.js?v=1"></script>
-  <script src="eng-notes.js?v=1"></script>
-  <script src="ph-notes.js?v=2"></script>
+  <!-- The five authored note bundles (762 KB combined) are fetched on demand
+       for the open course only, by tih-authored-notes.js. -->
+  <script src="tih-authored-notes.js?v=1"></script>
   <script src="cert-template.js?v=5"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1281,6 +1279,16 @@
     buildSidebar();
     renderLesson(currentLessonIndex);
     updateProgress();
+
+    /* The authored note bundle for this course is fetched on demand
+       (tih-authored-notes.js). If it lands after the first paint, repaint the
+       open lesson so the hand-written note replaces the generated one. */
+    window.tihApplyAuthoredNotes = function () {
+      try {
+        if (!lessons || !lessons.length) return;
+        renderLesson(currentLessonIndex);
+      } catch (e) {}
+    };
     } catch(e) {
       document.getElementById('lessonTitle').textContent = 'Error loading lesson, please refresh.';
     }
