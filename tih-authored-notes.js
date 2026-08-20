@@ -38,15 +38,6 @@
     'android':           'android-notes.js?v=1'
   };
 
-  /* A course may also ship its own per-topic quiz bank. Unlike the notes, the
-     curriculum builder consumes these, so the file carries a re-apply hook it
-     calls once the bank lands. Keeping them out of topic-quizzes.js means the
-     other 24 courses never download SAT's questions. */
-  var QUIZ_BUNDLES = {
-    'sat':              { src: 'sat-topic-quizzes.js?v=1',     apply: 'tihApplySatTopicQuizzes' },
-    'ai-cybersecurity': { src: 'aicyber-topic-quizzes.js?v=1', apply: 'tihApplyAicyberTopicQuizzes' },
-    'android':          { src: 'android-topic-quizzes.js?v=1', apply: 'tihApplyAndroidTopicQuizzes' }
-  };
 
   window.TIH_LESSON_NOTES = window.TIH_LESSON_NOTES || {};
 
@@ -72,24 +63,10 @@
     (document.head || document.documentElement).appendChild(s);
   }
 
-  function loadQuizzesFor(courseId) {
-    var spec = QUIZ_BUNDLES[courseId];
-    if (!spec) return;
-    var s = document.createElement('script');
-    s.src = spec.src;
-    s.async = true;
-    s.onload = function () {
-      try {
-        if (typeof window[spec.apply] === 'function') window[spec.apply]();
-      } catch (e) {}
-    };
-    s.onerror = function () { /* fall back to the curriculum's own questions */ };
-    (document.head || document.documentElement).appendChild(s);
-  }
 
   window.tihLoadAuthoredNotes = loadFor;
 
   var m = /[?&]id=([^&]+)/.exec(location.search);
   var cid = m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : null;
-  if (cid) { loadFor(cid); loadQuizzesFor(cid); }
+  if (cid) loadFor(cid);
 })();

@@ -82,6 +82,19 @@
   // Courses with a generated-notes chunk in content/.
   var CONTENT = ["agritech", "ai", "android", "bible-foundations", "bible-nt", "bible-ot", "computer-literacy", "cybersecurity", "data", "design", "english-success", "entrepreneurship", "financial-literacy", "grant-writing", "healthtech", "ielts", "leadership", "marketing", "office", "project-mgmt", "remote-work", "sat", "toefl", "webdev"];
 
+  /* Courses shipping their own authored topic-quiz bank as a single file.
+     The curriculum builder reads this while it builds, so it must load BEFORE
+     the builder; the builder's re-apply hook rebuilds the module assessments
+     from the same bank, so that must be called AFTER. Loading these through
+     tih-authored-notes.js instead raced the builder: the bank sometimes landed
+     first, the hook was not yet defined, and every assessment silently kept the
+     old shared pool. */
+  var TOPIC_QUIZ_BANKS = {
+    'sat':              { src: 'sat-topic-quizzes.js?v=1',     apply: 'tihApplySatTopicQuizzes' },
+    'ai-cybersecurity': { src: 'aicyber-topic-quizzes.js?v=1', apply: 'tihApplyAicyberTopicQuizzes' },
+    'android':          { src: 'android-topic-quizzes.js?v=1', apply: 'tihApplyAndroidTopicQuizzes' }
+  };
+
   // Courses with an authored topic-quiz chunk in quizzes/.
   var QUIZZES = ["computer-literacy", "english-success", "ielts", "ph-career", "toefl"];
 
@@ -157,10 +170,21 @@
     var urls = [];
     if (has(CONTENT, courseId)) urls.push('content/' + courseId + '-content.js' + VERSION);
     if (has(QUIZZES, courseId)) urls.push('quizzes/' + courseId + '-quizzes.js' + VERSION);
+    var bank = TOPIC_QUIZ_BANKS[courseId];
+    if (bank) urls.push(bank.src);
     if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + VERSION);
     if (EXTRAS[courseId]) urls = urls.concat(EXTRAS[courseId]);
     if (!urls.length) { done(); return; }
-    loadInOrder(urls, done);
+    loadInOrder(urls, function () {
+      // The builder has now run and defined its hook, so the module
+      // assessments can be rebuilt from the authored bank.
+      if (bank) {
+        try {
+          if (typeof window[bank.apply] === 'function') window[bank.apply]();
+        } catch (e) {}
+      }
+      done();
+    });
   }
 
   window.TihCourseLoader = { ensure: ensure, curriculumFor: function (id) { return CURRICULUM[id] || null; } };
