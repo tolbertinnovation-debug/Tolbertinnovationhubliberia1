@@ -163,8 +163,45 @@
     return out;
   }
   function cloneQ(item) { return { q: item.q, opts: item.opts.slice(), correct: item.correct, exp: item.exp }; }
-  function practiceQuiz(skill, name) { return { title: 'Practice: ' + name, moduleNum: 1, questions: pickQuestions(skill, 3).map(cloneQ) }; }
-  function assessmentQuiz(skill, name, count) { return { title: name, moduleNum: 1, questions: pickQuestions(skill, count).map(cloneQ) }; }
+
+  /* Authored per-topic questions (sat-topic-quizzes.js) take priority over the
+     skill pools above. pickQuestions() returns pool[0..2] for every topic that
+     shares a skill tag, so all nine Math Foundations quizzes asked the same
+     three questions -- a learner practising Fractions was solving 3x + 6 = 18.
+     Keys may be module-qualified ("M9:Radicals") where a title is taught in
+     two modules with a different emphasis. */
+  function normQ(s) { return String(s || '').replace(/[^a-z0-9]+/gi, ' ').replace(/\s+/g, ' ').trim().toLowerCase(); }
+  var TQ_plain = null, TQ_mod = null;
+  function buildTopicIndex() {
+    if (TQ_plain) return;
+    TQ_plain = {}; TQ_mod = {};
+    var src = (typeof window !== 'undefined' && window.TIH_TOPIC_QUIZZES && window.TIH_TOPIC_QUIZZES['sat']) || {};
+    Object.keys(src).forEach(function (k) {
+      var m = String(k).match(/^\s*M(\d+)\s*[:|]\s*(.+)$/i);
+      if (m) TQ_mod[m[1] + '|' + normQ(m[2])] = src[k];
+      else TQ_plain[normQ(k)] = src[k];
+    });
+  }
+  function topicQuestions(moduleNum, name) {
+    buildTopicIndex();
+    var arr = TQ_mod[moduleNum + '|' + normQ(name)] || TQ_plain[normQ(name)];
+    return (arr && arr.length) ? arr.map(cloneQ) : null;
+  }
+  var practiceIndex = {};   // quizId -> { module, name }   (per-topic practice)
+  var assessIndex = [];     // { quizId, module, count, scope }  (module and course tests)
+  function practiceQuiz(skill, name, moduleNum, quizId) {
+    practiceIndex[quizId] = { module: moduleNum, name: name };
+    var authored = topicQuestions(moduleNum, name);
+    if (authored) return { title: 'Practice: ' + name, moduleNum: 1, questions: authored };
+    return { title: 'Practice: ' + name, moduleNum: 1, questions: pickQuestions(skill, 3).map(cloneQ) };
+  }
+  function assessmentQuiz(skill, name, count, moduleNum, quizId) {
+    // Module 13 collects the section tests, mocks and the final, so its
+    // assessments draw from the whole course; the rest test their own module.
+    assessIndex.push({ quizId: quizId, module: moduleNum, count: count,
+                       scope: (moduleNum === 13 ? 'course' : 'module') });
+    return { title: name, moduleNum: 1, questions: pickQuestions(skill, count).map(cloneQ) };
+  }
 
   var modules = [];
   var quizzes = {};
@@ -194,7 +231,7 @@
         var mock = isMock(name);
         var count = isFinal ? 20 : mock ? 15 : 5;
         var quizId = 'sat-m' + num + '-a' + flat;
-        quizzes[quizId] = assessmentQuiz(skill, name, count);
+        quizzes[quizId] = assessmentQuiz(skill, name, count, num, quizId);
         if (isFinal) quizzes[quizId].isFinal = true;
         var badge = isFinal ? '🏆 ' : mock ? '🧪 ' : '📝 ';
         var lesson = { t: badge + name, d: count + ' questions', isQuiz: true, quizId: quizId };
@@ -212,7 +249,7 @@
         flat += 1;
         videoCount += 1;
         var pqId = 'sat-m' + num + '-q' + flat;
-        quizzes[pqId] = practiceQuiz(skill, name);
+        quizzes[pqId] = practiceQuiz(skill, name, num, pqId);
         lessons.push({ t: '📝 Practice: ' + name, d: '3 questions', isQuiz: true, quizId: pqId });
         notes[String(flat)] = '<p><strong>Quick check:</strong> Review the lesson notes and work the two practice questions, then answer these to confirm you understood <em>' + escapeHtml(name) + '</em>.</p>';
         flat += 1;
@@ -269,6 +306,68 @@
   };
 
   if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT.sat = notes;
+
+  /* sat-topic-quizzes.js is fetched only when the SAT course is open, so it can
+     land after this builder has already run. Re-apply then: the player holds a
+     reference to this same quizzes object and reads it fresh each time a quiz
+     is opened, so swapping the questions in is enough. */
+  window.tihApplySatTopicQuizzes = function () {
+    TQ_plain = null; TQ_mod = null;               // rebuild against the new data
+    var applied = 0;
+
+    // 1. Per-topic practice quizzes take their own three questions.
+    var byModule = {};                            // module -> [[q,q,q], ...] per topic
+    Object.keys(practiceIndex).forEach(function (quizId) {
+      var meta = practiceIndex[quizId];
+      var authored = topicQuestions(meta.module, meta.name);
+      if (!authored) return;
+      if (quizzes[quizId]) { quizzes[quizId].questions = authored; applied += 1; }
+      (byModule[meta.module] = byModule[meta.module] || []).push(authored);
+    });
+
+    /* Interleave a module's topics so a five-question module test samples five
+       different topics rather than taking all three questions from the first. */
+    function interleave(topics) {
+      var out = [], depth = 0, added = true;
+      while (added) {
+        added = false;
+        for (var i = 0; i < topics.length; i++) {
+          if (topics[i][depth]) { out.push(topics[i][depth]); added = true; }
+        }
+        depth += 1;
+      }
+      return out;
+    }
+
+    var moduleQs = {};
+    Object.keys(byModule).forEach(function (m) { moduleQs[m] = interleave(byModule[m]); });
+
+    // A course-wide pool, interleaved by module so any slice spans the syllabus.
+    var moduleNums = Object.keys(moduleQs).sort(function (a, b) { return a - b; });
+    var coursePool = interleave(moduleNums.map(function (m) { return moduleQs[m]; }));
+
+    /* 2. Assessments. Module tests draw from their own module. Module 13's
+       section tests, midterm, four mocks and final draw disjoint slices of the
+       course pool -- previously every one of them was built from pickQuestions,
+       which made all four Full SAT Mock Tests identical, question for question. */
+    var cursor = 0;
+    assessIndex.forEach(function (a) {
+      var quiz = quizzes[a.quizId];
+      if (!quiz) return;
+      var picked = [];
+      if (a.scope === 'module' && moduleQs[a.module] && moduleQs[a.module].length >= a.count) {
+        picked = moduleQs[a.module].slice(0, a.count);
+      } else if (coursePool.length) {
+        for (var i = 0; i < a.count; i++) {
+          picked.push(coursePool[(cursor + i) % coursePool.length]);
+        }
+        cursor = (cursor + a.count) % coursePool.length;
+      }
+      if (picked.length === a.count) { quiz.questions = picked.map(cloneQ); applied += 1; }
+    });
+
+    return applied;
+  };
 
   if (typeof console !== 'undefined' && console.log) {
     console.log('[SAT] modules=' + modules.length + ' videoLessons=' + videoCount + ' quizzes=' + quizCount + ' mockExams=' + mockCount + ' resources=' + resourceCount);
