@@ -34,7 +34,8 @@
     'toefl':             'toefl-notes.js?v=2',
     'ph-career':         'ph-notes.js?v=2',
     'sat':               'sat-notes.js?v=1',
-    'ai-cybersecurity':  'aicyber-notes.js?v=1'
+    'ai-cybersecurity':  'aicyber-notes.js?v=1',
+    'android':           'android-notes.js?v=1'
   };
 
   /* A course may also ship its own per-topic quiz bank. Unlike the notes, the
@@ -43,7 +44,8 @@
      other 24 courses never download SAT's questions. */
   var QUIZ_BUNDLES = {
     'sat':              { src: 'sat-topic-quizzes.js?v=1',     apply: 'tihApplySatTopicQuizzes' },
-    'ai-cybersecurity': { src: 'aicyber-topic-quizzes.js?v=1', apply: 'tihApplyAicyberTopicQuizzes' }
+    'ai-cybersecurity': { src: 'aicyber-topic-quizzes.js?v=1', apply: 'tihApplyAicyberTopicQuizzes' },
+    'android':          { src: 'android-topic-quizzes.js?v=1', apply: 'tihApplyAndroidTopicQuizzes' }
   };
 
   window.TIH_LESSON_NOTES = window.TIH_LESSON_NOTES || {};
