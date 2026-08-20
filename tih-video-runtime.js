@@ -17,9 +17,20 @@
   if (typeof window === 'undefined') return;
   window.TIH_TOPIC_VIDEOS = window.TIH_TOPIC_VIDEOS || {};
 
+  /* Courses that actually have a videos/<id>-videos.js file. Without this the
+     loader guessed, and the 13 courses still on the older *-video-map.js files
+     each fired a 404 on every lesson view. Add an id here when its map lands. */
+  var HAS_MAP = {
+    'accounting-bookkeeping': 1, 'ai-cybersecurity': 1, 'android': 1,
+    'bible-foundations': 1, 'computer-literacy': 1, 'financial-literacy': 1,
+    'healthtech': 1, 'ielts': 1, 'ph-career': 1, 'remote-work': 1,
+    'sat': 1, 'toefl': 1
+  };
+
   function loadFor(cid) {
     if (!cid) return;
     if (window.TIH_TOPIC_VIDEOS[cid]) { reapply(); return; }
+    if (!HAS_MAP[cid]) return;
     var s = document.createElement('script');
     s.src = 'videos/' + cid + '-videos.js?v=1';
     s.async = true;

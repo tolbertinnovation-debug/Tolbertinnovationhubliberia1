@@ -91,6 +91,9 @@
       --red: #E31E24; --gold: #f59e0b; --green: #10b981; --green-light: #d1fae5;
       --text: #111827; --text-muted: #6b7280; --border: #e5e7eb;
       --bg: #f9fafb; --bg-alt: #f0f4ff; --white: #fff; --sidebar-w: 280px; --topbar-h: 60px;
+      /* One shared width for the video, the lesson card and the nav bar so
+         the reading column lines up instead of three different measures. */
+      --content-w: 900px;
     }
     html, body { height: 100%; overflow: hidden; }
     body {
@@ -215,7 +218,13 @@
     .sidebar-lesson.active { background: #eff6ff; border-left-color: var(--blue); box-shadow: inset 0 0 0 1px rgba(0,40,104,0.04); }
     .sidebar-lesson.completed { background: #f0fdf7; border-left-color: #a7f3d0; }
     .sidebar-lesson.completed .lesson-status { color: var(--green); font-weight: 700; }
-    .sidebar-lesson.locked { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+    /* Locked rows stay clickable so the "complete the previous lesson first"
+       toast can actually fire. They previously had pointer-events:none, which
+       silently swallowed the click and left the row's own onclick handler as
+       dead code — a learner tapped a padlock and nothing whatsoever happened,
+       with no hint that the lock is about sequence, not payment. */
+    .sidebar-lesson.locked { opacity: 0.55; cursor: not-allowed; }
+    .sidebar-lesson.locked:hover { background: #fff7ed; transform: none; }
     .sidebar-lesson.locked .lesson-status { color: #9ca3af; }
     .sidebar-lesson.locked .lesson-info-title { color: #9ca3af; }
     /* Lock toast notification */
@@ -241,10 +250,16 @@
     .video-container {
       background: linear-gradient(135deg, #020817 0%, #091a39 40%, #0a224c 100%);
       position: relative;
-      width: min(100%, 1110px);
+      /* Size the player from the height available, not just the width.
+         At 16:9 across a full-width desktop pane the poster alone took ~67%
+         of the viewport, so the lesson title, the tabs and every word of the
+         note started below the fold — on a course where the written note is
+         the part learners revise from. Deriving the width from the leftover
+         height keeps the video generous while guaranteeing the note begins
+         on the first screen. Mobile is unaffected: 100% still wins there. */
+      width: min(100%, var(--content-w), max(420px, calc((100vh - var(--topbar-h) - 430px) * 16 / 9)));
       margin: 1rem auto 0;
       padding-top: 56.25%;
-      max-height: calc(100vh - var(--topbar-h) - 140px);
       overflow: hidden;
       border-radius: 20px;
       box-shadow: 0 14px 38px rgba(3, 16, 44, 0.18);
@@ -315,8 +330,9 @@
       background: rgba(255,255,255,0.82);
       backdrop-filter: blur(8px);
       margin: 0.9rem auto 0;
-      width: min(100%, 1110px);
-      border-radius: 18px;
+      width: min(100%, var(--content-w));
+      /* Title, tabs and note are one card, not three floating panels. */
+      border-radius: 18px 18px 0 0;
       box-shadow: 0 10px 24px rgba(2, 24, 68, 0.05);
     }
     .video-lesson-title { font-size: 1.12rem; font-weight: 700; margin-bottom: 0.25rem; font-family: 'Poppins', sans-serif; color: #111827; line-height: 1.35; }
@@ -330,10 +346,10 @@
       padding: 0 1rem;
       background: rgba(255,255,255,0.78);
       backdrop-filter: blur(8px);
-      width: min(100%, 1110px);
-      margin: 0.9rem auto 0;
-      border-radius: 16px 16px 0 0;
-      box-shadow: 0 6px 18px rgba(2, 24, 68, 0.04);
+      width: min(100%, var(--content-w));
+      margin: 0 auto;
+      border-radius: 0;
+      box-shadow: none;
     }
     .tab-btn { padding: 0.75rem 0.9rem; border: none; background: none; font-size: 0.84rem; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 2.5px solid transparent; margin-bottom: -2px; transition: all .18s; font-family: 'Inter', sans-serif; min-height: 44px; }
     .tab-btn:hover { color: var(--blue); }
@@ -341,16 +357,27 @@
     .tab-panel {
       display: none;
       padding: 1.25rem 1.35rem;
-      width: min(100%, 1110px);
+      width: min(100%, var(--content-w));
       margin: 0 auto;
       background: rgba(255,255,255,0.92);
       border-radius: 0 0 18px 18px;
       box-shadow: 0 10px 24px rgba(2, 24, 68, 0.05);
     }
     .tab-panel.active { display: block; }
-    .overview-text p { font-size: 0.9rem; color: #374151; line-height: 1.8; margin-bottom: 0.9rem; }
+    .overview-text p { font-size: 0.95rem; color: #374151; line-height: 1.75; margin-bottom: 0.95rem; }
     .overview-text p:last-child { margin-bottom: 0; }
-    .overview-text { max-width: 860px; }
+    .overview-text { max-width: 820px; }
+    /* Hold prose to a comfortable measure. Full-width lines ran past 110
+       characters, well beyond the 45-75 that reading research supports and
+       harder still for learners studying in a second language. Tables,
+       diagrams and code keep the wider container so they are not squeezed. */
+    .overview-text > p,
+    .overview-text li,
+    .overview-text > blockquote,
+    .overview-text .lesson-note-intro,
+    .overview-text .lesson-note-section > p,
+    .overview-text .lesson-note-example,
+    .overview-text .lesson-note-action { max-width: 68ch; }
     .overview-text .lesson-note-intro { background: linear-gradient(135deg,#eff6ff,#f8fbff); border: 1px solid #cfe0f7; border-left: 4px solid var(--blue); border-radius: 12px; padding: 1rem 1.1rem; margin-bottom: 1.2rem; color: #183b6c; }
     .overview-text .lesson-note-section { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #e5edf8; }
     .overview-text .lesson-note-section h4 { margin-top: 0; }
@@ -488,7 +515,7 @@
       flex-wrap: nowrap;
       gap: 0.5rem;
       flex-shrink: 0;
-      width: min(100%, 1110px);
+      width: min(100%, var(--content-w));
       margin: 0.9rem auto 0;
       border-radius: 16px;
       box-shadow: 0 10px 24px rgba(2, 24, 68, 0.05);
@@ -496,7 +523,11 @@
     .btn-mark-complete { background: linear-gradient(135deg, #002868, #0040a8); color: #fff; border: none; padding: 0.55rem 1.1rem; border-radius: 10px; font-size: 0.84rem; font-weight: 700; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 0.35rem; white-space: nowrap; box-shadow: 0 4px 10px rgba(0,40,104,.25); flex-shrink: 0; min-height: 44px; }
     .btn-mark-complete:hover { background: linear-gradient(135deg, #001a45, #002868); box-shadow: 0 4px 12px rgba(0,40,104,.35); }
     .btn-mark-complete.done { background: linear-gradient(135deg, #059669, #10b981); box-shadow: 0 2px 8px rgba(16,185,129,.3); cursor: default; }
-    .lesson-progress-dots { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+    /* The dot strip is per-module and modules run as long as 39 lessons, so it
+       has to be allowed to shrink -- at flex-shrink:0 it shoved the Next button
+       off the end of the bar. updateProgressDots() also windows the dots. */
+    .lesson-progress-dots { display: flex; align-items: center; gap: 4px; flex-shrink: 1; min-width: 0; overflow: hidden; justify-content: center; }
+    .dots-count { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); white-space: nowrap; margin-left: 0.35rem; flex-shrink: 0; font-variant-numeric: tabular-nums; }
     /* Issue 7 fix: progress-dot hover state */
     .progress-dot { width: 8px; height: 8px; border-radius: 50%; background: #e5e7eb; transition: all .25s; cursor: default; }
     .progress-dot:hover { background: #9ca3af; transform: scale(1.4); }
@@ -504,10 +535,33 @@
     .progress-dot.done:hover { background: #059669; }
     .progress-dot.active { background: var(--blue); width: 22px; border-radius: 4px; }
     .progress-dot.active:hover { background: var(--blue-dark); }
-    .btn-next-lesson.btn-prev-lesson { background: #fff; color: var(--blue); border: 1.5px solid #bfdbfe; padding: 0.55rem 1rem; border-radius: 10px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; max-width: 170px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 1; min-width: 0; min-height: 44px; }
-    .btn-next-lesson:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
-    .btn-prev-lesson:hover { background: #eff6ff; }
-    .btn-next-lesson:disabled.btn-prev-lesson:disabled { opacity: 0.3; cursor: default; border-color: var(--border); color: var(--text-muted); background: #fff; }
+    /* These were written as `.btn-next-lesson.btn-prev-lesson` -- a compound
+       selector matching an element carrying BOTH classes, which no button does.
+       Prev and Next therefore rendered as raw grey browser buttons with a black
+       border, 34px tall (under the 44px touch target) on every lesson. */
+    .btn-prev-lesson,
+    .btn-next-lesson {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: #fff; color: var(--blue); border: 1.5px solid #bfdbfe;
+      padding: 0.4rem 0.85rem; border-radius: 12px;
+      font-family: 'Inter', sans-serif; cursor: pointer; transition: all .2s;
+      flex: 0 1 clamp(112px, 27%, 250px); min-width: 0; min-height: 44px;
+      text-align: left;
+    }
+    .btn-next-lesson { justify-content: flex-end; text-align: right; }
+    /* Two-line label: the direction stays readable however long the lesson title
+       is, and the title ellipses in CSS instead of being cut at 22 characters. */
+    .nav-label { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+    .nav-dir { font-size: 0.64rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--text-muted); transition: color .2s; }
+    .nav-title { font-size: 0.82rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .nav-arrow { font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
+    .btn-prev-lesson:hover:not(:disabled) { background: #eff6ff; border-color: #93c5fd; }
+    .btn-next-lesson:hover:not(:disabled) { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .btn-next-lesson:hover:not(:disabled) .nav-dir { color: rgba(255,255,255,.8); }
+    .btn-prev-lesson:disabled,
+    .btn-next-lesson:disabled { opacity: 0.45; cursor: default; border-color: var(--border); color: var(--text-muted); background: #fff; }
+    .btn-prev-lesson:focus-visible,
+    .btn-next-lesson:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
     /* QUIZ MODAL */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.6); z-index: 9000; align-items: center; justify-content: center; padding: 1rem; }
@@ -615,11 +669,26 @@
       .progress-pct { font-size: 0.72rem; }
       .tabs-bar { overflow-x: auto; }
       .tab-btn { white-space: nowrap; }
-      /* Issue 7 fix: stack the lesson nav vertically from tablet width down so the
+      /* Issue 7 fix: stack the lesson nav from tablet width down so the
          Prev / dots / Mark-Complete / Next controls are no longer cramped on
-         481-768px screens (previously only stacked at <=480px). */
-      .lesson-nav-bar { flex-direction: column; align-items: stretch; padding: 0.75rem 1rem; }
-      .btn-mark-complete.btn-next-lesson.btn-prev-lesson { justify-content: center; max-width: 100%; }
+         481-768px screens (previously only stacked at <=480px).
+         A straight column put five full-width controls in a 245px-tall block on
+         a 390px phone. Grid instead: the action the learner came for sits on
+         top, Prev and Next share one row, and the dot strip closes it out --
+         same controls, about 100px less scrolling. */
+      .lesson-nav-bar { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; padding: 0.75rem 1rem; gap: 0.5rem; }
+      .btn-mark-complete { grid-column: 1 / -1; order: 1; }
+      #tihQuickQuizBtn { grid-column: 1 / -1; order: 2; }
+      .btn-prev-lesson { order: 3; }
+      .btn-next-lesson { order: 4; }
+      .lesson-progress-dots { grid-column: 1 / -1; order: 5; }
+      .btn-mark-complete, .btn-next-lesson, .btn-prev-lesson { justify-content: center; max-width: 100%; }
+      .btn-next-lesson, .btn-prev-lesson { overflow: hidden; padding: 0.4rem 0.6rem; gap: 0.3rem; }
+      .btn-next-lesson { text-align: center; }
+      /* width:100% keeps the label inside the button so .nav-title can actually
+         ellipse -- shrink-to-fit lets a long title spill past the border. */
+      .nav-label { align-items: center; width: 100%; }
+      .nav-title { width: 100%; text-align: center; }
       .lesson-progress-dots { justify-content: center; }
     }
     @media(max-width: 480px) {
@@ -732,10 +801,10 @@
         <!-- LESSON NAV -->
         <div class="lesson-nav-bar">
           <!-- Issue 16 fix: default label prevents empty button on slow JS load -->
-          <button class="btn-prev-lesson" id="btnPrev" onclick="prevLesson()">← Previous</button>
+          <button class="btn-prev-lesson" id="btnPrev" onclick="prevLesson()" aria-label="Previous lesson"><span class="nav-arrow" aria-hidden="true">‹</span><span class="nav-label"><span class="nav-dir">Previous</span></span></button>
           <div class="lesson-progress-dots" id="progressDots"></div>
           <button class="btn-mark-complete" id="markCompleteBtn">✓ Mark as Complete</button>
-          <button class="btn-next-lesson" id="btnNext" onclick="nextLesson()">Next →</button>
+          <button class="btn-next-lesson" id="btnNext" onclick="nextLesson()" aria-label="Next lesson"><span class="nav-label"><span class="nav-dir">Next</span></span><span class="nav-arrow" aria-hidden="true">›</span></button>
         </div>
 
       </div>
@@ -1558,22 +1627,43 @@
   function updateNavButtons() {
     var prev = currentLessonIndex - 1;
     var next = currentLessonIndex + 1;
-    var btnP = document.getElementById('btnPrev');
-    var btnN = document.getElementById('btnNext');
-    if (prev < 0) {
-      btnP.disabled = true; btnP.textContent = '← Previous';
-    } else {
-      btnP.disabled = false;
-      btnP.textContent = '← ' + truncTitle(lessons[prev].title, 22);
-    }
-    if (next >= totalLessons) {
-      btnN.disabled = true; btnN.textContent = 'Next →';
-    } else {
-      btnN.disabled = false;
-      btnN.textContent = truncTitle(lessons[next].title, 22) + ' →';
-    }
+    setNavLabel(document.getElementById('btnPrev'), 'Previous',
+                prev < 0 ? '' : lessons[prev].title, prev < 0);
+    setNavLabel(document.getElementById('btnNext'), 'Next',
+                next >= totalLessons ? '' : lessons[next].title, next >= totalLessons);
   }
-  function truncTitle(t, len) { return t.length > len ? t.substring(0, len) + '…' : t; }
+
+  /* Builds "PREVIOUS / Parts of a Computer" as two stacked lines. The old
+     version chopped the title at 22 characters, so a learner saw
+     "← 📝 Practice: Parts of …" and could not tell what came next; the title
+     now runs full and ellipses in CSS at whatever width the bar allows.
+     Built from text nodes rather than innerHTML so titles carrying quotes or
+     angle brackets cannot break the markup. */
+  function setNavLabel(btn, dir, title, disabled) {
+    if (!btn) return;
+    btn.disabled = !!disabled;
+    btn.textContent = '';
+    var arrow = document.createElement('span');
+    arrow.className = 'nav-arrow';
+    arrow.setAttribute('aria-hidden', 'true');
+    arrow.textContent = (btn.id === 'btnPrev') ? '‹' : '›';
+    var wrap = document.createElement('span');
+    wrap.className = 'nav-label';
+    var d = document.createElement('span');
+    d.className = 'nav-dir';
+    d.textContent = dir;
+    wrap.appendChild(d);
+    if (title) {
+      var t = document.createElement('span');
+      t.className = 'nav-title';
+      t.textContent = title;
+      wrap.appendChild(t);
+    }
+    if (btn.id === 'btnPrev') { btn.appendChild(arrow); btn.appendChild(wrap); }
+    else { btn.appendChild(wrap); btn.appendChild(arrow); }
+    btn.title = title || '';
+    btn.setAttribute('aria-label', title ? dir + ' lesson: ' + title : dir + ' lesson');
+  }
 
   // ===== PROGRESS DOTS =====
   function updateProgressDots() {
@@ -1582,14 +1672,31 @@
     for (var i = 0; i < lessons.length; i++) {
       if (lessons[i].module === mod) { if (start === -1) start = i; end = i; }
     }
+    /* Modules run up to 39 lessons here; 39 dots is 500px of bar and reads as
+       noise rather than position. Show a window of at most MAX_DOTS centred on
+       the current lesson and put the real numbers beside it. */
+    var MAX_DOTS = 10;
+    var count = end - start + 1;
+    var from = start, to = end;
+    if (count > MAX_DOTS) {
+      from = currentLessonIndex - Math.floor(MAX_DOTS / 2);
+      if (from < start) from = start;
+      to = from + MAX_DOTS - 1;
+      if (to > end) { to = end; from = to - MAX_DOTS + 1; }
+    }
     var html = '';
-    for (var j = start; j <= end; j++) {
+    for (var j = from; j <= to; j++) {
       var cls = 'progress-dot';
       if (j === currentLessonIndex) cls += ' active';
       else if (completedLessons.indexOf(j) !== -1) cls += ' done';
-      html += '<div class="' + cls + '" title="' + lessons[j].title + '"></div>';
+      html += '<div class="' + cls + '" title="' + escSide(lessons[j].title) + '"></div>';
     }
-    document.getElementById('progressDots').innerHTML = html;
+    html += '<span class="dots-count">' + (currentLessonIndex - start + 1) + ' / ' + count + '</span>';
+    var dotsEl = document.getElementById('progressDots');
+    dotsEl.innerHTML = html;
+    dotsEl.setAttribute('role', 'img');
+    dotsEl.setAttribute('aria-label',
+      'Lesson ' + (currentLessonIndex - start + 1) + ' of ' + count + ' in this module');
   }
 
   // ===== SIDEBAR =====
