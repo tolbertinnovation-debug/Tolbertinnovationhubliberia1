@@ -205,28 +205,67 @@
     .kv .k { color: var(--muted); font-weight: 600; }
     .kv .v { font-weight: 700; text-align: right; word-break: break-word; }
 
-    /* Dashboard refresh: a calmer, more editorial learning workspace. */
+    /* ============================================================
+       Dashboard layout, a calm learning workspace.
+       Ordering principle: the learner sees WHO they are, WHAT to do
+       next, and THEIR OWN courses before anything that is for sale.
+       ============================================================ */
     .dash-topbar { height: 70px; padding: 0 max(1.25rem, calc((100vw - 1180px) / 2)); background: rgba(255,255,255,.92); backdrop-filter: blur(16px); }
     .dash-brand { font-size: 1.05rem; letter-spacing: -.02em; }
-    .dash-brand::after { content: ' / STUDENT SPACE'; display: inline-block; margin-left: .6rem; color: #8b9ab4; font: 700 .62rem 'Inter', sans-serif; letter-spacing: .12em; vertical-align: middle; }
+    .dash-brand::after { content: ' / STUDENT SPACE'; display: inline-block; margin-left: .6rem; color: #6b7a94; font: 700 .62rem 'Inter', sans-serif; letter-spacing: .12em; vertical-align: middle; }
     .dash-top-right { gap: .85rem; }
-    .dash-top-right::before { content: 'Your learning, in one place'; color: var(--muted); font-size: .76rem; font-weight: 600; }
     .avatar { width: 38px; height: 38px; box-shadow: 0 0 0 4px #eaf4ff; }
     .wrap { max-width: 1180px; padding: 2.4rem 1.25rem 4rem; }
-    .welcome { position: relative; overflow: hidden; background: linear-gradient(112deg, #071f48 0%, #123d78 56%, #1e5e9e 100%); color: #fff; border-radius: 24px; padding: 2rem 2.1rem; margin-bottom: 1.15rem; box-shadow: 0 18px 40px rgba(7,31,72,.18); }
+
+    /* --- HERO: greeting + the single next action --- */
+    .welcome { position: relative; overflow: hidden; background: linear-gradient(112deg, #071f48 0%, #123d78 56%, #1e5e9e 100%); color: #fff; border-radius: 24px; padding: 1.9rem 2.1rem 1.75rem; margin-bottom: 1.15rem; box-shadow: 0 18px 40px rgba(7,31,72,.18); }
     .welcome::before { content: ''; position: absolute; width: 230px; height: 230px; right: -45px; top: -100px; border: 1px solid rgba(255,255,255,.15); border-radius: 50%; box-shadow: 0 0 0 28px rgba(255,255,255,.035), 0 0 0 56px rgba(255,255,255,.025); }
+    .wl-head { position: relative; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
     .welcome h1 { position: relative; color: #fff; font-size: clamp(1.45rem, 3vw, 2rem); letter-spacing: -.03em; }
     .welcome p { position: relative; color: rgba(255,255,255,.78); max-width: 500px; margin-top: .25rem; }
-    .streak-chip { position: relative; background: rgba(255,255,255,.13); color: #ffe4a3; border: 1px solid rgba(255,255,255,.16); margin-top: 1rem; }
+    .streak-chip { position: relative; background: rgba(255,255,255,.13); color: #ffe4a3; border: 1px solid rgba(255,255,255,.16); margin-top: .15rem; flex-shrink: 0; }
+
+    /* Continue Learning, docked inside the hero on a translucent panel so the
+       greeting and the next action read as one unit instead of two banners. */
+    .welcome .resume { position: relative; background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.16); box-shadow: none; border-radius: 16px; padding: 1rem 1.15rem; margin: 1.4rem 0 0; backdrop-filter: blur(6px); }
+    .welcome .resume .r-icon { background: rgba(255,255,255,.16); }
+    .welcome .resume .r-eyebrow { color: #ffd7d8; }
+    .welcome .resume .r-track { background: rgba(255,255,255,.22); }
+    .welcome .resume .r-btn { box-shadow: 0 6px 14px rgba(227,30,36,.28); }
+
+    /* --- FOCUS ROW: momentum + what to learn next, side by side --- */
+    .focus-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.15rem; align-items: stretch; }
+    .focus-row > div:empty { display: none; }
+    .focus-row .momentum, .focus-row .reco { margin: 0; height: 100%; }
+    @media (max-width: 860px) { .focus-row { grid-template-columns: 1fr; } }
+
+    /* Momentum, denser and legible: the week dots were near-invisible before. */
+    .momentum { padding: 1.1rem 1.2rem; grid-template-columns: auto 1fr auto; column-gap: 1.15rem; align-content: center; }
+    .mo-week { text-align: center; padding-left: 1.15rem; border-left: 1px solid var(--border); }
+    .mo-week .week-dots { gap: 4px; }
+    .week-dots i { width: 11px; height: 11px; border: 1px solid #cdd9ec; background: #f1f5fb; }
+    .week-dots i.on { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 2px rgba(16,185,129,.16); }
+    @media (max-width: 560px) {
+      .momentum { grid-template-columns: auto 1fr; }
+      .mo-week { grid-column: 1 / -1; text-align: left; padding: .8rem 0 0; border-left: 0; border-top: 1px solid var(--border); }
+      .mo-week .week-dots { justify-content: flex-start; }
+      .week-dots i { width: 13px; height: 13px; }
+    }
+
+    /* Recommendation card, brought back onto the navy/red brand palette. */
+    .reco { background: #fff; border: 1px solid var(--border); color: var(--text); box-shadow: var(--shadow); padding: 1.1rem 1.2rem; align-items: flex-start; }
+    .reco .rc-icon { background: linear-gradient(135deg, #EAF4FF, #d5e6ff); box-shadow: inset 0 0 0 1.5px rgba(21,101,216,.18); }
+    .reco .rc-eyebrow { color: var(--secondary); }
+    .reco .rc-title { color: var(--primary); }
+    .reco .rc-desc { color: var(--muted); }
+    .reco .rc-btn { background: var(--primary); color: #fff; box-shadow: 0 5px 12px rgba(0,40,104,.16); }
+
     .stat-strip { grid-template-columns: repeat(4, 1fr); gap: 0; background: #fff; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 2rem; }
     .mini-stat { border: 0; border-right: 1px solid var(--border); border-radius: 0; box-shadow: none; padding: 1rem .75rem; }
     .mini-stat:last-child { border-right: 0; }
     .mini-stat b { font-size: 1.35rem; }
     .mini-stat span { letter-spacing: .08em; }
-    .resume { border-radius: 18px; padding: 1.2rem 1.35rem; margin-bottom: 1.15rem; }
-    .resume .r-btn { box-shadow: 0 6px 14px rgba(227,30,36,.22); }
-    .momentum { margin-bottom: 1.15rem; }
-    .reco { margin-bottom: 2rem; }
+
     section { margin-bottom: 2.5rem; }
     section > h2, .sec-head h2 { font-size: 1.15rem; letter-spacing: -.02em; }
     section > h2::before, .sec-head h2::before { width: 5px; height: 20px; border-radius: 3px; }
@@ -242,16 +281,31 @@
     .done-row { border-radius: 12px; }
     .ach-grid { grid-template-columns: repeat(4, 1fr); }
     .ach-badge { border-radius: 12px; }
+
+    /* Catalog sections stay collapsed so a learner's own courses, badges and
+       certificates are not buried under 23 subjects they have not bought. */
+    .courses-grid.is-clamped { grid-template-rows: auto; max-height: 430px; overflow: hidden; position: relative; }
+    .courses-grid.is-clamped::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 130px; background: linear-gradient(180deg, rgba(234,244,255,0), #EAF4FF 88%); pointer-events: none; }
+    .show-more { display: block; margin: .9rem auto 0; font-weight: 700; border-radius: 999px; padding: .6rem 1.4rem; color: var(--primary); }
+    .show-more:hover { border-color: #b9cdea; background: #f7fbff; }
+
     @media (max-width: 760px) {
       .dash-topbar { height: 62px; padding: 0 1rem; }
-      .dash-brand::after, .dash-top-right::before { display: none; }
+      .dash-brand::after { display: none; }
       .wrap { padding: 1.2rem .9rem 3.5rem; }
-      .welcome { border-radius: 18px; padding: 1.45rem 1.25rem; }
+      .welcome { border-radius: 18px; padding: 1.35rem 1.15rem 1.25rem; }
+      .welcome .resume { margin-top: 1.1rem; padding: .9rem 1rem; border-radius: 14px; }
       .stat-strip { margin-bottom: 1.5rem; }
       .mini-stat { padding: .8rem .45rem; }
       .mini-stat b { font-size: 1.15rem; }
       .mini-stat span { font-size: .62rem; }
+      /* Four stat columns are unreadable on a 360-390px phone: the labels
+         wrap to three lines. Two rows of two, with a divider grid. */
+      .stat-strip { grid-template-columns: 1fr 1fr; }
+      .mini-stat:nth-child(2n) { border-right: 0; }
+      .mini-stat:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
       .ach-grid { grid-template-columns: repeat(2, 1fr); }
+      .courses-grid.is-clamped { max-height: 620px; }
     }
       @keyframes ccspin { to { transform: rotate(360deg); } }
   </style>
@@ -287,25 +341,29 @@
     <div class="wrap">
       <!-- HOME VIEW -->
       <div class="view active" id="view-home">
+        <!-- HERO: greeting + the one thing to do next, in a single block. -->
         <div class="welcome">
-          <h1 id="welcomeMsg">Welcome back!</h1>
-          <p id="welcomeSub">Keep going, every lesson brings you closer to your goals.</p>
-          <span class="streak-chip" id="streakChip" style="display:none;">🔥 <span id="streakText"></span></span>
+          <div class="wl-head">
+            <div>
+              <h1 id="welcomeMsg">Welcome back!</h1>
+              <p id="welcomeSub">Keep going, every lesson brings you closer to your goals.</p>
+            </div>
+            <span class="streak-chip" id="streakChip" style="display:none;">🔥 <span id="streakText"></span></span>
+          </div>
+          <!-- CONTINUE LEARNING, docked inside the hero -->
+          <div id="resumeCard" style="display:none;"></div>
         </div>
 
-        <!-- MOMENTUM: level / XP / weekly activity -->
-        <div id="momentumCard"></div>
-
-        <!-- CONTINUE LEARNING -->
-        <div id="resumeCard" style="display:none;"></div>
-
-        <!-- LEARN NEXT recommendation -->
-        <div id="recoCard" style="display:none;"></div>
+        <!-- FOCUS ROW: progress momentum beside the next-course suggestion -->
+        <div class="focus-row">
+          <div id="momentumCard"></div>
+          <div id="recoCard" style="display:none;"></div>
+        </div>
 
         <div class="stat-strip" id="statStrip"></div>
 
         <section id="deadlinesSection" style="display:none;">
-          <h2>⏰ Upcoming Deadlines</h2>
+          <h2>⏰ Needs Attention</h2>
           <div id="deadlinesList"></div>
         </section>
 
@@ -324,8 +382,11 @@
 
         <section>
           <h2>🎓 WASSCE PRO, Exam Prep</h2>
-          <p style="font-size:.82rem;color:var(--muted);margin:-0.4rem 0 0.8rem;">Each subject unlocks separately for <strong>US$3</strong>.</p>
-          <div class="courses-grid" id="wassceGrid"></div>
+          <p style="font-size:.82rem;color:var(--muted);margin:-0.4rem 0 0.8rem;">All 23 WAEC subjects. Each unlocks separately for <strong>US$3</strong>.</p>
+          <div class="courses-grid is-clamped" id="wassceGrid"></div>
+          <button class="btn btn-line show-more" id="wassceToggle" type="button" aria-expanded="false" aria-controls="wassceGrid">
+            Show all 23 subjects ▾
+          </button>
         </section>
 
         <section id="achSection">
@@ -563,7 +624,15 @@
       document.getElementById('shell').classList.add('show');
       var s = currentStudent;
       var firstName = (s.name || 'Student').split(' ')[0];
-      document.getElementById('welcomeMsg').textContent = 'Welcome back, ' + firstName + '!';
+      // A first-time learner has never been here, so "Welcome back, keep going"
+      // is both wrong and discouraging. Greet by state, not by template.
+      var isNewLearner = !(s.courses || []).length;
+      document.getElementById('welcomeMsg').textContent =
+        (isNewLearner ? 'Welcome, ' : 'Welcome back, ') + firstName + '!';
+      if (isNewLearner) {
+        document.getElementById('welcomeSub').textContent =
+          'Your learning space is ready. Add your first course below to get started.';
+      }
       document.getElementById('avatar').textContent = firstName.charAt(0).toUpperCase();
 
       // Streak
@@ -713,11 +782,17 @@
       renderReco(assigned);
       renderAchievements(doneLessons, completedCourses.length, streakNow, xp);
 
-      // Deadlines
+      // Deadlines. Every course card already carries its own "Due in N days"
+      // chip, so repeating all of them here just says the same thing twice.
+      // This band is now reserved for what is genuinely urgent: overdue work,
+      // or a deadline inside the next 14 days.
+      var URGENT_DAYS = 14;
       var upcoming = assigned.filter(function (c) {
         if (!c.deadline) return false;
         var p = HubDB.courseProgress(c.id);
-        return !(p.total > 0 && p.completed >= p.total);
+        if (p.total > 0 && p.completed >= p.total) return false;   // already finished
+        var days = Math.ceil((new Date(c.deadline).getTime() - Date.now()) / 86400000);
+        return days <= URGENT_DAYS;
       }).sort(function (a, b) { return new Date(a.deadline) - new Date(b.deadline); });
       if (upcoming.length) {
         document.getElementById('deadlinesSection').style.display = 'block';
@@ -927,7 +1002,12 @@
       var grid = document.getElementById('wassceGrid');
       if (!grid) return;
       // Each WASSCE subject is unlocked individually with its own US$3 payment.
-      grid.innerHTML = WASSCE_SUBJECTS.map(function (s) {
+      // Show anything the learner has already paid for first, so their own
+      // subjects are never hidden behind the collapsed catalog.
+      var ordered = WASSCE_SUBJECTS.slice().sort(function (a, b) {
+        return (HubDB.hasAccess('wassce-' + b[0]) ? 1 : 0) - (HubDB.hasAccess('wassce-' + a[0]) ? 1 : 0);
+      });
+      grid.innerHTML = ordered.map(function (s) {
         var unlocked = HubDB.hasAccess('wassce-' + s[0]);
         var art = (typeof window !== 'undefined' && window.TIH_WASSCE_ART)
           ? window.TIH_WASSCE_ART[s[0]] : '';
@@ -947,6 +1027,23 @@
           + '<div class="cc-actions">' + btn + '</div>'
           + '</div>';
       }).join('');
+      wireWassceToggle();
+    }
+
+    /* Collapse/expand the 23-subject catalog. Unlocked subjects are hoisted to
+       the front first so a learner who has paid for one always sees it without
+       expanding anything. */
+    function wireWassceToggle() {
+      var grid = document.getElementById('wassceGrid');
+      var btn = document.getElementById('wassceToggle');
+      if (!grid || !btn || btn.getAttribute('data-wired')) return;
+      btn.setAttribute('data-wired', '1');
+      btn.addEventListener('click', function () {
+        var open = grid.classList.toggle('is-clamped') === false;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.textContent = open ? 'Show fewer subjects ▴' : 'Show all 23 subjects ▾';
+        if (!open) grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
     }
 
     /* ---- Add a Course: browse the full catalog and unlock a new course ---- */
