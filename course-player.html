@@ -1166,12 +1166,19 @@
         if (m) topMod[m[1] + '|' + normTopic(m[2])] = topRaw[k];
         else topPlain[normTopic(k)] = topRaw[k];
       });
+      // A lesson written as reading-only carries dur "Reading". Once a video map
+      // attaches a clip to it, that label contradicts the player it sits next
+      // to, in the sidebar and in the lesson header alike, so move it across.
+      function relabel(l) {
+        l.reading = false;
+        if (/^\s*reading\s*$/i.test(String(l.dur || ''))) l.dur = 'Video Lesson';
+      }
       lessons.forEach(function (l) {
         if (l.isQuiz) return;
-        if (modMap && !l.isProject && modMap[l.module]) { l.videoId = modMap[l.module]; l.reading = false; }
+        if (modMap && !l.isProject && modMap[l.module]) { l.videoId = modMap[l.module]; relabel(l); }
         var nt = normTopic(l.title);
         var t = topMod[l.module + '|' + nt] || topPlain[nt];
-        if (t) { l.videoId = t; l.reading = false; }
+        if (t) { l.videoId = t; relabel(l); }
       });
     }
     applyVideoOverrides();
@@ -1409,12 +1416,16 @@
   function moduleIntroBlock(lesson) {
     var mod = (course.modules || [])[lesson.module - 1];
     var mt = mod ? escSide(mod.title) : 'this module';
+    // Module titles are stored with their own prefix ("Module 2: Listening"),
+    // so prefixing "Module 2: " again rendered "Module 2: Module 2: Listening"
+    // on the first lesson of every module, in every course.
+    var mShort = mt.replace(/^\s*Module\s+\d+\s*[:.\u2013\-]\s*/i, '') || mt;
     var connect = lesson.module > 1
       ? 'It builds on what you learned in the earlier modules and prepares you for what comes next.'
       : 'It lays the foundation for everything that follows in this course.';
     return '<div class="study-note" style="border-left:5px solid #1565d8;">'
-      + '<div class="lesson-note-intro"><strong>📘 Module ' + lesson.module + ': ' + mt + '</strong><br><span>A quick look at what this module covers before your first lesson.</span></div>'
-      + '<div class="lesson-note-section"><h4>What this module is about</h4><p>This module focuses on <strong>' + mt + '</strong>. ' + connect + '</p></div>'
+      + '<div class="lesson-note-intro"><strong>📘 Module ' + lesson.module + ': ' + mShort + '</strong><br><span>A quick look at what this module covers before your first lesson.</span></div>'
+      + '<div class="lesson-note-section"><h4>What this module is about</h4><p>This module focuses on <strong>' + mShort + '</strong>. ' + connect + '</p></div>'
       + '<div class="lesson-note-section"><h4>Why it matters &amp; how it connects</h4><p>Take it one clear step at a time, each idea links back to the fundamentals and forward to the more advanced skills ahead. Mastering this module makes the rest of the course much easier.</p></div>'
       + '<div class="lesson-note-section"><h4>Module objectives</h4><p>By the end of this module you should be able to explain its key ideas in your own words, complete the practice tasks, and pass the module quiz with <strong>70% or more</strong>.</p></div>'
       + '</div>';
@@ -1504,31 +1515,32 @@
     }
     document.getElementById('videoScroll').scrollTop = 0;
     // Overview
+    // Authored per-topic teaching notes (ielts-notes.js etc.) render as-is — a
+    // real textbook-style explanation — instead of the generic template. The
+    // lookup runs before the quiz/project branches so a project can carry a
+    // written brief; previously isProject short-circuited first and every
+    // project in every course showed the same 63-word placeholder.
+    var authored = null;
+    var NB = (typeof window !== 'undefined' && window.TIH_LESSON_NOTES && window.TIH_LESSON_NOTES[courseId]) || null;
+    if (NB) {
+      var nk = noteKey(lesson.title);
+      var keys = Object.keys(NB);
+      for (var ki = 0; ki < keys.length; ki++) { if (noteKey(keys[ki]) === nk) { authored = NB[keys[ki]]; break; } }
+    }
     var overviewHtml;
-    if (lesson.isQuiz) {
+    if (authored) {
+      overviewHtml = authored;
+    } else if (lesson.isQuiz) {
       overviewHtml = '<div class="lesson-note-intro"><strong>Module ' + lesson.module + ' knowledge check</strong><br><span>This quiz checks your understanding of the course topic before you continue.</span></div><div class="lesson-note-section"><h4>How to prepare</h4><p>Review the detailed Overview notes from the lessons in this module. You need <strong>70% or higher to pass</strong> (for example 7 out of 10, or 14 out of 20 on the final). You can retry as many times as you like.</p></div>';
     } else if (lesson.isProject) {
       overviewHtml = '<div class="lesson-note-intro"><strong>Module ' + lesson.module + ' practical project</strong><br><span>This project turns the course topic into a piece of work you can complete and keep as evidence of your learning.</span></div><div class="lesson-note-section"><h4>Project approach</h4><p>Review the detailed Overview notes from this module, follow the project instructions, and apply the skill to a realistic situation. Record your steps, decisions, and final result in the Notes tab before marking the project complete.</p></div>';
     } else {
-      // Authored per-topic teaching notes (complit-notes.js etc.) render as-is —
-      // a real textbook-style explanation — instead of the generic template.
-      var authored = null;
-      var NB = (typeof window !== 'undefined' && window.TIH_LESSON_NOTES && window.TIH_LESSON_NOTES[courseId]) || null;
-      if (NB) {
-        var nk = noteKey(lesson.title);
-        var keys = Object.keys(NB);
-        for (var ki = 0; ki < keys.length; ki++) { if (noteKey(keys[ki]) === nk) { authored = NB[keys[ki]]; break; } }
-      }
-      if (authored) {
-        overviewHtml = authored;
-      } else {
-        var courseContent = (typeof LESSON_CONTENT !== 'undefined' && LESSON_CONTENT[courseId]) ? LESSON_CONTENT[courseId] : {};
-        var lessonBody = courseContent[String(index)] || generateDetailedLessonNote(lesson, index);
-        overviewHtml = generateCourseTopicOverview(lesson, index, lessonBody);
-      }
+      var courseContent = (typeof LESSON_CONTENT !== 'undefined' && LESSON_CONTENT[courseId]) ? LESSON_CONTENT[courseId] : {};
+      var lessonBody = courseContent[String(index)] || generateDetailedLessonNote(lesson, index);
+      overviewHtml = generateCourseTopicOverview(lesson, index, lessonBody);
     }
     document.getElementById('overviewContent').innerHTML = overviewHtml;
-    if (!lesson.isQuiz && !lesson.isProject) {
+    if (authored || (!lesson.isQuiz && !lesson.isProject)) {
       var noteRoot = document.getElementById('overviewContent');
       if (noteRoot) {
         noteRoot.querySelectorAll('table').forEach(function (table) {
