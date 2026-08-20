@@ -159,6 +159,16 @@
     })();
   }
 
+  /* Courses whose COURSES_DB[<id>].quizzes was split out of courses-db.js.
+     Loaded before the curriculum builder, because several builders merge
+     their own quizzes into the object rather than replacing it. */
+  var COURSE_QUIZZES = ['computer-literacy', 'ai', 'data', 'webdev', 'design',
+    'android', 'marketing', 'cybersecurity', 'entrepreneurship', 'project-mgmt',
+    'office', 'leadership', 'grant-writing', 'financial-literacy',
+    'english-success', 'agritech', 'healthtech', 'remote-work', 'ielts',
+    'toefl', 'sat', 'bible-ot', 'bible-nt', 'bible-foundations',
+    'accounting-bookkeeping'];
+
   var VERSION = '?v=1';
 
   /* Ensure everything courseId needs is loaded, then call done().
@@ -168,6 +178,7 @@
     done = (typeof done === 'function') ? done : function () {};
     if (!courseId) { done(); return; }
     var urls = [];
+    if (has(COURSE_QUIZZES, courseId)) urls.push('coursequiz/' + courseId + '-coursequiz.js' + VERSION);
     if (has(CONTENT, courseId)) urls.push('content/' + courseId + '-content.js' + VERSION);
     if (has(QUIZZES, courseId)) urls.push('quizzes/' + courseId + '-quizzes.js' + VERSION);
     var bank = TOPIC_QUIZ_BANKS[courseId];
