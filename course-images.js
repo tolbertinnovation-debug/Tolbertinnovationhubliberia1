@@ -11,7 +11,7 @@
    courses only need one line in this file. Load it after the curriculum
    scripts and before any page code that renders cards. */
 (function () {
-  // course id -> image basename ("<base>-banner.jpg" / "<base>-card.jpg")
+  // course id -> image basename ("<base>-card.jpg")
   var ART = {
     'ielts': 'ielts',
     'toefl': 'toefl',
@@ -42,8 +42,7 @@
 
   /* WASSCE subject art. The dashboard renders its WASSCE grid from a
      hardcoded subject list rather than COURSES_DB, so the ids are exposed
-     here for it to look up. Art files follow "wassce-<id>-banner.jpg" and
-     "wassce-<id>-card.jpg". */
+     here for it to look up. Art files follow "wassce-<id>-card.jpg". */
   var WASSCE = ['mathematics', 'english', 'biology', 'chemistry', 'physics',
     'economics', 'civic-education', 'accounts', 'commerce', 'marketing',
     'literature', 'government', 'geography', 'history', 'crs', 'irs',
@@ -66,7 +65,6 @@
   Object.keys(ART).forEach(function (id) {
     var course = COURSES_DB[id];
     if (!course) return; // page may not load every curriculum file
-    course.image = ART[id] + '-banner.jpg';
     course.cardImage = ART[id] + '-card.jpg';
     applied += 1;
   });

@@ -160,7 +160,6 @@
     shortDesc: 'A practical 8-module career course for public-health graduates: core skills employers want, a standout resume/CV and portfolio, the job search across government agencies (CDC, NIH, state and local health departments), NGOs and UN agencies, winning interviews, on-the-job skills (M&E, proposals, data), professional communication, and career advancement — with a final project and Certificate of Completion.',
     category: 'Health & Career',
     icon: '🩺',
-    image: 'ph-career-banner.jpg',
     cardImage: 'ph-career-card.jpg',
     gradient: 'linear-gradient(135deg,#065f46,#0d9488,#14b8a6)',
     instructor: 'Samuel Tolbert',
