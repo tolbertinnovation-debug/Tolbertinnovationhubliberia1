@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://formsubmit.co https://formspree.io https://restcountries.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co https://formspree.io; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <title>SHE-CAN Scholarship — Quick Survey | Tolbert Innovation Hub</title>
+  <meta name="description" content="Interested in the free SHE-CAN Scholarship information session? Tell us about yourself in two minutes so TIH can plan the training and support you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=11" />
+  <style>
+    /* ── SURVEY HERO — same hero-modern system (light gradient, drifting
+       background, bobbing orbs, mouse parallax via main.js) as the home
+       page hero and the Apply page hero, for one consistent look. ── */
+    #surveyHero { padding-bottom: clamp(2.75rem, 6vw, 4rem); text-align: center; }
+    #surveyHero .container { position: relative; z-index: 1; max-width: 660px; }
+    #surveyHero h1 { font-size: clamp(1.5rem, 3.6vw, 2.3rem); margin-bottom: 0.85rem; line-height: 1.25; }
+    #surveyHero .lead { font-size: 1.02rem; margin: 0 auto; }
+    #surveyHero .hero-live-badge { justify-content: center; }
+
+    /* ── SURVEY SECTION ── */
+    .survey-main { padding: 3rem 0 5rem; background: var(--bg); }
+    .survey-card {
+      position: relative; max-width: 680px; margin: 0 auto; background: var(--surface);
+      border-radius: var(--radius-lg); box-shadow: var(--shadow);
+      padding: 2.5rem clamp(1.25rem, 4vw, 2.5rem) 2.25rem; overflow: hidden;
+    }
+    .survey-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+      background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-blue-light) 45%, var(--brand-red) 100%);
+    }
+    .survey-q { margin-bottom: 1.85rem; }
+    .survey-q:last-of-type { margin-bottom: 0; }
+    .survey-q-label {
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      font-family: 'Poppins', sans-serif; font-weight: 700;
+      font-size: 0.98rem; color: var(--brand-blue); margin-bottom: 0.65rem; line-height: 1.4;
+    }
+    .q-num {
+      flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; margin-top: 0.05rem; border-radius: 50%;
+      background: var(--brand-blue); color: #fff;
+      font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.78rem;
+    }
+    .survey-q-label .req { color: var(--brand-red); margin-left: 0.15rem; }
+    .survey-q-hint { font-size: 0.82rem; color: var(--text-muted); font-weight: 500; margin-top: -0.35rem; margin-bottom: 0.6rem; margin-left: 2.35rem; }
+
+    .sv-input, .sv-select, .sv-textarea {
+      width: 100%; padding: 0.78rem 1rem; border: 1.5px solid var(--brand-blue-pale);
+      border-radius: 10px; background: #f7faff; color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: 0.95rem;
+      outline: none; transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+      appearance: none; -webkit-appearance: none;
+    }
+    .sv-input::placeholder, .sv-textarea::placeholder { color: #90a3c0; }
+    .sv-input:focus, .sv-select:focus, .sv-textarea:focus {
+      border-color: var(--brand-blue); background: #fff; box-shadow: 0 0 0 3px rgba(0,40,104,0.1);
+    }
+    .sv-textarea { resize: vertical; min-height: 90px; font-family: 'Inter', sans-serif; }
+    .sv-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23002868' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; cursor: pointer;
+    }
+
+    .sv-pills { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-left: 2.35rem; }
+    .sv-pill { position: relative; }
+    .sv-pill input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .sv-pill label {
+      display: inline-flex; align-items: center; padding: 0.55rem 1.05rem;
+      border: 1.5px solid var(--brand-blue-pale); border-radius: var(--radius-full);
+      font-size: 0.88rem; font-weight: 600; color: var(--text-secondary);
+      cursor: pointer; transition: all 0.16s; background: #f7faff; user-select: none;
+    }
+    .sv-pill label:hover { border-color: var(--brand-blue-light); background: var(--brand-blue-pale); }
+    .sv-pill input:checked + label {
+      border-color: var(--brand-blue); background: var(--brand-blue);
+      color: #fff; box-shadow: 0 2px 8px rgba(0,40,104,0.25);
+    }
+    .sv-pill input:focus-visible + label { outline: 2px solid var(--brand-blue-light); outline-offset: 2px; }
+
+    .sv-other-box { margin-top: 0.65rem; display: none; }
+    .sv-other-box.show { display: block; }
+
+    .field-error { color: var(--brand-red); font-size: 0.8rem; font-weight: 600; margin-top: 0.35rem; display: none; }
+    .field-error.show { display: block; }
+    .sv-pills + .field-error { margin-left: 2.35rem; }
+
+    .survey-submit-row { margin-top: 2.2rem; text-align: center; }
+    .btn-survey-submit {
+      width: 100%; padding: 0.95rem 1.5rem; border-radius: var(--radius-full);
+      background: var(--brand-red); color: #fff; border: none;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem;
+      cursor: pointer; transition: all 0.18s; box-shadow: 0 8px 20px rgba(227,30,36,0.28);
+    }
+    .btn-survey-submit:hover:not(:disabled) { background: var(--brand-red-hover); transform: translateY(-2px); }
+    .btn-survey-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+    .survey-privacy-note { margin-top: 0.9rem; font-size: 0.78rem; color: var(--text-muted); text-align: center; }
+
+    /* ── SUCCESS STATE ── */
+    .survey-success { display: none; text-align: center; padding: 1rem 0; }
+    .survey-success.show { display: block; }
+    .survey-success-icon {
+      width: 68px; height: 68px; border-radius: 50%; background: #dcfce7;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto 1.2rem;
+    }
+    .survey-success h2 { font-family: 'Poppins', sans-serif; font-size: 1.5rem; color: var(--brand-blue); margin-bottom: 0.75rem; }
+    .survey-success p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; max-width: 46ch; margin: 0 auto 1.5rem; }
+    .survey-success .btn { margin-top: 0.25rem; }
+
+    @media (max-width: 560px) {
+      .survey-card { padding: 1.75rem 1.1rem; border-radius: var(--radius); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="study-abroad">Study Abroad</a>
+        <a href="learning-hub">Learning Hub</a>
+        <a href="healthcare">Healthcare</a>
+        <a href="grants">Grants</a>
+        <a href="library">Library</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+        <a href="apply" class="nav-cta">Apply Now</a>
+
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button></nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO (banner design system: light, animated, floating orbs — same as the home page and Apply page) -->
+    <section class="hero hero-modern" id="surveyHero" aria-label="SHE-CAN Scholarship Quick Survey">
+      <div class="hm-orb hm-orb-1" data-depth="18" aria-hidden="true"></div>
+      <div class="hm-orb hm-orb-2" data-depth="30" aria-hidden="true"></div>
+      <div class="hm-orb hm-orb-3" data-depth="12" aria-hidden="true"></div>
+      <span class="hm-spark hm-spark-1" data-depth="40" aria-hidden="true">📝</span>
+      <span class="hm-spark hm-spark-2" data-depth="26" aria-hidden="true">🎓</span>
+      <span class="hm-spark hm-spark-3" data-depth="34" aria-hidden="true">💪</span>
+      <div class="container">
+        <div class="hero-live-badge hm-fade hm-d1">
+          <span class="live-dot"></span>
+          Free Information Session
+        </div>
+        <h1 class="hm-fade hm-d2">SHE-CAN Scholarship <span class="hm-blue">Quick Survey</span></h1>
+        <p class="lead hm-fade hm-d3">Tell us a little about yourself so we can plan the free SHE-CAN Scholarship training and information session. It takes about two minutes.</p>
+      </div>
+    </section>
+
+    <!-- SURVEY FORM -->
+    <section class="survey-main">
+      <div class="container">
+        <div class="survey-card">
+
+          <form id="surveyForm" novalidate
+                action="https://formsubmit.co/ajax/tolbertinnovationhub@gmail.com"
+                method="POST">
+
+            <input type="hidden" name="_subject" value="SHE-CAN Scholarship — Quick Survey Response" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+
+            <!-- Q1 -->
+            <div class="survey-q">
+              <label class="survey-q-label" for="q-name"><span class="q-num">1</span>Full Name<span class="req">*</span></label>
+              <input class="sv-input" type="text" id="q-name" name="Full Name" required autocomplete="name" />
+            </div>
+
+            <!-- Q2 -->
+            <div class="survey-q">
+              <label class="survey-q-label" for="q-age"><span class="q-num">2</span>Age<span class="req">*</span></label>
+              <input class="sv-input" type="number" id="q-age" name="Age" min="10" max="100" inputmode="numeric" required />
+            </div>
+
+            <!-- Q3 -->
+            <div class="survey-q">
+              <label class="survey-q-label" for="q-school"><span class="q-num">3</span>Name of School<span class="req">*</span></label>
+              <input class="sv-input" type="text" id="q-school" name="School Name" required />
+            </div>
+
+            <!-- Q4 -->
+            <div class="survey-q">
+              <label class="survey-q-label" for="q-county"><span class="q-num">4</span>County<span class="req">*</span></label>
+              <select class="sv-select" id="q-county" name="County" required>
+                <option value="" disabled selected>Select a county…</option>
+                <option>Montserrado (Monrovia)</option>
+                <option>Nimba</option>
+                <option>Bong</option>
+                <option>Lofa</option>
+                <option>Margibi</option>
+                <option>Grand Bassa</option>
+                <option>Grand Gedeh</option>
+                <option>Grand Kru</option>
+                <option>Maryland</option>
+                <option>Sinoe</option>
+                <option>Bomi</option>
+                <option>Cape Mount</option>
+                <option>Gbarpolu</option>
+                <option>River Gee</option>
+                <option>River Cess</option>
+                <option>Outside Liberia</option>
+              </select>
+            </div>
+
+            <!-- Q5 -->
+            <div class="survey-q">
+              <span class="survey-q-label"><span class="q-num">5</span>Are you interested in participating in our free SHE-CAN Scholarship Training?<span class="req">*</span></span>
+              <div class="sv-pills" role="radiogroup" aria-label="Interested in SHE-CAN Scholarship Training">
+                <span class="sv-pill"><input type="radio" name="Interested in SHE-CAN Training" id="sc-int-1" value="Yes" required /><label for="sc-int-1">Yes</label></span>
+                <span class="sv-pill"><input type="radio" name="Interested in SHE-CAN Training" id="sc-int-2" value="No" /><label for="sc-int-2">No</label></span>
+                <span class="sv-pill"><input type="radio" name="Interested in SHE-CAN Training" id="sc-int-3" value="Not sure yet" /><label for="sc-int-3">Not sure yet</label></span>
+              </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="survey-q">
+              <span class="survey-q-label"><span class="q-num">6</span>What do you want to learn most from the training?<span class="req">*</span></span>
+              <div class="sv-pills" role="group" aria-label="What do you want to learn most" id="focus-group">
+                <span class="sv-pill"><input type="checkbox" name="Training Focus[]" id="foc-1" value="Leadership" /><label for="foc-1">Leadership</label></span>
+                <span class="sv-pill"><input type="checkbox" name="Training Focus[]" id="foc-2" value="Scholarship application" /><label for="foc-2">Scholarship application</label></span>
+                <span class="sv-pill"><input type="checkbox" name="Training Focus[]" id="foc-3" value="Essay writing" /><label for="foc-3">Essay writing</label></span>
+                <span class="sv-pill"><input type="checkbox" name="Training Focus[]" id="foc-4" value="Interview preparation" /><label for="foc-4">Interview preparation</label></span>
+                <span class="sv-pill"><input type="checkbox" name="Training Focus[]" id="foc-5" value="Community leadership" /><label for="foc-5">Community leadership</label></span>
+                <span class="sv-pill"><input type="checkbox" name="Training Focus[]" id="foc-6" value="Confidence & communication" /><label for="foc-6">Confidence &amp; communication</label></span>
+                <span class="sv-pill"><input type="checkbox" name="Training Focus[]" id="foc-7" value="Other" data-other-toggle="foc-other-box" /><label for="foc-7">Other</label></span>
+              </div>
+              <div class="sv-other-box" id="foc-other-box">
+                <input class="sv-input" type="text" name="Training Focus — Other (please specify)" placeholder="Please specify" />
+              </div>
+              <p class="field-error" id="focus-error">Please choose at least one option (or specify "Other").</p>
+            </div>
+
+            <!-- Q7 -->
+            <div class="survey-q">
+              <span class="survey-q-label"><span class="q-num">7</span>Can you commit your time to actively participate in the training?<span class="req">*</span></span>
+              <div class="sv-pills" role="radiogroup" aria-label="Can you commit your time">
+                <span class="sv-pill"><input type="radio" name="Can Commit Time" id="sc-commit-1" value="Yes" required /><label for="sc-commit-1">Yes</label></span>
+                <span class="sv-pill"><input type="radio" name="Can Commit Time" id="sc-commit-2" value="No" /><label for="sc-commit-2">No</label></span>
+                <span class="sv-pill"><input type="radio" name="Can Commit Time" id="sc-commit-3" value="Maybe" /><label for="sc-commit-3">Maybe</label></span>
+              </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="survey-q">
+              <label class="survey-q-label" for="q-goal"><span class="q-num">8</span>What do you hope to achieve from this training?</label>
+              <textarea class="sv-textarea" id="q-goal" name="What They Hope to Achieve"></textarea>
+            </div>
+
+            <p class="field-error" id="submit-error"></p>
+
+            <div class="survey-submit-row">
+              <button type="submit" class="btn-survey-submit">Submit Survey ✓</button>
+              <p class="survey-privacy-note">Your responses go directly to the TIH team and are never shared publicly.</p>
+            </div>
+          </form>
+
+          <!-- SUCCESS STATE -->
+          <div class="survey-success" id="surveySuccess" aria-live="polite">
+            <div class="survey-success-icon">🚀</div>
+            <h2>Thank you!</h2>
+            <p>Your response will help us plan the training and support you better. 🚀</p>
+            <a href="/" class="btn btn-primary">Back to Home →</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // "Other" reveal for Q6 (a checkbox group — the box follows that one
+    // checkbox's own state, not a "different option chosen" rule like a
+    // radio group, since more than one option can be checked at once).
+    document.querySelectorAll('[data-other-toggle]').forEach(function (input) {
+      input.addEventListener('change', function () {
+        document.getElementById(this.dataset.otherToggle).classList.toggle('show', this.checked);
+      });
+    });
+
+    // Q6 has no native "at least one checkbox checked" validation, so this
+    // enforces it by hand: satisfied if any box in the group is checked, or
+    // the Other-specify text has been filled in.
+    var focusGroup = document.getElementById('focus-group');
+    var focusChecks = focusGroup.querySelectorAll('input[type="checkbox"]');
+    var focusOther = document.querySelector('input[name="Training Focus — Other (please specify)"]');
+    var focusError = document.getElementById('focus-error');
+    function focusGroupSatisfied() {
+      return Array.prototype.some.call(focusChecks, function (c) { return c.checked; })
+        || focusOther.value.trim() !== '';
+    }
+    function clearFocusError() { focusError.classList.remove('show'); }
+    focusChecks.forEach(function (c) { c.addEventListener('change', clearFocusError); });
+    focusOther.addEventListener('input', clearFocusError);
+
+    // Submit via FormSubmit AJAX, matching the pattern used on apply.html
+    document.getElementById('surveyForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var form = e.target;
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (!focusGroupSatisfied()) { focusError.classList.add('show'); focusChecks[0].focus(); return; }
+
+      var btn = form.querySelector('.btn-survey-submit');
+      btn.disabled = true; btn.textContent = 'Submitting…';
+
+      var data = new FormData(form);
+
+      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(function (r) { return r.json(); })
+        .then(function () {
+          form.style.display = 'none';
+          document.getElementById('surveySuccess').classList.add('show');
+        })
+        .catch(function () {
+          var err = document.getElementById('submit-error');
+          err.textContent = 'Submission failed. Please try again, or message us directly on WhatsApp at +231 88 055 9227.';
+          err.classList.add('show');
+          btn.disabled = false; btn.textContent = 'Submit Survey ✓';
+        });
+    });
+  </script>
+  <script src="main.js?v=17"></script>
+</body>
+</html>
