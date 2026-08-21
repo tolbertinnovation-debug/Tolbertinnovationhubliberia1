@@ -1,0 +1,177 @@
+module	module_title	lesson_title	video_map_key	suggested_search
+1	Module 1: Course Orientation	1.1 Welcome to the Course	M1:Welcome to the Course	Welcome to the Course agritech introduction tutorial
+1	Module 1: Course Orientation	1.2 What is AgriTech?	M1:What is AgriTech?	What is AgriTech? agritech introduction tutorial
+1	Module 1: Course Orientation	1.3 What is Digital Agriculture?	M1:What is Digital Agriculture?	What is Digital Agriculture? agritech introduction tutorial
+1	Module 1: Course Orientation	1.4 Careers in AgriTech	M1:Careers in AgriTech	Careers in AgriTech agritech introduction tutorial
+1	Module 1: Course Orientation	1.5 The Future of Agriculture	M1:The Future of Agriculture	The Future of Agriculture agritech introduction tutorial
+1	Module 1: Course Orientation	1.6 Course Roadmap	M1:Course Roadmap	Course Roadmap agritech introduction tutorial
+1	Module 1: Course Orientation	1.7 Learning Resources	M1:Learning Resources	Learning Resources agritech introduction tutorial
+1	Module 1: Course Orientation	🛠️ Final Capstone Project	M1:Final Capstone Project	Final Capstone Project agritech introduction tutorial
+1	Module 1: Course Orientation	1.9 Certificate Requirements	M1:Certificate Requirements	Certificate Requirements agritech introduction tutorial
+2	Module 2: Introduction to Agriculture	2.1 Fundamentals of Agriculture	M2:Fundamentals of Agriculture	Fundamentals of Agriculture agriculture basics tutorial
+2	Module 2: Introduction to Agriculture	2.2 Crop Production	M2:Crop Production	Crop Production agriculture basics tutorial
+2	Module 2: Introduction to Agriculture	2.3 Livestock Production	M2:Livestock Production	Livestock Production agriculture basics tutorial
+2	Module 2: Introduction to Agriculture	2.4 Agricultural Systems	M2:Agricultural Systems	Agricultural Systems agriculture basics tutorial
+2	Module 2: Introduction to Agriculture	2.5 Soil Science Basics	M2:Soil Science Basics	Soil Science Basics agriculture basics tutorial
+2	Module 2: Introduction to Agriculture	2.6 Plant Biology	M2:Plant Biology	Plant Biology agriculture basics tutorial
+2	Module 2: Introduction to Agriculture	2.7 Farm Ecosystems	M2:Farm Ecosystems	Farm Ecosystems agriculture basics tutorial
+2	Module 2: Introduction to Agriculture	2.8 Agricultural Terminology	M2:Agricultural Terminology	Agricultural Terminology agriculture basics tutorial
+2	Module 2: Introduction to Agriculture	2.9 Food Security	M2:Food Security	Food Security agriculture basics tutorial
+2	Module 2: Introduction to Agriculture	2.10 Sustainable Agriculture	M2:Sustainable Agriculture	Sustainable Agriculture agriculture basics tutorial
+3	Module 3: Digital Transformation in Agriculture	3.1 Digital Agriculture Overview	M3:Digital Agriculture Overview	Digital Agriculture Overview digital agriculture tutorial
+3	Module 3: Digital Transformation in Agriculture	3.2 Smart Farming Concepts	M3:Smart Farming Concepts	Smart Farming Concepts digital agriculture tutorial
+3	Module 3: Digital Transformation in Agriculture	3.3 Precision Agriculture	M3:Precision Agriculture	Precision Agriculture digital agriculture tutorial
+3	Module 3: Digital Transformation in Agriculture	3.4 Digital Farm Management	M3:Digital Farm Management	Digital Farm Management digital agriculture tutorial
+3	Module 3: Digital Transformation in Agriculture	3.5 Agricultural Innovation	M3:Agricultural Innovation	Agricultural Innovation digital agriculture tutorial
+3	Module 3: Digital Transformation in Agriculture	3.6 Data-Driven Farming	M3:Data-Driven Farming	Data-Driven Farming digital agriculture tutorial
+3	Module 3: Digital Transformation in Agriculture	3.7 Farm Automation	M3:Farm Automation	Farm Automation digital agriculture tutorial
+3	Module 3: Digital Transformation in Agriculture	3.8 Agricultural Information Systems	M3:Agricultural Information Systems	Agricultural Information Systems digital agriculture tutorial
+3	Module 3: Digital Transformation in Agriculture	3.9 Emerging Technologies	M3:Emerging Technologies	Emerging Technologies digital agriculture tutorial
+3	Module 3: Digital Transformation in Agriculture	3.10 AgriTech Trends	M3:AgriTech Trends	AgriTech Trends digital agriculture tutorial
+4	Module 4: Climate-Smart Agriculture	4.1 Climate Change and Agriculture	M4:Climate Change and Agriculture	Climate Change and Agriculture climate smart agriculture tutorial
+4	Module 4: Climate-Smart Agriculture	4.2 Climate-Smart Farming	M4:Climate-Smart Farming	Climate-Smart Farming climate smart agriculture tutorial
+4	Module 4: Climate-Smart Agriculture	4.3 Water Conservation	M4:Water Conservation	Water Conservation climate smart agriculture tutorial
+4	Module 4: Climate-Smart Agriculture	4.4 Soil Conservation	M4:Soil Conservation	Soil Conservation climate smart agriculture tutorial
+4	Module 4: Climate-Smart Agriculture	4.5 Sustainable Irrigation	M4:Sustainable Irrigation	Sustainable Irrigation climate smart agriculture tutorial
+4	Module 4: Climate-Smart Agriculture	4.6 Crop Rotation	M4:Crop Rotation	Crop Rotation climate smart agriculture tutorial
+4	Module 4: Climate-Smart Agriculture	4.7 Organic Farming	M4:Organic Farming	Organic Farming climate smart agriculture tutorial
+4	Module 4: Climate-Smart Agriculture	4.8 Carbon Farming	M4:Carbon Farming	Carbon Farming climate smart agriculture tutorial
+4	Module 4: Climate-Smart Agriculture	4.9 Biodiversity Conservation	M4:Biodiversity Conservation	Biodiversity Conservation climate smart agriculture tutorial
+4	Module 4: Climate-Smart Agriculture	4.10 Environmental Stewardship	M4:Environmental Stewardship	Environmental Stewardship climate smart agriculture tutorial
+5	Module 5: Farm Management	5.1 Farm Planning	M5:Farm Planning	Farm Planning farm management tutorial
+5	Module 5: Farm Management	5.2 Resource Management	M5:Resource Management	Resource Management farm management tutorial
+5	Module 5: Farm Management	5.3 Farm Budgeting	M5:Farm Budgeting	Farm Budgeting farm management tutorial
+5	Module 5: Farm Management	5.4 Record Keeping	M5:Record Keeping	Record Keeping farm management tutorial
+5	Module 5: Farm Management	5.5 Farm Productivity	M5:Farm Productivity	Farm Productivity farm management tutorial
+5	Module 5: Farm Management	5.6 Labor Management	M5:Labor Management	Labor Management farm management tutorial
+5	Module 5: Farm Management	5.7 Farm Safety	M5:Farm Safety	Farm Safety farm management tutorial
+5	Module 5: Farm Management	5.8 Agricultural Risk Management	M5:Agricultural Risk Management	Agricultural Risk Management farm management tutorial
+5	Module 5: Farm Management	5.9 Farm Performance Evaluation	M5:Farm Performance Evaluation	Farm Performance Evaluation farm management tutorial
+5	Module 5: Farm Management	5.10 Farm Business Planning	M5:Farm Business Planning	Farm Business Planning farm management tutorial
+6	Module 6: Precision Agriculture	6.1 GPS in Agriculture	M6:GPS in Agriculture	GPS in Agriculture precision agriculture tutorial
+6	Module 6: Precision Agriculture	6.2 Geographic Information Systems (GIS)	M6:Geographic Information Systems (GIS)	Geographic Information Systems (GIS) precision agriculture tutorial
+6	Module 6: Precision Agriculture	6.3 Remote Sensing	M6:Remote Sensing	Remote Sensing precision agriculture tutorial
+6	Module 6: Precision Agriculture	6.4 Yield Monitoring	M6:Yield Monitoring	Yield Monitoring precision agriculture tutorial
+6	Module 6: Precision Agriculture	6.5 Variable Rate Technology	M6:Variable Rate Technology	Variable Rate Technology precision agriculture tutorial
+6	Module 6: Precision Agriculture	6.6 Precision Irrigation	M6:Precision Irrigation	Precision Irrigation precision agriculture tutorial
+6	Module 6: Precision Agriculture	6.7 Soil Mapping	M6:Soil Mapping	Soil Mapping precision agriculture tutorial
+6	Module 6: Precision Agriculture	6.8 Precision Crop Management	M6:Precision Crop Management	Precision Crop Management precision agriculture tutorial
+6	Module 6: Precision Agriculture	6.9 Precision Livestock Farming	M6:Precision Livestock Farming	Precision Livestock Farming precision agriculture tutorial
+6	Module 6: Precision Agriculture	🛠️ Precision Agriculture Project	M6:Precision Agriculture Project	Precision Agriculture Project precision agriculture tutorial
+7	Module 7: Internet of Things (IoT) in Agriculture	7.1 Introduction to IoT	M7:Introduction to IoT	Introduction to IoT IoT agriculture sensors tutorial
+7	Module 7: Internet of Things (IoT) in Agriculture	7.2 Smart Sensors	M7:Smart Sensors	Smart Sensors IoT agriculture sensors tutorial
+7	Module 7: Internet of Things (IoT) in Agriculture	7.3 Soil Moisture Sensors	M7:Soil Moisture Sensors	Soil Moisture Sensors IoT agriculture sensors tutorial
+7	Module 7: Internet of Things (IoT) in Agriculture	7.4 Weather Stations	M7:Weather Stations	Weather Stations IoT agriculture sensors tutorial
+7	Module 7: Internet of Things (IoT) in Agriculture	7.5 Smart Irrigation Systems	M7:Smart Irrigation Systems	Smart Irrigation Systems IoT agriculture sensors tutorial
+7	Module 7: Internet of Things (IoT) in Agriculture	7.6 Livestock Monitoring	M7:Livestock Monitoring	Livestock Monitoring IoT agriculture sensors tutorial
+7	Module 7: Internet of Things (IoT) in Agriculture	7.7 Greenhouse Automation	M7:Greenhouse Automation	Greenhouse Automation IoT agriculture sensors tutorial
+7	Module 7: Internet of Things (IoT) in Agriculture	7.8 IoT Data Collection	M7:IoT Data Collection	IoT Data Collection IoT agriculture sensors tutorial
+7	Module 7: Internet of Things (IoT) in Agriculture	7.9 IoT Farm Management	M7:IoT Farm Management	IoT Farm Management IoT agriculture sensors tutorial
+7	Module 7: Internet of Things (IoT) in Agriculture	7.10 IoT Case Studies	M7:IoT Case Studies	IoT Case Studies IoT agriculture sensors tutorial
+8	Module 8: Drones & Remote Monitoring	8.1 Drone Technology	M8:Drone Technology	Drone Technology agriculture drone tutorial
+8	Module 8: Drones & Remote Monitoring	8.2 Agricultural Drone Applications	M8:Agricultural Drone Applications	Agricultural Drone Applications agriculture drone tutorial
+8	Module 8: Drones & Remote Monitoring	8.3 Crop Monitoring	M8:Crop Monitoring	Crop Monitoring agriculture drone tutorial
+8	Module 8: Drones & Remote Monitoring	8.4 Field Mapping	M8:Field Mapping	Field Mapping agriculture drone tutorial
+8	Module 8: Drones & Remote Monitoring	8.5 Crop Health Assessment	M8:Crop Health Assessment	Crop Health Assessment agriculture drone tutorial
+8	Module 8: Drones & Remote Monitoring	8.6 Pest Detection	M8:Pest Detection	Pest Detection agriculture drone tutorial
+8	Module 8: Drones & Remote Monitoring	8.7 Drone Safety	M8:Drone Safety	Drone Safety agriculture drone tutorial
+8	Module 8: Drones & Remote Monitoring	8.8 Drone Regulations	M8:Drone Regulations	Drone Regulations agriculture drone tutorial
+8	Module 8: Drones & Remote Monitoring	8.9 Drone Data Analysis	M8:Drone Data Analysis	Drone Data Analysis agriculture drone tutorial
+8	Module 8: Drones & Remote Monitoring	🛠️ Drone Demonstration Project	M8:Drone Demonstration Project	Drone Demonstration Project agriculture drone tutorial
+9	Module 9: Farm Data & Analytics	9.1 Data Collection	M9:Data Collection	Data Collection farm data analytics tutorial
+9	Module 9: Farm Data & Analytics	9.2 Farm Management Software	M9:Farm Management Software	Farm Management Software farm data analytics tutorial
+9	Module 9: Farm Data & Analytics	9.3 Spreadsheet Analysis	M9:Spreadsheet Analysis	Spreadsheet Analysis farm data analytics tutorial
+9	Module 9: Farm Data & Analytics	9.4 Agricultural Dashboards	M9:Agricultural Dashboards	Agricultural Dashboards farm data analytics tutorial
+9	Module 9: Farm Data & Analytics	9.5 Data Visualization	M9:Data Visualization	Data Visualization farm data analytics tutorial
+9	Module 9: Farm Data & Analytics	9.6 Yield Analysis	M9:Yield Analysis	Yield Analysis farm data analytics tutorial
+9	Module 9: Farm Data & Analytics	9.7 Financial Analysis	M9:Financial Analysis	Financial Analysis farm data analytics tutorial
+9	Module 9: Farm Data & Analytics	9.8 Decision-Making Using Data	M9:Decision-Making Using Data	Decision-Making Using Data farm data analytics tutorial
+9	Module 9: Farm Data & Analytics	9.9 Predictive Agriculture	M9:Predictive Agriculture	Predictive Agriculture farm data analytics tutorial
+9	Module 9: Farm Data & Analytics	🛠️ Data Analytics Project	M9:Data Analytics Project	Data Analytics Project farm data analytics tutorial
+10	Module 10: Agribusiness & Entrepreneurship	10.1 Agribusiness Fundamentals	M10:Agribusiness Fundamentals	Agribusiness Fundamentals agribusiness tutorial
+10	Module 10: Agribusiness & Entrepreneurship	10.2 Agricultural Value Chains	M10:Agricultural Value Chains	Agricultural Value Chains agribusiness tutorial
+10	Module 10: Agribusiness & Entrepreneurship	10.3 Market Research	M10:Market Research	Market Research agribusiness tutorial
+10	Module 10: Agribusiness & Entrepreneurship	10.4 Business Model Development	M10:Business Model Development	Business Model Development agribusiness tutorial
+10	Module 10: Agribusiness & Entrepreneurship	10.5 Financial Planning	M10:Financial Planning	Financial Planning agribusiness tutorial
+10	Module 10: Agribusiness & Entrepreneurship	10.6 Agricultural Marketing	M10:Agricultural Marketing	Agricultural Marketing agribusiness tutorial
+10	Module 10: Agribusiness & Entrepreneurship	10.7 Branding Farm Products	M10:Branding Farm Products	Branding Farm Products agribusiness tutorial
+10	Module 10: Agribusiness & Entrepreneurship	10.8 Accessing Agricultural Finance	M10:Accessing Agricultural Finance	Accessing Agricultural Finance agribusiness tutorial
+10	Module 10: Agribusiness & Entrepreneurship	10.9 Agribusiness Innovation	M10:Agribusiness Innovation	Agribusiness Innovation agribusiness tutorial
+10	Module 10: Agribusiness & Entrepreneurship	10.10 Business Plan Development	M10:Business Plan Development	Business Plan Development agribusiness tutorial
+11	Module 11: Digital Marketing for Agriculture	11.1 Social Media Marketing	M11:Social Media Marketing	Social Media Marketing agriculture digital marketing tutorial
+11	Module 11: Digital Marketing for Agriculture	11.2 Farm Branding	M11:Farm Branding	Farm Branding agriculture digital marketing tutorial
+11	Module 11: Digital Marketing for Agriculture	11.3 E-Commerce for Agriculture	M11:E-Commerce for Agriculture	E-Commerce for Agriculture agriculture digital marketing tutorial
+11	Module 11: Digital Marketing for Agriculture	11.4 Online Marketplaces	M11:Online Marketplaces	Online Marketplaces agriculture digital marketing tutorial
+11	Module 11: Digital Marketing for Agriculture	11.5 Customer Relationship Management	M11:Customer Relationship Management	Customer Relationship Management agriculture digital marketing tutorial
+11	Module 11: Digital Marketing for Agriculture	11.6 Digital Advertising	M11:Digital Advertising	Digital Advertising agriculture digital marketing tutorial
+11	Module 11: Digital Marketing for Agriculture	11.7 Content Marketing	M11:Content Marketing	Content Marketing agriculture digital marketing tutorial
+11	Module 11: Digital Marketing for Agriculture	11.8 Agricultural Storytelling	M11:Agricultural Storytelling	Agricultural Storytelling agriculture digital marketing tutorial
+11	Module 11: Digital Marketing for Agriculture	11.9 Sales Strategies	M11:Sales Strategies	Sales Strategies agriculture digital marketing tutorial
+11	Module 11: Digital Marketing for Agriculture	🛠️ Marketing Campaign Project	M11:Marketing Campaign Project	Marketing Campaign Project agriculture digital marketing tutorial
+12	Module 12: Food Safety & Quality Management	12.1 Food Safety Principles	M12:Food Safety Principles	Food Safety Principles food safety agriculture tutorial
+12	Module 12: Food Safety & Quality Management	12.2 Good Agricultural Practices (GAP)	M12:Good Agricultural Practices (GAP)	Good Agricultural Practices (GAP) food safety agriculture tutorial
+12	Module 12: Food Safety & Quality Management	12.3 Post-Harvest Handling	M12:Post-Harvest Handling	Post-Harvest Handling food safety agriculture tutorial
+12	Module 12: Food Safety & Quality Management	12.4 Food Storage	M12:Food Storage	Food Storage food safety agriculture tutorial
+12	Module 12: Food Safety & Quality Management	12.5 Food Processing Basics	M12:Food Processing Basics	Food Processing Basics food safety agriculture tutorial
+12	Module 12: Food Safety & Quality Management	12.6 Quality Assurance	M12:Quality Assurance	Quality Assurance food safety agriculture tutorial
+12	Module 12: Food Safety & Quality Management	12.7 Traceability Systems	M12:Traceability Systems	Traceability Systems food safety agriculture tutorial
+12	Module 12: Food Safety & Quality Management	12.8 Food Standards & Compliance	M12:Food Standards & Compliance	Food Standards & Compliance food safety agriculture tutorial
+13	Module 13: Agricultural Finance & Investment	13.1 Agricultural Economics	M13:Agricultural Economics	Agricultural Economics agricultural finance tutorial
+13	Module 13: Agricultural Finance & Investment	13.2 Farm Budgeting	M13:Farm Budgeting	Farm Budgeting agricultural finance tutorial
+13	Module 13: Agricultural Finance & Investment	13.3 Financial Statements	M13:Financial Statements	Financial Statements agricultural finance tutorial
+13	Module 13: Agricultural Finance & Investment	13.4 Investment Planning	M13:Investment Planning	Investment Planning agricultural finance tutorial
+13	Module 13: Agricultural Finance & Investment	13.5 Agricultural Loans	M13:Agricultural Loans	Agricultural Loans agricultural finance tutorial
+13	Module 13: Agricultural Finance & Investment	13.6 Insurance in Agriculture	M13:Insurance in Agriculture	Insurance in Agriculture agricultural finance tutorial
+13	Module 13: Agricultural Finance & Investment	13.7 Grant Opportunities	M13:Grant Opportunities	Grant Opportunities agricultural finance tutorial
+13	Module 13: Agricultural Finance & Investment	13.8 Financial Risk Management	M13:Financial Risk Management	Financial Risk Management agricultural finance tutorial
+14	Module 14: AI & Emerging Technologies in Agriculture	14.1 Artificial Intelligence in Agriculture	M14:Artificial Intelligence in Agriculture	Artificial Intelligence in Agriculture AI in agriculture tutorial
+14	Module 14: AI & Emerging Technologies in Agriculture	14.2 Machine Learning Basics	M14:Machine Learning Basics	Machine Learning Basics AI in agriculture tutorial
+14	Module 14: AI & Emerging Technologies in Agriculture	14.3 Computer Vision for Farming	M14:Computer Vision for Farming	Computer Vision for Farming AI in agriculture tutorial
+14	Module 14: AI & Emerging Technologies in Agriculture	14.4 Predictive Analytics	M14:Predictive Analytics	Predictive Analytics AI in agriculture tutorial
+14	Module 14: AI & Emerging Technologies in Agriculture	14.5 Robotics in Agriculture	M14:Robotics in Agriculture	Robotics in Agriculture AI in agriculture tutorial
+14	Module 14: AI & Emerging Technologies in Agriculture	14.6 Blockchain in Agriculture	M14:Blockchain in Agriculture	Blockchain in Agriculture AI in agriculture tutorial
+14	Module 14: AI & Emerging Technologies in Agriculture	14.7 AI Farm Management Tools	M14:AI Farm Management Tools	AI Farm Management Tools AI in agriculture tutorial
+14	Module 14: AI & Emerging Technologies in Agriculture	14.8 Future Trends in AgriTech	M14:Future Trends in AgriTech	Future Trends in AgriTech AI in agriculture tutorial
+15	Module 15: Agricultural Policies & Sustainability	15.1 Agricultural Policies	M15:Agricultural Policies	Agricultural Policies agricultural policy tutorial
+15	Module 15: Agricultural Policies & Sustainability	15.2 Land Use Management	M15:Land Use Management	Land Use Management agricultural policy tutorial
+15	Module 15: Agricultural Policies & Sustainability	15.3 Sustainable Development Goals (SDGs)	M15:Sustainable Development Goals (SDGs)	Sustainable Development Goals (SDGs) agricultural policy tutorial
+15	Module 15: Agricultural Policies & Sustainability	15.4 Environmental Regulations	M15:Environmental Regulations	Environmental Regulations agricultural policy tutorial
+15	Module 15: Agricultural Policies & Sustainability	15.5 Agricultural Cooperatives	M15:Agricultural Cooperatives	Agricultural Cooperatives agricultural policy tutorial
+15	Module 15: Agricultural Policies & Sustainability	15.6 Rural Development	M15:Rural Development	Rural Development agricultural policy tutorial
+15	Module 15: Agricultural Policies & Sustainability	15.7 Gender in Agriculture	M15:Gender in Agriculture	Gender in Agriculture agricultural policy tutorial
+15	Module 15: Agricultural Policies & Sustainability	15.8 Agricultural Extension Services	M15:Agricultural Extension Services	Agricultural Extension Services agricultural policy tutorial
+16	Module 16: Professional Skills	16.1 Business Communication	M16:Business Communication	Business Communication professional skills tutorial
+16	Module 16: Professional Skills	16.2 Leadership	M16:Leadership	Leadership professional skills tutorial
+16	Module 16: Professional Skills	16.3 Project Management	M16:Project Management	Project Management professional skills tutorial
+16	Module 16: Professional Skills	16.4 Proposal Writing	M16:Proposal Writing	Proposal Writing professional skills tutorial
+16	Module 16: Professional Skills	16.5 Report Writing	M16:Report Writing	Report Writing professional skills tutorial
+16	Module 16: Professional Skills	16.6 Teamwork	M16:Teamwork	Teamwork professional skills tutorial
+16	Module 16: Professional Skills	16.7 Problem Solving	M16:Problem Solving	Problem Solving professional skills tutorial
+16	Module 16: Professional Skills	16.8 Professional Ethics	M16:Professional Ethics	Professional Ethics professional skills tutorial
+17	Module 17: Real-World AgriTech Projects	🛠️ Smart Farm Design	M17:Smart Farm Design	Smart Farm Design agritech project tutorial
+17	Module 17: Real-World AgriTech Projects	🛠️ Precision Farming Plan	M17:Precision Farming Plan	Precision Farming Plan agritech project tutorial
+17	Module 17: Real-World AgriTech Projects	🛠️ Digital Farm Record System	M17:Digital Farm Record System	Digital Farm Record System agritech project tutorial
+17	Module 17: Real-World AgriTech Projects	🛠️ Irrigation Management Plan	M17:Irrigation Management Plan	Irrigation Management Plan agritech project tutorial
+17	Module 17: Real-World AgriTech Projects	🛠️ Agribusiness Startup Plan	M17:Agribusiness Startup Plan	Agribusiness Startup Plan agritech project tutorial
+17	Module 17: Real-World AgriTech Projects	🛠️ Farm Marketing Campaign	M17:Farm Marketing Campaign	Farm Marketing Campaign agritech project tutorial
+17	Module 17: Real-World AgriTech Projects	🛠️ Climate-Smart Agriculture Project	M17:Climate-Smart Agriculture Project	Climate-Smart Agriculture Project agritech project tutorial
+17	Module 17: Real-World AgriTech Projects	🛠️ Data Analytics Project	M17:Data Analytics Project	Data Analytics Project agritech project tutorial
+17	Module 17: Real-World AgriTech Projects	🛠️ Community Agriculture Initiative	M17:Community Agriculture Initiative	Community Agriculture Initiative agritech project tutorial
+17	Module 17: Real-World AgriTech Projects	🛠️ Agricultural Innovation Pitch	M17:Agricultural Innovation Pitch	Agricultural Innovation Pitch agritech project tutorial
+18	Module 18: Career Development	18.1 Building an AgriTech Portfolio	M18:Building an AgriTech Portfolio	Building an AgriTech Portfolio agritech career tutorial
+18	Module 18: Career Development	18.2 Resume Writing	M18:Resume Writing	Resume Writing agritech career tutorial
+18	Module 18: Career Development	18.3 LinkedIn Optimization	M18:LinkedIn Optimization	LinkedIn Optimization agritech career tutorial
+18	Module 18: Career Development	18.4 Interview Preparation	M18:Interview Preparation	Interview Preparation agritech career tutorial
+18	Module 18: Career Development	18.5 Freelancing Opportunities	M18:Freelancing Opportunities	Freelancing Opportunities agritech career tutorial
+18	Module 18: Career Development	18.6 Consulting Opportunities	M18:Consulting Opportunities	Consulting Opportunities agritech career tutorial
+18	Module 18: Career Development	18.7 Professional Certifications	M18:Professional Certifications	Professional Certifications agritech career tutorial
+18	Module 18: Career Development	18.8 Career Growth Plan	M18:Career Growth Plan	Career Growth Plan agritech career tutorial
+19	Module 19: Capstone Project	🛠️ Identify an Agricultural Challenge	M19:Identify an Agricultural Challenge	Identify an Agricultural Challenge capstone project agriculture tutorial
+19	Module 19: Capstone Project	🛠️ Conduct Farm Research	M19:Conduct Farm Research	Conduct Farm Research capstone project agriculture tutorial
+19	Module 19: Capstone Project	🛠️ Design a Digital Agriculture Solution	M19:Design a Digital Agriculture Solution	Design a Digital Agriculture Solution capstone project agriculture tutorial
+19	Module 19: Capstone Project	🛠️ Develop an Agribusiness Plan	M19:Develop an Agribusiness Plan	Develop an Agribusiness Plan capstone project agriculture tutorial
+19	Module 19: Capstone Project	🛠️ Present a Precision Farming Strategy	M19:Present a Precision Farming Strategy	Present a Precision Farming Strategy capstone project agriculture tutorial
+19	Module 19: Capstone Project	🛠️ Prepare a Budget	M19:Prepare a Budget	Prepare a Budget capstone project agriculture tutorial
+19	Module 19: Capstone Project	🛠️ Final Presentation	M19:Final Presentation	Final Presentation capstone project agriculture tutorial
+19	Module 19: Capstone Project	🛠️ Project Evaluation	M19:Project Evaluation	Project Evaluation capstone project agriculture tutorial
+20	Module 20: Assessments & Graduation	20.1 Certificate Requirements	M20:Certificate Requirements	Certificate Requirements certificate tutorial
