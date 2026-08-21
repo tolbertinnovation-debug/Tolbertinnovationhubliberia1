@@ -385,6 +385,391 @@
     {"q": "What is usually the bottleneck in drone surveying?", "opts": ["Flight time", "Processing the imagery", "Battery charging", "Regulatory approval"], "correct": 1, "exp": "Stitching and analysis are computationally heavy and often take longer than the flying."},
     {"q": "What should the deliverable to a farmer normally be?", "opts": ["The raw image folder", "The flight log", "An annotated map with located findings and recommendations", "A video of the flight"], "correct": 2, "exp": "Clients need findings they can act on, not large files they cannot open."},
     {"q": "Why archive the raw imagery?", "opts": ["To prove the flight happened", "Because clients own it", "To reduce storage cost", "Reprocessing later is possible but reflying the same date is not"], "correct": 3, "exp": "The conditions of that day cannot be recreated, so the original data is irreplaceable."}
+  ],
+  "Data Collection": [
+    {"q": "Where should data collection design begin?", "opts": ["With the questions you want to answer", "With the software available", "With the number of staff", "With the harvest"], "correct": 0, "exp": "The questions determine which fields must be recorded, and missing fields cannot be recovered later."},
+    {"q": "Why must units be recorded explicitly?", "opts": ["Regulations require it", "Because bags, kilograms and tins are not interchangeable", "To increase file size", "Because software cannot convert"], "correct": 1, "exp": "Without a stated unit the numbers cannot be compared or converted, rendering them useless."},
+    {"q": "Why collect the minimum set of fields?", "opts": ["To reduce storage cost", "To speed up analysis", "Because every extra field reduces the chance the system is maintained", "Because more data is inaccurate"], "correct": 2, "exp": "An over-complex collection system lapses during busy periods, and a lapsed system produces nothing."}
+  ],
+  "Farm Management Software": [
+    {"q": "When does dedicated software beat a spreadsheet?", "opts": ["When the crop is high value", "Always", "When the farm is large in area", "When several people record data and reports are needed regularly"], "correct": 3, "exp": "Multi-user entry and repeated reporting are what a spreadsheet handles poorly."},
+    {"q": "Why ask whether data can be exported?", "opts": ["Because data you cannot export is data you do not own", "To allow more users", "To reduce subscription cost", "To speed up the software"], "correct": 0, "exp": "Without export the data is trapped if the service ends or the subscription lapses."},
+    {"q": "Why does offline capability matter for a field app?", "opts": ["To improve accuracy", "Because an app needing a connection will not be used in a field", "To save battery", "To reduce cost"], "correct": 1, "exp": "Rural fields frequently lack coverage, so entry must work without it or it will not happen."}
+  ],
+  "Spreadsheet Analysis": [
+    {"q": "What structure should farm data be held in?", "opts": ["A merged summary layout", "One row per season", "A flat table with one row per event", "A separate sheet per plot"], "correct": 2, "exp": "Flat tables are what pivot tables, filters and conditional functions require to work."},
+    {"q": "Why should raw data and analysis be on separate sheets?", "opts": ["Because software requires it", "To allow printing", "To reduce file size", "So raw data is never edited to make an analysis work"], "correct": 3, "exp": "Keeping the source untouched preserves its integrity and makes analysis reproducible."},
+    {"q": "Why use a lookup list for plot names?", "opts": ["To prevent spelling variants being counted as different plots", "To reduce the number of plots", "To speed up typing only", "To satisfy the software"], "correct": 0, "exp": "Freehand entry produces variants that split one plot's data across several apparent plots."}
+  ],
+  "Agricultural Dashboards": [
+    {"q": "What is the purpose of a dashboard?", "opts": ["To display everything that is known", "To answer whether anything is wrong and the season is on track, at a glance", "To replace record keeping", "To archive historical data"], "correct": 1, "exp": "A dashboard is for rapid situational awareness, not comprehensive reporting."},
+    {"q": "Why does every figure need a comparison?", "opts": ["To fill space", "To satisfy auditors", "Because a number alone cannot indicate whether it is good or bad", "To allow colour coding"], "correct": 2, "exp": "Without a plan, a previous period or a threshold, a value carries no judgement."},
+    {"q": "Why show when the data was last updated?", "opts": ["To credit the person who entered it", "To meet software requirements", "To reduce confusion about time zones", "Because a stale dashboard read as live is dangerous"], "correct": 3, "exp": "Decisions made on out-of-date figures assumed to be current can be seriously wrong."}
+  ],
+  "Data Visualization": [
+    {"q": "Which chart shows the relationship between two measurements?", "opts": ["Scatter plot", "Pie chart", "Bar chart", "Line chart"], "correct": 0, "exp": "Plotting one variable against the other reveals whether and how they relate."},
+    {"q": "Why should bar chart axes start at zero?", "opts": ["To use less space", "Because a truncated axis exaggerates differences dishonestly", "Because software requires it", "To allow more bars"], "correct": 1, "exp": "Bar length represents magnitude, so cutting the axis distorts the visual comparison."},
+    {"q": "Why are pie charts usually a poor choice?", "opts": ["They cannot show percentages", "They use too much colour", "People judge angles poorly, making them harder to read than bars", "They cannot be printed"], "correct": 2, "exp": "Angle comparison is unreliable, and the problem worsens as the number of slices grows."}
+  ],
+  "Yield Analysis": [
+    {"q": "What are the four sources of yield difference?", "opts": ["Seed, water, labour and machinery", "Price, cost, area and time", "Soil, sun, rain and wind", "Site, season, management and measurement error"], "correct": 3, "exp": "A useful analysis attributes differences among these rather than assuming one cause."},
+    {"q": "What should be checked first when a yield looks anomalous?", "opts": ["Measurement, such as plot area and moisture", "The weather record", "The fertiliser brand", "The variety planted"], "correct": 0, "exp": "Measurement errors explain many apparent anomalies and are quick to rule out."},
+    {"q": "What does a plot yielding low every season suggest?", "opts": ["A weather problem", "A site cause such as soil or drainage", "A measurement error", "A management problem"], "correct": 1, "exp": "Consistency across differing seasons and management points to a fixed physical characteristic."}
+  ],
+  "Financial Analysis": [
+    {"q": "How is break-even yield calculated?", "opts": ["Revenue minus fixed cost", "Yield divided by cost", "Total variable cost divided by price per unit", "Price multiplied by area"], "correct": 2, "exp": "It is the output needed for revenue to cover the variable costs incurred."},
+    {"q": "Why can a profitable farm still run out of money?", "opts": ["Because profit is not real", "Because prices change", "Because profit is taxed", "Because costs and revenue occur at different times"], "correct": 3, "exp": "Cash flow is about timing, and spending can precede revenue by many months."},
+    {"q": "Why must costs be attributed to enterprises?", "opts": ["Otherwise it is impossible to see which activity is losing money", "To simplify record keeping", "To reduce total costs", "Because lenders require it"], "correct": 0, "exp": "Pooled costs conceal the performance of individual enterprises."}
+  ],
+  "Decision-Making Using Data": [
+    {"q": "When is it reasonable to act on weak evidence?", "opts": ["Never", "When the decision is cheap and reversible", "When the decision is expensive", "When the decision is irreversible"], "correct": 1, "exp": "Low cost of error and easy reversal make acting and learning cheaper than waiting."},
+    {"q": "Why record the reasoning behind a decision?", "opts": ["Because outcomes are unimportant", "To satisfy auditors", "So the decision can be evaluated separately from its outcome", "To lengthen the report"], "correct": 2, "exp": "A good decision can have a bad outcome; only the recorded reasoning lets you tell them apart."},
+    {"q": "What should be stated in advance?", "opts": ["The cost of the analysis", "The expected profit", "The name of the decision maker", "What result would change your mind"], "correct": 3, "exp": "Setting the decision rule beforehand prevents interpreting whatever happens as confirmation."}
+  ],
+  "Predictive Agriculture": [
+    {"q": "What makes a forecast actionable?", "opts": ["Being expressed with a probability and a magnitude", "Being issued by a government body", "Covering a long period", "Being free"], "correct": 0, "exp": "A quantified likelihood and amount let the user weigh it against the cost of acting."},
+    {"q": "What limits the quality of a predictive model?", "opts": ["The speed of the computer", "The quality of the historical data it was trained on", "The number of users", "The size of the farm"], "correct": 1, "exp": "A model can only learn patterns present in its training data, and poor data yields confident errors."},
+    {"q": "Why track forecast accuracy over time?", "opts": ["To satisfy the provider", "To reduce cost", "Because a model that performed well previously may not continue to", "Because forecasts are always accurate"], "correct": 2, "exp": "Conditions change, and a model's performance must be re-verified rather than assumed."}
+  ],
+  "Agribusiness Fundamentals": [
+    {"q": "Why do maximum yield and maximum profit rarely coincide?", "opts": ["Because high yields damage soil", "Because buyers prefer low yields", "Because prices fall as yield rises", "Because extra inputs eventually cost more than the extra output is worth"], "correct": 3, "exp": "Diminishing returns mean the last increments of yield cost more than they earn."},
+    {"q": "What must be included in costs even when no money changes hands?", "opts": ["Family labour", "Rainfall", "Sunlight", "Soil nutrients"], "correct": 0, "exp": "Unpaid labour has an opportunity cost, and ignoring it makes weak enterprises look profitable."},
+    {"q": "Why is cost of production per unit so important?", "opts": ["It sets the market price", "Without it you cannot judge whether a price offered is acceptable", "It is required for certification", "It determines the yield"], "correct": 1, "exp": "A price can only be evaluated against what it costs you to produce the unit being sold."}
+  ],
+  "Agricultural Value Chains": [
+    {"q": "Why do farmers typically capture a small share of chain value?", "opts": ["Because consumers pay too little", "Because they produce too much", "Because their step has least differentiation, most competition and weakest price information", "Because processing is unprofitable"], "correct": 2, "exp": "Structural position rather than dishonesty explains the small share."},
+    {"q": "Where does margin tend to accrue in a value chain?", "opts": ["At the production step", "Wherever labour is cheapest", "At the retail step only", "Where there is scarcity, such as storage or processing capacity"], "correct": 3, "exp": "Scarce capacity gives pricing power, which is where margin concentrates."},
+    {"q": "What does moving up the value chain involve?", "opts": ["Adding steps such as drying, grading or packing, with added cost and risk", "Reducing production", "Growing more of the same crop", "Selling earlier in the season"], "correct": 0, "exp": "Capturing later-stage margin means taking on the activities and risks of those stages."}
+  ],
+  "Market Research": [
+    {"q": "What four questions should market research answer?", "opts": ["How much land, labour, cash and time", "Who buys, what quantity and quality, when, and at what price", "Where to plant, when to plant, what to plant, and how much", "Which seed, which fertiliser, which market, which buyer"], "correct": 1, "exp": "These four determine whether a planned crop can be sold profitably."},
+    {"q": "Why record prices weekly rather than visiting once?", "opts": ["Because prices are fixed weekly", "To build a relationship with traders", "Because a single visit reveals nothing about seasonal patterns", "To satisfy buyers"], "correct": 2, "exp": "Seasonality is the dominant price effect and only appears in a series of observations."},
+    {"q": "How should demand be verified?", "opts": ["By checking last year's price", "By counting people at the market", "By asking neighbours", "With a commitment rather than an expression of interest"], "correct": 3, "exp": "Interest is free to express; a commitment to buy a quantity at a price is evidence."}
+  ],
+  "Business Model Development": [
+    {"q": "What is the weakest competitive position?", "opts": ["Competing only on price", "Competing on quality consistency", "Competing on timing", "Competing on delivery reliability"], "correct": 0, "exp": "Undifferentiated commodity supply leaves price as the only lever, which is a race downwards."},
+    {"q": "What does a value proposition state?", "opts": ["Your total costs", "What problem you solve for the buyer", "How much land you farm", "The yield you expect"], "correct": 1, "exp": "It expresses why the customer benefits from choosing you."},
+    {"q": "Why is a contract with three restaurants often better than open market sales?", "opts": ["The volume is larger", "It removes all risk", "Revenue, price and payment terms become predictable", "It requires no quality standards"], "correct": 2, "exp": "Predictability of price and payment is worth more than volume for planning and cash flow."}
+  ],
+  "M10:Financial Planning": [
+    {"q": "What is the central output of a financial plan?", "opts": ["The yield forecast", "The list of suppliers", "The annual profit figure", "A monthly cash flow projection"], "correct": 3, "exp": "Monthly cash flow reveals the timing gaps that annual totals conceal."},
+    {"q": "What does the point of maximum cash deficit tell you?", "opts": ["How much working capital must be arranged", "The cost of production", "The expected profit", "The break-even yield"], "correct": 0, "exp": "It is the largest amount the business will be short by, and therefore what must be financed."},
+    {"q": "Why is the spending-to-revenue gap especially long in agriculture?", "opts": ["Because banks are slow", "Because inputs are bought at planting and revenue arrives only after harvest", "Because prices are fixed", "Because farms are small"], "correct": 1, "exp": "The biological production cycle imposes a delay of many months between outlay and income."}
+  ],
+  "Agricultural Marketing": [
+    {"q": "Why are prices lowest just after harvest?", "opts": ["Buyers are absent", "Quality is worst then", "Because everyone sells at the same time", "Transport is most expensive"], "correct": 2, "exp": "Simultaneous supply from all producers pushes the price down."},
+    {"q": "How should the decision to store be evaluated?", "opts": ["By storing whenever space exists", "By selling immediately always", "By asking the buyer", "By comparing storage cost against the expected price rise"], "correct": 3, "exp": "Storage is only worthwhile if the price gain exceeds its cost and losses."},
+    {"q": "What advantage does selling collectively give?", "opts": ["Volume, which attracts better buyers and prices", "Immediate payment always", "Lower quality requirements", "No need for grading"], "correct": 0, "exp": "Aggregated volume makes the group worth dealing with for larger, better-paying buyers."}
+  ],
+  "Branding Farm Products": [
+    {"q": "What is a brand, for a farm product?", "opts": ["A logo design", "What a buyer expects from you before inspecting the goods", "A legal registration", "The name of the farm"], "correct": 1, "exp": "It is a promise about what will be delivered, which is why consistency underpins it."},
+    {"q": "Why does attractive packaging on inconsistent produce backfire?", "opts": ["It costs too much", "Buyers dislike packaging", "It raises an expectation that is then broken", "It slows down packing"], "correct": 2, "exp": "Breaking a raised expectation damages trust more than never raising it."},
+    {"q": "What is a trader actually paying a premium for?", "opts": ["The packaging material", "The farm's location", "The size of the bag", "The reduction in their own risk"], "correct": 3, "exp": "Reliable grading means the buyer need not inspect every unit, which has real value to them."}
+  ],
+  "Accessing Agricultural Finance": [
+    {"q": "What four things do lenders assess?", "opts": ["Capacity, character, collateral and conditions", "Crop, climate, cost and customer", "Land, labour, livestock and location", "Price, profit, period and place"], "correct": 0, "exp": "These four determine whether the loan is likely to be repaid."},
+    {"q": "Why must loan term match the production cycle?", "opts": ["To reduce interest", "Because repayments before harvest have no source of funds", "Because lenders prefer long loans", "To simplify paperwork"], "correct": 1, "exp": "Revenue arrives only after harvest, so earlier repayments must come from elsewhere."},
+    {"q": "What can substitute for collateral with many lenders?", "opts": ["A larger loan request", "A guarantor's opinion", "Records demonstrating yields, sales and repayment history", "Membership of any group"], "correct": 2, "exp": "Verifiable performance history lets a lender assess risk without physical security."}
+  ],
+  "Agribusiness Innovation": [
+    {"q": "Where do agribusiness opportunities usually cluster?", "opts": ["In entirely new technologies", "In the largest markets only", "Where competition is strongest", "At points where the value chain works badly"], "correct": 3, "exp": "Existing friction points are problems people already recognise and want solved."},
+    {"q": "Which assumption should be tested first?", "opts": ["The riskiest one", "The cheapest to fix", "The one investors ask about", "The easiest to test"], "correct": 0, "exp": "Testing the riskiest assumption first avoids spending on a venture whose foundation fails."},
+    {"q": "How should a test be designed?", "opts": ["To impress investors", "To prove yourself wrong", "To take as long as possible", "To confirm the idea works"], "correct": 1, "exp": "A test designed to confirm will find confirmation; one designed to disprove yields real information."}
+  ],
+  "Business Plan Development": [
+    {"q": "What should revenue projections be based on?", "opts": ["The amount needed to justify the loan", "The best result achieved regionally", "Achieved performance, with the source stated", "The maximum biologically possible"], "correct": 2, "exp": "Projections grounded in the business's own record are what make a plan credible."},
+    {"q": "What evidence of demand strengthens a plan most?", "opts": ["A description of the industry", "A market survey", "An estimate of population", "A contract, letter of intent or recorded sales"], "correct": 3, "exp": "Concrete commitments demonstrate that someone will actually buy."},
+    {"q": "Why name the biggest risks explicitly?", "opts": ["Because a plan showing understood risks and responses is more credible", "To lengthen the document", "To lower the amount requested", "To satisfy regulations"], "correct": 0, "exp": "A plan that appears to have no risks signals that they have not been considered."}
+  ],
+  "Social Media Marketing": [
+    {"q": "Which platform matters most for agricultural trade in West Africa?", "opts": ["Pinterest", "WhatsApp", "LinkedIn", "Twitter"], "correct": 1, "exp": "WhatsApp is where buyers, traders and farmers already communicate and transact."},
+    {"q": "Why should produce never be misrepresented in a post?", "opts": ["Photographs are expensive", "Platforms will remove the post", "A customer lost over misrepresentation is usually lost permanently", "It takes more time"], "correct": 2, "exp": "Trust is the asset direct selling depends on, and it does not recover easily."},
+    {"q": "Why build a broadcast list rather than rely only on platform reach?", "opts": ["Lists allow longer messages", "Broadcast lists are cheaper", "Platforms charge for reach", "It is a customer list you own and can reach directly"], "correct": 3, "exp": "Owning the channel means access to customers does not depend on a platform's changing rules."}
+  ],
+  "Farm Branding": [
+    {"q": "What does farm branding promise, as distinct from product branding?", "opts": ["A relationship, including reliability and responsiveness", "A specific grade only", "A larger quantity", "A lower price"], "correct": 0, "exp": "Buyers of repeat supply are purchasing dependability, which attaches to the farm."},
+    {"q": "When does farm branding matter most?", "opts": ["When there is no competition", "When buyers have a choice and cannot verify quality in advance", "When prices are fixed", "When produce is sold once only"], "correct": 1, "exp": "Reputation substitutes for verification the buyer cannot perform beforehand."},
+    {"q": "What builds reputation most?", "opts": ["The size of the farm", "The design of the logo", "What you do when something goes wrong", "Advertising spend"], "correct": 2, "exp": "Handling a failure well demonstrates reliability more convincingly than routine success."}
+  ],
+  "E-Commerce for Agriculture": [
+    {"q": "What is the hardest part of agricultural e-commerce?", "opts": ["Taking payment", "Photographing produce", "Building the website", "Fulfilment: picking, packing, freshness and delivery"], "correct": 3, "exp": "Perishable goods make the logistics far harder than the selling."},
+    {"q": "Why is a late produce delivery worse than a late delivery of other goods?", "opts": ["The produce may be spoiled rather than merely late", "Payment is delayed", "Customers are less patient", "Delivery costs more"], "correct": 0, "exp": "Perishability turns a delay into a total loss of the goods."},
+    {"q": "What should be built before a storefront?", "opts": ["A payment gateway", "A delivery capability that can fulfil orders", "A large product range", "A brand identity"], "correct": 1, "exp": "Orders that cannot be fulfilled damage the business more than having no orders."}
+  ],
+  "Online Marketplaces": [
+    {"q": "What is the real cost of selling through a marketplace?", "opts": ["Photography requirements", "The listing fee", "Commission and control of the customer relationship", "Delivery time"], "correct": 2, "exp": "Losing the direct relationship leaves the business exposed to the platform's decisions."},
+    {"q": "Why does slow settlement matter?", "opts": ["It lowers search ranking", "It reduces the price", "It affects product quality", "It creates a cash flow problem"], "correct": 3, "exp": "Money owed but not received still has to be replaced by working capital in the meantime."},
+    {"q": "What is the safest way to use a marketplace?", "opts": ["To find customers while building direct relationships and other channels", "For premium products only", "As the only sales channel", "Only during harvest"], "correct": 0, "exp": "Using it as one channel among several avoids dependence on a platform you do not control."}
+  ],
+  "M11:Customer Relationship Management": [
+    {"q": "Why do repeat customers matter more than new ones?", "opts": ["They pay higher prices", "Winning a new customer costs considerably more than keeping an existing one", "They order larger quantities", "They require no delivery"], "correct": 1, "exp": "An established buyer needs no convincing, sampling or renegotiation."},
+    {"q": "What should be tracked besides what a customer buys?", "opts": ["Their family size", "Their competitors", "Frequency, price, payment behaviour and preferences", "The weather on delivery day"], "correct": 2, "exp": "These determine both the value of the customer and how to serve them well."},
+    {"q": "Why is a good price from a late payer not necessarily a good deal?", "opts": ["The price will fall later", "Late payment reduces quality", "Buyers dislike it", "Delayed payment ties up working capital the business needs"], "correct": 3, "exp": "Cash tied up in receivables must be replaced from somewhere, at a cost."}
+  ],
+  "Digital Advertising": [
+    {"q": "When is digital advertising worth doing?", "opts": ["When the result can be measured", "When competitors are advertising", "When the budget allows", "When the harvest is large"], "correct": 0, "exp": "Without measurement there is no way to distinguish effective spending from waste."},
+    {"q": "What is the most valuable targeting control for perishable produce?", "opts": ["Age", "Location, since delivery radius defines the market", "Interests", "Time of day"], "correct": 1, "exp": "Reaching people outside the delivery area cannot produce a sale."},
+    {"q": "What should be measured?", "opts": ["Number of views", "Number of likes", "Cost per enquiry and cost per sale", "Number of followers gained"], "correct": 2, "exp": "Only measures tied to actual orders show whether the spending returned more than it cost."}
+  ],
+  "Content Marketing": [
+    {"q": "How does content marketing differ from advertising?", "opts": ["It is always free", "It requires no consistency", "It reaches more people", "It works slowly and compounds, rather than stopping when payment stops"], "correct": 3, "exp": "Published usefulness continues to attract an audience long after it is created."},
+    {"q": "What makes content ignored?", "opts": ["Being only promotion rather than useful", "Including prices", "Being too short", "Being published weekly"], "correct": 0, "exp": "An audience gives attention in exchange for value; pure promotion offers none."},
+    {"q": "Where should content topics come from?", "opts": ["The largest possible subject", "The questions you are actually asked", "Whatever competitors publish", "Industry news"], "correct": 1, "exp": "Questions you receive are evidence of what your audience genuinely wants answered."}
+  ],
+  "Agricultural Storytelling": [
+    {"q": "Why does storytelling work particularly well for food?", "opts": ["Stories increase shelf life", "Food is cheap", "Buyers care where it came from and who grew it", "Food has no competition"], "correct": 2, "exp": "Provenance carries meaning for food buyers in a way it does not for most products."},
+    {"q": "What is the essential requirement of agricultural storytelling?", "opts": ["Frequent posting", "Professional photography", "A large following", "Truthfulness, since claims about origin and practice are checkable"], "correct": 3, "exp": "False claims about practice or certification are discoverable and destroy credibility."},
+    {"q": "What makes a farm story credible rather than generic?", "opts": ["Specific names, places and practices", "Words like passion and quality", "A long history", "A large farm size"], "correct": 0, "exp": "Specificity is checkable and distinctive; general claims are indistinguishable from anyone else's."}
+  ],
+  "Sales Strategies": [
+    {"q": "What should come before discussing price?", "opts": ["Agreeing delivery", "Understanding the buyer's requirement", "Naming your costs", "Describing the farm"], "correct": 1, "exp": "Knowing what the buyer needs reveals what else besides price has value to them."},
+    {"q": "Why must you know your cost of production before negotiating?", "opts": ["To impress the buyer", "To calculate the yield", "So you know the price below which you should walk away", "Because buyers ask for it"], "correct": 2, "exp": "Without it there is no basis for judging whether an offered price is acceptable."},
+    {"q": "What decides the next order?", "opts": ["The advertising", "The price alone", "The size of the farm", "How the last delivery went"], "correct": 3, "exp": "Repeat business follows from the buyer's experience of the previous transaction."}
+  ],
+  "Food Safety Principles": [
+    {"q": "What are the three types of food hazard?", "opts": ["Biological, chemical and physical", "Bacterial, viral and fungal", "Field, storage and transport", "Visible, hidden and delayed"], "correct": 0, "exp": "These three categories cover every way food can become unsafe."},
+    {"q": "Where does most produce contamination occur?", "opts": ["In the soil before planting", "After harvest, during handling", "During growth only", "At the point of sale only"], "correct": 1, "exp": "Handling introduces contamination through hands, water, surfaces and containers."},
+    {"q": "Why is aflatoxin particularly dangerous?", "opts": ["It is visible on the surface", "It only affects livestock", "It is not removed by cooking", "It develops only in cold storage"], "correct": 2, "exp": "The toxin is heat-stable, so contaminated grain remains hazardous after cooking."}
+  ],
+  "Good Agricultural Practices (GAP)": [
+    {"q": "Where do most farms fail a GAP audit?", "opts": ["Soil quality", "Yield levels", "Farm size", "Record keeping"], "correct": 3, "exp": "Compliance must be demonstrated through documentation, and that is usually what is missing."},
+    {"q": "What is a pre-harvest interval?", "opts": ["The required waiting time after pesticide application before harvest", "The gap between two harvests", "The time produce spends in storage", "The time between planting and harvest"], "correct": 0, "exp": "It allows residues to fall below the permitted limit, and it cannot be shortened safely."},
+    {"q": "Why must manure be composted before use on crops eaten raw?", "opts": ["To increase nitrogen content", "Composting reduces the pathogens it contains", "To make it easier to spread", "To improve its smell"], "correct": 1, "exp": "Raw manure carries pathogens that can transfer to produce that will not be cooked."}
+  ],
+  "Post-Harvest Handling": [
+    {"q": "What is the dominant factor in fresh produce deterioration?", "opts": ["Light", "Altitude", "Temperature", "Humidity"], "correct": 2, "exp": "Respiration accelerates with temperature, so removing field heat quickly extends shelf life."},
+    {"q": "Why sort out damaged units before packing?", "opts": ["To meet transport rules", "To improve appearance only", "To reduce weight", "Because one rotting unit spoils those around it"], "correct": 3, "exp": "Rot spreads by contact and by the ethylene damaged produce releases."},
+    {"q": "Why are rigid crates preferred to sacks for soft produce?", "opts": ["They prevent compression damage", "They are easier to label", "They are cheaper", "They hold more"], "correct": 0, "exp": "Sacks allow the weight of the load to crush produce lower down, causing large losses."}
+  ],
+  "Food Storage": [
+    {"q": "What is the critical variable for safe grain storage?", "opts": ["Grain variety", "Moisture content", "Bag colour", "Storage height"], "correct": 1, "exp": "Above roughly 13 to 14 percent moisture, mould develops and can produce aflatoxin."},
+    {"q": "Why store bags off the ground and away from walls?", "opts": ["To meet buyer requirements", "To make counting easier", "To allow air movement and prevent moisture uptake", "To reduce theft"], "correct": 2, "exp": "Contact with ground and walls transfers moisture and blocks ventilation."},
+    {"q": "Why does condensation matter in a store?", "opts": ["It changes the grain colour", "It damages the building", "It attracts rodents", "It rewets grain and starts mould growth"], "correct": 3, "exp": "Moisture returning to dried grain undoes the drying and creates conditions for mould."}
+  ],
+  "Food Processing Basics": [
+    {"q": "What two things does processing achieve?", "opts": ["Extends shelf life and captures more chain value", "Increases yield and reduces labour", "Improves soil and reduces cost", "Raises volume and lowers risk"], "correct": 0, "exp": "Both preservation and value capture are the reasons to process."},
+    {"q": "Why must conversion yield be known?", "opts": ["To satisfy regulators", "Because pricing without it can put the product below cost", "To choose the packaging", "To calculate storage space only"], "correct": 1, "exp": "The raw material used per unit of product is a major cost that must be built into the price."},
+    {"q": "Why does processing concentrate risk?", "opts": ["Processing equipment is dangerous", "Processed food spoils faster", "Contamination in one batch affects a large quantity", "Processing requires more workers"], "correct": 2, "exp": "Batching combines many units, so a single failure affects everything in that batch."}
+  ],
+  "Quality Assurance": [
+    {"q": "How does quality assurance differ from quality control?", "opts": ["Assurance is done by buyers; control by farmers", "They are the same thing", "Assurance applies only to processed food", "Assurance designs the process to prevent failures; control inspects and rejects"], "correct": 3, "exp": "Prevention through process design differs fundamentally from detection after the fact."},
+    {"q": "Why is prevention commercially better than inspection?", "opts": ["Inspection catches problems only after production cost has been incurred", "Prevention requires no staff", "Inspection is slower", "Inspection is illegal"], "correct": 0, "exp": "A rejected unit has already consumed all its production cost, so preventing the defect saves more."},
+    {"q": "What should follow every rejection?", "opts": ["A new supplier", "An investigation into the cause", "A larger inspection team", "A price reduction"], "correct": 1, "exp": "Without understanding the cause, the same failure will happen again."}
+  ],
+  "Traceability Systems": [
+    {"q": "What does traceability rest on?", "opts": ["Certification", "Packaging design", "Lot identification", "Refrigeration"], "correct": 2, "exp": "Grouping produce into identifiable batches is what makes tracking possible."},
+    {"q": "What is the usual minimum traceability standard?", "opts": ["Farm records only", "Retail records only", "Full chain to the consumer", "One step back and one step forward"], "correct": 3, "exp": "Knowing the immediate supplier and the immediate customer is the common baseline requirement."},
+    {"q": "What is the practical value of traceability during a problem?", "opts": ["It limits a recall to the affected lot rather than all production", "It reduces packaging cost", "It prevents contamination", "It improves shelf life"], "correct": 0, "exp": "Precise identification confines the withdrawal to what is actually implicated."}
+  ],
+  "Food Standards & Compliance": [
+    {"q": "Which standards are often the binding constraint?", "opts": ["National regulations", "Buyer standards, which are frequently stricter than the law", "International trade rules", "Local council rules"], "correct": 1, "exp": "Private buyer requirements commonly exceed legal minimums and determine market access."},
+    {"q": "Whose residue limits apply to an exported product?", "opts": ["The producing country's", "An international average", "The destination market's", "The shipping company's"], "correct": 2, "exp": "The market where the product is sold sets the limits it must meet."},
+    {"q": "How is compliance demonstrated?", "opts": ["By inspection at sale", "By the producer's assurance", "By the size of the operation", "Through records"], "correct": 3, "exp": "Documentation is what allows an auditor or buyer to verify that requirements were met."}
+  ],
+  "Agricultural Economics": [
+    {"q": "What does inelastic demand mean for staple food?", "opts": ["Consumption changes little when the price changes", "Consumption doubles when prices fall", "Demand is unpredictable", "Demand rises with supply"], "correct": 0, "exp": "People eat roughly the same amount regardless of price, so supply changes hit price hard."},
+    {"q": "Why can a bumper harvest leave farmers collectively worse off?", "opts": ["Costs rise with yield", "Prices fall further than output rose, because demand does not expand", "Storage becomes impossible", "Quality declines"], "correct": 1, "exp": "With inelastic demand, the price fall outweighs the extra volume."},
+    {"q": "Why is responding to last season's price often a mistake?", "opts": ["Prices are always falling", "Last season's price is never known", "Everyone responds the same way, so the crop that paid well is oversupplied", "Prices are fixed by government"], "correct": 2, "exp": "Production lags mean many farmers plant the same crop in response, creating the next glut."}
+  ],
+  "M13:Farm Budgeting": [
+    {"q": "How is net farm income calculated?", "opts": ["Total revenue minus variable costs", "Yield multiplied by price", "Cash received minus cash paid", "Total gross margin minus fixed costs"], "correct": 3, "exp": "Gross margins cover variable costs, so fixed costs are then deducted to reach net farm income."},
+    {"q": "How does loan principal repayment differ from an expense?", "opts": ["It consumes cash but is not a cost of production", "It is optional", "It appears in the gross margin", "It is tax deductible"], "correct": 0, "exp": "Repaying capital reduces a liability rather than paying for something consumed."},
+    {"q": "What is depreciation?", "opts": ["A loss of crop value", "Spreading an asset's cost across its useful life", "A reduction in land price", "A cash payment made annually"], "correct": 1, "exp": "It recognises the using-up of an asset as a cost without any cash changing hands."}
+  ],
+  "Financial Statements": [
+    {"q": "Which statement shows what a business owns and owes at a point in time?", "opts": ["The income statement", "The cash flow statement", "The balance sheet", "The gross margin"], "correct": 2, "exp": "A balance sheet is a snapshot of assets, liabilities and the equity between them."},
+    {"q": "How can a profitable business run out of money?", "opts": ["Taxes consume all profit", "Profit cannot be spent", "Profit is always false", "Revenue may be recorded before the cash is received"], "correct": 3, "exp": "Credit sales count as revenue immediately while the cash arrives later or not at all."},
+    {"q": "What does assets minus liabilities equal?", "opts": ["Equity", "Revenue", "Profit", "Cash flow"], "correct": 0, "exp": "Equity is the residual owner's stake once obligations are subtracted from what is owned."}
+  ],
+  "Investment Planning": [
+    {"q": "How is payback period calculated?", "opts": ["Profit divided by assets", "Investment cost divided by additional annual net income", "Annual revenue divided by cost", "Cost multiplied by useful life"], "correct": 1, "exp": "It measures how long the additional net income takes to recover the outlay."},
+    {"q": "What is the main weakness of the payback measure?", "opts": ["It cannot be used for equipment", "It is difficult to calculate", "It ignores everything after payback and the time value of money", "It requires audited accounts"], "correct": 2, "exp": "It says nothing about returns beyond the payback point and treats all years as equivalent."},
+    {"q": "What drives the return on a capital item most?", "opts": ["Its size", "Its purchase price alone", "Its brand", "How much it is actually used"], "correct": 3, "exp": "An asset used a few days a year spreads its cost over very little output."}
+  ],
+  "Agricultural Loans": [
+    {"q": "What matters more than the interest rate?", "opts": ["Whether the repayment schedule matches when income arrives", "The loan currency", "The application process", "The lender's size"], "correct": 0, "exp": "A mismatch forces repayment from funds the business does not yet have, causing default."},
+    {"q": "What is value chain finance?", "opts": ["A loan for chain infrastructure", "Credit from a buyer or input supplier rather than a bank", "A loan secured against land", "Government subsidy"], "correct": 1, "exp": "It comes from a trading partner with an interest in the production, often without formal collateral."},
+    {"q": "Why can a grace period be worth more than a lower rate?", "opts": ["Grace periods reduce total interest", "They extend the loan indefinitely", "They align the first repayment with when income actually arrives", "They remove collateral requirements"], "correct": 2, "exp": "Deferring repayment until after harvest makes the loan serviceable from the enterprise itself."}
+  ],
+  "Insurance in Agriculture": [
+    {"q": "How does index insurance determine payouts?", "opts": ["By the farmer's declaration", "By average regional yield reports", "By assessing each farm's actual loss", "By a measured index crossing a threshold"], "correct": 3, "exp": "Payment follows the index value rather than any individual assessment, which keeps costs low."},
+    {"q": "What is basis risk?", "opts": ["The mismatch between the index and a farmer's actual loss", "The risk of crop failure", "The risk that premiums rise", "The risk of insurer insolvency"], "correct": 0, "exp": "An index can fail to trigger despite real loss, or trigger without one."},
+    {"q": "What kind of losses is insurance best suited to?", "opts": ["Losses the farmer causes", "Severe and infrequent losses", "Small routine variation", "Predictable seasonal costs"], "correct": 1, "exp": "Insurance is efficient for catastrophic risk; routine variation is cheaper to absorb."}
+  ],
+  "Grant Opportunities": [
+    {"q": "Why do most grant applications fail?", "opts": ["Applications arrive early", "Poor writing", "Eligibility criteria are not met", "Budgets are too small"], "correct": 2, "exp": "Applicants frequently apply for funds they were never qualified to receive."},
+    {"q": "What obligations typically come with a grant?", "opts": ["Permanent audit rights over the business", "Repayment with interest", "Transfer of ownership", "Reporting, spending restrictions and timelines"], "correct": 3, "exp": "Funders require accountability for how the money advanced their stated objective."},
+    {"q": "What should never be done to obtain a grant?", "opts": ["Reshape a sound business around funding that does not fit it", "Describe existing plans in the funder's language", "Provide a detailed budget", "Co-finance part of the cost"], "correct": 0, "exp": "Distorting a viable plan to match available money usually damages the business."}
+  ],
+  "Financial Risk Management": [
+    {"q": "Which financial risk most often kills sound farm businesses?", "opts": ["Currency risk", "Liquidity risk", "Inflation risk", "Interest rate risk"], "correct": 1, "exp": "Concentrated revenue and spread costs mean businesses fail by being unable to pay on time."},
+    {"q": "What should be done before extending credit to a new buyer?", "opts": ["Sell them the entire harvest", "Increase the price", "Check their payment record and start with a small quantity", "Require full prepayment always"], "correct": 2, "exp": "Limiting initial exposure while verifying reliability contains the risk."},
+    {"q": "Why arrange a lending relationship before it is needed?", "opts": ["Rates are lower in advance", "It is legally required", "Lenders only lend once", "Credit is hardest to obtain at the moment you are short of cash"], "correct": 3, "exp": "A business in visible difficulty is exactly when lenders become reluctant."}
+  ],
+  "Artificial Intelligence in Agriculture": [
+    {"q": "What does AI in agriculture fundamentally do?", "opts": ["Finds patterns in data to classify or predict", "Understands crops the way an agronomist does", "Replaces field measurement", "Guarantees higher yields"], "correct": 0, "exp": "It is trained pattern-matching applied to classification and prediction tasks."},
+    {"q": "Why might a disease identification model fail in Liberia?", "opts": ["Phones are different", "It may have been trained on other crops and regions", "The internet is slower", "Diseases cannot be photographed"], "correct": 1, "exp": "Model performance depends on how closely conditions resemble the training data."},
+    {"q": "What does a model's confidence figure describe?", "opts": ["The probability the diagnosis is correct", "The quality of the photograph", "Its certainty about its own pattern match, not correctness", "The severity of the disease"], "correct": 2, "exp": "A model can be highly confident and entirely wrong when shown something outside its training."}
+  ],
+  "Machine Learning Basics": [
+    {"q": "What is overfitting?", "opts": ["Using too many sensors", "Predicting values that are too high", "Training on too little data", "A model memorising training examples and failing on new data"], "correct": 3, "exp": "The model captures noise specific to its training set rather than the general relationship."},
+    {"q": "Why must a model be tested on unseen data?", "opts": ["Because performance on training data overstates real performance", "Because regulations require it", "To increase its accuracy", "To reduce training time"], "correct": 0, "exp": "Only data the model has never seen reveals whether it generalises."},
+    {"q": "Why can 95 percent accuracy be a poor result?", "opts": ["It depends on the algorithm used", "If disease is rare, always predicting no disease achieves it while detecting nothing", "Accuracy above 90 percent is impossible", "It ignores training time"], "correct": 1, "exp": "With imbalanced classes, high accuracy can coexist with complete failure at the actual task."}
+  ],
+  "Computer Vision for Farming": [
+    {"q": "What most often causes poor computer vision results in the field?", "opts": ["Network speed", "The time of year", "How the photographs were taken", "The phone's processor"], "correct": 2, "exp": "Framing, focus and lighting determine whether the model receives an image it can interpret."},
+    {"q": "Why photograph both sides of a leaf?", "opts": ["To reduce file size", "To identify the variety", "To improve focus", "Because symptoms may appear on the underside"], "correct": 3, "exp": "Many pests and diseases show first or only on the lower leaf surface."},
+    {"q": "What practical saving does weed and crop discrimination enable?", "opts": ["Targeted spraying, which sharply cuts herbicide use", "Faster ripening", "Reduced seed cost", "Lower labour for harvest"], "correct": 0, "exp": "Spraying only where weeds are found avoids treating the whole field."}
+  ],
+  "M14:Predictive Analytics": [
+    {"q": "What makes a prediction valuable besides accuracy?", "opts": ["The cost of the model", "Lead time, so there is opportunity to act", "The number of users", "The length of the report"], "correct": 1, "exp": "A prediction arriving after the decision window has closed cannot change anything."},
+    {"q": "Why is disease risk forecasting particularly valuable?", "opts": ["Disease is rare", "It requires no data", "Spraying is time-critical, and preventive treatment beats curative", "It replaces scouting entirely"], "correct": 2, "exp": "Acting before symptoms appear is cheaper and more effective than treating an established infection."},
+    {"q": "What improves predictions more than a more sophisticated model?", "opts": ["Faster computers", "A larger user base", "More frequent reports", "Local historical data"], "correct": 3, "exp": "Models learn from data, and data matching local conditions is what makes predictions transfer."}
+  ],
+  "Robotics in Agriculture": [
+    {"q": "Which tasks suit robotics best?", "opts": ["Repetitive, precisely definable tasks done many times", "Tasks requiring judgement", "Tasks done once a season", "Tasks involving negotiation"], "correct": 0, "exp": "Repetition and precise definition are what make automation feasible and worthwhile."},
+    {"q": "What are the binding constraints on agricultural robotics in Africa?", "opts": ["Soil type and rainfall", "Capital cost and local repair access", "Crop variety and planting date", "Regulation and licensing"], "correct": 1, "exp": "High purchase cost and the absence of nearby repair capability prevent adoption."},
+    {"q": "Why does robotic milking work particularly well?", "opts": ["Cows are easy to see", "Milk is valuable", "The cow presents herself and the task is identical each time", "Milking is done once a year"], "correct": 2, "exp": "A self-presenting animal and an unchanging task make the operation reliably automatable."}
+  ],
+  "Blockchain in Agriculture": [
+    {"q": "What does a blockchain guarantee?", "opts": ["That participants are honest", "That transactions are fast", "That the recorded data is accurate", "That the record has not been altered after entry"], "correct": 3, "exp": "Immutability protects against later alteration, not against a false original entry."},
+    {"q": "When is blockchain genuinely worth considering?", "opts": ["Where several mutually distrustful parties must share one record", "For any farm record system", "Whenever data volume is large", "For all traceability"], "correct": 0, "exp": "Its distinctive benefit only applies when no single trusted record-keeper is acceptable."},
+    {"q": "What should a single cooperative usually use instead?", "opts": ["A private blockchain", "An ordinary database", "Paper records only", "A public blockchain"], "correct": 1, "exp": "With one trusted record-keeper, a conventional database is simpler, cheaper and faster."}
+  ],
+  "AI Farm Management Tools": [
+    {"q": "How should an AI tool be tested before it is trusted?", "opts": ["By comparing subscription prices", "By reading its documentation", "On cases where the correct answer is already known", "By counting its users"], "correct": 2, "exp": "Local validation against known answers reveals actual accuracy under your conditions."},
+    {"q": "Which question is most often skipped when evaluating a tool?", "opts": ["How fast is it?", "What does it cost?", "Who made it?", "What happens when it is wrong?"], "correct": 3, "exp": "The consequences of an incorrect recommendation determine how much accuracy is required."},
+    {"q": "Why prefer tools that explain their reasoning?", "opts": ["An explanation lets a user judge whether the answer is plausible", "They run faster", "They use less data", "They are cheaper"], "correct": 0, "exp": "Reasoning that can be inspected allows the user to catch errors an opaque answer would hide."}
+  ],
+  "Future Trends in AgriTech": [
+    {"q": "Which skills appreciate over time in AgriTech?", "opts": ["Using a specific app", "Record design, data analysis and interpretation", "Operating one particular platform", "Repairing one model of sensor"], "correct": 1, "exp": "Transferable analytical skills survive the replacement of any given tool."},
+    {"q": "What is becoming the scarce input for African AgriTech models?", "opts": ["Sensor hardware", "Computing power", "Local data", "Satellite imagery"], "correct": 2, "exp": "Models need locally relevant training data, and good local records are uncommon."},
+    {"q": "Why are services bundling advice, inputs, finance and market access?", "opts": ["To reduce competition", "To increase subscription revenue", "Because regulators require it", "Because a farmer's problems are bundled too"], "correct": 3, "exp": "Solving one problem in isolation often fails when the adjacent constraints remain."}
+  ],
+  "Agricultural Policies": [
+    {"q": "What should you ask first about any agricultural policy?", "opts": ["Who benefits and who pays", "When was it written", "Who signed it", "How long is the document"], "correct": 0, "exp": "Every policy transfers value, and identifying the direction reveals its real effect."},
+    {"q": "Why can a food price ceiling reduce food availability?", "opts": ["It raises transport costs", "Producers cannot cover costs, so they plant less", "It increases consumption", "It causes hoarding by consumers"], "correct": 1, "exp": "Suppressing the producer price reduces the incentive to produce."},
+    {"q": "Why is policy predictability valuable to farmers?", "opts": ["It reduces paperwork", "It lowers taxes", "Long-term investment requires confidence about future conditions", "It guarantees prices"], "correct": 2, "exp": "Farming decisions commit resources for seasons or years, which requires a stable environment."}
+  ],
+  "Land Use Management": [
+    {"q": "What is customary tenure?", "opts": ["A government-issued title deed", "A rental agreement with a bank", "International land law", "Land rights recognised by the community and traditional authorities"], "correct": 3, "exp": "It is community-recognised rights administered outside the statutory titling system."},
+    {"q": "Why does insecure tenure degrade soil?", "opts": ["Farmers avoid long-payback investments such as soil improvement and tree planting", "It prevents ploughing", "It reduces rainfall", "It causes erosion directly"], "correct": 0, "exp": "Without confidence of holding the land, only short-term returns are worth pursuing."},
+    {"q": "How does weak land tenure limit finance?", "opts": ["It raises interest rates by law", "Land that cannot be used as collateral restricts access to formal credit", "It prevents record keeping", "It reduces yields"], "correct": 1, "exp": "Lenders rely on collateral, and unsecured land rights cannot serve that purpose."}
+  ],
+  "Sustainable Development Goals (SDGs)": [
+    {"q": "Which SDG is the primary agricultural goal?", "opts": ["Goal 15, life on land", "Goal 1, no poverty", "Goal 2, zero hunger", "Goal 13, climate action"], "correct": 2, "exp": "Goal 2 covers hunger, nutrition, agricultural productivity and smallholder incomes directly."},
+    {"q": "What matters most in practice when funders assess alignment?", "opts": ["The order goals are listed in", "The number of goals named", "The length of the proposal", "Specific indicators that can be measured"], "correct": 3, "exp": "Funders assess and report against measurable indicators rather than goal statements."},
+    {"q": "What should never be done when framing a proposal?", "opts": ["Claiming alignment the project does not genuinely have", "Naming several goals", "Using the funder's terminology", "Including measurable indicators"], "correct": 0, "exp": "Invented alignment is checked during assessment and reporting, and damages credibility."}
+  ],
+  "Environmental Regulations": [
+    {"q": "How is environmental compliance increasingly enforced?", "opts": ["Through insurance companies", "Through the market, by buyers and certification schemes", "By farmer associations", "Only through government inspection"], "correct": 1, "exp": "Buyers audit and withdraw business, which is often a faster and heavier penalty than a fine."},
+    {"q": "What must be checked before installing a borehole or river offtake?", "opts": ["The electricity supply", "The pump brand", "Whether a water abstraction permit is required", "The soil type"], "correct": 2, "exp": "Water abstraction is commonly regulated and may require authorisation."},
+    {"q": "Why does record keeping matter for environmental compliance?", "opts": ["It speeds up inspection", "It reduces the cost of inputs", "It is required for tax", "Compliance that cannot be evidenced is treated as non-compliance"], "correct": 3, "exp": "Auditors verify through documentation, so unrecorded good practice does not count."}
+  ],
+  "Agricultural Cooperatives": [
+    {"q": "What is the economic case for a cooperative?", "opts": ["Scale, which creates a negotiating position members lack individually", "Government subsidy", "Lower taxes", "Reduced production costs on farm"], "correct": 0, "exp": "Aggregation gives smallholders bargaining power with buyers, suppliers and lenders."},
+    {"q": "What is the commonest cause of cooperative failure in marketing?", "opts": ["Poor crop quality", "Side-selling by members", "Excessive membership", "Government interference"], "correct": 1, "exp": "Members selling privately prevents the cooperative from fulfilling the contracts it negotiated."},
+    {"q": "What destroys a cooperative faster than financial losses?", "opts": ["Low yields", "Late deliveries", "Opaque accounts", "Small membership"], "correct": 2, "exp": "Loss of trust in how money is handled is more corrosive than a poor trading result."}
+  ],
+  "Rural Development": [
+    {"q": "What is often a bigger constraint on farm income than yield?", "opts": ["Seed quality", "Labour availability", "Soil fertility", "Market access"], "correct": 3, "exp": "Produce that cannot reach a buyer at acceptable cost earns little regardless of how much is grown."},
+    {"q": "Why does road quality determine which crops are viable?", "opts": ["Perishable produce needs reliable transport to reach buyers in time", "Roads change crop varieties", "Roads affect soil", "Roads determine rainfall"], "correct": 0, "exp": "Perishables lose value rapidly, so unreliable access rules them out."},
+    {"q": "What does mobile coverage enable simultaneously?", "opts": ["Storage and grading", "Price information, mobile money and advisory services", "Higher yields and lower costs", "Irrigation and processing"], "correct": 1, "exp": "A single connection supports market information, payments and extension advice together."}
+  ],
+  "Gender in Agriculture": [
+    {"q": "What explains the yield gap between men and women farmers?", "opts": ["Differences in ability", "Differences in crop choice", "Differences in access to land, credit, inputs and services", "Differences in soil quality"], "correct": 2, "exp": "With equal access, yields are comparable, so the gap reflects access rather than capability."},
+    {"q": "What is the foundational constraint for many women farmers?", "opts": ["Seed availability", "Transport", "Storage", "Land rights"], "correct": 3, "exp": "Weak land rights block credit access and discourage long-term investment."},
+    {"q": "How can a training programme reach more women?", "opts": ["By scheduling it around when and where women are already present", "By reducing the content", "By requiring registration", "By making it longer"], "correct": 0, "exp": "Practical timing and location decisions determine who is actually able to attend."}
+  ],
+  "Agricultural Extension Services": [
+    {"q": "What is the persistent structural problem in extension?", "opts": ["Lack of technical knowledge", "The ratio of farmers to advisors", "Poor crop varieties", "Excessive funding"], "correct": 1, "exp": "One officer covering thousands of farmers makes individual advice impossible."},
+    {"q": "Why do lead-farmer models work well?", "opts": ["They are cheaper to fund", "They require no training", "They multiply reach and carry more trust than an outside officer", "They avoid the need for demonstration"], "correct": 2, "exp": "Advice from a peer facing the same conditions is both scalable and credible."},
+    {"q": "What makes extension advice actionable?", "opts": ["Being delivered in writing", "Covering many topics at once", "Being repeated frequently", "Being specific about what to do, when and how much"], "correct": 3, "exp": "Vague recommendations cannot be acted on; specificity is what allows a farmer to follow them."}
+  ],
+  "M16:Business Communication": [
+    {"q": "Where should the conclusion or request appear?", "opts": ["In the opening lines", "After the background", "In an appendix", "In the final paragraph"], "correct": 0, "exp": "A busy reader may stop early, so the essential point must come first."},
+    {"q": "Why is technical jargon a problem?", "opts": ["It takes longer to type", "It excludes readers rather than impressing them", "It is always inaccurate", "It cannot be translated"], "correct": 1, "exp": "Language the reader does not share prevents the message from being understood or acted on."},
+    {"q": "How should a communication end?", "opts": ["With a summary of the background", "With a list of attachments", "With a specific action, person and date", "With contact details only"], "correct": 2, "exp": "Naming who does what by when is what converts a message into an outcome."}
+  ],
+  "M16:Leadership": [
+    {"q": "What does influence rest on when formal authority is limited?", "opts": ["Seniority and title", "Budget control", "Length of service", "Competence, fairness and reliability"], "correct": 3, "exp": "Without authority, people cooperate because they trust your judgement and your word."},
+    {"q": "Why explain the reason behind an instruction?", "opts": ["People execute better when they understand why", "It transfers responsibility", "It avoids the need for deadlines", "It shortens the instruction"], "correct": 0, "exp": "Understanding the purpose allows people to adapt sensibly when conditions differ."},
+    {"q": "Why is it particularly damaging to over-promise to farmers?", "opts": ["They record it", "They plan their season around it", "They will demand compensation", "They repeat it to others"], "correct": 1, "exp": "Farmers commit resources based on what they are told, so a broken promise causes real loss."}
+  ],
+  "M16:Project Management": [
+    {"q": "What is distinctive about agricultural project deadlines?", "opts": ["They are always annual", "They are usually flexible", "Many tasks are season-locked and cannot move", "They are set by donors only"], "correct": 2, "exp": "Biological timing fixes certain dates, and everything upstream must fit before them."},
+    {"q": "What is the critical path?", "opts": ["The tasks done first", "The most expensive tasks", "The tasks assigned to senior staff", "The sequence where any delay delays the whole project"], "correct": 3, "exp": "Delays on this sequence propagate directly to the completion date."},
+    {"q": "Why must one person be accountable for each task?", "opts": ["Because shared accountability means no accountability", "To reduce staff numbers", "To simplify reporting", "To allocate budget"], "correct": 0, "exp": "When responsibility is diffuse, tasks fall between people unnoticed."}
+  ],
+  "Proposal Writing": [
+    {"q": "What is the most common weakness in proposals?", "opts": ["Excessive length", "Describing activities rather than measurable results", "Too much evidence", "Too many partners"], "correct": 1, "exp": "Funders assess the change produced, not the number of activities delivered."},
+    {"q": "Why must the funder's format be followed exactly?", "opts": ["It shortens the proposal", "It reduces the budget", "Proposals are rejected on format before the content is read", "It is legally required"], "correct": 2, "exp": "Non-compliant submissions are commonly screened out before assessment."},
+    {"q": "What should accompany a target in a proposal?", "opts": ["A list of staff", "A map of the region", "A history of the organisation", "A baseline and how it will be measured"], "correct": 3, "exp": "Without a baseline and a measurement method, a target cannot be assessed or verified."}
+  ],
+  "M16:Report Writing": [
+    {"q": "What should the summary of a report do?", "opts": ["Stand alone, giving findings, meaning and recommendations", "List the annexes", "Describe the method in detail", "Introduce the organisation"], "correct": 0, "exp": "The summary is often all that is read, so it must convey the essentials by itself."},
+    {"q": "Why separate observations from conclusions?", "opts": ["To satisfy formatting rules", "So readers can check your reasoning", "To hide weak evidence", "To lengthen the report"], "correct": 1, "exp": "A reader who can see the evidence separately can judge whether the conclusion follows."},
+    {"q": "Why acknowledge limitations?", "opts": ["To avoid making recommendations", "Because funders require a limitations section", "A report claiming unwarranted certainty loses credibility", "To reduce the workload"], "correct": 2, "exp": "Overstating confidence undermines trust in the whole report once a reader notices."}
+  ],
+  "M16:Teamwork": [
+    {"q": "What should be assumed first when cross-team work fails?", "opts": ["That someone was negligent", "That the plan was wrong", "That resources were insufficient", "That the problem is structural rather than personal"], "correct": 3, "exp": "Unclear handovers and incompatible schedules cause most such failures."},
+    {"q": "What should be agreed explicitly at a handover?", "opts": ["What is passed, in what form, and by when", "Who attended the meeting", "The next meeting date", "The budget"], "correct": 0, "exp": "Specifying the content, format and timing prevents work falling between roles."},
+    {"q": "Why circulate written notes after a meeting?", "opts": ["To demonstrate effort", "Because memories of what was agreed diverge", "Because it is required by policy", "To create a record for auditors"], "correct": 1, "exp": "Participants recall different commitments, and a written record settles it early."}
+  ],
+  "M16:Problem Solving": [
+    {"q": "What is the usual error in problem solving?", "opts": ["Waiting too long to act", "Gathering too much evidence", "Treating a symptom rather than finding the cause", "Consulting too many people"], "correct": 2, "exp": "Responding to the visible symptom leaves the underlying cause in place."},
+    {"q": "Which explanations should be checked first?", "opts": ["The ones others suggest", "The most technically interesting", "The most expensive to fix", "The cheap and simple ones, such as measurement error or a blockage"], "correct": 3, "exp": "Simple causes are common and quick to rule out, which narrows the search cheaply."},
+    {"q": "Which step is most often omitted?", "opts": ["Deciding how you will know whether the response worked", "Defining the problem", "Gathering evidence", "Choosing a response"], "correct": 0, "exp": "Without a check, the same problem recurs and nothing is learned from the attempt."}
+  ],
+  "Professional Ethics": [
+    {"q": "Why does information imbalance create a duty?", "opts": ["Because advisors are paid", "Because those you advise cannot verify your advice yet commit real resources to it", "Because regulations require it", "Because farmers are inexperienced"], "correct": 1, "exp": "When someone relies on advice they cannot check, the advisor carries responsibility for its accuracy."},
+    {"q": "What must be disclosed when recommending a product?", "opts": ["Where it is sold", "Its price", "Any interest you have in it, such as a commission", "Its manufacturer"], "correct": 2, "exp": "An undisclosed financial interest compromises the recommendation and misleads the recipient."},
+    {"q": "Who does farm data belong to?", "opts": ["The organisation storing it", "The advisor who collected it", "The project funder", "The farmer"], "correct": 3, "exp": "The data describes the farmer's business and remains theirs, whoever gathered or stores it."}
+  ],
+  "Building an AgriTech Portfolio": [
+    {"q": "Why does a portfolio matter more than a certificate?", "opts": ["It shows what you produced rather than what you were taught", "It is quicker to obtain", "It is required by employers", "It replaces an interview"], "correct": 0, "exp": "Evidence of completed work demonstrates capability that a course record cannot."},
+    {"q": "What should accompany each portfolio piece?", "opts": ["The date it was completed", "The problem, what you did, what you found and what changed", "The software used", "The name of the course"], "correct": 1, "exp": "This structure lets a reviewer judge both the work and its usefulness quickly."},
+    {"q": "Why include limitations?", "opts": ["To shorten the document", "To lower expectations", "They demonstrate judgement rather than weakness", "Because employers require them"], "correct": 2, "exp": "Stating what the work could not establish shows you understand the strength of your own evidence."}
+  ],
+  "M18:Resume Writing": [
+    {"q": "What is the purpose of a resume?", "opts": ["To replace a portfolio", "To list every course taken", "To describe your full history", "To secure an interview"], "correct": 3, "exp": "It is a screening document whose only job is to get you to the next stage."},
+    {"q": "What is the recurring weakness in resumes?", "opts": ["Listing duties rather than results", "Including contact details", "Excessive length", "Too many numbers"], "correct": 0, "exp": "Duties describe a role; results demonstrate what you are able to achieve in one."},
+    {"q": "How should achievements be written?", "opts": ["With technical jargon", "With numbers showing scale and what changed", "In general terms to avoid overstating", "As a list of responsibilities"], "correct": 1, "exp": "Quantified outcomes let a reader judge the scale and value of what you did."}
+  ],
+  "LinkedIn Optimization": [
+    {"q": "How do recruiters typically find candidates on LinkedIn?", "opts": ["By education alone", "By browsing all profiles", "Through keyword searches", "By connection count"], "correct": 2, "exp": "Search by skill and tool keywords is the standard method, so those words must appear."},
+    {"q": "What kind of keywords are useful for agricultural roles?", "opts": ["General personal qualities", "Hobbies and interests", "Long job titles", "Specific skills and tools such as GIS, farm data and value chain"], "correct": 3, "exp": "Recruiters search for capabilities and named tools, not personal descriptions."},
+    {"q": "Why share project work publicly?", "opts": ["It demonstrates ability where people can see it", "To replace a resume", "To increase connection count", "Because the platform requires activity"], "correct": 0, "exp": "Visible evidence of real work reaches people who were not searching for you specifically."}
+  ],
+  "Interview Preparation": [
+    {"q": "How are most interview questions best answered?", "opts": ["With general statements about your qualities", "With specific examples including a measurable result", "By describing the course you took", "By asking a question back"], "correct": 1, "exp": "Concrete examples with results are checkable evidence, unlike general claims."},
+    {"q": "How many prepared examples usually suffice?", "opts": ["None, since questions vary", "At least twenty", "About five, since the same experiences answer many questions", "One for every possible question"], "correct": 2, "exp": "A small set of well-prepared experiences can be adapted to most question types."},
+    {"q": "What should you do when you do not know something?", "opts": ["Claim it was not covered", "Guess confidently", "Change the subject", "Say so plainly and explain how you would find out"], "correct": 3, "exp": "Acknowledging a gap and describing your method is more credible than a confident wrong answer."}
+  ],
+  "Freelancing Opportunities": [
+    {"q": "What kind of service is easiest to sell?", "opts": ["A specific, bounded service with a clear deliverable", "Long-term availability", "Advice by the hour", "General assistance"], "correct": 0, "exp": "A defined deliverable is easy to price, approve and evaluate."},
+    {"q": "Why take a deposit?", "opts": ["Because it is legally required", "It filters out clients who were never going to pay", "To reduce the total fee", "To cover materials only"], "correct": 1, "exp": "A client unwilling to commit anything in advance is a poor risk for the full amount."},
+    {"q": "What should be put in writing before starting?", "opts": ["The client's history", "Your availability", "The scope: what is included, excluded, and what happens if it changes", "Your qualifications"], "correct": 2, "exp": "Scope disputes are the commonest cause of unpaid freelance work."}
+  ],
+  "Consulting Opportunities": [
+    {"q": "What does a consultant sell that a freelancer does not?", "opts": ["Lower prices", "Faster delivery", "More hours", "Judgement and reduced uncertainty"], "correct": 3, "exp": "Clients pay for an assessment they cannot confidently make themselves."},
+    {"q": "Why must a consultant report unwelcome findings?", "opts": ["Because independence is the asset being sold", "To extend the contract", "Because clients expect criticism", "To justify the fee"], "correct": 0, "exp": "A consultant who tells clients what they want to hear provides no reduction in uncertainty."},
+    {"q": "What should be defined before agreeing consulting work?", "opts": ["Your availability", "The precise question, deliverable, timeline and payment schedule", "The number of meetings", "The client's budget only"], "correct": 1, "exp": "Vague terms of reference are the main source of disputes and unpaid work."}
+  ],
+  "Professional Certifications": [
+    {"q": "When is a certification worth pursuing?", "opts": ["When it can be completed quickly", "Whenever one is available", "When it is required for roles you want, grants a permission, or teaches a real gap", "When it is the cheapest option"], "correct": 2, "exp": "These three cases produce a concrete return; general credentialing usually does not."},
+    {"q": "How should you decide which certification to pursue?", "opts": ["By asking which is most prestigious", "By choosing the longest course", "By following what peers choose", "By checking advertisements for the roles you want"], "correct": 3, "exp": "Actual requirements in real advertisements are direct evidence of what is valued."},
+    {"q": "Which type of certification carries more weight?", "opts": ["One with practical assessment", "One awarded internationally", "One with an examination only", "One that is most expensive"], "correct": 0, "exp": "Assessed practical work demonstrates capability rather than recall."}
+  ],
+  "Career Growth Plan": [
+    {"q": "What makes a career destination useful for planning?", "opts": ["Being widely respected", "Being specific enough to identify what it requires", "Being ambitious", "Being achievable within a year"], "correct": 1, "exp": "A specific destination reveals concrete capabilities that can be worked towards."},
+    {"q": "Where should the required capabilities come from?", "opts": ["Colleagues' opinions", "General advice", "Real job advertisements for that type of role", "Course syllabuses"], "correct": 2, "exp": "Advertisements state what employers actually require for the role you are targeting."},
+    {"q": "Why review the plan every six months?", "opts": ["Because plans expire", "To increase ambition", "To satisfy an employer", "Because destinations change as you learn what the work is really like"], "correct": 3, "exp": "Experience changes what you want, and a plan that is never revised stops matching you."}
+  ],
+  "M20:Certificate Requirements": [
+    {"q": "What is verified in this module?", "opts": ["That every requirement for the certificate is complete", "The time taken to finish", "Fees paid", "Attendance across the course"], "correct": 0, "exp": "This is the checkpoint at which lessons, projects, capstone and assessments are confirmed complete."},
+    {"q": "How many real-world projects must be completed in Module 17?", "opts": ["Eight", "Ten", "Twelve", "Five"], "correct": 1, "exp": "Module 17 contains ten real-world AgriTech projects, and all are required."},
+    {"q": "What will most directly help you obtain interviews after the course?", "opts": ["The number of modules completed", "The length of study", "The portfolio of real work you built", "The certificate alone"], "correct": 2, "exp": "Employers weigh demonstrated work most heavily, which is what the portfolio provides."}
   ]
   };
 })();
