@@ -211,8 +211,42 @@
     return out;
   }
   function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
-  function practiceQuiz(key, name) { return { title: 'Practice: ' + name, moduleNum: 1, questions: pickQuestions(key, 3).map(cloneQ) }; }
-  function assessmentQuiz(key, name, count) { return { title: name, moduleNum: 1, questions: pickQuestions(key, count).map(cloneQ) }; }
+
+  /* Authored per-topic questions (agritech-topic-quizzes.js) take priority over
+     the shared pools above. pickQuestions() draws the first N of a pool keyed by
+     broad skill, so the 162 quizzes in this course held very few distinct
+     questions between them and the same question was asked many times over. */
+  function normQ(s) { return String(s || '').replace(/[^a-z0-9]+/gi, ' ').replace(/\s+/g, ' ').trim().toLowerCase(); }
+  var TQ_plain = null, TQ_mod = null;
+  function buildTopicIndex() {
+    if (TQ_plain) return;
+    TQ_plain = {}; TQ_mod = {};
+    var src = (typeof window !== 'undefined' && window.TIH_TOPIC_QUIZZES && window.TIH_TOPIC_QUIZZES['agritech']) || {};
+    Object.keys(src).forEach(function (k) {
+      var m = String(k).match(/^\s*M(\d+)\s*[:|]\s*(.+)$/i);
+      if (m) TQ_mod[m[1] + '|' + normQ(m[2])] = src[k];
+      else TQ_plain[normQ(k)] = src[k];
+    });
+  }
+  function topicQuestions(moduleNum, name) {
+    buildTopicIndex();
+    var arr = TQ_mod[moduleNum + '|' + normQ(name)] || TQ_plain[normQ(name)];
+    return (arr && arr.length) ? arr.map(cloneQ) : null;
+  }
+
+  var practiceIndex = {};   // quizId -> { module, name }
+  var assessIndex = [];     // { quizId, module, count, scope }
+  function practiceQuiz(key, name, moduleNum, quizId) {
+    if (quizId) practiceIndex[quizId] = { module: moduleNum, name: name };
+    var authored = topicQuestions(moduleNum, name);
+    if (authored) return { title: 'Practice: ' + name, moduleNum: 1, questions: authored };
+    return { title: 'Practice: ' + name, moduleNum: 1, questions: pickQuestions(key, 3).map(cloneQ) };
+  }
+  function assessmentQuiz(key, name, count, moduleNum, quizId) {
+    if (quizId) assessIndex.push({ quizId: quizId, module: moduleNum, count: count,
+                                   scope: (moduleNum >= 17 ? 'course' : 'module') });
+    return { title: name, moduleNum: 1, questions: pickQuestions(key, count).map(cloneQ) };
+  }
   function assessmentKey(name) {
     if (/Precision/i.test(name)) return 'precision';
     if (/IoT|Drone/i.test(name)) return 'iot';
@@ -237,7 +271,7 @@
     names.forEach(function (name) {
       if (/^Certificate of Completion$/i.test(name)) {
         var qid = 'at-m' + num + '-final';
-        quizzes[qid] = assessmentQuiz('general', 'Graduation Assessment', 15);
+        quizzes[qid] = assessmentQuiz('general', 'Graduation Assessment', 15, num, qid);
         quizzes[qid].isFinal = true;
         lessons.push({ t: '🏆 ' + name, d: '15 questions', isQuiz: true, quizId: qid, isFinal: true });
         notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>This is the final graduation assessment. Pass it to complete the program and unlock your TIH Certificate of Completion.</p></div>';
@@ -256,7 +290,7 @@
         var big = /Examination|Exam|Evaluation|Review/i.test(name);
         var count = big ? (/Final/i.test(name) ? 20 : 15) : 8;
         var aid = 'at-m' + num + '-a' + flat;
-        quizzes[aid] = assessmentQuiz(akey, name, count);
+        quizzes[aid] = assessmentQuiz(akey, name, count, num, aid);
         lessons.push({ t: (big ? '🧪 ' : '📝 ') + name, d: count + ' questions', isQuiz: true, quizId: aid });
         notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Assessment</span></div><h3>' + esc(name) + '</h3><p>Complete this ' + (big ? 'examination/review' : 'assessment') + ', then review every answer explanation to strengthen your weak areas.</p></div>';
         flat += 1; quizCount += 1; if (big) examCount += 1;
@@ -276,7 +310,7 @@
       notes[String(flat)] = note(moduleTitle, skill, name, notePos++);
       flat += 1; videoCount += 1;
       var pqid = 'at-m' + num + '-q' + flat;
-      quizzes[pqid] = practiceQuiz(key, name);
+      quizzes[pqid] = practiceQuiz(key, name, num, pqid);
       lessons.push({ t: '📝 Practice: ' + name, d: '3 questions', isQuiz: true, quizId: pqid });
       notes[String(flat)] = '<p><strong>Quick check:</strong> Review the notes and complete the two exercises, then answer these to confirm you understood <em>' + esc(name) + '</em>.</p>';
       flat += 1; quizCount += 1;
@@ -330,6 +364,54 @@
   };
 
   if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT[CID] = notes;
+
+  /* agritech-topic-quizzes.js is fetched only when this course is open, so it can
+     land after this builder has run. Re-apply then: the player holds a reference
+     to this same quizzes object and reads it afresh each time a quiz opens. */
+  window.tihApplyAgritechTopicQuizzes = function () {
+    TQ_plain = null; TQ_mod = null;
+    var applied = 0;
+    var byModule = {};
+    Object.keys(practiceIndex).forEach(function (quizId) {
+      var meta = practiceIndex[quizId];
+      var authored = topicQuestions(meta.module, meta.name);
+      if (!authored) return;
+      if (quizzes[quizId]) { quizzes[quizId].questions = authored; applied += 1; }
+      (byModule[meta.module] = byModule[meta.module] || []).push(authored);
+    });
+    /* Module and course assessments draw from the authored questions rather than
+       the shared pools, taking one from each topic in turn so an assessment
+       samples across the module instead of exhausting a single topic. */
+    function interleave(groups) {
+      var out = [], depth = 0, added = true;
+      while (added) {
+        added = false;
+        for (var i = 0; i < groups.length; i++) {
+          if (groups[i][depth]) { out.push(groups[i][depth]); added = true; }
+        }
+        depth += 1;
+      }
+      return out;
+    }
+    var moduleQs = {};
+    Object.keys(byModule).forEach(function (m) { moduleQs[m] = interleave(byModule[m]); });
+    var moduleNums = Object.keys(moduleQs).sort(function (a, b) { return a - b; });
+    var coursePool = interleave(moduleNums.map(function (m) { return moduleQs[m]; }));
+    var cursor = 0;
+    assessIndex.forEach(function (a) {
+      var quiz = quizzes[a.quizId];
+      if (!quiz) return;
+      var picked = [];
+      if (a.scope === 'module' && moduleQs[a.module] && moduleQs[a.module].length >= a.count) {
+        picked = moduleQs[a.module].slice(0, a.count);
+      } else if (coursePool.length) {
+        for (var i = 0; i < a.count; i++) picked.push(coursePool[(cursor + i) % coursePool.length]);
+        cursor = (cursor + a.count) % coursePool.length;
+      }
+      if (picked.length === a.count) { quiz.questions = picked.map(cloneQ); applied += 1; }
+    });
+    return applied;
+  };
 
   if (typeof console !== 'undefined' && console.log) {
     console.log('[AGRITECH] modules=' + modules.length + ' videoLessons=' + videoCount + ' projects=' + projectCount + ' quizzes=' + quizCount + ' exams=' + examCount);
