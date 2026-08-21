@@ -106,7 +106,6 @@
      marketing each downloaded their video map twice.
 
      Not listed here, deliberately:
-       office-video-map.js     an empty stub containing only a comment
        aicyber-nd-1..8 +
        aicyber-notes-runtime   116 note entries now fully shadowed by the
                                authored notes in aicyber-notes.js, which cover

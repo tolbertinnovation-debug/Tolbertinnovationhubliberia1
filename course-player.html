@@ -1081,6 +1081,7 @@
           title: l.t,
           dur: l.d,
           module: mi + 1,
+          moduleTitle: mod.title || '',
           // Real video id only. Quizzes and projects have no video, so we store
           // null instead of a default clip, the player is hidden for them.
           videoId: l.v || null,
@@ -1108,6 +1109,24 @@
     //   2. TIH_TOPIC_VIDEOS[courseId][topicTitle]    — pins one topic (wins).
     // Neither touches curriculum builders. Title matching ignores the "3.1 "
     // numbering, leading emoji, and case. A matched lesson becomes a video.
+    /* Most courses do not have a video for every single topic. They carry a
+       module-level clip that every topic in the module falls back to, so one
+       video can stand behind twenty different lesson titles. Showing it under
+       the specific lesson's name tells the learner "this is the video for Soil
+       Testing" when it is really the module overview. Mark those so the poster
+       can say what the clip actually is; a clip used by exactly one topic is
+       that topic's own video and is left alone. */
+    function markSharedVideos() {
+      var count = {};
+      lessons.forEach(function (l) {
+        if (l.isQuiz || !l.videoId) return;
+        count[l.videoId] = (count[l.videoId] || 0) + 1;
+      });
+      lessons.forEach(function (l) {
+        l.sharedVideo = !!(l.videoId && count[l.videoId] > 1);
+      });
+    }
+
     function applyVideoOverrides() {
       function normTopic(s) {
         return String(s || '')
@@ -1142,6 +1161,7 @@
       });
     }
     applyVideoOverrides();
+    markSharedVideos();
 
     // Late-arriving per-course video map (videos/<id>-videos.js, fetched by
     // tih-video-runtime.js). Re-apply and repaint once it lands.
@@ -1149,6 +1169,7 @@
       try {
         if (!lessons || !lessons.length) return;
         applyVideoOverrides();
+        markSharedVideos();
         buildSidebar();
         renderLesson(currentLessonIndex);
       } catch (e) {}
@@ -1452,13 +1473,23 @@
       // so no third-party player branding is shown up front.
       if (videoWrap) videoWrap.style.display = '';
       currentVideoId = lesson.videoId;
+      // A clip shared by several topics is the module's overview video, not
+      // this topic's own. Name it for what it is, and point the learner at the
+      // written note, which IS specific to the topic they opened.
+      var vShared = !!lesson.sharedVideo;
+      var vLabel = vShared
+        ? (lesson.moduleTitle || 'Module overview')
+        : (lesson.title || 'Play lesson video');
+      var vHint = vShared
+        ? 'Module overview video · this topic is covered in the note below'
+        : '▶ Tap to play';
       var vpt = document.getElementById('vpTitle');
-      if (vpt) vpt.textContent = lesson.title || 'Play lesson video';
+      if (vpt) vpt.textContent = vLabel;
       var poster = document.getElementById('videoPoster');
       if (poster) {
         poster.style.display = '';
-        poster.innerHTML = '<div class="vp-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div><div class="vp-title" id="vpTitle">' + escSide(lesson.title || 'Play lesson video') + '</div><div class="vp-hint">▶ Tap to play</div>';
-        poster.setAttribute('aria-label', 'Play lesson video');
+        poster.innerHTML = '<div class="vp-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div><div class="vp-title" id="vpTitle">' + escSide(vLabel) + '</div><div class="vp-hint">' + escSide(vHint) + '</div>';
+        poster.setAttribute('aria-label', vShared ? 'Play module overview video' : 'Play lesson video');
         poster.onclick = startVideo;
         poster.onkeydown = function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startVideo(); } };
       }
