@@ -45,43 +45,55 @@
     /* ── SURVEY SECTION ── */
     .survey-main { padding: 3rem 0 5rem; background: var(--bg); }
     .survey-card {
-      max-width: 680px; margin: 0 auto; background: var(--surface);
+      position: relative; max-width: 680px; margin: 0 auto; background: var(--surface);
       border-radius: var(--radius-lg); box-shadow: var(--shadow);
-      padding: 2.25rem clamp(1.25rem, 4vw, 2.5rem);
+      padding: 2.5rem clamp(1.25rem, 4vw, 2.5rem) 2.25rem; overflow: hidden;
+    }
+    .survey-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+      background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-blue-light) 45%, var(--brand-red) 100%);
     }
     .survey-q { margin-bottom: 1.85rem; }
     .survey-q:last-of-type { margin-bottom: 0; }
     .survey-q-label {
-      display: block; font-family: 'Poppins', sans-serif; font-weight: 700;
-      font-size: 0.98rem; color: var(--text); margin-bottom: 0.6rem; line-height: 1.4;
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      font-family: 'Poppins', sans-serif; font-weight: 700;
+      font-size: 0.98rem; color: var(--brand-blue); margin-bottom: 0.65rem; line-height: 1.4;
+    }
+    .q-num {
+      flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; margin-top: 0.05rem; border-radius: 50%;
+      background: var(--brand-blue); color: #fff;
+      font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.78rem;
     }
     .survey-q-label .req { color: var(--brand-red); margin-left: 0.15rem; }
-    .survey-q-hint { font-size: 0.82rem; color: var(--text-muted); font-weight: 500; margin-top: -0.35rem; margin-bottom: 0.6rem; }
+    .survey-q-hint { font-size: 0.82rem; color: var(--text-muted); font-weight: 500; margin-top: -0.35rem; margin-bottom: 0.6rem; margin-left: 2.35rem; }
 
     .sv-input, .sv-select, .sv-textarea {
-      width: 100%; padding: 0.78rem 1rem; border: 1.5px solid var(--border);
-      border-radius: 10px; background: #f8fafc; color: var(--text);
+      width: 100%; padding: 0.78rem 1rem; border: 1.5px solid var(--brand-blue-pale);
+      border-radius: 10px; background: #f7faff; color: var(--text);
       font-family: 'Inter', sans-serif; font-size: 0.95rem;
-      outline: none; transition: border-color 0.18s, box-shadow 0.18s;
+      outline: none; transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
       appearance: none; -webkit-appearance: none;
     }
+    .sv-input::placeholder, .sv-textarea::placeholder { color: #90a3c0; }
     .sv-input:focus, .sv-select:focus, .sv-textarea:focus {
       border-color: var(--brand-blue); background: #fff; box-shadow: 0 0 0 3px rgba(0,40,104,0.1);
     }
     .sv-textarea { resize: vertical; min-height: 90px; font-family: 'Inter', sans-serif; }
     .sv-select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23002868' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; cursor: pointer;
     }
 
-    .sv-pills { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .sv-pills { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-left: 2.35rem; }
     .sv-pill { position: relative; }
     .sv-pill input { position: absolute; opacity: 0; width: 0; height: 0; }
     .sv-pill label {
       display: inline-flex; align-items: center; padding: 0.55rem 1.05rem;
-      border: 1.5px solid var(--border); border-radius: var(--radius-full);
+      border: 1.5px solid var(--brand-blue-pale); border-radius: var(--radius-full);
       font-size: 0.88rem; font-weight: 600; color: var(--text-secondary);
-      cursor: pointer; transition: all 0.16s; background: #fff; user-select: none;
+      cursor: pointer; transition: all 0.16s; background: #f7faff; user-select: none;
     }
     .sv-pill label:hover { border-color: var(--brand-blue-light); background: var(--brand-blue-pale); }
     .sv-pill input:checked + label {
@@ -170,19 +182,19 @@
 
             <!-- Q1 -->
             <div class="survey-q">
-              <label class="survey-q-label" for="q-name">1. Full Name<span class="req">*</span></label>
+              <label class="survey-q-label" for="q-name"><span class="q-num">1</span>Full Name<span class="req">*</span></label>
               <input class="sv-input" type="text" id="q-name" name="Full Name" required autocomplete="name" />
             </div>
 
             <!-- Q2 -->
             <div class="survey-q">
-              <label class="survey-q-label" for="q-phone">2. WhatsApp/Phone Number<span class="req">*</span></label>
+              <label class="survey-q-label" for="q-phone"><span class="q-num">2</span>WhatsApp/Phone Number<span class="req">*</span></label>
               <input class="sv-input" type="tel" id="q-phone" name="WhatsApp/Phone Number" required autocomplete="tel" placeholder="e.g. 0770 000 000" />
             </div>
 
             <!-- Q3 -->
             <div class="survey-q">
-              <label class="survey-q-label" for="q-course">3. Which course are you interested in?<span class="req">*</span></label>
+              <label class="survey-q-label" for="q-course"><span class="q-num">3</span>Which course are you interested in?<span class="req">*</span></label>
               <select class="sv-select" id="q-course" name="Course Interested In" required>
                 <option value="" disabled selected>Select a course…</option>
                 <option>Full-Stack Web Development</option>
@@ -204,7 +216,7 @@
 
             <!-- Q4 -->
             <div class="survey-q">
-              <span class="survey-q-label">4. What is your current skill level?<span class="req">*</span></span>
+              <span class="survey-q-label"><span class="q-num">4</span>What is your current skill level?<span class="req">*</span></span>
               <div class="sv-pills" role="radiogroup" aria-label="Current skill level">
                 <span class="sv-pill"><input type="radio" name="Current Skill Level" id="lvl-1" value="Complete beginner" required /><label for="lvl-1">Complete beginner</label></span>
                 <span class="sv-pill"><input type="radio" name="Current Skill Level" id="lvl-2" value="Beginner with some knowledge" /><label for="lvl-2">Beginner with some knowledge</label></span>
@@ -215,7 +227,7 @@
 
             <!-- Q5 -->
             <div class="survey-q">
-              <span class="survey-q-label">5. Why are you interested in joining the Learning Hub?<span class="req">*</span></span>
+              <span class="survey-q-label"><span class="q-num">5</span>Why are you interested in joining the Learning Hub?<span class="req">*</span></span>
               <div class="sv-pills" role="radiogroup" aria-label="Reason for joining">
                 <span class="sv-pill"><input type="radio" name="Reason for Joining" id="rsn-1" value="Learn a new skill" required /><label for="rsn-1">Learn a new skill</label></span>
                 <span class="sv-pill"><input type="radio" name="Reason for Joining" id="rsn-2" value="Advance my existing skills" /><label for="rsn-2">Advance my existing skills</label></span>
@@ -234,7 +246,7 @@
 
             <!-- Q6 -->
             <div class="survey-q">
-              <span class="survey-q-label">6. Are you interested in participating in live online training?<span class="req">*</span></span>
+              <span class="survey-q-label"><span class="q-num">6</span>Are you interested in participating in live online training?<span class="req">*</span></span>
               <div class="sv-pills" role="radiogroup" aria-label="Interest in live online training">
                 <span class="sv-pill"><input type="radio" name="Interested in Live Training" id="live-1" value="Yes" required /><label for="live-1">Yes</label></span>
                 <span class="sv-pill"><input type="radio" name="Interested in Live Training" id="live-2" value="No" /><label for="live-2">No</label></span>
@@ -244,7 +256,7 @@
 
             <!-- Q7 -->
             <div class="survey-q">
-              <span class="survey-q-label">7. If you complete the training successfully, would you be interested in a 3-month internship opportunity?<span class="req">*</span></span>
+              <span class="survey-q-label"><span class="q-num">7</span>If you complete the training successfully, would you be interested in a 3-month internship opportunity?<span class="req">*</span></span>
               <div class="sv-pills" role="radiogroup" aria-label="Interest in internship">
                 <span class="sv-pill"><input type="radio" name="Interested in 3-Month Internship" id="int-1" value="Yes" required /><label for="int-1">Yes</label></span>
                 <span class="sv-pill"><input type="radio" name="Interested in 3-Month Internship" id="int-2" value="No" /><label for="int-2">No</label></span>
@@ -254,7 +266,7 @@
 
             <!-- Q8 -->
             <div class="survey-q">
-              <span class="survey-q-label">8. Would you be interested in future employment or project opportunities with Tolbert Innovation Hub?<span class="req">*</span></span>
+              <span class="survey-q-label"><span class="q-num">8</span>Would you be interested in future employment or project opportunities with Tolbert Innovation Hub?<span class="req">*</span></span>
               <div class="sv-pills" role="radiogroup" aria-label="Interest in future employment or project opportunities">
                 <span class="sv-pill"><input type="radio" name="Interested in Future Employment/Project Opportunities" id="emp-1" value="Yes" required /><label for="emp-1">Yes</label></span>
                 <span class="sv-pill"><input type="radio" name="Interested in Future Employment/Project Opportunities" id="emp-2" value="No" /><label for="emp-2">No</label></span>
@@ -264,7 +276,7 @@
 
             <!-- Q9 -->
             <div class="survey-q">
-              <span class="survey-q-label">9. Would you like to join the Tolbert Innovation Hub professional network even if you do not work directly with us?<span class="req">*</span></span>
+              <span class="survey-q-label"><span class="q-num">9</span>Would you like to join the Tolbert Innovation Hub professional network even if you do not work directly with us?<span class="req">*</span></span>
               <div class="sv-pills" role="radiogroup" aria-label="Interest in joining the professional network">
                 <span class="sv-pill"><input type="radio" name="Interested in Professional Network" id="net-1" value="Yes" required /><label for="net-1">Yes</label></span>
                 <span class="sv-pill"><input type="radio" name="Interested in Professional Network" id="net-2" value="No" /><label for="net-2">No</label></span>
@@ -274,13 +286,13 @@
 
             <!-- Q10 -->
             <div class="survey-q">
-              <label class="survey-q-label" for="q-goal">10. What is one thing you hope to achieve through the Learning Hub?</label>
+              <label class="survey-q-label" for="q-goal"><span class="q-num">10</span>What is one thing you hope to achieve through the Learning Hub?</label>
               <textarea class="sv-textarea" id="q-goal" name="Goal"></textarea>
             </div>
 
             <!-- Q11 -->
             <div class="survey-q">
-              <span class="survey-q-label">11. Are you ready to commit time to learning and completing practical assignments?<span class="req">*</span></span>
+              <span class="survey-q-label"><span class="q-num">11</span>Are you ready to commit time to learning and completing practical assignments?<span class="req">*</span></span>
               <div class="sv-pills" role="radiogroup" aria-label="Ready to commit time to learning">
                 <span class="sv-pill"><input type="radio" name="Ready to Commit" id="commit-1" value="Yes" required /><label for="commit-1">Yes</label></span>
                 <span class="sv-pill"><input type="radio" name="Ready to Commit" id="commit-2" value="No" /><label for="commit-2">No</label></span>
@@ -290,7 +302,7 @@
 
             <!-- Q12 -->
             <div class="survey-q">
-              <label class="survey-q-label" for="q-comments">12. Any questions or comments?</label>
+              <label class="survey-q-label" for="q-comments"><span class="q-num">12</span>Any questions or comments?</label>
               <textarea class="sv-textarea" id="q-comments" name="Comments"></textarea>
             </div>
 
