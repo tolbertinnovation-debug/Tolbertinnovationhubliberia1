@@ -477,30 +477,56 @@
       desc: "A practical guide to understanding nonverbal communication, reading body language, and communicating with greater confidence.",
       cat: "career", icon: "🤝",
       bg: "linear-gradient(150deg,#1e3a8a 0%,#1565d8 100%)",
+      // Real cover art (Wiley, 2007 1st edition paperback, ISBN 978-0-470-
+      // 51291-3 — confirmed against Amazon and AbeBooks listings), served by
+      // the Open Library Covers API. If it ever 404s, the img's onerror in
+      // bookCard()/openBook() removes it and the placeholder shows through.
+      cover: "https://covers.openlibrary.org/b/isbn/9780470512913-L.jpg",
       pdf: "books/Body%20Language%20For%20Dummies%20-%20Elizabeth%20Kuhnke.pdf",
       tags: ["body language", "communication", "career"], hasPdf: true },
     { id: 103, title: "Good Leaders Ask Great Questions", author: "John C. Maxwell",
       desc: "Leadership lessons focused on asking better questions, developing people, and building stronger teams.",
       cat: "career", icon: "❓",
       bg: "linear-gradient(150deg,#1e40af 0%,#1565d8 100%)",
+      // Real cover art (Center Street paperback, ISBN 978-1-4555-4809-5 —
+      // confirmed against Amazon, Barnes & Noble and the publisher's own
+      // Hachette Book Group listing), served by the Open Library Covers
+      // API. See the note on book 102 above for how the fallback works.
+      cover: "https://covers.openlibrary.org/b/isbn/9781455548095-L.jpg",
       pdf: "books/Good%20Leaders%20Ask%20Great%20Question%20-%20John%20C.%20Maxwell.pdf",
       tags: ["leadership", "communication"], hasPdf: true },
     { id: 104, title: "How Successful People Lead", author: "John C. Maxwell",
       desc: "A leadership development resource about influence, trust, teamwork, and the habits that help leaders create lasting positive impact.",
       cat: "career", icon: "🎯",
       bg: "linear-gradient(150deg,#1e3a8a 0%,#1d4ed8 100%)",
+      // Real cover art (Center Street, ISBN 978-1-4555-4545-2 — confirmed
+      // against its Amazon listing), served by the Open Library Covers API.
+      // See the note on book 102 above for how the fallback works.
+      cover: "https://covers.openlibrary.org/b/isbn/9781455545452-L.jpg",
       pdf: "books/How%20Successful%20People%20Lead%20-%20John%20C.%20Maxwell.pdf",
       tags: ["leadership", "success"], hasPdf: true },
     { id: 105, title: "IELTS Writing Masterclass 8.5", author: "Marc Roche",
       desc: "An IELTS Writing resource covering Task 1 and Task 2 strategies, model answers, vocabulary, and techniques for improving writing performance.",
       cat: "scholarships", icon: "✍️",
       bg: "linear-gradient(150deg,#002868 0%,#1a4a9c 100%)",
+      // Real cover art (self-published, ISBN 979-8-6334-0358-9 — confirmed
+      // against its Amazon listing for this exact title), served by the
+      // Open Library Covers API. See the note on book 102 above for how
+      // the fallback works.
+      cover: "https://covers.openlibrary.org/b/isbn/9798633403589-L.jpg",
       pdf: "books/IELTS_Writing_Masterclass_8_5_compressed.pdf",
       tags: ["ielts", "writing", "english"], featured: true, isNew: true, hasPdf: true },
-    { id: 106, title: "Invent It, Sell It, Bank It!", author: "Unknown author",
+    { id: 106, title: "Invent It, Sell It, Bank It!", author: "Lori Greiner",
       desc: "A practical entrepreneurship resource about turning ideas into products, finding customers, and building a sustainable business.",
       cat: "entrepreneurship", icon: "💡",
       bg: "linear-gradient(150deg,#991b1b 0%,#e31e24 100%)",
+      // Real cover art (Ballantine Books, 2014, ISBN 978-0-8041-7643-9 —
+      // confirmed against AbeBooks and the publisher's own Penguin Random
+      // House listing), served by the Open Library Covers API. The listed
+      // author was "Unknown author"; the cover credits Lori Greiner (Shark
+      // Tank), corrected here to match. See the note on book 102 above for
+      // how the fallback works.
+      cover: "https://covers.openlibrary.org/b/isbn/9780804176439-L.jpg",
       pdf: "books/Invent%20It%2C%20Sell%20It%2C%20Bank%20It.pdf",
       tags: ["entrepreneurship", "startup"], hasPdf: true },
     { id: 107, title: "Leaders Eat Last", author: "Simon Sinek",
@@ -519,6 +545,11 @@
       desc: "A leadership reference covering principles of influence, vision, momentum, teamwork, and personal growth.",
       cat: "career", icon: "📘",
       bg: "linear-gradient(150deg,#312e81 0%,#4c1d95 100%)",
+      // Real cover art (Thomas Nelson, 10th Anniversary Edition, ISBN 978-0-
+      // 7852-8837-4 — confirmed against its Amazon listing), served by the
+      // Open Library Covers API. See the note on book 102 above for how the
+      // fallback works.
+      cover: "https://covers.openlibrary.org/b/isbn/9780785288374-L.jpg",
       pdf: "books/The%2021%20Irrefutable%20Laws%20of%20Lead%20-%20John%20C.%20Maxwell.pdf",
       tags: ["leadership", "management"], hasPdf: true },
     { id: 109, title: "The 7 Habits of Highly Effective People", author: "Stephen R. Covey",
@@ -549,6 +580,11 @@
       desc: "An IELTS vocabulary resource covering academic vocabulary, topic-based word lists, collocations, and exercises for improving all four language skills.",
       cat: "scholarships", icon: "📖",
       bg: "linear-gradient(150deg,#003a8c 0%,#0047ab 100%)",
+      // Real cover art (self-published, ISBN 978-1-7915-3685-5 — confirmed
+      // against its Amazon and AbeBooks listings for this exact title),
+      // served by the Open Library Covers API. See the note on book 102
+      // above for how the fallback works.
+      cover: "https://covers.openlibrary.org/b/isbn/9781791536855-L.jpg",
       pdf: "books/ielts_vocabulary_masterclass_85_book_ielts_listen.pdf",
       tags: ["ielts", "vocabulary", "english"], featured: true, isNew: true, hasPdf: true }
   ];
