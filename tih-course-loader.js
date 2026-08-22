@@ -93,7 +93,8 @@
     'sat':              { src: 'sat-topic-quizzes.js?v=1',     apply: 'tihApplySatTopicQuizzes' },
     'ai-cybersecurity': { src: 'aicyber-topic-quizzes.js?v=1', apply: 'tihApplyAicyberTopicQuizzes' },
     'android':          { src: 'android-topic-quizzes.js?v=1', apply: 'tihApplyAndroidTopicQuizzes' },
-    'agritech':         { src: 'agritech-topic-quizzes.js?v=1', apply: 'tihApplyAgritechTopicQuizzes' }
+    'agritech':         { src: 'agritech-topic-quizzes.js?v=1', apply: 'tihApplyAgritechTopicQuizzes' },
+    'entrepreneurship': { src: 'entrepreneurship-topic-quizzes.js?v=1', apply: 'tihApplyEntrepreneurshipTopicQuizzes' }
   };
 
   // Courses with an authored topic-quiz chunk in quizzes/.
@@ -110,17 +111,17 @@
        aicyber-nd-1..8 +
        aicyber-notes-runtime   116 note entries now fully shadowed by the
                                authored notes in aicyber-notes.js, which cover
-                               all 133 content lessons and win at render time. */
+                               all 133 content lessons and win at render time.
+       ent-nd-1..6 +
+       ent-notes-runtime       likewise fully shadowed by entrepreneurship-notes.js,
+                               which covers all 167 content lessons. */
   var EXTRAS = {
     'ai':               ['ai-video-map.js?v=3', 'ai-topic-videos.js?v=3'],
     'data':             ['data-video-map.js?v=2'],
     'webdev':           ['webdev-video-map.js?v=2'],
     'design':           ['design-video-map.js?v=1'],
     'cybersecurity':    ['cyber-video-map.js?v=1'],
-    'entrepreneurship': ['entrepreneurship-video-map.js?v=1',
-                         'ent-nd-1.js?v=1', 'ent-nd-2.js?v=1', 'ent-nd-3.js?v=1',
-                         'ent-nd-4.js?v=1', 'ent-nd-5.js?v=1', 'ent-nd-6.js?v=1',
-                         'ent-notes-runtime.js?v=1'],
+    'entrepreneurship': ['entrepreneurship-video-map.js?v=1'],
     'marketing':        ['marketing-video-map.js?v=5',
                          'mkt-nd-1.js?v=1', 'mkt-nd-2.js?v=1', 'mkt-nd-3.js?v=1',
                          'mkt-nd-4.js?v=1', 'mkt-nd-5.js?v=1',

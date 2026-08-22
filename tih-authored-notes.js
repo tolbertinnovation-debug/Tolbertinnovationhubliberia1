@@ -36,7 +36,8 @@
     'sat':               'sat-notes.js?v=1',
     'ai-cybersecurity':  'aicyber-notes.js?v=1',
     'android':           'android-notes.js?v=1',
-    'agritech':          'agritech-notes.js?v=1'
+    'agritech':          'agritech-notes.js?v=1',
+    'entrepreneurship':  'entrepreneurship-notes.js?v=1'
   };
 
 
