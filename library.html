@@ -507,6 +507,12 @@
       desc: "A leadership and organizational culture book about trust, service, teamwork, and creating environments where people can do their best work.",
       cat: "career", icon: "🌟",
       bg: "linear-gradient(150deg,#065f46 0%,#059669 100%)",
+      // Real cover art (Portfolio, 2017 paperback reprint, ISBN 978-1-59184-
+      // 801-1 — confirmed against Amazon and the publisher's own Penguin
+      // Random House listing), served by the Open Library Covers API. If it
+      // ever 404s, the img's onerror in bookCard()/openBook() removes it and
+      // the icon/title/author placeholder underneath shows through instead.
+      cover: "https://covers.openlibrary.org/b/isbn/9781591848011-L.jpg",
       pdf: "books/Leaders%20Eat%20Last%20-%20Simon%20Sinek.pdf",
       tags: ["leadership", "teamwork"], hasPdf: true },
     { id: 108, title: "The 21 Irrefutable Laws of Leadership", author: "John C. Maxwell",
