@@ -537,6 +537,12 @@
       desc: "A startup management guide about experimentation, validated learning, customer feedback, and building products more efficiently.",
       cat: "entrepreneurship", icon: "🚀",
       bg: "linear-gradient(150deg,#0e7490 0%,#0284c7 100%)",
+      // Real cover art (Crown Business, 2017 paperback, ISBN 978-1-5247-
+      // 6240-7 — confirmed against Amazon and AbeBooks listings for this
+      // exact title and edition), served by the Open Library Covers API.
+      // If it ever 404s, the img's onerror in bookCard()/openBook() removes
+      // it and the icon/title/author placeholder shows through instead.
+      cover: "https://covers.openlibrary.org/b/isbn/9781524762407-L.jpg",
       pdf: "books/The%20Lean%20Startup_%20How%20Today's%20E%20-%20Eric%20Ries.pdf",
       tags: ["startup", "entrepreneurship"], hasPdf: true },
     { id: 111, title: "IELTS Vocabulary Masterclass 8.5", author: "Marc Roche",
