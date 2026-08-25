@@ -11,7 +11,7 @@
    courses only need one line in this file. Load it after the curriculum
    scripts and before any page code that renders cards. */
 (function () {
-  // course id -> image basename ("<base>-card.jpg")
+  // course id -> image basename ("<base>-card.jpg") or full external URL
   var ART = {
     'ielts': 'ielts',
     'toefl': 'toefl',
@@ -20,14 +20,14 @@
     'ai': 'ai',
     'data': 'data',
     'webdev': 'webdev',
-    'design': 'design',
+    'design': 'https://i.ibb.co/PvxvDFgV/Whats-App-Image-2026-08-25-at-8-44-04-AM.jpg',
     'android': 'android',
     'marketing': 'marketing',
     'cybersecurity': 'cybersecurity',
     'entrepreneurship': 'entrepreneurship',
-    'project-mgmt': 'project-mgmt',
+    'project-mgmt': 'https://i.ibb.co/nNVWSKPf/Whats-App-Image-2026-08-25-at-8-41-55-AM-1.jpg',
     'office': 'office',
-    'leadership': 'leadership',
+    'leadership': 'https://i.ibb.co/20V4nLz5/Whats-App-Image-2026-08-25-at-8-41-55-AM.jpg',
     'grant-writing': 'grant-writing',
     'financial-literacy': 'financial-literacy',
     'english-success': 'english-success',
@@ -37,7 +37,7 @@
     'sat': 'sat',
     'bible-foundations': 'bible-foundations',
     'accounting-bookkeeping': 'accounting-bookkeeping',
-    'ai-cybersecurity': 'ai-cybersecurity'
+    'ai-cybersecurity': 'https://i.ibb.co/0yYRnFvg/Whats-App-Image-2026-08-25-at-8-41-55-AM-2.jpg'
   };
 
   /* WASSCE subject art. The dashboard renders its WASSCE grid from a
@@ -65,7 +65,9 @@
   Object.keys(ART).forEach(function (id) {
     var course = COURSES_DB[id];
     if (!course) return; // page may not load every curriculum file
-    course.cardImage = ART[id] + '-card.jpg';
+    var val = ART[id];
+    // Support full external URLs or local basename + -card.jpg
+    course.cardImage = (val.indexOf('http') === 0) ? val : (val + '-card.jpg');
     applied += 1;
   });
 
