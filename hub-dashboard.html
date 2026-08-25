@@ -763,7 +763,7 @@
 
         var coverImg = COURSES_DB[c.id].cardImage || COURSES_DB[c.id].image || '';
         var coverStyle = coverImg
-          ? 'background-image:url(\'' + esc(coverImg) + '?v=2\')'
+          ? 'background-image:url(\'' + esc(coverImg) + '?v=3\')'
           : 'background:' + (COURSES_DB[c.id].gradient || 'linear-gradient(135deg,#123d78,#1e5e9e)');
         return '<div class="course-card" data-course="' + esc(c.id) + '">'
           + '<div class="cc-cover' + (coverImg ? ' has-img' : '') + '" style="' + coverStyle + '">'
