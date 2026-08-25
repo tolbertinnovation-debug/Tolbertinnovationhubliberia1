@@ -754,7 +754,7 @@
           + (coverImg ? '' : '<div class="cc-icon">' + meta.icon + '</div><div class="cc-cover-label">' + esc(COURSES_DB[c.id].category || 'TIH Learning Hub') + '<strong>' + esc(COURSES_DB[c.id].level || 'All levels') + '</strong></div>') + '</div>'
           + '<div class="cc-top"><div><div class="cc-title">' + esc(meta.title) + '</div>'
           + '<div class="cc-meta">' + (unlocked ? statusPill : '<span class="pill new">🔒 Locked · ' + priceHTML(c.id, price) + '</span>') + prioPill + '</div></div></div>'
-          + '<div class="cc-learning-support"><span>📖 Detailed notes</span><span>▶ ' + videoLessons + ' video lessons</span></div>'
+          + '<div class="cc-learning-support"><span>Duration: 3 months</span><span>📖 Detailed notes</span><span>▶ ' + videoLessons + ' video lessons</span></div>'
           + '<div class="prog-track"><div class="prog-fill" style="width:' + p.pct + '%"></div></div>'
           + '<div class="cc-row"><span>' + p.completed + '/' + p.total + ' lessons · ' + p.pct + '%</span>' + deadlineHtml + '</div>'
           + '<div class="cc-actions">' + action + practiceLink + '</div>'
