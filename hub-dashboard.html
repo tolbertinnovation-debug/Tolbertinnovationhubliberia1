@@ -164,6 +164,8 @@
     .cc-meta { font-size: 0.75rem; color: var(--muted); margin-top: .15rem; }
     .cc-learning-support { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .05rem; }
     .cc-learning-support span { display: inline-flex; align-items: center; gap: .25rem; padding: .18rem .45rem; border-radius: 999px; background: #f3f7fd; color: #3b5f91; border: 1px solid #dce8f7; font-size: .67rem; font-weight: 700; }
+    .course-search { width: 100%; max-width: 420px; padding: .68rem .85rem; border: 1.5px solid var(--border); border-radius: 10px; font-size: .9rem; font-family: inherit; box-sizing: border-box; background: #fff; color: var(--text); margin-bottom: .85rem; }
+    .course-search:focus { outline: none; border-color: var(--primary-mid); box-shadow: 0 0 0 3px rgba(21,101,216,.12); }
     .prog-track { background: #dbe7f7; height: 8px; border-radius: 999px; overflow: hidden; }
     .prog-fill { height: 100%; background: linear-gradient(90deg, var(--primary-mid), var(--primary)); border-radius: 999px; transition: width .4s; }
     .cc-row { display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem; color: var(--muted); font-weight: 600; }
@@ -372,8 +374,10 @@
             <h2 style="margin:0;">📚 My Courses</h2>
             <button class="btn btn-primary btn-sm" id="addCourseBtn" type="button">➕ Add a Course</button>
           </div>
-          <p style="font-size:.82rem;color:var(--muted);margin:.15rem 0 .8rem;">Want to learn something new? Tap <strong>➕ Add a Course</strong> to browse the full catalog. Every course is complete and comes with a Professional Certificate. Unlock any WASSCE subject for <strong>US$3 / L$500</strong> or any other course for <strong>US$5 / L$950</strong>.</p>
+          <p style="font-size:.82rem;color:var(--muted);margin:.15rem 0 .8rem;">Want to learn something new? Tap <strong>➕ Add a Course</strong> to browse the full catalog. Every course is complete and comes with a Professional Certificate. Unlock any WASSCE subject for <strong>US$3 / L$500</strong>; other course prices appear on each course card.</p>
+          <input class="course-search" type="search" id="courseSearch" placeholder="Search your courses" autocomplete="off" />
           <div class="courses-grid" id="coursesGrid"></div>
+          <div class="empty-box" id="coursesSearchEmpty" style="display:none;">No courses match your search.</div>
           <div class="empty-box" id="coursesEmpty" style="display:none;">
             You have no courses yet. Tap <strong>➕ Add a Course</strong> above to browse the catalog and add your first one, or
             <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="color:var(--primary);font-weight:700;">chat with us on WhatsApp</a> for help.
@@ -454,7 +458,7 @@
         <h3 style="margin:0;">➕ Add a Course</h3>
         <button type="button" id="addCourseClose" aria-label="Close" style="background:none;border:none;font-size:1.4rem;line-height:1;cursor:pointer;color:var(--muted);">&times;</button>
       </div>
-      <p style="font-size:.85rem;color:var(--muted);margin:.5rem 0 .8rem;">Browse the full catalog below and add any course. You unlock it for <strong>US$5 / 950 LRD</strong> (WASSCE subjects US$3 / 500 LRD) by Mobile Money, pay, then enter your access code or tap <em>“I’ve Paid, Request Access”</em> on the course page.</p>
+      <p style="font-size:.85rem;color:var(--muted);margin:.5rem 0 .8rem;">Browse the full catalog below and add any course. Course prices appear beside each course; WASSCE subjects are US$3 / 500 LRD. Pay by Mobile Money, then enter your access code or tap <em>“I’ve Paid, Request Access”</em> on the course page.</p>
       <input type="search" id="addCourseSearch" placeholder="🔍 Search courses, e.g. Bible, web, design, AI…" style="width:100%;padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:inherit;margin-bottom:.6rem;box-sizing:border-box;" />
       <div id="addCourseList" style="max-height:52vh;overflow-y:auto;"></div>
       <div id="addCourseEmpty" style="display:none;text-align:center;color:var(--muted);font-size:.88rem;padding:1.4rem 1rem;">🎉 You already have every course in the catalog!</div>
@@ -691,11 +695,25 @@
           if (!have[cid] && HubDB.hasAccess(cid)) assigned.push({ id: cid });
         });
       } catch (e) {}
+      var searchBox = document.getElementById('courseSearch');
+      var courseQuery = ((searchBox && searchBox.value) || '').trim().toLowerCase();
+      var visibleAssigned = assigned.filter(function (c) {
+        if (!courseQuery) return true;
+        var data = COURSES_DB[c.id] || {};
+        return [
+          c.id,
+          data.title,
+          data.shortDesc,
+          data.category,
+          data.level,
+          data.instructor
+        ].join(' ').toLowerCase().indexOf(courseQuery) !== -1;
+      });
       var totalLessons = 0, doneLessons = 0, completedCourses = [], inProgress = 0, notStarted = 0;
       var resumeInProg = [], resumeNotStarted = [];
       var priorityOrder = { high: 0, medium: 1, low: 2 };
 
-      var cards = assigned.slice().sort(function (a, b) {
+      var cards = visibleAssigned.slice().sort(function (a, b) {
         return (priorityOrder[a.priority] || 1) - (priorityOrder[b.priority] || 1);
       }).map(function (c) {
         var meta = courseMeta(c.id);
@@ -763,6 +781,8 @@
 
       document.getElementById('coursesGrid').innerHTML = cards;
       document.getElementById('coursesEmpty').style.display = assigned.length ? 'none' : 'block';
+      var searchEmpty = document.getElementById('coursesSearchEmpty');
+      if (searchEmpty) searchEmpty.style.display = (assigned.length && courseQuery && !visibleAssigned.length) ? 'block' : 'none';
 
       // Stats strip
       var overallPct = totalLessons ? Math.round(doneLessons / totalLessons * 100) : 0;
@@ -1122,6 +1142,11 @@
       if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) closeAddCourse(); });
       var search = document.getElementById('addCourseSearch');
       if (search) search.addEventListener('input', function () { buildAddCourseList(search.value); });
+    })();
+
+    (function wireCourseSearch() {
+      var search = document.getElementById('courseSearch');
+      if (search) search.addEventListener('input', renderCourses);
     })();
 
     /* ---- Certificate request / approval code ---- */
