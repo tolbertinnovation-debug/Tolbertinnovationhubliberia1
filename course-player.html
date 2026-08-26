@@ -658,6 +658,208 @@
       .video-lesson-title { font-size: 1rem; }
       .tab-panel { padding: 1rem; }
     }
+
+    /* ===================================================================
+       REFINEMENT LAYER — professional polish.
+       Appended last so it overrides the rules above without editing them,
+       which keeps every existing selector and its behaviour intact.
+       Principles: one elevation scale instead of ad-hoc shadows, calmer
+       surfaces (hairline borders rather than competing gradients), a real
+       type hierarchy, and visible focus for keyboard users.
+       =================================================================== */
+    :root {
+      /* Layered elevation — two shadows per level (contact + ambient) reads
+         far more like real depth than a single large blur. */
+      --e1: 0 1px 2px rgba(2,24,68,.06), 0 1px 3px rgba(2,24,68,.04);
+      --e2: 0 2px 4px rgba(2,24,68,.05), 0 4px 12px rgba(2,24,68,.06);
+      --e3: 0 4px 8px rgba(2,24,68,.05), 0 12px 28px rgba(2,24,68,.08);
+      --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+      --ring: 0 0 0 3px rgba(21,101,216,.28);
+      --ease: cubic-bezier(.4,0,.2,1);
+      --surface: #ffffff;
+      --hairline: #e8edf5;
+    }
+
+    body {
+      background: linear-gradient(180deg, #fafcff 0%, #f4f7fc 100%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: 'kern' 1, 'liga' 1;
+    }
+
+    /* --- Top bar: solid, quiet, one hairline --- */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--hairline);
+      box-shadow: var(--e1);
+      backdrop-filter: none;
+    }
+    .topbar-brand { letter-spacing: -.02em; }
+    .topbar-course-title { color: #33415c; letter-spacing: -.01em; }
+    .progress-bar-track { background: #e8edf5; height: 5px; }
+    .progress-bar-fill { background: linear-gradient(90deg, #059669, #34d399); }
+
+    /* --- Sidebar: flat surface, clear structure --- */
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--hairline);
+      box-shadow: none;
+    }
+    .sidebar-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--hairline);
+      padding: 1rem 1.1rem;
+    }
+    .sidebar-header h3 {
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .sidebar-lesson-count {
+      background: #f1f5fb; color: #45577a; font-weight: 600;
+      font-size: .72rem; border-radius: 999px;
+    }
+    .sidebar-scroll::-webkit-scrollbar { width: 8px; }
+    .sidebar-scroll::-webkit-scrollbar-thumb {
+      background: #d6dfec; border-radius: 999px;
+      border: 2px solid var(--surface);   /* inset look */
+    }
+    .sidebar-scroll::-webkit-scrollbar-thumb:hover { background: #bccbdf; }
+
+    /* Module headers read as section dividers, not buttons competing with lessons */
+    .sidebar-module-header {
+      background: #f8fafd;
+      border-bottom: 1px solid var(--hairline);
+      border-left: 3px solid transparent;
+      padding: .8rem 1.1rem;
+      transition: background .18s var(--ease), border-color .18s var(--ease);
+    }
+    .sidebar-module-header:hover,
+    .sidebar-module-header.open { background: #eef3fb; border-left-color: var(--blue); }
+    .sidebar-module-title { letter-spacing: -.01em; color: #12294f; }
+    .sidebar-module-meta { color: #6b7b96; font-size: .72rem; }
+
+    /* Lesson rows: quieter default, unmistakable active state */
+    .sidebar-lesson {
+      padding: .7rem 1.1rem;
+      border-bottom: 1px solid #f4f6fa;
+      border-left: 3px solid transparent;
+      transition: background .16s var(--ease), border-color .16s var(--ease);
+    }
+    .sidebar-lesson:hover:not(.locked) { background: #f7f9fd; transform: none; }
+    .sidebar-lesson.active {
+      background: linear-gradient(90deg, #eaf2ff 0%, #f6f9ff 100%);
+      border-left-color: var(--blue);
+      box-shadow: none;
+    }
+    .sidebar-lesson.active .lesson-info-title { font-weight: 700; color: var(--blue); }
+    .sidebar-lesson.completed { background: transparent; border-left-color: transparent; }
+    .sidebar-lesson.completed .lesson-info-title { color: #6b7b96; }
+    .sidebar-lesson.completed .lesson-status { color: #10b981; }
+    .sidebar-lesson.locked { opacity: .5; }
+
+    /* --- Content surfaces --- */
+    .lesson-card, .video-info-bar, .tab-panel, .study-note {
+      border-radius: var(--r-lg);
+    }
+    .lesson-card {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      box-shadow: var(--e2);
+    }
+    .video-lesson-title {
+      letter-spacing: -.02em;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    /* Tabs: a real moving indicator instead of a colour swap */
+    .tab-btn {
+      position: relative;
+      transition: color .18s var(--ease);
+      letter-spacing: .005em;
+    }
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -1px;
+      height: 2.5px;
+      border-radius: 3px 3px 0 0;
+      background: var(--blue);
+      transform: scaleX(0);
+      transition: transform .22s var(--ease);
+    }
+    .tab-btn.active::after { transform: scaleX(1); }
+
+    /* Reading column: comfortable measure and rhythm */
+    .tab-panel p, .study-note p { line-height: 1.75; }
+    .study-note h3 { letter-spacing: -.015em; }
+    .study-note table {
+      border-collapse: separate; border-spacing: 0;
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      width: 100%;
+    }
+    .study-note th {
+      background: #f5f8fd; font-weight: 700;
+      font-size: .84rem; letter-spacing: .01em;
+      text-align: left; padding: .6rem .8rem;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .study-note td { padding: .6rem .8rem; border-bottom: 1px solid #f2f5fa; }
+    .study-note tr:last-child td { border-bottom: none; }
+
+    /* Every authored note opens with
+         <div class="revision-banner"><strong>Title</strong><span>Lesson note</span></div>
+       but that class had no styling anywhere, so it rendered as one run-on
+       line ("Welcome to the ProgramLesson note") sitting directly above the
+       very same title repeated as a heading. Present it as a slim context
+       bar so it reads as a label rather than a duplicated title. */
+    .overview-text .revision-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+      flex-wrap: wrap;
+      margin: 0 0 1.1rem;
+      padding: .55rem .85rem;
+      background: #f5f8fd;
+      border: 1px solid var(--hairline);
+      border-radius: 10px;
+    }
+    .overview-text .revision-banner strong {
+      font-size: .73rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: #5b6b8c;
+    }
+    .overview-text .revision-banner span {
+      font-size: .68rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase;
+      color: var(--blue); background: #e8f0fe;
+      border-radius: 999px; padding: .22rem .62rem;
+      white-space: nowrap;
+    }
+
+    /* --- Keyboard accessibility: nothing above defined a focus style --- */
+    a:focus-visible, button:focus-visible,
+    .sidebar-lesson:focus-visible, .tab-btn:focus-visible {
+      outline: none;
+      box-shadow: var(--ring);
+      border-radius: var(--r-sm);
+    }
+
+    /* --- Respect users who ask for less motion --- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 <body>
