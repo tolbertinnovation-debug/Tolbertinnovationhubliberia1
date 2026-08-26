@@ -129,7 +129,7 @@
                          'mkt-nd-1.js?v=1', 'mkt-nd-2.js?v=1', 'mkt-nd-3.js?v=1',
                          'mkt-nd-4.js?v=1', 'mkt-nd-5.js?v=1',
                          'mkt-notes-runtime.js?v=1'],
-    'project-mgmt':     ['projectmgmt-video-map.js?v=1',
+    'project-mgmt':     ['projectmgmt-video-map.js?v=2',
                          'pm-nd-1.js?v=1', 'pm-nd-2.js?v=1', 'pm-nd-3.js?v=1',
                          'pm-nd-4.js?v=1', 'pm-nd-5.js?v=1',
                          'pm-notes-runtime.js?v=1'],
