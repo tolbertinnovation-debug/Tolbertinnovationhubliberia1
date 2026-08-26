@@ -372,6 +372,12 @@ var HubDB = (function () {
           ])
         : Promise.resolve(false);
       return save.then(function (savedToCloud) {
+        // If that first attempt didn't land (slow or dropped connection, which
+        // is common on the connections many learners are on), queue it so the
+        // outbox keeps retrying until the central DB confirms it. Without this
+        // the account existed ONLY on the signing-up device, with no retry and
+        // no warning, so the learner could never sign in anywhere else.
+        if (!savedToCloud) outboxAdd('student.upsert', student);
         return { ok: true, student: student, savedToCloud: !!savedToCloud };
       });
     });
