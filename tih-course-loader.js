@@ -142,7 +142,8 @@
                          'lead-nd-1.js?v=1', 'lead-nd-2.js?v=1', 'lead-nd-3.js?v=1',
                          'lead-nd-4.js?v=1', 'lead-nd-5.js?v=1',
                          'lead-notes-runtime.js?v=1'],
-    'android':          ['and-nd-1.js?v=1', 'and-nd-2.js?v=1', 'and-nd-3.js?v=1',
+    'android':          ['android-video-map.js?v=1',
+                         'and-nd-1.js?v=1', 'and-nd-2.js?v=1', 'and-nd-3.js?v=1',
                          'and-nd-4.js?v=1', 'and-nd-5.js?v=1',
                          'and-notes-runtime.js?v=1']
   };
