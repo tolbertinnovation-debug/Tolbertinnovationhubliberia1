@@ -118,7 +118,7 @@
        ent-notes-runtime       likewise fully shadowed by entrepreneurship-notes.js,
                                which covers all 167 content lessons. */
   var EXTRAS = {
-    'accounting-bookkeeping': ['accounting-bookkeeping-video-map.js?v=1'],
+    'accounting-bookkeeping': ['accounting-bookkeeping-video-map.js?v=2'],
     'ai':               ['ai-video-map.js?v=3', 'ai-topic-videos.js?v=3'],
     'data':             ['data-video-map.js?v=2'],
     'webdev':           ['webdev-video-map.js?v=2'],
