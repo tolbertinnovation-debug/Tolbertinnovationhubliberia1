@@ -125,7 +125,7 @@
     'webdev':           ['webdev-video-map.js?v=2'],
     'design':           ['design-video-map.js?v=1'],
     'cybersecurity':    ['cyber-video-map.js?v=2'],
-    'entrepreneurship': ['entrepreneurship-video-map.js?v=1'],
+    'entrepreneurship': ['entrepreneurship-video-map.js?v=2'],
     'english-success':  ['englishsuccess-video-map.js?v=1'],
     'office':           ['office-video-map.js?v=1'],
     'marketing':        ['marketing-video-map.js?v=5',
