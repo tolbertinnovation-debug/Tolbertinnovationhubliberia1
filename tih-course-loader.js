@@ -123,7 +123,7 @@
     'ai-cybersecurity': ['aicyber-video-map.js?v=1'],
     'ai':               ['ai-video-map.js?v=3', 'ai-topic-videos.js?v=3'],
     'data':             ['data-video-map.js?v=3'],
-    'webdev':           ['webdev-video-map.js?v=2'],
+    'webdev':           ['webdev-video-map.js?v=3'],
     'design':           ['design-video-map.js?v=2'],
     'cybersecurity':    ['cyber-video-map.js?v=2'],
     'entrepreneurship': ['entrepreneurship-video-map.js?v=2'],
