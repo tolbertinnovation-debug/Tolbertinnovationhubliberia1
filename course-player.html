@@ -843,20 +843,64 @@
       white-space: nowrap;
     }
 
-    /* The player is sized from the leftover viewport height so the written
-       note still starts on the first screen. That reserve was 430px with a
-       420px floor, which is fine at 1080p but collapses to the floor on a
-       1366x768 laptop — the video rendered 494px wide beside a 900px lesson
-       card, looking broken rather than deliberate. A 250px reserve and a
-       560px floor keep the note starting on screen while the video fills
-       the content column properly: ~814px at 1366x768, the full 900px at
-       1080p. Mobile is untouched — 100% still wins there. */
+    /* Wider reading column so both the video and the notes get more room.
+       The player is sized from leftover viewport height so the note still
+       begins on the first screen; the reserve was 430px against a 420px
+       floor, which collapsed to the floor on a 1366x768 laptop and rendered
+       the video 494px wide beside a 900px card. A 210px reserve with a 640px
+       floor, against the wider column, gives:
+         1280x720   420 -> 800px
+         1366x768   494 -> 885px
+         1920x1080  900 -> 1040px
+       Mobile is untouched: 100% still wins there. */
+    :root { --content-w: 1040px; }
     .video-container {
       width: min(100%, var(--content-w),
-                 max(560px, calc((100vh - var(--topbar-h) - 250px) * 16 / 9)));
+                 max(640px, calc((100vh - var(--topbar-h) - 210px) * 16 / 9)));
       border-radius: var(--r-lg);
       box-shadow: var(--e3);
     }
+
+    /* --- Note typography ---
+       The authored notes are the part learners actually revise from, but the
+       body text was 0.95rem (~15px) — small for long-form reading, and
+       smaller than the interface around it. Raise it to ~17px with a more
+       generous line-height, and scale the headings, lists and tables with
+       it. The measure is capped in ch (not px) so it tracks the font size
+       and lines stay in the comfortable 65-75 character range instead of
+       stretching across the wider column. */
+    .overview-text { max-width: 100%; font-size: 1.06rem; }
+    .overview-text p,
+    .overview-text li {
+      font-size: 1.06rem;
+      line-height: 1.85;
+      color: #2c3a4f;
+    }
+    .overview-text p { margin-bottom: 1.05rem; }
+    .overview-text .lesson-note-intro,
+    .overview-text .lesson-note-section > p,
+    .overview-text .lesson-note-example,
+    .overview-text .lesson-note-action,
+    .overview-text .study-note > p { max-width: 72ch; }
+    .overview-text .study-note { max-width: 100%; }
+    .overview-text h3 { font-size: 1.5rem; line-height: 1.3; margin-bottom: .55rem; }
+    .overview-text h4 { font-size: 1.12rem; line-height: 1.4; }
+    .overview-text .lesson-note-intro { font-size: 1.06rem; line-height: 1.8; }
+    .overview-text .lesson-note-intro span,
+    .overview-text .lesson-note-example { font-size: 1.04rem; line-height: 1.8; }
+    .overview-text ul, .overview-text ol { padding-left: 1.35rem; }
+    .overview-text li { margin-bottom: .5rem; }
+    .overview-text table { font-size: 1rem; }
+    .study-note th { font-size: .95rem; padding: .7rem .9rem; }
+    .study-note td { padding: .7rem .9rem; line-height: 1.7; }
+    .overview-text blockquote {
+      font-size: 1.04rem; line-height: 1.8;
+      border-left: 4px solid var(--gold);
+      background: #fffbeb; color: #6b4a10;
+      padding: .9rem 1.1rem; border-radius: 0 10px 10px 0;
+      margin: 1.2rem 0; max-width: 72ch;
+    }
+    .video-lesson-title { font-size: 1.35rem; }
 
     /* --- Keyboard accessibility: nothing above defined a focus style --- */
     a:focus-visible, button:focus-visible,
