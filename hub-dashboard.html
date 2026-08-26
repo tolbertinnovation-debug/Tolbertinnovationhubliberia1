@@ -335,6 +335,23 @@
     }
     h1, h2, h3 { letter-spacing: -.02em; }
 
+    /* --- Scale the whole dashboard up on larger screens ---
+       Nearly every size here is expressed in rem, so raising the root font
+       size enlarges text, padding and gaps together and keeps the existing
+       proportions intact — far safer than hand-editing dozens of values and
+       risking a layout that no longer lines up. Phones stay at the browser
+       default, where the layout is already tight and the current size is
+       right. The body copy floor is raised too, since 15px was small for
+       the amount of reading this page carries. */
+    @media (min-width: 700px) {
+      html { font-size: 17px; }
+      body { font-size: 1rem; line-height: 1.6; }
+    }
+    @media (min-width: 1100px) {
+      html { font-size: 17.5px; }
+      .wrap { max-width: 1140px; }
+    }
+
     /* --- Top bar --- */
     .dash-topbar {
       border-bottom: 1px solid var(--hairline);
