@@ -197,6 +197,9 @@
         <div style="font-size:.82rem;color:var(--muted);margin-top:.35rem;">Password: the one you just created</div>
         <div style="font-size:.82rem;color:var(--muted);margin-top:.5rem;">Student ID: <strong id="appIdDisplay"></strong></div>
       </div>
+      <!-- Live sync state: until the account reaches the central database it
+           exists only on this phone, and the learner cannot sign in elsewhere. -->
+      <div id="syncNote" style="display:none;margin-top:.75rem;padding:.7rem .85rem;border-radius:10px;font-size:.85rem;line-height:1.45;text-align:left;"></div>
       <div class="confirm-actions">
         <a class="btn-line btn-track" id="loginNowBtn" href="hub-dashboard" style="background:var(--secondary);">▶ Go to My Dashboard</a>
         <a class="btn-line btn-wa" id="waConfirmBtn" target="_blank" rel="noopener noreferrer">💬 Notify TIH on WhatsApp</a>
@@ -266,7 +269,51 @@
         errBox.scrollIntoView({ block: 'center' });
       }
 
-      function showConfirm(app, name, email, phone, location, education, goals, tracks) {
+      /* Show the learner whether their account has actually reached the central
+         database. Until it has, the account lives only on this phone and they
+         cannot sign in on any other device — previously this failed silently.
+         hub-db queues a retry when the first write fails, so poll until it
+         lands rather than reporting a one-off failure as permanent. */
+      function watchAccountSync(email, savedToCloud) {
+        var box = document.getElementById('syncNote');
+        if (!box) return;
+        function paint(bg, border, color, html) {
+          box.style.display = 'block';
+          box.style.background = bg;
+          box.style.border = '1px solid ' + border;
+          box.style.color = color;
+          box.innerHTML = html;
+        }
+        function ok() {
+          paint('#ecfdf5', '#a7f3d0', '#065f46',
+            '<strong>✅ Saved to your TIH account.</strong> You can now sign in on any phone or computer using this email and password.');
+        }
+        function pending() {
+          paint('#fffbeb', '#fde68a', '#92400e',
+            '<strong>⏳ Still saving your account…</strong> Please stay connected for a moment. Until this finishes you can only sign in on this device.');
+        }
+        function stalled() {
+          paint('#fef2f2', '#fecaca', '#991b1b',
+            '<strong>⚠️ Your account has not saved online yet.</strong> It still works on this device. Please open this site again on a stronger connection, or message TIH on WhatsApp so we can finish setting it up for you.');
+        }
+        if (savedToCloud) { ok(); return; }
+        pending();
+        var tries = 0;
+        var timer = setInterval(function () {
+          tries += 1;
+          var give_up = function () { clearInterval(timer); stalled(); };
+          if (!window.HubCloud || !HubCloud.isEnabled() || !HubCloud.studentEmailExists) {
+            if (tries >= 12) give_up();
+            return;
+          }
+          HubCloud.studentEmailExists(email).then(function (exists) {
+            if (exists === true) { clearInterval(timer); ok(); }
+            else if (tries >= 12) give_up();
+          }).catch(function () { if (tries >= 12) give_up(); });
+        }, 5000);   // 12 x 5s = up to a minute of retrying before we warn
+      }
+
+      function showConfirm(app, name, email, phone, location, education, goals, tracks, savedToCloud) {
         // Build WhatsApp confirmation message to the TIH team
         var trackNames = tracks.map(function (id) {
           if (id.indexOf('wassce-') === 0) return wassceApplyName(id);
@@ -289,6 +336,7 @@
 
         document.getElementById('formCard').style.display = 'none';
         document.getElementById('confirmCard').classList.add('show');
+        watchAccountSync(email, savedToCloud);
         window.scrollTo(0, 0);
       }
 
@@ -343,7 +391,7 @@
           // Link the application to the new student account.
           try { HubDB.updateApplication(app.id, { studentId: res.student.id }); } catch (err) {}
           app.studentId = res.student.id; // surface the Student ID on the confirmation + tracking
-          showConfirm(app, name, email, phone, location, education, goals, tracks);
+          showConfirm(app, name, email, phone, location, education, goals, tracks, res.savedToCloud);
         }).catch(function () {
           submitBtn.disabled = false;
           submitBtn.textContent = 'Create Account & Submit →';
