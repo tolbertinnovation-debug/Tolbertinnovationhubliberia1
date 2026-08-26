@@ -421,6 +421,37 @@ as $$
 $$;
 grant execute on function public.admin_list_applications(text) to anon, authenticated;
 
+-- Admin payments roster. hub-cloud.js has always called this for the Payments
+-- tab, but the function was never defined, so the call failed and the tab
+-- reported "No payments recorded yet" even when payments existed. The payments
+-- table itself has no learner name or item title, so join those on for display
+-- (the admin UI falls back to the raw ids when they are absent).
+create or replace function public.admin_list_payments(p_hash text)
+returns jsonb
+language sql
+security definer
+set search_path = public
+as $$
+  select case
+    when public.is_admin_hash(p_hash)
+    then coalesce((
+      select jsonb_agg(
+               to_jsonb(p) || jsonb_build_object(
+                 'student_name', s.name,
+                 'item_title',   e.item_title
+               )
+               order by p.created_at desc)
+        from public.payments p
+        left join public.students    s on s.id = p.student_id
+        -- enrollments is unique on (student_id, item_id), so this cannot fan out
+        left join public.enrollments e on e.student_id = p.student_id
+                                      and e.item_id    = p.item_id
+    ), '[]'::jsonb)
+    else null
+  end;
+$$;
+grant execute on function public.admin_list_payments(text) to anon, authenticated;
+
 create or replace function public.admin_update_application(
   p_hash text, p_id text, p_status text, p_message text, p_notes jsonb)
 returns boolean
