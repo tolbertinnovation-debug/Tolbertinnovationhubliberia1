@@ -30,6 +30,7 @@
 
   // courseId -> curriculum builder. One file builds exactly one course.
   var CURRICULUM = {
+    "accounting-bookkeeping": "accounting-bookkeeping-curriculum.js",
     "agritech": "agritech-curriculum.js",
     "ai": "ai-curriculum.js",
     "ai-cybersecurity": "aicyber-curriculum.js",
@@ -90,6 +91,7 @@
      first, the hook was not yet defined, and every assessment silently kept the
      old shared pool. */
   var TOPIC_QUIZ_BANKS = {
+    'accounting-bookkeeping': { src: 'accounting-bookkeeping-topic-quizzes.js?v=1', apply: 'tihApplyAccountingBookkeepingTopicQuizzes' },
     'sat':              { src: 'sat-topic-quizzes.js?v=1',     apply: 'tihApplySatTopicQuizzes' },
     'ai-cybersecurity': { src: 'aicyber-topic-quizzes.js?v=1', apply: 'tihApplyAicyberTopicQuizzes' },
     'android':          { src: 'android-topic-quizzes.js?v=1', apply: 'tihApplyAndroidTopicQuizzes' },
