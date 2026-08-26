@@ -215,6 +215,7 @@
             <option value="rejected">Rejected</option>
             <option value="info-needed">More Info Needed</option>
           </select>
+          <button class="btn btn-orange btn-sm" id="backfillBtn" onclick="createMissingStudents()">Create missing student accounts</button>
         </div>
         <div class="table-scroll">
           <table>
@@ -654,6 +655,72 @@
       var s = idx.byApp[a.id] || idx.byEmail[String(a.email || '').toLowerCase()];
       return s ? s.id : '';
     }
+
+    /* Anyone who completes an application is a student. Sign-ups through the
+       apply form already create their own active account with their own
+       password; this closes the gap for applications that never got one --
+       legacy rows, or a sign-up whose account creation failed midway.
+       Temporary passwords are shown ONCE, so they are collected and presented
+       together instead of creating accounts nobody can sign in to. */
+    function appsMissingStudents() {
+      var idx = indexStudentsByApp();
+      return HubDB.getApplications().filter(function (a) {
+        if (a.status === 'rejected') return false;   // never auto-enrol a rejection
+        return !studentIdForApp(a, idx);
+      });
+    }
+    function createStudentQuiet(a) {
+      return HubDB.createStudent({
+        name: a.name, email: a.email, phone: a.phone, location: a.location, applicationId: a.id
+      }).then(function (res) {
+        (a.tracks || []).forEach(function (cid) { HubDB.assignCourse(res.student.id, cid); });
+        HubDB.updateApplication(a.id, { status: 'approved', statusMessage: '', studentId: res.student.id });
+        HubDB.audit('Auto-created student ' + res.student.id + ' for application', a.id);
+        HubDB.logMessage({ to: a.phone, channel: 'whatsapp', type: 'credentials', target: res.student.id });
+        return { app: a, student: res.student, tempPassword: res.tempPassword };
+      });
+    }
+    window.createMissingStudents = function () {
+      var pending = appsMissingStudents();
+      if (!pending.length) { alert('Every applicant already has a student account.'); return; }
+      if (!confirm('Create student accounts for ' + pending.length + ' applicant(s)?\n\nEach gets a temporary password. They are shown only once, all together, on the next screen — so be ready to send them out.')) return;
+      var made = [], failed = 0;
+      var chain = Promise.resolve();
+      pending.forEach(function (a) {
+        chain = chain.then(function () {
+          return createStudentQuiet(a)
+            .then(function (r) { made.push(r); })
+            .catch(function () { failed += 1; });   // skip this one, keep going
+        });
+      });
+      chain.then(function () {
+        renderAll();
+        var loginUrl = 'https://tolbertinnovationhub.org/hub-dashboard';
+        var rows = made.map(function (m) {
+          var waText = 'Welcome to TIH Learning Hub, ' + m.app.name + '! 🎉\n\nYour student account is ready.\n\nStudent ID: ' + m.student.id
+            + '\nTemporary password: ' + m.tempPassword + '\n\nLogin here: ' + loginUrl
+            + '\nYou will be asked to set your own password on first login.';
+          return '<tr>'
+            + '<td style="padding:.35rem .4rem;">' + esc(m.app.name) + '</td>'
+            + '<td style="padding:.35rem .4rem;"><b>' + esc(m.student.id) + '</b></td>'
+            + '<td style="padding:.35rem .4rem;"><code>' + esc(m.tempPassword) + '</code></td>'
+            + '<td style="padding:.35rem .4rem;text-align:center;"><a class="btn btn-green btn-sm" target="_blank" rel="noopener noreferrer" href="' + HubDB.waLink(m.app.phone, waText) + '">💬</a></td>'
+            + '</tr>';
+        }).join('');
+        openModal(
+          '<h3>✅ ' + made.length + ' student account' + (made.length === 1 ? '' : 's') + ' created <button class="x" onclick="closeModal()">✕</button></h3>'
+          + (failed ? '<p style="font-size:.85rem;color:#991b1b;">' + failed + ' could not be created (most likely an account already exists for that email).</p>' : '')
+          + (made.length
+              ? '<p style="font-size:.88rem;">These temporary passwords appear <b>once</b>. Send each learner their details now — tap 💬 to open WhatsApp.</p>'
+                + '<div style="overflow-x:auto;"><table style="width:100%;font-size:.8rem;border-collapse:collapse;">'
+                + '<thead><tr><th style="text-align:left;padding:.35rem .4rem;">Name</th><th style="text-align:left;padding:.35rem .4rem;">Student ID</th>'
+                + '<th style="text-align:left;padding:.35rem .4rem;">Temp password</th><th style="padding:.35rem .4rem;">Send</th></tr></thead>'
+                + '<tbody>' + rows + '</tbody></table></div>'
+              : '<p style="font-size:.85rem;color:var(--muted);">No new accounts were created.</p>')
+          + '<div class="modal-actions"><button class="btn btn-line" onclick="closeModal()">Done</button></div>'
+        );
+      });
+    };
     function renderApps() {
       var q = (document.getElementById('appSearch').value || '').toLowerCase();
       var f = document.getElementById('appFilter').value;
@@ -687,6 +754,17 @@
           + (a.status !== 'approved' && a.status !== 'rejected' ? '<button class="btn btn-red btn-sm" onclick="rejectApp(\'' + a.id + '\')">Reject</button>' : '')
           + '</div></td></tr>';
       }).join('');
+
+      // Keep the backfill button honest about how much work is outstanding.
+      var miss = appsMissingStudents().length;
+      var bf = document.getElementById('backfillBtn');
+      if (bf) {
+        bf.textContent = miss
+          ? '➕ Create ' + miss + ' missing student account' + (miss === 1 ? '' : 's')
+          : '✓ All applicants are students';
+        bf.disabled = !miss;
+        bf.style.opacity = miss ? '1' : '.55';
+      }
     }
     document.getElementById('appSearch').addEventListener('input', renderApps);
     document.getElementById('appFilter').addEventListener('change', renderApps);
