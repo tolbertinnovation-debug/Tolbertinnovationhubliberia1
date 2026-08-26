@@ -121,7 +121,12 @@
     'accounting-bookkeeping': ['accounting-bookkeeping-video-map.js?v=2'],
     'agritech':         ['agritech-video-map.js?v=1'],
     'ai-cybersecurity': ['aicyber-video-map.js?v=1'],
-    'ai':               ['ai-video-map.js?v=3', 'ai-topic-videos.js?v=3'],
+    /* ai-topic-videos.js used to sit here, writing into TIH_TOPIC_VIDEOS.ai,
+       which the player applies AFTER the curriculum's own lesson.v and so
+       always won. It carried repeats -- one clip pinned to seven different
+       topics -- and silently overrode ai-video-map.js. Now that the map gives
+       all 180 topics a distinct video, the override file is dropped. */
+    'ai':               ['ai-video-map.js?v=4'],
     'data':             ['data-video-map.js?v=3'],
     'webdev':           ['webdev-video-map.js?v=3'],
     'design':           ['design-video-map.js?v=2'],
