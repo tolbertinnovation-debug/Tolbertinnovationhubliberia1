@@ -126,6 +126,7 @@
     'design':           ['design-video-map.js?v=2'],
     'cybersecurity':    ['cyber-video-map.js?v=2'],
     'entrepreneurship': ['entrepreneurship-video-map.js?v=2'],
+    'grant-writing':    ['grantwriting-video-map.js?v=1'],
     'english-success':  ['englishsuccess-video-map.js?v=1'],
     'office':           ['office-video-map.js?v=1'],
     'marketing':        ['marketing-video-map.js?v=5',
