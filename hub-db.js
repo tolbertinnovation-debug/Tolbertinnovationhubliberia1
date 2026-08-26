@@ -311,7 +311,28 @@ var HubDB = (function () {
     if (!data.password || String(data.password).length < 8) {
       return Promise.resolve({ ok: false, error: 'Password must be at least 8 characters.' });
     }
-    return sha256(data.password).then(function (hash) {
+    // findStudent() above only sees accounts THIS device already has cached
+    // locally. Without also asking the central DB, registering the same
+    // email again from a device that has never seen it before silently
+    // created a second account with a different password -- the original
+    // login then only ever worked on whichever device had the matching
+    // password cached. null (RPC unreachable/not installed) is treated as
+    // "unknown" and lets registration proceed, so a brief network hiccup
+    // never blocks sign-up outright.
+    var cloudCheck = cloud()
+      ? Promise.race([
+          cloud().studentEmailExists(email).catch(function () { return null; }),
+          new Promise(function (resolve) { setTimeout(function () { resolve(null); }, 6000); })
+        ])
+      : Promise.resolve(null);
+    return cloudCheck.then(function (existsInCloud) {
+      if (existsInCloud === true) {
+        return { ok: false, error: 'An account with this email already exists. Please log in instead.' };
+      }
+      return sha256(data.password).then(function (hash) { return { hash: hash }; });
+    }).then(function (result) {
+      if (result.ok === false) return result; // duplicate found in the cloud check above
+      var hash = result.hash;
       var student = {
         id: genStudentId(),
         createdAt: nowISO(),

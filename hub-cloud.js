@@ -411,6 +411,16 @@ var HubCloud = (function () {
         return null;
       }).catch(function () { return null; });
   }
+  // Existence-only check (no row data), so registration can refuse to create
+  // a duplicate account for an email the central DB already has, even from a
+  // device that has never seen that email locally. Returns null (not false)
+  // if the RPC is unreachable or not yet installed, so callers can fall back
+  // to the local-only check rather than wrongly treating "unknown" as "free".
+  function studentEmailExists(email) {
+    return restRpc('student_email_exists', { p_email: String(email || '') })
+      .then(function (r) { return (r === true || r === false) ? r : null; })
+      .catch(function () { return null; });
+  }
   function touchStudentLogin(id) {
     return restRpc('student_touch_login', { p_id: String(id || '') });
   }
@@ -586,6 +596,7 @@ var HubCloud = (function () {
     adminListStudents: adminListStudents,
     adminListPayments: adminListPayments,
     studentLogin: studentLogin,
+    studentEmailExists: studentEmailExists,
     studentSetPasswordRpc: studentSetPasswordRpc,
     touchStudentLogin: touchStudentLogin,
     fetchAccountBundle: fetchAccountBundle,

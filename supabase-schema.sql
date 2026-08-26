@@ -278,6 +278,28 @@ $$;
 
 grant execute on function public.student_login(text, text) to anon, authenticated;
 
+-- Existence check only (no row data returned), so self-registration can refuse
+-- to create a second account for an email that is already in the central DB,
+-- even on a device that has never seen that email locally. Without this,
+-- registerStudent() could only check its own device's local cache, so signing
+-- up again from a new device silently created a duplicate row with a
+-- different password -- the original account then only logs in on whichever
+-- device already has the matching password cached.
+create or replace function public.student_email_exists(p_email text)
+returns boolean
+language sql
+security definer
+set search_path = public
+as $$
+  select exists(
+    select 1 from public.students s
+    where lower(s.email) = lower(trim(p_email))
+      and s.status <> 'suspended'
+  );
+$$;
+
+grant execute on function public.student_email_exists(text) to anon, authenticated;
+
 -- Record a successful login timestamp (called after student_login succeeds).
 create or replace function public.student_touch_login(p_id text)
 returns void
