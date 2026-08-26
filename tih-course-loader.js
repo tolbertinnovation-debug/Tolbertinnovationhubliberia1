@@ -120,6 +120,7 @@
   var EXTRAS = {
     'accounting-bookkeeping': ['accounting-bookkeeping-video-map.js?v=2'],
     'agritech':         ['agritech-video-map.js?v=1'],
+    'ai-cybersecurity': ['aicyber-video-map.js?v=1'],
     'ai':               ['ai-video-map.js?v=3', 'ai-topic-videos.js?v=3'],
     'data':             ['data-video-map.js?v=3'],
     'webdev':           ['webdev-video-map.js?v=2'],
