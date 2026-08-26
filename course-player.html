@@ -843,6 +843,21 @@
       white-space: nowrap;
     }
 
+    /* The player is sized from the leftover viewport height so the written
+       note still starts on the first screen. That reserve was 430px with a
+       420px floor, which is fine at 1080p but collapses to the floor on a
+       1366x768 laptop — the video rendered 494px wide beside a 900px lesson
+       card, looking broken rather than deliberate. A 250px reserve and a
+       560px floor keep the note starting on screen while the video fills
+       the content column properly: ~814px at 1366x768, the full 900px at
+       1080p. Mobile is untouched — 100% still wins there. */
+    .video-container {
+      width: min(100%, var(--content-w),
+                 max(560px, calc((100vh - var(--topbar-h) - 250px) * 16 / 9)));
+      border-radius: var(--r-lg);
+      box-shadow: var(--e3);
+    }
+
     /* --- Keyboard accessibility: nothing above defined a focus style --- */
     a:focus-visible, button:focus-visible,
     .sidebar-lesson:focus-visible, .tab-btn:focus-visible {
