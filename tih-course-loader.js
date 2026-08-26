@@ -130,7 +130,7 @@
     'grant-writing':    ['grantwriting-video-map.js?v=1'],
     'english-success':  ['englishsuccess-video-map.js?v=1'],
     'office':           ['office-video-map.js?v=1'],
-    'marketing':        ['marketing-video-map.js?v=5',
+    'marketing':        ['marketing-video-map.js?v=6',
                          'mkt-nd-1.js?v=1', 'mkt-nd-2.js?v=1', 'mkt-nd-3.js?v=1',
                          'mkt-nd-4.js?v=1', 'mkt-nd-5.js?v=1',
                          'mkt-notes-runtime.js?v=1'],
