@@ -10,11 +10,11 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <title>Tolbert Innovation Hub | Empowering Youth Through Education & Innovation</title>
-  <meta name="description" content="Tolbert Innovation Hub empowers Liberian youth through scholarships, IELTS/TOEFL & WASSCE exam prep, 18 affordable skill tracks (from US$3 / 500 LRD), a digital library, international healthcare access, and grants guidance. Transform your future today." />
+  <meta name="description" content="Tolbert Innovation Hub empowers Liberian youth through scholarships, IELTS/TOEFL & WASSCE exam prep, 25 affordable skill tracks (from US$3 / 500 LRD), a digital library, international healthcare access, and grants guidance. Transform your future today." />
   <meta name="keywords" content="Tolbert Innovation Hub, Liberia scholarships, IELTS preparation Liberia, TOEFL classroom, Africa innovation, youth empowerment, education Liberia, grants Liberia 2026, digital library Liberia" />
   <meta name="author" content="Tolbert Innovation Hub" />
   <meta property="og:title" content="Tolbert Innovation Hub | Empowering Youth Through Education & Innovation" />
-  <meta property="og:description" content="Scholarships, an affordable skills hub with 18 tracks (from US$3 / 500 LRD), digital library, healthcare access, and grants directory, transforming lives across Liberia and Africa." />
+  <meta property="og:description" content="Scholarships, an affordable skills hub with 25 tracks (from US$3 / 500 LRD), digital library, healthcare access, and grants directory, transforming lives across Liberia and Africa." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.tolbertinnovationhub.org/" />
   <meta property="og:image" content="assets/tih-logo.png" />
@@ -256,7 +256,7 @@
                 <p class="impact-label">Learners Reached</p>
               </div>
               <div class="impact-item">
-                <span class="impact-number" data-target="44" data-suffix="">0</span>
+                <span class="impact-number" data-target="48" data-suffix="">0</span>
                 <p class="impact-label">Courses & Subjects</p>
               </div>
               <div class="impact-item">
@@ -367,10 +367,10 @@
               <p class="welcome-tile-title">Scholarships</p>
               <p class="welcome-tile-sub">Study Abroad & Fully Funded</p>
             </a>
-            <a class="welcome-tile" href="learning-hub" aria-label="Learning Hub, 18 Professional Tracks">
+            <a class="welcome-tile" href="learning-hub" aria-label="Learning Hub, 25 Professional Tracks">
               <div class="welcome-tile-icon">💻</div>
               <p class="welcome-tile-title">Learning Hub</p>
-              <p class="welcome-tile-sub">18 Professional Tracks</p>
+              <p class="welcome-tile-sub">25 Professional Tracks</p>
             </a>
             <a class="welcome-tile" href="wassce" aria-label="Exam Prep, IELTS, TOEFL & WASSCE">
               <div class="welcome-tile-icon">📚</div>
@@ -545,231 +545,6 @@
       </div>
     </section>
 
-    <!-- ABOUT TIH LEARNING HUB -->
-    <section class="section section-alt" aria-label="About TIH Learning Hub" id="about-learning-hub">
-      <style>
-        .lh-wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:2.5rem;align-items:center;}
-        @media(max-width:860px){.lh-wrap{grid-template-columns:1fr;gap:1.75rem;}}
-        .lh-copy .section-label{color:#E31E24;}
-        .lh-copy h2{margin:.25rem 0 1rem;line-height:1.15;}
-        .lh-img{width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104,.14);margin:0 0 1.4rem;border:1px solid #e6e9f2;}
-        .lh-copy p.lh-lead{font-size:1.05rem;color:var(--text-secondary);line-height:1.66;margin-bottom:1.1rem;}
-        .lh-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin:1.4rem 0 1.6rem;}
-        @media(max-width:520px){.lh-stats{grid-template-columns:1fr 1fr;}}
-        .lh-stat{background:#f4f7fd;border:1px solid #e2e8f5;border-radius:12px;padding:.8rem .6rem;text-align:center;}
-        .lh-stat b{display:block;font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:800;color:#002868;line-height:1;}
-        .lh-stat span{display:block;font-size:.72rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-top:.35rem;}
-        .lh-ctas{display:flex;gap:.75rem;flex-wrap:wrap;}
-        .lh-features{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
-        @media(max-width:520px){.lh-features{grid-template-columns:1fr;}}
-        .lh-feat{background:#fff;border:1px solid #e6e9f2;border-radius:14px;padding:1.1rem;box-shadow:0 4px 16px rgba(0,40,104,.06);}
-        .lh-feat .fi{font-size:1.5rem;display:block;margin-bottom:.5rem;}
-        .lh-feat h3{font-size:.98rem;color:#002868;margin:0 0 .3rem;}
-        .lh-feat p{font-size:.85rem;color:var(--text-secondary);line-height:1.55;margin:0;}
-        /* Course cards, a sample of what the Hub teaches. */
-        .lh-courses{margin-top:2.6rem;border-top:1px solid #e2e8f5;padding-top:2rem;}
-        .lh-courses-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:.75rem;margin-bottom:1.4rem;}
-        .lh-courses-head h3{font-family:'Poppins',sans-serif;font-size:1.5rem;color:#002868;margin:0;line-height:1.2;}
-        .lh-seeall{font-size:.86rem;font-weight:700;color:#E31E24;text-decoration:none;white-space:nowrap;}
-        .lh-seeall:hover{text-decoration:underline;}
-        .lhc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;}
-        @media(max-width:900px){.lhc-grid{grid-template-columns:1fr 1fr;}}
-        @media(max-width:620px){.lhc-grid{grid-template-columns:1fr;}}
-        .lhc-card{display:flex;align-items:center;gap:.85rem;background:#fff;border:1px solid #e6e9f2;border-radius:14px;padding:.85rem;text-decoration:none;box-shadow:0 4px 16px rgba(0,40,104,.06);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
-        .lhc-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(0,40,104,.14);border-color:#c9d4ea;}
-        .lhc-thumb{flex:0 0 auto;width:58px;height:58px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;line-height:1;}
-        .lhc-body{display:block;min-width:0;}
-        .lhc-title{display:block;font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:700;color:#002868;line-height:1.25;}
-        .lhc-meta{display:block;font-size:.75rem;color:#64748b;margin-top:.25rem;line-height:1.35;}
-        .lhc-price{display:block;font-size:.82rem;font-weight:800;color:#E31E24;margin-top:.4rem;}
-        .lhc-price span{font-weight:600;color:#64748b;font-size:.74rem;}
-        .lhc-card-wassce{border-color:#002868;background:linear-gradient(180deg,#f7faff,#fff);}
-        .lh-courses-note{font-size:.85rem;color:var(--text-secondary);line-height:1.6;margin:1.2rem 0 0;text-align:center;}
-      </style>
-      <div class="container">
-        <div class="lh-wrap">
-          <div class="lh-copy reveal">
-            <p class="section-label">About TIH Learning Hub</p>
-            <h2>Real Skills & Exam Prep, from US$3 / 500 LRD a Course</h2>
-            <img class="lh-img" src="https://i.ibb.co/BHFC0NJT/file-00000000d0c471f497ad7c8bcae78ca4.png" alt="TIH Learning Hub, learn real skills and WASSCE exam prep on your phone" loading="lazy" decoding="async" />
-            <p class="lh-lead">
-              The <strong>TIH Learning Hub</strong> is our online school built for Liberians and learners across West Africa. From computer literacy and web development to AI, digital marketing, and full <strong>WASSCE</strong> exam preparation, you learn practical, in-demand skills at a price anyone can afford.
-            </p>
-            <p style="color:var(--text-secondary);line-height:1.66;margin-bottom:0;">
-              You apply online, our team reviews and approves your account, then you unlock any WASSCE subject for a one-time <strong>US$3 / 500 LRD</strong> or any other course for <strong>US$5 / 950 LRD</strong> Mobile Money payment. Learn at your own pace on any phone, and earn a verified certificate you can share with employers.
-            </p>
-            <div class="lh-stats">
-              <div class="lh-stat"><b>18</b><span>Skill Tracks</span></div>
-              <div class="lh-stat"><b>23</b><span>WASSCE Subjects</span></div>
-              <div class="lh-stat"><b>US$3–5</b><span>Per Course</span></div>
-              <div class="lh-stat"><b>✓</b><span>Verified Certs</span></div>
-            </div>
-            <div class="lh-ctas">
-              <a href="learning-hub" class="btn btn-secondary">Explore the Learning Hub →</a>
-              <a href="hub-apply" class="btn btn-ghost">Apply for Access</a>
-            </div>
-          </div>
-          <div class="lh-features reveal reveal-delay-1">
-            <div class="lh-feat"><span class="fi">🔐</span><h3>Admin-Approved Access</h3><p>Apply online and our team reviews every application, no open sign-ups, so learning stays focused and quality stays high.</p></div>
-            <div class="lh-feat"><span class="fi">💵</span><h3>From US$3 / 500 LRD a Course</h3><p>Pay one course at a time via Mobile Money, US$3 / 500 LRD per WASSCE subject and US$5 / 950 LRD for any other course. Unlock exactly what you need, when you need it.</p></div>
-            <div class="lh-feat"><span class="fi">🎥</span><h3>Video Lessons & Quizzes</h3><p>Every lesson has a video, clear notes, and a short quiz, so you truly understand before moving on.</p></div>
-            <div class="lh-feat"><span class="fi">🏆</span><h3>Verified Certificates</h3><p>Finish a course, request your certificate, and anyone can confirm it online from any device.</p></div>
-          </div>
-        </div>
-
-          <!-- Course cards, a sample of what the Hub teaches. Tiles use each
-               course's own gradient and icon rather than the cover photos, which
-               run 85-492KB each and would have added roughly 3MB to the home page. -->
-          <div class="lh-courses reveal">
-            <div class="lh-courses-head">
-              <div>
-                <p class="section-label" style="color:#E31E24;margin:0 0 .3rem;">What You Can Study</p>
-                <h3>A Sample of the Courses Inside</h3>
-              </div>
-              <a class="lh-seeall" href="learning-hub#tracks">See all courses &rarr;</a>
-            </div>
-            <div class="lhc-grid">
-              <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#1e3a5f,#002868);" aria-hidden="true">💻</span>
-                <span class="lhc-body">
-                  <span class="lhc-title">Computer Literacy</span>
-                  <span class="lhc-meta">253 lessons &middot; 128 videos</span>
-                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
-                </span>
-              </a>
-              <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#0284c7,#0ea5e9);" aria-hidden="true">🌐</span>
-                <span class="lhc-body">
-                  <span class="lhc-title">Web Development</span>
-                  <span class="lhc-meta">374 lessons &middot; 194 videos</span>
-                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
-                </span>
-              </a>
-              <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);" aria-hidden="true">🤖</span>
-                <span class="lhc-body">
-                  <span class="lhc-title">Artificial Intelligence</span>
-                  <span class="lhc-meta">343 lessons &middot; 180 videos</span>
-                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
-                </span>
-              </a>
-              <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#0d9488,#065f46);" aria-hidden="true">📊</span>
-                <span class="lhc-body">
-                  <span class="lhc-title">Data Analysis</span>
-                  <span class="lhc-meta">356 lessons &middot; 186 videos</span>
-                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
-                </span>
-              </a>
-              <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#7f1d1d,#e31e24);" aria-hidden="true">🔒</span>
-                <span class="lhc-body">
-                  <span class="lhc-title">Cybersecurity</span>
-                  <span class="lhc-meta">328 lessons &middot; 170 videos</span>
-                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
-                </span>
-              </a>
-              <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#b45309,#f59e0b);" aria-hidden="true">📢</span>
-                <span class="lhc-body">
-                  <span class="lhc-title">Digital Marketing</span>
-                  <span class="lhc-meta">355 lessons &middot; 189 videos</span>
-                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
-                </span>
-              </a>
-              <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#d97706,#f59e0b);" aria-hidden="true">💼</span>
-                <span class="lhc-body">
-                  <span class="lhc-title">Microsoft Office</span>
-                  <span class="lhc-meta">377 lessons &middot; 198 videos</span>
-                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
-                </span>
-              </a>
-              <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#064e3b,#0f766e);" aria-hidden="true">🧾</span>
-                <span class="lhc-body">
-                  <span class="lhc-title">Accounting &amp; Bookkeeping</span>
-                  <span class="lhc-meta">279 lessons &middot; 140 videos</span>
-                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
-                </span>
-              </a>
-              <a class="lhc-card lhc-card-wassce" href="learning-hub#wassce">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#002868,#E31E24);" aria-hidden="true">🎓</span>
-                <span class="lhc-body">
-                  <span class="lhc-title">23 WASSCE Subjects</span>
-                  <span class="lhc-meta">Lessons, past questions &amp; mock exams</span>
-                  <span class="lhc-price">US$3 <span>/ 500 LRD</span></span>
-                </span>
-              </a>
-            </div>
-            <p class="lh-courses-note">
-              18 professional courses and 23 WASSCE subjects in total. Every course carries video
-              lessons, written notes, quizzes and a verified certificate.
-            </p>
-          </div>
-      </div>
-    </section>
-
-    <!-- LATEST NEWS, moved to top after Hero -->
-    <section class="section" aria-label="Latest News">
-      <div class="container">
-        <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
-          <div>
-            <p class="section-label">Latest Updates</p>
-            <h2>News & Announcements</h2>
-            <p class="section-intro">Stay updated on scholarships, programs, healthcare opportunities, and technology initiatives.</p>
-          </div>
-          <a href="news" class="btn btn-outline-blue btn-sm" style="flex-shrink:0;">All News →</a>
-        </div>
-        <div class="swiper news-carousel" role="region" aria-label="Latest News" aria-roledescription="carousel" data-latest-news>
-          <p style="color:var(--text-muted);font-size:.9rem;padding:1rem 0;">Loading latest news&hellip; <a href="news">View all news</a></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- IMPACT STATISTICS -->
-    <section class="section section-alt" aria-label="Impact Statistics">
-      <div class="container">
-        <div class="section-header centered">
-          <p class="section-label">Our Impact</p>
-          <h2>Building a Foundation for Lasting Change</h2>
-          <p class="section-intro">From scholarship guidance to affordable skill training and digital transformation, every program is designed for measurable progress and real-world impact in Liberia.</p>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-card reveal">
-            <span class="stat-icon">👩‍🎓</span>
-            <span class="stat-number counter" data-target="5000" data-suffix="+">5,000+</span>
-            <p class="stat-label">Learners Reached Through TIH Programs</p>
-          </div>
-          <div class="stat-card reveal reveal-delay-1">
-            <span class="stat-icon">📚</span>
-            <span class="stat-number counter" data-target="18" data-suffix="">18</span>
-            <p class="stat-label">Skill Tracks in the Learning Hub</p>
-          </div>
-          <div class="stat-card reveal reveal-delay-2">
-            <span class="stat-icon">🌍</span>
-            <span class="stat-number counter" data-target="15" data-suffix="+">15+</span>
-            <p class="stat-label">Countries Reached Through Partnership Networks</p>
-          </div>
-          <div class="stat-card reveal reveal-delay-3">
-            <span class="stat-icon">💻</span>
-            <span class="stat-number counter" data-target="23" data-suffix="">23</span>
-            <p class="stat-label">WASSCE Subjects + IELTS & TOEFL Exam Prep</p>
-          </div>
-          <div class="stat-card reveal reveal-delay-4">
-            <span class="stat-icon">🏥</span>
-            <span class="stat-number counter" data-target="50" data-suffix="+">50+</span>
-            <p class="stat-label">Healthcare Cases Referred to International Specialists</p>
-          </div>
-          <div class="stat-card reveal">
-            <span class="stat-icon">💰</span>
-            <span class="stat-number counter" data-target="20" data-suffix="+">20+</span>
-            <p class="stat-label">Active Grants Listed in the 2026–2027 Directory</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- SPOTLIGHT: CORE PROGRAMS -->
     <section class="section spotlight-section" id="programs" aria-label="Core Programs">
       <div class="container">
@@ -791,7 +566,7 @@
             </div>
             <div class="sc-body">
               <ul class="sc-features">
-                <li>18 professional skill tracks with video lessons</li>
+                <li>25 professional skill tracks with video lessons</li>
                 <li>IELTS, TOEFL & WASSCE exam preparation</li>
                 <li>Verified certificates of completion</li>
                 <li>Computer literacy, AI, web dev & data</li>
@@ -886,7 +661,7 @@
     </section>
 
     <!-- ALL PROGRAMS -->
-    <section class="section section-alt" aria-label="All Programs">
+    <section class="section" aria-label="All Programs">
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">All Programs</p>
@@ -904,7 +679,7 @@
                 <div class="program-card-icon" style="background:#eaf4ff;">🎓</div>
                 <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#002868;margin:0 0 .4rem;">Digital Education</p>
                 <h3 style="margin-bottom:.6rem;">TIH Learning Hub</h3>
-                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">18 professional courses in tech, business, finance and more, with real YouTube video lessons, quizzes, and verified certificates. <strong>US$5 / 950 LRD per course</strong>.</p>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">25 professional courses in tech, business, finance and more, with real YouTube video lessons, quizzes, and verified certificates. <strong>US$5 / 950 LRD per course</strong>.</p>
                 <ul class="list-tight" style="font-size:.88rem;">
                   <li>Computer Literacy, AI, Web Dev & Data</li>
                   <li>Android, Design, Cybersecurity & Marketing</li>
@@ -1072,6 +847,171 @@
       </div>
     </section>
 
+    <!-- ABOUT TIH LEARNING HUB -->
+    <section class="section section-alt" aria-label="About TIH Learning Hub" id="about-learning-hub">
+      <style>
+        .lh-wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:2.5rem;align-items:center;}
+        @media(max-width:860px){.lh-wrap{grid-template-columns:1fr;gap:1.75rem;}}
+        .lh-copy .section-label{color:#E31E24;}
+        .lh-copy h2{margin:.25rem 0 1rem;line-height:1.15;}
+        .lh-img{width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104,.14);margin:0 0 1.4rem;border:1px solid #e6e9f2;}
+        .lh-copy p.lh-lead{font-size:1.05rem;color:var(--text-secondary);line-height:1.66;margin-bottom:1.1rem;}
+        .lh-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin:1.4rem 0 1.6rem;}
+        @media(max-width:520px){.lh-stats{grid-template-columns:1fr 1fr;}}
+        .lh-stat{background:#f4f7fd;border:1px solid #e2e8f5;border-radius:12px;padding:.8rem .6rem;text-align:center;}
+        .lh-stat b{display:block;font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:800;color:#002868;line-height:1;}
+        .lh-stat span{display:block;font-size:.72rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-top:.35rem;}
+        .lh-ctas{display:flex;gap:.75rem;flex-wrap:wrap;}
+        .lh-features{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+        @media(max-width:520px){.lh-features{grid-template-columns:1fr;}}
+        .lh-feat{background:#fff;border:1px solid #e6e9f2;border-radius:14px;padding:1.1rem;box-shadow:0 4px 16px rgba(0,40,104,.06);}
+        .lh-feat .fi{font-size:1.5rem;display:block;margin-bottom:.5rem;}
+        .lh-feat h3{font-size:.98rem;color:#002868;margin:0 0 .3rem;}
+        .lh-feat p{font-size:.85rem;color:var(--text-secondary);line-height:1.55;margin:0;}
+        /* Course cards, a sample of what the Hub teaches. */
+        .lh-courses{margin-top:2.6rem;border-top:1px solid #e2e8f5;padding-top:2rem;}
+        .lh-courses-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:.75rem;margin-bottom:1.4rem;}
+        .lh-courses-head h3{font-family:'Poppins',sans-serif;font-size:1.5rem;color:#002868;margin:0;line-height:1.2;}
+        .lh-seeall{font-size:.86rem;font-weight:700;color:#E31E24;text-decoration:none;white-space:nowrap;}
+        .lh-seeall:hover{text-decoration:underline;}
+        .lhc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;}
+        @media(max-width:900px){.lhc-grid{grid-template-columns:1fr 1fr;}}
+        @media(max-width:620px){.lhc-grid{grid-template-columns:1fr;}}
+        .lhc-card{display:flex;align-items:center;gap:.85rem;background:#fff;border:1px solid #e6e9f2;border-radius:14px;padding:.85rem;text-decoration:none;box-shadow:0 4px 16px rgba(0,40,104,.06);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+        .lhc-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(0,40,104,.14);border-color:#c9d4ea;}
+        .lhc-thumb{flex:0 0 auto;width:58px;height:58px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;line-height:1;}
+        .lhc-body{display:block;min-width:0;}
+        .lhc-title{display:block;font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:700;color:#002868;line-height:1.25;}
+        .lhc-meta{display:block;font-size:.75rem;color:#64748b;margin-top:.25rem;line-height:1.35;}
+        .lhc-price{display:block;font-size:.82rem;font-weight:800;color:#E31E24;margin-top:.4rem;}
+        .lhc-price span{font-weight:600;color:#64748b;font-size:.74rem;}
+        .lhc-card-wassce{border-color:#002868;background:linear-gradient(180deg,#f7faff,#fff);}
+        .lh-courses-note{font-size:.85rem;color:var(--text-secondary);line-height:1.6;margin:1.2rem 0 0;text-align:center;}
+      </style>
+      <div class="container">
+        <div class="lh-wrap">
+          <div class="lh-copy reveal">
+            <p class="section-label">About TIH Learning Hub</p>
+            <h2>Real Skills & Exam Prep, from US$3 / 500 LRD a Course</h2>
+            <img class="lh-img" src="https://i.ibb.co/BHFC0NJT/file-00000000d0c471f497ad7c8bcae78ca4.png" alt="TIH Learning Hub, learn real skills and WASSCE exam prep on your phone" loading="lazy" decoding="async" />
+            <p class="lh-lead">
+              The <strong>TIH Learning Hub</strong> is our online school built for Liberians and learners across West Africa. From computer literacy and web development to AI, digital marketing, and full <strong>WASSCE</strong> exam preparation, you learn practical, in-demand skills at a price anyone can afford.
+            </p>
+            <p style="color:var(--text-secondary);line-height:1.66;margin-bottom:0;">
+              You apply online, our team reviews and approves your account, then you unlock any WASSCE subject for a one-time <strong>US$3 / 500 LRD</strong> or any other course for <strong>US$5 / 950 LRD</strong> Mobile Money payment. Learn at your own pace on any phone, and earn a verified certificate you can share with employers.
+            </p>
+            <div class="lh-stats">
+              <div class="lh-stat"><b>25</b><span>Skill Tracks</span></div>
+              <div class="lh-stat"><b>23</b><span>WASSCE Subjects</span></div>
+              <div class="lh-stat"><b>US$3–5</b><span>Per Course</span></div>
+              <div class="lh-stat"><b>✓</b><span>Verified Certs</span></div>
+            </div>
+            <div class="lh-ctas">
+              <a href="learning-hub" class="btn btn-secondary">Explore the Learning Hub →</a>
+              <a href="hub-apply" class="btn btn-ghost">Apply for Access</a>
+            </div>
+          </div>
+          <div class="lh-features reveal reveal-delay-1">
+            <div class="lh-feat"><span class="fi">🔐</span><h3>Admin-Approved Access</h3><p>Apply online and our team reviews every application, no open sign-ups, so learning stays focused and quality stays high.</p></div>
+            <div class="lh-feat"><span class="fi">💵</span><h3>From US$3 / 500 LRD a Course</h3><p>Pay one course at a time via Mobile Money, US$3 / 500 LRD per WASSCE subject and US$5 / 950 LRD for any other course. Unlock exactly what you need, when you need it.</p></div>
+            <div class="lh-feat"><span class="fi">🎥</span><h3>Video Lessons & Quizzes</h3><p>Every lesson has a video, clear notes, and a short quiz, so you truly understand before moving on.</p></div>
+            <div class="lh-feat"><span class="fi">🏆</span><h3>Verified Certificates</h3><p>Finish a course, request your certificate, and anyone can confirm it online from any device.</p></div>
+          </div>
+        </div>
+
+          <!-- Course cards, a sample of what the Hub teaches. Tiles use each
+               course's own gradient and icon rather than the cover photos, which
+               run 85-492KB each and would have added roughly 3MB to the home page. -->
+          <div class="lh-courses reveal">
+            <div class="lh-courses-head">
+              <div>
+                <p class="section-label" style="color:#E31E24;margin:0 0 .3rem;">What You Can Study</p>
+                <h3>A Sample of the Courses Inside</h3>
+              </div>
+              <a class="lh-seeall" href="learning-hub#tracks">See all courses &rarr;</a>
+            </div>
+            <div class="lhc-grid">
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#1e3a5f,#002868);" aria-hidden="true">💻</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Computer Literacy</span>
+                  <span class="lhc-meta">253 lessons &middot; 128 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#0284c7,#0ea5e9);" aria-hidden="true">🌐</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Web Development</span>
+                  <span class="lhc-meta">374 lessons &middot; 194 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);" aria-hidden="true">🤖</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Artificial Intelligence</span>
+                  <span class="lhc-meta">343 lessons &middot; 180 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#0d9488,#065f46);" aria-hidden="true">📊</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Data Analysis</span>
+                  <span class="lhc-meta">356 lessons &middot; 186 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#7f1d1d,#e31e24);" aria-hidden="true">🔒</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Cybersecurity</span>
+                  <span class="lhc-meta">328 lessons &middot; 170 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#b45309,#f59e0b);" aria-hidden="true">📢</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Digital Marketing</span>
+                  <span class="lhc-meta">355 lessons &middot; 189 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#d97706,#f59e0b);" aria-hidden="true">💼</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Microsoft Office</span>
+                  <span class="lhc-meta">377 lessons &middot; 198 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#064e3b,#0f766e);" aria-hidden="true">🧾</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Accounting &amp; Bookkeeping</span>
+                  <span class="lhc-meta">279 lessons &middot; 140 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card lhc-card-wassce" href="learning-hub#wassce">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#002868,#E31E24);" aria-hidden="true">🎓</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">23 WASSCE Subjects</span>
+                  <span class="lhc-meta">Lessons, past questions &amp; mock exams</span>
+                  <span class="lhc-price">US$3 <span>/ 500 LRD</span></span>
+                </span>
+              </a>
+            </div>
+            <p class="lh-courses-note">
+              25 professional courses and 23 WASSCE subjects in total. Every course carries video
+              lessons, written notes, quizzes and a verified certificate.
+            </p>
+          </div>
+      </div>
+    </section>
+
     <!-- LEARNING PATHWAYS -->
     <section class="path-section" aria-label="Learning Pathways">
       <div class="container">
@@ -1158,9 +1098,57 @@
       </div>
     </section>
 
+    <!-- IMPACT STATISTICS -->
+    <section class="section" aria-label="Impact Statistics">
+      <div class="container">
+        <div class="section-header centered">
+          <p class="section-label">Our Impact</p>
+          <h2>Building a Foundation for Lasting Change</h2>
+          <p class="section-intro">From scholarship guidance to affordable skill training and digital transformation, every program is designed for measurable progress and real-world impact in Liberia.</p>
+        </div>
+        <style>
+          /* Six cards: auto-fit lands on 5+1 at desktop width, so pin 3x2 here. */
+          .impact-stats-3x2{grid-template-columns:repeat(3,1fr);}
+          @media(max-width:900px){.impact-stats-3x2{grid-template-columns:1fr 1fr;}}
+          @media(max-width:520px){.impact-stats-3x2{grid-template-columns:1fr;}}
+        </style>
+        <div class="stats-grid impact-stats-3x2">
+          <div class="stat-card reveal">
+            <span class="stat-icon">👩‍🎓</span>
+            <span class="stat-number counter" data-target="5000" data-suffix="+">5,000+</span>
+            <p class="stat-label">Learners Reached Through TIH Programs</p>
+          </div>
+          <div class="stat-card reveal reveal-delay-1">
+            <span class="stat-icon">📚</span>
+            <span class="stat-number counter" data-target="25" data-suffix="">25</span>
+            <p class="stat-label">Skill Tracks in the Learning Hub</p>
+          </div>
+          <div class="stat-card reveal reveal-delay-2">
+            <span class="stat-icon">🌍</span>
+            <span class="stat-number counter" data-target="15" data-suffix="+">15+</span>
+            <p class="stat-label">Countries Reached Through Partnership Networks</p>
+          </div>
+          <div class="stat-card reveal reveal-delay-3">
+            <span class="stat-icon">💻</span>
+            <span class="stat-number counter" data-target="23" data-suffix="">23</span>
+            <p class="stat-label">WASSCE Subjects + IELTS & TOEFL Exam Prep</p>
+          </div>
+          <div class="stat-card reveal reveal-delay-4">
+            <span class="stat-icon">🏥</span>
+            <span class="stat-number counter" data-target="50" data-suffix="+">50+</span>
+            <p class="stat-label">Healthcare Cases Referred to International Specialists</p>
+          </div>
+          <div class="stat-card reveal">
+            <span class="stat-icon">💰</span>
+            <span class="stat-number counter" data-target="20" data-suffix="+">20+</span>
+            <p class="stat-label">Active Grants Listed in the 2026–2027 Directory</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- TESTIMONIALS -->
-    <section class="section" aria-label="Testimonials">
+    <section class="section section-alt" aria-label="Testimonials">
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">Testimonials</p>
@@ -1211,82 +1199,6 @@
                 <p class="testimonial-role">NGO Director, Grant Writing Track &middot; Monrovia</p>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- UPCOMING EVENTS -->
-    <section class="section section-alt" aria-label="Upcoming Events">
-      <div class="container">
-        <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
-          <div>
-            <p class="section-label">Events</p>
-            <h2>Upcoming Programs & Events</h2>
-            <p class="section-intro">Join us for workshops, scholarship information sessions, and innovation programs.</p>
-          </div>
-          <a href="news" class="btn btn-outline-blue btn-sm" style="flex-shrink:0;">View All Events</a>
-        </div>
-        <div class="events-list">
-          <div class="event-card reveal">
-            <div class="event-date-box">
-              <span class="event-date-day">📝</span>
-              <span class="event-date-month">Ongoing</span>
-            </div>
-            <div>
-              <p class="event-title">SHE-CAN Scholarship — Free Information Session</p>
-              <p class="event-meta">📍 Online &middot; Quick Survey &nbsp;|&nbsp; 🕐 Rolling sign-up</p>
-              <span class="event-tag">Scholarships</span>
-            </div>
-            <a href="she-can-survey" class="btn btn-secondary btn-sm">Take the Survey</a>
-          </div>
-          <div class="event-card reveal">
-            <div class="event-date-box">
-              <span class="event-date-day">30</span>
-              <span class="event-date-month">Jul</span>
-            </div>
-            <div>
-              <p class="event-title">2026 Scholarship Application Deadline</p>
-              <p class="event-meta">📍 Online &middot; Submit via Portal &nbsp;|&nbsp; 🕐 All Day</p>
-              <span class="event-tag">Scholarships</span>
-            </div>
-            <a href="apply" class="btn btn-secondary btn-sm">Apply Now</a>
-          </div>
-          <div class="event-card reveal reveal-delay-1">
-            <div class="event-date-box">
-              <span class="event-date-day">15</span>
-              <span class="event-date-month">Aug</span>
-            </div>
-            <div>
-              <p class="event-title">Fully Funded Scholarship Information Session</p>
-              <p class="event-meta">📍 Online · WhatsApp Group &nbsp;|&nbsp; 🕐 3:00 PM GMT</p>
-              <span class="event-tag">Scholarships</span>
-            </div>
-            <a href="fully-funded-scholarship" class="btn btn-secondary btn-sm">Learn More</a>
-          </div>
-          <div class="event-card reveal reveal-delay-2">
-            <div class="event-date-box">
-              <span class="event-date-day">01</span>
-              <span class="event-date-month">Aug</span>
-            </div>
-            <div>
-              <p class="event-title">Grant Writing Workshop: Proposal Skills for NGOs</p>
-              <p class="event-meta">📍 TIH Learning Hub Online &nbsp;|&nbsp; 🕐 Available 24/7</p>
-              <span class="event-tag">Grants</span>
-            </div>
-            <a href="learning-hub" class="btn btn-secondary btn-sm">Open Learning Hub</a>
-          </div>
-          <div class="event-card reveal reveal-delay-3">
-            <div class="event-date-box">
-              <span class="event-date-day">20</span>
-              <span class="event-date-month">Aug</span>
-            </div>
-            <div>
-              <p class="event-title">Technology Consultation Open Day for Liberian Businesses</p>
-              <p class="event-meta">📍 Contact via WhatsApp &nbsp;|&nbsp; 🕐 By Appointment</p>
-              <span class="event-tag">Technology</span>
-            </div>
-            <a href="software#consultation-form" class="btn btn-secondary btn-sm">Register</a>
           </div>
         </div>
       </div>
@@ -1343,6 +1255,99 @@
           <div style="display:flex;align-items:center;gap:.6rem;padding:.9rem 1.4rem;background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius);font-size:.9rem;font-weight:600;color:var(--text-secondary);">
             <span>📚</span> Free Digital Library
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UPCOMING EVENTS -->
+    <section class="section section-alt" aria-label="Upcoming Events">
+      <div class="container">
+        <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+          <div>
+            <p class="section-label">Events</p>
+            <h2>Upcoming Programs & Events</h2>
+            <p class="section-intro">Join us for workshops, scholarship information sessions, and innovation programs.</p>
+          </div>
+          <a href="events" class="btn btn-outline-blue btn-sm" style="flex-shrink:0;">View All Events</a>
+        </div>
+        <div class="events-list">
+          <div class="event-card reveal">
+            <div class="event-date-box">
+              <span class="event-date-day">31</span>
+              <span class="event-date-month">Aug</span>
+            </div>
+            <div>
+              <p class="event-title">2026 Scholarship Application Deadline</p>
+              <p class="event-meta">📍 Online &middot; Submit via Portal &nbsp;|&nbsp; 🕐 All Day</p>
+              <span class="event-tag">Scholarships</span>
+            </div>
+            <a href="apply" class="btn btn-secondary btn-sm">Apply Now</a>
+          </div>
+          <div class="event-card reveal reveal-delay-1">
+            <div class="event-date-box">
+              <span class="event-date-day">📝</span>
+              <span class="event-date-month">Ongoing</span>
+            </div>
+            <div>
+              <p class="event-title">SHE-CAN Scholarship — Free Information Session</p>
+              <p class="event-meta">📍 Online &middot; Quick Survey &nbsp;|&nbsp; 🕐 Rolling sign-up</p>
+              <span class="event-tag">Scholarships</span>
+            </div>
+            <a href="she-can-survey" class="btn btn-secondary btn-sm">Take the Survey</a>
+          </div>
+          <div class="event-card reveal reveal-delay-2">
+            <div class="event-date-box">
+              <span class="event-date-day">📣</span>
+              <span class="event-date-month">Join</span>
+            </div>
+            <div>
+              <p class="event-title">Fully Funded Scholarship Information Session</p>
+              <p class="event-meta">📍 Online &middot; WhatsApp Group &nbsp;|&nbsp; 🕐 Dates announced in the group</p>
+              <span class="event-tag">Scholarships</span>
+            </div>
+            <a href="fully-funded-scholarship" class="btn btn-secondary btn-sm">Learn More</a>
+          </div>
+          <div class="event-card reveal reveal-delay-3">
+            <div class="event-date-box">
+              <span class="event-date-day">📚</span>
+              <span class="event-date-month">Anytime</span>
+            </div>
+            <div>
+              <p class="event-title">Grant Writing Workshop: Proposal Skills for NGOs</p>
+              <p class="event-meta">📍 TIH Learning Hub Online &nbsp;|&nbsp; 🕐 Available 24/7</p>
+              <span class="event-tag">Grants</span>
+            </div>
+            <a href="learning-hub" class="btn btn-secondary btn-sm">Open Learning Hub</a>
+          </div>
+          <div class="event-card reveal">
+            <div class="event-date-box">
+              <span class="event-date-day">💻</span>
+              <span class="event-date-month">By&nbsp;Appt</span>
+            </div>
+            <div>
+              <p class="event-title">Technology Consultation for Liberian Businesses</p>
+              <p class="event-meta">📍 Contact via WhatsApp &nbsp;|&nbsp; 🕐 By Appointment</p>
+              <span class="event-tag">Technology</span>
+            </div>
+            <a href="software#consultation-form" class="btn btn-secondary btn-sm">Register</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LATEST NEWS, moved to top after Hero -->
+    <section class="section" aria-label="Latest News">
+      <div class="container">
+        <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+          <div>
+            <p class="section-label">Latest Updates</p>
+            <h2>News & Announcements</h2>
+            <p class="section-intro">Stay updated on scholarships, programs, healthcare opportunities, and technology initiatives.</p>
+          </div>
+          <a href="news" class="btn btn-outline-blue btn-sm" style="flex-shrink:0;">All News →</a>
+        </div>
+        <div class="swiper news-carousel" role="region" aria-label="Latest News" aria-roledescription="carousel" data-latest-news>
+          <p style="color:var(--text-muted);font-size:.9rem;padding:1rem 0;">Loading latest news&hellip; <a href="news">View all news</a></p>
         </div>
       </div>
     </section>
