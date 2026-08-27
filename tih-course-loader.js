@@ -130,6 +130,7 @@
     'data':             ['data-video-map.js?v=3'],
     'webdev':           ['webdev-video-map.js?v=3'],
     'design':           ['design-video-map.js?v=2'],
+    'computer-literacy':['complit-video-map.js?v=1'],
     'cybersecurity':    ['cyber-video-map.js?v=2'],
     'entrepreneurship': ['entrepreneurship-video-map.js?v=2'],
     'grant-writing':    ['grantwriting-video-map.js?v=1'],
