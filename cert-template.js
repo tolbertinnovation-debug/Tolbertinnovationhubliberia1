@@ -6,7 +6,11 @@
    ============================================================ */
 // Official brand assets (hosted images; each has a graceful fallback)
 var TIH_LOGO_URL = 'assets/tih-logo.png';
-var TIH_SIGNATURE_URL = 'https://i.ibb.co/ymwHr8G1/signature-3.png';
+// Self-hosted first. The signature previously lived only on a third-party image
+// host, so every certificate lost its signature if that host was unreachable.
+// The remote copy stays as a fallback until assets/tih-signature.png is added.
+var TIH_SIGNATURE_URL = 'assets/tih-signature.png';
+var TIH_SIGNATURE_FALLBACK = 'https://i.ibb.co/ymwHr8G1/signature-3.png';
 
 function buildCertHTML(name, title, certId, certDate) {
   var esc = function(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
@@ -99,7 +103,7 @@ function buildCertHTML(name, title, certId, certDate) {
     '</div>' +
     '<div class="footer">' +
     '<div class="sig-block">' +
-    '<img class="sig-img" src="' + TIH_SIGNATURE_URL + '" alt="Signature of Samuel S. Tolbert" onerror="this.style.display=\'none\'"/>' +
+    '<img class="sig-img" src="' + TIH_SIGNATURE_URL + '" alt="Signature of Samuel S. Tolbert" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=\'' + TIH_SIGNATURE_FALLBACK + '\';}else{this.style.display=\'none\';}"/>' +
     '<div class="sig-line"></div>' +
     '<div class="sig-name">Samuel S. Tolbert</div>' +
     '<div class="sig-role">Chief Executive Officer, Tolbert Innovation Hub</div>' +
