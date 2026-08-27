@@ -129,6 +129,7 @@
     'ai':               ['ai-video-map.js?v=4'],
     'data':             ['data-video-map.js?v=3'],
     'webdev':           ['webdev-video-map.js?v=3'],
+    'wassce-accounts':  ['wassce-accounts-video-map.js?v=1'],
     'design':           ['design-video-map.js?v=2'],
     'computer-literacy':['complit-video-map.js?v=1'],
     'cybersecurity':    ['cyber-video-map.js?v=2'],
