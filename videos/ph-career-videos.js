@@ -65,5 +65,11 @@ window.TIH_TOPIC_VIDEOS["ph-career"] = {
   "M8:Professional Ethics and Integrity": "v5HGe6-ADXQ",
   "M8:Mentorship: Finding and Being a Mentor": "4obt1p3U8gI",
   "M8:Work-Life Balance and Avoiding Burnout": "nr8T92tyIGM",
-  "M8:Building a Lasting Professional Network": "VEn8dye_1rE"
+  "M8:Building a Lasting Professional Network": "VEn8dye_1rE",
+  /* Module 9's two project lessons were the only ones in this course with no
+     video. MK33o3dJVQ0 is a public-health CV walkthrough, which is what the
+     portfolio project asks learners to produce; xulpDyBxDgk is a STAR-method
+     behavioural interview drill for the mock interview. */
+  "M9:Career Portfolio Project": "MK33o3dJVQ0",
+  "M9:Mock Interview Simulation": "xulpDyBxDgk"
 };

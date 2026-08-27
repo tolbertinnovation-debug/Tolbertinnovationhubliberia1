@@ -24,17 +24,43 @@ function ctxWith(files) {
   const ctx = { console: { log() {}, warn() {}, error() {} } };
   ctx.window = ctx; ctx.globalThis = ctx;
   vm.createContext(ctx);
-  vm.runInContext('var COURSES_DB={};var LESSON_CONTENT={};var TIH_TOPIC_QUIZZES={};', ctx);
+  vm.runInContext('var COURSES_DB={};var LESSON_CONTENT={};var TIH_TOPIC_QUIZZES={};' +
+                  'var TIH_TOPIC_VIDEOS={};var TIH_MODULE_VIDEOS={};', ctx);
   for (const f of files) {
     if (fs.existsSync(f)) vm.runInContext(fs.readFileSync(f, 'utf8'), ctx);
   }
   return ctx;
 }
-function tally(course) {
+/* Title -> lookup key, matching the player: drop leading emoji, drop the
+   "3.1 " numbering, fold to lowercase words. */
+function nk(s) {
+  return String(s || '').replace(/^[^0-9a-zA-Z]+/, '')
+    .replace(/^\s*[\d]+(?:\.[\d]+)*\s+/, '')
+    .replace(/[^a-z0-9]+/gi, ' ').replace(/\s+/g, ' ').trim().toLowerCase();
+}
+
+/* Count the lessons that end up with a video ON SCREEN, not just the ones the
+   curriculum builder assigns. The player layers two more sources on top of
+   lesson.v -- TIH_MODULE_VIDEOS (a module-wide default) and TIH_TOPIC_VIDEOS
+   (a per-topic pin, which wins) -- both fed by videos/<id>-videos.js through
+   tih-video-runtime.js. Ignoring them made this checker demand 0 videos for
+   ph-career while learners were seeing 57, and it hid the AI course's
+   duplicates entirely. */
+function tally(course, pins, mods) {
+  pins = pins || {}; mods = mods || {};
+  const pinIdx = {};
+  Object.keys(pins).forEach(k => {
+    const m = String(k).match(/^\s*M(\d+)\s*[:|]\s*(.+)$/i);
+    pinIdx[m ? (m[1] + '|' + nk(m[2])) : nk(k)] = pins[k];
+  });
   let total = 0, videos = 0;
-  (course.modules || []).forEach(m => (m.lessons || []).forEach(l => {
-    total++; if (l.v) videos++;
-  }));
+  (course.modules || []).forEach((m, i) => {
+    const num = (String(m.title).match(/Module\s+(\d+)/) || [])[1] || (i + 1);
+    (m.lessons || []).forEach(l => {
+      total++;
+      if (pinIdx[num + '|' + nk(l.t)] || pinIdx[nk(l.t)] || l.v || mods[num]) videos++;
+    });
+  });
   return { total, videos };
 }
 
@@ -60,12 +86,15 @@ if (ex) ex[1].split(/\n(?=\s*'[^']+':)/).forEach(block => {
 const drift = [];
 for (const id of Object.keys(CURRICULUM)) {
   if (!lite[id]) continue;                       // not shown on the dashboard
-  const files = ['courses-db.js', CURRICULUM[id]].concat(EXTRAS[id] || []);
-  let built;
-  try { built = ctxWith(files).COURSES_DB[id]; } catch (e) { continue; }
+  const files = ['courses-db.js', CURRICULUM[id]]
+    .concat(EXTRAS[id] || [])
+    .concat(['videos/' + id + '-videos.js']);
+  let ctx;
+  try { ctx = ctxWith(files); } catch (e) { continue; }
+  const built = ctx.COURSES_DB[id];
   if (!built || !built.modules) continue;
 
-  const real = tally(built);
+  const real = tally(built, (ctx.TIH_TOPIC_VIDEOS || {})[id], (ctx.TIH_MODULE_VIDEOS || {})[id]);
   const shown = tally(lite[id]);
   const issues = [];
   if (lite[id].title !== built.title) issues.push(`title "${lite[id].title}" != "${built.title}"`);

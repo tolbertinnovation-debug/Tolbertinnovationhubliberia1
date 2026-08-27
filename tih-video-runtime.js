@@ -32,7 +32,7 @@
     if (window.TIH_TOPIC_VIDEOS[cid]) { reapply(); return; }
     if (!HAS_MAP[cid]) return;
     var s = document.createElement('script');
-    s.src = 'videos/' + cid + '-videos.js?v=1';
+    s.src = 'videos/' + cid + '-videos.js?v=2';
     s.async = true;
     s.onload = reapply;
     s.onerror = function () { /* no map for this course yet — keep what exists */ };
