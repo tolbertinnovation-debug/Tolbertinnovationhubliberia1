@@ -14,8 +14,8 @@
   var MAP = {
     'Course Orientation': 'tO5cDIWkSE0',
     'Exam Structure & Marking Scheme': 'B-iYMa-SaXY',
-    'What is Literature?': 'm5_-DZIHf1Y',
-    'Genres of Literature': 'Gf6MmdzhubI',
+    'What is Literature?': 'Awc1h20Ja94',
+    'Genres of Literature': '6Z5WxTQ3x7g',
     'Study Strategies': 'nUtkWovjZ1g',
     'Theme': 'MAu3e5GZo4k',
     'Plot': 'asjGglR3k7o',
