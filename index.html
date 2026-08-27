@@ -877,15 +877,20 @@
         .lhc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;}
         @media(max-width:900px){.lhc-grid{grid-template-columns:1fr 1fr;}}
         @media(max-width:620px){.lhc-grid{grid-template-columns:1fr;}}
-        .lhc-card{display:flex;align-items:center;gap:.85rem;background:#fff;border:1px solid #e6e9f2;border-radius:14px;padding:.85rem;text-decoration:none;box-shadow:0 4px 16px rgba(0,40,104,.06);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+        .lhc-card{display:flex;flex-direction:column;background:#fff;border:1px solid #e6e9f2;border-radius:14px;overflow:hidden;text-decoration:none;box-shadow:0 4px 16px rgba(0,40,104,.06);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
         .lhc-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(0,40,104,.14);border-color:#c9d4ea;}
-        .lhc-thumb{flex:0 0 auto;width:58px;height:58px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;line-height:1;}
-        .lhc-body{display:block;min-width:0;}
+        .lhc-cover{position:relative;display:block;width:100%;aspect-ratio:16/9;background:#0b1f3f;overflow:hidden;}
+        .lhc-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease;}
+        .lhc-card:hover .lhc-cover img{transform:scale(1.04);}
+        @media(prefers-reduced-motion:reduce){.lhc-card:hover{transform:none;}.lhc-cover img{transition:none;}.lhc-card:hover .lhc-cover img{transform:none;}}
+        .lhc-badge{position:absolute;left:.55rem;top:.55rem;background:rgba(0,40,104,.92);color:#fff;font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:.28rem .5rem;border-radius:999px;}
+        .lhc-card-wassce .lhc-badge{background:rgba(227,30,36,.94);}
+        .lhc-body{display:block;padding:.8rem .85rem .9rem;}
         .lhc-title{display:block;font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:700;color:#002868;line-height:1.25;}
         .lhc-meta{display:block;font-size:.75rem;color:#64748b;margin-top:.25rem;line-height:1.35;}
-        .lhc-price{display:block;font-size:.82rem;font-weight:800;color:#E31E24;margin-top:.4rem;}
+        .lhc-price{display:block;font-size:.82rem;font-weight:800;color:#E31E24;margin-top:.45rem;}
         .lhc-price span{font-weight:600;color:#64748b;font-size:.74rem;}
-        .lhc-card-wassce{border-color:#002868;background:linear-gradient(180deg,#f7faff,#fff);}
+        .lhc-card-wassce{border-color:#002868;}
         .lh-courses-note{font-size:.85rem;color:var(--text-secondary);line-height:1.6;margin:1.2rem 0 0;text-align:center;}
       </style>
       <div class="container">
@@ -932,7 +937,13 @@
             </div>
             <div class="lhc-grid">
               <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#1e3a5f,#002868);" aria-hidden="true">💻</span>
+                <span class="lhc-cover">
+                  <picture>
+                    <source srcset="home-cards/computer-literacy.webp" type="image/webp">
+                    <img src="home-cards/computer-literacy.jpg" width="480" height="270" alt="Computer Literacy course cover" loading="lazy" decoding="async">
+                  </picture>
+                  <span class="lhc-badge">Popular</span>
+                </span>
                 <span class="lhc-body">
                   <span class="lhc-title">Computer Literacy</span>
                   <span class="lhc-meta">253 lessons &middot; 128 videos</span>
@@ -940,7 +951,13 @@
                 </span>
               </a>
               <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#0284c7,#0ea5e9);" aria-hidden="true">🌐</span>
+                <span class="lhc-cover">
+                  <picture>
+                    <source srcset="home-cards/webdev.webp" type="image/webp">
+                    <img src="home-cards/webdev.jpg" width="480" height="270" alt="Web Development course cover" loading="lazy" decoding="async">
+                  </picture>
+                  <span class="lhc-badge">Popular</span>
+                </span>
                 <span class="lhc-body">
                   <span class="lhc-title">Web Development</span>
                   <span class="lhc-meta">374 lessons &middot; 194 videos</span>
@@ -948,7 +965,13 @@
                 </span>
               </a>
               <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);" aria-hidden="true">🤖</span>
+                <span class="lhc-cover">
+                  <picture>
+                    <source srcset="home-cards/ai.webp" type="image/webp">
+                    <img src="home-cards/ai.jpg" width="480" height="270" alt="Artificial Intelligence course cover" loading="lazy" decoding="async">
+                  </picture>
+                  <span class="lhc-badge">Popular</span>
+                </span>
                 <span class="lhc-body">
                   <span class="lhc-title">Artificial Intelligence</span>
                   <span class="lhc-meta">343 lessons &middot; 180 videos</span>
@@ -956,7 +979,12 @@
                 </span>
               </a>
               <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#0d9488,#065f46);" aria-hidden="true">📊</span>
+                <span class="lhc-cover">
+                  <picture>
+                    <source srcset="home-cards/data.webp" type="image/webp">
+                    <img src="home-cards/data.jpg" width="480" height="270" alt="Data Analysis course cover" loading="lazy" decoding="async">
+                  </picture>
+                </span>
                 <span class="lhc-body">
                   <span class="lhc-title">Data Analysis</span>
                   <span class="lhc-meta">356 lessons &middot; 186 videos</span>
@@ -964,7 +992,12 @@
                 </span>
               </a>
               <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#7f1d1d,#e31e24);" aria-hidden="true">🔒</span>
+                <span class="lhc-cover">
+                  <picture>
+                    <source srcset="home-cards/cybersecurity.webp" type="image/webp">
+                    <img src="home-cards/cybersecurity.jpg" width="480" height="270" alt="Cybersecurity course cover" loading="lazy" decoding="async">
+                  </picture>
+                </span>
                 <span class="lhc-body">
                   <span class="lhc-title">Cybersecurity</span>
                   <span class="lhc-meta">328 lessons &middot; 170 videos</span>
@@ -972,7 +1005,12 @@
                 </span>
               </a>
               <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#b45309,#f59e0b);" aria-hidden="true">📢</span>
+                <span class="lhc-cover">
+                  <picture>
+                    <source srcset="home-cards/marketing.webp" type="image/webp">
+                    <img src="home-cards/marketing.jpg" width="480" height="270" alt="Digital Marketing course cover" loading="lazy" decoding="async">
+                  </picture>
+                </span>
                 <span class="lhc-body">
                   <span class="lhc-title">Digital Marketing</span>
                   <span class="lhc-meta">355 lessons &middot; 189 videos</span>
@@ -980,7 +1018,12 @@
                 </span>
               </a>
               <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#d97706,#f59e0b);" aria-hidden="true">💼</span>
+                <span class="lhc-cover">
+                  <picture>
+                    <source srcset="home-cards/office.webp" type="image/webp">
+                    <img src="home-cards/office.jpg" width="480" height="270" alt="Microsoft Office course cover" loading="lazy" decoding="async">
+                  </picture>
+                </span>
                 <span class="lhc-body">
                   <span class="lhc-title">Microsoft Office</span>
                   <span class="lhc-meta">377 lessons &middot; 198 videos</span>
@@ -988,7 +1031,12 @@
                 </span>
               </a>
               <a class="lhc-card" href="learning-hub#tracks">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#064e3b,#0f766e);" aria-hidden="true">🧾</span>
+                <span class="lhc-cover">
+                  <picture>
+                    <source srcset="home-cards/accounting-bookkeeping.webp" type="image/webp">
+                    <img src="home-cards/accounting-bookkeeping.jpg" width="480" height="270" alt="Accounting and Bookkeeping course cover" loading="lazy" decoding="async">
+                  </picture>
+                </span>
                 <span class="lhc-body">
                   <span class="lhc-title">Accounting &amp; Bookkeeping</span>
                   <span class="lhc-meta">279 lessons &middot; 140 videos</span>
@@ -996,7 +1044,13 @@
                 </span>
               </a>
               <a class="lhc-card lhc-card-wassce" href="learning-hub#wassce">
-                <span class="lhc-thumb" style="background:linear-gradient(135deg,#002868,#E31E24);" aria-hidden="true">🎓</span>
+                <span class="lhc-cover">
+                  <picture>
+                    <source srcset="home-cards/wassce.webp" type="image/webp">
+                    <img src="home-cards/wassce.jpg" width="480" height="270" alt="23 WASSCE Subjects course cover" loading="lazy" decoding="async">
+                  </picture>
+                  <span class="lhc-badge">WASSCE PRO</span>
+                </span>
                 <span class="lhc-body">
                   <span class="lhc-title">23 WASSCE Subjects</span>
                   <span class="lhc-meta">Lessons, past questions &amp; mock exams</span>
