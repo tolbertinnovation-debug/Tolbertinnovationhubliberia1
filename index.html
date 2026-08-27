@@ -531,6 +531,25 @@
         .lh-feat .fi{font-size:1.5rem;display:block;margin-bottom:.5rem;}
         .lh-feat h3{font-size:.98rem;color:#002868;margin:0 0 .3rem;}
         .lh-feat p{font-size:.85rem;color:var(--text-secondary);line-height:1.55;margin:0;}
+        /* Course cards, a sample of what the Hub teaches. */
+        .lh-courses{margin-top:2.6rem;border-top:1px solid #e2e8f5;padding-top:2rem;}
+        .lh-courses-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:.75rem;margin-bottom:1.4rem;}
+        .lh-courses-head h3{font-family:'Poppins',sans-serif;font-size:1.5rem;color:#002868;margin:0;line-height:1.2;}
+        .lh-seeall{font-size:.86rem;font-weight:700;color:#E31E24;text-decoration:none;white-space:nowrap;}
+        .lh-seeall:hover{text-decoration:underline;}
+        .lhc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;}
+        @media(max-width:900px){.lhc-grid{grid-template-columns:1fr 1fr;}}
+        @media(max-width:620px){.lhc-grid{grid-template-columns:1fr;}}
+        .lhc-card{display:flex;align-items:center;gap:.85rem;background:#fff;border:1px solid #e6e9f2;border-radius:14px;padding:.85rem;text-decoration:none;box-shadow:0 4px 16px rgba(0,40,104,.06);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+        .lhc-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(0,40,104,.14);border-color:#c9d4ea;}
+        .lhc-thumb{flex:0 0 auto;width:58px;height:58px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;line-height:1;}
+        .lhc-body{display:block;min-width:0;}
+        .lhc-title{display:block;font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:700;color:#002868;line-height:1.25;}
+        .lhc-meta{display:block;font-size:.75rem;color:#64748b;margin-top:.25rem;line-height:1.35;}
+        .lhc-price{display:block;font-size:.82rem;font-weight:800;color:#E31E24;margin-top:.4rem;}
+        .lhc-price span{font-weight:600;color:#64748b;font-size:.74rem;}
+        .lhc-card-wassce{border-color:#002868;background:linear-gradient(180deg,#f7faff,#fff);}
+        .lh-courses-note{font-size:.85rem;color:var(--text-secondary);line-height:1.6;margin:1.2rem 0 0;text-align:center;}
       </style>
       <div class="container">
         <div class="lh-wrap">
@@ -562,6 +581,97 @@
             <div class="lh-feat"><span class="fi">🏆</span><h3>Verified Certificates</h3><p>Finish a course, request your certificate, and anyone can confirm it online from any device.</p></div>
           </div>
         </div>
+
+          <!-- Course cards, a sample of what the Hub teaches. Tiles use each
+               course's own gradient and icon rather than the cover photos, which
+               run 85-492KB each and would have added roughly 3MB to the home page. -->
+          <div class="lh-courses reveal">
+            <div class="lh-courses-head">
+              <div>
+                <p class="section-label" style="color:#E31E24;margin:0 0 .3rem;">What You Can Study</p>
+                <h3>A Sample of the Courses Inside</h3>
+              </div>
+              <a class="lh-seeall" href="learning-hub#tracks">See all courses &rarr;</a>
+            </div>
+            <div class="lhc-grid">
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#1e3a5f,#002868);" aria-hidden="true">💻</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Computer Literacy</span>
+                  <span class="lhc-meta">253 lessons &middot; 128 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#0284c7,#0ea5e9);" aria-hidden="true">🌐</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Web Development</span>
+                  <span class="lhc-meta">374 lessons &middot; 194 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);" aria-hidden="true">🤖</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Artificial Intelligence</span>
+                  <span class="lhc-meta">343 lessons &middot; 180 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#0d9488,#065f46);" aria-hidden="true">📊</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Data Analysis</span>
+                  <span class="lhc-meta">356 lessons &middot; 186 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#7f1d1d,#e31e24);" aria-hidden="true">🔒</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Cybersecurity</span>
+                  <span class="lhc-meta">328 lessons &middot; 170 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#b45309,#f59e0b);" aria-hidden="true">📢</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Digital Marketing</span>
+                  <span class="lhc-meta">355 lessons &middot; 189 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#d97706,#f59e0b);" aria-hidden="true">💼</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Microsoft Office</span>
+                  <span class="lhc-meta">377 lessons &middot; 198 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card" href="learning-hub#tracks">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#064e3b,#0f766e);" aria-hidden="true">🧾</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">Accounting &amp; Bookkeeping</span>
+                  <span class="lhc-meta">279 lessons &middot; 140 videos</span>
+                  <span class="lhc-price">US$5 <span>/ 950 LRD</span></span>
+                </span>
+              </a>
+              <a class="lhc-card lhc-card-wassce" href="learning-hub#wassce">
+                <span class="lhc-thumb" style="background:linear-gradient(135deg,#002868,#E31E24);" aria-hidden="true">🎓</span>
+                <span class="lhc-body">
+                  <span class="lhc-title">23 WASSCE Subjects</span>
+                  <span class="lhc-meta">Lessons, past questions &amp; mock exams</span>
+                  <span class="lhc-price">US$3 <span>/ 500 LRD</span></span>
+                </span>
+              </a>
+            </div>
+            <p class="lh-courses-note">
+              18 professional courses and 23 WASSCE subjects in total. Every course carries video
+              lessons, written notes, quizzes and a verified certificate.
+            </p>
+          </div>
       </div>
     </section>
 
