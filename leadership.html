@@ -66,14 +66,19 @@
       .founder-avatar-wrap { justify-self: center; }
     }
     .founder-avatar {
-      width: 130px; height: 130px; border-radius: 50%;
+      width: 150px; height: 150px; border-radius: 50%;
       background: linear-gradient(135deg, #E31E24 0%, #991b1b 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-heading); font-size: 2.6rem; font-weight: 800;
-      color: #fff; letter-spacing: -0.02em;
+      display: flex; align-items: flex-end; justify-content: center;
+      overflow: hidden;
       border: 4px solid rgba(255,255,255,0.25);
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
       flex-shrink: 0;
+    }
+    /* The portrait is a transparent cut-out, so the red gradient above shows
+       around the head and the figure reads as sitting on the disc. */
+    .founder-avatar img {
+      width: 100%; height: 100%; display: block;
+      object-fit: cover; object-position: 50% 50%;
     }
     .founder-name { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; color: #fff; margin-bottom: 0.35rem; }
     .founder-title {
@@ -280,7 +285,14 @@
           <!-- Top banner -->
           <div class="founder-top">
             <div class="founder-avatar-wrap">
-              <div class="founder-avatar" aria-hidden="true">SST</div>
+              <div class="founder-avatar">
+                <picture>
+                  <source srcset="samuel-tolbert-founder.webp" type="image/webp">
+                  <img src="samuel-tolbert-founder.png" width="150" height="150"
+                       alt="Mr. Samuel S. Tolbert, Founder and Chief Executive Officer of Tolbert Innovation Hub"
+                       loading="eager" decoding="async">
+                </picture>
+              </div>
             </div>
             <div>
               <h2 class="founder-name">Mr. Samuel S. Tolbert</h2>

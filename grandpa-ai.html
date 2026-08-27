@@ -311,8 +311,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
+      overflow: hidden;
       flex-shrink: 0;
+    }
+    /* Transparent cut-out portrait, so the gradient shows around the head. */
+    .founder-avatar img {
+      width: 100%; height: 100%; display: block;
+      object-fit: cover; object-position: 50% 50%;
     }
     .founder-info h3 { color: #002868; font-size: 1.3rem; margin: 0 0 0.25rem; }
     .founder-title { color: #e31e24; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.75rem; }
@@ -650,7 +655,14 @@
           <h2>Vision Born in Liberia, Built for Africa</h2>
         </div>
         <div class="gai-founder-inner">
-          <div class="founder-avatar">👨🏾‍💼</div>
+          <div class="founder-avatar">
+            <picture>
+              <source srcset="samuel-tolbert-founder.webp" type="image/webp">
+              <img src="samuel-tolbert-founder.png" width="120" height="120"
+                   alt="Samuel S. Tolbert, Founder and CEO of Tolbert Innovation Hub Liberia"
+                   loading="lazy" decoding="async">
+            </picture>
+          </div>
           <div class="founder-info">
             <h3>Samuel S. Tolbert</h3>
             <p class="founder-title">Founder & CEO, Tolbert Innovation Hub Liberia</p>
