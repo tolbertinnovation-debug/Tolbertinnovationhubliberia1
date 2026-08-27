@@ -133,7 +133,7 @@
     'wassce-health-science': ['wassce-healthsci-video-map.js?v=1'],
     'wassce-food-nutrition': ['wassce-foodnutrition-video-map.js?v=1'],
     'wassce-physics':   ['wassce-physics-video-map.js?v=1'],
-    'wassce-literature': ['wassce-literature-video-map.js?v=6', 'wassce-literature-quizzes.js?v=1', 'wassce-literature-notes.js?v=7'],
+    'wassce-literature': ['wassce-literature-video-map.js?v=7', 'wassce-literature-quizzes.js?v=1', 'wassce-literature-notes.js?v=8'],
     'design':           ['design-video-map.js?v=2'],
     'computer-literacy':['complit-video-map.js?v=1'],
     'cybersecurity':    ['cyber-video-map.js?v=2'],
