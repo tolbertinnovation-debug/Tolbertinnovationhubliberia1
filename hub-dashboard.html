@@ -512,7 +512,7 @@
 
         <section>
           <h2>🎓 WASSCE PRO, Exam Prep</h2>
-          <p style="font-size:.82rem;color:var(--muted);margin:-0.4rem 0 0.8rem;">All 23 WAEC subjects. Each unlocks separately for <strong>US$3</strong>.</p>
+          <p style="font-size:.82rem;color:var(--muted);margin:-0.4rem 0 0.8rem;">All 23 WAEC subjects. Tuition free, each unlocks for a <strong>US$3</strong> registration fee.</p>
           <div class="courses-grid is-clamped" id="wassceGrid"></div>
           <button class="btn btn-line show-more" id="wassceToggle" type="button" aria-expanded="false" aria-controls="wassceGrid">
             Show all 23 subjects ▾
@@ -584,7 +584,7 @@
         <h3 style="margin:0;">➕ Add a Course</h3>
         <button type="button" id="addCourseClose" aria-label="Close" style="background:none;border:none;font-size:1.4rem;line-height:1;cursor:pointer;color:var(--muted);">&times;</button>
       </div>
-      <p style="font-size:.85rem;color:var(--muted);margin:.5rem 0 .8rem;">Browse the full catalog below and add any course. Course prices appear beside each course; WASSCE subjects are US$3 / 500 LRD. Pay by Mobile Money, then enter your access code or tap <em>“I’ve Paid, Request Access”</em> on the course page.</p>
+      <p style="font-size:.85rem;color:var(--muted);margin:.5rem 0 .8rem;">Browse the full catalog below and add any course. Tuition is free; the registration fee appears beside each course, and WASSCE subjects are US$3 / 500 LRD. Pay by Mobile Money, then enter your access code or tap <em>“I’ve Paid, Request Access”</em> on the course page.</p>
       <input type="search" id="addCourseSearch" placeholder="🔍 Search courses, e.g. Bible, web, design, AI…" style="width:100%;padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:inherit;margin-bottom:.6rem;box-sizing:border-box;" />
       <div id="addCourseList" style="max-height:52vh;overflow-y:auto;"></div>
       <div id="addCourseEmpty" style="display:none;text-align:center;color:var(--muted);font-size:.88rem;padding:1.4rem 1rem;">🎉 You already have every course in the catalog!</div>
@@ -1158,7 +1158,7 @@
         var art = (typeof window !== 'undefined' && window.TIH_WASSCE_ART)
           ? window.TIH_WASSCE_ART[s[0]] : '';
         var pill = unlocked ? '<span class="pill done">✓ Unlocked</span>' : '<span class="pill new">🔒 <s style="color:#94a3b8;font-weight:600;">US$30</s> US$3</span>';
-        var btn = '<a class="btn btn-orange btn-sm" href="course-player?id=wassce-' + s[0] + '">' + (unlocked ? 'Study →' : '🔓 Unlock (US$3)') + '</a>';
+        var btn = '<a class="btn btn-orange btn-sm" href="course-player?id=wassce-' + s[0] + '">' + (unlocked ? 'Study →' : '🔓 Register (US$3)') + '</a>';
         return '<div class="course-card" data-course="wassce-' + esc(s[0]) + '">'
           // Subject cover art when we have it. All 23 render at once here, so
           // the image is a lazy <img> rather than a CSS background: only the
