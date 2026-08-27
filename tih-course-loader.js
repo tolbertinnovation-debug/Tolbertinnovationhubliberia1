@@ -131,6 +131,7 @@
     'webdev':           ['webdev-video-map.js?v=3'],
     'wassce-accounts':  ['wassce-accounts-video-map.js?v=1'],
     'wassce-health-science': ['wassce-healthsci-video-map.js?v=1'],
+    'wassce-food-nutrition': ['wassce-foodnutrition-video-map.js?v=1'],
     'design':           ['design-video-map.js?v=2'],
     'computer-literacy':['complit-video-map.js?v=1'],
     'cybersecurity':    ['cyber-video-map.js?v=2'],
