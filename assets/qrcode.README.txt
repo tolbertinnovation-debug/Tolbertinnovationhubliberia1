@@ -1,0 +1,2 @@
+qrcode-generator v1.4.4 by Kazuhiko Arase, MIT licence.
+Vendored so certificates can render their verification QR without a CDN.

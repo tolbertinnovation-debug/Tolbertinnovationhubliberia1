@@ -21,11 +21,80 @@ var TIH_SIGNATURE_FALLBACK = 'https://i.ibb.co/ymwHr8G1/signature-3.png';
 // reads as security tint on paper rather than as decoration.
 var TIH_CERT_PATTERN = "url(\"data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23002868' stroke-opacity='0.05' stroke-width='1.6'%3E%3Cpath d='M6 6h24v24H6zM14 14h8v8h-8z'/%3E%3Cpath d='M42 42h24v24H42zM50 50h8v8h-8z'/%3E%3Cpath d='M42 6h24M42 14h16M42 22h24M6 42h24M6 50h16M6 58h24'/%3E%3C/g%3E%3C/svg%3E\")";
 
+/* ---------------------------------------------------------------
+   Every certificate carries a rosette and a fingerprint derived from
+   its own Credential ID, so no two sheets are identical and a copied
+   design cannot be paired with a different ID without the mismatch
+   showing. Both are pure functions of the ID: reissuing the same
+   credential reproduces the same mark exactly.
+   --------------------------------------------------------------- */
+function tihCertHash(str) {
+  var h = 0x811c9dc5;                       // FNV-1a, 32-bit
+  for (var i = 0; i < String(str).length; i++) {
+    h ^= String(str).charCodeAt(i);
+    h = (h + ((h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24))) >>> 0;
+  }
+  return h >>> 0;
+}
+
+// A hypotrochoid, the curve engine-turning machines cut into share
+// certificates and banknotes. The ID picks the gear ratio and pen offset.
+function tihGuillochePath(seed, R, cx, cy, turns) {
+  var r = 3 + (seed % 7);                   // inner gear teeth
+  var d = 0.45 + ((seed >>> 3) % 40) / 100; // pen offset, 0.45..0.84
+  var pts = [], steps = 320 * turns;
+  for (var i = 0; i <= steps; i++) {
+    var t = (i / steps) * turns * 2 * Math.PI;
+    var k = (R - r) / r;
+    var x = cx + (R - r) * Math.cos(t) + R * d * Math.cos(k * t);
+    var y = cy + (R - r) * Math.sin(t) - R * d * Math.sin(k * t);
+    pts.push((i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1));
+  }
+  return pts.join('');
+}
+
+function tihRosetteSVG(certId) {
+  var seed = tihCertHash(certId), S = 200, c = S / 2;
+  var rings = [
+    { R: 92, w: 0.5,  o: 0.34, s: seed },
+    { R: 74, w: 0.42, o: 0.26, s: (seed >>> 5) ^ 0x9e37 },
+    { R: 56, w: 0.36, o: 0.20, s: (seed >>> 11) ^ 0x85eb }
+  ], out = '';
+  for (var i = 0; i < rings.length; i++) {
+    var g = rings[i];
+    out += '<path d="' + tihGuillochePath(g.s, g.R, c, c, 5) + '" fill="none" stroke="#c8960c" ' +
+           'stroke-width="' + g.w + '" stroke-opacity="' + g.o + '"/>';
+  }
+  return '<svg class="rosette" viewBox="0 0 ' + S + ' ' + S + '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' + out + '</svg>';
+}
+
+// Grouped hex digest shown beside the QR. Not a secret, just a short
+// human-comparable restatement of the ID that is awkward to fake by hand.
+function tihFingerprint(certId) {
+  var a = tihCertHash(certId), b = tihCertHash(certId + '\u00a7tih');
+  var hex = function (n) { return ('0000' + (n & 0xffff).toString(16).toUpperCase()).slice(-4); };
+  return hex(a >>> 16) + '\u00b7' + hex(a) + '\u00b7' + hex(b >>> 16);
+}
+
+// SVG so it stays sharp at any print resolution. Absent library -> no QR,
+// and the printed credential ID still carries the verification.
+function tihVerifyQR(url) {
+  if (typeof qrcode !== 'function') return '';
+  try {
+    var qr = qrcode(0, 'M');
+    qr.addData(url);
+    qr.make();
+    return qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+  } catch (e) { return ''; }
+}
+
 function buildCertHTML(name, title, certId, certDate) {
   var esc = function (s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
                     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   };
+  var verifyUrl = 'https://tolbertinnovationhub.org/certificate-verify?id=' + encodeURIComponent(certId);
+  var qrSvg = tihVerifyQR(verifyUrl);
   var micro = '';
   for (var i = 0; i < 26; i++) micro += 'TOLBERT INNOVATION HUB &middot; VERIFIED CREDENTIAL &middot; ';
 
@@ -77,7 +146,7 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
 .br{bottom:7.5mm;right:7.5mm}.br::before{border-bottom-width:1mm;border-right-width:1mm}.br::after{bottom:3.4mm;right:3.4mm}
 
 /* ---- header ----------------------------------------------------------- */
-.hd{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:7mm;padding:12mm 20mm 0;text-align:left}
+.hd{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:7mm;padding:8mm 20mm 0;text-align:left}
 .hd-logo{width:25mm;height:25mm;object-fit:contain;background:#fff;border-radius:50%;border:.9mm solid #c8960c;
   box-shadow:0 1mm 4mm rgba(0,40,104,.18);flex-shrink:0}
 .hd-logo-fb{display:none;width:25mm;height:25mm;border-radius:50%;background:#002868;color:#f5b31a;font-size:24pt;
@@ -87,7 +156,7 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
 .org-sub{font-size:7pt;letter-spacing:.32em;color:#6b7280;text-transform:uppercase;margin-top:1.4mm;font-weight:600}
 
 /* ---- title ------------------------------------------------------------ */
-.cert-heading{position:relative;z-index:2;text-align:center;margin-top:5mm}
+.cert-heading{position:relative;z-index:2;text-align:center;margin-top:3mm}
 .cert-heading h1{font-family:"Playfair Display",Georgia,serif;font-size:27pt;font-weight:700;color:#002868;
   letter-spacing:.19em;text-transform:uppercase;line-height:1}
 .rule{display:flex;align-items:center;gap:3.5mm;justify-content:center;margin-top:2.6mm;color:#c8960c}
@@ -99,16 +168,16 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
 .body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:0 26mm;text-align:center}
 .certifies{font-size:7.6pt;letter-spacing:.26em;text-transform:uppercase;color:#7a8699;font-weight:600}
-.student-name{font-family:"Great Vibes",Georgia,cursive;font-size:44pt;color:#002868;line-height:1.1;margin:3mm 0 1mm}
+.student-name{font-family:"Great Vibes",Georgia,cursive;font-size:40pt;color:#002868;line-height:1.1;margin:2mm 0 1mm}
 .name-rule{width:132mm;height:.35mm;background:linear-gradient(90deg,transparent,#c8960c 22%,#c8960c 78%,transparent);margin:0 auto 4mm}
 .completed{font-size:9.5pt;color:#4b5563;margin-bottom:3mm}
 .course-title{font-family:"Playfair Display",Georgia,serif;font-size:17pt;font-weight:700;color:#0f1b2e;
   max-width:210mm;line-height:1.32}
-.desc{font-size:8.2pt;color:#6b7280;margin-top:3.5mm;max-width:180mm;line-height:1.62}
+.desc{font-size:8pt;color:#6b7280;margin-top:3mm;max-width:180mm;line-height:1.62}
 
 /* ---- footer ----------------------------------------------------------- */
 .footer{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;
-  padding:0 24mm 6mm;flex-shrink:0}
+  padding:0 24mm 3mm;flex-shrink:0}
 .sig-block{width:64mm;text-align:center}
 .sig-img{height:15mm;object-fit:contain;display:block;margin:0 auto -2.5mm;max-width:56mm}
 .sig-line{border-bottom:.45mm solid #1f2937;margin-bottom:1.8mm}
@@ -119,10 +188,7 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
 
 /* Seal on a guilloche rosette, the fine concentric ruling of security print */
 .seal-wrap{position:relative;display:flex;align-items:center;justify-content:center;width:30mm;height:30mm;flex-shrink:0;margin-bottom:2mm}
-.guilloche{position:absolute;inset:-9mm;border-radius:50%;pointer-events:none;
-  background:repeating-radial-gradient(circle at 50% 50%,rgba(200,150,12,.20) 0 .3mm,transparent .3mm 1.5mm);
-  -webkit-mask-image:radial-gradient(circle,#000 46%,transparent 72%);
-  mask-image:radial-gradient(circle,#000 46%,transparent 72%)}
+.rosette{position:absolute;inset:-7mm;width:auto;height:auto;pointer-events:none;overflow:visible;opacity:.85}
 .seal{position:relative;width:30mm;height:30mm;border-radius:50%;
   background:radial-gradient(circle at 35% 30%,#f3d27a,#c8960c 58%,#a87a08);
   display:flex;flex-direction:column;align-items:center;justify-content:center;color:#4a3403;text-align:center;padding:0 3mm;
@@ -136,11 +202,16 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
 /* ---- security microtext + credential strip ---------------------------- */
 .microtext{position:relative;z-index:2;text-align:center;font-size:3.5pt;letter-spacing:.2em;
   color:rgba(0,40,104,.28);white-space:nowrap;overflow:hidden;padding:0 30mm;text-transform:uppercase;margin-bottom:2mm}
-.meta-strip{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:4mm;
-  padding:0 20mm 4mm;font-size:7pt;color:#6b7280}
-.meta-strip b{color:#002868;font-size:7.6pt;letter-spacing:.06em}
-.meta-strip .sep{color:#c8960c}
-.fineprint{position:relative;z-index:2;text-align:center;font-size:5.8pt;color:#9aa1ad;padding:0 20mm 6mm;letter-spacing:.02em}
+.verify-bar{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:4mm;
+  padding:0 20mm 3mm}
+.qr-box{display:flex;flex-direction:column;align-items:center;gap:.8mm;flex-shrink:0}
+.qr-box svg{width:16mm;height:16mm;display:block;shape-rendering:crispEdges}
+.qr-cap{font-size:4.6pt;letter-spacing:.14em;text-transform:uppercase;color:#7a8699;font-weight:700}
+.verify-text{font-size:7pt;color:#6b7280;line-height:1.55;text-align:left}
+.verify-text b{color:#002868;font-size:7.6pt;letter-spacing:.06em}
+.verify-text .fp{font-size:6.4pt;color:#8b93a3;letter-spacing:.08em}
+.verify-text .fp b{color:#7a6a2e;font-size:6.6pt}
+.fineprint{position:relative;z-index:2;text-align:center;font-size:5.8pt;color:#9aa1ad;padding:0 20mm 4mm;letter-spacing:.02em}
 
 /* ---- screen chrome ---------------------------------------------------- */
 .print-btn{position:fixed;top:15px;right:15px;background:#002868;color:#fff;border:none;padding:10px 22px;border-radius:8px;
@@ -188,7 +259,7 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
         '<div class="sig-name">Samuel S. Tolbert</div>' +
         '<div class="sig-role">Chief Executive Officer, Tolbert Innovation Hub</div>' +
       '</div>' +
-      '<div class="seal-wrap"><div class="guilloche"></div>' +
+      '<div class="seal-wrap">' + tihRosetteSVG(certId) +
         '<div class="seal"><span class="s-star">&#9733;</span><span class="s-t1">TOLBERT INNOVATION HUB</span>' +
         '<span class="s-t2">OFFICIAL SEAL &middot; LIBERIA</span><span class="s-check">&#10003; VERIFIED</span></div>' +
       '</div>' +
@@ -200,9 +271,13 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
       '</div>' +
     '</div>' +
     '<div class="microtext">' + micro + '</div>' +
-    '<div class="meta-strip">' +
-      '<span>Credential ID: <b>' + esc(certId) + '</b></span><span class="sep">&#9670;</span>' +
-      '<span>Independently verify this certificate at <b>tolbertinnovationhub.org/certificate-verify?id=' + esc(certId) + '</b></span>' +
+    '<div class="verify-bar">' +
+      (qrSvg ? '<div class="qr-box">' + qrSvg + '<span class="qr-cap">Scan to verify</span></div>' : '') +
+      '<div class="verify-text">' +
+        '<div>Credential ID: <b>' + esc(certId) + '</b></div>' +
+        '<div>Verify at <b>tolbertinnovationhub.org/certificate-verify</b></div>' +
+        '<div class="fp">Security fingerprint <b>' + tihFingerprint(certId) + '</b></div>' +
+      '</div>' +
     '</div>' +
     '<div class="fineprint">Issued by Tolbert Innovation Hub only after completion and administrator approval. This credential is recorded in the official TIH register and can be verified by anyone using the Credential ID above.</div>' +
   '</div>' +
