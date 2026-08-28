@@ -2257,7 +2257,51 @@
     document.getElementById('quizResultBtn').textContent = quizLastPassed
       ? (currentQuizData.isFinal ? '🏆 Claim Certificate' : 'Continue to Next Module →')
       : '↺ Retry Quiz';
+    recordQuizScore(currentQuizData, quizScore, total);
     if (quizLastPassed) completeQuizLesson();
+  }
+
+  // ===== SCORE RECORD =====
+  // Quiz results were only ever held in a variable that reset on the next
+  // attempt, so the certificate could say "assessments" without recording how
+  // the learner did. Keep the best attempt per quiz and average them.
+  function scoresKey() { return 'tih_scores_' + courseId; }
+
+  function readScores() {
+    try { return JSON.parse(localStorage.getItem(scoresKey())) || {}; }
+    catch (e) { return {}; }
+  }
+
+  function recordQuizScore(quiz, score, total) {
+    if (!quiz || !total) return;
+    var id = quiz.id || quiz.quizId || ('m' + quiz.moduleNum + (quiz.isFinal ? 'f' : ''));
+    var all = readScores(), prev = all[id];
+    // Retries are allowed, so the best attempt is the fair one to keep.
+    if (prev && (prev.score / prev.total) >= (score / total)) return;
+    all[id] = { score: score, total: total, at: Date.now() };
+    try { localStorage.setItem(scoresKey(), JSON.stringify(all)); } catch (e) {}
+  }
+
+  // Null when nothing was recorded, so learners who finished before scores were
+  // tracked get a certificate with no score rather than a false zero.
+  function courseScorePct() {
+    var all = readScores(), got = 0, max = 0;
+    for (var k in all) {
+      if (!Object.prototype.hasOwnProperty.call(all, k)) continue;
+      got += all[k].score; max += all[k].total;
+    }
+    return max ? Math.round(got / max * 100) : null;
+  }
+
+  function scoreGrade(pct) {
+    if (pct === null) return '';
+    if (pct >= 85) return 'Distinction';
+    if (pct >= 75) return 'Merit';
+    if (pct >= 70) return 'Pass';
+    // A quiz needs 70% to pass, but an abandoned failing attempt still counts
+    // toward the average, so an overall figure below 70 is reachable. Show the
+    // score without a band rather than labelling it a pass.
+    return '';
   }
 
   function completeQuizLesson() {
@@ -2376,7 +2420,9 @@
       date: date,
       completedAt: Date.now(),
       instructor: 'Samuel S. Tolbert',
-      category: course.category || ''
+      category: course.category || '',
+      score: courseScorePct(),
+      grade: scoreGrade(courseScorePct())
     };
     localStorage.setItem('tih_cert_' + courseId, JSON.stringify(record));
     // Publish to the public registry for cross-device verification (best effort,
@@ -2400,7 +2446,9 @@
     var certId = document.getElementById('certId').textContent;
     var certDate = document.getElementById('certDate').textContent;
     saveCertificate(name);
-    var html = buildCertHTML(name, course.title, certId, certDate, course);
+    var pct = courseScorePct();
+    var html = buildCertHTML(name, course.title, certId, certDate, course,
+                             pct === null ? null : { pct: pct, grade: scoreGrade(pct) });
     var win = window.open('', '_blank', 'width=1200,height=900');
     if (!win) { alert('Please allow pop-ups for this site to download your certificate.\n\nIn your browser, look for a pop-up blocked icon in the address bar and click "Allow".'); return; }
     win.document.open();
