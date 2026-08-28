@@ -233,16 +233,12 @@
     /* Hero call to action: one primary, then two lighter choices sharing a row.
        Three equal full-width buttons stacked on a phone gave no hierarchy. */
     .hero-actions { align-items: center; }
-    .lh-cta-sub { display: inline-flex; gap: .6rem; }
     .lh-chips { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; padding: 0; margin: 1rem 0 0; }
     .lh-chips li { font-size: .78rem; font-weight: 700; color: #33507d; background: rgba(255,255,255,.82);
       border: 1px solid #d8e4f5; border-radius: 999px; padding: .32rem .8rem; }
     @media (max-width: 640px) {
       .hero-actions { flex-direction: column; align-items: stretch; }
-      .lh-cta-main { width: 100%; }
-      .lh-cta-sub { display: flex; }
-      /* beats the blanket .hero-actions .btn{width:100%} below 480px */
-      .lh-cta-sub .btn { flex: 1 1 0; width: auto; padding-left: .5rem; padding-right: .5rem; font-size: .88rem; }
+      .hero-actions .btn { width: 100%; }
       .lh-chips { justify-content: flex-start; }
     }
 
@@ -365,10 +361,7 @@
         <p class="lh-fade lh-d3">Liberia's admin-curated learning platform. Apply once, get personally approved, then learn on any phone, even on limited data. <strong>Tuition is free</strong> on every course.</p>
         <div class="hero-actions lh-fade lh-d4">
           <a href="hub-apply" class="btn btn-orange lh-cta-main">Apply for Access →</a>
-          <span class="lh-cta-sub">
-            <a href="hub-dashboard" class="btn btn-ghost">Student Login</a>
-            <a href="interest-survey" class="btn btn-ghost">📋 Interest Survey</a>
-          </span>
+          <a href="hub-dashboard" class="btn btn-ghost">Student Login</a>
         </div>
         <ul class="lh-chips lh-fade lh-d4" aria-label="What the Hub includes">
           <li>25 Courses</li><li>23 WASSCE Subjects</li><li>Verified Certificates</li>
