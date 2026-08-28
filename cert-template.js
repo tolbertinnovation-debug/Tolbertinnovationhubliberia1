@@ -105,7 +105,7 @@ function tihVerifyQR(url) {
   } catch (e) { return ''; }
 }
 
-function buildCertHTML(name, title, certId, certDate, course, result) {
+function buildCertHTML(name, title, certId, certDate, course) {
   var esc = function (s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
                     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -194,10 +194,6 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
 .desc{font-size:8pt;color:#6b7280;margin-top:3mm;max-width:180mm;line-height:1.62}
 .facts{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0 3mm;margin-top:2.6mm;font-size:7.4pt;font-weight:600;letter-spacing:.1em;color:#54627a}
 .facts i{font-style:normal;color:#c8960c;font-weight:400}
-.result{display:inline-flex;align-items:center;gap:2.4mm;margin-top:3.4mm;padding:1.6mm 5mm;border:.3mm solid #c8960c;border-radius:999px;background:rgba(255,255,255,.55)}
-.result .pct{font-family:"Playfair Display",Georgia,serif;font-size:13pt;font-weight:700;color:#002868;line-height:1}
-.result .lbl{font-size:6.6pt;letter-spacing:.16em;text-transform:uppercase;color:#7a8699;font-weight:700;line-height:1.35}
-.result .grade{font-size:8.4pt;font-weight:800;color:#a87a08;letter-spacing:.06em}
 
 /* ---- footer ----------------------------------------------------------- */
 .footer{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;
@@ -276,12 +272,6 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
       '<div class="course-title">' + esc(title) + '</div>' +
       (facts ? '<div class="facts">' + facts.map(esc).join('<i>&#9670;</i>') + '</div>' : '') +
       '<div class="desc">Awarded in recognition of dedication, skill development and successful mastery of the course curriculum through the TIH Learning Hub, the official learning platform of Tolbert Innovation Hub.</div>' +
-      (result && result.pct !== null && typeof result.pct !== 'undefined'
-        ? '<div class="result">' +
-            '<span class="lbl">Final<br>Score</span>' +
-            '<span class="pct">' + esc(result.pct) + '%</span>' +
-            (result.grade ? '<span class="grade">' + esc(result.grade) + '</span>' : '') +
-          '</div>' : '') +
     '</div>' +
     '<div class="footer">' +
       '<div class="sig-block">' +

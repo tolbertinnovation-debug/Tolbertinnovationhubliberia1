@@ -275,6 +275,7 @@
                 <div class="result-field"><label>Certificate ID</label><span id="res-id"></span></div>
                 <div class="result-field"><label>Program Completed</label><span id="res-course"></span></div>
                 <div class="result-field"><label>Issue Date</label><span id="res-date"></span></div>
+                <div class="result-field" id="res-score-row" style="display:none;"><label>Final Score</label><span id="res-score"></span></div>
                 <div class="result-field"><label>Certificate Status</label><span style="color:#10b981;font-weight:700;">✅ Active &amp; Valid</span></div>
                 <div class="result-field"><label>Institution</label><span>Tolbert Innovation Hub · TIH Learning Hub</span></div>
               </div>
@@ -555,6 +556,17 @@
       document.getElementById('res-id').textContent = cert.certId || 'N/A';
       document.getElementById('res-course').textContent = (cert.courseTitle || 'N/A');
       document.getElementById('res-date').textContent = cert.date || 'N/A';
+      // The score lives here rather than on the printed sheet: it is shown to
+      // whoever verifies the credential, not to whoever is handed the paper.
+      // Certificates issued before scores were tracked simply carry none.
+      var scoreRow = document.getElementById('res-score-row');
+      if (typeof cert.score === 'number' && isFinite(cert.score)) {
+        document.getElementById('res-score').textContent =
+          cert.score + '%' + (cert.grade ? ' \u00b7 ' + cert.grade : '');
+        scoreRow.style.display = '';
+      } else {
+        scoreRow.style.display = 'none';
+      }
       successEl.classList.add('show');
       successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
