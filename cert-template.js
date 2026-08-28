@@ -31,7 +31,11 @@ function buildCertHTML(name, title, certId, certDate) {
 
   return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>' +
   '<title>Certificate: ' + esc(title) + ' | TIH Learning Hub</title>' +
-  '<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Great+Vibes&family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>' +
+  '<link href="assets/tih-cert-fonts.css" rel="stylesheet"/>' +
+  // The faces are mirrored into assets/fonts. A certificate has to look the same
+  // offline, behind a restrictive network and years from now, so it no longer
+  // depends on Google Fonts being reachable at the moment it is printed.
+
   '<style>' + `
 @page{size:A4 landscape;margin:0}
 *{box-sizing:border-box;margin:0;padding:0}
