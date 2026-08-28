@@ -381,7 +381,8 @@
     try { cert = JSON.parse(certJson); } catch(e) { alert('Error reading certificate data.'); return; }
     if (!ownsCert(cert)) { alert('This certificate is not linked to your account.'); return; }
     var name = cert.studentName || officialName || 'Graduate';
-    var html = buildCertHTML(name, cert.courseTitle, cert.certId, cert.date);
+    var courseObj = (typeof COURSES_DB !== 'undefined') ? COURSES_DB[courseId] : null;
+    var html = buildCertHTML(name, cert.courseTitle, cert.certId, cert.date, courseObj);
     var win = window.open('', '_blank', 'width=1200,height=900');
     if (!win) { alert('Please allow pop-ups for this site to download your certificate.\n\nClick the pop-up blocked icon in your browser address bar and select "Allow".'); return; }
     win.document.open();

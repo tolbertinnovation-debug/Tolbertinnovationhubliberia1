@@ -28,6 +28,23 @@ var TIH_CERT_PATTERN = "url(\"data:image/svg+xml,%3Csvg width='72' height='72' v
    showing. Both are pure functions of the ID: reissuing the same
    credential reproduces the same mark exactly.
    --------------------------------------------------------------- */
+/* Facts printed under the course title. Only figures that can be stated
+   accurately from the course object: module and lesson counts are counted
+   directly, duration and level are the course's own. The video count is
+   deliberately excluded, because TIH_TOPIC_VIDEOS overrides lesson.v at
+   runtime and counting lesson.v would understate it. */
+function tihCourseFacts(course) {
+  if (!course) return null;
+  var mods = course.modules || [], lessons = 0;
+  for (var i = 0; i < mods.length; i++) lessons += (mods[i].lessons || []).length;
+  var bits = [];
+  if (mods.length) bits.push(mods.length + (mods.length === 1 ? ' Module' : ' Modules'));
+  if (lessons)     bits.push(lessons + (lessons === 1 ? ' Lesson' : ' Lessons'));
+  if (course.duration) bits.push(String(course.duration));
+  if (course.level)    bits.push(String(course.level) + ' Level');
+  return bits.length ? bits : null;
+}
+
 function tihCertHash(str) {
   var h = 0x811c9dc5;                       // FNV-1a, 32-bit
   for (var i = 0; i < String(str).length; i++) {
@@ -88,11 +105,12 @@ function tihVerifyQR(url) {
   } catch (e) { return ''; }
 }
 
-function buildCertHTML(name, title, certId, certDate) {
+function buildCertHTML(name, title, certId, certDate, course) {
   var esc = function (s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
                     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   };
+  var facts = tihCourseFacts(course);
   var verifyUrl = 'https://tolbertinnovationhub.org/certificate-verify?id=' + encodeURIComponent(certId);
   var qrSvg = tihVerifyQR(verifyUrl);
   var micro = '';
@@ -174,6 +192,8 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
 .course-title{font-family:"Playfair Display",Georgia,serif;font-size:17pt;font-weight:700;color:#0f1b2e;
   max-width:210mm;line-height:1.32}
 .desc{font-size:8pt;color:#6b7280;margin-top:3mm;max-width:180mm;line-height:1.62}
+.facts{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0 3mm;margin-top:2.6mm;font-size:7.4pt;font-weight:600;letter-spacing:.1em;color:#54627a}
+.facts i{font-style:normal;color:#c8960c;font-weight:400}
 
 /* ---- footer ----------------------------------------------------------- */
 .footer{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;
@@ -250,6 +270,7 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
       '<div class="name-rule"></div>' +
       '<div class="completed">has successfully completed all lessons, assessments and requirements of</div>' +
       '<div class="course-title">' + esc(title) + '</div>' +
+      (facts ? '<div class="facts">' + facts.map(esc).join('<i>&#9670;</i>') + '</div>' : '') +
       '<div class="desc">Awarded in recognition of dedication, skill development and successful mastery of the course curriculum through the TIH Learning Hub, the official learning platform of Tolbert Innovation Hub.</div>' +
     '</div>' +
     '<div class="footer">' +
