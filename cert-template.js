@@ -29,8 +29,8 @@ var TIH_CERT_PATTERN = "url(\"data:image/svg+xml,%3Csvg width='72' height='72' v
    credential reproduces the same mark exactly.
    --------------------------------------------------------------- */
 /* Facts printed under the course title. Only figures that can be stated
-   accurately from the course object: module and lesson counts are counted
-   directly, duration and level are the course's own. The video count is
+   accurately from the course object: the lesson count is counted directly
+   and the duration is the course's own. The video count is
    deliberately excluded, because TIH_TOPIC_VIDEOS overrides lesson.v at
    runtime and counting lesson.v would understate it. */
 function tihCourseFacts(course) {
@@ -38,10 +38,11 @@ function tihCourseFacts(course) {
   var mods = course.modules || [], lessons = 0;
   for (var i = 0; i < mods.length; i++) lessons += (mods[i].lessons || []).length;
   var bits = [];
-  if (mods.length) bits.push(mods.length + (mods.length === 1 ? ' Module' : ' Modules'));
-  if (lessons)     bits.push(lessons + (lessons === 1 ? ' Lesson' : ' Lessons'));
+  // Module count and level are deliberately left off: the module count means
+  // nothing outside the course, and naming a level reads as a limit on the
+  // holder rather than a description of the course.
+  if (lessons)         bits.push(lessons + (lessons === 1 ? ' Lesson' : ' Lessons'));
   if (course.duration) bits.push(String(course.duration));
-  if (course.level)    bits.push(String(course.level) + ' Level');
   return bits.length ? bits : null;
 }
 
