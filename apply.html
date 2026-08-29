@@ -58,6 +58,7 @@
     .apply-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 2.5rem; align-items: start; }
     @media (max-width: 860px) { .apply-layout { grid-template-columns: 1fr; } }
 
+
     .step-nav { background: #fff; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; position: sticky; top: 90px; }
     .step-nav-header { background: #002868; padding: 1.25rem 1.5rem; }
     .step-nav-header h3 { color: #fff; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem; margin: 0 0 0.2rem; }
@@ -91,7 +92,12 @@
     .apply-card-header { padding: 2rem 2.25rem 0; border-bottom: 1px solid #f1f5f9; padding-bottom: 1.5rem; }
     .apply-step-label { font-size: 0.78rem; font-weight: 700; color: #002868; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.4rem; }
     .apply-quick-help { background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%); border: 1px solid #dbeafe; border-radius: 14px; padding: 1rem 1.1rem; margin-bottom: 1.1rem; }
-    .apply-quick-help h3 { font-size: 0.95rem; color: #002868; margin: 0 0 0.45rem; font-family: 'Poppins', sans-serif; }
+    .apply-quick-help summary { font-size: 0.95rem; color: #002868; font-family: 'Poppins', sans-serif;
+      font-weight: 700; cursor: pointer; list-style: none; }
+    .apply-quick-help summary::-webkit-details-marker { display: none; }
+    .apply-quick-help summary::after { content: ' ▾'; font-size: .8em; }
+    .apply-quick-help[open] summary { margin-bottom: .45rem; }
+    .apply-quick-help[open] summary::after { content: ' ▴'; }
     .apply-quick-help p { font-size: 0.86rem; color: #475569; margin: 0; }
     .apply-quick-help ul { margin: 0.55rem 0 0; padding-left: 1rem; color: #334155; font-size: 0.84rem; }
     .apply-quick-help li + li { margin-top: 0.35rem; }
@@ -119,6 +125,7 @@
       border-color: #002868; background: #eff6ff;
       box-shadow: 0 0 0 3px rgba(0,40,104,0.1);
     }
+    .prog-opt-text { display: flex; flex-direction: column; gap: .3rem; }
     .prog-opt-icon { font-size: 1.6rem; }
     .prog-opt-name { font-weight: 700; font-size: 0.91rem; color: #0f172a; }
     .prog-opt-desc { font-size: 0.79rem; color: #6b7280; line-height: 1.5; }
@@ -204,6 +211,27 @@
     .field-error { color: #E31E24; font-size: 0.8rem; font-weight: 600; margin-top: 0.25rem; display: none; }
     .field-error.show { display: block; }
     .fg input.invalid.fg select.invalid.fg textarea.invalid { border-color: #E31E24; }
+      /* On a phone the tall step sidebar and the guidance panel pushed the form
+       itself well below the fold, and each programme card was a vertical stack
+       roughly a third of the screen, so choosing one meant a long scroll. */
+    @media (max-width: 860px) {
+      .step-nav { position: static; margin-bottom: .9rem; }
+      .step-nav-header { display: none; }
+      .step-nav-list { display: flex; padding: .45rem .3rem; gap: .25rem; }
+      .step-nav-item { flex: 1 1 0; min-width: 0; flex-direction: column; gap: .3rem;
+        text-align: center; padding: .55rem .2rem; border-left: 0; border-bottom: 3px solid transparent;
+        border-radius: 10px; }
+      .step-nav-item.active { border-left: 0; border-bottom-color: #002868; }
+      .step-nav-item.done { border-left: 0; border-bottom-color: #10b981; }
+      .step-nav-label { font-size: .62rem; line-height: 1.15; font-weight: 700;
+        overflow-wrap: anywhere; hyphens: auto; }
+      /* icon beside the text rather than above it */
+      .program-option label { flex-direction: row; align-items: center; gap: .8rem; padding: .85rem .95rem; }
+      .prog-opt-icon { flex: 0 0 auto; font-size: 1.5rem; }
+      .program-option label > span:not(.prog-opt-icon) { display: block; }
+      .prog-opt-text { min-width: 0; }
+      .program-grid { grid-template-columns: 1fr; gap: .6rem; }
+    }
   </style>
 </head>
 <body>
@@ -315,15 +343,23 @@
             <form class="apply-card" id="applyForm" novalidate
                   action="https://formsubmit.co/ajax/tolbertinnovationhub@gmail.com"
                   method="POST">
-              <div class="apply-quick-help" role="note">
-                <h3>Before you begin</h3>
+              <details class="apply-quick-help" id="quickHelp" open>
+                <summary>Before you begin</summary>
                 <p>Have your email, phone number, and a short personal statement ready. We review every application carefully and follow up within 3–5 business days.</p>
                 <ul>
                   <li>Choose the program that matches your goals.</li>
                   <li>Use a working email so we can reach you easily.</li>
                   <li>You can still edit your details before submitting.</li>
                 </ul>
-              </div>
+              </details>
+              <script>
+                // Open on a wide screen, folded away on a phone where it cost a
+                // quarter of the viewport before the form even started.
+                (function () {
+                  var h = document.getElementById('quickHelp');
+                  if (h && window.matchMedia('(max-width: 860px)').matches) h.removeAttribute('open');
+                })();
+              </script>
               <input type="hidden" name="_subject" value="TIH Program Application" />
               <input type="hidden" name="_template" value="table" />
               <input type="hidden" name="_captcha" value="false" />
@@ -342,8 +378,10 @@
                       <input type="radio" name="program" id="prog-study-abroad" value="Study Abroad Scholarship" />
                       <label for="prog-study-abroad">
                         <span class="prog-opt-icon">🌍</span>
-                        <span class="prog-opt-name">Study Abroad Scholarship</span>
-                        <span class="prog-opt-desc">University placement in India or Cyprus with 50% TIH scholarship</span>
+                        <span class="prog-opt-text">
+                          <span class="prog-opt-name">Study Abroad Scholarship</span>
+                          <span class="prog-opt-desc">University placement in India or Cyprus with 50% TIH scholarship</span>
+                        </span>
                       </label>
                     </div>
 
@@ -351,8 +389,10 @@
                       <input type="radio" name="program" id="prog-fully-funded" value="Fully Funded Scholarship" />
                       <label for="prog-fully-funded">
                         <span class="prog-opt-icon">🎓</span>
-                        <span class="prog-opt-name">Fully Funded Scholarship</span>
-                        <span class="prog-opt-desc">Government & university scholarships covering tuition, accommodation & living</span>
+                        <span class="prog-opt-text">
+                          <span class="prog-opt-name">Fully Funded Scholarship</span>
+                          <span class="prog-opt-desc">Government & university scholarships covering tuition, accommodation & living</span>
+                        </span>
                       </label>
                     </div>
 
@@ -360,8 +400,10 @@
                       <input type="radio" name="program" id="prog-ielts" value="IELTS/TOEFL Classroom" />
                       <label for="prog-ielts">
                         <span class="prog-opt-icon">📚</span>
-                        <span class="prog-opt-name">IELTS / TOEFL Classroom</span>
-                        <span class="prog-opt-desc">Free structured exam prep with certificate on completion</span>
+                        <span class="prog-opt-text">
+                          <span class="prog-opt-name">IELTS / TOEFL Classroom</span>
+                          <span class="prog-opt-desc">Free structured exam prep with certificate on completion</span>
+                        </span>
                       </label>
                     </div>
 
@@ -369,8 +411,10 @@
                       <input type="radio" name="program" id="prog-wassce" value="WASSCE PRO" />
                       <label for="prog-wassce">
                         <span class="prog-opt-icon">✏️</span>
-                        <span class="prog-opt-name">WASSCE PRO</span>
-                        <span class="prog-opt-desc">Past questions, model answers, and structured revision plans</span>
+                        <span class="prog-opt-text">
+                          <span class="prog-opt-name">WASSCE PRO</span>
+                          <span class="prog-opt-desc">Past questions, model answers, and structured revision plans</span>
+                        </span>
                       </label>
                     </div>
 
@@ -378,8 +422,10 @@
                       <input type="radio" name="program" id="prog-academy" value="TIH Learning Hub" />
                       <label for="prog-academy">
                         <span class="prog-opt-icon">💻</span>
-                        <span class="prog-opt-name">TIH Learning Hub</span>
-                        <span class="prog-opt-desc">18 free professional courses across tech, business, finance and more</span>
+                        <span class="prog-opt-text">
+                          <span class="prog-opt-name">TIH Learning Hub</span>
+                          <span class="prog-opt-desc">18 free professional courses across tech, business, finance and more</span>
+                        </span>
                       </label>
                     </div>
 
@@ -387,8 +433,10 @@
                       <input type="radio" name="program" id="prog-healthcare" value="Healthcare Referral" />
                       <label for="prog-healthcare">
                         <span class="prog-opt-icon">🏥</span>
-                        <span class="prog-opt-name">Healthcare Referral</span>
-                        <span class="prog-opt-desc">Specialist medical referral and coordination for treatment abroad</span>
+                        <span class="prog-opt-text">
+                          <span class="prog-opt-name">Healthcare Referral</span>
+                          <span class="prog-opt-desc">Specialist medical referral and coordination for treatment abroad</span>
+                        </span>
                       </label>
                     </div>
 
@@ -396,8 +444,10 @@
                       <input type="radio" name="program" id="prog-tech" value="Business Technology Services" />
                       <label for="prog-tech">
                         <span class="prog-opt-icon">⚙️</span>
-                        <span class="prog-opt-name">Business Technology</span>
-                        <span class="prog-opt-desc">Website, web app, or digital strategy for your business</span>
+                        <span class="prog-opt-text">
+                          <span class="prog-opt-name">Business Technology</span>
+                          <span class="prog-opt-desc">Website, web app, or digital strategy for your business</span>
+                        </span>
                       </label>
                     </div>
 
@@ -405,8 +455,10 @@
                       <input type="radio" name="program" id="prog-grants" value="Grants Assistance" />
                       <label for="prog-grants">
                         <span class="prog-opt-icon">💰</span>
-                        <span class="prog-opt-name">Grants Assistance</span>
-                        <span class="prog-opt-desc">Help finding and applying for business or NGO grants</span>
+                        <span class="prog-opt-text">
+                          <span class="prog-opt-name">Grants Assistance</span>
+                          <span class="prog-opt-desc">Help finding and applying for business or NGO grants</span>
+                        </span>
                       </label>
                     </div>
                   </div>
