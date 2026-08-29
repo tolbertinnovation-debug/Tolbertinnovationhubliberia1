@@ -102,6 +102,14 @@
     .confirm-actions { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1.25rem; }
     .btn-line { display: flex; align-items: center; justify-content: center; gap: 0.5rem; border-radius: 999px; padding: 0.85rem; font-weight: 700; font-size: 0.93rem; min-height: 50px; border: none; cursor: pointer; }
     .btn-wa { background: #25D366; color: #fff; }
+    /* One clear next step. Three equally heavy buttons gave the learner no idea
+       which one actually starts the course. */
+    .btn-go { background: var(--secondary); color: #fff; font-size: 1.05rem; min-height: 58px;
+      box-shadow: 0 10px 24px rgba(227,30,36,.28); }
+    .btn-go:hover { filter: brightness(1.06); }
+    .go-hint { font-size: .82rem; color: var(--muted); text-align: center; margin: -.1rem 0 .2rem; line-height: 1.5; }
+    .btn-wa-soft { background: #fff; color: #128C4A; border: 1px solid #b7e6c9; font-weight: 700; }
+    .btn-wa-soft:hover { background: #f2fbf5; }
     .btn-track { background: var(--primary); color: #fff; }
     .btn-copy { background: #fff; border: 1.5px solid var(--border); color: var(--text); }
     .review-note { font-size: 0.85rem; color: var(--muted); margin-top: 1.25rem; }
@@ -227,9 +235,9 @@
            exists only on this phone, and the learner cannot sign in elsewhere. -->
       <div id="syncNote" style="display:none;margin-top:.75rem;padding:.7rem .85rem;border-radius:10px;font-size:.85rem;line-height:1.45;text-align:left;"></div>
       <div class="confirm-actions">
-        <a class="btn-line btn-track" id="loginNowBtn" href="hub-dashboard" style="background:var(--secondary);">▶ Go to My Dashboard</a>
-        <a class="btn-line btn-wa" id="waConfirmBtn" target="_blank" rel="noopener noreferrer">💬 Notify TIH on WhatsApp</a>
-        <a class="btn-line btn-track" id="trackBtn">🔍 Track My Application</a>
+        <a class="btn-line btn-go" id="loginNowBtn" href="hub-dashboard">▶ Start Learning</a>
+        <p class="go-hint">You are already signed in. Your dashboard is where you pick a course and begin.</p>
+        <a class="btn-line btn-wa-soft" id="waConfirmBtn" target="_blank" rel="noopener noreferrer">💬 Notify TIH on WhatsApp</a>
       </div>
       <p class="review-note">Tuition is free. Your courses unlock after the TIH team confirms your registration payment by Mobile Money — US$3 / 500 LRD for each WASSCE subject or US$5 / 950 LRD for other courses. Log in to see your dashboard and next steps, and keep your email open for updates.</p>
     </div>
@@ -358,7 +366,6 @@
         document.getElementById('loginEmailDisplay').textContent = email;
         document.getElementById('appIdDisplay').textContent = app.studentId || app.id;
         document.getElementById('waConfirmBtn').href = HubDB.waLink(null, waText);
-        document.getElementById('trackBtn').href = 'hub-track?id=' + encodeURIComponent(app.studentId || app.id);
 
         document.getElementById('formCard').style.display = 'none';
         document.getElementById('confirmCard').classList.add('show');
