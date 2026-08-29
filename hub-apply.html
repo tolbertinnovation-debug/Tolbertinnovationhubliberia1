@@ -30,12 +30,32 @@
     .brand { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--primary); font-size: 1.05rem; }
     .brand span { color: var(--secondary); }
     .wrap { max-width: 680px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-    .page-head { position: relative; overflow: hidden; text-align: center; border-radius: 22px; padding: 1.9rem 1.4rem; margin-bottom: 1.4rem; color: #fff; box-shadow: 0 16px 38px rgba(10,51,126,.28);
-      background: radial-gradient(circle at 50% 0%, rgba(56,132,255,.55), transparent 62%), linear-gradient(135deg, #2f6fe0 0%, #1553b8 48%, #0a337e 100%); }
-    .page-head::before { content: ''; position: absolute; width: 220px; height: 220px; right: -60px; top: -110px; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; box-shadow: 0 0 0 26px rgba(255,255,255,.045); pointer-events: none; }
-    .page-head h1 { position: relative; font-size: clamp(1.5rem, 4vw, 2rem); color: #fff; font-weight: 800; margin-bottom: 0.5rem; text-shadow: 0 1px 8px rgba(0,0,0,.18); }
-    .page-head p { position: relative; color: rgba(255,255,255,.92); font-size: 0.95rem; max-width: 560px; margin: 0 auto; line-height: 1.55; }
-    .page-head p strong { color: #fff; }
+    /* Same backdrop as the home-page hero: drifting blue and rose washes over a
+       faint circuit pattern, with soft orbs. The solid blue block this replaces
+       put white text on a heavy field and dominated the form beneath it. */
+    .page-head { position: relative; overflow: hidden; text-align: center; border-radius: 22px;
+      padding: 2.1rem 1.4rem; margin-bottom: 1.4rem; color: var(--primary);
+      border: 1px solid #e2ecfa; box-shadow: 0 14px 34px rgba(10,51,126,.10);
+      background:
+        radial-gradient(ellipse 90% 70% at 86% 8%, #dcecff 0%, transparent 56%),
+        radial-gradient(ellipse 70% 60% at 5% 95%, #fde5e6 0%, transparent 56%),
+        linear-gradient(160deg, #ffffff 0%, #EAF4FF 58%, #f7fbff 100%);
+      background-size: 160% 160%, 160% 160%, 100% 100%;
+      animation: haDrift 16s ease-in-out infinite alternate; }
+    @keyframes haDrift { 0% { background-position: 0% 0%, 100% 100%, 0 0; } 100% { background-position: 100% 40%, 0% 60%, 0 0; } }
+    .page-head .ha-pattern { position: absolute; inset: 0; pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%231565D8' stroke-opacity='0.06' stroke-width='2'%3E%3Cpath d='M6 6h24v24H6zM14 14h8v8h-8z'/%3E%3Cpath d='M42 42h24v24H42zM50 50h8v8h-8z'/%3E%3Cpath d='M42 6h24M42 14h16M42 22h24M6 42h24M6 50h16M6 58h24'/%3E%3C/g%3E%3C/svg%3E"); }
+    .page-head .ha-orb { position: absolute; border-radius: 50%; filter: blur(42px); pointer-events: none; }
+    .page-head .ha-orb-1 { width: 190px; height: 190px; background: #9cc4ff; opacity: .40; top: -70px; right: -30px; animation: haBob 11s ease-in-out infinite alternate; }
+    .page-head .ha-orb-2 { width: 140px; height: 140px; background: #ffb3b6; opacity: .34; bottom: -60px; left: -40px; animation: haBob 13s 1s ease-in-out infinite alternate-reverse; }
+    @keyframes haBob { from { transform: translateY(-10px); } to { transform: translateY(12px); } }
+    @media (prefers-reduced-motion: reduce) { .page-head, .page-head .ha-orb { animation: none !important; } }
+    .page-head::before { content: ''; position: absolute; width: 220px; height: 220px; right: -60px; top: -110px; border: 1px solid rgba(21,101,216,.10); border-radius: 50%; box-shadow: 0 0 0 26px rgba(21,101,216,.035); pointer-events: none; }
+    .page-head h1 { position: relative; z-index: 1; font-size: clamp(1.55rem, 4.4vw, 2.1rem); color: var(--primary); font-weight: 800; margin-bottom: 0.55rem; line-height: 1.15; }
+    .page-head p { position: relative; z-index: 1; color: #46587a; font-size: 0.95rem; max-width: 540px; margin: 0 auto; line-height: 1.6; }
+    .page-head p strong { color: var(--primary); }
+    .ha-chips { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; list-style: none; padding: 0; margin: 1rem 0 0; }
+    .ha-chips li { font-size: .76rem; font-weight: 700; color: #33507d; background: rgba(255,255,255,.85); border: 1px solid #d8e4f5; border-radius: 999px; padding: .32rem .78rem; }
     .hero-banner { background: linear-gradient(135deg, #ffffff 0%, #eef6ff 100%); border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px); padding: 1.1rem 1.2rem; margin-bottom: 1rem; box-shadow: var(--shadow); }
     .hero-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(227,30,36,0.1); color: var(--secondary); font-weight: 700; font-size: 0.76rem; letter-spacing: .08em; text-transform: uppercase; padding: 0.42rem 0.7rem; border-radius: 999px; margin-bottom: 0.6rem; }
     .hero-banner h2 { font-size: 1.1rem; color: var(--primary); margin-bottom: 0.35rem; }
@@ -96,8 +116,14 @@
 
   <div class="wrap">
     <div class="page-head">
+      <div class="ha-pattern" aria-hidden="true"></div>
+      <div class="ha-orb ha-orb-1" aria-hidden="true"></div>
+      <div class="ha-orb ha-orb-2" aria-hidden="true"></div>
       <h1>Apply for Access</h1>
-      <p>Takes about 5 minutes and is <strong>free to apply</strong>. Your account is <strong>approved instantly</strong>, log in right away and unlock any WASSCE subject with a one-time <strong>US$3 / 500 LRD</strong> registration fee or any other course for <strong>US$5 / 950 LRD</strong> via Mobile Money.</p>
+      <p>Free to apply and takes about 5 minutes. Your account is <strong>approved instantly</strong>, so you can sign in straight away. <strong>Tuition is free</strong> on every course.</p>
+      <ul class="ha-chips" aria-label="What applying gives you">
+        <li>Free to apply</li><li>Approved instantly</li><li>25 Courses &amp; 23 WASSCE Subjects</li>
+      </ul>
     </div>
 
     <div class="card" id="formCard">
@@ -340,6 +366,40 @@
         window.scrollTo(0, 0);
       }
 
+      // Email a copy of every new account to the Hub inbox. Same FormSubmit
+      // endpoint the interest survey already uses, and connect-src in this
+      // page's CSP already allows it.
+      //
+      // The password is deliberately never included. Sending a learner's
+      // password by email would expose it in an inbox and in transit logs, and
+      // the account already exists in the database by this point.
+      function emailApplication(app, d) {
+        try {
+          fetch('https://formsubmit.co/ajax/tolbertinnovationhub@gmail.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              _subject: 'New TIH Learning Hub account: ' + d.name,
+              _template: 'table',
+              _captcha: 'false',
+              'Full Name': d.name,
+              'Email': d.email,
+              'Phone / WhatsApp': d.phone,
+              'Location': d.location,
+              'Date of Birth': d.dob || '(not given)',
+              'Education Level': d.education,
+              'Occupation': d.occupation || '(not given)',
+              'Goals': d.goals,
+              'Learning Tracks': d.tracks.join(', '),
+              'Heard About Us': d.referral || '(not given)',
+              'Application ID': app.id || '',
+              'Student ID': app.studentId || '',
+              'Submitted': new Date().toLocaleString()
+            })
+          }).catch(function () {});   // best effort: never block the signup
+        } catch (err) {}
+      }
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         errBox.classList.remove('show');
@@ -391,6 +451,12 @@
           // Link the application to the new student account.
           try { HubDB.updateApplication(app.id, { studentId: res.student.id }); } catch (err) {}
           app.studentId = res.student.id; // surface the Student ID on the confirmation + tracking
+          emailApplication(app, {
+            name: name, email: email, phone: phone, location: location,
+            dob: String(fd.get('dob') || ''), education: education,
+            occupation: String(fd.get('occupation') || '').trim(),
+            goals: goals, tracks: tracks, referral: String(fd.get('referral') || '')
+          });
           showConfirm(app, name, email, phone, location, education, goals, tracks, res.savedToCloud);
         }).catch(function () {
           submitBtn.disabled = false;
