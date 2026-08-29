@@ -79,7 +79,26 @@
     .field .hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; }
     .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 560px) { .row-2 { grid-template-columns: 1fr; } }
-    .tracks-select { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    /* Forty-eight checkboxes is a long scroll on a phone; let people type
+       instead of hunting, and show how many they have chosen. */
+    .track-tools { display: flex; gap: .5rem; align-items: center; margin: 0 0 .55rem; }
+    .track-search { flex: 1; min-width: 0; padding: .6rem .8rem; border: 1px solid var(--border);
+      border-radius: 10px; font-size: .92rem; font-family: inherit; }
+    .track-search:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,40,104,.10); }
+    .track-count { font-size: .78rem; font-weight: 700; color: var(--primary); background: #eef4ff;
+      border: 1px solid #d8e4f5; border-radius: 999px; padding: .35rem .7rem; white-space: nowrap; }
+    .track-empty { font-size: .86rem; color: var(--muted); margin: .4rem 0 0; }
+    .tracks-select { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; max-height: 340px; overflow-y: auto;
+      padding-right: .25rem; }
+    /* A field the applicant needs to fix, marked where the problem is rather
+       than only in a message at the top of the page. */
+    .field.has-error input, .field.has-error select, .field.has-error textarea { border-color: #dc2626; background: #fff7f7; }
+    .field-msg { display: none; font-size: .8rem; color: #b91c1c; font-weight: 600; margin-top: .3rem; }
+    .field.has-error .field-msg { display: block; }
+    .goal-chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0 0; }
+    .goal-chip { font-size: .82rem; font-weight: 600; color: var(--primary); background: #fff;
+      border: 1px solid #d8e4f5; border-radius: 999px; padding: .38rem .8rem; cursor: pointer; }
+    .goal-chip:hover { background: #eef4ff; }
     @media (max-width: 560px) { .tracks-select { grid-template-columns: 1fr; } }
     .track-opt { display: flex; align-items: center; gap: 0.6rem; border: 1.5px solid var(--border); border-radius: 8px; padding: 0.6rem 0.75rem; cursor: pointer; font-size: 0.86rem; font-weight: 600; transition: all .15s; min-height: 48px; }
     .track-opt:hover { border-color: var(--primary); }
@@ -181,11 +200,23 @@
         <div class="field">
           <label>What do you want to achieve? <span class="req">*</span></label>
           <textarea name="goals" required placeholder="Tell us your goals, a new job, better skills, starting a business…"></textarea>
+          <div class="goal-chips" id="goalChips" aria-label="Common goals, tap to add">
+            <button type="button" class="goal-chip">Get a better job</button>
+            <button type="button" class="goal-chip">Start my own business</button>
+            <button type="button" class="goal-chip">Pass my WASSCE exams</button>
+            <button type="button" class="goal-chip">Study abroad</button>
+            <button type="button" class="goal-chip">Learn computer skills</button>
+          </div>
         </div>
         <div class="field">
           <label>Which tracks do you want to learn? <span class="req">*</span> <span style="font-weight:500;color:var(--muted);">(choose one or more)</span></label>
           <div class="form-note">Pick the subjects or courses that best match your goals. You can always update your preferences later.</div>
+          <div class="track-tools">
+            <input type="search" id="trackSearch" class="track-search" placeholder="🔍 Type to find a course or subject…" autocomplete="off" aria-label="Filter the list of tracks" />
+            <span class="track-count" id="trackCount">0 selected</span>
+          </div>
           <div class="tracks-select" id="tracksSelect"></div>
+          <p class="track-empty" id="trackEmpty" hidden>Nothing matches that. Try a shorter word.</p>
         </div>
         <div class="field">
           <label>How did you hear about TIH?</label>
@@ -286,10 +317,55 @@
           + w[2] + ' ' + HubDB.esc(w[1]) + '</label>';
       }
       box.innerHTML = html;
+      var countEl = document.getElementById('trackCount');
+      function refreshCount() {
+        var n = box.querySelectorAll('input[name="tracks"]:checked').length;
+        countEl.textContent = n === 1 ? '1 selected' : n + ' selected';
+        countEl.style.background = n ? '#e7f7ee' : '#eef4ff';
+        countEl.style.borderColor = n ? '#b7e6c9' : '#d8e4f5';
+        countEl.style.color = n ? '#0f7a43' : 'var(--primary)';
+      }
       box.addEventListener('change', function (e) {
         if (e.target.name === 'tracks') {
           e.target.closest('.track-opt').classList.toggle('checked', e.target.checked);
+          refreshCount();
         }
+      });
+      refreshCount();
+
+      // Filter rather than scroll. A checked option always stays visible, so
+      // searching can never hide something the applicant already chose.
+      var search = document.getElementById('trackSearch');
+      var empty  = document.getElementById('trackEmpty');
+      search.addEventListener('input', function () {
+        var q = search.value.trim().toLowerCase();
+        var shown = 0;
+        box.querySelectorAll('.track-opt').forEach(function (opt) {
+          var hit = !q || opt.textContent.toLowerCase().indexOf(q) !== -1
+                       || opt.querySelector('input').checked;
+          opt.style.display = hit ? '' : 'none';
+          if (hit) shown++;
+        });
+        // the WASSCE group heading is only useful while its options are showing
+        box.querySelectorAll('div').forEach(function (h) { h.style.display = q ? 'none' : ''; });
+        empty.hidden = shown > 0;
+      });
+    })();
+
+    // Tapping a goal is far less work than typing a sentence on a phone.
+    (function () {
+      var chips = document.getElementById('goalChips');
+      var ta = document.querySelector('textarea[name="goals"]');
+      if (!chips || !ta) return;
+      chips.addEventListener('click', function (e) {
+        var chip = e.target.closest('.goal-chip');
+        if (!chip) return;
+        var t = chip.textContent.trim();
+        var cur = ta.value.trim();
+        if (cur.toLowerCase().indexOf(t.toLowerCase()) !== -1) return;
+        ta.value = cur ? cur.replace(/[.\s]+$/, '') + '. ' + t : t;
+        ta.dispatchEvent(new Event('input', { bubbles: true }));
+        ta.focus();
       });
     })();
 
@@ -297,10 +373,29 @@
       var form = document.getElementById('applyForm');
       var errBox = document.getElementById('formError');
 
-      function showError(msg) {
+      // Mark the field that is actually wrong and put the cursor in it. The old
+      // behaviour showed one message at the top and left the applicant to work
+      // out which of a dozen inputs it meant, once per attempt.
+      function clearErrors() {
+        form.querySelectorAll('.field.has-error').forEach(function (f) { f.classList.remove('has-error'); });
+        errBox.classList.remove('show');
+      }
+      function showError(msg, field) {
         errBox.textContent = msg;
         errBox.classList.add('show');
-        errBox.scrollIntoView({ block: 'center' });
+        var el = field ? (form.querySelector('[name="' + field + '"]') || null) : null;
+        var wrap = el ? el.closest('.field') : null;
+        if (wrap) {
+          wrap.classList.add('has-error');
+          var m = wrap.querySelector('.field-msg');
+          if (!m) { m = document.createElement('div'); m.className = 'field-msg'; wrap.appendChild(m); }
+          m.textContent = msg;
+          wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          try { el.focus({ preventScroll: true }); } catch (err) { el.focus(); }
+        } else {
+          errBox.scrollIntoView({ block: 'center' });
+        }
+        return false;
       }
 
       /* Show the learner whether their account has actually reached the central
@@ -407,9 +502,14 @@
         } catch (err) {}
       }
 
+      form.addEventListener('input', function (e) {
+        var wrap = e.target.closest && e.target.closest('.field.has-error');
+        if (wrap) wrap.classList.remove('has-error');
+      });
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        errBox.classList.remove('show');
+        clearErrors();
         var fd = new FormData(form);
         var tracks = [];
         form.querySelectorAll('input[name="tracks"]:checked').forEach(function (cb) { tracks.push(cb.value); });
@@ -423,15 +523,15 @@
         var password = String(fd.get('password') || '');
         var password2 = String(fd.get('password2') || '');
 
-        if (!name) return showError('Please enter your full name.');
-        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return showError('Please enter a valid email address.');
-        if (phone.replace(/[^0-9]/g, '').length < 7) return showError('Please enter a valid phone / WhatsApp number.');
-        if (!location) return showError('Please enter your location.');
-        if (!education) return showError('Please select your education level.');
-        if (!goals) return showError('Please tell us what you want to achieve.');
-        if (!tracks.length) return showError('Please choose at least one learning track.');
-        if (password.length < 8) return showError('Your password must be at least 8 characters.');
-        if (password !== password2) return showError('The two passwords do not match. Please re-enter them.');
+        if (!name) return showError('Please enter your full name.', 'name');
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return showError('Please enter a valid email address.', 'email');
+        if (phone.replace(/[^0-9]/g, '').length < 7) return showError('Please enter a valid phone / WhatsApp number.', 'phone');
+        if (!location) return showError('Please enter your location.', 'location');
+        if (!education) return showError('Please select your education level.', 'education');
+        if (!goals) return showError('Please tell us what you want to achieve.', 'goals');
+        if (!tracks.length) return showError('Please choose at least one learning track.', 'tracks');
+        if (password.length < 8) return showError('Your password must be at least 8 characters.', 'password');
+        if (password !== password2) return showError('The two passwords do not match. Please re-enter them.', 'password2');
 
         var submitBtn = document.getElementById('submitBtn');
         submitBtn.disabled = true;
