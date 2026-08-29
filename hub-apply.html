@@ -81,6 +81,11 @@
     @media (max-width: 560px) { .row-2 { grid-template-columns: 1fr; } }
     /* Forty-eight checkboxes is a long scroll on a phone; let people type
        instead of hunting, and show how many they have chosen. */
+    /* A native date picker opens on the current month, so a birth year means
+       scrolling back decades on a phone. Three lists get there in three taps. */
+    .dob-row { display: grid; grid-template-columns: 1fr 1.3fr 1.15fr; gap: .4rem; }
+    .dob-row select { width: 100%; min-width: 0; padding-left: .55rem; padding-right: 1.5rem;
+      font-size: .92rem; background-position: right .45rem center; }
     .track-tools { display: flex; gap: .5rem; align-items: center; margin: 0 0 .55rem; }
     .track-search { flex: 1; min-width: 0; padding: .6rem .8rem; border: 1px solid var(--border);
       border-radius: 10px; font-size: .92rem; font-family: inherit; }
@@ -178,7 +183,12 @@
           </div>
           <div class="field">
             <label>Date of Birth</label>
-            <input type="date" name="dob" />
+            <div class="dob-row">
+              <select id="dobDay" aria-label="Day of birth"><option value="">Day</option></select>
+              <select id="dobMonth" aria-label="Month of birth"><option value="">Month</option></select>
+              <select id="dobYear" aria-label="Year of birth"><option value="">Year</option></select>
+            </div>
+            <input type="hidden" name="dob" id="dobValue" />
           </div>
         </div>
         <div class="row-2">
@@ -350,6 +360,46 @@
         box.querySelectorAll('div').forEach(function (h) { h.style.display = q ? 'none' : ''; });
         empty.hidden = shown > 0;
       });
+    })();
+
+    // Date of birth as three lists. The hidden dob input keeps the same
+    // YYYY-MM-DD value the rest of the page already reads, so nothing
+    // downstream changes.
+    (function () {
+      var d = document.getElementById('dobDay'),
+          m = document.getElementById('dobMonth'),
+          y = document.getElementById('dobYear'),
+          out = document.getElementById('dobValue');
+      if (!d || !m || !y || !out) return;
+      var MONTHS = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+      for (var i = 0; i < 12; i++) m.add(new Option(MONTHS[i], String(i + 1)));
+      var now = new Date().getFullYear();
+      for (var yr = now - 10; yr >= now - 100; yr--) y.add(new Option(String(yr), String(yr)));
+
+      function daysIn(month, year) {
+        if (!month) return 31;
+        if (!year) year = 2024;                    // leap year, so 29 stays offerable
+        return new Date(year, Number(month), 0).getDate();
+      }
+      function fillDays() {
+        var keep = d.value;
+        var max = daysIn(m.value, y.value);
+        d.length = 1;
+        for (var i = 1; i <= max; i++) d.add(new Option(String(i), String(i)));
+        // 31 January -> February would otherwise silently keep an impossible day
+        d.value = (keep && Number(keep) <= max) ? keep : '';
+      }
+      function sync() {
+        var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+        out.value = (d.value && m.value && y.value)
+          ? y.value + '-' + pad(Number(m.value)) + '-' + pad(Number(d.value))
+          : '';
+      }
+      fillDays();
+      m.addEventListener('change', function () { fillDays(); sync(); });
+      y.addEventListener('change', function () { fillDays(); sync(); });
+      d.addEventListener('change', sync);
     })();
 
     // Tapping a goal is far less work than typing a sentence on a phone.
