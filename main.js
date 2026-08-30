@@ -380,6 +380,38 @@ function initNav() {
     }
   }
 
+  // Add the LibApps link if missing. The nav is hand-written into every page,
+  // so injecting it here is how the site already adds News, and it saves
+  // editing the same markup in 250-odd files.
+  if (!navLinks.querySelector('a[href="libapps"]')) {
+    const libLink = document.createElement('a');
+    libLink.href = 'libapps';
+    libLink.textContent = 'LibApps';
+    // Sits beside Learning Hub, which is the page it belongs with.
+    const after = navLinks.querySelector('a[href="learning-hub"]')
+               || navLinks.querySelector('a[href="news"]')
+               || navLinks.querySelector('a[href="/"]');
+    if (after) {
+      after.insertAdjacentElement('afterend', libLink);
+    } else {
+      navLinks.append(libLink);
+    }
+  }
+
+  // Active state for LibApps
+  const isLibAppsPage = /^libapps([-.]|$)/i.test(window.location.pathname.split('/').pop() || '');
+  if (isLibAppsPage) {
+    navLinks.querySelectorAll('a').forEach((l) => {
+      l.classList.remove('active');
+      l.removeAttribute('aria-current');
+    });
+    const libNav = navLinks.querySelector('a[href="libapps"]');
+    if (libNav) {
+      libNav.classList.add('active');
+      libNav.setAttribute('aria-current', 'page');
+    }
+  }
+
   // Active state for news
   const isNewsPage = /^news([-.]|$)/i.test(window.location.pathname.split('/').pop() || '');
   if (isNewsPage) {

@@ -319,9 +319,9 @@ textarea:focus-visible {
   transition: color var(--transition), background var(--transition);
 }
 
-/* One step of tightening, covering 1366px to 1439px, the last stretch where
-   the row is still shown before the dropdown takes over at 1365px. */
-@media (max-width: 1439px) {
+/* One step of tightening, covering the last stretch where the row is still
+   shown before the dropdown takes over. */
+@media (max-width: 1600px) {
   .nav-links { column-gap: 0.04rem; }
   .nav-links a { padding: 0.3rem 0.32rem; font-size: 0.8rem; }
 }
@@ -367,7 +367,7 @@ textarea:focus-visible {
   transition: background var(--transition), transform var(--transition);
 }
 
-@media (max-width: 1439px) {
+@media (max-width: 1600px) {
   .nav-cta { padding: 0.42rem 0.7rem; }
 }
 
@@ -1837,7 +1837,7 @@ textarea {
    that the dropdown takes over rather than the row wrapping, so the
    header is either one clean line or a menu button, never a ragged
    second row. Everything in this block is header-only. */
-@media (max-width: 1365px) {
+@media (max-width: 1399px) {
   .nav-wrap {
     min-height: auto;
     padding: 0.75rem 0;
