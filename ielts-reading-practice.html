@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <title>IELTS Reading Practice — Free | Tolbert Innovation Hub</title>
+  <meta name="description" content="Six original IELTS Reading passages with True/False/Not Given, multiple choice and sentence completion questions. Every answer explained. Free, no sign-in required." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="libapps.css?v=3" />
+</head>
+<body>
+  <a class="skip-link" href="#la-main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="learning-hub">Learning Hub</a>
+        <a href="libapps">LibApps</a>
+        <a href="study-abroad">Study Abroad</a>
+        <a href="fully-funded-scholarship">Fully Funded</a>
+        <a href="healthcare">Healthcare</a>
+        <a href="software">Software</a>
+        <a href="wassce">WASSCE PRO</a>
+        <a href="grants">Grants</a>
+        <a href="library">Library</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+    </div>
+  </header>
+
+  <main id="la-main" class="la-main">
+    <div class="container">
+      <div class="la-head">
+        <span class="la-eyebrow">📖 Free practice</span>
+        <h1>IELTS Reading Practice</h1>
+        <p>
+          Six passages written for TIH, with the three question types that decide most
+          Reading bands. Every answer comes with an explanation of <em>why</em> it is right,
+          because in Reading the technique is the skill. Free, no sign-in, works on a phone.
+        </p>
+      </div>
+
+      <div class="rd-stats" id="rdOverall" hidden>
+        <div class="la-stat"><b id="rdDone">0</b><span>Passages attempted</span></div>
+        <div class="la-stat"><b id="rdScore">0%</b><span>Your accuracy</span></div>
+        <div class="la-stat"><b id="rdWeak">—</b><span>Weakest question type</span></div>
+      </div>
+
+      <!-- ---------- passage picker ---------- -->
+      <div id="rdList">
+        <div class="la-countbar"><span>Choose a passage. You can do them in any order.</span></div>
+        <div class="la-grid" id="rdCards"></div>
+
+        <div class="la-panel" style="margin-top:1.4rem;">
+          <h2>How the three question types work</h2>
+          <div class="rd-types">
+            <div>
+              <h3>True / False / Not Given</h3>
+              <p>
+                <b>True</b>: the passage says it. <b>False</b>: the passage says the opposite.
+                <b>Not Given</b>: the passage does not settle it either way. Most marks are lost
+                by choosing False when the honest answer is Not Given. Ask yourself: could I point
+                at the sentence that contradicts this? If not, it is Not Given.
+              </p>
+            </div>
+            <div>
+              <h3>Multiple choice</h3>
+              <p>
+                The wrong options are wrong for a reason: they reverse the passage, overstate it
+                with <em>always</em> or <em>only</em>, or state something true in the world but
+                absent from the text. Answer from the passage, never from what you already know.
+              </p>
+            </div>
+            <div>
+              <h3>Sentence completion</h3>
+              <p>
+                Copy the words exactly as printed, and never more than the limit. A synonym is
+                marked wrong even when the meaning is right. Read the grammar around the gap
+                first: it usually tells you whether a noun, verb or adjective is wanted.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="la-panel">
+          <h2>When you are ready for the real thing</h2>
+          <p class="la-prose" style="white-space:normal;">
+            This page is practice. The full TIH IELTS course covers all four skills across
+            fifteen modules, with timed mock papers and a verified certificate.
+          </p>
+          <p style="margin-top:.9rem;display:flex;gap:.6rem;flex-wrap:wrap;">
+            <a class="la-btn" href="learning-hub">See the IELTS course</a>
+            <a class="la-btn la-btn-quiet" href="practice-test?exam=ielts">Timed mock test</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- ---------- one passage ---------- -->
+      <div id="rdSet" hidden>
+        <nav class="la-crumb" aria-label="Breadcrumb">
+          <a href="#" id="rdBack">← All passages</a><span aria-hidden="true">›</span>
+          <span id="rdCrumb"></span>
+        </nav>
+
+        <div class="rd-split">
+          <article class="la-panel rd-passage" id="rdPassage" aria-label="Reading passage"></article>
+
+          <div>
+            <div class="la-panel">
+              <div class="rd-qhead">
+                <h2 id="rdSetTitle" style="margin:0;"></h2>
+                <span class="la-tag" id="rdProgress"></span>
+              </div>
+              <form id="rdForm"></form>
+              <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;">
+                <button type="button" class="la-btn" id="rdCheck">Check my answers</button>
+                <button type="button" class="la-btn la-btn-quiet" id="rdRetry" hidden>Try again</button>
+                <button type="button" class="la-btn la-btn-quiet" id="rdNext" hidden>Next passage →</button>
+              </div>
+              <div id="rdResult" style="margin-top:1rem;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="/"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+            <a href="https://www.youtube.com/@TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">▶️</a>
+            <a href="https://www.linkedin.com/company/tolbert-innovation-hub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">💼</a>
+            <a href="https://www.facebook.com/TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">📘</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">LibApps</p>
+          <ul class="footer-links">
+            <li><a href="libapps">Browse Apps</a></li>
+            <li><a href="libapps-dashboard">My Apps</a></li>
+            <li><a href="hub-apply">Create an Account</a></li>
+            <li><a href="learning-hub">TIH Learning Hub</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="learning-hub">IELTS Preparation</a></li>
+            <li><a href="learning-hub">TOEFL Preparation</a></li>
+            <li><a href="leadership">Leadership</a></li>
+            <li><a href="learning-hub">Resource Center</a></li>
+            <li><a href="news">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact Us</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">🌐</span><span>Liberia, West Africa</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+          <p class="footer-signoff">Empowering Africa's Future, Never Stop Innovating.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="hub-config.js?v=4"></script>
+  <script src="hub-cloud.js?v=17"></script>
+  <script src="hub-db.js?v=40"></script>
+  <script src="ielts-reading-sets.js?v=1"></script>
+  <script src="libapps-db.js?v=3"></script>
+  <script src="libapps-ui.js?v=1"></script>
+  <script src="main.js?v=18"></script>
+  <script>
+  (function () {
+    'use strict';
+    var esc = LibUI.esc;
+    var SETS = window.TIH_IELTS_READING_SETS || [];
+    var KEY = 'tih_ielts_reading_progress';
+
+    var listEl = document.getElementById('rdList');
+    var setEl  = document.getElementById('rdSet');
+    var form   = document.getElementById('rdForm');
+    var result = document.getElementById('rdResult');
+    var current = null, checked = false;
+
+    // ---------- progress, per browser ----------
+    function load() {
+      try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; }
+      catch (e) { return {}; }
+    }
+    function save(p) { try { localStorage.setItem(KEY, JSON.stringify(p)); } catch (e) {} }
+
+    // ---------- passage cards ----------
+    function cards() {
+      var p = load();
+      document.getElementById('rdCards').innerHTML = SETS.map(function (s, i) {
+        var done = p[s.id];
+        var kinds = {};
+        s.questions.forEach(function (q) { kinds[q.kind] = (kinds[q.kind] || 0) + 1; });
+        var label = [];
+        if (kinds.tfng) label.push(kinds.tfng + ' True/False/Not Given');
+        if (kinds.mcq)  label.push(kinds.mcq + ' multiple choice');
+        if (kinds.gap)  label.push(kinds.gap + ' completion');
+        return '<a class="la-card" href="#" data-set="' + esc(s.id) + '">' +
+          '<div class="la-card-top">' +
+            '<span class="la-icon">' + (i + 1) + '</span>' +
+            '<div style="min-width:0;">' +
+              '<div class="la-card-name">' + esc(s.title) + '</div>' +
+              '<div class="la-card-by">' + esc(s.topic) + ' · ' + s.words + ' words</div>' +
+            '</div>' +
+          '</div>' +
+          '<p class="la-card-desc">' + esc(label.join(' · ')) + '</p>' +
+          '<div class="la-card-foot">' +
+            (done
+              ? '<span class="la-status la-status-published">Best ' + done.best + '/' + s.questions.length + '</span>'
+              : '<span class="la-tag">Not attempted</span>') +
+            '<span style="margin-left:auto;">' + s.questions.length + ' questions</span>' +
+          '</div></a>';
+      }).join('');
+      overall();
+    }
+
+    function overall() {
+      var p = load();
+      var ids = Object.keys(p);
+      if (!ids.length) { document.getElementById('rdOverall').hidden = true; return; }
+      var got = 0, total = 0, byType = {};
+      ids.forEach(function (id) {
+        var s = SETS.filter(function (x) { return x.id === id; })[0];
+        if (!s) return;
+        got += p[id].best; total += s.questions.length;
+        var t = p[id].missed || {};
+        for (var k in t) if (Object.prototype.hasOwnProperty.call(t, k)) byType[k] = (byType[k] || 0) + t[k];
+      });
+      document.getElementById('rdDone').textContent = ids.length;
+      document.getElementById('rdScore').textContent = total ? Math.round((got / total) * 100) + '%' : '0%';
+      var worst = '—', n = 0;
+      for (var k2 in byType) if (byType[k2] > n) { n = byType[k2]; worst = k2; }
+      document.getElementById('rdWeak').textContent = worst === 'tfng' ? 'True/False/NG'
+        : worst === 'gap' ? 'Completion' : worst === 'mcq' ? 'Multiple choice' : '—';
+      document.getElementById('rdOverall').hidden = false;
+    }
+
+    // ---------- render one passage ----------
+    function kindLabel(q) {
+      return q.kind === 'tfng' ? 'True / False / Not Given'
+           : q.kind === 'gap' ? 'Sentence completion'
+           : (q.type ? q.type.charAt(0).toUpperCase() + q.type.slice(1) : 'Multiple choice');
+    }
+
+    function questionHTML(q, i) {
+      var body;
+      if (q.kind === 'tfng') {
+        body = ['TRUE', 'FALSE', 'NOT GIVEN'].map(function (v) {
+          return '<label class="rd-opt"><input type="radio" name="q' + i + '" value="' + v + '" /> ' +
+                 '<span>' + v + '</span></label>';
+        }).join('');
+      } else if (q.kind === 'gap') {
+        body = '<input type="text" class="la-input rd-gap" name="q' + i + '" autocomplete="off" ' +
+               'placeholder="Type your answer" />';
+      } else {
+        body = q.opts.map(function (o, j) {
+          return '<label class="rd-opt"><input type="radio" name="q' + i + '" value="' + j + '" /> ' +
+                 '<span>' + esc(o) + '</span></label>';
+        }).join('');
+      }
+      return '<div class="rd-q" id="rdq' + i + '">' +
+        '<div class="rd-qtop"><b>' + (i + 1) + '.</b> <span>' + esc(q.q) + '</span></div>' +
+        '<span class="rd-kind">' + esc(kindLabel(q)) + '</span>' +
+        '<div class="rd-opts">' + body + '</div>' +
+        '<div class="rd-exp" hidden></div>' +
+      '</div>';
+    }
+
+    function openSet(id) {
+      current = SETS.filter(function (s) { return s.id === id; })[0];
+      if (!current) return;
+      checked = false;
+      document.getElementById('rdPassage').innerHTML =
+        '<h2>' + esc(current.title) + '</h2>' + current.passage;
+      document.getElementById('rdSetTitle').textContent = 'Questions';
+      document.getElementById('rdCrumb').textContent = current.title;
+      document.getElementById('rdProgress').textContent = current.questions.length + ' questions';
+      form.innerHTML = current.questions.map(questionHTML).join('');
+      result.innerHTML = '';
+      document.getElementById('rdCheck').hidden = false;
+      document.getElementById('rdRetry').hidden = true;
+      document.getElementById('rdNext').hidden = true;
+      listEl.hidden = true; setEl.hidden = false;
+      window.scrollTo(0, 0);
+      if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+    }
+
+    function closeSet() {
+      setEl.hidden = true; listEl.hidden = false; current = null;
+      history.replaceState(null, '', location.pathname);
+      cards();
+      window.scrollTo(0, 0);
+    }
+
+    // ---------- marking ----------
+    function normalise(s) {
+      return String(s || '').toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, ' ').trim();
+    }
+
+    function mark() {
+      var got = 0, missed = {};
+      current.questions.forEach(function (q, i) {
+        var box = document.getElementById('rdq' + i);
+        var exp = box.querySelector('.rd-exp');
+        var right = false, given = '';
+
+        if (q.kind === 'gap') {
+          given = (form.elements['q' + i] || {}).value || '';
+          right = q.answer.some(function (a) { return normalise(a) === normalise(given); });
+        } else {
+          var picked = form.querySelector('input[name="q' + i + '"]:checked');
+          given = picked ? picked.value : '';
+          right = q.kind === 'tfng' ? given === q.answer : String(q.correct) === given;
+          // colour the options so the right one is visible either way
+          box.querySelectorAll('.rd-opt').forEach(function (lab) {
+            var v = lab.querySelector('input').value;
+            var isAnswer = q.kind === 'tfng' ? v === q.answer : v === String(q.correct);
+            if (isAnswer) lab.classList.add('is-answer');
+            else if (v === given) lab.classList.add('is-wrong');
+          });
+        }
+
+        box.classList.add(right ? 'is-right' : 'is-wrong');
+        if (right) got++;
+        else missed[q.kind] = (missed[q.kind] || 0) + 1;
+
+        var answerText = q.kind === 'gap' ? q.answer[0]
+                       : q.kind === 'tfng' ? q.answer : q.opts[q.correct];
+        exp.hidden = false;
+        exp.innerHTML =
+          '<b>' + (right ? '✓ Correct' : '✗ Answer: ' + esc(answerText)) + '</b>' +
+          '<p>' + esc(q.exp) + '</p>';
+      });
+      return { got: got, missed: missed };
+    }
+
+    document.getElementById('rdCheck').addEventListener('click', function () {
+      if (checked || !current) return;
+      var unanswered = current.questions.filter(function (q, i) {
+        return q.kind === 'gap'
+          ? !((form.elements['q' + i] || {}).value || '').trim()
+          : !form.querySelector('input[name="q' + i + '"]:checked');
+      }).length;
+      if (unanswered) {
+        result.innerHTML = '<div class="la-note la-note-warn">' + unanswered +
+          ' question' + (unanswered === 1 ? '' : 's') + ' still unanswered. ' +
+          'In the real test an unanswered question scores nothing, so always put something down.</div>';
+        return;
+      }
+      checked = true;
+      var r = mark();
+      var total = current.questions.length;
+      var pct = Math.round((r.got / total) * 100);
+
+      var p = load();
+      var prev = p[current.id];
+      p[current.id] = { best: Math.max(r.got, prev ? prev.best : 0), last: r.got, missed: r.missed };
+      save(p);
+
+      result.innerHTML = '<div class="la-note ' + (pct >= 70 ? 'la-note-ok' : 'la-note-warn') + '">' +
+        '<b>' + r.got + ' out of ' + total + '</b> (' + pct + '%). ' +
+        (pct === 100 ? 'Every one right. Move on to the next passage.'
+         : pct >= 70 ? 'A solid pass. Read the explanations on the ones you missed, then try another passage.'
+         : 'Read every explanation below before moving on. In Reading, understanding why an answer is wrong is worth more than repeating the passage.') +
+        '</div>';
+
+      document.getElementById('rdCheck').hidden = true;
+      document.getElementById('rdRetry').hidden = false;
+      document.getElementById('rdNext').hidden = false;
+      result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    document.getElementById('rdRetry').addEventListener('click', function () { openSet(current.id); });
+    document.getElementById('rdNext').addEventListener('click', function () {
+      var i = SETS.indexOf(current);
+      if (i > -1 && i + 1 < SETS.length) openSet(SETS[i + 1].id); else closeSet();
+    });
+    document.getElementById('rdBack').addEventListener('click', function (e) { e.preventDefault(); closeSet(); });
+    document.getElementById('rdCards').addEventListener('click', function (e) {
+      var a = e.target.closest('[data-set]');
+      if (!a) return;
+      e.preventDefault();
+      openSet(a.getAttribute('data-set'));
+    });
+
+    // ---------- start ----------
+    cards();
+    var want = location.hash.replace('#', '');
+    if (want && SETS.some(function (s) { return s.id === want; })) openSet(want);
+  })();
+  </script>
+</body>
+</html>
