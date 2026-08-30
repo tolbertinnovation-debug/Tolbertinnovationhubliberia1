@@ -319,17 +319,13 @@ textarea:focus-visible {
   transition: color var(--transition), background var(--transition);
 }
 
-/* Two steps of tightening, so the row stays intact down to the width where
-   the dropdown menu takes over. Both are overridden by the max-width:1080px
-   block further down, which turns the nav into that dropdown. */
+/* One step of tightening, covering 1366px to 1439px, the last stretch where
+   the row is still shown before the dropdown takes over at 1365px. */
 @media (max-width: 1439px) {
   .nav-links { column-gap: 0.04rem; }
   .nav-links a { padding: 0.3rem 0.32rem; font-size: 0.8rem; }
 }
 
-@media (max-width: 1199px) {
-  .nav-links a { padding: 0.3rem 0.26rem; font-size: 0.76rem; }
-}
 
 .nav-links a:hover,
 .nav-links a.active {
@@ -1837,7 +1833,11 @@ textarea {
 /* Issue 11 fix: the primary nav holds 13 links + a CTA. Collapse it into the
    mobile menu earlier (at 1080px) so the links no longer crowd or get clipped
    by overflow:hidden on laptop widths before the toggle used to appear (920px). */
-@media (max-width: 1080px) {
+/* Thirteen links only fit one readable row down to about 1366px. Below
+   that the dropdown takes over rather than the row wrapping, so the
+   header is either one clean line or a menu button, never a ragged
+   second row. Everything in this block is header-only. */
+@media (max-width: 1365px) {
   .nav-wrap {
     min-height: auto;
     padding: 0.75rem 0;
@@ -1882,6 +1882,18 @@ textarea {
     display: flex !important;
     padding: 0.55rem;
     animation: mobileNavIn 0.24s cubic-bezier(.22,.8,.32,1);
+  }
+
+  /* On a phone the panel spans the screen. On a laptop that would be a very
+     wide sheet holding thirteen short rows, so cap it and tuck it under the
+     menu button it belongs to. */
+  @media (min-width: 721px) {
+    .nav-wrap.nav-open .nav-links {
+      width: auto;
+      min-width: 320px;
+      max-width: 380px;
+      margin-left: auto;
+    }
   }
 
   @keyframes mobileNavIn {
@@ -1932,19 +1944,37 @@ textarea {
     background: #fff;
     box-shadow: 0 1px 4px rgba(21,101,216,.25);
   }
-  /* Per-item icons — mobile menu only */
-  .nav-links a[href="index.html"]::before { content: "🏠"; }
-  .nav-links a[href="learning-hub.html"]::before { content: "📚"; }
-  .nav-links a[href="study-abroad.html"]::before { content: "🎓"; }
-  .nav-links a[href="fully-funded-scholarship.html"]::before { content: "💰"; }
-  .nav-links a[href="healthcare.html"]::before { content: "🏥"; }
-  .nav-links a[href="software.html"]::before { content: "💻"; }
-  .nav-links a[href="wassce.html"]::before { content: "📝"; }
-  .nav-links a[href="grants.html"]::before { content: "🎁"; }
-  .nav-links a[href="library.html"]::before { content: "📖"; }
-  .nav-links a[href="news.html"]::before { content: "📰"; }
-  .nav-links a[href="about.html"]::before { content: "ℹ️"; }
-  .nav-links a[href="contact.html"]::before { content: "✉️"; }
+  /* Per-item icons, menu only. These were written against "index.html",
+     "about.html" and so on, but every page links without the extension
+     ("/", "about"), so not one of them ever matched and the menu has been
+     showing bare labels. Matched on the href ending instead, which covers
+     both spellings. */
+  .nav-links a[href="/"]::before,
+  .nav-links a[href$="index.html"]::before          { content: "🏠"; }
+  .nav-links a[href$="learning-hub"]::before,
+  .nav-links a[href$="learning-hub.html"]::before   { content: "📚"; }
+  .nav-links a[href$="libapps"]::before,
+  .nav-links a[href$="libapps.html"]::before        { content: "📱"; }
+  .nav-links a[href$="study-abroad"]::before,
+  .nav-links a[href$="study-abroad.html"]::before   { content: "🎓"; }
+  .nav-links a[href$="fully-funded-scholarship"]::before,
+  .nav-links a[href$="fully-funded-scholarship.html"]::before { content: "💰"; }
+  .nav-links a[href$="healthcare"]::before,
+  .nav-links a[href$="healthcare.html"]::before     { content: "🏥"; }
+  .nav-links a[href$="software"]::before,
+  .nav-links a[href$="software.html"]::before       { content: "💻"; }
+  .nav-links a[href$="wassce"]::before,
+  .nav-links a[href$="wassce.html"]::before         { content: "📝"; }
+  .nav-links a[href$="grants"]::before,
+  .nav-links a[href$="grants.html"]::before         { content: "🎁"; }
+  .nav-links a[href$="library"]::before,
+  .nav-links a[href$="library.html"]::before        { content: "📖"; }
+  .nav-links a[href$="news"]::before,
+  .nav-links a[href$="news.html"]::before           { content: "📰"; }
+  .nav-links a[href$="about"]::before,
+  .nav-links a[href$="about.html"]::before          { content: "ℹ️"; }
+  .nav-links a[href$="contact"]::before,
+  .nav-links a[href$="contact.html"]::before        { content: "✉️"; }
   /* Apply Now — prominent gradient CTA at the bottom of the menu */
   .nav-links a.nav-cta {
     margin-top: 0.5rem;
