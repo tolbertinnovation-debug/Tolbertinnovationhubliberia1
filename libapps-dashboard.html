@@ -12,9 +12,9 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <title>My Apps | LibApps — Tolbert Innovation Hub</title>
-  <meta name="description" content="Manage the Android apps you have published on LibApps: downloads, likes, comments, and edit or delete a listing." />
+  <meta name="description" content="Manage the Android apps published on LibApps: downloads, likes, comments, and edit or delete a listing." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=15" />
+  <link rel="stylesheet" href="styles.css?v=12" />
   <link rel="stylesheet" href="libapps.css?v=1" />
 </head>
 <body>
@@ -62,7 +62,7 @@
       </div>
 
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.1rem;">
-        <a class="la-btn" href="libapps-upload">⬆ Upload a new app</a>
+        <a class="la-btn" href="libapps-upload" id="laUploadBtn" hidden>⬆ Publish a new app</a>
         <a class="la-btn la-btn-quiet" href="libapps">Browse LibApps</a>
         <a class="la-btn la-btn-quiet" id="laPublicLink" href="#">See my public profile</a>
       </div>
@@ -91,7 +91,6 @@
           <p class="footer-heading">LibApps</p>
           <ul class="footer-links">
             <li><a href="libapps">Browse Apps</a></li>
-            <li><a href="libapps-upload">Upload Your App</a></li>
             <li><a href="libapps-dashboard">My Apps</a></li>
             <li><a href="hub-apply">Create an Account</a></li>
             <li><a href="learning-hub">TIH Learning Hub</a></li>
@@ -127,9 +126,9 @@
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=17"></script>
   <script src="hub-db.js?v=40"></script>
-  <script src="libapps-db.js?v=2"></script>
+  <script src="libapps-db.js?v=3"></script>
   <script src="libapps-ui.js?v=1"></script>
-  <script src="main.js?v=19"></script>
+  <script src="main.js?v=18"></script>
   <script>
   (function () {
     'use strict';
@@ -143,6 +142,8 @@
     document.getElementById('laPublicLink').href = 'libapps-profile?id=' + encodeURIComponent(me.id);
 
     var body = document.getElementById('laBody');
+    var canUpload = LibApps.canUpload();
+    if (canUpload) document.getElementById('laUploadBtn').hidden = false;
 
     function rowHTML(a) {
       var removed = a.status === 'removed';
@@ -178,9 +179,14 @@
       if (!apps.length) {
         document.getElementById('laStats').hidden = true;
         body.innerHTML = '<div class="la-empty"><span class="la-empty-ico">📦</span>' +
-          '<h3>You have not published anything yet</h3>' +
-          '<p>If you have built an Android app, share it with the rest of TIH.</p>' +
-          '<p style="margin-top:1rem;"><a class="la-btn" href="libapps-upload">Upload your first app</a></p></div>';
+          '<h3>You have not published anything</h3>' +
+          (canUpload
+            ? '<p>Nothing you have uploaded is in the store yet.</p>' +
+              '<p style="margin-top:1rem;"><a class="la-btn" href="libapps-upload">Publish your first app</a></p>'
+            : '<p>Apps in LibApps are published by the TIH team. You can browse and download ' +
+              'everything in the store from the LibApps page.</p>' +
+              '<p style="margin-top:1rem;"><a class="la-btn" href="libapps">Browse LibApps</a></p>') +
+          '</div>';
         return;
       }
 
@@ -195,7 +201,7 @@
       // The database refuses a thirteenth app, so say so before they have
       // sat through an upload that is going to be rejected.
       var left = LibApps.MAX_APPS - live.length;
-      document.getElementById('laQuota').innerHTML = left <= 0
+      document.getElementById('laQuota').innerHTML = !canUpload ? '' : left <= 0
         ? '<div class="la-note la-note-warn">You have reached the limit of ' + LibApps.MAX_APPS +
           ' published apps. Delete one before uploading another.</div>'
         : (left <= 3

@@ -30,6 +30,12 @@
 
 create extension if not exists "pgcrypto";
 
+-- An earlier version of this file granted a publish function that did not ask
+-- for an administrator. Drop it, or re-running this script would leave the old
+-- signature in place and still callable.
+drop function if exists public.libapps_publish(text, text, jsonb);
+drop function if exists public.libapps_update(text, text, uuid, jsonb);
+
 -- ============================================================
 -- TABLES
 -- ============================================================
@@ -388,7 +394,7 @@ $$;
 --          storage in total, so without a per-person cap one uploader can
 --          consume the whole store. Raise it when you upgrade the plan.
 create or replace function public.libapps_publish(
-  p_student_id text, p_hash text, p_app jsonb
+  p_student_id text, p_hash text, p_app jsonb, p_admin_hash text default null
 )
 returns uuid
 language plpgsql
@@ -403,7 +409,17 @@ declare
   v_n     integer;
   v_id    uuid;
 begin
+  -- The uploader still signs in as a learner, because that is what owns the
+  -- listing and what the profile and dashboard pages read.
   perform public.libapps_require(p_student_id, p_hash);
+
+  -- Publishing is limited to administrators. Browsing, downloading, liking
+  -- and commenting stay open to every signed-in member. To let members
+  -- publish later, delete this one check and the matching one in
+  -- libapps_update; nothing else depends on it.
+  if not public.is_admin_hash(coalesce(p_admin_hash, '')) then
+    raise exception 'LIBAPPS_ADMIN_ONLY_UPLOAD' using errcode = '42501';
+  end if;
 
   if v_name = '' then raise exception 'LIBAPPS_NAME_REQUIRED'; end if;
   if length(v_name) > 80 then raise exception 'LIBAPPS_NAME_TOO_LONG'; end if;
@@ -436,11 +452,11 @@ begin
   return v_id;
 end;
 $$;
-grant execute on function public.libapps_publish(text, text, jsonb) to anon, authenticated;
+grant execute on function public.libapps_publish(text, text, jsonb, text) to anon, authenticated;
 
 -- ---------- EDIT (owner only) ----------
 create or replace function public.libapps_update(
-  p_student_id text, p_hash text, p_app_id uuid, p_changes jsonb
+  p_student_id text, p_hash text, p_app_id uuid, p_changes jsonb, p_admin_hash text default null
 )
 returns boolean
 language plpgsql
@@ -450,6 +466,9 @@ as $$
 declare v_owner text; v_size numeric := nullif(p_changes->>'file_size_mb', '')::numeric;
 begin
   perform public.libapps_require(p_student_id, p_hash);
+  if not public.is_admin_hash(coalesce(p_admin_hash, '')) then
+    raise exception 'LIBAPPS_ADMIN_ONLY_UPLOAD' using errcode = '42501';
+  end if;
 
   select a.owner_id into v_owner from public.libapps_apps a where a.id = p_app_id;
   if v_owner is null then raise exception 'LIBAPPS_NOT_FOUND'; end if;
@@ -475,7 +494,7 @@ begin
   return true;
 end;
 $$;
-grant execute on function public.libapps_update(text, text, uuid, jsonb) to anon, authenticated;
+grant execute on function public.libapps_update(text, text, uuid, jsonb, text) to anon, authenticated;
 
 -- ---------- DELETE (owner only) ----------
 -- Returns the storage paths so the client can clear the files too.

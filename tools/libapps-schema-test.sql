@@ -47,8 +47,19 @@ BEGIN
   perform t_check('a suspended account is refused',
     t_raises($q$ select * from libapps_browse('TIH-STU-CCC','hash-sam') $q$, 'LIBAPPS_AUTH_REQUIRED'));
   perform t_check('publish with wrong password is refused',
-    t_raises($q$ select libapps_publish('TIH-STU-AAA','WRONG','{"name":"X","apk_path":"p"}'::jsonb) $q$,
+    t_raises($q$ select libapps_publish('TIH-STU-AAA','WRONG','{"name":"X","apk_path":"p"}'::jsonb,'hash-admin') $q$,
              'LIBAPPS_AUTH_REQUIRED'));
+
+  -- ---------- PUBLISHING IS ADMINISTRATOR-ONLY ----------
+  perform t_check('a member with no admin hash cannot publish',
+    t_raises($q$ select libapps_publish('TIH-STU-AAA','hash-musu','{"name":"X","apk_path":"p"}'::jsonb) $q$,
+             'LIBAPPS_ADMIN_ONLY_UPLOAD'));
+  perform t_check('a wrong admin hash does not let a member publish',
+    t_raises($q$ select libapps_publish('TIH-STU-AAA','hash-musu','{"name":"X","apk_path":"p"}'::jsonb,'nope') $q$,
+             'LIBAPPS_ADMIN_ONLY_UPLOAD'));
+  perform t_check('another member''s password is not an admin hash',
+    t_raises($q$ select libapps_publish('TIH-STU-AAA','hash-musu','{"name":"X","apk_path":"p"}'::jsonb,'hash-james') $q$,
+             'LIBAPPS_ADMIN_ONLY_UPLOAD'));
 
   -- ---------- PUBLISH ----------
   v_app := libapps_publish('TIH-STU-AAA','hash-musu', jsonb_build_object(
@@ -56,7 +67,7 @@ BEGIN
     'version','1.2.0','package_name','lr.tih.libmarket','min_android','Android 7.0',
     'changelog','Faster search','icon_url','https://x/icon.png',
     'screenshot_urls', jsonb_build_array('https://x/1.png','https://x/2.png'),
-    'apk_path','TIH-STU-AAA/libmarket.apk','file_size_mb', 8.4));
+    'apk_path','TIH-STU-AAA/libmarket.apk','file_size_mb', 8.4), 'hash-admin');
   perform t_check('publish returns an id', v_app is not null);
 
   select owner_name into v_t from libapps_apps where id = v_app;
@@ -65,14 +76,14 @@ BEGIN
   perform t_check('screenshots stored as a text array of 2', v_n = 2);
 
   perform t_check('publish with no name is refused',
-    t_raises($q$ select libapps_publish('TIH-STU-AAA','hash-musu','{"name":"  ","apk_path":"p"}'::jsonb) $q$,
+    t_raises($q$ select libapps_publish('TIH-STU-AAA','hash-musu','{"name":"  ","apk_path":"p"}'::jsonb,'hash-admin') $q$,
              'LIBAPPS_NAME_REQUIRED'));
   perform t_check('publish with no file is refused',
-    t_raises($q$ select libapps_publish('TIH-STU-AAA','hash-musu','{"name":"X"}'::jsonb) $q$,
+    t_raises($q$ select libapps_publish('TIH-STU-AAA','hash-musu','{"name":"X"}'::jsonb,'hash-admin') $q$,
              'LIBAPPS_FILE_REQUIRED'));
   perform t_check('an APK over 50 MB is refused',
     t_raises($q$ select libapps_publish('TIH-STU-AAA','hash-musu',
-             '{"name":"X","apk_path":"p","file_size_mb":51}'::jsonb) $q$, 'LIBAPPS_FILE_TOO_LARGE'));
+             '{"name":"X","apk_path":"p","file_size_mb":51}'::jsonb,'hash-admin') $q$, 'LIBAPPS_FILE_TOO_LARGE'));
 
   -- ---------- BROWSE ----------
   select count(*) into v_n from libapps_browse('TIH-STU-BBB','hash-james');
@@ -136,13 +147,16 @@ BEGIN
              (select id from libapps_apps limit 1)) $q$, 'LIBAPPS_AUTH_REQUIRED'));
 
   -- ---------- OWNERSHIP ----------
-  perform t_check('a stranger cannot edit your app',
+  perform t_check('a member cannot edit an app even with an admin hash they do not own',
     t_raises($q$ select libapps_update('TIH-STU-BBB','hash-james',
-             (select id from libapps_apps limit 1), '{"name":"Hijacked"}'::jsonb) $q$, 'LIBAPPS_NOT_OWNER'));
+             (select id from libapps_apps limit 1), '{"name":"Hijacked"}'::jsonb, 'hash-admin') $q$, 'LIBAPPS_NOT_OWNER'));
+  perform t_check('editing without an admin hash is refused outright',
+    t_raises($q$ select libapps_update('TIH-STU-AAA','hash-musu',
+             (select id from libapps_apps limit 1), '{"name":"Hijacked"}'::jsonb) $q$, 'LIBAPPS_ADMIN_ONLY_UPLOAD'));
   perform t_check('a stranger cannot delete your app',
     t_raises($q$ select * from libapps_delete('TIH-STU-BBB','hash-james',
              (select id from libapps_apps limit 1)) $q$, 'LIBAPPS_NOT_OWNER'));
-  perform libapps_update('TIH-STU-AAA','hash-musu', v_app, '{"name":"Lib Market Pro","version":"1.3.0"}'::jsonb);
+  perform libapps_update('TIH-STU-AAA','hash-musu', v_app, '{"name":"Lib Market Pro","version":"1.3.0"}'::jsonb, 'hash-admin');
   select name into v_t from libapps_apps where id = v_app;
   perform t_check('the owner can edit their own app', v_t = 'Lib Market Pro');
   select version into v_t from libapps_apps where id = v_app;
@@ -206,13 +220,13 @@ BEGIN
   -- ---------- UPLOAD LIMIT ----------
   for v_n in 2..12 loop
     perform libapps_publish('TIH-STU-AAA','hash-musu',
-      jsonb_build_object('name','Filler '||v_n,'apk_path','p'||v_n,'file_size_mb',1));
+      jsonb_build_object('name','Filler '||v_n,'apk_path','p'||v_n,'file_size_mb',1), 'hash-admin');
   end loop;
   select count(*) into v_n from libapps_apps where owner_id='TIH-STU-AAA';
   perform t_check('twelve apps published', v_n = 12);
   perform t_check('the thirteenth upload is refused',
     t_raises($q$ select libapps_publish('TIH-STU-AAA','hash-musu',
-             '{"name":"Too many","apk_path":"p13"}'::jsonb) $q$, 'LIBAPPS_UPLOAD_LIMIT'));
+             '{"name":"Too many","apk_path":"p13"}'::jsonb,'hash-admin') $q$, 'LIBAPPS_UPLOAD_LIMIT'));
 
   -- ---------- SORTING ----------
   select name into v_t from libapps_browse('TIH-STU-BBB','hash-james',null,null,'downloads',1,0);

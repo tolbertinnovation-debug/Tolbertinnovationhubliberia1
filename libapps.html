@@ -11,10 +11,10 @@
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <title>LibApps — Android Apps by TIH Members | Tolbert Innovation Hub</title>
-  <meta name="description" content="LibApps is the app store inside Tolbert Innovation Hub. Members publish the Android apps they build, and other members download, rate and discuss them. Free with your TIH account." />
+  <title>LibApps — Android Apps from Tolbert Innovation Hub</title>
+  <meta name="description" content="LibApps is the app store inside Tolbert Innovation Hub. Download the Android apps TIH publishes, rate them and discuss them. Free with your TIH account." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=15" />
+  <link rel="stylesheet" href="styles.css?v=12" />
   <link rel="stylesheet" href="libapps.css?v=1" />
 </head>
 <body>
@@ -47,12 +47,11 @@
       <!-- ============ SIGNED OUT: the locked landing ============ -->
       <section id="laGate" class="la-gate" hidden aria-labelledby="laGateTitle">
         <span class="la-eyebrow">📱 LibApps</span>
-        <h1 id="laGateTitle">Liberian apps, shared by the people who build them.</h1>
+        <h1 id="laGateTitle">Liberian apps, built and published by TIH.</h1>
         <p>
-          LibApps is the app store inside Tolbert Innovation Hub. Members upload the Android
-          apps they have built, and other members download them, rate them and talk about
-          them. It is free, and it runs on the same account you already use for the
-          Learning Hub.
+          LibApps is the app store inside Tolbert Innovation Hub. Download the Android apps
+          TIH publishes, rate them and talk about them. It is free, and it runs on the same
+          account you already use for the Learning Hub.
         </p>
         <div class="la-gate-stats" id="laGateStats" hidden>
           <div class="la-gate-stat"><b id="laStatApps">—</b><span>Apps published</span></div>
@@ -64,7 +63,7 @@
           <a class="la-btn la-btn-ghost" href="hub-apply">Create a free account</a>
         </div>
         <p style="margin-top:1.4rem;margin-bottom:0;font-size:.84rem;color:rgba(255,255,255,.72);">
-          An account is needed to browse, download, upload or comment. It takes a minute and costs nothing.
+          An account is needed to browse, download or comment. It takes a minute and costs nothing.
         </p>
       </section>
 
@@ -72,8 +71,8 @@
       <div id="laStore" hidden>
         <div class="la-head">
           <span class="la-eyebrow">📱 LibApps</span>
-          <h1>Apps built by TIH members</h1>
-          <p>Download an app, leave a comment, or publish something you built yourself.</p>
+          <h1>Apps from Tolbert Innovation Hub</h1>
+          <p>Download an app, and tell other members how it went.</p>
         </div>
 
         <div class="la-toolbar">
@@ -87,8 +86,8 @@
           </div>
           <div class="la-filters" id="laFilters" role="group" aria-label="Filter by category"></div>
           <div class="la-filters" style="margin-top:.6rem;">
-            <a class="la-btn la-btn-sm" href="libapps-upload">⬆ Upload your app</a>
-            <a class="la-btn la-btn-sm la-btn-quiet" href="libapps-dashboard">My apps</a>
+            <a class="la-btn la-btn-sm" href="libapps-upload" id="laUploadBtn" hidden>⬆ Publish an app</a>
+            <a class="la-btn la-btn-sm la-btn-quiet" href="libapps-dashboard" id="laMineBtn" hidden>My apps</a>
             <div class="la-sort">
               <label for="laSort">Sort</label>
               <select id="laSort">
@@ -130,7 +129,6 @@
           <p class="footer-heading">LibApps</p>
           <ul class="footer-links">
             <li><a href="libapps">Browse Apps</a></li>
-            <li><a href="libapps-upload">Upload Your App</a></li>
             <li><a href="libapps-dashboard">My Apps</a></li>
             <li><a href="hub-apply">Create an Account</a></li>
             <li><a href="learning-hub">TIH Learning Hub</a></li>
@@ -166,9 +164,9 @@
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=17"></script>
   <script src="hub-db.js?v=40"></script>
-  <script src="libapps-db.js?v=2"></script>
+  <script src="libapps-db.js?v=3"></script>
   <script src="libapps-ui.js?v=1"></script>
-  <script src="main.js?v=19"></script>
+  <script src="main.js?v=18"></script>
   <script>
   (function () {
     'use strict';
@@ -268,8 +266,10 @@
             ? '<div class="la-empty"><span class="la-empty-ico">🔍</span>' +
               '<h3>Nothing matched that</h3><p>Try a different word, or clear the filters.</p></div>'
             : '<div class="la-empty"><span class="la-empty-ico">📦</span>' +
-              '<h3>No apps yet</h3><p>Be the first. If you have built an Android app, publish it here.</p>' +
-              '<p style="margin-top:1rem;"><a class="la-btn" href="libapps-upload">Upload the first app</a></p></div>';
+              '<h3>No apps yet</h3><p>Nothing has been published to LibApps yet. Check back soon.</p>' +
+              (LibApps.canUpload()
+                ? '<p style="margin-top:1rem;"><a class="la-btn" href="libapps-upload">Publish the first app</a></p>'
+                : '') + '</div>';
           return;
         }
         countEl.textContent = apps.length + (apps.length === 1 ? ' app' : ' apps') +
@@ -294,6 +294,12 @@
     function start() {
       if (!LibApps.session()) { showGate(); return; }
       store.hidden = false;
+      // Publishing is administrator-only for now, so a member is not shown a
+      // button that would only refuse them.
+      if (LibApps.canUpload()) {
+        document.getElementById('laUploadBtn').hidden = false;
+        document.getElementById('laMineBtn').hidden = false;
+      }
       LibApps.categories().then(renderFilters).catch(function () { filters.innerHTML = ''; });
       load();
     }

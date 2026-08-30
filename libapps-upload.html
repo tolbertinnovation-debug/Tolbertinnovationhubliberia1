@@ -11,10 +11,10 @@
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <title>Publish Your App | LibApps — Tolbert Innovation Hub</title>
-  <meta name="description" content="Upload an Android app you built to LibApps, the app store inside Tolbert Innovation Hub. Free for TIH members." />
+  <title>Publish an App | LibApps — Tolbert Innovation Hub</title>
+  <meta name="description" content="Administrator tool for adding an Android app to LibApps, the app store inside Tolbert Innovation Hub." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=15" />
+  <link rel="stylesheet" href="styles.css?v=12" />
   <link rel="stylesheet" href="libapps.css?v=1" />
 </head>
 <body>
@@ -54,17 +54,32 @@
           <span class="la-eyebrow">📱 LibApps</span>
           <h1 id="laTitle">Publish your app</h1>
           <p id="laLede">
-            Share an Android app you built with other TIH members. It goes live as soon as
+            Put an app in the LibApps store. It goes live for every TIH member as soon as
             you publish it.
           </p>
         </div>
 
         <div id="laFormError"></div>
 
-        <div class="la-note la-note-warn">
-          <b>Please read.</b> Only upload an app you built yourself, or one you have the right
-          to share. Never upload an app that collects someone's data without telling them.
-          Anything reported as harmful is removed and the account that uploaded it is suspended.
+        <div id="laAdminGate" hidden>
+          <div class="la-note la-note-warn">
+            <b>Publishing is limited to TIH administrators.</b>
+            Members can browse, download and comment on everything in LibApps, but only an
+            administrator can put a new app in the store. If you built something you would
+            like published, send it to the TIH team and they will add it for you.
+          </div>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+            <a class="la-btn" href="libapps">← Back to LibApps</a>
+            <a class="la-btn la-btn-quiet" href="hub-admin">Administrator sign-in</a>
+            <a class="la-btn la-btn-quiet" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Send your app to TIH</a>
+          </div>
+        </div>
+
+        <div class="la-note la-note-warn" id="laPublishWarning">
+          <b>Please read.</b> Members install what you publish here on the strength of the TIH
+          name, so check the file yourself before it goes up. Only publish an app TIH built,
+          or one you have the right to distribute, and never one that collects someone's data
+          without telling them.
         </div>
 
         <form id="laForm" novalidate>
@@ -212,7 +227,6 @@
           <p class="footer-heading">LibApps</p>
           <ul class="footer-links">
             <li><a href="libapps">Browse Apps</a></li>
-            <li><a href="libapps-upload">Upload Your App</a></li>
             <li><a href="libapps-dashboard">My Apps</a></li>
             <li><a href="hub-apply">Create an Account</a></li>
             <li><a href="learning-hub">TIH Learning Hub</a></li>
@@ -248,9 +262,9 @@
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=17"></script>
   <script src="hub-db.js?v=40"></script>
-  <script src="libapps-db.js?v=2"></script>
+  <script src="libapps-db.js?v=1"></script>
   <script src="libapps-ui.js?v=1"></script>
-  <script src="main.js?v=19"></script>
+  <script src="main.js?v=18"></script>
   <script>
   (function () {
     'use strict';
@@ -258,6 +272,20 @@
 
     var me = LibApps.guard();
     if (!me) return;
+
+    /* Publishing is administrator-only for now. The database refuses a
+       non-admin outright, so this only saves a member from filling in a long
+       form to be told no at the end. */
+    if (!LibApps.canUpload()) {
+      document.getElementById('laAdminGate').hidden = false;
+      document.getElementById('laForm').hidden = true;
+      // this warning is addressed to whoever is publishing, so it goes too
+      document.getElementById('laPublishWarning').hidden = true;
+      document.getElementById('laTitle').textContent = 'Publishing an app';
+      document.getElementById('laLede').textContent =
+        'Only a TIH administrator can add an app to the store.';
+      return;
+    }
 
     var editId = new URLSearchParams(location.search).get('edit') || '';
     var existing = null;

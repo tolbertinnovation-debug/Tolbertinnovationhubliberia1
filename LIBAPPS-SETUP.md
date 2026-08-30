@@ -5,13 +5,18 @@ Supabase project the Learning Hub already uses, and on the same learner
 accounts, so anyone who signed up at `hub-apply.html` can use it with that
 login. There is no second account and no second database.
 
+**Publishing is administrator-only.** Members browse, download, like and
+comment; only an administrator can put an app in the store. See
+[Who can publish](#5-who-can-publish) for how that is enforced and how to open
+it up later.
+
 Pages:
 
 | Page | What it is |
 |---|---|
 | `libapps.html` | Landing page for signed-out visitors, the store for members |
 | `libapps-app.html?id=…` | One app: download, likes, comments |
-| `libapps-upload.html` | Publish a new app, or `?edit=<id>` to change one |
+| `libapps-upload.html` | Publish a new app, or `?edit=<id>` to change one (administrators only) |
 | `libapps-dashboard.html` | A member's own apps and how they are doing |
 | `libapps-profile.html?id=…` | A builder's public profile |
 | `libapps-admin.html` | Moderation: reports, take-downs, comments |
@@ -57,7 +62,11 @@ Then re-run just the four `create policy` statements at the end of the script.
 3. Sign in at `hub-dashboard`, come back, and the store should appear.
 4. Upload something small to `libapps-upload` and check it appears.
 
-To moderate, sign in on `hub-admin` first, then open `libapps-admin`.
+To publish an app you need **both** sessions on the same browser: sign in as a
+learner at `hub-dashboard` (that account owns the listing) and as an
+administrator at `hub-admin` (that is what grants permission). Then open
+`libapps-upload`. To moderate, the admin sign-in alone is enough: open
+`libapps-admin`.
 
 ---
 
@@ -93,9 +102,9 @@ Three ways to deal with it, cheapest first:
 The moderation panel shows storage as a percentage and warns at 50% and 80%,
 so you get notice before uploads start failing.
 
-### The per-member cap
+### The per-account cap
 
-One member can publish **12 apps**. Without a cap, one person could fill the
+One account can publish **12 apps**. Without a cap, one uploader could fill the
 whole 1 GB. The number is enforced in `libapps_publish()` in
 `libapps-schema.sql` — change the `12` there if you upgrade the plan.
 
@@ -138,11 +147,31 @@ psql -f tools/libapps-schema-test.sql   # every line should read PASS
 
 ---
 
-## 5. Uploaded APKs, and what you are taking on
+## 5. Who can publish
 
-Apps go live the moment a member publishes them; nobody approves them first.
-That is a deliberate choice and it has a cost: a malicious APK is downloadable
-under the tolbertinnovationhub.org name until somebody notices.
+Only an administrator can put an app in LibApps. This is enforced in the
+database, not just in the page: `libapps_publish()` and `libapps_update()` both
+require a valid admin password hash and raise `LIBAPPS_ADMIN_ONLY_UPLOAD`
+without one. Calling the function straight from the browser console with a
+member's credentials is refused exactly the same way.
+
+The upload page hides its form from anyone without an admin session and points
+them at WhatsApp instead, so a member who has built something can send it in
+and have it published for them.
+
+**To let members publish later**, delete the `LIBAPPS_ADMIN_ONLY_UPLOAD` check
+from `libapps_publish()` and from `libapps_update()` in `libapps-schema.sql`,
+re-run the script, and remove the `LibApps.canUpload()` guards in
+`libapps-upload.html`, `libapps.html` and `libapps-dashboard.html`. Nothing
+else depends on it. If you do that, read the section below first.
+
+## 6. Uploaded APKs, and what you are taking on
+
+Apps go live the moment they are published; there is no approval queue. With
+publishing restricted to administrators that is fine, because the only person
+who can publish is the person who would have approved it. **If you ever open
+publishing up to members, that stops being true** — a malicious APK would be
+downloadable under the tolbertinnovationhub.org name until somebody noticed.
 
 What is in place:
 
@@ -155,7 +184,7 @@ What is in place:
 - An administrator can take an app down (reversible, with a reason the uploader
   sees) or delete it outright along with its file.
 
-What is **not** in place: nobody scans the APKs for malware. If LibApps grows,
-consider switching to approval-before-publish. The database already supports it
-— make `status` default to `'pending'` in `libapps_apps` and add `'pending'` to
-the list `libapps_admin_set_status()` accepts.
+What is **not** in place: nobody scans the APKs for malware. If you later open
+publishing to members, add an approval queue at the same time. The database
+already supports it — make `status` default to `'pending'` in `libapps_apps`
+and add `'pending'` to the list `libapps_admin_set_status()` accepts.

@@ -147,8 +147,16 @@ var LibApps = (function () {
 
   // ---------- writing ----------
 
-  function publish(app)                 { return authRpc('libapps_publish', { p_app: app }); }
-  function update(appId, changes)       { return authRpc('libapps_update', { p_app_id: appId, p_changes: changes }); }
+  /* Publishing is administrator-only. The learner credentials still go up,
+     because they are what owns the listing, but the database also wants an
+     admin hash and refuses without it. Sending it from here is a convenience,
+     not the control: forging one gets LIBAPPS_ADMIN_ONLY_UPLOAD back. */
+  function publish(app) {
+    return authRpc('libapps_publish', { p_app: app, p_admin_hash: adminHash() });
+  }
+  function update(appId, changes) {
+    return authRpc('libapps_update', { p_app_id: appId, p_changes: changes, p_admin_hash: adminHash() });
+  }
   function toggleLike(appId)            { return authRpc('libapps_toggle_like', { p_app_id: appId }).then(first); }
   function addComment(appId, text)      { return authRpc('libapps_add_comment', { p_app_id: appId, p_content: text }).then(first); }
   function deleteComment(commentId)     { return authRpc('libapps_delete_comment', { p_comment_id: commentId }); }
@@ -338,6 +346,11 @@ var LibApps = (function () {
 
   // ---------- moderation ----------
 
+  /* True when an administrator is signed in on this browser. Pages use it to
+     decide whether to offer the upload form at all; the database decides
+     whether the upload is actually allowed. */
+  function canUpload() { return !!adminHash(); }
+
   function adminHash() {
     try {
       var s = window.HubDB && HubDB.adminSession ? HubDB.adminSession() : null;
@@ -376,6 +389,7 @@ var LibApps = (function () {
   var MESSAGES = {
     LIBAPPS_AUTH_REQUIRED:   'Please sign in again to continue.',
     LIBAPPS_ADMIN_REQUIRED:  'That action needs an administrator sign-in.',
+    LIBAPPS_ADMIN_ONLY_UPLOAD: 'Only TIH administrators can publish apps at the moment.',
     LIBAPPS_NOT_OWNER:       'You can only change apps you uploaded yourself.',
     LIBAPPS_NOT_ALLOWED:     'You do not have permission to do that.',
     LIBAPPS_NOT_FOUND:       'That app is no longer available.',
@@ -433,6 +447,7 @@ var LibApps = (function () {
     MAX_APPS: MAX_APPS,
     isEnabled: isEnabled,
     session: session,
+    canUpload: canUpload,
     guard: guard,
     stats: stats,
     browse: browse,
