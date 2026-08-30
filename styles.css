@@ -243,6 +243,17 @@ textarea:focus-visible {
   border-bottom-color: var(--border);
 }
 
+/* The header carries thirteen links. The site container caps at 1160px, which
+   left the nav about 130px short at EVERY desktop width, and because the nav
+   was nowrap + overflow:hidden the last links were silently clipped rather
+   than wrapped: Contact and Apply Now were unreachable on desktop entirely.
+   The header gets a wider container of its own, the labels are stopped from
+   splitting mid-name, and the nav is allowed to wrap so nothing can ever be
+   hidden again. */
+.site-header .container {
+  width: min(1440px, 96%);
+}
+
 .nav-wrap {
   min-height: 76px;
   display: flex;
@@ -286,10 +297,11 @@ textarea:focus-visible {
 /* Issue 18 fix: prevent double-row nav on mid-size screens by using nowrap and smaller gap */
 .nav-links {
   display: flex;
-  flex-wrap: nowrap;
-  gap: 0.15rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  column-gap: 0.08rem;
+  row-gap: 0.2rem;
   align-items: center;
-  overflow: hidden;
 }
 
 .nav-links a {
@@ -299,11 +311,24 @@ textarea:focus-visible {
   gap: 0.3rem;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   color: #1e3a5f;
-  padding: 0.3rem 0.7rem;
+  padding: 0.3rem 0.42rem;
   border-radius: var(--radius-sm);
+  white-space: nowrap;
   transition: color var(--transition), background var(--transition);
+}
+
+/* Two steps of tightening, so the row stays intact down to the width where
+   the dropdown menu takes over. Both are overridden by the max-width:1080px
+   block further down, which turns the nav into that dropdown. */
+@media (max-width: 1439px) {
+  .nav-links { column-gap: 0.04rem; }
+  .nav-links a { padding: 0.3rem 0.32rem; font-size: 0.8rem; }
+}
+
+@media (max-width: 1199px) {
+  .nav-links a { padding: 0.3rem 0.26rem; font-size: 0.76rem; }
 }
 
 .nav-links a:hover,
@@ -344,6 +369,10 @@ textarea:focus-visible {
   padding: 0.42rem 1rem;
   border-radius: var(--radius-sm);
   transition: background var(--transition), transform var(--transition);
+}
+
+@media (max-width: 1439px) {
+  .nav-cta { padding: 0.42rem 0.7rem; }
 }
 
 .nav-cta:hover {
