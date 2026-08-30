@@ -397,6 +397,20 @@ var LibApps = (function () {
     LIBAPPS_OFFLINE:         'LibApps cannot reach the server right now. Try again in a moment.'
   };
 
+  /* Before libapps-schema.sql has been run against the project, none of the
+     functions exist and PostgREST answers every call with PGRST202, "Could
+     not find the function ... in the schema cache". That used to fall through
+     to the generic message, which told the reader to check a connection that
+     was working perfectly. Name the real cause instead: it is one SQL script,
+     and the message disappears the moment it is run. */
+  function looksUninstalled(err, raw) {
+    var code = (err && (err.code || err.error)) || '';
+    if (code === 'PGRST202' || code === '42883') return true;
+    return /could not find the function/i.test(raw) ||
+           /function .*libapps.* does not exist/i.test(raw) ||
+           /schema cache/i.test(raw);
+  }
+
   function message(err) {
     var raw = '';
     if (typeof err === 'string') raw = err;
@@ -405,6 +419,10 @@ var LibApps = (function () {
       if (Object.prototype.hasOwnProperty.call(MESSAGES, code) && raw.indexOf(code) !== -1) return MESSAGES[code];
     }
     if (raw.indexOf('LIBAPPS_UPLOAD_FAILED') !== -1) return 'The upload was refused. Check the file size and try again.';
+    if (looksUninstalled(err, raw)) {
+      return 'LibApps is not switched on yet. The site owner still needs to run the ' +
+             'one-time database setup (libapps-schema.sql) in Supabase.';
+    }
     return 'Something went wrong. Please check your connection and try again.';
   }
 
