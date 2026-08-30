@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <title>Builder Profile | LibApps — Tolbert Innovation Hub</title>
+  <meta name="description" content="See the Android apps a Tolbert Innovation Hub member has published on LibApps." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="libapps.css?v=1" />
+</head>
+<body>
+  <a class="skip-link" href="#la-main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="learning-hub">Learning Hub</a>
+        <a href="libapps">LibApps</a>
+        <a href="study-abroad">Study Abroad</a>
+        <a href="fully-funded-scholarship">Fully Funded</a>
+        <a href="healthcare">Healthcare</a>
+        <a href="software">Software</a>
+        <a href="wassce">WASSCE PRO</a>
+        <a href="grants">Grants</a>
+        <a href="library">Library</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+    </div>
+  </header>
+
+  <main id="la-main" class="la-main">
+    <div class="container">
+      <nav class="la-crumb" aria-label="Breadcrumb">
+        <a href="libapps">LibApps</a><span aria-hidden="true">›</span>
+        <span id="laCrumbName">Builder</span>
+      </nav>
+
+      <div id="laLoading" class="la-loading">Loading profile…</div>
+      <div id="laError" hidden></div>
+
+      <div id="laProfile" hidden>
+        <div class="la-panel" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
+          <span class="la-avatar" id="laAvatar" style="width:64px;height:64px;font-size:1.4rem;"></span>
+          <div style="flex:1;min-width:200px;">
+            <h1 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--text);margin-bottom:.2rem;"
+                id="laName"></h1>
+            <p style="color:var(--text-muted);font-size:.88rem;" id="laJoined"></p>
+          </div>
+          <a class="la-btn la-btn-quiet" id="laMine" href="libapps-dashboard" hidden>Manage my apps</a>
+        </div>
+
+        <div class="la-stats">
+          <div class="la-stat"><b id="laStatApps">0</b><span>Apps published</span></div>
+          <div class="la-stat"><b id="laStatDl">0</b><span>Total downloads</span></div>
+          <div class="la-stat"><b id="laStatLikes">0</b><span>Total likes</span></div>
+        </div>
+
+        <div class="la-countbar"><span id="laCount"></span></div>
+        <div id="laGrid" class="la-grid"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="/"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+            <a href="https://www.youtube.com/@TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">▶️</a>
+            <a href="https://www.linkedin.com/company/tolbert-innovation-hub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">💼</a>
+            <a href="https://www.facebook.com/TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">📘</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">LibApps</p>
+          <ul class="footer-links">
+            <li><a href="libapps">Browse Apps</a></li>
+            <li><a href="libapps-upload">Upload Your App</a></li>
+            <li><a href="libapps-dashboard">My Apps</a></li>
+            <li><a href="hub-apply">Create an Account</a></li>
+            <li><a href="learning-hub">TIH Learning Hub</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="learning-hub">IELTS Preparation</a></li>
+            <li><a href="learning-hub">TOEFL Preparation</a></li>
+            <li><a href="leadership">Leadership</a></li>
+            <li><a href="learning-hub">Resource Center</a></li>
+            <li><a href="news">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact Us</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">🌐</span><span>Liberia, West Africa</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+          <p class="footer-signoff">Empowering Africa's Future, Never Stop Innovating.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="hub-config.js?v=4"></script>
+  <script src="hub-cloud.js?v=17"></script>
+  <script src="hub-db.js?v=40"></script>
+  <script src="libapps-db.js?v=1"></script>
+  <script src="libapps-ui.js?v=1"></script>
+  <script src="main.js?v=18"></script>
+  <script>
+  (function () {
+    'use strict';
+    var esc = LibUI.esc;
+
+    var me = LibApps.guard();
+    if (!me) return;
+
+    var who = new URLSearchParams(location.search).get('id') || me.id;
+
+    function fail(msg) {
+      document.getElementById('laLoading').hidden = true;
+      var e = document.getElementById('laError');
+      e.hidden = false;
+      e.innerHTML = '<div class="la-note la-note-error">' + esc(msg) + '</div>' +
+        '<p><a class="la-btn la-btn-quiet" href="libapps">← Back to LibApps</a></p>';
+    }
+
+    function cardHTML(a) {
+      return '<a class="la-card" href="libapps-app?id=' + encodeURIComponent(a.id) + '">' +
+        '<div class="la-card-top">' + LibUI.icon(a) +
+          '<div style="min-width:0;"><div class="la-card-name">' + esc(a.name) + '</div>' +
+          '<div class="la-card-by">' + esc(LibUI.date(a.created_at)) + '</div></div>' +
+        '</div>' +
+        (a.description ? '<p class="la-card-desc">' + esc(a.description) + '</p>' : '') +
+        '<div class="la-card-foot">' +
+          '<span class="la-tag">' + esc(a.category || 'Other') + '</span>' +
+          '<span>⬇ ' + LibUI.count(a.download_count) + '</span>' +
+          '<span>❤ ' + LibUI.count(a.like_count) + '</span>' +
+        '</div></a>';
+    }
+
+    Promise.all([LibApps.profile(who), LibApps.byOwner(who)]).then(function (r) {
+      var p = r[0], apps = (r[1] || []).filter(function (a) { return a.status === 'published'; });
+      if (!p) { fail('That member could not be found.'); return; }
+
+      document.title = p.name + ' | LibApps — Tolbert Innovation Hub';
+      document.getElementById('laCrumbName').textContent = p.name;
+      document.getElementById('laAvatar').textContent = LibUI.initials(p.name);
+      document.getElementById('laName').textContent = p.name;
+      document.getElementById('laJoined').textContent =
+        'TIH member since ' + LibUI.date(p.joined_at) +
+        (who === me.id ? ' · this is your public profile' : '');
+      document.getElementById('laStatApps').textContent  = LibUI.count(p.app_count);
+      document.getElementById('laStatDl').textContent    = LibUI.count(p.download_total);
+      document.getElementById('laStatLikes').textContent = LibUI.count(p.like_total);
+      if (who === me.id) document.getElementById('laMine').hidden = false;
+
+      document.getElementById('laCount').textContent = apps.length
+        ? apps.length + (apps.length === 1 ? ' app' : ' apps') + ' by ' + p.name
+        : '';
+      document.getElementById('laGrid').innerHTML = apps.length
+        ? apps.map(cardHTML).join('')
+        : '<div class="la-empty" style="grid-column:1/-1;"><span class="la-empty-ico">📦</span>' +
+          '<h3>Nothing published yet</h3><p>' + esc(p.name) + ' has not shared an app on LibApps.</p></div>';
+
+      document.getElementById('laLoading').hidden = true;
+      document.getElementById('laProfile').hidden = false;
+    }).catch(function (err) { fail(LibApps.message(err)); });
+  })();
+  </script>
+</body>
+</html>

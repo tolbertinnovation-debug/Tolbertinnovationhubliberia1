@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <title>Publish Your App | LibApps — Tolbert Innovation Hub</title>
+  <meta name="description" content="Upload an Android app you built to LibApps, the app store inside Tolbert Innovation Hub. Free for TIH members." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="libapps.css?v=1" />
+</head>
+<body>
+  <a class="skip-link" href="#la-main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="learning-hub">Learning Hub</a>
+        <a href="libapps">LibApps</a>
+        <a href="study-abroad">Study Abroad</a>
+        <a href="fully-funded-scholarship">Fully Funded</a>
+        <a href="healthcare">Healthcare</a>
+        <a href="software">Software</a>
+        <a href="wassce">WASSCE PRO</a>
+        <a href="grants">Grants</a>
+        <a href="library">Library</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+    </div>
+  </header>
+
+  <main id="la-main" class="la-main">
+    <div class="container">
+      <nav class="la-crumb" aria-label="Breadcrumb">
+        <a href="libapps">LibApps</a><span aria-hidden="true">›</span>
+        <span id="laCrumbMode">Upload an app</span>
+      </nav>
+
+      <div class="la-narrow">
+        <div class="la-head">
+          <span class="la-eyebrow">📱 LibApps</span>
+          <h1 id="laTitle">Publish your app</h1>
+          <p id="laLede">
+            Share an Android app you built with other TIH members. It goes live as soon as
+            you publish it.
+          </p>
+        </div>
+
+        <div id="laFormError"></div>
+
+        <div class="la-note la-note-warn">
+          <b>Please read.</b> Only upload an app you built yourself, or one you have the right
+          to share. Never upload an app that collects someone's data without telling them.
+          Anything reported as harmful is removed and the account that uploaded it is suspended.
+        </div>
+
+        <form id="laForm" novalidate>
+          <div class="la-panel">
+            <h2>The app file</h2>
+
+            <div class="la-field" id="laApkField">
+              <label for="laApkInput">APK file <span class="la-req">*</span></label>
+              <div class="la-drop" id="laApkDrop" role="button" tabindex="0"
+                   aria-controls="laApkInput" aria-describedby="laApkHint">
+                <span class="la-drop-ico" aria-hidden="true">📦</span>
+                <b id="laApkTitle">Choose your .apk file</b>
+                <span id="laApkSub">or drag it here — up to 50 MB</span>
+              </div>
+              <input type="file" id="laApkInput" accept=".apk,application/vnd.android.package-archive"
+                     style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" />
+              <div class="la-progress" id="laApkProgress" hidden><i></i></div>
+              <p class="la-hint" id="laApkHint">
+                We check the file really is an Android package before it is accepted.
+                Everything larger than 50 MB is refused.
+              </p>
+              <p class="la-field-err" id="laApkErr"></p>
+            </div>
+          </div>
+
+          <div class="la-panel">
+            <h2>What it is</h2>
+
+            <div class="la-field" id="laNameField">
+              <label for="laNameInput">App name <span class="la-req">*</span></label>
+              <input type="text" class="la-input" id="laNameInput" maxlength="80"
+                     placeholder="Lib Market" autocomplete="off" />
+              <p class="la-field-err" id="laNameErr"></p>
+            </div>
+
+            <div class="la-field" id="laDescField">
+              <label for="laDescInput">Description <span class="la-req">*</span></label>
+              <textarea id="laDescInput" maxlength="2000"
+                        placeholder="What does it do, and who is it for? Two or three sentences is plenty."></textarea>
+              <p class="la-hint">Members read this before they decide to install. Say what it does, not what it will do one day.</p>
+              <p class="la-field-err" id="laDescErr"></p>
+            </div>
+
+            <div class="la-row">
+              <div class="la-field" id="laCatField">
+                <label for="laCatInput">Category <span class="la-req">*</span></label>
+                <select id="laCatInput"></select>
+                <p class="la-field-err" id="laCatErr"></p>
+              </div>
+              <div class="la-field">
+                <label for="laVerInput">Version</label>
+                <input type="text" class="la-input" id="laVerInput" maxlength="20"
+                       placeholder="1.0.0" autocomplete="off" />
+              </div>
+            </div>
+
+            <div class="la-row">
+              <div class="la-field">
+                <label for="laMinInput">Minimum Android</label>
+                <select id="laMinInput">
+                  <option value="">Not sure</option>
+                  <option>Android 5.0</option><option>Android 5.1</option>
+                  <option>Android 6.0</option><option>Android 7.0</option>
+                  <option>Android 8.0</option><option>Android 9.0</option>
+                  <option>Android 10</option><option>Android 11</option>
+                  <option>Android 12</option><option>Android 13</option>
+                  <option>Android 14</option><option>Android 15</option>
+                </select>
+              </div>
+              <div class="la-field">
+                <label for="laPkgInput">Package name</label>
+                <input type="text" class="la-input" id="laPkgInput" maxlength="120"
+                       placeholder="lr.yourname.yourapp" autocomplete="off" spellcheck="false" />
+              </div>
+            </div>
+
+            <div class="la-field">
+              <label for="laLogInput">What's new in this version</label>
+              <textarea id="laLogInput" maxlength="1000" style="min-height:90px;"
+                        placeholder="Fixed the crash on the login screen. Added Kpelle translations."></textarea>
+            </div>
+          </div>
+
+          <div class="la-panel">
+            <h2>Pictures <span style="font-weight:400;color:var(--text-muted);font-size:.85rem;">(optional)</span></h2>
+
+            <div class="la-field" id="laIconField">
+              <label for="laIconInput">App icon</label>
+              <div class="la-drop" id="laIconDrop" role="button" tabindex="0" style="padding:1rem;">
+                <span class="la-drop-ico" aria-hidden="true">🖼️</span>
+                <b id="laIconTitle">Choose a square icon</b>
+                <span>PNG or JPG, up to 3 MB</span>
+              </div>
+              <input type="file" id="laIconInput" accept="image/*"
+                     style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" />
+              <div class="la-thumbs" id="laIconThumb"></div>
+              <p class="la-field-err" id="laIconErr"></p>
+            </div>
+
+            <div class="la-field" id="laShotField">
+              <label for="laShotInput">Screenshots</label>
+              <div class="la-drop" id="laShotDrop" role="button" tabindex="0" style="padding:1rem;">
+                <span class="la-drop-ico" aria-hidden="true">📸</span>
+                <b>Add screenshots</b>
+                <span>Up to 5, so people can see it before they install</span>
+              </div>
+              <input type="file" id="laShotInput" accept="image/*" multiple
+                     style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" />
+              <div class="la-thumbs" id="laShotThumbs"></div>
+              <p class="la-field-err" id="laShotErr"></p>
+            </div>
+          </div>
+
+          <div class="la-panel">
+            <div class="la-progress" id="laMainProgress" hidden><i></i></div>
+            <p id="laProgressLabel" style="font-size:.85rem;color:var(--text-muted);margin-bottom:.6rem;" hidden></p>
+            <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+              <button type="submit" class="la-btn" id="laSubmit">Publish app</button>
+              <a class="la-btn la-btn-quiet" href="libapps-dashboard">Cancel</a>
+              <button type="button" class="la-btn la-btn-danger" id="laDelete" hidden
+                      style="margin-left:auto;">Delete this app</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="/"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+            <a href="https://www.youtube.com/@TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">▶️</a>
+            <a href="https://www.linkedin.com/company/tolbert-innovation-hub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">💼</a>
+            <a href="https://www.facebook.com/TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">📘</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">LibApps</p>
+          <ul class="footer-links">
+            <li><a href="libapps">Browse Apps</a></li>
+            <li><a href="libapps-upload">Upload Your App</a></li>
+            <li><a href="libapps-dashboard">My Apps</a></li>
+            <li><a href="hub-apply">Create an Account</a></li>
+            <li><a href="learning-hub">TIH Learning Hub</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="learning-hub">IELTS Preparation</a></li>
+            <li><a href="learning-hub">TOEFL Preparation</a></li>
+            <li><a href="leadership">Leadership</a></li>
+            <li><a href="learning-hub">Resource Center</a></li>
+            <li><a href="news">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact Us</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">🌐</span><span>Liberia, West Africa</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+          <p class="footer-signoff">Empowering Africa's Future, Never Stop Innovating.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="hub-config.js?v=4"></script>
+  <script src="hub-cloud.js?v=17"></script>
+  <script src="hub-db.js?v=40"></script>
+  <script src="libapps-db.js?v=1"></script>
+  <script src="libapps-ui.js?v=1"></script>
+  <script src="main.js?v=18"></script>
+  <script>
+  (function () {
+    'use strict';
+    var esc = LibUI.esc;
+
+    var me = LibApps.guard();
+    if (!me) return;
+
+    var editId = new URLSearchParams(location.search).get('edit') || '';
+    var existing = null;
+
+    var apkFile = null;      // a File, only when a new APK was chosen
+    var iconFile = null;
+    var shotFiles = [];      // Files chosen this visit
+    var keptShots = [];      // URLs already on the listing, kept through an edit
+    var busy = false;
+
+    // ---------- categories ----------
+    var catSel = document.getElementById('laCatInput');
+    catSel.innerHTML = '<option value="">Choose one…</option>' +
+      LibApps.CATEGORIES.map(function (c) { return '<option>' + esc(c) + '</option>'; }).join('');
+
+    // ---------- field errors ----------
+    function bad(fieldId, errId, msg) {
+      var f = document.getElementById(fieldId);
+      if (!f) return false;
+      f.classList.add('bad');
+      document.getElementById(errId).textContent = msg;
+      f.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var input = f.querySelector('input, select, textarea');
+      if (input) input.focus({ preventScroll: true });
+      return false;
+    }
+    function clearBad(fieldId) {
+      var f = document.getElementById(fieldId);
+      if (f) f.classList.remove('bad');
+    }
+    ['laNameField', 'laDescField', 'laCatField'].forEach(function (id) {
+      document.getElementById(id).addEventListener('input', function () { clearBad(id); });
+      document.getElementById(id).addEventListener('change', function () { clearBad(id); });
+    });
+
+    // ---------- a drop zone that is also a button ----------
+    function wireDrop(dropId, inputId, onFiles) {
+      var drop = document.getElementById(dropId);
+      var input = document.getElementById(inputId);
+      drop.addEventListener('click', function () { input.click(); });
+      drop.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); }
+      });
+      ['dragenter', 'dragover'].forEach(function (ev) {
+        drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); });
+      });
+      ['dragleave', 'drop'].forEach(function (ev) {
+        drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); });
+      });
+      drop.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files.length) onFiles(e.dataTransfer.files);
+      });
+      input.addEventListener('change', function () {
+        if (input.files.length) onFiles(input.files);
+        input.value = '';        // so choosing the same file twice still fires
+      });
+    }
+
+    // ---------- the APK ----------
+    wireDrop('laApkDrop', 'laApkInput', function (files) {
+      var f = files[0];
+      clearBad('laApkField');
+      LibApps.checkApk(f).then(function () {
+        apkFile = f;
+        var drop = document.getElementById('laApkDrop');
+        drop.classList.add('filled');
+        document.getElementById('laApkTitle').textContent = f.name;
+        document.getElementById('laApkSub').textContent =
+          LibUI.size(f.size / 1024 / 1024) + ' · checked, this is a real Android package';
+        // Offer the file's own name as the app name, if nothing is typed yet.
+        var nameEl = document.getElementById('laNameInput');
+        if (!nameEl.value.trim()) {
+          nameEl.value = f.name.replace(/\.apk$/i, '').replace(/[-_.]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 80);
+        }
+      }).catch(function (err) {
+        apkFile = null;
+        document.getElementById('laApkDrop').classList.remove('filled');
+        document.getElementById('laApkTitle').textContent = 'Choose your .apk file';
+        document.getElementById('laApkSub').textContent = 'or drag it here — up to 50 MB';
+        bad('laApkField', 'laApkErr', LibApps.message(err));
+      });
+    });
+
+    // ---------- the icon ----------
+    function drawIcon(src, isNew) {
+      var box = document.getElementById('laIconThumb');
+      if (!src) { box.innerHTML = ''; return; }
+      box.innerHTML = '<div class="la-thumb"><img src="' + (isNew ? src : LibUI.attr(src)) +
+        '" alt="App icon preview" /><button type="button" data-drop-icon aria-label="Remove icon">✕</button></div>';
+    }
+    wireDrop('laIconDrop', 'laIconInput', function (files) {
+      var f = files[0];
+      clearBad('laIconField');
+      LibApps.checkImage(f).then(function () {
+        iconFile = f;
+        document.getElementById('laIconTitle').textContent = f.name;
+        drawIcon(URL.createObjectURL(f), true);
+      }).catch(function (err) {
+        document.getElementById('laIconErr').textContent = LibApps.message(err);
+        document.getElementById('laIconErr').style.display = 'block';
+      });
+    });
+    document.getElementById('laIconThumb').addEventListener('click', function (e) {
+      if (!e.target.closest('[data-drop-icon]')) return;
+      iconFile = null;
+      if (existing) existing.icon_url = null;
+      document.getElementById('laIconTitle').textContent = 'Choose a square icon';
+      drawIcon(null);
+    });
+
+    // ---------- screenshots ----------
+    function drawShots() {
+      var box = document.getElementById('laShotThumbs');
+      var html = keptShots.map(function (u, i) {
+        return '<div class="la-thumb"><img src="' + LibUI.attr(u) + '" alt="Screenshot ' + (i + 1) +
+          '" /><button type="button" data-drop-kept="' + i + '" aria-label="Remove screenshot">✕</button></div>';
+      }).join('');
+      html += shotFiles.map(function (f, i) {
+        return '<div class="la-thumb"><img src="' + URL.createObjectURL(f) + '" alt="New screenshot ' + (i + 1) +
+          '" /><button type="button" data-drop-new="' + i + '" aria-label="Remove screenshot">✕</button></div>';
+      }).join('');
+      box.innerHTML = html;
+    }
+    wireDrop('laShotDrop', 'laShotInput', function (files) {
+      var errEl = document.getElementById('laShotErr');
+      errEl.style.display = 'none';
+      var room = 5 - (keptShots.length + shotFiles.length);
+      if (room <= 0) {
+        errEl.textContent = 'Five screenshots is the limit. Remove one first.';
+        errEl.style.display = 'block';
+        return;
+      }
+      var chosen = Array.prototype.slice.call(files, 0, room);
+      Promise.all(chosen.map(function (f) {
+        return LibApps.checkImage(f).then(function () { return f; }, function () { return null; });
+      })).then(function (okFiles) {
+        var good = okFiles.filter(Boolean);
+        if (good.length < chosen.length) {
+          errEl.textContent = 'Some files were skipped: pictures only, under 3 MB each.';
+          errEl.style.display = 'block';
+        }
+        shotFiles = shotFiles.concat(good);
+        drawShots();
+      });
+    });
+    document.getElementById('laShotThumbs').addEventListener('click', function (e) {
+      var k = e.target.closest('[data-drop-kept]');
+      var n = e.target.closest('[data-drop-new]');
+      if (k) keptShots.splice(Number(k.getAttribute('data-drop-kept')), 1);
+      else if (n) shotFiles.splice(Number(n.getAttribute('data-drop-new')), 1);
+      else return;
+      drawShots();
+    });
+
+    // ---------- progress ----------
+    var mainBar = document.getElementById('laMainProgress');
+    var mainLabel = document.getElementById('laProgressLabel');
+    function progress(label, frac) {
+      mainBar.hidden = false; mainLabel.hidden = false;
+      mainLabel.textContent = label;
+      mainBar.querySelector('i').style.width = Math.round(frac * 100) + '%';
+    }
+    function progressDone() { mainBar.hidden = true; mainLabel.hidden = true; }
+
+    // ---------- submit ----------
+    var form = document.getElementById('laForm');
+    var submitBtn = document.getElementById('laSubmit');
+    var formError = document.getElementById('laFormError');
+
+    function validate() {
+      formError.innerHTML = '';
+      if (!editId && !apkFile) return bad('laApkField', 'laApkErr', 'Choose the .apk file for your app.');
+      if (!document.getElementById('laNameInput').value.trim())
+        return bad('laNameField', 'laNameErr', 'Give your app a name.');
+      var d = document.getElementById('laDescInput').value.trim();
+      if (d.length < 20)
+        return bad('laDescField', 'laDescErr', 'Write at least a sentence, so members know what they are installing.');
+      if (!catSel.value) return bad('laCatField', 'laCatErr', 'Choose a category.');
+      return true;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (busy || !validate()) return;
+      busy = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = editId ? 'Saving…' : 'Publishing…';
+
+      var uploads = Promise.resolve({});
+
+      // The APK is the big one, so it gets the visible progress bar.
+      uploads = uploads.then(function (acc) {
+        if (!apkFile) return acc;
+        progress('Uploading ' + apkFile.name + '…', 0);
+        return LibApps.uploadApk(apkFile, function (f) {
+          progress('Uploading ' + apkFile.name + '…', f);
+        }).then(function (path) {
+          acc.apk_path = path;
+          acc.file_size_mb = Math.round((apkFile.size / 1024 / 1024) * 100) / 100;
+          return acc;
+        });
+      });
+
+      uploads = uploads.then(function (acc) {
+        if (!iconFile) return acc;
+        progress('Uploading the icon…', 0.5);
+        return LibApps.uploadImage(iconFile, function (f) { progress('Uploading the icon…', f); })
+          .then(function (url) { acc.icon_url = url; return acc; });
+      });
+
+      uploads = uploads.then(function (acc) {
+        if (!shotFiles.length) { acc.__shots = keptShots.slice(); return acc; }
+        var done = 0;
+        return Promise.all(shotFiles.map(function (f) {
+          return LibApps.uploadImage(f).then(function (url) {
+            done++;
+            progress('Uploading screenshots (' + done + ' of ' + shotFiles.length + ')…', done / shotFiles.length);
+            return url;
+          });
+        })).then(function (urls) { acc.__shots = keptShots.concat(urls); return acc; });
+      });
+
+      uploads.then(function (acc) {
+        progress(editId ? 'Saving your changes…' : 'Publishing…', 1);
+        var payload = {
+          name: document.getElementById('laNameInput').value.trim(),
+          description: document.getElementById('laDescInput').value.trim(),
+          category: catSel.value,
+          version: document.getElementById('laVerInput').value.trim(),
+          package_name: document.getElementById('laPkgInput').value.trim(),
+          min_android: document.getElementById('laMinInput').value,
+          changelog: document.getElementById('laLogInput').value.trim(),
+          screenshot_urls: acc.__shots || []
+        };
+        if (acc.apk_path) { payload.apk_path = acc.apk_path; payload.file_size_mb = acc.file_size_mb; }
+        if (acc.icon_url) payload.icon_url = acc.icon_url;
+        else if (editId && existing && !existing.icon_url) payload.icon_url = '';
+
+        return editId
+          ? LibApps.update(editId, payload).then(function () { return editId; })
+          : LibApps.publish(payload);
+      }).then(function (id) {
+        progressDone();
+        LibUI.toast(editId ? 'Your changes are live.' : 'Your app is published.');
+        location.href = 'libapps-app?id=' + encodeURIComponent(id);
+      }).catch(function (err) {
+        progressDone();
+        busy = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = editId ? 'Save changes' : 'Publish app';
+        formError.innerHTML = '<div class="la-note la-note-error">' + esc(LibApps.message(err)) + '</div>';
+        formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+
+    // ---------- delete (edit mode only) ----------
+    document.getElementById('laDelete').addEventListener('click', function () {
+      LibUI.confirm({
+        title: 'Delete ' + (existing ? existing.name : 'this app') + '?',
+        body: 'The listing, the APK, its pictures and all its comments go with it. This cannot be undone.',
+        confirm: 'Delete for good', danger: true
+      }).then(function (yes) {
+        if (!yes) return;
+        LibApps.remove(editId).then(function () {
+          LibUI.toast('App deleted.');
+          location.href = 'libapps-dashboard';
+        }).catch(function (err) { LibUI.toast(LibApps.message(err), true); });
+      });
+    });
+
+    // ---------- edit mode ----------
+    if (editId) {
+      document.getElementById('laTitle').textContent = 'Edit your app';
+      document.getElementById('laCrumbMode').textContent = 'Edit app';
+      document.getElementById('laLede').textContent =
+        'Update the details, or upload a new version of the APK. Leave the file alone to keep the one already published.';
+      document.getElementById('laApkTitle').textContent = 'Upload a new version (optional)';
+      document.getElementById('laApkSub').textContent = 'Leave this alone to keep the current file';
+      submitBtn.textContent = 'Save changes';
+      document.getElementById('laDelete').hidden = false;
+
+      LibApps.get(editId).then(function (a) {
+        if (!a) throw new Error('LIBAPPS_NOT_FOUND');
+        if (a.owner_id !== me.id) throw new Error('LIBAPPS_NOT_OWNER');
+        existing = a;
+        document.getElementById('laNameInput').value = a.name || '';
+        document.getElementById('laDescInput').value = a.description || '';
+        catSel.value = a.category || '';
+        document.getElementById('laVerInput').value = a.version || '';
+        document.getElementById('laPkgInput').value = a.package_name || '';
+        document.getElementById('laMinInput').value = a.min_android || '';
+        document.getElementById('laLogInput').value = a.changelog || '';
+        if (a.icon_url) { drawIcon(a.icon_url, false); document.getElementById('laIconTitle').textContent = 'Current icon'; }
+        keptShots = (a.screenshot_urls || []).slice();
+        drawShots();
+        markClean();          // prefilled is not "unsaved"; only later edits are
+      }).catch(function (err) {
+        form.hidden = true;
+        formError.innerHTML = '<div class="la-note la-note-error">' + esc(LibApps.message(err)) + '</div>' +
+          '<p><a class="la-btn la-btn-quiet" href="libapps-dashboard">← Back to my apps</a></p>';
+      });
+    }
+
+    /* Losing a half-typed listing to a stray back-swipe is a real risk on a
+       phone. The warning compares against a snapshot rather than just asking
+       "is anything filled in", because in edit mode everything is filled in
+       from the start and a plain check would nag on every single exit. */
+    var FIELDS = ['laNameInput', 'laDescInput', 'laCatInput', 'laVerInput',
+                  'laPkgInput', 'laMinInput', 'laLogInput'];
+    var snapshot = null;
+    function readForm() {
+      return FIELDS.map(function (id) { return document.getElementById(id).value; }).join('\u0000');
+    }
+    function markClean() { snapshot = readForm(); }
+    function isDirty() {
+      if (apkFile || iconFile || shotFiles.length) return true;
+      return snapshot !== null && readForm() !== snapshot;
+    }
+    markClean();
+
+    window.addEventListener('beforeunload', function (e) {
+      if (busy || !isDirty()) return;
+      e.preventDefault();
+      e.returnValue = '';
+    });
+  })();
+  </script>
+</body>
+</html>

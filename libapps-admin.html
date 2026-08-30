@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <title>LibApps Moderation | Tolbert Innovation Hub</title>
+  <meta name="description" content="Administrator tools for LibApps: review reports, take down apps, and delete comments." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="libapps.css?v=1" />
+</head>
+<body>
+  <a class="skip-link" href="#la-main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="learning-hub">Learning Hub</a>
+        <a href="libapps">LibApps</a>
+        <a href="study-abroad">Study Abroad</a>
+        <a href="fully-funded-scholarship">Fully Funded</a>
+        <a href="healthcare">Healthcare</a>
+        <a href="software">Software</a>
+        <a href="wassce">WASSCE PRO</a>
+        <a href="grants">Grants</a>
+        <a href="library">Library</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+    </div>
+  </header>
+
+  <main id="la-main" class="la-main">
+    <div class="container">
+      <nav class="la-crumb" aria-label="Breadcrumb">
+        <a href="hub-admin">Admin</a><span aria-hidden="true">›</span><span>LibApps moderation</span>
+      </nav>
+
+      <div class="la-head">
+        <span class="la-eyebrow">🛡️ Moderation</span>
+        <h1>LibApps moderation</h1>
+        <p>
+          Apps go live the moment a member publishes them. This is where you take one down,
+          delete a comment, and work through what members have reported.
+        </p>
+      </div>
+
+      <div id="laGateMsg" hidden>
+        <div class="la-note la-note-warn">
+          You are not signed in as an administrator. Sign in on the admin page, then come back here.
+        </div>
+        <p><a class="la-btn" href="hub-admin">Go to the admin sign-in</a></p>
+      </div>
+
+      <div id="laPanel" hidden>
+        <div class="la-stats">
+          <div class="la-stat"><b id="laStatLive">0</b><span>Published</span></div>
+          <div class="la-stat"><b id="laStatDown">0</b><span>Taken down</span></div>
+          <div class="la-stat"><b id="laStatOpen">0</b><span>Open reports</span></div>
+          <div class="la-stat"><b id="laStatStore">0</b><span>MB of storage used</span></div>
+        </div>
+
+        <div id="laStorageNote"></div>
+
+        <div class="la-tabs" role="tablist">
+          <button type="button" class="la-tab on" data-tab="reports" role="tab" aria-selected="true">
+            Reports (<span id="laTabReports">0</span>)
+          </button>
+          <button type="button" class="la-tab" data-tab="apps" role="tab" aria-selected="false">Apps</button>
+          <button type="button" class="la-tab" data-tab="comments" role="tab" aria-selected="false">Comments</button>
+        </div>
+
+        <div id="laTabBody"><div class="la-loading">Loading…</div></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="/"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+            <a href="https://www.youtube.com/@TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">▶️</a>
+            <a href="https://www.linkedin.com/company/tolbert-innovation-hub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">💼</a>
+            <a href="https://www.facebook.com/TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">📘</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">LibApps</p>
+          <ul class="footer-links">
+            <li><a href="libapps">Browse Apps</a></li>
+            <li><a href="libapps-upload">Upload Your App</a></li>
+            <li><a href="libapps-dashboard">My Apps</a></li>
+            <li><a href="hub-apply">Create an Account</a></li>
+            <li><a href="learning-hub">TIH Learning Hub</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="learning-hub">IELTS Preparation</a></li>
+            <li><a href="learning-hub">TOEFL Preparation</a></li>
+            <li><a href="leadership">Leadership</a></li>
+            <li><a href="learning-hub">Resource Center</a></li>
+            <li><a href="news">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact Us</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">🌐</span><span>Liberia, West Africa</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+          <p class="footer-signoff">Empowering Africa's Future, Never Stop Innovating.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="hub-config.js?v=4"></script>
+  <script src="hub-cloud.js?v=17"></script>
+  <script src="hub-db.js?v=40"></script>
+  <script src="libapps-db.js?v=1"></script>
+  <script src="libapps-ui.js?v=1"></script>
+  <script src="main.js?v=18"></script>
+  <script>
+  (function () {
+    'use strict';
+    var esc = LibUI.esc;
+
+    var sess = (typeof HubDB !== 'undefined' && HubDB.adminSession) ? HubDB.adminSession() : null;
+    if (!sess || !sess.hash) {
+      document.getElementById('laGateMsg').hidden = false;
+      return;
+    }
+    document.getElementById('laPanel').hidden = false;
+
+    var tabBody = document.getElementById('laTabBody');
+    var current = 'reports';
+    var cache = { apps: null, reports: null, comments: null };
+
+    // ---------- shared ----------
+    function refreshCounts() {
+      var apps = cache.apps || [];
+      var live = apps.filter(function (a) { return a.status === 'published'; });
+      var down = apps.length - live.length;
+      var mb = apps.reduce(function (s, a) { return s + Number(a.file_size_mb || 0); }, 0);
+      document.getElementById('laStatLive').textContent  = live.length;
+      document.getElementById('laStatDown').textContent  = down;
+      document.getElementById('laStatStore').textContent = Math.round(mb);
+      var open = (cache.reports || []).filter(function (r) { return r.status === 'open'; }).length;
+      document.getElementById('laStatOpen').textContent = open;
+      document.getElementById('laTabReports').textContent = open;
+
+      // Supabase gives 1 GB of file storage on the free plan. Say something
+      // useful before uploads start failing rather than after.
+      var note = document.getElementById('laStorageNote');
+      var pct = Math.round((mb / 1024) * 100);
+      note.innerHTML = pct >= 80
+        ? '<div class="la-note la-note-error">Storage is ' + pct + '% of the 1 GB free-tier limit (' +
+          Math.round(mb) + ' MB). Uploads will start failing. Delete old apps or upgrade the Supabase plan.</div>'
+        : (pct >= 50
+            ? '<div class="la-note la-note-warn">Storage is ' + pct + '% of the 1 GB free-tier limit (' +
+              Math.round(mb) + ' MB).</div>'
+            : '');
+    }
+
+    function err(e) {
+      tabBody.innerHTML = '<div class="la-note la-note-error">' + esc(LibApps.message(e)) + '</div>';
+    }
+
+    // ---------- reports ----------
+    function renderReports() {
+      var rows = cache.reports || [];
+      if (!rows.length) {
+        tabBody.innerHTML = '<div class="la-empty"><span class="la-empty-ico">✅</span>' +
+          '<h3>Nothing reported</h3><p>No member has flagged an app.</p></div>';
+        return;
+      }
+      tabBody.innerHTML = '<div class="la-tablewrap"><table class="la-table">' +
+        '<thead><tr><th>App</th><th>Reported by</th><th>Reason</th><th>When</th>' +
+        '<th>Status</th><th>Actions</th></tr></thead><tbody>' +
+        rows.map(function (r) {
+          return '<tr>' +
+            '<td><a href="libapps-app?id=' + encodeURIComponent(r.app_id) + '">' +
+              esc(r.app_name || 'Deleted app') + '</a></td>' +
+            '<td>' + esc(r.user_name || r.user_id) + '</td>' +
+            '<td>' + esc(r.reason) + (r.details ? '<br><span style="font-size:.78rem;color:var(--text-muted);">' +
+              esc(r.details) + '</span>' : '') + '</td>' +
+            '<td>' + esc(LibUI.ago(r.created_at)) + '</td>' +
+            '<td><span class="la-status la-status-' + esc(r.status) + '">' + esc(r.status) + '</span></td>' +
+            '<td><div class="la-rowacts">' +
+              '<button type="button" class="la-btn la-btn-sm la-btn-danger" data-takedown="' +
+                esc(r.app_id) + '" data-name="' + esc(r.app_name || '') + '">Take down app</button>' +
+              (r.status === 'open'
+                ? '<button type="button" class="la-btn la-btn-sm la-btn-quiet" data-resolve="' + esc(r.id) +
+                  '" data-status="reviewed">Mark reviewed</button>' +
+                  '<button type="button" class="la-btn la-btn-sm la-btn-quiet" data-resolve="' + esc(r.id) +
+                  '" data-status="dismissed">Dismiss</button>'
+                : '<button type="button" class="la-btn la-btn-sm la-btn-quiet" data-resolve="' + esc(r.id) +
+                  '" data-status="open">Reopen</button>') +
+            '</div></td>' +
+          '</tr>';
+        }).join('') + '</tbody></table></div>';
+    }
+
+    // ---------- apps ----------
+    function renderApps() {
+      var rows = cache.apps || [];
+      if (!rows.length) {
+        tabBody.innerHTML = '<div class="la-empty"><span class="la-empty-ico">📦</span>' +
+          '<h3>No apps yet</h3><p>Nothing has been published to LibApps.</p></div>';
+        return;
+      }
+      tabBody.innerHTML = '<div class="la-tablewrap"><table class="la-table">' +
+        '<thead><tr><th>App</th><th>Uploader</th><th>Size</th><th>Downloads</th>' +
+        '<th>Status</th><th>Actions</th></tr></thead><tbody>' +
+        rows.map(function (a) {
+          var live = a.status === 'published';
+          return '<tr>' +
+            '<td><div class="la-rowapp">' + LibUI.icon(a) +
+              '<div style="min-width:0;"><b>' + esc(a.name) + '</b>' +
+              '<div style="font-size:.78rem;color:var(--text-muted);">' + esc(a.category || 'Other') +
+              ' · ' + esc(LibUI.date(a.created_at)) + '</div></div></div></td>' +
+            '<td><a href="libapps-profile?id=' + encodeURIComponent(a.owner_id) + '">' +
+              esc(a.owner_name || a.owner_id) + '</a></td>' +
+            '<td>' + LibUI.size(a.file_size_mb) + '</td>' +
+            '<td>' + LibUI.count(a.download_count) + '</td>' +
+            '<td><span class="la-status la-status-' + esc(a.status) + '">' + esc(a.status) + '</span>' +
+              (a.removed_reason ? '<div style="font-size:.75rem;color:var(--text-muted);max-width:170px;">' +
+                esc(a.removed_reason) + '</div>' : '') + '</td>' +
+            '<td><div class="la-rowacts">' +
+              '<a class="la-btn la-btn-sm la-btn-quiet" href="libapps-app?id=' + encodeURIComponent(a.id) + '">View</a>' +
+              (live
+                ? '<button type="button" class="la-btn la-btn-sm la-btn-danger" data-takedown="' + esc(a.id) +
+                  '" data-name="' + esc(a.name) + '">Take down</button>'
+                : '<button type="button" class="la-btn la-btn-sm la-btn-quiet" data-restore="' + esc(a.id) +
+                  '">Restore</button>') +
+              '<button type="button" class="la-btn la-btn-sm la-btn-danger" data-purge="' + esc(a.id) +
+                '" data-name="' + esc(a.name) + '">Delete</button>' +
+            '</div></td>' +
+          '</tr>';
+        }).join('') + '</tbody></table></div>';
+    }
+
+    // ---------- comments ----------
+    function renderComments() {
+      var rows = cache.comments || [];
+      if (!rows.length) {
+        tabBody.innerHTML = '<div class="la-empty"><span class="la-empty-ico">💬</span>' +
+          '<h3>No comments yet</h3></div>';
+        return;
+      }
+      tabBody.innerHTML = '<div class="la-tablewrap"><table class="la-table">' +
+        '<thead><tr><th>Comment</th><th>By</th><th>On</th><th>When</th><th></th></tr></thead><tbody>' +
+        rows.map(function (c) {
+          return '<tr>' +
+            '<td style="max-width:380px;">' + esc(c.content) + '</td>' +
+            '<td>' + esc(c.user_name || c.user_id) + '</td>' +
+            '<td><a href="libapps-app?id=' + encodeURIComponent(c.app_id) + '">' +
+              esc(c.app_name || 'Deleted app') + '</a></td>' +
+            '<td>' + esc(LibUI.ago(c.created_at)) + '</td>' +
+            '<td><button type="button" class="la-btn la-btn-sm la-btn-danger" data-delcomment="' +
+              esc(c.id) + '">Delete</button></td>' +
+          '</tr>';
+        }).join('') + '</tbody></table></div>';
+    }
+
+    // ---------- loading ----------
+    function show(tab) {
+      current = tab;
+      tabBody.innerHTML = '<div class="la-loading">Loading…</div>';
+      var loader = tab === 'reports' ? LibApps.admin.reports
+                 : tab === 'apps'    ? LibApps.admin.apps
+                 :                     LibApps.admin.comments;
+      loader().then(function (rows) {
+        cache[tab] = rows;
+        refreshCounts();
+        if (current !== tab) return;
+        if (tab === 'reports') renderReports();
+        else if (tab === 'apps') renderApps();
+        else renderComments();
+      }).catch(err);
+    }
+
+    document.querySelector('.la-tabs').addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-tab]');
+      if (!btn) return;
+      document.querySelectorAll('.la-tab').forEach(function (t) {
+        var on = t === btn;
+        t.classList.toggle('on', on);
+        t.setAttribute('aria-selected', String(on));
+      });
+      show(btn.getAttribute('data-tab'));
+    });
+
+    // ---------- actions ----------
+    function after(msg) {
+      LibUI.toast(msg);
+      cache.apps = cache.reports = cache.comments = null;
+      // Counters come off the apps list, so keep it fresh whichever tab is open.
+      LibApps.admin.apps().then(function (rows) { cache.apps = rows; refreshCounts(); }).catch(function () {});
+      show(current);
+    }
+
+    tabBody.addEventListener('click', function (e) {
+      var td = e.target.closest('[data-takedown]');
+      var rs = e.target.closest('[data-restore]');
+      var pg = e.target.closest('[data-purge]');
+      var rv = e.target.closest('[data-resolve]');
+      var dc = e.target.closest('[data-delcomment]');
+
+      if (td) {
+        var name = td.getAttribute('data-name') || 'this app';
+        LibUI.confirm({
+          title: 'Take down ' + name + '?',
+          body: 'It disappears from LibApps immediately. The uploader keeps seeing it in their own list, with the reason you give here. Nothing is deleted, so you can put it back.',
+          confirm: 'Take it down', danger: true
+        }).then(function (yes) {
+          if (!yes) return;
+          var why = prompt('Why is it coming down? The uploader will see this.', 'Reported as unsafe');
+          if (why === null) return;
+          LibApps.admin.setStatus(td.getAttribute('data-takedown'), 'removed', why)
+            .then(function () { after('App taken down.'); })
+            .catch(function (x) { LibUI.toast(LibApps.message(x), true); });
+        });
+        return;
+      }
+      if (rs) {
+        LibApps.admin.setStatus(rs.getAttribute('data-restore'), 'published', null)
+          .then(function () { after('App restored.'); })
+          .catch(function (x) { LibUI.toast(LibApps.message(x), true); });
+        return;
+      }
+      if (pg) {
+        LibUI.confirm({
+          title: 'Permanently delete ' + (pg.getAttribute('data-name') || 'this app') + '?',
+          body: 'The listing, the APK file, its pictures and every comment are destroyed. This frees the storage but cannot be undone. Taking it down is usually enough.',
+          confirm: 'Delete for good', danger: true
+        }).then(function (yes) {
+          if (!yes) return;
+          LibApps.admin.deleteApp(pg.getAttribute('data-purge'))
+            .then(function () { after('App deleted.'); })
+            .catch(function (x) { LibUI.toast(LibApps.message(x), true); });
+        });
+        return;
+      }
+      if (rv) {
+        LibApps.admin.resolveReport(rv.getAttribute('data-resolve'), rv.getAttribute('data-status'))
+          .then(function () { after('Report updated.'); })
+          .catch(function (x) { LibUI.toast(LibApps.message(x), true); });
+        return;
+      }
+      if (dc) {
+        LibUI.confirm({
+          title: 'Delete this comment?', body: 'It is removed for everyone.',
+          confirm: 'Delete', danger: true
+        }).then(function (yes) {
+          if (!yes) return;
+          LibApps.admin.deleteComment(dc.getAttribute('data-delcomment'))
+            .then(function () { after('Comment deleted.'); })
+            .catch(function (x) { LibUI.toast(LibApps.message(x), true); });
+        });
+      }
+    });
+
+    // Load the apps list up front so the counters and the storage warning are
+    // right even though Reports is the tab that opens first.
+    LibApps.admin.apps().then(function (rows) { cache.apps = rows; refreshCounts(); }).catch(function () {});
+    show('reports');
+  })();
+  </script>
+</body>
+</html>
