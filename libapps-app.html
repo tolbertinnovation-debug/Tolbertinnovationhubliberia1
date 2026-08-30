@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <title>App Details | LibApps — Tolbert Innovation Hub</title>
+  <meta name="description" content="Download an Android app published by a Tolbert Innovation Hub member, read what others said about it, and leave your own comment." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="libapps.css?v=1" />
+</head>
+<body>
+  <a class="skip-link" href="#la-main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="learning-hub">Learning Hub</a>
+        <a class="active" aria-current="page" href="libapps">LibApps</a>
+        <a href="study-abroad">Study Abroad</a>
+        <a href="fully-funded-scholarship">Fully Funded</a>
+        <a href="healthcare">Healthcare</a>
+        <a href="software">Software</a>
+        <a href="wassce">WASSCE PRO</a>
+        <a href="grants">Grants</a>
+        <a href="library">Library</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+        <a href="hub-dashboard" class="nav-cta">My Account</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+    </div>
+  </header>
+
+  <main id="la-main" class="la-main">
+    <div class="container">
+      <nav class="la-crumb" aria-label="Breadcrumb">
+        <a href="libapps">LibApps</a><span aria-hidden="true">›</span>
+        <span id="laCrumbName">App</span>
+      </nav>
+
+      <div id="laLoading" class="la-loading">Loading app…</div>
+      <div id="laError" hidden></div>
+
+      <div id="laApp" class="la-detail" hidden>
+        <!-- ---------- left column ---------- -->
+        <div>
+          <div class="la-panel">
+            <div class="la-app-head">
+              <span id="laIcon"></span>
+              <div style="flex:1;min-width:200px;">
+                <h1 id="laName"></h1>
+                <p class="la-app-sub">
+                  by <a id="laOwner" href="#"></a> · <span id="laWhen"></span>
+                </p>
+                <p style="margin-top:.5rem;"><span class="la-tag" id="laCat"></span></p>
+              </div>
+            </div>
+            <dl class="la-spec">
+              <div><dt>Version</dt><dd id="laVer">—</dd></div>
+              <div><dt>Size</dt><dd id="laSize">—</dd></div>
+              <div><dt>Requires</dt><dd id="laMin">—</dd></div>
+              <div><dt>Downloads</dt><dd id="laDl">0</dd></div>
+            </dl>
+          </div>
+
+          <div class="la-panel" id="laShotsPanel" hidden>
+            <h2>Screenshots</h2>
+            <div class="la-shots" id="laShots"></div>
+          </div>
+
+          <div class="la-panel">
+            <h2>About this app</h2>
+            <p class="la-prose" id="laDesc">No description was provided.</p>
+          </div>
+
+          <div class="la-panel" id="laLogPanel" hidden>
+            <h2>What's new</h2>
+            <p class="la-prose" id="laLog"></p>
+          </div>
+
+          <div class="la-panel">
+            <h2>Comments (<span id="laCommentCount">0</span>)</h2>
+            <form id="laCommentForm" style="margin-bottom:.6rem;">
+              <div class="la-field" style="margin-bottom:.5rem;">
+                <label for="laCommentText" class="sr-only">Write a comment</label>
+                <textarea id="laCommentText" maxlength="1000" style="min-height:84px;"
+                          placeholder="Have you tried it? Tell other members what you think."></textarea>
+                <p class="la-field-err" id="laCommentErr"></p>
+              </div>
+              <button type="submit" class="la-btn la-btn-sm" id="laCommentBtn">Post comment</button>
+            </form>
+            <div id="laComments"></div>
+          </div>
+        </div>
+
+        <!-- ---------- right column ---------- -->
+        <aside>
+          <div class="la-panel">
+            <div class="la-actions">
+              <button type="button" class="la-btn la-btn-red la-btn-block" id="laDownload">
+                ⬇ Download APK
+              </button>
+              <button type="button" class="la-btn la-btn-quiet la-btn-block la-likebtn" id="laLike"
+                      aria-pressed="false">🤍 <span id="laLikeCount">0</span></button>
+              <a class="la-btn la-btn-quiet la-btn-block" id="laOwnerEdit" href="#" hidden>✎ Edit this listing</a>
+            </div>
+            <div class="la-safety" style="margin-top:1rem;">
+              <strong>Before you install</strong>
+              This app was uploaded by a TIH member, not by Tolbert Innovation Hub. We do not
+              test what members upload. Install it only if you trust the person who built it,
+              and keep Play Protect switched on.
+              <p style="margin-top:.5rem;">
+                <button type="button" class="la-comment-del" id="laReport"
+                        style="padding:0;color:var(--brand-red);">⚑ Report this app</button>
+              </p>
+            </div>
+          </div>
+
+          <div class="la-panel">
+            <h2>How to install</h2>
+            <ol class="la-prose" style="white-space:normal;padding-left:1.1rem;font-size:.88rem;">
+              <li>Tap <b>Download APK</b>. The file lands in your Downloads folder.</li>
+              <li>Open it. Android will ask permission to install from this source, say yes.</li>
+              <li>If Play Protect warns you, read the warning before you continue.</li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="/"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+            <a href="https://www.youtube.com/@TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">▶️</a>
+            <a href="https://www.linkedin.com/company/tolbert-innovation-hub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">💼</a>
+            <a href="https://www.facebook.com/TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">📘</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">LibApps</p>
+          <ul class="footer-links">
+            <li><a href="libapps">Browse Apps</a></li>
+            <li><a href="libapps-upload">Upload Your App</a></li>
+            <li><a href="libapps-dashboard">My Apps</a></li>
+            <li><a href="hub-apply">Create an Account</a></li>
+            <li><a href="learning-hub">TIH Learning Hub</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="learning-hub">IELTS Preparation</a></li>
+            <li><a href="learning-hub">TOEFL Preparation</a></li>
+            <li><a href="leadership">Leadership</a></li>
+            <li><a href="learning-hub">Resource Center</a></li>
+            <li><a href="news">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact Us</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">🌐</span><span>Liberia, West Africa</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+          <p class="footer-signoff">Empowering Africa's Future, Never Stop Innovating.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="hub-config.js?v=4"></script>
+  <script src="hub-cloud.js?v=17"></script>
+  <script src="hub-db.js?v=40"></script>
+  <script src="libapps-db.js?v=1"></script>
+  <script src="libapps-ui.js?v=1"></script>
+  <script src="main.js?v=18"></script>
+  <script>
+  (function () {
+    'use strict';
+    var esc = LibUI.esc;
+
+    var appId = new URLSearchParams(location.search).get('id') || '';
+    var me = LibApps.guard();      // sends a signed-out visitor to sign in
+    if (!me) return;
+
+    var elLoading = document.getElementById('laLoading');
+    var elError   = document.getElementById('laError');
+    var elApp     = document.getElementById('laApp');
+    var app = null;
+
+    function fail(msg) {
+      elLoading.hidden = true;
+      elError.hidden = false;
+      elError.innerHTML = '<div class="la-note la-note-error">' + esc(msg) + '</div>' +
+        '<p><a class="la-btn la-btn-quiet" href="libapps">← Back to LibApps</a></p>';
+    }
+
+    // ---------- render ----------
+    function render(a) {
+      app = a;
+      document.title = a.name + ' | LibApps — Tolbert Innovation Hub';
+      document.getElementById('laCrumbName').textContent = a.name;
+      document.getElementById('laIcon').innerHTML = LibUI.icon(a, true);
+      document.getElementById('laName').textContent = a.name;
+      document.getElementById('laCat').textContent = a.category || 'Other';
+      document.getElementById('laWhen').textContent = 'published ' + LibUI.ago(a.created_at);
+
+      var owner = document.getElementById('laOwner');
+      owner.textContent = a.owner_name || 'A TIH member';
+      owner.href = 'libapps-profile?id=' + encodeURIComponent(a.owner_id);
+
+      document.getElementById('laVer').textContent  = a.version || '—';
+      document.getElementById('laSize').textContent = LibUI.size(a.file_size_mb);
+      document.getElementById('laMin').textContent  = a.min_android || '—';
+      document.getElementById('laDl').textContent   = LibUI.count(a.download_count);
+
+      if (a.description) document.getElementById('laDesc').textContent = a.description;
+      if (a.changelog) {
+        document.getElementById('laLog').textContent = a.changelog;
+        document.getElementById('laLogPanel').hidden = false;
+      }
+
+      var shots = (a.screenshot_urls || []).map(LibUI.attr).filter(Boolean);
+      if (shots.length) {
+        document.getElementById('laShots').innerHTML = shots.map(function (u, i) {
+          return '<img src="' + u + '" alt="Screenshot ' + (i + 1) + ' of ' + esc(a.name) +
+                 '" loading="lazy" decoding="async" data-full="' + u + '" />';
+        }).join('');
+        document.getElementById('laShotsPanel').hidden = false;
+      }
+
+      setLike(a.liked, a.like_count);
+      if (a.owner_id === me.id) {
+        var ed = document.getElementById('laOwnerEdit');
+        ed.href = 'libapps-upload?edit=' + encodeURIComponent(a.id);
+        ed.hidden = false;
+      }
+
+      elLoading.hidden = true;
+      elApp.hidden = false;
+    }
+
+    document.getElementById('laShots').addEventListener('click', function (e) {
+      if (e.target.tagName === 'IMG') LibUI.lightbox(e.target.getAttribute('data-full'));
+    });
+
+    // ---------- like ----------
+    var likeBtn = document.getElementById('laLike');
+    function setLike(liked, n) {
+      likeBtn.classList.toggle('on', !!liked);
+      likeBtn.setAttribute('aria-pressed', String(!!liked));
+      likeBtn.setAttribute('aria-label', (liked ? 'Unlike ' : 'Like ') + (app ? app.name : 'this app'));
+      likeBtn.innerHTML = (liked ? '❤️' : '🤍') + ' <span id="laLikeCount">' + LibUI.count(n) + '</span>';
+    }
+    likeBtn.addEventListener('click', function () {
+      likeBtn.disabled = true;
+      LibApps.toggleLike(appId).then(function (r) {
+        app.liked = r.liked; app.like_count = r.like_count;
+        setLike(r.liked, r.like_count);
+      }).catch(function (err) {
+        LibUI.toast(LibApps.message(err), true);
+      }).then(function () { likeBtn.disabled = false; });
+    });
+
+    // ---------- download ----------
+    var dlBtn = document.getElementById('laDownload');
+    dlBtn.addEventListener('click', function () {
+      dlBtn.disabled = true;
+      var was = dlBtn.textContent;
+      dlBtn.textContent = 'Preparing…';
+      LibApps.download(appId).then(function (r) {
+        // A plain anchor click, so Android's own download manager takes it
+        // and the learner gets the usual notification and Downloads entry.
+        var a = document.createElement('a');
+        a.href = r.url;
+        a.download = r.filename;
+        a.rel = 'noopener';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        document.getElementById('laDl').textContent = LibUI.count(r.download_count);
+        LibUI.toast('Download started. Check your notifications.');
+      }).catch(function (err) {
+        LibUI.toast(LibApps.message(err), true);
+      }).then(function () {
+        dlBtn.disabled = false;
+        dlBtn.textContent = was;
+      });
+    });
+
+    // ---------- comments ----------
+    var listEl = document.getElementById('laComments');
+    var countEl = document.getElementById('laCommentCount');
+
+    function commentHTML(c) {
+      var mine = c.user_id === me.id;
+      var canDelete = mine || (app && app.owner_id === me.id);
+      return '<div class="la-comment" data-id="' + esc(c.id) + '">' +
+        '<span class="la-avatar" aria-hidden="true">' + esc(LibUI.initials(c.user_name)) + '</span>' +
+        '<div class="la-comment-body">' +
+          '<div class="la-comment-meta">' +
+            '<b>' + esc(c.user_name || 'A TIH member') + (mine ? ' (you)' : '') + '</b>' +
+            '<time datetime="' + esc(c.created_at) + '">' + esc(LibUI.ago(c.created_at)) + '</time>' +
+            (canDelete ? '<button type="button" class="la-comment-del" data-del="' + esc(c.id) +
+                         '" style="margin-left:auto;">Delete</button>' : '') +
+          '</div>' +
+          '<p class="la-comment-text">' + esc(c.content) + '</p>' +
+        '</div>' +
+      '</div>';
+    }
+
+    function loadComments() {
+      LibApps.comments(appId).then(function (rows) {
+        countEl.textContent = rows.length;
+        listEl.innerHTML = rows.length
+          ? rows.map(commentHTML).join('')
+          : '<p style="color:var(--text-muted);font-size:.9rem;">No comments yet. Be the first to say how it went.</p>';
+      }).catch(function (err) {
+        listEl.innerHTML = '<div class="la-note la-note-error">' + esc(LibApps.message(err)) + '</div>';
+      });
+    }
+
+    var form = document.getElementById('laCommentForm');
+    var textEl = document.getElementById('laCommentText');
+    var errEl = document.getElementById('laCommentErr');
+    var postBtn = document.getElementById('laCommentBtn');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var text = textEl.value.trim();
+      var field = textEl.closest('.la-field');
+      if (!text) {
+        field.classList.add('bad');
+        errEl.textContent = 'Write something before you post.';
+        textEl.focus();
+        return;
+      }
+      field.classList.remove('bad');
+      postBtn.disabled = true;
+      LibApps.addComment(appId, text).then(function () {
+        textEl.value = '';
+        loadComments();
+        LibUI.toast('Comment posted.');
+      }).catch(function (err) {
+        LibUI.toast(LibApps.message(err), true);
+      }).then(function () { postBtn.disabled = false; });
+    });
+    textEl.addEventListener('input', function () {
+      textEl.closest('.la-field').classList.remove('bad');
+    });
+
+    listEl.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-del]');
+      if (!btn) return;
+      var id = btn.getAttribute('data-del');
+      LibUI.confirm({
+        title: 'Delete this comment?',
+        body: 'It will be removed for everyone. This cannot be undone.',
+        confirm: 'Delete', danger: true
+      }).then(function (yes) {
+        if (!yes) return;
+        LibApps.deleteComment(id).then(function () {
+          loadComments();
+          LibUI.toast('Comment deleted.');
+        }).catch(function (err) { LibUI.toast(LibApps.message(err), true); });
+      });
+    });
+
+    // ---------- report ----------
+    document.getElementById('laReport').addEventListener('click', function () {
+      LibUI.confirm({
+        title: 'Report this app?',
+        body: 'A TIH administrator will be told about "' + (app ? app.name : 'this app') +
+              '". Report it if you believe it contains malware, steals data, or is not what it claims to be.',
+        confirm: 'Send report', danger: true
+      }).then(function (yes) {
+        if (!yes) return;
+        LibApps.report(appId, 'Reported by a member', null).then(function () {
+          LibUI.toast('Thank you. An administrator will look at it.');
+        }).catch(function (err) { LibUI.toast(LibApps.message(err), true); });
+      });
+    });
+
+    // ---------- start ----------
+    if (!appId) { fail('No app was requested.'); return; }
+    LibApps.get(appId).then(function (a) {
+      if (!a) { fail('That app is no longer available. It may have been removed.'); return; }
+      render(a);
+      loadComments();
+    }).catch(function (err) { fail(LibApps.message(err)); });
+  })();
+  </script>
+</body>
+</html>

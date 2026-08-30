@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <title>LibApps — Android Apps by TIH Members | Tolbert Innovation Hub</title>
+  <meta name="description" content="LibApps is the app store inside Tolbert Innovation Hub. Members publish the Android apps they build, and other members download, rate and discuss them. Free with your TIH account." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="libapps.css?v=1" />
+</head>
+<body>
+  <a class="skip-link" href="#la-main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="learning-hub">Learning Hub</a>
+        <a class="active" aria-current="page" href="libapps">LibApps</a>
+        <a href="study-abroad">Study Abroad</a>
+        <a href="fully-funded-scholarship">Fully Funded</a>
+        <a href="healthcare">Healthcare</a>
+        <a href="software">Software</a>
+        <a href="wassce">WASSCE PRO</a>
+        <a href="grants">Grants</a>
+        <a href="library">Library</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+        <a href="hub-dashboard" class="nav-cta">My Account</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+    </div>
+  </header>
+
+  <main id="la-main" class="la-main">
+    <div class="container">
+      <!-- ============ SIGNED OUT: the locked landing ============ -->
+      <section id="laGate" class="la-gate" hidden aria-labelledby="laGateTitle">
+        <span class="la-eyebrow">📱 LibApps</span>
+        <h1 id="laGateTitle">Liberian apps, shared by the people who build them.</h1>
+        <p>
+          LibApps is the app store inside Tolbert Innovation Hub. Members upload the Android
+          apps they have built, and other members download them, rate them and talk about
+          them. It is free, and it runs on the same account you already use for the
+          Learning Hub.
+        </p>
+        <div class="la-gate-stats" id="laGateStats" hidden>
+          <div class="la-gate-stat"><b id="laStatApps">—</b><span>Apps published</span></div>
+          <div class="la-gate-stat"><b id="laStatDl">—</b><span>Downloads</span></div>
+          <div class="la-gate-stat"><b id="laStatDev">—</b><span>Builders</span></div>
+        </div>
+        <div class="la-gate-actions">
+          <a class="la-btn la-btn-red" href="hub-dashboard?next=libapps">Sign in to browse</a>
+          <a class="la-btn la-btn-ghost" href="hub-apply">Create a free account</a>
+        </div>
+        <p style="margin-top:1.4rem;margin-bottom:0;font-size:.84rem;color:rgba(255,255,255,.72);">
+          An account is needed to browse, download, upload or comment. It takes a minute and costs nothing.
+        </p>
+      </section>
+
+      <!-- ============ SIGNED IN: the store ============ -->
+      <div id="laStore" hidden>
+        <div class="la-head">
+          <span class="la-eyebrow">📱 LibApps</span>
+          <h1>Apps built by TIH members</h1>
+          <p>Download an app, leave a comment, or publish something you built yourself.</p>
+        </div>
+
+        <div class="la-toolbar">
+          <div class="la-search">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+            </svg>
+            <input type="search" id="laSearch" placeholder="Search apps, categories or builders…"
+                   aria-label="Search apps" autocomplete="off" />
+          </div>
+          <div class="la-filters" id="laFilters" role="group" aria-label="Filter by category"></div>
+          <div class="la-filters" style="margin-top:.6rem;">
+            <a class="la-btn la-btn-sm" href="libapps-upload">⬆ Upload your app</a>
+            <a class="la-btn la-btn-sm la-btn-quiet" href="libapps-dashboard">My apps</a>
+            <div class="la-sort">
+              <label for="laSort">Sort</label>
+              <select id="laSort">
+                <option value="recent">Newest first</option>
+                <option value="downloads">Most downloaded</option>
+                <option value="likes">Most liked</option>
+                <option value="name">A to Z</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="la-countbar">
+          <span id="laCount" aria-live="polite">Loading apps…</span>
+        </div>
+
+        <div id="laGrid" class="la-grid"></div>
+        <div id="laState"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="/"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+            <a href="https://www.youtube.com/@TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">▶️</a>
+            <a href="https://www.linkedin.com/company/tolbert-innovation-hub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">💼</a>
+            <a href="https://www.facebook.com/TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">📘</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">LibApps</p>
+          <ul class="footer-links">
+            <li><a href="libapps">Browse Apps</a></li>
+            <li><a href="libapps-upload">Upload Your App</a></li>
+            <li><a href="libapps-dashboard">My Apps</a></li>
+            <li><a href="hub-apply">Create an Account</a></li>
+            <li><a href="learning-hub">TIH Learning Hub</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="learning-hub">IELTS Preparation</a></li>
+            <li><a href="learning-hub">TOEFL Preparation</a></li>
+            <li><a href="leadership">Leadership</a></li>
+            <li><a href="learning-hub">Resource Center</a></li>
+            <li><a href="news">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact Us</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">🌐</span><span>Liberia, West Africa</span></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+          <p class="footer-signoff">Empowering Africa's Future, Never Stop Innovating.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="hub-config.js?v=4"></script>
+  <script src="hub-cloud.js?v=17"></script>
+  <script src="hub-db.js?v=40"></script>
+  <script src="libapps-db.js?v=1"></script>
+  <script src="libapps-ui.js?v=1"></script>
+  <script src="main.js?v=18"></script>
+  <script>
+  (function () {
+    'use strict';
+    var esc = LibUI.esc;
+
+    var gate    = document.getElementById('laGate');
+    var store   = document.getElementById('laStore');
+    var grid    = document.getElementById('laGrid');
+    var state   = document.getElementById('laState');
+    var countEl = document.getElementById('laCount');
+    var search  = document.getElementById('laSearch');
+    var sortSel = document.getElementById('laSort');
+    var filters = document.getElementById('laFilters');
+
+    var category = 'all';
+    var reqSeq = 0;          // guards against a slow response overwriting a newer one
+
+    // ---------- signed out ----------
+    function showGate() {
+      gate.hidden = false;
+      LibApps.stats().then(function (s) {
+        if (!s) return;
+        document.getElementById('laStatApps').textContent = LibUI.count(s.app_count);
+        document.getElementById('laStatDl').textContent   = LibUI.count(s.download_count);
+        document.getElementById('laStatDev').textContent  = LibUI.count(s.uploader_count);
+        document.getElementById('laGateStats').hidden = false;
+      });
+    }
+
+    // ---------- cards ----------
+    function cardHTML(a) {
+      return '<a class="la-card" href="libapps-app?id=' + encodeURIComponent(a.id) + '">' +
+        '<div class="la-card-top">' + LibUI.icon(a) +
+          '<div style="min-width:0;">' +
+            '<div class="la-card-name">' + esc(a.name) + '</div>' +
+            '<div class="la-card-by">by ' + esc(a.owner_name || 'A TIH member') + '</div>' +
+          '</div>' +
+        '</div>' +
+        (a.description ? '<p class="la-card-desc">' + esc(a.description) + '</p>' : '') +
+        '<div class="la-card-foot">' +
+          '<span class="la-tag">' + esc(a.category || 'Other') + '</span>' +
+          '<span title="Downloads">⬇ ' + LibUI.count(a.download_count) + '</span>' +
+          '<span title="Likes">' + (a.liked ? '❤️' : '🤍') + ' ' + LibUI.count(a.like_count) + '</span>' +
+          '<span style="margin-left:auto;">' + LibUI.size(a.file_size_mb) + '</span>' +
+        '</div>' +
+      '</a>';
+    }
+
+    function skeletons(n) {
+      var out = '';
+      for (var i = 0; i < n; i++) out += '<div class="la-skeleton"><div></div><div></div><div style="width:70%;"></div></div>';
+      return out;
+    }
+
+    // ---------- category pills ----------
+    function renderFilters(rows) {
+      var total = rows.reduce(function (s, r) { return s + Number(r.n || 0); }, 0);
+      var html = '<button type="button" class="la-pill' + (category === 'all' ? ' on' : '') +
+                 '" data-cat="all" aria-pressed="' + (category === 'all') + '">All apps (' + total + ')</button>';
+      rows.forEach(function (r) {
+        var on = category === r.category;
+        html += '<button type="button" class="la-pill' + (on ? ' on' : '') + '" data-cat="' + esc(r.category) +
+                '" aria-pressed="' + on + '">' + esc(r.category) + ' (' + r.n + ')</button>';
+      });
+      filters.innerHTML = html;
+    }
+
+    filters.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-cat]');
+      if (!btn) return;
+      category = btn.getAttribute('data-cat');
+      filters.querySelectorAll('.la-pill').forEach(function (p) {
+        var on = p === btn;
+        p.classList.toggle('on', on);
+        p.setAttribute('aria-pressed', String(on));
+      });
+      load();
+    });
+
+    // ---------- loading the list ----------
+    function load() {
+      var mine = ++reqSeq;
+      grid.innerHTML = skeletons(6);
+      state.innerHTML = '';
+      countEl.textContent = 'Loading apps…';
+
+      LibApps.browse({
+        search: search.value.trim(),
+        category: category,
+        sort: sortSel.value
+      }).then(function (apps) {
+        if (mine !== reqSeq) return;            // a newer search already ran
+        if (!apps.length) {
+          grid.innerHTML = '';
+          countEl.textContent = 'No apps found';
+          state.innerHTML = search.value.trim() || category !== 'all'
+            ? '<div class="la-empty"><span class="la-empty-ico">🔍</span>' +
+              '<h3>Nothing matched that</h3><p>Try a different word, or clear the filters.</p></div>'
+            : '<div class="la-empty"><span class="la-empty-ico">📦</span>' +
+              '<h3>No apps yet</h3><p>Be the first. If you have built an Android app, publish it here.</p>' +
+              '<p style="margin-top:1rem;"><a class="la-btn" href="libapps-upload">Upload the first app</a></p></div>';
+          return;
+        }
+        countEl.textContent = apps.length + (apps.length === 1 ? ' app' : ' apps') +
+          (category !== 'all' ? ' in ' + category : '');
+        grid.innerHTML = apps.map(cardHTML).join('');
+      }).catch(function (err) {
+        if (mine !== reqSeq) return;
+        grid.innerHTML = '';
+        countEl.textContent = '';
+        state.innerHTML = '<div class="la-note la-note-error">' + esc(LibApps.message(err)) + '</div>';
+      });
+    }
+
+    var debounce;
+    search.addEventListener('input', function () {
+      clearTimeout(debounce);
+      debounce = setTimeout(load, 320);
+    });
+    sortSel.addEventListener('change', load);
+
+    // ---------- start ----------
+    function start() {
+      if (!LibApps.session()) { showGate(); return; }
+      store.hidden = false;
+      LibApps.categories().then(renderFilters).catch(function () { filters.innerHTML = ''; });
+      load();
+    }
+
+    // HubDB reads the account out of localStorage synchronously, so the
+    // session is known as soon as the scripts have run.
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+    else start();
+  })();
+  </script>
+</body>
+</html>
