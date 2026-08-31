@@ -387,7 +387,7 @@ var LibApps = (function () {
      Anything unrecognised falls through to a plain connection message
      rather than showing Postgres wording to a student. */
   var MESSAGES = {
-    LIBAPPS_AUTH_REQUIRED:   'Please sign in again to continue.',
+    LIBAPPS_AUTH_REQUIRED:   'Your account is not recognised by the central database yet. Signing in again uploads it and fixes this.',
     LIBAPPS_ADMIN_REQUIRED:  'That action needs an administrator sign-in.',
     LIBAPPS_ADMIN_ONLY_UPLOAD: 'Only TIH administrators can publish apps at the moment.',
     LIBAPPS_NOT_OWNER:       'You can only change apps you uploaded yourself.',
@@ -425,6 +425,17 @@ var LibApps = (function () {
            /schema cache/i.test(raw);
   }
 
+  /* True when the database refused the learner's credentials. On a static
+     site this usually means the account was created on this device and never
+     reached Supabase, or its password was changed elsewhere: hub-db.js signs
+     people in against the local copy when the cloud lookup fails, so a learner
+     can be signed in here and unknown there. Signing in again re-uploads the
+     account, which is what completeStudentLogin() already does. */
+  function isAuthError(err) {
+    var raw = (typeof err === 'string') ? err : ((err && (err.message || err.details)) || '');
+    return raw.indexOf('LIBAPPS_AUTH_REQUIRED') !== -1;
+  }
+
   function message(err) {
     var raw = '';
     if (typeof err === 'string') raw = err;
@@ -448,6 +459,7 @@ var LibApps = (function () {
     isEnabled: isEnabled,
     session: session,
     canUpload: canUpload,
+    isAuthError: isAuthError,
     guard: guard,
     stats: stats,
     browse: browse,

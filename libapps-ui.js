@@ -154,8 +154,26 @@ var LibUI = (function () {
     document.body.appendChild(back);
   }
 
+  /* One error block for every LibApps page. When the database has refused the
+     learner's credentials, an explanation on its own is a dead end, so the
+     block carries the button that actually resolves it. */
+  function errorBox(err, backHref, backLabel) {
+    var msg = (window.LibApps && LibApps.message) ? LibApps.message(err) : 'Something went wrong.';
+    var html = '<div class="la-note la-note-error">' + esc(msg) + '</div>';
+    var acts = [];
+    if (window.LibApps && LibApps.isAuthError && LibApps.isAuthError(err)) {
+      var here = location.pathname.split('/').pop() + location.search;
+      acts.push('<a class="la-btn" href="hub-dashboard?next=' + esc(encodeURIComponent(here)) +
+                '">Sign in again</a>');
+    }
+    if (backHref) acts.push('<a class="la-btn la-btn-quiet" href="' + esc(backHref) + '">' +
+                            esc(backLabel || 'Go back') + '</a>');
+    if (acts.length) html += '<p style="display:flex;gap:.6rem;flex-wrap:wrap;">' + acts.join('') + '</p>';
+    return html;
+  }
+
   return {
-    esc: esc, attr: attr, icon: icon, initials: initials,
+    esc: esc, attr: attr, icon: icon, initials: initials, errorBox: errorBox,
     size: size, count: count, ago: ago, date: date,
     toast: toast, confirm: confirmBox, lightbox: lightbox
   };

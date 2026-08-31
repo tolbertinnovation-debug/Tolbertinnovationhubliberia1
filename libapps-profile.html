@@ -15,7 +15,7 @@
   <meta name="description" content="See the Android apps a Tolbert Innovation Hub member has published on LibApps." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=12" />
-  <link rel="stylesheet" href="libapps.css?v=3" />
+  <link rel="stylesheet" href="libapps.css?v=1" />
 </head>
 <body>
   <a class="skip-link" href="#la-main">Skip to content</a>
@@ -129,8 +129,8 @@
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=17"></script>
   <script src="hub-db.js?v=40"></script>
-  <script src="libapps-db.js?v=3"></script>
-  <script src="libapps-ui.js?v=1"></script>
+  <script src="libapps-db.js?v=4"></script>
+  <script src="libapps-ui.js?v=2"></script>
   <script src="main.js?v=18"></script>
   <script>
   (function () {
@@ -146,8 +146,7 @@
       document.getElementById('laLoading').hidden = true;
       var e = document.getElementById('laError');
       e.hidden = false;
-      e.innerHTML = '<div class="la-note la-note-error">' + esc(msg) + '</div>' +
-        '<p><a class="la-btn la-btn-quiet" href="libapps">← Back to LibApps</a></p>';
+      e.innerHTML = msg;
     }
 
     function cardHTML(a) {
@@ -166,7 +165,8 @@
 
     Promise.all([LibApps.profile(who), LibApps.byOwner(who)]).then(function (r) {
       var p = r[0], apps = (r[1] || []).filter(function (a) { return a.status === 'published'; });
-      if (!p) { fail('That member could not be found.'); return; }
+      if (!p) { fail('<div class="la-note la-note-error">That member could not be found.</div>' +
+                       '<p><a class="la-btn la-btn-quiet" href="libapps">← Back to LibApps</a></p>'); return; }
 
       document.title = p.name + ' | LibApps — Tolbert Innovation Hub';
       document.getElementById('laCrumbName').textContent = p.name;
@@ -190,7 +190,7 @@
 
       document.getElementById('laLoading').hidden = true;
       document.getElementById('laProfile').hidden = false;
-    }).catch(function (err) { fail(LibApps.message(err)); });
+    }).catch(function (err) { fail(LibUI.errorBox(err, 'libapps', '← Back to LibApps')); });
   })();
   </script>
 </body>

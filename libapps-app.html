@@ -15,7 +15,7 @@
   <meta name="description" content="Download an Android app published by Tolbert Innovation Hub, read what other members said about it, and leave your own comment." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=12" />
-  <link rel="stylesheet" href="libapps.css?v=3" />
+  <link rel="stylesheet" href="libapps.css?v=1" />
 </head>
 <body>
   <a class="skip-link" href="#la-main">Skip to content</a>
@@ -194,8 +194,8 @@
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=17"></script>
   <script src="hub-db.js?v=40"></script>
-  <script src="libapps-db.js?v=3"></script>
-  <script src="libapps-ui.js?v=1"></script>
+  <script src="libapps-db.js?v=4"></script>
+  <script src="libapps-ui.js?v=2"></script>
   <script src="main.js?v=18"></script>
   <script>
   (function () {
@@ -214,8 +214,7 @@
     function fail(msg) {
       elLoading.hidden = true;
       elError.hidden = false;
-      elError.innerHTML = '<div class="la-note la-note-error">' + esc(msg) + '</div>' +
-        '<p><a class="la-btn la-btn-quiet" href="libapps">← Back to LibApps</a></p>';
+      elError.innerHTML = msg;
     }
 
     // ---------- render ----------
@@ -405,12 +404,14 @@
     });
 
     // ---------- start ----------
-    if (!appId) { fail('No app was requested.'); return; }
+    if (!appId) { fail('<div class="la-note la-note-error">No app was requested.</div>' +
+                        '<p><a class="la-btn la-btn-quiet" href="libapps">← Back to LibApps</a></p>'); return; }
     LibApps.get(appId).then(function (a) {
-      if (!a) { fail('That app is no longer available. It may have been removed.'); return; }
+      if (!a) { fail('<div class="la-note la-note-error">That app is no longer available. It may have been removed.</div>' +
+                       '<p><a class="la-btn la-btn-quiet" href="libapps">← Back to LibApps</a></p>'); return; }
       render(a);
       loadComments();
-    }).catch(function (err) { fail(LibApps.message(err)); });
+    }).catch(function (err) { fail(LibUI.errorBox(err, 'libapps', '← Back to LibApps')); });
   })();
   </script>
 </body>
