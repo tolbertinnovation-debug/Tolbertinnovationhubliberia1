@@ -925,7 +925,50 @@
         scroll-behavior: auto !important;
       }
     }
-  </style>
+  
+    /* COURSE PLAYER 2026 — mobile-first learning refinement */
+    .topbar{min-height:var(--topbar-h);height:auto;padding-inline:clamp(.75rem,2vw,1.35rem)}
+    .btn-contents{min-height:44px;border-radius:12px;padding:.55rem .8rem;background:#f7f9fd;border-color:#dce5f2}
+    .btn-contents-icon{font-size:1.05rem;line-height:1}
+    .progress-wrap{padding:.38rem .55rem;border:1px solid #e3eaf4;border-radius:999px;background:#f8fafd}
+    .progress-pct{color:#075f47;font-variant-numeric:tabular-nums}
+    .video-info-bar{margin-top:.8rem;border:1px solid var(--hairline);border-bottom:0;border-radius:16px 16px 0 0;background:#fff}
+    .tabs-bar{position:sticky;top:0;z-index:40;border:1px solid var(--hairline);border-top:0;background:rgba(255,255,255,.97);box-shadow:0 5px 14px rgba(2,24,68,.05);scrollbar-width:none}
+    .tabs-bar::-webkit-scrollbar{display:none}.tab-btn{flex:1 0 auto}
+    .tab-panel{border:1px solid var(--hairline);border-top:0;min-height:180px}
+    .overview-text{color:#26364d;font-size:1rem;line-height:1.82}
+    .overview-text h2,.overview-text h3,.overview-text h4{scroll-margin-top:70px;text-wrap:balance}
+    .overview-text h3{color:var(--blue);font-size:1.2rem;line-height:1.35;margin:1.45rem 0 .65rem}
+    .overview-text h4{font-size:1rem;line-height:1.4;margin-top:1.3rem}
+    .overview-text p,.overview-text li{font-size:1rem;line-height:1.82}
+    .lesson-nav-bar{margin-bottom:max(1rem,env(safe-area-inset-bottom));border:1px solid var(--hairline)}
+    .btn-mark-complete{min-height:48px;padding-inline:1.2rem}
+    .btn-prev-lesson,.btn-next-lesson{min-height:48px}
+    .btn-prev-lesson:focus-visible,.btn-next-lesson:focus-visible,.btn-mark-complete:focus-visible,.tab-btn:focus-visible,.btn-contents:focus-visible{outline:3px solid rgba(21,101,216,.32);outline-offset:2px}
+    @media(max-width:768px){
+      :root{--topbar-h:68px}.topbar{gap:.55rem}.topbar-left{gap:.45rem;min-width:0}.topbar-divider{display:none}.topbar-brand{font-size:.88rem}
+      .topbar-center{justify-content:flex-end;gap:.45rem}.progress-wrap{padding:.35rem .48rem}.progress-bar-track{width:clamp(48px,13vw,70px)}
+      .topbar-right{gap:.35rem}.topbar-avatar{width:40px;height:40px}.video-scroll{padding:0 .7rem;scroll-padding-top:58px}
+      .video-container{width:100%;margin-top:.75rem;border-radius:16px}.video-info-bar,.tabs-bar,.tab-panel,.lesson-nav-bar{width:100%}
+      .video-info-bar{padding:.9rem 1rem .75rem}.video-lesson-title{font-size:clamp(1.08rem,4.7vw,1.3rem)}
+      .video-lesson-meta{margin-top:.4rem;gap:.7rem;flex-wrap:wrap}.tabs-bar{border-radius:0;padding:0 .25rem}
+      .tab-btn{padding:.82rem .72rem;font-size:.82rem}.tab-panel{padding:1.15rem 1rem 1.35rem}
+      .overview-text p,.overview-text li{font-size:1rem;line-height:1.84}
+      .overview-text>p,.overview-text li,.overview-text>blockquote,.overview-text .lesson-note-intro,.overview-text .lesson-note-section>p,.overview-text .lesson-note-example,.overview-text .lesson-note-action{max-width:none}
+      .lesson-nav-bar{margin-top:.75rem;margin-bottom:1.2rem;border-radius:16px}.btn-mark-complete{font-size:.92rem}
+    }
+    @media(max-width:520px){
+      :root{--topbar-h:64px}.topbar{padding-inline:.55rem;gap:.35rem}.topbar-back{min-width:42px;padding:.35rem;justify-content:center;font-size:1.15rem}
+      .topbar-brand{display:none}.btn-contents{width:44px;padding:.5rem;justify-content:center}.btn-contents-label{display:none}
+      .progress-wrap{border:0;background:transparent;padding:0}.progress-bar-track{display:none}.progress-pct{font-size:.71rem}
+      .topbar-avatar{width:38px;height:38px}.video-scroll{padding-inline:.45rem}.video-container{border-radius:13px}
+      .video-info-bar{margin-top:.55rem;padding:.82rem .85rem .7rem}.tab-panel{padding:1.05rem .85rem 1.25rem}
+      .overview-text p,.overview-text li{font-size:1.01rem;line-height:1.88}.overview-text .lesson-note-section{margin-top:1.4rem;padding-top:1.15rem}
+      .lesson-nav-bar{padding:.65rem;gap:.5rem}.btn-prev-lesson,.btn-next-lesson,.btn-mark-complete{min-height:50px}
+      .lesson-progress-dots{padding:.2rem 0}.lock-toast{width:calc(100% - 1.5rem);white-space:normal;text-align:center}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
 </head>
 <body>
 
@@ -937,9 +980,9 @@
       <div class="topbar-brand">TIH <span>Learning Hub</span></div>
     </div>
     <div class="topbar-center">
-      <button class="btn-contents" id="btnContents" onclick="toggleSidebar()">☰ Contents</button>
+      <button class="btn-contents" id="btnContents" onclick="toggleSidebar()" aria-label="Open course contents"><span class="btn-contents-icon" aria-hidden="true">☰</span><span class="btn-contents-label">Contents</span></button>
       <span class="topbar-course-title" id="topbarTitle">Loading…</span>
-      <div class="progress-wrap">
+      <div class="progress-wrap" id="courseProgress" role="progressbar" aria-label="Course completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
         <div class="progress-bar-track"><div class="progress-bar-fill" id="progressFill"></div></div>
         <span class="progress-pct" id="progressPct"></span>
       </div>
@@ -1902,6 +1945,8 @@
     var pct = totalLessons > 0 ? Math.round((completedLessons.length / totalLessons) * 100) : 0;
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressPct').textContent = pct + '% complete';
+    var progressA11y = document.getElementById('courseProgress');
+    if (progressA11y) { progressA11y.setAttribute('aria-valuenow', String(pct)); progressA11y.setAttribute('aria-valuetext', pct + '% complete'); }
     document.getElementById('lessonCounter').textContent = completedLessons.length + '/' + totalLessons + ' lessons';
     // Show certificate button in topbar when course is 100% complete
     var certBtn = document.getElementById('topbarCertBtn');
