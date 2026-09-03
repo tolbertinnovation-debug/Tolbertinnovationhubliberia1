@@ -31,7 +31,7 @@
     'accounting-bookkeeping': 'accounting-bookkeeping-notes.js?v=1',
     'computer-literacy': 'complit-notes.js?v=17',
     'english-success':   'eng-notes.js?v=1',
-    'ielts':             'ielts-notes.js?v=10',
+    'ielts':             'ielts-notes.js?v=11',
     'toefl':             'toefl-notes.js?v=2',
     'ph-career':         'ph-notes.js?v=2',
     'sat':               'sat-notes.js?v=1',
