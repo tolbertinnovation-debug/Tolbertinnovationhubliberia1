@@ -162,64 +162,50 @@
 
   function note(moduleTitle, skill, name, position) {
     var label = skillLabel[skill] || 'grant writing and fundraising';
-    var def = TOPIC_DEF[name] || (name + ' is an essential concept within professional grant writing and fundraising practice that every practitioner should understand thoroughly.');
+    var def = TOPIC_DEF[name] || (name + ' is a practical skill used to plan, finance, communicate, or manage mission-driven work.');
     var tpl = templateFor(name);
-
-    return '<div class="study-note">' +
-      '<div class="revision-banner"><strong>Grant Writing & Fundraising · ' + esc(moduleTitle) + '</strong><span>Formal Study Note</span></div>' +
-      '<h3>' + esc(name) + '</h3>' +
-
-      '<h4>1. Definition</h4>' +
-      '<p>' + esc(def) + '</p>' +
-
-      '<h4>2. Detailed Explanation</h4>' +
-      '<p>In professional resource mobilisation, <strong>' + esc(name) + '</strong> is a core competency. A precise understanding of this topic enables a grant writer or fundraiser to prepare competitive applications, build credible relationships with donors, and manage awarded funds responsibly.</p>' +
-      '<p>This concept forms part of <em>' + esc(label) + '</em>. Mastery of it supports later modules in the programme and is frequently required in professional practice, consultancy work, and organisational leadership roles.</p>' +
-
-      '<h4>3. Why This Topic Matters</h4>' +
-      '<ul>' +
-      '<li>Funders evaluate proposals against clear standards of need, design, budget, and accountability.</li>' +
-      '<li>Strong performance in this area directly increases the probability of winning funding.</li>' +
-      '<li>Ethical and accurate practice protects organisational reputation and donor trust.</li>' +
-      '<li>The skill is transferable across NGOs, schools, community groups, and social enterprises.</li>' +
-      '</ul>' +
-
-      '<h4>4. Key Concepts and Sub-topics</h4>' +
-      '<ul>' +
-      '<li>Precise definition and professional scope of <em>' + esc(name) + '</em>.</li>' +
-      '<li>Relationship to other sections of a proposal or fundraising strategy.</li>' +
-      '<li>Common standards and donor expectations.</li>' +
-      '<li>Practical steps for applying the concept in real organisational settings.</li>' +
-      '<li>Frequent errors that weaken applications or damage donor relationships.</li>' +
-      '</ul>' +
-
-      '<h4>5. Practical Application</h4>' +
-      '<p>After studying the accompanying video lesson, apply <strong>' + esc(name) + '</strong> to a real or realistic organisation in your community. Draft the relevant section, review it against typical donor guidelines, and refine it until it meets a professional standard.</p>' +
-
-      (tpl ? '<div class="study-callout">' + tpl + '<p style="margin-top:.5rem"><strong>Downloadable:</strong> Use Print → Save as PDF to keep this template offline.</p></div>' :
-        '<div class="study-callout"><strong>TIH practice task:</strong> Apply <em>' + esc(name) + '</em> to a real Liberian community need, NGO, school, or social enterprise.</div>') +
-
-      '<h4>6. Common Mistakes to Avoid</h4>' +
-      '<ul>' +
-      '<li>Writing without first reading the funder’s guidelines and eligibility rules.</li>' +
-      '<li>Making claims that are not supported by credible data or evidence.</li>' +
-      '<li>Copying generic text instead of tailoring the content to the specific funder and context.</li>' +
-      '<li>Neglecting the practice exercises and the short quiz that follow this lesson.</li>' +
-      '</ul>' +
-
-      '<h4>7. Summary</h4>' +
-      '<p><strong>' + esc(name) + '</strong> is a foundational topic within ' + esc(label) + '. A clear grasp of its definition, purpose, and correct application is essential for progressing through the Complete Grant Writing & Fundraising Professional Certificate and for producing work that meets donor standards.</p>' +
-
-      '<h4>8. Study Actions</h4>' +
-      '<ol>' +
-      '<li>Watch the video carefully and note any examples or templates shown.</li>' +
-      '<li>Read this note again and write the definition in your own words.</li>' +
-      '<li>Complete the two practical exercises for a sample or real organisation.</li>' +
-      '<li>Take the practice quiz that follows this lesson to confirm your understanding.</li>' +
-      '</ol>' +
-
-      '<p><strong>Module context:</strong> This lesson belongs to <em>' + esc(moduleTitle) + '</em>. Use your browser’s Print → Save as PDF if you wish to keep an offline copy of these notes.</p>' +
-      '</div>';
+    var action = /Budget|Cost|Financial/i.test(name)
+      ? 'List each necessary cost, calculate it from clear units and rates, and confirm that every cost supports an activity.'
+      : /Donor|Fundraising|Giving|Sponsor|Stewardship|Relationship/i.test(name)
+      ? 'Identify the audience, understand what they care about, make a clear and respectful request, and plan how the relationship will be maintained.'
+      : /Need|Problem|Research|Data|Beneficiar|Stakeholder|Cause/i.test(name)
+      ? 'Define the problem with evidence, identify who is affected, separate causes from symptoms, and explain why action is needed now.'
+      : /Objective|Outcome|Indicator|Monitoring|Evaluation|Report|Impact|Result/i.test(name)
+      ? 'State the intended change, choose measurable evidence, assign responsibility, and decide when and how progress will be checked.'
+      : /Proposal|Summary|Background|Design|Plan|Timeline|Scope|Logframe/i.test(name)
+      ? 'Connect the need, objectives, activities, timeline, results and budget so that each section tells one consistent story.'
+      : /Grant|Funding|Foundation|Government|Corporate|Eligibility|Guideline|Portal|Pipeline/i.test(name)
+      ? 'Check alignment and eligibility first, record every requirement and deadline, then decide whether the opportunity is worth pursuing.'
+      : 'Understand the purpose, follow a clear process, apply it to a realistic organisation, and check the work against professional standards.';
+    var example = /Budget|Cost|Financial/i.test(name)
+      ? 'A youth skills project plans to train 50 learners. Instead of writing “training: US$2,000,” the writer shows 2 trainers × 5 days × US$100 = US$1,000, materials at US$10 × 50 learners = US$500, and venue at US$100 × 5 days = US$500.'
+      : /Need|Problem|Research|Data|Beneficiar|Stakeholder|Cause/i.test(name)
+      ? 'A community group should not write only “young people need jobs.” A stronger version states who is affected, where they live, the evidence available, the main causes, and the consequences if the problem is not addressed.'
+      : /Objective|Outcome|Indicator|Monitoring|Evaluation|Report|Impact|Result/i.test(name)
+      ? 'Weak: “Empower young people.” Stronger: “By December 2027, 120 unemployed youths in Montserrado County will complete certified digital-skills training, and at least 75 will enter paid work or self-employment.”'
+      : /Donor|Fundraising|Giving|Sponsor|Stewardship|Relationship/i.test(name)
+      ? 'A Liberian education organisation researches a company’s community priorities before requesting support, presents a specific student-learning result, thanks the donor promptly, and later reports what the contribution achieved.'
+      : 'A community organisation in Monrovia reads the funder’s instructions, confirms that its education project is eligible, uses local evidence, writes measurable results, and checks that the work plan and budget agree before submission.';
+    var weak = 'Uses vague claims, copies general language, ignores the funder’s instructions, or leaves important decisions unexplained.';
+    var strong = 'Uses specific evidence, plain language, realistic figures, clear responsibility, and content tailored to the funder and community.';
+    return '<article class="tih-gw-note">' +
+      '<div class="revision-banner"><strong>Grant Writing &amp; Fundraising</strong><span>' + esc(moduleTitle) + '</span></div>' +
+      '<div class="lesson-note-label">LESSON NOTE: ' + esc(name.toUpperCase()) + '</div>' +
+      '<table class="gw-meta"><tr><th>Subject</th><td>Grant Writing &amp; Fundraising</td></tr><tr><th>Topic</th><td>' + esc(name) + '</td></tr><tr><th>Level</th><td>Beginner to Professional</td></tr><tr><th>Lesson duration</th><td>45–60 minutes</td></tr></table>' +
+      '<h4>Learning objectives</h4><p>By the end of this lesson, you should be able to:</p><ul><li>Explain <strong>' + esc(name) + '</strong> in clear, simple language.</li><li>Describe why it matters in ' + esc(label) + '.</li><li>Apply the correct process to a realistic organisation or community project.</li><li>Recognise weak practice and improve it to a professional standard.</li></ul>' +
+      '<h4>1. Introduction</h4><p>Winning support is not about using impressive words. It is about helping a funder understand a real need, trust the proposed solution, and see that the applicant can deliver and account for the money. This lesson explains <strong>' + esc(name) + '</strong> as a practical skill you can use.</p>' +
+      '<h4>2. Meaning and definition</h4><div class="gw-definition"><strong>Definition:</strong> ' + esc(def) + '</div><p>In simple terms, this topic answers an important professional question: <em>what must the writer or fundraiser know, decide, show, or do at this stage?</em></p>' +
+      '<h4>3. How to apply it</h4><ol><li><strong>Understand the purpose.</strong> Identify the decision the funder, donor, manager, or community must make.</li><li><strong>Gather reliable information.</strong> Use guidelines, organisational records, credible data, quotations, or consultation instead of guesses.</li><li><strong>Prepare the work.</strong> ' + esc(action) + '</li><li><strong>Check alignment.</strong> Make sure the information agrees with the proposal’s need, objectives, activities, results, timeline and budget.</li><li><strong>Review for clarity and ethics.</strong> Remove exaggeration, explain assumptions and verify names, dates, figures and claims.</li></ol>' +
+      '<h4>4. Worked example</h4><div class="gw-example"><strong>Example:</strong> ' + esc(example) + '</div>' +
+      '<h4>5. Weak practice and professional practice</h4><table class="gw-compare"><thead><tr><th>Weak approach</th><th>Professional approach</th></tr></thead><tbody><tr><td>' + esc(weak) + '</td><td>' + esc(strong) + '</td></tr></tbody></table>' +
+      (tpl ? '<h4>6. Practical template</h4><div class="study-callout">' + tpl + '<p><strong>Offline use:</strong> Choose Print → Save as PDF to keep a copy.</p></div>' : '<h4>6. Practical task</h4><div class="study-callout"><strong>Apply it:</strong> Prepare a short example of ' + esc(name) + ' for a real or realistic Liberian NGO, school, community group, social enterprise, health project, agriculture project, or youth programme.</div>') +
+      '<h4>7. How to answer a professional or assessment question</h4><p>Begin with a direct definition. Explain the purpose and the steps in a logical order. Add one realistic example and show how the work connects to donor requirements. If the question says <em>compare</em>, give both similarities and differences; if it says <em>evaluate</em>, give strengths, weaknesses and a justified conclusion.</p>' +
+      '<h4>8. Summary</h4><ul><li>' + esc(name) + ' is part of ' + esc(label) + '.</li><li>Good work is specific, evidence-based, ethical and aligned.</li><li>Every claim, activity and cost should be understandable and verifiable.</li><li>Professional writers revise their work against the funder’s exact instructions.</li></ul>' +
+      '<h4>9. Key terms</h4><table class="gw-terms"><tr><th>Term</th><th>Meaning</th></tr><tr><td>' + esc(name) + '</td><td>' + esc(def) + '</td></tr><tr><td>Alignment</td><td>The match between the project, the applicant and the funder’s priorities.</td></tr><tr><td>Evidence</td><td>Reliable information used to support a statement or decision.</td></tr><tr><td>Compliance</td><td>Following the funder’s rules, conditions and required format.</td></tr></table>' +
+      '<h4>10. Review questions</h4><details class="gw-mcq"><summary>1. Which approach is most professional?</summary><p><strong>Answer:</strong> Use evidence, follow the guidelines, explain decisions and tailor the work to the funder. <strong>Why:</strong> Donors need clear, credible and relevant information.</p></details><details class="gw-mcq"><summary>2. Why should this topic connect to the rest of the proposal?</summary><p><strong>Answer:</strong> Because the need, objectives, activities, results, timeline and budget must describe the same project. Contradictions reduce confidence.</p></details><ol><li>Define ' + esc(name) + ' in your own words.</li><li>Give one example of weak practice and explain how you would improve it.</li><li>How could a Liberian community organisation apply this lesson?</li></ol>' +
+      '<h4>11. Class activities</h4><ol><li><strong>Improve the weak version:</strong> Write a vague two-sentence example, exchange it with a classmate, and improve it by adding evidence, clarity and alignment.</li><li><strong>Funder review:</strong> Choose a real or sample funding guideline and identify where this topic appears in the requirements or scoring criteria.</li></ol>' +
+      '<h4>12. Assignment</h4><p>Prepare a one-page application of <strong>' + esc(name) + '</strong> for a realistic project. Include the organisation, target group, location, evidence used, your main decisions, and a short checklist showing how your work meets professional standards.</p>' +
+      '</article>';
   }
 
   function projectBrief(moduleTitle, name) {
@@ -434,7 +420,7 @@
     return 'general';
   }
 
-  var modules = [], quizzes = {}, notes = {};
+  var modules = [], quizzes = {}, notes = {}, authoredNotes = {};
   var flat = 0, notePos = 0;
   var videoCount = 0, quizCount = 0, projectCount = 0, examCount = 0;
 
@@ -485,6 +471,7 @@
       var v = pool[idx % pool.length];
       lessons.push({ t: num + '.' + idx + ' ' + name, d: 'Video Lesson', v: v, isQuiz: false });
       notes[String(flat)] = note(moduleTitle, skill, name, notePos++);
+      authoredNotes['M' + num + ':' + name] = notes[String(flat)];
       flat += 1; videoCount += 1;
       var pqid = 'gw-m' + num + '-q' + flat;
       quizzes[pqid] = practiceQuiz(key, name);
@@ -539,6 +526,17 @@
     quizzes: quizzes,
     _grantFullBuilt: true
   };
+
+  if (typeof window !== 'undefined') {
+    window.TIH_LESSON_NOTES = window.TIH_LESSON_NOTES || {};
+    window.TIH_LESSON_NOTES[CID] = authoredNotes;
+    if (!document.getElementById('tih-gw-note-styles')) {
+      var noteStyle = document.createElement('style');
+      noteStyle.id = 'tih-gw-note-styles';
+      noteStyle.textContent = '.tih-gw-note{font-size:1rem;line-height:1.75;color:#26364a}.tih-gw-note h4{color:#073b74;margin:1.7rem 0 .65rem;font-size:1.15rem}.lesson-note-label{display:inline-block;margin:1rem 0;padding:.45rem .8rem;border-radius:999px;background:#eaf2ff;color:#073b74;font-weight:800;letter-spacing:.04em}.gw-meta,.gw-compare,.gw-terms{width:100%;border-collapse:collapse;margin:1rem 0;display:table}.gw-meta th,.gw-meta td,.gw-compare th,.gw-compare td,.gw-terms th,.gw-terms td{border:1px solid #dbe5f1;padding:.7rem;text-align:left;vertical-align:top}.gw-meta th,.gw-compare th,.gw-terms th{background:#eef5ff;color:#073b74}.gw-definition,.gw-example{padding:1rem;border-left:4px solid #e31e24;background:#f7faff;border-radius:0 10px 10px 0}.gw-example{border-left-color:#15803d;background:#f0fdf4}.gw-mcq{margin:.7rem 0;border:1px solid #dbe5f1;border-radius:10px;padding:.75rem}.gw-mcq summary{cursor:pointer;font-weight:700;color:#073b74}@media(max-width:600px){.gw-meta,.gw-compare,.gw-terms{font-size:.9rem}.gw-meta th,.gw-meta td,.gw-compare th,.gw-compare td,.gw-terms th,.gw-terms td{padding:.55rem}}';
+      document.head.appendChild(noteStyle);
+    }
+  }
 
   if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT[CID] = notes;
 
