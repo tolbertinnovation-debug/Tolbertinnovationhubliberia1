@@ -529,6 +529,7 @@
         try {
           fetch('https://formsubmit.co/ajax/tolbertinnovationhub@gmail.com', {
             method: 'POST',
+            keepalive: true,   // let it finish even though we redirect right after
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
               _subject: 'New TIH Learning Hub account: ' + d.name,
@@ -614,7 +615,10 @@
             occupation: String(fd.get('occupation') || '').trim(),
             goals: goals, tracks: tracks, referral: String(fd.get('referral') || '')
           });
-          showConfirm(app, name, email, phone, location, education, goals, tracks, res.savedToCloud);
+          // Registration signs the learner in automatically, so take them
+          // straight to their dashboard rather than a confirmation screen.
+          submitBtn.textContent = 'Welcome! Opening your dashboard…';
+          location.replace('hub-dashboard');
         }).catch(function () {
           submitBtn.disabled = false;
           submitBtn.textContent = 'Create Account & Submit →';
