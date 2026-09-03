@@ -230,7 +230,7 @@
   /* Courses that actually have a notes/<id>-notes.js file. Without this the
      loader guessed from the course id, so bible-ot, bible-nt and every WASSCE
      subject fired a 404 on each lesson view. Add an id here when its file lands. */
-  var HAS_NOTES = ["accounting-bookkeeping", "agritech", "ai", "ai-cybersecurity", "android", "bible-foundations", "cybersecurity", "data", "design", "english-success", "entrepreneurship", "financial-literacy", "healthtech", "ielts", "leadership", "marketing", "office", "ph-career", "project-mgmt", "remote-work", "sat", "toefl", "webdev"];
+  var HAS_NOTES = ["accounting-bookkeeping", "agritech", "ai", "ai-cybersecurity", "android", "bible-foundations", "cybersecurity", "data", "design", "english-success", "entrepreneurship", "financial-literacy", "healthtech", "leadership", "marketing", "office", "ph-career", "project-mgmt", "remote-work", "sat", "toefl", "webdev"];
   function hasNotes(cid) {
     for (var i = 0; i < HAS_NOTES.length; i++) if (HAS_NOTES[i] === cid) return true;
     return false;
