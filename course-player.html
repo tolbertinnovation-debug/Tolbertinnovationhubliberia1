@@ -2565,7 +2565,7 @@
   });
 
   // Long-lesson reading progress and back-to-top control.
-  (function initLessonReadingTools(){
+  document.addEventListener('DOMContentLoaded', function initLessonReadingTools(){
     var scroller=document.getElementById('videoScroll');
     var meter=document.getElementById('lessonReadingProgress');
     var fill=document.getElementById('lessonReadingProgressFill');
@@ -2587,7 +2587,7 @@
     topButton.addEventListener('click',function(){scroller.scrollTo({top:0,behavior:'smooth'});});
     window.updateLessonReadingProgress=requestUpdate;
     requestUpdate();
-  })();
+  });
 
   </script>
   <button class="back-to-lesson-top" id="backToLessonTop" type="button" aria-label="Back to the top of this lesson" title="Back to lesson top">↑</button>
