@@ -32,7 +32,7 @@
     'computer-literacy': 'complit-notes.js?v=17',
     'english-success':   'eng-notes.js?v=1',
     'ielts':             'ielts-notes.js?v=18',
-    'toefl':             'toefl-notes.js?v=3',
+    'toefl':             'toefl-notes.js?v=4',
     'ph-career':         'ph-notes.js?v=2',
     'sat':               'sat-notes.js?v=1',
     'ai-cybersecurity':  'aicyber-notes.js?v=1',
