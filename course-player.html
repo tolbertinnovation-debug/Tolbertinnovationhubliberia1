@@ -38,11 +38,11 @@
   <!-- 49 course-specific scripts used to be document.write()n in here.
        tih-course-loader.js now fetches only the ones the open course needs. -->
   <script src="interactive-lesson-quiz.js?v=1"></script>
-  <script src="tih-notes-runtime.js?v=1"></script>
+  <script src="tih-notes-runtime.js?v=2"></script>
   <script src="tih-video-runtime.js?v=2"></script>
   <!-- The five authored note bundles (762 KB combined) are fetched on demand
        for the open course only, by tih-authored-notes.js. -->
-  <script src="tih-authored-notes.js?v=1"></script>
+  <script src="tih-authored-notes.js?v=14"></script>
   <script src="assets/qrcode.js"></script>
   <script src="cert-template.js?v=6"></script>
   <style>
@@ -968,7 +968,150 @@
       .lesson-progress-dots{padding:.2rem 0}.lock-toast{width:calc(100% - 1.5rem);white-space:normal;text-align:center}
     }
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-</style>
+
+    /* Long-lesson reading tools */
+    .lesson-reading-progress{position:fixed;top:var(--topbar-h);left:var(--sidebar-w);right:0;height:4px;z-index:997;background:rgba(219,228,241,.72);pointer-events:none}
+    .lesson-reading-progress-fill{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--blue),#1565d8,var(--red));box-shadow:0 0 8px rgba(21,101,216,.35);transition:width .12s linear}
+    .back-to-lesson-top{position:fixed;right:1.15rem;bottom:1.15rem;z-index:120;width:48px;height:48px;border:1px solid #d7e2f1;border-radius:50%;background:#fff;color:var(--blue);box-shadow:0 8px 24px rgba(2,24,68,.18);font:800 1.25rem/1 Inter,sans-serif;display:grid;place-items:center;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .2s,transform .2s,visibility .2s}
+    .back-to-lesson-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+    .back-to-lesson-top:hover{background:var(--blue);color:#fff;transform:translateY(-2px)}
+    .back-to-lesson-top:focus-visible{outline:3px solid rgba(21,101,216,.32);outline-offset:3px}
+    @media(max-width:768px){.lesson-reading-progress{left:0}.back-to-lesson-top{right:.8rem;bottom:.8rem;width:46px;height:46px}}
+    @media(prefers-reduced-motion:reduce){.lesson-reading-progress-fill,.back-to-lesson-top{transition:none}}
+
+    /* Computer Literacy: compact, touch-friendly glossary cards. */
+    .overview-text .lesson-keywords {
+      margin-top: 1.4rem;
+      padding: 1rem;
+      border: 1px solid #cdddf3;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #f7fbff, #eef5ff);
+    }
+    .overview-text .lesson-keywords h4 { margin: 0; color: var(--navy); }
+    .overview-text .lesson-keywords-hint {
+      margin: .3rem 0 .8rem;
+      color: #5d6d86;
+      font-size: .84rem;
+    }
+    .overview-text .lesson-keyword-grid { display: grid; gap: .55rem; }
+    .overview-text .lesson-keyword {
+      border: 1px solid #d5e2f4;
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
+    }
+    .overview-text .lesson-keyword summary {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+      padding: .65rem .8rem;
+      color: var(--navy);
+      font-weight: 750;
+      cursor: pointer;
+      list-style: none;
+    }
+    .overview-text .lesson-keyword summary::-webkit-details-marker { display: none; }
+    .overview-text .lesson-keyword summary::after {
+      content: '+';
+      width: 1.55rem;
+      height: 1.55rem;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--blue);
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .overview-text .lesson-keyword[open] summary::after { content: '−'; }
+    .overview-text .lesson-keyword p {
+      max-width: none;
+      margin: 0;
+      padding: .75rem .8rem .85rem;
+      border-top: 1px solid #e7eef8;
+      color: #34445c;
+      background: #fbfdff;
+    }
+
+  
+    /* Computer Literacy visual-identification panels */
+    .overview-text .cl-lesson-visual {
+      margin: 1rem 0 1.35rem;
+      border: 1px solid #c9daf1;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(3, 41, 96, .08);
+    }
+    .overview-text .cl-visual-title {
+      padding: .75rem 1rem;
+      color: #fff;
+      background: linear-gradient(120deg, var(--navy), var(--blue));
+      font-size: .9rem;
+      font-weight: 800;
+    }
+    .overview-text .cl-visual-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+      gap: .65rem;
+      padding: .85rem;
+    }
+    .overview-text .cl-visual-item {
+      min-width: 0;
+      padding: .8rem .55rem;
+      text-align: center;
+      border: 1px solid #dce7f5;
+      border-radius: 12px;
+      background: #f7faff;
+    }
+    .overview-text .cl-visual-item span {
+      display: block;
+      margin-bottom: .35rem;
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .overview-text .cl-visual-item strong,
+    .overview-text .cl-visual-item small { display: block; }
+    .overview-text .cl-visual-item strong { color: var(--navy); font-size: .85rem; }
+    .overview-text .cl-visual-item small { margin-top: .25rem; color: #64748b; font-size: .7rem; line-height: 1.35; }
+    .overview-text .cl-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      padding: 1rem .7rem;
+      overflow-x: auto;
+    }
+    .overview-text .cl-flow-item {
+      min-width: 68px;
+      padding: .65rem .45rem;
+      text-align: center;
+      border-radius: 10px;
+      background: #eff5ff;
+      border: 1px solid #d5e3f7;
+    }
+    .overview-text .cl-flow-item span,
+    .overview-text .cl-flow-item strong { display: block; }
+    .overview-text .cl-flow-item span { font-size: 1.65rem; }
+    .overview-text .cl-flow-item strong { margin-top: .25rem; color: var(--navy); font-size: .68rem; }
+    .overview-text .cl-flow > b { color: var(--blue); font-size: 1.1rem; }
+    .overview-text .cl-lesson-visual figcaption {
+      padding: .7rem .9rem;
+      border-top: 1px solid #e3ebf6;
+      color: #4c5d73;
+      background: #fbfdff;
+      font-size: .78rem;
+      line-height: 1.5;
+    }
+    @media (max-width: 480px) {
+      .overview-text .cl-visual-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .overview-text .cl-flow { justify-content: flex-start; }
+    }
+
+  </style>
 </head>
 <body>
 
@@ -996,6 +1139,8 @@
   </div>
 
   <!-- PLAYER LAYOUT -->
+  <div class="lesson-reading-progress" id="lessonReadingProgress" role="progressbar" aria-label="Lesson reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="lesson-reading-progress-fill" id="lessonReadingProgressFill"></span></div>
+
   <div class="player-layout">
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
@@ -1822,6 +1967,7 @@
       currentVideoId = null;
     }
     document.getElementById('videoScroll').scrollTop = 0;
+    if (window.updateLessonReadingProgress) window.updateLessonReadingProgress();
     // Overview
     // Authored per-topic teaching notes (ielts-notes.js etc.) render as-is — a
     // real textbook-style explanation — instead of the generic template. The
@@ -2551,7 +2697,33 @@
     if (e.key === 'Escape') { closeQuizModal(); closeCompletionModal(); closeAllNotes(); }
   });
 
+  // Long-lesson reading progress and back-to-top control.
+  document.addEventListener('DOMContentLoaded', function initLessonReadingTools(){
+    var scroller=document.getElementById('videoScroll');
+    var meter=document.getElementById('lessonReadingProgress');
+    var fill=document.getElementById('lessonReadingProgressFill');
+    var topButton=document.getElementById('backToLessonTop');
+    if(!scroller||!meter||!fill||!topButton)return;
+    var queued=false;
+    function updateLessonReadingProgress(){
+      queued=false;
+      var available=Math.max(0,scroller.scrollHeight-scroller.clientHeight);
+      var pct=available?Math.min(100,Math.max(0,Math.round(scroller.scrollTop/available*100))):100;
+      fill.style.width=pct+'%';
+      meter.setAttribute('aria-valuenow',String(pct));
+      meter.setAttribute('aria-valuetext',pct+'% of lesson viewed');
+      topButton.classList.toggle('show',scroller.scrollTop>420);
+    }
+    function requestUpdate(){if(!queued){queued=true;requestAnimationFrame(updateLessonReadingProgress);}}
+    scroller.addEventListener('scroll',requestUpdate,{passive:true});
+    window.addEventListener('resize',requestUpdate);
+    topButton.addEventListener('click',function(){scroller.scrollTo({top:0,behavior:'smooth'});});
+    window.updateLessonReadingProgress=requestUpdate;
+    requestUpdate();
+  });
+
   </script>
+  <button class="back-to-lesson-top" id="backToLessonTop" type="button" aria-label="Back to the top of this lesson" title="Back to lesson top">↑</button>
   <div class="lock-toast" id="lockToast"></div>
 </body>
 </html>
