@@ -42,7 +42,7 @@
   <script src="tih-video-runtime.js?v=2"></script>
   <!-- The five authored note bundles (762 KB combined) are fetched on demand
        for the open course only, by tih-authored-notes.js. -->
-  <script src="tih-authored-notes.js?v=2"></script>
+  <script src="tih-authored-notes.js?v=3"></script>
   <script src="assets/qrcode.js"></script>
   <script src="cert-template.js?v=6"></script>
   <style>
@@ -1034,6 +1034,81 @@
       border-top: 1px solid #e7eef8;
       color: #34445c;
       background: #fbfdff;
+    }
+
+  
+    /* Computer Literacy visual-identification panels */
+    .overview-text .cl-lesson-visual {
+      margin: 1rem 0 1.35rem;
+      border: 1px solid #c9daf1;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(3, 41, 96, .08);
+    }
+    .overview-text .cl-visual-title {
+      padding: .75rem 1rem;
+      color: #fff;
+      background: linear-gradient(120deg, var(--navy), var(--blue));
+      font-size: .9rem;
+      font-weight: 800;
+    }
+    .overview-text .cl-visual-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+      gap: .65rem;
+      padding: .85rem;
+    }
+    .overview-text .cl-visual-item {
+      min-width: 0;
+      padding: .8rem .55rem;
+      text-align: center;
+      border: 1px solid #dce7f5;
+      border-radius: 12px;
+      background: #f7faff;
+    }
+    .overview-text .cl-visual-item span {
+      display: block;
+      margin-bottom: .35rem;
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .overview-text .cl-visual-item strong,
+    .overview-text .cl-visual-item small { display: block; }
+    .overview-text .cl-visual-item strong { color: var(--navy); font-size: .85rem; }
+    .overview-text .cl-visual-item small { margin-top: .25rem; color: #64748b; font-size: .7rem; line-height: 1.35; }
+    .overview-text .cl-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      padding: 1rem .7rem;
+      overflow-x: auto;
+    }
+    .overview-text .cl-flow-item {
+      min-width: 68px;
+      padding: .65rem .45rem;
+      text-align: center;
+      border-radius: 10px;
+      background: #eff5ff;
+      border: 1px solid #d5e3f7;
+    }
+    .overview-text .cl-flow-item span,
+    .overview-text .cl-flow-item strong { display: block; }
+    .overview-text .cl-flow-item span { font-size: 1.65rem; }
+    .overview-text .cl-flow-item strong { margin-top: .25rem; color: var(--navy); font-size: .68rem; }
+    .overview-text .cl-flow > b { color: var(--blue); font-size: 1.1rem; }
+    .overview-text .cl-lesson-visual figcaption {
+      padding: .7rem .9rem;
+      border-top: 1px solid #e3ebf6;
+      color: #4c5d73;
+      background: #fbfdff;
+      font-size: .78rem;
+      line-height: 1.5;
+    }
+    @media (max-width: 480px) {
+      .overview-text .cl-visual-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .overview-text .cl-flow { justify-content: flex-start; }
     }
 
   </style>
