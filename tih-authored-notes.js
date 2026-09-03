@@ -29,7 +29,7 @@
   // each one registers exactly one window.TIH_LESSON_NOTES[<courseId>].
   var BUNDLES = {
     'accounting-bookkeeping': 'accounting-bookkeeping-notes.js?v=1',
-    'computer-literacy': 'complit-notes.js?v=6',
+    'computer-literacy': 'complit-notes.js?v=7',
     'english-success':   'eng-notes.js?v=1',
     'ielts':             'ielts-notes.js?v=2',
     'toefl':             'toefl-notes.js?v=2',
