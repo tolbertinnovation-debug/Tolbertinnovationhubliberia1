@@ -109,11 +109,22 @@ var LibApps = (function () {
     });
   }
 
-  // Every learner-facing call carries the credentials the database re-checks.
+  // Writing carries the credentials the database re-checks, and refuses up
+  // front when nobody is signed in.
   function authRpc(fn, args) {
     var s = session();
     if (!s) return Promise.reject(new Error('LIBAPPS_AUTH_REQUIRED'));
     var a = { p_student_id: s.id, p_hash: s.hash };
+    for (var k in (args || {})) if (Object.prototype.hasOwnProperty.call(args, k)) a[k] = args[k];
+    return rpc(fn, a);
+  }
+
+  /* Reading and downloading need no account. The credentials are still sent
+     when someone is signed in, so the database can mark which apps they have
+     liked; a signed-out visitor sends nulls and simply sees no hearts. */
+  function openRpc(fn, args) {
+    var s = session();
+    var a = { p_student_id: s ? s.id : null, p_hash: s ? s.hash : null };
     for (var k in (args || {})) if (Object.prototype.hasOwnProperty.call(args, k)) a[k] = args[k];
     return rpc(fn, a);
   }
@@ -130,7 +141,7 @@ var LibApps = (function () {
 
   function browse(opts) {
     var o = opts || {};
-    return authRpc('libapps_browse', {
+    return openRpc('libapps_browse', {
       p_search:   o.search   || null,
       p_category: o.category || null,
       p_sort:     o.sort     || 'recent',
@@ -139,11 +150,11 @@ var LibApps = (function () {
     }).then(function (rows) { return rows || []; });
   }
 
-  function get(appId)          { return authRpc('libapps_get', { p_app_id: appId }).then(first); }
-  function byOwner(ownerId)    { return authRpc('libapps_by_owner', { p_owner_id: ownerId }).then(function (r) { return r || []; }); }
-  function categories()        { return authRpc('libapps_categories', {}).then(function (r) { return r || []; }); }
-  function profile(ownerId)    { return authRpc('libapps_profile', { p_owner_id: ownerId }).then(first); }
-  function comments(appId)     { return authRpc('libapps_comments_for', { p_app_id: appId }).then(function (r) { return r || []; }); }
+  function get(appId)          { return openRpc('libapps_get', { p_app_id: appId }).then(first); }
+  function byOwner(ownerId)    { return openRpc('libapps_by_owner', { p_owner_id: ownerId }).then(function (r) { return r || []; }); }
+  function categories()        { return openRpc('libapps_categories', {}).then(function (r) { return r || []; }); }
+  function profile(ownerId)    { return openRpc('libapps_profile', { p_owner_id: ownerId }).then(first); }
+  function comments(appId)     { return openRpc('libapps_comments_for', { p_app_id: appId }).then(function (r) { return r || []; }); }
 
   // ---------- writing ----------
 
@@ -197,7 +208,7 @@ var LibApps = (function () {
      libapps_download is the only function that reveals where the file
      actually lives, and it authenticates before it does. */
   function download(appId) {
-    return authRpc('libapps_download', { p_app_id: appId }).then(function (rows) {
+    return openRpc('libapps_download', { p_app_id: appId }).then(function (rows) {
       var row = first(rows);
       if (!row) throw new Error('LIBAPPS_NOT_FOUND');
       var filename = safeName(row.name) + (row.version ? '-' + safeName(row.version) : '') + '.apk';

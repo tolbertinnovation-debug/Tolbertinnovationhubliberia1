@@ -194,7 +194,7 @@
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=17"></script>
   <script src="hub-db.js?v=40"></script>
-  <script src="libapps-db.js?v=4"></script>
+  <script src="libapps-db.js?v=5"></script>
   <script src="libapps-ui.js?v=2"></script>
   <script src="main.js?v=18"></script>
   <script>
@@ -203,8 +203,21 @@
     var esc = LibUI.esc;
 
     var appId = new URLSearchParams(location.search).get('id') || '';
-    var me = LibApps.guard();      // sends a signed-out visitor to sign in
-    if (!me) return;
+    // Anyone can view and download. `me` is null for a signed-out visitor;
+    // liking, commenting and reporting prompt them to sign in when they try.
+    var me = LibApps.session();
+
+    // Liking/commenting/reporting need an identity. This turns a signed-out
+    // click into a friendly prompt instead of a silent failure.
+    function needAccount() {
+      if (me) return true;
+      var here = location.pathname.split('/').pop() + location.search;
+      LibUI.toast('Sign in to do that. Redirecting…');
+      setTimeout(function () {
+        location.href = 'hub-dashboard?next=' + encodeURIComponent(here);
+      }, 900);
+      return false;
+    }
 
     var elLoading = document.getElementById('laLoading');
     var elError   = document.getElementById('laError');
@@ -252,7 +265,7 @@
       }
 
       setLike(a.liked, a.like_count);
-      if (a.owner_id === me.id) {
+      if (me && a.owner_id === me.id) {
         var ed = document.getElementById('laOwnerEdit');
         ed.href = 'libapps-upload?edit=' + encodeURIComponent(a.id);
         ed.hidden = false;
@@ -275,6 +288,7 @@
       likeBtn.innerHTML = (liked ? '❤️' : '🤍') + ' <span id="laLikeCount">' + LibUI.count(n) + '</span>';
     }
     likeBtn.addEventListener('click', function () {
+      if (!needAccount()) return;
       likeBtn.disabled = true;
       LibApps.toggleLike(appId).then(function (r) {
         app.liked = r.liked; app.like_count = r.like_count;
@@ -315,8 +329,8 @@
     var countEl = document.getElementById('laCommentCount');
 
     function commentHTML(c) {
-      var mine = c.user_id === me.id;
-      var canDelete = mine || (app && app.owner_id === me.id);
+      var mine = me && c.user_id === me.id;
+      var canDelete = mine || (me && app && app.owner_id === me.id);
       return '<div class="la-comment" data-id="' + esc(c.id) + '">' +
         '<span class="la-avatar" aria-hidden="true">' + esc(LibUI.initials(c.user_name)) + '</span>' +
         '<div class="la-comment-body">' +
@@ -342,6 +356,19 @@
       });
     }
 
+    // A gentle nudge for signed-out visitors, so the prompt on submit is no surprise.
+    if (!me) {
+      var cf = document.getElementById('laCommentForm');
+      if (cf) {
+        var hint = document.createElement('p');
+        hint.style.cssText = 'font-size:.82rem;color:var(--text-muted);margin:.2rem 0 0;';
+        hint.innerHTML = 'You can read every comment without an account. ' +
+          '<a href="hub-dashboard?next=' + encodeURIComponent(location.pathname.split('/').pop() + location.search) +
+          '">Sign in</a> to add your own or to like this app.';
+        cf.parentNode.insertBefore(hint, cf.nextSibling);
+      }
+    }
+
     var form = document.getElementById('laCommentForm');
     var textEl = document.getElementById('laCommentText');
     var errEl = document.getElementById('laCommentErr');
@@ -349,6 +376,7 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (!needAccount()) return;
       var text = textEl.value.trim();
       var field = textEl.closest('.la-field');
       if (!text) {
@@ -390,6 +418,7 @@
 
     // ---------- report ----------
     document.getElementById('laReport').addEventListener('click', function () {
+      if (!needAccount()) return;
       LibUI.confirm({
         title: 'Report this app?',
         body: 'A TIH administrator will be told about "' + (app ? app.name : 'this app') +

@@ -209,9 +209,13 @@ stable
 security definer
 set search_path = public
 as $$
-declare v_q text := nullif(btrim(coalesce(p_search, '')), '');
+declare
+  v_q  text := nullif(btrim(coalesce(p_search, '')), '');
+  -- Reading the store needs no account. Credentials are still accepted, and
+  -- when they check out they mark which apps this viewer has already liked;
+  -- everyone else sees the like counts and no filled hearts.
+  v_me text := case when public.libapps_auth(p_student_id, p_hash) then p_student_id end;
 begin
-  perform public.libapps_require(p_student_id, p_hash);
   return query
     select a.id, a.owner_id, a.owner_name, a.name, a.description,
            a.category, a.version, a.package_name, a.min_android,
@@ -219,7 +223,7 @@ begin
            a.download_count, a.like_count, a.comment_count,
            a.created_at, a.updated_at,
            exists(select 1 from public.libapps_likes l
-                  where l.app_id = a.id and l.user_id = p_student_id)
+                  where l.app_id = a.id and l.user_id = v_me)
     from public.libapps_apps a
     where a.status = 'published'
       and (p_category is null or p_category in ('', 'all') or a.category = p_category)
@@ -255,8 +259,8 @@ stable
 security definer
 set search_path = public
 as $$
+declare v_me text := case when public.libapps_auth(p_student_id, p_hash) then p_student_id end;
 begin
-  perform public.libapps_require(p_student_id, p_hash);
   return query
     select a.id, a.owner_id, a.owner_name, a.name, a.description,
            a.category, a.version, a.package_name, a.min_android,
@@ -264,10 +268,10 @@ begin
            a.download_count, a.like_count, a.comment_count,
            a.created_at, a.updated_at,
            exists(select 1 from public.libapps_likes l
-                  where l.app_id = a.id and l.user_id = p_student_id)
+                  where l.app_id = a.id and l.user_id = v_me)
     from public.libapps_apps a
     where a.id = p_app_id
-      and (a.status = 'published' or a.owner_id = p_student_id);
+      and (a.status = 'published' or a.owner_id = v_me);
 end;
 $$;
 grant execute on function public.libapps_get(text, text, uuid) to anon, authenticated;
@@ -287,8 +291,8 @@ stable
 security definer
 set search_path = public
 as $$
+declare v_me text := case when public.libapps_auth(p_student_id, p_hash) then p_student_id end;
 begin
-  perform public.libapps_require(p_student_id, p_hash);
   return query
     select a.id, a.owner_id, a.owner_name, a.name, a.description,
            a.category, a.version, a.icon_url, a.file_size_mb,
@@ -296,7 +300,7 @@ begin
            a.status, a.removed_reason, a.created_at
     from public.libapps_apps a
     where a.owner_id = p_owner_id
-      and (a.status = 'published' or p_owner_id = p_student_id)
+      and (a.status = 'published' or p_owner_id = v_me)
     order by a.created_at desc;
 end;
 $$;
@@ -311,7 +315,6 @@ security definer
 set search_path = public
 as $$
 begin
-  perform public.libapps_require(p_student_id, p_hash);
   return query
     select coalesce(nullif(a.category, ''), 'Other'), count(*)::bigint
     from public.libapps_apps a
@@ -334,7 +337,6 @@ security definer
 set search_path = public
 as $$
 begin
-  perform public.libapps_require(p_student_id, p_hash);
   return query
     select s.id, s.name, s.created_at,
            count(a.id)::bigint,
@@ -360,7 +362,6 @@ security definer
 set search_path = public
 as $$
 begin
-  perform public.libapps_require(p_student_id, p_hash);
   return query
     select c.id, c.app_id, c.user_id, c.user_name, c.content, c.created_at
     from public.libapps_comments c
@@ -628,7 +629,9 @@ security definer
 set search_path = public
 as $$
 begin
-  perform public.libapps_require(p_student_id, p_hash);
+  -- Downloading needs no account either. The path is still only ever handed
+  -- out here, so it stays out of every listing, and the count is taken in the
+  -- same statement that reveals it.
   return query
     update public.libapps_apps a
        set download_count = a.download_count + 1

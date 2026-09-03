@@ -5,8 +5,11 @@ Supabase project the Learning Hub already uses, and on the same learner
 accounts, so anyone who signed up at `hub-apply.html` can use it with that
 login. There is no second account and no second database.
 
-**Publishing is administrator-only.** Members browse, download, like and
-comment; only an administrator can put an app in the store. See
+**Browsing and downloading are open to everyone — no sign-in.** A visitor can
+open the store, search it, read comments and download an APK without an
+account. Liking, commenting and reporting still need a signed-in TIH account
+(they attribute the action to a person), and **publishing is
+administrator-only** — only an administrator can put an app in the store. See
 [Who can publish](#5-who-can-publish) for how that is enforced and how to open
 it up later.
 
@@ -117,14 +120,19 @@ anybody can read it. The design assumes that:
 
 - Every LibApps table has row level security on **with no policies at all**.
   With the anon key you cannot read or write them — not even a `SELECT`.
-- Everything goes through `SECURITY DEFINER` functions that re-check the
-  member's id and password hash on every single call, exactly the way
-  `student_set_password()` in `supabase-schema.sql` already does. A forged
-  student id from the browser console gets `LIBAPPS_AUTH_REQUIRED` back.
+- Everything goes through `SECURITY DEFINER` functions. The **read** functions
+  (browse, get, profile, comments, and download) accept credentials but do not
+  require them: signed in, they mark which apps you have liked; signed out,
+  they just return the listing. The **write** functions (like, comment, report,
+  publish, edit, delete) re-check the member's id and password hash on every
+  call, exactly the way `student_set_password()` in `supabase-schema.sql` does.
+  A forged student id from the browser console gets `LIBAPPS_AUTH_REQUIRED`
+  back from any write.
 - **`apk_path` is never returned by any browse or read function.** The only way
-  to find out where a file lives is `libapps_download()`, which authenticates
-  first and counts the download in the same statement. "You need an account to
-  download" is a database rule, not a screen that can be skipped.
+  to find out where a file lives is `libapps_download()`, which counts the
+  download in the same statement that reveals the path, so the count cannot
+  drift. Reading it needs no account — the value of hiding it is that a file is
+  reachable only through the app it belongs to, never scraped from a listing.
 - A member's email, phone and password hash are never returned by the profile
   function.
 - Moderation reuses the existing `is_admin_hash()` gate, so the admin password

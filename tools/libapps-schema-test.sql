@@ -37,15 +37,6 @@ insert into public.app_admins values ('admin','hash-admin');
 DO $$
 DECLARE v_app uuid; v_app2 uuid; v_n int; v_b boolean; v_t text;
 BEGIN
-  -- ---------- AUTH GATE ----------
-  perform t_check('browse with wrong password is refused',
-    t_raises($q$ select * from libapps_browse('TIH-STU-AAA','WRONG') $q$, 'LIBAPPS_AUTH_REQUIRED'));
-  perform t_check('browse with empty password is refused',
-    t_raises($q$ select * from libapps_browse('TIH-STU-AAA','') $q$, 'LIBAPPS_AUTH_REQUIRED'));
-  perform t_check('browse for an unknown student is refused',
-    t_raises($q$ select * from libapps_browse('TIH-STU-NOPE','hash-musu') $q$, 'LIBAPPS_AUTH_REQUIRED'));
-  perform t_check('a suspended account is refused',
-    t_raises($q$ select * from libapps_browse('TIH-STU-CCC','hash-sam') $q$, 'LIBAPPS_AUTH_REQUIRED'));
   perform t_check('publish with wrong password is refused',
     t_raises($q$ select libapps_publish('TIH-STU-AAA','WRONG','{"name":"X","apk_path":"p"}'::jsonb,'hash-admin') $q$,
              'LIBAPPS_AUTH_REQUIRED'));
@@ -142,9 +133,29 @@ BEGIN
   perform libapps_download('TIH-STU-BBB','hash-james', v_app);
   select download_count into v_n from libapps_apps where id = v_app;
   perform t_check('download count incremented to 2', v_n = 2);
-  perform t_check('download without a valid account is refused',
-    t_raises($q$ select * from libapps_download('TIH-STU-BBB','WRONG',
-             (select id from libapps_apps limit 1)) $q$, 'LIBAPPS_AUTH_REQUIRED'));
+
+  -- ---------- READING IS PUBLIC (an app now exists) ----------
+  perform t_check('browse works with no credentials at all',
+    (select count(*) from libapps_browse(null::text, null::text)) >= 1);
+  perform t_check('browse works with empty credentials',
+    (select count(*) from libapps_browse('', '')) >= 1);
+  perform t_check('browse works with an unknown student id',
+    (select count(*) from libapps_browse('TIH-STU-NOPE', 'hash-musu')) >= 1);
+  perform t_check('an anonymous viewer sees no filled hearts',
+    (select liked from libapps_browse(null::text, null::text) limit 1) = false);
+  perform t_check('an anonymous visitor can download',
+    (select download_count from libapps_download(null::text, null::text, v_app)) >= 3);
+
+  -- ---------- WRITING STILL NEEDS A VALID ACCOUNT ----------
+  perform t_check('liking with no account is refused',
+    t_raises($q$ select libapps_toggle_like(null::text, null::text, (select id from libapps_apps limit 1)) $q$,
+             'LIBAPPS_AUTH_REQUIRED'));
+  perform t_check('commenting with no account is refused',
+    t_raises($q$ select libapps_add_comment(null::text, null::text, (select id from libapps_apps limit 1), 'x') $q$,
+             'LIBAPPS_AUTH_REQUIRED'));
+  perform t_check('a suspended account cannot write',
+    t_raises($q$ select libapps_toggle_like('TIH-STU-CCC','hash-sam', (select id from libapps_apps limit 1)) $q$,
+             'LIBAPPS_AUTH_REQUIRED'));
 
   -- ---------- OWNERSHIP ----------
   perform t_check('a member cannot edit an app even with an admin hash they do not own',

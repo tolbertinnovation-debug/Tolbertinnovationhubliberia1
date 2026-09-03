@@ -129,7 +129,7 @@
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=17"></script>
   <script src="hub-db.js?v=40"></script>
-  <script src="libapps-db.js?v=4"></script>
+  <script src="libapps-db.js?v=5"></script>
   <script src="libapps-ui.js?v=2"></script>
   <script src="main.js?v=18"></script>
   <script>
@@ -137,10 +137,13 @@
     'use strict';
     var esc = LibUI.esc;
 
-    var me = LibApps.guard();
-    if (!me) return;
-
-    var who = new URLSearchParams(location.search).get('id') || me.id;
+    // A builder's profile is public — linked from every card in the store.
+    var me = LibApps.session();
+    var who = new URLSearchParams(location.search).get('id') || (me && me.id);
+    if (!who) {
+      location.replace('libapps');   // no profile named and nobody signed in
+      return;
+    }
 
     function fail(msg) {
       document.getElementById('laLoading').hidden = true;
@@ -174,11 +177,11 @@
       document.getElementById('laName').textContent = p.name;
       document.getElementById('laJoined').textContent =
         'TIH member since ' + LibUI.date(p.joined_at) +
-        (who === me.id ? ' · this is your public profile' : '');
+        (me && who === me.id ? ' · this is your public profile' : '');
       document.getElementById('laStatApps').textContent  = LibUI.count(p.app_count);
       document.getElementById('laStatDl').textContent    = LibUI.count(p.download_total);
       document.getElementById('laStatLikes').textContent = LibUI.count(p.like_total);
-      if (who === me.id) document.getElementById('laMine').hidden = false;
+      if (me && who === me.id) document.getElementById('laMine').hidden = false;
 
       document.getElementById('laCount').textContent = apps.length
         ? apps.length + (apps.length === 1 ? ' app' : ' apps') + ' by ' + p.name

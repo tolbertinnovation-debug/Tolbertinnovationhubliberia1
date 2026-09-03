@@ -44,31 +44,7 @@
 
   <main id="la-main" class="la-main">
     <div class="container">
-      <!-- ============ SIGNED OUT: the locked landing ============ -->
-      <section id="laGate" class="la-gate" hidden aria-labelledby="laGateTitle">
-        <span class="la-eyebrow">📱 LibApps</span>
-        <h1 id="laGateTitle">Liberian apps, built and published by TIH.</h1>
-        <p>
-          LibApps is the app store inside Tolbert Innovation Hub. Download the Android apps
-          TIH publishes, rate them and talk about them. It is free, and it runs on the same
-          account you already use for the Learning Hub.
-        </p>
-        <div class="la-gate-stats" id="laGateStats" hidden>
-          <div class="la-gate-stat"><b id="laStatApps">—</b><span>Apps published</span></div>
-          <div class="la-gate-stat"><b id="laStatDl">—</b><span>Downloads</span></div>
-          <div class="la-gate-stat"><b id="laStatDev">—</b><span>Builders</span></div>
-        </div>
-        <div class="la-gate-actions">
-          <a class="la-btn la-btn-red" href="hub-dashboard?next=libapps">Sign in to browse</a>
-          <a class="la-btn la-btn-ghost" href="hub-apply">Create a free account</a>
-        </div>
-        <p style="margin-top:1.4rem;margin-bottom:0;font-size:.84rem;color:rgba(255,255,255,.72);">
-          An account is needed to browse, download or comment. It takes a minute and costs nothing.
-        </p>
-      </section>
-
-      <!-- ============ SIGNED IN: the store ============ -->
-      <div id="laStore" hidden>
+      <div id="laStore">
         <div class="la-head">
           <span class="la-eyebrow">📱 LibApps</span>
           <h1>Apps from Tolbert Innovation Hub</h1>
@@ -164,7 +140,7 @@
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=17"></script>
   <script src="hub-db.js?v=40"></script>
-  <script src="libapps-db.js?v=4"></script>
+  <script src="libapps-db.js?v=5"></script>
   <script src="libapps-ui.js?v=2"></script>
   <script src="main.js?v=18"></script>
   <script>
@@ -172,7 +148,6 @@
     'use strict';
     var esc = LibUI.esc;
 
-    var gate    = document.getElementById('laGate');
     var store   = document.getElementById('laStore');
     var grid    = document.getElementById('laGrid');
     var state   = document.getElementById('laState');
@@ -183,18 +158,6 @@
 
     var category = 'all';
     var reqSeq = 0;          // guards against a slow response overwriting a newer one
-
-    // ---------- signed out ----------
-    function showGate() {
-      gate.hidden = false;
-      LibApps.stats().then(function (s) {
-        if (!s) return;
-        document.getElementById('laStatApps').textContent = LibUI.count(s.app_count);
-        document.getElementById('laStatDl').textContent   = LibUI.count(s.download_count);
-        document.getElementById('laStatDev').textContent  = LibUI.count(s.uploader_count);
-        document.getElementById('laGateStats').hidden = false;
-      });
-    }
 
     // ---------- cards ----------
     function cardHTML(a) {
@@ -291,15 +254,12 @@
     sortSel.addEventListener('change', load);
 
     // ---------- start ----------
+    // LibApps is open to everyone: no sign-in to browse or download. The
+    // upload button shows only to an administrator, and "My apps" only to a
+    // signed-in member.
     function start() {
-      if (!LibApps.session()) { showGate(); return; }
-      store.hidden = false;
-      // Publishing is administrator-only for now, so a member is not shown a
-      // button that would only refuse them.
-      if (LibApps.canUpload()) {
-        document.getElementById('laUploadBtn').hidden = false;
-        document.getElementById('laMineBtn').hidden = false;
-      }
+      if (LibApps.session()) document.getElementById('laMineBtn').hidden = false;
+      if (LibApps.canUpload()) document.getElementById('laUploadBtn').hidden = false;
       LibApps.categories().then(renderFilters).catch(function () { filters.innerHTML = ''; });
       load();
     }
