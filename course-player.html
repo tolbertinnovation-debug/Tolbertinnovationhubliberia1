@@ -42,7 +42,7 @@
   <script src="tih-video-runtime.js?v=2"></script>
   <!-- The five authored note bundles (762 KB combined) are fetched on demand
        for the open course only, by tih-authored-notes.js. -->
-  <script src="tih-authored-notes.js?v=24"></script>
+  <script src="tih-authored-notes.js?v=25"></script>
   <script src="assets/qrcode.js"></script>
   <script src="cert-template.js?v=6"></script>
   <style>
@@ -1110,6 +1110,36 @@
       .overview-text .cl-visual-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .overview-text .cl-flow { justify-content: flex-start; }
     }
+
+  
+    /* IELTS Writing Task 1 data visuals and model observations */
+    .overview-text .ielts-chart-wrap { padding: 1rem; overflow-x: auto; }
+    .overview-text .ielts-svg-chart { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto; }
+    .overview-text .ielts-model-line { margin-top: .65rem; padding: .65rem .75rem; border-left: 4px solid var(--red); border-radius: 7px; background: #fff4f5; color: #313c50; }
+    .overview-text .ielts-pie-row { display: flex; align-items: center; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
+    .overview-text .ielts-pie { width: 170px; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(#0d3d7a 0 40%, #1769d2 40% 70%, #e51d2a 70% 90%, #f3b33d 90%); box-shadow: inset 0 0 0 2px #fff; }
+    .overview-text .ielts-pie-row ul { margin: 0; padding: 0; list-style: none; }
+    .overview-text .ielts-pie-row li { margin: .35rem 0; }
+    .overview-text .swatch { display: inline-block; width: .8rem; height: .8rem; margin-right: .4rem; border-radius: 3px; }
+    .overview-text .swatch.s1 { background:#0d3d7a; }.overview-text .swatch.s2 { background:#1769d2; }.overview-text .swatch.s3 { background:#e51d2a; }.overview-text .swatch.s4 { background:#f3b33d; }
+    .overview-text .ielts-sample-table table { min-width: 380px; margin: 0 auto; }
+    .overview-text .ielts-process,.overview-text .ielts-map-change { display:flex; align-items:center; justify-content:center; gap:.55rem; min-width:520px; }
+    .overview-text .ielts-process span { display:grid; place-items:center; gap:.35rem; min-width:90px; padding:.75rem; border:1px solid #d7e4f6; border-radius:12px; background:#f5f9ff; font-size:1.8rem; }
+    .overview-text .ielts-process b { font-size:.7rem; color:var(--navy); }
+    .overview-text .ielts-map-change section { min-width:205px; padding:.8rem; text-align:center; border:1px solid #d7e4f6; border-radius:12px; background:#f7faff; line-height:1.9; }
+    .overview-text .ielts-map-change section>b { display:block; margin-bottom:.3rem; color:var(--navy); }
+    .overview-text .ielts-task-structure { display:grid; gap:.55rem; max-width:620px; margin:auto; }
+    .overview-text .ielts-task-structure span { display:grid; grid-template-columns:2rem 1fr; padding:.7rem; border:1px solid #d7e4f6; border-radius:10px; background:#f7faff; color:var(--navy); font-weight:700; }
+    .overview-text .ielts-task-structure span>b { grid-row:1/3; display:grid; place-items:center; color:#fff; background:var(--blue); border-radius:50%; }
+    .overview-text .ielts-task-structure small { color:#607089; font-weight:500; }
+    .overview-text .ielts-language-scale,.overview-text .ielts-analysis-path { display:grid; gap:.5rem; max-width:620px; margin:auto; }
+    .overview-text .ielts-language-scale span,.overview-text .ielts-analysis-path span { padding:.7rem .8rem; border:1px solid #dbe6f4; border-radius:9px; background:#f8fbff; color:#263b59; }
+    .overview-text .ielts-language-scale b { display:inline-block; min-width:2rem; color:var(--red); font-size:1.15rem; }
+    .overview-text .ielts-compare { display:grid; grid-template-columns:repeat(3,1fr); gap:.65rem; }
+    .overview-text .ielts-compare div { padding:.8rem; text-align:center; border-radius:11px; background:#f4f8fe; border:1px solid #d8e4f5; }
+    .overview-text .ielts-compare b,.overview-text .ielts-compare strong { display:block; }
+    .overview-text .ielts-compare b { color:var(--red); font-size:.72rem; text-transform:uppercase; }.overview-text .ielts-compare strong { margin-top:.3rem; color:var(--navy); font-size:.83rem; }
+    @media(max-width:520px){.overview-text .ielts-compare{grid-template-columns:1fr}.overview-text .ielts-pie{width:145px}}
 
   </style>
 </head>
