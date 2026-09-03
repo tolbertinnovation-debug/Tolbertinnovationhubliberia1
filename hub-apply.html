@@ -614,7 +614,7 @@
             occupation: String(fd.get('occupation') || '').trim(),
             goals: goals, tracks: tracks, referral: String(fd.get('referral') || '')
           });
-          showConfirm(app, name, email, phone, location, education, goals, tracks, res.savedToCloud);
+          window.location.href = 'hub-dashboard';
         }).catch(function () {
           submitBtn.disabled = false;
           submitBtn.textContent = 'Create Account & Submit →';
