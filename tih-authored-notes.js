@@ -50,7 +50,8 @@
     'grant-writing':    'grant-writing-notes.js?v=1',
     'financial-literacy': 'financial-literacy-notes.js?v=1',
     'healthtech':        'healthtech-notes.js?v=1',
-    'remote-work':       'remote-work-notes.js?v=1'
+    'remote-work':       'remote-work-notes.js?v=1',
+    'ai':                'ai-notes.js?v=1'
   };
 
 
