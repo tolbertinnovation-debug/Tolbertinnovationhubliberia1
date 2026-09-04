@@ -56,7 +56,8 @@
     'wassce-mathematics': 'wassce-mathematics-notes.js?v=1',
     'wassce-english': 'wassce-english-notes.js?v=1',
     'wassce-biology': 'wassce-biology-notes.js?v=1',
-    'wassce-chemistry': 'wassce-chemistry-notes.js?v=1'
+    'wassce-chemistry': 'wassce-chemistry-notes.js?v=1',
+    'wassce-physics': 'wassce-physics-notes.js?v=1'
   };
 
 
