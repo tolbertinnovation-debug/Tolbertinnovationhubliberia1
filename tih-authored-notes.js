@@ -35,7 +35,7 @@
     'toefl':             'toefl-notes.js?v=7',
     'ph-career':         'ph-notes.js?v=3',
     'sat':               'sat-notes.js?v=4',
-    'ai-cybersecurity':  'aicyber-notes.js?v=1',
+    'ai-cybersecurity':  'aicyber-notes.js?v=2',
     'android':           'android-notes.js?v=1',
     'agritech':          'agritech-notes.js?v=1',
     'entrepreneurship':  'entrepreneurship-notes.js?v=1'
