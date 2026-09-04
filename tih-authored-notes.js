@@ -45,7 +45,8 @@
     'marketing':        'marketing-notes.js?v=1',
     'cybersecurity':    'cybersecurity-notes.js?v=1',
     'project-mgmt':     'project-mgmt-notes.js?v=1',
-    'office':           'office-notes.js?v=1'
+    'office':           'office-notes.js?v=1',
+    'leadership':       'leadership-notes.js?v=1'
   };
 
 
