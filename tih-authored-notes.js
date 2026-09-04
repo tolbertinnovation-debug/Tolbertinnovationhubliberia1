@@ -42,7 +42,8 @@
     'webdev':           'webdev-notes.js?v=1',
     'data':             'data-notes.js?v=1',
     'design':           'design-notes.js?v=1',
-    'marketing':        'marketing-notes.js?v=1'
+    'marketing':        'marketing-notes.js?v=1',
+    'cybersecurity':    'cybersecurity-notes.js?v=1'
   };
 
 
