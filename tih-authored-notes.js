@@ -43,7 +43,8 @@
     'data':             'data-notes.js?v=1',
     'design':           'design-notes.js?v=1',
     'marketing':        'marketing-notes.js?v=1',
-    'cybersecurity':    'cybersecurity-notes.js?v=1'
+    'cybersecurity':    'cybersecurity-notes.js?v=1',
+    'project-mgmt':     'project-mgmt-notes.js?v=1'
   };
 
 
