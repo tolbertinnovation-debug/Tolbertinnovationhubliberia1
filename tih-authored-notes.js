@@ -52,7 +52,8 @@
     'healthtech':        'healthtech-notes.js?v=1',
     'remote-work':       'remote-work-notes.js?v=1',
     'ai':                'ai-notes.js?v=1',
-    'bible-foundations': 'bible-foundations-notes.js?v=1'
+    'bible-foundations': 'bible-foundations-notes.js?v=1',
+    'wassce-mathematics': 'wassce-mathematics-notes.js?v=1'
   };
 
 
