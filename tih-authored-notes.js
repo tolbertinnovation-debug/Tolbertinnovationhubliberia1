@@ -36,7 +36,7 @@
     'ph-career':         'ph-notes.js?v=3',
     'sat':               'sat-notes.js?v=4',
     'ai-cybersecurity':  'aicyber-notes.js?v=2',
-    'android':           'android-notes.js?v=1',
+    'android':           'android-notes.js?v=2',
     'agritech':          'agritech-notes.js?v=1',
     'entrepreneurship':  'entrepreneurship-notes.js?v=2',
     'webdev':           'webdev-notes.js?v=1'
