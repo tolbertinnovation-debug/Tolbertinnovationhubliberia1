@@ -28,7 +28,7 @@
   // courseId -> bundle filename. Keep in step with the files themselves;
   // each one registers exactly one window.TIH_LESSON_NOTES[<courseId>].
   var BUNDLES = {
-    'accounting-bookkeeping': 'accounting-bookkeeping-notes.js?v=1',
+    'accounting-bookkeeping': 'accounting-bookkeeping-notes.js?v=2',
     'computer-literacy': 'complit-notes.js?v=17',
     'english-success':   'eng-notes.js?v=2',
     'ielts':             'ielts-notes.js?v=18',
