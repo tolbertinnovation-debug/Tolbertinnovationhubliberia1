@@ -39,7 +39,8 @@
     'android':           'android-notes.js?v=2',
     'agritech':          'agritech-notes.js?v=1',
     'entrepreneurship':  'entrepreneurship-notes.js?v=2',
-    'webdev':           'webdev-notes.js?v=1'
+    'webdev':           'webdev-notes.js?v=1',
+    'data':             'data-notes.js?v=1'
   };
 
 
