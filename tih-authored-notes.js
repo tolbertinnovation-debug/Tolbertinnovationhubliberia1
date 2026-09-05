@@ -58,7 +58,8 @@
     'wassce-biology': 'wassce-biology-notes.js?v=1',
     'wassce-chemistry': 'wassce-chemistry-notes.js?v=1',
     'wassce-physics': 'wassce-physics-notes.js?v=1',
-    'wassce-economics': 'wassce-economics-notes.js?v=1'
+    'wassce-economics': 'wassce-economics-notes.js?v=1',
+    'wassce-civic-education': 'wassce-civic-education-notes.js?v=1'
   };
 
 
