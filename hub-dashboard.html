@@ -611,7 +611,7 @@
        loadCourseData() before the dashboard renders its course cards. -->
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=18"></script>
-  <script src="hub-db.js?v=41"></script>
+  <script src="hub-db.js?v=42"></script>
   <script src="hub-pay.js?v=1"></script>
   <script>
     var esc = HubDB.esc;
@@ -730,7 +730,22 @@
 
     document.getElementById('logoutBtn').addEventListener('click', function () {
       HubDB.studentLogout();
-      location.reload();
+      currentStudent = null;
+      // Switch back to the sign-in view IN PLACE. This used to call
+      // location.reload(), which on a slow connection froze the phone for a long
+      // time: the whole dashboard (with the course catalog loaded in memory) had
+      // to be torn down and every file fetched again just to show a login form.
+      // Nothing here touches the network, so logging out is now instant.
+      document.getElementById('shell').classList.remove('show');
+      var ls = document.getElementById('loginScreen');
+      if (ls) ls.style.display = '';
+      ['loginId', 'loginPass'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      var fb = document.getElementById('loginFeedback');
+      if (fb) fb.textContent = '';
+      window.scrollTo(0, 0);
     });
 
     /* ---- Views / bottom nav ---- */

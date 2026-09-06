@@ -471,13 +471,37 @@ var HubDB = (function () {
     purgeLearnerState();                        // new learner: start clean
     try { localStorage.setItem('tih_hub_last_student', newId); } catch (e) {}
   }
+  // RESCUE A STRANDED ACCOUNT.
+  // An account created before cloud saving worked exists ONLY in this browser,
+  // so it can never sign in on another phone or computer — the learner is told
+  // "No account found" everywhere else. Push it up so the SAME account works
+  // through the student_login RPC from any device. The upsert INSERTs a brand-new
+  // id (allowed by the stu_insert_anon policy) and simply no-ops for a row the
+  // cloud already has. Tried once per account per device, best effort, never
+  // blocks and never throws.
+  function healLocalAccountToCloud(s) {
+    if (!cloud() || !s || !s.id || !s.passwordHash) return;
+    var mark = 'tih_hub_cloud_ok_' + s.id;
+    try { if (localStorage.getItem(mark)) return; } catch (e) {}
+    fire(cloud().pushStudent(s).then(function (okd) {
+      if (okd) { try { localStorage.setItem(mark, '1'); } catch (e) {} }
+      return okd;
+    }));
+  }
   // Init-time guard: if a page loads with a session that doesn't match the
   // learner this browser's cache belongs to (any path that skipped the login
   // flow), clean up immediately so no page ever renders another account's data.
   (function () {
     try {
       var sess = getJSON(KEYS.studentSession, null);
-      if (sess && sess.id) switchAccountCleanup(sess.id);
+      if (sess && sess.id) {
+        switchAccountCleanup(sess.id);
+        // Rescue a browser-only account in the background. Deferred so it never
+        // competes with first paint on a slow connection.
+        setTimeout(function () {
+          try { var s = findStudent(sess.id); if (s) healLocalAccountToCloud(s); } catch (e) {}
+        }, 3000);
+      }
     } catch (e) {}
   })();
   /* ---- Supabase Auth bridge (durable, cross-device credential) ----
@@ -609,6 +633,11 @@ var HubDB = (function () {
   function verifyStudentSession() {
     var C = cloud();
     var localSess = getJSON(KEYS.studentSession, null);
+    // Rescue a browser-only account right away, without waiting on the Auth
+    // round-trip below (which can be slow when the SDK has to come from a CDN).
+    if (localSess && localSess.id) {
+      try { var pre = findStudent(localSess.id); if (pre) healLocalAccountToCloud(pre); } catch (e) {}
+    }
     var authP = (C && C.studentMe) ? C.studentMe().catch(function () { return null; }) : Promise.resolve(null);
     return authP.then(function (meRow) {
       if (meRow && meRow.status !== 'suspended') {
