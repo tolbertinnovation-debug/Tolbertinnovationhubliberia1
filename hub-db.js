@@ -372,13 +372,25 @@ var HubDB = (function () {
           ])
         : Promise.resolve(false);
       return save.then(function (savedToCloud) {
-        // If that first attempt didn't land (slow or dropped connection, which
+        // If the profile-row mirror didn't land (slow or dropped connection, which
         // is common on the connections many learners are on), queue it so the
-        // outbox keeps retrying until the central DB confirms it. Without this
-        // the account existed ONLY on the signing-up device, with no retry and
-        // no warning, so the learner could never sign in anywhere else.
+        // outbox keeps retrying until the central DB confirms it. Without this the
+        // profile existed ONLY on the signing-up device.
         if (!savedToCloud) outboxAdd('student.upsert', student);
-        return { ok: true, student: student, savedToCloud: !!savedToCloud };
+        // THEN create the durable Supabase Auth account and link the profile: the
+        // SAME email + password now works on any phone, browser or private window.
+        // Auth is an authoritative write (not the best-effort mirror the students
+        // row is), so a new account is never silently device-only again. Run after
+        // the row push so student_claim has a row to link; capped so a slow network
+        // never blocks sign-up (the account still links on the learner's next login
+        // if this attempt is cut short).
+        var authP = Promise.race([
+          provisionStudentAuth(student, data.password, hash, email),
+          new Promise(function (resolve) { setTimeout(function () { resolve(false); }, 8000); })
+        ]);
+        return authP.then(function (authLinked) {
+          return { ok: true, student: student, savedToCloud: !!savedToCloud, authLinked: !!authLinked };
+        });
       });
     });
   }
@@ -468,6 +480,43 @@ var HubDB = (function () {
       if (sess && sess.id) switchAccountCleanup(sess.id);
     } catch (e) {}
   })();
+  /* ---- Supabase Auth bridge (durable, cross-device credential) ----
+     New students get a real Supabase Auth account so the SAME email + password
+     works on any device. Existing (pre-Auth) accounts are linked to Auth the
+     next time they log in. All of this is best-effort and additive: the student
+     profile still lives in the students table keyed by its TIH-STU- id, and the
+     legacy student_login RPC keeps working when Auth / the SDK is unavailable. */
+  // Create-or-sign-in the Auth account for this student, then link the profile
+  // (student_claim proves the password hash). Resolves true when the profile is
+  // linked to Auth, false otherwise. Never throws.
+  function provisionStudentAuth(student, plainPassword, hash, login) {
+    var C = cloud();
+    if (!C || !C.studentAuthSignUp || !student || !student.email || !plainPassword) {
+      return Promise.resolve(false);
+    }
+    function claim() {
+      return C.studentClaim(login || student.email, hash).then(function (row) { return !!row; });
+    }
+    return C.studentAuthSignUp(student.email, plainPassword).then(function (up) {
+      // Fresh Auth account with an active session → link straight away.
+      if (up && up.ok && up.hasSession) return claim();
+      // Account already existed, or signUp returned a user without a session
+      // (email confirmation on). Sign in to obtain a session, then link.
+      return C.studentAuthSignIn(student.email, plainPassword).then(function (si) {
+        if (si && si.ok && si.hasSession) return claim();
+        return false; // e.g. email not yet confirmed — profile links on next login
+      });
+    }).catch(function () { return false; });
+  }
+  // Fire-and-forget upgrade of a legacy account to Supabase Auth. Called after a
+  // successful legacy login, when we (only then) hold the learner's plaintext
+  // password, so the SAME credentials become usable on any device next time.
+  function maybeUpgradeToAuth(student, plainPassword, hash) {
+    if (!student || !student.auth_user_id) { // already linked → nothing to do
+      fire(provisionStudentAuth(student, plainPassword, hash, student && student.email));
+    }
+  }
+
   // Finalise a successful login: refresh local cache, set session keys.
   function completeStudentLogin(s) {
     switchAccountCleanup(s.id); // never inherit another account's unlocks
@@ -489,32 +538,102 @@ var HubDB = (function () {
     if (cloud()) { fire(cloud().pushStudent(s)); fire(cloud().touchStudentLogin(s.id)); }
     return { ok: true, student: s, mustChangePassword: s.mustChangePassword };
   }
+  // Legacy cross-device login: the student_login SECURITY DEFINER RPC (SHA-256
+  // hash over plain fetch, no CDN needed), then the local cache when offline.
+  // On success it also upgrades the account to Supabase Auth in the background,
+  // using the plaintext we hold only at this moment, so the SAME credentials
+  // work on any device from next time.
+  function legacyStudentLogin(idOrEmail, hash, plainPassword) {
+    var cloudTry = cloud()
+      ? cloud().studentLogin(idOrEmail, hash).catch(function () { return null; })
+      : Promise.resolve(null);
+    return cloudTry.then(function (cloudStudent) {
+      if (cloudStudent) {
+        maybeUpgradeToAuth(cloudStudent, plainPassword, hash);
+        return completeStudentLogin(cloudStudent);
+      }
+      // Fall back to the local account (offline / cloud unconfigured).
+      var s = findStudent(idOrEmail);
+      if (!s) return { ok: false, error: 'No account found. Check your Student ID or email.' };
+      if (s.status === 'suspended') return { ok: false, error: 'This account is suspended. Contact TIH support.' };
+      if (hash !== s.passwordHash) return { ok: false, error: 'Incorrect password. Try again or contact support on WhatsApp.' };
+      maybeUpgradeToAuth(s, plainPassword, hash);
+      return completeStudentLogin(s);
+    });
+  }
   function studentLogin(idOrEmail, password) {
     return sha256(password).then(function (hash) {
-      // 1) Try the central database first (works from any device).
-      var cloudTry = cloud()
-        ? cloud().studentLogin(idOrEmail, hash).catch(function () { return null; })
-        : Promise.resolve(null);
-      return cloudTry.then(function (cloudStudent) {
-        if (cloudStudent) return completeStudentLogin(cloudStudent);
-        // 2) Fall back to the local account (offline / cloud unconfigured).
-        var s = findStudent(idOrEmail);
-        if (!s) return { ok: false, error: 'No account found. Check your Student ID or email.' };
-        if (s.status === 'suspended') return { ok: false, error: 'This account is suspended. Contact TIH support.' };
-        if (hash !== s.passwordHash) return { ok: false, error: 'Incorrect password. Try again or contact support on WhatsApp.' };
-        return completeStudentLogin(s);
+      var C = cloud();
+      // 1) Supabase Auth first — the durable credential that works from any
+      //    device. Auth is keyed by email, so this path applies when the learner
+      //    signs in with their email (Student-ID logins go straight to legacy).
+      var canAuth = C && C.studentAuthSignIn && /@/.test(String(idOrEmail || ''));
+      var authP = canAuth ? C.studentAuthSignIn(idOrEmail, password) : Promise.resolve(null);
+      return authP.then(function (si) {
+        if (si && si.ok && si.hasSession) {
+          // Signed in to Auth. Load the linked profile; if this account predates
+          // Auth and isn't linked yet, claim it now (proves the password hash).
+          return C.studentMe().then(function (meRow) {
+            if (meRow) return completeStudentLogin(meRow);
+            return C.studentClaim(idOrEmail, hash).then(function (claimed) {
+              if (claimed) return completeStudentLogin(claimed);
+              // Auth user with no matching profile row (rare) — legacy lookup.
+              return legacyStudentLogin(idOrEmail, hash, password);
+            });
+          });
+        }
+        // 2) Auth rejected with a real credential error (not a network / SDK / not-
+        //    -yet-confirmed issue) AND there is no legacy profile for this email:
+        //    surface "incorrect password" rather than silently trying local. But
+        //    to keep existing learners working, always try the legacy path first;
+        //    it returns a precise error when the account genuinely doesn't match.
+        return legacyStudentLogin(idOrEmail, hash, password);
       });
     });
   }
   function studentSession() { return getJSON(KEYS.studentSession, null); }
   function studentLogout() {
     try { localStorage.removeItem(KEYS.studentSession); } catch (e) {}
+    // End the durable Supabase Auth session too, so logout means logged out on
+    // this device. It never deletes the account — the credential lives in
+    // Supabase Auth and the profile stays in the students table.
+    var C = cloud();
+    if (C && C.studentAuthSignOut) fire(C.studentAuthSignOut());
+  }
+  // Cross-device session check for gated pages (the dashboard). Resolves to the
+  // student profile when a durable Supabase Auth session exists — refreshing the
+  // local cache so the SAME account shows on a brand-new device / private window
+  // that has no local session at all. Falls back to the local session for legacy
+  // (pre-Auth) accounts and offline use. Never throws; resolves null when nobody
+  // is signed in.
+  function verifyStudentSession() {
+    var C = cloud();
+    var localSess = getJSON(KEYS.studentSession, null);
+    var authP = (C && C.studentMe) ? C.studentMe().catch(function () { return null; }) : Promise.resolve(null);
+    return authP.then(function (meRow) {
+      if (meRow && meRow.status !== 'suspended') {
+        // Durable Auth session — the source of truth across devices.
+        return completeStudentLogin(meRow).student;
+      }
+      // No Auth session: honour the local session (legacy accounts / offline).
+      if (localSess && localSess.id) {
+        var s = findStudent(localSess.id);
+        return (s && s.status !== 'suspended') ? s : (s ? null : localSess);
+      }
+      return null;
+    }).catch(function () {
+      return (localSess && localSess.id) ? (findStudent(localSess.id) || localSess) : null;
+    });
   }
   function changeStudentPassword(studentId, newPassword) {
     return sha256(newPassword).then(function (newHash) {
       var s = findStudent(studentId);
       var oldHash = s && s.passwordHash;
       var C = cloud();
+      // Keep Supabase Auth in step with the new password, so the SAME (new)
+      // password keeps working across devices. Best-effort: only takes effect
+      // when this device holds an Auth session; legacy accounts just skip it.
+      if (C && C.studentAuthUpdatePassword) fire(C.studentAuthUpdatePassword(newPassword));
       // Server-verified change: prove the current password via student_set_password.
       // This lets us drop the blanket anon UPDATE that allowed account takeover.
       if (C && C.studentSetPasswordRpc && oldHash) {
@@ -1111,6 +1230,7 @@ var HubDB = (function () {
     studentLogin: studentLogin,
     studentSession: studentSession,
     studentLogout: studentLogout,
+    verifyStudentSession: verifyStudentSession,
     changeStudentPassword: changeStudentPassword,
     // admin auth
     ensureAdminAccount: ensureAdminAccount,

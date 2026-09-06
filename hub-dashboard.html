@@ -610,8 +610,8 @@
        login form. They load once, after a successful sign-in, via
        loadCourseData() before the dashboard renders its course cards. -->
   <script src="hub-config.js?v=4"></script>
-  <script src="hub-cloud.js?v=17"></script>
-  <script src="hub-db.js?v=40"></script>
+  <script src="hub-cloud.js?v=18"></script>
+  <script src="hub-db.js?v=41"></script>
   <script src="hub-pay.js?v=1"></script>
   <script>
     var esc = HubDB.esc;
@@ -1341,6 +1341,33 @@
           enterDashboard();
           if (s.mustChangePassword) document.getElementById('forcePassModal').classList.add('open');
         }
+      }
+      // Cross-device restore: if a durable Supabase Auth session exists, enter the
+      // dashboard even when THIS device has no local session yet (a new phone, a
+      // different browser, or a private window). Unauthenticated visitors fall
+      // through to the login view — the gate is a real session, not a local flag.
+      if (HubDB.verifyStudentSession) {
+        HubDB.verifyStudentSession().then(function (student) {
+          if (student && student.status !== 'suspended' && !currentStudent) {
+            currentStudent = student;
+            enterDashboard();
+            if (student.mustChangePassword) document.getElementById('forcePassModal').classList.add('open');
+          }
+        }).catch(function () {});
+      }
+      // If the Supabase Auth session ends (here or in another tab), return the
+      // learner to the login view instead of leaving a stale dashboard open. The
+      // hadAuth guard ensures this only ever affects learners who were actually
+      // signed in through Auth — legacy (local-session) learners are untouched.
+      if (typeof HubCloud !== 'undefined' && HubCloud.onStudentAuthChange) {
+        var hadAuth = false;
+        HubCloud.onStudentAuthChange(function (event, session) {
+          if (session) hadAuth = true;
+          if (event === 'SIGNED_OUT' && hadAuth && currentStudent) {
+            try { HubDB.studentLogout(); } catch (e) {}
+            location.reload();
+          }
+        });
       }
     });
   </script>

@@ -336,6 +336,7 @@ var HubCloud = (function () {
       location: r.location, applicationId: r.application_id,
       passwordHash: r.password_hash, mustChangePassword: r.must_change_password !== false,
       courses: r.courses || [], lastLoginAt: r.last_login_at,
+      auth_user_id: r.auth_user_id || null,
       loginHistory: [], adminNotes: r.admin_notes || []
     };
   }
@@ -578,6 +579,112 @@ var HubCloud = (function () {
     };
   }
 
+  // ---- student auth (Supabase Auth: durable, cross-device credential) ----
+  // New students get a real Supabase Auth account so the SAME email + password
+  // works on any phone, browser or private window. Existing students are linked
+  // to Auth automatically on their next login. Every call here needs the SDK
+  // (db.auth / db.rpc carry the signed-in user's JWT, which plain fetch with the
+  // anon key cannot), so each one degrades to a null / {ok:false,noSdk:true}
+  // no-op when the CDN can't load — in that case the legacy student_login RPC
+  // (plain fetch, no CDN) still logs in any account already in the students table.
+  function studentAuthSignUp(email, password) {
+    return ready().then(function (db) {
+      if (!db) return { ok: false, noSdk: true };
+      return db.auth.signUp({ email: String(email || '').trim().toLowerCase(), password: password })
+        .then(function (res) {
+          if (res && res.error) {
+            var msg = res.error.message || 'Sign-up failed.';
+            // "User already registered" is not fatal — the caller signs in instead.
+            return { ok: false, error: msg, alreadyExists: /already|registered|exists/i.test(msg) };
+          }
+          var d = (res && res.data) || {};
+          return { ok: true, userId: d.user && d.user.id, hasSession: !!d.session };
+        }).catch(function () { return { ok: false, error: 'Network error creating your account.' }; });
+    }).catch(function () { return { ok: false, error: 'Network error creating your account.' }; });
+  }
+  function studentAuthSignIn(email, password) {
+    return ready().then(function (db) {
+      if (!db) return { ok: false, noSdk: true };
+      return db.auth.signInWithPassword({ email: String(email || '').trim().toLowerCase(), password: password })
+        .then(function (res) {
+          if (res && res.error) {
+            return { ok: false, error: res.error.message || 'Sign-in failed.',
+                     notConfirmed: /confirm/i.test(res.error.message || '') };
+          }
+          var d = (res && res.data) || {};
+          return { ok: true, userId: d.user && d.user.id, hasSession: !!d.session };
+        }).catch(function () { return { ok: false, error: 'Network error signing in.' }; });
+    }).catch(function () { return { ok: false, error: 'Network error signing in.' }; });
+  }
+  function studentAuthSignOut() {
+    return ready().then(function (db) {
+      if (!db) return;
+      return db.auth.signOut().catch(function () {});
+    }).catch(function () {});
+  }
+  function studentAuthUser() {
+    return ready().then(function (db) {
+      if (!db) return null;
+      return db.auth.getUser().then(function (res) {
+        return (res && res.data && res.data.user) ? res.data.user : null;
+      }).catch(function () { return null; });
+    }).catch(function () { return null; });
+  }
+  // Link the signed-in Auth user to their students-table profile, proving the
+  // password hash (student_claim RPC). Resolves the student row, or null.
+  function studentClaim(login, hash) {
+    return ready().then(function (db) {
+      if (!db) return null;
+      return db.rpc('student_claim', { p_login: String(login || ''), p_hash: hash })
+        .then(function (res) {
+          var data = res && res.data;
+          if (Array.isArray(data) && data.length) return stuFromRow(data[0]);
+          if (data && data.id) return stuFromRow(data);
+          return null;
+        }).catch(function () { return null; });
+    }).catch(function () { return null; });
+  }
+  // Change the signed-in Auth user's password so Auth stays in step with the
+  // students-table hash. Resolves true on success, false / null otherwise.
+  function studentAuthUpdatePassword(newPassword) {
+    return ready().then(function (db) {
+      if (!db || !db.auth || !db.auth.updateUser) return null;
+      return db.auth.updateUser({ password: newPassword }).then(function (res) {
+        return !(res && res.error);
+      }).catch(function () { return false; });
+    }).catch(function () { return null; });
+  }
+  // The signed-in Auth user's own profile — cross-device session restore.
+  function studentMe() {
+    return ready().then(function (db) {
+      if (!db) return null;
+      return db.rpc('student_me').then(function (res) {
+        var data = res && res.data;
+        if (Array.isArray(data) && data.length) return stuFromRow(data[0]);
+        if (data && data.id) return stuFromRow(data);
+        return null;
+      }).catch(function () { return null; });
+    }).catch(function () { return null; });
+  }
+  // Notify a callback when the Supabase Auth session changes (e.g. SIGNED_OUT in
+  // another tab). Returns an unsubscribe function. No-op when the SDK is absent.
+  function onStudentAuthChange(cb) {
+    var sub = null, cancelled = false;
+    ready().then(function (db) {
+      if (!db || cancelled || !db.auth || !db.auth.onAuthStateChange) return;
+      try {
+        var r = db.auth.onAuthStateChange(function (event, session) {
+          try { cb(event, session); } catch (e) {}
+        });
+        sub = r && r.data && r.data.subscription;
+      } catch (e) {}
+    });
+    return function () {
+      cancelled = true;
+      try { if (sub && sub.unsubscribe) sub.unsubscribe(); } catch (e) {}
+    };
+  }
+
   return {
     isEnabled: isEnabled,
     ready: ready,
@@ -599,6 +706,15 @@ var HubCloud = (function () {
     studentEmailExists: studentEmailExists,
     studentSetPasswordRpc: studentSetPasswordRpc,
     touchStudentLogin: touchStudentLogin,
+    // student auth (Supabase Auth)
+    studentAuthSignUp: studentAuthSignUp,
+    studentAuthSignIn: studentAuthSignIn,
+    studentAuthSignOut: studentAuthSignOut,
+    studentAuthUser: studentAuthUser,
+    studentClaim: studentClaim,
+    studentMe: studentMe,
+    studentAuthUpdatePassword: studentAuthUpdatePassword,
+    onStudentAuthChange: onStudentAuthChange,
     fetchAccountBundle: fetchAccountBundle,
     pushEnrollment: pushEnrollment,
     pushPayment: pushPayment,
