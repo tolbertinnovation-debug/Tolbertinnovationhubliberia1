@@ -141,22 +141,10 @@
     'grant-writing':    ['grantwriting-video-map.js?v=1'],
     'english-success':  ['englishsuccess-video-map.js?v=1'],
     'office':           ['office-video-map.js?v=1'],
-    'marketing':        ['marketing-video-map.js?v=6',
-                         'mkt-nd-1.js?v=1', 'mkt-nd-2.js?v=1', 'mkt-nd-3.js?v=1',
-                         'mkt-nd-4.js?v=1', 'mkt-nd-5.js?v=1',
-                         'mkt-notes-runtime.js?v=1'],
-    'project-mgmt':     ['projectmgmt-video-map.js?v=2',
-                         'pm-nd-1.js?v=1', 'pm-nd-2.js?v=1', 'pm-nd-3.js?v=1',
-                         'pm-nd-4.js?v=1', 'pm-nd-5.js?v=1',
-                         'pm-notes-runtime.js?v=1'],
-    'leadership':       ['leadership-video-map.js?v=2',
-                         'lead-nd-1.js?v=1', 'lead-nd-2.js?v=1', 'lead-nd-3.js?v=1',
-                         'lead-nd-4.js?v=1', 'lead-nd-5.js?v=1',
-                         'lead-notes-runtime.js?v=1'],
-    'android':          ['android-video-map.js?v=1',
-                         'and-nd-1.js?v=1', 'and-nd-2.js?v=1', 'and-nd-3.js?v=1',
-                         'and-nd-4.js?v=1', 'and-nd-5.js?v=1',
-                         'and-notes-runtime.js?v=1']
+    'marketing':        ['marketing-video-map.js?v=6'],
+    'project-mgmt':     ['projectmgmt-video-map.js?v=2'],
+    'leadership':       ['leadership-video-map.js?v=2'],
+    'android':          ['android-video-map.js?v=1']
   };
 
   function has(list, id) {
