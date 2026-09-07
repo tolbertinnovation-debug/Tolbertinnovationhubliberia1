@@ -51,6 +51,7 @@
     "office": "office-curriculum.js",
     "ph-career": "publichealth-curriculum.js",
     "project-mgmt": "projectmgmt-curriculum.js",
+    "quickbooks": "quickbooks-curriculum.js",
     "remote-work": "remotework-curriculum.js",
     "sat": "sat-curriculum.js",
     "toefl": "toefl-curriculum.js",
@@ -96,7 +97,8 @@
     'ai-cybersecurity': { src: 'aicyber-topic-quizzes.js?v=1', apply: 'tihApplyAicyberTopicQuizzes' },
     'android':          { src: 'android-topic-quizzes.js?v=1', apply: 'tihApplyAndroidTopicQuizzes' },
     'agritech':         { src: 'agritech-topic-quizzes.js?v=1', apply: 'tihApplyAgritechTopicQuizzes' },
-    'entrepreneurship': { src: 'entrepreneurship-topic-quizzes.js?v=1', apply: 'tihApplyEntrepreneurshipTopicQuizzes' }
+    'entrepreneurship': { src: 'entrepreneurship-topic-quizzes.js?v=1', apply: 'tihApplyEntrepreneurshipTopicQuizzes' },
+    'quickbooks':       { src: 'quickbooks-topic-quizzes.js?v=1', apply: 'tihApplyQuickbooksTopicQuizzes' }
   };
 
   // Courses with an authored topic-quiz chunk in quizzes/.
@@ -144,7 +146,8 @@
     'marketing':        ['marketing-video-map.js?v=6'],
     'project-mgmt':     ['projectmgmt-video-map.js?v=2'],
     'leadership':       ['leadership-video-map.js?v=2'],
-    'android':          ['android-video-map.js?v=1']
+    'android':          ['android-video-map.js?v=1'],
+    'quickbooks':       ['quickbooks-video-map.js?v=1', 'quickbooks-notes.js?v=1']
   };
 
   function has(list, id) {
