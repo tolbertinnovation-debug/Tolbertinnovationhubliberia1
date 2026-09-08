@@ -1,283 +1,82 @@
-/* TIH Business Plan Mastery curriculum.
-   Adds a focused full-course program that teaches learners how to build a
-   credible, fundable business plan from idea to pitch. */
-(function () {
-  if (typeof COURSES_DB === 'undefined') return;
-  if (COURSES_DB['business-plan'] && COURSES_DB['business-plan']._businessPlanFullBuilt) return;
+/* TIH Complete Business Plan Development curriculum — 10 modules, 30 content
+   lessons, 5 applied projects, 10 module assessments and a final examination. */
+(function(){
+  if(typeof window==='undefined')return;
+  window.COURSES_DB=window.COURSES_DB||{};
+  if(window.COURSES_DB['business-plan']&&window.COURSES_DB['business-plan']._fullBuilt)return;
 
-  var VIDEO_MAP = {
-    'Welcome to the Course': '',
-    'Why Business Plans Matter': '',
-    'Business Plan Types': '',
-    'Course Roadmap': '',
-    'Finding the Right Business Idea': '',
-    'Problem Identification': '',
-    'Customer Discovery': '',
-    'Market Opportunity': '',
-    'Validating the Idea': '',
-    'Research Planning': '',
-    'Primary Market Research': '',
-    'Competitor Analysis': '',
-    'Target Market': '',
-    'SWOT Analysis': '',
-    'Value Proposition': '',
-    'Business Model Basics': '',
-    'Revenue Streams': '',
-    'Cost Structure': '',
-    'Customer Segments': '',
-    'Marketing Fundamentals': '',
-    'Brand Positioning': '',
-    'Sales Strategy': '',
-    'Customer Journey': '',
-    'Operations Plan': '',
-    'Management Structure': '',
-    'Technology and Tools': '',
-    'Startup Budget': '',
-    'Cash Flow Projections': '',
-    'Break-even Analysis': '',
-    'Funding Sources': '',
-    'Financial Assumptions': '',
-    'Legal and Compliance': '',
-    'Risk Management': '',
-    'Milestones and Timeline': '',
-    'Writing the Executive Summary': '',
-    'Drafting the Full Plan': '',
-    'Pitching the Plan': '',
-    'Capstone Business Plan': '',
-    'Final Assessment': ''
-  };
-
-  var curriculum = [
-    [1, 'Course Orientation', '🧭', 'orientation', 'content', ['Welcome to the Course', 'Why Business Plans Matter', 'Business Plan Types', 'Course Roadmap', 'Business Plan Toolkit', 'How to Study This Course']],
-    [2, 'Business Idea & Problem', '💡', 'idea', 'content', ['Finding the Right Business Idea', 'Problem Identification', 'Customer Pain Points', 'Customer Discovery', 'Market Opportunity', 'Validating the Idea']],
-    [3, 'Market Research', '🔎', 'research', 'content', ['Research Planning', 'Primary Market Research', 'Secondary Research', 'Competitor Analysis', 'Target Market', 'SWOT Analysis', 'Research Summary']],
-    [4, 'Value Proposition & Business Model', '🧩', 'model', 'content', ['Value Proposition', 'Business Model Basics', 'Customer Segments', 'Revenue Streams', 'Cost Structure', 'Key Resources', 'Business Model Review']],
-    [5, 'Marketing & Sales', '📣', 'marketing', 'content', ['Marketing Fundamentals', 'Brand Positioning', 'Customer Journey', 'Marketing Channels', 'Sales Strategy', 'Promotion Planning', 'Sales Forecast']],
-    [6, 'Operations & Team', '⚙️', 'operations', 'content', ['Operations Plan', 'Production and Delivery', 'Management Structure', 'Roles and Responsibilities', 'Technology and Tools', 'Supplier and Partner Management', 'Operating Risks']],
-    [7, 'Finance & Funding', '💰', 'finance', 'content', ['Startup Budget', 'Cash Flow Projections', 'Break-even Analysis', 'Profitability Forecast', 'Funding Sources', 'Financial Assumptions', 'Financial Plan Review']],
-    [8, 'Legal, Risk & Milestones', '⚖️', 'risk', 'content', ['Legal and Compliance', 'Risk Management', 'Insurance and Safety', 'Milestones and Timeline', 'Implementation Roadmap', 'Contingency Planning', 'Business Readiness Check']],
-    [9, 'Writing the Full Business Plan', '📝', 'plan', 'projects', ['Writing the Executive Summary', 'Drafting the Company Description', 'Market Analysis Section', 'Marketing and Sales Section', 'Operations Section', 'Financial Section', 'Risk and Appendix']],
-    [10, 'Capstone & Graduation', '🎓', 'capstone', 'assessment', ['Capstone Business Plan', 'Pitching the Plan', 'Investor Q&A', 'Final Assessment', 'Certificate of Completion']]
+  var topics=[
+    [1,'Business Planning Foundations','🧭',[
+      ['What Is a Business Plan?','A business plan is an evidence-based document that explains what a business will do, whom it will serve, how it will operate, how it will earn and use money, and how it will manage risk.','business idea|business plan','A Monrovia food-delivery idea becomes a plan only after the founder identifies target customers, delivery costs, competitors, sales assumptions and operating responsibilities.','A credible plan connects a clear opportunity to evidence, actions, numbers and accountable people.',['Business plan|A written roadmap that explains the business opportunity, strategy, operations, finances and risks.','Stakeholder|A person or organization affected by or interested in the business.','Assumption|A belief used for planning that still needs evidence or testing.','Feasibility|The degree to which an idea can realistically work.','Evidence|Reliable information used to support a claim or estimate.']],
+      ['Lean Plan vs Traditional Business Plan','A lean plan summarizes the core business model on one page for fast testing, while a traditional business plan explains the venture in depth for management, lenders, investors or partners.','lean plan|traditional plan','A market-stall owner may test prices with a one-page lean plan; the same owner may later prepare a detailed plan with cash-flow projections when applying for a loan.','Choose the planning format according to the decision, audience and level of evidence required.',['Lean plan|A short, adaptable summary of customers, value, activities, costs and revenue.','Traditional plan|A detailed document covering the business, market, operations, management, risk and finances.','Business Model Canvas|A visual tool with nine blocks describing how an organization creates, delivers and captures value.','Iteration|Improving a plan repeatedly after feedback and evidence.','Audience|The intended reader whose information needs shape the plan.']],
+      ['The Business Planning Process and Evidence','Business planning is a repeating process of defining questions, collecting evidence, making testable assumptions, choosing actions, measuring results and updating the plan.','opinion|validated evidence','Instead of claiming that “everyone needs clean water,” a founder interviews households, records weekly spending, tests delivery routes and uses the results to forecast demand.','Treat every important number as a claim that must have a source, calculation or tested assumption.',['Planning cycle|A repeating sequence of research, decision, action, measurement and revision.','Primary research|New information collected directly from customers or other sources.','Secondary research|Existing information from reports, records, publications or databases.','Validation|Testing whether an important assumption is supported by evidence.','Source note|A record showing where a fact or estimate came from.']]
+    ]],
+    [2,'Company Direction and Executive Summary','🎯',[
+      ['Vision, Mission, Values and Objectives','Vision describes the future the organization seeks; mission states its present purpose; values guide behavior; objectives translate direction into measurable results.','vision|mission','A solar enterprise may envision reliable energy for every rural clinic, pursue a mission of installing affordable systems, value safety and integrity, and target 40 installations in year one.','Strong direction moves from an inspiring future to a specific purpose, principles and measurable targets.',['Vision|A concise picture of the desirable future the organization seeks to create.','Mission|A statement of whom the organization serves, what it provides and why it exists.','Core values|Principles that guide decisions and conduct.','Objective|A specific result the organization intends to achieve.','SMART|Specific, Measurable, Achievable, Relevant and Time-bound.']],
+      ['Business Profile, Ownership and Legal Structure','The business profile identifies the venture, location, history, activities and ownership, while legal structure determines control, liability, taxation and continuity.','sole proprietorship|company','A tailoring shop owned by one person may start simply, but partners seeking investment must document ownership shares, decision rights and the registered form appropriate in Liberia.','Select and describe the structure only after comparing control, liability, cost, tax and compliance consequences.',['Legal structure|The legally recognized form under which a business operates.','Sole proprietorship|A business legally owned and controlled by one person.','Partnership|A business owned by two or more persons under an agreed arrangement.','Limited liability|Protection that may separate owners’ personal assets from qualifying business obligations.','Ownership share|The percentage of a venture belonging to an owner or investor.']],
+      ['Writing the Executive Summary','The executive summary is a brief, persuasive overview of the completed business plan, highlighting the opportunity, solution, market, advantage, team, traction, finances and request.','summary|introduction','A lender-facing summary for a cassava processor states the supply problem, buyer demand, production capacity, experienced team, funding need and repayment logic in two pages.','Write the executive summary last, support its claims with the plan and adapt the emphasis to the reader.',['Executive summary|A concise overview of the most decision-relevant parts of a business plan.','Traction|Evidence that the venture is gaining customers, revenue, users, partners or validated demand.','Funding request|The amount and type of finance sought and the purpose for which it will be used.','Competitive advantage|A meaningful strength that helps a venture perform better than alternatives.','Call to action|The specific next step requested from the reader.']]
+    ]],
+    [3,'Problem, Solution and Value','💡',[
+      ['Defining the Customer Problem','A customer problem is a specific unmet need, difficulty, cost, delay or risk experienced by an identifiable group in a particular situation.','symptom|root problem','Low sales at a farm cooperative may be a symptom; interviews reveal the root problem is unreliable transport that causes produce to spoil before reaching buyers.','A useful problem statement names the customer, situation, difficulty, consequence and supporting evidence without assuming the solution.',['Customer problem|An unmet need or difficulty experienced by a defined group.','Pain point|A recurring frustration, cost, delay or risk affecting a customer.','Root cause|The underlying reason a problem occurs.','Problem statement|A concise evidence-based description of who faces what problem and why it matters.','Customer interview|A structured conversation used to understand behavior, needs and evidence.']],
+      ['Designing the Solution and Benefits','A solution is the product, service or process offered to address a verified problem; benefits describe the valuable results customers gain from using it.','feature|benefit','“SMS delivery updates” is a feature; “customers can plan their day and avoid missed deliveries” is the benefit.','Explain how each important feature produces a measurable customer benefit and test the riskiest promise early.',['Solution|The offering or approach designed to address a customer problem.','Feature|A function or characteristic of a product or service.','Benefit|A valuable outcome the customer receives.','Minimum viable product|The simplest version used to test a critical assumption with real users.','Prototype|An early model used to explore, communicate or test a solution.']],
+      ['Building a Strong Value Proposition','A value proposition is a clear promise of relevant benefit to a defined customer, explaining why the offer is a better choice than available alternatives.','value proposition|slogan','“Fresh vegetables delivered to Paynesville restaurants by 8 a.m., reducing spoilage and market trips” is a testable promise; “Quality is our passion” is only a slogan.','Combine target customer, important need, distinct benefit, evidence and alternative in one focused promise.',['Value proposition|A focused statement of the value offered to a defined customer.','Target customer|The specific group a business chooses to serve.','Alternative|The method, supplier or non-consumption option customers currently use.','Differentiation|A meaningful way an offer differs from alternatives.','Proof point|Evidence that supports a promised benefit.']]
+    ]],
+    [4,'Market Research and Competitive Analysis','🔎',[
+      ['Market Size: TAM, SAM and SOM','TAM estimates total possible demand, SAM narrows it to the segment the business can serve, and SOM estimates the realistic share it can capture within a stated period.','TAM|SOM','A county-wide school-lunch market may be US$2 million, but a startup able to serve eight Monrovia schools might target US$90,000 in first-year sales.','Build market size from transparent customer counts, purchase frequency and prices, then justify the reachable share.',['TAM|Total Addressable Market: all relevant demand if the venture served the entire defined market.','SAM|Serviceable Available Market: the part of TAM the business model and geography can serve.','SOM|Serviceable Obtainable Market: the realistic near-term share the venture can capture.','Top-down estimate|A market estimate that starts with broad published totals and narrows them.','Bottom-up estimate|A market estimate built from customers, units, frequency and price.']],
+      ['Primary and Secondary Market Research','Primary research collects new evidence directly, while secondary research analyzes credible information that already exists; a strong plan uses both and documents limitations.','primary research|secondary research','A founder combines 40 retailer interviews and a two-week sales test with census data, industry reports and supplier price lists.','Use research questions, an appropriate sample, neutral wording, recorded results and source dates to reduce bias.',['Sample|The smaller group studied to draw conclusions about a larger population.','Survey|A standardized set of questions answered by selected respondents.','Observation|Systematic recording of behavior or events as they occur.','Research bias|A systematic influence that distorts evidence or interpretation.','Citation|A reference identifying the source of information.']],
+      ['Competitor Analysis and SWOT','Competitor analysis compares alternatives customers can choose, while SWOT organizes internal strengths and weaknesses and external opportunities and threats for decision-making.','direct competitor|indirect competitor','A motorcycle courier compares other couriers directly and also considers taxis, customer self-pickup and digital substitutes as indirect alternatives.','Turn analysis into action: protect strengths, correct weaknesses, exploit opportunities and prepare for threats.',['Direct competitor|A business offering a similar solution to the same target customer.','Indirect competitor|A different solution that satisfies the same customer need.','SWOT|Strengths, Weaknesses, Opportunities and Threats.','Benchmark|A reference point used to compare performance or practice.','Barrier to entry|A condition that makes it difficult for new competitors to enter a market.']]
+    ]],
+    [5,'Customers, Positioning and Marketing','📣',[
+      ['Customer Segments and Buyer Personas','Customer segmentation divides a market into meaningful groups, and a buyer persona turns evidence about a priority segment into a usable profile for product and marketing decisions.','segment|persona','A training business separates school leavers, employed adults and NGOs, then builds a persona from interviews with school leavers who need mobile evening lessons.','Segments must be measurable and actionable; personas must come from evidence rather than stereotypes.',['Market segment|A group of customers sharing relevant needs, behavior or characteristics.','Buyer persona|An evidence-based profile representing a priority customer type.','Demographic|A measurable population characteristic such as age, occupation or location.','Behavioral variable|A pattern involving usage, purchase, loyalty or response.','Early adopter|A customer willing to try a new solution before the wider market.']],
+      ['Positioning, Brand and Competitive Advantage','Positioning defines the place an offer should occupy in the customer’s mind; brand expresses the promise consistently; competitive advantage is the defendable capability behind superior value.','brand identity|competitive advantage','A clinic can look modern through branding, but reliable same-day laboratory results may be the operational advantage customers value and competitors struggle to copy.','Position around an important customer benefit and support the claim with systems, evidence and consistent experience.',['Positioning|The intended perception of an offer relative to alternatives.','Brand|The expectations, associations and experience connected with an organization or offer.','Brand identity|Visible and verbal elements such as name, logo, colors and tone.','Competitive advantage|A valuable capability or asset that supports stronger performance.','Positioning statement|An internal statement naming the target, category, benefit, alternative and reason to believe.']],
+      ['Marketing Mix and Customer Acquisition','The marketing mix coordinates product, price, place and promotion—often extended with people, process and physical evidence—while acquisition converts awareness into paying customers.','promotion|customer acquisition','A soap producer improves packaging, sets reseller prices, chooses neighborhood outlets, demonstrates the product and tracks how many samples become purchases.','Select channels by customer behavior and economics, then measure the full path from reach to repeat purchase.',['Marketing mix|Controllable marketing decisions used to deliver value to a target market.','Channel|A route used to communicate, sell or deliver an offer.','Customer acquisition cost|Total acquisition spending divided by the number of new customers gained.','Conversion rate|The percentage of people who complete a desired action.','Retention|The ability to keep customers active or purchasing over time.']]
+    ]],
+    [6,'Business Model and Operations','⚙️',[
+      ['Business Model and Revenue Streams','A business model explains how an organization creates, delivers and captures value; revenue streams show who pays, for what, how much, how often and under what terms.','revenue|profit','A learning platform earns registration fees and organizational training contracts; revenue is money earned, while profit remains only after relevant costs are deducted.','Test whether the value, delivery system, cost structure and revenue logic work together sustainably.',['Business model|The system through which an organization creates, delivers and captures value.','Revenue stream|A distinct source and method of earning income.','Cost structure|The major fixed and variable costs required by the model.','Gross profit|Revenue minus direct cost of the goods or services sold.','Recurring revenue|Income received repeatedly through subscriptions, contracts or repeat purchases.']],
+      ['Operations, Suppliers and Quality Control','Operations convert inputs into reliable products or services; supplier management secures needed resources; quality control checks whether outputs meet defined standards.','quality assurance|quality control','A bakery defines recipe standards, approves flour suppliers, records each batch and checks weight and freshness before dispatch.','Map the workflow, assign responsibility, set standards, track failures and prepare backup suppliers.',['Operations|The activities that produce and deliver a business’s offering.','Workflow|The ordered movement of tasks, information or materials through a process.','Supplier|A person or organization providing goods or services to the business.','Quality assurance|Processes designed to prevent defects.','Quality control|Inspection or testing used to detect whether outputs meet standards.']],
+      ['Location, Technology and Legal Compliance','Location and technology choices shape access, capacity and cost, while compliance means meeting the current registrations, permits, tax, labor, safety and industry rules that apply.','operational choice|legal requirement','A food venture compares rent, customer traffic, water, power and delivery access, then confirms current registration, sanitation and tax duties with authorized Liberian bodies.','Document decision criteria and verify current legal requirements with official authorities and qualified advisers.',['Compliance|Acting in accordance with applicable laws, regulations, standards and obligations.','Permit|Official authorization required for a particular activity.','Licensing|The process of obtaining legal permission to operate a regulated activity.','Capacity|The maximum output a system can produce under stated conditions.','Digital system|Technology used to manage information, communication or operations.']]
+    ]],
+    [7,'Management, People and Implementation','👥',[
+      ['Organizational Structure and Governance','Organizational structure assigns roles, reporting and coordination; governance establishes oversight, decision rights, accountability and controls.','management|governance','A family business defines who runs daily sales, who approves purchases, how cash is checked and how major owner decisions are recorded.','A plan must show who decides, who executes, who checks and how conflicts of interest are managed.',['Organizational structure|The formal arrangement of roles, responsibilities and reporting relationships.','Governance|The system for direction, oversight, accountability and control.','Organogram|A visual chart showing positions and reporting relationships.','Decision right|Authority assigned to make a particular type of decision.','Internal control|A policy or procedure that protects resources and improves reliable reporting.']],
+      ['Management Team, Staffing and Skills Gaps','The management section proves that the venture has—or can obtain—the leadership, technical and operational capabilities required to execute the plan.','job title|required capability','Listing a “marketing manager” is weak unless the plan states customer-acquisition duties, required skills, workload, cost and how performance will be measured.','Match every critical activity to a capable person and create a realistic plan for missing skills.',['Management team|People responsible for directing and coordinating the venture.','Job description|A document stating duties, responsibilities, reporting and requirements for a role.','Skills gap|The difference between capabilities required and capabilities currently available.','Recruitment|The process of attracting and selecting suitable people.','Adviser|A person providing specialized guidance without necessarily managing daily work.']],
+      ['Milestones, Roles and Implementation Schedule','An implementation plan converts strategy into sequenced tasks, owners, resources, deadlines, dependencies, milestones and measurable completion criteria.','activity|milestone','“Advertise online” is an activity; “secure 100 verified pre-orders by 30 June” is a measurable milestone that can trigger the next investment.','Use a schedule that connects responsibility and evidence of completion, not a wish list of dates.',['Milestone|A significant, verifiable achievement in a plan.','Dependency|A task or condition that must occur before another can proceed.','Deliverable|A specific output that must be produced and accepted.','Responsibility matrix|A table clarifying who leads, approves, supports and receives information.','Timeline|A dated sequence of planned activities and milestones.']]
+    ]],
+    [8,'Financial Planning','💰',[
+      ['Startup Costs, Funding Needs and Use of Funds','Startup costs are one-time and pre-opening expenditures; working capital supports early operations; the funding need equals realistic cash requirements minus committed resources and expected timely cash inflows.','startup cost|operating expense','A small poultry venture budgets housing, equipment, registration and initial stock separately from monthly feed, wages, transport and emergency cash.','Ask for an evidence-based amount tied to specific uses, timing, milestones and a suitable funding source.',['Startup cost|An expenditure required to establish and open a new venture.','Working capital|Short-term resources available to fund everyday operations.','Use of funds|A clear allocation showing how requested finance will be spent.','Contingency reserve|Money set aside for reasonably possible unexpected costs.','Funding gap|The difference between required finance and resources already available.']],
+      ['Pricing, Unit Economics and Sales Assumptions','Pricing converts value and market strategy into an amount charged; unit economics measures revenue and variable cost for one unit or customer; sales assumptions explain expected volume.','markup|margin','If juice costs LRD 120 per bottle and sells for LRD 200, contribution is LRD 80; the gross margin is 40 percent, not the 66.7 percent markup on cost.','Separate facts from assumptions and test price, demand, cost per unit, acquisition cost and repeat behavior.',['Unit economics|Revenue and direct variable costs measured for one unit, order or customer.','Contribution margin|Selling price minus variable cost per unit.','Markup|Profit amount expressed as a percentage of cost.','Gross margin|Gross profit expressed as a percentage of revenue.','Sales assumption|A stated basis for forecasting units, price, timing or customer behavior.']],
+      ['Financial Projections, Cash Flow and Break-Even','Financial projections estimate future income, expenses, assets, liabilities and cash; cash flow tracks timing of receipts and payments; break-even shows the volume at which contribution covers fixed costs.','profit|cash flow','A profitable credit-sales business can still run out of cash before customers pay. With fixed costs of LRD 120,000 and contribution of LRD 300 per unit, break-even is 400 units.','Build linked, monthly first-year projections from documented operational assumptions and test conservative scenarios.',['Income statement|A report of revenue, expenses and profit over a period.','Cash-flow forecast|A schedule of expected cash receipts, payments and balances.','Balance sheet|A statement of assets, liabilities and owners’ equity at a date.','Break-even point|The sales level at which total contribution equals fixed costs.','Sensitivity analysis|Testing how results change when an important assumption changes.']]
+    ]],
+    [9,'Risk, Impact and Performance','🛡️',[
+      ['Business Risks and Contingency Planning','Risk planning identifies uncertain events, assesses likelihood and impact, assigns responses and owners, and prepares practical continuity actions for serious disruption.','risk|issue','A retailer rates supplier delay as likely and serious, adds a second supplier, keeps safety stock and defines who informs customers if delivery stops.','Prioritize risks, reduce avoidable exposure and write triggers, actions and responsibilities for the most important scenarios.',['Risk|An uncertain event that could affect an objective.','Likelihood|The estimated chance that a risk will occur.','Impact|The estimated consequence if a risk occurs.','Mitigation|Action taken to reduce the probability or effect of a risk.','Contingency plan|Prepared actions to use if a specified risk event occurs.']],
+      ['Social Impact, Ethics and Sustainability','Impact planning defines intended social or environmental change, while ethics and sustainability require responsible decisions that protect people, resources and long-term viability.','output|outcome','Training 200 women is an output; increased employment or business income attributable to the program is an outcome that requires measurement.','State the impact pathway, protect stakeholders, measure real outcomes and avoid unsupported claims.',['Social impact|A meaningful change in people or communities associated with an activity.','Sustainability|The ability to create lasting value without unacceptable social, environmental or financial harm.','Ethics|Principles for deciding what conduct is right, fair and responsible.','Output|A direct product or service delivered by an activity.','Outcome|A change in behavior, condition or performance resulting from outputs.']],
+      ['KPIs, Monitoring and Plan Updates','A key performance indicator is a decision-relevant measure tied to an objective; monitoring compares actual results with targets so managers can learn and update actions and assumptions.','metric|KPI','A shop may record many metrics, but weekly gross margin, stock-out rate, repeat-customer rate and cash balance are KPIs because they guide critical decisions.','Give every KPI a definition, formula, source, frequency, owner, target and management response.',['KPI|A key performance indicator used to monitor progress toward an important objective.','Target|The planned level of performance for a measure and period.','Variance|The difference between actual and planned performance.','Dashboard|A concise display of selected indicators for decision-making.','Review cycle|A regular schedule for analyzing results and revising the plan.']]
+    ]],
+    [10,'Writing, Pitching and Launch','🚀',[
+      ['Assembling the Complete Business Plan','Assembling a business plan means converting research and decisions into one coherent, reader-focused document whose narrative, evidence, operations and financial numbers agree.','claim|supporting evidence','If the marketing section forecasts 500 monthly customers but operations can serve only 300, the plan is inconsistent and must be reconciled before submission.','Use a controlled review checklist for logic, numbers, sources, language, design, appendices and version accuracy.',['Coherence|Logical agreement among the sections and claims of a document.','Appendix|Supporting material placed after the main plan, such as research, CVs or detailed calculations.','Cross-check|Comparing related facts or numbers in different sections for consistency.','Version control|A method for identifying and preserving successive document revisions.','Due diligence|Detailed investigation used to verify claims, risks and records before a decision.']],
+      ['Converting the Plan into a Pitch Deck','A pitch deck is a short visual argument that selects the plan’s strongest evidence and tells a clear story about problem, solution, market, model, traction, team, finances and request.','business plan|pitch deck','Instead of placing a full market report on one slide, the founder shows a simple market chart, states the source and explains the reachable first segment.','One slide should communicate one main idea; the presenter supplies the reasoning and answers with evidence.',['Pitch deck|A concise visual presentation used to explain and support a business opportunity.','Traction slide|A slide presenting verified progress such as sales, pilots, users or partnerships.','Ask|The specific funding, partnership or action requested from the audience.','Runway|The time a venture can operate before available cash is exhausted.','Storyline|The logical sequence that connects the presentation’s main ideas.']],
+      ['Reviewing, Presenting and Launching the Plan','Final review verifies evidence, consistency and readiness; presentation communicates the case confidently; launch converts the plan into coordinated market action, measurement and learning.','plan approval|execution','A founder rehearses answers, verifies cost quotations, launches a limited pilot, monitors daily sales and customer feedback, and updates the next-month plan before expanding.','A plan creates value only when owners act, measure, communicate and revise it responsibly.',['Launch|The coordinated introduction of a venture, product or service to its target market.','Pilot|A limited real-world implementation used to test readiness and assumptions.','Decision log|A record of important choices, reasons, dates and owners.','Feedback loop|A process in which results inform the next action or improvement.','Post-launch review|A structured evaluation of early results, problems and corrective actions.']]
+    ]]
   ];
 
-  function esc(v) {
-    return String(v).replace(/[&<>"']/g, function (ch) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
-    });
-  }
-
-  var skillLabel = {
-    orientation: 'business planning foundations',
-    idea: 'idea generation and validation',
-    research: 'market research',
-    model: 'business model design',
-    marketing: 'marketing and sales planning',
-    operations: 'operations and team planning',
-    finance: 'financial planning',
-    risk: 'risk, legal and implementation planning',
-    plan: 'business-plan writing',
-    capstone: 'your capstone project'
-  };
-
-  var TEMPLATES = {
-    plan: '<h4>📥 Template: Business Plan</h4><ol><li>Executive Summary</li><li>Business Description</li><li>Market Opportunity</li><li>Product or Service</li><li>Marketing and Sales Strategy</li><li>Operations Plan</li><li>Management and Team</li><li>Financial Plan</li><li>Risk Management</li><li>Appendix</li></ol>',
-    financial: '<h4>📥 Template: Financial Plan</h4><ul><li>Startup costs</li><li>Monthly revenue forecast</li><li>Variable and fixed costs</li><li>Cash flow</li><li>Break-even point</li><li>Funding requirement</li></ul>',
-    marketing: '<h4>📥 Template: Marketing Plan</h4><ul><li>Target market</li><li>Customer pain points</li><li>Brand message</li><li>Channels and tactics</li><li>Sales funnel</li><li>Budget and KPIs</li></ul>',
-    risk: '<h4>📥 Template: Risk Register</h4><ul><li>Risk</li><li>Impact</li><li>Likelihood</li><li>Mitigation</li><li>Owner</li><li>Trigger/response</li></ul>'
-  };
-
-  function templateFor(name) {
-    if (/Executive Summary|Business Plan|Full Business Plan|Company Description|Drafting the Full Plan/i.test(name)) return TEMPLATES.plan;
-    if (/Financial|Budget|Cash Flow|Break-even|Funding/i.test(name)) return TEMPLATES.financial;
-    if (/Marketing|Sales|Customer Journey|Brand/i.test(name)) return TEMPLATES.marketing;
-    if (/Risk|Legal|Milestone|Contingency/i.test(name)) return TEMPLATES.risk;
-    return '';
-  }
-
-  function note(moduleTitle, skill, name, position) {
-    var label = skillLabel[skill] || 'business planning';
-    var focus = position % 2 ? 'practical application with a real business idea' : 'conceptual understanding and plain-language planning';
-    var tpl = templateFor(name);
-    return '<div class="study-note">' +
-      '<div class="revision-banner"><strong>Business Plan Mastery · ' + esc(moduleTitle) + '</strong><span>Write a practical plan</span></div>' +
-      '<h3>' + esc(name) + '</h3>' +
-      '<p>This lesson builds <strong>' + esc(label) + '</strong> through ' + focus + '. Watch the video, review the steps, and complete the action task before the short quiz.</p>' +
-      '<h4>Key points</h4><ul>' +
-      '<li>Understand the decision or document that <em>' + esc(name) + '</em> supports.</li>' +
-      '<li>Use the lesson to improve your own business idea or a case study.</li>' +
-      '<li>Write one clear sentence explaining how this section changes your plan.</li></ul>' +
-      '<h4>Action task</h4><ol>' +
-      '<li><strong>Task 1:</strong> Draft how <em>' + esc(name) + '</em> applies to your chosen business.</li>' +
-      '<li><strong>Task 2:</strong> Write one improvement you will make before you finish the plan.</li></ol>' +
-      (tpl ? '<div class="study-callout">' + tpl + '</div>' : '<div class="study-callout"><strong>TIH task:</strong> Apply <em>' + esc(name) + '</em> to a real business example from Liberia or your community.</div>') +
-      '<p><strong>Printable notes:</strong> Use Print → Save as PDF to keep a copy for revision.</p>' +
-      '<p><strong>Module connection:</strong> This lesson is part of <em>' + esc(moduleTitle) + '</em> in your journey from idea to a fundable business plan.</p>' +
-      '</div>';
-  }
-
-  function projectBrief(moduleTitle, name) {
-    var tpl = templateFor(name);
-    return '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Hands-on project</span></div>' +
-      '<h3>' + esc(name) + '</h3>' +
-      '<p>This is a practical business planning exercise. Complete it for one real or realistic business idea and save it in your portfolio.</p>' +
-      '<h4>What to do</h4><ol><li>Use the lesson method to draft the section.</li><li>Write the information using simple, clear business language.</li><li>Review it for realism, numbers, and consistency with the rest of the plan.</li></ol>' +
-      (tpl ? '<div class="study-callout">' + tpl + '</div>' : '<div class="study-callout"><strong>Deliverable:</strong> A clear written section you can later merge into your complete business plan.</div>') +
-      '<p><strong>Downloadable:</strong> Save or print the result for future revision.</p></div>';
-  }
-
-  var BANK = {
-    general: [
-      { q: 'A business plan is mainly used to:', opts: ['Avoid all decisions', 'Guide a business and help others understand the opportunity', 'Replace marketing', 'Only record taxes'], correct: 1, exp: 'A business plan helps a founder and supports communication with lenders, partners, or investors.' },
-      { q: 'The best business plans are:', opts: ['Very long but vague', 'Clear, realistic and backed by evidence', 'Full of jargon only', 'Written after launch'], correct: 1, exp: 'Good plans are understandable, realistic, and grounded in evidence.' },
-      { q: 'A strong business plan should begin with:', opts: ['Only the financial figures', 'A clear understanding of the problem, idea and opportunity', 'A long product list', 'The founder’s personal story only'], correct: 1, exp: 'The plan should start with the opportunity and why it matters.' },
-      { q: 'A realistic business plan usually includes:', opts: ['Only a dream', 'Customer value, operations, marketing, risk and finances', 'Only a logo', 'Only a slogan'], correct: 1, exp: 'A credible plan covers the whole business, not only a banner headline.' },
-      { q: 'The capstone in this course helps you:', opts: ['Skip the work', 'Build one complete business plan you can use in real life', 'Only memorize terms', 'Avoid discussion'], correct: 1, exp: 'The capstone turns learning into a practical, usable plan.' }
-    ],
-    idea: [
-      { q: 'A good business idea usually solves:', opts: ['A problem people do not feel', 'A real customer problem or unmet need', 'Only the founder’s boredom', 'A random trend with no evidence'], correct: 1, exp: 'Successful businesses are built around genuine needs or frustrations.' },
-      { q: 'Customer discovery helps you learn:', opts: ['Only your own opinion', 'What customers really need and how they behave', 'The price of your competitor’s office', 'A list of raw ideas'], correct: 1, exp: 'Customer discovery tests assumptions before the business is built.' },
-      { q: 'A problem statement should describe:', opts: ['Only the product features', 'The pain, inconvenience or opportunity the customer experiences', 'The founder’s age', 'The company’s social media handle'], correct: 1, exp: 'It connects the business to the customer's real problem.' },
-      { q: 'Validation means:', opts: ['Ignoring feedback', 'Checking whether the problem and idea have real demand', 'Hiring staff early', 'Launching without testing'], correct: 1, exp: 'Validation reduces risk by testing demand before major spending.' }
-    ],
-    research: [
-      { q: 'Primary research is data you:', opts: ['Find in a report', 'Collect yourself from interviews or surveys', 'Guess without asking', 'Copy from a competitor'], correct: 1, exp: 'Primary research is original information gathered from the market.' },
-      { q: 'Competitor analysis helps you understand:', opts: ['Who is offering something similar and how you differ', 'Only your own business name', 'The tax code', 'Your office size'], correct: 0, exp: 'It identifies key rivals and your possible edge.' },
-      { q: 'A target market is:', opts: ['Everyone on earth', 'The group of customers most likely to buy your offer', 'A logo', 'A venue'], correct: 1, exp: 'Targeting improves marketing efficiency and product fit.' },
-      { q: 'SWOT analysis is useful because it:', opts: ['Randomly lists words', 'Shows strengths, weaknesses, opportunities and threats', 'Avoids planning', 'Only checks the price'], correct: 1, exp: 'SWOT gives a balanced view of the business environment.' }
-    ],
-    model: [
-      { q: 'A value proposition says:', opts: ['How much the founder earns', 'Why customers should choose your product or service', 'Only the business name', 'The location of the office'], correct: 1, exp: 'It explains the unique value for the customer.' },
-      { q: 'Revenue streams are:', opts: ['The ways money enters the business', 'The names of employees', 'The location of suppliers', 'A business slogan'], correct: 0, exp: 'Revenue streams are the sources of income.' },
-      { q: 'Cost structure helps you see:', opts: ['Only the founder’s salary', 'What the business must pay to operate', 'The office design only', 'The tax rate only'], correct: 1, exp: 'It shows the essential costs behind the business.' },
-      { q: 'A business model explains:', opts: ['How the business creates and captures value', 'Only how to advertise', 'Only how to count sales', 'Only how to design a logo'], correct: 1, exp: 'The model links value, operations and income.' }
-    ],
-    marketing: [
-      { q: 'A marketing plan should cover:', opts: ['Only the founder’s hobbies', 'Customers, channels, message, budget and sales goals', 'Only the legal structure', 'Only the product price'], correct: 1, exp: 'Marketing needs a clear customer, message, route to market, and budget.' },
-      { q: 'Brand positioning is about:', opts: ['How you want the customer to see you in the market', 'How many employees you hire', 'The office rent', 'Your taxes'], correct: 0, exp: 'Positioning shapes perception versus the competition.' },
-      { q: 'A sales strategy should answer:', opts: ['How the business will attract and convert customers', 'Why the founder likes the business', 'Only the legal structure', 'Only the file names'], correct: 1, exp: 'Sales strategy connects the offer to actual customer conversion.' },
-      { q: 'The customer journey maps:', opts: ['The path from awareness to purchase and after-sales support', 'Only design work', 'Only tax forms', 'Only supplier contacts'], correct: 0, exp: 'The journey covers the full buying experience.' }
-    ],
-    operations: [
-      { q: 'An operations plan explains:', opts: ['How the product or service is created and delivered', 'Only the founder’s biography', 'Only the office layout', 'Only the logo'], correct: 0, exp: 'Operations covers delivery, process, and service quality.' },
-      { q: 'Management structure should clarify:', opts: ['Who does what and who is accountable', 'Only the names of vendors', 'Only the product colour', 'Only the website domain'], correct: 0, exp: 'Roles and responsibilities reduce confusion and gaps.' },
-      { q: 'Technology in a business plan is relevant when it helps:', opts: ['The business run more efficiently or serve customers better', 'Only by adding cost with no benefit', 'Only to increase jargon', 'Only for entertainment'], correct: 0, exp: 'Technology should support value, efficiency, and scale.' },
-      { q: 'A supplier and partner strategy matters because it affects:', opts: ['Only the logo', 'Reliability, costs, quality, and risk', 'Only the founder’s mood', 'Only the product name'], correct: 1, exp: 'Partners and suppliers shape delivery and cost.' }
-    ],
-    finance: [
-      { q: 'A startup budget estimates:', opts: ['How much the business needs to start and operate', 'Only the founder’s profit later', 'Only the office chairs', 'Only the brand name'], correct: 0, exp: 'A budget shows the upfront and running costs required to launch and operate.' },
-      { q: 'Break-even analysis shows:', opts: ['The point where revenue covers costs', 'The founder’s salary target', 'Only legal fees', 'Only taxes'], correct: 0, exp: 'Break-even tells you the sales level needed to stop losing money.' },
-      { q: 'Cash flow is important because:', opts: ['It tracks money coming in and going out over time', 'It does not matter in a business plan', 'It only measures brand awareness', 'It is the same as profit always'], correct: 0, exp: 'Cash flow helps a business survive and plan for timing gaps.' },
-      { q: 'Funding sources can include:', opts: ['Bootstrapping, grants, loans, investors, or sales revenue', 'Only the founder’s personal dreams', 'Only ad spending', 'Only legal paperwork'], correct: 0, exp: 'Funding can come from multiple sources depending on the business model and stage.' }
-    ],
-    risk: [
-      { q: 'Risk management in a plan should:', opts: ['Hide all weaknesses', 'Identify major threats and how they will be handled', 'Ignore operations', 'Only discuss competition'], correct: 1, exp: 'A good plan acknowledges risk and shows a response.' },
-      { q: 'A legal and compliance section matters because it helps the business:', opts: ['Avoid regulations', 'Operate properly and reduce avoidable penalties', 'Skip all records', 'Ignore taxes'], correct: 1, exp: 'Compliance reduces legal and operational risk.' },
-      { q: 'A milestone plan is useful because it:', opts: ['Shows the sequence of actions and timing needed to launch', 'Hides the timeline', 'Does not matter', 'Only lists names'], correct: 0, exp: 'Milestones turn the plan into an executable roadmap.' },
-      { q: 'An appendix can include:', opts: ['Support data, charts, CVs, and extra documents', 'Only the logo', 'Only the founder’s story', 'Only one sentence'], correct: 0, exp: 'Appendices provide evidence and backup information without cluttering the main plan.' }
-    ]
-  };
-
-  function pickQuestions(key, count) {
-    var pool = BANK[key] || BANK.general;
-    var mixed = BANK.general.concat(BANK.idea, BANK.research, BANK.model, BANK.marketing, BANK.operations, BANK.finance, BANK.risk);
-    var out = [];
-    for (var i = 0; i < count; i++) {
-      out.push(i < pool.length ? pool[i] : mixed[i % mixed.length]);
-    }
-    return out;
-  }
-
-  function buildModules() {
-    return curriculum.map(function (entry, index) {
-      var moduleNum = entry[0];
-      var title = entry[1];
-      var icon = entry[2];
-      var skill = entry[3];
-      var type = entry[4];
-      var lessonNames = entry[5] || [];
-      return {
-        num: moduleNum,
-        title: title,
-        icon: icon,
-        skill: skill,
-        type: type,
-        lessons: lessonNames.map(function (name, pos) {
-          var v = VIDEO_MAP[name] || '';
-          return { t: (moduleNum + '.' + (pos + 1) + ' ' + name), d: '08:00', v: v, title: name, module: title, skill: skill };
-        })
-      };
-    });
-  }
-
-  var course = {
-    id: 'business-plan',
-    title: 'Business Plan Mastery',
-    shortDesc: 'Learn how to research, design, write, and present a realistic business plan that attracts customers, lenders, and investors.',
-    category: 'Business & Planning',
-    icon: '📄',
-    gradient: 'linear-gradient(135deg,#b45309,#f59e0b)',
-    instructor: 'Samuel Tolbert',
-    instructorTitle: 'Founder & CEO, Tolbert Innovation Hub',
-    instructorBio: 'Samuel Tolbert leads TIH programs that help learners turn ideas into practical, fundable ventures with clear business strategy and realistic planning.',
-    rating: 4.8,
-    reviewCount: 215,
-    students: '1,400+',
-    duration: '18h',
-    level: 'Beginner',
-    price: 'FREE',
-    origPrice: '$90',
-    isFree: true,
-    badge: 'free',
-    certId: 'TIH-2026-BP-0001',
-    learn: [
-      'Understand why a business plan matters and what it should achieve',
-      'Research the problem, market, and customer opportunity',
-      'Design a value proposition and a realistic business model',
-      'Write practical sections for marketing, operations, and finance',
-      'Create a credible funding and risk plan',
-      'Draft and pitch a complete business plan for a real idea'
-    ],
-    requirements: [
-      'No prior business experience required',
-      'A business idea or a case study to work on',
-      'A notebook or digital document for writing and planning'
-    ],
-    about: [
-      'A business plan turns a good idea into a real, manageable venture. It helps founders understand their market, test assumptions, set priorities, and communicate clearly with partners, lenders, and investors.',
-      'This course makes business planning practical and accessible. You will move from understanding the core business problem to writing each section of the plan, from the market and operations to finance, risks, and funding.',
-      'By the end of the course, you will be able to create a complete business plan for an idea you can actually use in the real world.'
-    ],
-    modules: buildModules(),
-    _businessPlanFullBuilt: true
-  };
-
-  var existing = COURSES_DB['business-plan'] || {};
-  for (var key in course) {
-    if (Object.prototype.hasOwnProperty.call(course, key)) existing[key] = course[key];
-  }
-  COURSES_DB['business-plan'] = existing;
-
-  if (typeof window !== 'undefined') {
-    window.TIH_LESSON_NOTES = window.TIH_LESSON_NOTES || {};
-    window.TIH_LESSON_NOTES['business-plan'] = window.TIH_LESSON_NOTES['business-plan'] || {};
-
-    curriculum.forEach(function (entry, idx) {
-      var moduleTitle = entry[1];
-      var skill = entry[3];
-      (entry[5] || []).forEach(function (name, pos) {
-        window.TIH_LESSON_NOTES['business-plan'][name] = note(moduleTitle, skill, name, idx + pos + 1);
-      });
-    });
-  }
-
-  if (typeof window !== 'undefined') {
-    window.TIH_BUSINESS_PLAN_QUIZ_BANK = window.TIH_BUSINESS_PLAN_QUIZ_BANK || {};
-    var quizBank = {};
-    for (var skillKey in BANK) {
-      if (Object.prototype.hasOwnProperty.call(BANK, skillKey)) {
-        quizBank[skillKey] = pickQuestions(skillKey, 5);
-      }
-    }
-    window.TIH_BUSINESS_PLAN_QUIZ_BANK = quizBank;
-  }
+  var videoIds=['YYpDOu4Pgcw','jmUVKMBOlqI','429VKN_0Rqk','Ue6hxaN0YoQ','sGHxNuj-4MA','11RspUkTKTw','HaYL-kjxSlk','U4G4zTPka0s','XQVQJmcNlcI','5XgjG3ziIGY','MXzieZ-pDKw','lVGFBSJ8QKY','GydcZVhnMPw','Z4dGC7dn2hE','Y-AeOIsxSEk','QoAOzMTLP5s','_UsC-BvEIZk','C0Eh4JY-ic8','xuGh-jzupzc','pktiCqv6gwQ','v7evqOqga74','714lwC42YAM','AMKgcBzK7cg','O6nwHQ_CSN0','B8y85Defryw','uZMNyAM3Ij8','H1WPHl8hUtI','5Jh95xDKexY','Tk-RdCFSrKU','O408tB0iasA'];
+  function cloneQ(x){return{q:x.q,opts:x.opts.slice(),correct:x.correct,exp:x.exp};}
+  function q(t,n){var title=t[0],def=t[1],pair=t[2].split('|'),example=t[3],take=t[4];return[
+    {q:'Which statement best defines “'+title+'”?',opts:[def,'A decorative statement with no operational use','A personal opinion that needs no evidence','A financial result calculated without assumptions'],correct:0,exp:def},
+    {q:'In “'+title+'”, which distinction must a planner keep clear?',opts:[pair[0]+' and '+pair[1],'advertising and handwriting','popularity and truth','color and page size'],correct:0,exp:'The lesson distinguishes '+pair[0]+' from '+pair[1]+' because confusing them produces weak decisions.'},
+    {q:'Which example correctly applies “'+title+'”?',opts:[example,'Copy a number without naming its source','Promise success without identifying a customer','Ignore a contradiction between operations and finance'],correct:0,exp:example},
+    {q:'Which conclusion shows professional understanding of “'+title+'”?',opts:[take,'Every business should copy the same plan','Confident language can replace reliable evidence','A plan never needs revision after it is written'],correct:0,exp:take}
+  ][n];}
+  var modules=[],quizzes={},topicBank={},contentCount=0,vid=0;
+  var projectNames={2:'Company Foundation Pack',4:'Market Evidence Report',6:'Business Model and Operations Blueprint',8:'Three-Year Financial Workbook',10:'Investor-Ready Business Plan and Pitch'};
+  topics.forEach(function(mod){
+    var num=mod[0],title=mod[1],lessons=[];
+    mod[3].forEach(function(t,i){t.module=num;t.moduleTitle=title;t.video=videoIds[vid++];var qid='bplan-m'+num+'-p'+(i+1);topicBank[t[0]]=[cloneQ(q(t,0)),cloneQ(q(t,1)),cloneQ(q(t,2))];quizzes[qid]={title:'Practice: '+t[0],moduleNum:num,questions:topicBank[t[0]]};lessons.push({t:num+'.'+(i+1)+' '+t[0],d:'Full lesson · video · visual example · explained practice',v:t.video,quizId:qid});contentCount++;});
+    if(projectNames[num])lessons.push({t:'🛠️ '+projectNames[num],d:'Applied business-plan project',isProject:true,v:null});
+    var aq='bplan-m'+num+'-assessment';quizzes[aq]={title:'Module '+num+' Assessment',moduleNum:num,questions:mod[3].map(function(t){return cloneQ(q(t,3));})};lessons.push({t:'📝 Module '+num+' Assessment',d:'3 new questions',isQuiz:true,quizId:aq});modules.push({title:'Module '+num+': '+title,icon:mod[2],lessons:lessons});
+  });
+  var exam=[];topics.forEach(function(mod){mod[3].forEach(function(t){if(exam.length<20)exam.push({q:'A reviewer challenges the section on “'+t[0]+'”. What is the strongest response?',opts:['Define the claim, show its source or calculation, explain its business effect, and state how it will be tested','Repeat the claim more confidently','Remove every number from the plan','Say that all successful businesses use the same answer'],correct:0,exp:'Professional plans connect precise claims to evidence, business consequences and a method of validation.'});});});
+  quizzes['bplan-final']={title:'Final Examination',moduleNum:10,isFinal:true,questions:exam};modules[9].lessons.push({t:'🎓 Final Examination',d:'20 new comprehensive questions',isQuiz:true,quizId:'bplan-final',isFinal:true});
+  window.TIH_BUSINESS_PLAN_TOPICS=topics;window.TIH_TOPIC_QUIZZES=window.TIH_TOPIC_QUIZZES||{};window.TIH_TOPIC_QUIZZES['business-plan']=topicBank;
+  window.COURSES_DB['business-plan']={id:'business-plan',title:'Complete Business Plan Development: From Idea to Funding & Launch',shortTitle:'Complete Business Plan Development',category:'Business & Entrepreneurship',icon:'📘',gradient:'linear-gradient(135deg,#002868 0%,#1261c9 55%,#ed1c24 145%)',cardImage:'business-plan-card.svg',badge:'NEW',price:5,duration:'75+ hours',level:'Beginner to Investor Ready',instructor:'Tolbert Innovation Hub',certificate:'TIH-2026-BPLAN',description:'Build a complete evidence-based business plan—from customer problem and market research to operations, financial projections, funding, pitch and launch.',outcomes:['Research and validate a viable business opportunity','Write every major section of a professional business plan','Build pricing, cash-flow, break-even and funding calculations','Create an investor-ready pitch deck and presentation','Launch, measure and improve a responsible venture'],requirements:['No previous business-plan experience required','A phone or computer with internet access','A notebook or document editor and spreadsheet access','A business idea, existing venture or community problem to develop'],modules:modules,quizzes:quizzes,_t:modules.reduce(function(n,m){return n+m.lessons.length;},0),_v:contentCount,_fullBuilt:true};
+  console.log('[Business Plan] modules='+modules.length+' content='+contentCount+' total='+window.COURSES_DB['business-plan']._t+' quizzes='+Object.keys(quizzes).length);
 })();
