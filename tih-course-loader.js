@@ -36,6 +36,7 @@
     "ai-cybersecurity": "aicyber-curriculum.js",
     "android": "android-curriculum.js",
     "bible-foundations": "bible-curriculum.js",
+    "business-plan": "business-plan-curriculum.js",
     "computer-literacy": "complit-curriculum.js",
     "cybersecurity": "cybersecurity-curriculum.js",
     "data": "data-curriculum.js",
