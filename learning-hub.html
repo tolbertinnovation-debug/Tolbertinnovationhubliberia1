@@ -791,7 +791,7 @@
     </div>
   </footer>
 
-  <script src="courses-db.js?v=22"></script><script src="ielts-curriculum.js?v=4"></script><script src="toefl-curriculum.js?v=4"></script><script src="sat-curriculum.js?v=2"></script><script src="entrepreneurship-curriculum.js?v=3"></script><script src="webdev-curriculum.js?v=5"></script><script src="design-curriculum.js?v=2"></script><script src="android-curriculum.js?v=2"></script><script src="cybersecurity-curriculum.js?v=2"></script><script src="aicyber-curriculum.js?v=1"></script><script src="publichealth-curriculum.js?v=3"></script><script src="projectmgmt-curriculum.js?v=2"></script><script src="leadership-curriculum.js?v=2"></script><script src="grantwriting-curriculum.js?v=3"></script><script src="complit-curriculum.js?v=5"></script><script src="englishsuccess-curriculum.js?v=2"></script><script src="agritech-curriculum.js?v=2"></script><script src="ai-curriculum.js?v=2"></script><script src="data-curriculum.js?v=2"></script><script src="marketing-curriculum.js?v=2"></script><script src="office-curriculum.js?v=2"></script><script src="finlit-curriculum.js?v=2"></script><script src="healthtech-curriculum.js?v=2"></script><script src="remotework-curriculum.js?v=2"></script><script src="bible-curriculum.js?v=2"></script><script src="course-images.js?v=3"></script>
+  <script src="courses-db.js?v=22"></script><script src="ielts-curriculum.js?v=4"></script><script src="toefl-curriculum.js?v=4"></script><script src="sat-curriculum.js?v=2"></script><script src="entrepreneurship-curriculum.js?v=3"></script><script src="webdev-curriculum.js?v=5"></script><script src="design-curriculum.js?v=2"></script><script src="android-curriculum.js?v=2"></script><script src="cybersecurity-curriculum.js?v=2"></script><script src="aicyber-curriculum.js?v=1"></script><script src="publichealth-curriculum.js?v=3"></script><script src="projectmgmt-curriculum.js?v=2"></script><script src="leadership-curriculum.js?v=2"></script><script src="grantwriting-curriculum.js?v=3"></script><script src="complit-curriculum.js?v=5"></script><script src="englishsuccess-curriculum.js?v=2"></script><script src="agritech-curriculum.js?v=2"></script><script src="ai-curriculum.js?v=2"></script><script src="data-curriculum.js?v=2"></script><script src="marketing-curriculum.js?v=2"></script><script src="office-curriculum.js?v=2"></script><script src="finlit-curriculum.js?v=2"></script><script src="healthtech-curriculum.js?v=2"></script><script src="remotework-curriculum.js?v=2"></script><script src="bible-curriculum.js?v=2"></script><script src="metaphysics-curriculum.js?v=1"></script><script src="metaphysics-video-map.js?v=1"></script><script src="business-plan-curriculum.js?v=1"></script><script src="business-plan-video-map.js?v=1"></script><script src="course-images.js?v=3"></script>
   <script src="hero-network.js?v=2"></script>
   <script>
     // Hero rotating highlight ticker
@@ -871,7 +871,7 @@
           cats[cat] = (cats[cat] || 0) + 1;
           var grad = c.gradient || 'linear-gradient(135deg,#123d78,#1e5e9e)';
           var pr = priceFor(ids[i], c);
-          var title = c.title.split(':')[0];
+          var title = c.title.split(':')[0].replace(/^Complete\s+/i, '');
           var bits = [];
           if (c.rating) bits.push('⭐ ' + c.rating);
           if (c.students) bits.push('👥 ' + c.students);
@@ -970,7 +970,7 @@
         (c.modules || []).forEach(function (m) { lessons += (m.lessons || []).length; });
         return '<a class="track-chip" href="course-player?id=' + id + '">'
           + '<span class="t-icon">' + (c.icon || '✝️') + '</span>'
-          + '<span><span class="t-name">' + c.title.split(':')[0] + '</span><br>'
+          + '<span><span class="t-name">' + c.title.split(':')[0].replace(/^Complete\s+/i, '') + '</span><br>'
           + '<span class="t-meta">' + lessons + ' lessons · Certificate · <s style="color:#94a3b8;">US$49</s> <b style="color:var(--primary);">US$5 / L$950</b></span></span>'
           + '</a>';
       }).join('');
