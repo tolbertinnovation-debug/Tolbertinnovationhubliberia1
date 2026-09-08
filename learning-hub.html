@@ -871,7 +871,7 @@
           cats[cat] = (cats[cat] || 0) + 1;
           var grad = c.gradient || 'linear-gradient(135deg,#123d78,#1e5e9e)';
           var pr = priceFor(ids[i], c);
-          var title = c.title.split(':')[0];
+          var title = c.title.split(':')[0].replace(/^Complete\s+/i, '');
           var bits = [];
           if (c.rating) bits.push('⭐ ' + c.rating);
           if (c.students) bits.push('👥 ' + c.students);
@@ -970,7 +970,7 @@
         (c.modules || []).forEach(function (m) { lessons += (m.lessons || []).length; });
         return '<a class="track-chip" href="course-player?id=' + id + '">'
           + '<span class="t-icon">' + (c.icon || '✝️') + '</span>'
-          + '<span><span class="t-name">' + c.title.split(':')[0] + '</span><br>'
+          + '<span><span class="t-name">' + c.title.split(':')[0].replace(/^Complete\s+/i, '') + '</span><br>'
           + '<span class="t-meta">' + lessons + ' lessons · Certificate · <s style="color:#94a3b8;">US$49</s> <b style="color:var(--primary);">US$5 / L$950</b></span></span>'
           + '</a>';
       }).join('');
