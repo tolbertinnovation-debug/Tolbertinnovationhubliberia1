@@ -403,16 +403,6 @@
     function courseName(id) {
       return (typeof COURSES_DB !== 'undefined' && COURSES_DB[id]) ? COURSES_DB[id].title.split(':')[0] : id;
     }
-    /* Registration enrols every applicant in the whole catalogue, so spelling
-       out ~30 identical course names per row says nothing and wrecks the table.
-       Only a partial list (an older application, or an admin-edited one) is
-       still worth naming. */
-    function trackSummary(tracks) {
-      tracks = tracks || [];
-      var total = (typeof COURSES_DB !== 'undefined') ? Object.keys(COURSES_DB).length : 0;
-      if (total && tracks.length >= total) return 'All courses (' + tracks.length + ')';
-      return tracks.map(courseName).map(esc).join(', ');
-    }
     function fmtDate(iso) { return (typeof HubDB !== 'undefined' && HubDB.fmtDate) ? HubDB.fmtDate(iso) : (iso || 'N/A'); }
     function fmtDateTime(iso) { return (typeof HubDB !== 'undefined' && HubDB.fmtDateTime) ? HubDB.fmtDateTime(iso) : (iso || 'N/A'); }
     function timeAgo(iso) { return (typeof HubDB !== 'undefined' && HubDB.timeAgo) ? HubDB.timeAgo(iso) : (iso || 'N/A'); }
@@ -755,7 +745,7 @@
           + '<td style="white-space:nowrap;">' + sidCell + '</td>'
           + '<td>' + esc(a.name) + '<br><span style="color:var(--muted);font-size:.76rem;">' + esc(a.email) + '</span></td>'
           + '<td>' + esc(a.location) + '</td>'
-          + '<td style="font-size:.78rem;">' + trackSummary(a.tracks) + '</td>'
+          + '<td style="font-size:.78rem;">' + (a.tracks || []).map(courseName).map(esc).join(', ') + '</td>'
           + '<td style="white-space:nowrap;">' + fmtDate(a.submittedAt) + '</td>'
           + '<td><span class="pill ' + a.status + '">' + a.status.replace('-', ' ') + '</span></td>'
           + '<td><div class="row-actions">'
@@ -795,7 +785,7 @@
         + '<div class="kv"><span class="k">Education</span><span class="v">' + esc(a.education) + '</span></div>'
         + '<div class="kv"><span class="k">Occupation</span><span class="v">' + esc(a.occupation || 'N/A') + '</span></div>'
         + '<div class="kv"><span class="k">Referral</span><span class="v">' + esc(a.referral || 'N/A') + '</span></div>'
-        + '<div class="kv"><span class="k">Tracks</span><span class="v">' + trackSummary(a.tracks) + '</span></div>'
+        + '<div class="kv"><span class="k">Tracks</span><span class="v">' + (a.tracks || []).map(courseName).map(esc).join(', ') + '</span></div>'
         + '<div class="kv"><span class="k">Student ID</span><span class="v">' + (function () { var sid = studentIdForApp(a, indexStudentsByApp()); return sid ? '<b>' + esc(sid) + '</b>' : '<span style="color:var(--muted);">Not issued yet</span>'; })() + '</span></div>'
         + '<div class="kv"><span class="k">Status</span><span class="v"><span class="pill ' + a.status + '">' + a.status + '</span></span></div>'
         + '<p style="margin:.8rem 0;font-size:.88rem;"><b>Goals:</b> ' + esc(a.goals) + '</p>'

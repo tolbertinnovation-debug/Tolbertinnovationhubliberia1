@@ -86,6 +86,15 @@
     .dob-row { display: grid; grid-template-columns: 1fr 1.3fr 1.15fr; gap: .4rem; }
     .dob-row select { width: 100%; min-width: 0; padding-left: .55rem; padding-right: 1.5rem;
       font-size: .92rem; background-position: right .45rem center; }
+    .track-tools { display: flex; gap: .5rem; align-items: center; margin: 0 0 .55rem; }
+    .track-search { flex: 1; min-width: 0; padding: .6rem .8rem; border: 1px solid var(--border);
+      border-radius: 10px; font-size: .92rem; font-family: inherit; }
+    .track-search:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,40,104,.10); }
+    .track-count { font-size: .78rem; font-weight: 700; color: var(--primary); background: #eef4ff;
+      border: 1px solid #d8e4f5; border-radius: 999px; padding: .35rem .7rem; white-space: nowrap; }
+    .track-empty { font-size: .86rem; color: var(--muted); margin: .4rem 0 0; }
+    .tracks-select { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; max-height: 340px; overflow-y: auto;
+      padding-right: .25rem; }
     /* A field the applicant needs to fix, marked where the problem is rather
        than only in a message at the top of the page. */
     .field.has-error input, .field.has-error select, .field.has-error textarea { border-color: #dc2626; background: #fff7f7; }
@@ -95,6 +104,11 @@
     .goal-chip { font-size: .82rem; font-weight: 600; color: var(--primary); background: #fff;
       border: 1px solid #d8e4f5; border-radius: 999px; padding: .38rem .8rem; cursor: pointer; }
     .goal-chip:hover { background: #eef4ff; }
+    @media (max-width: 560px) { .tracks-select { grid-template-columns: 1fr; } }
+    .track-opt { display: flex; align-items: center; gap: 0.6rem; border: 1.5px solid var(--border); border-radius: 8px; padding: 0.6rem 0.75rem; cursor: pointer; font-size: 0.86rem; font-weight: 600; transition: all .15s; min-height: 48px; }
+    .track-opt:hover { border-color: var(--primary); }
+    .track-opt input { width: 18px; height: 18px; accent-color: var(--primary); flex-shrink: 0; min-height: 0; }
+    .track-opt.checked { border-color: var(--primary); background: var(--primary-light); }
     .btn-submit { width: 100%; background: var(--secondary); color: #fff; border: none; border-radius: 999px; padding: 0.95rem; font-size: 1rem; font-weight: 800; font-family: 'Poppins', sans-serif; cursor: pointer; transition: background .2s; min-height: 52px; margin-top: 0.5rem; }
     .btn-submit:hover { background: var(--secondary-dark); }
     .btn-submit:disabled { opacity: .6; cursor: not-allowed; }
@@ -205,8 +219,14 @@
           </div>
         </div>
         <div class="field">
-          <label>Your courses</label>
-          <div class="form-note">Every TIH course and WASSCE subject is added to your account automatically, so there is nothing to choose here. They all appear on your dashboard once you register.</div>
+          <label>Which tracks do you want to learn? <span class="req">*</span> <span style="font-weight:500;color:var(--muted);">(choose one or more)</span></label>
+          <div class="form-note">Pick the subjects or courses that best match your goals. You can always update your preferences later.</div>
+          <div class="track-tools">
+            <input type="search" id="trackSearch" class="track-search" placeholder="🔍 Type to find a course or subject…" autocomplete="off" aria-label="Filter the list of tracks" />
+            <span class="track-count" id="trackCount">0 selected</span>
+          </div>
+          <div class="tracks-select" id="tracksSelect"></div>
+          <p class="track-empty" id="trackEmpty" hidden>Nothing matches that. Try a shorter word.</p>
         </div>
         <div class="field">
           <label>How did you hear about TIH?</label>
@@ -264,7 +284,7 @@
     </div>
   </div>
 
-  <script src="courses-db.js?v=22"></script><script src="ielts-curriculum.js?v=4"></script><script src="toefl-curriculum.js?v=4"></script><script src="sat-curriculum.js?v=2"></script><script src="entrepreneurship-curriculum.js?v=3"></script><script src="webdev-curriculum.js?v=5"></script><script src="design-curriculum.js?v=2"></script><script src="android-curriculum.js?v=2"></script><script src="cybersecurity-curriculum.js?v=2"></script><script src="aicyber-curriculum.js?v=1"></script><script src="publichealth-curriculum.js?v=3"></script><script src="projectmgmt-curriculum.js?v=2"></script><script src="leadership-curriculum.js?v=2"></script><script src="grantwriting-curriculum.js?v=3"></script><script src="complit-curriculum.js?v=5"></script><script src="englishsuccess-curriculum.js?v=2"></script><script src="agritech-curriculum.js?v=2"></script><script src="ai-curriculum.js?v=2"></script><script src="data-curriculum.js?v=2"></script><script src="marketing-curriculum.js?v=2"></script><script src="office-curriculum.js?v=2"></script><script src="finlit-curriculum.js?v=2"></script><script src="healthtech-curriculum.js?v=2"></script><script src="remotework-curriculum.js?v=2"></script><script src="bible-curriculum.js?v=2"></script><script src="courses-lite.js?v=16"></script><script src="course-images.js?v=1"></script>
+  <script src="courses-db.js?v=22"></script><script src="ielts-curriculum.js?v=4"></script><script src="toefl-curriculum.js?v=4"></script><script src="sat-curriculum.js?v=2"></script><script src="entrepreneurship-curriculum.js?v=3"></script><script src="webdev-curriculum.js?v=5"></script><script src="design-curriculum.js?v=2"></script><script src="android-curriculum.js?v=2"></script><script src="cybersecurity-curriculum.js?v=2"></script><script src="aicyber-curriculum.js?v=1"></script><script src="publichealth-curriculum.js?v=3"></script><script src="projectmgmt-curriculum.js?v=2"></script><script src="leadership-curriculum.js?v=2"></script><script src="grantwriting-curriculum.js?v=3"></script><script src="complit-curriculum.js?v=5"></script><script src="englishsuccess-curriculum.js?v=2"></script><script src="agritech-curriculum.js?v=2"></script><script src="ai-curriculum.js?v=2"></script><script src="data-curriculum.js?v=2"></script><script src="marketing-curriculum.js?v=2"></script><script src="office-curriculum.js?v=2"></script><script src="finlit-curriculum.js?v=2"></script><script src="healthtech-curriculum.js?v=2"></script><script src="remotework-curriculum.js?v=2"></script><script src="bible-curriculum.js?v=2"></script><script src="course-images.js?v=1"></script>
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=18"></script>
   <script src="hub-db.js?v=42"></script>
@@ -287,13 +307,60 @@
       return id;
     }
 
-    // Registration no longer asks the applicant to pick tracks: the account
-    // starts with the whole catalogue. WASSCE subjects are not listed here --
-    // the dashboard shows every subject to every learner already, and
-    // HubDB.normCourses() drops wassce- ids from an account's course list.
-    function allTrackIds() {
-      try { return Object.keys(COURSES_DB); } catch (e) { return []; }
-    }
+    // Build track checkboxes from COURSES_DB, then WASSCE subjects.
+    (function () {
+      var box = document.getElementById('tracksSelect');
+      var html = '';
+      try {
+        var ids = Object.keys(COURSES_DB);
+        for (var i = 0; i < ids.length; i++) {
+          var c = COURSES_DB[ids[i]];
+          html += '<label class="track-opt"><input type="checkbox" name="tracks" value="' + c.id + '"> '
+            + (c.icon || '📘') + ' ' + HubDB.esc(c.title.split(':')[0]) + '</label>';
+        }
+      } catch (e) {}
+      // WASSCE group
+      html += '<div style="grid-column:1/-1;font-weight:800;color:var(--primary);font-size:0.9rem;margin:0.6rem 0 0.1rem;">🎓 WASSCE PRO, Exam Subjects</div>';
+      for (var j = 0; j < WASSCE_APPLY.length; j++) {
+        var w = WASSCE_APPLY[j];
+        html += '<label class="track-opt"><input type="checkbox" name="tracks" value="wassce-' + w[0] + '"> '
+          + w[2] + ' ' + HubDB.esc(w[1]) + '</label>';
+      }
+      box.innerHTML = html;
+      var countEl = document.getElementById('trackCount');
+      function refreshCount() {
+        var n = box.querySelectorAll('input[name="tracks"]:checked').length;
+        countEl.textContent = n === 1 ? '1 selected' : n + ' selected';
+        countEl.style.background = n ? '#e7f7ee' : '#eef4ff';
+        countEl.style.borderColor = n ? '#b7e6c9' : '#d8e4f5';
+        countEl.style.color = n ? '#0f7a43' : 'var(--primary)';
+      }
+      box.addEventListener('change', function (e) {
+        if (e.target.name === 'tracks') {
+          e.target.closest('.track-opt').classList.toggle('checked', e.target.checked);
+          refreshCount();
+        }
+      });
+      refreshCount();
+
+      // Filter rather than scroll. A checked option always stays visible, so
+      // searching can never hide something the applicant already chose.
+      var search = document.getElementById('trackSearch');
+      var empty  = document.getElementById('trackEmpty');
+      search.addEventListener('input', function () {
+        var q = search.value.trim().toLowerCase();
+        var shown = 0;
+        box.querySelectorAll('.track-opt').forEach(function (opt) {
+          var hit = !q || opt.textContent.toLowerCase().indexOf(q) !== -1
+                       || opt.querySelector('input').checked;
+          opt.style.display = hit ? '' : 'none';
+          if (hit) shown++;
+        });
+        // the WASSCE group heading is only useful while its options are showing
+        box.querySelectorAll('div').forEach(function (h) { h.style.display = q ? 'none' : ''; });
+        empty.hidden = shown > 0;
+      });
+    })();
 
     // Date of birth as three lists. The hidden dob input keeps the same
     // YYYY-MM-DD value the rest of the page already reads, so nothing
@@ -476,7 +543,7 @@
               'Education Level': d.education,
               'Occupation': d.occupation || '(not given)',
               'Goals': d.goals,
-              'Learning Tracks': 'All courses (auto-enrolled at registration)',
+              'Learning Tracks': d.tracks.join(', '),
               'Heard About Us': d.referral || '(not given)',
               'Application ID': app.id || '',
               'Student ID': app.studentId || '',
@@ -495,7 +562,8 @@
         e.preventDefault();
         clearErrors();
         var fd = new FormData(form);
-        var tracks = allTrackIds();
+        var tracks = [];
+        form.querySelectorAll('input[name="tracks"]:checked').forEach(function (cb) { tracks.push(cb.value); });
 
         var name = String(fd.get('name') || '').trim();
         var email = String(fd.get('email') || '').trim();
@@ -512,6 +580,7 @@
         if (!location) return showError('Please enter your location.', 'location');
         if (!education) return showError('Please select your education level.', 'education');
         if (!goals) return showError('Please tell us what you want to achieve.', 'goals');
+        if (!tracks.length) return showError('Please choose at least one learning track.', 'tracks');
         if (password.length < 8) return showError('Your password must be at least 8 characters.', 'password');
         if (password !== password2) return showError('The two passwords do not match. Please re-enter them.', 'password2');
 
@@ -549,7 +618,7 @@
           // Registration signs the learner in automatically, so take them
           // straight to their dashboard rather than a confirmation screen.
           submitBtn.textContent = 'Welcome! Opening your dashboard…';
-          window.location.replace('hub-dashboard');
+          location.replace('hub-dashboard');
         }).catch(function () {
           submitBtn.disabled = false;
           submitBtn.textContent = 'Create Account & Submit →';
