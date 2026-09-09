@@ -45,6 +45,7 @@
     "entrepreneurship": "entrepreneurship-curriculum.js",
     "financial-literacy": "finlit-curriculum.js",
     "football-coaching": "football-coaching-curriculum.js",
+    "human-rights-ihl": "human-rights-ihl-curriculum.js",
     "grant-writing": "grantwriting-curriculum.js",
     "healthtech": "healthtech-curriculum.js",
     "ielts": "ielts-curriculum.js",
@@ -104,7 +105,8 @@
     'agritech':         { src: 'agritech-topic-quizzes.js?v=1', apply: 'tihApplyAgritechTopicQuizzes' },
     'entrepreneurship': { src: 'entrepreneurship-topic-quizzes.js?v=1', apply: 'tihApplyEntrepreneurshipTopicQuizzes' },
     'quickbooks':       { src: 'quickbooks-topic-quizzes.js?v=1', apply: 'tihApplyQuickbooksTopicQuizzes' },
-    'football-coaching': { src: 'football-coaching-topic-quizzes.js?v=1', apply: 'tihApplyFootballCoachingTopicQuizzes' }
+    'football-coaching': { src: 'football-coaching-topic-quizzes.js?v=1', apply: 'tihApplyFootballCoachingTopicQuizzes' },
+    'human-rights-ihl': { src: 'human-rights-ihl-topic-quizzes.js?v=1', apply: 'tihApplyHumanRightsIhlTopicQuizzes' }
   };
 
   // Courses with an authored topic-quiz chunk in quizzes/.
@@ -158,7 +160,8 @@
     'leadership':       ['leadership-video-map.js?v=2'],
     'android':          ['android-video-map.js?v=1'],
     'quickbooks':       ['quickbooks-video-map.js?v=1', 'quickbooks-notes.js?v=1'],
-    'football-coaching': ['football-coaching-video-map.js?v=1', 'football-coaching-notes.js?v=1']
+    'football-coaching': ['football-coaching-video-map.js?v=1', 'football-coaching-notes.js?v=1'],
+    'human-rights-ihl': ['human-rights-ihl-video-map.js?v=1', 'human-rights-ihl-notes.js?v=1']
   };
 
   function has(list, id) {
