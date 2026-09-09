@@ -219,14 +219,11 @@
           </div>
         </div>
         <div class="field">
-          <label>Which tracks do you want to learn? <span class="req">*</span> <span style="font-weight:500;color:var(--muted);">(choose one or more)</span></label>
-          <div class="form-note">Pick the subjects or courses that best match your goals. You can always update your preferences later.</div>
-          <div class="track-tools">
-            <input type="search" id="trackSearch" class="track-search" placeholder="🔍 Type to find a course or subject…" autocomplete="off" aria-label="Filter the list of tracks" />
-            <span class="track-count" id="trackCount">0 selected</span>
+          <label>Your courses <span style="font-weight:500;color:var(--muted);">(all included)</span></label>
+          <div class="track-tools" style="display:block;">
+            <span class="track-count" id="trackCount" style="display:inline-block;">✓ Every course included</span>
           </div>
-          <div class="tracks-select" id="tracksSelect"></div>
-          <p class="track-empty" id="trackEmpty" hidden>Nothing matches that. Try a shorter word.</p>
+          <div class="form-note">Your account comes with full access to every course and subject in the Learning Hub, including all WASSCE PRO subjects. There is nothing to pick here, just create your account and start learning anything you like.</div>
         </div>
         <div class="field">
           <label>How did you hear about TIH?</label>
@@ -284,7 +281,7 @@
     </div>
   </div>
 
-  <script src="courses-db.js?v=25"></script><script src="ielts-curriculum.js?v=4"></script><script src="toefl-curriculum.js?v=4"></script><script src="sat-curriculum.js?v=2"></script><script src="entrepreneurship-curriculum.js?v=3"></script><script src="webdev-curriculum.js?v=5"></script><script src="design-curriculum.js?v=2"></script><script src="android-curriculum.js?v=2"></script><script src="cybersecurity-curriculum.js?v=2"></script><script src="aicyber-curriculum.js?v=1"></script><script src="publichealth-curriculum.js?v=3"></script><script src="projectmgmt-curriculum.js?v=2"></script><script src="leadership-curriculum.js?v=2"></script><script src="grantwriting-curriculum.js?v=3"></script><script src="complit-curriculum.js?v=5"></script><script src="englishsuccess-curriculum.js?v=2"></script><script src="agritech-curriculum.js?v=2"></script><script src="ai-curriculum.js?v=2"></script><script src="data-curriculum.js?v=2"></script><script src="marketing-curriculum.js?v=2"></script><script src="office-curriculum.js?v=2"></script><script src="finlit-curriculum.js?v=2"></script><script src="healthtech-curriculum.js?v=2"></script><script src="remotework-curriculum.js?v=2"></script><script src="bible-curriculum.js?v=2"></script><script src="course-images.js?v=1"></script>
+  <script src="courses-db.js?v=25"></script><script src="ielts-curriculum.js?v=4"></script><script src="toefl-curriculum.js?v=4"></script><script src="sat-curriculum.js?v=2"></script><script src="entrepreneurship-curriculum.js?v=3"></script><script src="webdev-curriculum.js?v=5"></script><script src="design-curriculum.js?v=2"></script><script src="android-curriculum.js?v=2"></script><script src="cybersecurity-curriculum.js?v=2"></script><script src="aicyber-curriculum.js?v=1"></script><script src="publichealth-curriculum.js?v=3"></script><script src="projectmgmt-curriculum.js?v=2"></script><script src="leadership-curriculum.js?v=2"></script><script src="grantwriting-curriculum.js?v=3"></script><script src="complit-curriculum.js?v=5"></script><script src="englishsuccess-curriculum.js?v=2"></script><script src="agritech-curriculum.js?v=2"></script><script src="ai-curriculum.js?v=2"></script><script src="data-curriculum.js?v=2"></script><script src="marketing-curriculum.js?v=2"></script><script src="office-curriculum.js?v=2"></script><script src="finlit-curriculum.js?v=2"></script><script src="healthtech-curriculum.js?v=2"></script><script src="remotework-curriculum.js?v=2"></script><script src="bible-curriculum.js?v=2"></script><script src="courses-lite.js?v=21"></script><script src="course-images.js?v=1"></script>
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=18"></script>
   <script src="hub-db.js?v=42"></script>
@@ -307,60 +304,14 @@
       return id;
     }
 
-    // Build track checkboxes from COURSES_DB, then WASSCE subjects.
-    (function () {
-      var box = document.getElementById('tracksSelect');
-      var html = '';
-      try {
-        var ids = Object.keys(COURSES_DB);
-        for (var i = 0; i < ids.length; i++) {
-          var c = COURSES_DB[ids[i]];
-          html += '<label class="track-opt"><input type="checkbox" name="tracks" value="' + c.id + '"> '
-            + (c.icon || '📘') + ' ' + HubDB.esc(c.title.split(':')[0]) + '</label>';
-        }
-      } catch (e) {}
-      // WASSCE group
-      html += '<div style="grid-column:1/-1;font-weight:800;color:var(--primary);font-size:0.9rem;margin:0.6rem 0 0.1rem;">🎓 WASSCE PRO, Exam Subjects</div>';
-      for (var j = 0; j < WASSCE_APPLY.length; j++) {
-        var w = WASSCE_APPLY[j];
-        html += '<label class="track-opt"><input type="checkbox" name="tracks" value="wassce-' + w[0] + '"> '
-          + w[2] + ' ' + HubDB.esc(w[1]) + '</label>';
-      }
-      box.innerHTML = html;
-      var countEl = document.getElementById('trackCount');
-      function refreshCount() {
-        var n = box.querySelectorAll('input[name="tracks"]:checked').length;
-        countEl.textContent = n === 1 ? '1 selected' : n + ' selected';
-        countEl.style.background = n ? '#e7f7ee' : '#eef4ff';
-        countEl.style.borderColor = n ? '#b7e6c9' : '#d8e4f5';
-        countEl.style.color = n ? '#0f7a43' : 'var(--primary)';
-      }
-      box.addEventListener('change', function (e) {
-        if (e.target.name === 'tracks') {
-          e.target.closest('.track-opt').classList.toggle('checked', e.target.checked);
-          refreshCount();
-        }
-      });
-      refreshCount();
-
-      // Filter rather than scroll. A checked option always stays visible, so
-      // searching can never hide something the applicant already chose.
-      var search = document.getElementById('trackSearch');
-      var empty  = document.getElementById('trackEmpty');
-      search.addEventListener('input', function () {
-        var q = search.value.trim().toLowerCase();
-        var shown = 0;
-        box.querySelectorAll('.track-opt').forEach(function (opt) {
-          var hit = !q || opt.textContent.toLowerCase().indexOf(q) !== -1
-                       || opt.querySelector('input').checked;
-          opt.style.display = hit ? '' : 'none';
-          if (hit) shown++;
-        });
-        // the WASSCE group heading is only useful while its options are showing
-        box.querySelectorAll('div').forEach(function (h) { h.style.display = q ? 'none' : ''; });
-        empty.hidden = shown > 0;
-      });
-    })();
+    // Every account is enrolled in the full catalogue automatically, so the
+    // registration form no longer asks the applicant to pick tracks. This
+    // returns every catalogue course id (WASSCE subjects are shown to every
+    // learner by the dashboard already, and HubDB.normCourses drops wassce-
+    // ids from an account's stored course list).
+    function allTrackIds() {
+      try { return Object.keys(COURSES_DB); } catch (e) { return []; }
+    }
 
     // Date of birth as three lists. The hidden dob input keeps the same
     // YYYY-MM-DD value the rest of the page already reads, so nothing
@@ -543,7 +494,7 @@
               'Education Level': d.education,
               'Occupation': d.occupation || '(not given)',
               'Goals': d.goals,
-              'Learning Tracks': d.tracks.join(', '),
+              'Learning Tracks': 'All courses (auto-enrolled at registration)',
               'Heard About Us': d.referral || '(not given)',
               'Application ID': app.id || '',
               'Student ID': app.studentId || '',
@@ -562,8 +513,8 @@
         e.preventDefault();
         clearErrors();
         var fd = new FormData(form);
-        var tracks = [];
-        form.querySelectorAll('input[name="tracks"]:checked').forEach(function (cb) { tracks.push(cb.value); });
+        // Every new account is enrolled in the whole catalogue automatically.
+        var tracks = allTrackIds();
 
         var name = String(fd.get('name') || '').trim();
         var email = String(fd.get('email') || '').trim();
@@ -580,7 +531,6 @@
         if (!location) return showError('Please enter your location.', 'location');
         if (!education) return showError('Please select your education level.', 'education');
         if (!goals) return showError('Please tell us what you want to achieve.', 'goals');
-        if (!tracks.length) return showError('Please choose at least one learning track.', 'tracks');
         if (password.length < 8) return showError('Your password must be at least 8 characters.', 'password');
         if (password !== password2) return showError('The two passwords do not match. Please re-enter them.', 'password2');
 
