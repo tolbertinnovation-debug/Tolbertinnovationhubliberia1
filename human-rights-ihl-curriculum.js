@@ -216,11 +216,20 @@
       "A notebook for case names, treaty articles and your own worked answers",
       "Willingness to read short extracts of treaty text closely"
     ],
-    about: ex.about,
+    about: ex.about || [
+      "Human rights law protects the dignity and freedom of every person in peace, emergency and conflict. International humanitarian law adds specific rules for armed conflict, protecting people who are not—or are no longer—taking part in hostilities and limiting how warfare may be conducted.",
+      "This course moves from first principles to practical application. Learners study the international and African human rights systems, the Geneva Conventions, protected persons and objects, weapons restrictions, international crimes, monitoring, safe interviewing, report writing, advocacy and transitional justice.",
+      "The lessons are designed for students, educators, civil society workers, journalists, public officials, security personnel and community leaders in Liberia and across West Africa. The course is educational and does not replace advice from a qualified lawyer or an authorised legal adviser."
+    ],
     modules: modules,
     quizzes: quizzes,
     reviews: ex.reviews,
-    faqs: ex.faqs,
+    faqs: ex.faqs || [
+      { q: "Do I need a legal background?", a: "No. The course begins with the meaning and foundations of human rights, then builds gradually toward legal analysis and professional practice." },
+      { q: "When does international humanitarian law apply?", a: "IHL applies only when the legal threshold for an international or non-international armed conflict is met. Human rights law continues to apply at all times, although some rights may be lawfully limited or derogated from under strict conditions." },
+      { q: "Does this course provide legal advice?", a: "No. It provides legal education and practical analytical skills. Real cases should be handled with current law and advice from a qualified or authorised legal professional." },
+      { q: "Will I receive a certificate?", a: "Yes. Complete the required lessons, projects and assessments, then pass the graduation assessment to earn the TIH Certificate of Completion." }
+    ],
     _hrilFullBuilt: true
   };
 

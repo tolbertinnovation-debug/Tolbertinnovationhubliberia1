@@ -161,7 +161,7 @@
     'android':          ['android-video-map.js?v=1'],
     'quickbooks':       ['quickbooks-video-map.js?v=1', 'quickbooks-notes.js?v=1'],
     'football-coaching': ['football-coaching-video-map.js?v=1', 'football-coaching-notes.js?v=1'],
-    'human-rights-ihl': ['human-rights-ihl-video-map.js?v=1', 'human-rights-ihl-notes.js?v=1']
+    'human-rights-ihl': ['human-rights-ihl-video-map.js?v=1', 'human-rights-ihl-notes.js?v=1', 'human-rights-ihl-enhancements.js?v=1']
   };
 
   function has(list, id) {
