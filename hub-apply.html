@@ -568,7 +568,10 @@
           // Registration signs the learner in automatically, so take them
           // straight to their dashboard rather than a confirmation screen.
           submitBtn.textContent = 'Welcome! Opening your dashboard…';
-          location.replace('hub-dashboard');
+          // Use window.location, not the local `location` variable above (the
+          // applicant's city), which would otherwise shadow the browser API and
+          // silently do nothing, leaving the button stuck on this message.
+          window.location.replace('hub-dashboard');
         }).catch(function () {
           submitBtn.disabled = false;
           submitBtn.textContent = 'Create Account & Submit →';
