@@ -55,12 +55,66 @@
   function isAssessment(name) { return /(?:Quiz|Exam|Examination|Assessment)$/.test(name.trim()); }
   function isProjectName(name) { return /(?:Project|Presentation)$/.test(name.trim()); }
 
+  var PROJECTS = {
+    'Human Rights Monitoring Report Project': {
+      scenario: 'Document a fictional pattern of unlawful detention affecting residents of a Liberian county. Use invented names and facts; do not collect real survivor information for this exercise.',
+      deliverables: ['A one-page monitoring plan defining the allegation, legal framework, sources and safety controls', 'A five-to-seven-page report with methodology, verified findings, legal analysis and limitations', 'A recommendations table naming the responsible actor, requested action and realistic time frame'],
+      standard: 'Separate verified facts, allegations and analysis. Every legal conclusion must name the applicable instrument and article.'
+    },
+    'Treaty Analysis Project': {
+      scenario: 'Assess how a fictional national law aligns with one treaty covered in Modules 3–4 and the African Charter.',
+      deliverables: ['A treaty-status and applicable-law table', 'An article-by-article comparison of the fictional law and international obligations', 'A two-page reform memorandum prioritising three practical changes'],
+      standard: 'Distinguish signature, ratification, domestication and implementation; do not assume that ratification alone changes domestic practice.'
+    },
+    'IHL Case Study Project': {
+      scenario: 'Analyse a fictional armed-conflict incident involving a military objective located near homes and a medical clinic. Do not develop or recommend operational attack tactics.',
+      deliverables: ['Conflict-classification analysis with the facts supporting the threshold', 'A protected-persons and protected-objects map', 'A structured distinction, proportionality and precautions analysis, including missing facts and alternative conclusions'],
+      standard: 'State what can and cannot be concluded from the available information. Apply IHL without turning the exercise into operational guidance.'
+    },
+    'Advocacy Campaign Project': {
+      scenario: 'Design a lawful, non-partisan campaign addressing one documented access-to-education, disability-inclusion or detention-rights concern.',
+      deliverables: ['A problem tree and stakeholder map', 'One specific, measurable advocacy objective and a four-week activity plan', 'A one-page policy brief plus a public message adapted for radio or social media'],
+      standard: 'Base public claims on evidence, protect affected people from exposure, and match each message to the audience that can act.'
+    },
+    'Documentation Interview Guide Project': {
+      scenario: 'Prepare a trauma-informed interview guide for a fictional witness. Do not interview a real victim or witness as part of this course.',
+      deliverables: ['A pre-interview risk, consent and referral checklist', 'A neutral question guide moving from open prompts to clarification', 'A secure information-handling and post-interview follow-up plan'],
+      standard: 'Use informed consent, avoid leading questions, minimise identifying data and make clear that an interviewer must never promise an outcome.'
+    },
+    'Transitional Justice Proposal Project': {
+      scenario: 'Propose a victim-centred transitional-justice process for a fictional post-conflict county with diverse communities and limited resources.',
+      deliverables: ['A consultation and stakeholder-inclusion plan', 'A proposal combining appropriate truth, justice, reparation and non-recurrence measures', 'A phased implementation plan with risks, safeguards, indicators and an estimated resource framework'],
+      standard: 'Explain trade-offs, include women, youth, persons with disabilities and rural communities, and show how the proposal complements rather than replaces criminal justice.'
+    },
+    'Capstone: Human Rights Case Presentation': {
+      scenario: 'Present a complete legal and practical response to one fictional human-rights or IHL case developed from the course themes.',
+      deliverables: ['An eight-to-ten-slide case presentation', 'A two-page legal analysis citing primary instruments', 'A five-minute oral briefing followed by responses to likely questions'],
+      standard: 'Move clearly from facts to issue, rule, application, conclusion and remedy; acknowledge uncertainty and avoid overstating the evidence.'
+    }
+  };
+
   function projectBrief(moduleTitle, name) {
+    var p = PROJECTS[name] || {
+      scenario: 'Use a realistic fictional situation connected to this project.',
+      deliverables: ['A clear project plan', 'A completed professional document', 'A short reflection explaining your choices'],
+      standard: 'Use the course frameworks, cite relevant law and distinguish fact from analysis.'
+    };
     return '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Hands-on project</span></div>' +
       '<h3>' + esc(name) + '</h3>' +
-      '<p>This is a practical project. Use a real or realistic situation, case or institution, and complete every step below before moving on.</p>' +
-      '<h4>What to do</h4><ol><li>Review the relevant lesson notes and practice quizzes for this topic area.</li><li>Produce the deliverable for <em>' + esc(name) + '</em>, using the templates and frameworks covered in this course.</li><li>Check your work against the module\'s key ideas, then correct anything you find.</li></ol>' +
-      '<div class="study-callout"><strong>Deliverable:</strong> A completed, organised document you can keep as part of your human rights practice portfolio.</div>' +
+      '<div class="study-callout"><strong>Project scenario:</strong> ' + esc(p.scenario) + '</div>' +
+      '<h4>Learning purpose</h4><p>This project tests whether you can turn legal knowledge into careful, ethical professional work. Review the relevant lessons before beginning and show your reasoning, not only your conclusion.</p>' +
+      '<h4>Required deliverables</h4><ol>' + p.deliverables.map(function (d) { return '<li>' + esc(d) + '</li>'; }).join('') + '</ol>' +
+      '<h4>Professional standard</h4><p>' + esc(p.standard) + '</p>' +
+      '<h4>Assessment rubric</h4><div class="table-wrap"><table class="study-table"><thead><tr><th>Area</th><th>What strong work shows</th><th>Weight</th></tr></thead><tbody>' +
+        '<tr><td>Legal accuracy</td><td>Correct rules, sources, scope and terminology</td><td>30%</td></tr>' +
+        '<tr><td>Application</td><td>Rules applied logically to facts, with uncertainty identified</td><td>25%</td></tr>' +
+        '<tr><td>Evidence and method</td><td>Transparent sources, verification, limitations and organisation</td><td>20%</td></tr>' +
+        '<tr><td>Ethics and safety</td><td>Consent, confidentiality, do-no-harm and inclusion safeguards</td><td>15%</td></tr>' +
+        '<tr><td>Communication</td><td>Clear structure, useful recommendations and professional presentation</td><td>10%</td></tr>' +
+      '</tbody></table></div>' +
+      '<div class="study-callout"><strong>Safety rule:</strong> Use fictional or properly anonymised information. Do not publish names, contact details, testimony or images that could expose a victim, witness, child or human rights defender.</div>' +
+      '<h4>Submission checklist</h4><ul><li>I cited the relevant instrument and article for each legal conclusion.</li><li>I separated facts, allegations, assumptions and analysis.</li><li>I explained limitations and facts still needed.</li><li>I checked consent, privacy, inclusion and do-no-harm risks.</li><li>My recommendations identify who should act and what they should do.</li></ul>' +
+      '<div class="study-callout"><strong>Portfolio outcome:</strong> A completed, organised document demonstrating a practical human-rights skill.</div>' +
       '<p><strong>Printable:</strong> Use your browser\'s Print → Save as PDF to keep an offline copy for revision.</p></div>';
   }
 
