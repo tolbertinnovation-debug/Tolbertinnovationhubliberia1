@@ -52,7 +52,7 @@
     "leadership": "leadership-curriculum.js",
     "marketing": "marketing-curriculum.js",
     "military-leadership": "military-leadership-curriculum.js",
-    "national-security-fundamentals": "national-security-fundamentals-curriculum.js",
+    "national-security-fundamentals": "national-security-fundamentals-curriculum.js?v=2",
     "metaphysics": "metaphysics-curriculum.js",
     "office": "office-curriculum.js",
     "ph-career": "publichealth-curriculum.js",
