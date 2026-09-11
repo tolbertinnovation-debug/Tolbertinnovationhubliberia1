@@ -154,7 +154,7 @@
     'marketing':        ['marketing-video-map.js?v=6'],
     'metaphysics':      ['metaphysics-video-map.js?v=1', 'metaphysics-notes.js?v=1'],
     'military-leadership': ['military-leadership-video-map.js?v=1', 'military-leadership-notes.js?v=1'],
-    'national-security-fundamentals': ['national-security-fundamentals-video-map.js?v=1', 'national-security-fundamentals-notes.js?v=2'],
+    'national-security-fundamentals': ['national-security-fundamentals-video-map.js?v=1', 'national-security-fundamentals-notes.js?v=3'],
     'business-plan':    ['business-plan-video-map.js?v=1', 'business-plan-notes.js?v=1'],
     'project-mgmt':     ['projectmgmt-video-map.js?v=2'],
     'leadership':       ['leadership-video-map.js?v=2'],
