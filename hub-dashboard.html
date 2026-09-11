@@ -576,6 +576,7 @@
         <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">◌ Support</a>
       </nav>
       <div class="dash-top-right">
+        <button class="btn btn-line btn-sm" id="refreshBtn" aria-label="Refresh the page" title="Refresh">↻ Refresh</button>
         <button class="btn btn-line btn-sm" id="logoutBtn">Log out</button>
         <div class="avatar" id="avatar">S</div>
       </div>
@@ -850,6 +851,12 @@
         if (res && res.ok === false) { fb.textContent = res.error || 'Could not update password.'; return; }
         document.getElementById('forcePassModal').classList.remove('open');
       });
+    });
+
+    document.getElementById('refreshBtn').addEventListener('click', function () {
+      this.textContent = '↻ Refreshing…';
+      this.disabled = true;
+      window.location.reload();
     });
 
     document.getElementById('logoutBtn').addEventListener('click', function () {
