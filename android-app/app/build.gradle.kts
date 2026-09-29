@@ -4,30 +4,46 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
+// Owner-controlled identity and signing. CI builds an explicitly unsigned release bundle.
+val releaseApplicationId = providers.environmentVariable("TIH_APPLICATION_ID").orElse("org.tolbertinnovationhub.learning").get()
+require(releaseApplicationId.matches(Regex("[a-zA-Z][a-zA-Z0-9_]*(\\.[a-zA-Z][a-zA-Z0-9_]*)+"))) { "Invalid TIH_APPLICATION_ID" }
+val releaseVersionCode = providers.environmentVariable("TIH_VERSION_CODE").orElse("2").get().toInt()
+require(releaseVersionCode > 0) { "TIH_VERSION_CODE must be positive" }
+val signingValues = listOf("TIH_KEYSTORE_PATH", "TIH_KEYSTORE_PASSWORD", "TIH_KEY_ALIAS", "TIH_KEY_PASSWORD").map { providers.environmentVariable(it).orNull }
+require(signingValues.all { it == null } || signingValues.all { !it.isNullOrBlank() }) { "Supply all four TIH signing environment variables, or none" }
+
 android {
     namespace = "org.tolbertinnovationhub.learning"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
-        applicationId = "org.tolbertinnovationhub.learning"
+        applicationId = releaseApplicationId
         minSdk = 26
-        targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0-preview"
+        targetSdk = 36
+        versionCode = releaseVersionCode
+        versionName = "0.2.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    if (signingValues.all { it != null }) signingConfigs.create("ownerRelease") {
+        storeFile = file(signingValues[0]!!)
+        storePassword = signingValues[1]
+        keyAlias = signingValues[2]
+        keyPassword = signingValues[3]
     }
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            if (signingValues.all { it != null }) signingConfig = signingConfigs.getByName("ownerRelease")
         }
-        debug { applicationIdSuffix = ".preview"; versionNameSuffix = "-debug" }
+        debug { applicationIdSuffix = ".preview"; versionNameSuffix = "-preview" }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions { jvmTarget = "17" }
-    buildFeatures { compose = true }
+    buildFeatures { compose = true; buildConfig = true }
     packaging { resources.excludes += "/META-INF/{AL2.0,LGPL2.1}" }
 }
 

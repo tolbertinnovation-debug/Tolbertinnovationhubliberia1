@@ -8,3 +8,7 @@ captures/
 app/src/main/assets/learning/
 app/src/main/res/drawable/tih_logo.png
 app/src/main/res/drawable-nodpi/tih_logo.png
+__pycache__/
+*.jks
+*.keystore
+release/output/

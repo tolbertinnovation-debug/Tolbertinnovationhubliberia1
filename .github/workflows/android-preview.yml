@@ -25,9 +25,12 @@ jobs:
       - uses: android-actions/setup-android@v4
         with:
           packages: platform-tools
-          # SDK tools 19 create API 35 AVDs reliably; newer avdmanager builds
-          # can fail when an image omits the optional devices.xml file.
+          # Pin the command-line toolchain used for repeatable AVD creation.
           cmdline-tools-version: '13114758'
+      - uses: actions/cache@v4
+        with:
+          path: ~/.android/debug.keystore
+          key: tih-preview-signing-v1
       - uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: false
@@ -38,22 +41,31 @@ jobs:
           node tools/check-courses-lite.js
       - name: Build, unit-test, and lint Android preview
         working-directory: android-app
-        run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:assembleDebugAndroidTest
-      - name: Verify catalog, quiz, and lesson reader on Android 15
+        run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:assembleDebugAndroidTest :app:assembleRelease :app:bundleRelease
+      - name: Validate unsigned release and 16 KB native packaging
+        run: python3 android-app/tools/validate-release.py
+      - name: Verify learning and privacy screens on Android 16
         env:
           ANDROID_USER_HOME: ${{ runner.temp }}/tih-android
           ANDROID_AVD_HOME: ${{ runner.temp }}/tih-avd
         run: |
           if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
           mkdir -p "$ANDROID_USER_HOME" "$ANDROID_AVD_HOME"
-          sdkmanager --install 'system-images;android-35;default;x86_64' 'emulator'
-          echo no | avdmanager create avd --name tih-api35 --package 'system-images;android-35;default;x86_64' --device pixel_6 --path "$ANDROID_AVD_HOME/tih-api35.avd"
-          test -f "$ANDROID_AVD_HOME/tih-api35.ini"
-          node android-app/tools/emulator-smoke.mjs "$ANDROID_HOME" tih-api35
+          sdkmanager --install 'system-images;android-36;default;x86_64' 'emulator'
+          echo no | avdmanager create avd --name tih-api36 --package 'system-images;android-36;default;x86_64' --device pixel_6 --path "$ANDROID_AVD_HOME/tih-api36.avd"
+          test -f "$ANDROID_AVD_HOME/tih-api36.ini"
+          node android-app/tools/emulator-smoke.mjs "$ANDROID_HOME" tih-api36 36
       - uses: actions/upload-artifact@v4
         with:
           name: TIH-Learning-Android-preview
           path: android-app/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TIH-Learning-unsigned-release-bundle
+          path: |
+            android-app/app/build/outputs/bundle/release/app-release.aab
+            android-app/app/build/outputs/mapping/release/mapping.txt
           if-no-files-found: error
       - uses: actions/upload-artifact@v4
         if: always()

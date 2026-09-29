@@ -50,7 +50,7 @@ class HubApi(private val base: String, private val publishableKey: String,
     }
     private fun profile(access: String, refresh: String): HubSession {
         val rows = JSONArray(request("rest/v1/rpc/student_me", JSONObject(), access))
-        if (rows.length() != 1) throw HubAccessException("This account is not yet linked to a TIH student profile. Sign in on the Learning Hub website first, then try again here.")
+        if (rows.length() != 1) throw HubAccessException("This account is not yet linked to a TIH student profile. Contact TIH support for account help.")
         val student = rows.getJSONObject(0)
         if (student.optString("status") != "active") throw HubAccessException("Your TIH account is not active. Please contact TIH support.")
         val id = student.getString("id")
@@ -74,7 +74,7 @@ class HubApi(private val base: String, private val publishableKey: String,
             client.newCall(request).execute().use { response ->
                 if (!response.isSuccessful) {
                     if (response.code == 429 || response.code >= 500) throw HubNetworkException("The Learning Hub is temporarily unavailable. Please try again shortly.")
-                    throw HubAccessException("Sign-in or account verification failed. Check your email and password, or sign in on the TIH website first.")
+                    throw HubAccessException("Sign-in or account verification failed. Check your email and password, or contact TIH support for account help.")
                 }
                 return response.body?.string() ?: throw HubNetworkException("The server returned no data. Please try again.")
             }

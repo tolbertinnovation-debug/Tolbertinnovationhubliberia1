@@ -8,6 +8,7 @@ import vm from 'node:vm';
 import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import {organization, organizationSources} from './organization.mjs';
 
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const out = path.join(root, 'android-app/app/src/main/assets/learning');
@@ -144,6 +145,8 @@ export function exportAll() {
   if (!config?.url?.startsWith('https://') || !config?.anonKey?.startsWith('sb_publishable_')) throw new Error('Review public Supabase configuration before export');
   fs.writeFileSync(path.join(out, 'config.json'), JSON.stringify(config));
   fs.writeFileSync(path.join(out, 'catalog.json'), JSON.stringify(catalog));
+  fs.writeFileSync(path.join(out, 'organization.json'), JSON.stringify(organization(root), null, 2));
+  for (const file of organizationSources) report.sourceFiles[file] = crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex');
   report.sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], {cwd: root, encoding: 'utf8'}).trim();
   fs.writeFileSync(path.join(out, 'manifest.json'), JSON.stringify(report, null, 2));
   fs.rmSync(path.join(root, 'android-app/app/src/main/res/drawable/tih_logo.png'), {force: true});

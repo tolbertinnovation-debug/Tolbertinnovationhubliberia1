@@ -23,6 +23,7 @@ class LearningViewModel(app: Application) : AndroidViewModel(app) {
     private lateinit var api: HubApi
     @Volatile private var sessionGeneration = 0
     var catalog by mutableStateOf<List<CourseSummary>>(emptyList()); private set
+    var organization by mutableStateOf<Organization?>(null); private set
     var course by mutableStateOf<Course?>(null); private set
     var lesson by mutableStateOf<Lesson?>(null); private set
     var session by mutableStateOf<HubSession?>(null); private set
@@ -38,6 +39,7 @@ class LearningViewModel(app: Application) : AndroidViewModel(app) {
         loading = true
         try {
             catalog = content.catalog()
+            organization = content.organization()
             val config = withContext(Dispatchers.IO) {
                 getApplication<Application>().assets.open("learning/config.json").bufferedReader().use { JSONObject(it.readText()) }
             }

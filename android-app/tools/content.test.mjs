@@ -38,10 +38,20 @@ test('source manifest proves all website inputs remain unchanged', () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(learning, 'manifest.json')));
   assert.equal(manifest.missingNotes.length, 0);
   assert.equal(manifest.emptyQuizzes.length, 0);
-  assert.equal(Object.keys(manifest.sourceFiles).length, 207);
+  assert.equal(Object.keys(manifest.sourceFiles).length, 212);
   for (const [file, hash] of Object.entries(manifest.sourceFiles)) {
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex'), hash, file);
   }
+});
+test('TIH identity and policy information come from the website source', () => {
+  const info = JSON.parse(fs.readFileSync(path.join(learning, 'organization.json')));
+  assert.equal(info.email, 'info@tolbertinnovationhub.org');
+  assert.equal(info.phone, '+231880559227');
+  assert.ok(info.mission.includes('Liberia and Africa'));
+  assert.ok(info.address.includes('Monrovia'));
+  assert.equal(info.hours.length, 3);
+  assert.ok(info.rights.paragraphs.some(p => p.includes('30 days')));
+  assert.ok(info.terms.every(s => s.title && s.paragraphs.length));
 });
 test('export is deterministic and keeps authored HTML intact', () => {
   const id = 'computer-literacy';

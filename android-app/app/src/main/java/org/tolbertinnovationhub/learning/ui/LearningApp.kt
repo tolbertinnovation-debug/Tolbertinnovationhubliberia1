@@ -49,9 +49,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.tolbertinnovationhub.learning.LearningViewModel
 import org.tolbertinnovationhub.learning.R
+import org.tolbertinnovationhub.learning.BuildConfig
 import org.tolbertinnovationhub.learning.data.*
 
-private const val HUB = "https://tolbertinnovationhub.org/"
 private data class Destination(val title: String, val icon: ImageVector)
 private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Destination("Explore", Icons.Outlined.Search),
     Destination("Saved", Icons.Outlined.Bookmarks), Destination("You", Icons.Outlined.PersonOutline))
@@ -59,6 +59,8 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
 @Composable fun LearningApp(vm: LearningViewModel) {
     LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { vm.checkLocalAccess() }
     var tab by rememberSaveable { mutableIntStateOf(0) }
+    var information by rememberSaveable { mutableStateOf<String?>(null) }
+    val showInformation: (InformationPage) -> Unit = { information = it.name }
     val context = LocalContext.current
     val openLink: (String) -> Unit = { url ->
         val uri = Uri.parse(url)
@@ -69,13 +71,16 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
     }
     BackHandler(vm.course != null) { vm.back() }
     BackHandler(vm.course == null && tab != 0) { tab = 0 }
+    BackHandler(information != null) { information = null }
     val snackbar = remember { SnackbarHostState() }
     LaunchedEffect(vm.notice) {
         vm.notice?.let { snackbar.showSnackbar(it, withDismissAction = true); vm.dismissNotice() }
     }
     Scaffold(
         topBar = {
-            if (vm.course == null) TopAppBar(title = {
+            if (information != null) TopAppBar(title = { Text(InformationPage.valueOf(information!!).title, style = MaterialTheme.typography.titleMedium) },
+                navigationIcon = { IconButton(onClick = { information = null }) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, "Back") } })
+            else if (vm.course == null) TopAppBar(title = {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     Image(painterResource(R.drawable.tih_logo), "Tolbert Innovation Hub", Modifier.size(38.dp))
                     Column { Text("TIH Learning", style = MaterialTheme.typography.titleMedium)
@@ -89,7 +94,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                     IconButton(onClick = vm::toggleBookmark) { Icon(if (saved) Icons.Outlined.BookmarkAdded else Icons.Outlined.BookmarkBorder, if (saved) "Remove bookmark" else "Save lesson") }
                 } })
         },
-        bottomBar = { if (vm.course == null) NavigationBar {
+        bottomBar = { if (vm.course == null && information == null) NavigationBar {
             destinations.forEachIndexed { i, d -> NavigationBarItem(selected = tab == i, onClick = { tab = i },
                 icon = { Icon(d.icon, d.title) }, label = { Text(d.title) }) }
         } }, snackbarHost = { SnackbarHost(snackbar) }
@@ -97,14 +102,15 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
         Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.TopCenter) {
             Box(Modifier.fillMaxSize().widthIn(max = 1000.dp)) {
                 when {
+                    information != null && vm.organization != null -> InformationScreen(InformationPage.valueOf(information!!), vm.organization!!, vm.session?.studentId, showInformation)
                     vm.loading -> Loading()
                     vm.catalog.isEmpty() -> EmptyState("Library unavailable", "The learning content could not be loaded.", Icons.Outlined.CloudOff, "Try again", { vm.load() })
                     vm.course != null && vm.lesson != null && vm.canStudy(vm.course!!.summary.id) -> Reader(vm, openLink)
-                    vm.course != null -> CourseScreen(vm, openLink, onSignIn = { vm.back(); tab = 3 })
+                    vm.course != null -> CourseScreen(vm, onHelp = { showInformation(InformationPage.HELP) }, onSignIn = { vm.back(); tab = 3 })
                     tab == 0 -> Home(vm, onExplore = { tab = 1 }, onSignIn = { tab = 3 })
                     tab == 1 -> Explore(vm)
                     tab == 2 -> Saved(vm)
-                    else -> Account(vm, openLink)
+                    else -> Account(vm, showInformation)
                 }
             }
         }
@@ -241,7 +247,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
     }
 }
 
-@Composable private fun CourseScreen(vm: LearningViewModel, openLink: (String) -> Unit, onSignIn: () -> Unit) {
+@Composable private fun CourseScreen(vm: LearningViewModel, onHelp: () -> Unit, onSignIn: () -> Unit) {
     val course = vm.course ?: return
     val c = course.summary
     val unlocked = vm.canStudy(c.id)
@@ -267,7 +273,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                     Text("${done.size} completed here · written materials work offline", style = MaterialTheme.typography.bodySmall)
                 }
             } else InfoCard("${if (vm.session == null) "Sign in to start learning" else "Course access required"}",
-                "Use your existing TIH account and approved enrollment. Registration, payments, access codes, and certificates remain on the Learning Hub website.", Icons.Outlined.Lock,
+                "Use your existing TIH account and approved course access. If an approved course is locked, TIH support can help.", Icons.Outlined.Lock,
                 if (vm.session == null) "Sign in" else "Open Learning Hub", if (vm.session == null) onSignIn else ({ openLink(HUB + "hub-dashboard") }))
         }
         if (c.outcomes.isNotEmpty()) item { Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -294,7 +300,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                 }
             }
         }
-        item { InfoCard("Official certificates", "App quiz results are practice records. Official completion and certificate approval remain in the existing TIH Learning Hub.", Icons.Outlined.WorkspacePremium, "Open website", { openLink(HUB + "hub-dashboard") }) }
+        item { InfoCard("Official certificates", "App quiz results are practice records. Official completion and certificate approval remain in the existing TIH Learning Hub.", Icons.Outlined.WorkspacePremium, "Certificate help", onHelp) }
     }
 }
 
@@ -391,7 +397,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
     }
 }
 
-@Composable private fun Account(vm: LearningViewModel, openLink: (String) -> Unit) {
+@Composable private fun Account(vm: LearningViewModel, showInformation: (InformationPage) -> Unit) {
     var email by rememberSaveable { mutableStateOf("") }
     // Password deliberately excluded from saved instance state and persistent storage.
     var password by remember { mutableStateOf("") }
@@ -404,7 +410,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
             Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), shape = RoundedCornerShape(20.dp)) {
                 Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
                     Text("Welcome back", style = MaterialTheme.typography.titleLarge)
-                    Text("Use your existing TIH Learning Hub email and password. Older accounts may need a website sign-in first.", style = MaterialTheme.typography.bodyMedium)
+                    Text("Use your existing TIH Learning Hub email and password. Contact TIH support if an older account needs to be linked.", style = MaterialTheme.typography.bodyMedium)
                     OutlinedTextField(email, { email = it }, Modifier.fillMaxWidth(), label = { Text("Email address") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), singleLine = true)
                     OutlinedTextField(password, { password = it }, Modifier.fillMaxWidth(), label = { Text("Password") }, singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password), visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
@@ -412,7 +418,8 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                     Button(onClick = { vm.signIn(email, password) }, enabled = !vm.busy, modifier = Modifier.fillMaxWidth()) {
                         if (vm.busy) CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp) else Text("Sign in securely")
                     }
-                    TextButton(onClick = { openLink(HUB + "hub-dashboard") }) { Text("New account or sign-in help") }
+                    TextButton(onClick = { showInformation(InformationPage.HELP) }) { Text("Sign-in help") }
+                    TextButton(onClick = { showInformation(InformationPage.PRIVACY) }) { Text("How your account data is used") }
                 }
             }
         } else item {
@@ -434,10 +441,11 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
         item { InfoCard("Your data stays yours", "No advertising or analytics SDKs. Passwords are never stored. Sign-in tokens are encrypted using Android Keystore. Study records stay on this device and do not yet sync to the website.", Icons.Outlined.PrivacyTip) }
         item { Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             SectionTitle("We’re here to help")
-            OutlinedButton(onClick = { openLink("https://wa.me/231880559227") }, modifier = Modifier.fillMaxWidth()) { Text("Contact TIH support") }
-            OutlinedButton(onClick = { openLink(HUB + "hub-dashboard") }, modifier = Modifier.fillMaxWidth()) { Text("Enrollment & certificates on website") }
+            listOf(InformationPage.HELP, InformationPage.ABOUT, InformationPage.PRIVACY, InformationPage.TERMS, InformationPage.DELETE).forEach { page ->
+                OutlinedButton(onClick = { showInformation(page) }, modifier = Modifier.fillMaxWidth()) { Text(page.title) }
+            }
             if (vm.session != null) TextButton(onClick = { confirmClear = true }) { Text("Clear my study data on this device", color = MaterialTheme.colorScheme.error) }
-            Text("TIH Learning · 0.1 preview\nAndroid-native navigation, learning tools, and quizzes. Existing lesson documents are preserved in a secure offline reader.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text("TIH Learning · ${BuildConfig.VERSION_NAME}", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         } }
     }
     if (confirmClear) AlertDialog(onDismissRequest = { confirmClear = false }, title = { Text("Clear local study data?") },

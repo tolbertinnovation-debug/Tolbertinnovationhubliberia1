@@ -45,6 +45,7 @@ object ContentParser {
 
 class ContentRepository(private val context: Context) {
     private val cache = linkedMapOf<String, Course>()
+    suspend fun organization(): Organization = withContext(Dispatchers.IO) { Organization.parse(JSONObject(read("organization.json"))) }
     suspend fun catalog(): List<CourseSummary> = withContext(Dispatchers.IO) {
         JSONArray(read("catalog.json")).objects().map(ContentParser::summary)
     }
