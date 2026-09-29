@@ -25,6 +25,9 @@ jobs:
       - uses: android-actions/setup-android@v4
         with:
           packages: platform-tools
+          # SDK tools 19 create API 35 AVDs reliably; newer avdmanager builds
+          # can fail when an image omits the optional devices.xml file.
+          cmdline-tools-version: '13114758'
       - uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: false
