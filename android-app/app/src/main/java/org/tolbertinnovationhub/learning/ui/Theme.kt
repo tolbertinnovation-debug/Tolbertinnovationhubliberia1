@@ -13,10 +13,15 @@ val Navy = Color(0xFF142A50)
 val Red = Color(0xFFC62235)
 val Sky = Color(0xFFDDECFA)
 private val Light = lightColorScheme(primary = Navy, onPrimary = Color.White, secondary = Red,
+    primaryContainer = Sky, onPrimaryContainer = Navy, secondaryContainer = Sky, onSecondaryContainer = Navy,
     tertiary = Color(0xFF087C69), background = Color(0xFFF7F8FC), surface = Color.White,
+    onBackground = Color(0xFF15253D), surfaceContainer = Color(0xFFEAF0F7),
     surfaceVariant = Color(0xFFEAF0F7), onSurface = Color(0xFF15253D), onSurfaceVariant = Color(0xFF516176))
 private val Dark = darkColorScheme(primary = Color(0xFFAFCCFF), secondary = Color(0xFFFFADB7),
+    primaryContainer = Color(0xFF243E63), onPrimaryContainer = Color(0xFFE3EEFF),
+    secondaryContainer = Color(0xFF2A3E59), onSecondaryContainer = Color(0xFFE3EEFF),
     tertiary = Color(0xFF78D9C4), background = Color(0xFF101B2B), surface = Color(0xFF18263B),
+    onBackground = Color(0xFFE5EDFA), surfaceContainer = Color(0xFF18263B),
     surfaceVariant = Color(0xFF25374F), onSurface = Color(0xFFE5EDFA), onSurfaceVariant = Color(0xFFBDCCE1))
 
 @Composable fun TihTheme(mode: String, content: @Composable () -> Unit) {

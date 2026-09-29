@@ -192,7 +192,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
         LazyRow(contentPadding = PaddingValues(horizontal = 20.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             items(categories) { item -> FilterChip(selected = item == category, onClick = { category = item }, label = { Text(item) }) }
         }
-        Text("${matches.size} courses", Modifier.padding(horizontal = 20.dp, vertical = 10.dp), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text("${matches.size} ${if (matches.size == 1) "course" else "courses"}", Modifier.padding(horizontal = 20.dp, vertical = 10.dp), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
         if (matches.isEmpty()) EmptyState("No matches yet", "Try a different word or choose All categories.", Icons.Outlined.SearchOff, "Clear filters", { query = ""; category = "All" })
         else LazyVerticalGrid(columns = GridCells.Adaptive(290.dp), contentPadding = PaddingValues(start = 20.dp, end = 20.dp, bottom = 20.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {

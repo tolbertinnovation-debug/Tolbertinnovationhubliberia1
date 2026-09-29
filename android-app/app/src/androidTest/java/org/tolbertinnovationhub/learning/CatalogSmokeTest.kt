@@ -15,10 +15,11 @@ class CatalogSmokeTest {
         snapshot("01-home")
         compose.onNodeWithText("Find your course").performClick()
         compose.onNodeWithText("Search courses, skills, or subjects").performTextInput("computer literacy")
-        compose.onNodeWithText("1 courses").assertExists()
+        compose.onNodeWithText("1 course").assertExists()
         snapshot("02-catalog")
         compose.onNodeWithText("Complete Computer Literacy Professional Certificate").performClick()
-        compose.onNodeWithText("Course overview").assertExists()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithText("Course overview", useUnmergedTree = true).assertIsDisplayed()
         snapshot("03-course")
         compose.onNodeWithText("Sign in to start learning").performScrollTo().assertExists()
         compose.onNodeWithContentDescription("Back").performClick()

@@ -29,6 +29,7 @@ class LearningTests {
         assertFalse(result.contains("<script")); assertFalse(result.contains("<iframe")); assertFalse(result.contains("onclick"))
         assertFalse(result.contains("javascript:")); assertFalse(result.contains("https://evil.test"))
         assertTrue(result.contains("<table>")); assertTrue(result.contains("<details>")); assertTrue(result.contains("<svg"))
+        assertNotNull(org.jsoup.Jsoup.parse(result).selectFirst(".overview-text table"))
         assertTrue(result.contains("A diagram")); assertTrue(result.contains("default-src 'none'"))
     }
 }

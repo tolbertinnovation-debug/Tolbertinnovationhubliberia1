@@ -5,17 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import androidx.activity.ComponentActivity
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onRoot
-import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Rule
@@ -28,17 +28,18 @@ import java.io.File
 class LessonReaderUiTest {
     @get:Rule val compose = createAndroidComposeRule<ComponentActivity>()
 
+    @OptIn(ExperimentalMaterial3Api::class)
     @Test fun existingTeachingDocumentRendersWithNetworkAndScriptsDisabled() {
         val course = runBlocking {
             val repository = ContentRepository(compose.activity)
             repository.course(repository.catalog().first { it.id == "computer-literacy" })
         }
         val lesson = course.lessons.first { it.html.isNotBlank() && it.kind != "quiz" }
+        compose.runOnUiThread { compose.activity.actionBar?.hide() }
         compose.setContent {
             TihTheme("Light") {
-                Column(Modifier.fillMaxSize()) {
-                    Text(lesson.title, Modifier.padding(20.dp))
-                    RichLesson(lesson.html, course.css, 18, Modifier.weight(1f).fillMaxWidth()) {}
+                Scaffold(topBar = { TopAppBar(title = { Text(lesson.title) }) }) { padding ->
+                    RichLesson(lesson.html, course.css, 18, Modifier.fillMaxSize().padding(padding)) {}
                 }
             }
         }
