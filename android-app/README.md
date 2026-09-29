@@ -1,6 +1,9 @@
 # TIH Learning Hub — native Android preview
 
 An isolated Kotlin / Jetpack Compose Android application in the existing TIH repository.
+The 0.2 build adds Android 16 targeting, native TIH organization/help/privacy/terms screens,
+account-deletion email requests, and optimized release bundle validation. See
+[publishing handoff](release/PUBLISHING.md) for the completed preparation and owner-only steps.
 **This is a review build, not a production or Play Store release.** No existing website,
 database, domain, payment configuration, or GitHub Pages workflow is modified.
 
@@ -63,7 +66,7 @@ artifact as a separate, approved website-deployment change.
 1. Clone this repository and check out `codex/tih-native-android`.
 2. Install Node.js 22+ and ensure `node` is available on Android Studio's PATH.
 3. Open the **`android-app` folder**, not the website repository root.
-4. Use JDK 17, Android SDK Platform 35, and Build Tools 35.0.0.
+4. Use JDK 17, Android SDK Platform 36, and Build Tools 35.0.0 or newer.
 5. Allow Gradle sync. The content exporter runs automatically before Android builds.
 6. Select an emulator or an Android 8.0+ phone and press Run.
 
@@ -152,5 +155,5 @@ does not claim that the deployed database is hardened or that real-account accep
 testing has been completed.
 
 Technology references: [Compose compiler setup](https://developer.android.com/develop/ui/compose/setup-compose-dependencies-and-compiler),
-[AGP 8.9 compatibility](https://developer.android.com/build/releases/past-releases/agp-8-9-0-release-notes),
+[AGP 8.10 compatibility](https://developer.android.com/build/releases/agp-8-10-0-release-notes),
 [Compose BOM](https://developer.android.com/develop/ui/compose/bom).

@@ -105,7 +105,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                     information != null && vm.organization != null -> InformationScreen(InformationPage.valueOf(information!!), vm.organization!!, vm.session?.studentId, showInformation)
                     vm.loading -> Loading()
                     vm.catalog.isEmpty() -> EmptyState("Library unavailable", "The learning content could not be loaded.", Icons.Outlined.CloudOff, "Try again", { vm.load() })
-                    vm.course != null && vm.lesson != null && vm.canStudy(vm.course!!.summary.id) -> Reader(vm, openLink)
+                    vm.course != null && vm.lesson != null && vm.canStudy(vm.course!!.summary.id) -> Reader(vm, openLink, onHelp = { showInformation(InformationPage.HELP) })
                     vm.course != null -> CourseScreen(vm, onHelp = { showInformation(InformationPage.HELP) }, onSignIn = { vm.back(); tab = 3 })
                     tab == 0 -> Home(vm, onExplore = { tab = 1 }, onSignIn = { tab = 3 })
                     tab == 1 -> Explore(vm)
@@ -274,7 +274,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                 }
             } else InfoCard("${if (vm.session == null) "Sign in to start learning" else "Course access required"}",
                 "Use your existing TIH account and approved course access. If an approved course is locked, TIH support can help.", Icons.Outlined.Lock,
-                if (vm.session == null) "Sign in" else "Open Learning Hub", if (vm.session == null) onSignIn else ({ openLink(HUB + "hub-dashboard") }))
+                if (vm.session == null) "Sign in" else "Course access help", if (vm.session == null) onSignIn else onHelp)
         }
         if (c.outcomes.isNotEmpty()) item { Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             SectionTitle("What you’ll learn")
@@ -304,7 +304,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
     }
 }
 
-@Composable private fun Reader(vm: LearningViewModel, openLink: (String) -> Unit) {
+@Composable private fun Reader(vm: LearningViewModel, openLink: (String) -> Unit, onHelp: () -> Unit) {
     val course = vm.course ?: return; val lesson = vm.lesson ?: return
     var notesTab by rememberSaveable(lesson.id) { mutableStateOf(false) }
     val user = vm.session ?: return
@@ -330,7 +330,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                 Spacer(Modifier.height(12.dp))
             }
             lesson.html.isNotBlank() -> key(lesson.id) { RichLesson(lesson.html, course.css, vm.fontSize.toInt(), Modifier.weight(1f).fillMaxWidth(), openLink) }
-            else -> Box(Modifier.weight(1f)) { EmptyState("Continue on the Learning Hub", "This entry has no standalone written note in the existing course material.", Icons.AutoMirrored.Outlined.MenuBook, "Open original lesson", { openLink(HUB + "course-player?id=${course.summary.id}") }) }
+            else -> Box(Modifier.weight(1f)) { EmptyState("Learning material unavailable", "This entry has no standalone written note in the existing course material. TIH support can help you find it.", Icons.AutoMirrored.Outlined.MenuBook, "Get help", onHelp) }
         }
         Surface(shadowElevation = 5.dp) {
             Row(Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {

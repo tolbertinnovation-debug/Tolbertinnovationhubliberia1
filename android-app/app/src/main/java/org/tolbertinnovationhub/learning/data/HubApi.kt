@@ -49,7 +49,8 @@ class HubApi(private val base: String, private val publishableKey: String,
         next
     }
     private fun profile(access: String, refresh: String): HubSession {
-        val rows = JSONArray(request("rest/v1/rpc/student_me", JSONObject(), access))
+        // Request only fields needed by this app; student_me otherwise returns the full legacy row.
+        val rows = JSONArray(request("rest/v1/rpc/student_me?select=id,name,status", JSONObject(), access))
         if (rows.length() != 1) throw HubAccessException("This account is not yet linked to a TIH student profile. Contact TIH support for account help.")
         val student = rows.getJSONObject(0)
         if (student.optString("status") != "active") throw HubAccessException("Your TIH account is not active. Please contact TIH support.")

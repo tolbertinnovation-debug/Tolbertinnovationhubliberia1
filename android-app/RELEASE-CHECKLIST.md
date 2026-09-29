@@ -2,6 +2,11 @@
 
 This checklist is not permission to change the website, database, or release audience.
 
+Prepared in 0.2: API 36 targeting, owner-configurable signing, unsigned release bundle build,
+native TIH information/privacy/support/terms, an email deletion-request flow, store text and
+standalone policy pages. See [release/PUBLISHING.md](release/PUBLISHING.md). The prepared
+pages have not been published, and the server deletion process has not been acceptance-tested.
+
 ## Blocking production gates
 
 - [ ] Use owner-approved test accounts to verify an active, paid/approved learner,

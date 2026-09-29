@@ -18,6 +18,7 @@ class HubApiTests {
             assertEquals("/auth/v1/token?grant_type=password", server.takeRequest().path)
             val profile = server.takeRequest()
             assertEquals("Bearer access", profile.getHeader("Authorization"))
+            assertEquals("id,name,status", profile.requestUrl!!.queryParameter("select"))
             val grants = server.takeRequest()
             assertTrue(grants.path!!.contains("student_id=eq.TIH-STU-TEST"))
             assertEquals("Bearer access", grants.getHeader("Authorization"))
