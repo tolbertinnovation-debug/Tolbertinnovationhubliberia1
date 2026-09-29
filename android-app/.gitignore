@@ -1,4 +1,5 @@
 .gradle/
+.ci-preview-signing/
 .kotlin/
 **/build/
 local.properties

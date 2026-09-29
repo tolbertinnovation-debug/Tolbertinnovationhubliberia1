@@ -13,6 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      TIH_PREVIEW_KEYSTORE: ${{ github.workspace }}/android-app/.ci-preview-signing/preview.keystore
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -29,8 +31,14 @@ jobs:
           cmdline-tools-version: '13114758'
       - uses: actions/cache@v4
         with:
-          path: ~/.android/debug.keystore
-          key: tih-preview-signing-v1
+          path: android-app/.ci-preview-signing/preview.keystore
+          key: tih-preview-signing-v2
+      - name: Prepare preview-only signing identity
+        run: |
+          mkdir -p "$(dirname "$TIH_PREVIEW_KEYSTORE")"
+          if [ ! -f "$TIH_PREVIEW_KEYSTORE" ]; then
+            keytool -genkeypair -noprompt -keystore "$TIH_PREVIEW_KEYSTORE" -storepass android -keypass android -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -dname 'CN=TIH Preview,O=Android,C=LR'
+          fi
       - uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: false

@@ -29,6 +29,14 @@ android {
         keyAlias = signingValues[2]
         keyPassword = signingValues[3]
     }
+    providers.environmentVariable("TIH_PREVIEW_KEYSTORE").orNull?.let { previewKey ->
+        signingConfigs.getByName("debug") {
+            storeFile = file(previewKey)
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
     buildTypes {
         release {
             isMinifyEnabled = true

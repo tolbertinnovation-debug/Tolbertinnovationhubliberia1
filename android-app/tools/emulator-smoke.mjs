@@ -46,7 +46,13 @@ try {
   // This test signature is never used for the release AAB and is not a publishing key.
   const buildTools=fs.readdirSync(path.join(sdk,'build-tools')).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})).at(-1);
   const signed=path.join(root,'android-app/app/build/intermediates/release-validation.apk');
-  execFileSync(path.join(sdk,'build-tools',buildTools,'apksigner'),['sign','--ks',path.join(process.env.HOME,'.android/debug.keystore'),
+  const testKey=process.env.TIH_PREVIEW_KEYSTORE || path.join(root,'android-app/app/build/intermediates/release-validation.keystore');
+  if(!fs.existsSync(testKey)) {
+    fs.mkdirSync(path.dirname(testKey),{recursive:true});
+    execFileSync('keytool',['-genkeypair','-noprompt','-keystore',testKey,'-storepass','android','-keypass','android','-alias','androiddebugkey',
+      '-keyalg','RSA','-keysize','2048','-validity','10000','-dname','CN=TIH Validation,O=Android,C=LR'],{env,timeout:30000});
+  }
+  execFileSync(path.join(sdk,'build-tools',buildTools,'apksigner'),['sign','--ks',testKey,
     '--ks-pass','pass:android','--out',signed,path.join(root,'android-app/app/build/outputs/apk/release/app-release-unsigned.apk')],{env,timeout:30000});
   call(['install','-r',signed],120000);
   call(['shell','am','start','-W','-n','org.tolbertinnovationhub.learning/.MainActivity'],30000);
