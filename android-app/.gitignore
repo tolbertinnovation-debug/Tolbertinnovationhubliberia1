@@ -1,0 +1,9 @@
+.gradle/
+.kotlin/
+**/build/
+local.properties
+*.jks
+*.keystore
+captures/
+app/src/main/assets/learning/
+app/src/main/res/drawable/tih_logo.png

@@ -1,0 +1,467 @@
+@file:OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
+package org.tolbertinnovationhub.learning.ui
+
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.widget.Toast
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.automirrored.outlined.ArrowForward
+import androidx.compose.material.icons.automirrored.outlined.MenuBook
+import androidx.compose.material.icons.outlined.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import org.tolbertinnovationhub.learning.LearningViewModel
+import org.tolbertinnovationhub.learning.R
+import org.tolbertinnovationhub.learning.data.*
+
+private const val HUB = "https://tolbertinnovationhub.org/"
+private data class Destination(val title: String, val icon: ImageVector)
+private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Destination("Explore", Icons.Outlined.Search),
+    Destination("Saved", Icons.Outlined.Bookmarks), Destination("You", Icons.Outlined.PersonOutline))
+
+@Composable fun LearningApp(vm: LearningViewModel) {
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { vm.checkLocalAccess() }
+    var tab by rememberSaveable { mutableIntStateOf(0) }
+    val context = LocalContext.current
+    val openLink: (String) -> Unit = { url ->
+        val uri = Uri.parse(url)
+        if (uri.scheme == "https" && uri.host != null) {
+            try { context.startActivity(Intent(Intent.ACTION_VIEW, uri)) }
+            catch (_: ActivityNotFoundException) { Toast.makeText(context, "No browser is available on this device.", Toast.LENGTH_LONG).show() }
+        }
+    }
+    BackHandler(vm.course != null) { vm.back() }
+    BackHandler(vm.course == null && tab != 0) { tab = 0 }
+    val snackbar = remember { SnackbarHostState() }
+    LaunchedEffect(vm.notice) {
+        vm.notice?.let { snackbar.showSnackbar(it, withDismissAction = true); vm.dismissNotice() }
+    }
+    Scaffold(
+        topBar = {
+            if (vm.course == null) TopAppBar(title = {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Image(painterResource(R.drawable.tih_logo), "Tolbert Innovation Hub", Modifier.size(38.dp))
+                    Column { Text("TIH Learning", style = MaterialTheme.typography.titleMedium)
+                        Text("YOUR FUTURE STARTS HERE", fontSize = 9.sp, letterSpacing = 1.2.sp, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+                }
+            }, actions = { IconButton(onClick = { tab = 3 }) { Icon(Icons.Outlined.AccountCircle, "Your account") } })
+            else TopAppBar(title = { Text(if (vm.lesson == null) "Course overview" else "Module ${vm.lesson!!.module}", style = MaterialTheme.typography.titleMedium) },
+                navigationIcon = { IconButton(onClick = vm::back) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, "Back") } },
+                actions = { if (vm.lesson != null) {
+                    val saved = "${vm.course!!.summary.id}/${vm.lesson!!.id}" in vm.bookmarks()
+                    IconButton(onClick = vm::toggleBookmark) { Icon(if (saved) Icons.Outlined.BookmarkAdded else Icons.Outlined.BookmarkBorder, if (saved) "Remove bookmark" else "Save lesson") }
+                } })
+        },
+        bottomBar = { if (vm.course == null) NavigationBar {
+            destinations.forEachIndexed { i, d -> NavigationBarItem(selected = tab == i, onClick = { tab = i },
+                icon = { Icon(d.icon, d.title) }, label = { Text(d.title) }) }
+        } }, snackbarHost = { SnackbarHost(snackbar) }
+    ) { padding ->
+        Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.TopCenter) {
+            Box(Modifier.fillMaxSize().widthIn(max = 1000.dp)) {
+                when {
+                    vm.loading -> Loading()
+                    vm.catalog.isEmpty() -> EmptyState("Library unavailable", "The learning content could not be loaded.", Icons.Outlined.CloudOff, "Try again", { vm.load() })
+                    vm.course != null && vm.lesson != null && vm.canStudy(vm.course!!.summary.id) -> Reader(vm, openLink)
+                    vm.course != null -> CourseScreen(vm, openLink, onSignIn = { vm.back(); tab = 3 })
+                    tab == 0 -> Home(vm, onExplore = { tab = 1 }, onSignIn = { tab = 3 })
+                    tab == 1 -> Explore(vm)
+                    tab == 2 -> Saved(vm)
+                    else -> Account(vm, openLink)
+                }
+            }
+        }
+    }
+}
+
+@Composable private fun Loading() {
+    Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+        CircularProgressIndicator(); Spacer(Modifier.height(16.dp)); Text("Preparing your learning space…")
+    }
+}
+
+@Composable private fun SectionTitle(title: String, caption: String? = null) {
+    Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
+        Text(title, style = MaterialTheme.typography.titleLarge)
+        if (caption != null) Text(caption, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+}
+
+@Composable private fun Home(vm: LearningViewModel, onExplore: () -> Unit, onSignIn: () -> Unit) {
+    val user = vm.session
+    val owned = vm.catalog.filter { vm.canStudy(it.id) }
+    val last = user?.let { vm.study.last(it.studentId) }
+    val resume = owned.find { it.id == last?.first }
+    LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(22.dp)) {
+        item {
+            Column { Text(if (user == null) "WELCOME TO TIH" else "YOUR LEARNING SPACE", fontSize = 11.sp, letterSpacing = 1.5.sp, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.Bold)
+                Spacer(Modifier.height(8.dp)); Text(if (user == null) "Build skills.\nBuild your future." else "Keep growing,\n${user.name.substringBefore(' ')}.", style = MaterialTheme.typography.headlineLarge) }
+        }
+        item {
+            Box(Modifier.fillMaxWidth().background(Brush.linearGradient(listOf(Navy, Color(0xFF265A91))), RoundedCornerShape(24.dp)).padding(24.dp)) {
+                Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Icon(Icons.Outlined.AutoAwesome, null, tint = Color(0xFF9BD1FF)); Text("MADE FOR YOUR NEXT CHAPTER", color = Color(0xFFC4E1FF), fontSize = 10.sp, letterSpacing = 1.sp)
+                    }
+                    Text(if (resume != null) "Pick up where\nyou left off." else "One lesson closer\nto your ambitions.", color = Color.White, style = MaterialTheme.typography.headlineMedium)
+                    Text(resume?.title ?: "Practical skills, exam preparation, and opportunities — from the TIH Learning Hub.", color = Color(0xFFD9E8F9), style = MaterialTheme.typography.bodyMedium, maxLines = 3, overflow = TextOverflow.Ellipsis)
+                    Button(onClick = { if (resume != null) vm.openCourse(resume, last?.second) else onExplore() }, colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Navy)) {
+                        Text(if (resume != null) "Continue learning" else "Find your course"); Spacer(Modifier.width(8.dp)); Icon(Icons.AutoMirrored.Outlined.ArrowForward, null, Modifier.size(18.dp))
+                    }
+                }
+            }
+        }
+        item { Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            Metric("${vm.catalog.size}", "Courses", Modifier.weight(1f))
+            Metric("${vm.catalog.count { it.id.startsWith("wassce-") }}", "WASSCE subjects", Modifier.weight(1f))
+            Metric("${owned.size}", "Unlocked", Modifier.weight(1f))
+        } }
+        if (user == null) item { InfoCard("Your courses, in your pocket", "Sign in with your TIH email to access approved courses. Browse the catalog without an account.", Icons.Outlined.VerifiedUser, "Sign in", onSignIn) }
+        if (owned.isNotEmpty()) {
+            item { SectionTitle("My learning", "Progress below belongs to this app on this device.") }
+            items(owned, key = { "owned-" + it.id }) { course -> CompactCourse(course, vm.completed(course.id).size) { vm.openCourse(course) } }
+        } else {
+            item { SectionTitle("A great place to begin", "Explore learning paths already available at TIH.") }
+            items(vm.catalog.filter { it.id in listOf("computer-literacy", "android", "ai") }) { c -> CourseCard(c) { vm.openCourse(c) } }
+        }
+        item { InfoCard("Learn with less data", "Written lessons and quizzes are included in the app. Approved access works offline for up to 7 days. Videos open online only when you choose.", Icons.Outlined.OfflineBolt) }
+        item { Text("Tolbert Innovation Hub · Liberia", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+    }
+}
+
+@Composable private fun Metric(value: String, label: String, modifier: Modifier) {
+    Surface(modifier, shape = RoundedCornerShape(16.dp), color = MaterialTheme.colorScheme.surface) {
+        Column(Modifier.padding(vertical = 18.dp, horizontal = 10.dp)) {
+            Text(value, style = MaterialTheme.typography.headlineMedium)
+            Text(label, fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+    }
+}
+
+@Composable private fun Explore(vm: LearningViewModel) {
+    var query by rememberSaveable { mutableStateOf("") }
+    var category by rememberSaveable { mutableStateOf("All") }
+    val categories = listOf("All", "WASSCE") + vm.catalog.filterNot { it.id.startsWith("wassce-") }.map { it.category }.distinct().sorted()
+    val matches = vm.catalog.filter {
+        (category == "All" || (category == "WASSCE" && it.id.startsWith("wassce-")) || it.category == category) &&
+            (it.title + " " + it.description + " " + it.category).contains(query.trim(), ignoreCase = true)
+    }
+    Column(Modifier.fillMaxSize()) {
+        Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            SectionTitle("Find your next skill", "Your existing TIH courses, ready for Android.")
+            OutlinedTextField(query, { query = it }, Modifier.fillMaxWidth(), singleLine = true,
+                placeholder = { Text("Search courses, skills, or subjects") }, leadingIcon = { Icon(Icons.Outlined.Search, null) }, shape = RoundedCornerShape(16.dp))
+        }
+        LazyRow(contentPadding = PaddingValues(horizontal = 20.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            items(categories) { item -> FilterChip(selected = item == category, onClick = { category = item }, label = { Text(item) }) }
+        }
+        Text("${matches.size} courses", Modifier.padding(horizontal = 20.dp, vertical = 10.dp), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        if (matches.isEmpty()) EmptyState("No matches yet", "Try a different word or choose All categories.", Icons.Outlined.SearchOff, "Clear filters", { query = ""; category = "All" })
+        else LazyVerticalGrid(columns = GridCells.Adaptive(290.dp), contentPadding = PaddingValues(start = 20.dp, end = 20.dp, bottom = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            items(matches, key = { it.id }) { c -> CourseCard(c) { vm.openCourse(c) } }
+        }
+    }
+}
+
+@Composable private fun CourseCover(course: CourseSummary, modifier: Modifier) {
+    val context = LocalContext.current
+    val bitmap by produceState<androidx.compose.ui.graphics.ImageBitmap?>(null, course.image) {
+        value = withContext(Dispatchers.IO) {
+            if (!course.image.startsWith("images/")) null else runCatching {
+                context.assets.open("learning/${course.image}").use { BitmapFactory.decodeStream(it)?.asImageBitmap() }
+            }.getOrNull()
+        }
+    }
+    Box(modifier.background(Brush.linearGradient(listOf(Navy, Color(0xFF316698)))) , contentAlignment = Alignment.Center) {
+        if (bitmap != null) Image(bitmap!!, null, Modifier.fillMaxSize(), contentScale = ContentScale.Crop)
+        else Icon(Icons.AutoMirrored.Outlined.MenuBook, null, Modifier.size(52.dp), tint = Color(0xFFB5D8FF))
+    }
+}
+
+@Composable private fun CourseCard(course: CourseSummary, onClick: () -> Unit) {
+    Card(onClick, Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
+        CourseCover(course, Modifier.fillMaxWidth().height(155.dp))
+        Column(Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(9.dp)) {
+            Text(course.category.uppercase(), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.secondary, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(course.title, style = MaterialTheme.typography.titleMedium, maxLines = 2, overflow = TextOverflow.Ellipsis)
+            Text(course.description, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2, overflow = TextOverflow.Ellipsis)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("${course.moduleCount} modules · ${course.lessonCount} entries", style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(1f))
+                Icon(Icons.AutoMirrored.Outlined.ArrowForward, "View course", Modifier.size(19.dp))
+            }
+        }
+    }
+}
+
+@Composable private fun CompactCourse(c: CourseSummary, completed: Int, onClick: () -> Unit) {
+    Card(onClick, Modifier.fillMaxWidth(), shape = RoundedCornerShape(18.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
+        Column(Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Text(c.title, style = MaterialTheme.typography.titleMedium)
+            LinearProgressIndicator(progress = { (completed.toFloat() / maxOf(1, c.lessonCount)).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth())
+            Text("$completed of ${c.lessonCount} entries completed in this app", style = MaterialTheme.typography.labelMedium)
+        }
+    }
+}
+
+@Composable private fun CourseScreen(vm: LearningViewModel, openLink: (String) -> Unit, onSignIn: () -> Unit) {
+    val course = vm.course ?: return
+    val c = course.summary
+    val unlocked = vm.canStudy(c.id)
+    val done = vm.completed(c.id)
+    var expanded by rememberSaveable(c.id) { mutableIntStateOf(0) }
+    LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
+        item {
+            Card(shape = RoundedCornerShape(24.dp)) { CourseCover(c, Modifier.fillMaxWidth().height(200.dp)) }
+        }
+        item { Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Text(c.category.uppercase(), color = MaterialTheme.colorScheme.secondary, style = MaterialTheme.typography.labelLarge)
+            Text(c.title, style = MaterialTheme.typography.headlineMedium)
+            Text(c.description, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text("${c.moduleCount} modules · ${c.lessonCount} entries · ${c.videoCount} video links", style = MaterialTheme.typography.labelLarge)
+            Text(c.level, style = MaterialTheme.typography.bodyMedium)
+        } }
+        item {
+            if (unlocked) {
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Button(onClick = { course.lessons.firstOrNull { it.id !in done }?.let(vm::openLesson) ?: course.lessons.firstOrNull()?.let(vm::openLesson) }, modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) {
+                        Icon(Icons.Outlined.PlayCircleOutline, null); Spacer(Modifier.width(10.dp)); Text(if (done.isEmpty()) "Start learning" else "Continue learning")
+                    }
+                    Text("${done.size} completed here · written materials work offline", style = MaterialTheme.typography.bodySmall)
+                }
+            } else InfoCard("${if (vm.session == null) "Sign in to start learning" else "Course access required"}",
+                "Use your existing TIH account and approved enrollment. Registration, payments, access codes, and certificates remain on the Learning Hub website.", Icons.Outlined.Lock,
+                if (vm.session == null) "Sign in" else "Open Learning Hub", if (vm.session == null) onSignIn else ({ openLink(HUB + "hub-dashboard") }))
+        }
+        if (c.outcomes.isNotEmpty()) item { Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            SectionTitle("What you’ll learn")
+            c.outcomes.take(6).forEach { outcome -> Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                Icon(Icons.Outlined.CheckCircleOutline, null, tint = MaterialTheme.colorScheme.tertiary, modifier = Modifier.size(20.dp)); Text(outcome, style = MaterialTheme.typography.bodyMedium)
+            } }
+        } }
+        item { SectionTitle("Your course roadmap", "Lessons, projects, and assessments from the Learning Hub.") }
+        items(course.modules.indices.toList()) { mi ->
+            val module = course.modules[mi]
+            Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), shape = RoundedCornerShape(16.dp)) {
+                Row(Modifier.fillMaxWidth().clickable { expanded = if (expanded == mi) -1 else mi }.padding(17.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) { Text(module.title, style = MaterialTheme.typography.titleSmall); Text("${module.lessons.size} entries", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+                    Icon(if (expanded == mi) Icons.Outlined.ExpandLess else Icons.Outlined.ExpandMore, if (expanded == mi) "Collapse module" else "Expand module")
+                }
+                if (expanded == mi) module.lessons.forEach { l ->
+                    HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
+                    Row(Modifier.fillMaxWidth().clickable(enabled = unlocked) { vm.openLesson(l) }.padding(horizontal = 16.dp, vertical = 15.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        Icon(when { !unlocked -> Icons.Outlined.Lock; l.id in done -> Icons.Outlined.CheckCircle; l.kind == "quiz" -> Icons.Outlined.Quiz; l.kind == "project" -> Icons.Outlined.Assignment; else -> Icons.AutoMirrored.Outlined.MenuBook }, null,
+                            Modifier.size(20.dp), tint = if (l.id in done) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurfaceVariant)
+                        Column(Modifier.weight(1f)) { Text(l.title, style = MaterialTheme.typography.bodyMedium); Text(if (l.kind == "quiz") "${l.questions.size} questions" else if (l.videoId.isNotEmpty()) "Read + watch" else "Read + practise", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+                    }
+                }
+            }
+        }
+        item { InfoCard("Official certificates", "App quiz results are practice records. Official completion and certificate approval remain in the existing TIH Learning Hub.", Icons.Outlined.WorkspacePremium, "Open website", { openLink(HUB + "hub-dashboard") }) }
+    }
+}
+
+@Composable private fun Reader(vm: LearningViewModel, openLink: (String) -> Unit) {
+    val course = vm.course ?: return; val lesson = vm.lesson ?: return
+    var notesTab by rememberSaveable(lesson.id) { mutableStateOf(false) }
+    val user = vm.session ?: return
+    var note by remember(lesson.id, user.studentId) { mutableStateOf(vm.study.note(user.studentId, lesson.id)) }
+    Column(Modifier.fillMaxSize()) {
+        Column(Modifier.padding(horizontal = 20.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Text(lesson.title, style = MaterialTheme.typography.titleLarge, maxLines = 3, overflow = TextOverflow.Ellipsis)
+            if (lesson.kind != "quiz") Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                FilterChip(!notesTab, { notesTab = false }, label = { Text("Lesson") })
+                FilterChip(notesTab, { notesTab = true }, label = { Text("My notes") })
+                if (Regex("^[A-Za-z0-9_-]{11}$").matches(lesson.videoId)) TextButton(onClick = { openLink("https://www.youtube.com/watch?v=${lesson.videoId}") }) {
+                    Icon(Icons.Outlined.PlayCircleOutline, null, Modifier.size(18.dp)); Spacer(Modifier.width(5.dp)); Text("Video")
+                }
+            }
+            if (lesson.sharedVideo && !notesTab) Text("Video: shared module overview. The reading below covers this topic.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+        when {
+            lesson.kind == "quiz" -> QuizScreen(lesson, onComplete = vm::completeQuiz, modifier = Modifier.weight(1f))
+            notesTab -> Column(Modifier.weight(1f).padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text("Your takeaways, questions, and project work", style = MaterialTheme.typography.titleSmall)
+                Text("Automatically saved on this device for your TIH account.", style = MaterialTheme.typography.bodySmall)
+                OutlinedTextField(note, { note = it.take(20000); vm.saveNote(note) }, Modifier.fillMaxWidth().weight(1f), placeholder = { Text("What did you learn? How will you apply it?") }, label = { Text("Personal study notes") })
+                Spacer(Modifier.height(12.dp))
+            }
+            lesson.html.isNotBlank() -> key(lesson.id) { RichLesson(lesson.html, course.css, vm.fontSize.toInt(), Modifier.weight(1f).fillMaxWidth(), openLink) }
+            else -> Box(Modifier.weight(1f)) { EmptyState("Continue on the Learning Hub", "This entry has no standalone written note in the existing course material.", Icons.AutoMirrored.Outlined.MenuBook, "Open original lesson", { openLink(HUB + "course-player?id=${course.summary.id}") }) }
+        }
+        Surface(shadowElevation = 5.dp) {
+            Row(Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                if (lesson.kind != "quiz") {
+                    val done = lesson.id in vm.completed(course.summary.id)
+                    Button(onClick = vm::completeLesson, enabled = !done, modifier = Modifier.weight(1f)) { Text(if (done) "Completed" else "Mark complete") }
+                } else Text("Practice · pass at 70%", style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(1f))
+                val index = course.lessons.indexOfFirst { it.id == lesson.id }
+                OutlinedButton(onClick = { course.lessons.getOrNull(index + 1)?.let(vm::openLesson) }, enabled = index < course.lessons.lastIndex) { Text("Next"); Icon(Icons.AutoMirrored.Outlined.ArrowForward, null, Modifier.size(18.dp)) }
+            }
+        }
+    }
+}
+
+@Composable internal fun QuizScreen(lesson: Lesson, onComplete: (Int) -> Unit, modifier: Modifier) {
+    var answers by rememberSaveable(lesson.id) { mutableStateOf(List(lesson.questions.size) { -1 }) }
+    var score by rememberSaveable(lesson.id) { mutableIntStateOf(-1) }
+    if (lesson.questions.isEmpty()) { EmptyState("No questions available", "Please open the original course or contact TIH.", Icons.Outlined.Quiz); return }
+    LazyColumn(modifier, contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
+        item { InfoCard(if (score < 0) "Put your knowledge to work" else if (QuizScorer.passed(score)) "Well done — $score%" else "$score% — keep practising",
+            if (score < 0) "Answer all ${lesson.questions.size} questions, then check your work. Feedback appears after submission." else "Your best score is saved on this device. Review the explanations below. This does not issue an official certificate.", Icons.Outlined.Quiz) }
+        items(lesson.questions.indices.toList()) { i ->
+            val q = lesson.questions[i]
+            Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), shape = RoundedCornerShape(16.dp)) {
+                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Text("QUESTION ${i + 1}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.secondary)
+                    Text(q.question, style = MaterialTheme.typography.titleMedium)
+                    q.options.forEachIndexed { oi, option ->
+                        Row(Modifier.fillMaxWidth().background(if (score >= 0 && oi == q.answer) MaterialTheme.colorScheme.tertiaryContainer else MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(12.dp))
+                            .clickable(enabled = score < 0) { answers = answers.toMutableList().also { it[i] = oi } }.padding(end = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+                            RadioButton(selected = answers[i] == oi, onClick = if (score < 0) ({ answers = answers.toMutableList().also { it[i] = oi } }) else null)
+                            Text(option, Modifier.padding(vertical = 12.dp), style = MaterialTheme.typography.bodyMedium)
+                        }
+                    }
+                    if (score >= 0) Text((if (answers[i] == q.answer) "Correct. " else "Correct answer: ${q.options[q.answer]}. ") + q.explanation, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+            }
+        }
+        item {
+            if (score < 0) Button(onClick = { score = QuizScorer.score(lesson.questions, answers); onComplete(score) }, enabled = answers.none { it == -1 }, modifier = Modifier.fillMaxWidth()) { Text("Check my answers") }
+            else OutlinedButton(onClick = { answers = List(lesson.questions.size) { -1 }; score = -1 }, modifier = Modifier.fillMaxWidth()) { Text("Practise again") }
+        }
+    }
+}
+
+@Composable private fun Saved(vm: LearningViewModel) {
+    val saved = vm.bookmarks()
+    var entries by remember { mutableStateOf<List<Pair<CourseSummary, Lesson>>>(emptyList()) }
+    val context = LocalContext.current
+    LaunchedEffect(saved) {
+        val repository = ContentRepository(context)
+        entries = vm.catalog.filter { c -> saved.any { it.startsWith(c.id + "/") } }.flatMap { c -> repository.course(c).lessons.filter { "${c.id}/${it.id}" in saved }.map { c to it } }
+    }
+    if (saved.isEmpty()) { EmptyState("Your personal reading shelf", "Save a lesson with the bookmark button. It will be easy to find here when you return.", Icons.Outlined.Bookmarks); return }
+    LazyColumn(contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        item { SectionTitle("Saved for later", "${entries.size} lessons in your reading shelf") }
+        items(entries, key = { it.second.id }) { (c, l) ->
+            Card(onClick = { vm.openCourse(c, l.id) }, modifier = Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
+                Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Text(l.title, style = MaterialTheme.typography.titleMedium); Text(c.title, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+            }
+        }
+    }
+}
+
+@Composable private fun Account(vm: LearningViewModel, openLink: (String) -> Unit) {
+    var email by rememberSaveable { mutableStateOf("") }
+    // Password deliberately excluded from saved instance state and persistent storage.
+    var password by remember { mutableStateOf("") }
+    var showPassword by remember { mutableStateOf(false) }
+    var confirmClear by remember { mutableStateOf(false) }
+    LaunchedEffect(vm.session) { if (vm.session != null) password = "" }
+    LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(22.dp)) {
+        item { SectionTitle("Your learning, your way", "Welcome to TIH Learning Hub for Android.") }
+        if (vm.session == null) item {
+            Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), shape = RoundedCornerShape(20.dp)) {
+                Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                    Text("Welcome back", style = MaterialTheme.typography.titleLarge)
+                    Text("Use your existing TIH Learning Hub email and password. Older accounts may need a website sign-in first.", style = MaterialTheme.typography.bodyMedium)
+                    OutlinedTextField(email, { email = it }, Modifier.fillMaxWidth(), label = { Text("Email address") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), singleLine = true)
+                    OutlinedTextField(password, { password = it }, Modifier.fillMaxWidth(), label = { Text("Password") }, singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password), visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
+                        trailingIcon = { IconButton(onClick = { showPassword = !showPassword }) { Icon(if (showPassword) Icons.Outlined.VisibilityOff else Icons.Outlined.Visibility, "Toggle password visibility") } })
+                    Button(onClick = { vm.signIn(email, password) }, enabled = !vm.busy, modifier = Modifier.fillMaxWidth()) {
+                        if (vm.busy) CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp) else Text("Sign in securely")
+                    }
+                    TextButton(onClick = { openLink(HUB + "hub-dashboard") }) { Text("New account or sign-in help") }
+                }
+            }
+        } else item {
+            InfoCard(vm.session!!.name, "${vm.session!!.studentId}\n${vm.session!!.grants.size} approved course grants. Access last verified ${java.text.DateFormat.getDateInstance().format(java.util.Date(vm.session!!.verifiedAt))}.", Icons.Outlined.VerifiedUser)
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                TextButton(onClick = { vm.refresh() }, enabled = !vm.busy) { Text(if (vm.busy) "Refreshing…" else "Refresh access") }
+                TextButton(onClick = vm::signOut) { Text("Sign out") }
+            }
+        }
+        item { Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            SectionTitle("Make yourself comfortable")
+            Text("Appearance", style = MaterialTheme.typography.titleSmall)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { listOf("System", "Light", "Dark").forEach { mode -> FilterChip(vm.theme == mode, { vm.setTheme(mode) }, label = { Text(mode) }) } }
+            Text("Reading size: ${vm.fontSize.toInt()} px", style = MaterialTheme.typography.titleSmall)
+            Slider(vm.fontSize, vm::setFontSize, valueRange = 16f..24f, steps = 7)
+            Text("Lesson pages use a light paper background to preserve the original teaching diagrams.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        } }
+        item { InfoCard("Offline, with clear boundaries", "Notes, quizzes, bookmarks, and local progress work without a connection after approved access is verified. Reconnect at least every 7 days. YouTube videos need internet and open in your video app or browser.", Icons.Outlined.CloudDownload) }
+        item { InfoCard("Your data stays yours", "No advertising or analytics SDKs. Passwords are never stored. Sign-in tokens are encrypted using Android Keystore. Study records stay on this device and do not yet sync to the website.", Icons.Outlined.PrivacyTip) }
+        item { Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            SectionTitle("We’re here to help")
+            OutlinedButton(onClick = { openLink("https://wa.me/231880559227") }, modifier = Modifier.fillMaxWidth()) { Text("Contact TIH support") }
+            OutlinedButton(onClick = { openLink(HUB + "hub-dashboard") }, modifier = Modifier.fillMaxWidth()) { Text("Enrollment & certificates on website") }
+            if (vm.session != null) TextButton(onClick = { confirmClear = true }) { Text("Clear my study data on this device", color = MaterialTheme.colorScheme.error) }
+            Text("TIH Learning · 0.1 preview\nAndroid-native navigation, learning tools, and quizzes. Existing lesson documents are preserved in a secure offline reader.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        } }
+    }
+    if (confirmClear) AlertDialog(onDismissRequest = { confirmClear = false }, title = { Text("Clear local study data?") },
+        text = { Text("This removes this account’s app notes, bookmarks, quiz scores, and local progress. It cannot be undone. Your website account will not change.") },
+        confirmButton = { TextButton(onClick = { vm.clearStudy(); confirmClear = false }) { Text("Clear data") } },
+        dismissButton = { TextButton(onClick = { confirmClear = false }) { Text("Cancel") } })
+}
+
+@Composable private fun InfoCard(title: String, text: String, icon: ImageVector, action: String? = null, onAction: (() -> Unit)? = null) {
+    Surface(shape = RoundedCornerShape(18.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
+        Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Icon(icon, null, tint = MaterialTheme.colorScheme.primary)
+            Text(title, style = MaterialTheme.typography.titleMedium)
+            Text(text, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            if (action != null && onAction != null) TextButton(onClick = onAction, contentPadding = PaddingValues(0.dp)) { Text(action); Spacer(Modifier.width(6.dp)); Icon(Icons.AutoMirrored.Outlined.ArrowForward, null, Modifier.size(18.dp)) }
+        }
+    }
+}
+
+@Composable private fun EmptyState(title: String, text: String, icon: ImageVector, action: String? = null, onAction: (() -> Unit)? = null) {
+    Column(Modifier.fillMaxSize().padding(32.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+        Icon(icon, null, Modifier.size(58.dp), tint = MaterialTheme.colorScheme.primary)
+        Spacer(Modifier.height(22.dp)); Text(title, style = MaterialTheme.typography.titleLarge)
+        Spacer(Modifier.height(10.dp)); Text(text, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        if (action != null && onAction != null) { Spacer(Modifier.height(20.dp)); Button(onClick = onAction) { Text(action) } }
+    }
+}

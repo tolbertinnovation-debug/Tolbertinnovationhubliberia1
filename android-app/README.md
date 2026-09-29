@@ -1,0 +1,156 @@
+# TIH Learning Hub — native Android preview
+
+An isolated Kotlin / Jetpack Compose Android application in the existing TIH repository.
+**This is a review build, not a production or Play Store release.** No existing website,
+database, domain, payment configuration, or GitHub Pages workflow is modified.
+
+## What is implemented
+
+- Native home/dashboard, searchable course catalog, category filters, course roadmap,
+  account screen, bookmarks, personal notes, and multiple-choice assessments.
+- Existing TIH logo and existing course artwork; light/dark/system themes and adjustable
+  reading size. No invented course reviews, enrollment totals, or certificates.
+- 57 existing courses, 10,884 lesson/project/assessment entries, 4,353 authored notes,
+  and 20,003 assessment question entries in the initial source snapshot. Counts are
+  generated, not manually maintained; repeated questions in the original banks remain
+  repeated. These are entries, not a claim of 20,003 unique questions.
+- The export runs the website's actual curriculum, quiz, video, and authored-note
+  loaders in the proper order. It never rewrites the website's source files.
+- All written material, quizzes, and local cover artwork ship with the APK. Approved
+  course access remains available offline for seven days after server verification.
+- Existing Supabase Auth email/password sign-in and authenticated `student_me` profile
+  lookup. The app reads only the signed-in student's enrollment grants. It does not
+  create accounts, claim profiles, change passwords, write grants, or write payments.
+- Session tokens and verified grants are encrypted using Android Keystore / AES-GCM.
+  Passwords are not persisted. Android app backup and cleartext HTTP are disabled.
+- Local study records are namespaced by verified student ID. Signing out removes the
+  active session. An explicit, confirmed action can delete that account's local study data.
+
+### Native UI, faithful teaching documents
+
+This is **not a WebView wrapper around the website**. Navigation, catalog, course lists,
+progress UI, quizzes, notes, bookmarks, and account controls are native Compose screens.
+Only the existing authored HTML lesson document uses a narrow, offline WebView renderer
+to retain tables, inline SVG diagrams, formatting, and expandable definitions.
+That reader has JavaScript, network loading, file access, content access, DOM storage,
+and native JavaScript bridges disabled. Active content is removed and a restrictive
+Content Security Policy is applied. No production website is loaded inside it.
+
+Remote lesson illustrations are shown with their alternative text rather than downloaded.
+YouTube links open in the user's YouTube app/browser **only after a tap**. Videos are not
+downloaded or relabeled as offline content. Shared source videos are labeled as module
+overviews. This preview does not provide an in-app YouTube player or background downloads.
+
+## Keep the website safe
+
+Development branch: `codex/tih-native-android`.
+
+The existing `.github/workflows/deploy.yml` deploys only pushes to `main`; it is unchanged.
+The new `android-preview.yml` builds only this feature branch or an explicit workflow
+dispatch. It has read-only repository permissions and never deploys GitHub Pages.
+No merge or production deployment is part of this preview.
+
+All application source lives in `android-app/`. The only addition outside that folder is
+the Android-only CI workflow. The generated course assets are ignored by git and rebuilt
+from the repository when compiling, avoiding a second hand-edited copy of the curricula.
+
+**Do not merge blindly:** the existing Pages workflow publishes the entire repository.
+Before any future merge, review excluding Android build/source files from the Pages
+artifact as a separate, approved website-deployment change.
+
+## Open in Android Studio
+
+1. Clone this repository and check out `codex/tih-native-android`.
+2. Install Node.js 22+ and ensure `node` is available on Android Studio's PATH.
+3. Open the **`android-app` folder**, not the website repository root.
+4. Use JDK 17, Android SDK Platform 35, and Build Tools 35.0.0.
+5. Allow Gradle sync. The content exporter runs automatically before Android builds.
+6. Select an emulator or an Android 8.0+ phone and press Run.
+
+Command line, from `android-app/`:
+
+```sh
+./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+```
+
+On Windows, use `gradlew.bat`. Set `ANDROID_HOME` or let Android Studio write the ignored
+`local.properties` file. Do not commit local SDK paths, signing keys, or account secrets.
+
+APK: `app/build/outputs/apk/debug/app-debug.apk`.
+
+Debug application ID: `org.tolbertinnovationhub.learning.preview`; this intentionally
+installs beside an existing TIH app without replacing its data. The production ID is
+provisional until the owner's existing Play Console package identity is confirmed.
+No release signing key is included, and no Play Store submission is performed.
+
+The feature-branch GitHub Actions run also uploads `TIH-Learning-Android-preview` as an
+APK artifact if the build succeeds. Download it from the completed Android workflow run.
+
+## Account and access behavior
+
+The shipped configuration is copied from the existing **public publishable key** in
+`hub-config.js`; no service-role secret is used. Auth uses HTTPS REST, not a JavaScript SDK.
+Learners sign in with an existing Supabase Auth-linked TIH email account. Legacy accounts
+without an Auth linkage should first sign in on the website, or contact TIH support.
+The app deliberately does not recreate legacy deterministic access codes.
+
+Enrollment is granted when the existing server record says `access_granted=true`, or
+`payment_status` is `paid`/`confirmed`, matching the website's restoration logic. An active
+student profile is required. A `wassce-all` grant covers WASSCE subjects only. Guest users
+can browse course descriptions and syllabuses but cannot open lessons or assessments.
+Authentication failures invalidate cached access; temporary network outages retain an
+already verified grant for up to seven days. Revocation cannot be discovered while offline.
+
+## Progress and certificates: deliberately separate in this preview
+
+The current website cloud `progress` table holds **aggregate counts**, not stable lesson IDs,
+personal notes, or the complete per-question attempt history. Guessing which exact lessons
+are complete would corrupt a learner's record. Therefore this version records app progress,
+quiz scores, notes, and bookmarks locally and does not write those aggregates back.
+
+App assessment attempts are practice records. A 70% score marks the assessment complete
+locally, but does **not** issue an official certificate, credit a payment, or modify website
+completion. Official certificates, registration, payments, and code redemption remain on
+the website. Local notes will be lost if the app is uninstalled or its data is cleared.
+
+## Tests
+
+From the repository root:
+
+```sh
+node android-app/tools/export-learning.mjs
+node --test android-app/tools/content.test.mjs
+node tools/check-courses-lite.js
+```
+
+Optional real-browser parity test, after installing Playwright and its Chromium browser:
+
+```sh
+node android-app/tools/browser-parity.mjs
+```
+
+With an Android emulator/device connected, from `android-app/`:
+
+```sh
+./gradlew :app:connectedDebugAndroidTest
+```
+
+The generated `assets/learning/manifest.json` records source file hashes, content counts,
+empty quiz checks, missing note checks, and the source git commit. Import tests verify
+module-qualified note matching, stable lesson IDs, source hashes, all quiz answer indices,
+and deterministic exports. JVM tests cover access expiration, account/grant isolation,
+quiz scoring, HTML safety, and mocked API authentication. No real student credentials or
+production database writes are used by tests.
+
+## Required before public release
+
+See [RELEASE-CHECKLIST.md](RELEASE-CHECKLIST.md). In particular: the repository's existing
+SQL contains broad `authenticated` policies. **Client-side filters do not fix server-side
+authorization.** The actual deployed policies and student/admin roles must be audited with
+the owner's approval before calling this a secure production app. This implementation
+does not claim that the deployed database is hardened or that real-account acceptance
+testing has been completed.
+
+Technology references: [Compose compiler setup](https://developer.android.com/develop/ui/compose/setup-compose-dependencies-and-compiler),
+[AGP 8.9 compatibility](https://developer.android.com/build/releases/past-releases/agp-8-9-0-release-notes),
+[Compose BOM](https://developer.android.com/develop/ui/compose/bom).

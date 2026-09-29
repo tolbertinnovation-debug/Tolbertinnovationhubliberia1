@@ -1,0 +1,45 @@
+name: Android preview (website unchanged)
+
+on:
+  push:
+    branches: [codex/tih-native-android]
+    paths: [android-app/**, .github/workflows/android-preview.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Export and validate existing Learning Hub content
+        run: |
+          node android-app/tools/export-learning.mjs
+          node --test android-app/tools/content.test.mjs
+          node tools/check-courses-lite.js
+      - name: Build, unit-test, and lint Android preview
+        working-directory: android-app
+        run: ./gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TIH-Learning-Android-preview
+          path: android-app/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Android-validation-reports
+          path: |
+            android-app/app/build/reports/
+            android-app/app/src/main/assets/learning/manifest.json
