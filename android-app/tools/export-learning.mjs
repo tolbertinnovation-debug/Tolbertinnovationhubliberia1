@@ -146,7 +146,8 @@ export function exportAll() {
   fs.writeFileSync(path.join(out, 'catalog.json'), JSON.stringify(catalog));
   report.sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], {cwd: root, encoding: 'utf8'}).trim();
   fs.writeFileSync(path.join(out, 'manifest.json'), JSON.stringify(report, null, 2));
-  const drawable = path.join(root, 'android-app/app/src/main/res/drawable');
+  fs.rmSync(path.join(root, 'android-app/app/src/main/res/drawable/tih_logo.png'), {force: true});
+  const drawable = path.join(root, 'android-app/app/src/main/res/drawable-nodpi');
   fs.mkdirSync(drawable, {recursive: true});
   fs.copyFileSync(path.join(root, 'assets/tih-logo.png'), path.join(drawable, 'tih_logo.png'));
   console.log(JSON.stringify({...report, sourceFiles: Object.keys(report.sourceFiles).length}, null, 2));

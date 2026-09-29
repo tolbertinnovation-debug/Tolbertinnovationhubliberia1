@@ -16,11 +16,12 @@ call(['start-server']);
 const logfile=fs.openSync(path.join(report,'emulator.log'),'w');
 const imageRoot=path.join(sdk,'system-images/android-35/default/x86_64');
 const systemImage=fs.existsSync(path.join(imageRoot,'kernel-ranchu')) ? imageRoot : path.join(imageRoot,'x86_64');
+const acceleration=fs.existsSync('/dev/kvm') ? 'auto' : 'off';
 const emulator=spawn(path.join(sdk,'emulator/emulator'),['-avd',avd,'-sysdir',systemImage,
-  '-no-window','-no-audio','-no-boot-anim','-no-snapshot','-no-metrics','-read-only','-accel','off','-gpu','swiftshader_indirect','-memory','2048','-cores','2'],
+  '-no-window','-no-audio','-no-boot-anim','-no-snapshot','-no-metrics','-read-only','-accel',acceleration,'-gpu','swiftshader_indirect','-memory','2048','-cores','2'],
   {env,stdio:['ignore',logfile,logfile]});
 try {
-  console.log('Starting isolated Android emulator (software rendering).');
+  console.log('Starting isolated Android emulator (acceleration: '+acceleration+').');
   let booted=false;
   for(let i=0;i<90;i++) {
     if(emulator.exitCode!==null) throw new Error('Emulator exited: '+emulator.exitCode);

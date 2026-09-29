@@ -30,7 +30,13 @@ jobs:
           node tools/check-courses-lite.js
       - name: Build, unit-test, and lint Android preview
         working-directory: android-app
-        run: ./gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+        run: ./gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:assembleDebugAndroidTest
+      - name: Verify catalog, quiz, and lesson reader on Android 15
+        run: |
+          if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
+          sdkmanager --install 'system-images;android-35;default;x86_64' 'emulator'
+          echo no | avdmanager create avd --name tih-api35 --package 'system-images;android-35;default;x86_64' --device pixel_6
+          node android-app/tools/emulator-smoke.mjs "$ANDROID_HOME" tih-api35
       - uses: actions/upload-artifact@v4
         with:
           name: TIH-Learning-Android-preview
