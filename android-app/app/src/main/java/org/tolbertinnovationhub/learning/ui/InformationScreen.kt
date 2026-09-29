@@ -18,6 +18,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -37,7 +40,7 @@ enum class InformationPage(val title: String) {
     }
     fun email(subject: String, body: String = "") = launch(Intent.ACTION_SENDTO,
         Uri.parse("mailto:${info.email}?subject=${Uri.encode(subject)}&body=${Uri.encode(body)}"))
-    LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
+    LazyColumn(Modifier.fillMaxSize().testTag("information-list"), contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
         when (page) {
             InformationPage.ABOUT -> {
                 item { Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -103,7 +106,7 @@ enum class InformationPage(val title: String) {
         Text("TIH verifies account ownership before processing deletion. Its published privacy policy says privacy requests receive a response within 30 days, subject to legal retention requirements.")
         OutlinedTextField(address, { address = it }, Modifier.fillMaxWidth(), label = { Text("Registered email address") }, singleLine = true, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Checkbox(acknowledged, { acknowledged = it })
+            Checkbox(acknowledged, { acknowledged = it }, Modifier.semantics { contentDescription = "I understand this requests deletion of my shared TIH account" })
             Text("I understand this requests deletion of my shared TIH account.", style = MaterialTheme.typography.bodyMedium)
         }
         Text("Recipient: ${info.email}", style = MaterialTheme.typography.labelLarge)

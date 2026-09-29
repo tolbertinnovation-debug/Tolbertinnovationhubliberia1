@@ -16,7 +16,8 @@ class InformationUiTest {
         compose.onNodeWithText("How your account data is used").performScrollTo().performClick()
         compose.onNodeWithText("TIH Learning privacy notice").assertExists()
         snapshot("06-privacy")
-        compose.onNodeWithText("Delete TIH account").performScrollTo().performClick()
+        compose.onNodeWithTag("information-list").performScrollToNode(hasText("Delete TIH account"))
+        compose.onNodeWithText("Delete TIH account").performClick()
         compose.onNodeWithText("Review request in email").performScrollTo().assertIsNotEnabled()
         compose.onNodeWithText("Registered email address").performScrollTo().performTextInput("learner@example.com")
         compose.onNode(isToggleable()).performScrollTo().performClick()
@@ -25,6 +26,7 @@ class InformationUiTest {
         snapshot("07-delete-request")
         // No message is sent and no external app is launched by this test.
         compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag("account-list").performScrollToNode(hasText("About TIH"))
         compose.onNodeWithText("About TIH").performScrollTo().performClick()
         compose.onNodeWithText("Our mission").assertExists()
         compose.onNodeWithText("Sinkor, Monrovia, Liberia, West Africa").assertExists()

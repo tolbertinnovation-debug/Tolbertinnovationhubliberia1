@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -404,7 +405,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
     var showPassword by remember { mutableStateOf(false) }
     var confirmClear by remember { mutableStateOf(false) }
     LaunchedEffect(vm.session) { if (vm.session != null) password = "" }
-    LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(22.dp)) {
+    LazyColumn(Modifier.fillMaxSize().testTag("account-list"), contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(22.dp)) {
         item { SectionTitle("Your learning, your way", "Welcome to TIH Learning Hub for Android.") }
         if (vm.session == null) item {
             Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), shape = RoundedCornerShape(20.dp)) {

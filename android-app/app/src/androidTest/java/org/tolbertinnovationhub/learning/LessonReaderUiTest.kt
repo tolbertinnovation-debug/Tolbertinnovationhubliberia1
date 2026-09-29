@@ -12,10 +12,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asAndroidBitmap
-import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onRoot
+import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Rule
@@ -59,9 +57,14 @@ class LessonReaderUiTest {
             assertTrue(settings.blockNetworkLoads)
         }
         val directory = File(compose.activity.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
+        // Android 16 WebView surfaces do not reliably participate in Compose's forced-redraw capture.
+        // Capture the actual device surface after the document readiness and security assertions.
+        compose.waitForIdle()
+        val screenshot = requireNotNull(InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot())
         File(directory, "05-lesson-reader.png").outputStream().use {
-            compose.onRoot().captureToImage().asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, it)
+            screenshot.compress(Bitmap.CompressFormat.PNG, 100, it)
         }
+        screenshot.recycle()
     }
 
     private fun webView(view: View): WebView? {
