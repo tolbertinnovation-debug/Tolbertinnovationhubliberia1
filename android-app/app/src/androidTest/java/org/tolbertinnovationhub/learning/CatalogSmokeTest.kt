@@ -29,6 +29,8 @@ class CatalogSmokeTest {
     }
     private fun snapshot(name: String) {
         val directory = File(compose.activity.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
-        File(directory, "$name.png").outputStream().use { compose.onRoot().captureToImage().asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, it) }
+        File(directory, "$name.png").outputStream().use {
+            compose.onRoot().captureToImage().asAndroidBitmap().apply { setHasAlpha(false) }.compress(Bitmap.CompressFormat.PNG, 100, it)
+        }
     }
 }

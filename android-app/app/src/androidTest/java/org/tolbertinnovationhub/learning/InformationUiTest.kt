@@ -34,6 +34,8 @@ class InformationUiTest {
     }
     private fun snapshot(name: String) {
         val dir = File(compose.activity.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
-        File(dir, "$name.png").outputStream().use { compose.onRoot().captureToImage().asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, it) }
+        File(dir, "$name.png").outputStream().use {
+            compose.onRoot().captureToImage().asAndroidBitmap().apply { setHasAlpha(false) }.compress(Bitmap.CompressFormat.PNG, 100, it)
+        }
     }
 }

@@ -89,7 +89,7 @@ class LessonReaderUiTest {
             SystemClock.sleep(200)
         } while (SystemClock.uptimeMillis() < deadline)
         File(directory, "05-lesson-reader.png").outputStream().use {
-            requireNotNull(screenshot).compress(Bitmap.CompressFormat.PNG, 100, it)
+            requireNotNull(screenshot).apply { setHasAlpha(false) }.compress(Bitmap.CompressFormat.PNG, 100, it)
         }
         screenshot?.recycle()
         File(directory, "lesson-render-check.txt").writeText("Reading area: $bounds; visible ink samples: $ink\n")

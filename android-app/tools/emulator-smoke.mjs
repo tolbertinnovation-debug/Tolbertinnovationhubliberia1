@@ -31,6 +31,9 @@ try {
     if(i%6===0) console.log('Waiting for Android to finish booting…');
   }
   if(!booted)throw new Error('Emulator boot timed out; see emulator.log.');
+  // Capture genuine 9:16 phone screens within Play's maximum 2:1 aspect ratio.
+  call(['shell','wm','size','1080x1920']);
+  call(['shell','wm','density','420']);
   console.log('Android booted. Installing preview and instrumentation test APKs.');
   for(const setting of ['window_animation_scale','transition_animation_scale','animator_duration_scale'])call(['shell','settings','put','global',setting,'0']);
   call(['shell','input','keyevent','82']);
@@ -42,6 +45,13 @@ try {
   const pulled=spawn(adb,['pull','/sdcard/Android/data/org.tolbertinnovationhub.learning.preview/files/screenshots',report],{env,stdio:'inherit'});
   await new Promise(resolve=>pulled.on('exit',resolve));
   if(!/OK \(\d+ tests?\)/.test(results))throw new Error('Device tests did not pass.');
+  const screenshots=fs.readdirSync(path.join(report,'screenshots')).filter(name=>name.endsWith('.png'));
+  for(const name of screenshots) {
+    const png=fs.readFileSync(path.join(report,'screenshots',name));
+    const width=png.readUInt32BE(16), height=png.readUInt32BE(20), colorType=png[25];
+    if(width!==1080 || height!==1920 || colorType!==2) throw new Error(`Store capture must be 1080x1920 RGB PNG: ${name} (${width}x${height}, type ${colorType})`);
+  }
+  console.log(`Validated ${screenshots.length} original RGB phone screenshots at 1080x1920.`);
   // Exercise the actual R8-minified release code using a temporary debug signature.
   // This test signature is never used for the release AAB and is not a publishing key.
   const buildTools=fs.readdirSync(path.join(sdk,'build-tools')).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})).at(-1);
