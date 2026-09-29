@@ -1,6 +1,9 @@
 package org.tolbertinnovationhub.learning
 
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.Rect
+import android.os.SystemClock
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
@@ -22,6 +25,7 @@ import org.tolbertinnovationhub.learning.data.ContentRepository
 import org.tolbertinnovationhub.learning.ui.RichLesson
 import org.tolbertinnovationhub.learning.ui.TihTheme
 import java.io.File
+import java.util.concurrent.atomic.AtomicBoolean
 
 class LessonReaderUiTest {
     @get:Rule val compose = createAndroidComposeRule<ComponentActivity>()
@@ -56,15 +60,53 @@ class LessonReaderUiTest {
             assertFalse(settings.allowContentAccess)
             assertTrue(settings.blockNetworkLoads)
         }
-        val directory = File(compose.activity.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
-        // Android 16 WebView surfaces do not reliably participate in Compose's forced-redraw capture.
-        // Capture the actual device surface after the document readiness and security assertions.
-        compose.waitForIdle()
-        val screenshot = requireNotNull(InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot())
-        File(directory, "05-lesson-reader.png").outputStream().use {
-            screenshot.compress(Bitmap.CompressFormat.PNG, 100, it)
+        // Page progress and content height can be available before Chromium paints the DOM.
+        val visualReady = AtomicBoolean(false)
+        val bounds = Rect()
+        compose.runOnUiThread {
+            val web = webView(compose.activity.window.decorView)!!
+            web.getGlobalVisibleRect(bounds)
+            web.postVisualStateCallback(1, object : WebView.VisualStateCallback() {
+                override fun onComplete(requestId: Long) {
+                    web.postInvalidateOnAnimation()
+                    visualReady.set(true)
+                }
+            })
         }
-        screenshot.recycle()
+        compose.waitUntil(30000) { visualReady.get() }
+        val directory = File(compose.activity.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
+        // Inspect the actual reading surface, excluding the native title. A blank WebView
+        // must fail this test even when progress=100 and contentHeight is nonzero.
+        val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
+        var screenshot: Bitmap? = null
+        var ink = 0
+        val deadline = SystemClock.uptimeMillis() + 15000
+        do {
+            screenshot?.recycle()
+            screenshot = requireNotNull(automation.takeScreenshot())
+            ink = readingInk(screenshot, bounds)
+            if (ink >= 100) break
+            SystemClock.sleep(200)
+        } while (SystemClock.uptimeMillis() < deadline)
+        File(directory, "05-lesson-reader.png").outputStream().use {
+            requireNotNull(screenshot).compress(Bitmap.CompressFormat.PNG, 100, it)
+        }
+        screenshot?.recycle()
+        File(directory, "lesson-render-check.txt").writeText("Reading area: $bounds; visible ink samples: $ink\n")
+        assertTrue("The lesson reading area must contain visible text, not a blank loading surface: $bounds / $ink", ink >= 100)
+    }
+
+    private fun readingInk(bitmap: Bitmap, bounds: Rect): Int {
+        var count = 0
+        // Restrict the check to the upper reading area; exclude screen chrome and scrollbars.
+        val bottom = minOf(bounds.bottom - 24, bounds.top + bounds.height() / 2, bitmap.height)
+        for (y in (bounds.top + 24).coerceAtLeast(0) until bottom step 5) {
+            for (x in (bounds.left + 24).coerceAtLeast(0) until minOf(bounds.right - 24, bitmap.width) step 5) {
+                val pixel = bitmap.getPixel(x, y)
+                if (Color.red(pixel) < 160 && Color.green(pixel) < 160 && Color.blue(pixel) < 180) count++
+            }
+        }
+        return count
     }
 
     private fun webView(view: View): WebView? {
