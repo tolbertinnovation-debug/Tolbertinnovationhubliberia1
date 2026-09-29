@@ -135,7 +135,7 @@ class LearningViewModel(app: Application) : AndroidViewModel(app) {
         study.toggleBookmark(user.studentId, c.summary.id, l.id); localRevision++
     }
     fun saveNote(text: String) { val l = lesson ?: return; session?.let { study.saveNote(it.studentId, l.id, text) } }
-    fun setTheme(value: String) { theme = value; prefs.edit().putString("theme", value).apply() }
-    fun setFontSize(value: Float) { fontSize = value; prefs.edit().putFloat("fontSize", value).apply() }
+    fun changeTheme(value: String) { theme = value; prefs.edit().putString("theme", value).apply() }
+    fun changeFontSize(value: Float) { fontSize = value; prefs.edit().putFloat("fontSize", value).apply() }
     fun clearStudy() { session?.let { study.clear(it.studentId) }; localRevision++ }
 }

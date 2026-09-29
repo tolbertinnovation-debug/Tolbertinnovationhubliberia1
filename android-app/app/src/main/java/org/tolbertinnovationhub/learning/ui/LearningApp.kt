@@ -425,9 +425,9 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
         item { Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             SectionTitle("Make yourself comfortable")
             Text("Appearance", style = MaterialTheme.typography.titleSmall)
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { listOf("System", "Light", "Dark").forEach { mode -> FilterChip(vm.theme == mode, { vm.setTheme(mode) }, label = { Text(mode) }) } }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { listOf("System", "Light", "Dark").forEach { mode -> FilterChip(vm.theme == mode, { vm.changeTheme(mode) }, label = { Text(mode) }) } }
             Text("Reading size: ${vm.fontSize.toInt()} px", style = MaterialTheme.typography.titleSmall)
-            Slider(vm.fontSize, vm::setFontSize, valueRange = 16f..24f, steps = 7)
+            Slider(vm.fontSize, vm::changeFontSize, valueRange = 16f..24f, steps = 7)
             Text("Lesson pages use a light paper background to preserve the original teaching diagrams.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         } }
         item { InfoCard("Offline, with clear boundaries", "Notes, quizzes, bookmarks, and local progress work without a connection after approved access is verified. Reconnect at least every 7 days. YouTube videos need internet and open in your video app or browser.", Icons.Outlined.CloudDownload) }

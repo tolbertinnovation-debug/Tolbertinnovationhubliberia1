@@ -14,7 +14,9 @@ const env = {...process.env, ANDROID_HOME: sdk, ANDROID_SDK_ROOT: sdk};
 const call = (args, timeout=15000) => execFileSync(adb, args, {encoding:'utf8',timeout,env});
 call(['start-server']);
 const logfile=fs.openSync(path.join(report,'emulator.log'),'w');
-const emulator=spawn(path.join(sdk,'emulator/emulator'),['-avd',avd,'-sysdir',path.join(sdk,'system-images/android-35/default/x86_64'),
+const imageRoot=path.join(sdk,'system-images/android-35/default/x86_64');
+const systemImage=fs.existsSync(path.join(imageRoot,'kernel-ranchu')) ? imageRoot : path.join(imageRoot,'x86_64');
+const emulator=spawn(path.join(sdk,'emulator/emulator'),['-avd',avd,'-sysdir',systemImage,
   '-no-window','-no-audio','-no-boot-anim','-no-snapshot','-no-metrics','-read-only','-accel','off','-gpu','swiftshader_indirect','-memory','2048','-cores','2'],
   {env,stdio:['ignore',logfile,logfile]});
 try {
