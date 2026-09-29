@@ -40,6 +40,8 @@ jobs:
           node --test android-app/tools/content.test.mjs
           node tools/check-courses-lite.js
           node android-app/tools/prepare-store.mjs
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends librsvg2-2 fonts-dejavu-core
           python3 android-app/tools/render-store.py
       - name: Build, unit-test, and lint Android preview
         working-directory: android-app
