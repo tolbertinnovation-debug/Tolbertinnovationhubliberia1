@@ -24,7 +24,7 @@ try {
   console.log('Starting isolated Android emulator (acceleration: '+acceleration+').');
   let booted=false;
   for(let i=0;i<90;i++) {
-    if(emulator.exitCode!==null) throw new Error('Emulator exited: '+emulator.exitCode);
+    if(emulator.exitCode!==null) throw new Error('Emulator exited: '+emulator.exitCode+'\n'+fs.readFileSync(path.join(report,'emulator.log'),'utf8').split('\n').slice(-25).join('\n'));
     await new Promise(resolve=>setTimeout(resolve,5000));
     try {if(call(['shell','getprop','sys.boot_completed'],5000).trim()==='1'){booted=true;break;}}catch{}
     if(i%6===0) console.log('Waiting for Android to finish booting…');

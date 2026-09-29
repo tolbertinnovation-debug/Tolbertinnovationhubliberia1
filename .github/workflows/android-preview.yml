@@ -40,10 +40,15 @@ jobs:
         working-directory: android-app
         run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:assembleDebugAndroidTest
       - name: Verify catalog, quiz, and lesson reader on Android 15
+        env:
+          ANDROID_USER_HOME: ${{ runner.temp }}/tih-android
+          ANDROID_AVD_HOME: ${{ runner.temp }}/tih-avd
         run: |
           if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
+          mkdir -p "$ANDROID_USER_HOME" "$ANDROID_AVD_HOME"
           sdkmanager --install 'system-images;android-35;default;x86_64' 'emulator'
-          echo no | avdmanager create avd --name tih-api35 --package 'system-images;android-35;default;x86_64' --device pixel_6
+          echo no | avdmanager create avd --name tih-api35 --package 'system-images;android-35;default;x86_64' --device pixel_6 --path "$ANDROID_AVD_HOME/tih-api35.avd"
+          test -f "$ANDROID_AVD_HOME/tih-api35.ini"
           node android-app/tools/emulator-smoke.mjs "$ANDROID_HOME" tih-api35
       - uses: actions/upload-artifact@v4
         with:
