@@ -42,6 +42,7 @@ try {
   await new Promise(resolve=>pulled.on('exit',resolve));
   if(!/OK \(\d+ tests?\)/.test(results))throw new Error('Device tests did not pass.');
 } finally {
+  try {fs.writeFileSync(path.join(report,'logcat.txt'),call(['logcat','-d','-v','threadtime'],15000));}catch{}
   try {call(['emu','kill'],5000);}catch{}
   emulator.kill('SIGTERM');fs.closeSync(logfile);
 }
