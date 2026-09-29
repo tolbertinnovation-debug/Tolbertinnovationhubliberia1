@@ -22,7 +22,12 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: platform-tools
       - uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: false
       - name: Export and validate existing Learning Hub content
         run: |
           node android-app/tools/export-learning.mjs
@@ -30,7 +35,7 @@ jobs:
           node tools/check-courses-lite.js
       - name: Build, unit-test, and lint Android preview
         working-directory: android-app
-        run: ./gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:assembleDebugAndroidTest
+        run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:assembleDebugAndroidTest
       - name: Verify catalog, quiz, and lesson reader on Android 15
         run: |
           if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
