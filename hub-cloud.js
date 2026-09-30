@@ -117,6 +117,17 @@ var HubCloud = (function () {
     return _initPromise;
   }
 
+  // The Supabase client, but only when it can be had immediately: one that is
+  // already built, or one built from an SDK that has already loaded. It never
+  // starts a CDN download, so a write can prefer the authenticated session
+  // where that session exists and fall straight through to REST where it does
+  // not, instead of making a registration wait on a library it does not need.
+  function clientIfReady() {
+    if (_client) return Promise.resolve(_client);
+    var haveGlobal = (typeof window !== 'undefined' && window.supabase && window.supabase.createClient);
+    return haveGlobal ? ready() : Promise.resolve(null);
+  }
+
   // ---- REST layer (no CDN / no SDK needed) ----
   // Talks to Supabase's PostgREST API with the built-in fetch(). This is the
   // MOST reliable path on weak networks because it needs no external library to
@@ -347,13 +358,39 @@ var HubCloud = (function () {
   // stu_insert_anon policy still allows.
   function pushStudent(s, adminHash) {
     var row = stuRow(s);
+    // Fall back to the AUTHENTICATED SDK before the anon REST write.
+    //
+    // The REST helpers always send the anon key as the bearer token, never the
+    // signed-in user's JWT, so every REST write runs as `anon` -- and the
+    // hardening migration dropped anon's UPDATE on students. An admin who signs
+    // in with their email takes the Supabase Auth path, which records no
+    // password hash, so adminHash is null and admin_upsert_student cannot be
+    // used either. Between the two, every edit to an EXISTING learner was
+    // refused: a password reset reported failure and the outbox filled with
+    // retries that could never succeed ("N syncing" that never clears).
+    //
+    // The SDK carries the real session token, which the stu_all_admin policy
+    // accepts. The anon REST write stays as the last resort: it is all a
+    // brand-new id needs, and it still works when the SDK could not load.
+    // Only the client that is ALREADY up is used: asking ready() here would
+    // block a registration on a CDN download just to write a row the anon
+    // INSERT can take anyway. On the admin's phone the client is up as soon as
+    // they have signed in, which is exactly when this path is needed.
+    var viaSdkThenRest = function () {
+      return clientIfReady().then(function (db) {
+        if (!db) return restUpsert('students', row, 'id');
+        return db.from('students').upsert(clean(row), { onConflict: 'id' }).then(function (res) {
+          return ok(res) ? true : restUpsert('students', row, 'id');
+        });
+      }).catch(function () { return restUpsert('students', row, 'id'); });
+    };
     if (adminHash) {
       return restRpc('admin_upsert_student', { p_hash: adminHash, p_student: row }).then(function (r) {
         if (r === true) return true;
-        return restUpsert('students', row, 'id'); // fallback (RPC absent / pre-migration)
-      }).catch(function () { return restUpsert('students', row, 'id'); });
+        return viaSdkThenRest(); // fallback (RPC absent / pre-migration / wrong hash)
+      }).catch(function () { return viaSdkThenRest(); });
     }
-    return restUpsert('students', row, 'id');
+    return viaSdkThenRest();
   }
   // Self-service password change, proving the current hash. Lets us drop the
   // blanket anon UPDATE. Resolves true / false / null(absent-or-unreachable).
