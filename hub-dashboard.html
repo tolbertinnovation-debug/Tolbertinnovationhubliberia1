@@ -702,6 +702,11 @@
       <div class="fld"><label>Confirm new password</label><input type="password" id="fp2" /></div>
       <button class="btn btn-primary btn-block" id="fpBtn">Save New Password</button>
       <div class="feedback err" id="fpFb"></div>
+      <!-- An escape hatch. This box used to have no way out, so a learner whose
+           new password could not be saved was trapped on top of their own
+           dashboard with nothing to click. Their current password still works,
+           so let them carry on and set a new one later. -->
+      <button class="btn btn-line btn-block" id="fpSkipBtn" style="margin-top:.6rem;">Not now — keep using my current password</button>
     </div>
   </div>
 
@@ -727,8 +732,8 @@
        login form. They load once, after a successful sign-in, via
        loadCourseData() before the dashboard renders its course cards. -->
   <script src="hub-config.js?v=4"></script>
-  <script src="hub-cloud.js?v=18"></script>
-  <script src="hub-db.js?v=42"></script>
+  <script src="hub-cloud.js?v=19"></script>
+  <script src="hub-db.js?v=43"></script>
   <script src="hub-pay.js?v=1"></script>
   <script>
     var esc = HubDB.esc;
@@ -847,10 +852,22 @@
       var fb = document.getElementById('fpFb');
       if (p1.length < 8) { fb.textContent = 'Password must be at least 8 characters.'; return; }
       if (p1 !== p2) { fb.textContent = 'Passwords do not match.'; return; }
+      var btn = this;
+      btn.disabled = true; fb.textContent = 'Saving…';
       HubDB.changeStudentPassword(currentStudent.id, p1).then(function (res) {
+        btn.disabled = false;
         if (res && res.ok === false) { fb.textContent = res.error || 'Could not update password.'; return; }
+        fb.textContent = '';
+        currentStudent.mustChangePassword = false;
         document.getElementById('forcePassModal').classList.remove('open');
+      }).catch(function () {
+        btn.disabled = false;
+        fb.textContent = 'Could not save your new password right now. Your current password still works — please try again.';
       });
+    });
+
+    document.getElementById('fpSkipBtn').addEventListener('click', function () {
+      document.getElementById('forcePassModal').classList.remove('open');
     });
 
     document.getElementById('refreshBtn').addEventListener('click', function () {

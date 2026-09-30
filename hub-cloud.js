@@ -357,10 +357,24 @@ var HubCloud = (function () {
   }
   // Self-service password change, proving the current hash. Lets us drop the
   // blanket anon UPDATE. Resolves true / false / null(absent-or-unreachable).
+  // The deployed function's first argument is named p_id in supabase-schema.sql
+  // and p_student_id in supabase-hardening.sql, and PostgREST resolves an RPC by
+  // its argument NAMES -- so whichever file was applied last decides which call
+  // is accepted. Sending the wrong name looks exactly like "RPC not installed":
+  // the change quietly fell back to a local-only write that RLS then refused, so
+  // the learner's new password worked on that one phone and nowhere else, and
+  // they were locked out the next time they signed in. Try both spellings.
   function studentSetPasswordRpc(id, oldHash, newHash) {
-    return restRpc('student_set_password', { p_id: String(id || ''), p_old_hash: oldHash, p_new_hash: newHash })
-      .then(function (r) { return (r === true) ? true : (r === false ? false : null); })
-      .catch(function () { return null; });
+    function call(key) {
+      var body = { p_old_hash: oldHash, p_new_hash: newHash };
+      body[key] = String(id || '');
+      return restRpc('student_set_password', body)
+        .then(function (r) { return (r === true) ? true : (r === false ? false : null); })
+        .catch(function () { return null; });
+    }
+    return call('p_id').then(function (r) {
+      return (r === null) ? call('p_student_id') : r;
+    }).catch(function () { return null; });
   }
   // ADMIN-FINAL delete. Prefer the admin RPC (hard delete, definer rights);
   // fall back to the old REST delete / tombstone for pre-migration compatibility.

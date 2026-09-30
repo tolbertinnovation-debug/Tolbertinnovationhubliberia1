@@ -143,21 +143,97 @@ var HubDB = (function () {
     if (list.indexOf(id) === -1) { list.push(id); if (list.length > 500) list = list.slice(-500); setJSON(KEYS.deletedStudents, list); }
   }
 
-  /* ---- SHA-256 hashing (same approach as classroom.js) ---- */
+  /* ---- SHA-256 hashing ----
+     The password hash is the credential: it is what the central database
+     stores and what student_login compares against. So it MUST come out
+     identical in every browser, on every device.
+
+     WebCrypto is used where it exists. It is missing on a non-secure origin
+     and in some in-app browsers (a link opened inside a chat app), and the
+     old code fell back there to a short DJB2 value ("fb_...") that can never
+     equal a SHA-256 hash. A learner on such a device was told "Incorrect
+     password" whatever they typed, and an account registered there was
+     stored with a hash that works on no other device at all. The fallback
+     below is a real SHA-256 in plain JavaScript, so the same password always
+     produces the same hash. */
+  function sha256Js(text) {
+    var K = [
+      0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+      0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+      0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+      0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+      0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+      0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+      0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+      0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+    ];
+    function rotr(x, n) { return (x >>> n) | (x << (32 - n)); }
+    var s = String(text), bytes = [], i, c;
+    for (i = 0; i < s.length; i++) {                 // UTF-8, so non-ASCII hashes the same everywhere
+      c = s.charCodeAt(i);
+      if (c < 0x80) { bytes.push(c); }
+      else if (c < 0x800) { bytes.push(0xc0 | (c >> 6), 0x80 | (c & 63)); }
+      else if (c < 0xd800 || c >= 0xe000) { bytes.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63)); }
+      else {
+        i++;
+        var cp = 0x10000 + (((c & 0x3ff) << 10) | (s.charCodeAt(i) & 0x3ff));
+        bytes.push(0xf0 | (cp >> 18), 0x80 | ((cp >> 12) & 63), 0x80 | ((cp >> 6) & 63), 0x80 | (cp & 63));
+      }
+    }
+    var bitLen = bytes.length * 8;
+    bytes.push(0x80);
+    while (bytes.length % 64 !== 56) bytes.push(0);
+    bytes.push(0, 0, 0, 0, (bitLen >>> 24) & 255, (bitLen >>> 16) & 255, (bitLen >>> 8) & 255, bitLen & 255);
+    var H = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+    var w = new Array(64), off, t;
+    for (off = 0; off < bytes.length; off += 64) {
+      for (t = 0; t < 16; t++) {
+        w[t] = (bytes[off + t * 4] << 24) | (bytes[off + t * 4 + 1] << 16) | (bytes[off + t * 4 + 2] << 8) | bytes[off + t * 4 + 3];
+      }
+      for (t = 16; t < 64; t++) {
+        var s0 = rotr(w[t - 15], 7) ^ rotr(w[t - 15], 18) ^ (w[t - 15] >>> 3);
+        var s1 = rotr(w[t - 2], 17) ^ rotr(w[t - 2], 19) ^ (w[t - 2] >>> 10);
+        w[t] = (w[t - 16] + s0 + w[t - 7] + s1) | 0;
+      }
+      var a = H[0], b = H[1], c2 = H[2], d = H[3], e = H[4], f = H[5], g = H[6], h = H[7];
+      for (t = 0; t < 64; t++) {
+        var S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25);
+        var ch = (e & f) ^ (~e & g);
+        var t1 = (h + S1 + ch + K[t] + w[t]) | 0;
+        var S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22);
+        var maj = (a & b) ^ (a & c2) ^ (b & c2);
+        var t2 = (S0 + maj) | 0;
+        h = g; g = f; f = e; e = (d + t1) | 0; d = c2; c2 = b; b = a; a = (t1 + t2) | 0;
+      }
+      H[0] = (H[0] + a) | 0; H[1] = (H[1] + b) | 0; H[2] = (H[2] + c2) | 0; H[3] = (H[3] + d) | 0;
+      H[4] = (H[4] + e) | 0; H[5] = (H[5] + f) | 0; H[6] = (H[6] + g) | 0; H[7] = (H[7] + h) | 0;
+    }
+    var out = '';
+    for (i = 0; i < 8; i++) out += ('0000000' + (H[i] >>> 0).toString(16)).slice(-8);
+    return out;
+  }
   function sha256(text) {
     if (window.crypto && window.crypto.subtle && window.TextEncoder) {
-      var data = new TextEncoder().encode(String(text));
-      return window.crypto.subtle.digest('SHA-256', data).then(function (buf) {
-        var arr = Array.prototype.slice.call(new Uint8Array(buf));
-        return arr.map(function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
-      });
+      try {
+        var data = new TextEncoder().encode(String(text));
+        var p = window.crypto.subtle.digest('SHA-256', data);
+        if (p && p.then) {
+          return p.then(function (buf) {
+            var arr = Array.prototype.slice.call(new Uint8Array(buf));
+            return arr.map(function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+          }).catch(function () { return sha256Js(text); });
+        }
+      } catch (e) { /* fall through to the JavaScript implementation */ }
     }
-    // Fallback for very old browsers / non-secure contexts: simple DJB2-style hash.
-    return new Promise(function (resolve) {
-      var h = 5381, s = String(text);
-      for (var i = 0; i < s.length; i++) { h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; }
-      resolve('fb_' + h.toString(16));
-    });
+    return Promise.resolve(sha256Js(text));
+  }
+  // The hash the old fallback produced. Never written to an account any more;
+  // kept only so an account stored with it can still be signed into once and
+  // healed to a real SHA-256 hash (see studentLogin).
+  function legacyFallbackHash(text) {
+    var h = 5381, s = String(text);
+    for (var i = 0; i < s.length; i++) { h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; }
+    return 'fb_' + h.toString(16);
   }
 
   /* ---- ID + password generators ---- */
@@ -439,11 +515,39 @@ var HubDB = (function () {
   // auto-generate one. mustChangePassword is set so the learner is forced to pick
   // their own on next login. The write goes through admin_upsert_student (admin
   // hash), so it works with the locked-down students table.
+  //
+  // A reset is only real once it reaches the CENTRAL database: the learner signs
+  // in from their own phone, which checks students.password_hash through the
+  // student_login RPC. This used to write the local cache and hand the password
+  // straight back, so when the cloud write failed -- admin RPC not installed, no
+  // admin hash on this session, RLS refusing the anon fallback -- the admin read
+  // out a password that existed nowhere but their own browser and the learner
+  // could never sign in with it. The write is now awaited and reported.
+  // Resolves { ok, password, synced, error }.
   function resetStudentPassword(studentId, chosenPassword) {
     var pw = (chosenPassword && String(chosenPassword).trim()) || genTempPassword();
     return sha256(pw).then(function (hash) {
-      updateStudent(studentId, { passwordHash: hash, mustChangePassword: true });
-      return pw;
+      var s = updateStudent(studentId, { passwordHash: hash, mustChangePassword: true });
+      if (!s) {
+        return { ok: false, password: pw, synced: false,
+                 error: 'This account is not in this browser\'s roster, so nothing was changed. Open Students, let the list finish syncing, then reset again.' };
+      }
+      var C = cloud();
+      if (!C) {
+        return { ok: false, password: pw, synced: false,
+                 error: 'Saved on this device only: the central database is not configured here, so the learner cannot sign in with this password on their own phone.' };
+      }
+      // updateStudent has already queued this in the outbox, so a failure keeps
+      // being retried; the point of awaiting is to know whether it is safe to
+      // hand the password over yet.
+      return C.pushStudent(s, adminAcctHash()).then(function (okd) {
+        if (okd) return { ok: true, password: pw, synced: true };
+        return { ok: false, password: pw, synced: false,
+                 error: 'The central database refused the change, so this password will NOT work on the learner\'s phone. Log out of the admin, sign in again and retry.' };
+      }).catch(function () {
+        return { ok: false, password: pw, synced: false,
+                 error: 'Could not reach the central database. The reset is queued and will retry automatically, but do not send this password out until it succeeds.' };
+      });
     });
   }
 
@@ -585,8 +689,41 @@ var HubDB = (function () {
       return completeStudentLogin(s);
     });
   }
+  // Rewrite a rescued account's stored credential to the real SHA-256 hash, so
+  // the same password works on every device from now on. student_set_password
+  // proves the old hash, so this needs no admin rights and no anon UPDATE.
+  function healPasswordHash(student, oldHash, newHash) {
+    if (!student || !student.id || !oldHash || !newHash || oldHash === newHash) return;
+    var C = cloud();
+    if (C && C.studentSetPasswordRpc) fire(C.studentSetPasswordRpc(student.id, oldHash, newHash));
+    try {
+      var list = getStudents();
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].id === student.id) { list[i].passwordHash = newHash; list[i].updatedAt = nowISO(); saveStudents(list); break; }
+      }
+    } catch (e) {}
+  }
   function studentLogin(idOrEmail, password) {
     return sha256(password).then(function (hash) {
+      return attemptStudentLogin(idOrEmail, password, hash).then(function (res) {
+        if (res && res.ok) return res;
+        // RESCUE A STRANDED CREDENTIAL. An account whose stored hash was written
+        // by the old non-WebCrypto fallback can never equal a SHA-256 hash, so
+        // the learner is told "Incorrect password" with the right password, on
+        // every device. Try that old hash once; if it is the one on file, sign
+        // them in and heal the account so this never happens again.
+        var old = legacyFallbackHash(password);
+        if (old === hash) return res;
+        return attemptStudentLogin(idOrEmail, password, old).then(function (rescued) {
+          if (!rescued || !rescued.ok) return res;   // keep the original error
+          healPasswordHash(rescued.student, old, hash);
+          return rescued;
+        }).catch(function () { return res; });
+      });
+    });
+  }
+  function attemptStudentLogin(idOrEmail, password, hash) {
+    return Promise.resolve().then(function () {
       var C = cloud();
       // 1) Supabase Auth first — the durable credential that works from any
       //    device. Auth is keyed by email, so this path applies when the learner
@@ -659,15 +796,24 @@ var HubDB = (function () {
       var s = findStudent(studentId);
       var oldHash = s && s.passwordHash;
       var C = cloud();
-      // Keep Supabase Auth in step with the new password, so the SAME (new)
-      // password keeps working across devices. Best-effort: only takes effect
-      // when this device holds an Auth session; legacy accounts just skip it.
-      if (C && C.studentAuthUpdatePassword) fire(C.studentAuthUpdatePassword(newPassword));
+      // A password change is only real once the CENTRAL row carries it. Writing
+      // it here first and hoping the cloud catches up is what locked learners
+      // out: the new password worked on the phone that set it and nowhere else,
+      // while every other device still wanted the old one. So nothing is changed
+      // anywhere until the server confirms, and a failure is reported instead of
+      // being swallowed -- the current password keeps working in the meantime.
       // Server-verified change: prove the current password via student_set_password.
       // This lets us drop the blanket anon UPDATE that allowed account takeover.
       if (C && C.studentSetPasswordRpc && oldHash) {
+        var failed = function () {
+          return { ok: false, error: 'Could not save your new password right now. Check your connection and try again — your current password still works.' };
+        };
         return C.studentSetPasswordRpc(studentId, oldHash, newHash).then(function (r) {
           if (r === true) {
+            // Keep Supabase Auth in step with the new password, so the SAME (new)
+            // password keeps working across devices. Best-effort: only takes effect
+            // when this device holds an Auth session; legacy accounts just skip it.
+            if (C.studentAuthUpdatePassword) fire(C.studentAuthUpdatePassword(newPassword));
             // Update this device's cached copy only — no anon write needed.
             var list = getStudents();
             for (var i = 0; i < list.length; i++) {
@@ -676,10 +822,8 @@ var HubDB = (function () {
             return { ok: true };
           }
           if (r === false) return { ok: false, error: 'Could not verify your current password. Please sign in again and retry.' };
-          // r === null: RPC not installed / unreachable — legacy local+anon path.
-          updateStudent(studentId, { passwordHash: newHash, mustChangePassword: false });
-          return { ok: true };
-        }).catch(function () { updateStudent(studentId, { passwordHash: newHash, mustChangePassword: false }); return { ok: true }; });
+          return failed();   // r === null: RPC unreachable — change nothing, say so
+        }).catch(function () { return failed(); });
       }
       // Offline / cloud unconfigured: local only.
       updateStudent(studentId, { passwordHash: newHash, mustChangePassword: false });
