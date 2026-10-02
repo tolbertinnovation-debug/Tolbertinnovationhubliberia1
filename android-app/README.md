@@ -46,8 +46,11 @@ and native JavaScript bridges disabled. Active content is removed and a restrict
 Content Security Policy is applied. No production website is loaded inside it.
 
 Remote lesson illustrations are shown with their alternative text rather than downloaded.
-A lesson's video plays **inside the app**, in YouTube's own embedded player, on the Video
-tab and only once the learner presses play. Nothing autoplays, nothing is downloaded, and
+A lesson's video plays **inside the app**, in YouTube's own embedded player, sitting above
+the written lesson exactly as the course player arranges it on the website, and only once
+the learner presses play. It can be collapsed, which also stops playback. The player
+options match the website's, except autoplay: on mobile data a lesson must never start
+streaming by itself. Nothing autoplays, nothing is downloaded, and
 nothing is re-hosted or relabeled as offline content, so the creator keeps their
 attribution and their view count. "Open in the YouTube app instead" stays available.
 Shared source videos are labeled as module overviews.

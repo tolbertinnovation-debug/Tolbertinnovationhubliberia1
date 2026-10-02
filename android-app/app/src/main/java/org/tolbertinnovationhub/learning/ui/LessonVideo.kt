@@ -9,6 +9,7 @@ import android.webkit.WebViewClient
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -28,6 +29,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -59,7 +61,10 @@ object LessonVideo {
     /** The privacy-enhanced host: no tracking cookie until the learner presses play. */
     fun embedUrl(videoId: String): String {
         require(isPlayable(videoId)) { "Unsupported video id" }
-        return "https://www.youtube-nocookie.com/embed/$videoId?playsinline=1&rel=0&modestbranding=1"
+        // The same player options the course player uses on the website, except
+        // autoplay: on mobile data a lesson must never start streaming by itself.
+        return "https://www.youtube-nocookie.com/embed/$videoId" +
+            "?playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&fs=1"
     }
 
     fun watchUrl(videoId: String): String {
@@ -82,6 +87,26 @@ object LessonVideo {
 private enum class PlayerState { Loading, Ready, Failed }
 
 @Composable fun LessonVideoPlayer(
+    videoId: String,
+    modifier: Modifier = Modifier,
+    onOpenExternally: (String) -> Unit
+) {
+    // Sits above the written lesson, the way the course player does on the website.
+    // Collapsing it removes the view from composition, which also stops playback.
+    var expanded by rememberSaveable(videoId) { mutableStateOf(true) }
+    Column(modifier) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Text("Lesson video", style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.weight(1f))
+            TextButton(onClick = { expanded = !expanded }) {
+                Text(if (expanded) "Hide" else "Show")
+            }
+        }
+        if (expanded) LessonVideoSurface(videoId, Modifier.fillMaxWidth(), onOpenExternally)
+    }
+}
+
+@Composable private fun LessonVideoSurface(
     videoId: String,
     modifier: Modifier = Modifier,
     onOpenExternally: (String) -> Unit
@@ -172,15 +197,15 @@ private enum class PlayerState { Loading, Ready, Failed }
                 }
             }
         }
-        Text(
-            "Plays from YouTube, so this part needs a connection. The written lesson and its practice work offline.",
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(horizontal = 4.dp)
-        )
-        TextButton(onClick = { onOpenExternally(LessonVideo.watchUrl(videoId)) }) {
-            Icon(Icons.Outlined.OpenInNew, null, Modifier.padding(end = 6.dp))
-            Text("Open in the YouTube app instead")
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Text("Needs a connection. The written lesson works offline.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.weight(1f))
+            TextButton(onClick = { onOpenExternally(LessonVideo.watchUrl(videoId)) }) {
+                Icon(Icons.Outlined.OpenInNew, null, Modifier.padding(end = 6.dp))
+                Text("YouTube")
+            }
         }
     }
 }

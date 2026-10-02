@@ -354,7 +354,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
 
 @Composable private fun Reader(vm: LearningViewModel, openLink: (String) -> Unit, onHelp: () -> Unit) {
     val course = vm.course ?: return; val lesson = vm.lesson ?: return
-    // 0 = the written lesson, 1 = the learner's own notes, 2 = the video.
+    // 0 = the written lesson with its video, 1 = the learner's own notes.
     var tab by rememberSaveable(lesson.id) { mutableIntStateOf(0) }
     val hasVideo = LessonVideo.isPlayable(lesson.videoId)
     val user = vm.session ?: return
@@ -365,23 +365,25 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
             if (lesson.kind != "quiz") Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 FilterChip(tab == 0, { tab = 0 }, label = { Text("Lesson") })
                 FilterChip(tab == 1, { tab = 1 }, label = { Text("My notes") })
-                if (hasVideo) FilterChip(tab == 2, { tab = 2 }, label = { Text("Video") },
-                    leadingIcon = { Icon(Icons.Outlined.PlayCircleOutline, null, Modifier.size(18.dp)) })
             }
             if (lesson.sharedVideo && tab == 0) Text("Video: shared module overview. The reading below covers this topic.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         when {
             lesson.kind == "quiz" -> QuizScreen(lesson, onComplete = vm::completeQuiz, modifier = Modifier.weight(1f))
-            tab == 2 && hasVideo -> key(lesson.id) {
-                LessonVideoPlayer(lesson.videoId, Modifier.weight(1f).fillMaxWidth().padding(horizontal = 20.dp), openLink)
-            }
             tab == 1 -> Column(Modifier.weight(1f).padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text("Your takeaways, questions, and project work", style = MaterialTheme.typography.titleSmall)
                 Text("Automatically saved on this device for your TIH account.", style = MaterialTheme.typography.bodySmall)
                 OutlinedTextField(note, { note = it.take(20000); vm.saveNote(note) }, Modifier.fillMaxWidth().weight(1f), placeholder = { Text("What did you learn? How will you apply it?") }, label = { Text("Personal study notes") })
                 Spacer(Modifier.height(12.dp))
             }
-            lesson.html.isNotBlank() -> key(lesson.id) { RichLesson(lesson.html, course.css, vm.fontSize.toInt(), Modifier.weight(1f).fillMaxWidth(), openLink) }
+            lesson.html.isNotBlank() -> Column(Modifier.weight(1f).fillMaxWidth()) {
+                // The video sits above the written lesson, as it does in the course
+                // player on the website, rather than behind a tab of its own.
+                if (hasVideo) key(lesson.id) {
+                    LessonVideoPlayer(lesson.videoId, Modifier.fillMaxWidth().padding(horizontal = 20.dp), openLink)
+                }
+                key(lesson.id) { RichLesson(lesson.html, course.css, vm.fontSize.toInt(), Modifier.weight(1f).fillMaxWidth(), openLink) }
+            }
             else -> Box(Modifier.weight(1f)) { EmptyState("Learning material unavailable", "This entry has no standalone written note in the existing course material. TIH support can help you find it.", Icons.AutoMirrored.Outlined.MenuBook, "Get help", onHelp) }
         }
         Surface(shadowElevation = 5.dp) {

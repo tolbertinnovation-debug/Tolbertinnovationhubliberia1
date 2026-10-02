@@ -22,7 +22,8 @@ class LearningTests {
 
     @Test fun lessonVideoPlaysThePrivacyEnhancedEmbedWithoutAutoplay() {
         val url = LessonVideo.embedUrl("kBGcfVwf9aI")
-        assertEquals("https://www.youtube-nocookie.com/embed/kBGcfVwf9aI?playsinline=1&rel=0&modestbranding=1", url)
+        assertEquals("https://www.youtube-nocookie.com/embed/kBGcfVwf9aI" +
+            "?playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&fs=1", url)
         assertFalse(url.contains("autoplay"))
         assertEquals("https://www.youtube.com/watch?v=kBGcfVwf9aI", LessonVideo.watchUrl("kBGcfVwf9aI"))
     }
