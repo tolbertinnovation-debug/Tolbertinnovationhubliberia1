@@ -4,8 +4,33 @@ import org.junit.Assert.*
 import org.junit.Test
 import org.tolbertinnovationhub.learning.data.*
 import org.tolbertinnovationhub.learning.ui.LessonDocument
+import org.tolbertinnovationhub.learning.ui.LessonVideo
 
 class LearningTests {
+    @Test fun lessonVideoEmbedsOnlyAWellFormedYouTubeId() {
+        assertTrue(LessonVideo.isPlayable("kBGcfVwf9aI"))
+        // Anything that is not exactly YouTube's own 11-character id is refused,
+        // so nothing a course file carries can reach the page as markup.
+        for (bad in listOf("", "short", "kBGcfVwf9aI ", "kBGcfVwf9a", "kBGcfVwf9aIX",
+                           "\"><script>", "../../etc", "kBGcfVwf9a?", "kBGcfVwf9a&")) {
+            assertFalse(bad, LessonVideo.isPlayable(bad))
+        }
+        val html = LessonVideo.embedHtml("kBGcfVwf9aI")
+        assertTrue(html.contains("https://www.youtube-nocookie.com/embed/kBGcfVwf9aI"))
+        assertTrue(html.contains("playsinline=1"))
+        // Nothing is downloaded or re-hosted: the page is the embed and nothing else.
+        assertFalse(html.contains("<script"))
+        assertFalse(html.contains("autoplay"))
+    }
+
+    @Test fun lessonVideoRefusesToBuildAPageForAnUnsupportedId() {
+        try {
+            LessonVideo.embedHtml("\"><iframe src=evil>")
+            fail("an unsupported id must not produce a page")
+        } catch (expected: IllegalArgumentException) {
+        }
+    }
+
     @Test fun quizUsesRealAnswersAndRequiresEveryResponse() {
         val questions = listOf(Question("One?", listOf("A", "B"), 1, "Because B"), Question("Two?", listOf("A", "B"), 0, "Because A"))
         assertEquals(100, QuizScorer.score(questions, listOf(1, 0)))

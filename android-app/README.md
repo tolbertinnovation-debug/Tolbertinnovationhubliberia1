@@ -46,9 +46,19 @@ and native JavaScript bridges disabled. Active content is removed and a restrict
 Content Security Policy is applied. No production website is loaded inside it.
 
 Remote lesson illustrations are shown with their alternative text rather than downloaded.
-YouTube links open in the user's YouTube app/browser **only after a tap**. Videos are not
-downloaded or relabeled as offline content. Shared source videos are labeled as module
-overviews. This preview does not provide an in-app YouTube player or background downloads.
+A lesson's video plays **inside the app**, in YouTube's own embedded player, on the Video
+tab and only once the learner presses play. Nothing autoplays, nothing is downloaded, and
+nothing is re-hosted or relabeled as offline content, so the creator keeps their
+attribution and their view count. "Open in the YouTube app instead" stays available.
+Shared source videos are labeled as module overviews.
+
+That player is a **separate WebView** from the lesson reader, and deliberately so. The
+reader renders authored HTML with scripts, storage, network and file access all off, and
+stays that way. The player needs JavaScript, so it gets its own view, is handed nothing
+but the embed on the privacy-enhanced `youtube-nocookie.com` host, and never receives
+lesson content or a JavaScript bridge. Its video id is checked against YouTube's own
+11-character format before it reaches the page. A main-frame navigation out of the embed
+is handed to the learner's YouTube app rather than turning the view into a browser.
 
 ## Keep the website safe
 

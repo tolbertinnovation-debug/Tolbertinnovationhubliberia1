@@ -354,24 +354,28 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
 
 @Composable private fun Reader(vm: LearningViewModel, openLink: (String) -> Unit, onHelp: () -> Unit) {
     val course = vm.course ?: return; val lesson = vm.lesson ?: return
-    var notesTab by rememberSaveable(lesson.id) { mutableStateOf(false) }
+    // 0 = the written lesson, 1 = the learner's own notes, 2 = the video.
+    var tab by rememberSaveable(lesson.id) { mutableIntStateOf(0) }
+    val hasVideo = LessonVideo.isPlayable(lesson.videoId)
     val user = vm.session ?: return
     var note by remember(lesson.id, user.studentId) { mutableStateOf(vm.study.note(user.studentId, lesson.id)) }
     Column(Modifier.fillMaxSize()) {
         Column(Modifier.padding(horizontal = 20.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(lesson.title, style = MaterialTheme.typography.titleLarge, maxLines = 3, overflow = TextOverflow.Ellipsis)
             if (lesson.kind != "quiz") Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                FilterChip(!notesTab, { notesTab = false }, label = { Text("Lesson") })
-                FilterChip(notesTab, { notesTab = true }, label = { Text("My notes") })
-                if (Regex("^[A-Za-z0-9_-]{11}$").matches(lesson.videoId)) TextButton(onClick = { openLink("https://www.youtube.com/watch?v=${lesson.videoId}") }) {
-                    Icon(Icons.Outlined.PlayCircleOutline, null, Modifier.size(18.dp)); Spacer(Modifier.width(5.dp)); Text("Video")
-                }
+                FilterChip(tab == 0, { tab = 0 }, label = { Text("Lesson") })
+                FilterChip(tab == 1, { tab = 1 }, label = { Text("My notes") })
+                if (hasVideo) FilterChip(tab == 2, { tab = 2 }, label = { Text("Video") },
+                    leadingIcon = { Icon(Icons.Outlined.PlayCircleOutline, null, Modifier.size(18.dp)) })
             }
-            if (lesson.sharedVideo && !notesTab) Text("Video: shared module overview. The reading below covers this topic.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            if (lesson.sharedVideo && tab == 0) Text("Video: shared module overview. The reading below covers this topic.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         when {
             lesson.kind == "quiz" -> QuizScreen(lesson, onComplete = vm::completeQuiz, modifier = Modifier.weight(1f))
-            notesTab -> Column(Modifier.weight(1f).padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            tab == 2 && hasVideo -> key(lesson.id) {
+                LessonVideoPlayer(lesson.videoId, Modifier.weight(1f).fillMaxWidth().padding(horizontal = 20.dp), openLink)
+            }
+            tab == 1 -> Column(Modifier.weight(1f).padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text("Your takeaways, questions, and project work", style = MaterialTheme.typography.titleSmall)
                 Text("Automatically saved on this device for your TIH account.", style = MaterialTheme.typography.bodySmall)
                 OutlinedTextField(note, { note = it.take(20000); vm.saveNote(note) }, Modifier.fillMaxWidth().weight(1f), placeholder = { Text("What did you learn? How will you apply it?") }, label = { Text("Personal study notes") })
