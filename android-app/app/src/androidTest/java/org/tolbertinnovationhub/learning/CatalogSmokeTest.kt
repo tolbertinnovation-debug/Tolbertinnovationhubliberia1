@@ -45,15 +45,19 @@ class CatalogSmokeTest {
         screen.performScrollToNode(hasText("Your instructor"))
         compose.onNodeWithText("Samuel Tolbert").assertExists()
 
-        // A question opens to reveal its answer, and closes again.
+        // A question opens to reveal its answer, and closes again. Assert on the
+        // answer text, not the expander's content description: every question row
+        // carries the same description, so matching that finds one node per FAQ.
         screen.performScrollToNode(hasText("Common questions"))
         screen.performScrollToNode(hasText("Is this course really free?"))
-        compose.onNodeWithContentDescription("Show answer").assertExists()
+        val answer = "Yes, completely free. TIH believes foundational computer literacy should be " +
+            "accessible to every Liberian regardless of income. No credit card required."
+        compose.onNodeWithText(answer).assertDoesNotExist()
         compose.onNodeWithText("Is this course really free?").performClick()
-        compose.onNodeWithContentDescription("Hide answer").assertExists()
+        compose.onNodeWithText(answer).assertExists()
         snapshot("05-course-information")
         compose.onNodeWithText("Is this course really free?").performClick()
-        compose.onNodeWithContentDescription("Show answer").assertExists()
+        compose.onNodeWithText(answer).assertDoesNotExist()
     }
 
     private fun snapshot(name: String) {
