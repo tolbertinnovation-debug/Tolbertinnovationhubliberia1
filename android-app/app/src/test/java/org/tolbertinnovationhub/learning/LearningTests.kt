@@ -7,27 +7,37 @@ import org.tolbertinnovationhub.learning.ui.LessonDocument
 import org.tolbertinnovationhub.learning.ui.LessonVideo
 
 class LearningTests {
-    @Test fun lessonVideoEmbedsOnlyAWellFormedYouTubeId() {
+    @Test fun lessonVideoAcceptsOnlyAWellFormedYouTubeId() {
         assertTrue(LessonVideo.isPlayable("kBGcfVwf9aI"))
-        // Anything that is not exactly YouTube's own 11-character id is refused,
-        // so nothing a course file carries can reach the page as markup.
         for (bad in listOf("", "short", "kBGcfVwf9aI ", "kBGcfVwf9a", "kBGcfVwf9aIX",
                            "\"><script>", "../../etc", "kBGcfVwf9a?", "kBGcfVwf9a&")) {
             assertFalse(bad, LessonVideo.isPlayable(bad))
         }
-        val html = LessonVideo.embedHtml("kBGcfVwf9aI")
-        assertTrue(html.contains("https://www.youtube-nocookie.com/embed/kBGcfVwf9aI"))
-        assertTrue(html.contains("playsinline=1"))
-        // Nothing is downloaded or re-hosted: the page is the embed and nothing else.
-        assertFalse(html.contains("<script"))
-        assertFalse(html.contains("autoplay"))
+        try {
+            LessonVideo.embedUrl("\"><iframe src=evil>")
+            fail("an unsupported id must not produce a URL")
+        } catch (expected: IllegalArgumentException) {
+        }
     }
 
-    @Test fun lessonVideoRefusesToBuildAPageForAnUnsupportedId() {
-        try {
-            LessonVideo.embedHtml("\"><iframe src=evil>")
-            fail("an unsupported id must not produce a page")
-        } catch (expected: IllegalArgumentException) {
+    @Test fun lessonVideoPlaysThePrivacyEnhancedEmbedWithoutAutoplay() {
+        val url = LessonVideo.embedUrl("kBGcfVwf9aI")
+        assertEquals("https://www.youtube-nocookie.com/embed/kBGcfVwf9aI?playsinline=1&rel=0&modestbranding=1", url)
+        assertFalse(url.contains("autoplay"))
+        assertEquals("https://www.youtube.com/watch?v=kBGcfVwf9aI", LessonVideo.watchUrl("kBGcfVwf9aI"))
+    }
+
+    @Test fun onlyThePlayersOwnPagesStayInsideTheApp() {
+        // The embed and what it loads stay put.
+        assertTrue(LessonVideo.staysInPlayer("https://www.youtube-nocookie.com/embed/kBGcfVwf9aI"))
+        assertTrue(LessonVideo.staysInPlayer("https://www.youtube.com/embed/kBGcfVwf9aI"))
+        // A watch page means the learner tapped through: hand it to their YouTube app.
+        assertFalse(LessonVideo.staysInPlayer("https://www.youtube.com/watch?v=kBGcfVwf9aI"))
+        // Anything else is not the player and must never load in this view.
+        for (outside in listOf("https://example.com/", "https://evil.test/youtube.com/embed/x",
+                               "https://notyoutube.com/embed/x", "https://youtube.com.evil.test/embed/x",
+                               "about:blank", "javascript:alert(1)", "")) {
+            assertFalse(outside, LessonVideo.staysInPlayer(outside))
         }
     }
 
