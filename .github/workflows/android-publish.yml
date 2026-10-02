@@ -1,0 +1,95 @@
+name: Publish Android preview release
+
+# Triggered by pushing a tag, never by a branch, so publishing a build is always
+# a deliberate act and the website's own Pages deploy is never involved.
+on:
+  push:
+    tags: ['app-v*']
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TIH_PREVIEW_KEYSTORE: ${{ github.workspace }}/android-app/.ci-preview-signing/preview.keystore
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: platform-tools
+          cmdline-tools-version: '13114758'
+      - name: Prepare preview-only signing identity
+        run: |
+          mkdir -p "$(dirname "$TIH_PREVIEW_KEYSTORE")"
+          keytool -genkeypair -noprompt -keystore "$TIH_PREVIEW_KEYSTORE" \
+            -storepass android -keypass android -alias androiddebugkey \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname 'CN=TIH Preview,O=Android,C=LR'
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Export and validate existing Learning Hub content
+        run: |
+          node android-app/tools/export-learning.mjs
+          node --test android-app/tools/content.test.mjs
+          node tools/check-courses-lite.js
+
+      - name: Build the preview APK
+        working-directory: android-app
+        run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug
+
+      - name: Name the file after the tag
+        run: |
+          test -f android-app/app/build/outputs/apk/debug/app-debug.apk
+          cp android-app/app/build/outputs/apk/debug/app-debug.apk "TIH-Learning-${GITHUB_REF_NAME}.apk"
+          ls -l "TIH-Learning-${GITHUB_REF_NAME}.apk"
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > notes.md <<'NOTES'
+          The TIH Learning Hub as an Android app. Every course, lesson note and
+          video link from the Learning Hub, readable offline once installed.
+
+          ## Install it
+
+          Download the `.apk` below on your Android phone and open it. Android
+          will ask you to allow installs from your browser or file manager the
+          first time; that permission is per-app and you can switch it back off
+          afterwards.
+
+          ## Please read before you share this widely
+
+          **This is a preview build, not a finished release.**
+
+          - It is a **debug build**, which means it is debuggable. Anyone with
+            physical access to an unlocked phone could inspect what the app has
+            stored, including a signed-in session. Do not install it on a phone
+            holding anything you would not want read.
+          - It is signed with a **temporary key generated during the build**.
+            A later version will refuse to install on top of this one: you will
+            have to uninstall first, which also clears local study records.
+          - It is **not a Google Play release** and has not been through Play
+            review.
+
+          Sign-in uses your existing TIH Learning Hub account. The app reads
+          your approved course access; it cannot create accounts, change
+          passwords or grant courses.
+          NOTES
+          gh release create "$GITHUB_REF_NAME" \
+            "TIH-Learning-${GITHUB_REF_NAME}.apk" \
+            --title "TIH Learning preview $GITHUB_REF_NAME" \
+            --notes-file notes.md \
+            --prerelease
+          echo "Published:"
+          gh release view "$GITHUB_REF_NAME" --json assets --jq '.assets[].url'
