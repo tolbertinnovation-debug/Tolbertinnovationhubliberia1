@@ -101,9 +101,22 @@ export function extractCourse(id) {
   for (const l of modules.flatMap(m => m.lessons)) l.sharedVideo = !!l.videoId && videos.get(l.videoId) > 1;
   const playerCss = fs.readFileSync(path.join(root, 'course-player.html'), 'utf8').match(/<style>([\s\S]*?)<\/style>/)?.[1] || '';
   h.files.add('course-player.html');
+  // Existing written course information from the website, carried across as-is.
+  // Ratings, review counts, enrolment totals and testimonials are deliberately
+  // left out: the app does not restate figures it cannot verify offline.
+  const pick = key => (Array.isArray(source[key]) ? source[key] : Array.isArray(original[key]) ? original[key] : [])
+    .map(s => String(s).trim()).filter(Boolean);
+  const faqs = (Array.isArray(source.faqs) ? source.faqs : Array.isArray(original.faqs) ? original.faqs : [])
+    .map(f => ({question: String(f?.q || '').trim(), answer: String(f?.a || '').trim()}))
+    .filter(f => f.question && f.answer);
+  const teacher = source.instructor || original.instructor || '';
+  const instructor = teacher ? {name: String(teacher).trim(),
+    title: String(source.instructorTitle || original.instructorTitle || '').trim(),
+    bio: String(source.instructorBio || original.instructorBio || '').trim()} : null;
   return {id, title: source.title, description: source.shortDesc || source.description || original.shortDesc || '', category: source.category || original.category || 'Learning',
     level: source.level || 'All levels', duration: '3 weeks', image: source.cardImage || '',
-    outcomes: source.learn || [], modules, css: playerCss + '\n' + h.styles.join('\n'), sourceFiles: [...h.files].sort()};
+    outcomes: source.learn || [], about: pick('about'), requirements: pick('requirements'), faqs, instructor,
+    modules, css: playerCss + '\n' + h.styles.join('\n'), sourceFiles: [...h.files].sort()};
 }
 export function exportAll() {
   fs.mkdirSync(path.join(out, 'courses'), {recursive: true});
@@ -136,7 +149,9 @@ export function exportAll() {
       fs.copyFileSync(path.join(root, cover), path.join(out, dest)); course.image = dest;
     } else course.image = ''; // Catalog never fetches third-party images automatically.
     fs.writeFileSync(path.join(out, 'courses', id + '.json'), JSON.stringify(course));
-    const {modules, css, sourceFiles, ...summary} = course;
+    // The catalog is read for all 57 courses at startup, so the long-form course
+    // information stays in the per-course file the course screen already loads.
+    const {modules, css, sourceFiles, about, requirements, faqs, instructor, ...summary} = course;
     catalog.push({...summary, lessonCount: lessons.length, moduleCount: modules.length,
       videoCount: lessons.filter(l => l.videoId).length, quizCount: lessons.filter(l => l.kind === 'quiz').length});
   }

@@ -27,6 +27,35 @@ class CatalogSmokeTest {
         compose.onNodeWithText("Sign in securely").assertExists()
         snapshot("04-account")
     }
+    /** The written course information imported from the Learning Hub course page. */
+    @Test fun courseScreenShowsWrittenCourseInformation() {
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Find your course").fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithText("Find your course").performClick()
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextInput("computer literacy")
+        compose.onNodeWithText("Complete Computer Literacy Professional Certificate").performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+
+        screen.performScrollToNode(hasText("About this course"))
+        compose.onNodeWithText("About this course").assertIsDisplayed()
+
+        screen.performScrollToNode(hasText("What you need to start"))
+        compose.onNodeWithText("No prior computer experience needed, this course starts from zero").assertExists()
+
+        screen.performScrollToNode(hasText("Your instructor"))
+        compose.onNodeWithText("Samuel Tolbert").assertExists()
+
+        // A question opens to reveal its answer, and closes again.
+        screen.performScrollToNode(hasText("Common questions"))
+        screen.performScrollToNode(hasText("Is this course really free?"))
+        compose.onNodeWithContentDescription("Show answer").assertExists()
+        compose.onNodeWithText("Is this course really free?").performClick()
+        compose.onNodeWithContentDescription("Hide answer").assertExists()
+        snapshot("05-course-information")
+        compose.onNodeWithText("Is this course really free?").performClick()
+        compose.onNodeWithContentDescription("Show answer").assertExists()
+    }
+
     private fun snapshot(name: String) {
         val directory = File(compose.activity.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
         File(directory, "$name.png").outputStream().use {

@@ -254,6 +254,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
     val unlocked = vm.canStudy(c.id)
     val done = vm.completed(c.id)
     var expanded by rememberSaveable(c.id) { mutableIntStateOf(0) }
+    var openQuestion by rememberSaveable(c.id) { mutableIntStateOf(-1) }
     LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
         item {
             Card(shape = RoundedCornerShape(24.dp)) { CourseCover(c, Modifier.fillMaxWidth().height(200.dp)) }
@@ -279,9 +280,37 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
         }
         if (c.outcomes.isNotEmpty()) item { Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             SectionTitle("What you’ll learn")
-            c.outcomes.take(6).forEach { outcome -> Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            c.outcomes.forEach { outcome -> Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 Icon(Icons.Outlined.CheckCircleOutline, null, tint = MaterialTheme.colorScheme.tertiary, modifier = Modifier.size(20.dp)); Text(outcome, style = MaterialTheme.typography.bodyMedium)
             } }
+        } }
+        if (course.about.isNotEmpty()) item { Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            SectionTitle("About this course")
+            course.about.forEach { paragraph ->
+                Text(paragraph, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        } }
+        if (course.requirements.isNotEmpty()) item { Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            SectionTitle("What you need to start")
+            course.requirements.forEach { requirement -> Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                Icon(Icons.Outlined.RadioButtonUnchecked, null, tint = MaterialTheme.colorScheme.secondary, modifier = Modifier.size(20.dp))
+                Text(requirement, style = MaterialTheme.typography.bodyMedium)
+            } }
+        } }
+        course.instructor?.let { teacher -> item {
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                SectionTitle("Your instructor")
+                Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), shape = RoundedCornerShape(16.dp)) {
+                    Row(Modifier.padding(17.dp), horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                        Icon(Icons.Outlined.Person, null, Modifier.size(28.dp), tint = MaterialTheme.colorScheme.secondary)
+                        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                            Text(teacher.name, style = MaterialTheme.typography.titleSmall)
+                            if (teacher.title.isNotBlank()) Text(teacher.title, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.secondary)
+                            if (teacher.bio.isNotBlank()) Text(teacher.bio, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                    }
+                }
+            }
         } }
         item { SectionTitle("Your course roadmap", "Lessons, projects, and assessments from the Learning Hub.") }
         items(course.modules.indices.toList()) { mi ->
@@ -297,6 +326,24 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                         Icon(when { !unlocked -> Icons.Outlined.Lock; l.id in done -> Icons.Outlined.CheckCircle; l.kind == "quiz" -> Icons.Outlined.Quiz; l.kind == "project" -> Icons.Outlined.Assignment; else -> Icons.AutoMirrored.Outlined.MenuBook }, null,
                             Modifier.size(20.dp), tint = if (l.id in done) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurfaceVariant)
                         Column(Modifier.weight(1f)) { Text(l.title, style = MaterialTheme.typography.bodyMedium); Text(if (l.kind == "quiz") "${l.questions.size} questions" else if (l.videoId.isNotEmpty()) "Read + watch" else "Read + practise", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+                    }
+                }
+            }
+        }
+        if (course.faqs.isNotEmpty()) {
+            item { SectionTitle("Common questions", "Answered by the Learning Hub course page.") }
+            items(course.faqs.indices.toList()) { qi ->
+                val faq = course.faqs[qi]
+                Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), shape = RoundedCornerShape(16.dp)) {
+                    Row(Modifier.fillMaxWidth().clickable { openQuestion = if (openQuestion == qi) -1 else qi }.padding(17.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Text(faq.question, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+                        Icon(if (openQuestion == qi) Icons.Outlined.ExpandLess else Icons.Outlined.ExpandMore,
+                            if (openQuestion == qi) "Hide answer" else "Show answer")
+                    }
+                    if (openQuestion == qi) {
+                        HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
+                        Text(faq.answer, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(horizontal = 17.dp, vertical = 15.dp))
                     }
                 }
             }

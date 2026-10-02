@@ -18,7 +18,14 @@ data class Lesson(
     val html: String, val questions: List<Question>
 )
 data class LearningModule(val title: String, val lessons: List<Lesson>)
-data class Course(val summary: CourseSummary, val modules: List<LearningModule>, val css: String) {
+/** Existing written course information from the Learning Hub, carried across as-is. */
+data class Faq(val question: String, val answer: String)
+data class Instructor(val name: String, val title: String, val bio: String)
+data class Course(
+    val summary: CourseSummary, val modules: List<LearningModule>, val css: String,
+    val about: List<String> = emptyList(), val requirements: List<String> = emptyList(),
+    val faqs: List<Faq> = emptyList(), val instructor: Instructor? = null
+) {
     val lessons get() = modules.flatMap { it.lessons }
 }
 
@@ -40,7 +47,17 @@ object ContentParser {
                         Question(q.getString("question"), q.getJSONArray("options").strings(), q.getInt("answer"), q.optString("explanation"))
                     })
             })
-        }, o.optString("css"))
+        }, o.optString("css"),
+        o.optJSONArray("about")?.strings().orEmpty(),
+        o.optJSONArray("requirements")?.strings().orEmpty(),
+        o.optJSONArray("faqs")?.objects()
+            ?.map { Faq(it.optString("question"), it.optString("answer")) }
+            ?.filter { it.question.isNotBlank() && it.answer.isNotBlank() }
+            .orEmpty(),
+        o.optJSONObject("instructor")?.let {
+            val name = it.optString("name")
+            if (name.isBlank()) null else Instructor(name, it.optString("title"), it.optString("bio"))
+        })
 }
 
 class ContentRepository(private val context: Context) {

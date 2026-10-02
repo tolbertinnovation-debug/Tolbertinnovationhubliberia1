@@ -53,6 +53,47 @@ test('TIH identity and policy information come from the website source', () => {
   assert.ok(info.rights.paragraphs.some(p => p.includes('30 days')));
   assert.ok(info.terms.every(s => s.title && s.paragraphs.length));
 });
+test('written course information is carried across, and unverifiable figures are not', () => {
+  const id = 'computer-literacy';
+  const course = JSON.parse(fs.readFileSync(path.join(learning, 'courses', id + '.json')));
+  const site = extractCourse(id);
+
+  // Every paragraph, requirement and question comes across unaltered. Compared
+  // as JSON: extractCourse builds these inside a VM, so the arrays carry that
+  // realm's prototypes and deepStrictEqual would reject identical content.
+  const same = (a, b) => assert.equal(JSON.stringify(a), JSON.stringify(b));
+  same(course.about, site.about);
+  same(course.requirements, site.requirements);
+  same(course.faqs, site.faqs);
+  same(course.instructor, site.instructor);
+  assert.ok(course.about.length >= 3);
+  assert.ok(course.requirements.length >= 3);
+  assert.ok(course.faqs.length >= 4);
+  assert.ok(course.faqs.every(f => f.question && f.answer));
+  assert.ok(course.instructor.name && course.instructor.bio);
+
+  // Ratings, review counts, enrolment totals and testimonials stay out: the app
+  // does not restate figures a reader cannot check.
+  for (const banned of ['rating', 'reviewCount', 'students', 'reviews']) {
+    assert.ok(!(banned in course), id + ' must not carry ' + banned);
+  }
+
+  // The catalog is read for all 57 courses at startup, so it stays lean.
+  const catalog = JSON.parse(fs.readFileSync(path.join(learning, 'catalog.json')));
+  for (const key of ['about', 'requirements', 'faqs', 'instructor']) {
+    assert.ok(catalog.every(c => !(key in c)), 'catalog must not carry ' + key);
+  }
+
+  // Present across the catalog, not just one course.
+  let withAbout = 0, withInstructor = 0;
+  for (const summary of catalog) {
+    const c = JSON.parse(fs.readFileSync(path.join(learning, 'courses', summary.id + '.json')));
+    if (c.about.length) withAbout++;
+    if (c.instructor) withInstructor++;
+  }
+  assert.ok(withAbout >= 50, 'about paragraphs on ' + withAbout + ' courses');
+  assert.equal(withInstructor, catalog.length);
+});
 test('export is deterministic and keeps authored HTML intact', () => {
   const id = 'computer-literacy';
   const a = extractCourse(id), b = extractCourse(id);

@@ -13,6 +13,12 @@ database, domain, payment configuration, or GitHub Pages workflow is modified.
   account screen, bookmarks, personal notes, and multiple-choice assessments.
 - Existing TIH logo and existing course artwork; light/dark/system themes and adjustable
   reading size. No invented course reviews, enrollment totals, or certificates.
+- The written course information from each Learning Hub course page: the "about"
+  paragraphs, entry requirements, the instructor's name, title and biography, and the
+  frequently asked questions, all carried across word for word. Ratings, review counts,
+  enrolment totals and testimonials are deliberately left out, so the app never restates
+  a figure a reader cannot check. This information lives in the per-course file the
+  course screen already loads, keeping the startup catalog unchanged in size.
 - 57 existing courses, 10,884 lesson/project/assessment entries, 4,353 authored notes,
   and 20,003 assessment question entries in the initial source snapshot. Counts are
   generated, not manually maintained; repeated questions in the original banks remain
