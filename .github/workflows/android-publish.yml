@@ -1,10 +1,13 @@
 name: Publish Android preview release
 
-# Triggered by pushing a tag, never by a branch, so publishing a build is always
-# a deliberate act and the website's own Pages deploy is never involved.
+# Publishing happens only when android-app/RELEASE.txt changes on the app branch,
+# so it is always a deliberate act, and the website's own Pages deploy is never
+# involved. The tag is created by the release step itself, at this commit.
 on:
   push:
-    tags: ['app-v*']
+    branches: [codex/tih-native-android]
+    paths: ['android-app/RELEASE.txt']
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -47,11 +50,15 @@ jobs:
         working-directory: android-app
         run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug
 
-      - name: Name the file after the tag
+      - name: Read the version and name the file
+        id: version
         run: |
+          TAG="$(head -n1 android-app/RELEASE.txt | tr -d '[:space:]')"
+          case "$TAG" in app-v*) ;; *) echo "RELEASE.txt must start with app-v"; exit 1;; esac
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           test -f android-app/app/build/outputs/apk/debug/app-debug.apk
-          cp android-app/app/build/outputs/apk/debug/app-debug.apk "TIH-Learning-${GITHUB_REF_NAME}.apk"
-          ls -l "TIH-Learning-${GITHUB_REF_NAME}.apk"
+          cp android-app/app/build/outputs/apk/debug/app-debug.apk "TIH-Learning-$TAG.apk"
+          ls -l "TIH-Learning-$TAG.apk"
 
       - name: Publish the release
         env:
@@ -86,10 +93,12 @@ jobs:
           your approved course access; it cannot create accounts, change
           passwords or grant courses.
           NOTES
-          gh release create "$GITHUB_REF_NAME" \
-            "TIH-Learning-${GITHUB_REF_NAME}.apk" \
-            --title "TIH Learning preview $GITHUB_REF_NAME" \
+          TAG='${{ steps.version.outputs.tag }}'
+          gh release create "$TAG" \
+            "TIH-Learning-$TAG.apk" \
+            --title "TIH Learning preview $TAG" \
             --notes-file notes.md \
-            --prerelease
+            --prerelease \
+            --target "$GITHUB_SHA"
           echo "Published:"
-          gh release view "$GITHUB_REF_NAME" --json assets --jq '.assets[].url'
+          gh release view "$TAG" --json assets --jq '.assets[].browser_download_url'
