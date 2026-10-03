@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Military Organization and Leadership</title>
+  <desc id="desc">A professional shield, organization chart and leadership compass in Tolbert Innovation Hub colors.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#001a43"/><stop offset=".62" stop-color="#0b4d86"/><stop offset="1" stop-color="#c5202f"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="1200" height="720" rx="44" fill="url(#bg)"/>
+  <circle cx="1050" cy="90" r="210" fill="#fff" opacity=".06"/><circle cx="100" cy="670" r="260" fill="#ed1c24" opacity=".13"/>
+  <g opacity=".22" stroke="#b9dcff" stroke-width="5" fill="none"><path d="M780 150h230v95M895 245v95M790 340h210"/><circle cx="780" cy="150" r="20"/><circle cx="1010" cy="150" r="20"/><circle cx="790" cy="340" r="20"/><circle cx="1000" cy="340" r="20"/></g>
+  <g transform="translate(105 122)" filter="url(#shadow)"><path d="M250 0l185 70v145c0 154-77 263-185 322C142 478 65 369 65 215V70z" fill="#fff"/><path d="M250 42l145 55v118c0 125-58 211-145 263-87-52-145-138-145-263V97z" fill="#0b4d86"/><path d="M250 88l44 87 96 14-70 68 17 96-87-46-87 46 17-96-70-68 96-14z" fill="#ed1c24"/><circle cx="250" cy="220" r="63" fill="#fff"/><path d="M215 222l25 25 52-67" fill="none" stroke="#001d4a" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif" fill="#fff"><text x="600" y="180" font-size="27" font-weight="800" letter-spacing="5">TIH PROFESSIONAL COURSE</text><text x="600" y="265" font-size="65" font-weight="900">MILITARY</text><text x="600" y="338" font-size="55" font-weight="800">ORGANIZATION</text><text x="600" y="403" font-size="34" font-weight="600">&amp; ETHICAL LEADERSHIP</text><rect x="600" y="455" width="450" height="64" rx="32" fill="#fff" opacity=".14"/><text x="825" y="497" text-anchor="middle" font-size="23" font-weight="800">LAWFUL • DISCIPLINED • ACCOUNTABLE</text><text x="600" y="585" font-size="25" opacity=".88">Leadership · Staff Work · Welfare · Logistics</text><text x="600" y="625" font-size="25" opacity=".88">Peacekeeping · Civilian Protection · Public Trust</text></g>
+</svg>

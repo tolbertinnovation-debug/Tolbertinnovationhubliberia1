@@ -500,18 +500,43 @@ var HubCloud = (function () {
   // show WHO requested without reading the (RLS-protected) students table. If the
   // database predates those columns the upsert 400s, so we retry once without
   // them — the request still lands, just without the inline name.
+  // Grant a course, or record a request. The hardening migration dropped anon
+  // INSERT and UPDATE on enrollments, and the REST helpers always send the anon
+  // key, so an admin grant sent that way is simply refused -- it then sits in the
+  // outbox retrying for ever, which is the "N syncing" counter that never clears
+  // and the reason a learner stays locked out of a course the admin has already
+  // granted. There is no admin RPC for this: request_access only ever writes a
+  // 'requested' row and leaves the grant to the admin. The enr_all_admin policy
+  // does accept the signed-in admin, so go through the authenticated client
+  // first; the anon write stays as the last resort for a learner redeeming their
+  // own access code, which its own definer RPC still covers.
   function pushEnrollment(row) {
-    return restUpsert('enrollments', row, 'student_id,item_id').then(function (ok) {
-      if (ok) return true;
-      if (row && (row.student_name != null || row.student_phone != null)) {
-        var lean = {};
-        for (var k in row) { if (row.hasOwnProperty(k) && k !== 'student_name' && k !== 'student_phone') lean[k] = row[k]; }
-        return restUpsert('enrollments', lean, 'student_id,item_id');
-      }
-      return false;
-    });
+    var viaRest = function () {
+      return restUpsert('enrollments', row, 'student_id,item_id').then(function (ok) {
+        if (ok) return true;
+        if (row && (row.student_name != null || row.student_phone != null)) {
+          var lean = {};
+          for (var k in row) { if (row.hasOwnProperty(k) && k !== 'student_name' && k !== 'student_phone') lean[k] = row[k]; }
+          return restUpsert('enrollments', lean, 'student_id,item_id');
+        }
+        return false;
+      });
+    };
+    return clientIfReady().then(function (db) {
+      if (!db) return viaRest();
+      return db.from('enrollments').upsert(clean(row), { onConflict: 'student_id,item_id' })
+        .then(function (res) { return ok(res) ? true : viaRest(); });
+    }).catch(function () { return viaRest(); });
   }
-  function pushPayment(row) { return restInsert('payments', row); }
+  // Same story as enrollments: pay_insert_anon was dropped, pay_all_admin accepts
+  // the signed-in admin, so the receipt that accompanies a grant goes the same way.
+  function pushPayment(row) {
+    return clientIfReady().then(function (db) {
+      if (!db) return restInsert('payments', row);
+      return db.from('payments').insert(clean(row))
+        .then(function (res) { return ok(res) ? true : restInsert('payments', row); });
+    }).catch(function () { return restInsert('payments', row); });
+  }
   function fetchEnrollments() { return restSelect('enrollments', 'select=*&order=created_at.desc'); }
 
   // ---- progress / activity ---- (REST-first, no CDN dependency)

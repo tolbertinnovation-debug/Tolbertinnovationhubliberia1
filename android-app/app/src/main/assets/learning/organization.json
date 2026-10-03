@@ -1,0 +1,157 @@
+{
+  "privacy": [
+    {
+      "title": "Your learning account",
+      "paragraphs": [
+        "TIH Learning uses your existing Tolbert Innovation Hub account. When you sign in, your email and password are sent over HTTPS to TIH’s Supabase authentication service. The app retrieves your student name, student ID, account status, and approved course access. Your password is not saved on your phone.",
+        "Session tokens and the last verified course grants are encrypted on the phone using Android Keystore. Signing out removes the active session. Verified offline access lasts up to seven days and must then be refreshed online."
+      ]
+    },
+    {
+      "title": "Study records on this phone",
+      "paragraphs": [
+        "Bookmarks, personal notes, practice quiz scores, and lesson progress are stored in the app’s private storage, separately for each student account. These study records do not currently sync to TIH’s website. Theme and reading-size preferences are also saved on this phone.",
+        "You can clear the signed-in account’s study records from the You screen. Signing out keeps those records for your next sign-in. Uninstalling the app or clearing Android app storage removes all local records. Android cloud backup is disabled for this app."
+      ]
+    },
+    {
+      "title": "Network services and external apps",
+      "paragraphs": [
+        "TIH uses Supabase to provide authentication and enrollment verification. Network requests expose technical information such as your IP address to the service handling the request. Server records are managed by TIH under its published privacy policy.",
+        "This app contains no advertising, analytics, or crash-reporting SDK. It does not request access to your contacts, location, camera, microphone, or photos. Written lessons and quizzes are bundled in the app. Videos and external learning resources open only after you tap them; the external service’s privacy practices then apply.",
+        "If you choose email, telephone, or WhatsApp support, your selected app handles the message or call. A deletion request is only sent when you send it from your email app."
+      ]
+    },
+    {
+      "title": "Retention and deletion",
+      "paragraphs": [
+        "Local records remain until you clear them or uninstall the app. To request deletion of your TIH account and associated server data, open Delete TIH account and send a request to the published TIH support email. TIH may need to verify that you own the account.",
+        "TIH’s published privacy policy provides deletion rights subject to legal retention requirements and says privacy requests receive a response within 30 days. The support team must explain any records that must be retained and why. Clearing this phone’s data alone does not delete your TIH account."
+      ]
+    }
+  ],
+  "help": [
+    {
+      "title": "Signing in",
+      "paragraphs": [
+        "Use the email and password of your existing TIH Learning Hub account. If an older account is not linked, or you need password help, contact TIH support. Never include your password in a support message."
+      ]
+    },
+    {
+      "title": "A course is locked",
+      "paragraphs": [
+        "Sign in and choose Refresh access on the You screen while connected to the internet. Only courses approved for your active student account are unlocked. Contact support if an approved course remains unavailable."
+      ]
+    },
+    {
+      "title": "Studying offline",
+      "paragraphs": [
+        "Written lessons, quizzes, bookmarks, and notes work offline after TIH verifies your access. Reconnect and refresh access at least every seven days. Videos need an internet connection and open in YouTube or your browser."
+      ]
+    },
+    {
+      "title": "Progress and certificates",
+      "paragraphs": [
+        "App progress and quiz scores are practice records saved on this phone. They do not update your website completion or issue official certificates. Official TIH completion and certificate decisions remain with the Learning Hub. Contact support about an existing certificate."
+      ]
+    }
+  ],
+  "name": "Tolbert Innovation Hub",
+  "appName": "TIH Learning",
+  "website": "https://tolbertinnovationhub.org",
+  "email": "info@tolbertinnovationhub.org",
+  "phone": "+231880559227",
+  "address": "Sinkor, Monrovia, Liberia, West Africa",
+  "mission": "To foster innovation, education, and human resource development in Liberia and Africa, empowering young people to become leaders and changemakers.",
+  "vision": "A Liberia where every individual has the opportunity to reach their full potential, where innovation thrives, and where knowledge is shared by all.",
+  "hours": [
+    "Monday – Friday: 8:00 AM – 6:00 PM",
+    "Saturday: 9:00 AM – 3:00 PM",
+    "Sunday: Closed"
+  ],
+  "policyUpdated": "June 25, 2026",
+  "audience": {
+    "title": "Children's Privacy",
+    "paragraphs": [
+      "Our programs are designed for individuals aged 16 and older. We do not knowingly collect personal information from children under the age of 16 without verifiable parental or guardian consent. If you believe we have inadvertently collected information from a minor, please contact us immediately and we will take steps to delete that information."
+    ]
+  },
+  "rights": {
+    "title": "Your Rights",
+    "paragraphs": [
+      "You have the following rights regarding your personal information:",
+      "Access: Request a copy of the personal information we hold about you",
+      "Correction: Request correction of inaccurate or incomplete information",
+      "Deletion: Request deletion of your personal information, subject to legal retention requirements",
+      "Objection: Object to how we process your information for specific purposes",
+      "Portability: Request your data in a portable format where technically feasible",
+      "To exercise any of these rights, please contact us at info@tolbertinnovationhub.org . We will respond within 30 days."
+    ]
+  },
+  "terms": [
+    {
+      "title": "Acceptance of Terms",
+      "paragraphs": [
+        "By visiting our website, submitting an application, using our free classroom, or engaging with any TIH service, you confirm that you have read, understood, and agreed to these Terms. If you are under 18 years of age, you confirm that you have parental or guardian consent to use our services."
+      ]
+    },
+    {
+      "title": "Use of Services",
+      "paragraphs": [
+        "Tolbert Innovation Hub provides a range of free and fee-based programs for Liberian students, families, and organizations, including education, scholarship guidance, healthcare referrals, and digital services. You agree to use these services:",
+        "Only for lawful purposes and in accordance with these Terms",
+        "In a way that does not infringe the rights of others",
+        "Without transmitting unsolicited, misleading, or harmful content",
+        "Without attempting to gain unauthorized access to any part of our systems",
+        "In good faith, providing accurate and truthful information in all applications and inquiries"
+      ]
+    },
+    {
+      "title": "Intellectual Property",
+      "paragraphs": [
+        "All content on this Site, including text, graphics, logos, icons, course materials, videos, audio, software, and design, is the intellectual property of Tolbert Innovation Hub or its content providers and is protected by applicable copyright and intellectual property laws.",
+        "You may:",
+        "Access and use our content for personal, non-commercial educational purposes",
+        "Share links to our pages on social media",
+        "You may not, without written permission from TIH:",
+        "Reproduce, republish, or distribute our content for commercial purposes",
+        "Create derivative works based on our course materials",
+        "Remove or alter any copyright or proprietary notices",
+        "Use our name, logo, or branding in a way that implies endorsement without written consent"
+      ]
+    },
+    {
+      "title": "Prohibited Conduct",
+      "paragraphs": [
+        "You agree not to use our Site or services to:",
+        "Submit false or misleading information in applications or inquiries",
+        "Impersonate any person or organization",
+        "Transmit spam, viruses, malware, or other harmful content",
+        "Attempt to hack, probe, or test the security of our systems",
+        "Scrape, crawl, or collect data from our Site using automated tools",
+        "Engage in any activity that disrupts or interferes with our services",
+        "Use our services for any unlawful purpose or in violation of Liberian law"
+      ]
+    },
+    {
+      "title": "Disclaimers",
+      "paragraphs": [
+        "OUR SITE AND SERVICES ARE PROVIDED \"AS IS\" AND \"AS AVAILABLE\" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.",
+        "TIH does not warrant that our Site will be uninterrupted, error-free, or secure; that defects will be corrected; or that information provided is completely accurate, current, or reliable. Course completion certificates and scholarship guidance do not guarantee employment, admission, or any specific outcome."
+      ]
+    },
+    {
+      "title": "Governing Law",
+      "paragraphs": [
+        "These Terms shall be governed by and construed in accordance with the laws of the Republic of Liberia. Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the courts located in Monrovia, Liberia, unless otherwise agreed in writing."
+      ]
+    }
+  ],
+  "sources": [
+    "about.html",
+    "contact.html",
+    "privacy.html",
+    "terms.html",
+    "assets/tih-logo.png"
+  ]
+}
