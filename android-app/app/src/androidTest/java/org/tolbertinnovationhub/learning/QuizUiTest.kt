@@ -2,6 +2,7 @@ package org.tolbertinnovationhub.learning
 
 import android.graphics.Bitmap
 import androidx.activity.ComponentActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -10,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.StateRestorationTester
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.compose.ui.graphics.asAndroidBitmap
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -87,10 +88,11 @@ class QuizUiTest {
         val practice = course.lessons.first { it.kind == "quiz" && it.title.contains("Types of Computers", true) }
         var mode by mutableStateOf("Light")
         var continued = false
-        compose.runOnUiThread { compose.activity.actionBar?.hide() }
+        compose.runOnUiThread { compose.activity.actionBar?.hide(); compose.activity.enableEdgeToEdge() }
         compose.setContent { TihTheme(mode) {
             Scaffold { padding -> QuizScreen(practice, {}, Modifier.fillMaxSize().padding(padding), onContinue = { continued = true }) }
         } }
+        compose.onNodeWithText("Question 1 of ${practice.questions.size}").assertIsDisplayed()
         capture("08-quiz-light.png")
         compose.runOnIdle { mode = "Dark" }
         capture("09-quiz-dark.png")
@@ -109,7 +111,8 @@ class QuizUiTest {
     private fun capture(name: String) {
         compose.waitForIdle()
         val directory = File(compose.activity.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
-        val bitmap = requireNotNull(InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot())
+        // PixelCopy waits for Compose to draw; UI-automation screenshots can capture the pre-draw window.
+        val bitmap = compose.onRoot().captureToImage().asAndroidBitmap()
         File(directory, name).outputStream().use { bitmap.apply { setHasAlpha(false) }.compress(Bitmap.CompressFormat.PNG, 100, it) }
         bitmap.recycle()
     }

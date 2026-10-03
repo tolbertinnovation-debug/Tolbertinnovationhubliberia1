@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -96,7 +95,10 @@ import org.tolbertinnovationhub.learning.data.QuizScorer
                         }
                     }
                     item {
-                        Text("Jump to a question", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+                            Text("Jump to a question", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            TextButton(onClick = { stage = "review" }) { Text("Review ($answered/${questions.size})") }
+                        }
                         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             items(questions.indices.toList()) { index ->
                                 FilterChip(selected = index == current, onClick = { current = index },
@@ -172,7 +174,6 @@ import org.tolbertinnovationhub.learning.data.QuizScorer
                             Button(onClick = { if (current < questions.lastIndex) current++ else stage = "review" },
                                 modifier = Modifier.weight(1f).heightIn(min = 48.dp)) { Text(if (current < questions.lastIndex) "Next question" else "Review answers") }
                         }
-                        if (current < questions.lastIndex) TextButton(onClick = { stage = "review" }, modifier = Modifier.align(Alignment.CenterHorizontally)) { Text("Review answers ($answered/${questions.size})") }
                     }
                     "review" -> {
                         Button(onClick = {
