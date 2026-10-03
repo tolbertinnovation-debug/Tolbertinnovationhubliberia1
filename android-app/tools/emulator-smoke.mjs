@@ -12,7 +12,7 @@ const adb = path.join(sdk, 'platform-tools/adb');
 const report = path.join(root, 'android-app/app/build/reports/device');
 fs.mkdirSync(report, {recursive: true});
 const env = {...process.env, ANDROID_HOME: sdk, ANDROID_SDK_ROOT: sdk};
-const call = (args, timeout=15000) => execFileSync(adb, args, {encoding:'utf8',timeout,env});
+const call = (args, timeout=15000) => execFileSync(adb, args, {encoding:'utf8',timeout,env,maxBuffer:16*1024*1024});
 call(['start-server']);
 const logfile=fs.openSync(path.join(report,'emulator.log'),'w');
 const imageRoot=path.join(sdk,`system-images/android-${api}/default/x86_64`);

@@ -51,6 +51,8 @@ website: YouTube's IFrame Player API creates the player in a separate WebView.
 The local document's HTTPS base URL uses the installed Android application ID, and
 its `origin` parameter matches that identity, following YouTube's WebView requirements.
 The player sits above the written lesson and starts only when the learner presses play.
+The WebView uses explicit match-parent layout parameters and viewport-based frame height
+to prevent a zero-height video inside a scrolling lesson.
 Loading and error messages appear below the video without covering YouTube's controls.
 Errors after initial readiness are also reported, with retry and an external YouTube link.
 Switching lessons creates a fresh player and destroys the old one; hiding it stops playback.

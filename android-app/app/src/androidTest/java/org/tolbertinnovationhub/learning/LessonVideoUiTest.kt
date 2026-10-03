@@ -24,6 +24,7 @@ import androidx.compose.ui.test.performClick
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
+import org.tolbertinnovationhub.learning.ui.LessonVideo
 import org.tolbertinnovationhub.learning.ui.LessonVideoPlayer
 import org.tolbertinnovationhub.learning.ui.TihTheme
 
@@ -68,9 +69,17 @@ class LessonVideoUiTest {
             }
         }
         compose.waitForIdle()
+        compose.runOnUiThread {
+            val web = webView(compose.activity.window.decorView)!!
+            web.stopLoading()
+            val page = LessonVideo.playerPage("kBGcfVwf9aI", compose.activity.packageName)
+                .replace("new YT.Player", "window.testPlayer = new YT.Player")
+            web.loadDataWithBaseURL(LessonVideo.origin(compose.activity.packageName) + "/", page, "text/html", "UTF-8", null)
+        }
         val folder = File(compose.activity.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
         // Capture diagnostic geometry even when the remote player is unavailable.
         SystemClock.sleep(25000)
+        compose.waitForIdle()
         val result = java.util.concurrent.atomic.AtomicReference<String>("")
         val latch = CountDownLatch(1)
         val native = StringBuilder()
@@ -92,6 +101,97 @@ class LessonVideoUiTest {
         val shot = InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot()
         File(folder, "computer-literacy-video-diagnostic.png").outputStream().use { shot.compress(Bitmap.CompressFormat.PNG, 100, it) }
         shot.recycle()
+        val bounds = Rect()
+        compose.runOnUiThread { webView(compose.activity.window.decorView)!!.getGlobalVisibleRect(bounds) }
+        val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
+        val downTime = SystemClock.uptimeMillis()
+        for (action in listOf(android.view.MotionEvent.ACTION_DOWN, android.view.MotionEvent.ACTION_UP)) {
+            val event = android.view.MotionEvent.obtain(downTime, SystemClock.uptimeMillis(), action,
+                bounds.exactCenterX(), bounds.exactCenterY(), 0)
+            automation.injectInputEvent(event, true); event.recycle()
+        }
+        SystemClock.sleep(8000)
+        compose.waitForIdle()
+        val playback = evaluate("""JSON.stringify({title:document.title,
+            state:window.testPlayer&&typeof testPlayer.getPlayerState==='function'?testPlayer.getPlayerState():null,
+            time:window.testPlayer&&typeof testPlayer.getCurrentTime==='function'?testPlayer.getCurrentTime():null})""")
+        File(folder, "computer-literacy-video-playback.txt").writeText(playback)
+        val playing = automation.takeScreenshot()
+        File(folder, "computer-literacy-video-playback.png").outputStream().use { playing.compress(Bitmap.CompressFormat.PNG, 100, it) }
+        playing.recycle()
+    }
+
+    @Test fun playerFrameFillsNativeSurfaceAndReceivesTaps() {
+        compose.setContent {
+            TihTheme("Light") {
+                Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
+                    LessonVideoPlayer("kBGcfVwf9aI", Modifier.fillMaxWidth().padding(20.dp)) {}
+                    Text("Written lesson", Modifier.height(900.dp))
+                }
+            }
+        }
+        compose.waitForIdle()
+        // Substitute only the remote API for a deterministic frame with a button.
+        // Production HTML/CSS, WebView settings, native sizing, and scroll layout
+        // are unchanged. No network response can make this regression pass/fail.
+        val api = """
+            window.YT = {Player:function(id, options) {
+                var frame = document.createElement('iframe'); frame.id = id;
+                frame.srcdoc = '<html><body style="margin:0;background:#1469ba;display:flex;align-items:center;justify-content:center;height:100vh">' +
+                  '<button style="width:100%;height:100%" onclick="document.body.dataset.played=1">Play video</button></body></html>';
+                frame.onload = function(){options.events.onReady();};
+                document.getElementById(id).replaceWith(frame);
+            }};
+            onYouTubeIframeAPIReady();
+        """.trimIndent()
+        val html = LessonVideo.playerPage("kBGcfVwf9aI", compose.activity.packageName)
+            .replace("https://www.youtube.com/iframe_api", "data:text/javascript," + android.net.Uri.encode(api))
+        compose.runOnUiThread {
+            val web = webView(compose.activity.window.decorView)!!
+            web.stopLoading()
+            web.loadDataWithBaseURL(LessonVideo.origin(compose.activity.packageName) + "/", html, "text/html", "UTF-8", null)
+        }
+        var geometry = org.json.JSONObject()
+        val deadline = SystemClock.uptimeMillis() + 15000
+        do {
+            val json = evaluate("""JSON.stringify((function(){var f=document.querySelector('iframe');
+                var r=f?f.getBoundingClientRect():{width:0,height:0};return {width:r.width,height:r.height,
+                viewport:innerHeight,ready:document.title==='tih:ready'};})())""")
+            geometry = org.json.JSONObject(org.json.JSONTokener(json).nextValue() as String)
+            if (geometry.optBoolean("ready")) break
+            SystemClock.sleep(100)
+        } while (SystemClock.uptimeMillis() < deadline)
+        assertTrue("Player fixture did not load: $geometry", geometry.optBoolean("ready"))
+        assertTrue("Player has no visible iframe: $geometry", geometry.getDouble("height") >= 150)
+        assertTrue("Player does not fill its viewport: $geometry",
+            kotlin.math.abs(geometry.getDouble("height") - geometry.getDouble("viewport")) <= 2)
+        val bounds = Rect()
+        compose.runOnUiThread { webView(compose.activity.window.decorView)!!.getGlobalVisibleRect(bounds) }
+        val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
+        val downTime = SystemClock.uptimeMillis()
+        for (action in listOf(android.view.MotionEvent.ACTION_DOWN, android.view.MotionEvent.ACTION_UP)) {
+            val event = android.view.MotionEvent.obtain(downTime, SystemClock.uptimeMillis(), action,
+                bounds.exactCenterX(), bounds.exactCenterY(), 0)
+            automation.injectInputEvent(event, true); event.recycle()
+        }
+        var tapped = false
+        val tapDeadline = SystemClock.uptimeMillis() + 5000
+        do {
+            tapped = evaluate("document.querySelector('iframe').contentDocument.body.dataset.played === '1'") == "true"
+            if (tapped) break
+            SystemClock.sleep(100)
+        } while (SystemClock.uptimeMillis() < tapDeadline)
+        assertTrue("Player button did not receive the real screen tap", tapped)
+    }
+
+    private fun evaluate(script: String): String {
+        val result = java.util.concurrent.atomic.AtomicReference<String>("")
+        val done = CountDownLatch(1)
+        compose.runOnUiThread {
+            webView(compose.activity.window.decorView)!!.evaluateJavascript(script) { result.set(it); done.countDown() }
+        }
+        assertTrue("Player JavaScript did not respond", done.await(10, TimeUnit.SECONDS))
+        return result.get()
     }
 
     private fun webView(view: View): WebView? {

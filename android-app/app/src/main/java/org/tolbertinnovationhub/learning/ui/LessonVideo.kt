@@ -1,6 +1,7 @@
 package org.tolbertinnovationhub.learning.ui
 
 import android.graphics.Bitmap
+import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
@@ -83,8 +84,8 @@ object LessonVideo {
         return """<!doctype html><html><head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<style>html,body{margin:0;padding:0;height:100%;background:#000;overflow:hidden}
-#player,iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}</style>
+<style>html,body{margin:0;padding:0;height:100vh;background:#000;overflow:hidden}
+#player,iframe{position:absolute;top:0;left:0;width:100%;height:100vh;border:0}</style>
 </head><body>
 <div id="player"></div>
 <script>
@@ -171,6 +172,12 @@ private sealed interface PlayerState {
 
     val view = remember(videoId, playerOrigin) {
         WebView(context).apply {
+            // Compose supplies WRAP_CONTENT by default. Chromium treats that as
+            // content-sized height, so the 100%-height iframe can collapse to zero
+            // while the native view still occupies a black 16:9 rectangle.
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
+            )
             settings.javaScriptEnabled = true           // the IFrame API needs it
             settings.domStorageEnabled = true           // and its own playback state
             settings.mediaPlaybackRequiresUserGesture = true  // never autoplay on mobile data
