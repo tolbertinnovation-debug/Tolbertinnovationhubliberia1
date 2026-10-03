@@ -101,15 +101,18 @@ class LessonVideoUiTest {
         val shot = InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot()
         File(folder, "computer-literacy-video-diagnostic.png").outputStream().use { shot.compress(Bitmap.CompressFormat.PNG, 100, it) }
         shot.recycle()
+        compose.waitForIdle()
+        val painted = java.util.concurrent.atomic.AtomicBoolean(false)
+        compose.runOnUiThread {
+            webView(compose.activity.window.decorView)!!.postVisualStateCallback(1, object : WebView.VisualStateCallback() {
+                override fun onComplete(requestId: Long) { painted.set(true) }
+            })
+        }
+        compose.waitUntil(15000) { painted.get() }
         val bounds = Rect()
         compose.runOnUiThread { webView(compose.activity.window.decorView)!!.getGlobalVisibleRect(bounds) }
         val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
-        val downTime = SystemClock.uptimeMillis()
-        for (action in listOf(android.view.MotionEvent.ACTION_DOWN, android.view.MotionEvent.ACTION_UP)) {
-            val event = android.view.MotionEvent.obtain(downTime, SystemClock.uptimeMillis(), action,
-                bounds.exactCenterX(), bounds.exactCenterY(), 0)
-            automation.injectInputEvent(event, true); event.recycle()
-        }
+        tap(bounds)
         SystemClock.sleep(8000)
         compose.waitForIdle()
         val playback = evaluate("""JSON.stringify({title:document.title,
@@ -165,15 +168,18 @@ class LessonVideoUiTest {
         assertTrue("Player has no visible iframe: $geometry", geometry.getDouble("height") >= 150)
         assertTrue("Player does not fill its viewport: $geometry",
             kotlin.math.abs(geometry.getDouble("height") - geometry.getDouble("viewport")) <= 2)
+        compose.waitForIdle()
+        val painted = java.util.concurrent.atomic.AtomicBoolean(false)
+        compose.runOnUiThread {
+            webView(compose.activity.window.decorView)!!.postVisualStateCallback(1, object : WebView.VisualStateCallback() {
+                override fun onComplete(requestId: Long) { painted.set(true) }
+            })
+        }
+        compose.waitUntil(15000) { painted.get() }
         val bounds = Rect()
         compose.runOnUiThread { webView(compose.activity.window.decorView)!!.getGlobalVisibleRect(bounds) }
         val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
-        val downTime = SystemClock.uptimeMillis()
-        for (action in listOf(android.view.MotionEvent.ACTION_DOWN, android.view.MotionEvent.ACTION_UP)) {
-            val event = android.view.MotionEvent.obtain(downTime, SystemClock.uptimeMillis(), action,
-                bounds.exactCenterX(), bounds.exactCenterY(), 0)
-            automation.injectInputEvent(event, true); event.recycle()
-        }
+        tap(bounds)
         var tapped = false
         val tapDeadline = SystemClock.uptimeMillis() + 5000
         do {
@@ -182,6 +188,20 @@ class LessonVideoUiTest {
             SystemClock.sleep(100)
         } while (SystemClock.uptimeMillis() < tapDeadline)
         assertTrue("Player button did not receive the real screen tap", tapped)
+    }
+
+    private fun tap(bounds: Rect) {
+        val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
+        val downTime = SystemClock.uptimeMillis()
+        for (action in listOf(android.view.MotionEvent.ACTION_DOWN, android.view.MotionEvent.ACTION_UP)) {
+            val event = android.view.MotionEvent.obtain(downTime, SystemClock.uptimeMillis(), action,
+                bounds.exactCenterX(), bounds.exactCenterY(), 0)
+            // An event without a source is not a touchscreen tap on Android 16.
+            event.source = android.view.InputDevice.SOURCE_TOUCHSCREEN
+            try { assertTrue("Android rejected the touchscreen event", automation.injectInputEvent(event, true)) }
+            finally { event.recycle() }
+            if (action == android.view.MotionEvent.ACTION_DOWN) SystemClock.sleep(100)
+        }
     }
 
     private fun evaluate(script: String): String {
