@@ -36,6 +36,19 @@ class LearningTests {
         assertEquals("https://www.youtube.com/watch?v=kBGcfVwf9aI", LessonVideo.watchUrl("kBGcfVwf9aI"))
     }
 
+    @Test fun playerIdentityUsesTheInstalledApplicationId() {
+        for (appId in listOf("org.tolbertinnovationhub.learning", "org.tolbertinnovationhub.learning.preview")) {
+            val origin = "https://$appId"
+            assertEquals(origin, LessonVideo.origin(appId))
+            val page = LessonVideo.playerPage("kBGcfVwf9aI", appId)
+            assertTrue(page.contains("origin: '$origin'"))
+            assertTrue(page.contains("strict-origin-when-cross-origin"))
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            LessonVideo.origin("invalid'\"<script>")
+        }
+    }
+
     @Test fun playerErrorsAreExplainedInTheLearnersTerms() {
         assertTrue(LessonVideo.explain("offline").contains("connection"))
         assertTrue(LessonVideo.explain("timeout").contains("connection"))

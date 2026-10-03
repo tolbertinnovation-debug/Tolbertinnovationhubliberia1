@@ -7,7 +7,6 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -26,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.key
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,15 +39,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import org.tolbertinnovationhub.learning.BuildConfig
 
 /** Plays a lesson's video inside the app, built the way the course player builds it
  * on the website: YouTube's IFrame Player API creates the player, rather than the
  * app dropping a bare iframe on the page.
  *
- * That detail is the whole difference. A bare embed loaded as a top-level page
- * carries no referrer and YouTube answers "Video player configuration error (153)";
- * framed by hand it stayed black with nothing said at all. The IFrame API sets up
- * its own frame and origin, which is why the website's player works.
+ * The local player document identifies the installed app through its HTTPS base
+ * URL and matching player origin. The IFrame API alone does not set that identity.
  *
  * This is deliberately a SEPARATE WebView from the lesson reader. The reader renders
  * authored HTML offline with scripts, storage, network and file access all switched
@@ -62,8 +61,11 @@ object LessonVideo {
     private val ID = Regex("^[A-Za-z0-9_-]{11}$")
     fun isPlayable(videoId: String) = ID.matches(videoId)
 
-    /** The IFrame API expects to be framed by a youtube.com document. */
-    const val ORIGIN = "https://www.youtube.com"
+    /** YouTube requires the installed app ID as the WebView referrer host. */
+    fun origin(applicationId: String): String {
+        require(applicationId.matches(Regex("[a-zA-Z][a-zA-Z0-9_]*(\\.[a-zA-Z][a-zA-Z0-9_]*)+")))
+        return "https://${applicationId.lowercase(java.util.Locale.ROOT)}"
+    }
 
     const val READY = "tih:ready"
     const val ERROR = "tih:error:"
@@ -75,28 +77,31 @@ object LessonVideo {
 
     /** The player page. The same options the course player uses on the website,
      * except autoplay: on mobile data a lesson must never stream before it is asked. */
-    fun playerPage(videoId: String): String {
+    fun playerPage(videoId: String, applicationId: String = BuildConfig.APPLICATION_ID): String {
         require(isPlayable(videoId)) { "Unsupported video id" }
+        val playerOrigin = origin(applicationId)
         return """<!doctype html><html><head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <style>html,body{margin:0;padding:0;height:100%;background:#000;overflow:hidden}
 #player,iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}</style>
 </head><body>
 <div id="player"></div>
 <script>
-var settled = false;
-function say(t) { if (!settled) { settled = true; document.title = t; } }
+var startupTimer;
+function say(t) { clearTimeout(startupTimer); document.title = t; }
 function onYouTubeIframeAPIReady() {
   new YT.Player('player', {
+    host: 'https://www.youtube-nocookie.com',
     videoId: '$videoId',
-    playerVars: { playsinline: 1, rel: 0, modestbranding: 1, iv_load_policy: 3, cc_load_policy: 0, fs: 1 },
+    playerVars: { origin: '$playerOrigin', playsinline: 1, rel: 0, iv_load_policy: 3, cc_load_policy: 0, fs: 1 },
     events: {
       onReady: function () { say('$READY'); },
       onError: function (e) { say('$ERROR' + e.data); }
     }
   });
 }
-setTimeout(function () { say('${ERROR}timeout'); }, 20000);
+startupTimer = setTimeout(function () { say('${ERROR}timeout'); }, 20000);
 var s = document.createElement('script');
 s.src = 'https://www.youtube.com/iframe_api';
 s.onerror = function () { say('${ERROR}offline'); };
@@ -121,6 +126,7 @@ document.head.appendChild(s);
         "5" -> "This video cannot play in the app. Open it in the YouTube app."
         "100" -> "This video is no longer available on YouTube."
         "101", "150" -> "The owner of this video does not allow it to play outside YouTube."
+        "152", "153" -> "YouTube could not verify this app's video player. Try again or open YouTube."
         else -> "The video could not be played here."
     }
 }
@@ -145,7 +151,9 @@ private sealed interface PlayerState {
                 color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.weight(1f))
             TextButton(onClick = { expanded = !expanded }) { Text(if (expanded) "Hide" else "Show") }
         }
-        if (expanded) LessonVideoSurface(videoId, Modifier.fillMaxWidth(), onOpenExternally)
+        if (expanded) key(videoId) {
+            LessonVideoSurface(videoId, Modifier.fillMaxWidth(), onOpenExternally)
+        }
     }
 }
 
@@ -155,12 +163,13 @@ private sealed interface PlayerState {
     onOpenExternally: (String) -> Unit
 ) {
     val context = LocalContext.current
-    val page = remember(videoId) { LessonVideo.playerPage(videoId) }
+    val playerOrigin = remember(context.packageName) { LessonVideo.origin(context.packageName) }
+    val page = remember(videoId, playerOrigin) { LessonVideo.playerPage(videoId, context.packageName) }
     var state by remember(videoId) { mutableStateOf<PlayerState>(PlayerState.Loading) }
     var reloads by remember(videoId) { mutableStateOf(0) }
     val onExternal = rememberUpdatedState(onOpenExternally)
 
-    val view = remember {
+    val view = remember(videoId, playerOrigin) {
         WebView(context).apply {
             settings.javaScriptEnabled = true           // the IFrame API needs it
             settings.domStorageEnabled = true           // and its own playback state
@@ -211,7 +220,7 @@ private sealed interface PlayerState {
 
     Column(modifier, verticalArrangement = Arrangement.spacedBy(10.dp)) {
         Card(shape = RoundedCornerShape(14.dp), colors = CardDefaults.cardColors(containerColor = Color.Black)) {
-            Box(Modifier.fillMaxWidth().aspectRatio(16f / 9f), contentAlignment = Alignment.Center) {
+            Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 AndroidView(
                     factory = { view },
                     modifier = Modifier.fillMaxWidth().aspectRatio(16f / 9f),
@@ -219,7 +228,7 @@ private sealed interface PlayerState {
                         val want = page to reloads
                         if (it.tag != want) {
                             it.tag = want
-                            it.loadDataWithBaseURL(LessonVideo.ORIGIN, page, "text/html", "UTF-8", null)
+                            it.loadDataWithBaseURL(playerOrigin + "/", page, "text/html", "UTF-8", null)
                         }
                     }
                 )
