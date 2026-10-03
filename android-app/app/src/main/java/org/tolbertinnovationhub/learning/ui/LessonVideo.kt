@@ -126,7 +126,8 @@ document.head.appendChild(s);
         "2" -> "This lesson's video link is not valid. Please tell TIH support."
         "5" -> "This video cannot play in the app. Open it in the YouTube app."
         "100" -> "This video is no longer available on YouTube."
-        "101", "150" -> "The owner of this video does not allow it to play outside YouTube."
+        "101" -> "The owner of this video does not allow it to play outside YouTube."
+        "150" -> "YouTube could not play this video here. Open YouTube to check sign-in or playback restrictions."
         "152", "153" -> "YouTube could not verify this app's video player. Try again or open YouTube."
         else -> "The video could not be played here."
     }

@@ -145,7 +145,7 @@ class LessonVideoUiTest {
             onYouTubeIframeAPIReady();
         """.trimIndent()
         val html = LessonVideo.playerPage("kBGcfVwf9aI", compose.activity.packageName)
-            .replace("https://www.youtube.com/iframe_api", "data:text/javascript," + android.net.Uri.encode(api))
+            .replace("https://www.youtube.com/iframe_api", "data:text/javascript;base64," + android.util.Base64.encodeToString(api.toByteArray(Charsets.UTF_8), android.util.Base64.NO_WRAP))
         compose.runOnUiThread {
             val web = webView(compose.activity.window.decorView)!!
             web.stopLoading()

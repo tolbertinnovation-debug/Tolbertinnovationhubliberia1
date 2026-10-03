@@ -53,7 +53,7 @@ class LearningTests {
         assertTrue(LessonVideo.explain("offline").contains("connection"))
         assertTrue(LessonVideo.explain("timeout").contains("connection"))
         assertTrue(LessonVideo.explain("101").contains("does not allow"))
-        assertTrue(LessonVideo.explain("150").contains("does not allow"))
+        assertTrue(LessonVideo.explain("150").contains("Open YouTube"))
         assertTrue(LessonVideo.explain("100").contains("no longer available"))
         // An unknown code still says something true rather than nothing.
         assertTrue(LessonVideo.explain("9999").isNotBlank())
