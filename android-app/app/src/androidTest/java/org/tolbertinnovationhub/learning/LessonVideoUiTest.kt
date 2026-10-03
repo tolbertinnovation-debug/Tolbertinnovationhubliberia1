@@ -1,5 +1,18 @@
 package org.tolbertinnovationhub.learning
 
+import android.os.SystemClock
+import android.graphics.Bitmap
+import android.graphics.Rect
+import androidx.test.platform.app.InstrumentationRegistry
+import java.io.File
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.Text
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
@@ -40,6 +53,45 @@ class LessonVideoUiTest {
         compose.onNodeWithText("Hide").performClick()
         compose.waitForIdle()
         compose.runOnUiThread { assertNull(webView(compose.activity.window.decorView)) }
+    }
+
+    @Test fun computerLiteracyPlayerHasAVisibleFrameInsideScrollingLesson() {
+        compose.setContent {
+            TihTheme("Light") {
+                Column(Modifier.fillMaxSize()) {
+                    Text("Computer Literacy: What Is a Computer?")
+                    Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState())) {
+                        LessonVideoPlayer("kBGcfVwf9aI", Modifier.fillMaxWidth().padding(20.dp)) {}
+                        Text("Written lesson", Modifier.height(900.dp))
+                    }
+                }
+            }
+        }
+        compose.waitForIdle()
+        val folder = File(compose.activity.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
+        // Capture diagnostic geometry even when the remote player is unavailable.
+        SystemClock.sleep(25000)
+        val result = java.util.concurrent.atomic.AtomicReference<String>("")
+        val latch = CountDownLatch(1)
+        val native = StringBuilder()
+        compose.runOnUiThread {
+            val web = webView(compose.activity.window.decorView)!!
+            native.append("native: ").append(web.width).append(" x ").append(web.height)
+                .append("; layout params: ").append(web.layoutParams.width).append(" x ").append(web.layoutParams.height)
+                .append("; hardware: ").append(web.isHardwareAccelerated).append("; url: ").append(web.url)
+                .append("; WebView: ").append(WebView.getCurrentWebViewPackage()?.versionName)
+            web.evaluateJavascript("""JSON.stringify({title:document.title,innerHeight:innerHeight,innerWidth:innerWidth,
+                body:document.body.getBoundingClientRect().toJSON(),
+                iframe:(function(){var f=document.querySelector('iframe');return f?{src:f.src,rect:f.getBoundingClientRect().toJSON()}:null})(),
+                text:document.body.innerText})""") { result.set(it); latch.countDown() }
+        }
+        assertTrue(latch.await(10, TimeUnit.SECONDS))
+        val report = native.toString() + "\n" + result.get()
+        File(folder, "computer-literacy-video-diagnostic.txt").writeText(report)
+        println("TIH_VIDEO_DIAGNOSTIC " + report)
+        val shot = InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot()
+        File(folder, "computer-literacy-video-diagnostic.png").outputStream().use { shot.compress(Bitmap.CompressFormat.PNG, 100, it) }
+        shot.recycle()
     }
 
     private fun webView(view: View): WebView? {
