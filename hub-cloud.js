@@ -480,18 +480,43 @@ var HubCloud = (function () {
   // progress and cert_requests directly (filtered by student_id). This is the
   // robust path, it works with simple anon SELECT policies and does not depend
   // on a custom RPC being installed. Resolves {enrollments, progress, certRequests}.
-  function fetchAccountBundle(studentId) {
+  // Everything this learner is allowed to study, plus their progress and
+  // certificate requests, for the device they have just signed in on.
+  //
+  // The hardening migration dropped anon SELECT on enrollments, progress and
+  // cert_requests and said in as many words to use the student_bundle RPC
+  // instead. This kept reading the tables directly, so on any device the reads
+  // came back empty: no tih_access_ keys were written, and a learner who had
+  // been granted a course still found every one of them locked on a new phone
+  // or computer. student_bundle is SECURITY DEFINER, granted to anon and gated
+  // by the learner's own password hash, so it returns exactly their own rows
+  // and needs no session. The direct reads stay as a fallback for an older
+  // database where the RPC is not installed.
+  function fetchAccountBundle(studentId, passwordHash) {
     var empty = { enrollments: [], progress: [], certRequests: [] };
     if (!studentId) return Promise.resolve(empty);
-    var f = 'student_id=eq.' + encodeURIComponent(String(studentId)) + '&select=*';
-    // REST reads, no CDN needed, so grants sync on any device.
-    return Promise.all([
-      restSelect('enrollments', f),
-      restSelect('progress', f),
-      restSelect('cert_requests', f)
-    ]).then(function (r) {
-      return { enrollments: r[0], progress: r[1], certRequests: r[2] };
-    }).catch(function () { return empty; });
+    var direct = function () {
+      var f = 'student_id=eq.' + encodeURIComponent(String(studentId)) + '&select=*';
+      return Promise.all([
+        restSelect('enrollments', f),
+        restSelect('progress', f),
+        restSelect('cert_requests', f)
+      ]).then(function (r) {
+        return { enrollments: r[0], progress: r[1], certRequests: r[2] };
+      }).catch(function () { return empty; });
+    };
+    if (!passwordHash) return direct();
+    return restRpc('student_bundle', { p_student_id: String(studentId), p_hash: passwordHash })
+      .then(function (d) {
+        if (d && typeof d === 'object') {
+          return {
+            enrollments: d.enrollments || [],
+            progress: d.progress || [],
+            certRequests: d.cert_requests || []
+          };
+        }
+        return direct();   // RPC absent, or the hash did not match
+      }).catch(function () { return direct(); });
   }
 
   // ---- enrollments / payments ----

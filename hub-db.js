@@ -958,7 +958,10 @@ var HubDB = (function () {
     if (!cloud() || !id) return Promise.resolve({ enabled: false });
     var C = cloud();
     return Promise.all([
-      C.fetchAccountBundle(id).catch(function () { return { enrollments: [], progress: [], certRequests: [] }; }),
+      // The bundle RPC proves who is asking with the learner's own password hash,
+      // so pass it; the session object does not carry one, hence the roster lookup.
+      C.fetchAccountBundle(id, student.passwordHash || (findStudent(id) || {}).passwordHash)
+        .catch(function () { return { enrollments: [], progress: [], certRequests: [] }; }),
       C.fetchCertificatesFor(id).catch(function () { return []; })
     ]).then(function (r) {
       var bundle = r[0] || {}, certs = r[1] || [];
