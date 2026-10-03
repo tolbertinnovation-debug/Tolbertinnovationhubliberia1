@@ -13,27 +13,37 @@ class LearningTests {
                            "\"><script>", "../../etc", "kBGcfVwf9a?", "kBGcfVwf9a&")) {
             assertFalse(bad, LessonVideo.isPlayable(bad))
         }
+        // An id that is not YouTube's own format must never reach the page as markup.
         try {
-            LessonVideo.embedUrl("\"><iframe src=evil>")
-            fail("an unsupported id must not produce a URL")
+            LessonVideo.playerPage("\"><iframe src=evil>")
+            fail("an unsupported id must not produce a player page")
         } catch (expected: IllegalArgumentException) {
         }
     }
 
-    @Test fun lessonVideoPlaysThePrivacyEnhancedEmbedWithoutAutoplay() {
-        val url = LessonVideo.embedUrl("kBGcfVwf9aI")
-        assertEquals("https://www.youtube-nocookie.com/embed/kBGcfVwf9aI" +
-            "?playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&fs=1" +
-            "&origin=https://tolbertinnovationhub.org", url)
-        assertFalse(url.contains("autoplay"))
-        // The player must be framed by a page on a real origin: a top-level embed with
-        // no referrer is what YouTube rejects as error 153.
-        val page = LessonVideo.embedPage("kBGcfVwf9aI")
-        assertTrue(page.contains("<iframe"))
-        assertTrue(page.contains("allowfullscreen"))
-        assertTrue(page.contains("origin=https://tolbertinnovationhub.org"))
-        assertFalse("raw ampersands break the iframe src", page.contains("?playsinline=1&rel"))
+    @Test fun lessonVideoBuildsThePlayerTheWayTheWebsiteDoes() {
+        val page = LessonVideo.playerPage("kBGcfVwf9aI")
+        // The IFrame Player API creates the player, as on the website. A bare embed
+        // loaded as a top-level page carries no referrer and YouTube rejects it.
+        assertTrue(page.contains("https://www.youtube.com/iframe_api"))
+        assertTrue(page.contains("new YT.Player"))
+        assertTrue(page.contains("videoId: 'kBGcfVwf9aI'"))
+        // Never stream before the learner asks, whatever the website does.
+        assertFalse(page.contains("autoplay"))
+        // It answers through the title, so no native object is exposed to the page.
+        assertTrue(page.contains(LessonVideo.READY))
+        assertTrue(page.contains(LessonVideo.ERROR))
         assertEquals("https://www.youtube.com/watch?v=kBGcfVwf9aI", LessonVideo.watchUrl("kBGcfVwf9aI"))
+    }
+
+    @Test fun playerErrorsAreExplainedInTheLearnersTerms() {
+        assertTrue(LessonVideo.explain("offline").contains("connection"))
+        assertTrue(LessonVideo.explain("timeout").contains("connection"))
+        assertTrue(LessonVideo.explain("101").contains("does not allow"))
+        assertTrue(LessonVideo.explain("150").contains("does not allow"))
+        assertTrue(LessonVideo.explain("100").contains("no longer available"))
+        // An unknown code still says something true rather than nothing.
+        assertTrue(LessonVideo.explain("9999").isNotBlank())
     }
 
     @Test fun onlyThePlayersOwnPagesStayInsideTheApp() {

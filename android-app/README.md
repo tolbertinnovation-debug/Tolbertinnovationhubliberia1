@@ -46,9 +46,14 @@ and native JavaScript bridges disabled. Active content is removed and a restrict
 Content Security Policy is applied. No production website is loaded inside it.
 
 Remote lesson illustrations are shown with their alternative text rather than downloaded.
-A lesson's video plays **inside the app**, in YouTube's own embedded player, sitting above
-the written lesson exactly as the course player arranges it on the website, and only once
-the learner presses play. It can be collapsed, which also stops playback. The player
+A lesson's video plays **inside the app**, built the way the course player builds it on the
+website: YouTube's IFrame Player API creates the player rather than the app dropping a bare
+iframe on a page. That detail is the difference between working and not. A bare embed loaded
+as a top-level page carries no referrer and YouTube answers "Video player configuration
+error (153)". The player sits above the written lesson, in the same scrolling page, and
+starts only once the learner presses play. It reports back through the document title, so no
+JavaScript bridge is exposed to the page, and a failure is shown in the learner's own terms
+with the code beside it. It can be collapsed, which also stops playback. The player
 options match the website's, except autoplay: on mobile data a lesson must never start
 streaming by itself. Nothing autoplays, nothing is downloaded, and
 nothing is re-hosted or relabeled as offline content, so the creator keeps their
