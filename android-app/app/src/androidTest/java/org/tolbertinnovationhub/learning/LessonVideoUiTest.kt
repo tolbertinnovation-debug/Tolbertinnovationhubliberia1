@@ -19,6 +19,8 @@ import android.webkit.WebView
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import org.junit.Assert.*
@@ -109,8 +111,7 @@ class LessonVideoUiTest {
             })
         }
         compose.waitUntil(15000) { painted.get() }
-        val bounds = Rect()
-        compose.runOnUiThread { webView(compose.activity.window.decorView)!!.getGlobalVisibleRect(bounds) }
+        val bounds = playerScreenBounds()
         val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
         tap(bounds)
         SystemClock.sleep(8000)
@@ -176,8 +177,7 @@ class LessonVideoUiTest {
             })
         }
         compose.waitUntil(15000) { painted.get() }
-        val bounds = Rect()
-        compose.runOnUiThread { webView(compose.activity.window.decorView)!!.getGlobalVisibleRect(bounds) }
+        val bounds = playerScreenBounds()
         val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
         tap(bounds)
         var tapped = false
@@ -188,6 +188,29 @@ class LessonVideoUiTest {
             SystemClock.sleep(100)
         } while (SystemClock.uptimeMillis() < tapDeadline)
         assertTrue("Player button did not receive the real screen tap", tapped)
+    }
+
+    private fun playerScreenBounds(): Rect {
+        // WebView readiness can precede the activity's input window becoming active.
+        // Wait for that window and its drawn frame before injecting screen coordinates.
+        compose.waitUntil(15000) {
+            var focused = false
+            compose.runOnUiThread {
+                val web = webView(compose.activity.window.decorView)
+                focused = web != null && web.isShown && web.hasWindowFocus()
+            }
+            focused
+        }
+        compose.onRoot().captureToImage()
+        val bounds = Rect()
+        compose.runOnUiThread {
+            val web = webView(compose.activity.window.decorView)!!
+            val location = IntArray(2)
+            web.getLocationOnScreen(location)
+            bounds.set(location[0], location[1], location[0] + web.width, location[1] + web.height)
+        }
+        assertTrue("Player must occupy a tappable screen area: $bounds", bounds.width() > 0 && bounds.height() > 0)
+        return bounds
     }
 
     private fun tap(bounds: Rect) {
