@@ -23,8 +23,16 @@ class LearningTests {
     @Test fun lessonVideoPlaysThePrivacyEnhancedEmbedWithoutAutoplay() {
         val url = LessonVideo.embedUrl("kBGcfVwf9aI")
         assertEquals("https://www.youtube-nocookie.com/embed/kBGcfVwf9aI" +
-            "?playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&fs=1", url)
+            "?playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&fs=1" +
+            "&origin=https://tolbertinnovationhub.org", url)
         assertFalse(url.contains("autoplay"))
+        // The player must be framed by a page on a real origin: a top-level embed with
+        // no referrer is what YouTube rejects as error 153.
+        val page = LessonVideo.embedPage("kBGcfVwf9aI")
+        assertTrue(page.contains("<iframe"))
+        assertTrue(page.contains("allowfullscreen"))
+        assertTrue(page.contains("origin=https://tolbertinnovationhub.org"))
+        assertFalse("raw ampersands break the iframe src", page.contains("?playsinline=1&rel"))
         assertEquals("https://www.youtube.com/watch?v=kBGcfVwf9aI", LessonVideo.watchUrl("kBGcfVwf9aI"))
     }
 

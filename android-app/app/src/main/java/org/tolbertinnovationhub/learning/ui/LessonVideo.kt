@@ -47,9 +47,10 @@ import androidx.compose.ui.viewinterop.AndroidView
  * that needs JavaScript, so it gets a view of its own, is sent nothing but the
  * embed, and never receives lesson content or a JavaScript bridge.
  *
- * The embed URL is loaded directly rather than wrapped in a local page: content
- * supplied through loadDataWithBaseURL can be given an opaque origin, and the
- * player then refuses to start and shows nothing at all.
+ * The embed is framed by a small page served from the Learning Hub's own origin.
+ * YouTube answers a top-level embed that carries no referrer with "Video player
+ * configuration error (153)", so loading the embed URL straight into the WebView
+ * does not work; it needs a real page to be framed by, exactly as on the website.
  *
  * Nothing is downloaded or re-hosted. Playback is YouTube's, so the creator keeps
  * their attribution and their view count.
@@ -58,13 +59,32 @@ object LessonVideo {
     private val ID = Regex("^[A-Za-z0-9_-]{11}$")
     fun isPlayable(videoId: String) = ID.matches(videoId)
 
+    /** The page the embed is framed by. YouTube answers a top-level embed that
+     * carries no referrer with "Video player configuration error (153)", so the
+     * iframe has to sit inside a page served from a real origin. This is the
+     * Learning Hub's own, the same one the course player embeds from. */
+    const val ORIGIN = "https://tolbertinnovationhub.org"
+
     /** The privacy-enhanced host: no tracking cookie until the learner presses play. */
     fun embedUrl(videoId: String): String {
         require(isPlayable(videoId)) { "Unsupported video id" }
         // The same player options the course player uses on the website, except
         // autoplay: on mobile data a lesson must never start streaming by itself.
         return "https://www.youtube-nocookie.com/embed/$videoId" +
-            "?playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&fs=1"
+            "?playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&fs=1" +
+            "&origin=$ORIGIN"
+    }
+
+    /** The wrapper page. Its only content is the player. */
+    fun embedPage(videoId: String): String {
+        val src = embedUrl(videoId).replace("&", "&amp;")
+        return """<!doctype html><html><head>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>html,body{margin:0;padding:0;height:100%;background:#000;overflow:hidden}
+            iframe{border:0;display:block;width:100%;height:100%}</style>
+            </head><body><iframe src="$src" title="Lesson video"
+              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowfullscreen></iframe></body></html>"""
     }
 
     fun watchUrl(videoId: String): String {
@@ -112,7 +132,7 @@ private enum class PlayerState { Loading, Ready, Failed }
     onOpenExternally: (String) -> Unit
 ) {
     val context = LocalContext.current
-    val url = remember(videoId) { LessonVideo.embedUrl(videoId) }
+    val page = remember(videoId) { LessonVideo.embedPage(videoId) }
     var state by remember(videoId) { mutableStateOf(PlayerState.Loading) }
     var reloads by remember(videoId) { mutableStateOf(0) }
 
@@ -134,6 +154,9 @@ private enum class PlayerState { Loading, Ready, Failed }
                     state = PlayerState.Loading
                 }
                 override fun onPageFinished(view: WebView, url: String) {
+                    // This fires for the wrapper page, not for the player inside it.
+                    // Clear the spinner so the learner sees the player's own surface,
+                    // including any message YouTube itself puts there.
                     if (state != PlayerState.Failed) state = PlayerState.Ready
                 }
                 override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
@@ -167,8 +190,11 @@ private enum class PlayerState { Loading, Ready, Failed }
                     factory = { view },
                     modifier = Modifier.fillMaxWidth().aspectRatio(16f / 9f),
                     update = {
-                        val want = url to reloads
-                        if (it.tag != want) { it.tag = want; it.loadUrl(url) }
+                        val want = page to reloads
+                        if (it.tag != want) {
+                            it.tag = want
+                            it.loadDataWithBaseURL(LessonVideo.ORIGIN, page, "text/html", "UTF-8", null)
+                        }
                     }
                 )
                 when (state) {

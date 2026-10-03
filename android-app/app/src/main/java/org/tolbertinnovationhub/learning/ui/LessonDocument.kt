@@ -6,8 +6,11 @@ import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.viewinterop.AndroidView
 import org.jsoup.Jsoup
 
@@ -45,9 +48,22 @@ object LessonDocument {
     }
 }
 
-@Composable fun RichLesson(source: String, css: String, fontSize: Int, modifier: Modifier = Modifier, onLink: (String) -> Unit) {
+/** @param onContentHeight reports the rendered height in CSS pixels once the document
+ * has settled, so the lesson can be laid out inside a page that scrolls as a whole,
+ * with the video above it, the way the course player does on the website. The view
+ * keeps its own scrolling as a safety net: if the measurement ever comes back short,
+ * the note can still be read rather than being cut off. */
+@Composable fun RichLesson(
+    source: String,
+    css: String,
+    fontSize: Int,
+    modifier: Modifier = Modifier,
+    onContentHeight: ((Int) -> Unit)? = null,
+    onLink: (String) -> Unit
+) {
     val context = LocalContext.current
     val html = remember(source, css, fontSize) { LessonDocument.html(source, css, fontSize) }
+    val reportHeight = rememberUpdatedState(onContentHeight)
     val view = remember {
         WebView(context).apply {
             settings.javaScriptEnabled = false
@@ -64,11 +80,29 @@ object LessonDocument {
                     if (request.isForMainFrame && request.hasGesture() && request.url.scheme == "https") onLink(request.url.toString())
                     return true
                 }
+                override fun onPageFinished(view: WebView, url: String) {
+                    // contentHeight is only final once layout has settled; read it a
+                    // moment later, and again, so a late reflow is not missed.
+                    val report = { if (view.contentHeight > 0) reportHeight.value?.invoke(view.contentHeight) }
+                    view.postDelayed({ report() }, 150)
+                    view.postDelayed({ report() }, 700)
+                }
             }
         }
     }
     DisposableEffect(view) { onDispose { view.stopLoading(); view.destroy() } }
-    AndroidView(factory = { view }, modifier = modifier, update = {
-        if (it.tag != html) { it.tag = html; it.loadDataWithBaseURL("https://offline.tih.invalid/", html, "text/html", "UTF-8", null) }
-    })
+    // WebView implements NestedScrollingChild, so with this interop a drag over the
+    // note is handed to the page scrolling around it instead of being swallowed here.
+    // The view keeps its own scrolling, so if the height measurement ever comes back
+    // short the note is still readable rather than cut off.
+    AndroidView(
+        factory = { view },
+        modifier = modifier.nestedScroll(rememberNestedScrollInteropConnection()),
+        update = {
+            if (it.tag != html) {
+                it.tag = html
+                it.loadDataWithBaseURL("https://offline.tih.invalid/", html, "text/html", "UTF-8", null)
+            }
+        }
+    )
 }

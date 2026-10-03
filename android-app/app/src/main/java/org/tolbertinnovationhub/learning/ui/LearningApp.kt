@@ -10,6 +10,8 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -376,13 +378,27 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                 OutlinedTextField(note, { note = it.take(20000); vm.saveNote(note) }, Modifier.fillMaxWidth().weight(1f), placeholder = { Text("What did you learn? How will you apply it?") }, label = { Text("Personal study notes") })
                 Spacer(Modifier.height(12.dp))
             }
-            lesson.html.isNotBlank() -> Column(Modifier.weight(1f).fillMaxWidth()) {
-                // The video sits above the written lesson, as it does in the course
-                // player on the website, rather than behind a tab of its own.
-                if (hasVideo) key(lesson.id) {
-                    LessonVideoPlayer(lesson.videoId, Modifier.fillMaxWidth().padding(horizontal = 20.dp), openLink)
+            lesson.html.isNotBlank() -> {
+                // One scrolling page: the video on top, the written lesson below it,
+                // the way the course player lays it out on the website. The lesson is
+                // given its measured height so the whole page scrolls together and the
+                // video moves out of the way as the learner reads.
+                var noteHeight by remember(lesson.id) { mutableIntStateOf(0) }
+                Column(
+                    Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState())
+                ) {
+                    if (hasVideo) key(lesson.id) {
+                        LessonVideoPlayer(lesson.videoId, Modifier.fillMaxWidth().padding(horizontal = 20.dp), openLink)
+                    }
+                    key(lesson.id) {
+                        RichLesson(
+                            lesson.html, course.css, vm.fontSize.toInt(),
+                            Modifier.fillMaxWidth().height(if (noteHeight > 0) noteHeight.dp else 900.dp),
+                            onContentHeight = { noteHeight = it + 24 },
+                            onLink = openLink
+                        )
+                    }
                 }
-                key(lesson.id) { RichLesson(lesson.html, course.css, vm.fontSize.toInt(), Modifier.weight(1f).fillMaxWidth(), openLink) }
             }
             else -> Box(Modifier.weight(1f)) { EmptyState("Learning material unavailable", "This entry has no standalone written note in the existing course material. TIH support can help you find it.", Icons.AutoMirrored.Outlined.MenuBook, "Get help", onHelp) }
         }
