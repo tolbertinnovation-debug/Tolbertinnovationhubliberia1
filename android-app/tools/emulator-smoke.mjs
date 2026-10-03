@@ -36,7 +36,11 @@ try {
   call(['shell','wm','density','420']);
   console.log('Android booted. Installing preview and instrumentation test APKs.');
   for(const setting of ['window_animation_scale','transition_animation_scale','animator_duration_scale'])call(['shell','settings','put','global',setting,'0']);
-  call(['shell','input','keyevent','82']);
+  // Dismiss keyguard through WindowManager, not a key sent to the launcher.
+  // sys.boot_completed can precede the launcher's first focused window. A key
+  // sent at that point causes a Quickstep input ANR dialog that covers the app
+  // and intercepts all real touchscreen tests, even while Compose tests pass.
+  call(['shell','wm','dismiss-keyguard']);
   call(['install','-r',path.join(root,'android-app/app/build/outputs/apk/debug/app-debug.apk')],120000);
   call(['install','-r',path.join(root,'android-app/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk')],120000);
   const results=call(['shell','am','instrument','-w','org.tolbertinnovationhub.learning.preview.test/androidx.test.runner.AndroidJUnitRunner'],240000);
