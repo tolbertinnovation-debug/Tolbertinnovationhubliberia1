@@ -680,7 +680,16 @@ var HubDB = (function () {
         maybeUpgradeToAuth(cloudStudent, plainPassword, hash);
         return completeStudentLogin(cloudStudent);
       }
-      // Fall back to the local account (offline / cloud unconfigured).
+      // The server answered and matched nothing. Do not let this device's copy of
+      // the account contradict it: on a machine that has synced the roster, an old
+      // hash sitting in that copy reported "Incorrect password" for a password the
+      // server would have accepted, which sent people hunting for the wrong fault.
+      if (cloudStudent === false) {
+        return { ok: false, error: 'That Student ID or email and password did not match any account. '
+          + 'If the password was just reset, try signing in with the Student ID: the email on the record may be different.' };
+      }
+      // cloudStudent === null: the server could not be asked. Fall back to this
+      // device's copy, which is what keeps sign-in working offline.
       var s = findStudent(idOrEmail);
       if (!s) return { ok: false, error: 'No account found. Check your Student ID or email.' };
       if (s.status === 'suspended') return { ok: false, error: 'This account is suspended. Contact TIH support.' };

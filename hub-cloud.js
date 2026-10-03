@@ -456,11 +456,16 @@ var HubCloud = (function () {
     }).catch(function () { return null; });
   }
   // Secure cross-device login via the SECURITY DEFINER RPC, over plain fetch.
+  // Resolves the student on a match, false when the server answered and found
+  // nothing, and null when it could not be asked at all. The caller needs those
+  // apart: "the server says no" must not be treated the same as "we are offline",
+  // or a stale copy of the roster on this device gets to contradict the server.
   function studentLogin(login, passwordHash) {
     return restRpc('student_login', { p_login: String(login || ''), p_hash: passwordHash })
       .then(function (data) {
         if (Array.isArray(data) && data.length) return stuFromRow(data[0]);
-        return null;
+        if (Array.isArray(data)) return false;   // answered: no such id/email + password
+        return null;                             // unreachable, or the RPC is absent
       }).catch(function () { return null; });
   }
   // Existence-only check (no row data), so registration can refuse to create
