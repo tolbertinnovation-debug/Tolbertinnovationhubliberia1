@@ -26,5 +26,13 @@ class StudyStore(private val context: Context) {
         prefs(student).edit().putString("lastCourse", course).putString("lastLesson", lesson).apply()
     }
     fun last(student: String) = prefs(student).getString("lastCourse", null) to prefs(student).getString("lastLesson", null)
+    fun quizDraft(student: String, course: String, lesson: Lesson): QuizDraft? =
+        QuizDraftCodec.decode(lesson, prefs(student).getString("draft:$course:${lesson.id}", null))
+    fun saveQuizDraft(student: String, course: String, lesson: Lesson, draft: QuizDraft?) {
+        val key = "draft:$course:${lesson.id}"
+        val editor = prefs(student).edit()
+        if (draft == null) editor.remove(key) else editor.putString(key, QuizDraftCodec.encode(lesson, draft))
+        editor.apply()
+    }
     fun clear(student: String) { prefs(student).edit().clear().apply() }
 }

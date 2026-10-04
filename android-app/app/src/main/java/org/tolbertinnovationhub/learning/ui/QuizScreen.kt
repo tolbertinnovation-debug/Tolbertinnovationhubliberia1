@@ -25,23 +25,30 @@ import androidx.compose.ui.unit.dp
 import org.tolbertinnovationhub.learning.data.Lesson
 import org.tolbertinnovationhub.learning.data.Question
 import org.tolbertinnovationhub.learning.data.QuizScorer
+import org.tolbertinnovationhub.learning.data.QuizDraft
+import org.tolbertinnovationhub.learning.data.QuizDraftCodec
 
 /** Answer, review, then submit. Official certificate decisions stay in the Learning Hub. */
 @Composable internal fun QuizScreen(
     lesson: Lesson, onComplete: (Int) -> Unit, modifier: Modifier = Modifier,
-    onContinue: (() -> Unit)? = null, continueLabel: String = "Next lesson"
+    onContinue: (() -> Unit)? = null, continueLabel: String = "Next lesson",
+    initialDraft: QuizDraft? = null, onDraftChange: ((QuizDraft?) -> Unit)? = null
 ) {
     // A keyed subtree also resets scroll positions when a different quiz is opened.
-    key(lesson.id) { QuizAttempt(lesson, onComplete, modifier, onContinue, continueLabel) }
+    key(lesson.id) { QuizAttempt(lesson, onComplete, modifier, onContinue, continueLabel, initialDraft, onDraftChange) }
 }
 
 @Composable private fun QuizAttempt(
     lesson: Lesson, onComplete: (Int) -> Unit, modifier: Modifier,
-    onContinue: (() -> Unit)?, continueLabel: String
+    onContinue: (() -> Unit)?, continueLabel: String,
+    initialDraft: QuizDraft?, onDraftChange: ((QuizDraft?) -> Unit)?
 ) {
     val questions = lesson.questions
-    var answers by rememberSaveable { mutableStateOf(List(questions.size) { -1 }) }
-    var current by rememberSaveable { mutableIntStateOf(0) }
+    val draft = remember(lesson.id) { initialDraft?.takeIf { QuizDraftCodec.valid(lesson, it) } }
+    var answers by rememberSaveable { mutableStateOf(draft?.answers ?: List(questions.size) { -1 }) }
+    var current by rememberSaveable { mutableIntStateOf(draft?.current ?: 0) }
+    fun saveDraft() { onDraftChange?.invoke(QuizDraft(answers, current)) }
+    fun moveTo(index: Int) { current = index; saveDraft() }
     var stage by rememberSaveable { mutableStateOf("answer") }
     var score by rememberSaveable { mutableIntStateOf(-1) }
     var missedOnly by rememberSaveable { mutableStateOf(false) }
@@ -77,7 +84,7 @@ import org.tolbertinnovationhub.learning.data.QuizScorer
                                 Text("$answered answered", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             }
                             LinearProgressIndicator(progress = { answered.toFloat() / questions.size }, modifier = Modifier.fillMaxWidth())
-                            Text("Choose one answer. You can change it before submitting.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(if (onDraftChange != null) "Choose one answer. Your answers save on this device." else "Choose one answer. You can change it before submitting.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                     }
                     item {
@@ -87,7 +94,7 @@ import org.tolbertinnovationhub.learning.data.QuizScorer
                                 Column(Modifier.selectableGroup(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                                     questions[current].options.forEachIndexed { index, option ->
                                         AnswerOption(index, option, answers[current] == index) {
-                                            answers = answers.toMutableList().also { it[current] = index }
+                                            answers = answers.toMutableList().also { it[current] = index }; saveDraft()
                                         }
                                     }
                                 }
@@ -101,7 +108,7 @@ import org.tolbertinnovationhub.learning.data.QuizScorer
                         }
                         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             items(questions.indices.toList()) { index ->
-                                FilterChip(selected = index == current, onClick = { current = index },
+                                FilterChip(selected = index == current, onClick = { moveTo(index) },
                                     modifier = Modifier.heightIn(min = 48.dp).semantics {
                                         contentDescription = "Question ${index + 1}, ${if (answers[index] >= 0) "answered" else "unanswered"}"
                                     }, label = { Text("${index + 1}") }, leadingIcon = if (answers[index] >= 0) {
@@ -118,7 +125,7 @@ import org.tolbertinnovationhub.learning.data.QuizScorer
                             style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     items(questions.indices.toList()) { index ->
-                        Card(onClick = { current = index; stage = "answer" }, modifier = Modifier.fillMaxWidth(),
+                        Card(onClick = { moveTo(index); stage = "answer" }, modifier = Modifier.fillMaxWidth(),
                             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
                             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                                 Text("Question ${index + 1}", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
@@ -157,7 +164,7 @@ import org.tolbertinnovationhub.learning.data.QuizScorer
                     }
                     item {
                         OutlinedButton(onClick = {
-                            answers = List(questions.size) { -1 }; current = 0; score = -1; missedOnly = false; stage = "answer"
+                            answers = List(questions.size) { -1 }; current = 0; score = -1; missedOnly = false; stage = "answer"; onDraftChange?.invoke(null)
                         }, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)) {
                             Icon(Icons.Outlined.Refresh, null, Modifier.size(18.dp)); Spacer(Modifier.width(8.dp)); Text("Practise again")
                         }
@@ -170,16 +177,16 @@ import org.tolbertinnovationhub.learning.data.QuizScorer
                 when (stage) {
                     "answer" -> {
                         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                            OutlinedButton(onClick = { current-- }, enabled = current > 0, modifier = Modifier.weight(1f).heightIn(min = 48.dp)) { Text("Previous") }
-                            Button(onClick = { if (current < questions.lastIndex) current++ else stage = "review" },
+                            OutlinedButton(onClick = { moveTo(current - 1) }, enabled = current > 0, modifier = Modifier.weight(1f).heightIn(min = 48.dp)) { Text("Previous") }
+                            Button(onClick = { if (current < questions.lastIndex) moveTo(current + 1) else stage = "review" },
                                 modifier = Modifier.weight(1f).heightIn(min = 48.dp)) { Text(if (current < questions.lastIndex) "Next question" else "Review answers") }
                         }
                     }
                     "review" -> {
                         Button(onClick = {
-                            score = QuizScorer.score(questions, answers); stage = "result"; onComplete(score)
+                            score = QuizScorer.score(questions, answers); stage = "result"; onComplete(score); onDraftChange?.invoke(null)
                         }, enabled = answered == questions.size, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)) { Text("Submit answers") }
-                        TextButton(onClick = { current = answers.indexOfFirst { it < 0 }.takeIf { it >= 0 } ?: current; stage = "answer" },
+                        TextButton(onClick = { moveTo(answers.indexOfFirst { it < 0 }.takeIf { it >= 0 } ?: current); stage = "answer" },
                             modifier = Modifier.align(Alignment.CenterHorizontally)) { Text(if (answered < questions.size) "Finish unanswered questions" else "Back to questions") }
                     }
                     else -> if (onContinue != null) Button(onClick = onContinue, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)) { Text(continueLabel) }

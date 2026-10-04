@@ -29,16 +29,18 @@ jobs:
           packages: platform-tools
           # Pin the command-line toolchain used for repeatable AVD creation.
           cmdline-tools-version: '13114758'
-      - uses: actions/cache@v4
+      # Reuse the SAME preview identity in validation and published APKs.
+      # Never generate a replacement key when a cache has expired: that would
+      # silently break updates and require learners to erase their local data.
+      - uses: actions/cache/restore@v4
         with:
           path: android-app/.ci-preview-signing/preview.keystore
           key: tih-preview-signing-v2
-      - name: Prepare preview-only signing identity
+          fail-on-cache-miss: true
+      - name: Verify existing preview signing identity
         run: |
-          mkdir -p "$(dirname "$TIH_PREVIEW_KEYSTORE")"
-          if [ ! -f "$TIH_PREVIEW_KEYSTORE" ]; then
-            keytool -genkeypair -noprompt -keystore "$TIH_PREVIEW_KEYSTORE" -storepass android -keypass android -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -dname 'CN=TIH Preview,O=Android,C=LR'
-          fi
+          test -s "$TIH_PREVIEW_KEYSTORE"
+          keytool -list -keystore "$TIH_PREVIEW_KEYSTORE" -storepass android -alias androiddebugkey
       - uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: false

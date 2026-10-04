@@ -368,9 +368,14 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
     var note by remember(lesson.id, user.studentId) { mutableStateOf(vm.study.note(user.studentId, lesson.id)) }
     val position = course.lessons.indexOfFirst { it.id == lesson.id }
     if (lesson.kind == "quiz") {
-        QuizScreen(lesson, onComplete = vm::completeQuiz, modifier = Modifier.fillMaxSize(),
-            onContinue = { course.lessons.getOrNull(position + 1)?.let(vm::openLesson) ?: vm.back() },
-            continueLabel = if (position < course.lessons.lastIndex) "Next lesson" else "Course overview")
+        key(user.studentId, course.summary.id, lesson.id) {
+            val draft = remember { vm.study.quizDraft(user.studentId, course.summary.id, lesson) }
+            QuizScreen(lesson, onComplete = vm::completeQuiz, modifier = Modifier.fillMaxSize(),
+                onContinue = { course.lessons.getOrNull(position + 1)?.let(vm::openLesson) ?: vm.back() },
+                continueLabel = if (position < course.lessons.lastIndex) "Next lesson" else "Course overview",
+                initialDraft = draft,
+                onDraftChange = { vm.study.saveQuizDraft(user.studentId, course.summary.id, lesson, it) })
+        }
         return
     }
     Column(Modifier.fillMaxSize()) {

@@ -184,3 +184,20 @@ testing has been completed.
 Technology references: [Compose compiler setup](https://developer.android.com/develop/ui/compose/setup-compose-dependencies-and-compiler),
 [AGP 8.10 compatibility](https://developer.android.com/build/releases/agp-8-10-0-release-notes),
 [Compose BOM](https://developer.android.com/develop/ui/compose/bom).
+
+## Preview 0.3.1: unfinished quizzes and updates
+
+Unsubmitted quiz answers and the current question are saved on the device under
+its verified student account. Leaving and reopening a quiz resumes the draft.
+Submission and retry clear it; clearing local study data also clears drafts.
+Drafts are discarded if the question text, options, answers, or explanations have
+changed. Drafts never grant a score, completion, or official certificate.
+
+Validation and publishing now restore `tih-preview-signing-v2` without creating
+new keys. From 0.3.1, builds using this identity can update each other in place.
+The workflows fail if the cache is unavailable. GitHub caches can expire or be
+evicted: this is a fail-safe preview measure, not durable signing-key storage.
+Before long-term distribution, provide a backed-up owner-controlled keystore
+through protected CI credentials. Do not regenerate this preview identity to
+bypass a missing-key failure. The keys for published 0.3.0 and earlier previews
+were discarded; those installations cannot be upgraded with the cached key.

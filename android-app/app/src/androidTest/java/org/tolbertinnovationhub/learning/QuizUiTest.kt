@@ -14,11 +14,13 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.graphics.asAndroidBitmap
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Rule
 import org.junit.Test
 import org.tolbertinnovationhub.learning.data.ContentRepository
 import org.tolbertinnovationhub.learning.data.Lesson
 import org.tolbertinnovationhub.learning.data.Question
+import org.tolbertinnovationhub.learning.data.StudyStore
 import org.tolbertinnovationhub.learning.ui.QuizScreen
 import org.tolbertinnovationhub.learning.ui.TihTheme
 import java.io.File
@@ -106,6 +108,46 @@ class QuizUiTest {
         capture("11-quiz-result.png")
         compose.onNodeWithText("Next lesson").performClick()
         compose.runOnIdle { assertEquals(true, continued) }
+    }
+
+    @Test fun draftsSurviveLeavingQuizStayPrivateAndClearAfterSubmission() {
+        val store = StudyStore(compose.activity)
+        val students = listOf("draft-ui-student-a", "draft-ui-student-b")
+        students.forEach(store::clear)
+        var visible by mutableStateOf(true)
+        var student by mutableStateOf(students[0])
+        compose.setContent { TihTheme("Light") {
+            if (visible) key(student) {
+                QuizScreen(lesson, {}, Modifier.fillMaxSize(),
+                    initialDraft = StudyStore(compose.activity).quizDraft(student, "computer-literacy", lesson),
+                    onDraftChange = { store.saveQuizDraft(student, "computer-literacy", lesson, it) })
+            }
+        } }
+        try {
+            compose.onNodeWithText("Keyboard").performScrollTo().performClick()
+            compose.onNodeWithText("Next question").performClick()
+            compose.runOnIdle { visible = false }
+            compose.waitForIdle()
+            compose.runOnIdle { visible = true }
+            compose.onNodeWithText("Question 2 of 2").assertExists()
+            compose.onNodeWithText("Previous").performClick()
+            compose.onNodeWithText("Keyboard").assertIsSelected()
+            compose.runOnIdle { student = students[1] }
+            compose.onNodeWithText("Keyboard").assertIsNotSelected()
+            compose.runOnIdle { student = students[0] }
+            compose.onNodeWithText("Keyboard").assertIsSelected()
+            compose.onNodeWithText("Next question").performClick()
+            compose.onNodeWithText("Laptop").performScrollTo().performClick()
+            compose.onNodeWithText("Review answers").performClick()
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.runOnIdle { assertNull(store.quizDraft(students[0], "computer-literacy", lesson)) }
+            compose.onNodeWithText("Practise again").performScrollTo().performClick()
+            compose.onNodeWithText("Keyboard").performClick()
+            compose.runOnIdle { store.clear(students[0]); visible = false }
+            compose.waitForIdle()
+            compose.runOnIdle { visible = true }
+            compose.onNodeWithText("Keyboard").assertIsNotSelected()
+        } finally { students.forEach(store::clear) }
     }
 
     private fun capture(name: String) {

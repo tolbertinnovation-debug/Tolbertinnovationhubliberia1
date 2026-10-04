@@ -31,13 +31,18 @@ jobs:
         with:
           packages: platform-tools
           cmdline-tools-version: '13114758'
-      - name: Prepare preview-only signing identity
+      # Reuse the SAME preview identity in validation and published APKs.
+      # Never generate a replacement key when a cache has expired: that would
+      # silently break updates and require learners to erase their local data.
+      - uses: actions/cache/restore@v4
+        with:
+          path: android-app/.ci-preview-signing/preview.keystore
+          key: tih-preview-signing-v2
+          fail-on-cache-miss: true
+      - name: Verify existing preview signing identity
         run: |
-          mkdir -p "$(dirname "$TIH_PREVIEW_KEYSTORE")"
-          keytool -genkeypair -noprompt -keystore "$TIH_PREVIEW_KEYSTORE" \
-            -storepass android -keypass android -alias androiddebugkey \
-            -keyalg RSA -keysize 2048 -validity 10000 \
-            -dname 'CN=TIH Preview,O=Android,C=LR'
+          test -s "$TIH_PREVIEW_KEYSTORE"
+          keytool -list -keystore "$TIH_PREVIEW_KEYSTORE" -storepass android -alias androiddebugkey
       - uses: gradle/actions/setup-gradle@v4
 
       - name: Export and validate existing Learning Hub content
@@ -83,9 +88,12 @@ jobs:
             physical access to an unlocked phone could inspect what the app has
             stored, including a signed-in session. Do not install it on a phone
             holding anything you would not want read.
-          - It is signed with a **temporary key generated during the build**.
-            A later version will refuse to install on top of this one: you will
-            have to uninstall first, which also clears local study records.
+          - From **0.3.1**, published previews reuse the same cached preview key.
+            Future builds stop if that key is unavailable rather than silently
+            replacing it. This cache is not a permanent signing-key backup.
+          - **0.3.0 and older** used discarded one-off keys and may conflict with
+            this install. Save any important notes before removing an old preview:
+            uninstalling clears its local study records.
           - It is **not a Google Play release** and has not been through Play
             review.
 
