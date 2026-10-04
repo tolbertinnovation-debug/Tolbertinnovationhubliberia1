@@ -9,13 +9,17 @@ database, domain, payment configuration, or GitHub Pages workflow is modified.
 
 ## What is implemented
 
+- 0.3.3 opens with native sign-in and a Create account link to TIH’s existing
+  registration page. Signed-in learners open directly to Courses. The full catalog
+  scrolls together, remembers its position after visiting a course, and offers
+  search, filters, and a Back to top button. Light mode is always active.
 - 0.3.2 applies the website's navy (`#002868`), red (`#E31E24`), and ice blue
-  (`#EAF4FF`) across the native app. Light and dark palettes cover every Material
+  (`#EAF4FF`) across the native app. The light palette covers every Material
   surface, with branded course labels, clearer answer selection, a red home action,
-  and system bar icons that follow the app's selected appearance.
+  and readable system bar icons.
 - Native home/dashboard, searchable course catalog, category filters, course roadmap,
   account screen, bookmarks, personal notes, and multiple-choice assessments.
-- Existing TIH logo and existing course artwork; light/dark/system themes and adjustable
+- Existing TIH logo and existing course artwork; a consistent light theme and adjustable
   reading size. No invented course reviews, enrollment totals, or certificates.
 - The written course information from each Learning Hub course page: the "about"
   paragraphs, entry requirements, the instructor's name, title and biography, and the
@@ -130,8 +134,8 @@ The app deliberately does not recreate legacy deterministic access codes.
 
 Enrollment is granted when the existing server record says `access_granted=true`, or
 `payment_status` is `paid`/`confirmed`, matching the website's restoration logic. An active
-student profile is required. A `wassce-all` grant covers WASSCE subjects only. Guest users
-can browse course descriptions and syllabuses but cannot open lessons or assessments.
+student profile is required. A `wassce-all` grant covers WASSCE subjects only. Signed-out users see sign-in, registration, help, and privacy information. Signed-in
+learners can browse the catalog; approved access is required to open lessons or assessments.
 Authentication failures invalidate cached access; temporary network outages retain an
 already verified grant for up to seven days. Revocation cannot be discovered while offline.
 

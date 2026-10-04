@@ -11,8 +11,7 @@ import org.junit.Test
 class InformationUiTest {
     @get:Rule val compose = createAndroidComposeRule<MainActivity>()
     @Test fun privacyDeletionAndOrganizationAreAvailableWithoutAnAccount() {
-        compose.waitUntil(30000) { compose.onAllNodesWithText("Find your course").fetchSemanticsNodes().isNotEmpty() }
-        compose.onNodeWithText("You").performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Sign in securely").fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText("How your account data is used").performScrollTo().performClick()
         compose.onNodeWithText("TIH Learning privacy notice").assertExists()
         snapshot("06-privacy")
@@ -26,7 +25,7 @@ class InformationUiTest {
         snapshot("07-delete-request")
         // No message is sent and no external app is launched by this test.
         compose.onNodeWithContentDescription("Back").performClick()
-        compose.onNodeWithTag("account-list").performScrollToNode(hasText("About TIH"))
+        compose.onNodeWithTag("welcome-list").performScrollToNode(hasText("About TIH"))
         compose.onNodeWithText("About TIH").performScrollTo().performClick()
         compose.onNodeWithText("Our mission").assertExists()
         compose.onNodeWithText("Sinkor, Monrovia, Liberia, West Africa").assertExists()

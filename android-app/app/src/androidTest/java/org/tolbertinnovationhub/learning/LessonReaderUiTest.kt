@@ -39,7 +39,7 @@ class LessonReaderUiTest {
         val lesson = course.lessons.first { it.html.isNotBlank() && it.kind != "quiz" }
         compose.runOnUiThread { compose.activity.actionBar?.hide() }
         compose.setContent {
-            TihTheme("Light") {
+            TihTheme {
                 Scaffold(topBar = { TopAppBar(title = { Text(lesson.title) }) }) { padding ->
                     RichLesson(lesson.html, course.css, 18, Modifier.fillMaxSize().padding(padding)) {}
                 }

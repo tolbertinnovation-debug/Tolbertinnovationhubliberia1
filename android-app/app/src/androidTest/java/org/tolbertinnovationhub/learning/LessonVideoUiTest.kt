@@ -37,7 +37,7 @@ class LessonVideoUiTest {
     // switch between the first two existing Computer Literacy lesson videos.
     @Test fun switchingLessonsReplacesTheWebViewAndHideRemovesIt() {
         val video = mutableStateOf("kBGcfVwf9aI")
-        compose.setContent { TihTheme("Light") { LessonVideoPlayer(video.value) {} } }
+        compose.setContent { TihTheme { LessonVideoPlayer(video.value) {} } }
         compose.waitForIdle()
         var original: WebView? = null
         compose.runOnUiThread {
@@ -60,7 +60,7 @@ class LessonVideoUiTest {
 
     @Test fun computerLiteracyPlayerHasAVisibleFrameInsideScrollingLesson() {
         compose.setContent {
-            TihTheme("Light") {
+            TihTheme {
                 Column(Modifier.fillMaxSize()) {
                     Text("Computer Literacy: What Is a Computer?")
                     Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState())) {
@@ -127,7 +127,7 @@ class LessonVideoUiTest {
 
     @Test fun playerFrameFillsNativeSurfaceAndReceivesTaps() {
         compose.setContent {
-            TihTheme("Light") {
+            TihTheme {
                 Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
                     LessonVideoPlayer("kBGcfVwf9aI", Modifier.fillMaxWidth().padding(20.dp)) {}
                     Text("Written lesson", Modifier.height(900.dp))

@@ -33,7 +33,7 @@ class QuizUiTest {
 
     @Test fun incompleteReviewEditSubmissionAndRetry() {
         val recorded = mutableListOf<Int>()
-        compose.setContent { TihTheme("Dark") { QuizScreen(lesson, { recorded.add(it) }, Modifier.fillMaxSize()) } }
+        compose.setContent { TihTheme { QuizScreen(lesson, { recorded.add(it) }, Modifier.fillMaxSize()) } }
         compose.onNodeWithText("Next lesson").assertDoesNotExist()
         compose.onNodeWithText("Next question").performClick()
         compose.onNodeWithText("Review answers").performClick()
@@ -66,7 +66,7 @@ class QuizUiTest {
     @Test fun rotationKeepsAnswersAndDoesNotSubmitTwice() {
         var submissions = 0
         val restoration = StateRestorationTester(compose)
-        restoration.setContent { TihTheme("Light") { QuizScreen(lesson, { submissions++ }, Modifier.fillMaxSize()) } }
+        restoration.setContent { TihTheme { QuizScreen(lesson, { submissions++ }, Modifier.fillMaxSize()) } }
         compose.onNodeWithText("Keyboard").performScrollTo().performClick()
         compose.onNodeWithText("Next question").performClick()
         restoration.emulateSavedInstanceStateRestore()
@@ -82,22 +82,19 @@ class QuizUiTest {
         compose.runOnIdle { assertEquals(1, submissions) }
     }
 
-    @Test fun computerLiteracyPracticeWorksInBothThemes() {
+    @Test fun computerLiteracyPracticeUsesLightTheme() {
         val course = runBlocking {
             val repository = ContentRepository(compose.activity)
             repository.course(repository.catalog().first { it.id == "computer-literacy" })
         }
         val practice = course.lessons.first { it.kind == "quiz" && it.title.contains("Types of Computers", true) }
-        var mode by mutableStateOf("Light")
         var continued = false
         compose.runOnUiThread { compose.activity.actionBar?.hide(); compose.activity.enableEdgeToEdge() }
-        compose.setContent { TihTheme(mode) {
+        compose.setContent { TihTheme {
             Scaffold { padding -> QuizScreen(practice, {}, Modifier.fillMaxSize().padding(padding), onContinue = { continued = true }) }
         } }
         compose.onNodeWithText("Question 1 of ${practice.questions.size}").assertIsDisplayed()
         capture("08-quiz-light.png")
-        compose.runOnIdle { mode = "Dark" }
-        capture("09-quiz-dark.png")
         practice.questions.forEachIndexed { index, question ->
             compose.onNodeWithText(question.options[question.answer]).performScrollTo().performClick()
             compose.onNodeWithText(if (index < practice.questions.lastIndex) "Next question" else "Review answers").performClick()
@@ -116,7 +113,7 @@ class QuizUiTest {
         students.forEach(store::clear)
         var visible by mutableStateOf(true)
         var student by mutableStateOf(students[0])
-        compose.setContent { TihTheme("Light") {
+        compose.setContent { TihTheme {
             if (visible) key(student) {
                 QuizScreen(lesson, {}, Modifier.fillMaxSize(),
                     initialDraft = StudyStore(compose.activity).quizDraft(student, "computer-literacy", lesson),

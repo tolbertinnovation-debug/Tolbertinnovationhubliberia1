@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val model: LearningViewModel = viewModel()
-            TihTheme(model.theme) {
+            TihTheme {
                 val light = MaterialTheme.colorScheme.background.luminance() > 0.5f
                 SideEffect {
                     WindowCompat.getInsetsController(window, window.decorView).apply {

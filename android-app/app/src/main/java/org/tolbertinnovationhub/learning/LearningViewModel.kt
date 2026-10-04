@@ -15,12 +15,13 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import org.tolbertinnovationhub.learning.data.*
 
-class LearningViewModel(app: Application) : AndroidViewModel(app) {
+class LearningViewModel(app: Application, private val accountApi: AccountApi?) : AndroidViewModel(app) {
+    constructor(app: Application) : this(app, null)
     private val content = ContentRepository(app)
     private val vault = SessionVault(app)
     val study = StudyStore(app)
     private val prefs = app.getSharedPreferences("preferences", 0)
-    private lateinit var api: HubApi
+    private lateinit var api: AccountApi
     @Volatile private var sessionGeneration = 0
     var catalog by mutableStateOf<List<CourseSummary>>(emptyList()); private set
     var organization by mutableStateOf<Organization?>(null); private set
@@ -31,7 +32,6 @@ class LearningViewModel(app: Application) : AndroidViewModel(app) {
     var busy by mutableStateOf(false); private set
     var notice by mutableStateOf<String?>(null); private set
     var localRevision by mutableIntStateOf(0); private set
-    var theme by mutableStateOf(prefs.getString("theme", "System") ?: "System"); private set
     var fontSize by mutableFloatStateOf(prefs.getFloat("fontSize", 18f)); private set
 
     init { load() }
@@ -43,7 +43,7 @@ class LearningViewModel(app: Application) : AndroidViewModel(app) {
             val config = withContext(Dispatchers.IO) {
                 getApplication<Application>().assets.open("learning/config.json").bufferedReader().use { JSONObject(it.readText()) }
             }
-            api = HubApi(config.getString("url"), config.getString("anonKey"))
+            api = accountApi ?: HubApi(config.getString("url"), config.getString("anonKey"))
             session = withContext(Dispatchers.IO) { vault.load()?.let(HubSession::parse) }
         } catch (e: Exception) { if (e is CancellationException) throw e; notice = "Unable to load the learning library. Please retry." }
         loading = false
@@ -60,7 +60,7 @@ class LearningViewModel(app: Application) : AndroidViewModel(app) {
             if (generation != sessionGeneration) return@launch
             withContext(Dispatchers.IO) { vault.save(verified.json()) }
             if (generation != sessionGeneration) { vault.clear(); return@launch }
-            session = verified
+            course = null; lesson = null; session = verified
             notice = "Welcome, ${verified.name.substringBefore(' ')}. Your approved courses are ready."
         } catch (e: Exception) {
             if (e is CancellationException) throw e
@@ -97,7 +97,7 @@ class LearningViewModel(app: Application) : AndroidViewModel(app) {
             }
         } finally { busy = false }
     }
-    fun signOut() { sessionGeneration++; session = null; lesson = null; course = null; vault.clear(); localRevision++ }
+    fun signOut() { sessionGeneration++; notice = null; session = null; lesson = null; course = null; vault.clear(); localRevision++ }
     fun checkLocalAccess() {
         val c = course ?: return
         if (lesson != null && !canStudy(c.summary.id)) { lesson = null; notice = "Reconnect and refresh your course access to continue studying." }
@@ -137,7 +137,6 @@ class LearningViewModel(app: Application) : AndroidViewModel(app) {
         study.toggleBookmark(user.studentId, c.summary.id, l.id); localRevision++
     }
     fun saveNote(text: String) { val l = lesson ?: return; session?.let { study.saveNote(it.studentId, l.id, text) } }
-    fun changeTheme(value: String) { theme = value; prefs.edit().putString("theme", value).apply() }
     fun changeFontSize(value: Float) { fontSize = value; prefs.edit().putFloat("fontSize", value).apply() }
     fun clearStudy() { session?.let { study.clear(it.studentId) }; localRevision++ }
 }

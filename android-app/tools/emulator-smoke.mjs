@@ -75,8 +75,8 @@ try {
   call(['shell','uiautomator','dump','/sdcard/tih-release.xml'],30000);
   const releaseUi=call(['shell','cat','/sdcard/tih-release.xml']);
   fs.writeFileSync(path.join(report,'release-ui.xml'),releaseUi);
-  if(!releaseUi.includes('Find your course'))throw new Error('Minified release catalog did not load.');
-  console.log('Minified release launched and loaded the bundled course catalog.');
+  if(!releaseUi.includes('Sign in securely') || !releaseUi.includes('Create account'))throw new Error('Minified release welcome screen did not load.');
+  console.log('Minified release launched with sign-in and account creation.');
 } finally {
   try {fs.writeFileSync(path.join(report,'logcat.txt'),call(['logcat','-d','-v','threadtime'],15000));}catch{}
   try {call(['emu','kill'],5000);}catch{}

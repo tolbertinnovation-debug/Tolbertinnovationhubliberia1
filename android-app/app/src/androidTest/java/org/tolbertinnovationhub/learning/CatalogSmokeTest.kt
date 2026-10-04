@@ -5,52 +5,83 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.graphics.asAndroidBitmap
 import android.graphics.Bitmap
 import java.io.File
-import androidx.core.view.WindowCompat
-import androidx.lifecycle.ViewModelProvider
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import androidx.activity.ComponentActivity
+import androidx.activity.enableEdgeToEdge
+import org.junit.Before
+import org.junit.After
+import org.tolbertinnovationhub.learning.data.AccountApi
+import org.tolbertinnovationhub.learning.data.HubSession
+import org.tolbertinnovationhub.learning.data.HubAccessException
+import org.tolbertinnovationhub.learning.data.SessionVault
+import org.tolbertinnovationhub.learning.ui.LearningApp
+import org.tolbertinnovationhub.learning.ui.TihTheme
 import org.junit.Rule
 import org.junit.Test
 
 class CatalogSmokeTest {
-    @get:Rule val compose = createAndroidComposeRule<MainActivity>()
-    @Test fun appearanceSwitchUpdatesHomeCatalogAndSystemBars() {
-        compose.waitUntil(30000) { compose.onAllNodesWithText("Find your course").fetchSemanticsNodes().isNotEmpty() }
-        val model = ViewModelProvider(compose.activity)[LearningViewModel::class.java]
-        val originalTheme = model.theme
-        try {
-            compose.onNodeWithText("You").performClick()
-            compose.onAllNodes(hasScrollAction())[0].performScrollToNode(hasText("Dark", substring = false))
-            compose.onNodeWithText("Dark").performClick()
-            compose.onNodeWithText("Dark").assertIsSelected()
-            compose.runOnIdle {
-                val bars = WindowCompat.getInsetsController(compose.activity.window, compose.activity.window.decorView)
-                assertFalse(bars.isAppearanceLightStatusBars)
-                assertFalse(bars.isAppearanceLightNavigationBars)
+    @get:Rule val compose = createAndroidComposeRule<ComponentActivity>()
+    private lateinit var model: LearningViewModel
+    @Before fun setUp() {
+        SessionVault(compose.activity).clear()
+        model = LearningViewModel(compose.activity.application, object : AccountApi {
+            override suspend fun signIn(email: String, password: String): HubSession {
+                if (email != "learner@example.invalid" || password != "test-only-password") throw HubAccessException("Check your email and password.")
+                return HubSession("test-only", "test-only", "android-ui-learner", "Test Learner", emptySet(), System.currentTimeMillis())
             }
-            compose.onNodeWithText("Today").performClick()
-            snapshot("15-home-brand-dark")
-            compose.onNodeWithText("Find your course").performClick()
-            compose.onNodeWithText("Search courses, skills, or subjects").performTextInput("computer literacy")
-            snapshot("16-catalog-brand-dark")
-            compose.onNodeWithText("You").performClick()
-            compose.onAllNodes(hasScrollAction())[0].performScrollToNode(hasText("Light", substring = false))
-            compose.onNodeWithText("Light").performClick()
-            compose.onNodeWithText("Light").assertIsSelected()
-            compose.runOnIdle {
-                val bars = WindowCompat.getInsetsController(compose.activity.window, compose.activity.window.decorView)
-                assertTrue(bars.isAppearanceLightStatusBars)
-                assertTrue(bars.isAppearanceLightNavigationBars)
-            }
-            compose.onNodeWithText("Today").performClick()
-            snapshot("17-home-brand-light")
-        } finally { compose.runOnIdle { model.changeTheme(originalTheme) } }
+            override suspend fun refresh(old: HubSession, onRotatedTokens: (HubSession) -> Unit) = old
+        })
+        compose.runOnUiThread { compose.activity.actionBar?.hide(); compose.activity.enableEdgeToEdge() }
+        compose.setContent { TihTheme { LearningApp(model) } }
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Sign in securely").fetchSemanticsNodes().isNotEmpty() }
+    }
+    @After fun cleanUp() { compose.runOnIdle { model.signOut() } }
+    private fun signIn() {
+        compose.onNodeWithText("Email address").performTextReplacement("learner@example.invalid")
+        compose.onNodeWithText("Password").performTextReplacement("test-only-password")
+        compose.onNodeWithText("Sign in securely").performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Find your next skill").fetchSemanticsNodes().isNotEmpty() }
+    }
+    @Test fun signInGateFailureSuccessAndSignOut() {
+        compose.onNodeWithText("Create account").assertIsDisplayed().assertIsEnabled()
+        compose.onNodeWithText("Courses").assertDoesNotExist()
+        snapshot("01-welcome")
+        compose.onNodeWithText("Email address").performTextInput("wrong@example.invalid")
+        compose.onNodeWithText("Password").performTextInput("wrong-password")
+        compose.onNodeWithText("Sign in securely").performClick()
+        compose.onNodeWithText("Check your email and password.").assertExists()
+        compose.onNodeWithText("Courses").assertDoesNotExist()
+        signIn()
+        compose.onNodeWithText("Courses").assertIsSelected()
+        snapshot("02-courses-first")
+        compose.onNodeWithText("You").performClick()
+        compose.onNodeWithText("Sign out").performScrollTo().performClick()
+        compose.onNodeWithText("Sign in securely").assertExists()
+        compose.onNodeWithText("Courses").assertDoesNotExist()
+        compose.onNode(hasText("Password") and hasSetTextAction()).assert(SemanticsMatcher.expectValue(
+            androidx.compose.ui.semantics.SemanticsProperties.EditableText, androidx.compose.ui.text.AnnotatedString("")))
+    }
+    @Test fun catalogScrollsBothWaysAndRestoresPositionAfterCourse() {
+        signIn()
+        val list = compose.onNodeWithTag("course-list")
+        val title = model.catalog[8].title
+        list.performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithText(title).assertIsDisplayed()
+        snapshot("15-courses-scrolled")
+        list.performTouchInput { swipeUp() }
+        list.performTouchInput { swipeDown() }
+        compose.onNodeWithContentDescription("Back to top").performClick()
+        compose.onNodeWithText("Find your next skill").assertIsDisplayed()
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextInput("nothingmatchesxyz")
+        compose.onNodeWithText("No matches yet").assertExists()
+        compose.onNodeWithText("Clear filters").performScrollTo().performClick()
+        compose.onNodeWithText("${model.catalog.size} courses").assertExists()
     }
 
     @Test fun browseSearchAndLockedCourseStayNative() {
-        compose.waitUntil(30000) { compose.onAllNodesWithText("Find your course").fetchSemanticsNodes().isNotEmpty() }
-        snapshot("01-home")
-        compose.onNodeWithText("Find your course").performClick()
+        signIn()
         compose.onNodeWithText("Search courses, skills, or subjects").performTextInput("computer literacy")
         compose.onNodeWithText("1 course").assertExists()
         snapshot("02-catalog")
@@ -58,16 +89,16 @@ class CatalogSmokeTest {
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText("Course overview", useUnmergedTree = true).assertIsDisplayed()
         snapshot("03-course")
-        compose.onNodeWithText("Sign in to start learning").performScrollTo().assertExists()
+        compose.onNodeWithText("Course access required").performScrollTo().assertExists()
         compose.onNodeWithContentDescription("Back").performClick()
         compose.onNodeWithText("You").performClick()
-        compose.onNodeWithText("Sign in securely").assertExists()
+        compose.onNodeWithText("Sign out").assertExists()
+        compose.onNodeWithText("Dark").assertDoesNotExist()
         snapshot("04-account")
     }
     /** The written course information imported from the Learning Hub course page. */
     @Test fun courseScreenShowsWrittenCourseInformation() {
-        compose.waitUntil(30000) { compose.onAllNodesWithText("Find your course").fetchSemanticsNodes().isNotEmpty() }
-        compose.onNodeWithText("Find your course").performClick()
+        signIn()
         compose.onNodeWithText("Search courses, skills, or subjects").performTextInput("computer literacy")
         compose.onNodeWithText("Complete Computer Literacy Professional Certificate").performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }

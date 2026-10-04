@@ -20,6 +20,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -30,6 +32,7 @@ import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,12 +45,12 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -55,19 +58,22 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
 import org.tolbertinnovationhub.learning.LearningViewModel
 import org.tolbertinnovationhub.learning.R
 import org.tolbertinnovationhub.learning.BuildConfig
 import org.tolbertinnovationhub.learning.data.*
 
 private data class Destination(val title: String, val icon: ImageVector)
-private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Destination("Explore", Icons.Outlined.Search),
+private val destinations = listOf(Destination("Courses", Icons.AutoMirrored.Outlined.MenuBook), Destination("Today", Icons.Outlined.Home),
     Destination("Saved", Icons.Outlined.Bookmarks), Destination("You", Icons.Outlined.PersonOutline))
 
 @Composable fun LearningApp(vm: LearningViewModel) {
     LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { vm.checkLocalAccess() }
     var tab by rememberSaveable { mutableIntStateOf(0) }
     var information by rememberSaveable { mutableStateOf<String?>(null) }
+    val catalogState = rememberSaveableStateHolder()
+    LaunchedEffect(vm.session?.studentId) { tab = 0; information = null }
     val showInformation: (InformationPage) -> Unit = { information = it.name }
     val context = LocalContext.current
     val openLink: (String) -> Unit = { url ->
@@ -94,7 +100,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                     Column { Text("TIH Learning", style = MaterialTheme.typography.titleMedium)
                         Text("YOUR FUTURE STARTS HERE", fontSize = 9.sp, letterSpacing = 1.2.sp, color = MaterialTheme.colorScheme.onSurfaceVariant) }
                 }
-            }, actions = { IconButton(onClick = { tab = 3 }) { Icon(Icons.Outlined.AccountCircle, "Your account") } })
+            }, actions = { if (vm.session != null) IconButton(onClick = { tab = 3 }) { Icon(Icons.Outlined.AccountCircle, "Your account") } })
             else TopAppBar(title = { Text(if (vm.lesson == null) "Course overview" else "Module ${vm.lesson!!.module}", style = MaterialTheme.typography.titleMedium) },
                 navigationIcon = { IconButton(onClick = vm::back) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, "Back") } },
                 actions = { if (vm.lesson != null) {
@@ -102,7 +108,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                     IconButton(onClick = vm::toggleBookmark) { Icon(if (saved) Icons.Outlined.BookmarkAdded else Icons.Outlined.BookmarkBorder, if (saved) "Remove bookmark" else "Save lesson") }
                 } })
         },
-        bottomBar = { if (vm.course == null && information == null) NavigationBar(containerColor = MaterialTheme.colorScheme.surface, tonalElevation = 0.dp) {
+        bottomBar = { if (vm.session != null && vm.course == null && information == null) NavigationBar(containerColor = MaterialTheme.colorScheme.surface, tonalElevation = 0.dp) {
             destinations.forEachIndexed { i, d -> NavigationBarItem(selected = tab == i, onClick = { tab = i },
                 colors = NavigationBarItemDefaults.colors(
                     indicatorColor = MaterialTheme.colorScheme.primaryContainer,
@@ -119,10 +125,11 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                     information != null && vm.organization != null -> InformationScreen(InformationPage.valueOf(information!!), vm.organization!!, vm.session?.studentId, showInformation)
                     vm.loading -> Loading()
                     vm.catalog.isEmpty() -> EmptyState("Library unavailable", "The learning content could not be loaded.", Icons.Outlined.CloudOff, "Try again", { vm.load() })
+                    vm.session == null -> WelcomeScreen(vm, showInformation, onSignUp = { openLink("https://tolbertinnovationhub.org/hub-apply") })
                     vm.course != null && vm.lesson != null && vm.canStudy(vm.course!!.summary.id) -> Reader(vm, openLink, onHelp = { showInformation(InformationPage.HELP) })
                     vm.course != null -> CourseScreen(vm, onHelp = { showInformation(InformationPage.HELP) }, onSignIn = { vm.back(); tab = 3 })
-                    tab == 0 -> Home(vm, onExplore = { tab = 1 }, onSignIn = { tab = 3 })
-                    tab == 1 -> Explore(vm)
+                    tab == 0 -> catalogState.SaveableStateProvider("catalog:${vm.session!!.studentId}") { Explore(vm) }
+                    tab == 1 -> Home(vm, onExplore = { tab = 0 }, onSignIn = { tab = 3 })
                     tab == 2 -> Saved(vm)
                     else -> Account(vm, showInformation)
                 }
@@ -216,25 +223,54 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
 @Composable private fun Explore(vm: LearningViewModel) {
     var query by rememberSaveable { mutableStateOf("") }
     var category by rememberSaveable { mutableStateOf("All") }
-    val categories = listOf("All", "WASSCE") + vm.catalog.filterNot { it.id.startsWith("wassce-") }.map { it.category }.distinct().sorted()
-    val matches = vm.catalog.filter {
+    val grid = rememberLazyGridState()
+    val scope = rememberCoroutineScope()
+    val keyboard = LocalSoftwareKeyboardController.current
+    val categories = remember(vm.catalog) { listOf("All", "WASSCE") + vm.catalog.filterNot { it.id.startsWith("wassce-") }.map { it.category }.distinct().sorted() }
+    val matches = remember(vm.catalog, query, category) { vm.catalog.filter {
         (category == "All" || (category == "WASSCE" && it.id.startsWith("wassce-")) || it.category == category) &&
             (it.title + " " + it.description + " " + it.category).contains(query.trim(), ignoreCase = true)
-    }
-    Column(Modifier.fillMaxSize()) {
-        Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            SectionTitle("Find your next skill", "Practical skills for your next step.")
-            OutlinedTextField(query, { query = it }, Modifier.fillMaxWidth(), singleLine = true,
-                placeholder = { Text("Search courses, skills, or subjects") }, leadingIcon = { Icon(Icons.Outlined.Search, null) }, shape = RoundedCornerShape(16.dp))
-        }
-        LazyRow(contentPadding = PaddingValues(horizontal = 20.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            items(categories) { item -> FilterChip(selected = item == category, onClick = { category = item }, label = { Text(item) }) }
-        }
-        Text("${matches.size} ${if (matches.size == 1) "course" else "courses"}", Modifier.padding(horizontal = 20.dp, vertical = 10.dp), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        if (matches.isEmpty()) EmptyState("No matches yet", "Try a different word or choose All categories.", Icons.Outlined.SearchOff, "Clear filters", { query = ""; category = "All" })
-        else LazyVerticalGrid(columns = GridCells.Adaptive(290.dp), contentPadding = PaddingValues(start = 20.dp, end = 20.dp, bottom = 20.dp),
+    } }
+    val showTop by remember { derivedStateOf { grid.firstVisibleItemIndex > 3 } }
+    fun resetScroll() { scope.launch { grid.scrollToItem(0) } }
+    Box(Modifier.fillMaxSize().imePadding()) {
+        // Header, search, filters and cards share one vertical scroll surface.
+        // SaveableStateProvider in LearningApp retains the position on return from a course.
+        LazyVerticalGrid(columns = GridCells.Adaptive(290.dp), state = grid,
+            modifier = Modifier.fillMaxSize().testTag("course-list"),
+            contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 88.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            items(matches, key = { it.id }) { c -> CourseCard(c) { vm.openCourse(c) } }
+            item(key = "header", span = { GridItemSpan(maxLineSpan) }) {
+                SectionTitle("Find your next skill", "Your courses, ready when you are.")
+            }
+            item(key = "search", span = { GridItemSpan(maxLineSpan) }) {
+                OutlinedTextField(query, { query = it; resetScroll() }, Modifier.fillMaxWidth(), singleLine = true,
+                    placeholder = { Text("Search courses, skills, or subjects") }, leadingIcon = { Icon(Icons.Outlined.Search, null) },
+                    trailingIcon = if (query.isNotEmpty()) { { IconButton(onClick = { query = ""; resetScroll() }) { Icon(Icons.Outlined.Close, "Clear search") } } } else null,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search), keyboardActions = KeyboardActions(onSearch = { keyboard?.hide() }),
+                    shape = RoundedCornerShape(16.dp))
+            }
+            item(key = "filters", span = { GridItemSpan(maxLineSpan) }) {
+                LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    items(categories) { item -> FilterChip(selected = item == category, onClick = { category = item; resetScroll(); keyboard?.hide() }, label = { Text(item) }) }
+                }
+            }
+            item(key = "count", span = { GridItemSpan(maxLineSpan) }) {
+                Text("${matches.size} ${if (matches.size == 1) "course" else "courses"}", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+            if (matches.isEmpty()) item(key = "empty", span = { GridItemSpan(maxLineSpan) }) {
+                Column(Modifier.fillMaxWidth().padding(vertical = 24.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Text("No matches yet", style = MaterialTheme.typography.titleLarge)
+                    Text("Try a different word or choose All categories.", style = MaterialTheme.typography.bodyMedium)
+                    OutlinedButton(onClick = { query = ""; category = "All"; resetScroll() }) { Text("Clear filters") }
+                }
+            }
+            items(matches, key = { "course:" + it.id }, contentType = { "course" }) { c -> CourseCard(c) { keyboard?.hide(); vm.openCourse(c) } }
+        }
+        if (showTop) SmallFloatingActionButton(onClick = { scope.launch { grid.animateScrollToItem(0) } },
+            modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
+            containerColor = MaterialTheme.colorScheme.primary, contentColor = MaterialTheme.colorScheme.onPrimary) {
+            Icon(Icons.Outlined.KeyboardArrowUp, "Back to top")
         }
     }
 }
@@ -491,31 +527,10 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
 }
 
 @Composable private fun Account(vm: LearningViewModel, showInformation: (InformationPage) -> Unit) {
-    var email by rememberSaveable { mutableStateOf("") }
-    // Password deliberately excluded from saved instance state and persistent storage.
-    var password by remember { mutableStateOf("") }
-    var showPassword by remember { mutableStateOf(false) }
     var confirmClear by remember { mutableStateOf(false) }
-    LaunchedEffect(vm.session) { if (vm.session != null) password = "" }
     LazyColumn(Modifier.fillMaxSize().testTag("account-list"), contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(22.dp)) {
         item { SectionTitle("Your learning, your way", "Welcome to TIH Learning Hub for Android.") }
-        if (vm.session == null) item {
-            Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), shape = RoundedCornerShape(20.dp)) {
-                Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-                    Text("Welcome back", style = MaterialTheme.typography.titleLarge)
-                    Text("Use your existing TIH Learning Hub email and password. Contact TIH support if an older account needs to be linked.", style = MaterialTheme.typography.bodyMedium)
-                    OutlinedTextField(email, { email = it }, Modifier.fillMaxWidth(), label = { Text("Email address") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), singleLine = true)
-                    OutlinedTextField(password, { password = it }, Modifier.fillMaxWidth(), label = { Text("Password") }, singleLine = true,
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password), visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
-                        trailingIcon = { IconButton(onClick = { showPassword = !showPassword }) { Icon(if (showPassword) Icons.Outlined.VisibilityOff else Icons.Outlined.Visibility, "Toggle password visibility") } })
-                    Button(onClick = { vm.signIn(email, password) }, enabled = !vm.busy, modifier = Modifier.fillMaxWidth()) {
-                        if (vm.busy) CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp) else Text("Sign in securely")
-                    }
-                    TextButton(onClick = { showInformation(InformationPage.HELP) }) { Text("Sign-in help") }
-                    TextButton(onClick = { showInformation(InformationPage.PRIVACY) }) { Text("How your account data is used") }
-                }
-            }
-        } else item {
+        item {
             InfoCard(vm.session!!.name, "${vm.session!!.studentId}\n${vm.session!!.grants.size} approved course grants. Access last verified ${java.text.DateFormat.getDateInstance().format(java.util.Date(vm.session!!.verifiedAt))}.", Icons.Outlined.VerifiedUser)
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 TextButton(onClick = { vm.refresh() }, enabled = !vm.busy) { Text(if (vm.busy) "Refreshing…" else "Refresh access") }
@@ -524,8 +539,6 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
         }
         item { Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             SectionTitle("Make yourself comfortable")
-            Text("Appearance", style = MaterialTheme.typography.titleSmall)
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { listOf("System", "Light", "Dark").forEach { mode -> FilterChip(vm.theme == mode, { vm.changeTheme(mode) }, label = { Text(mode) }) } }
             Text("Reading size: ${vm.fontSize.toInt()} px", style = MaterialTheme.typography.titleSmall)
             Slider(vm.fontSize, vm::changeFontSize, valueRange = 16f..24f, steps = 7)
             Text("Lesson pages use a light paper background to preserve the original teaching diagrams.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)

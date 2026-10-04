@@ -1,6 +1,5 @@
 package org.tolbertinnovationhub.learning.ui
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -11,8 +10,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.shape.RoundedCornerShape
 
-// Shared with tolbertinnovationhub.org/styles.css. Keep brand colors stable;
-// dark-mode foregrounds are lighter variants so labels remain readable.
+// Shared with tolbertinnovationhub.org/styles.css. The app always uses light mode,
+// independently of system appearance and preferences saved by older previews.
 val Navy = Color(0xFF002868)
 val BrandBlue = Color(0xFF1A4A9C)
 val Red = Color(0xFFE31E24)
@@ -28,21 +27,8 @@ private val Light = lightColorScheme(primary = Navy, onPrimary = Color.White, se
     surfaceContainerLowest = Color.White, surfaceContainerLow = Color(0xFFF8FAFD), surfaceContainer = Sky,
     surfaceContainerHigh = Color(0xFFE1ECF9), surfaceContainerHighest = Color(0xFFD7E5F6), surfaceTint = Navy,
     inverseSurface = Color(0xFF111C30), inverseOnSurface = Color(0xFFE8F1FF), inversePrimary = Color(0xFFAFCFFF), scrim = Color.Black)
-private val Dark = darkColorScheme(primary = Color(0xFFAFCFFF), onPrimary = Navy, secondary = Color(0xFFFFABB0), onSecondary = Color(0xFF640C16),
-    primaryContainer = Color(0xFF163666), onPrimaryContainer = Color(0xFFE8F1FF),
-    secondaryContainer = Color(0xFF521F2C), onSecondaryContainer = Color(0xFFFFDADD),
-    tertiary = Color(0xFF78D9C4), onTertiary = Color(0xFF00382D), tertiaryContainer = Color(0xFF164D43), onTertiaryContainer = Color(0xFFB3F1DF),
-    error = Color(0xFFFFB4AB), onError = Color(0xFF690005), errorContainer = Color(0xFF782921), onErrorContainer = Color(0xFFFFDAD6),
-    outline = Color(0xFF8099BC), outlineVariant = Color(0xFF2D4263), background = Color(0xFF080E1A), onBackground = Color(0xFFE8F1FF),
-    surface = Color(0xFF111C30), onSurface = Color(0xFFE8F1FF), surfaceVariant = Color(0xFF162035), onSurfaceVariant = Color(0xFFB4C8E4),
-    surfaceDim = Color(0xFF080E1A), surfaceBright = Color(0xFF263955),
-    surfaceContainerLowest = Color(0xFF040A12), surfaceContainerLow = Color(0xFF0D1525), surfaceContainer = Color(0xFF111C30),
-    surfaceContainerHigh = Color(0xFF162035), surfaceContainerHighest = Color(0xFF20304A), surfaceTint = Color(0xFFAFCFFF),
-    inverseSurface = Sky, inverseOnSurface = Navy, inversePrimary = Navy, scrim = Color.Black)
-
-@Composable fun TihTheme(mode: String, content: @Composable () -> Unit) {
-    val dark = mode == "Dark" || (mode == "System" && isSystemInDarkTheme())
-    MaterialTheme(colorScheme = if (dark) Dark else Light, shapes = Shapes(
+@Composable fun TihTheme(content: @Composable () -> Unit) {
+    MaterialTheme(colorScheme = Light, shapes = Shapes(
         small = RoundedCornerShape(12.dp), medium = RoundedCornerShape(18.dp), large = RoundedCornerShape(24.dp)
     ), typography = Typography(
         headlineLarge = TextStyle(fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold, fontSize = 32.sp, lineHeight = 38.sp),

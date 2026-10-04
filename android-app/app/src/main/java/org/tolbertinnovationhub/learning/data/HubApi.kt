@@ -31,15 +31,20 @@ data class HubSession(val accessToken: String, val refreshToken: String, val stu
 class HubAccessException(message: String) : Exception(message)
 class HubNetworkException(message: String) : IOException(message)
 
+interface AccountApi {
+    suspend fun signIn(email: String, password: String): HubSession
+    suspend fun refresh(old: HubSession, onRotatedTokens: (HubSession) -> Unit = {}): HubSession
+}
+
 /** Existing authenticated endpoints only. Never reads the student roster or writes payments/progress. */
 class HubApi(private val base: String, private val publishableKey: String,
     private val client: OkHttpClient = OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS)
-        .readTimeout(25, TimeUnit.SECONDS).callTimeout(45, TimeUnit.SECONDS).followRedirects(false).build()) {
-    suspend fun signIn(email: String, password: String): HubSession = withContext(Dispatchers.IO) {
+        .readTimeout(25, TimeUnit.SECONDS).callTimeout(45, TimeUnit.SECONDS).followRedirects(false).build()) : AccountApi {
+    override suspend fun signIn(email: String, password: String): HubSession = withContext(Dispatchers.IO) {
         val token = JSONObject(request("auth/v1/token?grant_type=password", JSONObject().put("email", email.trim()).put("password", password)))
         profile(token.getString("access_token"), token.getString("refresh_token"))
     }
-    suspend fun refresh(old: HubSession, onRotatedTokens: (HubSession) -> Unit = {}): HubSession = withContext(Dispatchers.IO) {
+    override suspend fun refresh(old: HubSession, onRotatedTokens: (HubSession) -> Unit): HubSession = withContext(Dispatchers.IO) {
         val token = JSONObject(request("auth/v1/token?grant_type=refresh_token", JSONObject().put("refresh_token", old.refreshToken)))
         // Persist newly rotated credentials even if the subsequent profile read loses its connection.
         // This does not extend the cached grant's verification time or grant any new access.
