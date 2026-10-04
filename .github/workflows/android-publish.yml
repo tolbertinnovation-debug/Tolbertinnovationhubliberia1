@@ -43,6 +43,11 @@ jobs:
         run: |
           test -s "$TIH_PREVIEW_KEYSTORE"
           keytool -list -keystore "$TIH_PREVIEW_KEYSTORE" -storepass android -alias androiddebugkey
+          preview_fingerprint=$(keytool -exportcert -keystore "$TIH_PREVIEW_KEYSTORE" -storepass android -alias androiddebugkey | sha256sum | cut -d ' ' -f1)
+          if [ "$preview_fingerprint" != "$(cat android-app/preview-signing.sha256)" ]; then
+            echo 'Preview signing certificate changed; restore the original key.'
+            exit 1
+          fi
       - uses: gradle/actions/setup-gradle@v4
 
       - name: Export and validate existing Learning Hub content

@@ -194,7 +194,8 @@ Drafts are discarded if the question text, options, answers, or explanations hav
 changed. Drafts never grant a score, completion, or official certificate.
 
 Validation and publishing now restore `tih-preview-signing-v2` without creating
-new keys. From 0.3.1, builds using this identity can update each other in place.
+new keys. Both workflows verify the public certificate digest pinned in
+`preview-signing.sha256`. From 0.3.1, builds using this identity can update each other in place.
 The workflows fail if the cache is unavailable. GitHub caches can expire or be
 evicted: this is a fail-safe preview measure, not durable signing-key storage.
 Before long-term distribution, provide a backed-up owner-controlled keystore
