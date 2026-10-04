@@ -21,15 +21,17 @@ import org.junit.Test
 class CatalogSmokeTest {
     @get:Rule val compose = createAndroidComposeRule<ComponentActivity>()
     private lateinit var model: LearningViewModel
+    private var approved = emptySet<String>()
     @Before fun setUp() {
         SessionVault(compose.activity).clear()
         model = LearningViewModel(compose.activity.application, object : AccountApi {
             override suspend fun signIn(email: String, password: String): HubSession {
                 if (email != "learner@example.invalid" || password != "test-only-password") throw HubAccessException("Check your email and password.")
-                return HubSession("test-only", "test-only", "android-ui-learner", "Test Learner", emptySet(), System.currentTimeMillis())
+                return HubSession("test-only", "test-only", "android-ui-learner", "Test Learner", approved, System.currentTimeMillis())
             }
             override suspend fun refresh(old: HubSession, onRotatedTokens: (HubSession) -> Unit) = old
         })
+        model.study.clear("android-ui-learner")
         compose.runOnUiThread { compose.activity.actionBar?.hide(); compose.activity.enableEdgeToEdge() }
         compose.setContent { TihTheme { LearningApp(model) } }
         compose.waitUntil(30000) { compose.onAllNodesWithText("Sign in securely").fetchSemanticsNodes().isNotEmpty() }
@@ -126,6 +128,44 @@ class CatalogSmokeTest {
         snapshot("05-course-information")
         compose.onNodeWithText("Is this course really free?").performClick()
         compose.onNodeWithText(answer).assertDoesNotExist()
+    }
+
+    @Test fun projectManagementOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("project-mgmt")
+        signIn()
+        val title = "Complete Project Management Professional Certificate"
+        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("20 modules · 314 entries · 158 video links"))
+        compose.onNodeWithText("20 modules · 314 entries · 158 video links").assertIsDisplayed()
+        snapshot("18-project-management-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.kind == "quiz" }
+        val final = course.lessons.first { it.isFinal }
+        for (assessment in listOf(practice, final)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else snapshot("19-project-management-practice")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.onNodeWithText(question.options[question.answer]).performScrollTo().performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("project-mgmt"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "project-mgmt", assessment))
+            }
+        }
+        snapshot("20-project-management-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
     }
 
     private fun snapshot(name: String) {

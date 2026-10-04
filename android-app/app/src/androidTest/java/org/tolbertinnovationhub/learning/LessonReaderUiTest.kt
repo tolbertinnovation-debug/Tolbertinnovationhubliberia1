@@ -30,11 +30,17 @@ import java.util.concurrent.atomic.AtomicBoolean
 class LessonReaderUiTest {
     @get:Rule val compose = createAndroidComposeRule<ComponentActivity>()
 
+    @Test fun existingTeachingDocumentRendersWithNetworkAndScriptsDisabled() =
+        checkDocument("computer-literacy", "05-lesson-reader")
+
+    @Test fun projectManagementNotesRenderOffline() =
+        checkDocument("project-mgmt", "21-project-management-reader")
+
     @OptIn(ExperimentalMaterial3Api::class)
-    @Test fun existingTeachingDocumentRendersWithNetworkAndScriptsDisabled() {
+    private fun checkDocument(courseId: String, captureName: String) {
         val course = runBlocking {
             val repository = ContentRepository(compose.activity)
-            repository.course(repository.catalog().first { it.id == "computer-literacy" })
+            repository.course(repository.catalog().first { it.id == courseId })
         }
         val lesson = course.lessons.first { it.html.isNotBlank() && it.kind != "quiz" }
         compose.runOnUiThread { compose.activity.actionBar?.hide() }
@@ -88,11 +94,11 @@ class LessonReaderUiTest {
             if (ink >= 100) break
             SystemClock.sleep(200)
         } while (SystemClock.uptimeMillis() < deadline)
-        File(directory, "05-lesson-reader.png").outputStream().use {
+        File(directory, "$captureName.png").outputStream().use {
             requireNotNull(screenshot).apply { setHasAlpha(false) }.compress(Bitmap.CompressFormat.PNG, 100, it)
         }
         screenshot?.recycle()
-        File(directory, "lesson-render-check.txt").writeText("Reading area: $bounds; visible ink samples: $ink\n")
+        File(directory, "$captureName-check.txt").writeText("Reading area: $bounds; visible ink samples: $ink\n")
         assertTrue("The lesson reading area must contain visible text, not a blank loading surface: $bounds / $ink", ink >= 100)
     }
 

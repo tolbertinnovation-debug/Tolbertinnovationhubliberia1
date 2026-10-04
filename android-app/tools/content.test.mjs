@@ -102,3 +102,31 @@ test('export is deterministic and keeps authored HTML intact', () => {
   assert.ok(a.modules[0].lessons[0].html.includes('Computer'));
   assert.equal(a.modules[0].lessons[0].noteSource, 'authored');
 });
+
+test('Project Management is complete, source-faithful and beside Computer Literacy', () => {
+  const catalog = JSON.parse(fs.readFileSync(path.join(learning, 'catalog.json')));
+  assert.deepEqual(catalog.slice(0, 2).map(c => c.id), ['computer-literacy', 'project-mgmt']);
+  const summary = catalog.find(c => c.id === 'project-mgmt');
+  const course = JSON.parse(fs.readFileSync(path.join(learning, 'courses/project-mgmt.json')));
+  const source = extractCourse('project-mgmt');
+  // Verify exact IDs, authored notes, projects, video overrides and answers, not
+  // just non-empty files. Existing repeated source questions are not rewritten.
+  assert.equal(JSON.stringify(course.modules), JSON.stringify(source.modules));
+  for (const key of ['about', 'requirements', 'faqs', 'instructor', 'outcomes', 'css']) {
+    assert.equal(JSON.stringify(course[key]), JSON.stringify(source[key]), key);
+  }
+  const lessons = course.modules.flatMap(m => m.lessons);
+  assert.equal(course.modules.length, 20);
+  assert.equal(lessons.length, 314);
+  assert.equal(lessons.filter(l => l.kind === 'lesson').length, 143);
+  assert.equal(lessons.filter(l => l.kind === 'project').length, 16);
+  assert.equal(lessons.filter(l => l.kind === 'quiz').length, 155);
+  assert.ok(lessons.filter(l => l.kind !== 'quiz').every(l => l.html.length > 100));
+  const videos = lessons.filter(l => l.videoId).map(l => l.videoId);
+  assert.equal(videos.length, 158);
+  assert.equal(new Set(videos).size, videos.length);
+  assert.equal(lessons.reduce((n, l) => n + l.questions.length, 0), 570);
+  assert.equal(lessons.find(l => l.final).questions.length, 15);
+  assert.equal(summary.image, 'images/project-mgmt.jpg');
+  assert.ok(fs.statSync(path.join(learning, summary.image)).size > 1000);
+});

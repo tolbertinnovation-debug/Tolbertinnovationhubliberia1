@@ -9,6 +9,11 @@ database, domain, payment configuration, or GitHub Pages workflow is modified.
 
 ## What is implemented
 
+- 0.3.4 places Project Management beside Computer Literacy in Courses and adds
+  dedicated checks for its imported content, offline reader, and native assessments.
+  See [Project Management review](release/PROJECT-MANAGEMENT.md) for coverage and
+  the existing source question-bank limitation.
+
 - 0.3.3 opens with native sign-in and a Create account link to TIH’s existing
   registration page. Signed-in learners open directly to Courses. The full catalog
   scrolls together, remembers its position after visiting a course, and offers

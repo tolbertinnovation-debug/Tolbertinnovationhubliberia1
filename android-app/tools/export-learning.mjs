@@ -155,6 +155,10 @@ export function exportAll() {
     catalog.push({...summary, lessonCount: lessons.length, moduleCount: modules.length,
       videoCount: lessons.filter(l => l.videoId).length, quizCount: lessons.filter(l => l.kind === 'quiz').length});
   }
+  // Keep the courses being reviewed one by one within easy reach after sign-in.
+  const priority = ['computer-literacy', 'project-mgmt'];
+  const rank = id => { const index = priority.indexOf(id); return index < 0 ? priority.length : index; };
+  catalog.sort((a, b) => rank(a.id) - rank(b.id));
   const cfg = createContext(); cfg.run('hub-config.js');
   const config = cfg.context.TIH_SUPABASE_CONFIG;
   if (!config?.url?.startsWith('https://') || !config?.anonKey?.startsWith('sb_publishable_')) throw new Error('Review public Supabase configuration before export');
