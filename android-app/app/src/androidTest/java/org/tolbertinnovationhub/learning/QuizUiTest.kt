@@ -141,7 +141,10 @@ class QuizUiTest {
             compose.onNodeWithText("Review answers").performClick()
             compose.onNodeWithText("Submit answers").performClick()
             compose.runOnIdle { assertNull(store.quizDraft(students[0], "computer-literacy", lesson)) }
-            compose.onNodeWithText("Practise again").performScrollTo().performClick()
+            compose.onNodeWithText("100%").assertExists()
+            // LazyColumn does not compose distant result items until they are scrolled into view.
+            compose.onNodeWithTag("quiz-content").performScrollToNode(hasText("Practise again"))
+            compose.onNodeWithText("Practise again").performClick()
             compose.onNodeWithText("Keyboard").performClick()
             compose.runOnIdle { store.clear(students[0]); visible = false }
             compose.waitForIdle()
