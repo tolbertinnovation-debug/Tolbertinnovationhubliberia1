@@ -8,6 +8,7 @@ import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.rememberScrollState
@@ -31,8 +32,12 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -97,9 +102,15 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                     IconButton(onClick = vm::toggleBookmark) { Icon(if (saved) Icons.Outlined.BookmarkAdded else Icons.Outlined.BookmarkBorder, if (saved) "Remove bookmark" else "Save lesson") }
                 } })
         },
-        bottomBar = { if (vm.course == null && information == null) NavigationBar {
+        bottomBar = { if (vm.course == null && information == null) NavigationBar(containerColor = MaterialTheme.colorScheme.surface, tonalElevation = 0.dp) {
             destinations.forEachIndexed { i, d -> NavigationBarItem(selected = tab == i, onClick = { tab = i },
-                icon = { Icon(d.icon, d.title) }, label = { Text(d.title) }) }
+                colors = NavigationBarItemDefaults.colors(
+                    indicatorColor = MaterialTheme.colorScheme.primaryContainer,
+                    selectedIconColor = MaterialTheme.colorScheme.primary,
+                    selectedTextColor = MaterialTheme.colorScheme.primary,
+                    unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant),
+                icon = { Icon(d.icon, d.title) }, label = { Text(d.title, fontWeight = if (tab == i) FontWeight.Bold else FontWeight.Normal) }) }
         } }, snackbarHost = { SnackbarHost(snackbar) }
     ) { padding ->
         Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.TopCenter) {
@@ -128,8 +139,17 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
 
 @Composable private fun SectionTitle(title: String, caption: String? = null) {
     Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
+        Box(Modifier.width(28.dp).height(3.dp).background(MaterialTheme.colorScheme.secondary, RoundedCornerShape(2.dp)))
         Text(title, style = MaterialTheme.typography.titleLarge)
         if (caption != null) Text(caption, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+}
+
+@Composable internal fun BrandLabel(text: String) {
+    Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.secondaryContainer,
+        contentColor = MaterialTheme.colorScheme.onSecondaryContainer) {
+        Text(text, Modifier.padding(horizontal = 10.dp, vertical = 5.dp), style = MaterialTheme.typography.labelSmall,
+            fontWeight = FontWeight.Bold, letterSpacing = 0.7.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
     }
 }
 
@@ -144,14 +164,22 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
                 Spacer(Modifier.height(8.dp)); Text(if (user == null) "Build skills.\nBuild your future." else "Keep growing,\n${user.name.substringBefore(' ')}.", style = MaterialTheme.typography.headlineLarge) }
         }
         item {
-            Box(Modifier.fillMaxWidth().background(Brush.linearGradient(listOf(Navy, Color(0xFF265A91))), RoundedCornerShape(24.dp)).padding(24.dp)) {
+            Box(Modifier.fillMaxWidth().clip(RoundedCornerShape(24.dp))
+                .background(Brush.linearGradient(listOf(Navy, BrandBlue)))
+                .drawBehind {
+                    val center = Offset(size.width * 1.08f, size.height * 0.18f)
+                    drawCircle(Color.White.copy(alpha = 0.07f), size.width * 0.48f, center)
+                    drawCircle(Color.White.copy(alpha = 0.12f), size.width * 0.64f, center, style = Stroke(1.dp.toPx()))
+                }.padding(24.dp)) {
                 Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(Icons.Outlined.AutoAwesome, null, tint = Color(0xFF9BD1FF)); Text("MADE FOR YOUR NEXT CHAPTER", color = Color(0xFFC4E1FF), fontSize = 10.sp, letterSpacing = 1.sp)
+                        Icon(Icons.Outlined.AutoAwesome, null, tint = Sky); Text("MADE FOR YOUR NEXT CHAPTER", color = Sky, fontSize = 10.sp, letterSpacing = 1.sp)
                     }
                     Text(if (resume != null) "Pick up where\nyou left off." else "One lesson closer\nto your ambitions.", color = Color.White, style = MaterialTheme.typography.headlineMedium)
                     Text(resume?.title ?: "Practical skills, exam preparation, and opportunities — from the TIH Learning Hub.", color = Color(0xFFD9E8F9), style = MaterialTheme.typography.bodyMedium, maxLines = 3, overflow = TextOverflow.Ellipsis)
-                    Button(onClick = { if (resume != null) vm.openCourse(resume, last?.second) else onExplore() }, colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Navy)) {
+                    Button(onClick = { if (resume != null) vm.openCourse(resume, last?.second) else onExplore() },
+                        modifier = Modifier.heightIn(min = 48.dp), shape = RoundedCornerShape(14.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = Red, contentColor = Color.White)) {
                         Text(if (resume != null) "Continue learning" else "Find your course"); Spacer(Modifier.width(8.dp)); Icon(Icons.AutoMirrored.Outlined.ArrowForward, null, Modifier.size(18.dp))
                     }
                 }
@@ -176,9 +204,10 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
 }
 
 @Composable private fun Metric(value: String, label: String, modifier: Modifier) {
-    Surface(modifier, shape = RoundedCornerShape(16.dp), color = MaterialTheme.colorScheme.surface) {
+    Surface(modifier, shape = RoundedCornerShape(16.dp), color = MaterialTheme.colorScheme.surface,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.65f))) {
         Column(Modifier.padding(vertical = 18.dp, horizontal = 10.dp)) {
-            Text(value, style = MaterialTheme.typography.headlineMedium)
+            Text(value, style = MaterialTheme.typography.headlineMedium, color = MaterialTheme.colorScheme.primary)
             Text(label, fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
@@ -219,22 +248,28 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
             }.getOrNull()
         }
     }
-    Box(modifier.background(Brush.linearGradient(listOf(Navy, Color(0xFF316698)))) , contentAlignment = Alignment.Center) {
+    Box(modifier.background(Brush.linearGradient(listOf(Navy, BrandBlue))), contentAlignment = Alignment.Center) {
         if (bitmap != null) Image(bitmap!!, null, Modifier.fillMaxSize(), contentScale = ContentScale.Crop)
         else Icon(Icons.AutoMirrored.Outlined.MenuBook, null, Modifier.size(52.dp), tint = Color(0xFFB5D8FF))
     }
 }
 
 @Composable private fun CourseCard(course: CourseSummary, onClick: () -> Unit) {
-    Card(onClick, Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
+    Card(onClick, Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.65f)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
         CourseCover(course, Modifier.fillMaxWidth().height(155.dp))
         Column(Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(9.dp)) {
-            Text(course.category.uppercase(), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.secondary, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            BrandLabel(course.category.uppercase())
             Text(course.title, style = MaterialTheme.typography.titleMedium, maxLines = 2, overflow = TextOverflow.Ellipsis)
             Text(course.description, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2, overflow = TextOverflow.Ellipsis)
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("${course.moduleCount} modules · ${course.lessonCount} entries", style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(1f))
-                Icon(Icons.AutoMirrored.Outlined.ArrowForward, "View course", Modifier.size(19.dp))
+            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.65f))
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text("${course.moduleCount} modules · ${course.lessonCount} entries", style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.weight(1f))
+                Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.primaryContainer) {
+                    Icon(Icons.AutoMirrored.Outlined.ArrowForward, "View course", Modifier.padding(10.dp).size(19.dp), tint = MaterialTheme.colorScheme.primary)
+                }
             }
         }
     }
@@ -262,7 +297,7 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
             Card(shape = RoundedCornerShape(24.dp)) { CourseCover(c, Modifier.fillMaxWidth().height(200.dp)) }
         }
         item { Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Text(c.category.uppercase(), color = MaterialTheme.colorScheme.secondary, style = MaterialTheme.typography.labelLarge)
+            BrandLabel(c.category.uppercase())
             Text(c.title, style = MaterialTheme.typography.headlineMedium)
             Text(c.description, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Text("${c.moduleCount} modules · ${c.lessonCount} entries · ${c.videoCount} video links", style = MaterialTheme.typography.labelLarge)
@@ -513,10 +548,14 @@ private val destinations = listOf(Destination("Today", Icons.Outlined.Home), Des
 }
 
 @Composable private fun InfoCard(title: String, text: String, icon: ImageVector, action: String? = null, onAction: (() -> Unit)? = null) {
-    Surface(shape = RoundedCornerShape(18.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
+    Surface(shape = RoundedCornerShape(18.dp), color = MaterialTheme.colorScheme.primaryContainer, modifier = Modifier.fillMaxWidth()) {
         Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Icon(icon, null, tint = MaterialTheme.colorScheme.primary)
-            Text(title, style = MaterialTheme.typography.titleMedium)
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.surface) {
+                    Icon(icon, null, Modifier.padding(10.dp).size(22.dp), tint = MaterialTheme.colorScheme.primary)
+                }
+                Text(title, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onPrimaryContainer, modifier = Modifier.weight(1f))
+            }
             Text(text, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
             if (action != null && onAction != null) TextButton(onClick = onAction, contentPadding = PaddingValues(0.dp)) { Text(action); Spacer(Modifier.width(6.dp)); Icon(Icons.AutoMirrored.Outlined.ArrowForward, null, Modifier.size(18.dp)) }
         }

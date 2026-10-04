@@ -11,22 +11,34 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.shape.RoundedCornerShape
 
-val Navy = Color(0xFF142A50)
-val Red = Color(0xFFC62235)
-val Sky = Color(0xFFDDECFA)
-private val Light = lightColorScheme(primary = Navy, onPrimary = Color.White, secondary = Red,
-    primaryContainer = Sky, onPrimaryContainer = Navy, secondaryContainer = Sky, onSecondaryContainer = Navy,
+// Shared with tolbertinnovationhub.org/styles.css. Keep brand colors stable;
+// dark-mode foregrounds are lighter variants so labels remain readable.
+val Navy = Color(0xFF002868)
+val BrandBlue = Color(0xFF1A4A9C)
+val Red = Color(0xFFE31E24)
+val Sky = Color(0xFFEAF4FF)
+private val Light = lightColorScheme(primary = Navy, onPrimary = Color.White, secondary = Red, onSecondary = Color.White,
+    primaryContainer = Sky, onPrimaryContainer = Navy,
+    secondaryContainer = Color(0xFFFEE2E2), onSecondaryContainer = Color(0xFF991B1B),
     tertiary = Color(0xFF087362), onTertiary = Color.White, tertiaryContainer = Color(0xFFD7F4EA), onTertiaryContainer = Color(0xFF063C32),
-    outline = Color(0xFF748398), outlineVariant = Color(0xFFD8E1ED), background = Color(0xFFF7F8FC), surface = Color.White,
-    onBackground = Color(0xFF15253D), surfaceContainer = Color(0xFFEAF0F7),
-    surfaceVariant = Color(0xFFEAF0F7), onSurface = Color(0xFF15253D), onSurfaceVariant = Color(0xFF516176))
-private val Dark = darkColorScheme(primary = Color(0xFFAFCCFF), onPrimary = Color(0xFF102C51), secondary = Color(0xFFFFADB7),
-    primaryContainer = Color(0xFF243E63), onPrimaryContainer = Color(0xFFE3EEFF),
-    secondaryContainer = Color(0xFF2A3E59), onSecondaryContainer = Color(0xFFE3EEFF),
+    error = Color(0xFFB3261E), onError = Color.White, errorContainer = Color(0xFFFCE4E1), onErrorContainer = Color(0xFF601410),
+    outline = Color(0xFF6B7A90), outlineVariant = Color(0xFFCDD5E2), background = Color(0xFFF4F7FC), onBackground = Color(0xFF0D1520),
+    surface = Color.White, onSurface = Color(0xFF0D1520), surfaceVariant = Sky, onSurfaceVariant = Color(0xFF4B5563),
+    surfaceDim = Color(0xFFDCE4EF), surfaceBright = Color.White,
+    surfaceContainerLowest = Color.White, surfaceContainerLow = Color(0xFFF8FAFD), surfaceContainer = Sky,
+    surfaceContainerHigh = Color(0xFFE1ECF9), surfaceContainerHighest = Color(0xFFD7E5F6), surfaceTint = Navy,
+    inverseSurface = Color(0xFF111C30), inverseOnSurface = Color(0xFFE8F1FF), inversePrimary = Color(0xFFAFCFFF), scrim = Color.Black)
+private val Dark = darkColorScheme(primary = Color(0xFFAFCFFF), onPrimary = Navy, secondary = Color(0xFFFFABB0), onSecondary = Color(0xFF640C16),
+    primaryContainer = Color(0xFF163666), onPrimaryContainer = Color(0xFFE8F1FF),
+    secondaryContainer = Color(0xFF521F2C), onSecondaryContainer = Color(0xFFFFDADD),
     tertiary = Color(0xFF78D9C4), onTertiary = Color(0xFF00382D), tertiaryContainer = Color(0xFF164D43), onTertiaryContainer = Color(0xFFB3F1DF),
-    outline = Color(0xFF8394AC), outlineVariant = Color(0xFF354860), background = Color(0xFF101B2B), surface = Color(0xFF18263B),
-    onBackground = Color(0xFFE5EDFA), surfaceContainer = Color(0xFF18263B),
-    surfaceVariant = Color(0xFF25374F), onSurface = Color(0xFFE5EDFA), onSurfaceVariant = Color(0xFFBDCCE1))
+    error = Color(0xFFFFB4AB), onError = Color(0xFF690005), errorContainer = Color(0xFF782921), onErrorContainer = Color(0xFFFFDAD6),
+    outline = Color(0xFF8099BC), outlineVariant = Color(0xFF2D4263), background = Color(0xFF080E1A), onBackground = Color(0xFFE8F1FF),
+    surface = Color(0xFF111C30), onSurface = Color(0xFFE8F1FF), surfaceVariant = Color(0xFF162035), onSurfaceVariant = Color(0xFFB4C8E4),
+    surfaceDim = Color(0xFF080E1A), surfaceBright = Color(0xFF263955),
+    surfaceContainerLowest = Color(0xFF040A12), surfaceContainerLow = Color(0xFF0D1525), surfaceContainer = Color(0xFF111C30),
+    surfaceContainerHigh = Color(0xFF162035), surfaceContainerHighest = Color(0xFF20304A), surfaceTint = Color(0xFFAFCFFF),
+    inverseSurface = Sky, inverseOnSurface = Navy, inversePrimary = Navy, scrim = Color.Black)
 
 @Composable fun TihTheme(mode: String, content: @Composable () -> Unit) {
     val dark = mode == "Dark" || (mode == "System" && isSystemInDarkTheme())

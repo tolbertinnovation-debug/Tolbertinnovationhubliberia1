@@ -9,6 +9,10 @@ database, domain, payment configuration, or GitHub Pages workflow is modified.
 
 ## What is implemented
 
+- 0.3.2 applies the website's navy (`#002868`), red (`#E31E24`), and ice blue
+  (`#EAF4FF`) across the native app. Light and dark palettes cover every Material
+  surface, with branded course labels, clearer answer selection, a red home action,
+  and system bar icons that follow the app's selected appearance.
 - Native home/dashboard, searchable course catalog, category filters, course roadmap,
   account screen, bookmarks, personal notes, and multiple-choice assessments.
 - Existing TIH logo and existing course artwork; light/dark/system themes and adjustable

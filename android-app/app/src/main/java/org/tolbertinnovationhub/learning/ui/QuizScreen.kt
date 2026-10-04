@@ -70,7 +70,7 @@ import org.tolbertinnovationhub.learning.data.QuizDraftCodec
                 contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 item {
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Text(kind, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.secondary)
+                        BrandLabel(kind)
                         Text(lesson.title, style = MaterialTheme.typography.titleLarge, modifier = Modifier.semantics { heading() })
                         Text(if (stage == "result") "Your learning snapshot" else "${questions.size} questions · 70% to pass · No timer",
                             style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -88,7 +88,8 @@ import org.tolbertinnovationhub.learning.data.QuizDraftCodec
                         }
                     }
                     item {
-                        Surface(shape = RoundedCornerShape(22.dp), color = MaterialTheme.colorScheme.surface) {
+                        Surface(shape = RoundedCornerShape(22.dp), color = MaterialTheme.colorScheme.surface,
+                            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.65f))) {
                             Column(Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
                                 Text(questions[current].question, style = MaterialTheme.typography.titleMedium)
                                 Column(Modifier.selectableGroup(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -203,7 +204,13 @@ import org.tolbertinnovationhub.learning.data.QuizDraftCodec
         border = BorderStroke(if (selected) 2.dp else 1.dp, if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant)) {
         Row(Modifier.fillMaxWidth().heightIn(min = 58.dp).selectable(selected, role = Role.RadioButton, onClick = onSelect)
             .padding(horizontal = 14.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            Text(('A'.code + index).toChar().toString(), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+            Surface(shape = RoundedCornerShape(8.dp),
+                color = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.primaryContainer,
+                contentColor = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onPrimaryContainer) {
+                Box(Modifier.size(30.dp), contentAlignment = Alignment.Center) {
+                    Text(('A'.code + index).toChar().toString(), style = MaterialTheme.typography.labelLarge)
+                }
+            }
             Text(text, Modifier.weight(1f), style = MaterialTheme.typography.bodyLarge)
             Icon(if (selected) Icons.Outlined.CheckCircle else Icons.Outlined.RadioButtonUnchecked, null,
                 Modifier.size(22.dp), tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant)

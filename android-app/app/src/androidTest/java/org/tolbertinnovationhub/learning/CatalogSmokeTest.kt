@@ -5,11 +5,48 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.graphics.asAndroidBitmap
 import android.graphics.Bitmap
 import java.io.File
+import androidx.core.view.WindowCompat
+import androidx.lifecycle.ViewModelProvider
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 
 class CatalogSmokeTest {
     @get:Rule val compose = createAndroidComposeRule<MainActivity>()
+    @Test fun appearanceSwitchUpdatesHomeCatalogAndSystemBars() {
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Find your course").fetchSemanticsNodes().isNotEmpty() }
+        val model = ViewModelProvider(compose.activity)[LearningViewModel::class.java]
+        val originalTheme = model.theme
+        try {
+            compose.onNodeWithText("You").performClick()
+            compose.onAllNodes(hasScrollAction())[0].performScrollToNode(hasText("Dark", substring = false))
+            compose.onNodeWithText("Dark").performClick()
+            compose.onNodeWithText("Dark").assertIsSelected()
+            compose.runOnIdle {
+                val bars = WindowCompat.getInsetsController(compose.activity.window, compose.activity.window.decorView)
+                assertFalse(bars.isAppearanceLightStatusBars)
+                assertFalse(bars.isAppearanceLightNavigationBars)
+            }
+            compose.onNodeWithText("Today").performClick()
+            snapshot("15-home-brand-dark")
+            compose.onNodeWithText("Find your course").performClick()
+            compose.onNodeWithText("Search courses, skills, or subjects").performTextInput("computer literacy")
+            snapshot("16-catalog-brand-dark")
+            compose.onNodeWithText("You").performClick()
+            compose.onAllNodes(hasScrollAction())[0].performScrollToNode(hasText("Light", substring = false))
+            compose.onNodeWithText("Light").performClick()
+            compose.onNodeWithText("Light").assertIsSelected()
+            compose.runOnIdle {
+                val bars = WindowCompat.getInsetsController(compose.activity.window, compose.activity.window.decorView)
+                assertTrue(bars.isAppearanceLightStatusBars)
+                assertTrue(bars.isAppearanceLightNavigationBars)
+            }
+            compose.onNodeWithText("Today").performClick()
+            snapshot("17-home-brand-light")
+        } finally { compose.runOnIdle { model.changeTheme(originalTheme) } }
+    }
+
     @Test fun browseSearchAndLockedCourseStayNative() {
         compose.waitUntil(30000) { compose.onAllNodesWithText("Find your course").fetchSemanticsNodes().isNotEmpty() }
         snapshot("01-home")

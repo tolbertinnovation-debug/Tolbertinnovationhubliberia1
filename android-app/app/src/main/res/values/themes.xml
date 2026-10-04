@@ -2,11 +2,11 @@
     <style name="Theme.TIHLearning" parent="android:style/Theme.Material.Light.NoActionBar">
         <item name="android:fontFamily">sans</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:colorAccent">#C62235</item>
+        <item name="android:colorAccent">#E31E24</item>
         <item name="android:windowActionModeOverlay">true</item>
     </style>
     <style name="Theme.TIHLearning.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#F7F8FC</item>
+        <item name="windowSplashScreenBackground">#F4F7FC</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/tih_logo</item>
         <item name="postSplashScreenTheme">@style/Theme.TIHLearning</item>
     </style>
