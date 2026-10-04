@@ -12,7 +12,9 @@ class InformationUiTest {
     @get:Rule val compose = createAndroidComposeRule<MainActivity>()
     @Test fun privacyDeletionAndOrganizationAreAvailableWithoutAnAccount() {
         compose.waitUntil(30000) { compose.onAllNodesWithText("Sign in securely").fetchSemanticsNodes().isNotEmpty() }
-        compose.onNodeWithText("How your account data is used").performScrollTo().performClick()
+        // LazyColumn does not compose this footer until it is scrolled into view.
+        compose.onNodeWithTag("welcome-list").performScrollToNode(hasText("How your account data is used"))
+        compose.onNodeWithText("How your account data is used").performClick()
         compose.onNodeWithText("TIH Learning privacy notice").assertExists()
         snapshot("06-privacy")
         compose.onNodeWithTag("information-list").performScrollToNode(hasText("Delete TIH account"))
