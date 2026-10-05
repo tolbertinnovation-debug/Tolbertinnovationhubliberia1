@@ -60,19 +60,6 @@
   // Small generic fallback pool, used only if an authored per-topic match is
   // ever missing (should not normally trigger; every content topic below has
   // an authored 3-question entry in accounting-bookkeeping-topic-quizzes.js).
-  var BANK_GENERAL = [
-    { q: 'Bookkeeping is best described as:', opts: ['Recording financial transactions accurately', 'Only preparing tax returns', 'Only managing bank loans', 'Designing company logos'], correct: 0, exp: 'Bookkeeping is the accurate recording of financial transactions.' },
-    { q: 'The accounting equation is:', opts: ['Assets = Liabilities + Equity', 'Assets = Liabilities - Equity', 'Assets + Liabilities = Equity', 'Assets = Revenue - Expenses'], correct: 0, exp: 'Assets always equal liabilities plus owner’s equity.' },
-    { q: 'A trial balance is used to:', opts: ['Check that total debits equal total credits', 'Calculate income tax owed', 'Record petty cash only', 'Replace the need for a ledger'], correct: 0, exp: 'A trial balance verifies the ledger is arithmetically balanced.' },
-    { q: 'A cashbook records:', opts: ['Cash and bank receipts and payments', 'Only unpaid invoices', 'Only fixed assets', 'Only payroll deductions'], correct: 0, exp: 'The cashbook tracks all cash and bank money in and out.' },
-    { q: 'Depreciation spreads the cost of a fixed asset:', opts: ['Over its useful life', 'Entirely in the year of purchase', 'Only when the asset is sold', 'Only for tax purposes, never in the accounts'], correct: 0, exp: 'Depreciation matches an asset’s cost to the periods it is used in.' },
-    { q: 'Internal controls exist mainly to:', opts: ['Protect assets and ensure accurate records', 'Increase a business’s tax bill', 'Slow down every transaction unnecessarily', 'Replace the need for any bookkeeping'], correct: 0, exp: 'Internal controls safeguard assets and support accurate, honest records.' }
-  ];
-  function pickQuestions(count) {
-    var out = [];
-    for (var i = 0; i < count; i++) out.push(BANK_GENERAL[i % BANK_GENERAL.length]);
-    return out;
-  }
   function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
 
   /* Authored per-topic questions (accounting-bookkeeping-topic-quizzes.js) drive
@@ -102,11 +89,12 @@
   function practiceQuiz(name, moduleNum, quizId) {
     if (quizId) practiceIndex[quizId] = { module: moduleNum, name: name };
     var authored = topicQuestions(moduleNum, name);
-    return { title: 'Practice: ' + name, moduleNum: 1, questions: authored || pickQuestions(3).map(cloneQ) };
+    if (!authored || authored.length !== 3) throw new Error('Missing ACB practice: ' + name);
+    return { title: 'Practice: ' + name, moduleNum: moduleNum, questions: authored };
   }
   function assessmentQuiz(name, count, moduleNum, quizId, scope) {
     if (quizId) assessIndex.push({ quizId: quizId, module: moduleNum, count: count, scope: scope || 'course' });
-    return { title: name, moduleNum: 1, questions: pickQuestions(count).map(cloneQ) };
+    return { title: name, moduleNum: 20, questions: [] };
   }
 
   var modules = [], quizzes = {}, notes = {};
@@ -225,50 +213,57 @@
      each time a quiz opens. */
   window.tihApplyAccountingBookkeepingTopicQuizzes = function () {
     TQ_plain = null; TQ_mod = null;
-    var applied = 0;
-    var byModule = {};
+    var bank = window.TIH_ACB_RESERVED_QUESTIONS;
+    if (!bank || bank.revision !== 1) throw new Error('ACB reserved question bank did not load');
+    var applied = 0, pool = [], issued = {};
     Object.keys(practiceIndex).forEach(function (quizId) {
-      var meta = practiceIndex[quizId];
-      var authored = topicQuestions(meta.module, meta.name);
-      if (!authored) return;
-      if (quizzes[quizId]) { quizzes[quizId].questions = authored; applied += 1; }
-      (byModule[meta.module] = byModule[meta.module] || []).push(authored);
+      var meta = practiceIndex[quizId], authored = topicQuestions(meta.module, meta.name);
+      var reserved = bank.topics['M' + meta.module + ':' + meta.name];
+      if (!authored || authored.length !== 3 || !reserved) throw new Error('Incomplete ACB topic: ' + meta.name);
+      quizzes[quizId].questions = authored;
+      quizzes[quizId].moduleNum = meta.module;
+      pool.push(reserved); applied += 1;
     });
-    /* Module and course assessments draw from the authored questions rather
-       than the generic fallback pool, taking one from each topic in turn so
-       an assessment samples across topics instead of exhausting one. */
-    function interleave(groups) {
-      var out = [], depth = 0, added = true;
-      while (added) {
-        added = false;
-        for (var i = 0; i < groups.length; i++) {
-          if (groups[i][depth]) { out.push(groups[i][depth]); added = true; }
-        }
-        depth += 1;
+    function take(count, modules) {
+      var groups = {}, nums = [], out = [];
+      pool.forEach(function (q) {
+        if (issued[q.id] || modules.indexOf(q.module) < 0) return;
+        if (!groups[q.module]) { groups[q.module] = []; nums.push(q.module); }
+        groups[q.module].push(q);
+      });
+      while (out.length < count) {
+        var moved = false;
+        nums.forEach(function (m) {
+          if (out.length < count && groups[m].length) {
+            var q = groups[m].shift(); issued[q.id] = true; out.push(cloneQ(q)); moved = true;
+          }
+        });
+        if (!moved) throw new Error('Not enough unseen ACB assessment questions');
       }
       return out;
     }
-    var moduleQs = {};
-    Object.keys(byModule).forEach(function (m) { moduleQs[m] = interleave(byModule[m]); });
-    var moduleNums = Object.keys(moduleQs).sort(function (a, b) { return a - b; });
-    var coursePool = interleave(moduleNums.map(function (m) { return moduleQs[m]; }));
-    var cursor = 0;
+    var all = [], firstHalf = [];
+    for (var m = 1; m <= 18; m++) { all.push(m); if (m <= 10) firstHalf.push(m); }
+    var papers = {
+      'Accounting Foundations Quiz': take(8, [1, 2]),
+      'Bookkeeping and Ledgers Quiz': take(8, [2, 3, 4]),
+      'Financial Statements Quiz': take(8, [9, 10]),
+      'Taxation and Ethics Quiz': take(8, [13, 15]),
+      'Midterm Examination': take(15, firstHalf)
+    };
+    // Fresh cycle questions keep the final broad after the subject quizzes.
+    pool = pool.concat(bank.comprehensive);
+    papers['Final Examination'] = take(20, all);
+    papers['Graduation Assessment'] = take(15, all);
     assessIndex.forEach(function (a) {
-      var quiz = quizzes[a.quizId];
-      if (!quiz) return;
-      var picked = [];
-      if (a.scope === 'module' && moduleQs[a.module] && moduleQs[a.module].length >= a.count) {
-        picked = moduleQs[a.module].slice(0, a.count);
-      } else if (a.scope === 'module' && moduleQs[a.module]) {
-        for (var i = 0; i < a.count; i++) picked.push(moduleQs[a.module][i % moduleQs[a.module].length]);
-      } else if (coursePool.length) {
-        for (var j = 0; j < a.count; j++) picked.push(coursePool[(cursor + j) % coursePool.length]);
-        cursor = (cursor + a.count) % coursePool.length;
-      }
-      if (picked.length === a.count) { quiz.questions = picked.map(cloneQ); applied += 1; }
+      var quiz = quizzes[a.quizId], questions = papers[quiz.title];
+      if (!questions || questions.length !== a.count) throw new Error('Invalid ACB paper: ' + quiz.title);
+      quiz.questions = questions; quiz.moduleNum = 20; applied += 1;
     });
     return applied;
   };
+
+  window.tihApplyAccountingBookkeepingTopicQuizzes();
 
   if (typeof console !== 'undefined' && console.log) {
     console.log('[ACB] modules=' + modules.length + ' lessons=' + lessonCount + ' projects=' + projectCount + ' quizzes=' + quizCount + ' exams=' + examCount);
