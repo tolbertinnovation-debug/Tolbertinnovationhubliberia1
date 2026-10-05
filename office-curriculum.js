@@ -120,95 +120,14 @@
       '<p><strong>Deliverable:</strong> A finished, professional Office file added to your portfolio.</p></div>';
   }
 
-  var BANK = {
-    general: [
-      { q: 'Microsoft 365 is:', opts: ['A single app', 'A suite of Office apps and cloud services', 'A game', 'A browser'], correct: 1, exp: 'Microsoft 365 bundles Word, Excel, PowerPoint, Outlook, Teams, OneDrive and more.' },
-      { q: 'The best way to master Office is to:', opts: ['Only watch videos', 'Practise the features hands-on', 'Memorise menus', 'Avoid the apps'], correct: 1, exp: 'Hands-on practice builds real Office skill.' },
-      { q: 'This course prepares you for which certification?', opts: ['None', 'Microsoft Office Specialist (MOS)', 'A driving licence', 'A cooking exam'], correct: 1, exp: 'It builds a foundation for MOS certification.' },
-      { q: 'Saving your work to OneDrive means it is:', opts: ['Lost if the PC breaks', 'Backed up and accessible from anywhere', 'Only on paper', 'Deleted'], correct: 1, exp: 'Cloud storage backs up and syncs your files.' },
-      { q: 'An Office portfolio should contain:', opts: ['Nothing', 'Real documents, spreadsheets and presentations you created', 'Only certificates', 'Only text'], correct: 1, exp: 'Show real work to demonstrate your skills.' },
-      { q: 'Keyboard shortcuts help you:', opts: ['Slow down', 'Work faster and more efficiently', 'Break the app', 'Nothing'], correct: 1, exp: 'Shortcuts speed up common tasks (e.g. Ctrl+C/V/S).' }
-    ],
-    windows: [
-      { q: 'File Explorer is used to:', opts: ['Browse the web', 'Manage files and folders', 'Send email', 'Edit photos only'], correct: 1, exp: 'File Explorer browses and organises files/folders.' },
-      { q: 'Compressing files (ZIP) helps you:', opts: ['Make them larger', 'Reduce size and bundle files for sharing', 'Delete them', 'Print them'], correct: 1, exp: 'ZIP reduces size and groups files.' },
-      { q: 'A backup protects you by:', opts: ['Deleting files', 'Keeping a copy in case of loss', 'Slowing the PC', 'Nothing'], correct: 1, exp: 'Backups guard against data loss.' },
-      { q: 'Good folder organization means:', opts: ['Everything on the desktop', 'Clear folders with consistent names', 'Random names', 'No folders'], correct: 1, exp: 'Structured folders make files easy to find.' },
-      { q: 'OneDrive integration lets Windows:', opts: ['Work offline only', 'Sync your files to the cloud automatically', 'Delete files', 'Print faster'], correct: 1, exp: 'OneDrive syncs files to the cloud and other devices.' },
-      { q: 'A file extension like .docx tells you:', opts: ['Nothing', 'The file type/program (a Word document)', 'The file size', 'The author'], correct: 1, exp: 'Extensions indicate the file type and app.' }
-    ],
-    word: [
-      { q: 'To make text bold in Word you press:', opts: ['Ctrl+B', 'Ctrl+P', 'Ctrl+S', 'Ctrl+Z'], correct: 0, exp: 'Ctrl+B toggles bold.' },
-      { q: 'A Table of Contents in Word is built from:', opts: ['Random text', 'Heading styles', 'Images', 'Page colour'], correct: 1, exp: 'Word generates a TOC from Heading 1/2/3 styles.' },
-      { q: 'Mail Merge is used to:', opts: ['Delete emails', 'Create many personalised documents from a data list', 'Format one page', 'Add a chart'], correct: 1, exp: 'Mail Merge personalises letters/labels for many recipients.' },
-      { q: 'Track Changes lets you:', opts: ['Hide edits', 'See and review edits made to a document', 'Delete the file', 'Print faster'], correct: 1, exp: 'Track Changes records edits for review/approval.' },
-      { q: 'Styles & Themes help you:', opts: ['Nothing', 'Apply consistent, professional formatting quickly', 'Only add colour', 'Delete text'], correct: 1, exp: 'Styles keep formatting consistent and easy to update.' },
-      { q: 'Headers and footers appear:', opts: ['In the middle', 'At the top and bottom of pages', 'Only page one', 'Never'], correct: 1, exp: 'They repeat at the top/bottom of every page.' }
-    ],
-    excel: [
-      { q: 'Every Excel formula begins with:', opts: ['A letter', 'An equals sign (=)', 'A space', 'A comma'], correct: 1, exp: 'Formulas start with = , e.g. =A1+B1.' },
-      { q: 'SUM(A1:A10) does what?', opts: ['Counts words', 'Adds the values in A1 to A10', 'Sorts them', 'Deletes them'], correct: 1, exp: 'SUM adds a range of numbers.' },
-      { q: 'Conditional formatting is used to:', opts: ['Delete data', 'Highlight cells based on rules', 'Print faster', 'Send email'], correct: 1, exp: 'It formats cells meeting conditions (e.g. highlight highs).' },
-      { q: 'A cell reference like B3 means:', opts: ['Row B, column 3', 'Column B, row 3', 'A formula', 'A chart'], correct: 1, exp: 'Columns are letters, rows are numbers: B3 = column B, row 3.' },
-      { q: 'An Excel Table (Ctrl+T) adds:', opts: ['Nothing', 'Structure with filters and dynamic ranges', 'Only colour', 'Errors'], correct: 1, exp: 'Tables add filters and auto-expanding ranges.' },
-      { q: 'A chart in Excel is used to:', opts: ['Hide data', 'Visualise data graphically', 'Delete data', 'Print faster'], correct: 1, exp: 'Charts turn numbers into visual insight.' }
-    ],
-    ppt: [
-      { q: 'PowerPoint is used to:', opts: ['Do calculations', 'Create slide presentations', 'Write long documents', 'Send email'], correct: 1, exp: 'PowerPoint builds presentations.' },
-      { q: 'To start a slideshow you press:', opts: ['F5', 'Ctrl+B', 'Delete', 'Ctrl+Z'], correct: 0, exp: 'F5 starts the presentation from the beginning.' },
-      { q: 'Presenter View lets the speaker see:', opts: ['Only the current slide', 'Notes, next slide and timer while the audience sees slides', 'Nothing', 'Only the timer'], correct: 1, exp: 'Presenter View shows notes/next slide privately.' },
-      { q: 'A good slide should be:', opts: ['Full of text', 'Clear and visual with key points', 'All one colour', 'Blank'], correct: 1, exp: 'Concise, visual slides support the speaker.' },
-      { q: 'Transitions control:', opts: ['Spelling', 'How one slide changes to the next', 'The file size', 'The printer'], correct: 1, exp: 'Transitions animate the change between slides.' },
-      { q: 'SmartArt is used to:', opts: ['Do maths', 'Turn lists into diagrams', 'Send email', 'Sort data'], correct: 1, exp: 'SmartArt visualises processes and lists.' }
-    ],
-    outlook: [
-      { q: 'Outlook is mainly used for:', opts: ['Spreadsheets', 'Email, calendar, contacts and tasks', 'Presentations', 'Coding'], correct: 1, exp: 'Outlook manages email, calendar, contacts and tasks.' },
-      { q: 'Rules & Filters in Outlook help you:', opts: ['Delete Outlook', 'Automatically organise incoming email', 'Write faster', 'Add charts'], correct: 1, exp: 'Rules sort/route email automatically.' },
-      { q: 'To invite people to a meeting you use the:', opts: ['Notes app', 'Calendar (scheduling a meeting)', 'Spreadsheet', 'Printer'], correct: 1, exp: 'Calendar scheduling sends meeting invites.' },
-      { q: 'The CC field is used to:', opts: ['Hide recipients', 'Copy others openly', 'Delete email', 'Attach files'], correct: 1, exp: 'CC copies additional recipients visibly.' },
-      { q: 'Good email etiquette includes:', opts: ['No subject', 'A clear subject, greeting and polite tone', 'ALL CAPS', 'No signature'], correct: 1, exp: 'Professional emails are clear and courteous.' },
-      { q: 'Flagging an email or adding a task helps you:', opts: ['Lose track', 'Follow up on important items', 'Delete it', 'Hide it'], correct: 1, exp: 'Flags/tasks track follow-ups.' }
-    ],
-    teams: [
-      { q: 'Microsoft Teams is used for:', opts: ['Only email', 'Chat, meetings and team collaboration', 'Only spreadsheets', 'Only printing'], correct: 1, exp: 'Teams enables chat, calls, meetings and file collaboration.' },
-      { q: 'A "channel" in Teams is:', opts: ['A TV channel', 'A dedicated space for a topic within a team', 'An email', 'A printer'], correct: 1, exp: 'Channels organise conversations/files by topic.' },
-      { q: 'In a Teams meeting you can:', opts: ['Nothing', 'Share your screen and record the meeting', 'Only chat', 'Only listen'], correct: 1, exp: 'Teams supports screen sharing and recording.' },
-      { q: 'Files shared in a Teams channel are stored in:', opts: ['Nowhere', 'SharePoint/OneDrive linked to the team', 'Only your PC', 'Email only'], correct: 1, exp: 'Team files live in the cloud, accessible to members.' },
-      { q: 'Teams integrates with:', opts: ['Nothing', 'Office apps like Word, Excel and PowerPoint', 'Only games', 'Only browsers'], correct: 1, exp: 'You can co-edit Office files inside Teams.' },
-      { q: 'Recording a meeting is useful for:', opts: ['Nothing', 'People who missed it to catch up', 'Deleting content', 'Slowing the PC'], correct: 1, exp: 'Recordings let absentees review the meeting.' }
-    ],
-    copilot: [
-      { q: 'Microsoft Copilot is:', opts: ['A game', 'An AI assistant built into Office apps', 'A printer', 'A browser'], correct: 1, exp: 'Copilot brings AI help into Word, Excel, PowerPoint, etc.' },
-      { q: 'Copilot in Word can help you:', opts: ['Only print', 'Draft, rewrite and summarise text', 'Delete Word', 'Send email'], correct: 1, exp: 'It drafts and improves documents from prompts.' },
-      { q: 'Copilot in Excel can help you:', opts: ['Nothing', 'Analyse data and suggest formulas/insights', 'Only colour cells', 'Delete data'], correct: 1, exp: 'It analyses data and suggests formulas/charts.' },
-      { q: 'A good Copilot prompt is:', opts: ['Vague', 'Clear and specific about the task and format', 'One word', 'Random'], correct: 1, exp: 'Specific prompts give better AI results.' },
-      { q: 'You should always ___ Copilot output:', opts: ['Trust blindly', 'Review and verify', 'Ignore', 'Publish instantly'], correct: 1, exp: 'AI can be wrong — always check the output.' },
-      { q: 'Responsible AI use in Office means:', opts: ['Sharing private data carelessly', 'Protecting data and verifying results', 'Ignoring accuracy', 'Hiding AI use'], correct: 1, exp: 'Use AI responsibly: protect data and verify output.' }
-    ],
-    onedrive: [
-      { q: 'OneDrive is:', opts: ['A browser', 'Microsoft’s cloud storage service', 'A game', 'A printer'], correct: 1, exp: 'OneDrive stores files in the cloud.' },
-      { q: 'File synchronization means files are:', opts: ['Only on one device', 'Kept up to date across your devices', 'Deleted', 'Printed'], correct: 1, exp: 'Sync keeps the same files current everywhere.' },
-      { q: 'Sharing a OneDrive file lets others:', opts: ['Nothing', 'View or edit it via a link/permission', 'Delete your PC', 'Print automatically'], correct: 1, exp: 'You control view/edit access when sharing.' },
-      { q: 'Version History in OneDrive lets you:', opts: ['Lose work', 'Restore an earlier version of a file', 'Delete the file', 'Print it'], correct: 1, exp: 'You can roll back to a previous version.' },
-      { q: 'Permission management controls:', opts: ['Nothing', 'Who can view or edit your files', 'The file colour', 'The printer'], correct: 1, exp: 'Permissions decide who can access files.' },
-      { q: 'Storing work in OneDrive protects against:', opts: ['Nothing', 'Losing files if a device is lost or breaks', 'Faster typing', 'Better graphics'], correct: 1, exp: 'Cloud copies survive device loss/failure.' }
-    ]
-  };
-
-  function bankKey(skill) {
-    var map = { orientation: 'general', windows: 'windows', word: 'word', excel: 'excel', advexcel: 'excel', ppt: 'ppt', outlook: 'outlook', onenote: 'general', teams: 'teams', onedrive: 'onedrive', copilot: 'copilot', collab: 'teams', docs: 'word', data: 'excel', productivity: 'general', comms: 'outlook', career: 'general', projects: 'general', capstone: 'general', assessment: 'general' };
-    return map[skill] || 'general';
+  function topicQuestions(num,name){
+    var bank=window.TIH_OFFICE_QUESTIONS,key='M'+num+':'+name;
+    if(!bank||!bank.topics[key]||bank.topics[key].length!==4)throw new Error('Incomplete Office topic '+key);
+    return bank.topics[key];
   }
-  function pickQuestions(key, count) {
-    var pool = BANK[key] || BANK.general;
-    var mixed = BANK.general.concat(BANK.windows, BANK.word, BANK.excel, BANK.ppt, BANK.outlook, BANK.teams, BANK.copilot, BANK.onedrive);
-    var out = [];
-    for (var i = 0; i < count; i++) { out.push(i < pool.length ? pool[i] : mixed[i % mixed.length]); }
-    return out;
-  }
-  function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
-  function practiceQuiz(key, name) { return { title: 'Practice: ' + name, moduleNum: 1, questions: pickQuestions(key, 3).map(cloneQ) }; }
-  function assessmentQuiz(key, name, count) { return { title: name, moduleNum: 1, questions: pickQuestions(key, count).map(cloneQ) }; }
+  function cloneQ(q){return {q:q.q,opts:q.opts.slice(),correct:q.correct,exp:q.exp};}
+  function practiceQuiz(key,name,num){return {title:'Practice: '+name,moduleNum:num,questions:topicQuestions(num,name).slice(0,3).map(cloneQ)};}
+  function assessmentQuiz(key,name,count,num){return {title:name,moduleNum:num,questionCount:count,questions:[]};}
   function assessmentKey(name) {
     if (/Word/i.test(name)) return 'word';
     if (/Excel/i.test(name)) return 'excel';
@@ -227,13 +146,13 @@
     var num = mod[0], title = mod[1], icon = mod[2], skill = mod[3], type = mod[4], names = mod[5];
     var moduleTitle = 'Module ' + num + ': ' + title;
     var pool = VIDEOS[skill] || VIDEOS.assessment;
-    var key = bankKey(skill);
+    var key = skill;
     var lessons = [], idx = 0;
 
     names.forEach(function (name) {
       if (/^Certificate of Completion$/i.test(name)) {
         var qid = 'off-m' + num + '-final';
-        quizzes[qid] = assessmentQuiz('general', 'Graduation Assessment', 15);
+        quizzes[qid] = assessmentQuiz('general', 'Graduation Assessment', 15, num);
         quizzes[qid].isFinal = true;
         lessons.push({ t: '🏆 ' + name, d: '15 questions', isQuiz: true, quizId: qid, isFinal: true });
         notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>This is the final graduation assessment. Pass it to complete the program and unlock your TIH Certificate of Completion.</p></div>';
@@ -252,7 +171,7 @@
         var big = /Examination|Exam|Evaluation|Review/i.test(name);
         var count = big ? (/Final/i.test(name) ? 20 : 15) : 8;
         var aid = 'off-m' + num + '-a' + flat;
-        quizzes[aid] = assessmentQuiz(akey, name, count);
+        quizzes[aid] = assessmentQuiz(akey, name, count, num);
         lessons.push({ t: (big ? '🧪 ' : '📝 ') + name, d: count + ' questions', isQuiz: true, quizId: aid });
         notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Assessment</span></div><h3>' + esc(name) + '</h3><p>Complete this ' + (big ? 'examination/review' : 'assessment') + ', then review every answer explanation to strengthen your weak areas.</p></div>';
         flat += 1; quizCount += 1; if (big) examCount += 1;
@@ -260,7 +179,7 @@
       }
       if (isAssessment(name)) {
         var qk = 'off-m' + num + '-a' + flat;
-        quizzes[qk] = assessmentQuiz(key, name, 8);
+        quizzes[qk] = assessmentQuiz(key, name, 8, num);
         lessons.push({ t: '📝 ' + name, d: '8 questions', isQuiz: true, quizId: qk });
         notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Assessment</span></div><h3>' + esc(name) + '</h3><p>Answer this module assessment, then review each explanation to check your understanding.</p></div>';
         flat += 1; quizCount += 1;
@@ -280,7 +199,7 @@
       notes[String(flat)] = note(moduleTitle, skill, name, notePos++);
       flat += 1; videoCount += 1;
       var pqid = 'off-m' + num + '-q' + flat;
-      quizzes[pqid] = practiceQuiz(key, name);
+      quizzes[pqid] = practiceQuiz(key, name, num);
       lessons.push({ t: '📝 Practice: ' + name, d: '3 questions', isQuiz: true, quizId: pqid });
       notes[String(flat)] = '<p><strong>Quick check:</strong> Review the notes and complete the two hands-on exercises, then answer these to confirm you understood <em>' + esc(name) + '</em>.</p>';
       flat += 1; quizCount += 1;
@@ -321,12 +240,13 @@
     requirements: [
       'No prior experience required — we start from the basics',
       'A computer with Microsoft Office (or Microsoft 365)',
-      'Willingness to practise each feature hands-on'
+      'Willingness to practise each feature hands-on',
+      'Some advanced, cloud and AI features depend on the app version, license and organization settings'
     ],
     about: [
       'This is the complete TIH Microsoft Office Mastery Professional Certificate, rebuilt into twenty modules that take you from complete beginner to advanced Office professional.',
-      'Every content lesson has a video and printable notes with downloadable templates and practice files; ten real-world projects and a capstone build an Office portfolio for professional and administrative roles.',
-      'Software & tools: Microsoft Windows, Word, Excel, PowerPoint, Outlook, OneNote, Teams, OneDrive, Copilot, Forms, Planner, To Do, Edge and Adobe Acrobat Reader. You finish with a portfolio and — after the graduation assessment — a Certificate of Completion, ready for MOS certification.'
+      'Every teaching lesson has a video and written notes with worked examples and practice tasks; ten real-world projects and a capstone build an Office portfolio for professional and administrative roles.',
+      'Software & tools: Microsoft Windows, Word, Excel, PowerPoint, Outlook, OneNote, Teams, OneDrive, Copilot, Forms, Planner, To Do, Edge and Adobe Acrobat Reader. You finish with a portfolio and — after the graduation assessment — a Certificate of Completion, with preparation relevant to MOS skills. Microsoft certification has its own separate official assessment requirements.'
     ],
     modules: modules,
     quizzes: quizzes,
@@ -334,6 +254,64 @@
   };
 
   if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT[CID] = notes;
+
+  window.tihApplyOfficeTopicQuizzes = function () {
+    var bank = window.TIH_OFFICE_QUESTIONS, course = COURSES_DB.office;
+    if (!bank || !course) throw new Error('Missing Office question bank');
+    var reserves = [], projects = [];
+    course.modules.forEach(function (m, mi) {
+      m.lessons.forEach(function (l) {
+        if (!l.isQuiz) return;
+        var quiz = course.quizzes[l.quizId];
+        if (quiz.title.indexOf('Practice: ') !== 0) return;
+        var rows = topicQuestions(mi+1, quiz.title.slice(10));
+        quiz.questions = rows.slice(0,3).map(cloneQ);
+        quiz.moduleNum = mi+1;
+        reserves.push(rows[3]);
+      });
+    });
+    projects = bank.exams.slice();
+    var used = {};
+    function take(pool, count) {
+      var buckets = {}, out = [], nums = [];
+      pool.forEach(function(q) { if (used[q.q]) return; if(!buckets[q.module]) { buckets[q.module]=[]; nums.push(q.module); } buckets[q.module].push(q); });
+      nums.sort(function(a,b){return a-b;});
+      var changed = true;
+      while(out.length < count && changed) {
+        changed = false;
+        nums.forEach(function(n) {
+          if(out.length >= count || !buckets[n].length) return;
+          var q = buckets[n].shift(); used[q.q]=true; out.push(cloneQ(q)); changed=true;
+        });
+      }
+      if(out.length !== count) throw new Error('Exhausted Office assessment pool');
+      return out;
+    }
+    var papers = Object.keys(course.quizzes).map(function(k){return course.quizzes[k];}).filter(function(q){return q.title.indexOf('Practice: ')!==0;});
+    var subjects={'File Management Assessment':[2],'Microsoft Word Assessment':[3],'Microsoft Excel Assessment':[4,5],'Microsoft PowerPoint Assessment':[6],'Outlook Assessment':[7],'Teams Assessment':[9],'Copilot Assessment':[11]};
+    papers.filter(function(q){return !!subjects[q.title];}).forEach(function(q){
+      var nums=subjects[q.title], extra=projects.filter(function(r){return nums.indexOf(r.module)>=0;});
+      var count=q.questionCount-extra.length;
+      q.questions=take(reserves.filter(function(r){return nums.indexOf(r.module)>=0;}),count).concat(take(extra,extra.length));
+    });
+    ['Midterm Examination','Final Examination','Capstone Project Evaluation','Portfolio Review','Graduation Assessment'].forEach(function(title){
+      var q=papers.filter(function(q){return q.title===title;})[0];
+      if(!q)throw new Error('Missing Office assessment '+title);
+      var pool= title==='Capstone Project Evaluation'||title==='Portfolio Review' ? projects.filter(function(r){return r.module>=18;}) : reserves.filter(function(r){return r.module<=(title==='Midterm Examination'?10:17);});
+      // Keep a question from every first-half module for the final's coverage.
+      if(title==='Midterm Examination'){
+        var protectedItems={};
+        for(var m=1;m<=10;m++){
+          var remaining=reserves.filter(function(r){return r.module===m&&!used[r.q];});
+          if(!remaining.length)throw new Error('No final reserve for module '+m);
+          protectedItems[remaining[remaining.length-1].q]=true;
+        }
+        pool=pool.filter(function(r){return !protectedItems[r.q];});
+      }
+      q.questions=take(pool,q.questionCount);
+    });
+  };
+  window.tihApplyOfficeTopicQuizzes();
 
   if (typeof console !== 'undefined' && console.log) {
     console.log('[OFFICE] modules=' + modules.length + ' videoLessons=' + videoCount + ' projects=' + projectCount + ' quizzes=' + quizCount + ' exams=' + examCount);

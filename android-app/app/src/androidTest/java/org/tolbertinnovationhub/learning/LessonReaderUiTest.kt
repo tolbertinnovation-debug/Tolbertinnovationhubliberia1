@@ -53,6 +53,9 @@ class LessonReaderUiTest {
     @Test fun kotlinProgramNotesRenderOffline() =
         checkDocument("android", "53-android-reader")
 
+    @Test fun officeProgramNotesRenderOffline() =
+        checkDocument("office", "59-office-reader")
+
     @OptIn(ExperimentalMaterial3Api::class)
     private fun checkDocument(courseId: String, captureName: String) {
         val course = runBlocking {
