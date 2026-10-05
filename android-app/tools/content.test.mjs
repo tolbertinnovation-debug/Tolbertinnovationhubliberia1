@@ -7,6 +7,7 @@ import '../../tools/entrepreneurship-quizzes.test.mjs';
 import '../../tools/android-kotlin-quizzes.test.mjs';
 import '../../tools/office-quizzes.test.mjs';
 import '../../tools/leadership-quizzes.test.mjs';
+import '../../tools/grant-writing-quizzes.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -47,7 +48,7 @@ test('source manifest proves all website inputs remain unchanged', () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(learning, 'manifest.json')));
   assert.equal(manifest.missingNotes.length, 0);
   assert.equal(manifest.emptyQuizzes.length, 0);
-  assert.equal(Object.keys(manifest.sourceFiles).length, 218);
+  assert.equal(Object.keys(manifest.sourceFiles).length, 220);
   for (const [file, hash] of Object.entries(manifest.sourceFiles)) {
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex'), hash, file);
   }
@@ -254,5 +255,20 @@ test('Business Leadership is source-faithful, complete and ninth in Courses', ()
   assert.equal(new Set(lessons.filter(l=>l.videoId).map(l=>l.videoId)).size,165);
   assert.equal(qs.length,565);assert.equal(new Set(qs.map(q=>q.question)).size,565);
   assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.html.length>200));
+  assert.ok(fs.existsSync(path.join(learning,course.image)));
+});
+
+test('Grant Writing & Fundraising is source-faithful, complete and tenth in Courses', () => {
+  const catalog = JSON.parse(fs.readFileSync(path.join(learning, 'catalog.json')));
+  assert.deepEqual(catalog.slice(0,10).map(c=>c.id), ['computer-literacy','project-mgmt','accounting-bookkeeping','webdev','design','entrepreneurship','android','office','leadership','grant-writing']);
+  const course = JSON.parse(fs.readFileSync(path.join(learning,'courses/grant-writing.json'))), source = extractCourse('grant-writing');
+  for (const key of ['title','description','modules','about','requirements','faqs','instructor']) assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]),key);
+  const lessons=course.modules.flatMap(m=>m.lessons), qs=lessons.flatMap(l=>l.questions);
+  assert.equal(course.modules.length,20);assert.equal(lessons.length,320);
+  assert.equal(lessons.filter(l=>l.kind==='project').length,21);
+  assert.equal(lessons.filter(l=>l.videoId).length,166);
+  assert.equal(new Set(lessons.filter(l=>l.videoId).map(l=>l.videoId)).size,166);
+  assert.equal(qs.length,564);assert.equal(new Set(qs.map(q=>q.question)).size,564);
+  assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.html.length>200 && l.noteSource==='authored'));
   assert.ok(fs.existsSync(path.join(learning,course.image)));
 });

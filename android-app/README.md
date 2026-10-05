@@ -9,6 +9,10 @@ The 0.3.5 Project Management content correction is also published to the website
 
 ## What is implemented
 
+- 0.3.14 places Grant Writing & Fundraising tenth in Courses and in Today,
+  with 20 modules, 21 specific project briefs, 166 distinct video links and 564
+  distinct questions. See [Grant Writing review](release/GRANT-WRITING.md).
+
 - 0.3.13 places Business Leadership Masterclass ninth in Courses and in Today,
   with 20 modules, 21 specific project briefs, 165 distinct video links and 565
   distinct questions. See [Business Leadership review](release/BUSINESS-LEADERSHIP.md).

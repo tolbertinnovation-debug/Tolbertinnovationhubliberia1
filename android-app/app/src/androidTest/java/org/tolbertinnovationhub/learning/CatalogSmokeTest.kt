@@ -496,5 +496,50 @@ class CatalogSmokeTest {
         compose.onNodeWithText(title).assertExists()
     }
 
+    @Test fun grantOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("grant-writing")
+        signIn()
+        val title = "Complete Grant Writing & Fundraising Professional Certificate"
+        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("20 modules · 320 entries · 166 video links"))
+        compose.onNodeWithText("20 modules · 320 entries · 166 video links").assertIsDisplayed()
+        snapshot("66-grant-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.kind == "quiz" }
+        val final = course.lessons.first { it.isFinal }
+        val logframePractice = course.lessons.first { it.title.contains("Practice: Logical Framework (Logframe)") }
+        val budgetPractice = course.lessons.first { it.title.contains("Practice: Indirect Costs") }
+        org.junit.Assert.assertEquals(564, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, logframePractice, budgetPractice, final)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else if (assessment == practice) snapshot("67-grant-practice")
+            else if (assessment == logframePractice) snapshot("68-grant-logframe")
+            else if (assessment == budgetPractice) snapshot("69-grant-budget")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
+                compose.onNodeWithText(question.options[question.answer]).performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("grant-writing"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "grant-writing", assessment))
+            }
+        }
+        snapshot("70-grant-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
+    }
+
 
 }
