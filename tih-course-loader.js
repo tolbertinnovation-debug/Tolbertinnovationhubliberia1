@@ -98,6 +98,7 @@
      first, the hook was not yet defined, and every assessment silently kept the
      old shared pool. */
   var TOPIC_QUIZ_BANKS = {
+    'webdev': {src:'webdev-topic-quizzes.js?v=1', apply:'tihApplyWebdevTopicQuizzes'},
     // Consumed directly by the PM builder; no post-build override is needed.
     'project-mgmt': { src: 'projectmgmt-topic-quizzes.js?v=2' },
     'accounting-bookkeeping': { src: 'accounting-bookkeeping-topic-quizzes.js?v=2', reserve: 'accounting-bookkeeping-reserved-quizzes.js?v=1', apply: 'tihApplyAccountingBookkeepingTopicQuizzes' },
@@ -211,7 +212,7 @@
     if (has(QUIZZES, courseId)) urls.push('quizzes/' + courseId + '-quizzes.js' + VERSION);
     var bank = TOPIC_QUIZ_BANKS[courseId];
     if (bank) { urls.push(bank.src); if (bank.reserve) urls.push(bank.reserve); }
-    if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + (courseId === 'project-mgmt' ? '?v=3' : courseId === 'accounting-bookkeeping' ? '?v=2' : VERSION));
+    if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + (courseId === 'project-mgmt' ? '?v=3' : courseId === 'accounting-bookkeeping' ? '?v=2' : courseId === 'webdev' ? '?v=2' : VERSION));
     if (EXTRAS[courseId]) urls = urls.concat(EXTRAS[courseId]);
     if (!urls.length) { done(); return; }
     loadInOrder(urls, function () {
