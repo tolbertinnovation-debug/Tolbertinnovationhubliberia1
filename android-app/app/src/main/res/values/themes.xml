@@ -6,8 +6,8 @@
         <item name="android:windowActionModeOverlay">true</item>
     </style>
     <style name="Theme.TIHLearning.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#F4F7FC</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/tih_logo</item>
+        <item name="windowSplashScreenBackground">#FFFFFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
         <item name="postSplashScreenTheme">@style/Theme.TIHLearning</item>
     </style>
 </resources>

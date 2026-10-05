@@ -12,6 +12,7 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.tolbertinnovationhub.learning.ui.LearningApp
 import org.tolbertinnovationhub.learning.ui.TihTheme
+import org.tolbertinnovationhub.learning.ui.WelcomeLaunch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +29,7 @@ class MainActivity : ComponentActivity() {
                         isAppearanceLightNavigationBars = light
                     }
                 }
-                LearningApp(model)
+                WelcomeLaunch { LearningApp(model) }
             }
         }
     }

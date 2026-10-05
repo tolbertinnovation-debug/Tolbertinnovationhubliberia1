@@ -9,6 +9,11 @@ The 0.3.5 Project Management content correction is also published to the website
 
 ## What is implemented
 
+- 0.3.6 adds an illustrated TIH welcome screen and a matching Africa/book launcher
+  icon. The welcome screen fits inside the device safe area without cropping,
+  works offline, and continues after 1.8 seconds to the existing account flow.
+  Its completion survives configuration changes and returning from other apps.
+
 - 0.3.5 replaces repeated Project Management quizzes with 570 distinct questions,
   topic-specific practice, separate assessment items and explanatory feedback.
   A shared source bank and automated checks keep website and app aligned.
