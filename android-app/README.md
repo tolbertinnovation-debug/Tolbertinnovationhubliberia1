@@ -9,6 +9,10 @@ The 0.3.5 Project Management content correction is also published to the website
 
 ## What is implemented
 
+- 0.3.8 places Full-Stack Web Development fourth in Courses, corrects its shared
+  quizzes to 633 distinct delivered questions, and validates its offline reader,
+  projects and native scores. See [Full-Stack review](release/FULL-STACK-WEBDEV.md).
+
 - 0.3.7 puts Accounting & Bookkeeping beside the first two reviewed courses,
   validates its offline lessons and native assessments, and corrects its shared
   question bank so all 475 delivered questions are distinct. See

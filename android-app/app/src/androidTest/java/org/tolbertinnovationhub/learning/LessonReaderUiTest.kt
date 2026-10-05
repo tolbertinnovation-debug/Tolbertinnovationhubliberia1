@@ -39,6 +39,9 @@ class LessonReaderUiTest {
     @Test fun accountingBookkeepingNotesRenderOffline() =
         checkDocument("accounting-bookkeeping", "27-accounting-bookkeeping-reader")
 
+    @Test fun fullStackNotesRenderOffline() =
+        checkDocument("webdev", "35-webdev-reader")
+
     @OptIn(ExperimentalMaterial3Api::class)
     private fun checkDocument(courseId: String, captureName: String) {
         val course = runBlocking {

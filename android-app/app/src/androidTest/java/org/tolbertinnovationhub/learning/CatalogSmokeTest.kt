@@ -220,6 +220,51 @@ class CatalogSmokeTest {
         compose.onNodeWithText(title).assertExists()
     }
 
+    @Test fun fullStackOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("webdev")
+        signIn()
+        val title = "Complete Full-Stack Web Development Program"
+        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("20 modules · 374 entries · 194 video links"))
+        compose.onNodeWithText("20 modules · 374 entries · 194 video links").assertIsDisplayed()
+        snapshot("30-webdev-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.kind == "quiz" }
+        val final = course.lessons.first { it.isFinal }
+        val fetchPractice = course.lessons.first { it.title.contains("Practice: Fetch API") }
+        val hooksPractice = course.lessons.first { it.title.contains("Practice: Hooks") }
+        org.junit.Assert.assertEquals(633, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, fetchPractice, hooksPractice, final)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else if (assessment == practice) snapshot("31-webdev-practice")
+            else if (assessment == fetchPractice) snapshot("32-webdev-fetch")
+            else if (assessment == hooksPractice) snapshot("33-webdev-hooks")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
+                compose.onNodeWithText(question.options[question.answer]).performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("webdev"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "webdev", assessment))
+            }
+        }
+        snapshot("34-webdev-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
+    }
+
     private fun snapshot(name: String) {
         val directory = File(compose.activity.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
         File(directory, "$name.png").outputStream().use {
