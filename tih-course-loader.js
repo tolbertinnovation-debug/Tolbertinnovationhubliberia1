@@ -98,6 +98,7 @@
      first, the hook was not yet defined, and every assessment silently kept the
      old shared pool. */
   var TOPIC_QUIZ_BANKS = {
+    'office': {src:'office-topic-quizzes.js?v=1',apply:'tihApplyOfficeTopicQuizzes'},
     'design': {src:'design-topic-quizzes.js?v=1', apply:'tihApplyDesignTopicQuizzes'},
     'webdev': {src:'webdev-topic-quizzes.js?v=1', apply:'tihApplyWebdevTopicQuizzes'},
     // Consumed directly by the PM builder; no post-build override is needed.
@@ -213,7 +214,7 @@
     if (has(QUIZZES, courseId)) urls.push('quizzes/' + courseId + '-quizzes.js' + VERSION);
     var bank = TOPIC_QUIZ_BANKS[courseId];
     if (bank) { urls.push(bank.src); if (bank.reserve) urls.push(bank.reserve); }
-    if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + (courseId === 'project-mgmt' ? '?v=3' : courseId === 'accounting-bookkeeping' ? '?v=2' : courseId === 'webdev' || courseId === 'design' || courseId === 'entrepreneurship' || courseId === 'android' ? '?v=2' : VERSION));
+    if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + (courseId === 'project-mgmt' ? '?v=3' : courseId === 'accounting-bookkeeping' ? '?v=2' : courseId === 'webdev' || courseId === 'design' || courseId === 'entrepreneurship' || courseId === 'android' || courseId === 'office' ? '?v=2' : VERSION));
     if (EXTRAS[courseId]) urls = urls.concat(EXTRAS[courseId]);
     if (!urls.length) { done(); return; }
     loadInOrder(urls, function () {
