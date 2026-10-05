@@ -91,103 +91,14 @@
       '<p><strong>Deliverable:</strong> A finished, exported design (with source file) added to your portfolio.</p></div>';
   }
 
-  var BANK = {
-    general: [
-      { q: 'Graphic design is mainly about:', opts: ['Only drawing by hand', 'Communicating a message visually', 'Writing code', 'Playing music'], correct: 1, exp: 'Design communicates ideas visually to an audience.' },
-      { q: 'Which two tools does this course focus on?', opts: ['Word and Excel', 'Canva and Adobe Photoshop', 'Python and Java', 'Figma and Blender'], correct: 1, exp: 'You learn Canva and Adobe Photoshop.' },
-      { q: 'A strong portfolio should show:', opts: ['One design', 'A range of your best, varied work', 'Only text', 'Other people’s work'], correct: 1, exp: 'A varied portfolio of your best work wins clients.' },
-      { q: 'The best way to improve at design is to:', opts: ['Only watch videos', 'Practise by recreating and creating real designs', 'Memorise menus', 'Avoid feedback'], correct: 1, exp: 'Practice and feedback build real design skill.' },
-      { q: 'Before designing you should first understand the:', opts: ['File size only', 'Purpose, audience and message', 'Printer brand', 'Font price'], correct: 1, exp: 'Great design starts with purpose, audience and message.' },
-      { q: 'Exporting a design means:', opts: ['Deleting it', 'Saving it in a shareable file format', 'Printing only', 'Emailing the app'], correct: 1, exp: 'Exporting saves your design as PNG, JPG, PDF, etc.' }
-    ],
-    fundamentals: [
-      { q: 'Which is a principle of design?', opts: ['Balance', 'Megabytes', 'Latency', 'Bandwidth'], correct: 0, exp: 'Balance, contrast, alignment, repetition, etc. are design principles.' },
-      { q: 'Visual hierarchy guides the viewer’s:', opts: ['Internet speed', 'Attention to the most important elements first', 'Printer', 'File name'], correct: 1, exp: 'Hierarchy shows what to look at first, second, etc.' },
-      { q: 'White space (negative space) is:', opts: ['Wasted space', 'The empty space that improves clarity and focus', 'Always white', 'A font'], correct: 1, exp: 'White space gives designs room to breathe and read well.' },
-      { q: 'Contrast helps a design by:', opts: ['Making everything the same', 'Making key elements stand out', 'Hiding text', 'Slowing loading'], correct: 1, exp: 'Contrast separates and emphasises elements.' },
-      { q: 'Complementary colours are:', opts: ['Next to each other on the wheel', 'Opposite on the colour wheel', 'Always blue', 'The same colour'], correct: 1, exp: 'Opposite colours create strong, vibrant contrast.' },
-      { q: 'Good typography mainly ensures text is:', opts: ['Tiny', 'Readable and appropriate in tone', 'All capitals', 'Rainbow-coloured'], correct: 1, exp: 'Typography balances readability and the right tone.' }
-    ],
-    canva: [
-      { q: 'Canva is best described as:', opts: ['A code editor', 'An easy online design tool with templates', 'A spreadsheet', 'A database'], correct: 1, exp: 'Canva is a template-based online design platform.' },
-      { q: 'Templates in Canva help you:', opts: ['Write code', 'Start fast from a professional layout', 'Edit RAW photos', 'Host a website'], correct: 1, exp: 'Templates give a ready layout you customise.' },
-      { q: 'To keep brand colours and logos consistent, use Canva’s:', opts: ['Brand Kit', 'Magic Eraser', 'Timeline', 'Terminal'], correct: 0, exp: 'The Brand Kit stores brand colours, fonts and logos.' },
-      { q: 'Magic Resize lets you:', opts: ['Delete a design', 'Resize a design for different formats quickly', 'Print only', 'Add code'], correct: 1, exp: 'Magic Resize adapts a design to new sizes fast (Pro).' },
-      { q: 'To export a transparent design in Canva you choose:', opts: ['JPG', 'PNG with transparent background', 'MP4', 'TXT'], correct: 1, exp: 'PNG supports transparency (a Pro option).' },
-      { q: 'Canva is useful for social media because it has:', opts: ['No templates', 'Correct sizes for each platform', 'Only print sizes', 'No text tools'], correct: 1, exp: 'Canva provides ready sizes for each social platform.' }
-    ],
-    ps: [
-      { q: 'In Photoshop, layers let you:', opts: ['Only add text', 'Stack and edit parts of an image separately', 'Print faster', 'Write code'], correct: 1, exp: 'Layers keep elements editable and independent.' },
-      { q: 'A layer mask lets you:', opts: ['Delete the layer', 'Hide/reveal parts non-destructively', 'Change the file name', 'Add a font'], correct: 1, exp: 'Masks hide areas without permanently deleting pixels.' },
-      { q: 'To remove a background you can use:', opts: ['The Text tool', 'Selection tools / Remove Background', 'The Zoom tool', 'The Hand tool'], correct: 1, exp: 'Selections (or Remove Background) isolate the subject.' },
-      { q: 'Smart Objects are useful because they:', opts: ['Lower quality', 'Preserve quality when scaling and allow non-destructive edits', 'Delete layers', 'Add sound'], correct: 1, exp: 'Smart Objects keep source data for non-destructive edits.' },
-      { q: 'Adjustment layers (like Curves) are good because they:', opts: ['Are permanent', 'Edit tone/colour non-destructively', 'Only crop', 'Add text'], correct: 1, exp: 'Adjustment layers change tone/colour without altering pixels.' },
-      { q: 'To keep an editable Photoshop file with layers, save as:', opts: ['.jpg', '.psd', '.txt', '.mp3'], correct: 1, exp: '.psd keeps layers editable; export flattened copies as needed.' }
-    ],
-    branding: [
-      { q: 'A logo should be:', opts: ['Complex and detailed', 'Simple, memorable and scalable', 'Only one colour always', 'A photo'], correct: 1, exp: 'Strong logos are simple, memorable and work at any size.' },
-      { q: 'Brand guidelines define:', opts: ['Only the price', 'How the brand’s logo, colours and fonts are used', 'The office address', 'The database'], correct: 1, exp: 'Guidelines keep the brand consistent everywhere.' },
-      { q: 'A brand’s colour palette should be:', opts: ['Random each time', 'Consistent across all materials', 'Only black', 'Different per designer'], correct: 1, exp: 'Consistent colours build recognition.' },
-      { q: 'A logo should still work when it is:', opts: ['Only huge', 'Scaled small (e.g. on a business card)', 'Never resized', 'Only on screen'], correct: 1, exp: 'Scalability is essential for real-world use.' },
-      { q: 'Brand identity includes:', opts: ['Just a logo', 'Logo, colours, typography and overall visual style', 'Only a slogan', 'Only a website'], correct: 1, exp: 'Identity is the full consistent visual system.' },
-      { q: 'A vector logo is preferred because it:', opts: ['Loses quality when scaled', 'Scales to any size without losing quality', 'Is a photo', 'Cannot be printed'], correct: 1, exp: 'Vectors scale infinitely without pixelation.' }
-    ],
-    print: [
-      { q: 'For print you should use the colour mode:', opts: ['RGB', 'CMYK', 'HEX', 'HSL'], correct: 1, exp: 'Printers use CMYK; screens use RGB.' },
-      { q: 'Print resolution should generally be:', opts: ['72 DPI', '300 DPI', '10 DPI', '1 DPI'], correct: 1, exp: '300 DPI gives sharp print quality.' },
-      { q: 'Bleed is:', opts: ['A printing error', 'Extra area beyond the edge so trimming leaves no white border', 'A font', 'A colour'], correct: 1, exp: 'Bleed prevents white edges after trimming.' },
-      { q: 'RGB is used for:', opts: ['Print only', 'Screens/digital', 'CMYK printers', 'Nothing'], correct: 1, exp: 'RGB is for on-screen/digital output.' },
-      { q: 'To send a print-ready file you usually export a:', opts: ['Low-res JPG', 'High-res PDF with bleed', 'TXT file', 'MP4'], correct: 1, exp: 'Print shops prefer high-res PDFs with bleed/marks.' },
-      { q: 'Margins in print keep important content:', opts: ['At the very edge', 'Safely inside the trim line', 'Off the page', 'Invisible'], correct: 1, exp: 'Safe margins stop content being cut off.' }
-    ],
-    ai: [
-      { q: 'Adobe Firefly is used to:', opts: ['Write essays only', 'Generate and edit images with AI', 'Host websites', 'Manage email'], correct: 1, exp: 'Firefly is Adobe’s generative AI for imagery.' },
-      { q: 'AI background removal helps designers:', opts: ['Slow down', 'Cut out subjects quickly', 'Write code', 'Print faster'], correct: 1, exp: 'AI isolates subjects in seconds.' },
-      { q: 'When using AI images commercially you should check:', opts: ['Nothing', 'Licensing and usage rights', 'The weather', 'Your typing speed'], correct: 1, exp: 'Always confirm you have rights to use AI output.' },
-      { q: 'Ethical AI use means you:', opts: ['Copy others’ work', 'Are transparent and respect rights and originality', 'Ignore licensing', 'Never credit'], correct: 1, exp: 'Use AI responsibly, respecting rights and honesty.' },
-      { q: 'AI tools are best treated as:', opts: ['A replacement for all skill', 'A helper that speeds up your creative work', 'Useless', 'Only for text'], correct: 1, exp: 'AI accelerates work but design judgement stays human.' },
-      { q: 'Canva AI features can help you:', opts: ['Only delete designs', 'Generate images/text and speed up design', 'Host servers', 'Edit RAW only'], correct: 1, exp: 'Canva AI assists with generation and editing.' }
-    ],
-    freelance: [
-      { q: 'When pricing design work you should consider:', opts: ['Nothing', 'Your time, skill, and the value to the client', 'Only the cheapest rate', 'A random number'], correct: 1, exp: 'Price on time, skill and value delivered.' },
-      { q: 'A design proposal should include:', opts: ['Only your name', 'Scope, deliverables, timeline and price', 'Just a logo', 'Nothing'], correct: 1, exp: 'A clear proposal sets expectations and scope.' },
-      { q: 'To find clients as a freelancer you can:', opts: ['Do nothing', 'Build a portfolio and use freelance platforms/referrals', 'Only wait', 'Avoid social media'], correct: 1, exp: 'A portfolio plus outreach and platforms win clients.' },
-      { q: 'Copyright means you should:', opts: ['Use any image freely', 'Only use images you have rights to', 'Ignore licences', 'Copy competitors'], correct: 1, exp: 'Respect copyright; use licensed or free-to-use assets.' },
-      { q: 'Good client communication includes:', opts: ['Ignoring messages', 'Clear updates, questions and confirming scope', 'Guessing needs', 'No revisions'], correct: 1, exp: 'Clear, regular communication keeps clients happy.' },
-      { q: 'Delivering a project professionally means:', opts: ['Late, wrong format', 'On time, in the agreed formats, with source files if agreed', 'No files', 'Only a screenshot'], correct: 1, exp: 'Deliver on time in the right formats as agreed.' }
-    ],
-    social: [
-      { q: 'Social media graphics must use the:', opts: ['Same size everywhere', 'Correct size for each platform', 'Only print sizes', 'No sizes'], correct: 1, exp: 'Each platform has recommended dimensions.' },
-      { q: 'A YouTube thumbnail should be:', opts: ['Tiny text, no focal point', 'Bold, clear and readable at small sizes', 'All text', 'Blank'], correct: 1, exp: 'Thumbnails need a clear focal point and bold, readable text.' },
-      { q: 'A social media campaign is:', opts: ['One random post', 'A coordinated set of designs with a consistent look', 'Only a logo', 'A print flyer'], correct: 1, exp: 'Campaigns use consistent, coordinated visuals.' },
-      { q: 'Instagram Stories are usually in which orientation?', opts: ['Square', 'Vertical (9:16)', 'Wide landscape', 'Circle'], correct: 1, exp: 'Stories are full-screen vertical (9:16).' },
-      { q: 'Consistent branding across posts helps:', opts: ['Confuse people', 'Build recognition and trust', 'Nothing', 'Slow loading'], correct: 1, exp: 'Consistency builds a recognisable brand.' },
-      { q: 'Text on social graphics should be:', opts: ['As small as possible', 'Short, clear and legible on mobile', 'Only in one giant block', 'Hidden'], correct: 1, exp: 'Keep text short and readable on small screens.' }
-    ],
-    marketing: [
-      { q: 'A flyer’s main goal is to:', opts: ['Confuse readers', 'Communicate an offer/message clearly and prompt action', 'Only look busy', 'Hide information'], correct: 1, exp: 'Flyers deliver a clear message and call to action.' },
-      { q: 'A good business card includes:', opts: ['Everything possible', 'Name, role, and clear contact details', 'Only a photo', 'A long paragraph'], correct: 1, exp: 'Keep cards clean with essential contact info.' },
-      { q: 'A strong call to action (CTA) is:', opts: ['Vague', 'Clear and action-focused (e.g. “Call now”)', 'Hidden', 'Missing'], correct: 1, exp: 'A clear CTA tells the viewer what to do next.' },
-      { q: 'Marketing materials should match the:', opts: ['Random styles', 'Brand’s consistent look and colours', 'Competitor exactly', 'No style'], correct: 1, exp: 'Consistency reinforces the brand.' },
-      { q: 'A brochure is best for:', opts: ['One word', 'Presenting organised information in sections/folds', 'Only a logo', 'A single icon'], correct: 1, exp: 'Brochures organise more detailed information.' },
-      { q: 'For a large banner you must ensure:', opts: ['Low resolution', 'High resolution and readable-from-distance text', 'Tiny text', 'No contrast'], correct: 1, exp: 'Banners need high res and bold, distance-readable text.' }
-    ]
-  };
-
-  function bankKey(skill) {
-    var map = { orientation: 'general', fundamentals: 'fundamentals', canva: 'canva', canva_adv: 'canva', social: 'social', marketing: 'marketing', ps_basics: 'ps', ps_edit: 'ps', ps_design: 'ps', logo: 'branding', print: 'print', manip: 'ps', advertising: 'marketing', ai: 'ai', freelance: 'freelance', projects: 'general', capstone: 'general', assessment: 'general' };
-    return map[skill] || 'general';
+  function topicQuestions(num, name) {
+    var bank = window.TIH_DESIGN_QUESTIONS, key = 'M'+num+':'+name;
+    if (!bank || !bank.topics[key] || bank.topics[key].length !== 4) throw new Error('Incomplete Design topic '+key);
+    return bank.topics[key];
   }
-  function pickQuestions(key, count) {
-    var pool = BANK[key] || BANK.general;
-    var mixed = BANK.general.concat(BANK.fundamentals, BANK.canva, BANK.ps, BANK.branding, BANK.print, BANK.ai, BANK.freelance, BANK.social, BANK.marketing);
-    var out = [];
-    for (var i = 0; i < count; i++) { out.push(i < pool.length ? pool[i] : mixed[i % mixed.length]); }
-    return out;
-  }
-  function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
-  function practiceQuiz(key, name) { return { title: 'Practice: ' + name, moduleNum: 1, questions: pickQuestions(key, 3).map(cloneQ) }; }
-  function assessmentQuiz(key, name, count) { return { title: name, moduleNum: 1, questions: pickQuestions(key, count).map(cloneQ) }; }
+  function cloneQ(q) { return {q:q.q, opts:q.opts.slice(), correct:q.correct, exp:q.exp}; }
+  function practiceQuiz(num, name) { return {title:'Practice: '+name, moduleNum:num, questions:topicQuestions(num,name).slice(0,3).map(cloneQ)}; }
+  function assessmentQuiz(key, name, count) { return {title:name, moduleNum:18, questionCount:count, questions:[]}; }
   function assessmentKey(name) {
     if (/Canva/i.test(name)) return 'canva';
     if (/Photoshop/i.test(name)) return 'ps';
@@ -204,7 +115,6 @@
     var num = mod[0], title = mod[1], icon = mod[2], skill = mod[3], type = mod[4], names = mod[5];
     var moduleTitle = 'Module ' + num + ': ' + title;
     var pool = VIDEOS[skill] || VIDEOS.assessment;
-    var key = bankKey(skill);
     var lessons = [], idx = 0;
 
     names.forEach(function (name) {
@@ -242,7 +152,7 @@
       notes[String(flat)] = note(moduleTitle, skill, name, notePos++);
       flat += 1; videoCount += 1;
       var pqid = 'des-m' + num + '-q' + flat;
-      quizzes[pqid] = practiceQuiz(key, name);
+      quizzes[pqid] = practiceQuiz(num, name);
       lessons.push({ t: '📝 Practice: ' + name, d: '3 questions', isQuiz: true, quizId: pqid });
       notes[String(flat)] = '<p><strong>Quick check:</strong> Review the notes and complete the two design exercises, then answer these to confirm you understood <em>' + esc(name) + '</em>.</p>';
       flat += 1; quizCount += 1;
@@ -296,6 +206,58 @@
   };
 
   if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT.design = notes;
+
+  window.tihApplyDesignTopicQuizzes = function () {
+    var bank = window.TIH_DESIGN_QUESTIONS, course = COURSES_DB.design;
+    if (!bank || !course) throw new Error('Missing Design question bank');
+    var reserves = [], projects = [];
+    course.modules.forEach(function (m, mi) {
+      m.lessons.forEach(function (l) {
+        if (!l.isQuiz) return;
+        var quiz = course.quizzes[l.quizId];
+        if (quiz.title.indexOf('Practice: ') !== 0) return;
+        var rows = topicQuestions(mi+1, quiz.title.slice(10));
+        quiz.questions = rows.slice(0,3).map(cloneQ);
+        quiz.moduleNum = mi+1;
+        reserves.push(rows[3]);
+      });
+    });
+    projects = bank.exams.slice();
+    var used = {};
+    function take(pool, count) {
+      var buckets = {}, out = [], nums = [];
+      pool.forEach(function(q) { if (used[q.q]) return; if(!buckets[q.module]) { buckets[q.module]=[]; nums.push(q.module); } buckets[q.module].push(q); });
+      nums.sort(function(a,b){return a-b;});
+      var changed = true;
+      while(out.length < count && changed) {
+        changed = false;
+        nums.forEach(function(n) {
+          if(out.length >= count || !buckets[n].length) return;
+          var q = buckets[n].shift(); used[q.q]=true; out.push(cloneQ(q)); changed=true;
+        });
+      }
+      if(out.length !== count) throw new Error('Exhausted Design assessment pool');
+      return out;
+    }
+    var papers = Object.keys(course.quizzes).map(function(k){return course.quizzes[k];}).filter(function(q){return q.title.indexOf('Practice: ')!==0;});
+    var subjects = {'Canva Assessment':[3,4], 'Photoshop Assessment':[7,8,9], 'Design Principles Quiz':[2], 'Branding Quiz':[10]};
+    papers.filter(function(q){return !!subjects[q.title];}).forEach(function(q) {
+      q.questions = take(reserves.filter(function(r){return subjects[q.title].indexOf(r.module)>=0;}), q.questionCount);
+    });
+    ['Midterm Examination','Final Examination','Portfolio Review','Practical Design Test','Capstone Project Evaluation','Graduation Assessment'].forEach(function(title) {
+      var q = papers.filter(function(q){return q.title===title;})[0];
+      if(!q) throw new Error('Missing Design assessment '+title);
+      var pool = ['Portfolio Review','Practical Design Test','Capstone Project Evaluation'].indexOf(title)>=0 ? projects : reserves.filter(function(r){return r.module <= (title==='Midterm Examination' ? 9 : 15);});
+      // Keep one Design Principles reserve for the final's full module coverage.
+      if(title==='Midterm Examination') {
+        var principles = reserves.filter(function(r){return r.module===2 && !used[r.q];});
+        var finalPrinciple = principles[principles.length-1];
+        pool = pool.filter(function(r){return r!==finalPrinciple;});
+      }
+      q.questions=take(pool,q.questionCount);
+    });
+  };
+  window.tihApplyDesignTopicQuizzes();
 
   if (typeof console !== 'undefined' && console.log) {
     console.log('[DESIGN] modules=' + modules.length + ' videoLessons=' + videoCount + ' projects=' + projectCount + ' quizzes=' + quizCount + ' exams=' + examCount);

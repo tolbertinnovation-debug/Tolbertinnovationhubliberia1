@@ -271,4 +271,50 @@ class CatalogSmokeTest {
             compose.onRoot().captureToImage().asAndroidBitmap().apply { setHasAlpha(false) }.compress(Bitmap.CompressFormat.PNG, 100, it)
         }
     }
+    @Test fun graphicDesignOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("design")
+        signIn()
+        val title = "Complete Graphic Design Program: Canva & Adobe Photoshop"
+        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("18 modules · 312 entries · 163 video links"))
+        compose.onNodeWithText("18 modules · 312 entries · 163 video links").assertIsDisplayed()
+        snapshot("36-design-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.kind == "quiz" }
+        val final = course.lessons.first { it.isFinal }
+        val masksPractice = course.lessons.first { it.title.contains("Practice: Masks") }
+        val printPractice = course.lessons.first { it.title.contains("Practice: Print Resolution") }
+        org.junit.Assert.assertEquals(542, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, masksPractice, printPractice, final)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else if (assessment == practice) snapshot("37-design-practice")
+            else if (assessment == masksPractice) snapshot("38-design-masks")
+            else if (assessment == printPractice) snapshot("39-design-print")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
+                compose.onNodeWithText(question.options[question.answer]).performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("design"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "design", assessment))
+            }
+        }
+        snapshot("40-design-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
+    }
+
+
 }

@@ -9,6 +9,10 @@ The 0.3.5 Project Management content correction is also published to the website
 
 ## What is implemented
 
+- 0.3.9 places Graphic Design fifth in Courses, with 18 modules, 24 project briefs
+  and 542 distinct delivered questions shared with the website. See
+  [Graphic Design review](release/GRAPHIC-DESIGN.md).
+
 - 0.3.8 places Full-Stack Web Development fourth in Courses, corrects its shared
   quizzes to 633 distinct delivered questions, and validates its offline reader,
   projects and native scores. See [Full-Stack review](release/FULL-STACK-WEBDEV.md).

@@ -43,6 +43,10 @@ class LessonReaderUiTest {
         checkDocument("webdev", "35-webdev-reader")
 
     @OptIn(ExperimentalMaterial3Api::class)
+    @Test fun graphicDesignNotesRenderOffline() =
+        checkDocument("design", "41-design-reader")
+
+    @OptIn(ExperimentalMaterial3Api::class)
     private fun checkDocument(courseId: String, captureName: String) {
         val course = runBlocking {
             val repository = ContentRepository(compose.activity)
