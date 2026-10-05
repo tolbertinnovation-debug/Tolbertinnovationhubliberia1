@@ -105,7 +105,9 @@ class LearningViewModel(app: Application, private val accountApi: AccountApi?) :
     fun canStudy(id: String) = session?.canStudy(id) == true
     fun openCourse(summary: CourseSummary, lessonId: String? = null) = viewModelScope.launch {
         if (loading) return@launch
-        loading = true; lesson = null
+        // A catalog notice (for example, the welcome message) must not cover
+        // the lesson's bottom action buttons after navigating into a course.
+        notice = null; loading = true; lesson = null
         try {
             course = content.course(summary)
             if (lessonId != null && canStudy(summary.id)) course?.lessons?.find { it.id == lessonId }?.let(::openLesson)
@@ -115,7 +117,7 @@ class LearningViewModel(app: Application, private val accountApi: AccountApi?) :
     fun openLesson(value: Lesson) {
         val c = course ?: return
         if (!canStudy(c.summary.id)) { notice = "Sign in and refresh your approved course access to study this lesson."; return }
-        lesson = value; study.remember(session!!.studentId, c.summary.id, value.id); localRevision++
+        notice = null; lesson = value; study.remember(session!!.studentId, c.summary.id, value.id); localRevision++
     }
     fun back() { if (lesson != null) lesson = null else course = null }
     fun completeLesson() {

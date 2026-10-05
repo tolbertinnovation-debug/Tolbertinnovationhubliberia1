@@ -152,7 +152,9 @@ class CatalogSmokeTest {
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else snapshot("19-project-management-practice")
             assessment.questions.forEachIndexed { index, question ->
-                compose.onNodeWithText(question.options[question.answer]).performScrollTo().performClick()
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
+                compose.onNodeWithText(question.options[question.answer]).performClick()
                 compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
