@@ -98,7 +98,7 @@
      first, the hook was not yet defined, and every assessment silently kept the
      old shared pool. */
   var TOPIC_QUIZ_BANKS = {
-    'english-success': {src:'englishsuccess-topic-quizzes.js?v=1',apply:'tihApplyEnglishTopicQuizzes'},
+    'english-success': {src:'englishsuccess-topic-quizzes.js?v=2',apply:'tihApplyEnglishTopicQuizzes'},
     'grant-writing': {src:'grantwriting-topic-quizzes.js?v=1',apply:'tihApplyGrantTopicQuizzes'},
     'leadership': {src:'leadership-topic-quizzes.js?v=1',apply:'tihApplyLeadershipTopicQuizzes'},
     'office': {src:'office-topic-quizzes.js?v=1',apply:'tihApplyOfficeTopicQuizzes'},
