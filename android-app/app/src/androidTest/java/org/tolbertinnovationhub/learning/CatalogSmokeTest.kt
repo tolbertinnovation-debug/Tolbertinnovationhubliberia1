@@ -316,5 +316,50 @@ class CatalogSmokeTest {
         compose.onNodeWithText(title).assertExists()
     }
 
+    @Test fun entrepreneurshipOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("entrepreneurship")
+        signIn()
+        val title = "Complete Entrepreneurship & Startup Launch Program"
+        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("20 modules · 351 entries · 178 video links"))
+        compose.onNodeWithText("20 modules · 351 entries · 178 video links").assertIsDisplayed()
+        snapshot("42-entrepreneurship-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.kind == "quiz" }
+        val final = course.lessons.first { it.isFinal }
+        val customerPractice = course.lessons.first { it.title.contains("Practice: Customer Interviews") }
+        val breakEvenPractice = course.lessons.first { it.title.contains("Practice: Break-even Analysis") }
+        org.junit.Assert.assertEquals(580, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, customerPractice, breakEvenPractice, final)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else if (assessment == practice) snapshot("43-entrepreneurship-practice")
+            else if (assessment == customerPractice) snapshot("44-entrepreneurship-customers")
+            else if (assessment == breakEvenPractice) snapshot("45-entrepreneurship-break-even")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
+                compose.onNodeWithText(question.options[question.answer]).performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("entrepreneurship"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "entrepreneurship", assessment))
+            }
+        }
+        snapshot("46-entrepreneurship-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
+    }
+
 
 }

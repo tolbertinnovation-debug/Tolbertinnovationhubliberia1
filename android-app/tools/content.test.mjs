@@ -3,6 +3,7 @@ import '../../tools/projectmgmt-quizzes.test.mjs';
 import '../../tools/accounting-bookkeeping-quizzes.test.mjs';
 import '../../tools/webdev-quizzes.test.mjs';
 import '../../tools/design-quizzes.test.mjs';
+import '../../tools/entrepreneurship-quizzes.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -189,6 +190,21 @@ test('Graphic Design is source-faithful, complete and fifth in Courses', () => {
   assert.equal(lessons.filter(l=>l.videoId).length,163);
   assert.equal(new Set(lessons.filter(l=>l.videoId).map(l=>l.videoId)).size,163);
   assert.equal(qs.length,542);assert.equal(new Set(qs.map(q=>q.question)).size,542);
+  assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.html.length>200));
+  assert.ok(fs.existsSync(path.join(learning,course.image)));
+});
+
+test('Entrepreneurship is source-faithful, complete and sixth in Courses', () => {
+  const catalog = JSON.parse(fs.readFileSync(path.join(learning, 'catalog.json')));
+  assert.deepEqual(catalog.slice(0,6).map(c=>c.id), ['computer-literacy','project-mgmt','accounting-bookkeeping','webdev','design','entrepreneurship']);
+  const course = JSON.parse(fs.readFileSync(path.join(learning,'courses/entrepreneurship.json'))), source = extractCourse('entrepreneurship');
+  for (const key of ['title','description','modules','about','requirements','faqs','instructor']) assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]),key);
+  const lessons=course.modules.flatMap(m=>m.lessons), qs=lessons.flatMap(l=>l.questions);
+  assert.equal(course.modules.length,20);assert.equal(lessons.length,351);
+  assert.equal(lessons.filter(l=>l.kind==='project').length,11);
+  assert.equal(lessons.filter(l=>l.videoId).length,178);
+  assert.equal(new Set(lessons.filter(l=>l.videoId).map(l=>l.videoId)).size,178);
+  assert.equal(qs.length,580);assert.equal(new Set(qs.map(q=>q.question)).size,580);
   assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.html.length>200));
   assert.ok(fs.existsSync(path.join(learning,course.image)));
 });

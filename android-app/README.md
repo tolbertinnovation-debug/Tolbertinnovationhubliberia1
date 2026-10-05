@@ -9,6 +9,10 @@ The 0.3.5 Project Management content correction is also published to the website
 
 ## What is implemented
 
+- 0.3.10 places Entrepreneurship & Startup Launch sixth in Courses and in Today,
+  with 20 modules, 11 project briefs and 580 distinct delivered questions shared
+  with the website. See [Entrepreneurship review](release/ENTREPRENEURSHIP.md).
+
 - 0.3.9 places Graphic Design fifth in Courses, with 18 modules, 24 project briefs
   and 542 distinct delivered questions shared with the website. See
   [Graphic Design review](release/GRAPHIC-DESIGN.md).
