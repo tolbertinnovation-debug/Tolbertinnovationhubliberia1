@@ -117,139 +117,14 @@
       '<p><strong>Downloadable:</strong> Print → Save as PDF to keep your work and templates offline.</p></div>';
   }
 
-  var BANK = {
-    general: [
-      { q: 'Academic English is generally more:', opts: ['Casual and slangy', 'Formal, precise and evidence-based', 'Emotional', 'Random'], correct: 1, exp: 'Academic English is formal, precise and supported by evidence.' },
-      { q: 'The best way to improve English is to:', opts: ['Only read grammar rules', 'Practise all four skills regularly and review errors', 'Avoid speaking', 'Memorise the dictionary'], correct: 1, exp: 'Balanced practice with error review builds real proficiency.' },
-      { q: 'Setting language goals helps you:', opts: ['Waste time', 'Focus and measure your progress', 'Avoid practice', 'Skip review'], correct: 1, exp: 'Clear goals guide focused, measurable practice.' },
-      { q: 'A capstone project lets you:', opts: ['Skip learning', 'Show your combined academic and professional English', 'Only take a quiz', 'Memorise terms'], correct: 1, exp: 'The capstone integrates all your English skills.' },
-      { q: 'Professional English should be:', opts: ['Rude', 'Clear, polite and appropriate to the audience', 'Full of slang', 'Very long'], correct: 1, exp: 'Professional English is clear, courteous and audience-appropriate.' },
-      { q: 'Reviewing your mistakes is important because it:', opts: ['Wastes time', 'Turns errors into learning and improvement', 'Lowers your level', 'Is optional'], correct: 1, exp: 'Error review is how practice becomes progress.' }
-    ],
-    grammar: [
-      { q: 'Which sentence is correct?', opts: ['She go to school.', 'She goes to school.', 'She going school.', 'She gone school.'], correct: 1, exp: 'Third-person singular takes "goes".' },
-      { q: 'The present perfect is formed with:', opts: ['do + verb', 'have/has + past participle', 'will + verb', 'be + verb'], correct: 1, exp: 'Present perfect = have/has + past participle.' },
-      { q: 'Choose the correct article: "___ honest man".', opts: ['A', 'An', 'The only', 'No article'], correct: 1, exp: '"Honest" begins with a vowel sound, so "an".' },
-      { q: 'A relative clause begins with words like:', opts: ['and/but', 'who/which/that', 'very/quite', 'always/never'], correct: 1, exp: 'Relative pronouns: who, which, that, whose, where.' },
-      { q: 'Passive voice of "They built the house" is:', opts: ['The house was built.', 'The house builds.', 'They was built.', 'The house building.'], correct: 0, exp: 'Passive = be + past participle: was built.' },
-      { q: 'A comma splice can be fixed with:', opts: ['Nothing', 'A semicolon or comma + conjunction', 'More commas', 'A dash only'], correct: 1, exp: 'Join independent clauses correctly with ; or , + FANBOYS.' }
-    ],
-    vocab: [
-      { q: 'A collocation is:', opts: ['A spelling rule', 'Words that naturally go together', 'A tense', 'An essay'], correct: 1, exp: 'e.g. "make a decision", "heavy rain".' },
-      { q: 'The prefix "re-" usually means:', opts: ['Not', 'Again', 'Before', 'Very'], correct: 1, exp: '"Re-" means again (e.g. rewrite).' },
-      { q: 'A synonym for "important" is:', opts: ['Trivial', 'Significant', 'Tiny', 'Loud'], correct: 1, exp: 'Significant means important.' },
-      { q: 'Context clues help you:', opts: ['Ignore words', 'Guess a word’s meaning from the surrounding text', 'Spell faster', 'Skip reading'], correct: 1, exp: 'Surrounding words reveal meaning.' },
-      { q: 'Academic vocabulary is best learned:', opts: ['As isolated lists', 'In context with example sentences', 'By translation only', 'Not at all'], correct: 1, exp: 'Words stick when learned and used in context.' },
-      { q: 'An antonym of "increase" is:', opts: ['Grow', 'Decrease', 'Rise', 'Expand'], correct: 1, exp: 'Decrease is the opposite of increase.' }
-    ],
-    reading: [
-      { q: 'Skimming is reading to:', opts: ['Find one detail', 'Get the general idea quickly', 'Memorise everything', 'Translate'], correct: 1, exp: 'Skimming gets the gist quickly.' },
-      { q: 'Scanning is reading to:', opts: ['Get the gist', 'Find specific information fast', 'Read every word', 'Guess'], correct: 1, exp: 'Scanning locates specific facts.' },
-      { q: 'An inference is:', opts: ['Stated directly', 'Implied but not stated', 'The title', 'A vocabulary word'], correct: 1, exp: 'Inferences are supported but not written directly.' },
-      { q: 'The main idea of a paragraph is often in the:', opts: ['Random line', 'Topic sentence', 'Last word', 'Title only'], correct: 1, exp: 'The topic sentence usually states the main idea.' },
-      { q: '"Vocabulary in context" means choosing the meaning that:', opts: ['Sounds nice', 'Fits how the word is used in the text', 'Is longest', 'Is first in the dictionary'], correct: 1, exp: 'Pick the meaning that fits the context.' },
-      { q: 'To answer a reading question you should:', opts: ['Guess from the title', 'Return to the relevant lines in the text', 'Use only memory', 'Read the last line only'], correct: 1, exp: 'Base answers on the text, not memory.' }
-    ],
-    listening: [
-      { q: 'Active listening means:', opts: ['Waiting to talk', 'Focusing fully to understand the speaker', 'Ignoring', 'Interrupting'], correct: 1, exp: 'Active listening focuses on understanding.' },
-      { q: 'Good note-taking captures:', opts: ['Every word', 'Main ideas and key details', 'Only names', 'Nothing'], correct: 1, exp: 'Capture main ideas and important details.' },
-      { q: 'Signpost words like "however" signal:', opts: ['The end', 'A contrast or change in idea', 'Nothing', 'A break'], correct: 1, exp: 'They flag contrasts, examples and structure.' },
-      { q: 'Understanding different accents improves with:', opts: ['Avoiding audio', 'Regular exposure to varied speakers', 'One accent only', 'Reading only'], correct: 1, exp: 'Exposure to many accents builds comprehension.' },
-      { q: 'Listening for gist means listening for the:', opts: ['Exact words', 'Overall meaning', 'Spelling', 'Speed'], correct: 1, exp: 'Gist is the general meaning.' },
-      { q: 'In a lecture you should note:', opts: ['Nothing', 'Main points and examples', 'Only the date', 'Only names'], correct: 1, exp: 'Record main points and supporting examples.' }
-    ],
-    speaking: [
-      { q: 'Fluency means speaking:', opts: ['Very fast always', 'Smoothly and understandably without long pauses', 'Perfectly with no errors', 'Only memorised lines'], correct: 1, exp: 'Fluency is smooth, understandable communication.' },
-      { q: 'Intonation refers to:', opts: ['Spelling', 'The rise and fall of the voice', 'Grammar', 'Vocabulary size'], correct: 1, exp: 'Intonation is the melody of speech.' },
-      { q: 'To improve pronunciation you should:', opts: ['Read silently', 'Listen and repeat aloud, and record yourself', 'Avoid speaking', 'Only study spelling'], correct: 1, exp: 'Imitation and self-recording improve pronunciation.' },
-      { q: 'In a business meeting you should speak:', opts: ['Over others', 'Clearly, politely and to the point', 'Only in slang', 'Very quietly always'], correct: 1, exp: 'Be clear, courteous and concise.' },
-      { q: 'A good way to build confidence is to:', opts: ['Avoid practice', 'Practise speaking regularly in low-stakes settings', 'Never make mistakes', 'Memorise the dictionary'], correct: 1, exp: 'Regular practice builds real speaking confidence.' },
-      { q: 'On the telephone, because there are no visual cues, you should:', opts: ['Mumble', 'Speak clearly and confirm understanding', 'Rush', 'Whisper'], correct: 1, exp: 'Clarity and confirmation matter more on calls.' }
-    ],
-    writing: [
-      { q: 'A paragraph should usually contain:', opts: ['Many unrelated ideas', 'One main idea with support', 'Only one word', 'No topic sentence'], correct: 1, exp: 'One clear idea per paragraph, with support.' },
-      { q: 'A thesis statement:', opts: ['Is a question only', 'States the main argument of an essay', 'Is the title', 'Is a list'], correct: 1, exp: 'The thesis states the essay’s central claim.' },
-      { q: 'Writing clearly and concisely means:', opts: ['Using long, complex words', 'Saying it simply and directly', 'Repeating ideas', 'Adding filler'], correct: 1, exp: 'Clear, concise writing communicates best.' },
-      { q: 'Editing and proofreading should be done:', opts: ['Never', 'After drafting, to fix errors and improve clarity', 'Before writing', 'Only by others'], correct: 1, exp: 'Revise for content, then proofread for errors.' },
-      { q: 'Transition words (e.g. "therefore") improve:', opts: ['Spelling', 'Cohesion between ideas', 'Handwriting', 'Length only'], correct: 1, exp: 'Transitions link ideas logically.' },
-      { q: 'Academic writing style avoids:', opts: ['Evidence', 'Slang and casual contractions', 'Clarity', 'Structure'], correct: 1, exp: 'Academic writing is formal and evidence-based.' }
-    ],
-    professional: [
-      { q: 'A professional email should have:', opts: ['No subject', 'A clear subject, greeting, concise body and sign-off', 'Only emojis', 'ALL CAPS'], correct: 1, exp: 'Structure and courtesy make emails professional.' },
-      { q: 'A resume (CV) should highlight:', opts: ['Everything you ever did', 'Relevant skills and achievements clearly', 'Personal secrets', 'Only hobbies'], correct: 1, exp: 'Focus on relevant, achievement-based content.' },
-      { q: 'A cover letter should explain:', opts: ['Nothing', 'Why you fit the role and employer', 'Your whole life', 'Only your name'], correct: 1, exp: 'Connect your value to the specific role.' },
-      { q: 'Meeting minutes record:', opts: ['Nothing', 'Decisions and action items', 'Only jokes', 'The weather'], correct: 1, exp: 'Minutes capture decisions and who does what.' },
-      { q: 'A business proposal should be:', opts: ['Vague', 'Clear, structured and benefit-focused', 'Very casual', 'Hidden'], correct: 1, exp: 'Proposals are clear, structured and persuasive.' },
-      { q: 'A strong LinkedIn profile includes:', opts: ['Nothing', 'A clear headline, summary and experience', 'Only a photo', 'Random text'], correct: 1, exp: 'Headline, summary and achievements matter.' }
-    ],
-    presentation: [
-      { q: 'A good presentation structure is:', opts: ['Random slides', 'Introduction, body (key points), conclusion', 'Only text', 'One long slide'], correct: 1, exp: 'Clear structure guides the audience.' },
-      { q: 'Slides should be:', opts: ['Full of text', 'Clear and visual with key points', 'All one colour', 'Blank'], correct: 1, exp: 'Concise, visual slides support the speaker.' },
-      { q: 'Good body language includes:', opts: ['Avoiding eye contact', 'Eye contact, open posture and gestures', 'Turning your back', 'Reading the screen'], correct: 1, exp: 'Confident body language engages the audience.' },
-      { q: 'When handling questions you should:', opts: ['Ignore them', 'Listen, then answer clearly and honestly', 'Argue', 'Change the topic'], correct: 1, exp: 'Listen and respond clearly; it’s fine to say you’ll follow up.' },
-      { q: 'To engage an audience you can:', opts: ['Read slides word-for-word', 'Use stories, questions and eye contact', 'Speak in a monotone', 'Face the wall'], correct: 1, exp: 'Interaction and delivery keep attention.' },
-      { q: 'Rehearsing a presentation helps you:', opts: ['Waste time', 'Build confidence and smooth delivery', 'Forget content', 'Increase nerves'], correct: 1, exp: 'Practice improves timing, flow and confidence.' }
-    ],
-    research: [
-      { q: 'Evaluating a source means checking its:', opts: ['Colour', 'Credibility, accuracy and relevance', 'Length only', 'Font'], correct: 1, exp: 'Assess authority, accuracy, currency and relevance.' },
-      { q: 'A fact differs from an opinion because a fact:', opts: ['Is a feeling', 'Can be verified with evidence', 'Is always true forever', 'Is longer'], correct: 1, exp: 'Facts are verifiable; opinions are viewpoints.' },
-      { q: 'Referencing/citations are used to:', opts: ['Fill space', 'Credit sources and avoid plagiarism', 'Confuse readers', 'Make it longer'], correct: 1, exp: 'Citations credit sources and support integrity.' },
-      { q: 'Paraphrasing means:', opts: ['Copying word-for-word', 'Restating an idea in your own words (with credit)', 'Ignoring the source', 'Translating only'], correct: 1, exp: 'Paraphrasing restates ideas in your own words, still cited.' },
-      { q: 'Critical thinking involves:', opts: ['Accepting everything', 'Questioning, analysing and evaluating information', 'Guessing', 'Memorising only'], correct: 1, exp: 'It questions and evaluates rather than accepts blindly.' },
-      { q: 'Plagiarism is:', opts: ['Good practice', 'Using others’ work without credit', 'A citation style', 'A research method'], correct: 1, exp: 'Plagiarism is presenting others’ work as your own.' }
-    ]
-  };
-
-  function bankKey(skill) {
-    var map = { orientation: 'general', grammar: 'grammar', vocab: 'vocab', reading: 'reading', listening: 'listening', speaking: 'speaking', writing: 'writing', academic: 'writing', professional: 'professional', presentation: 'presentation', workplace: 'professional', research: 'research', digital: 'general', career: 'professional', leadership: 'professional', international: 'speaking', exam: 'reading', projects: 'general', capstone: 'general', assessment: 'general' };
-    return map[skill] || 'general';
+  function cloneQ(q) { return {q:q.q,opts:q.opts.slice(),correct:q.correct,exp:q.exp}; }
+  function topicQuestions(num,name) {
+    var bank=window.TIH_ENGLISH_QUESTIONS,rows=bank&&bank.topics['M'+num+':'+name];
+    if(!rows||rows.length!==4)throw new Error('Incomplete English topic M'+num+':'+name);
+    return rows;
   }
-  function pickQuestions(key, count) {
-    var pool = BANK[key] || BANK.general;
-    var mixed = BANK.general.concat(BANK.grammar, BANK.vocab, BANK.reading, BANK.listening, BANK.speaking, BANK.writing, BANK.professional, BANK.presentation, BANK.research);
-    var out = [];
-    for (var i = 0; i < count; i++) { out.push(i < pool.length ? pool[i] : mixed[i % mixed.length]); }
-    return out;
-  }
-  function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
-  // Authored per-topic quiz questions (topic-quizzes.js) take priority so every
-  // topic has its OWN distinct questions. Falls back to the skill BANK.
-  function normQ(s) { return String(s || '').replace(/[^a-z0-9]+/gi, ' ').replace(/\s+/g, ' ').trim().toLowerCase(); }
-  var TQ = (typeof window !== 'undefined' && window.TIH_TOPIC_QUIZZES && window.TIH_TOPIC_QUIZZES['english-success']) || null;
-  var TQ_norm = null;
-  function topicQuestions(name) {
-    if (!TQ) return null;
-    if (!TQ_norm) { TQ_norm = {}; Object.keys(TQ).forEach(function (k) { TQ_norm[normQ(k)] = TQ[k]; }); }
-    var arr = TQ_norm[normQ(name)];
-    return (arr && arr.length) ? arr.map(cloneQ) : null;
-  }
-  function allAuthoredQuestions() {
-    if (!TQ) return null;
-    var out = []; Object.keys(TQ).forEach(function (k) { (TQ[k] || []).forEach(function (q) { out.push(q); }); });
-    return out.length ? out : null;
-  }
-  function spreadPick(pool, count) {
-    var out = [], n = pool.length; if (!n) return out;
-    var step = Math.max(1, Math.floor(n / count));
-    for (var i = 0, idx = 0; i < count; i++, idx += step) { out.push(pool[idx % n]); }
-    return out;
-  }
-  function practiceQuiz(key, name) { return { title: 'Practice: ' + name, moduleNum: 1, questions: topicQuestions(name) || pickQuestions(key, 3).map(cloneQ) }; }
-  function assessmentQuiz(key, name, count) {
-    var pool = allAuthoredQuestions();
-    var qs = pool ? spreadPick(pool, count).map(cloneQ) : pickQuestions(key, count).map(cloneQ);
-    return { title: name, moduleNum: 1, questions: qs };
-  }
-  function assessmentKey(name) {
-    if (/Grammar/i.test(name)) return 'grammar';
-    if (/Vocabulary/i.test(name)) return 'vocab';
-    if (/Reading/i.test(name)) return 'reading';
-    if (/Listening/i.test(name)) return 'listening';
-    if (/Speaking/i.test(name)) return 'speaking';
-    if (/Writing/i.test(name)) return 'writing';
-    if (/Presentation/i.test(name)) return 'presentation';
-    return 'general';
-  }
+  function practiceQuiz(num,name) { return {title:'Practice: '+name,moduleNum:num,questionCount:3,questions:topicQuestions(num,name).slice(0,3).map(cloneQ)}; }
+  function assessmentQuiz(num,name,count) { return {title:name,moduleNum:num,questionCount:count,questions:[]}; }
 
   var modules = [], quizzes = {}, notes = {};
   var flat = 0, notePos = 0;
@@ -259,16 +134,15 @@
     var num = mod[0], title = mod[1], icon = mod[2], skill = mod[3], type = mod[4], names = mod[5];
     var moduleTitle = 'Module ' + num + ': ' + title;
     var pool = VIDEOS[skill] || VIDEOS.assessment;
-    var key = bankKey(skill);
     var lessons = [], idx = 0;
 
     names.forEach(function (name) {
       if (/^Certificate of Completion$/i.test(name)) {
         var qid = 'en-m' + num + '-final';
-        quizzes[qid] = assessmentQuiz('general', 'Graduation Assessment', 15);
+        quizzes[qid] = assessmentQuiz(num, 'Graduation Assessment', 15);
         quizzes[qid].isFinal = true;
         lessons.push({ t: '🏆 ' + name, d: '15 questions', isQuiz: true, quizId: qid, isFinal: true });
-        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>This is the final graduation assessment. Pass it to complete the program and unlock your TIH Certificate of Completion.</p></div>';
+        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>This is the final graduation assessment. Review your answers and confirm official completion requirements in the TIH Learning Hub. Local practice scores do not issue certificates.</p></div>';
         flat += 1; quizCount += 1;
         return;
       }
@@ -280,11 +154,10 @@
         return;
       }
       if (type === 'assessment') {
-        var akey = assessmentKey(name);
         var big = /Examination|Exam|Evaluation|Review/i.test(name);
         var count = big ? (/Final/i.test(name) ? 20 : 15) : 8;
         var aid = 'en-m' + num + '-a' + flat;
-        quizzes[aid] = assessmentQuiz(akey, name, count);
+        quizzes[aid] = assessmentQuiz(num, name, count);
         lessons.push({ t: (big ? '🧪 ' : '📝 ') + name, d: count + ' questions', isQuiz: true, quizId: aid });
         notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Assessment</span></div><h3>' + esc(name) + '</h3><p>Complete this ' + (big ? 'examination/review' : 'assessment') + ', then review every answer explanation to strengthen your weak areas.</p></div>';
         flat += 1; quizCount += 1; if (big) examCount += 1;
@@ -292,7 +165,7 @@
       }
       if (isAssessment(name)) {
         var qk = 'en-m' + num + '-a' + flat;
-        quizzes[qk] = assessmentQuiz(key, name, 8);
+        quizzes[qk] = assessmentQuiz(num, name, 8);
         lessons.push({ t: '📝 ' + name, d: '8 questions', isQuiz: true, quizId: qk });
         notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Assessment</span></div><h3>' + esc(name) + '</h3><p>Answer this module assessment, then review each explanation to check your understanding.</p></div>';
         flat += 1; quizCount += 1;
@@ -312,7 +185,7 @@
       notes[String(flat)] = note(moduleTitle, skill, name, notePos++);
       flat += 1; videoCount += 1;
       var pqid = 'en-m' + num + '-q' + flat;
-      quizzes[pqid] = practiceQuiz(key, name);
+      quizzes[pqid] = practiceQuiz(num, name);
       lessons.push({ t: '📝 Practice: ' + name, d: '3 questions', isQuiz: true, quizId: pqid });
       notes[String(flat)] = '<p><strong>Quick check:</strong> Review the notes and complete the two exercises, then answer these to confirm you understood <em>' + esc(name) + '</em>.</p>';
       flat += 1; quizCount += 1;
@@ -325,7 +198,7 @@
   COURSES_DB[CID] = {
     id: CID,
     title: 'Complete English for Academic & Professional Success Certificate',
-    shortDesc: 'A full 20-module program to advanced English for study and work: grammar, vocabulary, reading, listening, speaking, writing, academic & professional writing, presentations, workplace & international communication, research, digital literacy, career, exam prep (TOEFL/IELTS/SAT overview), 10 projects, a capstone and a Certificate of Completion.',
+    shortDesc: 'A 20-module program developing English for study and work: grammar, vocabulary, reading, listening, speaking, writing, academic & professional writing, presentations, workplace & international communication, research, digital literacy, career, exam prep (TOEFL/IELTS/SAT overview), 10 projects, a capstone and a Certificate of Completion.',
     category: 'English & Communication',
     icon: ex.icon || '🗣️',
     gradient: ex.gradient || 'linear-gradient(135deg,#4338ca,#6366f1)',
@@ -356,9 +229,9 @@
       'Consistent weekly practice across reading, writing, speaking and listening'
     ],
     about: [
-      'This is the complete TIH English for Academic & Professional Success Certificate, rebuilt into twenty modules that take you from beginner/intermediate to advanced English for study and work.',
-      'Every content lesson has a video and printable notes; downloadable resources cover a Grammar Handbook, Academic Vocabulary List, Business Email, Essay, Resume & Cover Letter and Presentation templates, and a Study Planner. Ten projects and a capstone build your communication portfolio.',
-      'Software & tools: Microsoft Word/PowerPoint/Excel, Google Docs/Slides, Grammarly, ChatGPT, Zoom, Microsoft Teams, Google Meet and Canva. You finish with a portfolio and — after the graduation assessment — a Certificate of Completion.'
+      'Develop English for academic and professional situations through twenty modules covering language foundations, communication, research, practical projects and a capstone portfolio.',
+      'Written notes, worked examples and local knowledge checks support study. Actual listening and speaking practice, original writing, feedback and revisions are needed to demonstrate communication skills. Videos require an internet connection; written lessons work offline in the app.',
+      'TOEFL, IELTS and SAT lessons are introductory overviews. Verify current official provider guidance and the receiving institution’s requirements. TIH practice results do not certify a CEFR level or create an official admission-test score. Official TIH certificates remain managed through the Learning Hub.'
     ],
     modules: modules,
     quizzes: quizzes,
@@ -366,6 +239,50 @@
   };
 
   if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT[CID] = notes;
+
+  window.tihApplyEnglishTopicQuizzes=function(){
+    var bank=window.TIH_ENGLISH_QUESTIONS,course=COURSES_DB['english-success'];
+    if(!bank||!course)throw new Error('Missing English question bank');
+    var reserves=[],papers=[],used={};
+    course.modules.forEach(function(m,mi){m.lessons.forEach(function(l){
+      if(!l.isQuiz)return;
+      var q=course.quizzes[l.quizId];q.moduleNum=mi+1;
+      if(q.title.indexOf('Practice: ')===0){
+        var rows=topicQuestions(mi+1,q.title.slice(10));q.questions=rows.slice(0,3).map(cloneQ);reserves.push(rows[3]);
+      }else papers.push(q);
+    });});
+    var pool=reserves.concat(bank.exams.filter(function(q){return q.module!==17&&q.module!==19;}));
+    function issue(rows,count){
+      var buckets={},nums=[],out=[];
+      rows.forEach(function(q){if(used[q.q])return;if(!buckets[q.module]){buckets[q.module]=[];nums.push(q.module);}buckets[q.module].push(q);});
+      nums.sort(function(a,b){return a-b;});
+      var changed=true;
+      while(out.length<count&&changed){changed=false;nums.forEach(function(n){if(out.length>=count||!buckets[n].length)return;var q=buckets[n].shift();used[q.q]=true;out.push(cloneQ(q));changed=true;});}
+      if(out.length!==count)throw new Error('Exhausted English assessment pool');
+      return out;
+    }
+    function paper(title,module){var q=papers.filter(function(q){return q.title===title&&q.moduleNum===module;})[0];if(!q)throw new Error('Missing English assessment '+title);return q;}
+    // Protect explicit full-syllabus coverage before allocating narrow papers.
+    var protectedItems={},midCoverage=[],finalCoverage=[];
+    var teachingModules=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18];
+    teachingModules.forEach(function(n){
+      var rows=pool.filter(function(q){return q.module===n;});
+      if(rows.length<(n<=10?2:1))throw new Error('No English coverage reserve for module '+n);
+      var f=rows[rows.length-1];protectedItems[f.q]=true;finalCoverage.push(f);
+      if(n<=10){var m=rows[rows.length-2];protectedItems[m.q]=true;midCoverage.push(m);}
+    });
+    var localSubjects={'Grammar Assessment':2,'Reading Assessment':4,'Listening Assessment':5,'Speaking Assessment':6,'Writing Assessment':7,'Presentation Assessment':10,'Exam Readiness Assessment':18};
+    Object.keys(localSubjects).forEach(function(title){var num=localSubjects[title],q=paper(title,num);q.questions=issue(pool.filter(function(r){return r.module===num&&!protectedItems[r.q];}),q.questionCount);});
+    var subjects={'Grammar Assessment':[2],'Vocabulary Assessment':[3],'Reading Assessment':[4],'Listening Assessment':[5],'Speaking Assessment':[6],'Writing Assessment':[7,8,9]};
+    Object.keys(subjects).forEach(function(title){var q=paper(title,20),nums=subjects[title];q.questions=issue(pool.filter(function(r){return nums.indexOf(r.module)>=0&&!protectedItems[r.q];}),q.questionCount);});
+    var mid=paper('Midterm Examination',20);mid.questions=issue(midCoverage,10).concat(issue(pool.filter(function(r){return r.module<=10&&!protectedItems[r.q];}),mid.questionCount-10));
+    var final=paper('Final Examination',20);final.questions=issue(finalCoverage,17).concat(issue(pool.filter(function(r){return !protectedItems[r.q];}),final.questionCount-17));
+    var projectPool=bank.exams.filter(function(q){return q.module===17||q.module===19;});
+    ['Capstone Project Evaluation','Professional Portfolio Review'].forEach(function(title){var q=paper(title,20);q.questions=issue(projectPool,q.questionCount);});
+    var graduation=paper('Graduation Assessment',20);graduation.questions=issue(pool,graduation.questionCount);
+    papers.forEach(function(q){if(q.questions.length!==q.questionCount)throw new Error('Incomplete English paper '+q.title);});
+  };
+  window.tihApplyEnglishTopicQuizzes();
 
   if (typeof console !== 'undefined' && console.log) {
     console.log('[ENGLISH] modules=' + modules.length + ' videoLessons=' + videoCount + ' projects=' + projectCount + ' quizzes=' + quizCount + ' exams=' + examCount);
