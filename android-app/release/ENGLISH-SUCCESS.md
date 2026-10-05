@@ -12,7 +12,9 @@ Local and end-of-course skill papers stay within their relevant modules; the mid
 covers modules 1–10 and the final covers all 17 teaching modules (1–16 and 18).
 Capstone and portfolio reviews use separate practical scenarios from modules 17 and 19.
 
-Repeated titles now have context-specific practice and notes. The builder fails when
+Repeated titles now have context-specific practice and notes. Grammar prompts specify
+the requested tense, article type, location or timing meaning where another form
+could otherwise be valid; neutral adverb placement is distinguished from emphasis. The builder fails when
 required banks are incomplete and can be reapplied without changing allocation.
 The export test pins original entry identity, kind and video assignments. Existing
 saved scores, notes, bookmarks and completion keep their lesson identities; old

@@ -704,15 +704,15 @@
     "topic": "M2:Verb Tenses"
    },
    {
-    "q": "Verb Tenses: Which verb form correctly completes 'While I ___ dinner, the phone rang'?",
+    "q": "Verb Tenses: Which option explicitly uses the past continuous to describe the action in progress when the phone rang: 'While I ___ dinner, the phone rang'?",
     "opts": [
-     "cooked",
      "was cooking",
+     "cooked",
      "cook",
      "have cooked"
     ],
-    "correct": 1,
-    "exp": "'Was cooking' describes an ongoing past action, the past continuous tense.",
+    "correct": 0,
+    "exp": "Was cooking is past continuous. While I cooked can be grammatical in a different formulation, but it is not the requested tense.",
     "module": 2,
     "topic": "M2:Verb Tenses"
    },
@@ -875,15 +875,15 @@
     "topic": "M2:Adverbs"
    },
    {
-    "q": "Adverbs: Which sentence uses an adverb of frequency correctly?",
+    "q": "Adverbs: Which option uses the usual neutral placement of always after the verb be?",
     "opts": [
      "She always is late.",
      "She is always late.",
      "She late always is.",
-     "Always she late is."
+     "She is late always."
     ],
     "correct": 1,
-    "exp": "Adverbs of frequency come after the verb 'be', so 'is always late' is correct.",
+    "exp": "In neutral phrasing, always usually follows be. She always is late can be used with special emphasis, so it is not universally ungrammatical.",
     "module": 2,
     "topic": "M2:Adverbs"
    },
@@ -919,28 +919,28 @@
   "key": "M2:Articles",
   "rows": [
    {
-    "q": "Articles: Which article correctly completes 'She is ___ honest person'?",
+    "q": "Articles: Choose the indefinite article for a general description: 'She is ___ honest person.'",
     "opts": [
      "a",
-     "no article",
      "the",
-     "an"
+     "an",
+     "no article"
     ],
-    "correct": 3,
-    "exp": "'Honest' begins with a vowel sound, so 'an' is used.",
+    "correct": 2,
+    "exp": "An is the indefinite article before the vowel sound at the start of honest. The could be appropriate for an identified person, but is definite.",
     "module": 2,
     "topic": "M2:Articles"
    },
    {
-    "q": "Articles: Which sentence uses articles correctly?",
+    "q": "Articles: You mention an elephant for the first time without identifying a particular one. Which sentence uses the indefinite article correctly?",
     "opts": [
-     "I saw the elephant at a zoo.",
-     "I saw an elephant at the zoo.",
      "I saw a elephant at the zoo.",
-     "I saw elephant at zoo."
+     "I saw an elephant at the zoo.",
+     "I saw elephant at the zoo.",
+     "I saw a elephants at the zoo."
     ],
     "correct": 1,
-    "exp": "'An' precedes the vowel sound in 'elephant', and 'the' identifies the specific zoo.",
+    "exp": "An introduces one nonspecific elephant before a vowel sound. A definite article could refer to an identified animal, which is not this task.",
     "module": 2,
     "topic": "M2:Articles"
    },
@@ -976,41 +976,41 @@
   "key": "M2:Prepositions",
   "rows": [
    {
-    "q": "Prepositions: Which preposition correctly completes 'The meeting is ___ Monday'?",
+    "q": "Prepositions: To say the meeting takes place on the named day, rather than set a completion deadline, which preposition completes 'The meeting is ___ Monday'?",
     "opts": [
-     "on",
      "at",
      "in",
+     "on",
      "by"
     ],
-    "correct": 0,
-    "exp": "We use 'on' with days of the week.",
+    "correct": 2,
+    "exp": "On identifies the day. By Monday would express a different deadline meaning.",
     "module": 2,
     "topic": "M2:Prepositions"
    },
    {
-    "q": "Prepositions: Which sentence uses the preposition of time correctly?",
+    "q": "Prepositions: Which sentence states an exact starting time, without the meaning 'no later than'?",
     "opts": [
-     "The class starts in 9 a.m.",
-     "The class starts at 9 a.m.",
      "The class starts by 9 a.m.",
-     "The class starts on 9 a.m."
+     "The class starts in 9 a.m.",
+     "The class starts on 9 a.m.",
+     "The class starts at 9 a.m."
     ],
-    "correct": 1,
-    "exp": "We use 'at' with specific clock times.",
+    "correct": 3,
+    "exp": "At specifies the time. By 9 a.m. can be grammatical but means no later than that time.",
     "module": 2,
     "topic": "M2:Prepositions"
    },
    {
-    "q": "Prepositions: Which preposition best completes 'The keys are ___ the drawer'?",
+    "q": "Prepositions: The keys are inside a closed drawer. Which preposition expresses that location in 'The keys are ___ the drawer'?",
     "opts": [
-     "at",
-     "in",
      "on",
-     "over"
+     "in",
+     "over",
+     "at"
     ],
     "correct": 1,
-    "exp": "'In' indicates something enclosed inside the drawer.",
+    "exp": "In expresses the stated interior location; the other choices do not describe keys inside the drawer.",
     "module": 2,
     "topic": "M2:Prepositions"
    },
@@ -1230,15 +1230,15 @@
     "topic": "M2:Direct & Indirect Speech"
    },
    {
-    "q": "Direct & Indirect Speech: Which correctly reports the question He asked, 'Where do you live'?",
+    "q": "Direct & Indirect Speech: Using past-tense backshift and statement word order, which reports 'Where do you live?' after 'He asked'?",
     "opts": [
+     "He asked where did I live.",
      "He asked where I lived.",
-     "He asked where I live?",
-     "He asked where do you live.",
-     "He asked where did I live."
+     "He asked where do I live.",
+     "He asked where I living."
     ],
-    "correct": 0,
-    "exp": "Reported questions use statement word order and shift tense, giving 'where I lived'.",
+    "correct": 1,
+    "exp": "The requested reported form uses statement order and lived. Backshift is context-dependent rather than obligatory in every report.",
     "module": 2,
     "topic": "M2:Direct & Indirect Speech"
    },
@@ -1261,15 +1261,15 @@
   "key": "M2:Conditionals",
   "rows": [
    {
-    "q": "Conditionals: Which verb form correctly completes the first conditional 'If it rains, we ___ the trip'?",
+    "q": "Conditionals: Choose the will-form for the intended future result: 'If it rains tomorrow, we ___ the trip.'",
     "opts": [
      "will cancel",
-     "cancel",
      "would cancel",
-     "cancelled"
+     "cancelled",
+     "will cancelled"
     ],
     "correct": 0,
-    "exp": "The first conditional uses 'will' plus the base verb in the result clause.",
+    "exp": "Will plus the base verb cancel expresses the intended future result. Other real conditional formulations are possible, but this task requests the will-form.",
     "module": 2,
     "topic": "M2:Conditionals"
    },
