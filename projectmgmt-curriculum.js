@@ -120,119 +120,87 @@
       '<p><strong>Downloadable:</strong> Print → Save as PDF to keep your plan and templates offline.</p></div>';
   }
 
-  var BANK = {
-    general: [
-      { q: 'A project is best defined as:', opts: ['Ongoing daily operations', 'A temporary effort to create a unique result', 'A permanent department', 'A type of software'], correct: 1, exp: 'Projects are temporary and produce a unique product/service/result.' },
-      { q: 'The project life cycle phases are broadly:', opts: ['Start and stop', 'Initiate, plan, execute, monitor & control, close', 'Only planning', 'Only execution'], correct: 1, exp: 'These are the five PM process groups.' },
-      { q: 'Professional ethics for a PM require:', opts: ['Hiding bad news', 'Honesty, responsibility, respect and fairness', 'Ignoring stakeholders', 'Padding budgets'], correct: 1, exp: 'PMs uphold honesty, responsibility, respect and fairness.' },
-      { q: 'A project manager is mainly responsible for:', opts: ['Doing all the work alone', 'Leading the team to meet objectives within constraints', 'Only paperwork', 'Only coding'], correct: 1, exp: 'The PM leads planning, execution and delivery within constraints.' },
-      { q: 'The best measure of project success is:', opts: ['Being busy', 'Meeting objectives, scope, time, cost and quality and satisfying stakeholders', 'Spending the whole budget', 'The most meetings'], correct: 1, exp: 'Success = meeting agreed objectives and stakeholder needs.' },
-      { q: 'A capstone project helps you:', opts: ['Skip learning', 'Apply the whole method to a real project end to end', 'Only take a quiz', 'Memorise terms'], correct: 1, exp: 'The capstone integrates every skill into one real project.' }
-    ],
-    fundamentals: [
-      { q: 'The classic "triple constraint" is:', opts: ['People, place, time', 'Scope, time and cost (with quality)', 'Risk, quality, ethics', 'Plan, do, check'], correct: 1, exp: 'Scope, time and cost balance around quality.' },
-      { q: 'A business case justifies a project by showing:', opts: ['Only cost', 'The value/benefit versus the cost and risk', 'The logo', 'The team names'], correct: 1, exp: 'The business case shows why the project is worth doing.' },
-      { q: 'A project charter formally:', opts: ['Ends the project', 'Authorizes the project and names the PM', 'Pays the team', 'Designs the product'], correct: 1, exp: 'The charter authorizes the project and empowers the PM.' },
-      { q: 'Projects differ from operations because they are:', opts: ['Permanent and repetitive', 'Temporary and unique', 'Never planned', 'Only IT'], correct: 1, exp: 'Operations are ongoing; projects are temporary and unique.' },
-      { q: 'Project governance provides:', opts: ['Random decisions', 'A framework for decisions, roles and oversight', 'No structure', 'Only budgets'], correct: 1, exp: 'Governance defines decision rights and oversight.' },
-      { q: 'A functional vs projectized structure differs in:', opts: ['The logo', 'How much authority the PM has', 'The country', 'The software'], correct: 1, exp: 'PM authority is low in functional, high in projectized structures.' }
-    ],
-    planning: [
-      { q: 'A Work Breakdown Structure (WBS) decomposes:', opts: ['The budget only', 'The total scope into manageable work packages', 'The team', 'The risks'], correct: 1, exp: 'The WBS breaks scope into deliverables and work packages.' },
-      { q: 'The Critical Path is:', opts: ['The cheapest tasks', 'The longest sequence of dependent tasks (sets minimum duration)', 'Any random path', 'The shortest task'], correct: 1, exp: 'The critical path determines the project’s minimum duration.' },
-      { q: 'A milestone is:', opts: ['A long task', 'A significant point/event with zero duration', 'A budget line', 'A risk'], correct: 1, exp: 'Milestones mark key events, not work with duration.' },
-      { q: 'A Gantt chart shows:', opts: ['Only costs', 'Tasks against a timeline with durations and dependencies', 'Only risks', 'Team photos'], correct: 1, exp: 'Gantt charts visualise the schedule.' },
-      { q: 'Scope creep is:', opts: ['Good practice', 'Uncontrolled expansion of scope without control', 'A closing step', 'A budget method'], correct: 1, exp: 'Scope creep is uncontrolled, unapproved scope growth.' },
-      { q: 'Requirements should be collected from:', opts: ['Only the PM', 'Stakeholders and users', 'No one', 'Competitors only'], correct: 1, exp: 'Gather requirements from stakeholders and end users.' }
-    ],
-    cost: [
-      { q: 'Earned Value Management compares:', opts: ['Only actual cost', 'Planned value, earned value and actual cost', 'Only the schedule', 'Team size'], correct: 1, exp: 'EVM uses PV, EV and AC to measure performance.' },
-      { q: 'A Cost Performance Index (CPI) below 1 means:', opts: ['Under budget', 'Over budget (cost overrun)', 'On budget', 'No data'], correct: 1, exp: 'CPI < 1 indicates you are over budget.' },
-      { q: 'The budget baseline is:', opts: ['A guess', 'The approved, time-phased project budget', 'The final cost', 'The salary'], correct: 1, exp: 'The baseline is the approved budget you measure against.' },
-      { q: 'Cost control aims to:', opts: ['Spend faster', 'Manage costs against the baseline and control changes', 'Ignore the budget', 'Increase scope'], correct: 1, exp: 'Cost control keeps spending aligned to the baseline.' },
-      { q: 'Analogous estimating uses:', opts: ['No data', 'Costs from similar past projects', 'Only guessing', 'The team’s mood'], correct: 1, exp: 'Analogous estimating draws on similar past projects.' },
-      { q: 'Contingency reserve covers:', opts: ['Unknown-unknowns only', 'Identified (known) risks', 'Salaries only', 'Nothing'], correct: 1, exp: 'Contingency covers identified risks; management reserve covers unknowns.' }
-    ],
-    quality: [
-      { q: 'Quality assurance focuses on:', opts: ['Inspecting final output only', 'The processes that produce quality', 'The budget', 'The schedule'], correct: 1, exp: 'QA improves processes; QC inspects outputs.' },
-      { q: 'Quality control involves:', opts: ['Planning only', 'Measuring/inspecting deliverables against standards', 'Hiring', 'Marketing'], correct: 1, exp: 'QC checks deliverables meet quality requirements.' },
-      { q: 'Root cause analysis aims to:', opts: ['Blame people', 'Find and fix the underlying cause of a problem', 'Ignore issues', 'Add scope'], correct: 1, exp: 'RCA addresses causes, not just symptoms.' },
-      { q: 'Continuous improvement (Kaizen) means:', opts: ['One big change', 'Ongoing incremental improvement', 'No change', 'Only audits'], correct: 1, exp: 'Small, ongoing improvements compound over time.' },
-      { q: 'Quality should be:', opts: ['Inspected in at the end', 'Planned in from the start', 'Ignored', 'Optional'], correct: 1, exp: 'Quality is planned and built in, not inspected in later.' },
-      { q: 'Customer satisfaction depends on meeting:', opts: ['Only the budget', 'Stated and implied requirements', 'Only the deadline', 'The PM’s wishes'], correct: 1, exp: 'Satisfaction means fitness for use and meeting requirements.' }
-    ],
-    risk: [
-      { q: 'A risk is:', opts: ['A certain event', 'An uncertain event that could affect objectives', 'A finished task', 'A budget line'], correct: 1, exp: 'Risks are uncertain events with positive or negative impact.' },
-      { q: 'A risk register records:', opts: ['Only costs', 'Risks, their analysis, responses and owners', 'Team names only', 'The logo'], correct: 1, exp: 'The register tracks risks and how they are managed.' },
-      { q: 'Risk responses for threats include:', opts: ['Avoid, mitigate, transfer, accept', 'Only accept', 'Only ignore', 'Only exploit'], correct: 0, exp: 'Threats: avoid, mitigate, transfer or accept.' },
-      { q: 'Qualitative risk analysis ranks risks by:', opts: ['Alphabet', 'Probability and impact', 'Cost only', 'Team preference'], correct: 1, exp: 'It scores risks by probability × impact.' },
-      { q: 'Opportunity management treats positive risks with:', opts: ['Avoid only', 'Exploit, enhance, share or accept', 'Nothing', 'Deletion'], correct: 1, exp: 'Opportunities: exploit, enhance, share or accept.' },
-      { q: 'Risk monitoring means:', opts: ['One-time only', 'Tracking risks and responses throughout the project', 'Ignoring risks', 'Only at closure'], correct: 1, exp: 'Risks are monitored continuously across the project.' }
-    ],
-    comms: [
-      { q: 'Most of a project manager’s time is spent:', opts: ['Coding', 'Communicating', 'Sleeping', 'Filing'], correct: 1, exp: 'PMs spend the majority of their time communicating.' },
-      { q: 'A stakeholder is:', opts: ['Only the sponsor', 'Anyone affected by or who can affect the project', 'Only the team', 'Only the client'], correct: 1, exp: 'Stakeholders include anyone with an interest in the project.' },
-      { q: 'A status report should include:', opts: ['Only good news', 'Progress, issues, risks and next steps', 'Nothing', 'Only the budget'], correct: 1, exp: 'Reports give an honest, complete status picture.' },
-      { q: 'Good conflict resolution seeks:', opts: ['One winner', 'A constructive, collaborative outcome', 'Avoidance always', 'Blame'], correct: 1, exp: 'Collaboration/problem-solving usually gives the best outcome.' },
-      { q: 'A communication plan defines:', opts: ['Nothing', 'Who needs what information, when and how', 'Only meetings', 'The budget'], correct: 1, exp: 'It sets the audience, content, frequency and channel.' },
-      { q: 'Effective meetings need:', opts: ['No agenda', 'An agenda, the right people, and action items', 'Only the PM', 'No follow-up'], correct: 1, exp: 'Agenda, right attendees and clear actions make meetings work.' }
-    ],
-    agile: [
-      { q: 'Agile values working software/results over:', opts: ['Comprehensive documentation', 'Customers', 'Teams', 'Delivery'], correct: 0, exp: 'Agile values working results over exhaustive documentation.' },
-      { q: 'In Scrum, the Product Owner is responsible for:', opts: ['Writing all code', 'The product backlog and value', 'Running servers', 'HR'], correct: 1, exp: 'The Product Owner owns and prioritises the backlog.' },
-      { q: 'A Scrum sprint is:', opts: ['A year long', 'A short, fixed time-box (e.g. 1–4 weeks)', 'Unlimited', 'One hour'], correct: 1, exp: 'Sprints are short, fixed iterations delivering increments.' },
-      { q: 'The Scrum Master mainly:', opts: ['Commands the team', 'Facilitates and removes impediments', 'Owns the backlog', 'Signs contracts'], correct: 1, exp: 'The Scrum Master is a servant-leader/facilitator.' },
-      { q: 'Kanban focuses on:', opts: ['Fixed sprints', 'Visualising work and limiting work in progress', 'No board', 'Only estimation'], correct: 1, exp: 'Kanban visualises flow and limits WIP.' },
-      { q: 'A daily stand-up is for:', opts: ['Long reports', 'A short sync on progress, plan and blockers', 'Performance reviews', 'Budgeting'], correct: 1, exp: 'The daily scrum is a brief team synchronisation.' }
-    ],
-    monitoring: [
-      { q: 'Monitoring & controlling compares:', opts: ['Nothing', 'Actual performance against the plan/baseline', 'Only team mood', 'Only the logo'], correct: 1, exp: 'You measure actuals against the baseline and act on variances.' },
-      { q: 'Integrated change control ensures changes are:', opts: ['Made instantly by anyone', 'Reviewed, approved and documented', 'Ignored', 'Hidden'], correct: 1, exp: 'Changes go through a formal review/approval process.' },
-      { q: 'A KPI is:', opts: ['A random number', 'A key metric that measures performance', 'A team member', 'A risk'], correct: 1, exp: 'KPIs quantify progress toward objectives.' },
-      { q: 'Variance analysis looks at:', opts: ['Only good news', 'The difference between planned and actual', 'The logo', 'Team size'], correct: 1, exp: 'Variance = planned vs actual; it triggers corrective action.' },
-      { q: 'A corrective action is taken to:', opts: ['Do nothing', 'Bring performance back in line with the plan', 'Expand scope', 'Cancel the project'], correct: 1, exp: 'Corrective actions realign performance to the plan.' },
-      { q: 'Lessons learned should be captured:', opts: ['Never', 'Throughout and at closure', 'Only if it fails', 'Only by the sponsor'], correct: 1, exp: 'Capture lessons continuously and formalise at closure.' }
-    ],
-    software: [
-      { q: 'Trello, Asana and Jira are primarily:', opts: ['Accounting apps', 'Project/task management tools', 'Photo editors', 'Databases'], correct: 1, exp: 'They manage tasks, boards and workflows.' },
-      { q: 'A Kanban board in these tools shows:', opts: ['Only costs', 'Tasks moving across columns (e.g. To Do → Doing → Done)', 'Team salaries', 'The logo'], correct: 1, exp: 'Boards visualise task flow across stages.' },
-      { q: 'Microsoft Project is strong for:', opts: ['Photo editing', 'Detailed scheduling, Gantt charts and resources', 'Email only', 'Chatting'], correct: 1, exp: 'MS Project excels at scheduling and resource planning.' },
-      { q: 'Jira is especially popular for:', opts: ['Construction only', 'Agile/software teams (sprints, backlogs)', 'Cooking', 'Music'], correct: 1, exp: 'Jira is widely used for Agile software delivery.' },
-      { q: 'Choosing a PM tool should depend on:', opts: ['The logo colour', 'Team size, methodology and needs', 'Random choice', 'The weather'], correct: 1, exp: 'Match the tool to your team, method and needs.' },
-      { q: 'Google Workspace helps project teams by:', opts: ['Nothing', 'Enabling shared docs, sheets and collaboration', 'Only email', 'Only storage'], correct: 1, exp: 'Docs/Sheets/Slides/Drive support collaboration.' }
-    ],
-    analysis: [
-      { q: 'SWOT analysis examines:', opts: ['Strengths, Weaknesses, Opportunities, Threats', 'Sales only', 'Software only', 'Schedules only'], correct: 0, exp: 'SWOT reviews internal and external factors.' },
-      { q: 'PESTLE analysis looks at:', opts: ['Only price', 'Political, Economic, Social, Technological, Legal, Environmental factors', 'Only the team', 'Only risk'], correct: 1, exp: 'PESTLE scans the external macro-environment.' },
-      { q: 'A feasibility study assesses whether a project is:', opts: ['Fun', 'Viable technically, financially and operationally', 'Popular', 'Colourful'], correct: 1, exp: 'Feasibility checks if the project is workable and worthwhile.' },
-      { q: 'Business analysis mainly defines:', opts: ['The logo', 'Needs and requirements to deliver value', 'Salaries', 'The office'], correct: 1, exp: 'BA identifies needs and requirements for value.' },
-      { q: 'Organizational change management focuses on:', opts: ['Ignoring people', 'Helping people adopt the change', 'Only tools', 'Only budgets'], correct: 1, exp: 'Change management supports people through transition.' },
-      { q: 'A strong decision-making technique is to:', opts: ['Guess', 'Weigh options against clear criteria', 'Avoid deciding', 'Copy competitors'], correct: 1, exp: 'Structured criteria improve decision quality.' }
-    ]
-  };
-
-  function bankKey(skill) {
-    var map = { orientation: 'general', fundamentals: 'fundamentals', initiation: 'fundamentals', planning: 'planning', scope: 'planning', time: 'planning', cost: 'cost', quality: 'quality', risk: 'risk', comms: 'comms', leadership: 'comms', agile: 'agile', monitoring: 'monitoring', closure: 'monitoring', software: 'software', analysis: 'analysis', professional: 'general', career: 'general', projects: 'general', assessment: 'general' };
-    return map[skill] || 'general';
+  // Fail visibly if the authored bank is missing. Never fall back to a generic
+  // pool: that was the source of identical quizzes throughout this course.
+  var authored = window.TIH_PM_QUESTION_BANK;
+  if (!authored || authored.revision !== 2) throw new Error('Project Management question bank did not load');
+  var reserved = [], issued = {}, papers = {};
+  curriculum.forEach(function (mod) {
+    if (mod[4] === 'assessment') return;
+    mod[5].forEach(function (name) {
+      if (isAssessment(name)) return;
+      var key = 'M' + mod[0] + ':' + name, set = authored.topics[key];
+      if (!set || set.length !== 4) throw new Error('Missing authored PM topic: ' + key);
+      var project = mod[4] === 'projects' || isProjectName(name);
+      (project ? set : set.slice(3)).forEach(function (q) {
+        reserved.push({ question: q, project: project });
+      });
+    });
+  });
+  authored.exams.forEach(function (q) { reserved.push({ question: q, project: false }); });
+  function cloneQ(q) {
+    return { id: q.id, topic: q.topic, module: q.module, q: q.q,
+      opts: q.opts.slice(), correct: q.correct, exp: q.exp };
   }
-  function pickQuestions(key, count) {
-    var pool = BANK[key] || BANK.general;
-    var mixed = BANK.general.concat(BANK.fundamentals, BANK.planning, BANK.cost, BANK.quality, BANK.risk, BANK.comms, BANK.agile, BANK.software, BANK.monitoring, BANK.analysis);
-    var out = [];
-    for (var i = 0; i < count; i++) { out.push(i < pool.length ? pool[i] : mixed[i % mixed.length]); }
+  // Round-robin by module, then by topic. Cursors only move forward; an issued
+  // question can never appear in another paper, including the graduation quiz.
+  function take(count, accepts) {
+    var groups = {}, modules = [], out = [];
+    reserved.forEach(function (entry) {
+      var q = entry.question;
+      if (issued[q.id] || !accepts(entry)) return;
+      if (!groups[q.module]) { groups[q.module] = {}; modules.push(q.module); }
+      (groups[q.module][q.topic] = groups[q.module][q.topic] || []).push(q);
+    });
+    var queues = modules.map(function (m) {
+      var buckets = Object.keys(groups[m]).map(function (t) { return groups[m][t]; });
+      var queue = [], remaining = true;
+      while (remaining) {
+        remaining = false;
+        buckets.forEach(function (bucket) { if (bucket.length) { queue.push(bucket.shift()); remaining = true; } });
+      }
+      return queue;
+    });
+    while (out.length < count) {
+      var moved = false;
+      queues.forEach(function (queue) {
+        if (out.length < count && queue.length) {
+          var q = queue.shift(); issued[q.id] = true; out.push(cloneQ(q)); moved = true;
+        }
+      });
+      if (!moved) throw new Error('Insufficient unseen PM assessment questions: ' + count);
+    }
     return out;
   }
-  function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
-  function practiceQuiz(key, name) { return { title: 'Practice: ' + name, moduleNum: 1, questions: pickQuestions(key, 3).map(cloneQ) }; }
-  function assessmentQuiz(key, name, count) { return { title: name, moduleNum: 1, questions: pickQuestions(key, count).map(cloneQ) }; }
-  function assessmentKey(name) {
-    if (/Planning/i.test(name)) return 'planning';
-    if (/Budgeting|Cost/i.test(name)) return 'cost';
-    if (/Risk/i.test(name)) return 'risk';
-    if (/Agile|Scrum/i.test(name)) return 'agile';
-    if (/Software|Tools/i.test(name)) return 'software';
-    if (/Fundamentals/i.test(name)) return 'fundamentals';
-    return 'general';
+  function inModules(nums) { return function (e) { return nums.indexOf(e.question.module) >= 0; }; }
+  function risk(e) { return e.question.module === 9 || e.question.topic === 'M19:Risk Assessment Project'; }
+  function paper(name, count, accepts) { papers[name] = take(count, accepts); }
+  paper('Introduction Quiz', 8, inModules([2]));
+  paper('Risk Assessment', 8, risk);
+  paper('Project Management Fundamentals Assessment', 8, function (e) {
+    return [1, 2, 3].indexOf(e.question.module) >= 0 && !e.project &&
+      !/Welcome to the Course|Course Roadmap|Career Opportunities/.test(e.question.topic);
+  });
+  paper('Budgeting Assessment', 8, inModules([7]));
+  paper('Planning Assessment', 8, function (e) { return [4, 5, 6].indexOf(e.question.module) >= 0 && !e.project; });
+  paper('Risk Management Assessment', 8, risk);
+  paper('Agile & Scrum Assessment', 8, function (e) { return e.question.module === 12 && !e.project; });
+  paper('Software Tools Assessment', 8, inModules([15]));
+  authored.comprehensive.forEach(function (q) { reserved.push({ question: q, project: false }); });
+  paper('Midterm Examination', 15, function (e) { return e.question.module <= 10 && !e.project; });
+  paper('Final Examination', 20, function (e) { return e.question.module <= 18 && !e.project; });
+  paper('Capstone Project Presentation', 15, function (e) { return e.project; });
+  paper('Portfolio Review', 15, function (e) { return e.project; });
+  paper('Graduation Assessment', 15, function (e) { return !e.project && e.question.module >= 2 && e.question.module <= 16; });
+  function practiceQuiz(module, name) {
+    var key = 'M' + module + ':' + name;
+    return { title: 'Practice: ' + name, moduleNum: module,
+      questions: authored.topics[key].slice(0, 3).map(cloneQ) };
+  }
+  function assessmentQuiz(module, name, count) {
+    var questions = papers[name];
+    if (!questions || questions.length !== count) throw new Error('Invalid PM paper: ' + name);
+    return { title: name, moduleNum: module, questions: questions };
   }
 
   var modules = [], quizzes = {}, notes = {};
@@ -243,13 +211,12 @@
     var num = mod[0], title = mod[1], icon = mod[2], skill = mod[3], type = mod[4], names = mod[5];
     var moduleTitle = 'Module ' + num + ': ' + title;
     var pool = VIDEOS[skill] || VIDEOS.assessment;
-    var key = bankKey(skill);
     var lessons = [], idx = 0;
 
     names.forEach(function (name) {
       if (/^Certificate of Completion$/i.test(name)) {
         var qid = 'pm-m' + num + '-final';
-        quizzes[qid] = assessmentQuiz('general', 'Graduation Assessment', 15);
+        quizzes[qid] = assessmentQuiz(num, 'Graduation Assessment', 15);
         quizzes[qid].isFinal = true;
         lessons.push({ t: '🏆 ' + name, d: '15 questions', isQuiz: true, quizId: qid, isFinal: true });
         notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>This is the final graduation assessment. Pass it to complete the program and unlock your TIH Certificate of Completion.</p></div>';
@@ -264,11 +231,10 @@
         return;
       }
       if (type === 'assessment') {
-        var akey = assessmentKey(name);
         var big = /Examination|Exam|Evaluation|Presentation|Review/i.test(name);
         var count = big ? (/Final/i.test(name) ? 20 : 15) : 8;
         var aid = 'pm-m' + num + '-a' + flat;
-        quizzes[aid] = assessmentQuiz(akey, name, count);
+        quizzes[aid] = assessmentQuiz(num, name, count);
         lessons.push({ t: (big ? '🧪 ' : '📝 ') + name, d: count + ' questions', isQuiz: true, quizId: aid });
         notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Assessment</span></div><h3>' + esc(name) + '</h3><p>Complete this ' + (big ? 'examination/review' : 'assessment') + ', then review every answer explanation to strengthen your weak areas.</p></div>';
         flat += 1; quizCount += 1; if (big) examCount += 1;
@@ -276,7 +242,7 @@
       }
       if (isAssessment(name)) {
         var qk = 'pm-m' + num + '-a' + flat;
-        quizzes[qk] = assessmentQuiz(key, name, 8);
+        quizzes[qk] = assessmentQuiz(num, name, 8);
         lessons.push({ t: '📝 ' + name, d: '8 questions', isQuiz: true, quizId: qk });
         notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Quiz</span></div><h3>' + esc(name) + '</h3><p>Answer this module quiz, then review each explanation to check your understanding.</p></div>';
         flat += 1; quizCount += 1;
@@ -296,7 +262,7 @@
       notes[String(flat)] = note(moduleTitle, skill, name, notePos++);
       flat += 1; videoCount += 1;
       var pqid = 'pm-m' + num + '-q' + flat;
-      quizzes[pqid] = practiceQuiz(key, name);
+      quizzes[pqid] = practiceQuiz(num, name);
       lessons.push({ t: '📝 Practice: ' + name, d: '3 questions', isQuiz: true, quizId: pqid });
       notes[String(flat)] = '<p><strong>Quick check:</strong> Review the notes and complete the two exercises, then answer these to confirm you understood <em>' + esc(name) + '</em>.</p>';
       flat += 1; quizCount += 1;

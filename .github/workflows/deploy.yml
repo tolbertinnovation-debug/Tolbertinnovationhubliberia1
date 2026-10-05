@@ -24,6 +24,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Validate Project Management question bank and catalog
+        run: |
+          node --test tools/projectmgmt-quizzes.test.mjs
+          node tools/check-courses-lite.js
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
