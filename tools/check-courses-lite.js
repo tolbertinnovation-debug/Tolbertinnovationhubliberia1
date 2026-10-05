@@ -83,14 +83,21 @@ if (ex) ex[1].split(/\n(?=\s*'[^']+':)/).forEach(block => {
     .map(s => s.replace(/'/g, '').split('?')[0]);
 });
 
+// Authored banks are prerequisites of the builders, just as in the browser.
+const BANKS = {};
+const bankBlock = loader.match(/var TOPIC_QUIZ_BANKS = \{([\s\S]*?)\n  \};/);
+if (bankBlock) for (const match of bankBlock[1].matchAll(/'([^']+)'\s*:\s*\{\s*src:\s*'([^'?]+)(?:\?[^']*)?'/g)) BANKS[match[1]] = match[2];
 const drift = [];
 for (const id of Object.keys(CURRICULUM)) {
   if (!lite[id]) continue;                       // not shown on the dashboard
-  const files = ['courses-db.js', CURRICULUM[id]]
+  const files = ['courses-db.js'].concat(BANKS[id] ? [BANKS[id]] : []).concat([CURRICULUM[id]])
     .concat(EXTRAS[id] || [])
     .concat(['videos/' + id + '-videos.js']);
   let ctx;
-  try { ctx = ctxWith(files); } catch (e) { continue; }
+  try { ctx = ctxWith(files); } catch (e) {
+    if (id === 'project-mgmt') drift.push({id, issues: ['Builder failed: ' + e.message]});
+    continue;
+  }
   const built = ctx.COURSES_DB[id];
   if (!built || !built.modules) continue;
 

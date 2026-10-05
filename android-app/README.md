@@ -4,15 +4,19 @@ An isolated Kotlin / Jetpack Compose Android application in the existing TIH rep
 The 0.2 build adds Android 16 targeting, native TIH organization/help/privacy/terms screens,
 account-deletion email requests, and optimized release bundle validation. See
 [publishing handoff](release/PUBLISHING.md) for the completed preparation and owner-only steps.
-**This is a review build, not a production or Play Store release.** No existing website,
-database, domain, payment configuration, or GitHub Pages workflow is modified.
+**This is a review build, not a production or Play Store release.** The Android build does not deploy the website or modify account, payment or domain configuration.
+The 0.3.5 Project Management content correction is also published to the website, as requested by the owner.
 
 ## What is implemented
+
+- 0.3.5 replaces repeated Project Management quizzes with 570 distinct questions,
+  topic-specific practice, separate assessment items and explanatory feedback.
+  A shared source bank and automated checks keep website and app aligned.
 
 - 0.3.4 places Project Management beside Computer Literacy in Courses and adds
   dedicated checks for its imported content, offline reader, and native assessments.
   See [Project Management review](release/PROJECT-MANAGEMENT.md) for coverage and
-  the existing source question-bank limitation.
+  the corrected source question bank.
 
 - 0.3.3 opens with native sign-in and a Create account link to TIH’s existing
   registration page. Signed-in learners open directly to Courses. The full catalog
@@ -88,13 +92,15 @@ is handed to the learner's YouTube app rather than turning the view into a brows
 
 Development branch: `codex/tih-native-android`.
 
-The existing `.github/workflows/deploy.yml` deploys only pushes to `main`; it is unchanged.
+The `.github/workflows/deploy.yml` deploys only pushes to `main`; the website
+branch now validates Project Management content before deployment.
 The new `android-preview.yml` builds only this feature branch or an explicit workflow
 dispatch. It has read-only repository permissions and never deploys GitHub Pages.
-No merge or production deployment is part of this preview.
+App-only changes remain on this branch. The owner-requested quiz correction is
+also committed separately to the website branches without Android source files.
 
-All application source lives in `android-app/`. The only addition outside that folder is
-the Android-only CI workflow. The generated course assets are ignored by git and rebuilt
+Application source lives in `android-app/`. Shared course content and its checks
+live at the repository root; Android CI is separate from Pages deployment. The generated course assets are ignored by git and rebuilt
 from the repository when compiling, avoiding a second hand-edited copy of the curricula.
 
 **Do not merge blindly:** the existing Pages workflow publishes the entire repository.

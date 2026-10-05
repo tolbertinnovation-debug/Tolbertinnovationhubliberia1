@@ -1,4 +1,5 @@
 import './video-player.test.mjs';
+import '../../tools/projectmgmt-quizzes.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -39,7 +40,7 @@ test('source manifest proves all website inputs remain unchanged', () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(learning, 'manifest.json')));
   assert.equal(manifest.missingNotes.length, 0);
   assert.equal(manifest.emptyQuizzes.length, 0);
-  assert.equal(Object.keys(manifest.sourceFiles).length, 212);
+  assert.equal(Object.keys(manifest.sourceFiles).length, 213);
   for (const [file, hash] of Object.entries(manifest.sourceFiles)) {
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex'), hash, file);
   }
@@ -110,7 +111,7 @@ test('Project Management is complete, source-faithful and beside Computer Litera
   const course = JSON.parse(fs.readFileSync(path.join(learning, 'courses/project-mgmt.json')));
   const source = extractCourse('project-mgmt');
   // Verify exact IDs, authored notes, projects, video overrides and answers, not
-  // just non-empty files. Existing repeated source questions are not rewritten.
+  // just non-empty files. The corrected source question bank must import exactly.
   assert.equal(JSON.stringify(course.modules), JSON.stringify(source.modules));
   for (const key of ['about', 'requirements', 'faqs', 'instructor', 'outcomes', 'css']) {
     assert.equal(JSON.stringify(course[key]), JSON.stringify(source[key]), key);
@@ -127,6 +128,9 @@ test('Project Management is complete, source-faithful and beside Computer Litera
   assert.equal(new Set(videos).size, videos.length);
   assert.equal(lessons.reduce((n, l) => n + l.questions.length, 0), 570);
   assert.equal(lessons.find(l => l.final).questions.length, 15);
+  const questions = lessons.flatMap(l => l.questions);
+  assert.equal(new Set(questions.map(q => q.question.toLowerCase().replace(/[^a-z0-9]/g, ''))).size, 570);
+  assert.ok(questions.every(q => q.options.length === 4 && q.explanation.length > 20));
   assert.equal(summary.image, 'images/project-mgmt.jpg');
   assert.ok(fs.statSync(path.join(learning, summary.image)).size > 1000);
 });

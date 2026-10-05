@@ -146,11 +146,16 @@ class CatalogSmokeTest {
         val course = model.course!!
         val practice = course.lessons.first { it.kind == "quiz" }
         val final = course.lessons.first { it.isFinal }
-        for (assessment in listOf(practice, final)) {
+        val budgeting = course.lessons.first { it.title.contains("Practice: Earned Value Management (EVM)") }
+        val agile = course.lessons.first { it.title.contains("Practice: Scrum Roles") }
+        org.junit.Assert.assertEquals(570, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, budgeting, agile, final)) {
             compose.runOnIdle { model.openLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
-            else snapshot("19-project-management-practice")
+            else if (assessment == practice) snapshot("19-project-management-practice")
+            else if (assessment == budgeting) snapshot("22-project-management-budget-quiz")
+            else if (assessment == agile) snapshot("23-project-management-agile-quiz")
             assessment.questions.forEachIndexed { index, question ->
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
