@@ -95,7 +95,7 @@ for (const id of Object.keys(CURRICULUM)) {
     .concat(['videos/' + id + '-videos.js']);
   let ctx;
   try { ctx = ctxWith(files); } catch (e) {
-    if (id === 'project-mgmt' || id === 'accounting-bookkeeping' || id === 'webdev' || id === 'design' || id === 'entrepreneurship' || id === 'android' || id === 'office' || id === 'leadership' || id === 'grant-writing') drift.push({id, issues: ['Builder failed: ' + e.message]});
+    if (id === 'project-mgmt' || id === 'accounting-bookkeeping' || id === 'webdev' || id === 'design' || id === 'entrepreneurship' || id === 'android' || id === 'office' || id === 'leadership' || id === 'grant-writing' || id === 'english-success') drift.push({id, issues: ['Builder failed: ' + e.message]});
     continue;
   }
   const built = ctx.COURSES_DB[id];

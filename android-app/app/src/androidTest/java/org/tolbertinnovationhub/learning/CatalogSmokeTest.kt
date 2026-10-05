@@ -541,5 +541,50 @@ class CatalogSmokeTest {
         compose.onNodeWithText(title).assertExists()
     }
 
+    @Test fun englishOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("english-success")
+        signIn()
+        val title = "Complete English for Academic & Professional Success Certificate"
+        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("20 modules · 332 entries · 170 video links"))
+        compose.onNodeWithText("20 modules · 332 entries · 170 video links").assertIsDisplayed()
+        snapshot("72-english-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.kind == "quiz" }
+        val final = course.lessons.first { it.isFinal }
+        val grammarPractice = course.lessons.first { it.title.contains("Practice: Subject-Verb Agreement") }
+        val examPractice = course.lessons.first { it.title.contains("Practice: TOEFL Introduction") }
+        org.junit.Assert.assertEquals(616, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, grammarPractice, examPractice, final)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else if (assessment == practice) snapshot("73-english-practice")
+            else if (assessment == grammarPractice) snapshot("74-english-grammar")
+            else if (assessment == examPractice) snapshot("75-english-exam")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
+                compose.onNodeWithText(question.options[question.answer]).performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("english-success"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "english-success", assessment))
+            }
+        }
+        snapshot("76-english-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
+    }
+
 
 }

@@ -9,6 +9,9 @@ The 0.3.5 Project Management content correction is also published to the website
 
 ## What is implemented
 
+- 0.3.15 places English for Academic & Professional Success eleventh in Courses and in Today,
+  with 20 modules, 332 entries, 170 authored notes/video links and 616 distinct questions.
+  See [English Success review](release/ENGLISH-SUCCESS.md).
 - 0.3.14 places Grant Writing & Fundraising tenth in Courses and in Today,
   with 20 modules, 21 specific project briefs, 166 distinct video links and 564
   distinct questions. See [Grant Writing review](release/GRANT-WRITING.md).
