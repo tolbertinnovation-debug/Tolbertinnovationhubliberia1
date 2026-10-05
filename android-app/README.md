@@ -9,6 +9,10 @@ The 0.3.5 Project Management content correction is also published to the website
 
 ## What is implemented
 
+- 0.3.13 places Business Leadership Masterclass ninth in Courses and in Today,
+  with 20 modules, 21 specific project briefs, 165 distinct video links and 565
+  distinct questions. See [Business Leadership review](release/BUSINESS-LEADERSHIP.md).
+
 - 0.3.12 places Microsoft Office Mastery eighth in Courses and in Today, with
   20 modules, 29 project briefs, 198 distinct video links and 637 distinct questions.
   See [Microsoft Office review](release/MICROSOFT-OFFICE.md).

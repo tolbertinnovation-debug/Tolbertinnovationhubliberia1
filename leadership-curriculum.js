@@ -5,8 +5,8 @@
    operations, finance, marketing, innovation & change, negotiation, HR,
    performance, entrepreneurship, technology & AI, ethics & governance, career
    & executive development, real-world projects, a capstone and a graduation
-   module. Every content lesson has a video + printable notes; project lessons
-   carry briefs and downloadable leadership templates. Modelled on
+   module. Every content lesson has a video and written notes; project lessons
+   carry briefs and editable template outlines. Modelled on
    projectmgmt-curriculum.js. */
 (function () {
   if (typeof COURSES_DB === 'undefined') return;
@@ -119,120 +119,15 @@
       '<p><strong>Downloadable:</strong> Print → Save as PDF to keep your work and templates offline.</p></div>';
   }
 
-  var BANK = {
-    general: [
-      { q: 'Leadership is best described as:', opts: ['Controlling people', 'Influencing and enabling people to achieve shared goals', 'Doing all the work yourself', 'Avoiding decisions'], correct: 1, exp: 'Leadership is about influence toward a shared vision.' },
-      { q: 'Leadership differs from management in that leadership focuses more on:', opts: ['Processes and control', 'Vision, people and change', 'Only budgets', 'Only schedules'], correct: 1, exp: 'Leaders set direction and inspire; managers plan and control.' },
-      { q: 'Ethical leadership means:', opts: ['Winning at any cost', 'Leading with honesty, fairness and responsibility', 'Ignoring stakeholders', 'Hiding information'], correct: 1, exp: 'Ethical leaders act with integrity and responsibility.' },
-      { q: 'A great leader mostly develops through:', opts: ['Birth only', 'Practice, feedback and reflection', 'Luck', 'Avoiding challenges'], correct: 1, exp: 'Leadership is a learnable skill built by practice and reflection.' },
-      { q: 'The capstone leadership project helps you:', opts: ['Skip work', 'Apply the whole program to a real leadership challenge', 'Only take a quiz', 'Memorise terms'], correct: 1, exp: 'The capstone integrates the program into one real challenge.' },
-      { q: 'A leader builds credibility mainly by:', opts: ['Talking most', 'Doing what they say and delivering results', 'Titles alone', 'Avoiding accountability'], correct: 1, exp: 'Credibility comes from integrity and consistent delivery.' }
-    ],
-    fundamentals: [
-      { q: 'Emotional intelligence includes:', opts: ['Only IQ', 'Self-awareness, self-regulation, empathy and social skill', 'Only technical skill', 'Only speed'], correct: 1, exp: 'EI covers awareness and management of emotions in self and others.' },
-      { q: 'Self-leadership means:', opts: ['Leading others only', 'Managing your own mindset, habits and growth', 'Ignoring feedback', 'Avoiding goals'], correct: 1, exp: 'You lead yourself before you can lead others well.' },
-      { q: 'Trust is built primarily through:', opts: ['Promises alone', 'Consistency, honesty and competence over time', 'Authority', 'Secrecy'], correct: 1, exp: 'Trust grows from reliable, honest, capable behaviour.' },
-      { q: 'Accountability means a leader:', opts: ['Blames others', 'Takes ownership of results and decisions', 'Avoids responsibility', 'Hides mistakes'], correct: 1, exp: 'Accountable leaders own outcomes, good or bad.' },
-      { q: 'Good decision-making under pressure relies on:', opts: ['Guessing', 'Clear values, information and sound judgement', 'Avoiding decisions', 'Copying others'], correct: 1, exp: 'Values plus evidence produce better decisions.' },
-      { q: 'Leadership confidence grows from:', opts: ['Never failing', 'Preparation, small wins and learning from setbacks', 'Arrogance', 'Avoiding risk'], correct: 1, exp: 'Competence and experience build genuine confidence.' }
-    ],
-    strategy: [
-      { q: 'A vision statement describes:', opts: ['Daily tasks', 'The desired future the organization aims for', 'The budget', 'The office rules'], correct: 1, exp: 'Vision paints the aspirational future state.' },
-      { q: 'SWOT analysis reviews:', opts: ['Strengths, Weaknesses, Opportunities, Threats', 'Only sales', 'Only staff', 'Only software'], correct: 0, exp: 'SWOT covers internal and external factors.' },
-      { q: 'PESTLE analysis scans the:', opts: ['Internal team', 'External macro-environment (Political, Economic, Social, Tech, Legal, Environmental)', 'Budget only', 'Logo'], correct: 1, exp: 'PESTLE examines external forces.' },
-      { q: 'Competitive advantage is:', opts: ['Copying rivals', 'What lets you outperform competitors sustainably', 'A logo', 'A slogan'], correct: 1, exp: 'It is a durable edge customers value.' },
-      { q: 'Scenario planning helps leaders:', opts: ['Predict exactly', 'Prepare for multiple possible futures', 'Ignore risk', 'Avoid strategy'], correct: 1, exp: 'It builds readiness for different plausible futures.' },
-      { q: 'Strategic goals should be:', opts: ['Vague', 'Clear, measurable and aligned to the vision', 'Secret', 'Random'], correct: 1, exp: 'Good goals are specific, measurable and aligned.' }
-    ],
-    comms: [
-      { q: 'Active listening means:', opts: ['Waiting to talk', 'Fully focusing, understanding and responding to the speaker', 'Interrupting', 'Ignoring'], correct: 1, exp: 'Active listening seeks to understand before responding.' },
-      { q: 'Effective feedback should be:', opts: ['Vague and late', 'Specific, timely and constructive', 'Only negative', 'Only praise'], correct: 1, exp: 'Good feedback is specific, timely and actionable.' },
-      { q: 'Executive communication is usually:', opts: ['Long and unfocused', 'Clear, concise and outcome-focused', 'Full of jargon', 'Avoided'], correct: 1, exp: 'Executives value clarity and brevity.' },
-      { q: 'Crisis communication should be:', opts: ['Delayed and hidden', 'Prompt, honest and consistent', 'Blaming', 'Silent'], correct: 1, exp: 'In a crisis, communicate quickly, honestly and consistently.' },
-      { q: 'Persuasive communication relies on:', opts: ['Force', 'Credibility, logic and emotional connection', 'Confusion', 'Length'], correct: 1, exp: 'Ethos, logos and pathos persuade effectively.' },
-      { q: 'A strong presentation focuses on:', opts: ['Reading slides', 'A clear message tailored to the audience', 'Many slides', 'Jargon'], correct: 1, exp: 'Know your message and your audience.' }
-    ],
-    team: [
-      { q: 'High-performing teams need:', opts: ['No goals', 'Clear goals, trust and defined roles', 'Constant conflict', 'One person doing everything'], correct: 1, exp: 'Clarity, trust and roles drive performance.' },
-      { q: 'Delegation means:', opts: ['Dumping work', 'Assigning responsibility with authority and support', 'Doing it yourself', 'Avoiding it'], correct: 1, exp: 'Effective delegation gives authority and support, not just tasks.' },
-      { q: 'Employee engagement improves when leaders:', opts: ['Ignore staff', 'Give purpose, recognition and growth', 'Micromanage', 'Withhold feedback'], correct: 1, exp: 'Purpose, recognition and development drive engagement.' },
-      { q: 'Coaching differs from managing because it:', opts: ['Commands', 'Develops people through questions and support', 'Ignores growth', 'Only evaluates'], correct: 1, exp: 'Coaching develops capability, not just directs tasks.' },
-      { q: 'Team conflict is best handled by:', opts: ['Ignoring it', 'Addressing it early and constructively', 'Taking sides', 'Punishment'], correct: 1, exp: 'Early, fair, constructive resolution keeps teams healthy.' },
-      { q: 'Leading remote teams requires extra focus on:', opts: ['Nothing', 'Clear communication, trust and outcomes', 'Surveillance', 'Longer meetings'], correct: 1, exp: 'Remote leadership relies on clarity, trust and results.' }
-    ],
-    finance: [
-      { q: 'The income statement (P&L) shows:', opts: ['Assets only', 'Revenue, costs and profit over a period', 'Only cash', 'The logo'], correct: 1, exp: 'The P&L summarises income and expenses over time.' },
-      { q: 'Cash flow is critical because a business can be profitable yet:', opts: ['Never fail', 'Run out of cash and fail', 'Have no costs', 'Ignore it'], correct: 1, exp: 'Cash flow, not just profit, keeps a business alive.' },
-      { q: 'A balance sheet shows:', opts: ['Only sales', 'Assets, liabilities and equity at a point in time', 'Only marketing', 'Only staff'], correct: 1, exp: 'It is a snapshot of what you own and owe.' },
-      { q: 'Budgeting helps leaders:', opts: ['Spend randomly', 'Plan and control income and expenses', 'Avoid finance', 'Ignore costs'], correct: 1, exp: 'Budgets plan and control financial performance.' },
-      { q: 'Cost control means:', opts: ['Cutting everything', 'Managing costs without harming value', 'Ignoring spend', 'Spending more'], correct: 1, exp: 'Control costs while protecting value and quality.' },
-      { q: 'Financial literacy lets a leader:', opts: ['Ignore numbers', 'Make informed, data-based decisions', 'Guess', 'Avoid budgets'], correct: 1, exp: 'Understanding the numbers drives better decisions.' }
-    ],
-    marketing: [
-      { q: 'A brand is:', opts: ['Just a logo', 'The overall perception and promise of a business', 'A price', 'A product only'], correct: 1, exp: 'Brand is the promise and perception, not only a logo.' },
-      { q: 'Customer experience refers to:', opts: ['One ad', 'The whole journey a customer has with a business', 'The office', 'The logo only'], correct: 1, exp: 'CX is the sum of all customer interactions.' },
-      { q: 'Market positioning defines:', opts: ['The office location', 'How your offer is perceived vs competitors', 'The budget', 'The team'], correct: 1, exp: 'Positioning is the distinct place you occupy in customers’ minds.' },
-      { q: 'A CRM system helps leaders:', opts: ['Cook', 'Manage customer relationships and data', 'Only pay tax', 'Design logos'], correct: 1, exp: 'CRM manages customers, sales and relationships.' },
-      { q: 'Sales leadership focuses on:', opts: ['Ignoring targets', 'Coaching a team to meet revenue goals', 'Only discounts', 'Avoiding customers'], correct: 1, exp: 'Sales leaders enable teams to achieve revenue goals.' },
-      { q: 'Digital marketing lets businesses:', opts: ['Reach no one', 'Reach and engage customers online measurably', 'Avoid data', 'Only print'], correct: 1, exp: 'Digital channels enable targeted, measurable reach.' }
-    ],
-    innovation: [
-      { q: 'Innovation in business means:', opts: ['Doing nothing new', 'Creating new value through ideas, products or processes', 'Copying only', 'Avoiding change'], correct: 1, exp: 'Innovation turns ideas into new value.' },
-      { q: 'Leading change successfully requires:', opts: ['Ignoring people', 'A clear vision, communication and support for people', 'Force only', 'Secrecy'], correct: 1, exp: 'People-focused, communicated change succeeds.' },
-      { q: 'Resistance to change is best handled by:', opts: ['Ignoring concerns', 'Listening, involving people and showing the benefit', 'Threats', 'Hiding the change'], correct: 1, exp: 'Engagement and empathy reduce resistance.' },
-      { q: 'Digital transformation is:', opts: ['Only buying software', 'Using technology to fundamentally improve how a business operates', 'A logo change', 'Avoiding tech'], correct: 1, exp: 'It reshapes operations and value with technology.' },
-      { q: 'Continuous improvement means:', opts: ['One big change', 'Ongoing incremental improvement', 'No change', 'Only audits'], correct: 1, exp: 'Small, ongoing improvements compound over time.' },
-      { q: 'Creative thinking is boosted by:', opts: ['Fear of failure', 'Curiosity, diverse input and safe experimentation', 'Rigidity', 'Isolation'], correct: 1, exp: 'Curiosity and psychological safety fuel creativity.' }
-    ],
-    negotiation: [
-      { q: 'A win-win negotiation aims for:', opts: ['One winner', 'An outcome that benefits both sides', 'No deal', 'Only your gain'], correct: 1, exp: 'Sustainable deals create mutual value.' },
-      { q: 'Preparation for a negotiation should include knowing your:', opts: ['Nothing', 'Objectives, limits and alternatives (BATNA)', 'Only price', 'The other side’s lunch'], correct: 1, exp: 'Know your goals, walk-away point and BATNA.' },
-      { q: 'Handling a difficult conversation works best when you:', opts: ['Attack the person', 'Focus on the issue, stay calm and listen', 'Avoid it', 'Raise your voice'], correct: 1, exp: 'Address the issue, not the person, calmly.' },
-      { q: 'Mediation involves:', opts: ['Taking sides', 'A neutral third party helping reach agreement', 'Ignoring the dispute', 'Punishment'], correct: 1, exp: 'A mediator facilitates a mutually acceptable solution.' },
-      { q: 'Conflict, handled well, can:', opts: ['Only harm', 'Lead to better ideas and stronger relationships', 'Be ignored', 'Always be avoided'], correct: 1, exp: 'Constructive conflict can improve outcomes.' },
-      { q: 'A strong negotiator listens in order to:', opts: ['Interrupt', 'Understand interests behind positions', 'Win by force', 'Confuse'], correct: 1, exp: 'Understanding interests unlocks better deals.' }
-    ],
-    hr: [
-      { q: 'Talent management focuses on:', opts: ['Ignoring staff', 'Attracting, developing and retaining good people', 'Only firing', 'Only payroll'], correct: 1, exp: 'It covers the full talent lifecycle.' },
-      { q: 'Succession planning ensures:', opts: ['No future leaders', 'Ready candidates for key roles in future', 'Only current staff', 'Random promotions'], correct: 1, exp: 'It prepares people to fill critical roles later.' },
-      { q: 'A good recruitment process is:', opts: ['Biased and rushed', 'Fair, structured and role-focused', 'Random', 'Secretive'], correct: 1, exp: 'Structured, fair hiring finds the right people.' },
-      { q: 'Employee development benefits the business by:', opts: ['Wasting money', 'Building skills, engagement and retention', 'Nothing', 'Increasing turnover'], correct: 1, exp: 'Development builds capability and loyalty.' },
-      { q: 'Performance reviews should be:', opts: ['A surprise attack', 'Fair, evidence-based and development-focused', 'Only negative', 'Skipped'], correct: 1, exp: 'Reviews should be fair and help people grow.' },
-      { q: 'Understanding employment law basics helps leaders:', opts: ['Break rules', 'Treat staff fairly and stay compliant', 'Ignore rights', 'Avoid HR'], correct: 1, exp: 'Legal awareness protects staff and the business.' }
-    ],
-    ethics: [
-      { q: 'Corporate governance is:', opts: ['Daily tasks', 'The system of rules and oversight directing a company', 'Marketing', 'A logo'], correct: 1, exp: 'Governance sets accountability and oversight structures.' },
-      { q: 'CSR (Corporate Social Responsibility) means a business:', opts: ['Ignores society', 'Acts responsibly toward society and the environment', 'Only profits', 'Avoids ethics'], correct: 1, exp: 'CSR balances profit with social and environmental responsibility.' },
-      { q: 'ESG stands for:', opts: ['Earnings, Sales, Growth', 'Environmental, Social and Governance', 'Ethics, Safety, Goals', 'Equity, Stock, Gains'], correct: 1, exp: 'ESG measures sustainability and responsibility factors.' },
-      { q: 'Compliance means:', opts: ['Ignoring laws', 'Following laws, regulations and internal policies', 'Random behaviour', 'Only marketing'], correct: 1, exp: 'Compliance ensures the business follows the rules.' },
-      { q: 'Responsible leadership balances:', opts: ['Only profit', 'Profit with people, society and the environment', 'Only cost', 'Only speed'], correct: 1, exp: 'Responsible leaders consider all stakeholders.' },
-      { q: 'Business ethics guide leaders to:', opts: ['Cut corners', 'Do what is right even when it is hard', 'Ignore stakeholders', 'Hide problems'], correct: 1, exp: 'Ethics guide right action under pressure.' }
-    ]
-  };
-
-  function bankKey(skill) {
-    var map = { orientation: 'general', fundamentals: 'fundamentals', strategy: 'strategy', comms: 'comms', team: 'team', culture: 'team', operations: 'general', finance: 'finance', marketing: 'marketing', innovation: 'innovation', negotiation: 'negotiation', hr: 'hr', performance: 'general', entrepreneur: 'strategy', tech: 'innovation', ethics: 'ethics', career: 'general', projects: 'general', capstone: 'general', assessment: 'general' };
-    return map[skill] || 'general';
+  function cloneQ(q) { return {q:q.q,opts:q.opts.slice(),correct:q.correct,exp:q.exp}; }
+  function topicQuestions(num,name) {
+    var bank=window.TIH_LEADERSHIP_QUESTIONS;
+    var rows=bank&&bank.topics['M'+num+':'+name];
+    if(!rows||rows.length!==4)throw new Error('Incomplete Leadership topic M'+num+':'+name);
+    return rows;
   }
-  function pickQuestions(key, count) {
-    var pool = BANK[key] || BANK.general;
-    var mixed = BANK.general.concat(BANK.fundamentals, BANK.strategy, BANK.comms, BANK.team, BANK.finance, BANK.marketing, BANK.innovation, BANK.negotiation, BANK.hr, BANK.ethics);
-    var out = [];
-    for (var i = 0; i < count; i++) { out.push(i < pool.length ? pool[i] : mixed[i % mixed.length]); }
-    return out;
-  }
-  function cloneQ(q) { return { q: q.q, opts: q.opts.slice(), correct: q.correct, exp: q.exp }; }
-  function practiceQuiz(key, name) { return { title: 'Practice: ' + name, moduleNum: 1, questions: pickQuestions(key, 3).map(cloneQ) }; }
-  function assessmentQuiz(key, name, count) { return { title: name, moduleNum: 1, questions: pickQuestions(key, count).map(cloneQ) }; }
-  function assessmentKey(name) {
-    if (/Strategic/i.test(name)) return 'strategy';
-    if (/Financial/i.test(name)) return 'finance';
-    if (/Marketing/i.test(name)) return 'marketing';
-    if (/Team/i.test(name)) return 'team';
-    if (/Change/i.test(name)) return 'innovation';
-    if (/Fundamentals/i.test(name)) return 'fundamentals';
-    return 'general';
-  }
+  function practiceQuiz(num,name) { return {title:'Practice: '+name,moduleNum:num,questionCount:3,questions:topicQuestions(num,name).slice(0,3).map(cloneQ)}; }
+  function assessmentQuiz(num,name,count) { return {title:name,moduleNum:num,questionCount:count,questions:[]}; }
 
   var modules = [], quizzes = {}, notes = {};
   var flat = 0, notePos = 0;
@@ -242,16 +137,15 @@
     var num = mod[0], title = mod[1], icon = mod[2], skill = mod[3], type = mod[4], names = mod[5];
     var moduleTitle = 'Module ' + num + ': ' + title;
     var pool = VIDEOS[skill] || VIDEOS.assessment;
-    var key = bankKey(skill);
     var lessons = [], idx = 0;
 
     names.forEach(function (name) {
       if (/^Certificate of Completion$/i.test(name)) {
         var qid = 'lead-m' + num + '-final';
-        quizzes[qid] = assessmentQuiz('general', 'Graduation Assessment', 15);
+        quizzes[qid] = assessmentQuiz(num, 'Graduation Assessment', 15);
         quizzes[qid].isFinal = true;
         lessons.push({ t: '🏆 ' + name, d: '15 questions', isQuiz: true, quizId: qid, isFinal: true });
-        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>This is the final graduation assessment. Pass it to complete the masterclass and unlock your TIH Certificate of Completion.</p></div>';
+        notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Graduation</span></div><h3>' + esc(name) + '</h3><p>This is the final graduation assessment. Use it to check your learning. Official course completion and certificates are managed in the TIH Learning Hub.</p></div>';
         flat += 1; quizCount += 1;
         return;
       }
@@ -263,11 +157,10 @@
         return;
       }
       if (type === 'assessment') {
-        var akey = assessmentKey(name);
         var big = /Examination|Exam|Evaluation|Review/i.test(name);
         var count = big ? (/Final/i.test(name) ? 20 : 15) : 8;
         var aid = 'lead-m' + num + '-a' + flat;
-        quizzes[aid] = assessmentQuiz(akey, name, count);
+        quizzes[aid] = assessmentQuiz(num, name, count);
         lessons.push({ t: (big ? '🧪 ' : '📝 ') + name, d: count + ' questions', isQuiz: true, quizId: aid });
         notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Assessment</span></div><h3>' + esc(name) + '</h3><p>Complete this ' + (big ? 'examination/review' : 'assessment') + ', then review every answer explanation to strengthen your weak areas.</p></div>';
         flat += 1; quizCount += 1; if (big) examCount += 1;
@@ -275,7 +168,7 @@
       }
       if (isAssessment(name)) {
         var qk = 'lead-m' + num + '-a' + flat;
-        quizzes[qk] = assessmentQuiz(key, name, 8);
+        quizzes[qk] = assessmentQuiz(num, name, 8);
         lessons.push({ t: '📝 ' + name, d: '8 questions', isQuiz: true, quizId: qk });
         notes[String(flat)] = '<div class="study-note"><div class="revision-banner"><strong>' + esc(moduleTitle) + '</strong><span>Quiz</span></div><h3>' + esc(name) + '</h3><p>Answer this module assessment, then review each explanation to check your understanding.</p></div>';
         flat += 1; quizCount += 1;
@@ -295,7 +188,7 @@
       notes[String(flat)] = note(moduleTitle, skill, name, notePos++);
       flat += 1; videoCount += 1;
       var pqid = 'lead-m' + num + '-q' + flat;
-      quizzes[pqid] = practiceQuiz(key, name);
+      quizzes[pqid] = practiceQuiz(num, name);
       lessons.push({ t: '📝 Practice: ' + name, d: '3 questions', isQuiz: true, quizId: pqid });
       notes[String(flat)] = '<p><strong>Quick check:</strong> Review the notes and complete the two exercises, then answer these to confirm you understood <em>' + esc(name) + '</em>.</p>';
       flat += 1; quizCount += 1;
@@ -340,8 +233,8 @@
     ],
     about: [
       'This is the complete TIH Business Leadership Masterclass, rebuilt into twenty modules that take you from aspiring leader to confident business executive.',
-      'Every content lesson has a video and printable notes; downloadable templates cover the Strategic Plan, SWOT, KPI Dashboard, Budget, Performance Review Form, Meeting Agenda, Leadership Development Plan and Business Growth Plan, and ten real-world projects plus a capstone build your leadership portfolio.',
-      'Software & tools: Microsoft Excel, PowerPoint and Word, Google Workspace, Trello, Asana, Notion, Canva, ChatGPT and Zoom/Microsoft Teams. You finish with a leadership portfolio and — after the graduation assessment — a Certificate of Completion.'
+      'Every teaching lesson has a video and written notes with worked examples and practice activities. Template outlines cover strategic plans, SWOT, KPIs, budgets, reviews, agendas and development plans; ten real-world projects plus a capstone build your leadership portfolio.',
+      'Software & tools: Microsoft Excel, PowerPoint and Word, Google Workspace, Trello, Asana, Notion, Canva, ChatGPT and Zoom/Microsoft Teams. You finish with a leadership portfolio. Official TIH certificates are managed in the Learning Hub after its current completion requirements are met.'
     ],
     modules: modules,
     quizzes: quizzes,
@@ -349,6 +242,48 @@
   };
 
   if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT.leadership = notes;
+
+
+  window.tihApplyLeadershipTopicQuizzes=function(){
+    var bank=window.TIH_LEADERSHIP_QUESTIONS,course=COURSES_DB.leadership;
+    if(!bank||!course)throw new Error('Missing Leadership question bank');
+    var reserves=[],papers=[],used={};
+    course.modules.forEach(function(m,mi){m.lessons.forEach(function(l){
+      if(!l.isQuiz)return;
+      var q=course.quizzes[l.quizId];q.moduleNum=mi+1;
+      if(q.title.indexOf('Practice: ')===0){
+        var rows=topicQuestions(mi+1,q.title.slice(10));q.questions=rows.slice(0,3).map(cloneQ);reserves.push(rows[3]);
+      }else papers.push(q);
+    });});
+    var pool=reserves.concat(bank.exams.filter(function(q){return q.module<=17;}));
+    function issue(rows,count){
+      var buckets={},nums=[],out=[];
+      rows.forEach(function(q){if(used[q.q])return;if(!buckets[q.module]){buckets[q.module]=[];nums.push(q.module);}buckets[q.module].push(q);});
+      nums.sort(function(a,b){return a-b;});
+      var changed=true;
+      while(out.length<count&&changed){changed=false;nums.forEach(function(n){if(out.length>=count||!buckets[n].length)return;var q=buckets[n].shift();used[q.q]=true;out.push(cloneQ(q));changed=true;});}
+      if(out.length!==count)throw new Error('Exhausted Leadership assessment pool');
+      return out;
+    }
+    function paper(title){var q=papers.filter(function(q){return q.title===title;})[0];if(!q)throw new Error('Missing Leadership assessment '+title);return q;}
+    // Protect explicit full-syllabus coverage before allocating narrow papers.
+    var protectedItems={},midCoverage=[],finalCoverage=[];
+    for(var n=1;n<=17;n++){
+      var rows=pool.filter(function(q){return q.module===n;});
+      if(rows.length<(n<=10?2:1))throw new Error('No Leadership coverage reserve for module '+n);
+      var f=rows[rows.length-1];protectedItems[f.q]=true;finalCoverage.push(f);
+      if(n<=10){var m=rows[rows.length-2];protectedItems[m.q]=true;midCoverage.push(m);}
+    }
+    var subjects={'Leadership Assessment':[2],'Leadership Fundamentals Assessment':[2],'Strategic Thinking Assessment':[3],'Financial Leadership Assessment':[8],'Marketing Leadership Assessment':[9],'Team Leadership Assessment':[5],'Change Management Assessment':[10]};
+    Object.keys(subjects).forEach(function(title){var q=paper(title),nums=subjects[title];q.questions=issue(pool.filter(function(r){return nums.indexOf(r.module)>=0&&!protectedItems[r.q];}),q.questionCount);});
+    var mid=paper('Midterm Examination');mid.questions=issue(midCoverage,10).concat(issue(pool.filter(function(r){return r.module<=10&&!protectedItems[r.q];}),mid.questionCount-10));
+    var final=paper('Final Examination');final.questions=issue(finalCoverage,17).concat(issue(pool.filter(function(r){return !protectedItems[r.q];}),final.questionCount-17));
+    var projectPool=bank.exams.filter(function(q){return q.module>=18;});
+    ['Capstone Project Evaluation','Leadership Portfolio Review'].forEach(function(title){var q=paper(title);q.questions=issue(projectPool,q.questionCount);});
+    var graduation=paper('Graduation Assessment');graduation.questions=issue(pool,graduation.questionCount);
+    papers.forEach(function(q){if(q.questions.length!==q.questionCount)throw new Error('Incomplete Leadership paper '+q.title);});
+  };
+  window.tihApplyLeadershipTopicQuizzes();
 
   if (typeof console !== 'undefined' && console.log) {
     console.log('[LEAD] modules=' + modules.length + ' videoLessons=' + videoCount + ' projects=' + projectCount + ' quizzes=' + quizCount + ' exams=' + examCount);
