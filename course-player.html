@@ -26,7 +26,7 @@
        whole-site lesson-content.js / topic-quizzes.js bundles that used to
        load in full on every lesson view; their data now lives split by
        course under content/ and quizzes/. -->
-  <script src="tih-course-loader.js?v=13"></script>
+  <script src="tih-course-loader.js?v=14"></script>
   <script src="course-images.js?v=1"></script>
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=23"></script>
@@ -42,7 +42,7 @@
   <script src="tih-video-runtime.js?v=2"></script>
   <!-- The five authored note bundles (762 KB combined) are fetched on demand
        for the open course only, by tih-authored-notes.js. -->
-  <script src="tih-authored-notes.js?v=69"></script>
+  <script src="tih-authored-notes.js?v=70"></script>
   <script src="assets/qrcode.js"></script>
   <script src="cert-template.js?v=6"></script>
   <style>
@@ -1079,11 +1079,11 @@
     .overview-text .cl-visual-item small { margin-top: .25rem; color: #64748b; font-size: .7rem; line-height: 1.35; }
     /* Full-Stack and Entrepreneurship visual cards contain sentences rather than icon glyphs. */
     @media(max-width:600px) { .overview-text .design-visual > div { grid-template-columns:minmax(0,1fr)!important; } }
-    .overview-text :is(.webdev-visual,.ent-visual) .cl-visual-item span { font-size: 1rem; line-height: 1.6; margin-top: .4rem; }
-    .overview-text :is(.webdev-visual,.ent-visual) .cl-visual-item strong { font-size: 1rem; }
+    .overview-text :is(.webdev-visual,.ent-visual,.android-visual) .cl-visual-item span { font-size: 1rem; line-height: 1.6; margin-top: .4rem; }
+    .overview-text :is(.webdev-visual,.ent-visual,.android-visual) .cl-visual-item strong { font-size: 1rem; }
     @media (max-width: 600px) {
-      .overview-text :is(.webdev-visual,.ent-visual) .cl-visual-grid { grid-template-columns: minmax(0, 1fr); }
-      .overview-text :is(.webdev-visual,.ent-visual) .cl-visual-item { text-align: left; }
+      .overview-text :is(.webdev-visual,.ent-visual,.android-visual) .cl-visual-grid { grid-template-columns: minmax(0, 1fr); }
+      .overview-text :is(.webdev-visual,.ent-visual,.android-visual) .cl-visual-item { text-align: left; }
     }
     .overview-text .cl-flow {
       display: flex;

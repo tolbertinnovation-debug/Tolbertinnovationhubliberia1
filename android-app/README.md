@@ -9,6 +9,10 @@ The 0.3.5 Project Management content correction is also published to the website
 
 ## What is implemented
 
+- 0.3.11 places Kotlin Android Development seventh in Courses, with 19 modules,
+  21 project briefs, 158 distinct video links and 533 distinct delivered questions.
+  See [Kotlin Android review](release/ANDROID-KOTLIN.md).
+
 - 0.3.10 places Entrepreneurship & Startup Launch sixth in Courses and in Today,
   with 20 modules, 11 project briefs and 580 distinct delivered questions shared
   with the website. See [Entrepreneurship review](release/ENTREPRENEURSHIP.md).

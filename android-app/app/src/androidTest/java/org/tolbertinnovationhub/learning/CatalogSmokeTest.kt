@@ -361,5 +361,50 @@ class CatalogSmokeTest {
         compose.onNodeWithText(title).assertExists()
     }
 
+    @Test fun androidOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("android")
+        signIn()
+        val title = "Complete Android App Development Program (Kotlin)"
+        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("19 modules · 304 entries · 158 video links"))
+        compose.onNodeWithText("19 modules · 304 entries · 158 video links").assertIsDisplayed()
+        snapshot("48-android-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.kind == "quiz" }
+        val final = course.lessons.first { it.isFinal }
+        val roomPractice = course.lessons.first { it.title.contains("Practice: Room Database") }
+        val firebasePractice = course.lessons.first { it.title.contains("Practice: Firebase AI Features") }
+        org.junit.Assert.assertEquals(533, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, roomPractice, firebasePractice, final)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else if (assessment == practice) snapshot("49-android-practice")
+            else if (assessment == roomPractice) snapshot("50-android-room")
+            else if (assessment == firebasePractice) snapshot("51-android-firebase")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
+                compose.onNodeWithText(question.options[question.answer]).performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("android"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "android", assessment))
+            }
+        }
+        snapshot("52-android-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
+    }
+
 
 }

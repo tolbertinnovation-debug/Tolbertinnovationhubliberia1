@@ -7,7 +7,7 @@ plugins {
 // Owner-controlled identity and signing. CI builds an explicitly unsigned release bundle.
 val releaseApplicationId = providers.environmentVariable("TIH_APPLICATION_ID").orElse("org.tolbertinnovationhub.learning").get()
 require(releaseApplicationId.matches(Regex("[a-zA-Z][a-zA-Z0-9_]*(\\.[a-zA-Z][a-zA-Z0-9_]*)+"))) { "Invalid TIH_APPLICATION_ID" }
-val releaseVersionCode = providers.environmentVariable("TIH_VERSION_CODE").orElse("15").get().toInt()
+val releaseVersionCode = providers.environmentVariable("TIH_VERSION_CODE").orElse("16").get().toInt()
 require(releaseVersionCode > 0) { "TIH_VERSION_CODE must be positive" }
 val signingValues = listOf("TIH_KEYSTORE_PATH", "TIH_KEYSTORE_PASSWORD", "TIH_KEY_ALIAS", "TIH_KEY_PASSWORD").map { providers.environmentVariable(it).orNull }
 require(signingValues.all { it == null } || signingValues.all { !it.isNullOrBlank() }) { "Supply all four TIH signing environment variables, or none" }
@@ -20,7 +20,7 @@ android {
         minSdk = 26
         targetSdk = 36
         versionCode = releaseVersionCode
-        versionName = "0.3.10"
+        versionName = "0.3.11"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     if (signingValues.all { it != null }) signingConfigs.create("ownerRelease") {

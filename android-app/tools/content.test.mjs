@@ -4,6 +4,7 @@ import '../../tools/accounting-bookkeeping-quizzes.test.mjs';
 import '../../tools/webdev-quizzes.test.mjs';
 import '../../tools/design-quizzes.test.mjs';
 import '../../tools/entrepreneurship-quizzes.test.mjs';
+import '../../tools/android-kotlin-quizzes.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -205,6 +206,21 @@ test('Entrepreneurship is source-faithful, complete and sixth in Courses', () =>
   assert.equal(lessons.filter(l=>l.videoId).length,178);
   assert.equal(new Set(lessons.filter(l=>l.videoId).map(l=>l.videoId)).size,178);
   assert.equal(qs.length,580);assert.equal(new Set(qs.map(q=>q.question)).size,580);
+  assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.html.length>200));
+  assert.ok(fs.existsSync(path.join(learning,course.image)));
+});
+
+test('Kotlin Android is source-faithful, complete and seventh in Courses', () => {
+  const catalog = JSON.parse(fs.readFileSync(path.join(learning, 'catalog.json')));
+  assert.deepEqual(catalog.slice(0,7).map(c=>c.id), ['computer-literacy','project-mgmt','accounting-bookkeeping','webdev','design','entrepreneurship','android']);
+  const course = JSON.parse(fs.readFileSync(path.join(learning,'courses/android.json'))), source = extractCourse('android');
+  for (const key of ['title','description','modules','about','requirements','faqs','instructor']) assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]),key);
+  const lessons=course.modules.flatMap(m=>m.lessons), qs=lessons.flatMap(l=>l.questions);
+  assert.equal(course.modules.length,19);assert.equal(lessons.length,304);
+  assert.equal(lessons.filter(l=>l.kind==='project').length,21);
+  assert.equal(lessons.filter(l=>l.videoId).length,158);
+  assert.equal(new Set(lessons.filter(l=>l.videoId).map(l=>l.videoId)).size,158);
+  assert.equal(qs.length,533);assert.equal(new Set(qs.map(q=>q.question)).size,533);
   assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.html.length>200));
   assert.ok(fs.existsSync(path.join(learning,course.image)));
 });
