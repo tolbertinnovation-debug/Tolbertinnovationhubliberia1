@@ -90,12 +90,12 @@ if (bankBlock) for (const match of bankBlock[1].matchAll(/'([^']+)'\s*:\s*\{\s*s
 const drift = [];
 for (const id of Object.keys(CURRICULUM)) {
   if (!lite[id]) continue;                       // not shown on the dashboard
-  const files = ['courses-db.js'].concat(BANKS[id] ? [BANKS[id]] : []).concat([CURRICULUM[id]])
+  const files = ['courses-db.js'].concat(BANKS[id] ? [BANKS[id]] : []).concat(id === 'accounting-bookkeeping' ? ['accounting-bookkeeping-reserved-quizzes.js'] : []).concat([CURRICULUM[id]])
     .concat(EXTRAS[id] || [])
     .concat(['videos/' + id + '-videos.js']);
   let ctx;
   try { ctx = ctxWith(files); } catch (e) {
-    if (id === 'project-mgmt') drift.push({id, issues: ['Builder failed: ' + e.message]});
+    if (id === 'project-mgmt' || id === 'accounting-bookkeeping') drift.push({id, issues: ['Builder failed: ' + e.message]});
     continue;
   }
   const built = ctx.COURSES_DB[id];

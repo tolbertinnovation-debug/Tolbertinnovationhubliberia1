@@ -9,6 +9,11 @@ The 0.3.5 Project Management content correction is also published to the website
 
 ## What is implemented
 
+- 0.3.7 puts Accounting & Bookkeeping beside the first two reviewed courses,
+  validates its offline lessons and native assessments, and corrects its shared
+  question bank so all 475 delivered questions are distinct. See
+  [Accounting & Bookkeeping review](release/ACCOUNTING-BOOKKEEPING.md).
+
 - 0.3.6 adds an illustrated TIH welcome screen and a matching Africa/book launcher
   icon. The welcome screen fits inside the device safe area without cropping,
   works offline, and continues after 1.8 seconds to the existing account flow.

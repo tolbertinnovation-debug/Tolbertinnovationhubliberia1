@@ -1,5 +1,6 @@
 import './video-player.test.mjs';
 import '../../tools/projectmgmt-quizzes.test.mjs';
+import '../../tools/accounting-bookkeeping-quizzes.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -40,7 +41,7 @@ test('source manifest proves all website inputs remain unchanged', () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(learning, 'manifest.json')));
   assert.equal(manifest.missingNotes.length, 0);
   assert.equal(manifest.emptyQuizzes.length, 0);
-  assert.equal(Object.keys(manifest.sourceFiles).length, 213);
+  assert.equal(Object.keys(manifest.sourceFiles).length, 214);
   for (const [file, hash] of Object.entries(manifest.sourceFiles)) {
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex'), hash, file);
   }
@@ -133,4 +134,29 @@ test('Project Management is complete, source-faithful and beside Computer Litera
   assert.ok(questions.every(q => q.options.length === 4 && q.explanation.length > 20));
   assert.equal(summary.image, 'images/project-mgmt.jpg');
   assert.ok(fs.statSync(path.join(learning, summary.image)).size > 1000);
+});
+
+
+test('Accounting & Bookkeeping is source-faithful, complete and third in Courses', () => {
+  const catalog = JSON.parse(fs.readFileSync(path.join(learning, 'catalog.json')));
+  assert.deepEqual(catalog.slice(0, 3).map(c => c.id), ['computer-literacy', 'project-mgmt', 'accounting-bookkeeping']);
+  const course = JSON.parse(fs.readFileSync(path.join(learning, 'courses/accounting-bookkeeping.json')));
+  const source = extractCourse('accounting-bookkeeping');
+  for (const key of ['id', 'title', 'description', 'category', 'about', 'requirements', 'faqs', 'instructor', 'outcomes', 'modules', 'css']) {
+    assert.equal(JSON.stringify(course[key]), JSON.stringify(source[key]), key);
+  }
+  const lessons = course.modules.flatMap(m => m.lessons), questions = lessons.flatMap(l => l.questions);
+  assert.equal(course.modules.length, 20); assert.equal(lessons.length, 279);
+  assert.equal(lessons.filter(l => l.kind === 'lesson').length, 132);
+  assert.equal(lessons.filter(l => l.kind === 'project').length, 9);
+  assert.equal(lessons.filter(l => l.kind === 'quiz').length, 138);
+  assert.ok(lessons.filter(l => l.kind !== 'quiz').every(l => l.html.length > 100));
+  assert.equal(lessons.filter(l => l.noteSource === 'authored').length, 131);
+  const videos = lessons.filter(l => l.videoId).map(l => l.videoId);
+  assert.equal(videos.length, 140); assert.equal(new Set(videos).size, 140);
+  assert.equal(questions.length, 475);
+  assert.equal(new Set(questions.map(q => q.question.toLowerCase().replace(/[^a-z0-9]/g, ''))).size, 475);
+  assert.equal(lessons.find(l => l.final).questions.length, 15);
+  assert.ok(course.about.length >= 3 && course.requirements.length >= 3 && course.instructor.name);
+  assert.ok(fs.statSync(path.join(learning, catalog[2].image)).size > 1000);
 });
