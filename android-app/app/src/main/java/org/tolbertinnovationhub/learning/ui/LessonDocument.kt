@@ -44,6 +44,11 @@ object LessonDocument {
             details{border:1px solid #dce4ef;border-radius:10px;margin:10px 0;padding:12px}summary{font-weight:600;cursor:pointer;min-height:32px}a{color:#154991}button{display:none}
             .overview-text table{display:block;width:100%;max-width:100%;min-width:0!important;overflow-x:auto}
             .overview-text .cl-flow-item{flex-shrink:0;min-width:max-content}.overview-text .cl-flow-item strong{white-space:nowrap;overflow-wrap:normal}
+            /* Accounting cards carry sentences where the shared website visual
+               style expects large icon glyphs. Keep those sentences at reading size. */
+            .overview-text .acct-visual .cl-visual-item span{font-size:1rem;line-height:1.6;margin-top:.4rem}
+            .overview-text .acct-visual .cl-visual-item strong{font-size:1rem}
+            @media(max-width:600px){.overview-text .acct-visual .cl-visual-grid{grid-template-columns:minmax(0,1fr)}.overview-text .acct-visual .cl-visual-item{text-align:left}}
             </style></head><body><main class="overview-text">${doc.body().html()}</main></body></html>""".trimIndent()
     }
 }
