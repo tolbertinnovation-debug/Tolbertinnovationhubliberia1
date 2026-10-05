@@ -46,7 +46,7 @@
     'cybersecurity':    'cybersecurity-notes.js?v=1',
     'project-mgmt':     'project-mgmt-notes.js?v=1',
     'office':           'office-notes.js?v=2',
-    'leadership':       'leadership-notes.js?v=1',
+    'leadership':       'leadership-notes.js?v=2',
     'grant-writing':    'grant-writing-notes.js?v=1',
     'financial-literacy': 'financial-literacy-notes.js?v=1',
     'healthtech':        'healthtech-notes.js?v=1',
