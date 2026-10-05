@@ -105,7 +105,7 @@
     'accounting-bookkeeping': { src: 'accounting-bookkeeping-topic-quizzes.js?v=2', reserve: 'accounting-bookkeeping-reserved-quizzes.js?v=1', apply: 'tihApplyAccountingBookkeepingTopicQuizzes' },
     'sat':              { src: 'sat-topic-quizzes.js?v=1',     apply: 'tihApplySatTopicQuizzes' },
     'ai-cybersecurity': { src: 'aicyber-topic-quizzes.js?v=1', apply: 'tihApplyAicyberTopicQuizzes' },
-    'android':          { src: 'android-topic-quizzes.js?v=1', apply: 'tihApplyAndroidTopicQuizzes' },
+    'android':          { src: 'android-topic-quizzes.js?v=2', apply: 'tihApplyAndroidTopicQuizzes' },
     'agritech':         { src: 'agritech-topic-quizzes.js?v=1', apply: 'tihApplyAgritechTopicQuizzes' },
     'entrepreneurship': { src: 'entrepreneurship-topic-quizzes.js?v=2', apply: 'tihApplyEntrepreneurshipTopicQuizzes' },
     'quickbooks':       { src: 'quickbooks-topic-quizzes.js?v=1', apply: 'tihApplyQuickbooksTopicQuizzes' },
@@ -213,7 +213,7 @@
     if (has(QUIZZES, courseId)) urls.push('quizzes/' + courseId + '-quizzes.js' + VERSION);
     var bank = TOPIC_QUIZ_BANKS[courseId];
     if (bank) { urls.push(bank.src); if (bank.reserve) urls.push(bank.reserve); }
-    if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + (courseId === 'project-mgmt' ? '?v=3' : courseId === 'accounting-bookkeeping' ? '?v=2' : courseId === 'webdev' || courseId === 'design' || courseId === 'entrepreneurship' ? '?v=2' : VERSION));
+    if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + (courseId === 'project-mgmt' ? '?v=3' : courseId === 'accounting-bookkeeping' ? '?v=2' : courseId === 'webdev' || courseId === 'design' || courseId === 'entrepreneurship' || courseId === 'android' ? '?v=2' : VERSION));
     if (EXTRAS[courseId]) urls = urls.concat(EXTRAS[courseId]);
     if (!urls.length) { done(); return; }
     loadInOrder(urls, function () {

@@ -26,7 +26,7 @@ jobs:
 
       - name: Validate reviewed question banks and catalog
         run: |
-          node --test tools/projectmgmt-quizzes.test.mjs tools/accounting-bookkeeping-quizzes.test.mjs tools/webdev-quizzes.test.mjs tools/design-quizzes.test.mjs tools/entrepreneurship-quizzes.test.mjs
+          node --test tools/projectmgmt-quizzes.test.mjs tools/accounting-bookkeeping-quizzes.test.mjs tools/webdev-quizzes.test.mjs tools/design-quizzes.test.mjs tools/entrepreneurship-quizzes.test.mjs tools/android-kotlin-quizzes.test.mjs
           node tools/check-courses-lite.js
 
       - name: Setup Pages
