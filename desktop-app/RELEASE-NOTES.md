@@ -5,3 +5,5 @@ Explore the 57-course Learning Hub catalog and module outlines, save courses, wr
 This release establishes the desktop app. Full courses, TIH sign-in, enrollment, quizzes and certificates will be added course by course. The local profile does not sign in to your TIH account. Existing website and Android releases are separate.
 
 Download and run the Windows x64 installer. This preview is not code-signed, so Windows may display a publisher warning. Install only the release downloaded from this TIH repository. No other software purchase or paid course enrollment is included.
+
+Version 0.1.1 improves the sidebar on smaller Windows displays and embeds TIH executable branding. The release pipeline installs the generated installer and checks the installed application, including saved notes and profile persistence after restart.

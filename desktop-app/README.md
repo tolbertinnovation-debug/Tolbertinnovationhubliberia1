@@ -32,4 +32,4 @@ Personal state is saved under Electron's `userData` directory in `study-workspac
 
 ## Release
 
-The desktop workflow tests the real Windows Electron application, captures screenshots, builds an unsigned per-user NSIS installer, and publishes the `desktop-v0.1.0-preview` prerelease. Public distribution will need code signing; this preview may show Windows publisher warnings. No signing certificate is embedded or invented.
+The desktop workflow tests the real Windows Electron application, captures screenshots, builds an unsigned per-user NSIS installer, silently installs it, repeats the native UI tests against the installed executable, and publishes the `desktop-v0.1.1-preview` prerelease. Public distribution will need code signing; this preview may show Windows publisher warnings. No signing certificate is embedded or invented.
