@@ -33,7 +33,7 @@ object LessonDocument {
         val safeCss = css.replace(Regex("@import[^;]+;", RegexOption.IGNORE_CASE), "")
             .replace(Regex("url\\([^)]*\\)", RegexOption.IGNORE_CASE), "none")
             .replace("</style", "", ignoreCase = true)
-        val readerClass = if (doc.select(".revision-banner strong").any { it.text() == "Football Coaching" }) "overview-text football-reader" else if (doc.select(".revision-banner strong").any { it.text() == "Human Rights and International Humanitarian Law" }) "overview-text hril-reader" else "overview-text"
+        val readerClass = if (doc.select(".revision-banner strong").any { it.text() == "Football Coaching" }) "overview-text football-reader" else if (doc.select(".revision-banner strong").any { it.text() == "Human Rights and International Humanitarian Law" }) "overview-text hril-reader" else if (doc.select(".revision-banner strong").any { it.text() == "QuickBooks Accounting" }) "overview-text quickbooks-reader" else "overview-text"
         return """<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
             <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
             <style>$safeCss
@@ -70,6 +70,11 @@ object LessonDocument {
             .ns-note h2{font-size:1.25rem;line-height:1.35;text-transform:none;overflow-wrap:normal}
             .ns-note :is(.ns-roadmap span,.ns-regional-label,.ns-figure figcaption){font-size:1rem;letter-spacing:normal}
             .ns-note .ns-roadmap span{white-space:normal;border-radius:12px}
+            .quickbooks-reader .revision-banner{display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;overflow:visible}
+            .quickbooks-reader .revision-banner span{max-width:100%;white-space:normal!important;overflow:visible;font-size:1rem;line-height:1.5}
+            .quickbooks-reader .table-wrap{max-width:100%;overflow-x:auto}
+            .quickbooks-reader .table-wrap table{display:table;width:auto!important;min-width:100%!important;max-width:none;table-layout:auto!important}
+            .quickbooks-reader :is(td,th){min-width:8rem;word-break:normal;overflow-wrap:normal}
             .overview-text .cl-flow-item{flex-shrink:0;min-width:max-content}.overview-text .cl-flow-item strong{white-space:nowrap;overflow-wrap:normal}
             /* Accounting, Full-Stack and Entrepreneurship cards carry sentences where the shared website visual
                style expects large icon glyphs. Keep those sentences at reading size. */

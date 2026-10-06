@@ -1507,4 +1507,56 @@ class CatalogSmokeTest {
         compose.onNodeWithText(title).assertExists()
     }
 
+    @Test fun quickbooksOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("quickbooks")
+        signIn()
+        val title = "QuickBooks Accounting"
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title.dropLast(1))
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("14 modules · 193 entries · 89 video links"))
+        compose.onNodeWithText("14 modules · 193 entries · 89 video links").assertIsDisplayed()
+        snapshot("180-quickbooks-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.title.contains("Practice: Creating an Invoice") }
+        val final = course.lessons.first { it.title == "🧪 Final Examination" }
+        val graduation = course.lessons.first { it.isFinal }
+        val deadlinePractice = course.lessons.first { it.title.contains("Banking and Reconciliation Quiz") }
+        val aiPractice = course.lessons.first { it.title.contains("Midterm Examination") }
+        org.junit.Assert.assertEquals(349, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, deadlinePractice, aiPractice, final, graduation)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else if (assessment == practice) snapshot("181-quickbooks-practice")
+            else if (assessment == deadlinePractice) snapshot("182-quickbooks-deadlines")
+            else if (assessment == aiPractice) snapshot("183-quickbooks-ai")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo()
+                compose.onNode(answer).performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("quickbooks"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "quickbooks", assessment))
+            }
+        }
+        snapshot("184-quickbooks-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
+    }
+
 }

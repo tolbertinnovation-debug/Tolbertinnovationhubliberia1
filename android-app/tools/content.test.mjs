@@ -578,3 +578,15 @@ test('Data Analysis worked sales examples reconcile from their displayed rows',(
  assert.equal(course.outcomes.length,8);
  const cover=fs.readFileSync(path.join(learning,course.image));assert.equal(cover.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
  });
+
+test('QuickBooks imports complete authored lessons, projects and distinct assessments',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[28].id,'quickbooks');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/quickbooks.json'))),source=extractCourse('quickbooks');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ const lessons=course.modules.flatMap(m=>m.lessons);assert.equal(course.modules.length,14);assert.equal(lessons.length,193);assert.equal(lessons.filter(l=>l.videoId).length,89);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'82f58f6e26164c6c770f9ab9c02c9aa6f563e0a6205303bab926ae635db0c967');
+ const written=lessons.filter(l=>l.kind!=='quiz');assert.equal(written.length,97);assert.ok(written.every(l=>l.noteSource==='authored'&&l.html.length>2000));assert.equal(lessons.filter(l=>l.kind==='project').length,7);
+ const questions=lessons.flatMap(l=>l.questions);assert.equal(questions.length,349);assert.equal(new Set(questions.map(q=>q.question)).size,349);assert.equal(lessons.filter(l=>l.kind==='quiz').length,96);assert.equal(new Set(questions.map(q=>q.answer)).size,4);
+ assert.equal(lessons.find(l=>l.title==='🧪 Final Examination').questions.length,20);assert.equal(lessons.find(l=>l.final).questions.length,15);
+ assert.equal(course.outcomes.length,10);
+});

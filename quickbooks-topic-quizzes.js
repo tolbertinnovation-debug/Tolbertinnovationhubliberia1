@@ -194,4 +194,9 @@
     if (typeof COURSES_DB === 'undefined' || !COURSES_DB['quickbooks']) return;
     if (typeof window.__qbRebuildAssessments === 'function') window.__qbRebuildAssessments();
   };
+  // Preserve topic-specific answers while varying their displayed positions.
+  var fiscal = window.TIH_TOPIC_QUIZZES.quickbooks['Setting Your Fiscal Year'];
+  fiscal.forEach(function(q){if(q.q==='Where is the first month of the fiscal year set?')q.q='Which company setting aligns annual reports with the business fiscal year?';});
+  var position=0;
+  [window.TIH_TOPIC_QUIZZES.quickbooks,window.TIH_RESERVED_QUIZZES.quickbooks].forEach(function(bank){Object.keys(bank).forEach(function(topic){bank[topic]=bank[topic].map(function(q){var shift=position++%q.opts.length;return{q:q.q,opts:q.opts.slice(shift).concat(q.opts.slice(0,shift)),correct:(q.correct-shift+q.opts.length)%q.opts.length,exp:q.exp};});});});
 })();
