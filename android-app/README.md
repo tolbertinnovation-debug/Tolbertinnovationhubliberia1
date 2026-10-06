@@ -284,3 +284,7 @@ Featured fifteenth in Courses and included in Today: 20 modules, 355 entries and
 ### Digital SAT Prep — 0.3.20
 
 Featured sixteenth in Courses and included in Today: 14 modules, 216 entries and 102 video links. Topic-specific practice and offline notes retain their lesson IDs. The graduation check has 20 fresh Reading/Writing and Math questions. Fifteen-question mixed checks are labeled short TIH practice, and notes distinguish TIH percentages from official adaptive SAT scores. SAT diagrams now use readable phone layouts.
+
+### Remote Work & Freelancing — 0.3.21
+
+Featured seventeenth in Courses and included in Today: 10 modules, 114 entries and 58 video links, with offline notes and client-project briefs. Three core practices and graduation use 24 fresh applied questions. Other foundation practices retain shared questions. Android checks cover overview, submissions, saved records and offline notes.

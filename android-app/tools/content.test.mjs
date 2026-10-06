@@ -376,3 +376,19 @@ test('SAT section checks use the correct subject and reapplying the topic bank i
  for(const q of quizzes.filter(q=>/^Math Quiz/.test(q.title))){assert.equal(q.moduleNum,13);assert.ok(q.questions.every(x=>!x.q.includes('Who produces')&&!x.q.includes('College Board')));}
  const before=JSON.stringify(course);context.tihApplySatTopicQuizzes();assert.equal(JSON.stringify(course),before);
 });
+
+
+test('Remote Work is featured with stable content and independent graduation practice',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[16].id,'remote-work');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/remote-work.json'))),source=extractCourse('remote-work');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ const lessons=course.modules.flatMap(m=>m.lessons);assert.equal(course.modules.length,10);assert.equal(lessons.length,114);assert.equal(lessons.filter(l=>l.videoId).length,58);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'2577c7067cbf08d87926756b2e4b056ec19ee05fbf630753f4502c68ea212b44');
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.noteSource==='authored'&&l.html.length>2000));
+ const final=lessons.find(l=>l.final);assert.equal(final.questions.length,15);
+ const selected=lessons.filter(l=>['📝 Practice: Writing Winning Proposals','📝 Practice: Managing Deadlines','📝 Practice: Responsible AI Use'].includes(l.title));assert.equal(selected.length,3);
+ const reviewed=[...selected.flatMap(l=>l.questions),...final.questions];assert.equal(reviewed.length,24);assert.equal(new Set(reviewed.map(q=>q.question)).size,24);
+ for(const q of reviewed){assert.equal(q.options.length,4);assert.equal(new Set(q.options).size,4);assert.ok(q.answer>=0&&q.answer<4);assert.ok(q.explanation.length>35);}
+ assert.ok(!lessons.filter(l=>!l.final).flatMap(l=>l.questions).some(q=>final.questions.some(f=>f.question===q.question)));
+ assert.ok(fs.existsSync(path.join(learning,course.image)));
+});
