@@ -1,5 +1,6 @@
 const {app,BrowserWindow,protocol,net,ipcMain,dialog,session,Menu}=require('electron');const fs=require('node:fs');const path=require('node:path');const {pathToFileURL}=require('node:url');const {defaults,validate,merge,assetPath}=require('./model.cjs');
 protocol.registerSchemesAsPrivileged([{scheme:'tih',privileges:{standard:true,secure:true,supportFetchAPI:true,corsEnabled:true}}]);
+const testData=app.commandLine.getSwitchValue('user-data-dir');if(testData)app.setPath('userData',testData);
 let window,store;const origin='tih://app';
 function read(){try{return validate(JSON.parse(fs.readFileSync(store,'utf8')));}catch(e){if(e.code==='ENOENT')return defaults();throw Error('Your study file could not be read. Restore a backup or contact TIH; the file has not been overwritten.');}}
 function write(data){const value=validate(data);fs.mkdirSync(path.dirname(store),{recursive:true});fs.writeFileSync(store+'.tmp',JSON.stringify(value));fs.renameSync(store+'.tmp',store);return value;}

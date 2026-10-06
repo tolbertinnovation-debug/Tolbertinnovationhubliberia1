@@ -55,4 +55,6 @@ jobs:
           name: TIH Learning Desktop 0.1.0 — Windows preview
           prerelease: true
           body_path: desktop-app/RELEASE-NOTES.md
-          files: desktop-app/dist/TIH-Learning-Desktop-0.1.0-Windows-x64.exe
+          files: |
+            desktop-app/dist/TIH-Learning-Desktop-0.1.0-Windows-x64.exe
+            desktop-app/test-results/01-dashboard.png
