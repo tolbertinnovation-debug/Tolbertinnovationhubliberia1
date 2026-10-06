@@ -1,0 +1,6 @@
+node_modules/
+dist/
+src/content/
+build/icon.ico
+test-results/
+playwright-report/

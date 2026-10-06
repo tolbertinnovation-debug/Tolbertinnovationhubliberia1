@@ -1,0 +1,58 @@
+name: TIH Desktop Windows preview
+on:
+  push:
+    branches: [codex/tih-desktop-app]
+    paths: ['desktop-app/**', '.github/workflows/desktop-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: desktop-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: desktop-app/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npm run content
+      - run: pip install Pillow
+      - run: python tools/icon.py
+      - run: npm test
+      - name: Test the real Windows desktop app
+        run: npm run test:ui
+        env:
+          TIH_ELECTRON_TEST: '1'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: TIH-Desktop-screens-and-tests
+          path: desktop-app/test-results/
+      - name: Build Windows installer
+        run: npm run dist:win
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - name: Check installer
+        shell: pwsh
+        run: |
+          $installer = Get-Item dist/TIH-Learning-Desktop-0.1.0-Windows-x64.exe
+          if ($installer.Length -lt 20000000) { throw 'Installer unexpectedly small' }
+          Get-FileHash $installer -Algorithm SHA256 | Format-List
+      - name: Publish desktop preview
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: desktop-v0.1.0-preview
+          target_commitish: ${{ github.sha }}
+          name: TIH Learning Desktop 0.1.0 — Windows preview
+          prerelease: true
+          body_path: desktop-app/RELEASE-NOTES.md
+          files: desktop-app/dist/TIH-Learning-Desktop-0.1.0-Windows-x64.exe

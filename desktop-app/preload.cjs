@@ -1,0 +1,1 @@
+const {contextBridge,ipcRenderer}=require('electron');contextBridge.exposeInMainWorld('tihDesktop',{read:()=>ipcRenderer.invoke('study:read'),write:data=>ipcRenderer.invoke('study:write',data),export:()=>ipcRenderer.invoke('study:export'),import:()=>ipcRenderer.invoke('study:import')});
