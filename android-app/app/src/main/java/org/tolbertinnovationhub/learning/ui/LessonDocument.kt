@@ -33,7 +33,7 @@ object LessonDocument {
         val safeCss = css.replace(Regex("@import[^;]+;", RegexOption.IGNORE_CASE), "")
             .replace(Regex("url\\([^)]*\\)", RegexOption.IGNORE_CASE), "none")
             .replace("</style", "", ignoreCase = true)
-        val readerClass = if (doc.select(".revision-banner strong").any { it.text() == "Football Coaching" }) "overview-text football-reader" else "overview-text"
+        val readerClass = if (doc.select(".revision-banner strong").any { it.text() == "Football Coaching" }) "overview-text football-reader" else if (doc.select(".revision-banner strong").any { it.text() == "Human Rights and International Humanitarian Law" }) "overview-text hril-reader" else "overview-text"
         return """<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
             <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
             <style>$safeCss
@@ -55,6 +55,12 @@ object LessonDocument {
             .meta-note :is(.meta-table,.meta-compare){max-width:100%;overflow-x:auto}
             .overview-text .meta-note table{display:table;width:auto;min-width:100%!important;max-width:none;table-layout:auto}
             .meta-note :is(td,th){min-width:8rem;overflow-wrap:normal;word-break:normal}
+            .hril-reader .revision-banner{display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;overflow:visible}
+            .hril-reader .revision-banner span{max-width:100%;white-space:normal!important;overflow:visible;overflow-wrap:anywhere;font-size:1rem;line-height:1.5}
+            .hril-reader .hril-learning-path :is(strong,small),.hril-reader .hril-keyword summary,.hril-reader .hril-keyword-meaning p{font-size:1rem}
+            .hril-reader .table-wrap{max-width:100%;overflow-x:auto}
+            .hril-reader .table-wrap table{display:table;width:auto!important;min-width:100%!important;max-width:none;table-layout:auto!important}
+            .hril-reader .table-wrap :is(td,th){min-width:8rem;word-break:normal;overflow-wrap:normal}
             .overview-text .cl-flow-item{flex-shrink:0;min-width:max-content}.overview-text .cl-flow-item strong{white-space:nowrap;overflow-wrap:normal}
             /* Accounting, Full-Stack and Entrepreneurship cards carry sentences where the shared website visual
                style expects large icon glyphs. Keep those sentences at reading size. */

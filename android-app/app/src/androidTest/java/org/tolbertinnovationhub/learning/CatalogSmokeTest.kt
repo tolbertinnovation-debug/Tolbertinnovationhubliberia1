@@ -1354,4 +1354,55 @@ class CatalogSmokeTest {
         compose.onNodeWithText(title).assertExists()
     }
 
+    @Test fun humanRightsIhlOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("human-rights-ihl")
+        signIn()
+        val title = "Human Rights and International Humanitarian Law"
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title.dropLast(1))
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("14 modules · 187 entries · 86 video links"))
+        compose.onNodeWithText("14 modules · 187 entries · 86 video links").assertIsDisplayed()
+        snapshot("162-humanRightsIhl-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.title.contains("Practice: The Principle of Distinction") }
+        val final = course.lessons.first { it.isFinal }
+        val deadlinePractice = course.lessons.first { it.title.contains("Practice: Monitoring and Documentation") }
+        val aiPractice = course.lessons.first { it.title.contains("Practice: Interviewing Victims and Witnesses Safely") }
+        org.junit.Assert.assertEquals(340, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else if (assessment == practice) snapshot("163-humanRightsIhl-practice")
+            else if (assessment == deadlinePractice) snapshot("164-humanRightsIhl-deadlines")
+            else if (assessment == aiPractice) snapshot("165-humanRightsIhl-ai")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo()
+                compose.onNode(answer).performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("human-rights-ihl"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "human-rights-ihl", assessment))
+            }
+        }
+        snapshot("166-humanRightsIhl-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
+    }
+
 }

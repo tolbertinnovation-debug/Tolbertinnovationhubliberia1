@@ -51,6 +51,9 @@ class LessonReaderUiTest {
     @Test fun metaphysicsNotesRenderOffline() =
         checkDocument("metaphysics", "161-metaphysics-reader", "What Is Metaphysics?")
 
+    @Test fun humanRightsIhlNotesRenderOffline() =
+        checkDocument("human-rights-ihl", "167-human-rights-ihl-reader", "What Are Human Rights?")
+
     @OptIn(ExperimentalMaterial3Api::class)
     @Test fun graphicDesignNotesRenderOffline() =
         checkDocument("design", "41-design-reader")
