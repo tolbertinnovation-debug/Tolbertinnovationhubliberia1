@@ -49,6 +49,9 @@ object LessonDocument {
             .football-reader .table-wrap{max-width:100%;overflow-x:auto}
             .football-reader .table-wrap table{display:table;width:auto!important;min-width:100%!important;max-width:none;table-layout:auto!important}
             .football-reader .table-wrap :is(td,th){min-width:8rem;word-break:normal;overflow-wrap:normal}
+            .bp-note :is(.bp-table,.bp-compare){max-width:100%;overflow-x:auto}
+            .overview-text .bp-note table{display:table;width:auto;min-width:100%!important;max-width:none;table-layout:auto}
+            .bp-note :is(td,th){min-width:8rem;overflow-wrap:normal;word-break:normal}
             .overview-text .cl-flow-item{flex-shrink:0;min-width:max-content}.overview-text .cl-flow-item strong{white-space:nowrap;overflow-wrap:normal}
             /* Accounting, Full-Stack and Entrepreneurship cards carry sentences where the shared website visual
                style expects large icon glyphs. Keep those sentences at reading size. */

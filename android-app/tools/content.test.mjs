@@ -508,3 +508,18 @@ test('Data Analysis worked sales examples reconcile from their displayed rows',(
  const questions=lessons.flatMap(l=>l.questions);assert.equal(questions.length,200);assert.equal(new Set(questions.map(q=>q.question)).size,165);assert.equal(lessons.filter(l=>l.kind==='quiz').length,57);
  assert.ok(fs.existsSync(path.join(learning,course.image)));
  });
+
+ test('Business Plan Development is featured with complete authored offline content',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[23].id,'business-plan');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/business-plan.json'))),source=extractCourse('business-plan');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ const lessons=course.modules.flatMap(m=>m.lessons);assert.equal(course.modules.length,10);assert.equal(lessons.length,46);assert.equal(lessons.filter(l=>l.videoId).length,30);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'33951bc7cfdbc041ff66c7f9a049f543278da173fe4f90984d634084f71b5997');
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.noteSource==='authored'&&l.html.length>2000));assert.equal(lessons.filter(l=>l.kind==='project').length,5);
+ const final=lessons.find(l=>l.final);assert.equal(final.questions.length,20);assert.equal(lessons.at(-1).id,final.id);
+ for(const num of [1,8,10])assert.ok(lessons.some(l=>l.title==='📝 Module '+num+' Assessment'&&l.questions.length===3));
+ const questions=lessons.flatMap(l=>l.questions);assert.equal(questions.length,140);assert.equal(new Set(questions.map(q=>q.question)).size,140);assert.equal(lessons.filter(l=>l.kind==='quiz').length,11);
+ assert.ok(new Set(questions.map(q=>q.answer)).size>=3);
+ assert.equal(course.outcomes.length,5);
+ const cover=fs.readFileSync(path.join(learning,course.image));assert.equal(cover.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
+ });

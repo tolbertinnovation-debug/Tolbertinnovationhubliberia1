@@ -115,7 +115,7 @@ export function extractCourse(id) {
     bio: String(source.instructorBio || original.instructorBio || '').trim()} : null;
   return {id, title: source.title, description: source.shortDesc || source.description || original.shortDesc || '', category: source.category || original.category || 'Learning',
     level: source.level || 'All levels', duration: '3 weeks', image: source.cardImage || '',
-    outcomes: source.learn || [], about: pick('about'), requirements: pick('requirements'), faqs, instructor,
+    outcomes: source.learn || source.outcomes || [], about: pick('about'), requirements: pick('requirements'), faqs, instructor,
     modules, css: playerCss + '\n' + h.styles.join('\n'), sourceFiles: [...h.files].sort()};
 }
 export function exportAll() {
@@ -140,6 +140,8 @@ export function exportAll() {
     for (const file of course.sourceFiles) report.sourceFiles[file] = crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex');
     // Copy existing artwork; never create replacement logos or imaginary content.
     let cover = course.image;
+    // The native bitmap reader uses a raster copy of this existing SVG cover.
+    if (id === 'business-plan' && cover === 'business-plan-card.svg') cover = 'business-plan-card.png';
     if (!cover || /^https?:/.test(cover)) {
       const localFallback = id + '-card.jpg';
       if (fs.existsSync(path.join(root, localFallback))) cover = localFallback;
@@ -156,7 +158,7 @@ export function exportAll() {
       videoCount: lessons.filter(l => l.videoId).length, quizCount: lessons.filter(l => l.kind === 'quiz').length});
   }
   // Keep the courses being reviewed one by one within easy reach after sign-in.
-  const priority = ['computer-literacy', 'project-mgmt', 'accounting-bookkeeping', 'webdev', 'design', 'entrepreneurship', 'android', 'office', 'leadership', 'grant-writing', 'english-success', 'ielts', 'toefl', 'cybersecurity', 'marketing', 'sat', 'remote-work', 'healthtech', 'data', 'financial-literacy', 'bible-foundations', 'football-coaching', 'ph-career'];
+  const priority = ['computer-literacy', 'project-mgmt', 'accounting-bookkeeping', 'webdev', 'design', 'entrepreneurship', 'android', 'office', 'leadership', 'grant-writing', 'english-success', 'ielts', 'toefl', 'cybersecurity', 'marketing', 'sat', 'remote-work', 'healthtech', 'data', 'financial-literacy', 'bible-foundations', 'football-coaching', 'ph-career', 'business-plan'];
   const rank = id => { const index = priority.indexOf(id); return index < 0 ? priority.length : index; };
   catalog.sort((a, b) => rank(a.id) - rank(b.id));
   const cfg = createContext(); cfg.run('hub-config.js');

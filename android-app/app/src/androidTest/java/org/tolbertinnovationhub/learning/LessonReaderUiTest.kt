@@ -45,6 +45,9 @@ class LessonReaderUiTest {
     @Test fun publicHealthCareerNotesRenderOffline() =
         checkDocument("ph-career", "149-ph-career-reader", "Writing a Public Health CV")
 
+    @Test fun businessPlanNotesRenderOffline() =
+        checkDocument("business-plan", "155-business-plan-reader", "What Is a Business Plan?")
+
     @OptIn(ExperimentalMaterial3Api::class)
     @Test fun graphicDesignNotesRenderOffline() =
         checkDocument("design", "41-design-reader")
