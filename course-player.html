@@ -26,7 +26,7 @@
        whole-site lesson-content.js / topic-quizzes.js bundles that used to
        load in full on every lesson view; their data now lives split by
        course under content/ and quizzes/. -->
-  <script src="tih-course-loader.js?v=19"></script>
+  <script src="tih-course-loader.js?v=20"></script>
   <script src="course-images.js?v=1"></script>
   <script src="hub-config.js?v=4"></script>
   <script src="hub-cloud.js?v=23"></script>
@@ -42,7 +42,7 @@
   <script src="tih-video-runtime.js?v=2"></script>
   <!-- The five authored note bundles (762 KB combined) are fetched on demand
        for the open course only, by tih-authored-notes.js. -->
-  <script src="tih-authored-notes.js?v=76"></script>
+  <script src="tih-authored-notes.js?v=77"></script>
   <script src="assets/qrcode.js"></script>
   <script src="cert-template.js?v=6"></script>
   <style>
@@ -1120,6 +1120,8 @@
     }
 
   
+    /* IELTS reviewed notes: shared web/native layouts */
+    .overview-text .ielts-note{color:#1b2c45;font-size:inherit;max-width:100%}.overview-text .ielts-note :is(p,li,td,th,details,summary,figcaption){font-size:inherit!important;line-height:1.65}.overview-text .ielts-note .revision-banner{background:#EAF4FF;border-color:#d6e2f1;color:#002868}.overview-text .ielts-note .ielts-workshop{margin:1.2em 0;padding:1em;border:1px solid #d6e2f1;border-radius:16px;background:#f8fbff}.overview-text .ielts-note .ielts-workshop details{padding:.75em 0;border-top:1px solid #d6e2f1}.overview-text .ielts-note summary{cursor:pointer;font-weight:600;color:#002868}.overview-text .ielts-note .ielts-practice-scope{margin:1em 0;padding:1em;border-left:4px solid #E31E24;border-radius:8px;background:#EAF4FF}.overview-text .ielts-note .ielts-data{max-width:100%;overflow-x:auto}.overview-text .ielts-note table{width:100%;min-width:0!important;font-size:inherit!important}.overview-text .ielts-note :is(td,th){min-width:0;overflow-wrap:anywhere}.overview-text .ielts-note .ielts-data :is(td,th){min-width:100px;overflow-wrap:normal;word-break:normal}.overview-text .ielts-note .ielts-process{min-width:0;flex-wrap:wrap}.overview-text .ielts-note .ielts-map-change{min-width:0;flex-wrap:wrap}.overview-text .ielts-note .ielts-process b{font-size:inherit}.overview-text .ielts-note a{color:#002868;text-decoration:underline}
     /* IELTS Writing Task 1 data visuals and model observations */
     .overview-text .ielts-chart-wrap { padding: 1rem; overflow-x: auto; }
     .overview-text .ielts-svg-chart { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto; }

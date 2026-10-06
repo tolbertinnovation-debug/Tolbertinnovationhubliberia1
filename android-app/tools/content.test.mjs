@@ -9,6 +9,7 @@ import '../../tools/office-quizzes.test.mjs';
 import '../../tools/leadership-quizzes.test.mjs';
 import '../../tools/grant-writing-quizzes.test.mjs';
 import '../../tools/english-success-quizzes.test.mjs';
+import '../../tools/ielts-quizzes.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -49,7 +50,7 @@ test('source manifest proves all website inputs remain unchanged', () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(learning, 'manifest.json')));
   assert.equal(manifest.missingNotes.length, 0);
   assert.equal(manifest.emptyQuizzes.length, 0);
-  assert.equal(Object.keys(manifest.sourceFiles).length, 221);
+  assert.equal(Object.keys(manifest.sourceFiles).length, 222);
   for (const [file, hash] of Object.entries(manifest.sourceFiles)) {
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex'), hash, file);
   }
@@ -287,4 +288,18 @@ test('English Success is source-faithful, complete and eleventh in Courses', () 
   assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.html.length>200 && l.noteSource==='authored'));
   assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'f62b595e23cc9f15c090cf1c1761baf7546d1d8210fded8b0d05716ced9541ed');
   assert.ok(fs.existsSync(path.join(learning,course.image)));
+});
+
+test('IELTS is complete, source-faithful and twelfth in Courses',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));
+ assert.equal(catalog[11].id,'ielts');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/ielts.json'))),source=extractCourse('ielts');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]),key);
+ const lessons=course.modules.flatMap(m=>m.lessons),qs=lessons.flatMap(l=>l.questions);
+ assert.equal(course.modules.length,22);assert.equal(lessons.length,238);assert.equal(lessons.filter(l=>l.kind==='project').length,1);
+ assert.equal(lessons.filter(l=>l.videoId).length,127);assert.equal(new Set(lessons.filter(l=>l.videoId).map(l=>l.videoId)).size,127);
+ assert.equal(qs.length,376);assert.equal(new Set(qs.map(q=>q.question)).size,376);
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.html.length>1800&&l.noteSource==='authored'));
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'21612a5bd645c2771cd6e62855fec6e4f3454584b98b159e2747a2f7614c61cb');
+ assert.ok(fs.existsSync(path.join(learning,course.image)));
 });

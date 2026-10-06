@@ -65,18 +65,24 @@ class LessonReaderUiTest {
     @Test fun englishProgramNotesRenderOffline() =
         checkDocument("english-success", "77-english-reader")
 
+    @Test fun ieltsChartNotesRenderOffline() =
+        checkDocument("ielts", "83-ielts-reader", "Line Graphs")
+
     @OptIn(ExperimentalMaterial3Api::class)
-    private fun checkDocument(courseId: String, captureName: String) {
+    private fun checkDocument(courseId: String, captureName: String, topic: String? = null) {
         val course = runBlocking {
             val repository = ContentRepository(compose.activity)
             repository.course(repository.catalog().first { it.id == courseId })
         }
-        val lesson = course.lessons.first { it.html.isNotBlank() && it.kind != "quiz" }
+        val lesson = course.lessons.first { it.html.isNotBlank() && it.kind != "quiz" && (topic == null || it.title.endsWith(topic)) }
+        val readerHtml = if (topic == null) lesson.html else
+            Regex("<figure[\\s\\S]*?</figure>").find(lesson.html)?.value
+                ?: error("Expected a chart figure in $topic")
         compose.runOnUiThread { compose.activity.actionBar?.hide() }
         compose.setContent {
             TihTheme {
                 Scaffold(topBar = { TopAppBar(title = { Text(lesson.title) }) }) { padding ->
-                    RichLesson(lesson.html, course.css, 18, Modifier.fillMaxSize().padding(padding)) {}
+                    RichLesson(readerHtml, course.css, 18, Modifier.fillMaxSize().padding(padding)) {}
                 }
             }
         }

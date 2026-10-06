@@ -43,7 +43,7 @@ try {
   call(['shell','wm','dismiss-keyguard']);
   call(['install','-r',path.join(root,'android-app/app/build/outputs/apk/debug/app-debug.apk')],120000);
   call(['install','-r',path.join(root,'android-app/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk')],120000);
-  const results=call(['shell','am','instrument','-w','org.tolbertinnovationhub.learning.preview.test/androidx.test.runner.AndroidJUnitRunner'],300000);
+  const results=call(['shell','am','instrument','-w','org.tolbertinnovationhub.learning.preview.test/androidx.test.runner.AndroidJUnitRunner'],360000);
   fs.writeFileSync(path.join(report,'instrumentation.txt'),results);
   console.log(results);
   const pulled=spawn(adb,['pull','/sdcard/Android/data/org.tolbertinnovationhub.learning.preview/files/screenshots',report],{env,stdio:'inherit'});

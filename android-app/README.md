@@ -9,6 +9,10 @@ The 0.3.5 Project Management content correction is also published to the website
 
 ## What is implemented
 
+- 0.3.16 adds reviewed IELTS Masterclass content in Courses and Today: 22 modules,
+  238 entries, 127 authored notes/video links and 376 distinct questions.
+  See [IELTS Masterclass review](release/IELTS-MASTERCLASS.md).
+
 - 0.3.15 places English for Academic & Professional Success eleventh in Courses and in Today,
   with 20 modules, 332 entries, 170 authored notes/video links and 616 distinct questions.
   See [English Success review](release/ENGLISH-SUCCESS.md).
