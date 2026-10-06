@@ -280,3 +280,7 @@ The complete twenty-module program is fourteenth in Courses and featured in Toda
 ### Digital Marketing Professional Certificate — 0.3.19
 
 Featured fifteenth in Courses and included in Today: 20 modules, 355 entries and 189 video links. Offline authored notes, projects and assessments retain stable identities. Audience targeting, email testing and ROI practices plus graduation now contain 24 fresh applied questions; other foundation practices retain shared questions. Native tests verify overview, submissions, persisted records and offline rendering.
+
+### Digital SAT Prep — 0.3.20
+
+Featured sixteenth in Courses and included in Today: 14 modules, 216 entries and 102 video links. Topic-specific practice and offline notes retain their lesson IDs. The graduation check has 20 fresh Reading/Writing and Math questions. Fifteen-question mixed checks are labeled short TIH practice, and notes distinguish TIH percentages from official adaptive SAT scores. SAT diagrams now use readable phone layouts.

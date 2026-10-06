@@ -16,7 +16,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import {root, noteKey, lookup, extractCourse} from './export-learning.mjs';
+import {root, noteKey, lookup, extractCourse, createContext} from './export-learning.mjs';
 const learning = path.join(root, 'android-app/app/src/main/assets/learning');
 
 test('numbering and module-qualified note resolution', () => {
@@ -351,4 +351,28 @@ test('Digital Marketing is featured with stable curriculum and applied campaign 
  assert.ok(!lessons.filter(l=>!l.final).flatMap(l=>l.questions).some(q=>final.questions.some(f=>f.question===q.question)));
  const roi=lessons.find(l=>l.title.endsWith('ROI Measurement')&&l.kind==='lesson');assert.ok(roi.html.includes('14.3%'));assert.ok(roi.html.includes('ROAS'));
  assert.ok(fs.existsSync(path.join(learning,course.image)));
+});
+
+
+test('Digital SAT is featured with stable identities and an independent skills final',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[15].id,'sat');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/sat.json'))),source=extractCourse('sat');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ const lessons=course.modules.flatMap(m=>m.lessons),questions=lessons.flatMap(l=>l.questions);
+ assert.equal(course.modules.length,14);assert.equal(lessons.length,216);assert.equal(lessons.filter(l=>l.videoId).length,102);assert.equal(questions.length,467);assert.equal(new Set(questions.map(q=>q.question)).size,300);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'b7f85653f8c316ebb15b095705c842661355b6fdbfcec0293ae81a1e4a0951fe');
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.noteSource==='authored'&&l.html.length>2000));
+ const final=lessons.find(l=>l.final);assert.equal(final.questions.length,20);assert.equal(new Set(final.questions.map(q=>q.question)).size,20);
+ assert.ok(!lessons.filter(l=>!l.final).flatMap(l=>l.questions).some(q=>final.questions.some(f=>f.question===q.question)));
+ const math=final.questions.find(q=>q.question.startsWith('Solve 5x'));assert.equal(math.options[math.answer],'7');
+ assert.ok(lessons.filter(l=>l.title.includes('Full SAT Mock Test')).every(l=>l.questions.length===15&&l.duration.includes('TIH short practice')&&l.html.includes('not a full-length adaptive SAT')));
+ const score=lessons.find(l=>l.title.endsWith('SAT Scoring System (400–1600)')&&l.kind==='lesson');assert.ok(score.html.includes('Item Response Theory'));assert.ok(score.html.includes('not an official 1600'));
+ assert.ok(fs.existsSync(path.join(learning,course.image)));
+});
+
+test('SAT section checks use the correct subject and reapplying the topic bank is idempotent',()=>{
+ const {context,run}=createContext('sat');run('courses-db.js');run('tih-course-loader.js');context.TihCourseLoader.ensure('sat',()=>{});const course=context.COURSES_DB.sat;
+ const quizzes=Object.values(course.quizzes);
+ for(const q of quizzes.filter(q=>/^Math Quiz/.test(q.title))){assert.equal(q.moduleNum,13);assert.ok(q.questions.every(x=>!x.q.includes('Who produces')&&!x.q.includes('College Board')));}
+ const before=JSON.stringify(course);context.tihApplySatTopicQuizzes();assert.equal(JSON.stringify(course),before);
 });

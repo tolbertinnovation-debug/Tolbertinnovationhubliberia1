@@ -24,7 +24,7 @@
   ],
   "SAT Scoring System (400–1600)": [
     {"q": "What is the maximum possible Digital SAT total score?", "opts": ["1200", "1600", "2400", "800"], "correct": 1, "exp": "Two sections scored 200&ndash;800 each give a maximum total of 1600."},
-    {"q": "Why can you not calculate your exact score by counting correct answers?", "opts": ["Only the second module counts", "Answers are weighted by question length", "Raw scores are equated to adjust for form difficulty", "Scores are assigned randomly"], "correct": 2, "exp": "Equating converts raw scores to the scale so the same performance earns the same score on every form."},
+    {"q": "Why can you not calculate your exact score by counting correct answers?", "opts": ["Only the second module counts", "Answers are weighted by question length", "Adaptive scoring considers question characteristics and response patterns", "Scores are assigned randomly"], "correct": 2, "exp": "Digital SAT scoring uses Item Response Theory and adaptive testing; a simple number-correct total is insufficient to calculate the official score."},
     {"q": "What is the lowest total score a student can receive?", "opts": ["600", "0", "200", "400"], "correct": 3, "exp": "Each section has a floor of 200, so the lowest possible total is 400."}
   ],
   "Digital SAT Overview": [

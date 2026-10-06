@@ -46,9 +46,9 @@ object LessonDocument {
             .overview-text .cl-flow-item{flex-shrink:0;min-width:max-content}.overview-text .cl-flow-item strong{white-space:nowrap;overflow-wrap:normal}
             /* Accounting, Full-Stack and Entrepreneurship cards carry sentences where the shared website visual
                style expects large icon glyphs. Keep those sentences at reading size. */
-            .overview-text :is(.acct-visual,.webdev-visual,.ent-visual,.android-visual,.marketing-visual) .cl-visual-item span{font-size:1rem;line-height:1.6;margin-top:.4rem}
-            .overview-text :is(.acct-visual,.webdev-visual,.ent-visual,.android-visual,.marketing-visual) .cl-visual-item strong{font-size:1rem}
-            @media(max-width:600px){.overview-text :is(.acct-visual,.webdev-visual,.ent-visual,.android-visual,.marketing-visual) .cl-visual-grid{grid-template-columns:minmax(0,1fr)}.overview-text :is(.acct-visual,.webdev-visual,.ent-visual,.android-visual,.marketing-visual) .cl-visual-item{text-align:left}}
+            .overview-text :is(.acct-visual,.webdev-visual,.ent-visual,.android-visual,.marketing-visual,.sat-visual) .cl-visual-item span{font-size:1rem;line-height:1.6;margin-top:.4rem}
+            .overview-text :is(.acct-visual,.webdev-visual,.ent-visual,.android-visual,.marketing-visual,.sat-visual) .cl-visual-item strong{font-size:1rem}
+            @media(max-width:600px){.overview-text :is(.acct-visual,.webdev-visual,.ent-visual,.android-visual,.marketing-visual,.sat-visual) .cl-visual-grid{grid-template-columns:minmax(0,1fr)}.overview-text :is(.acct-visual,.webdev-visual,.ent-visual,.android-visual,.marketing-visual,.sat-visual) .cl-visual-item{text-align:left}}
             </style></head><body><main class="overview-text">${doc.body().html()}</main></body></html>""".trimIndent()
     }
 }
