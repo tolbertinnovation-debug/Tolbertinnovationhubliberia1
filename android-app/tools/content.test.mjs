@@ -424,3 +424,33 @@ test('HealthTech practices and both assessments have distinct topic banks',()=>{
  const source=context.COURSES_DB.healthtech;
  for(const [i,module] of source.modules.entries())for(const lesson of module.lessons.filter(l=>l.isQuiz))assert.equal(source.quizzes[lesson.quizId].moduleNum,i+1);
 });
+
+
+test('Data Analysis is featured with stable content and independent graduation practice',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[18].id,'data');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/data.json'))),source=extractCourse('data');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ const lessons=course.modules.flatMap(m=>m.lessons);assert.equal(course.modules.length,20);assert.equal(lessons.length,356);assert.equal(lessons.filter(l=>l.videoId).length,186);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'fd548b81c7ff6f4a50f3a256a440eefb11db7e9d09422841107b7fceb5c71a8c');
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.noteSource==='authored'&&l.html.length>2000));
+ const final=lessons.find(l=>l.final);assert.equal(final.questions.length,15);
+ const selected=lessons.filter(l=>['📝 Practice: SUM, AVERAGE, COUNT','📝 Practice: QUERY Function','📝 Practice: Measures'].includes(l.title));assert.equal(selected.length,3);
+ const reviewed=[...selected.flatMap(l=>l.questions),...final.questions];assert.equal(reviewed.length,24);assert.equal(new Set(reviewed.map(q=>q.question)).size,24);
+ for(const q of reviewed){assert.equal(q.options.length,4);assert.equal(new Set(q.options).size,4);assert.ok(q.answer>=0&&q.answer<4);assert.ok(q.explanation.length>35);}
+ assert.ok(!lessons.filter(l=>!l.final).flatMap(l=>l.questions).some(q=>final.questions.some(f=>f.question===q.question)));
+ assert.ok(fs.existsSync(path.join(learning,course.image)));
+});
+
+
+test('Data Analysis worked sales examples reconcile from their displayed rows',()=>{
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/data.json')));
+ const lesson=course.modules.flatMap(m=>m.lessons).find(l=>l.title==='4.2 SUM, AVERAGE, COUNT');
+ const section=lesson.html.split('<h4>Worked TIH stationery dataset</h4>')[1];assert.ok(section);
+ const rows=[...section.matchAll(/<tr>((?:<td>.*?<\/td>){6})<\/tr>/g)].map(m=>[...m[1].matchAll(/<td>(.*?)<\/td>/g)].map(c=>c[1]));
+ assert.equal(rows.length,6);
+ for(const row of rows)assert.equal(Number(row[5]),Number(row[3])*Number(row[4]));
+ const total=rs=>rs.reduce((sum,row)=>sum+Number(row[5]),0);
+ assert.equal(total(rows),8600);assert.equal(total(rows.filter(r=>r[1]==='Monrovia')),5500);assert.equal(total(rows.filter(r=>r[0]==='July')),3600);
+ const {context,run}=createContext('data');run('courses-db.js');run('tih-course-loader.js');context.TihCourseLoader.ensure('data',()=>{});
+ for(const [i,module] of context.COURSES_DB.data.modules.entries())for(const lesson of module.lessons.filter(l=>l.isQuiz))assert.equal(context.COURSES_DB.data.quizzes[lesson.quizId].moduleNum,i+1);
+});

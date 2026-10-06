@@ -3,7 +3,7 @@ name: Android preview (website unchanged)
 on:
   push:
     branches: [codex/tih-native-android]
-    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*', 'cybersecurity-*.js', 'tools/cybersecurity-*', 'marketing-*.js', 'tools/marketing-*', 'sat-*.js', 'tools/sat-*', 'remotework-curriculum.js', 'remote-work-*.js', 'tools/remote-work-*', 'healthtech-*.js', 'tools/healthtech-*']
+    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*', 'cybersecurity-*.js', 'tools/cybersecurity-*', 'marketing-*.js', 'tools/marketing-*', 'sat-*.js', 'tools/sat-*', 'remotework-curriculum.js', 'remote-work-*.js', 'tools/remote-work-*', 'healthtech-*.js', 'tools/healthtech-*', 'data-*.js', 'tools/data-*']
   workflow_dispatch:
 
 permissions:
@@ -73,6 +73,7 @@ jobs:
           node tools/sat-reader.test.cjs
           node tools/remote-work-reader.test.cjs
           node tools/healthtech-reader.test.cjs
+          node tools/data-reader.test.cjs
       - name: Build, unit-test, and lint Android preview
         working-directory: android-app
         run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:assembleDebugAndroidTest :app:assembleRelease :app:bundleRelease

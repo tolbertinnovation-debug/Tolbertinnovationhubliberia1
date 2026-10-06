@@ -292,3 +292,5 @@ Featured seventeenth in Courses and included in Today: 10 modules, 114 entries a
 Healthcare Technology & Telehealth is featured in preview 0.3.22: see [release notes](release/HEALTHTECH.md).
 
 Preview 0.3.23 replaces shared Healthcare Technology quizzes with independent topic practices and assessments: [assessment update](release/HEALTHTECH-QUIZZES.md).
+
+Data Analysis is featured in preview 0.3.24: [release notes](release/DATA-ANALYSIS.md).
