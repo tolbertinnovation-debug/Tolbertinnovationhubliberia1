@@ -131,7 +131,7 @@
     });
     master.title = 'IELTS Masterclass: Beginner to Band 9';
     master.shortDesc = 'One complete IELTS pathway covering Beginner, Intermediate, and Advanced preparation across Listening, Reading, Writing, and Speaking.';
-    master.level = 'Intermediate → Advanced';
+    master.level = 'Beginner → Advanced';
     master.duration = '60h+';
     master.ieltsPathway = true;
     master._ieltsPathwayMerged = true;
@@ -175,6 +175,38 @@
       }
     })();
   }
+
+  // Rebuild every delivered check from a complete, module-qualified reviewed bank.
+  // Keep lesson titles, order and quiz IDs stable so existing progress is retained.
+  window.tihApplyIeltsTopicQuizzes = function () {
+    var course = COURSES_DB.ielts, bank = window.TIH_IELTS_QUESTIONS;
+    if (!course) return;
+    if (!bank) throw new Error('Missing reviewed IELTS question bank');
+    var rebuilt = {}, used = {};
+    course.modules.forEach(function (module, index) {
+      var number = index + 1;
+      (module.lessons || []).forEach(function (lesson) {
+        if (!lesson.isQuiz) return;
+        var name = lesson.t.split('Quiz: ').pop();
+        var key = 'M' + number + ':' + name;
+        var practice = number >= 7 && number <= 21;
+        var rows = (practice ? bank.topics : bank.papers)[key];
+        var expected = practice ? 3 : number === 22 ? 20 : number === 6 ? 8 : 10;
+        if (!rows || rows.length !== expected) throw new Error('Incomplete IELTS check: ' + key);
+        var questions = rows.map(function (q) {
+          var norm = q.q.toLowerCase().replace(/[^a-z0-9]/g, '');
+          if (used[norm]) throw new Error('Repeated IELTS question: ' + key);
+          used[norm] = true;
+          return {q:q.q,opts:q.opts.slice(),correct:q.correct,exp:q.exp};
+        });
+        rebuilt[lesson.quizId] = {title:practice ? 'Practice: ' + name : name.replace(/^[^a-zA-Z0-9]+/, ''),moduleNum:number,questionCount:expected,questions:questions};
+        lesson.d = expected + ' questions';
+      });
+    });
+    if (Object.keys(rebuilt).length !== 111) throw new Error('Incomplete IELTS assessment coverage');
+    course.quizzes = rebuilt;
+  };
+  window.tihApplyIeltsTopicQuizzes();
   if (typeof PRACTICE_TESTS !== 'undefined') {
     curriculum.forEach(function (item) { PRACTICE_TESTS['ielts-' + item[0] + '-' + item[1]] = PRACTICE_TESTS.ielts; });
   }
