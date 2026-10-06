@@ -15,7 +15,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
    const lesson=course.modules.flatMap(m=>m.lessons).find(l=>l.kind==='lesson'&&l.title.replace(/^\d+\.\d+ /,'')===title);assert.ok(lesson,title);
    await page.setContent('<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>'+css+template.replaceAll('${size}',size)+'</style></head><body><main class="overview-text">'+lesson.html+'</main></body></html>');
    const layout=await page.evaluate(()=>({viewport:innerWidth,width:document.documentElement.scrollWidth,text:document.querySelector('main > p').innerText,font:parseFloat(getComputedStyle(document.querySelector('main > p')).fontSize),cells:[...document.querySelectorAll('td')].map(el=>parseFloat(getComputedStyle(el).fontSize)),numericLines:[...document.querySelectorAll('.toefl-data td')].filter(el=>/^\d+(%|)$/.test(el.textContent)).map(el=>{const range=document.createRange();range.selectNodeContents(el);return range.getClientRects().length;})}));
-   assert.ok(layout.width<=layout.viewport+1,JSON.stringify({title,size,...layout}));assert.equal(layout.font,size);assert.ok(layout.text.length>20);
+   assert.ok(layout.width<=layout.viewport+1,JSON.stringify({title,size,...layout}));assert.ok(Math.abs(layout.font-size*1.01)<0.01, 'Teaching paragraphs retain the source CSS 1.01rem size at the selected reader setting');assert.ok(layout.text.length>20);
    if(size===24){await page.screenshot({path:'test-results/toefl/reader-'+title.toLowerCase().replace(/[^a-z]+/g,'-')+'.png'});if(await page.locator('figure').count())await page.locator('figure').first().screenshot({path:'test-results/toefl/figure-'+title.toLowerCase().replace(/[^a-z]+/g,'-')+'.png'});}
    checked++;
   }
