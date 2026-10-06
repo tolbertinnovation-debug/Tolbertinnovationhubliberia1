@@ -3,7 +3,7 @@ name: Android preview (website unchanged)
 on:
   push:
     branches: [codex/tih-native-android]
-    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*', 'cybersecurity-*.js', 'tools/cybersecurity-*', 'marketing-*.js', 'tools/marketing-*', 'sat-*.js', 'tools/sat-*', 'remotework-curriculum.js', 'remote-work-*.js', 'tools/remote-work-*', 'healthtech-*.js', 'tools/healthtech-*', 'data-*.js', 'tools/data-*', 'finlit-curriculum.js', 'financial-literacy-*.js', 'tools/financial-literacy-*']
+    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*', 'cybersecurity-*.js', 'tools/cybersecurity-*', 'marketing-*.js', 'tools/marketing-*', 'sat-*.js', 'tools/sat-*', 'remotework-curriculum.js', 'remote-work-*.js', 'tools/remote-work-*', 'healthtech-*.js', 'tools/healthtech-*', 'data-*.js', 'tools/data-*', 'finlit-curriculum.js', 'financial-literacy-*.js', 'tools/financial-literacy-*', 'bible-*.js', 'tools/bible-school-*']
   workflow_dispatch:
 
 permissions:
@@ -75,6 +75,7 @@ jobs:
           node tools/healthtech-reader.test.cjs
           node tools/data-reader.test.cjs
           node tools/financial-literacy-reader.test.cjs
+          node tools/bible-school-reader.test.cjs
       - name: Build, unit-test, and lint Android preview
         working-directory: android-app
         run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:assembleDebugAndroidTest :app:assembleRelease :app:bundleRelease
@@ -124,4 +125,14 @@ jobs:
             test-results/financial-literacy/*.png
             android-app/app/build/reports/**/screenshots/*financialLiteracy*.png
             android-app/app/build/reports/**/screenshots/*financial-literacy*.png
+          if-no-files-found: warn
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Bible-School-phone-previews
+          path: |
+            test-results/bible-school/*.png
+            android-app/app/build/reports/**/screenshots/*bibleSchool*.png
+            android-app/app/build/reports/**/screenshots/*bible-school*.png
           if-no-files-found: warn

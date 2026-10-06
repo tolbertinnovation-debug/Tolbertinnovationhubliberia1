@@ -296,3 +296,5 @@ Preview 0.3.23 replaces shared Healthcare Technology quizzes with independent to
 Data Analysis is featured in preview 0.3.24: [release notes](release/DATA-ANALYSIS.md).
 
 Financial Literacy preview details: [release/FINANCIAL-LITERACY.md](release/FINANCIAL-LITERACY.md).
+
+Bible School preview details: [release/BIBLE-SCHOOL.md](release/BIBLE-SCHOOL.md).

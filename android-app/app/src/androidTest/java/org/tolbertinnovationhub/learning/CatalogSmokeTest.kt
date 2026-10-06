@@ -1030,5 +1030,53 @@ class CatalogSmokeTest {
         compose.onNodeWithText(title).assertExists()
     }
 
+    @Test fun bibleSchoolOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("bible-foundations")
+        signIn()
+        val title = "Complete Bible School & Christian Ministry Certificate"
+        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("10 modules · 114 entries · 58 video links"))
+        compose.onNodeWithText("10 modules · 114 entries · 58 video links").assertIsDisplayed()
+        snapshot("132-bibleSchool-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.title.contains("Practice: Principles of Bible Interpretation") }
+        val final = course.lessons.first { it.isFinal }
+        val deadlinePractice = course.lessons.first { it.title.contains("Practice: Servant Leadership") }
+        val aiPractice = course.lessons.first { it.title.contains("Practice: Sermon Preparation") }
+        org.junit.Assert.assertEquals(33, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else if (assessment == practice) snapshot("133-bibleSchool-practice")
+            else if (assessment == deadlinePractice) snapshot("134-bibleSchool-deadlines")
+            else if (assessment == aiPractice) snapshot("135-bibleSchool-ai")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToNode(answer)
+                compose.onNode(answer).performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("bible-foundations"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "bible-foundations", assessment))
+            }
+        }
+        snapshot("136-bibleSchool-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
+    }
+
 
 }

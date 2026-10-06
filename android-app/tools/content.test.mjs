@@ -467,3 +467,16 @@ test('Data Analysis worked sales examples reconcile from their displayed rows',(
  const questions=lessons.flatMap(l=>l.questions);assert.equal(questions.length,192);assert.equal(new Set(questions.map(q=>q.question)).size,33);
  assert.ok(fs.existsSync(path.join(learning,course.image)));
  });
+
+ test('Bible School is featured with complete authored offline content',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[20].id,'bible-foundations');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/bible-foundations.json'))),source=extractCourse('bible-foundations');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ const lessons=course.modules.flatMap(m=>m.lessons);assert.equal(course.modules.length,10);assert.equal(lessons.length,114);assert.equal(lessons.filter(l=>l.videoId).length,58);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'732e6a826277039eff3c498015b51fd5d71ca33ef02bdda772c245342fd9b8a6');
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.noteSource==='authored'&&l.html.length>2000));
+ const final=lessons.find(l=>l.final);assert.equal(final.questions.length,15);
+ for(const topic of ['Principles of Bible Interpretation','Servant Leadership','Sermon Preparation'])assert.ok(lessons.some(l=>l.title==='📝 Practice: '+topic&&l.questions.length===3));
+ const questions=lessons.flatMap(l=>l.questions);assert.equal(questions.length,192);assert.equal(new Set(questions.map(q=>q.question)).size,33);
+ assert.ok(fs.existsSync(path.join(learning,course.image)));
+ });

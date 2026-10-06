@@ -48,6 +48,8 @@ object LessonDocument {
                style expects large icon glyphs. Keep those sentences at reading size. */
             .overview-text :is(.acct-visual,.webdev-visual,.ent-visual,.android-visual,.marketing-visual,.sat-visual,.data-visual) .cl-visual-item span{font-size:1rem;line-height:1.6;margin-top:.4rem}
             .overview-text :is(.acct-visual,.webdev-visual,.ent-visual,.android-visual,.marketing-visual,.sat-visual,.data-visual) .cl-visual-item strong{font-size:1rem}
+            .bible-study-visual figcaption,.bible-study-visual span,.bible-study-visual>div:last-child{font-size:1rem!important;line-height:1.6}
+            @media(max-width:600px){.bible-study-visual>div[style*="display:grid"]{grid-template-columns:minmax(0,1fr)!important}}
             @media(max-width:600px){.overview-text :is(.acct-visual,.webdev-visual,.ent-visual,.android-visual,.marketing-visual,.sat-visual,.data-visual) .cl-visual-grid{grid-template-columns:minmax(0,1fr)}.overview-text :is(.acct-visual,.webdev-visual,.ent-visual,.android-visual,.marketing-visual,.sat-visual,.data-visual) .cl-visual-item{text-align:left}}
             </style></head><body><main class="overview-text">${doc.body().html()}</main></body></html>""".trimIndent()
     }

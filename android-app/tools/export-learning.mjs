@@ -156,7 +156,7 @@ export function exportAll() {
       videoCount: lessons.filter(l => l.videoId).length, quizCount: lessons.filter(l => l.kind === 'quiz').length});
   }
   // Keep the courses being reviewed one by one within easy reach after sign-in.
-  const priority = ['computer-literacy', 'project-mgmt', 'accounting-bookkeeping', 'webdev', 'design', 'entrepreneurship', 'android', 'office', 'leadership', 'grant-writing', 'english-success', 'ielts', 'toefl', 'cybersecurity', 'marketing', 'sat', 'remote-work', 'healthtech', 'data', 'financial-literacy'];
+  const priority = ['computer-literacy', 'project-mgmt', 'accounting-bookkeeping', 'webdev', 'design', 'entrepreneurship', 'android', 'office', 'leadership', 'grant-writing', 'english-success', 'ielts', 'toefl', 'cybersecurity', 'marketing', 'sat', 'remote-work', 'healthtech', 'data', 'financial-literacy', 'bible-foundations'];
   const rank = id => { const index = priority.indexOf(id); return index < 0 ? priority.length : index; };
   catalog.sort((a, b) => rank(a.id) - rank(b.id));
   const cfg = createContext(); cfg.run('hub-config.js');
