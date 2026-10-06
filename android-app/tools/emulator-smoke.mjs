@@ -58,7 +58,6 @@ try {
     reports.push(result);
     fs.writeFileSync(path.join(report,'instrumentation.txt'),reports.join('\n'));
     console.log(result);
-    if(!/OK \(\d+ tests?\)/.test(result))break;
   }
   const results=reports.join('\n');
   const pulled=spawn(adb,['pull','/sdcard/Android/data/org.tolbertinnovationhub.learning.preview/files/screenshots',report],{env,stdio:'inherit'});

@@ -157,6 +157,7 @@ class CatalogSmokeTest {
             else if (assessment == budgeting) snapshot("22-project-management-budget-quiz")
             else if (assessment == agile) snapshot("23-project-management-agile-quiz")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
                 compose.onNodeWithText(question.options[question.answer]).performClick()
@@ -202,6 +203,7 @@ class CatalogSmokeTest {
             else if (assessment == budgeting) snapshot("28-accounting-bookkeeping-double-entry")
             else if (assessment == agile) snapshot("29-accounting-bookkeeping-bank-reconciliation")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
                 compose.onNodeWithText(question.options[question.answer]).performClick()
@@ -247,6 +249,7 @@ class CatalogSmokeTest {
             else if (assessment == fetchPractice) snapshot("32-webdev-fetch")
             else if (assessment == hooksPractice) snapshot("33-webdev-hooks")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
                 compose.onNodeWithText(question.options[question.answer]).performClick()
@@ -298,6 +301,7 @@ class CatalogSmokeTest {
             else if (assessment == masksPractice) snapshot("38-design-masks")
             else if (assessment == printPractice) snapshot("39-design-print")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
                 compose.onNodeWithText(question.options[question.answer]).performClick()
@@ -343,6 +347,7 @@ class CatalogSmokeTest {
             else if (assessment == customerPractice) snapshot("44-entrepreneurship-customers")
             else if (assessment == breakEvenPractice) snapshot("45-entrepreneurship-break-even")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
                 compose.onNodeWithText(question.options[question.answer]).performClick()
@@ -388,6 +393,7 @@ class CatalogSmokeTest {
             else if (assessment == roomPractice) snapshot("50-android-room")
             else if (assessment == firebasePractice) snapshot("51-android-firebase")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
                 compose.onNodeWithText(question.options[question.answer]).performClick()
@@ -433,6 +439,7 @@ class CatalogSmokeTest {
             else if (assessment == lookupPractice) snapshot("56-office-lookup")
             else if (assessment == copilotPractice) snapshot("57-office-copilot")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
                 compose.onNodeWithText(question.options[question.answer]).performClick()
@@ -478,6 +485,7 @@ class CatalogSmokeTest {
             else if (assessment == swotPractice) snapshot("62-leadership-swot")
             else if (assessment == cashPractice) snapshot("63-leadership-cash")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
                 compose.onNodeWithText(question.options[question.answer]).performClick()
@@ -523,6 +531,7 @@ class CatalogSmokeTest {
             else if (assessment == logframePractice) snapshot("68-grant-logframe")
             else if (assessment == budgetPractice) snapshot("69-grant-budget")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
                 compose.onNodeWithText(question.options[question.answer]).performClick()
@@ -568,6 +577,7 @@ class CatalogSmokeTest {
             else if (assessment == grammarPractice) snapshot("74-english-grammar")
             else if (assessment == examPractice) snapshot("75-english-exam")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
                 compose.onNodeWithText(question.options[question.answer]).performClick()
@@ -614,6 +624,7 @@ class CatalogSmokeTest {
             else if (assessment == grammarPractice) snapshot("80-ielts-reading")
             else if (assessment == examPractice) snapshot("81-ielts-chart")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
                 compose.onNodeWithText(question.options[question.answer]).performClick()
@@ -659,6 +670,7 @@ class CatalogSmokeTest {
             else if (assessment == grammarPractice) snapshot("86-toefl-grammar")
             else if (assessment == examPractice) snapshot("87-toefl-reading")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
                     androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
@@ -706,6 +718,7 @@ class CatalogSmokeTest {
             else if (assessment == grammarPractice) snapshot("92-cybersecurity-grammar")
             else if (assessment == examPractice) snapshot("93-cybersecurity-reading")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
                     androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
@@ -753,6 +766,7 @@ class CatalogSmokeTest {
             else if (assessment == emailPractice) snapshot("98-marketing-email")
             else if (assessment == roiPractice) snapshot("99-marketing-roi")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
                     androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
@@ -800,6 +814,7 @@ class CatalogSmokeTest {
             else if (assessment == readingPractice) snapshot("104-sat-reading")
             else if (assessment == mathPractice) snapshot("105-sat-algebra")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
                     androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
@@ -849,6 +864,7 @@ class CatalogSmokeTest {
             else if (assessment == deadlinePractice) snapshot("110-remoteWork-deadlines")
             else if (assessment == aiPractice) snapshot("111-remoteWork-ai")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
                     androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
@@ -896,6 +912,7 @@ class CatalogSmokeTest {
             else if (assessment == deadlinePractice) snapshot("116-healthtech-deadlines")
             else if (assessment == aiPractice) snapshot("117-healthtech-ai")
             assessment.questions.forEachIndexed { index, question ->
+                compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
                 val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
                     androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
