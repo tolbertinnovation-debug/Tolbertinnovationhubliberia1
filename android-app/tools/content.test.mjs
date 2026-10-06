@@ -493,3 +493,18 @@ test('Data Analysis worked sales examples reconcile from their displayed rows',(
  const questions=lessons.flatMap(l=>l.questions);assert.equal(questions.length,343);assert.equal(new Set(questions.map(q=>q.question)).size,343);
  assert.equal(lessons.filter(l=>l.kind==='quiz').length,94);
  });
+
+ test('Public Health Career Success is featured with complete authored offline content',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[22].id,'ph-career');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/ph-career.json'))),source=extractCourse('ph-career');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ assert.equal(course.title,'Career Success for Public Health Graduates');
+ const lessons=course.modules.flatMap(m=>m.lessons);assert.equal(course.modules.length,9);assert.equal(lessons.length,114);assert.equal(lessons.filter(l=>l.videoId).length,57);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'7c3ae735f0015ff604cbba4d3e6efdf329990d573a8cd2b40db3c1010720bf6b');
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.noteSource==='authored'&&l.html.length>2000));
+ assert.equal(lessons.filter(l=>l.kind==='project').length,2);
+ const final=lessons.find(l=>l.final);assert.equal(final.questions.length,15);assert.equal(lessons.at(-1).id,final.id);
+ for(const topic of ['Writing a Public Health CV','Behavioral (STAR) Interviews','Professional Ethics and Integrity'])assert.ok(lessons.some(l=>l.title==='📝 Practice: '+topic&&l.questions.length===3));
+ const questions=lessons.flatMap(l=>l.questions);assert.equal(questions.length,200);assert.equal(new Set(questions.map(q=>q.question)).size,165);assert.equal(lessons.filter(l=>l.kind==='quiz').length,57);
+ assert.ok(fs.existsSync(path.join(learning,course.image)));
+ });
