@@ -392,3 +392,18 @@ test('Remote Work is featured with stable content and independent graduation pra
  assert.ok(!lessons.filter(l=>!l.final).flatMap(l=>l.questions).some(q=>final.questions.some(f=>f.question===q.question)));
  assert.ok(fs.existsSync(path.join(learning,course.image)));
 });
+
+test('Healthcare Technology is featured with stable content and independent graduation practice',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[17].id,'healthtech');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/healthtech.json'))),source=extractCourse('healthtech');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ const lessons=course.modules.flatMap(m=>m.lessons);assert.equal(course.modules.length,10);assert.equal(lessons.length,108);assert.equal(lessons.filter(l=>l.videoId).length,58);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'f0e8d11c181bf6ff918e8ae748c823d580653015eee2973f84dfa5fba28f62e5');
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.noteSource==='authored'&&l.html.length>2000));
+ const final=lessons.find(l=>l.final);assert.equal(final.questions.length,15);
+ const selected=lessons.filter(l=>['📝 Practice: Patient Registration','📝 Practice: Virtual Consultations','📝 Practice: AI Clinical Decision Support'].includes(l.title));assert.equal(selected.length,3);
+ const reviewed=[...selected.flatMap(l=>l.questions),...final.questions];assert.equal(reviewed.length,24);assert.equal(new Set(reviewed.map(q=>q.question)).size,24);
+ for(const q of reviewed){assert.equal(q.options.length,4);assert.equal(new Set(q.options).size,4);assert.ok(q.answer>=0&&q.answer<4);assert.ok(q.explanation.length>35);}
+ assert.ok(!lessons.filter(l=>!l.final).flatMap(l=>l.questions).some(q=>final.questions.some(f=>f.question===q.question)));
+ assert.ok(fs.existsSync(path.join(learning,course.image)));
+});

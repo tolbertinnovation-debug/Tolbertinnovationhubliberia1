@@ -84,6 +84,9 @@ class LessonReaderUiTest {
     @Test fun remoteWorkNotesRenderOffline() =
         checkDocument("remote-work", "113-remote-work-reader")
 
+    @Test fun healthtechNotesRenderOffline() =
+        checkDocument("healthtech", "119-healthtech-reader")
+
     @OptIn(ExperimentalMaterial3Api::class)
     private fun checkDocument(courseId: String, captureName: String, topic: String? = null) {
         val course = runBlocking {

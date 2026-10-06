@@ -288,3 +288,5 @@ Featured sixteenth in Courses and included in Today: 14 modules, 216 entries and
 ### Remote Work & Freelancing — 0.3.21
 
 Featured seventeenth in Courses and included in Today: 10 modules, 114 entries and 58 video links, with offline notes and client-project briefs. Three core practices and graduation use 24 fresh applied questions. Other foundation practices retain shared questions. Android checks cover overview, submissions, saved records and offline notes.
+
+Healthcare Technology & Telehealth is featured in preview 0.3.22: see [release notes](release/HEALTHTECH.md).
