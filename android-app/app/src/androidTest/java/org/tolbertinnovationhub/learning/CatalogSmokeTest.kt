@@ -903,8 +903,9 @@ class CatalogSmokeTest {
         val final = course.lessons.first { it.isFinal }
         val deadlinePractice = course.lessons.first { it.title.contains("Practice: Virtual Consultations") }
         val aiPractice = course.lessons.first { it.title.contains("Practice: AI Clinical Decision Support") }
-        org.junit.Assert.assertEquals(54, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
-        for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
+        org.junit.Assert.assertEquals(174, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        val finalExam = course.lessons.first { it.title.contains("Final Assessment") && !it.isFinal }
+        for (assessment in listOf(practice, deadlinePractice, aiPractice, finalExam, final)) {
             compose.runOnIdle { model.openLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()

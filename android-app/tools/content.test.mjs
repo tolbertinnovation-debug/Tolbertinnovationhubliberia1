@@ -407,3 +407,20 @@ test('Healthcare Technology is featured with stable content and independent grad
  assert.ok(!lessons.filter(l=>!l.final).flatMap(l=>l.questions).some(q=>final.questions.some(f=>f.question===q.question)));
  assert.ok(fs.existsSync(path.join(learning,course.image)));
 });
+
+
+test('HealthTech practices and both assessments have distinct topic banks',()=>{
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/healthtech.json')));
+ const quizzes=course.modules.flatMap(m=>m.lessons).filter(l=>l.kind==='quiz');
+ const questions=quizzes.flatMap(l=>l.questions);
+ assert.equal(quizzes.length,50);assert.equal(questions.length,174);
+ assert.equal(new Set(questions.map(q=>q.question)).size,174);
+ assert.equal(quizzes.filter(l=>l.title.includes('Practice:')).length,48);
+ for(const quiz of quizzes){assert.equal(quiz.questions.length,quiz.title.includes('Practice:')?3:15);}
+ for(const q of questions){assert.equal(q.options.length,4);assert.equal(new Set(q.options).size,4);assert.ok(q.explanation.length>50);}
+ const finals=quizzes.filter(l=>!l.title.includes('Practice:'));assert.equal(finals.length,2);
+ for(const final of finals)assert.ok(!quizzes.filter(q=>q!==final).flatMap(q=>q.questions).some(q=>final.questions.some(f=>f.question===q.question)));
+ const {context,run}=createContext('healthtech');run('courses-db.js');run('tih-course-loader.js');context.TihCourseLoader.ensure('healthtech',()=>{});
+ const source=context.COURSES_DB.healthtech;
+ for(const [i,module] of source.modules.entries())for(const lesson of module.lessons.filter(l=>l.isQuiz))assert.equal(source.quizzes[lesson.quizId].moduleNum,i+1);
+});
