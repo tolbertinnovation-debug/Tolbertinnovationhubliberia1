@@ -49,7 +49,9 @@ try {
   const namespace='org.tolbertinnovationhub.learning';
   const testDirectory=path.join(root,'android-app/app/src/androidTest/java/org/tolbertinnovationhub/learning');
   const testClasses=fs.readdirSync(testDirectory).filter(name=>name.endsWith('Test.kt')).map(name=>name.replace(/\.kt$/,''));
-  const groups=[testClasses.filter(name=>name!=='LessonVideoUiTest'),['LessonVideoUiTest']];
+  // Run each test class in a fresh process as the course coverage grows.
+  // This bounds per-process runtime and WebView state without dropping tests.
+  const groups=testClasses.map(name=>[name]);
   const reports=[];
   for(const classes of groups) {
     call(['shell','am','force-stop','org.tolbertinnovationhub.learning.preview']);
