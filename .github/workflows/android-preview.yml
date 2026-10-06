@@ -3,7 +3,7 @@ name: Android preview (website unchanged)
 on:
   push:
     branches: [codex/tih-native-android]
-    paths: [android-app/**, .github/workflows/android-preview.yml]
+    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*']
   workflow_dispatch:
 
 permissions:
