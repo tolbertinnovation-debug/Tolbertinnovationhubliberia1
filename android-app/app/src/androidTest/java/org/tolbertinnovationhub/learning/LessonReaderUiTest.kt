@@ -68,6 +68,9 @@ class LessonReaderUiTest {
     @Test fun ieltsChartNotesRenderOffline() =
         checkDocument("ielts", "83-ielts-reader", "Line Graphs")
 
+    @Test fun toeflNotesRenderOffline() =
+        checkDocument("toefl", "89-toefl-reader")
+
     @OptIn(ExperimentalMaterial3Api::class)
     private fun checkDocument(courseId: String, captureName: String, topic: String? = null) {
         val course = runBlocking {

@@ -98,6 +98,7 @@
      first, the hook was not yet defined, and every assessment silently kept the
      old shared pool. */
   var TOPIC_QUIZ_BANKS = {
+    'toefl': {src:'toefl-topic-quizzes.js?v=1',apply:'tihApplyToeflTopicQuizzes'},
     'ielts': {src:'ielts-topic-quizzes.js?v=1',apply:'tihApplyIeltsTopicQuizzes'},
     'english-success': {src:'englishsuccess-topic-quizzes.js?v=2',apply:'tihApplyEnglishTopicQuizzes'},
     'grant-writing': {src:'grantwriting-topic-quizzes.js?v=1',apply:'tihApplyGrantTopicQuizzes'},
@@ -218,7 +219,7 @@
     if (has(QUIZZES, courseId)) urls.push('quizzes/' + courseId + '-quizzes.js' + VERSION);
     var bank = TOPIC_QUIZ_BANKS[courseId];
     if (bank) { urls.push(bank.src); if (bank.reserve) urls.push(bank.reserve); }
-    if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + (courseId === 'ielts' ? '?v=5' : courseId === 'english-success' ? '?v=3' : courseId === 'project-mgmt' ? '?v=3' : courseId === 'accounting-bookkeeping' ? '?v=2' : courseId === 'webdev' || courseId === 'design' || courseId === 'entrepreneurship' || courseId === 'android' || courseId === 'office' || courseId === 'leadership' || courseId === 'grant-writing' ? '?v=2' : VERSION));
+    if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + (courseId === 'toefl' ? '?v=2' : courseId === 'ielts' ? '?v=5' : courseId === 'english-success' ? '?v=3' : courseId === 'project-mgmt' ? '?v=3' : courseId === 'accounting-bookkeeping' ? '?v=2' : courseId === 'webdev' || courseId === 'design' || courseId === 'entrepreneurship' || courseId === 'android' || courseId === 'office' || courseId === 'leadership' || courseId === 'grant-writing' ? '?v=2' : VERSION));
     if (EXTRAS[courseId]) urls = urls.concat(EXTRAS[courseId]);
     if (!urls.length) { done(); return; }
     loadInOrder(urls, function () {

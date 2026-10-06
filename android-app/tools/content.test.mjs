@@ -10,6 +10,7 @@ import '../../tools/leadership-quizzes.test.mjs';
 import '../../tools/grant-writing-quizzes.test.mjs';
 import '../../tools/english-success-quizzes.test.mjs';
 import '../../tools/ielts-quizzes.test.mjs';
+import '../../tools/toefl-quizzes.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -44,13 +45,13 @@ test('all imported content has valid identities, source notes and quiz answers',
     }
     total += lessons.length;
   }
-  assert.equal(total, 10884); assert.equal(questions, 20003);
+  assert.equal(total, 10884); assert.equal(questions, 19819);
 });
 test('source manifest proves all website inputs remain unchanged', () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(learning, 'manifest.json')));
   assert.equal(manifest.missingNotes.length, 0);
   assert.equal(manifest.emptyQuizzes.length, 0);
-  assert.equal(Object.keys(manifest.sourceFiles).length, 222);
+  assert.equal(Object.keys(manifest.sourceFiles).length, 223);
   for (const [file, hash] of Object.entries(manifest.sourceFiles)) {
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex'), hash, file);
   }
@@ -301,5 +302,19 @@ test('IELTS is complete, source-faithful and twelfth in Courses',()=>{
  assert.equal(qs.length,376);assert.equal(new Set(qs.map(q=>q.question)).size,376);
  assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.html.length>1800&&l.noteSource==='authored'));
  assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'21612a5bd645c2771cd6e62855fec6e4f3454584b98b159e2747a2f7614c61cb');
+ assert.ok(fs.existsSync(path.join(learning,course.image)));
+});
+
+test('TOEFL is thirteenth in Courses, with stable identities, authored notes and distinct practice',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));
+ assert.equal(catalog[12].id,'toefl');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/toefl.json'))),source=extractCourse('toefl');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]),key);
+ const lessons=course.modules.flatMap(m=>m.lessons),qs=lessons.flatMap(l=>l.questions);
+ assert.equal(course.modules.length,10);assert.equal(lessons.length,184);
+ assert.equal(lessons.filter(l=>l.videoId).length,84);assert.equal(new Set(lessons.filter(l=>l.videoId).map(l=>l.videoId)).size,84);
+ assert.equal(qs.length,263);assert.equal(new Set(qs.map(q=>q.question.toLowerCase().replace(/[^a-z0-9]/g,''))).size,263);
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.html.length>2000&&l.noteSource==='authored'));
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'e72842b21b3811db7bd46a4c2b4ec6d0e9879bc59343bd3844f9322a587d901e');
  assert.ok(fs.existsSync(path.join(learning,course.image)));
 });

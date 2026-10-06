@@ -632,4 +632,49 @@ class CatalogSmokeTest {
         compose.onNodeWithText(title).assertExists()
     }
 
+    @Test fun toeflOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("toefl")
+        signIn()
+        val title = "Complete TOEFL iBT Course: Grammar, Vocabulary & All Four Sections"
+        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("10 modules · 184 entries · 84 video links"))
+        compose.onNodeWithText("10 modules · 184 entries · 84 video links").assertIsDisplayed()
+        snapshot("84-toefl-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.kind == "quiz" }
+        val final = course.lessons.first { it.isFinal }
+        val grammarPractice = course.lessons.first { it.title.contains("Practice: Active & Passive Voice") }
+        val examPractice = course.lessons.first { it.title.contains("Practice: Main Ideas") }
+        org.junit.Assert.assertEquals(263, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, grammarPractice, examPractice, final)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else if (assessment == practice) snapshot("85-toefl-practice")
+            else if (assessment == grammarPractice) snapshot("86-toefl-grammar")
+            else if (assessment == examPractice) snapshot("87-toefl-reading")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
+                compose.onNodeWithText(question.options[question.answer]).performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("toefl"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "toefl", assessment))
+            }
+        }
+        snapshot("88-toefl-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
+    }
+
 }

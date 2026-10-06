@@ -9,6 +9,12 @@ The 0.3.5 Project Management content correction is also published to the website
 
 ## What is implemented
 
+- 0.3.17 features TOEFL iBT thirteenth in Courses and in Today: 10 modules,
+  184 entries, 84 authored notes/video assignments and 263 distinct questions.
+  Current 2026 task workshops and scoring guidance replace outdated orientation;
+  legacy exercises are supplemental and named mock tests are TIH knowledge checks.
+  See [TOEFL iBT review](release/TOEFL-IBT.md).
+
 - 0.3.16 adds reviewed IELTS Masterclass content in Courses and Today: 22 modules,
   238 entries, 127 authored notes/video links and 376 distinct questions.
   See [IELTS Masterclass review](release/IELTS-MASTERCLASS.md).

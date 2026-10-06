@@ -245,7 +245,7 @@
   COURSES_DB.toefl = {
     id: 'toefl',
     title: 'Complete TOEFL iBT Course: Grammar, Vocabulary & All Four Sections',
-    shortDesc: 'A full 10-module TOEFL iBT programme: grammar, vocabulary, Reading, Listening, Speaking, Writing, pronunciation, exam strategy, 50+ quizzes, full mock tests and a final Certificate Assessment.',
+    shortDesc: 'Ten modules of TOEFL iBT preparation: grammar, vocabulary, current 2026 task workshops, four skills, topic practice and separate TIH knowledge checks. Includes clearly labeled supplemental legacy exercises.',
     category: 'Exam Preparation',
     icon: '🎓',
     image: existing.image,
@@ -268,9 +268,9 @@
       'Master English grammar and academic vocabulary for the TOEFL iBT',
       'Apply proven strategies to Reading, Listening, Speaking and Writing',
       'Take structured notes and answer every TOEFL question type',
-      'Use templates and model answers for the integrated and independent tasks',
+      'Practise current sentence, email, discussion, repetition and interview tasks',
       'Improve pronunciation, fluency and exam-day time management',
-      'Practise with section tests and full-length TOEFL mock exams'
+      'Review section knowledge checks and perform real audio, speaking and writing practice'
     ],
     requirements: [
       'A basic to intermediate level of English to build from',
@@ -279,8 +279,8 @@
     ],
     about: [
       'This is the complete TIH TOEFL iBT course, rebuilt into ten modules that take you from grammar and vocabulary foundations to full test mastery.',
-      'Every content lesson includes a video, written notes with practice exercises, and a short quiz. Each section ends with a mock test, and the course finishes with three full TOEFL mock exams and a Certificate Assessment.',
-      'The TOEFL iBT is accepted by more than 11,000 universities worldwide and is often required for admission and scholarships in the United States and beyond.'
+      'Content lessons include existing video assignments, reviewed written notes and topic-specific practice. The named mock-test entries are short TIH knowledge checks, not full-length adaptive TOEFL tests. Current workshops cover the 2026 task types; legacy integrated exercises remain supplemental.',
+      'Check your receiving institution’s current test and score requirements. Since 21 January 2026, official scores use the 1–6 scale with a comparable overall 0–120 result during a two-year transition. TIH quiz results and certificates are not official TOEFL scores or ETS reports.'
     ],
     modules: modules,
     quizzes: quizzes,
@@ -289,6 +289,35 @@
 
   if (typeof LESSON_CONTENT !== 'undefined') LESSON_CONTENT.toefl = notes;
   if (typeof PRACTICE_TESTS !== 'undefined' && PRACTICE_TESTS.toefl) { /* keep existing TOEFL practice test */ }
+
+
+  // Fail closed instead of silently falling back to repeated shared questions.
+  function reviewedQuestions(key, paper) {
+    var bank = window.TIH_TOEFL_QUESTIONS;
+    var items = bank && (paper ? bank.papers : bank.topics)[key];
+    if (!items || items.length < 2) throw new Error('Incomplete TOEFL check: ' + key);
+    return items.map(function (item, index) {
+      var copy = cloneQ(item), shift = (key.length + index) % 4;
+      copy.opts = item.opts.slice(shift).concat(item.opts.slice(0, shift));
+      copy.correct = (item.correct - shift + 4) % 4;
+      copy.module = item.module; copy.skill = item.skill;
+      return copy;
+    });
+  }
+  window.tihApplyToeflTopicQuizzes = function () {
+    var course = COURSES_DB.toefl;
+    if (!course || !course._toeflFullBuilt) return;
+    course.modules.forEach(function (mod, mi) {
+      mod.lessons.filter(function (l) { return l.isQuiz; }).forEach(function (l) {
+        var practice = l.t.indexOf('Practice: ') !== -1;
+        var topic = l.t.replace(/^[^A-Za-z]+/, '').replace(/^Practice: /, '');
+        var questions = reviewedQuestions('M' + (mi + 1) + ':' + topic, !practice);
+        course.quizzes[l.quizId] = {title: practice ? 'Practice: ' + topic : topic + ' — TIH knowledge check', moduleNum: mi + 1, questionCount: questions.length, questions: questions, isFinal: !!l.isFinal};
+        l.d = questions.length + ' questions · TIH practice';
+      });
+    });
+  };
+  window.tihApplyToeflTopicQuizzes();
 
   // Lightweight build report (visible in console for verification).
   if (typeof console !== 'undefined' && console.log) {
