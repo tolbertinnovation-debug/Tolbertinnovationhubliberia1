@@ -51,7 +51,13 @@ try {
   const testClasses=fs.readdirSync(testDirectory).filter(name=>name.endsWith('Test.kt')).map(name=>name.replace(/\.kt$/,''));
   // Run each test class in a fresh process as the course coverage grows.
   // This bounds per-process runtime and WebView state without dropping tests.
-  const groups=testClasses.map(name=>[name]);
+  const groups=testClasses.flatMap(name=>{
+    if(name!=='CatalogSmokeTest') return [[name]];
+    const source=fs.readFileSync(path.join(testDirectory,name+'.kt'),'utf8');
+    const methods=[...source.matchAll(/@Test\s+fun\s+(\w+)\s*\(/g)].map(match=>name+'#'+match[1]);
+    if(!methods.length) throw new Error('No catalog tests discovered.');
+    return Array.from({length:Math.ceil(methods.length/10)},(_,index)=>methods.slice(index*10,(index+1)*10));
+  });
   const reports=[];
   for(const classes of groups) {
     call(['shell','am','force-stop','org.tolbertinnovationhub.learning.preview']);
