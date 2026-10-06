@@ -75,6 +75,7 @@ class LessonReaderUiTest {
     @Test fun cybersecurityNotesRenderOffline() =
         checkDocument("cybersecurity", "95-cybersecurity-reader")
 
+    @OptIn(ExperimentalMaterial3Api::class)
     private fun checkDocument(courseId: String, captureName: String, topic: String? = null) {
         val course = runBlocking {
             val repository = ContentRepository(compose.activity)
