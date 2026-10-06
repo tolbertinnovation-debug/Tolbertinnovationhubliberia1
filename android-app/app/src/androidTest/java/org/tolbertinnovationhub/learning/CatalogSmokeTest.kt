@@ -159,9 +159,12 @@ class CatalogSmokeTest {
             assessment.questions.forEachIndexed { index, question ->
                 compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
-                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
-                compose.onNodeWithText(question.options[question.answer]).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo().performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -205,9 +208,12 @@ class CatalogSmokeTest {
             assessment.questions.forEachIndexed { index, question ->
                 compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
-                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
-                compose.onNodeWithText(question.options[question.answer]).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo().performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -251,9 +257,12 @@ class CatalogSmokeTest {
             assessment.questions.forEachIndexed { index, question ->
                 compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
-                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
-                compose.onNodeWithText(question.options[question.answer]).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo().performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -303,9 +312,12 @@ class CatalogSmokeTest {
             assessment.questions.forEachIndexed { index, question ->
                 compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
-                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
-                compose.onNodeWithText(question.options[question.answer]).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo().performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -349,9 +361,12 @@ class CatalogSmokeTest {
             assessment.questions.forEachIndexed { index, question ->
                 compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
-                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
-                compose.onNodeWithText(question.options[question.answer]).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo().performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -395,9 +410,12 @@ class CatalogSmokeTest {
             assessment.questions.forEachIndexed { index, question ->
                 compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
-                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
-                compose.onNodeWithText(question.options[question.answer]).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo().performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -441,9 +459,12 @@ class CatalogSmokeTest {
             assessment.questions.forEachIndexed { index, question ->
                 compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
-                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
-                compose.onNodeWithText(question.options[question.answer]).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo().performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -487,9 +508,12 @@ class CatalogSmokeTest {
             assessment.questions.forEachIndexed { index, question ->
                 compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
-                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
-                compose.onNodeWithText(question.options[question.answer]).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo().performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -533,9 +557,12 @@ class CatalogSmokeTest {
             assessment.questions.forEachIndexed { index, question ->
                 compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
-                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
-                compose.onNodeWithText(question.options[question.answer]).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo().performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -579,9 +606,12 @@ class CatalogSmokeTest {
             assessment.questions.forEachIndexed { index, question ->
                 compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
-                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
-                compose.onNodeWithText(question.options[question.answer]).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo().performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -626,9 +656,12 @@ class CatalogSmokeTest {
             assessment.questions.forEachIndexed { index, question ->
                 compose.waitUntil(10000) { compose.onAllNodesWithText("Question ${index + 1} of ${assessment.questions.size}").fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
-                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
-                compose.onNodeWithText(question.options[question.answer]).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToIndex(2)
+                compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
+                compose.onNode(answer).performScrollTo().performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -678,7 +711,7 @@ class CatalogSmokeTest {
                 compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
                 compose.onNode(answer).performScrollTo()
                 compose.onNode(answer).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -728,7 +761,7 @@ class CatalogSmokeTest {
                 compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
                 compose.onNode(answer).performScrollTo()
                 compose.onNode(answer).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -778,7 +811,7 @@ class CatalogSmokeTest {
                 compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
                 compose.onNode(answer).performScrollTo()
                 compose.onNode(answer).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -828,7 +861,7 @@ class CatalogSmokeTest {
                 compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
                 compose.onNode(answer).performScrollTo()
                 compose.onNode(answer).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -880,7 +913,7 @@ class CatalogSmokeTest {
                 compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
                 compose.onNode(answer).performScrollTo()
                 compose.onNode(answer).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -931,7 +964,7 @@ class CatalogSmokeTest {
                 compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
                 compose.onNode(answer).performScrollTo()
                 compose.onNode(answer).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -981,7 +1014,7 @@ class CatalogSmokeTest {
                 compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
                 compose.onNode(answer).performScrollTo()
                 compose.onNode(answer).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -1031,7 +1064,7 @@ class CatalogSmokeTest {
                 compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
                 compose.onNode(answer).performScrollTo()
                 compose.onNode(answer).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -1081,7 +1114,7 @@ class CatalogSmokeTest {
                 compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
                 compose.onNode(answer).performScrollTo()
                 compose.onNode(answer).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
@@ -1131,7 +1164,7 @@ class CatalogSmokeTest {
                 compose.waitUntil(10000) { compose.onAllNodes(answer).fetchSemanticsNodes().isNotEmpty() }
                 compose.onNode(answer).performScrollTo()
                 compose.onNode(answer).performClick()
-                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").assertIsEnabled().performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
             compose.onNodeWithText("100%").assertExists()
