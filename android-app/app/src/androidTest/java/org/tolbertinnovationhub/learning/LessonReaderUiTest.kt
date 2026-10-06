@@ -96,6 +96,9 @@ class LessonReaderUiTest {
     @Test fun bibleSchoolNotesRenderOffline() =
         checkDocument("bible-foundations", "137-bible-school-reader", "The Life of Jesus Christ")
 
+    @Test fun footballCoachingNotesRenderOffline() =
+        checkDocument("football-coaching", "143-football-coaching-reader")
+
     @OptIn(ExperimentalMaterial3Api::class)
     private fun checkDocument(courseId: String, captureName: String, topic: String? = null) {
         val course = runBlocking {

@@ -298,3 +298,5 @@ Data Analysis is featured in preview 0.3.24: [release notes](release/DATA-ANALYS
 Financial Literacy preview details: [release/FINANCIAL-LITERACY.md](release/FINANCIAL-LITERACY.md).
 
 Bible School preview details: [release/BIBLE-SCHOOL.md](release/BIBLE-SCHOOL.md).
+
+Football Coaching preview details: [release/FOOTBALL-COACHING.md](release/FOOTBALL-COACHING.md).
