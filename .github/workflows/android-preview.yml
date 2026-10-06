@@ -3,7 +3,7 @@ name: Android preview (website unchanged)
 on:
   push:
     branches: [codex/tih-native-android]
-    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*', 'cybersecurity-*.js', 'tools/cybersecurity-*', 'marketing-*.js', 'tools/marketing-*', 'sat-*.js', 'tools/sat-*', 'remotework-curriculum.js', 'remote-work-*.js', 'tools/remote-work-*', 'healthtech-*.js', 'tools/healthtech-*', 'data-*.js', 'tools/data-*', 'finlit-curriculum.js', 'financial-literacy-*.js', 'tools/financial-literacy-*', 'bible-*.js', 'tools/bible-school-*', 'football-coaching-*.js', 'tools/football-coaching-*', 'publichealth-curriculum.js', 'ph-notes.js', 'notes/ph-career-*', 'quizzes/ph-career-*', 'videos/ph-career-*', 'tools/ph-career-*', 'business-plan-*.js', 'business-plan-card.*', 'tools/business-plan-*']
+    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*', 'cybersecurity-*.js', 'tools/cybersecurity-*', 'marketing-*.js', 'tools/marketing-*', 'sat-*.js', 'tools/sat-*', 'remotework-curriculum.js', 'remote-work-*.js', 'tools/remote-work-*', 'healthtech-*.js', 'tools/healthtech-*', 'data-*.js', 'tools/data-*', 'finlit-curriculum.js', 'financial-literacy-*.js', 'tools/financial-literacy-*', 'bible-*.js', 'tools/bible-school-*', 'football-coaching-*.js', 'tools/football-coaching-*', 'publichealth-curriculum.js', 'ph-notes.js', 'notes/ph-career-*', 'quizzes/ph-career-*', 'videos/ph-career-*', 'tools/ph-career-*', 'business-plan-*.js', 'business-plan-card.*', 'tools/business-plan-*', 'metaphysics-*.js', 'metaphysics-card.*', 'tools/metaphysics-*']
   workflow_dispatch:
 
 permissions:
@@ -79,6 +79,7 @@ jobs:
           node tools/football-coaching-reader.test.cjs
           node tools/ph-career-reader.test.cjs
           node tools/business-plan-reader.test.cjs
+          node tools/metaphysics-reader.test.cjs
       - name: Build, unit-test, and lint Android preview
         working-directory: android-app
         run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:assembleDebugAndroidTest :app:assembleRelease :app:bundleRelease
@@ -166,4 +167,12 @@ jobs:
             test-results/business-plan/*.png
             android-app/app/build/reports/**/screenshots/*businessPlan*.png
             android-app/app/build/reports/**/screenshots/*business-plan*.png
+          if-no-files-found: warn
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Metaphysics-phone-previews
+          path: |
+            test-results/metaphysics/*.png
+            android-app/app/build/reports/**/screenshots/*metaphysics*.png
           if-no-files-found: warn

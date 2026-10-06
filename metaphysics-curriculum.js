@@ -60,7 +60,8 @@
     ];
     return bank[n];
   }
-  function cloneQ(x){return {q:x.q,opts:x.opts.slice(),correct:x.correct,exp:x.exp};}
+  var answerRotation=0;
+  function cloneQ(x){var shift=answerRotation++%x.opts.length;return {q:x.q,opts:x.opts.slice(shift).concat(x.opts.slice(0,shift)),correct:(x.correct-shift+x.opts.length)%x.opts.length,exp:x.exp};}
   var modules=[], quizzes={}, notes={}, topicBank={}, reserved=[], contentCount=0, flat=0, vid=0;
   topics.forEach(function(mod){
     var num=mod[0], title=mod[1], icon=mod[2], list=mod[3], lessons=[];
@@ -82,7 +83,7 @@
     modules.push({title:'Module '+num+': '+title,icon:icon,lessons:lessons});
   });
   var exam=[];
-  topics.slice(0,7).forEach(function(mod){mod[3].forEach(function(t){if(exam.length<20) exam.push({q:'In a comparative essay, what is the strongest treatment of '+t[0]+'?',opts:['Define the issue, compare positions, test them with an example, answer an objection, and justify a conclusion','State one view as fact and ignore objections','List names without explaining ideas','Use a slogan instead of an argument'],correct:0,exp:'A strong philosophical answer combines precise definition, fair comparison, reasoning, objection and justified conclusion.'});});});
+  topics.slice(0,7).forEach(function(mod){mod[3].forEach(function(t){if(exam.length<20) exam.push(cloneQ({q:'In a comparative essay, what is the strongest treatment of '+t[0]+'?',opts:['Define the issue, compare positions, test them with an example, answer an objection, and justify a conclusion','State one view as fact and ignore objections','List names without explaining ideas','Use a slogan instead of an argument'],correct:0,exp:'A strong philosophical answer combines precise definition, fair comparison, reasoning, objection and justified conclusion.'}));});});
   quizzes['meta-final']={title:'Final Examination',moduleNum:8,isFinal:true,questions:exam};
   modules[7].lessons.push({t:'🎓 Final Examination',d:'20 new comprehensive questions',isQuiz:true,quizId:'meta-final',isFinal:true});
 

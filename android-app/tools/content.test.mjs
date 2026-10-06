@@ -523,3 +523,17 @@ test('Data Analysis worked sales examples reconcile from their displayed rows',(
  assert.equal(course.outcomes.length,5);
  const cover=fs.readFileSync(path.join(learning,course.image));assert.equal(cover.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
  });
+ test('Metaphysics is featured with complete authored offline content',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[24].id,'metaphysics');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/metaphysics.json'))),source=extractCourse('metaphysics');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ const lessons=course.modules.flatMap(m=>m.lessons);assert.equal(course.modules.length,8);assert.equal(lessons.length,37);assert.equal(lessons.filter(l=>l.videoId).length,24);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'3fa8deef4141bd665a3cd04e4735c907591124e447b8e997346a62f191076d18');
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.noteSource==='authored'&&l.html.length>2000));assert.equal(lessons.filter(l=>l.kind==='project').length,4);
+ const final=lessons.find(l=>l.final);assert.equal(final.questions.length,20);assert.equal(lessons.at(-1).id,final.id);
+ for(const num of [1,6,8])assert.ok(lessons.some(l=>l.title==='📝 Module '+num+' Assessment'&&l.questions.length===3));
+ const questions=lessons.flatMap(l=>l.questions);assert.equal(questions.length,116);assert.equal(new Set(questions.map(q=>q.question)).size,116);assert.equal(lessons.filter(l=>l.kind==='quiz').length,9);
+ assert.ok(new Set(questions.map(q=>q.answer)).size>=3);
+ assert.equal(course.outcomes.length,5);
+ const cover=fs.readFileSync(path.join(learning,course.image));assert.equal(cover.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
+ });
