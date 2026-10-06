@@ -660,8 +660,10 @@ class CatalogSmokeTest {
             else if (assessment == examPractice) snapshot("87-toefl-reading")
             assessment.questions.forEachIndexed { index, question ->
                 compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
-                compose.onNodeWithTag("quiz-content").performScrollToNode(hasText(question.options[question.answer]))
-                compose.onNodeWithText(question.options[question.answer]).performClick()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToNode(answer)
+                compose.onNode(answer).performClick()
                 compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
             }
             compose.onNodeWithText("Submit answers").performClick()
