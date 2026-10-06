@@ -816,7 +816,9 @@ class CatalogSmokeTest {
             }
         }
         snapshot("106-sat-result")
-        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText("Next lesson").performClick()
+        compose.onNodeWithText("14.1 SAT Study Planner").assertExists()
+        compose.onNodeWithContentDescription("Back").performClick()
         compose.onNodeWithText(title).assertExists()
     }
 
