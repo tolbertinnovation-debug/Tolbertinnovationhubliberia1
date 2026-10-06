@@ -564,3 +564,17 @@ test('Data Analysis worked sales examples reconcile from their displayed rows',(
  assert.equal(course.outcomes.length,5);
  const cover=fs.readFileSync(path.join(learning,course.image));assert.equal(cover.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
  });
+ test('National Security is featured with complete authored offline content',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[27].id,'national-security-fundamentals');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/national-security-fundamentals.json'))),source=extractCourse('national-security-fundamentals');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ const lessons=course.modules.flatMap(m=>m.lessons);assert.equal(course.modules.length,10);assert.equal(lessons.length,46);assert.equal(lessons.filter(l=>l.videoId).length,30);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'d8adbf393761e965ebaeef126ae076450a0e12b3839b791af515501a98b1051a');
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.noteSource==='authored'&&l.html.length>2000));assert.equal(lessons.filter(l=>l.kind==='project').length,5);
+ const final=lessons.find(l=>l.final);assert.equal(final.questions.length,20);assert.equal(lessons.at(-1).id,final.id);
+ for(const num of [1,8,10])assert.ok(lessons.some(l=>l.title==='📝 Module '+num+' Assessment'&&l.questions.length===3));
+ const questions=lessons.flatMap(l=>l.questions);assert.equal(questions.length,140);assert.equal(new Set(questions.map(q=>q.question)).size,140);assert.equal(lessons.filter(l=>l.kind==='quiz').length,11);
+ assert.ok(new Set(questions.map(q=>q.answer)).size>=3);
+ assert.equal(course.outcomes.length,8);
+ const cover=fs.readFileSync(path.join(learning,course.image));assert.equal(cover.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
+ });

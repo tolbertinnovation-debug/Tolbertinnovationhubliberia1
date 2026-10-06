@@ -57,6 +57,9 @@ class LessonReaderUiTest {
     @Test fun militaryLeadershipNotesRenderOffline() =
         checkDocument("military-leadership", "173-military-leadership-reader", "Armed Forces in Constitutional Service")
 
+    @Test fun nationalSecurityNotesRenderOffline() =
+        checkDocument("national-security-fundamentals", "179-national-security-reader", "Meaning, Scope and Dimensions of National Security")
+
     @OptIn(ExperimentalMaterial3Api::class)
     @Test fun graphicDesignNotesRenderOffline() =
         checkDocument("design", "41-design-reader")

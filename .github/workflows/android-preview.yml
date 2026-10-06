@@ -3,7 +3,7 @@ name: Android preview (website unchanged)
 on:
   push:
     branches: [codex/tih-native-android]
-    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*', 'cybersecurity-*.js', 'tools/cybersecurity-*', 'marketing-*.js', 'tools/marketing-*', 'sat-*.js', 'tools/sat-*', 'remotework-curriculum.js', 'remote-work-*.js', 'tools/remote-work-*', 'healthtech-*.js', 'tools/healthtech-*', 'data-*.js', 'tools/data-*', 'finlit-curriculum.js', 'financial-literacy-*.js', 'tools/financial-literacy-*', 'bible-*.js', 'tools/bible-school-*', 'football-coaching-*.js', 'tools/football-coaching-*', 'publichealth-curriculum.js', 'ph-notes.js', 'notes/ph-career-*', 'quizzes/ph-career-*', 'videos/ph-career-*', 'tools/ph-career-*', 'business-plan-*.js', 'business-plan-card.*', 'tools/business-plan-*', 'metaphysics-*.js', 'metaphysics-card.*', 'tools/metaphysics-*', 'human-rights-ihl-*.js', 'tools/human-rights-ihl-*', 'military-leadership-*.js', 'military-leadership-card.*', 'tools/military-leadership-*']
+    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*', 'cybersecurity-*.js', 'tools/cybersecurity-*', 'marketing-*.js', 'tools/marketing-*', 'sat-*.js', 'tools/sat-*', 'remotework-curriculum.js', 'remote-work-*.js', 'tools/remote-work-*', 'healthtech-*.js', 'tools/healthtech-*', 'data-*.js', 'tools/data-*', 'finlit-curriculum.js', 'financial-literacy-*.js', 'tools/financial-literacy-*', 'bible-*.js', 'tools/bible-school-*', 'football-coaching-*.js', 'tools/football-coaching-*', 'publichealth-curriculum.js', 'ph-notes.js', 'notes/ph-career-*', 'quizzes/ph-career-*', 'videos/ph-career-*', 'tools/ph-career-*', 'business-plan-*.js', 'business-plan-card.*', 'tools/business-plan-*', 'metaphysics-*.js', 'metaphysics-card.*', 'tools/metaphysics-*', 'human-rights-ihl-*.js', 'tools/human-rights-ihl-*', 'military-leadership-*.js', 'military-leadership-card.*', 'tools/military-leadership-*', 'national-security-fundamentals-*.js', 'national-security-fundamentals-card.*', 'tools/national-security-*']
   workflow_dispatch:
 
 permissions:
@@ -82,6 +82,7 @@ jobs:
           node tools/metaphysics-reader.test.cjs
           node tools/human-rights-ihl-reader.test.cjs
           node tools/military-leadership-reader.test.cjs
+          node tools/national-security-reader.test.cjs
       - name: Build, unit-test, and lint Android preview
         working-directory: android-app
         run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:assembleDebugAndroidTest :app:assembleRelease :app:bundleRelease
@@ -195,4 +196,13 @@ jobs:
             test-results/military-leadership/*.png
             android-app/app/build/reports/**/screenshots/*militaryLeadership*.png
             android-app/app/build/reports/**/screenshots/*military-leadership*.png
+          if-no-files-found: warn
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: National-Security-phone-previews
+          path: |
+            test-results/national-security-fundamentals/*.png
+            android-app/app/build/reports/**/screenshots/*nationalSecurity*.png
+            android-app/app/build/reports/**/screenshots/*national-security*.png
           if-no-files-found: warn

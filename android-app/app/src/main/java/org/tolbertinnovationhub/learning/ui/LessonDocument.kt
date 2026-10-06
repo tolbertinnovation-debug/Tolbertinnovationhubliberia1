@@ -64,6 +64,12 @@ object LessonDocument {
             .ml-note :is(.ml-table,.ml-compare){max-width:100%;overflow-x:auto}
             .overview-text .ml-note table{display:table;width:auto;min-width:100%!important;max-width:none;table-layout:auto}
             .ml-note :is(td,th){min-width:8rem;overflow-wrap:normal;word-break:normal}
+            .ns-note .ns-table{max-width:100%;overflow-x:auto}
+            .overview-text .ns-note table{display:table;width:auto;min-width:100%!important;max-width:none;table-layout:auto}
+            .ns-note :is(td,th){min-width:8rem;overflow-wrap:normal;word-break:normal;font-size:1rem}
+            .ns-note h2{font-size:1.25rem;line-height:1.35;text-transform:none;overflow-wrap:normal}
+            .ns-note :is(.ns-roadmap span,.ns-regional-label,.ns-figure figcaption){font-size:1rem;letter-spacing:normal}
+            .ns-note .ns-roadmap span{white-space:normal;border-radius:12px}
             .overview-text .cl-flow-item{flex-shrink:0;min-width:max-content}.overview-text .cl-flow-item strong{white-space:nowrap;overflow-wrap:normal}
             /* Accounting, Full-Stack and Entrepreneurship cards carry sentences where the shared website visual
                style expects large icon glyphs. Keep those sentences at reading size. */
