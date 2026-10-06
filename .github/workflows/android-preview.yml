@@ -3,7 +3,7 @@ name: Android preview (website unchanged)
 on:
   push:
     branches: [codex/tih-native-android]
-    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*', 'cybersecurity-*.js', 'tools/cybersecurity-*']
+    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*', 'cybersecurity-*.js', 'tools/cybersecurity-*', 'marketing-*.js', 'tools/marketing-*']
   workflow_dispatch:
 
 permissions:
@@ -69,6 +69,7 @@ jobs:
           node tools/toefl-browser.test.cjs
           node tools/toefl-reader.test.cjs
           node tools/cybersecurity-reader.test.cjs
+          node tools/marketing-reader.test.cjs
       - name: Build, unit-test, and lint Android preview
         working-directory: android-app
         run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:assembleDebugAndroidTest :app:assembleRelease :app:bundleRelease

@@ -276,3 +276,7 @@ were discarded; those installations cannot be upgraded with the cached key.
 ### Cybersecurity Fundamentals & Ethical Hacking — 0.3.18
 
 The complete twenty-module program is fourteenth in Courses and featured in Today. It includes 328 entries, 170 video links, offline authored notes, projects and assessments. Three core practices and the graduation assessment now use 24 fresh applied questions; other existing practices retain shared foundation questions. Device checks cover enrollment access, overview, permissions/web security quizzes, graduation scoring, persisted completion and offline notes.
+
+### Digital Marketing Professional Certificate — 0.3.19
+
+Featured fifteenth in Courses and included in Today: 20 modules, 355 entries and 189 video links. Offline authored notes, projects and assessments retain stable identities. Audience targeting, email testing and ROI practices plus graduation now contain 24 fresh applied questions; other foundation practices retain shared questions. Native tests verify overview, submissions, persisted records and offline rendering.

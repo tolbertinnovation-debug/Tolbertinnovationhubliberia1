@@ -335,3 +335,20 @@ test('Cybersecurity is featured with stable curriculum and applied defensive che
  const framework=lessons.find(l=>l.title==='3.9 Cybersecurity Frameworks');assert.ok(framework.html.includes('Govern, Identify, Protect, Detect, Respond and Recover'));
  assert.ok(fs.existsSync(path.join(learning,course.image)));
 });
+
+
+test('Digital Marketing is featured with stable curriculum and applied campaign checks',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[14].id,'marketing');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/marketing.json'))),source=extractCourse('marketing');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ const lessons=course.modules.flatMap(m=>m.lessons);assert.equal(course.modules.length,20);assert.equal(lessons.length,355);assert.equal(lessons.filter(l=>l.videoId).length,189);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'3b5c47ad852645812774757b755bccf3c2d332606f1f67aa0a4ac2f309f08c73');
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.noteSource==='authored'&&l.html.length>2000));
+ const final=lessons.find(l=>l.final);assert.equal(final.questions.length,15);
+ const selected=lessons.filter(l=>['📝 Practice: Target Audience Identification','📝 Practice: A/B Testing','📝 Practice: ROI Measurement'].includes(l.title));assert.equal(selected.length,3);
+ const reviewed=[...selected.flatMap(l=>l.questions),...final.questions];assert.equal(reviewed.length,24);assert.equal(new Set(reviewed.map(q=>q.question)).size,24);
+ for(const q of reviewed){assert.equal(q.options.length,4);assert.equal(new Set(q.options).size,4);assert.ok(q.answer>=0&&q.answer<4);assert.ok(q.explanation.length>35);}
+ assert.ok(!lessons.filter(l=>!l.final).flatMap(l=>l.questions).some(q=>final.questions.some(f=>f.question===q.question)));
+ const roi=lessons.find(l=>l.title.endsWith('ROI Measurement')&&l.kind==='lesson');assert.ok(roi.html.includes('14.3%'));assert.ok(roi.html.includes('ROAS'));
+ assert.ok(fs.existsSync(path.join(learning,course.image)));
+});

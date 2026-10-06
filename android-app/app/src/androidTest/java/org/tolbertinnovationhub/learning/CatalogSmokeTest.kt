@@ -726,4 +726,51 @@ class CatalogSmokeTest {
         compose.onNodeWithText(title).assertExists()
     }
 
+    @Test fun marketingOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("marketing")
+        signIn()
+        val title = "Complete Digital Marketing Professional Certificate"
+        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("20 modules · 355 entries · 189 video links"))
+        compose.onNodeWithText("20 modules · 355 entries · 189 video links").assertIsDisplayed()
+        snapshot("96-marketing-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.title.contains("Practice: Target Audience Identification") }
+        val final = course.lessons.first { it.isFinal }
+        val emailPractice = course.lessons.first { it.title.contains("Practice: A/B Testing") }
+        val roiPractice = course.lessons.first { it.title.contains("Practice: ROI Measurement") }
+        org.junit.Assert.assertEquals(72, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, emailPractice, roiPractice, final)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else if (assessment == practice) snapshot("97-marketing-practice")
+            else if (assessment == emailPractice) snapshot("98-marketing-email")
+            else if (assessment == roiPractice) snapshot("99-marketing-roi")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToNode(answer)
+                compose.onNode(answer).performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("marketing"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "marketing", assessment))
+            }
+        }
+        snapshot("100-marketing-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
+    }
+
 }
