@@ -318,3 +318,20 @@ test('TOEFL is thirteenth in Courses, with stable identities, authored notes and
  assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'e72842b21b3811db7bd46a4c2b4ec6d0e9879bc59343bd3844f9322a587d901e');
  assert.ok(fs.existsSync(path.join(learning,course.image)));
 });
+
+
+test('Cybersecurity is featured with stable curriculum and applied defensive checks',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[13].id,'cybersecurity');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/cybersecurity.json'))),source=extractCourse('cybersecurity');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ const lessons=course.modules.flatMap(m=>m.lessons);assert.equal(course.modules.length,20);assert.equal(lessons.length,328);assert.equal(lessons.filter(l=>l.videoId).length,170);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'c0650915011bf4c1932a32bf108549c2333360231dd436bf7c8f2e77b0570e18');
+ assert.ok(lessons.filter(l=>l.kind!=='quiz'&&l.duration!=='Resource').every(l=>l.noteSource==='authored'&&l.html.length>2000));
+ const final=lessons.find(l=>l.final);assert.equal(final.questions.length,15);
+ const selected=lessons.filter(l=>['📝 Practice: CIA Triad','📝 Practice: Permissions','📝 Practice: SQL Injection (Concepts)'].includes(l.title));assert.equal(selected.length,3);
+ const reviewed=[...selected.flatMap(l=>l.questions),...final.questions];assert.equal(reviewed.length,24);assert.equal(new Set(reviewed.map(q=>q.question)).size,24);
+ for(const q of reviewed){assert.equal(q.options.length,4);assert.equal(new Set(q.options).size,4);assert.ok(q.answer>=0&&q.answer<4);assert.ok(q.explanation.length>35);}
+ assert.ok(!lessons.filter(l=>!l.final).flatMap(l=>l.questions).some(q=>final.questions.some(f=>f.question===q.question)));
+ const framework=lessons.find(l=>l.title==='3.9 Cybersecurity Frameworks');assert.ok(framework.html.includes('Govern, Identify, Protect, Detect, Respond and Recover'));
+ assert.ok(fs.existsSync(path.join(learning,course.image)));
+});

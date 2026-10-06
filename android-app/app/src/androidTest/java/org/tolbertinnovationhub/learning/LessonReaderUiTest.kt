@@ -72,6 +72,9 @@ class LessonReaderUiTest {
         checkDocument("toefl", "89-toefl-reader")
 
     @OptIn(ExperimentalMaterial3Api::class)
+    @Test fun cybersecurityNotesRenderOffline() =
+        checkDocument("cybersecurity", "95-cybersecurity-reader")
+
     private fun checkDocument(courseId: String, captureName: String, topic: String? = null) {
         val course = runBlocking {
             val repository = ContentRepository(compose.activity)

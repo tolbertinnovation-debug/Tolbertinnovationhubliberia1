@@ -3,7 +3,7 @@ name: Android preview (website unchanged)
 on:
   push:
     branches: [codex/tih-native-android]
-    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*']
+    paths: [android-app/**, .github/workflows/android-preview.yml, 'toefl-*.js', 'tools/toefl-*', 'cybersecurity-*.js', 'tools/cybersecurity-*']
   workflow_dispatch:
 
 permissions:
@@ -58,7 +58,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends librsvg2-2 fonts-dejavu-core
           python3 android-app/tools/render-store.py
-      - name: Check TOEFL quizzes and offline phone layouts
+      - name: Check course quizzes and offline phone layouts
         run: |
           npm install --prefix "$RUNNER_TEMP/tih-toefl-browser" --no-package-lock playwright@1.51.1
           "$RUNNER_TEMP/tih-toefl-browser/node_modules/.bin/playwright" install --with-deps chromium
@@ -68,6 +68,7 @@ jobs:
           export NODE_PATH="$RUNNER_TEMP/tih-toefl-browser/node_modules"
           node tools/toefl-browser.test.cjs
           node tools/toefl-reader.test.cjs
+          node tools/cybersecurity-reader.test.cjs
       - name: Build, unit-test, and lint Android preview
         working-directory: android-app
         run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:assembleDebugAndroidTest :app:assembleRelease :app:bundleRelease

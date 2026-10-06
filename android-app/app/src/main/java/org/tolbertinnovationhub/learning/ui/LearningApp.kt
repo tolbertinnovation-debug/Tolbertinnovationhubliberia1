@@ -203,7 +203,7 @@ private val destinations = listOf(Destination("Courses", Icons.AutoMirrored.Outl
             items(owned, key = { "owned-" + it.id }) { course -> CompactCourse(course, vm.completed(course.id).size) { vm.openCourse(course) } }
         } else {
             item { SectionTitle("A great place to begin", "Explore learning paths already available at TIH.") }
-            items(vm.catalog.filter { it.id in listOf("computer-literacy", "project-mgmt", "accounting-bookkeeping", "webdev", "design", "entrepreneurship", "android", "office", "leadership", "grant-writing", "english-success", "ielts", "toefl", "ai") }) { c -> CourseCard(c) { vm.openCourse(c) } }
+            items(vm.catalog.filter { it.id in listOf("computer-literacy", "project-mgmt", "accounting-bookkeeping", "webdev", "design", "entrepreneurship", "android", "office", "leadership", "grant-writing", "english-success", "ielts", "toefl", "cybersecurity", "ai") }) { c -> CourseCard(c) { vm.openCourse(c) } }
         }
         item { InfoCard("Learn with less data", "Written lessons and quizzes are included in the app. Approved access works offline for up to 7 days. Videos open online only when you choose.", Icons.Outlined.OfflineBolt) }
         item { Text("Tolbert Innovation Hub · Liberia", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }

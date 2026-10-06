@@ -679,4 +679,51 @@ class CatalogSmokeTest {
         compose.onNodeWithText(title).assertExists()
     }
 
+    @Test fun cybersecurityOverviewPracticeAndFinalUseNativeStudyRecords() {
+        approved = setOf("cybersecurity")
+        signIn()
+        val title = "Complete Cybersecurity Fundamentals & Ethical Hacking Program"
+        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        val screen = compose.onAllNodes(hasScrollAction())[0]
+        screen.performScrollToNode(hasText("20 modules · 328 entries · 170 video links"))
+        compose.onNodeWithText("20 modules · 328 entries · 170 video links").assertIsDisplayed()
+        snapshot("90-cybersecurity-overview")
+        screen.performScrollToNode(hasText("Start learning"))
+        compose.onNodeWithText("Start learning").assertIsEnabled()
+        val course = model.course!!
+        val practice = course.lessons.first { it.kind == "quiz" }
+        val final = course.lessons.first { it.isFinal }
+        val grammarPractice = course.lessons.first { it.title.contains("Practice: Permissions") }
+        val examPractice = course.lessons.first { it.title.contains("Practice: SQL Injection (Concepts)") }
+        org.junit.Assert.assertEquals(75, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
+        for (assessment in listOf(practice, grammarPractice, examPractice, final)) {
+            compose.runOnIdle { model.openLesson(assessment) }
+            compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
+            if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
+            else if (assessment == practice) snapshot("91-cybersecurity-practice")
+            else if (assessment == grammarPractice) snapshot("92-cybersecurity-grammar")
+            else if (assessment == examPractice) snapshot("93-cybersecurity-reading")
+            assessment.questions.forEachIndexed { index, question ->
+                compose.onNodeWithText("Question ${index + 1} of ${assessment.questions.size}").assertExists()
+                val answer = hasText(question.options[question.answer]) and SemanticsMatcher.expectValue(
+                    androidx.compose.ui.semantics.SemanticsProperties.Role, androidx.compose.ui.semantics.Role.RadioButton)
+                compose.onNodeWithTag("quiz-content").performScrollToNode(answer)
+                compose.onNode(answer).performClick()
+                compose.onNodeWithText(if (index < assessment.questions.lastIndex) "Next question" else "Review answers").performClick()
+            }
+            compose.onNodeWithText("Submit answers").performClick()
+            compose.onNodeWithText("100%").assertExists()
+            compose.runOnIdle {
+                org.junit.Assert.assertEquals(100, model.study.score("android-ui-learner", assessment.id))
+                org.junit.Assert.assertTrue(assessment.id in model.completed("cybersecurity"))
+                org.junit.Assert.assertNull(model.study.quizDraft("android-ui-learner", "cybersecurity", assessment))
+            }
+        }
+        snapshot("94-cybersecurity-result")
+        compose.onNodeWithText("Course overview").performClick()
+        compose.onNodeWithText(title).assertExists()
+    }
+
 }

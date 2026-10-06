@@ -272,3 +272,7 @@ Before long-term distribution, provide a backed-up owner-controlled keystore
 through protected CI credentials. Do not regenerate this preview identity to
 bypass a missing-key failure. The keys for published 0.3.0 and earlier previews
 were discarded; those installations cannot be upgraded with the cached key.
+
+### Cybersecurity Fundamentals & Ethical Hacking — 0.3.18
+
+The complete twenty-module program is fourteenth in Courses and featured in Today. It includes 328 entries, 170 video links, offline authored notes, projects and assessments. Three core practices and the graduation assessment now use 24 fresh applied questions; other existing practices retain shared foundation questions. Device checks cover enrollment access, overview, permissions/web security quizzes, graduation scoring, persisted completion and offline notes.
