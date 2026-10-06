@@ -141,7 +141,7 @@ export function exportAll() {
     // Copy existing artwork; never create replacement logos or imaginary content.
     let cover = course.image;
     // The native bitmap reader uses a raster copy of this existing SVG cover.
-    if (['business-plan', 'metaphysics'].includes(id) && cover === id + '-card.svg') cover = id + '-card.png';
+    if (['business-plan', 'metaphysics', 'military-leadership'].includes(id) && cover === id + '-card.svg') cover = id + '-card.png';
     if (!cover || /^https?:/.test(cover)) {
       const localFallback = id + '-card.jpg';
       if (fs.existsSync(path.join(root, localFallback))) cover = localFallback;
@@ -158,7 +158,7 @@ export function exportAll() {
       videoCount: lessons.filter(l => l.videoId).length, quizCount: lessons.filter(l => l.kind === 'quiz').length});
   }
   // Keep the courses being reviewed one by one within easy reach after sign-in.
-  const priority = ['computer-literacy', 'project-mgmt', 'accounting-bookkeeping', 'webdev', 'design', 'entrepreneurship', 'android', 'office', 'leadership', 'grant-writing', 'english-success', 'ielts', 'toefl', 'cybersecurity', 'marketing', 'sat', 'remote-work', 'healthtech', 'data', 'financial-literacy', 'bible-foundations', 'football-coaching', 'ph-career', 'business-plan', 'metaphysics', 'human-rights-ihl'];
+  const priority = ['computer-literacy', 'project-mgmt', 'accounting-bookkeeping', 'webdev', 'design', 'entrepreneurship', 'android', 'office', 'leadership', 'grant-writing', 'english-success', 'ielts', 'toefl', 'cybersecurity', 'marketing', 'sat', 'remote-work', 'healthtech', 'data', 'financial-literacy', 'bible-foundations', 'football-coaching', 'ph-career', 'business-plan', 'metaphysics', 'human-rights-ihl', 'military-leadership'];
   const rank = id => { const index = priority.indexOf(id); return index < 0 ? priority.length : index; };
   catalog.sort((a, b) => rank(a.id) - rank(b.id));
   const cfg = createContext(); cfg.run('hub-config.js');
