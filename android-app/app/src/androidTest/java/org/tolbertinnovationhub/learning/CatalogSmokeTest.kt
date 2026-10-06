@@ -134,7 +134,8 @@ class CatalogSmokeTest {
         approved = setOf("project-mgmt")
         signIn()
         val title = "Complete Project Management Professional Certificate"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -183,7 +184,8 @@ class CatalogSmokeTest {
         approved = setOf("accounting-bookkeeping")
         signIn()
         val title = "Complete Accounting & Bookkeeping Program"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -232,7 +234,8 @@ class CatalogSmokeTest {
         approved = setOf("webdev")
         signIn()
         val title = "Complete Full-Stack Web Development Program"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -287,7 +290,8 @@ class CatalogSmokeTest {
         approved = setOf("design")
         signIn()
         val title = "Complete Graphic Design Program: Canva & Adobe Photoshop"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -336,7 +340,8 @@ class CatalogSmokeTest {
         approved = setOf("entrepreneurship")
         signIn()
         val title = "Complete Entrepreneurship & Startup Launch Program"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -385,7 +390,8 @@ class CatalogSmokeTest {
         approved = setOf("android")
         signIn()
         val title = "Complete Android App Development Program (Kotlin)"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -434,7 +440,8 @@ class CatalogSmokeTest {
         approved = setOf("office")
         signIn()
         val title = "Complete Microsoft Office Mastery Professional Certificate"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -483,7 +490,8 @@ class CatalogSmokeTest {
         approved = setOf("leadership")
         signIn()
         val title = "Complete Business Leadership Masterclass"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -532,7 +540,8 @@ class CatalogSmokeTest {
         approved = setOf("grant-writing")
         signIn()
         val title = "Complete Grant Writing & Fundraising Professional Certificate"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -581,7 +590,8 @@ class CatalogSmokeTest {
         approved = setOf("english-success")
         signIn()
         val title = "Complete English for Academic & Professional Success Certificate"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -631,7 +641,8 @@ class CatalogSmokeTest {
         approved = setOf("ielts")
         signIn()
         val title = "IELTS Masterclass: Beginner to Band 9"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -680,7 +691,8 @@ class CatalogSmokeTest {
         approved = setOf("toefl")
         signIn()
         val title = "Complete TOEFL iBT Course: Grammar, Vocabulary & All Four Sections"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -730,7 +742,8 @@ class CatalogSmokeTest {
         approved = setOf("cybersecurity")
         signIn()
         val title = "Complete Cybersecurity Fundamentals & Ethical Hacking Program"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -780,7 +793,8 @@ class CatalogSmokeTest {
         approved = setOf("marketing")
         signIn()
         val title = "Complete Digital Marketing Professional Certificate"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -830,7 +844,8 @@ class CatalogSmokeTest {
         approved = setOf("sat")
         signIn()
         val title = "Complete Digital SAT Prep: Reading & Writing + Math (400–1600)"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -882,7 +897,8 @@ class CatalogSmokeTest {
         approved = setOf("remote-work")
         signIn()
         val title = "Complete Remote Work & Freelancing Professional Certificate"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -932,7 +948,8 @@ class CatalogSmokeTest {
         approved = setOf("healthtech")
         signIn()
         val title = "Complete Healthcare Technology & Telehealth Professional Certificate"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -983,7 +1000,8 @@ class CatalogSmokeTest {
         approved = setOf("data")
         signIn()
         val title = "Complete Data Analysis with Excel, Power BI & Google Sheets Certificate"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -1033,7 +1051,8 @@ class CatalogSmokeTest {
         approved = setOf("financial-literacy")
         signIn()
         val title = "Complete Financial Literacy Professional Certificate"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -1083,7 +1102,8 @@ class CatalogSmokeTest {
         approved = setOf("bible-foundations")
         signIn()
         val title = "Complete Bible School & Christian Ministry Certificate"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -1133,7 +1153,8 @@ class CatalogSmokeTest {
         approved = setOf("football-coaching")
         signIn()
         val title = "Football Coaching"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -1184,7 +1205,8 @@ class CatalogSmokeTest {
         approved = setOf("ph-career")
         signIn()
         val title = "Career Success for Public Health Graduates"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -1234,7 +1256,8 @@ class CatalogSmokeTest {
         approved = setOf("business-plan")
         signIn()
         val title = "Complete Business Plan Development: From Idea to Funding & Launch"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
@@ -1284,7 +1307,8 @@ class CatalogSmokeTest {
         approved = setOf("metaphysics")
         signIn()
         val title = "Complete Metaphysics: Reality, Existence, Mind & Freedom"
-        compose.onNodeWithTag("course-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText("Search courses, skills, or subjects").performTextReplacement(title)
+        compose.waitUntil(30000) { compose.onAllNodesWithText(title).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(title).performClick()
         compose.waitUntil(30000) { compose.onAllNodesWithText("Course overview", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val screen = compose.onAllNodes(hasScrollAction())[0]
