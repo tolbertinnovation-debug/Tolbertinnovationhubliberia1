@@ -74,13 +74,17 @@ class LessonVideoUiTest {
         compose.runOnUiThread {
             val web = webView(compose.activity.window.decorView)!!
             web.stopLoading()
-            val page = LessonVideo.playerPage("kBGcfVwf9aI", compose.activity.packageName)
-                .replace("new YT.Player", "window.testPlayer = new YT.Player")
+            val page = fixturePage()
             web.loadDataWithBaseURL(LessonVideo.origin(compose.activity.packageName) + "/", page, "text/html", "UTF-8", null)
         }
         val folder = File(compose.activity.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
         // Capture diagnostic geometry even when the remote player is unavailable.
-        SystemClock.sleep(25000)
+        // The local fixture preserves production sizing without live YouTube timing.
+        compose.waitUntil(15000) {
+            var ready = false
+            compose.runOnUiThread { ready = webView(compose.activity.window.decorView)?.title == LessonVideo.READY }
+            ready
+        }
         compose.waitForIdle()
         val result = java.util.concurrent.atomic.AtomicReference<String>("")
         val latch = CountDownLatch(1)
@@ -114,7 +118,7 @@ class LessonVideoUiTest {
         val bounds = playerScreenBounds()
         val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
         tap(bounds)
-        SystemClock.sleep(8000)
+        compose.waitForIdle()
         compose.waitForIdle()
         val playback = evaluate("""JSON.stringify({title:document.title,
             state:window.testPlayer&&typeof testPlayer.getPlayerState==='function'?testPlayer.getPlayerState():null,
@@ -138,18 +142,7 @@ class LessonVideoUiTest {
         // Substitute only the remote API for a deterministic frame with a button.
         // Production HTML/CSS, WebView settings, native sizing, and scroll layout
         // are unchanged. No network response can make this regression pass/fail.
-        val api = """
-            window.YT = {Player:function(id, options) {
-                var frame = document.createElement('iframe'); frame.id = id;
-                frame.srcdoc = '<html><body style="margin:0;background:#1469ba;display:flex;align-items:center;justify-content:center;height:100vh">' +
-                  '<button style="width:100%;height:100%" onclick="document.body.dataset.played=1">Play video</button></body></html>';
-                frame.onload = function(){options.events.onReady();};
-                document.getElementById(id).replaceWith(frame);
-            }};
-            onYouTubeIframeAPIReady();
-        """.trimIndent()
-        val html = LessonVideo.playerPage("kBGcfVwf9aI", compose.activity.packageName)
-            .replace("https://www.youtube.com/iframe_api", "data:text/javascript;base64," + android.util.Base64.encodeToString(api.toByteArray(Charsets.UTF_8), android.util.Base64.NO_WRAP))
+        val html = fixturePage()
         compose.runOnUiThread {
             val web = webView(compose.activity.window.decorView)!!
             web.stopLoading()
@@ -188,6 +181,21 @@ class LessonVideoUiTest {
             SystemClock.sleep(100)
         } while (SystemClock.uptimeMillis() < tapDeadline)
         assertTrue("Player button did not receive the real screen tap", tapped)
+    }
+
+    private fun fixturePage(): String {
+        val api = """
+            window.YT = {Player:function(id, options) {
+                var frame = document.createElement('iframe'); frame.id = id;
+                frame.srcdoc = '<html><body style="margin:0;background:#1469ba;display:flex;align-items:center;justify-content:center;height:100vh">' +
+                  '<button style="width:100%;height:100%" onclick="document.body.dataset.played=1">Play video</button></body></html>';
+                frame.onload = function(){options.events.onReady();};
+                document.getElementById(id).replaceWith(frame);
+            }};
+            onYouTubeIframeAPIReady();
+        """.trimIndent()
+        return LessonVideo.playerPage("kBGcfVwf9aI", compose.activity.packageName)
+            .replace("https://www.youtube.com/iframe_api", "data:text/javascript;base64," + android.util.Base64.encodeToString(api.toByteArray(Charsets.UTF_8), android.util.Base64.NO_WRAP))
     }
 
     private fun playerScreenBounds(): Rect {

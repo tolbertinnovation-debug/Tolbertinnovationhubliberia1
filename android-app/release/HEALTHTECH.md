@@ -7,3 +7,5 @@ Three worked exercises cover patient registration, virtual consultations and AI 
 Training uses fictional records. This course develops technology and implementation skills; it does not authorize clinical practice. References include WHO telemedicine implementation and AI ethics guidance. A quiz score does not replace supervised project review or a professional licence.
 
 Validation covers source-faithful export and stable identity hash, distinct applied items, offline phone reader layouts at 18px/24px, native course overview, selected practices, final assessment, persisted study records and offline reader paint. Version code 27; existing preview signing identity retained. Main unchanged.
+
+Device harness: all instrumented test classes remain included. Video checks use the existing local iframe fixture and run in a fresh process after reader/course checks to avoid the AOSP API 36 WebView native teardown crash seen in two combined runs. Live YouTube availability is not validated by this fixture.

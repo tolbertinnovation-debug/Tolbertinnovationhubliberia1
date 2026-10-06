@@ -43,12 +43,27 @@ try {
   call(['shell','wm','dismiss-keyguard']);
   call(['install','-r',path.join(root,'android-app/app/build/outputs/apk/debug/app-debug.apk')],120000);
   call(['install','-r',path.join(root,'android-app/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk')],120000);
-  const results=call(['shell','am','instrument','-w','org.tolbertinnovationhub.learning.preview.test/androidx.test.runner.AndroidJUnitRunner'],480000);
-  fs.writeFileSync(path.join(report,'instrumentation.txt'),results);
-  console.log(results);
+  // Keep every device test, but isolate WebView-heavy video checks from the
+  // many offline readers in a fresh instrumentation process. AOSP WebView's
+  // native renderer teardown crashed after the combined run on API 36.
+  const namespace='org.tolbertinnovationhub.learning';
+  const testDirectory=path.join(root,'android-app/app/src/androidTest/java/org/tolbertinnovationhub/learning');
+  const testClasses=fs.readdirSync(testDirectory).filter(name=>name.endsWith('Test.kt')).map(name=>name.replace(/\.kt$/,''));
+  const groups=[testClasses.filter(name=>name!=='LessonVideoUiTest'),['LessonVideoUiTest']];
+  const reports=[];
+  for(const classes of groups) {
+    call(['shell','am','force-stop','org.tolbertinnovationhub.learning.preview']);
+    const result=call(['shell','am','instrument','-w','-e','class',classes.map(c=>namespace+'.'+c).join(','),
+      'org.tolbertinnovationhub.learning.preview.test/androidx.test.runner.AndroidJUnitRunner'],480000);
+    reports.push(result);
+    fs.writeFileSync(path.join(report,'instrumentation.txt'),reports.join('\n'));
+    console.log(result);
+    if(!/OK \(\d+ tests?\)/.test(result))break;
+  }
+  const results=reports.join('\n');
   const pulled=spawn(adb,['pull','/sdcard/Android/data/org.tolbertinnovationhub.learning.preview/files/screenshots',report],{env,stdio:'inherit'});
   await new Promise(resolve=>pulled.on('exit',resolve));
-  if(!/OK \(\d+ tests?\)/.test(results))throw new Error('Device tests did not pass.');
+  if(reports.length!==groups.length || reports.some(result=>!/OK \(\d+ tests?\)/.test(result)))throw new Error('Device tests did not pass.');
   const screenshots=fs.readdirSync(path.join(report,'screenshots')).filter(name=>name.endsWith('.png'));
   for(const name of screenshots) {
     const png=fs.readFileSync(path.join(report,'screenshots',name));
