@@ -90,6 +90,9 @@ class LessonReaderUiTest {
     @Test fun dataAnalysisNotesRenderOffline() =
         checkDocument("data", "125-data-reader")
 
+    @Test fun financialLiteracyNotesRenderOffline() =
+        checkDocument("financial-literacy", "131-financial-literacy-reader")
+
     @OptIn(ExperimentalMaterial3Api::class)
     private fun checkDocument(courseId: String, captureName: String, topic: String? = null) {
         val course = runBlocking {

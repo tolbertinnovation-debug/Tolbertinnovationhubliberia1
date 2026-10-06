@@ -454,3 +454,16 @@ test('Data Analysis worked sales examples reconcile from their displayed rows',(
  const {context,run}=createContext('data');run('courses-db.js');run('tih-course-loader.js');context.TihCourseLoader.ensure('data',()=>{});
  for(const [i,module] of context.COURSES_DB.data.modules.entries())for(const lesson of module.lessons.filter(l=>l.isQuiz))assert.equal(context.COURSES_DB.data.quizzes[lesson.quizId].moduleNum,i+1);
 });
+
+ test('Financial Literacy is featured with complete authored offline content',()=>{
+ const catalog=JSON.parse(fs.readFileSync(path.join(learning,'catalog.json')));assert.equal(catalog[19].id,'financial-literacy');
+ const course=JSON.parse(fs.readFileSync(path.join(learning,'courses/financial-literacy.json'))),source=extractCourse('financial-literacy');
+ for(const key of ['title','description','modules','about','requirements','faqs','instructor'])assert.equal(JSON.stringify(course[key]),JSON.stringify(source[key]));
+ const lessons=course.modules.flatMap(m=>m.lessons);assert.equal(course.modules.length,10);assert.equal(lessons.length,114);assert.equal(lessons.filter(l=>l.videoId).length,58);
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(lessons.map(l=>[l.id,l.title,l.module,l.kind,l.videoId]))).digest('hex'),'90ace68c93a3ded165c3eadab2f47a0c04419fcd14ca397782dcba44612291d0');
+ assert.ok(lessons.filter(l=>l.kind!=='quiz').every(l=>l.noteSource==='authored'&&l.html.length>2000));
+ const final=lessons.find(l=>l.final);assert.equal(final.questions.length,15);
+ for(const topic of ['Creating a Budget','Responsible Borrowing','Cybersecurity for Financial Transactions'])assert.ok(lessons.some(l=>l.title==='📝 Practice: '+topic&&l.questions.length===3));
+ const questions=lessons.flatMap(l=>l.questions);assert.equal(questions.length,192);assert.equal(new Set(questions.map(q=>q.question)).size,33);
+ assert.ok(fs.existsSync(path.join(learning,course.image)));
+ });

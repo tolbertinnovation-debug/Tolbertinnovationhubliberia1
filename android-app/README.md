@@ -294,3 +294,5 @@ Healthcare Technology & Telehealth is featured in preview 0.3.22: see [release n
 Preview 0.3.23 replaces shared Healthcare Technology quizzes with independent topic practices and assessments: [assessment update](release/HEALTHTECH-QUIZZES.md).
 
 Data Analysis is featured in preview 0.3.24: [release notes](release/DATA-ANALYSIS.md).
+
+Financial Literacy preview details: [release/FINANCIAL-LITERACY.md](release/FINANCIAL-LITERACY.md).
