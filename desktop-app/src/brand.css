@@ -49,7 +49,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline-color:#1565d8
 .inline-video{padding:16px 20px 0}
 .focus-view #main{height:100dvh;padding:10px 12px}
 .reader-controls-return{display:none;margin-left:auto;color:#002868;font-size:11px;border:1px solid #cdd5e2;border-radius:8px;padding:7px 10px}
-.reader-expanded .topbar,.reader-expanded .learning-toolbar,.reader-expanded .lesson-heading{display:none}
+.reader-expanded .topbar,.reader-expanded .lesson-heading{display:none}
+.reader-expanded .learning-toolbar{display:flex;margin-bottom:6px;min-height:36px}
+.reader-expanded .lesson-context{display:none}
 .reader-expanded #main{height:100dvh;padding:8px 12px}
 .reader-expanded .reader-controls-return{display:inline-flex}
 .reader-expanded .reader-text-size{margin-left:0}

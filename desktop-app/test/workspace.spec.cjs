@@ -951,6 +951,7 @@ test('TIH theme gives the written lesson more room as learners scroll',async()=>
  expect(await pane.evaluate(el=>el.clientHeight)).toBeGreaterThan(before+100);
  await expect(page.locator('#lesson-frame')).toHaveAttribute('data-mounted','kept');await expect(page.locator('#lesson-video')).toHaveAttribute('data-mounted','kept');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
+ await expect(page.getByRole('button',{name:'Focus view',exact:true})).toBeVisible();await expect(page.getByRole('button',{name:'Enter full screen',exact:true})).toBeVisible();
  await page.screenshot({path:'test-results/68-tih-expanded-reader.png',fullPage:true});
  await page.getByRole('button',{name:'Show course controls',exact:true}).click();
  await expect(page.locator('body')).not.toHaveClass(/reader-expanded/);await expect(page.getByRole('button',{name:'Lessons',exact:true})).toBeVisible();
