@@ -1,11 +1,11 @@
-TIH Learning Desktop 0.11.0 — Graphic Design Program.
+TIH Learning Desktop 0.12.0 — Build Real AI & Cybersecurity Skills.
 
-The ninth full desktop course includes 18 modules, 139 reading lessons, 149 assessments with 542 distinct questions, 24 practical projects and 163 source-linked videos. Study design principles, typography, color, layout, Canva, Photoshop, branding, client work and portfolio development.
+The tenth full desktop course includes 15 modules, 127 reading lessons, 136 assessments with 477 question entries, six practical projects and 133 video links. Existing source assessments reuse some prompts. Original notes, examples, expandable keywords and project briefs are preserved.
 
-Original teaching notes, examples, tables, expandable keywords and project briefs are included. Learners create their designs with their own design tools and save reflections and file references. The app does not provide Photoshop licensing or automatically review project files. Official TIH certification remains in Learning Hub.
+Study AI-assisted security, phishing detection, log analysis, security assessment and incident response. Complete practical work in your own authorized practice environment and save reflections and file references. The app does not scan systems or execute commands. Official TIH certification remains in Learning Hub.
 
-The sign-in-first welcome, continuous video-above-reading page, notes, focus view, saved reading positions, quiz drafts, scores and project records remain available. Graphic Design enrollment is verified independently of the eight other full courses. Existing workspace files and backups remain compatible.
+Sign-in-first welcome, continuous video-above-reading lessons, notes, focus view, saved positions, quiz drafts, scores and project records remain available. Course enrollment is verified independently of the nine other full courses. Existing workspaces and backups remain compatible.
 
-Validation covers source completeness, question uniqueness, grading, backups, independent access, lesson tables, videos, project progress and restart persistence. Interface tests repeat against the installed Windows app before release.
+Validation checks source completeness, assessment fidelity, grading, backups, independent access, lesson keywords, videos, project progress and restart persistence. Windows interface checks repeat against the installed app before publishing.
 
-Back up your workspace in Settings, close the old app and install this update in the same location. Windows x64 preview; unsigned installer.
+Back up in Settings, close the old app and install the update in the same location. Windows x64 preview; unsigned installer.

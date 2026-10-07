@@ -1,4 +1,4 @@
-const FULL_COURSES=['computer-literacy','ielts','project-mgmt','webdev','office','accounting-bookkeeping','cybersecurity','android','design'];
+const FULL_COURSES=['computer-literacy','ielts','project-mgmt','webdev','office','accounting-bookkeeping','cybersecurity','android','design','ai-cybersecurity'];
 const OFFLINE_WINDOW=7*24*60*60*1000;
 class AccessError extends Error{}
 class NetworkError extends Error{}
