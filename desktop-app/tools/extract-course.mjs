@@ -81,8 +81,8 @@ export function extractCourse(id) {
     seen.add(lessonId);
     const authored = lookup(c.TIH_LESSON_NOTES?.[id], l.t, mi + 1);
     const originalBody = c.LESSON_CONTENT?.[id]?.[String(index)] || '';
-    // Keep the original web-development deliverable alongside the authored explanation.
-    const body = id === 'webdev' && l.isProject && authored && originalBody && authored !== originalBody
+    // Keep the original practical deliverable alongside the authored explanation.
+    const body = ['webdev','office'].includes(id) && l.isProject && authored && originalBody && authored !== originalBody
       ? authored + '<section class="source-project-brief">' + originalBody + '</section>'
       : authored || originalBody;
     let video = l.v || '';
