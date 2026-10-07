@@ -8,9 +8,9 @@ const assert = require('node:assert/strict');
   const root = process.cwd();
   const policy = JSON.parse(fs.readFileSync('app-updates.json','utf8'));
   assert.equal(policy.schema,1);
-  assert.equal(policy.android.latest,'0.3.37');
-  assert.equal(policy.android.latestCode,42);
-  assert.equal(policy.windows.latest,'0.21.0');
+  assert.equal(policy.android.latest,'0.3.38');
+  assert.equal(policy.android.latestCode,43);
+  assert.equal(policy.windows.latest,'0.22.0');
   assert.ok(Number.isFinite(Date.parse(policy.android.requiredAfter)));
   assert.ok(Number.isFinite(Date.parse(policy.windows.requiredAfter)));
   const server = http.createServer((req, res) => {

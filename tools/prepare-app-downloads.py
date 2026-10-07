@@ -9,7 +9,7 @@ import urllib.parse
 import urllib.request
 import zipfile
 
-INSTALLERS = [{"artifact":11516230723,"archive_sha":"4750bad12f917af0042eb337784d8364dde63542d17094179e6c3e2fcd18e9e6","entry":"TIH-Learning-Desktop-0.21.0-Windows-x64.exe","name":"TIH-Learning-Desktop-0.21.0-Windows-x64.exe","manifest":"windows-0.21.0.json","version":"0.21.0"},{"artifact":11515223699,"archive_sha":"97b97370658ccfbe6fee03cf2887fe589d6633d9c25977b75d9b52bea1cd8fd8","entry":"app-debug.apk","name":"TIH-Learning-Android-0.3.37-preview.apk","manifest":"android-0.3.37.json","version":"0.3.37"}]
+INSTALLERS = [{"artifact":11517521869,"archive_sha":"04cf72239efbf9032f6f459769ed28a2d2e2288eb116c237f49f6ccd238933c5","entry":"TIH-Learning-Desktop-0.22.0-Windows-x64.exe","name":"TIH-Learning-Desktop-0.22.0-Windows-x64.exe","manifest":"windows-0.22.0.json","version":"0.22.0"},{"artifact":11517608581,"archive_sha":"d017684728254fe43591fac4984fafd95186d2cb9adc3502c65d43d920150b8e","entry":"app-store.apk","name":"TIH-Learning-Android-0.3.38-preview.apk","manifest":"android-0.3.38.json","version":"0.3.38"}]
 PUBLIC = 'https://tolbertinnovationhub.org/downloads/'
 
 class PublicRedirect(urllib.request.HTTPRedirectHandler):
