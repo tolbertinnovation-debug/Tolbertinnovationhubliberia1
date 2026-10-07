@@ -1,8 +1,9 @@
+const FULL_COURSES=['computer-literacy','ielts'];
 const OFFLINE_WINDOW=7*24*60*60*1000;
 class AccessError extends Error{}
 class NetworkError extends Error{}
 function canStudy(session,course='computer-literacy',now=Date.now()){return !!session&&now>=session.verifiedAt&&now-session.verifiedAt<OFFLINE_WINDOW&&session.grants.includes(course);}
-function publicAccount(session){return session?{studentId:session.studentId,name:session.name,approved:canStudy(session),verifiedAt:session.verifiedAt,expiresAt:session.verifiedAt+OFFLINE_WINDOW}:null;}
+function publicAccount(session){const approvedCourses=FULL_COURSES.filter(id=>canStudy(session,id));return session?{approvedCourses,studentId:session.studentId,name:session.name,approved:approvedCourses.length>0,verifiedAt:session.verifiedAt,expiresAt:session.verifiedAt+OFFLINE_WINDOW}:null;}
 class HubApi{
   constructor(config){this.base=new URL(config.url).origin;this.key=config.anonKey;}
   async request(path,body,token){
@@ -27,4 +28,4 @@ class HubApi{
   async signIn(email,password){if(typeof email!=='string'||typeof password!=='string'||!email.trim()||!password||email.length>320||password.length>1000)throw new AccessError('Enter your email and password.');return this.profile(await this.request('auth/v1/token?grant_type=password',{email:email.trim(),password}));}
   async refresh(old,onRotated){const tokens=await this.request('auth/v1/token?grant_type=refresh_token',{refresh_token:old.refreshToken});if(typeof tokens.access_token!=='string'||typeof tokens.refresh_token!=='string')throw new AccessError('Sign in again to verify your account.');onRotated({...old,accessToken:tokens.access_token,refreshToken:tokens.refresh_token});const next=await this.profile(tokens);if(next.studentId!==old.studentId)throw new AccessError('Your account changed. Please sign in again.');return next;}
 }
-module.exports={HubApi,AccessError,NetworkError,canStudy,publicAccount,OFFLINE_WINDOW};
+module.exports={FULL_COURSES,HubApi,AccessError,NetworkError,canStudy,publicAccount,OFFLINE_WINDOW};
