@@ -1,11 +1,11 @@
-TIH Learning Desktop 0.12.0 — Build Real AI & Cybersecurity Skills.
+TIH Learning Desktop 0.13.0 — Data Analysis with Excel, Power BI & Google Sheets Certificate.
 
-The tenth full desktop course includes 15 modules, 127 reading lessons, 136 assessments with 477 question entries, six practical projects and 133 video links. Existing source assessments reuse some prompts. Original notes, examples, expandable keywords and project briefs are preserved.
+The eleventh full desktop course brings the existing 20-module program into the desktop learning space: data fundamentals, Excel, Google Sheets, data cleaning and visualization, Power BI, business intelligence, statistics, AI for data, storytelling, SQL, career preparation, dashboard projects and a capstone.
 
-Study AI-assisted security, phishing detection, log analysis, security assessment and incident response. Complete practical work in your own authorized practice environment and save reflections and file references. The app does not scan systems or execute commands. Official TIH certification remains in Learning Hub.
+Original written lessons, video links, assessment questions and project briefs are preserved. Some source assessments reuse questions. Projects are completed in your spreadsheet and reporting tools; reflections and file references are saved in the app. Official certification remains in TIH Learning Hub.
 
-Sign-in-first welcome, continuous video-above-reading lessons, notes, focus view, saved positions, quiz drafts, scores and project records remain available. Course enrollment is verified independently of the nine other full courses. Existing workspaces and backups remain compatible.
+Enrollment is verified independently. Notes, reading positions, quiz drafts, scores and project records stay separate by student and course. Existing workspaces and backups remain compatible.
 
-Validation checks source completeness, assessment fidelity, grading, backups, independent access, lesson keywords, videos, project progress and restart persistence. Windows interface checks repeat against the installed app before publishing.
+Validation checks source completeness, original project briefs, grading, progress, enrollment restrictions and restart persistence. Windows interface tests repeat against the installed app before publication.
 
 Back up in Settings, close the old app and install the update in the same location. Windows x64 preview; unsigned installer.

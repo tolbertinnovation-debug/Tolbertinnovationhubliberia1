@@ -78,19 +78,20 @@ async function installAccountFixture(){
   const android=JSON.parse(fs.readFileSync('src/content/courses/android.json','utf8'));
   const design=JSON.parse(fs.readFileSync('src/content/courses/design.json','utf8'));
   const aicyber=JSON.parse(fs.readFileSync('src/content/courses/ai-cybersecurity.json','utf8'));
+  const data=JSON.parse(fs.readFileSync('src/content/courses/data.json','utf8'));
   if(electron){await electron.evaluate(({app})=>{
     const path=process.getBuiltinModule('path'),appRequire=process.getBuiltinModule('module').createRequire(path.join(app.getAppPath(),'main.cjs'));
     const {HubApi,FULL_COURSES}=appRequire(path.join(app.getAppPath(),'auth.cjs'));
-    const keyFor=v=>v.includes('pending')?'pending':v.includes('ielts-only')?'ielts-only':v.includes('pm-only')?'pm-only':v.includes('webdev-only')?'webdev-only':v.includes('office-only')?'office-only':v.includes('accounting-only')?'accounting-only':v.includes('cyber-only')?'cyber-only':v.includes('android-only')?'android-only':v.includes('design-only')?'design-only':v.includes('ai-skills-only')?'ai-skills-only':'approved';
+    const keyFor=v=>v.includes('pending')?'pending':v.includes('ielts-only')?'ielts-only':v.includes('pm-only')?'pm-only':v.includes('webdev-only')?'webdev-only':v.includes('office-only')?'office-only':v.includes('accounting-only')?'accounting-only':v.includes('cyber-only')?'cyber-only':v.includes('android-only')?'android-only':v.includes('design-only')?'design-only':v.includes('ai-skills-only')?'ai-skills-only':v.includes('data-only')?'data-only':'approved';
     HubApi.prototype.request=async function(p,body,token){
       if(p.startsWith('auth/')){const key=keyFor(body.email||body.refresh_token||'');return{access_token:key+'-token',refresh_token:key+'-refresh'};}
-      const key=keyFor(token),id={pending:'student-b','ielts-only':'student-c','pm-only':'student-d','webdev-only':'student-e','office-only':'student-f','accounting-only':'student-g','cyber-only':'student-h','android-only':'student-i','design-only':'student-j','ai-skills-only':'student-k',approved:'student-a'}[key];
+      const key=keyFor(token),id={pending:'student-b','ielts-only':'student-c','pm-only':'student-d','webdev-only':'student-e','office-only':'student-f','accounting-only':'student-g','cyber-only':'student-h','android-only':'student-i','design-only':'student-j','ai-skills-only':'student-k','data-only':'student-l',approved:'student-a'}[key];
       if(p.includes('student_me'))return[{id,name:key==='approved'?'Samuel':key==='pending'?'Pending Learner':'Course Learner',status:'active'}];
-      return FULL_COURSES.map(course=>({student_id:id,item_id:course,access_granted:key==='approved'||key==='ielts-only'&&course==='ielts'||key==='pm-only'&&course==='project-mgmt'||key==='webdev-only'&&course==='webdev'||key==='office-only'&&course==='office'||key==='accounting-only'&&course==='accounting-bookkeeping'||key==='cyber-only'&&course==='cybersecurity'||key==='android-only'&&course==='android'||key==='design-only'&&course==='design'||key==='ai-skills-only'&&course==='ai-cybersecurity',payment_status:'pending'}));
+      return FULL_COURSES.map(course=>({student_id:id,item_id:course,access_granted:key==='approved'||key==='ielts-only'&&course==='ielts'||key==='pm-only'&&course==='project-mgmt'||key==='webdev-only'&&course==='webdev'||key==='office-only'&&course==='office'||key==='accounting-only'&&course==='accounting-bookkeeping'||key==='cyber-only'&&course==='cybersecurity'||key==='android-only'&&course==='android'||key==='design-only'&&course==='design'||key==='ai-skills-only'&&course==='ai-cybersecurity'||key==='data-only'&&course==='data',payment_status:'pending'}));
     };
   });}
-  else {await page.context().addInitScript(({course,ielts,pm,webdev,office,accounting,cyber,android,design,aicyber})=>{if(window!==window.top)return;
-    const available={'computer-literacy':course,ielts,'project-mgmt':pm,webdev,office,'accounting-bookkeeping':accounting,cybersecurity:cyber,android,design,'ai-cybersecurity':aicyber};
+  else {await page.context().addInitScript(({course,ielts,pm,webdev,office,accounting,cyber,android,design,aicyber,data})=>{if(window!==window.top)return;
+    const available={'computer-literacy':course,ielts,'project-mgmt':pm,webdev,office,'accounting-bookkeeping':accounting,cybersecurity:cyber,android,design,'ai-cybersecurity':aicyber,data};
     const empty=()=>({activeCourse:'computer-literacy',courseBookmarks:{},lessonScrolls:{},version:1,name:'',saved:[],notes:[],completed:[],goal:25,fontSize:18,lastLesson:'',quizScores:{},quizDrafts:{},projects:{}});
     let account=JSON.parse(localStorage.getItem('fixture-account')||'null');const key=()=>account?.studentId||'guest';
     const read=()=>({...empty(),...JSON.parse(localStorage.getItem('fixture-state-'+key())||'{}'),owner:key()});
@@ -98,11 +99,11 @@ async function installAccountFixture(){
     const result=()=>({account,state:read()});
     window.tihDesktop={read:async()=>read(),write:async d=>save({...d,quizScores:read().quizScores}),account:async()=>account,
       course:async(id='computer-literacy')=>{if(!account?.approvedCourses.includes(id))throw Error('Access required');return available[id];},
-      signIn:async(email)=>{const pending=email.includes('pending'),ieltsOnly=email.includes('ielts-only'),pmOnly=email.includes('pm-only'),webdevOnly=email.includes('webdev-only'),officeOnly=email.includes('office-only'),accountingOnly=email.includes('accounting-only'),cyberOnly=email.includes('cyber-only'),androidOnly=email.includes('android-only'),designOnly=email.includes('design-only'),aicyberOnly=email.includes('ai-skills-only');account={approvedCourses:pending?[]:ieltsOnly?['ielts']:pmOnly?['project-mgmt']:webdevOnly?['webdev']:officeOnly?['office']:accountingOnly?['accounting-bookkeeping']:cyberOnly?['cybersecurity']:androidOnly?['android']:designOnly?['design']:aicyberOnly?['ai-cybersecurity']:Object.keys(available),studentId:pending?'student-b':ieltsOnly?'student-c':pmOnly?'student-d':webdevOnly?'student-e':officeOnly?'student-f':accountingOnly?'student-g':cyberOnly?'student-h':androidOnly?'student-i':designOnly?'student-j':aicyberOnly?'student-k':'student-a',name:pending?'Pending Learner':ieltsOnly||pmOnly||webdevOnly||officeOnly||accountingOnly||cyberOnly||androidOnly||designOnly||aicyberOnly?'Course Learner':'Samuel',approved:!pending,verifiedAt:Date.now(),expiresAt:Date.now()+604800000};localStorage.setItem('fixture-account',JSON.stringify(account));return result();},
+      signIn:async(email)=>{const pending=email.includes('pending'),ieltsOnly=email.includes('ielts-only'),pmOnly=email.includes('pm-only'),webdevOnly=email.includes('webdev-only'),officeOnly=email.includes('office-only'),accountingOnly=email.includes('accounting-only'),cyberOnly=email.includes('cyber-only'),androidOnly=email.includes('android-only'),designOnly=email.includes('design-only'),aicyberOnly=email.includes('ai-skills-only'),dataOnly=email.includes('data-only');account={approvedCourses:pending?[]:ieltsOnly?['ielts']:pmOnly?['project-mgmt']:webdevOnly?['webdev']:officeOnly?['office']:accountingOnly?['accounting-bookkeeping']:cyberOnly?['cybersecurity']:androidOnly?['android']:designOnly?['design']:aicyberOnly?['ai-cybersecurity']:dataOnly?['data']:Object.keys(available),studentId:pending?'student-b':ieltsOnly?'student-c':pmOnly?'student-d':webdevOnly?'student-e':officeOnly?'student-f':accountingOnly?'student-g':cyberOnly?'student-h':androidOnly?'student-i':designOnly?'student-j':aicyberOnly?'student-k':dataOnly?'student-l':'student-a',name:pending?'Pending Learner':ieltsOnly||pmOnly||webdevOnly||officeOnly||accountingOnly||cyberOnly||androidOnly||designOnly||aicyberOnly||dataOnly?'Course Learner':'Samuel',approved:!pending,verifiedAt:Date.now(),expiresAt:Date.now()+604800000};localStorage.setItem('fixture-account',JSON.stringify(account));return result();},
       refresh:async()=>result(),signOut:async()=>{account=null;localStorage.removeItem('fixture-account');return result();},
       grade:async(id,answers)=>{const c=Object.values(available).find(c=>c.lessons.some(l=>l.id===id));if(!c||!account?.approvedCourses.includes(c.courseId))throw Error('Access required');const l=c.lessons.find(l=>l.id===id),r=window.TIHStudy.grade(l.questions,answers),s=read(),old=s.quizScores[id];s.quizScores[id]={best:Math.max(old?.best||0,r.score),last:r.score,attempts:(old?.attempts||0)+1,updatedAt:Date.now(),answers};delete s.quizDrafts[id];return{result:r,state:save(s)};},
       openVideo:async()=>true,openHub:async()=>true,report:async()=>true,export:async()=>true,import:async()=>null};
-  },{course,ielts,pm,webdev,office,accounting,cyber,android,design,aicyber});await page.reload();}
+  },{course,ielts,pm,webdev,office,accounting,cyber,android,design,aicyber,data});await page.reload();}
   return course;
 }
 async function signInFixture(email='approved@example.com'){
@@ -658,4 +659,52 @@ test('AI Cybersecurity course supports practical notes, source assessments, proj
   if(electron){for(const id of ['computer-literacy','ielts','project-mgmt','webdev','office','accounting-bookkeeping','cybersecurity','android','design'])expect(await page.evaluate(id=>window.tihDesktop.course(id).then(()=>false,()=>true),id)).toBeTruthy();expect(await page.evaluate(()=>fetch('content/courses/ai-cybersecurity.json').then(r=>r.status))).toBe(403);}
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();await signInFixture('pending@example.com');
   if(electron)expect(await page.evaluate(()=>window.tihDesktop.course('ai-cybersecurity').then(()=>false,()=>true))).toBeTruthy();
+});
+
+test('Data Analysis course supports practical notes, source assessments, projects and isolated enrollment',async()=>{
+  const web=JSON.parse(fs.readFileSync('src/content/courses/data.json','utf8'));
+  await installAccountFixture();await signInFixture();
+  await page.getByRole('button',{name:'Learning space',exact:true}).click();
+  if(!(await page.getByLabel('Study course',{exact:true}).isVisible()))await page.getByRole('button',{name:'Lessons',exact:true}).click();
+  await page.getByLabel('Study course',{exact:true}).selectOption('data');
+  await expect(page.locator('.learning-module')).toHaveCount(20);
+  await expect(page.getByRole('heading',{name:web.lessons[0].title,exact:true})).toBeVisible();
+  await expect(page.locator('#lesson-video')).toHaveAttribute('src',new RegExp('/embed/'+web.lessons[0].videoId));
+  await page.getByRole('button',{name:'Hide video',exact:true}).click();
+  const code=web.lessons.find(l=>l.kind==='lesson');
+  await page.getByLabel('Find a lesson',{exact:true}).fill('');await page.locator(`#lesson-outline [data-route="reader/${code.id}"]`).click();
+  await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText(code.title.replace(/^\s*\d+(?:\.\d+)*\s*/,''));
+  await page.getByRole('button',{name:'Mark as read',exact:true}).click();
+  await page.screenshot({path:'test-results/46-data-lesson.png',fullPage:true});
+  const quiz=web.lessons.find(l=>l.kind==='quiz');await page.locator(`#lesson-outline [data-route="reader/${quiz.id}"]`).click();
+  for(let i=0;i<quiz.questions.length;i++)await page.locator(`[name="question-${i}"][value="${quiz.questions[i].answer}"]`).check();
+  await page.getByRole('button',{name:'Submit assessment',exact:true}).click();await expect(page.locator('.assessment-result')).toContainText('100%');
+  await expect(page.locator('.answer-explanation')).toHaveCount(quiz.questions.length);
+  await page.screenshot({path:'test-results/47-data-assessment.png',fullPage:true});
+  const project=web.lessons.find(l=>l.kind==='project');
+  await page.getByLabel('Find a lesson',{exact:true}).fill(project.title.replace(/^🛠️ /,''));
+  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText(project.title.replace(/^🛠️ /,''));
+  const reflection='I cleaned a dataset, checked formulas, built a dashboard and documented the findings and limitations of my analysis.';
+  await page.getByLabel('What did you create and learn?',{exact:true}).fill(reflection);
+  await page.getByLabel('Finished file names or folder location',{exact:true}).fill('TIH portfolio / full-stack-capstone');
+  await page.locator('#project-confirm').check();await page.getByRole('button',{name:'Record project completion',exact:true}).click();
+  await expect(page.locator('.activity-status')).toContainText('Completion recorded');
+  await page.locator('.project-work').screenshot({path:'test-results/48-data-project.png'});
+  await page.getByRole('button',{name:'Course progress',exact:true}).click();
+  await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='lesson').length);await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='quiz').length);await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='project').length);
+  await page.screenshot({path:'test-results/49-data-progress.png',fullPage:true});
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('data');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  await page.getByRole('button',{name:'Learning space',exact:true}).click();
+  await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
+  await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
+  if(electron)await installAccountFixture();await signInFixture('data-only@example.com');
+  await expect(page.getByRole('heading',{name:web.title,exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'Learning space',exact:true}).click();
+  if(!(await page.getByLabel('Study course',{exact:true}).isVisible()))await page.getByRole('button',{name:'Lessons',exact:true}).click();
+  await expect(page.getByLabel('Study course',{exact:true})).toHaveValue('data');
+  await page.getByRole('button',{name:'Course progress',exact:true}).click();await expect(page.locator('.progress-summary')).toContainText('0 / '+web.lessons.filter(l=>l.kind==='quiz').length);
+  if(electron){for(const id of ['computer-literacy','ielts','project-mgmt','webdev','office','accounting-bookkeeping','cybersecurity','android','design','ai-cybersecurity'])expect(await page.evaluate(id=>window.tihDesktop.course(id).then(()=>false,()=>true),id)).toBeTruthy();expect(await page.evaluate(()=>fetch('content/courses/data.json').then(r=>r.status))).toBe(403);}
+  await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();await signInFixture('pending@example.com');
+  if(electron)expect(await page.evaluate(()=>window.tihDesktop.course('data').then(()=>false,()=>true))).toBeTruthy();
 });
