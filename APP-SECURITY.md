@@ -26,3 +26,5 @@ Android stores session credentials with Android Keystore AES-GCM authenticated e
 - Publishing requires passing unit, lint, source/installed desktop UI checks, and verifying the public Android APK is non-debuggable and signed with the existing certificate.
 
 Dependency audit: npm reports zero production-package advisories, but eight moderate development/build-package findings all trace to the unpatched sprintf-js precision-specifier denial of service (GHSA-hp3w-g68c-fv3c). This dependency is not shipped as app JavaScript; do not pass untrusted format strings to build logging. No high or critical npm findings were reported. This is not a full Electron/Chromium or Gradle dependency attestation.
+
+Android HTML parser upgraded from jsoup 1.18.3 to patched 1.23.1 following the upstream GHSA-pmhh-3w7g-xqp8 advisory. The existing reader does not use the advisory\'s custom raw-text Safelist configuration, and its script/network restrictions remain enabled.
