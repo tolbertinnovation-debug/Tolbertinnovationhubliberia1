@@ -1,5 +1,6 @@
 const {app,BrowserWindow,protocol,net,ipcMain,dialog,session,Menu,shell,safeStorage}=require('electron');
 const updatePolicy=require('./update-policy.cjs');
+const {boundedJson}=require('./network.cjs');
 const fs=require('node:fs'),path=require('node:path');const {pathToFileURL}=require('node:url');
 const {defaults,validate,merge,assetPath}=require('./model.cjs');
 const {FULL_COURSES,HubApi,AccessError,canStudy,publicAccount}=require('./auth.cjs');const {grade,progress}=require('./src/study-model.js');const {readerDocument}=require('./src/reader-document.cjs');
@@ -12,7 +13,7 @@ function updateStatus(){return updatePolicy.status(app.getVersion(),updateCache)
 async function checkUpdates(force=false){
   if(!force&&updateCache&&Date.now()>=updateCache.verifiedAt&&Date.now()-updateCache.verifiedAt<60*60*1000)return updateStatus();
   try{
-    const raw=process.env.TIH_ELECTRON_TEST==='1'?{schema:1,windows:{latest:app.getVersion(),requiredAfter:'2099-01-01T00:00:00Z'}}:await net.fetch('https://tolbertinnovationhub.org/app-updates.json?t='+Date.now(),{signal:AbortSignal.timeout(10000),cache:'no-store'}).then(async r=>{if(!r.ok)throw Error('Update check unavailable');const text=await r.text();if(text.length>16384)throw Error('Invalid update response');return JSON.parse(text);});
+    const raw=await net.fetch('https://tolbertinnovationhub.org/app-updates.json?t='+Date.now(),{signal:AbortSignal.timeout(10000),cache:'no-store',redirect:'error'}).then(async r=>{if(!r.ok)throw Error('Update check unavailable');return boundedJson(r,16384);});
     updateCache={verifiedAt:Date.now(),policy:updatePolicy.validate(raw)};
     fs.writeFileSync(path.join(base,'update-policy.json'),JSON.stringify(updateCache));
   }catch{}
@@ -59,3 +60,4 @@ app.whenReady().then(()=>{
   window=new BrowserWindow({width:1440,height:960,minWidth:960,minHeight:700,title:'TIH Learning Desktop',backgroundColor:'#f5f7fb',icon:path.join(root,'content/logo.png'),webPreferences:{preload:path.join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true}});
   window.webContents.setWindowOpenHandler(()=>({action:'deny'}));window.webContents.on('will-navigate',(e,url)=>{if(!url.startsWith(origin+'/'))e.preventDefault();});window.webContents.on('will-attach-webview',e=>e.preventDefault());Menu.setApplicationMenu(null);window.loadURL(origin+'/index.html');
 });app.on('window-all-closed',()=>app.quit());
+

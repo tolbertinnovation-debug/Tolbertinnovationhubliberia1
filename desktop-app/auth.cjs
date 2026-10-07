@@ -1,3 +1,4 @@
+const {boundedJson}=require('./network.cjs');
 const FULL_COURSES=['computer-literacy','ielts','project-mgmt','webdev','office','accounting-bookkeeping','cybersecurity','android','design','ai-cybersecurity','data','leadership','english-success','toefl','sat','bible-foundations'];
 const OFFLINE_WINDOW=7*24*60*60*1000;
 class AccessError extends Error{}
@@ -11,7 +12,7 @@ class HubApi{
     try{response=await fetch(this.base+'/'+path,{method:body?'POST':'GET',headers:{apikey:this.key,...(token?{Authorization:'Bearer '+token}:{}),...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined,redirect:'error',signal:AbortSignal.timeout(25000)});}catch{throw new NetworkError('Unable to connect. Check your internet connection and try again.');}
     if(response.status===429||response.status>=500)throw new NetworkError('TIH Learning is temporarily unavailable. Try again shortly.');
     if(!response.ok)throw new AccessError('Sign-in or account verification failed. Check your email and password, or contact TIH support.');
-    try{return await response.json();}catch{throw new NetworkError('TIH returned an unreadable response. Try again shortly.');}
+    try{return await boundedJson(response);}catch{throw new NetworkError('TIH returned an unreadable response. Try again shortly.');}
   }
   async profile(tokens){
     if(typeof tokens.access_token!=='string'||typeof tokens.refresh_token!=='string')throw new AccessError('Account credentials could not be verified.');
@@ -29,4 +30,5 @@ class HubApi{
   async refresh(old,onRotated){const tokens=await this.request('auth/v1/token?grant_type=refresh_token',{refresh_token:old.refreshToken});if(typeof tokens.access_token!=='string'||typeof tokens.refresh_token!=='string')throw new AccessError('Sign in again to verify your account.');onRotated({...old,accessToken:tokens.access_token,refreshToken:tokens.refresh_token});const next=await this.profile(tokens);if(next.studentId!==old.studentId)throw new AccessError('Your account changed. Please sign in again.');return next;}
 }
 module.exports={FULL_COURSES,HubApi,AccessError,NetworkError,canStudy,publicAccount,OFFLINE_WINDOW};
+
 
