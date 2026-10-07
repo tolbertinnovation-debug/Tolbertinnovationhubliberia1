@@ -39,14 +39,14 @@ jobs:
       - name: Check installer
         shell: pwsh
         run: |
-          $installer = Get-Item dist/TIH-Learning-Desktop-0.1.1-Windows-x64.exe
+          $installer = Get-Item dist/TIH-Learning-Desktop-0.1.2-Windows-x64.exe
           if ($installer.Length -lt 20000000) { throw 'Installer unexpectedly small' }
           Get-FileHash $installer -Algorithm SHA256 | Format-List
       - name: Install and test the packaged Windows app
         shell: pwsh
         run: |
           $target = Join-Path $env:RUNNER_TEMP 'tih-desktop-install'
-          $installer = (Resolve-Path 'dist/TIH-Learning-Desktop-0.1.1-Windows-x64.exe').Path
+          $installer = (Resolve-Path 'dist/TIH-Learning-Desktop-0.1.2-Windows-x64.exe').Path
           $process = Start-Process -FilePath $installer -ArgumentList '/S', "/D=$target" -Wait -PassThru
           if ($process.ExitCode -ne 0) { throw "Installer exited with $($process.ExitCode)" }
           $env:TIH_PACKAGED_EXE = Join-Path $target 'TIH Learning Desktop.exe'
@@ -62,11 +62,13 @@ jobs:
       - name: Publish desktop preview
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: desktop-v0.1.1-preview
+          tag_name: desktop-v0.1.2-preview
           target_commitish: ${{ github.sha }}
-          name: TIH Learning Desktop 0.1.1 — Windows preview
+          name: TIH Learning Desktop 0.1.2 — Windows preview
           prerelease: true
           body_path: desktop-app/RELEASE-NOTES.md
           files: |
-            desktop-app/dist/TIH-Learning-Desktop-0.1.1-Windows-x64.exe
+            desktop-app/dist/TIH-Learning-Desktop-0.1.2-Windows-x64.exe
             desktop-app/test-results/01-dashboard.png
+            desktop-app/test-results/06-learning-focus-1440.png
+            desktop-app/test-results/07-video-classroom.png

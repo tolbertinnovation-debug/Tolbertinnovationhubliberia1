@@ -1,9 +1,14 @@
-The first TIH Learning desktop workspace for Windows 10/11 (64-bit).
+TIH Learning Desktop 0.1.2 — a larger learning space for Windows 10/11 (64-bit).
 
-Explore the 57-course Learning Hub catalog and module outlines, save courses, write personal notes, use a focus timer, and try three Computer Literacy lessons in the desktop reader. Local notes, profile and reading progress persist between sessions. Export and restore your workspace backup from Settings.
+New in this preview:
+- Collapsible app navigation, a dedicated Learning space entry and Back/Forward controls.
+- A wide lesson workspace with Previous/Next lesson navigation and a remembered last lesson.
+- Optional course and notes panels, focus view, full screen and adjustable reading text.
+- Read lesson, Watch video and Resources tabs for the three Computer Literacy preview lessons.
+- Existing TIH source-linked videos, loaded only on request, with an Open on YouTube fallback. Internet is required for video; reading materials and notes work offline.
 
-This release establishes the desktop app. Full courses, TIH sign-in, enrollment, quizzes and certificates will be added course by course. The local profile does not sign in to your TIH account. Existing website and Android releases are separate.
+The 57-course catalog and source-derived outlines, saved courses, notebook, local profile, focus timer and workspace backups remain included. This is still a desktop preview with three authored Computer Literacy lessons; full courses, sign-in, enrollment, quizzes and certificates will be added course by course. The local profile does not sign in to your TIH account.
 
-Download and run the Windows x64 installer. This preview is not code-signed, so Windows may display a publisher warning. Install only the release downloaded from this TIH repository. No other software purchase or paid course enrollment is included.
+The release pipeline tests the native Windows app, builds and installs the generated installer, then repeats UI tests against the installed app. Automated video checks verify loading controls, offline recovery and the player isolation boundary using a controlled response; they do not guarantee third-party video availability. YouTube controls access and playback availability.
 
-Version 0.1.1 improves the sidebar on smaller Windows displays and embeds TIH executable branding. The release pipeline installs the generated installer and checks the installed application, including saved notes and profile persistence after restart.
+Download and run the Windows x64 installer. The preview is unsigned, so Windows may display a publisher warning. Before updating, export a workspace backup from Settings. Close the old app and install this version in the same location. Existing local notes and profile data remain in the same user-data directory.

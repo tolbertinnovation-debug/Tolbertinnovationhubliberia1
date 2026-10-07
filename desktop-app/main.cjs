@@ -1,12 +1,20 @@
-const {app,BrowserWindow,protocol,net,ipcMain,dialog,session,Menu}=require('electron');const fs=require('node:fs');const path=require('node:path');const {pathToFileURL}=require('node:url');const {defaults,validate,merge,assetPath}=require('./model.cjs');
+const {app,BrowserWindow,protocol,net,ipcMain,dialog,session,Menu,shell}=require('electron');const fs=require('node:fs');const path=require('node:path');const {pathToFileURL}=require('node:url');const {defaults,validate,merge,assetPath}=require('./model.cjs');
 protocol.registerSchemesAsPrivileged([{scheme:'tih',privileges:{standard:true,secure:true,supportFetchAPI:true,corsEnabled:true}}]);
 const testData=app.commandLine.getSwitchValue('user-data-dir');if(testData)app.setPath('userData',testData);
-let window,store;const origin='tih://app';
+let window,store;const APP_ID='org.tolbertinnovationhub.desktop';app.setAppUserModelId(APP_ID);const origin='tih://app';
 function read(){try{return validate(JSON.parse(fs.readFileSync(store,'utf8')));}catch(e){if(e.code==='ENOENT')return defaults();throw Error('Your study file could not be read. Restore a backup or contact TIH; the file has not been overwritten.');}}
 function write(data){const value=validate(data);fs.mkdirSync(path.dirname(store),{recursive:true});fs.writeFileSync(store+'.tmp',JSON.stringify(value));fs.renameSync(store+'.tmp',store);return value;}
 function trusted(event){if(event.sender!==window.webContents||event.senderFrame!==window.webContents.mainFrame||!event.senderFrame.url.startsWith(origin+'/'))throw Error('Untrusted request');}
 app.whenReady().then(()=>{store=path.join(app.getPath('userData'),'study-workspace.json');const root=path.join(__dirname,'src');protocol.handle('tih',request=>{try{return net.fetch(pathToFileURL(assetPath(request.url,root)).href);}catch{return new Response('Not found',{status:404});}});
-session.defaultSession.setPermissionRequestHandler((_w,_p,cb)=>cb(false));session.defaultSession.setPermissionCheckHandler(()=>false);
+const lessons=JSON.parse(fs.readFileSync(path.join(root,'content/sample.json'),'utf8')).lessons;
+const videoIds=new Set(lessons.map(l=>l.videoId).filter(id=>/^[A-Za-z0-9_-]{11}$/.test(id)));
+const isVideo=url=>{try{const u=new URL(url);return u.origin==='https://www.youtube-nocookie.com'&&videoIds.has(u.pathname.split('/embed/')[1]);}catch{return false;}};
+const allowFullscreen=(wc,permission,origin)=>wc===window?.webContents&&permission==='fullscreen'&&(origin==='tih://app'||origin==='https://www.youtube-nocookie.com');
+session.defaultSession.setPermissionRequestHandler((wc,p,cb,details)=>cb(allowFullscreen(wc,p,(details.requestingUrl||'').startsWith('tih://app/')?'tih://app':new URL(details.requestingUrl||'about:blank').origin)));
+session.defaultSession.setPermissionCheckHandler((wc,p,origin)=>allowFullscreen(wc,p,origin));
+// YouTube requires desktop apps to identify themselves using the installed application ID.
+session.defaultSession.webRequest.onBeforeSendHeaders({urls:['https://www.youtube-nocookie.com/embed/*']},(details,callback)=>{const headers={...details.requestHeaders};if(details.webContentsId===window?.webContents.id&&isVideo(details.url))headers.Referer='https://'+APP_ID+'/';callback({requestHeaders:headers});});
+ipcMain.handle('study:open-video',async(e,id)=>{trusted(e);const lesson=lessons.find(l=>l.id===id);if(!lesson||!videoIds.has(lesson.videoId))throw Error('No video is linked to this lesson.');await shell.openExternal('https://www.youtube.com/watch?v='+lesson.videoId);return true;});
 ipcMain.handle('study:read',e=>{trusted(e);return read();});ipcMain.handle('study:write',(e,data)=>{trusted(e);return write(data);});
 ipcMain.handle('study:export',async e=>{trusted(e);const result=await dialog.showSaveDialog(window,{title:'Back up your TIH workspace',defaultPath:'TIH-Learning-backup.json',filters:[{name:'TIH workspace',extensions:['json']}]});if(result.canceled)return false;fs.writeFileSync(result.filePath,JSON.stringify(read(),null,2));return true;});
 ipcMain.handle('study:import',async e=>{trusted(e);const result=await dialog.showOpenDialog(window,{title:'Restore a TIH workspace backup',properties:['openFile'],filters:[{name:'TIH workspace',extensions:['json']}]});if(result.canceled)return null;const p=result.filePaths[0];if(fs.statSync(p).size>8*1024*1024)throw Error('Backup is too large.');return write(merge(read(),JSON.parse(fs.readFileSync(p,'utf8'))));});
