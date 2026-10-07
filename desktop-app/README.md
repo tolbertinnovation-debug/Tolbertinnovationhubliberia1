@@ -61,7 +61,7 @@ Older backups without reading positions start each lesson at the top. Notes supp
 
 The workflow tests the native Windows app, builds the installer, installs it and repeats UI tests against the installed executable. Tests cover full source completeness, grading, restore, cached-access expiry, active-profile/enrollment rules, rotated credentials, approved/pending accounts, quiz drafts/results, project records, PDF export, per-student isolation, independent course permissions, IELTS charts/keywords, essay drafts/timer/word counts, Project Management quiz uniqueness/portfolio/final assessment, ten-course switching and restart persistence. Account integration tests use controlled responses; they do not authenticate a real student. Video tests verify controlled player loading and isolation, not third-party playback availability.
 
-Release: `desktop-v0.16.0-preview`. The installer is unsigned and may show a Windows publisher warning. Future public distribution needs code signing. No certificate is embedded or invented.
+Release: `desktop-v0.17.0-preview`. The installer is unsigned and may show a Windows publisher warning. Future public distribution needs code signing. No certificate is embedded or invented.
 
 
 
@@ -72,3 +72,5 @@ Business Leadership Masterclass is the twelfth full course: 20 modules, 144 read
 English for Academic & Professional Success is the thirteenth full course: 20 modules, 146 readings, 162 assessments with 616 distinct questions, 24 projects and 170 video links. Original project briefs and notes are retained; enrollment and progress remain independent. Practice percentages are not official exam scores.
 
 TOEFL iBT is the fourteenth full course: 10 modules, 84 reading lessons with video links and 100 assessments with 263 distinct questions. Original notes, exercises and mock assessments are preserved. Desktop practice percentages are not official TOEFL scores; speaking and writing exercises are self-practice.
+
+Digital SAT Prep is the fifteenth full course: 14 modules, 102 lessons with video links and 114 assessments containing 467 question entries (300 distinct prompts). Original notes and short practice assessments are retained. Percentages are not official SAT scores; source question repetitions are preserved.
