@@ -1,4 +1,4 @@
-TIH Learning Desktop 0.4.1 — sign in first and a continuous lesson page.
+TIH Learning Desktop 0.4.2 — sign in first and a continuous lesson page.
 
 The standalone welcome screen uses the same TIH logo and welcome artwork as the APK. Sign in with your existing TIH email and password before entering the desktop library. A saved account opens the library automatically; signing out returns to the welcome screen. Password visibility can be toggled and passwords are cleared after submission.
 
