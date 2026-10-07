@@ -968,7 +968,10 @@ test('mandatory update screen blocks courses and opens LibApps until verified',a
   await page.getByRole('button',{name:'Download update from LibApps ↗',exact:true}).click();
   expect(await electron.evaluate(()=>global.__updateDestination)).toBe('https://tolbertinnovationhub.org/libapps');
   await page.screenshot({path:'test-results/70-required-app-update.png',fullPage:true});
-  await electron.evaluate(({net,app})=>{net.fetch=async()=>new Response(JSON.stringify({schema:1,windows:{latest:app.getVersion(),requiredAfter:'2099-01-01T00:00:00Z'}}));});
+  await electron.evaluate(({net,app})=>{
+    const {ReadableStream}=process.getBuiltinModule('stream/web');
+    net.fetch=async()=>({ok:true,body:new ReadableStream({start(c){c.enqueue(Buffer.from(JSON.stringify({schema:1,windows:{latest:app.getVersion(),requiredAfter:'2099-01-01T00:00:00Z'}})));c.close();}})});
+  });
   await page.getByRole('button',{name:'Check again',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Learn. Grow. Succeed.',exact:true})).toBeVisible();
 });
