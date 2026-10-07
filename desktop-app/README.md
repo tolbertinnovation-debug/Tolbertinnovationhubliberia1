@@ -61,10 +61,12 @@ Older backups without reading positions start each lesson at the top. Notes supp
 
 The workflow tests the native Windows app, builds the installer, installs it and repeats UI tests against the installed executable. Tests cover full source completeness, grading, restore, cached-access expiry, active-profile/enrollment rules, rotated credentials, approved/pending accounts, quiz drafts/results, project records, PDF export, per-student isolation, independent course permissions, IELTS charts/keywords, essay drafts/timer/word counts, Project Management quiz uniqueness/portfolio/final assessment, ten-course switching and restart persistence. Account integration tests use controlled responses; they do not authenticate a real student. Video tests verify controlled player loading and isolation, not third-party playback availability.
 
-Release: `desktop-v0.14.0-preview`. The installer is unsigned and may show a Windows publisher warning. Future public distribution needs code signing. No certificate is embedded or invented.
+Release: `desktop-v0.15.0-preview`. The installer is unsigned and may show a Windows publisher warning. Future public distribution needs code signing. No certificate is embedded or invented.
 
 
 
 Data Analysis with Excel, Power BI & Google Sheets is the eleventh full desktop course, importing all 20 existing modules, source assessments, original project briefs, notes and video links. Enrollment, progress and saved work are independent. Source assessment repetitions are preserved.
 
 Business Leadership Masterclass is the twelfth full course: 20 modules, 144 readings, 155 assessments with 565 distinct questions, 21 projects and 165 video links. Original practical briefs and authored notes are retained; course access and study progress are independent.
+
+English for Academic & Professional Success is the thirteenth full course: 20 modules, 146 readings, 162 assessments with 616 distinct questions, 24 projects and 170 video links. Original project briefs and notes are retained; enrollment and progress remain independent. Practice percentages are not official exam scores.
