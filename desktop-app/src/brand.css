@@ -59,3 +59,5 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline-color:#1565d8
 @media(prefers-reduced-motion:reduce){.button{transition:none}}
 
 .sidebar .profile b,.sidebar #profile-name,.sidebar .text-btn{color:#fff}
+
+.powered-by{font-size:12px;line-height:1.6;text-align:center;white-space:normal}.welcome-form>.powered-by{margin-top:18px;color:#002868}.app-body>footer .powered-by{font-size:11px;padding:0 8px}
