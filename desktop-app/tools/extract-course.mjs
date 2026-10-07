@@ -80,7 +80,11 @@ export function extractCourse(id) {
     if (seen.has(lessonId)) throw new Error('Duplicate lesson identity: ' + key);
     seen.add(lessonId);
     const authored = lookup(c.TIH_LESSON_NOTES?.[id], l.t, mi + 1);
-    const body = authored || c.LESSON_CONTENT?.[id]?.[String(index)] || '';
+    const originalBody = c.LESSON_CONTENT?.[id]?.[String(index)] || '';
+    // Keep the original web-development deliverable alongside the authored explanation.
+    const body = id === 'webdev' && l.isProject && authored && originalBody && authored !== originalBody
+      ? authored + '<section class="source-project-brief">' + originalBody + '</section>'
+      : authored || originalBody;
     let video = l.v || '';
     if (!l.isQuiz) {
       if (!l.isProject && c.TIH_MODULE_VIDEOS?.[id]?.[mi + 1]) video = c.TIH_MODULE_VIDEOS[id][mi + 1];
@@ -118,3 +122,4 @@ export function extractCourse(id) {
     outcomes: source.learn || source.outcomes || [], about: pick('about'), requirements: pick('requirements'), faqs, instructor,
     modules, css: playerCss + '\n' + h.styles.join('\n'), sourceFiles: [...h.files].sort()};
 }
+

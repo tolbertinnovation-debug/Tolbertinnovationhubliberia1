@@ -2,7 +2,7 @@
 
 Independent Windows app on `codex/tih-desktop-app`. Desktop code lives in `desktop-app/`; its workflow runs only on this branch. Website and Android branches are separate.
 
-## Three full desktop courses
+## Four full desktop courses
 
 - Computer Literacy: all 15 source modules: 123 authored reading lessons, 125 assessments with 404 questions, and five practical projects.
 - 128 source-linked videos across lessons and projects. The YouTube player loads above the written lesson with autoplay off. Video playback needs internet; availability is controlled by YouTube.
@@ -14,6 +14,7 @@ Independent Windows app on `codex/tih-desktop-app`. Desktop code lives in `deskt
 - IELTS essay studio: autosaved draft, word count, optional 40-minute timer and a 250-word minimum before self-reporting completion. Quiz percentages are not IELTS band scores; essays are not graded automatically.
 - Each course has separate bookmarks, progress, scores, project records and PDF study records. The Study course selector switches courses without discarding work.
 - Project Management Professional Certificate: all 20 modules, 143 reading lessons, 155 assessments with 570 distinct questions, 16 practical projects and 158 source-linked videos. Original delivery models, worked examples, project briefs and expandable keywords are preserved.
+- Full-Stack Web Development Program: all 20 modules, 170 authored readings, 180 assessments with 633 distinct questions, 24 projects and 194 source-linked videos. Code examples, expandable keywords and original project deliverables are preserved. Build and run projects with your own development tools; the desktop app records reflections and file references.
 - 57-course catalog and source-derived outlines. Other courses will be added one by one.
 
 ## TIH accounts and access
@@ -44,7 +45,7 @@ npm test
 npm start
 ```
 
-The read-only importer uses the existing Learning Hub sources and public account configuration without changing them. It bundles three full courses plus the guest preview and catalog; generated content and build files are excluded from git. Desktop branding copies the APK logo and welcome illustration unchanged and converts the logo to Windows PNG/ICO formats.
+The read-only importer uses the existing Learning Hub sources and public account configuration without changing them. It bundles four full courses plus the guest preview and catalog; generated content and build files are excluded from git. Desktop branding copies the APK logo and welcome illustration unchanged and converts the logo to Windows PNG/ICO formats.
 
 On Windows use `TIH_ELECTRON_TEST=1` and `npm run test:ui`. Linux browser UI checks require Playwright Chromium. `npm run dist:win` creates the unsigned Windows installer.
 
@@ -52,6 +53,7 @@ Older backups without reading positions start each lesson at the top. Notes supp
 
 ## Validation and release
 
-The workflow tests the native Windows app, builds the installer, installs it and repeats UI tests against the installed executable. Tests cover full source completeness, grading, restore, cached-access expiry, active-profile/enrollment rules, rotated credentials, approved/pending accounts, quiz drafts/results, project records, PDF export, per-student isolation, independent course permissions, IELTS charts/keywords, essay drafts/timer/word counts, Project Management quiz uniqueness/portfolio/final assessment, three-course switching and restart persistence. Account integration tests use controlled responses; they do not authenticate a real student. Video tests verify controlled player loading and isolation, not third-party playback availability.
+The workflow tests the native Windows app, builds the installer, installs it and repeats UI tests against the installed executable. Tests cover full source completeness, grading, restore, cached-access expiry, active-profile/enrollment rules, rotated credentials, approved/pending accounts, quiz drafts/results, project records, PDF export, per-student isolation, independent course permissions, IELTS charts/keywords, essay drafts/timer/word counts, Project Management quiz uniqueness/portfolio/final assessment, four-course switching and restart persistence. Account integration tests use controlled responses; they do not authenticate a real student. Video tests verify controlled player loading and isolation, not third-party playback availability.
 
-Release: `desktop-v0.5.0-preview`. The installer is unsigned and may show a Windows publisher warning. Future public distribution needs code signing. No certificate is embedded or invented.
+Release: `desktop-v0.6.0-preview`. The installer is unsigned and may show a Windows publisher warning. Future public distribution needs code signing. No certificate is embedded or invented.
+

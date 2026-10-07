@@ -1,4 +1,4 @@
-const FULL_COURSES=['computer-literacy','ielts','project-mgmt'];
+const FULL_COURSES=['computer-literacy','ielts','project-mgmt','webdev'];
 const OFFLINE_WINDOW=7*24*60*60*1000;
 class AccessError extends Error{}
 class NetworkError extends Error{}
@@ -29,3 +29,4 @@ class HubApi{
   async refresh(old,onRotated){const tokens=await this.request('auth/v1/token?grant_type=refresh_token',{refresh_token:old.refreshToken});if(typeof tokens.access_token!=='string'||typeof tokens.refresh_token!=='string')throw new AccessError('Sign in again to verify your account.');onRotated({...old,accessToken:tokens.access_token,refreshToken:tokens.refresh_token});const next=await this.profile(tokens);if(next.studentId!==old.studentId)throw new AccessError('Your account changed. Please sign in again.');return next;}
 }
 module.exports={FULL_COURSES,HubApi,AccessError,NetworkError,canStudy,publicAccount,OFFLINE_WINDOW};
+
