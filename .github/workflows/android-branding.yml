@@ -51,15 +51,16 @@ jobs:
           node --test android-app/tools/content.test.mjs
       - name: Build and validate branded Android app
         working-directory: android-app
-        run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+        run: ./gradlew --no-daemon --max-workers=2 :app:assembleStore :app:testDebugUnitTest :app:lintStore
       - name: Save Android installer
         uses: actions/upload-artifact@v4
         with:
           name: TIH-Learning-Android-branded
-          path: android-app/app/build/outputs/apk/debug/app-debug.apk
+          path: android-app/app/build/outputs/apk/store/app-store.apk
           if-no-files-found: error
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: Android-branding-validation
           path: android-app/app/build/reports/
+

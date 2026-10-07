@@ -82,8 +82,9 @@ class HubApi(private val base: String, private val publishableKey: String,
                     if (response.code == 429 || response.code >= 500) throw HubNetworkException("The Learning Hub is temporarily unavailable. Please try again shortly.")
                     throw HubAccessException("Sign-in or account verification failed. Check your email and password, or contact TIH support for account help.")
                 }
-                return response.body?.string() ?: throw HubNetworkException("The server returned no data. Please try again.")
+                return response.body?.boundedText(1024 * 1024) ?: throw HubNetworkException("The server returned no data. Please try again.")
             }
         } catch (e: IOException) { throw HubNetworkException("Unable to connect. Check your internet connection and try again.") }
     }
 }
+

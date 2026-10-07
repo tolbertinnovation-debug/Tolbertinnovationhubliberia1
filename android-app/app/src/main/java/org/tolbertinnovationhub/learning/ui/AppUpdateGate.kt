@@ -17,6 +17,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
 import org.tolbertinnovationhub.learning.BuildConfig
+import org.tolbertinnovationhub.learning.data.boundedText
 import org.tolbertinnovationhub.learning.data.AppUpdatePolicy
 import java.util.concurrent.TimeUnit
 
@@ -36,11 +37,10 @@ import java.util.concurrent.TimeUnit
             val now = System.currentTimeMillis()
             if (verified <= 0 || now < verified || now - verified >= 3_600_000 || state == null) {
                 runCatching {
-                    val client = OkHttpClient.Builder().callTimeout(10, TimeUnit.SECONDS).build()
+                    val client = OkHttpClient.Builder().callTimeout(10, TimeUnit.SECONDS).followRedirects(false).followSslRedirects(false).build()
                     client.newCall(Request.Builder().url("https://tolbertinnovationhub.org/app-updates.json?t=$now").header("Cache-Control", "no-cache").build()).execute().use { response ->
                         check(response.isSuccessful)
-                        val text = response.body?.string() ?: error("Empty update policy")
-                        check(text.length < 16384)
+                        val text = response.body?.boundedText(16384) ?: error("Empty update policy")
                         val parsed = AppUpdatePolicy.parse(JSONObject(text))
                         verified = System.currentTimeMillis()
                         policy = parsed
@@ -77,3 +77,4 @@ import java.util.concurrent.TimeUnit
         }
     }
 }
+

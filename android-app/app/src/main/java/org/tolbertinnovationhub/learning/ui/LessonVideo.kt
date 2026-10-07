@@ -117,7 +117,7 @@ document.head.appendChild(s);
         val host = runCatching { java.net.URI(url).host.orEmpty().lowercase() }.getOrDefault("")
         val youtube = host == "youtube-nocookie.com" || host.endsWith(".youtube-nocookie.com") ||
             host == "youtube.com" || host.endsWith(".youtube.com")
-        return youtube && !url.contains("/watch")
+        return runCatching { java.net.URI(url).scheme == "https" }.getOrDefault(false) && youtube && !url.contains("/watch")
     }
 
     /** What to tell a learner about a player error, in their terms. */
@@ -208,7 +208,7 @@ private sealed interface PlayerState {
                     if (!request.isForMainFrame) return false
                     val target = request.url.toString()
                     if (LessonVideo.staysInPlayer(target)) return false
-                    onExternal.value(target)
+                    if (request.hasGesture() && request.url.scheme == "https") onExternal.value(target)
                     return true
                 }
                 override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError?) {
@@ -277,3 +277,4 @@ private sealed interface PlayerState {
         }
     }
 }
+
