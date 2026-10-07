@@ -11,11 +11,18 @@ NAME = 'TIH-Learning-Desktop-0.19.0-Windows-x64.exe'
 ARCHIVE_SHA = '0487b5b731ef3d133d072bc53968857cdb5cdc764d8dc7f8a94444335a85294e'
 PUBLIC = 'https://tolbertinnovationhub.org/downloads/'
 
+class PublicRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        redirected = super().redirect_request(req, fp, code, msg, headers, newurl)
+        if urllib.parse.urlparse(req.full_url).netloc != urllib.parse.urlparse(newurl).netloc:
+            redirected.remove_header('Authorization')
+        return redirected
+
 def fetch(url, token=None):
     headers = {'User-Agent': 'TIH-Pages-Downloads'}
     if token:
         headers['Authorization'] = 'Bearer ' + token
-    with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=180) as response:
+    with urllib.request.build_opener(PublicRedirect()).open(urllib.request.Request(url, headers=headers), timeout=180) as response:
         return response.read()
 
 def main():
