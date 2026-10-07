@@ -25,7 +25,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.key
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -217,20 +216,21 @@ private sealed interface PlayerState {
             }
         }
     }
-    DisposableEffect(view) {
-        onDispose {
-            // Stop the sound the moment the learner collapses it or leaves the lesson.
-            view.loadUrl("about:blank")
-            view.stopLoading()
-            view.destroy()
-        }
-    }
-
     Column(modifier, verticalArrangement = Arrangement.spacedBy(10.dp)) {
         Card(shape = RoundedCornerShape(14.dp), colors = CardDefaults.cardColors(containerColor = Color.Black)) {
             Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 AndroidView(
                     factory = { view },
+                    onReset = null,
+                    onRelease = { released ->
+                        // Detach before destroying, as required by WebView. Do not
+                        // start an about:blank navigation during native teardown.
+                        (released.parent as? ViewGroup)?.removeView(released)
+                        released.webChromeClient = null
+                        released.webViewClient = WebViewClient()
+                        released.stopLoading()
+                        released.destroy()
+                    },
                     modifier = Modifier.fillMaxWidth().aspectRatio(16f / 9f),
                     update = {
                         val want = page to reloads
