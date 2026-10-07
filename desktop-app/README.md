@@ -31,6 +31,8 @@ On Windows, run the native app tests with `TIH_ELECTRON_TEST=1` and `npm run tes
 
 Personal state is saved under Electron's `userData` directory in `study-workspace.json`. Notes are limited to 200 entries and 30,000 characters each. Corrupt state is reported without silently replacing it. Backup restore merges records and retains conflicts. Maintain backups before uninstalling or changing computers.
 
+The desktop sidebar, window and Windows shortcut/installer icons use the same learning logo asset as the Android APK. The importer copies the APK WebP unchanged; the icon script converts that artwork to PNG and ICO for Windows.
+
 ## Learning space
 
 Use Learning space to reopen your last preview lesson. In a lesson, use Lessons and My notes to open side panels, Focus view to give almost the whole window to the lesson, and Full screen to fill the display. Escape exits focus view or full screen. The Read lesson, Watch video and Resources tabs share the same workspace. Hiding side panels does not reload the lesson or player; switching away from Video stops playback. Previous/Next buttons navigate the available preview lessons. The last lesson is included in workspace backups.
@@ -39,4 +41,4 @@ The embedded player uses YouTube privacy-enhanced mode, identifies the installed
 
 ## Release
 
-The desktop workflow tests the real Windows Electron application, captures screenshots, builds an unsigned per-user NSIS installer, silently installs it, repeats the native UI tests against the installed executable, and publishes the `desktop-v0.1.2-preview` prerelease. Public distribution will need code signing; this preview may show Windows publisher warnings. No signing certificate is embedded or invented.
+The desktop workflow tests the real Windows Electron application, captures screenshots, builds an unsigned per-user NSIS installer, silently installs it, repeats the native UI tests against the installed executable, and publishes the `desktop-v0.1.3-preview` prerelease. Public distribution will need code signing; this preview may show Windows publisher warnings. No signing certificate is embedded or invented.
