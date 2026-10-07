@@ -16,7 +16,7 @@ const assert = require('node:assert/strict');
     fs.createReadStream(file).pipe(res);
   });
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-  const browser = await chromium.launch({headless:true});
+  const browser = await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN || '/usr/bin/google-chrome'});
   fs.mkdirSync('/tmp/libapps-preview', {recursive:true});
   try {
     const page = await browser.newPage();
@@ -48,5 +48,5 @@ const assert = require('node:assert/strict');
       assert.equal(bytes.subarray(0, 2).toString(), 'MZ');
     }
     console.log('LibApps: mobile/desktop layout, search, empty state, installation guide, dark theme and Windows installer passed.');
-  } finally { await browser.close(); server.close(); }
+  } finally { await browser.close(); server.closeAllConnections(); server.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });
