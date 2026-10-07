@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -29,7 +30,7 @@ jobs:
           node --test tools/projectmgmt-quizzes.test.mjs tools/accounting-bookkeeping-quizzes.test.mjs tools/webdev-quizzes.test.mjs tools/design-quizzes.test.mjs tools/entrepreneurship-quizzes.test.mjs tools/android-kotlin-quizzes.test.mjs tools/office-quizzes.test.mjs tools/leadership-quizzes.test.mjs tools/grant-writing-quizzes.test.mjs tools/english-success-quizzes.test.mjs tools/ielts-quizzes.test.mjs
           node tools/check-courses-lite.js
 
-      - name: Prepare public Windows app download
+      - name: Prepare public Android and Windows downloads
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 tools/prepare-app-downloads.py
@@ -47,6 +48,29 @@ jobs:
           name: libapps-store-preview
           path: /tmp/libapps-preview
           if-no-files-found: ignore
+
+      - name: Wait for automatic branch deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os, time, urllib.request
+          url = 'https://api.github.com/repos/' + os.environ['GITHUB_REPOSITORY'] + '/actions/runs?head_sha=' + os.environ['GITHUB_SHA']
+          for attempt in range(120):
+              request = urllib.request.Request(url, headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'User-Agent': 'TIH-Pages'})
+              with urllib.request.urlopen(request) as response:
+                  runs = json.load(response)['workflow_runs']
+              automatic = [run for run in runs if run['name'] == 'pages build and deployment']
+              if automatic and all(run['status'] == 'completed' for run in automatic):
+                  print('Automatic branch deployment finished; publishing complete app downloads afterward.')
+                  break
+              if not automatic and attempt >= 6:
+                  print('No automatic branch deployment is configured.')
+                  break
+              time.sleep(5)
+          else:
+              raise RuntimeError('Automatic deployment did not finish; avoid replacing downloads out of order.')
+          PY
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
