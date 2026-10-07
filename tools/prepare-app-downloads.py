@@ -9,7 +9,7 @@ import urllib.parse
 import urllib.request
 import zipfile
 
-INSTALLERS = [{"artifact":11512780102,"archive_sha":"8f43548c8026956e80d771b476ce2dad04161e3a8214a1cdf43131e57ec9b73b","entry":"TIH-Learning-Desktop-0.20.0-Windows-x64.exe","name":"TIH-Learning-Desktop-0.20.0-Windows-x64.exe","manifest":"windows-0.20.0.json","version":"0.20.0"},{"artifact":11512302078,"archive_sha":"7d668490555e4713934d7a38b9c4fc72b33721ff437c620d8ef0ec9437547e57","entry":"app-debug.apk","name":"TIH-Learning-Android-0.3.36-preview.apk","manifest":"android-0.3.36.json","version":"0.3.36"}]
+INSTALLERS = [{"artifact":11516230723,"archive_sha":"4750bad12f917af0042eb337784d8364dde63542d17094179e6c3e2fcd18e9e6","entry":"TIH-Learning-Desktop-0.21.0-Windows-x64.exe","name":"TIH-Learning-Desktop-0.21.0-Windows-x64.exe","manifest":"windows-0.21.0.json","version":"0.21.0"},{"artifact":11515223699,"archive_sha":"97b97370658ccfbe6fee03cf2887fe589d6633d9c25977b75d9b52bea1cd8fd8","entry":"app-debug.apk","name":"TIH-Learning-Android-0.3.37-preview.apk","manifest":"android-0.3.37.json","version":"0.3.37"}]
 PUBLIC = 'https://tolbertinnovationhub.org/downloads/'
 
 class PublicRedirect(urllib.request.HTTPRedirectHandler):
@@ -54,5 +54,11 @@ def prepare(item):
     print('Prepared tested app installer:', item['name'], len(content), 'bytes')
 
 if __name__ == '__main__':
+    policy = json.loads(Path('app-updates.json').read_text())
+    if policy.get('schema') != 1:
+        raise ValueError('Invalid app update policy')
     for installer in INSTALLERS:
+        platform = 'windows' if installer['name'].endswith('.exe') else 'android'
+        if policy[platform]['latest'] != installer['version']:
+            raise ValueError('Update policy does not match the published installer')
         prepare(installer)
