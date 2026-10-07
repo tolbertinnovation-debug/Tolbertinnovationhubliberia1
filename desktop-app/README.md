@@ -1,21 +1,36 @@
 # TIH Learning Desktop
 
-Independent Windows desktop workspace on `codex/tih-desktop-app`. All desktop code lives in `desktop-app/`; its workflow runs only on this branch. The website and Android workflows retain their existing branches.
+Independent Windows app on `codex/tih-desktop-app`. Desktop code lives in `desktop-app/`; its workflow runs only on this branch. Website and Android branches are separate.
 
-## First preview
+## Computer Literacy — first full desktop course
 
-- Desktop dashboard, searchable 57-course catalog and complete source-derived outlines.
-- Saved courses, editable personal notebook, local profile and focus timer.
-- Three authored Computer Literacy previews with a wide lesson space, adjustable text, companion notes, online videos and personal reading progress.
-- Collapsible navigation, Back/Forward controls, Previous/Next lessons, remembered last lesson, optional lesson list and notes panels, focus view and full screen.
-- Local JSON backup and restore; conflicts retain separate notes.
-- Electron sandbox, context isolation, narrow validated IPC, local custom protocol, blocked remote navigation and isolated reading/video iframes.
+- All 15 source modules: 123 authored reading lessons, 125 assessments with 404 questions, and five practical projects.
+- 128 source-linked videos across lessons and projects. Videos stream from YouTube after a learner chooses to load them; availability is controlled by YouTube.
+- Full module navigation, lesson search, Previous/Next, remembered last activity, optional notes, focus view, full screen and adjustable text.
+- Saved quiz drafts, automatic grading at 70%, answer explanations, shuffled choice positions, retries and retained best scores.
+- Project reflections, file/folder references and self-reported practical completion. The app does not upload or grade project files.
+- Module/course progress, backup/restore and an exportable PDF study record. Scores, reading and projects are personal desktop study records; official TIH certification remains in Learning Hub.
+- 57-course catalog and source-derived outlines. Other courses will be added one by one.
 
-This is the desktop foundation. Full courses, authentication, enrollment, quizzes and official certificates are not implemented in this preview. Course content will be prepared one course at a time. The local profile is not a TIH account. Catalog, reading materials and notes work offline. Videos stream from YouTube after the learner clicks Load lesson video and require internet. TIH includes no analytics; YouTube may collect usage data and display advertising.
+## TIH accounts and access
+
+Full-course access follows the same rules as the APK: sign in using the existing Supabase account, resolve only the authenticated `student_me` profile, require active status, and accept only that student's enrolled course grants or paid/confirmed access. No student roster, payments, certificates or server progress are modified. Approved course access can be used offline for up to seven days after verification. Use TIH account → Refresh course access to reverify. Rejected account verification clears the session; network failures do not extend the cached grant.
+
+Passwords are never saved. Access and refresh credentials are encrypted using Electron safeStorage (Windows DPAPI) in `account-vault.bin`; they are never exposed through the renderer bridge or included in backups. Credential persistence fails closed when secure storage is unavailable. Rotated refresh credentials are saved before a profile reread, without extending the grant verification time.
+
+Guest learners retain the three Computer Literacy previews and their existing local workspace. Each signed-in student has a separate workspace under `userData/students/<student-id>/study-workspace.json`. Signing out preserves their work. Backups are checked against the active profile. Course body files and account configuration are blocked from the local renderer protocol; full material is delivered only by validated IPC after approval. Account expiry returns the learner to the access screen.
+
+## Learning space
+
+Learning space opens your last available activity. Lessons opens the 15-module outline; search finds readings, quizzes and projects. My notes opens a companion notebook. Focus view expands the lesson to almost the entire window; Full screen fills the display. Escape exits either view. Hiding panels does not reload the reading or video; switching away from the Video tab stops playback.
+
+Assessments require every answer before grading. Drafts survive navigation/restarts, and failed retries preserve a higher previous score. Quiz completion is based on a passing best score, not a manually set completed flag. Projects provide the original brief and fields for a reflection and finished-file references. Completion requires a meaningful reflection and the learner's confirmation; instructor review remains separate.
+
+Course progress shows readings completed, assessments passed, project records and module totals. Export study record produces a PDF clearly labeled as a personal study record, not a certificate. The TIH Learning Hub link opens the existing official website in the default browser.
 
 ## Develop
 
-Node 22+, Python 3 with Pillow, Windows 10/11 x64 for the preview installer.
+Node 22+, Python 3 with Pillow, Windows 10/11 x64 for the installer.
 
 ```
 npm ci
@@ -25,20 +40,14 @@ npm test
 npm start
 ```
 
-The importer reads trusted Learning Hub source files without changing them. It is independent of the Android exporter. Only the catalog, three sample lesson bodies and their existing source-linked YouTube IDs are bundled; videos are streamed rather than downloaded. Generated assets are rebuilt from source and excluded from git.
+The read-only importer uses the existing Learning Hub sources and public account configuration without changing them. It bundles one full course plus the guest preview and catalog; generated content and build files are excluded from git. Desktop branding copies the APK logo unchanged and converts it to Windows PNG/ICO formats.
 
-On Windows, run the native app tests with `TIH_ELECTRON_TEST=1` and `npm run test:ui`. On Linux, `npm run test:ui` runs browser UI checks after Playwright Chromium is installed. `npm run dist:win` generates the Windows installer.
+On Windows use `TIH_ELECTRON_TEST=1` and `npm run test:ui`. Linux browser UI checks require Playwright Chromium. `npm run dist:win` creates the unsigned Windows installer.
 
-Personal state is saved under Electron's `userData` directory in `study-workspace.json`. Notes are limited to 200 entries and 30,000 characters each. Corrupt state is reported without silently replacing it. Backup restore merges records and retains conflicts. Maintain backups before uninstalling or changing computers.
+Notes support 500 entries and 30,000 characters each. Course records support up to 5,000 activity IDs; older version-1 backups migrate with empty assessment/project fields. Backups merge best scores and preserve conflicting notes/project reflections. A corrupt workspace is reported without silent replacement. Export backups before uninstalling or changing computers.
 
-The desktop sidebar, window and Windows shortcut/installer icons use the same learning logo asset as the Android APK. The importer copies the APK WebP unchanged; the icon script converts that artwork to PNG and ICO for Windows.
+## Validation and release
 
-## Learning space
+The workflow tests the native Windows app, builds the installer, installs it and repeats UI tests against the installed executable. Tests cover full source completeness, grading, restore, cached-access expiry, active-profile/enrollment rules, rotated credentials, approved/pending accounts, quiz drafts/results, project records, PDF export, per-student isolation and restart persistence. Account integration tests use controlled responses; they do not authenticate a real student. Video tests verify controlled player loading and isolation, not third-party playback availability.
 
-Use Learning space to reopen your last preview lesson. In a lesson, use Lessons and My notes to open side panels, Focus view to give almost the whole window to the lesson, and Full screen to fill the display. Escape exits focus view or full screen. The Read lesson, Watch video and Resources tabs share the same workspace. Hiding side panels does not reload the lesson or player; switching away from Video stops playback. Previous/Next buttons navigate the available preview lessons. The last lesson is included in workspace backups.
-
-The embedded player uses YouTube privacy-enhanced mode, identifies the installed desktop app in the request header and runs without the desktop bridge. Open on YouTube launches only the video already linked to the current bundled lesson. Camera, microphone and other permissions remain denied.
-
-## Release
-
-The desktop workflow tests the real Windows Electron application, captures screenshots, builds an unsigned per-user NSIS installer, silently installs it, repeats the native UI tests against the installed executable, and publishes the `desktop-v0.1.3-preview` prerelease. Public distribution will need code signing; this preview may show Windows publisher warnings. No signing certificate is embedded or invented.
+Release: `desktop-v0.2.0-preview`. The installer is unsigned and may show a Windows publisher warning. Future public distribution needs code signing. No certificate is embedded or invented.
