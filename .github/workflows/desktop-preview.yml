@@ -39,14 +39,14 @@ jobs:
       - name: Check installer
         shell: pwsh
         run: |
-          $installer = Get-Item dist/TIH-Learning-Desktop-0.17.0-Windows-x64.exe
+          $installer = Get-Item dist/TIH-Learning-Desktop-0.18.0-Windows-x64.exe
           if ($installer.Length -lt 20000000) { throw 'Installer unexpectedly small' }
           Get-FileHash $installer -Algorithm SHA256 | Format-List
       - name: Install and test the packaged Windows app
         shell: pwsh
         run: |
           $target = Join-Path $env:RUNNER_TEMP 'tih-desktop-install'
-          $installer = (Resolve-Path 'dist/TIH-Learning-Desktop-0.17.0-Windows-x64.exe').Path
+          $installer = (Resolve-Path 'dist/TIH-Learning-Desktop-0.18.0-Windows-x64.exe').Path
           $process = Start-Process -FilePath $installer -ArgumentList '/S', "/D=$target" -Wait -PassThru
           if ($process.ExitCode -ne 0) { throw "Installer exited with $($process.ExitCode)" }
           $env:TIH_PACKAGED_EXE = Join-Path $target 'TIH Learning Desktop.exe'
@@ -62,13 +62,13 @@ jobs:
       - name: Publish desktop preview
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: desktop-v0.17.0-preview
+          tag_name: desktop-v0.18.0-preview
           target_commitish: ${{ github.sha }}
-          name: TIH Learning Desktop 0.17.0 — Windows preview
+          name: TIH Learning Desktop 0.18.0 — Windows preview
           prerelease: true
           body_path: desktop-app/RELEASE-NOTES.md
           files: |
-            desktop-app/dist/TIH-Learning-Desktop-0.17.0-Windows-x64.exe
+            desktop-app/dist/TIH-Learning-Desktop-0.18.0-Windows-x64.exe
             desktop-app/test-results/00-welcome-login.png
             desktop-app/test-results/13-continuous-reading.png
             desktop-app/test-results/01-dashboard.png
@@ -134,3 +134,8 @@ jobs:
             desktop-app/test-results/61-sat-lesson.png
             desktop-app/test-results/62-sat-assessment.png
             desktop-app/test-results/63-sat-progress.png
+
+            desktop-app/test-results/64-bible-lesson.png
+            desktop-app/test-results/65-bible-assessment.png
+            desktop-app/test-results/66-bible-project.png
+            desktop-app/test-results/67-bible-progress.png

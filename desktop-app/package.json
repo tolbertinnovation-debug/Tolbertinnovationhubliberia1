@@ -1,6 +1,6 @@
 {
   "name": "tih-learning-desktop",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "A dedicated learning workspace for Tolbert Innovation Hub.",
   "author": "Tolbert Innovation Hub",
   "private": true,
@@ -8,7 +8,7 @@
   "scripts": {
     "content": "node tools/import-content.mjs",
     "start": "npm run content && python tools/icon.py && electron .",
-    "test": "node --test test/model.test.cjs test/webdev.test.cjs test/office.test.cjs test/accounting.test.cjs test/cybersecurity.test.cjs test/android.test.cjs test/design.test.cjs test/aicyber.test.cjs test/data.test.cjs test/leadership.test.cjs test/english.test.cjs test/toefl.test.cjs test/sat.test.cjs",
+    "test": "node --test test/model.test.cjs test/webdev.test.cjs test/office.test.cjs test/accounting.test.cjs test/cybersecurity.test.cjs test/android.test.cjs test/design.test.cjs test/aicyber.test.cjs test/data.test.cjs test/leadership.test.cjs test/english.test.cjs test/toefl.test.cjs test/sat.test.cjs test/bible.test.cjs",
     "test:ui": "playwright test",
     "dist:win": "electron-builder --win nsis --x64"
   },
