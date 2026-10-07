@@ -1,11 +1,11 @@
-TIH Learning Desktop 0.8.0 — Accounting & Bookkeeping Program.
+TIH Learning Desktop 0.9.0 — Cybersecurity Fundamentals & Ethical Hacking Program.
 
-The sixth full desktop course includes 20 modules, 132 reading lessons, 138 assessments with 475 distinct questions, nine practical projects and 140 source-linked videos. Learn source documents, journal entries, ledgers, trial balances, cashbooks, bank reconciliation, sales and purchases, payroll, financial statements, cash budgets and digital bookkeeping.
+The seventh full desktop course includes 20 modules, 149 reading lessons, 158 source assessments with 562 question entries, 21 practical projects and 170 source-linked videos. Existing source quizzes reuse some questions; this import preserves the source assessment sets.
 
-Original teaching notes, worked examples, tables, expandable keywords and project briefs are preserved. Practical projects save reflections and file references; learners create their accounting files using their own tools. The app records practice results and does not automatically review submitted financial statements. Official TIH certification remains in Learning Hub.
+Original notes, worked examples, tables, expandable keywords and project material are included. Learners complete exercises in their own authorized practice environments and save reflections and file references. The app does not scan systems or execute lesson commands. Official TIH certification remains in Learning Hub.
 
-The sign-in-first welcome, video above the reading, scrolling, notes, focus view, saved positions, quiz drafts, results and project records remain available. Accounting enrollment is verified separately from the five other full courses. Existing workspace files and backups remain compatible.
+The sign-in-first welcome, video-above-reading layout, scrolling, notes, focus view, saved positions, quiz drafts, results and project records remain available. Cybersecurity enrollment is verified separately from the six other full courses. Existing workspaces and backups remain compatible.
 
-Validation covers source completeness, distinct questions, grading, backups, course-specific access, lesson tables, videos, assessments, project records, progress and restart persistence. The Windows workflow repeats interface tests after installing the packaged app.
+Validation covers source completeness, assessment fidelity, grading, backup records, independent enrollment, lesson tables, videos, project progress and restart persistence. Interface tests repeat against the installed Windows app before publishing.
 
 Back up your workspace in Settings, close the old app and install the update in the same location. Windows x64 preview; unsigned installer.

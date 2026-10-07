@@ -2,7 +2,7 @@
 
 Independent Windows app on `codex/tih-desktop-app`. Desktop code lives in `desktop-app/`; its workflow runs only on this branch. Website and Android branches are separate.
 
-## Six full desktop courses
+## Seven full desktop courses
 
 - Computer Literacy: all 15 source modules: 123 authored reading lessons, 125 assessments with 404 questions, and five practical projects.
 - 128 source-linked videos across lessons and projects. The YouTube player loads above the written lesson with autoplay off. Video playback needs internet; availability is controlled by YouTube.
@@ -17,6 +17,7 @@ Independent Windows app on `codex/tih-desktop-app`. Desktop code lives in `deskt
 - Full-Stack Web Development Program: all 20 modules, 170 authored readings, 180 assessments with 633 distinct questions, 24 projects and 194 source-linked videos. Code examples, expandable keywords and original project deliverables are preserved. Build and run projects with your own development tools; the desktop app records reflections and file references.
 - Microsoft Office Mastery Professional Certificate: 20 modules, 169 reading lessons, 179 assessments with 637 distinct questions, 29 projects and 198 video links. Word, Excel, PowerPoint, Outlook, Teams, OneNote, OneDrive, collaboration, Copilot and automation notes include examples, tables and expandable keywords. Original project deliverables are retained. Learners complete practical work using their own Office applications.
 - Accounting & Bookkeeping Program: all 20 modules, 132 readings, 138 assessments with 475 distinct questions, nine practical projects and 140 video links. Worked examples, tables, expandable keywords, journal entries, ledgers, cashbooks, reconciliation, payroll and financial-statement projects are preserved.
+- Cybersecurity Fundamentals & Ethical Hacking Program: 20 modules, 149 readings, 158 source assessments with 562 question entries, 21 projects and 170 video links. Source quizzes reuse some prompts. Original defensive-security notes, examples and authorized-practice project briefs are preserved.
 - 57-course catalog and source-derived outlines. Other courses will be added one by one.
 
 ## TIH accounts and access
@@ -47,7 +48,7 @@ npm test
 npm start
 ```
 
-The read-only importer uses the existing Learning Hub sources and public account configuration without changing them. It bundles six full courses plus the guest preview and catalog; generated content and build files are excluded from git. Desktop branding copies the APK logo and welcome illustration unchanged and converts the logo to Windows PNG/ICO formats.
+The read-only importer uses the existing Learning Hub sources and public account configuration without changing them. It bundles seven full courses plus the guest preview and catalog; generated content and build files are excluded from git. Desktop branding copies the APK logo and welcome illustration unchanged and converts the logo to Windows PNG/ICO formats.
 
 On Windows use `TIH_ELECTRON_TEST=1` and `npm run test:ui`. Linux browser UI checks require Playwright Chromium. `npm run dist:win` creates the unsigned Windows installer.
 
@@ -55,7 +56,7 @@ Older backups without reading positions start each lesson at the top. Notes supp
 
 ## Validation and release
 
-The workflow tests the native Windows app, builds the installer, installs it and repeats UI tests against the installed executable. Tests cover full source completeness, grading, restore, cached-access expiry, active-profile/enrollment rules, rotated credentials, approved/pending accounts, quiz drafts/results, project records, PDF export, per-student isolation, independent course permissions, IELTS charts/keywords, essay drafts/timer/word counts, Project Management quiz uniqueness/portfolio/final assessment, six-course switching and restart persistence. Account integration tests use controlled responses; they do not authenticate a real student. Video tests verify controlled player loading and isolation, not third-party playback availability.
+The workflow tests the native Windows app, builds the installer, installs it and repeats UI tests against the installed executable. Tests cover full source completeness, grading, restore, cached-access expiry, active-profile/enrollment rules, rotated credentials, approved/pending accounts, quiz drafts/results, project records, PDF export, per-student isolation, independent course permissions, IELTS charts/keywords, essay drafts/timer/word counts, Project Management quiz uniqueness/portfolio/final assessment, seven-course switching and restart persistence. Account integration tests use controlled responses; they do not authenticate a real student. Video tests verify controlled player loading and isolation, not third-party playback availability.
 
-Release: `desktop-v0.8.0-preview`. The installer is unsigned and may show a Windows publisher warning. Future public distribution needs code signing. No certificate is embedded or invented.
+Release: `desktop-v0.9.0-preview`. The installer is unsigned and may show a Windows publisher warning. Future public distribution needs code signing. No certificate is embedded or invented.
 
