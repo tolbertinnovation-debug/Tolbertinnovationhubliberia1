@@ -211,7 +211,7 @@
     students: ex.students || 'TIH founders',
     duration: '120h+',
     level: 'All Levels',
-    price: '$5',
+    price: '$10',
     origPrice: ex.origPrice || '$150',
     isFree: false,
     badge: 'premium',

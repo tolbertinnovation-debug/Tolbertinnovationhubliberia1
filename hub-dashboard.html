@@ -789,7 +789,7 @@
       if (!was || was < price * 2) was = (price >= 25 ? 99 : (price <= 3 ? 30 : 49));
       return was;
     }
-    // Struck original + new price, e.g. "<s>US$49</s> US$5"
+    // Struck original + new price, e.g. "<s>US$49</s> US$10"
     function priceHTML(id, price) {
       return '<s style="color:#94a3b8;font-weight:600;">US$' + wasNum(id, price) + '</s> US$' + price;
     }

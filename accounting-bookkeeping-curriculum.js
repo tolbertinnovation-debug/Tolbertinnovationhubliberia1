@@ -172,7 +172,7 @@
     students: ex.students || '1,200+',
     duration: '110h+',
     level: 'Beginner → Advanced',
-    price: ex.price || '$5',
+    price: ex.price || '$10',
     origPrice: ex.origPrice || '$85',
     isFree: false,
     badge: ex.badge || 'premium',

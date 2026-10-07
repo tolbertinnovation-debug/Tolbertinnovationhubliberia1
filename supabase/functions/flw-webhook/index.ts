@@ -17,11 +17,14 @@
 function priceForUSD(itemId: string): number {
   const id = String(itemId || "").toLowerCase();
   if (id.indexOf("wassce-") === 0) return 3;
-  if (id === "ielts" || id === "toefl" || id === "sat") return 25;
-  return 5;
+  if (id === "ielts") return 60;
+  if (id === "webdev") return 20;
+  if (id === "ph-career") return 100;
+  if (id === "toefl" || id === "sat") return 25;
+  return 10;
 }
 function toLRD(usd: number): number {
-  const fixed: Record<number, number> = { 3: 500, 5: 950 };
+  const fixed: Record<number, number> = { 3: 500, 10: 1900, 20: 3800, 60: 11400 };
   return fixed[usd] ?? Math.round(usd * 190);
 }
 

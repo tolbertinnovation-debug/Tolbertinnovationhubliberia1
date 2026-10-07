@@ -230,7 +230,7 @@
     students: ex.students || 'TIH developers',
     duration: '160h+',
     level: 'Beginner → Advanced',
-    price: '$5',
+    price: '$20',
     origPrice: ex.origPrice || '$200',
     isFree: false,
     badge: 'premium',

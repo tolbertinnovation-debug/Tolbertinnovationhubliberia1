@@ -27,21 +27,21 @@ var HubDB = (function () {
   // Paid-access settings. Every course and WASSCE subject is locked until the
   // learner pays and an administrator issues a matching access code.
   var PAYMENT = {
-    amountUSD: 5,
+    amountUSD: 10,
     momoNumber: '0880559227',
     momoName: 'Samuel Tolbert',
-    currencyNote: 'US$5 (or L$950)'
+    currencyNote: 'US$10 (or L$1900)'
   };
 
   // Pricing tiers (USD):
   //   • WASSCE subjects (ids beginning "wassce-")  → US$3 / L$500
-  //   • IELTS prep                                  → US$50
+  //   • IELTS prep                                  → US$60
   //   • Premium exam-prep (TOEFL, SAT)              → US$25
-  //   • Every other course                          → US$5 / L$950 (PAYMENT.amountUSD)
-  var PRICE_OVERRIDES = { 'ielts': 50, 'toefl': 25, 'sat': 25, 'ph-career': 100, 'webdev': 10 };
+  //   • Every other course                          → US$10 / L$1900 (PAYMENT.amountUSD)
+  var PRICE_OVERRIDES = { 'ielts': 60, 'toefl': 25, 'sat': 25, 'ph-career': 100, 'webdev': 20 };
   // Liberian-dollar equivalents shown next to the US price where a fixed rate
   // is published; other prices fall back to a generic note.
-  var LRD_EQUIV = { 3: 'L$500', 5: 'L$950' };
+  var LRD_EQUIV = { 3: 'L$500', 10: 'L$1900', 20: 'L$3800', 60: 'L$11400' };
   function priceFor(itemId) {
     var id = String(itemId || '').toLowerCase();
     if (id.indexOf('wassce-') === 0) return 3; // all WASSCE subjects are US$3 / L$500
@@ -274,7 +274,7 @@ var HubDB = (function () {
       // Learning Hub applications are auto-approved on submission, the learner's
       // account is created active, so they can log in and start immediately.
       status: 'approved', // pending | review | approved | rejected | info-needed
-      statusMessage: 'Approved automatically, your account is ready. Every course is complete with a Professional Certificate. Log in and unlock any WASSCE subject for US$3 / L$500 or any other course for US$5 / L$950.',
+      statusMessage: 'Approved automatically, your account is ready. Every course is complete with a Professional Certificate. Log in and unlock any WASSCE subject for US$3 / L$500 or standard courses for US$10 / L$1900.',
       decidedAt: nowISO(),
       autoApproved: true,
       notes: [],
