@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.luminance
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
+import org.tolbertinnovationhub.learning.ui.AppUpdateGate
 import org.tolbertinnovationhub.learning.ui.LearningApp
 import org.tolbertinnovationhub.learning.ui.TihTheme
 import org.tolbertinnovationhub.learning.ui.WelcomeLaunch
@@ -29,7 +30,7 @@ class MainActivity : ComponentActivity() {
                         isAppearanceLightNavigationBars = light
                     }
                 }
-                WelcomeLaunch { LearningApp(model) }
+                WelcomeLaunch { AppUpdateGate { LearningApp(model) } }
             }
         }
     }

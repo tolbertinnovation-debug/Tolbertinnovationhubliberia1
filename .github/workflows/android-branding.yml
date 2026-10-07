@@ -2,7 +2,7 @@ name: Android branded app installer
 on:
   push:
     branches: [codex/tih-native-android]
-    paths: ['android-app/app/src/main/java/org/tolbertinnovationhub/learning/ui/BrandAttribution.kt', '.github/workflows/android-branding.yml']
+    paths: ['android-app/app/**', '.github/workflows/android-branding.yml']
 permissions:
   contents: read
 jobs:
