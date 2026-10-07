@@ -333,6 +333,7 @@ test('Full-Stack course supports coding notes, unique quizzes, projects and isol
   await expect(page.locator('.answer-explanation')).toHaveCount(quiz.questions.length);
   await page.screenshot({path:'test-results/19-webdev-assessment.png',fullPage:true});
   const project=web.lessons.find(l=>l.kind==='project'&&l.module===19);
+  await page.getByLabel('Find a lesson',{exact:true}).fill('Project Planning');
   await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
   await expect(page.frameLocator('#lesson-frame').locator('.source-project-brief')).toContainText('Deliverable:');
   const reflection='I planned and built my portfolio application, checked responsive layouts and accessibility, and tested frontend and backend integration.';
