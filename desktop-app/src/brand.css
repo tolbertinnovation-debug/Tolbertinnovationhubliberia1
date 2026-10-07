@@ -57,3 +57,5 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline-color:#1565d8
 .reader-expanded .reader-text-size{margin-left:0}
 @media(max-width:1050px){.lesson-heading h1{font-size:21px}.learning-open .topbar .searchbox{max-width:240px}.lesson-tabbar{padding-inline:14px}.reader-controls-return{font-size:10px;padding:6px}.lesson-bottom{gap:6px}.learning-actions .button{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.button{transition:none}}
+
+.sidebar .profile b,.sidebar #profile-name,.sidebar .text-btn{color:#fff}
