@@ -445,7 +445,7 @@ test('Accounting course supports practical notes, unique quizzes, projects and i
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / 132');await expect(page.locator('.progress-summary')).toContainText('1 / 138');await expect(page.locator('.progress-summary')).toContainText('1 / 9');
   await page.screenshot({path:'test-results/29-accounting-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('office');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('accounting-bookkeeping');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
