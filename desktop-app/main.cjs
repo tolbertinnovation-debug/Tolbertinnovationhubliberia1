@@ -1,4 +1,5 @@
 const {app,BrowserWindow,protocol,net,ipcMain,dialog,session,Menu,shell,safeStorage}=require('electron');
+const updatePolicy=require('./update-policy.cjs');
 const fs=require('node:fs'),path=require('node:path');const {pathToFileURL}=require('node:url');
 const {defaults,validate,merge,assetPath}=require('./model.cjs');
 const {FULL_COURSES,HubApi,AccessError,canStudy,publicAccount}=require('./auth.cjs');const {grade,progress}=require('./src/study-model.js');const {readerDocument}=require('./src/reader-document.cjs');
@@ -6,20 +7,31 @@ protocol.registerSchemesAsPrivileged([{scheme:'tih',privileges:{standard:true,se
 const customData=app.commandLine.getSwitchValue('user-data-dir');if(customData)app.setPath('userData',customData);
 const APP_ID='org.tolbertinnovationhub.desktop',origin='tih://app';app.setAppUserModelId(APP_ID);
 let window,account=null,generation=0,api,fullCourses,preview,base,vault;
+let updateCache=null;
+function updateStatus(){return updatePolicy.status(app.getVersion(),updateCache);}
+async function checkUpdates(force=false){
+  if(!force&&updateCache&&Date.now()>=updateCache.verifiedAt&&Date.now()-updateCache.verifiedAt<60*60*1000)return updateStatus();
+  try{
+    const raw=process.env.TIH_ELECTRON_TEST==='1'?{schema:1,windows:{latest:app.getVersion(),requiredAfter:'2099-01-01T00:00:00Z'}}:await net.fetch('https://tolbertinnovationhub.org/app-updates.json?t='+Date.now(),{signal:AbortSignal.timeout(10000),cache:'no-store'}).then(async r=>{if(!r.ok)throw Error('Update check unavailable');const text=await r.text();if(text.length>16384)throw Error('Invalid update response');return JSON.parse(text);});
+    updateCache={verifiedAt:Date.now(),policy:updatePolicy.validate(raw)};
+    fs.writeFileSync(path.join(base,'update-policy.json'),JSON.stringify(updateCache));
+  }catch{}
+  return updateStatus();
+}
 const owner=()=>account?.studentId||'guest';
 const store=()=>account?path.join(base,'students',account.studentId,'study-workspace.json'):path.join(base,'study-workspace.json');
 function read(){try{return {...validate(JSON.parse(fs.readFileSync(store(),'utf8'))),owner:owner()};}catch(e){if(e.code==='ENOENT')return {...defaults(),owner:owner()};throw Error('Your study file could not be read. Restore a backup or contact TIH; the file has not been overwritten.');}}
 function write(data){const value={...validate(data),owner:owner()},file=store();fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file+'.tmp',JSON.stringify(value));fs.renameSync(file+'.tmp',file);return value;}
 function trusted(e){if(e.sender!==window.webContents||e.senderFrame!==window.webContents.mainFrame||!e.senderFrame.url.startsWith(origin+'/'))throw Error('Untrusted request');}
-function requireAccess(id='computer-literacy'){const course=FULL_COURSES.includes(id)?fullCourses[id]:null;if(!course||!canStudy(account,id))throw Error('Sign in and refresh your approved access for this course.');return course;}
+function requireAccess(id='computer-literacy'){if(updateStatus().blocked)throw Error('Update TIH Learning from LibApps to continue.');const course=FULL_COURSES.includes(id)?fullCourses[id]:null;if(!course||!canStudy(account,id))throw Error('Sign in and refresh your approved access for this course.');return course;}
 function lessonCourse(id){return Object.values(fullCourses).find(c=>c.lessons.some(l=>l.id===id));}
 function saveAccount(value){if(!safeStorage.isEncryptionAvailable())throw Error('Windows secure credential storage is unavailable. Sign-in credentials were not saved.');fs.mkdirSync(base,{recursive:true});fs.writeFileSync(vault+'.tmp',safeStorage.encryptString(JSON.stringify(value)));fs.renameSync(vault+'.tmp',vault);account=value;}
 function clearAccount(){generation++;account=null;fs.rmSync(vault,{force:true});}
 function result(){return {account:publicAccount(account),state:read()};}
-function allLessons(){return [...preview.lessons,...Object.values(fullCourses).filter(c=>canStudy(account,c.id)).flatMap(c=>c.lessons)];}
+function allLessons(){if(updateStatus().blocked)return [];return [...preview.lessons,...Object.values(fullCourses).filter(c=>canStudy(account,c.id)).flatMap(c=>c.lessons)];}
 function writeFromRenderer(data){if(data?.owner!==owner())throw Error('The active account changed. Reopen your workspace before saving.');const previous=read();const quizzes=new Set(Object.values(fullCourses).flatMap(c=>c.lessons).filter(l=>l.kind==='quiz').map(l=>l.id));return write({...data,quizScores:previous.quizScores,completed:(data.completed||[]).filter(id=>!quizzes.has(id))});}
 app.whenReady().then(()=>{
-  base=app.getPath('userData');vault=path.join(base,'account-vault.bin');const root=path.join(__dirname,'src');
+  base=app.getPath('userData');try{const c=JSON.parse(fs.readFileSync(path.join(base,'update-policy.json'),'utf8'));updatePolicy.validate({schema:1,windows:{latest:c.policy.latest,requiredAfter:new Date(c.policy.requiredAfter).toISOString()}});updateCache=c;}catch{}vault=path.join(base,'account-vault.bin');const root=path.join(__dirname,'src');
   preview=JSON.parse(fs.readFileSync(path.join(root,'content/sample.json'),'utf8'));fullCourses=Object.fromEntries(FULL_COURSES.map(id=>[id,JSON.parse(fs.readFileSync(path.join(root,'content/courses/'+id+'.json'),'utf8'))]));
   api=new HubApi(JSON.parse(fs.readFileSync(path.join(root,'content/account-config.json'),'utf8')));
   try{if(fs.existsSync(vault)&&safeStorage.isEncryptionAvailable()){const cached=JSON.parse(safeStorage.decryptString(fs.readFileSync(vault)));if(/^[-a-zA-Z0-9]{1,80}$/.test(cached.studentId)&&Array.isArray(cached.grants)&&typeof cached.accessToken==='string'&&typeof cached.refreshToken==='string'&&Number.isFinite(cached.verifiedAt))account=cached;}}catch{fs.rmSync(vault,{force:true});}
@@ -29,13 +41,14 @@ app.whenReady().then(()=>{
   session.defaultSession.setPermissionRequestHandler((wc,p,cb,d)=>{let o='';try{o=(d.requestingUrl||'').startsWith(origin+'/')?origin:new URL(d.requestingUrl||'about:blank').origin;}catch{}cb(allowFullscreen(wc,p,o));});
   session.defaultSession.setPermissionCheckHandler((wc,p,o)=>allowFullscreen(wc,p,o));
   session.defaultSession.webRequest.onBeforeSendHeaders({urls:['https://www.youtube-nocookie.com/embed/*']},(d,cb)=>{const headers={...d.requestHeaders};if(d.webContentsId===window?.webContents.id&&isVideo(d.url))headers.Referer='https://'+APP_ID+'/';cb({requestHeaders:headers});});
+  ipcMain.handle('updates:status',async(e,force)=>{trusted(e);return checkUpdates(force===true);});
   ipcMain.handle('account:status',e=>{trusted(e);return publicAccount(account);});
   ipcMain.handle('account:sign-in',async(e,email,password)=>{trusted(e);const current=++generation;const next=await api.signIn(email,password);if(current!==generation)throw Error('Sign-in was cancelled.');saveAccount(next);return result();});
   ipcMain.handle('account:refresh',async e=>{trusted(e);if(!account)throw Error('Sign in first.');const old=account,current=++generation;try{const next=await api.refresh(old,rotated=>{if(current===generation)saveAccount(rotated);});if(current!==generation)throw Error('Account refresh was cancelled.');saveAccount(next);return result();}catch(error){if(current===generation&&error instanceof AccessError)clearAccount();throw error;}});
   ipcMain.handle('account:sign-out',e=>{trusted(e);clearAccount();return result();});
   ipcMain.handle('course:read',(e,id)=>{trusted(e);return requireAccess(id);});
   ipcMain.handle('study:open-video',async(e,id)=>{trusted(e);const l=allLessons().find(l=>l.id===id);if(!l||!l.videoId)throw Error('No accessible video is linked to this lesson.');await shell.openExternal('https://www.youtube.com/watch?v='+l.videoId);return true;});
-  ipcMain.handle('study:open-hub',async(e,destination)=>{trusted(e);const pages={website:'https://tolbertinnovationhub.org',register:'https://tolbertinnovationhub.org/hub-apply',certificates:'https://tolbertinnovationhub.org/hub-dashboard',support:'https://tolbertinnovationhub.org/contact',ieltsFormat:'https://ielts.org/take-a-test/why-choose-ielts/ways-to-take-ielts',ieltsScoring:'https://ielts.org/take-a-test/your-results/ielts-scoring-in-detail',ieltsWriting:'https://ielts.org/take-a-test/test-types/ielts-academic-test/ielts-academic-format-writing'};if(!pages[destination])throw Error('Unknown destination');await shell.openExternal(pages[destination]);return true;});
+  ipcMain.handle('study:open-hub',async(e,destination)=>{trusted(e);const pages={updates:'https://tolbertinnovationhub.org/libapps',website:'https://tolbertinnovationhub.org',register:'https://tolbertinnovationhub.org/hub-apply',certificates:'https://tolbertinnovationhub.org/hub-dashboard',support:'https://tolbertinnovationhub.org/contact',ieltsFormat:'https://ielts.org/take-a-test/why-choose-ielts/ways-to-take-ielts',ieltsScoring:'https://ielts.org/take-a-test/your-results/ielts-scoring-in-detail',ieltsWriting:'https://ielts.org/take-a-test/test-types/ielts-academic-test/ielts-academic-format-writing'};if(!pages[destination])throw Error('Unknown destination');await shell.openExternal(pages[destination]);return true;});
   ipcMain.handle('study:read',e=>{trusted(e);return read();});ipcMain.handle('study:write',(e,data)=>{trusted(e);return writeFromRenderer(data);});
   ipcMain.handle('course:grade',(e,id,answers)=>{trusted(e);const course=lessonCourse(id);if(!course)throw Error('Assessment not found.');requireAccess(course.id);const l=course.lessons.find(l=>l.id===id);if(l?.kind!=='quiz')throw Error('Assessment not found.');const score=grade(l.questions,answers),state=read(),old=state.quizScores[id];state.quizScores[id]={best:Math.max(old?.best||0,score.score),last:score.score,attempts:(old?.attempts||0)+1,updatedAt:Date.now(),answers:[...answers]};delete state.quizDrafts[id];return {result:score,state:write(state)};});
   ipcMain.handle('study:export',async e=>{trusted(e);const data=read(),r=await dialog.showSaveDialog(window,{title:'Back up your TIH workspace',defaultPath:'TIH-Learning-backup.json',filters:[{name:'TIH workspace',extensions:['json']}]});if(r.canceled)return false;fs.writeFileSync(r.filePath,JSON.stringify(data,null,2));return true;});
