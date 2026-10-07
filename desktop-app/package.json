@@ -1,11 +1,11 @@
 {
   "name":"tih-learning-desktop",
-  "version":"0.9.0",
+  "version":"0.10.0",
   "description":"A dedicated learning workspace for Tolbert Innovation Hub.",
   "author":"Tolbert Innovation Hub",
   "private":true,
   "main":"main.cjs",
-  "scripts":{"content":"node tools/import-content.mjs","start":"npm run content && python tools/icon.py && electron .","test":"node --test test/model.test.cjs test/webdev.test.cjs test/office.test.cjs test/accounting.test.cjs test/cybersecurity.test.cjs","test:ui":"playwright test","dist:win":"electron-builder --win nsis --x64"},
+  "scripts":{"content":"node tools/import-content.mjs","start":"npm run content && python tools/icon.py && electron .","test":"node --test test/model.test.cjs test/webdev.test.cjs test/office.test.cjs test/accounting.test.cjs test/cybersecurity.test.cjs test/android.test.cjs","test:ui":"playwright test","dist:win":"electron-builder --win nsis --x64"},
   "devDependencies":{"electron":"44.6.0","electron-builder":"26.15.3","@playwright/test":"1.63.0"},
   "build":{"appId":"org.tolbertinnovationhub.desktop","productName":"TIH Learning Desktop","directories":{"output":"dist","buildResources":"build"},"files":["src/**/*","main.cjs","preload.cjs","model.cjs","auth.cjs","package.json"],"asar":true,"win":{"target":[{"target":"nsis","arch":["x64"]}],"icon":"build/icon.ico","signAndEditExecutable":true},"nsis":{"oneClick":false,"allowToChangeInstallationDirectory":true,"perMachine":false,"createDesktopShortcut":true,"createStartMenuShortcut":true,"artifactName":"TIH-Learning-Desktop-${version}-Windows-x64.exe"}}
 }
