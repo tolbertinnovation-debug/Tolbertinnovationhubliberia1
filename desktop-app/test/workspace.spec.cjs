@@ -968,10 +968,12 @@ test('mandatory update screen blocks courses and opens LibApps until verified',a
   await page.getByRole('button',{name:'Download update from LibApps ↗',exact:true}).click();
   expect(await electron.evaluate(()=>global.__updateDestination)).toBe('https://tolbertinnovationhub.org/libapps');
   await page.screenshot({path:'test-results/70-required-app-update.png',fullPage:true});
-  await electron.evaluate(({net,app})=>{
-    const {ReadableStream}=process.getBuiltinModule('stream/web');
-    net.fetch=async()=>({ok:true,body:new ReadableStream({start(c){c.enqueue(Buffer.from(JSON.stringify({schema:1,windows:{latest:app.getVersion(),requiredAfter:'2099-01-01T00:00:00Z'}})));c.close();}})});
-  });
-  await page.getByRole('button',{name:'Check again',exact:true}).click();
+  // Offline verification must preserve the mandatory block, even with the test env set.
+  await electron.evaluate(({net})=>net.fetch=async()=>{throw Error('offline');});
+  expect((await page.evaluate(()=>window.tihDesktop.updates(true))).blocked).toBeTruthy();
+  // Simulate installation of the current release and its verified policy cache.
+  await electron.close();
+  fs.writeFileSync(path.join(temp,'update-policy.json'),JSON.stringify({verifiedAt:Date.now(),policy:{latest:require('../package.json').version,requiredAfter:Date.now()+86400000}}));
+  electron=await _electron.launch(launchOptions());page=await electron.firstWindow();
   await expect(page.getByRole('heading',{name:'Learn. Grow. Succeed.',exact:true})).toBeVisible();
 });
