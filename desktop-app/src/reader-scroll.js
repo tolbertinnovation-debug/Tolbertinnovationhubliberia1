@@ -11,5 +11,5 @@ function readerFrameMessage(e){const frame=$('#lesson-frame'),pane=$('#pane-read
   }
 }}if(d.type==='tih-reader-wheel'&&Number.isFinite(d.delta)&&Math.abs(d.delta)<100000){pane.scrollBy(0,d.delta*(d.mode===1?18:d.mode===2?pane.clientHeight:1));}if(d.type==='tih-reader-key'){if(d.key==='Home')pane.scrollTop=0;else if(d.key==='End')pane.scrollTop=pane.scrollHeight;else if(['PageDown','PageUp'].includes(d.key))pane.scrollBy(0,(d.key==='PageDown'?1:-1)*pane.clientHeight*.85);}}
 addEventListener('message',readerFrameMessage);
-document.addEventListener('scroll',e=>{if(e.target.id!=='pane-read')return;captureLessonScroll();clearTimeout(scrollSaveTimer);scrollSaveTimer=setTimeout(()=>{if(route.startsWith('reader/'))persist();},400);},{capture:true,passive:true});
+document.addEventListener('scroll',e=>{if(e.target.id!=='pane-read')return;updateReaderExpansion();captureLessonScroll();clearTimeout(scrollSaveTimer);scrollSaveTimer=setTimeout(()=>{if(route.startsWith('reader/'))persist();},400);},{capture:true,passive:true});
 

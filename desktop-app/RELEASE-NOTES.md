@@ -1,9 +1,7 @@
-TIH Learning Desktop 0.18.0 — Bible School & Christian Ministry Certificate.
+TIH Learning Desktop 0.19.0 — TIH website theme and expanded lesson reading.
 
-The sixteenth full desktop course includes 10 modules, 54 readings, 56 assessments with 192 question entries (33 distinct prompts), four practical projects and 58 video links. Original authored notes, Scripture references, source questions and ministry project briefs are preserved. Some source assessments reuse questions.
+Deep blue #002868, TIH red #E31E24, white and pale blue surfaces now match the website palette. Navigation, primary actions, the welcome screen and the learning room share the TIH theme.
 
-Study Bible foundations and Christian ministry using the existing Learning Hub curriculum. Save lesson notes, assessment drafts, scores, project reflections and file references. Enrollment and progress are independent of the other fifteen full courses. Existing workspaces and backups remain compatible. Official TIH certification remains in Learning Hub.
+The lesson list starts closed to give reading and video more width. Open Lessons or My notes when needed. As learners scroll down, the app header, course toolbar and large lesson title step aside, giving the lesson more vertical room. Scroll to the top or choose Course controls to bring them back. Video and lesson frames stay mounted during this change. Wheel, PageUp/PageDown, saved reading positions and focus view remain supported.
 
-Validation checks source completeness, project briefs, question fidelity, grading, progress, enrollment restrictions and restart persistence. Windows tests repeat against the installed app before publication.
-
-Back up in Settings, close the old app and install the update in the same location. Windows x64 preview; unsigned installer.
+Existing courses, accounts and progress stay compatible. Back up in Settings and close the app before installing. This build provides a tested Windows installer as a workflow artifact.

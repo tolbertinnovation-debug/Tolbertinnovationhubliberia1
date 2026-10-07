@@ -39,14 +39,14 @@ jobs:
       - name: Check installer
         shell: pwsh
         run: |
-          $installer = Get-Item dist/TIH-Learning-Desktop-0.18.0-Windows-x64.exe
+          $installer = Get-Item dist/TIH-Learning-Desktop-0.19.0-Windows-x64.exe
           if ($installer.Length -lt 20000000) { throw 'Installer unexpectedly small' }
           Get-FileHash $installer -Algorithm SHA256 | Format-List
       - name: Install and test the packaged Windows app
         shell: pwsh
         run: |
           $target = Join-Path $env:RUNNER_TEMP 'tih-desktop-install'
-          $installer = (Resolve-Path 'dist/TIH-Learning-Desktop-0.18.0-Windows-x64.exe').Path
+          $installer = (Resolve-Path 'dist/TIH-Learning-Desktop-0.19.0-Windows-x64.exe').Path
           $process = Start-Process -FilePath $installer -ArgumentList '/S', "/D=$target" -Wait -PassThru
           if ($process.ExitCode -ne 0) { throw "Installer exited with $($process.ExitCode)" }
           $env:TIH_PACKAGED_EXE = Join-Path $target 'TIH Learning Desktop.exe'
@@ -58,90 +58,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: TIH-Desktop-Windows-installer
-          path: desktop-app/dist/TIH-Learning-Desktop-0.18.0-Windows-x64.exe
+          path: desktop-app/dist/TIH-Learning-Desktop-0.19.0-Windows-x64.exe
           if-no-files-found: error
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: TIH-Desktop-screens-and-tests
           path: desktop-app/test-results/
-      - name: Publish desktop preview
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: desktop-v0.18.0-preview
-          target_commitish: ${{ github.sha }}
-          name: TIH Learning Desktop 0.18.0 — Windows preview
-          prerelease: true
-          body_path: desktop-app/RELEASE-NOTES.md
-          files: |
-            desktop-app/dist/TIH-Learning-Desktop-0.18.0-Windows-x64.exe
-            desktop-app/test-results/00-welcome-login.png
-            desktop-app/test-results/13-continuous-reading.png
-            desktop-app/test-results/01-dashboard.png
-            desktop-app/test-results/06-learning-focus-1440.png
-            desktop-app/test-results/07-video-classroom.png
-            desktop-app/test-results/08-computer-literacy-assessment.png
-            desktop-app/test-results/10-computer-literacy-progress.png
-            desktop-app/test-results/11-ielts-chart-lesson.png
-            desktop-app/test-results/12-ielts-writing-studio.png
-            desktop-app/test-results/14-project-management-lesson.png
-            desktop-app/test-results/15-project-management-assessment.png
-            desktop-app/test-results/16-project-management-portfolio.png
-            desktop-app/test-results/17-project-management-progress.png
-
-            desktop-app/test-results/18-webdev-coding-lesson.png
-            desktop-app/test-results/19-webdev-assessment.png
-            desktop-app/test-results/20-webdev-capstone.png
-            desktop-app/test-results/21-webdev-progress.png
-            desktop-app/test-results/22-office-lesson.png
-            desktop-app/test-results/23-office-assessment.png
-            desktop-app/test-results/24-office-capstone.png
-            desktop-app/test-results/25-office-progress.png
-            desktop-app/test-results/26-accounting-lesson.png
-            desktop-app/test-results/27-accounting-assessment.png
-            desktop-app/test-results/28-accounting-project.png
-            desktop-app/test-results/29-accounting-progress.png
-            desktop-app/test-results/30-cybersecurity-lesson.png
-            desktop-app/test-results/31-cybersecurity-assessment.png
-            desktop-app/test-results/32-cybersecurity-project.png
-            desktop-app/test-results/33-cybersecurity-progress.png
-            desktop-app/test-results/34-android-lesson.png
-            desktop-app/test-results/35-android-assessment.png
-            desktop-app/test-results/36-android-project.png
-            desktop-app/test-results/37-android-progress.png
-            desktop-app/test-results/38-design-lesson.png
-            desktop-app/test-results/39-design-assessment.png
-            desktop-app/test-results/40-design-project.png
-            desktop-app/test-results/41-design-progress.png
-            desktop-app/test-results/42-aicyber-lesson.png
-            desktop-app/test-results/43-aicyber-assessment.png
-            desktop-app/test-results/44-aicyber-project.png
-            desktop-app/test-results/45-aicyber-progress.png
-
-            desktop-app/test-results/46-data-lesson.png
-            desktop-app/test-results/47-data-assessment.png
-            desktop-app/test-results/48-data-project.png
-            desktop-app/test-results/49-data-progress.png
-
-            desktop-app/test-results/50-leadership-lesson.png
-            desktop-app/test-results/51-leadership-assessment.png
-            desktop-app/test-results/52-leadership-project.png
-            desktop-app/test-results/53-leadership-progress.png
-
-            desktop-app/test-results/54-english-lesson.png
-            desktop-app/test-results/55-english-assessment.png
-            desktop-app/test-results/56-english-project.png
-            desktop-app/test-results/57-english-progress.png
-
-            desktop-app/test-results/58-toefl-lesson.png
-            desktop-app/test-results/59-toefl-assessment.png
-            desktop-app/test-results/60-toefl-progress.png
-
-            desktop-app/test-results/61-sat-lesson.png
-            desktop-app/test-results/62-sat-assessment.png
-            desktop-app/test-results/63-sat-progress.png
-
-            desktop-app/test-results/64-bible-lesson.png
-            desktop-app/test-results/65-bible-assessment.png
-            desktop-app/test-results/66-bible-project.png
-            desktop-app/test-results/67-bible-progress.png

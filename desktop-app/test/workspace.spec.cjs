@@ -936,3 +936,24 @@ test('Bible School and Christian Ministry course supports practical notes, sourc
   if(electron)expect(await page.evaluate(()=>window.tihDesktop.course('bible-foundations').then(()=>false,()=>true))).toBeTruthy();
 });
 
+
+test('TIH theme gives the written lesson more room as learners scroll',async()=>{
+ await installAccountFixture();await signInFixture();
+ await page.getByRole('button',{name:'Learning space',exact:true}).click();
+ if(electron)await electron.evaluate(({BrowserWindow})=>BrowserWindow.getAllWindows()[0].setSize(1280,800));else await page.setViewportSize({width:1280,height:800});
+ await expect(page.locator('#lesson-outline')).toBeHidden();
+ expect(await page.locator('.sidebar').evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(0, 40, 104)');
+ expect(await page.locator('[data-complete]').evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(227, 30, 36)');
+ const pane=page.locator('#pane-read');await expect.poll(()=>pane.getAttribute('data-restored')).toBe('true');
+ const before=await pane.evaluate(el=>el.clientHeight);
+ await page.locator('#lesson-frame').evaluate(el=>el.dataset.mounted='kept');await page.locator('#lesson-video').evaluate(el=>el.dataset.mounted='kept');
+ await pane.evaluate(el=>el.scrollTop=650);await expect(page.locator('body')).toHaveClass(/reader-expanded/);
+ expect(await pane.evaluate(el=>el.clientHeight)).toBeGreaterThan(before+100);
+ await expect(page.locator('#lesson-frame')).toHaveAttribute('data-mounted','kept');await expect(page.locator('#lesson-video')).toHaveAttribute('data-mounted','kept');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
+ await page.screenshot({path:'test-results/68-tih-expanded-reader.png',fullPage:true});
+ await page.getByRole('button',{name:'Show course controls',exact:true}).click();
+ await expect(page.locator('body')).not.toHaveClass(/reader-expanded/);await expect(page.getByRole('button',{name:'Lessons',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Lessons',exact:true}).click();await expect(page.locator('#lesson-outline')).toBeVisible();
+ await page.screenshot({path:'test-results/69-tih-theme-learning.png',fullPage:true});
+});

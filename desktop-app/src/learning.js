@@ -5,6 +5,7 @@ function applyWorkspaceLayout(){
   document.body.classList.toggle('learning-open',reading);
   document.body.classList.toggle('nav-compact',reading?readerNavCompact:collapsedNav);
   document.body.classList.toggle('focus-view',reading&&readerFocus);
+  updateReaderExpansion();
   const toggle=$('[data-action="toggle-nav"]');
   if(toggle){const name=document.body.classList.contains('nav-compact')?'Expand navigation':'Collapse navigation';toggle.setAttribute('aria-label',name);toggle.title=name;}
   const back=$('[data-action="history-back"]'),forward=$('[data-action="history-forward"]');
@@ -33,7 +34,7 @@ function reader(id){
       <header class="lesson-heading"><div><span class="eyebrow">LEARN AT YOUR OWN PACE</span><h1>${esc(l.final?'Final course assessment':l.title)}</h1></div><span class="lesson-position">${String(index+1).padStart(2,'0')} / ${String(sample.lessons.length).padStart(2,'0')}</span></header>
       <div class="lesson-tabbar"><div class="lesson-tabs" role="tablist" aria-label="Lesson materials">
         ${[['read','book',l.kind==='quiz'?'Assessment':l.kind==='project'?'Project brief':'Lesson'],['resources','download','Resources']].map(([id,ic,label])=>`<button id="tab-${id}" role="tab" aria-controls="pane-${id}" aria-selected="${readerTab===id}" tabindex="${readerTab===id?'0':'-1'}" data-reader-tab="${id}">${icon(ic)}${label}</button>`).join('')}
-      </div><label class="reader-text-size">Text size <select id="reader-size" aria-label="Reader text size">${[16,18,20,22].map(n=>`<option value="${n}" ${state.fontSize===n?'selected':''}>${n}px</option>`).join('')}</select></label></div>
+      </div><button class="reader-controls-return" data-action="reading-top" aria-label="Show course controls">Course controls ↑</button><label class="reader-text-size">Text size <select id="reader-size" aria-label="Reader text size">${[16,18,20,22].map(n=>`<option value="${n}" ${state.fontSize===n?'selected':''}>${n}px</option>`).join('')}</select></label></div>
       <section class="lesson-pane reading-pane" id="pane-read" data-lesson-id="${l.id}" tabindex="0" aria-label="Scroll lesson content" role="tabpanel" aria-labelledby="tab-read">${l.kind==='quiz'?assessmentPane(l):`${lessonVideoSection(l)}<iframe id="lesson-frame" title="${esc(l.title)}" sandbox="allow-scripts" scrolling="no"></iframe>${l.kind==='project'?projectPane(l):''}`}</section>
       <section class="lesson-pane resource-pane" id="pane-resources" role="tabpanel" aria-labelledby="tab-resources" hidden>
         <span class="eyebrow">KEEP EXPLORING</span><h2>Everything for this lesson</h2><p class="muted">Move between the material, your notes, and the course roadmap.</p>
@@ -67,6 +68,7 @@ function switchReaderTab(tab){
   document.querySelectorAll('[role="tab"][data-reader-tab]').forEach(b=>{const active=b.dataset.readerTab===tab;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});
   for(const key of ['read','resources'])$('#pane-'+key).hidden=key!==tab;
   $('.reader-text-size').hidden=tab!=='read'||currentLesson().kind==='quiz';
+  updateReaderExpansion();
   // Unmount a hidden video to stop playback; opening panels never reloads it.
   if(tab!=='read'&&$('#lesson-video'))$('#video-surface').innerHTML=videoPlaceholder(currentLesson());else if(tab==='read'&&$('#inline-video-body')&&!$('#inline-video-body').hidden&&!$('#lesson-video'))loadLessonVideo();
 }
@@ -87,3 +89,6 @@ function updateReadingProgress(){
 function updateFullscreenLabel(){const b=$('[data-action="fullscreen"]');if(b){b.setAttribute('aria-label',document.fullscreenElement?'Exit full screen':'Enter full screen');b.title=document.fullscreenElement?'Exit full screen (Esc)':'Full screen';}}
 document.addEventListener('fullscreenchange',updateFullscreenLabel);
 document.addEventListener('keydown',e=>{if(!e.target.matches('[role="tab"][data-reader-tab]'))return;const tabs=[...document.querySelectorAll('[role="tab"][data-reader-tab]')];let i=tabs.indexOf(e.target);if(e.key==='ArrowRight')i=(i+1)%tabs.length;else if(e.key==='ArrowLeft')i=(i+tabs.length-1)%tabs.length;else if(e.key==='Home')i=0;else if(e.key==='End')i=tabs.length-1;else return;e.preventDefault();tabs[i].focus();switchReaderTab(tabs[i].dataset.readerTab);});
+
+// Keep the video and lesson mounted while giving the scroll surface more vertical room.
+function updateReaderExpansion(){const pane=$('#pane-read'),active=document.body.classList.contains('reader-expanded');const reading=route.startsWith('reader/')&&readerTab==='read'&&pane&&!pane.hidden;document.body.classList.toggle('reader-expanded',!!reading&&(active?pane.scrollTop>20:pane.scrollTop>160));}

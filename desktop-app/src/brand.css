@@ -1,0 +1,57 @@
+/* TIH website palette, adapted for a desktop learning workspace. */
+:root{--ink:#002868;--muted:#4b5563;--blue:#002868;--red:#e31e24;--line:#cdd5e2;--paper:#fff;--bg:#f4f7fc}
+body{color:#0d1520;background:var(--bg)}
+h1,h2,h3{color:var(--ink);font-weight:750}
+.eyebrow{color:#1a4a9c}.muted{color:var(--muted)}
+.sidebar{background:#002868;color:#fff;border-right:0}
+.brand,.brand b{color:#fff}.brand img{background:#fff;border-radius:12px;padding:3px;width:46px;height:46px}
+.brand small,.side-label,.sidebar-bottom,.profile small{color:#c8d8f0}
+.sidebar .nav-item{color:#dceaff}.sidebar .nav-item:hover{background:#ffffff12;color:#fff}
+.sidebar .nav-item.active{background:#e31e24;color:#fff;box-shadow:0 5px 15px #00153533}
+.nav-item.active:before{background:#fff}.sidebar .nav-item small{color:inherit}
+.side-journey{background:#ffffff0c;border-color:#ffffff24}.side-journey h3{color:#fff}
+.side-journey p,.tiny-pill{color:#c8d8f0}.journey-symbol{color:#ff7d82}
+.profile{border-color:#ffffff26}.avatar{background:#eaf4ff;color:#002868}
+.sidebar-bottom .icon-button{color:#fff;background:transparent;border-color:#ffffff33}
+.topbar{background:#fff;border-bottom:1px solid var(--line)}
+.breadcrumb b,.icon-button,.secondary,.text-btn{color:#002868}
+.primary{background:#e31e24;color:#fff;border-color:#e31e24}.primary:hover{background:#b8181d}
+.secondary{background:#fff;border-color:#cdd5e2}.secondary:hover{background:#eaf4ff;border-color:#1a4a9c}
+.button.dark{background:#002868;color:#fff}.button.white{color:#002868}
+.hero{background:linear-gradient(125deg,#002868,#1a4a9c);border-radius:20px;border-top:4px solid #e31e24}
+.hero h2{color:#fff;font-weight:750}.hero h2 em{color:#c8d8f0}
+.hero-pill,.hero p{color:#eaf4ff}.hero .button.white{background:#e31e24;color:#fff}
+.page-heading h1{color:#002868}.serif{color:#1a4a9c}
+.learning-open #main{background:#eaf4ff}
+.lesson-stage,.lesson-outline{border-color:#cdd5e2;box-shadow:0 4px 14px #0028680c}
+.lesson-stage{border-top:3px solid #e31e24}.lesson-notes{background:#f4f7fc;border-color:#cdd5e2}
+.lesson-link.active{background:#eaf4ff;color:#002868;border-left:3px solid #e31e24}
+.lesson-link small,.outline-progress,.lesson-context>span,.lesson-position,.reader-text-size,.resource-card span{color:#4b5563}
+.learning-progress i,.preview-progress i{background:#e31e24}
+.lesson-tabs [aria-selected=true]{border-color:#e31e24;color:#002868}
+.learning-actions [aria-expanded=true],.learning-actions [aria-pressed=true]{background:#002868;color:#fff;border-color:#002868}
+.inline-video{background:#f8fafd}.reading-jumps span,.inline-video .video-help{color:#4b5563}
+.welcome-form>h1 span{color:#e31e24}.welcome-brand span{color:#002868}
+.welcome-form label,.welcome-caption,.welcome-footer,.welcome-brand small{color:#4b5563}
+.welcome-art{background:#eaf4ff;border-color:#cdd5e2;border-top:4px solid #e31e24}
+input:focus,textarea:focus,select:focus{outline-color:#1565d8}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline-color:#1565d8}
+.resource-card:hover{background:#eaf4ff;border-color:#002868}
+.learning-open .topbar{height:48px;min-height:48px;padding-inline:16px}
+.learning-open #main{height:calc(100dvh - 48px);padding:10px 14px 12px}
+.learning-toolbar{margin-bottom:10px;min-height:38px;gap:12px}
+.learning-toolbar .button{min-height:36px;padding:8px 12px}
+.learning-grid{gap:12px}.lesson-heading{padding:12px 20px 10px}
+.lesson-heading h1{font-size:24px}.lesson-heading .eyebrow{margin-bottom:4px}
+.lesson-tabbar{min-height:44px;padding-inline:20px}
+.lesson-tabs button{padding:10px 0}.lesson-bottom{padding:9px 14px;min-height:50px}
+.lesson-bottom .button{min-height:34px;padding:8px 12px}
+.inline-video{padding:16px 20px 0}
+.focus-view #main{height:100dvh;padding:10px 12px}
+.reader-controls-return{display:none;margin-left:auto;color:#002868;font-size:11px;border:1px solid #cdd5e2;border-radius:8px;padding:7px 10px}
+.reader-expanded .topbar,.reader-expanded .learning-toolbar,.reader-expanded .lesson-heading{display:none}
+.reader-expanded #main{height:100dvh;padding:8px 12px}
+.reader-expanded .reader-controls-return{display:inline-flex}
+.reader-expanded .reader-text-size{margin-left:0}
+@media(max-width:1050px){.lesson-heading h1{font-size:21px}.learning-open .topbar .searchbox{max-width:240px}.lesson-tabbar{padding-inline:14px}.reader-controls-return{font-size:10px;padding:6px}.lesson-bottom{gap:6px}.learning-actions .button{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.button{transition:none}}
