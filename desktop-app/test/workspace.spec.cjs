@@ -191,6 +191,10 @@ test('IELTS charts, assessment grading, essay studio and separate course access'
   await page.getByRole('button',{name:'Course progress',exact:true}).click();await expect(page.locator('.progress-summary')).toContainText('0 / 111');
 });
 
+async function expectReadingPosition(position){
+  try{await expect.poll(()=>page.locator('#pane-read').evaluate(el=>el.scrollTop)).toBe(position);}
+  catch(error){console.log('Reading position diagnostics',await page.locator('#pane-read').evaluate(el=>{const f=document.querySelector('#lesson-frame');return{scroll:el.scrollTop,height:el.clientHeight,content:el.scrollHeight,restored:el.dataset.restored,readerWidth:el.readerWidth,frameWidth:f?.clientWidth,frameHeight:f?.clientHeight};}));throw error;}
+}
 test('sign-in is first, sign-out returns to welcome and scrolling is safely restored',async()=>{
   await page.screenshot({path:'test-results/00-welcome-login.png',fullPage:true});
   await expect(page.getByLabel('Email address',{exact:true})).toBeVisible();
@@ -215,19 +219,19 @@ test('sign-in is first, sign-out returns to welcome and scrolling is safely rest
   await page.evaluate(()=>window.postMessage({type:'tih-reader-height',token:document.querySelector('#lesson-frame').dataset.readerToken,height:240000},'*'));
   await expect(page.locator('#lesson-frame')).toHaveJSProperty('clientHeight',height);
   await page.locator('#pane-read').evaluate(el=>el.scrollTop=700);
-  await expect.poll(()=>page.locator('#pane-read').evaluate(el=>el.scrollTop)).toBe(700);
+  await expectReadingPosition(700);
   await page.getByLabel('Study course',{exact:true}).selectOption('ielts');
   await expect.poll(()=>page.locator('#pane-read').evaluate(el=>el.dataset.restored)).toBe('true');
   await expect(page.locator('#pane-read')).toHaveJSProperty('scrollTop',0);
   await page.getByLabel('Study course',{exact:true}).selectOption('computer-literacy');
-  await expect.poll(()=>page.locator('#pane-read').evaluate(el=>el.scrollTop)).toBe(700);
+  await expectReadingPosition(700);
   await page.getByRole('button',{name:'Overview',exact:true}).click();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
-  await expect.poll(()=>page.locator('#pane-read').evaluate(el=>el.scrollTop)).toBe(700);
+  await expectReadingPosition(700);
   if(electron){await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
   await expect(page.locator('.welcome-screen')).toHaveCount(0);
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
-  await expect.poll(()=>page.locator('#pane-read').evaluate(el=>el.scrollTop)).toBe(700);
+  await expectReadingPosition(700);
   await page.getByRole('button',{name:'Back to lesson top',exact:true}).click();
   await expect.poll(()=>page.locator('#pane-read').evaluate(el=>el.scrollTop)).toBe(0);
   if(electron){await electron.evaluate(({app,dialog})=>{const fs=process.getBuiltinModule('fs'),path=process.getBuiltinModule('path'),file=path.join(app.getPath('userData'),'guest-backup.json');fs.writeFileSync(file,JSON.stringify({version:1,owner:'guest',notes:[{id:'old-guest-note',title:'Earlier study notes',body:'Preserve my earlier learning work.',courseId:'',updatedAt:1}]}));dialog.showOpenDialog=async()=>({canceled:false,filePaths:[file]});});
