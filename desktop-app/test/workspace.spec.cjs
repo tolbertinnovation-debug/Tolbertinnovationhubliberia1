@@ -144,7 +144,7 @@ test('full Computer Literacy course: approved access, draft, grading, projects a
   await page.getByRole('button',{name:'Submit assessment',exact:true}).click();await expect(page.locator('.assessment-result')).toContainText('Best score 100%');await expect(page.locator('.activity-status')).toHaveText('Pass at 70% · Best score 100%');
   const project=full.lessons.find(l=>l.kind==='project');
   await page.getByLabel('Find a lesson',{exact:true}).fill('Computer Literacy Practical Project');
-  await page.locator(`[data-route="reader/${project.id}"]`).click();
+  await page.locator(`[data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText('Deliverable');
   await page.getByLabel('Finished file names or folder location',{exact:true}).fill('My portfolio / report.docx / budget.xlsx');
   await page.getByLabel('What did you create and learn?',{exact:true}).fill('I created a formatted report and budget spreadsheet and saved them in my learning portfolio.');
@@ -189,7 +189,7 @@ test('IELTS charts, assessment grading, essay studio and separate course access'
   await page.getByRole('button',{name:'Focus view',exact:true}).click();await revealWrittenElement(page.frameLocator('#lesson-frame').locator('svg'));await page.screenshot({path:'test-results/11-ielts-chart-lesson.png',fullPage:true});await page.keyboard.press('Escape');
   const quiz=ielts.lessons.find(l=>l.kind==='quiz');await page.getByLabel('Find a lesson',{exact:true}).fill('IELTS Format');await page.locator(`[data-route="reader/${quiz.id}"]`).click();
   for(let i=0;i<quiz.questions.length;i++)await page.locator(`[name="question-${i}"][value="${quiz.questions[i].answer}"]`).check();await page.getByRole('button',{name:'Submit assessment',exact:true}).click();await expect(page.locator('.activity-status')).toContainText('100%');await expect(page.locator('.assessment-intro')).toContainText('not IELTS band scores');
-  const project=ielts.lessons.find(l=>l.kind==='project');await page.getByLabel('Find a lesson',{exact:true}).fill('Full Band 7');await page.locator(`[data-route="reader/${project.id}"]`).click();
+  const project=ielts.lessons.find(l=>l.kind==='project');await page.getByLabel('Find a lesson',{exact:true}).fill('Full Band 7');await page.locator(`[data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText('public libraries');await page.getByRole('button',{name:'Start 40-minute practice',exact:true}).click();await expect(page.getByRole('button',{name:'Pause timer',exact:true})).toBeVisible();await page.getByRole('button',{name:'Pause timer',exact:true}).click();
   await page.getByLabel('Your Task 2 essay',{exact:true}).fill('This short draft is not yet long enough to record as a finished Task 2 essay.');await page.locator('#project-confirm').check();await page.getByRole('button',{name:'Record project completion',exact:true}).click();await expect(page.locator('#toast')).toContainText('at least 250 words');
   const essay=Array.from({length:14},()=> 'Public libraries provide equitable access to books and reliable information while online learning offers flexible opportunities for adults and students.').join(' ');
@@ -292,7 +292,7 @@ test('Project Management complete course, unique assessments, portfolio and inde
   const budget=pm.lessons.find(l=>l.kind==='quiz'&&l.title.includes('Budgeting Assessment'));await page.getByLabel('Find a lesson',{exact:true}).fill('Budgeting Assessment');await page.locator(`#lesson-outline [data-route="reader/${budget.id}"]`).click();
   await expect(page.locator('.quiz-question')).toHaveCount(8);await expect(page.locator('.quiz-question').first()).toContainText(budget.questions[0].question);expect(budget.questions[0].question).not.toBe(quiz.questions[0].question);
   const project=pm.lessons.find(l=>l.kind==='project'&&l.title.includes('Complete Project Management Plan'));
-  await page.getByLabel('Find a lesson',{exact:true}).fill('Complete Project Management Plan');await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await page.getByLabel('Find a lesson',{exact:true}).fill('Complete Project Management Plan');await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText('Complete Project Management Plan');
   const reflection='I prepared a project charter, scope baseline, work breakdown structure, budget, schedule, risk register and stakeholder communication plan for my community project.';
   await page.getByLabel('Finished file names or folder location',{exact:true}).fill('TIH Project Management Portfolio / community-project-plan.pdf');
@@ -311,7 +311,7 @@ test('Project Management complete course, unique assessments, portfolio and inde
   if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('project-mgmt');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();await expect(page.getByRole('heading',{name:'Final course assessment',exact:true})).toBeVisible();
   if(!(await page.getByLabel('Find a lesson',{exact:true}).isVisible()))await page.getByRole('button',{name:'Lessons',exact:true}).click();
-  await page.getByLabel('Find a lesson',{exact:true}).fill('Complete Project Management Plan');await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);await expect(page.locator('.activity-status')).toContainText('Completion recorded');
+  await page.getByLabel('Find a lesson',{exact:true}).fill('Complete Project Management Plan');await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);await expect(page.locator('.activity-status')).toContainText('Completion recorded');
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();if(electron)await installAccountFixture();await signInFixture('pm-only@example.com');
   await expect(page.getByRole('heading',{name:pm.title,exact:true})).toBeVisible();await page.getByRole('button',{name:'Learning space',exact:true}).click();
   if(!(await page.getByLabel('Study course',{exact:true}).isVisible()))await page.getByRole('button',{name:'Lessons',exact:true}).click();
@@ -346,7 +346,7 @@ test('Full-Stack course supports coding notes, unique quizzes, projects and isol
   await page.screenshot({path:'test-results/19-webdev-assessment.png',fullPage:true});
   const project=web.lessons.find(l=>l.kind==='project'&&l.module===19);
   await page.getByLabel('Find a lesson',{exact:true}).fill('Project Planning');
-  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('.source-project-brief')).toContainText('Deliverable:');
   const reflection='I planned and built my portfolio application, checked responsive layouts and accessibility, and tested frontend and backend integration.';
   await page.getByLabel('What did you create and learn?',{exact:true}).fill(reflection);
@@ -395,7 +395,7 @@ test('Microsoft Office course supports practical notes, unique quizzes, projects
   await page.screenshot({path:'test-results/23-office-assessment.png',fullPage:true});
   const project=web.lessons.find(l=>l.kind==='project'&&l.module===19);
   await page.getByLabel('Find a lesson',{exact:true}).fill(project.title.replace(/^🛠️ /,''));
-  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('.source-project-brief')).toContainText('Deliverable:');
   const reflection='I prepared a professional business report, checked spreadsheet formulas and charts, and created a presentation with an organized Office portfolio.';
   await page.getByLabel('What did you create and learn?',{exact:true}).fill(reflection);
@@ -444,7 +444,7 @@ test('Accounting course supports practical notes, unique quizzes, projects and i
   await page.screenshot({path:'test-results/27-accounting-assessment.png',fullPage:true});
   const project=web.lessons.find(l=>l.kind==='project'&&l.module===19);
   await page.getByLabel('Find a lesson',{exact:true}).fill(project.title.replace(/^🛠️ /,''));
-  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText(project.title.replace(/^🛠️ /,''));
   const reflection='I recorded source documents, posted journal entries, reconciled the bank and prepared a complete bookkeeping file with financial statements.';
   await page.getByLabel('What did you create and learn?',{exact:true}).fill(reflection);
@@ -493,7 +493,7 @@ test('Cybersecurity course supports practical notes, source assessments, project
   await page.screenshot({path:'test-results/31-cybersecurity-assessment.png',fullPage:true});
   const project=web.lessons.find(l=>l.kind==='project'&&l.module===19);
   await page.getByLabel('Find a lesson',{exact:true}).fill(project.title.replace(/^🛠️ /,''));
-  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText(project.title.replace(/^🛠️ /,''));
   const reflection='I assessed an authorized practice environment, documented its risks, applied defensive controls and prepared a security report with remediation steps.';
   await page.getByLabel('What did you create and learn?',{exact:true}).fill(reflection);
@@ -542,7 +542,7 @@ test('Android Kotlin course supports practical notes, source assessments, projec
   await page.screenshot({path:'test-results/35-android-assessment.png',fullPage:true});
   const project=web.lessons.find(l=>l.kind==='project'&&l.module===18);
   await page.getByLabel('Find a lesson',{exact:true}).fill(project.title.replace(/^🛠️ /,''));
-  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText(project.title.replace(/^🛠️ /,''));
   const reflection='I planned a Kotlin app, built its interface, tested data storage and authentication, and prepared the project for deployment.';
   await page.getByLabel('What did you create and learn?',{exact:true}).fill(reflection);
@@ -591,7 +591,7 @@ test('Graphic Design course supports practical notes, source assessments, projec
   await page.screenshot({path:'test-results/39-design-assessment.png',fullPage:true});
   const project=web.lessons.find(l=>l.kind==='project'&&l.module===17);
   await page.getByLabel('Find a lesson',{exact:true}).fill(project.title.replace(/^🛠️ /,''));
-  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText(project.title.replace(/^🛠️ /,''));
   const reflection='I researched the design brief, created layouts with clear typography and contrast, and prepared a brand portfolio with client presentation files.';
   await page.getByLabel('What did you create and learn?',{exact:true}).fill(reflection);
@@ -640,7 +640,7 @@ test('AI Cybersecurity course supports practical notes, source assessments, proj
   await page.screenshot({path:'test-results/43-aicyber-assessment.png',fullPage:true});
   const project=web.lessons.find(l=>l.kind==='project'&&l.module===14);
   await page.getByLabel('Find a lesson',{exact:true}).fill(project.title.replace(/^🛠️ /,''));
-  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText(project.title.replace(/^🛠️ /,''));
   const reflection='I assessed an authorized training system, reviewed security logs and phishing examples, and documented AI-assisted findings with verified remediation steps.';
   await page.getByLabel('What did you create and learn?',{exact:true}).fill(reflection);
@@ -688,7 +688,7 @@ test('Data Analysis course supports practical notes, source assessments, project
   await page.screenshot({path:'test-results/47-data-assessment.png',fullPage:true});
   const project=web.lessons.find(l=>l.kind==='project');
   await page.getByLabel('Find a lesson',{exact:true}).fill(project.title.replace(/^🛠️ /,''));
-  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText(project.title.replace(/^🛠️ /,''));
   const reflection='I cleaned a dataset, checked formulas, built a dashboard and documented the findings and limitations of my analysis.';
   await page.getByLabel('What did you create and learn?',{exact:true}).fill(reflection);
@@ -736,7 +736,7 @@ test('Business Leadership course supports practical notes, source assessments, p
   await page.screenshot({path:'test-results/51-leadership-assessment.png',fullPage:true});
   const project=web.lessons.find(l=>l.kind==='project');
   await page.getByLabel('Find a lesson',{exact:true}).fill(project.title.replace(/^🛠️ /,''));
-  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText(project.title.replace(/^🛠️ /,''));
   const reflection='I defined a leadership strategy, planned team responsibilities and documented communication, governance and performance measures.';
   await page.getByLabel('What did you create and learn?',{exact:true}).fill(reflection);
@@ -784,7 +784,7 @@ test('English for Academic and Professional Success course supports practical no
   await page.screenshot({path:'test-results/55-english-assessment.png',fullPage:true});
   const project=web.lessons.find(l=>l.kind==='project');
   await page.getByLabel('Find a lesson',{exact:true}).fill(project.title.replace(/^🛠️ /,''));
-  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText(project.title.replace(/^🛠️ /,''));
   const reflection='I prepared an academic essay, revised a professional email and practiced a presentation using feedback to improve clarity and language.';
   await page.getByLabel('What did you create and learn?',{exact:true}).fill(reflection);
@@ -910,7 +910,7 @@ test('Bible School and Christian Ministry course supports practical notes, sourc
   await page.screenshot({path:'test-results/65-bible-assessment.png',fullPage:true});
   const project=web.lessons.find(l=>l.kind==='project');
   await page.getByLabel('Find a lesson',{exact:true}).fill(project.title.replace(/^🛠️ /,''));
-  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();
+  await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');
   await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText(project.title.replace(/^🛠️ /,''));
   const reflection='I studied the assigned Scripture passages, prepared a ministry plan and recorded how I will apply the lesson in service to my community.';
   await page.getByLabel('What did you create and learn?',{exact:true}).fill(reflection);
