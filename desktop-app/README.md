@@ -5,7 +5,7 @@ Independent Windows app on `codex/tih-desktop-app`. Desktop code lives in `deskt
 ## Computer Literacy and IELTS Masterclass — full desktop courses
 
 - Computer Literacy: all 15 source modules: 123 authored reading lessons, 125 assessments with 404 questions, and five practical projects.
-- 128 source-linked videos across lessons and projects. Videos stream from YouTube after a learner chooses to load them; availability is controlled by YouTube.
+- 128 source-linked videos across lessons and projects. The YouTube player loads above the written lesson with autoplay off. Video playback needs internet; availability is controlled by YouTube.
 - Full module navigation, lesson search, Previous/Next, remembered last activity, optional notes, focus view, full screen and adjustable text.
 - Saved quiz drafts, automatic grading at 70%, answer explanations, shuffled choice positions, retries and retained best scores.
 - Project reflections, file/folder references and self-reported practical completion. The app does not upload or grade project files.
@@ -21,11 +21,11 @@ Full-course access follows the same rules as the APK: sign in using the existing
 
 Passwords are never saved. Access and refresh credentials are encrypted using Electron safeStorage (Windows DPAPI) in `account-vault.bin`; they are never exposed through the renderer bridge or included in backups. Credential persistence fails closed when secure storage is unavailable. Rotated refresh credentials are saved before a profile reread, without extending the grant verification time.
 
-Guest learners retain the three Computer Literacy previews and their existing local workspace. Each signed-in student has a separate workspace under `userData/students/<student-id>/study-workspace.json`. Signing out preserves their work. Backups are checked against the active profile. Course body files and account configuration are blocked from the local renderer protocol; full material is delivered only by validated IPC after approval. Account expiry removes full-course material and returns the learner to the access screen.
+The welcome and sign-in page appears whenever there is no signed-in account. A saved account opens the course library. Signed-in learners awaiting approval can use the three Computer Literacy previews. Old guest work is kept on disk; export its backup before upgrading, then restore it from Settings into your signed-in workspace. Each signed-in student has a separate workspace under `userData/students/<student-id>/study-workspace.json`. Signing out preserves their work. Backups are checked against the active profile; an old guest backup can be explicitly restored into a signed-in account. Course body files and account configuration are blocked from the local renderer protocol; full material is delivered only by validated IPC after approval. Account expiry removes full-course material and returns the learner to the access screen.
 
 ## Learning space
 
-Learning space opens your last available activity. Lessons opens the active course outline; search finds readings, quizzes and projects. My notes opens a companion notebook. Focus view expands the lesson to almost the entire window; Full screen fills the display. Escape exits either view. Hiding panels does not reload the reading or video; switching away from the Video tab stops playback.
+Learning space opens your last available activity. Lessons opens the active course outline; search finds readings, quizzes and projects. My notes opens a companion notebook. Focus view expands the lesson to almost the entire window; Full screen fills the display. Escape exits either view. Video and written material occupy one continuous scrolling lesson page, matching the APK placement. Hide video removes the player and stops playback; opening Resources or leaving the activity also stops playback. Hiding notes or outline panels does not reload the reading or video. Scroll over the text using the mouse wheel or Page Up/Page Down. Read the lesson below jumps past the video; Top returns to the start. Reading positions are saved per lesson and restored on reopening.
 
 Assessments require every answer before grading. Drafts survive navigation/restarts, and failed retries preserve a higher previous score. Approved enrollment is enforced independently for each course. Quiz completion is based on a passing best score, not a manually set completed flag. Projects provide the original brief and fields for a reflection and finished-file references. Completion requires a meaningful reflection and the learner's confirmation; instructor review remains separate.
 
@@ -43,14 +43,14 @@ npm test
 npm start
 ```
 
-The read-only importer uses the existing Learning Hub sources and public account configuration without changing them. It bundles two full courses plus the guest preview and catalog; generated content and build files are excluded from git. Desktop branding copies the APK logo unchanged and converts it to Windows PNG/ICO formats.
+The read-only importer uses the existing Learning Hub sources and public account configuration without changing them. It bundles two full courses plus the guest preview and catalog; generated content and build files are excluded from git. Desktop branding copies the APK logo and welcome illustration unchanged and converts the logo to Windows PNG/ICO formats.
 
 On Windows use `TIH_ELECTRON_TEST=1` and `npm run test:ui`. Linux browser UI checks require Playwright Chromium. `npm run dist:win` creates the unsigned Windows installer.
 
-Notes support 500 entries and 30,000 characters each. Course records support up to 5,000 activity IDs; older version-1 backups migrate with empty assessment/project fields. Backups merge best scores and preserve conflicting notes/project reflections. A corrupt workspace is reported without silent replacement. Export backups before uninstalling or changing computers.
+Older backups without reading positions start each lesson at the top. Notes support 500 entries and 30,000 characters each. Course records support up to 5,000 activity IDs; older version-1 backups migrate with empty assessment/project fields. Backups merge best scores and preserve conflicting notes/project reflections. A corrupt workspace is reported without silent replacement. Export backups before uninstalling or changing computers.
 
 ## Validation and release
 
 The workflow tests the native Windows app, builds the installer, installs it and repeats UI tests against the installed executable. Tests cover full source completeness, grading, restore, cached-access expiry, active-profile/enrollment rules, rotated credentials, approved/pending accounts, quiz drafts/results, project records, PDF export, per-student isolation, independent course permissions, IELTS charts/keywords, essay drafts/timer/word counts, course switching and restart persistence. Account integration tests use controlled responses; they do not authenticate a real student. Video tests verify controlled player loading and isolation, not third-party playback availability.
 
-Release: `desktop-v0.3.0-preview`. The installer is unsigned and may show a Windows publisher warning. Future public distribution needs code signing. No certificate is embedded or invented.
+Release: `desktop-v0.4.0-preview`. The installer is unsigned and may show a Windows publisher warning. Future public distribution needs code signing. No certificate is embedded or invented.
