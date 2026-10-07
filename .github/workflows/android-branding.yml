@@ -52,6 +52,26 @@ jobs:
       - name: Build and validate branded Android app
         working-directory: android-app
         run: ./gradlew --no-daemon --max-workers=2 :app:assembleStore :app:testDebugUnitTest :app:lintStore
+      - name: Verify public APK security and upgrade identity
+        shell: bash
+        run: |
+          apk=android-app/app/build/outputs/apk/store/app-store.apk
+          tools_dir="$ANDROID_HOME/build-tools/36.0.0"
+          "$tools_dir/aapt" dump badging "$apk" > /tmp/public-apk-manifest.txt
+          python3 - <<'PY'
+          import pathlib
+          manifest = pathlib.Path('/tmp/public-apk-manifest.txt').read_text()
+          assert 'application-debuggable' not in manifest, 'Public APK must not be debuggable'
+          assert "name='org.tolbertinnovationhub.learning.preview'" in manifest, 'Upgrade application ID changed'
+          assert "versionCode='43'" in manifest, 'Unexpected security release version'
+          PY
+          "$tools_dir/apksigner" verify --print-certs "$apk" > /tmp/public-apk-signature.txt
+          python3 - <<'PY'
+          import pathlib
+          expected = pathlib.Path('android-app/preview-signing.sha256').read_text().strip().lower()
+          actual = pathlib.Path('/tmp/public-apk-signature.txt').read_text().lower()
+          assert expected in actual, 'Public signing identity changed'
+          PY
       - name: Save Android installer
         uses: actions/upload-artifact@v4
         with:
