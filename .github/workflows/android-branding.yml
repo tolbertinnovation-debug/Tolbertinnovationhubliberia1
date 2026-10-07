@@ -51,7 +51,7 @@ jobs:
           node --test android-app/tools/content.test.mjs
       - name: Build and validate branded Android app
         working-directory: android-app
-        run: ./gradlew --no-daemon --max-workers=2 :app:assembleStore :app:testDebugUnitTest :app:lintStore
+        run: ./gradlew --no-daemon --max-workers=2 :app:assembleStore :app:assembleDebug :app:assembleDebugAndroidTest :app:assembleRelease :app:testDebugUnitTest :app:lintStore
       - name: Verify public APK security and upgrade identity
         shell: bash
         run: |
@@ -72,6 +72,17 @@ jobs:
           actual = pathlib.Path('/tmp/public-apk-signature.txt').read_text().lower()
           assert expected in actual, 'Public signing identity changed'
           PY
+      - name: Verify video lifecycle and minified release on Android 16
+        env:
+          ANDROID_USER_HOME: ${{ runner.temp }}/tih-android-security
+          ANDROID_AVD_HOME: ${{ runner.temp }}/tih-avd-security
+          TIH_DEVICE_CLASSES: LessonVideoUiTest
+        run: |
+          if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
+          mkdir -p "$ANDROID_USER_HOME" "$ANDROID_AVD_HOME"
+          sdkmanager --install 'system-images;android-36;default;x86_64' 'emulator'
+          echo no | avdmanager create avd --name tih-security-api36 --package 'system-images;android-36;default;x86_64' --device pixel_6 --path "$ANDROID_AVD_HOME/tih-security-api36.avd"
+          node android-app/tools/emulator-smoke.mjs "$ANDROID_HOME" tih-security-api36 36
       - name: Save Android installer
         uses: actions/upload-artifact@v4
         with:

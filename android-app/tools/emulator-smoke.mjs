@@ -48,7 +48,9 @@ try {
   // native renderer teardown crashed after the combined run on API 36.
   const namespace='org.tolbertinnovationhub.learning';
   const testDirectory=path.join(root,'android-app/app/src/androidTest/java/org/tolbertinnovationhub/learning');
-  const testClasses=fs.readdirSync(testDirectory).filter(name=>name.endsWith('Test.kt')).map(name=>name.replace(/\.kt$/,''));
+  const requested=process.env.TIH_DEVICE_CLASSES?.split(',').filter(Boolean);
+  const testClasses=fs.readdirSync(testDirectory).filter(name=>name.endsWith('Test.kt')).map(name=>name.replace(/\.kt$/,'')).filter(name=>!requested||requested.includes(name));
+  if(!testClasses.length || requested?.some(name=>!testClasses.includes(name)))throw new Error('Unknown requested device test class');
   // Run each test class in a fresh process as the course coverage grows.
   // This bounds per-process runtime and WebView state without dropping tests.
   const groups=testClasses.flatMap(name=>{
