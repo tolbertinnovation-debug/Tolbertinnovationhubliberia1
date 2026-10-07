@@ -29,6 +29,25 @@ jobs:
           node --test tools/projectmgmt-quizzes.test.mjs tools/accounting-bookkeeping-quizzes.test.mjs tools/webdev-quizzes.test.mjs tools/design-quizzes.test.mjs tools/entrepreneurship-quizzes.test.mjs tools/android-kotlin-quizzes.test.mjs tools/office-quizzes.test.mjs tools/leadership-quizzes.test.mjs tools/grant-writing-quizzes.test.mjs tools/english-success-quizzes.test.mjs tools/ielts-quizzes.test.mjs
           node tools/check-courses-lite.js
 
+      - name: Prepare public Windows app download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/prepare-app-downloads.py
+
+      - name: Verify app store on mobile and desktop
+        run: |
+          npm install --prefix /tmp/libapps-check playwright
+          /tmp/libapps-check/node_modules/.bin/playwright install --with-deps chromium
+          NODE_PATH=/tmp/libapps-check/node_modules node tools/libapps-store-check.cjs
+
+      - name: Save app store previews
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: libapps-store-preview
+          path: /tmp/libapps-preview
+          if-no-files-found: ignore
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
