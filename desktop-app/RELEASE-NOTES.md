@@ -1,11 +1,11 @@
-TIH Learning Desktop 0.7.0 — Microsoft Office Mastery Professional Certificate.
+TIH Learning Desktop 0.8.0 — Accounting & Bookkeeping Program.
 
-The fifth full desktop course includes 20 modules, 169 readings, 179 assessments with 637 distinct questions, 29 projects and 198 source-linked videos. Study Word, Excel, PowerPoint, Outlook, Teams, OneNote, OneDrive, cloud collaboration, reporting, Copilot and Office automation.
+The sixth full desktop course includes 20 modules, 132 reading lessons, 138 assessments with 475 distinct questions, nine practical projects and 140 source-linked videos. Learn source documents, journal entries, ledgers, trial balances, cashbooks, bank reconciliation, sales and purchases, payroll, financial statements, cash budgets and digital bookkeeping.
 
-Authored teaching notes include worked examples, tables and expandable keywords. Original project briefs and deliverables remain alongside the explanations. Complete practical assignments using your own Office applications, then save reflections and file references in the desktop workspace. The app does not provide a Microsoft Office license or automatically grade uploaded documents. Official TIH certification remains in Learning Hub.
+Original teaching notes, worked examples, tables, expandable keywords and project briefs are preserved. Practical projects save reflections and file references; learners create their accounting files using their own tools. The app records practice results and does not automatically review submitted financial statements. Official TIH certification remains in Learning Hub.
 
-The sign-in-first welcome, continuous video-above-reading layout, scrolling, focus view, notes, saved reading positions, quiz drafts, results and project records remain available. Approved Office enrollment is checked independently of the other four courses. Workspaces and backups remain compatible.
+The sign-in-first welcome, video above the reading, scrolling, notes, focus view, saved positions, quiz drafts, results and project records remain available. Accounting enrollment is verified separately from the five other full courses. Existing workspace files and backups remain compatible.
 
-Validation covers full source content, question uniqueness, grading, project records, backups, enrollment isolation, practical notes, video placement, course progress and restart persistence. Windows interface tests repeat against the installed executable before release.
+Validation covers source completeness, distinct questions, grading, backups, course-specific access, lesson tables, videos, assessments, project records, progress and restart persistence. The Windows workflow repeats interface tests after installing the packaged app.
 
-Export a backup in Settings, close the old app and install this update in the same location. Windows x64 preview; unsigned installer.
+Back up your workspace in Settings, close the old app and install the update in the same location. Windows x64 preview; unsigned installer.
