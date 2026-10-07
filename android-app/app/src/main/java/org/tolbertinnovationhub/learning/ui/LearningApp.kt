@@ -551,6 +551,7 @@ private val destinations = listOf(Destination("Courses", Icons.AutoMirrored.Outl
                 OutlinedButton(onClick = { showInformation(page) }, modifier = Modifier.fillMaxWidth()) { Text(page.title) }
             }
             if (vm.session != null) TextButton(onClick = { confirmClear = true }) { Text("Clear my study data on this device", color = MaterialTheme.colorScheme.error) }
+            BrandAttribution(Modifier.fillMaxWidth())
             Text("TIH Learning · ${BuildConfig.VERSION_NAME}", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         } }
     }

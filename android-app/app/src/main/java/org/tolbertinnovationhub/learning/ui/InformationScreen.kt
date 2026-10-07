@@ -48,6 +48,7 @@ enum class InformationPage(val title: String) {
                     Text(info.name, style = MaterialTheme.typography.headlineSmall)
                     Text(info.address, style = MaterialTheme.typography.bodyMedium)
                 } }
+                item { BrandAttribution(Modifier.fillMaxWidth()) }
                 item { InformationCard(InformationSection("Our mission", listOf(info.mission))) }
                 item { InformationCard(InformationSection("Our vision", listOf(info.vision))) }
                 item { InformationCard(InformationSection("Learning with TIH", listOf("Your existing TIH courses, with written lessons, practice quizzes, bookmarks, and personal notes. Course materials and artwork are copied from the TIH Learning Hub.", "TIH Learning ${BuildConfig.VERSION_NAME}"))) }

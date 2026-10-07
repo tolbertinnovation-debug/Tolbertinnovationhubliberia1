@@ -82,6 +82,7 @@ import org.tolbertinnovationhub.learning.LearningViewModel
                     style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
+        item { BrandAttribution(Modifier.fillMaxWidth()) }
         item {
             Column {
                 TextButton(onClick = { showInformation(InformationPage.PRIVACY) }) { Text("How your account data is used") }

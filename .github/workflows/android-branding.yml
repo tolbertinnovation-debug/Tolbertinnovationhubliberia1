@@ -1,0 +1,65 @@
+name: Android branded app installer
+on:
+  push:
+    branches: [codex/tih-native-android]
+    paths: ['android-app/app/src/main/java/org/tolbertinnovationhub/learning/ui/BrandAttribution.kt', '.github/workflows/android-branding.yml']
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TIH_PREVIEW_KEYSTORE: ${{ github.workspace }}/android-app/.ci-preview-signing/preview.keystore
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: platform-tools
+          # Pin the command-line toolchain used for repeatable AVD creation.
+          cmdline-tools-version: '13114758'
+      # Reuse the SAME preview identity in validation and published APKs.
+      # Never generate a replacement key when a cache has expired: that would
+      # silently break updates and require learners to erase their local data.
+      - uses: actions/cache/restore@v4
+        with:
+          path: android-app/.ci-preview-signing/preview.keystore
+          key: tih-preview-signing-v2
+          fail-on-cache-miss: true
+      - name: Verify existing preview signing identity
+        run: |
+          test -s "$TIH_PREVIEW_KEYSTORE"
+          keytool -list -keystore "$TIH_PREVIEW_KEYSTORE" -storepass android -alias androiddebugkey
+          preview_fingerprint=$(keytool -exportcert -keystore "$TIH_PREVIEW_KEYSTORE" -storepass android -alias androiddebugkey | sha256sum | cut -d ' ' -f1)
+          if [ "$preview_fingerprint" != "$(cat android-app/preview-signing.sha256)" ]; then
+            echo 'Preview signing certificate changed; restore the original key.'
+            exit 1
+          fi
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: false
+      - name: Validate course content
+        run: |
+          node android-app/tools/export-learning.mjs
+          node --test android-app/tools/content.test.mjs
+      - name: Build and validate branded Android app
+        working-directory: android-app
+        run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+      - name: Save Android installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: TIH-Learning-Android-branded
+          path: android-app/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Android-branding-validation
+          path: android-app/app/build/reports/
