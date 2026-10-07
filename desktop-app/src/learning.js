@@ -83,6 +83,7 @@ function loadLessonVideo(){
 function updateReadingProgress(){
   if(!route.startsWith('reader/'))return;const l=currentLesson(),p=TIHStudy.progress(sample,state);
   const button=$('[data-complete]');if(button){button.innerHTML=icon('check')+' '+(state.completed.includes(l.id)?'Marked as read':'Mark as read');button.setAttribute('aria-pressed',String(state.completed.includes(l.id)));}
+  const status=$('.activity-status');if(status){if(l.kind==='quiz')status.textContent='Pass at 70% · Best score '+(state.quizScores[l.id]?.best??'—')+(state.quizScores[l.id]?'%':'');else if(l.kind==='project')status.textContent=state.projects[l.id]?.complete?'Practical project · Completion recorded':'Practical project · Record your work above';}
   $('#outline-progress').textContent=p.completed+' of '+p.total+(sample.full?' activities complete':' preview lessons read');$('#learning-progress-bar').style.width=p.percent+'%';
   document.querySelectorAll('[data-module-progress]').forEach(el=>{const m=sample.modules[Number(el.dataset.moduleProgress)];el.textContent=m.lessons.filter(lessonDone).length+'/'+m.lessons.length;});
   document.querySelectorAll('[data-progress-lesson]').forEach(el=>{const x=sample.lessons.find(l=>l.id===el.dataset.progressLesson);el.innerHTML=lessonDone(x)?icon('check'):icon(x.kind==='quiz'?'check':x.kind==='project'?'note':'book');});

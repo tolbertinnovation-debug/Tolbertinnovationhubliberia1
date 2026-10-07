@@ -112,11 +112,11 @@ test('full Computer Literacy course: approved access, draft, grading, projects a
   await expect(page.locator(`[name="question-0"][value="${quiz.questions[0].answer}"]`)).toBeChecked();
   for(let i=1;i<quiz.questions.length;i++)await page.locator(`[name="question-${i}"][value="${quiz.questions[i].answer}"]`).check();
   await page.getByRole('button',{name:'Submit assessment',exact:true}).click();
-  await expect(page.locator('.assessment-result')).toContainText('100%');await expect(page.locator('.answer-explanation')).toHaveCount(3);
+  await expect(page.locator('.assessment-result')).toContainText('100%');await expect(page.locator('.answer-explanation')).toHaveCount(3);await expect(page.locator('.activity-status')).toHaveText('Pass at 70% · Best score 100%');
   await page.screenshot({path:'test-results/08-computer-literacy-assessment.png',fullPage:true});
   await page.getByRole('button',{name:'Try again',exact:true}).click();
   for(let i=0;i<quiz.questions.length;i++)await page.locator(`[name="question-${i}"][value="${(quiz.questions[i].answer+1)%quiz.questions[i].options.length}"]`).check();
-  await page.getByRole('button',{name:'Submit assessment',exact:true}).click();await expect(page.locator('.assessment-result')).toContainText('Best score 100%');
+  await page.getByRole('button',{name:'Submit assessment',exact:true}).click();await expect(page.locator('.assessment-result')).toContainText('Best score 100%');await expect(page.locator('.activity-status')).toHaveText('Pass at 70% · Best score 100%');
   const project=full.lessons.find(l=>l.kind==='project');
   await page.getByLabel('Find a lesson',{exact:true}).fill('Computer Literacy Practical Project');
   await page.locator(`[data-route="reader/${project.id}"]`).click();
@@ -124,7 +124,7 @@ test('full Computer Literacy course: approved access, draft, grading, projects a
   await page.getByLabel('Finished file names or folder location',{exact:true}).fill('My portfolio / report.docx / budget.xlsx');
   await page.getByLabel('What did you create and learn?',{exact:true}).fill('I created a formatted report and budget spreadsheet and saved them in my learning portfolio.');
   await page.locator('#project-confirm').check();await page.getByRole('button',{name:'Record project completion',exact:true}).click();
-  await expect(page.locator('#project-status')).toContainText('recorded');
+  await expect(page.locator('#project-status')).toContainText('recorded');await expect(page.locator('.activity-status')).toHaveText('Practical project · Completion recorded');
   await page.screenshot({path:'test-results/09-computer-literacy-project.png',fullPage:true});
   // Open the final activity to confirm all modules are navigable.
   await page.getByLabel('Find a lesson',{exact:true}).fill('Final Certificate');await page.locator(`[data-route="reader/${full.lessons.at(-1).id}"]`).click();

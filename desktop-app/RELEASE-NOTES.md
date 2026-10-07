@@ -1,4 +1,4 @@
-TIH Learning Desktop 0.2.0 — Computer Literacy is the first complete desktop course.
+TIH Learning Desktop 0.2.1 — Computer Literacy is the first complete desktop course.
 
 The course now includes all 15 modules, 123 authored reading lessons, 125 quizzes/assessments containing 404 questions, and five practical projects from TIH Learning Hub. Existing lesson videos are linked in the video classroom and require internet.
 
