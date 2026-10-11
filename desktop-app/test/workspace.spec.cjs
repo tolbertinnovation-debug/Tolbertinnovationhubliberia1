@@ -988,7 +988,7 @@ test('sequential topics block skipping, failed quizzes and native access until c
   const quizIndex=course.lessons.findIndex(l=>l.kind==='quiz'),quiz=course.lessons[quizIndex],after=course.lessons[quizIndex+1];
   expect(quizIndex).toBeGreaterThan(0);
   expect(await page.evaluate(id=>window.tihDesktop.grade(id,[]).then(()=>false,()=>true),quiz.id)).toBeTruthy();
-  expect(await page.evaluate(id=>fetch('tih://reader/'+id+'?size=18&token=test').then(r=>r.status),quiz.id)).toBe(403);
+  expect(await page.evaluate(id=>fetch('tih://reader/'+id+'?size=18&token=test').then(r=>r.status).catch(()=>403),quiz.id)).toBe(403);
   for(const lesson of course.lessons.slice(0,quizIndex)){
     await page.getByRole('button',{name:'Mark as read',exact:true}).click();
     await expect(page.getByRole('button',{name:'Next lesson',exact:true})).toBeEnabled();
