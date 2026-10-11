@@ -41,7 +41,8 @@ var Paywall = (function () {
       + 'Student ID: ' + student.id + '\n'
       + 'Item: ' + (opts.itemTitle || opts.itemId) + '\n'
       + 'Item ID: ' + opts.itemId + '\n'
-      + 'I have paid ' + currencyNote + ' via Mobile Money to ' + P.momoNumber + ' (' + P.momoName + '). '
+      + 'I have paid ' + currencyNote + ' via Mobile Money.\n'
+      + 'Provider (MTN MoMo or Orange Money): \nTransaction reference: \n'
       + 'Please confirm and send my access code.';
     var wa = 'https://wa.me/' + String(HubDB.WHATSAPP_NUMBER).replace(/[^0-9]/g, '') + '?text=' + encodeURIComponent(waText);
     // Call / text the same number, with the learner's name + ID pre-filled.
@@ -74,8 +75,11 @@ var Paywall = (function () {
       + payOnlineBlock
       + '<p style="font-size:.92rem;color:#374151;margin:0 0 1rem;">' + (payOnlineBlock ? 'Prefer to pay manually? ' : '') + 'Follow these steps to unlock it:</p>'
       + '<ol style="margin:0 0 1rem 1.1rem;padding:0;font-size:.9rem;color:#374151;line-height:1.7;">'
-      + '<li><b>Pay ' + esc(currencyNote) + '</b> by Mobile Money to:<br><a href="' + telLink + '" style="display:inline-flex;align-items:center;gap:.4rem;background:#eaf4ff;border:1px dashed #1E3A8A;border-radius:8px;padding:.55rem .9rem;margin-top:.35rem;font-weight:700;color:#1E3A8A;text-decoration:none;">📞 ' + esc(P.momoNumber) + ' &middot; ' + esc(P.momoName) + '</a><span style="display:block;font-size:.72rem;color:#64748b;margin-top:.25rem;">Tap the number to call</span></li>'
-      + '<li style="margin-top:.6rem;">Confirm your payment with the TIH team, by <b>WhatsApp</b>, <b>text</b>, or <b>call</b> (buttons below). Always send your <b>name</b> and <b>Student ID</b>: <b>' + esc(student.id) + '</b>.</li>'
+      + '<li><b>Pay ' + esc(currencyNote) + '</b> using either account below:<div style="display:grid;gap:.6rem;margin-top:.5rem;">'
+      + '<div style="background:#eaf4ff;border:1px solid #cddbed;border-radius:12px;padding:.8rem;"><b style="display:block;color:#002868;">MTN MoMo</b><a href="tel:+231' + esc(P.momoNumber.replace(/^0/, '')) + '" style="display:block;font-size:1.1rem;font-weight:800;color:#002868;text-decoration:none;">' + esc(P.momoNumber) + '</a><span>' + esc(P.momoName) + '</span></div>'
+      + '<div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:.8rem;"><b style="display:block;color:#9a3412;">Orange Money</b><a href="tel:+231' + esc(P.orangeNumber.replace(/^0/, '')) + '" style="display:block;font-size:1.1rem;font-weight:800;color:#9a3412;text-decoration:none;">' + esc(P.orangeNumber) + '</a><span>' + esc(P.orangeName) + '</span></div>'
+      + '</div></li>'
+      + '<li style="margin-top:.6rem;">Confirm your payment with the TIH team, by <b>WhatsApp</b>, <b>text</b>, or <b>call</b> (buttons below). Include your <b>payment provider</b>, <b>transaction reference</b>, <b>name</b> and <b>Student ID</b>: <b>' + esc(student.id) + '</b>.</li>'
       + '<li style="margin-top:.6rem;">The administrator confirms your payment and sends you a <b>6-character access code</b>.</li>'
       + '<li style="margin-top:.6rem;">Enter the code below to unlock this course.</li>'
       + '</ol>'

@@ -30,6 +30,8 @@ var HubDB = (function () {
     amountUSD: 10,
     momoNumber: '0880559227',
     momoName: 'Samuel Tolbert',
+    orangeNumber: '0778956979',
+    orangeName: 'Samuel S. Tolbert',
     currencyNote: 'US$10 (or L$1900)'
   };
 
