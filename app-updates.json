@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "android": {
-    "latest": "0.3.38",
-    "latestCode": 43,
-    "requiredAfter": "2026-10-21T23:25:35.766Z"
+    "latest": "0.3.39",
+    "latestCode": 44,
+    "requiredAfter": "2026-10-25T14:07:29.056Z"
   },
   "windows": {
-    "latest": "0.22.0",
-    "requiredAfter": "2026-10-21T23:25:35.766Z"
+    "latest": "0.23.0",
+    "requiredAfter": "2026-10-25T14:07:29.056Z"
   }
 }
