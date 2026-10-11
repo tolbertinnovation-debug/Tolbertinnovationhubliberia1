@@ -151,7 +151,7 @@ class CatalogSmokeTest {
         val agile = course.lessons.first { it.title.contains("Practice: Scrum Roles") }
         org.junit.Assert.assertEquals(570, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, budgeting, agile, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("19-project-management-practice")
@@ -201,7 +201,7 @@ class CatalogSmokeTest {
         val agile = course.lessons.first { it.title.contains("Practice: Bank Reconciliation") }
         org.junit.Assert.assertEquals(475, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, budgeting, agile, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("25-accounting-bookkeeping-practice")
@@ -251,7 +251,7 @@ class CatalogSmokeTest {
         val hooksPractice = course.lessons.first { it.title.contains("Practice: Hooks") }
         org.junit.Assert.assertEquals(633, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, fetchPractice, hooksPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("31-webdev-practice")
@@ -307,7 +307,7 @@ class CatalogSmokeTest {
         val printPractice = course.lessons.first { it.title.contains("Practice: Print Resolution") }
         org.junit.Assert.assertEquals(542, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, masksPractice, printPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("37-design-practice")
@@ -357,7 +357,7 @@ class CatalogSmokeTest {
         val breakEvenPractice = course.lessons.first { it.title.contains("Practice: Break-even Analysis") }
         org.junit.Assert.assertEquals(580, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, customerPractice, breakEvenPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("43-entrepreneurship-practice")
@@ -407,7 +407,7 @@ class CatalogSmokeTest {
         val firebasePractice = course.lessons.first { it.title.contains("Practice: Firebase AI Features") }
         org.junit.Assert.assertEquals(533, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, roomPractice, firebasePractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("49-android-practice")
@@ -457,7 +457,7 @@ class CatalogSmokeTest {
         val copilotPractice = course.lessons.first { it.title.contains("Practice: AI in Excel") }
         org.junit.Assert.assertEquals(637, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, lookupPractice, copilotPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("55-office-practice")
@@ -507,7 +507,7 @@ class CatalogSmokeTest {
         val cashPractice = course.lessons.first { it.title.contains("Practice: Cash Flow Management") }
         org.junit.Assert.assertEquals(565, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, swotPractice, cashPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("61-leadership-practice")
@@ -557,7 +557,7 @@ class CatalogSmokeTest {
         val budgetPractice = course.lessons.first { it.title.contains("Practice: Indirect Costs") }
         org.junit.Assert.assertEquals(564, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, logframePractice, budgetPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("67-grant-practice")
@@ -607,7 +607,7 @@ class CatalogSmokeTest {
         val examPractice = course.lessons.first { it.title.contains("Practice: TOEFL Introduction") }
         org.junit.Assert.assertEquals(616, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, grammarPractice, examPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("73-english-practice")
@@ -658,7 +658,7 @@ class CatalogSmokeTest {
         val examPractice = course.lessons.first { it.title.contains("Quiz: Line Graphs") }
         org.junit.Assert.assertEquals(376, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, grammarPractice, examPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("79-ielts-practice")
@@ -708,7 +708,7 @@ class CatalogSmokeTest {
         val examPractice = course.lessons.first { it.title.contains("Practice: Main Ideas") }
         org.junit.Assert.assertEquals(263, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, grammarPractice, examPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("85-toefl-practice")
@@ -759,7 +759,7 @@ class CatalogSmokeTest {
         val examPractice = course.lessons.first { it.title.contains("Practice: SQL Injection (Concepts)") }
         org.junit.Assert.assertEquals(75, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, grammarPractice, examPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("91-cybersecurity-practice")
@@ -810,7 +810,7 @@ class CatalogSmokeTest {
         val roiPractice = course.lessons.first { it.title.contains("Practice: ROI Measurement") }
         org.junit.Assert.assertEquals(72, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, emailPractice, roiPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("97-marketing-practice")
@@ -861,7 +861,7 @@ class CatalogSmokeTest {
         val mathPractice = course.lessons.first { it.title.contains("Practice: Linear Equations") }
         org.junit.Assert.assertEquals(300, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, readingPractice, mathPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("103-sat-practice")
@@ -914,7 +914,7 @@ class CatalogSmokeTest {
         val aiPractice = course.lessons.first { it.title.contains("Practice: Responsible AI Use") }
         org.junit.Assert.assertEquals(57, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("109-remoteWork-practice")
@@ -966,7 +966,7 @@ class CatalogSmokeTest {
         org.junit.Assert.assertEquals(174, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         val finalExam = course.lessons.first { it.title.contains("Final Assessment") && !it.isFinal }
         for (assessment in listOf(practice, deadlinePractice, aiPractice, finalExam, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("115-healthtech-practice")
@@ -1017,7 +1017,7 @@ class CatalogSmokeTest {
         val aiPractice = course.lessons.first { it.title.contains("Practice: Measures") }
         org.junit.Assert.assertEquals(78, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("121-dataAnalysis-practice")
@@ -1068,7 +1068,7 @@ class CatalogSmokeTest {
         val aiPractice = course.lessons.first { it.title.contains("Practice: Cybersecurity for Financial Transactions") }
         org.junit.Assert.assertEquals(33, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("127-financialLiteracy-practice")
@@ -1119,7 +1119,7 @@ class CatalogSmokeTest {
         val aiPractice = course.lessons.first { it.title.contains("Practice: Sermon Preparation") }
         org.junit.Assert.assertEquals(33, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("133-bibleSchool-practice")
@@ -1170,7 +1170,7 @@ class CatalogSmokeTest {
         val aiPractice = course.lessons.first { it.title.contains("Practice: Safeguarding Children in Sport") }
         org.junit.Assert.assertEquals(343, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("139-footballCoaching-practice")
@@ -1222,7 +1222,7 @@ class CatalogSmokeTest {
         val aiPractice = course.lessons.first { it.title.contains("Practice: Professional Ethics and Integrity") }
         org.junit.Assert.assertEquals(165, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("145-publicHealthCareer-practice")
@@ -1273,7 +1273,7 @@ class CatalogSmokeTest {
         val aiPractice = course.lessons.first { it.title.contains("Module 10 Assessment") }
         org.junit.Assert.assertEquals(140, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("151-businessPlan-practice")
@@ -1324,7 +1324,7 @@ class CatalogSmokeTest {
         val aiPractice = course.lessons.first { it.title.contains("Module 8 Assessment") }
         org.junit.Assert.assertEquals(116, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("157-metaphysics-practice")
@@ -1375,7 +1375,7 @@ class CatalogSmokeTest {
         val aiPractice = course.lessons.first { it.title.contains("Practice: Interviewing Victims and Witnesses Safely") }
         org.junit.Assert.assertEquals(340, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("163-humanRightsIhl-practice")
@@ -1426,7 +1426,7 @@ class CatalogSmokeTest {
         val aiPractice = course.lessons.first { it.title.contains("Module 10 Assessment") }
         org.junit.Assert.assertEquals(140, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("169-militaryLeadership-practice")
@@ -1477,7 +1477,7 @@ class CatalogSmokeTest {
         val aiPractice = course.lessons.first { it.title.contains("Module 10 Assessment") }
         org.junit.Assert.assertEquals(140, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, deadlinePractice, aiPractice, final)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("175-nationalSecurity-practice")
@@ -1529,7 +1529,7 @@ class CatalogSmokeTest {
         val aiPractice = course.lessons.first { it.title.contains("Midterm Examination") }
         org.junit.Assert.assertEquals(349, course.lessons.flatMap { it.questions }.map { it.question }.toSet().size)
         for (assessment in listOf(practice, deadlinePractice, aiPractice, final, graduation)) {
-            compose.runOnIdle { model.openLesson(assessment) }
+            compose.runOnIdle { openFixtureLesson(assessment) }
             compose.onNodeWithText("Question 1 of ${assessment.questions.size}").assertIsDisplayed()
             if (assessment.isFinal) compose.onNodeWithText("FINAL ASSESSMENT").assertExists()
             else if (assessment == practice) snapshot("181-quickbooks-practice")
@@ -1559,4 +1559,17 @@ class CatalogSmokeTest {
         compose.onNodeWithText(title).assertExists()
     }
 
+    // These catalog fixtures jump to specific authored activities; sequence behavior
+    // itself is exercised without fixture seeding by SequentialTopicsUiTest.
+    private fun openFixtureLesson(lesson: org.tolbertinnovationhub.learning.data.Lesson) {
+        val c = model.course ?: error("Course missing")
+        val student = model.session?.studentId ?: error("Session missing")
+        c.lessons.takeWhile { it.id != lesson.id }.forEach {
+            model.study.mark(student, c.summary.id, it.id)
+            if (it.kind == "quiz") model.study.saveScore(student, it.id, 100)
+        }
+        model.openLesson(lesson)
+    }
+
 }
+

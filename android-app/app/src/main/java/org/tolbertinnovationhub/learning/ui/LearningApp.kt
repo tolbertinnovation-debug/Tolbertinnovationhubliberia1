@@ -356,7 +356,7 @@ private val destinations = listOf(Destination("Courses", Icons.AutoMirrored.Outl
                 "Use your existing TIH account and approved course access. If an approved course is locked, TIH support can help.", Icons.Outlined.Lock,
                 if (vm.session == null) "Sign in" else "Course access help", if (vm.session == null) onSignIn else onHelp)
         }
-        item { SectionTitle("Your course roadmap", "Lessons, projects, and assessments from the Learning Hub.") }
+        item { SectionTitle("Your course roadmap", "Learn in order. Complete each topic and pass its quiz to unlock the next.") }
         items(course.modules.indices.toList()) { mi ->
             val module = course.modules[mi]
             Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), shape = RoundedCornerShape(16.dp)) {
@@ -365,11 +365,12 @@ private val destinations = listOf(Destination("Courses", Icons.AutoMirrored.Outl
                     Icon(if (expanded == mi) Icons.Outlined.ExpandLess else Icons.Outlined.ExpandMore, if (expanded == mi) "Collapse module" else "Expand module")
                 }
                 if (expanded == mi) module.lessons.forEach { l ->
+                    val topicOpen = vm.topicUnlocked(l.id)
                     HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
-                    Row(Modifier.fillMaxWidth().clickable(enabled = unlocked) { vm.openLesson(l) }.padding(horizontal = 16.dp, vertical = 15.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                        Icon(when { !unlocked -> Icons.Outlined.Lock; l.id in done -> Icons.Outlined.CheckCircle; l.kind == "quiz" -> Icons.Outlined.Quiz; l.kind == "project" -> Icons.Outlined.Assignment; else -> Icons.AutoMirrored.Outlined.MenuBook }, null,
+                    Row(Modifier.fillMaxWidth().clickable(enabled = topicOpen) { vm.openLesson(l) }.padding(horizontal = 16.dp, vertical = 15.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        Icon(when { !topicOpen -> Icons.Outlined.Lock; l.id in done -> Icons.Outlined.CheckCircle; l.kind == "quiz" -> Icons.Outlined.Quiz; l.kind == "project" -> Icons.Outlined.Assignment; else -> Icons.AutoMirrored.Outlined.MenuBook }, null,
                             Modifier.size(20.dp), tint = if (l.id in done) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurfaceVariant)
-                        Column(Modifier.weight(1f)) { Text(l.title, style = MaterialTheme.typography.bodyMedium); Text(if (l.kind == "quiz") "${l.questions.size} questions" else if (l.videoId.isNotEmpty()) "Read + watch" else "Read + practise", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+                        Column(Modifier.weight(1f)) { Text(l.title, style = MaterialTheme.typography.bodyMedium); Text(if (!topicOpen) "Locked · complete previous topics" else if (l.kind == "quiz") "${l.questions.size} questions" else if (l.videoId.isNotEmpty()) "Read + watch" else "Read + practise", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
                     }
                 }
             }
@@ -499,7 +500,7 @@ private val destinations = listOf(Destination("Courses", Icons.AutoMirrored.Outl
                     Button(onClick = vm::completeLesson, enabled = !done, modifier = Modifier.weight(1f)) { Text(if (done) "Completed" else "Mark complete") }
                 } else Text("Practice · pass at 70%", style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(1f))
                 val index = course.lessons.indexOfFirst { it.id == lesson.id }
-                OutlinedButton(onClick = { course.lessons.getOrNull(index + 1)?.let(vm::openLesson) }, enabled = index < course.lessons.lastIndex) { Text("Next"); Icon(Icons.AutoMirrored.Outlined.ArrowForward, null, Modifier.size(18.dp)) }
+                OutlinedButton(onClick = { course.lessons.getOrNull(index + 1)?.let(vm::openLesson) }, enabled = course.lessons.getOrNull(index + 1)?.let { vm.topicUnlocked(it.id) } == true) { Text("Next"); Icon(Icons.AutoMirrored.Outlined.ArrowForward, null, Modifier.size(18.dp)) }
             }
         }
     }
@@ -584,3 +585,4 @@ private val destinations = listOf(Destination("Courses", Icons.AutoMirrored.Outl
         if (action != null && onAction != null) { Spacer(Modifier.height(20.dp)); Button(onClick = onAction) { Text(action) } }
     }
 }
+

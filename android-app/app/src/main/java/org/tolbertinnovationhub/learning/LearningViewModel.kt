@@ -103,6 +103,10 @@ class LearningViewModel(app: Application, private val accountApi: AccountApi?) :
         if (lesson != null && !canStudy(c.summary.id)) { lesson = null; notice = "Reconnect and refresh your course access to continue studying." }
     }
     fun canStudy(id: String) = session?.canStudy(id) == true
+    fun topicUnlocked(id: String): Boolean {
+        val c = course ?: return false
+        return canStudy(c.summary.id) && LessonSequence.unlocked(c.lessons.map { it.id }, completed(c.summary.id), id)
+    }
     fun openCourse(summary: CourseSummary, lessonId: String? = null) = viewModelScope.launch {
         if (loading) return@launch
         // A catalog notice (for example, the welcome message) must not cover
@@ -117,17 +121,18 @@ class LearningViewModel(app: Application, private val accountApi: AccountApi?) :
     fun openLesson(value: Lesson) {
         val c = course ?: return
         if (!canStudy(c.summary.id)) { notice = "Sign in and refresh your approved course access to study this lesson."; return }
+        if (!topicUnlocked(value.id)) { notice = "Complete the previous topics first to unlock this lesson."; return }
         notice = null; lesson = value; study.remember(session!!.studentId, c.summary.id, value.id); localRevision++
     }
     fun back() { if (lesson != null) lesson = null else course = null }
     fun completeLesson() {
         val c = course ?: return; val l = lesson ?: return; val user = session ?: return
-        if (!canStudy(c.summary.id) || l.kind == "quiz") return
+        if (!topicUnlocked(l.id) || l.kind == "quiz") return
         study.mark(user.studentId, c.summary.id, l.id); localRevision++
     }
     fun completeQuiz(score: Int) {
         val c = course ?: return; val l = lesson ?: return; val user = session ?: return
-        if (!canStudy(c.summary.id) || l.kind != "quiz") return
+        if (!topicUnlocked(l.id) || l.kind != "quiz") return
         study.saveScore(user.studentId, l.id, score)
         if (QuizScorer.passed(score)) study.mark(user.studentId, c.summary.id, l.id)
         localRevision++
@@ -142,3 +147,4 @@ class LearningViewModel(app: Application, private val accountApi: AccountApi?) :
     fun changeFontSize(value: Float) { fontSize = value; prefs.edit().putFloat("fontSize", value).apply() }
     fun clearStudy() { session?.let { study.clear(it.studentId) }; localRevision++ }
 }
+
