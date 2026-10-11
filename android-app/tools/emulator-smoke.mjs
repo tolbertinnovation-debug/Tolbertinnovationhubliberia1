@@ -101,7 +101,7 @@ try {
   fs.writeFileSync(path.join(report,'release-ui.xml'),releaseUi);
   if(!releaseUi.includes('Sign in securely') || !releaseUi.includes('Email address') || !releaseUi.includes('Password'))throw new Error('Minified release sign-in form did not load.');
   // Registration follows the form in a scrollable layout; validate it on screen.
-  const dimensions=call(['shell','wm','size']).match(/(\\d+)x(\\d+)/);
+  const dimensions=[...call(['shell','wm','size']).matchAll(/([0-9]+)x([0-9]+)/g)].at(-1);
   if(!dimensions)throw new Error('Device display dimensions unavailable.');
   const width=Number(dimensions[1]),height=Number(dimensions[2]);
   let registrationUi=releaseUi;
