@@ -5,6 +5,8 @@ function grade(questions,answers){
   const score=Math.floor(correct*100/questions.length);
   return {score,correct,total:questions.length,passed:score>=70};
 }
+function done(lesson,state){return lesson.kind==='quiz'?(state.quizScores?.[lesson.id]?.best||0)>=70:lesson.kind==='project'?state.projects?.[lesson.id]?.complete===true:(state.completed||[]).includes(lesson.id);}
+function unlocked(course,state,id){const index=course.lessons.findIndex(l=>l.id===id);return index>=0&&course.lessons.slice(0,index).every(l=>done(l,state));}
 function progress(course,state){
   const lessons=course.lessons||course.modules.flatMap(m=>m.lessons);
   const done=l=>l.kind==='quiz'?(state.quizScores?.[l.id]?.best||0)>=70:l.kind==='project'?state.projects?.[l.id]?.complete===true:state.completed.includes(l.id);
@@ -12,4 +14,5 @@ function progress(course,state){
   const read=count('lesson'),quizzes=count('quiz'),projects=count('project'),completed=lessons.filter(done).length;
   return {read,quizzes,projects,completed,total:lessons.length,percent:Math.floor(completed*100/lessons.length),finished:completed===lessons.length};
 }
-if(typeof module!=='undefined'&&module.exports)module.exports={grade,progress};else globalThis.TIHStudy={grade,progress};
+if(typeof module!=='undefined'&&module.exports)module.exports={grade,progress,done,unlocked};else globalThis.TIHStudy={grade,progress,done,unlocked};
+

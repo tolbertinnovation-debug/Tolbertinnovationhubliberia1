@@ -1,9 +1,10 @@
 const {test,expect,_electron}=require('@playwright/test');const fs=require('node:fs'),os=require('node:os'),path=require('node:path');
-let electron,page,temp,browser;
+let electron,page,temp,browser,sequenceTest=false;
+async function launchDesktop(){const app=await _electron.launch(launchOptions());if(!sequenceTest){await app.evaluate(({app,BrowserWindow})=>{const path=process.getBuiltinModule('path'),req=process.getBuiltinModule('module').createRequire(path.join(app.getAppPath(),'main.cjs'));req(path.join(app.getAppPath(),'src/study-model.js')).unlocked=()=>true;});const p=await app.firstWindow();await p.waitForFunction(()=>!!window.TIHStudy);await p.evaluate(()=>TIHStudy.unlocked=()=>true);}return app;}
 const launchOptions=()=>({...(process.env.TIH_PACKAGED_EXE?{executablePath:process.env.TIH_PACKAGED_EXE}:{}),args:[...(process.env.TIH_PACKAGED_EXE?[]:['.']),`--user-data-dir=${temp}`]});
-test.beforeEach(async({playwright},info)=>{if(process.env.TIH_ELECTRON_TEST){temp=fs.mkdtempSync(path.join(os.tmpdir(),'tih-desktop-'));fs.writeFileSync(path.join(temp,'update-policy.json'),JSON.stringify({verifiedAt:Date.now(),policy:{latest:info.title.startsWith('mandatory update screen')?'99.0.0':require('../package.json').version,requiredAfter:Date.now()-1000}}));electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else{browser=await playwright.chromium.launch(process.env.PM_CHROMIUM?{executablePath:process.env.PM_CHROMIUM,args:["--no-sandbox"]}:{});page=await browser.newPage();await page.goto('http://127.0.0.1:4173');}if(!info.title.startsWith('mandatory update screen'))await expect(page.getByRole('heading',{name:'Learn. Grow. Succeed.',exact:true})).toBeVisible();await page.route('https://www.youtube-nocookie.com/embed/**',r=>r.fulfill({contentType:'text/html',body:'<!doctype html><style>body{margin:0;background:#122c50;color:white;font:20px system-ui;display:grid;place-items:center;height:100vh}</style><p>Player boundary verified</p>'}));if(/^(catalog,|course outlines|desktop layouts|wide learning)/.test(info.title)){await installAccountFixture();await signInFixture('pending@example.com');await page.getByRole('button',{name:'Overview',exact:true}).click();}});
+test.beforeEach(async({playwright},info)=>{sequenceTest=info.title.startsWith('sequential topics');if(process.env.TIH_ELECTRON_TEST){temp=fs.mkdtempSync(path.join(os.tmpdir(),'tih-desktop-'));fs.writeFileSync(path.join(temp,'update-policy.json'),JSON.stringify({verifiedAt:Date.now(),policy:{latest:info.title.startsWith('mandatory update screen')?'99.0.0':require('../package.json').version,requiredAfter:Date.now()-1000}}));electron=await launchDesktop();page=await electron.firstWindow();}else{browser=await playwright.chromium.launch(process.env.PM_CHROMIUM?{executablePath:process.env.PM_CHROMIUM,args:["--no-sandbox"]}:{});page=await browser.newPage();await page.goto('http://127.0.0.1:4173');}if(!info.title.startsWith('mandatory update screen'))await expect(page.getByRole('heading',{name:'Learn. Grow. Succeed.',exact:true})).toBeVisible();await page.route('https://www.youtube-nocookie.com/embed/**',r=>r.fulfill({contentType:'text/html',body:'<!doctype html><style>body{margin:0;background:#122c50;color:white;font:20px system-ui;display:grid;place-items:center;height:100vh}</style><p>Player boundary verified</p>'}));if(/^(catalog,|course outlines|desktop layouts|wide learning)/.test(info.title)){await installAccountFixture();await signInFixture('pending@example.com');await page.getByRole('button',{name:'Overview',exact:true}).click();}});
 test.afterEach(async()=>{if(electron){await electron.close();electron=null;}else if(browser){await browser.close();browser=null;}});
-test('catalog, saved courses, notes and profile survive a restart',async()=>{await page.screenshot({path:'test-results/01-dashboard.png',fullPage:true});await page.getByLabel('Search courses',{exact:true}).fill('QuickBooks');await expect(page.locator('.course-card')).toHaveCount(1);await page.getByRole('button',{name:'Save QuickBooks Accounting',exact:true}).click();await page.getByRole('button',{name:'Saved courses',exact:true}).click();await expect(page.locator('.course-card')).toHaveCount(1);await page.getByRole('button',{name:'Create a note',exact:true}).click();await page.getByLabel('Note title',{exact:true}).fill('My first learning plan');await page.getByLabel('Note text',{exact:true}).fill('Practice a little every day. Review what I learned.');await expect(page.locator('#word-count')).toHaveText('9 words');await page.screenshot({path:'test-results/03-notebook.png',fullPage:true});await page.getByRole('button',{name:'Settings & help',exact:true}).click();await page.getByLabel('What should we call you?').fill('Samuel');await page.getByRole('button',{name:'Save profile',exact:true}).click();await expect(page.locator('#toast')).toHaveText('Your profile is saved.');if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-b','study-workspace.json'),'utf8')).name).toBe('Samuel');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();await expect(page.locator('#profile-name')).toHaveText('Samuel');await page.getByRole('button',{name:'My notebook',exact:true}).click();await expect(page.getByLabel('Note title',{exact:true})).toHaveValue('My first learning plan');expect(await page.getByLabel('Note text',{exact:true}).inputValue()).toContain('Review what I learned.');});
+test('catalog, saved courses, notes and profile survive a restart',async()=>{await page.screenshot({path:'test-results/01-dashboard.png',fullPage:true});await page.getByLabel('Search courses',{exact:true}).fill('QuickBooks');await expect(page.locator('.course-card')).toHaveCount(1);await page.getByRole('button',{name:'Save QuickBooks Accounting',exact:true}).click();await page.getByRole('button',{name:'Saved courses',exact:true}).click();await expect(page.locator('.course-card')).toHaveCount(1);await page.getByRole('button',{name:'Create a note',exact:true}).click();await page.getByLabel('Note title',{exact:true}).fill('My first learning plan');await page.getByLabel('Note text',{exact:true}).fill('Practice a little every day. Review what I learned.');await expect(page.locator('#word-count')).toHaveText('9 words');await page.screenshot({path:'test-results/03-notebook.png',fullPage:true});await page.getByRole('button',{name:'Settings & help',exact:true}).click();await page.getByLabel('What should we call you?').fill('Samuel');await page.getByRole('button',{name:'Save profile',exact:true}).click();await expect(page.locator('#toast')).toHaveText('Your profile is saved.');if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-b','study-workspace.json'),'utf8')).name).toBe('Samuel');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();await expect(page.locator('#profile-name')).toHaveText('Samuel');await page.getByRole('button',{name:'My notebook',exact:true}).click();await expect(page.getByLabel('Note title',{exact:true})).toHaveValue('My first learning plan');expect(await page.getByLabel('Note text',{exact:true}).inputValue()).toContain('Review what I learned.');});
 test('course outlines, sandboxed reader and study controls work',async()=>{await page.getByRole('button',{name:'Explore the course library',exact:true}).click();await expect(page.locator('.course-card')).toHaveCount(57);await page.screenshot({path:'test-results/02-library.png',fullPage:false});await page.getByLabel('Search courses',{exact:true}).fill('Computer Literacy');await page.locator('.course-card').first().getByRole('button',{name:'Explore course',exact:true}).click();await expect(page.locator('.module-list details')).not.toHaveCount(0);await page.getByRole('button',{name:'Open reading preview',exact:true}).click();await expect(page.locator('#lesson-frame')).toHaveAttribute('sandbox','allow-scripts');await expect(page.frameLocator('#lesson-frame').locator('body')).toContainText('Computer');await page.getByRole('button',{name:'My notes',exact:true}).click();await page.getByLabel('Notes for this lesson',{exact:true}).fill('A computer processes information.');await page.getByRole('button',{name:'Mark as read',exact:true}).click();await page.getByLabel('Reader text size',{exact:true}).selectOption('22');await expect(page.getByRole('button',{name:'Marked as read',exact:true})).toBeVisible();await page.screenshot({path:'test-results/04-reader.png',fullPage:true});await page.getByRole('button',{name:'Overview',exact:true}).click();await page.getByRole('button',{name:'Start focus session',exact:true}).click();await expect(page.getByRole('button',{name:'Pause session',exact:true})).toBeVisible();await page.getByRole('button',{name:'Pause session',exact:true}).click();await expect(page.getByRole('button',{name:'Start focus session',exact:true})).toBeVisible();});
 test('desktop layouts fit at 960 and 1440 pixels and empty search is recoverable',async()=>{for(const width of [960,1440]){if(electron)await electron.evaluate(({BrowserWindow},w)=>BrowserWindow.getAllWindows()[0].setSize(w,900),width);else await page.setViewportSize({width,height:900});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();await page.screenshot({path:`test-results/05-layout-${width}.png`});}await page.getByLabel('Search courses',{exact:true}).fill('nothingmatcheszz');await expect(page.getByRole('heading',{name:'No courses found'})).toBeVisible();await page.getByRole('button',{name:'Explore all courses',exact:true}).click();await expect(page.locator('.course-card')).toHaveCount(57);if(electron){expect(await page.evaluate(()=>typeof require)).toBe('undefined');expect(await page.evaluate(()=>Object.keys(window.tihDesktop).sort())).toEqual(['account','course','export','grade','import','openHub','openVideo','read','refresh','report','signIn','signOut','updates','write']);}});
 
@@ -158,7 +159,7 @@ test('full Computer Literacy course: approved access, draft, grading, projects a
   await expect(page.locator('.progress-modules>section')).toHaveCount(15);await expect(page.locator('.progress-summary')).toContainText('1 / 123');await expect(page.locator('.progress-summary')).toContainText('1 / 125');await expect(page.locator('.progress-summary')).toContainText('1 / 5');
   await page.screenshot({path:'test-results/10-computer-literacy-progress.png',fullPage:true});
   if(electron){await electron.evaluate(({app,dialog})=>{const path=process.getBuiltinModule('path');dialog.showSaveDialog=async()=>({canceled:false,filePath:path.join(app.getPath('userData'),'study-record-test.pdf')});});await page.getByRole('button',{name:'Export study record (PDF)',exact:true}).click();await expect(page.locator('#toast')).toHaveText('Your study record PDF is saved.');expect(fs.statSync(path.join(temp,'study-record-test.pdf')).size).toBeGreaterThan(1000);}
-  if(electron){await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await expect(page.locator('#profile-name')).toHaveText('Samuel');await page.getByRole('button',{name:'Course progress',exact:true}).click();await expect(page.locator('.progress-summary')).toContainText('1 / 125');await expect(page.locator('.progress-summary')).toContainText('1 / 5');
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
   // Refresh the test transport after the native process restart; the product has no test switch.
@@ -197,7 +198,7 @@ test('IELTS charts, assessment grading, essay studio and separate course access'
   await page.locator('.ielts-writing').screenshot({path:'test-results/12-ielts-writing-studio.png'});
   await page.getByLabel('Study course',{exact:true}).selectOption('computer-literacy');await expect(page.getByRole('heading',{name:computer.lessons[0].title,exact:true})).toBeVisible();await expect(page.getByRole('button',{name:'Marked as read',exact:true})).toBeVisible();await page.getByRole('button',{name:'Course progress',exact:true}).click();await expect(page.locator('.progress-summary')).toContainText('1 / 123');await expect(page.locator('.progress-summary')).toContainText('0 / 125');
   await page.getByLabel('Study course',{exact:true}).selectOption('ielts');await expect(page.getByLabel('Your Task 2 essay',{exact:true})).toHaveValue(essay);await page.getByRole('button',{name:'Course progress',exact:true}).click();await expect(page.locator('.progress-modules>section')).toHaveCount(22);await expect(page.locator('.progress-summary')).toContainText('1 / 126');await expect(page.locator('.progress-summary')).toContainText('1 / 111');await expect(page.locator('.progress-summary')).toContainText('1 / 1');
-  if(electron){await electron.evaluate(({app,dialog})=>{const path=process.getBuiltinModule('path');dialog.showSaveDialog=async()=>({canceled:false,filePath:path.join(app.getPath('userData'),'ielts-study-record-test.pdf')});});await page.getByRole('button',{name:'Export study record (PDF)',exact:true}).click();await expect(page.locator('#toast')).toHaveText('Your study record PDF is saved.');expect(fs.statSync(path.join(temp,'ielts-study-record-test.pdf')).size).toBeGreaterThan(1000);await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await electron.evaluate(({app,dialog})=>{const path=process.getBuiltinModule('path');dialog.showSaveDialog=async()=>({canceled:false,filePath:path.join(app.getPath('userData'),'ielts-study-record-test.pdf')});});await page.getByRole('button',{name:'Export study record (PDF)',exact:true}).click();await expect(page.locator('#toast')).toHaveText('Your study record PDF is saved.');expect(fs.statSync(path.join(temp,'ielts-study-record-test.pdf')).size).toBeGreaterThan(1000);await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();await expect(page.getByLabel('Your Task 2 essay',{exact:true})).toHaveValue(essay);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();if(electron)await installAccountFixture();await signInFixture('ielts-only@example.com');await expect(page.getByRole('heading',{name:ielts.title,exact:true})).toBeVisible();
   if(electron){expect(await page.evaluate(()=>window.tihDesktop.course('computer-literacy').then(()=>false,()=>true))).toBeTruthy();expect(await page.evaluate(id=>window.tihDesktop.grade(id,[0,0,0]).then(()=>false,()=>true),computer.lessons.find(l=>l.kind==='quiz').id)).toBeTruthy();expect(await page.evaluate(()=>fetch('content/courses/ielts.json').then(r=>r.status))).toBe(403);expect(await electron.evaluate(async({net},id)=>(await net.fetch('tih://reader/'+id+'?size=18&token=access-check')).status,computer.lessons.find(l=>l.kind==='lesson'&&!computer.lessons.slice(0,5).some(x=>x.id===l.id)).id)).toBe(403);}
@@ -241,7 +242,7 @@ test('sign-in is first, sign-out returns to welcome and scrolling is safely rest
   await page.getByRole('button',{name:'Overview',exact:true}).click();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expectReadingPosition(700);
-  if(electron){await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await expect(page.locator('.welcome-screen')).toHaveCount(0);
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expectReadingPosition(700);
@@ -308,7 +309,7 @@ test('Project Management complete course, unique assessments, portfolio and inde
   await page.getByLabel('Study course',{exact:true}).selectOption('ielts');await page.getByRole('button',{name:'Course progress',exact:true}).click();await expect(page.locator('.progress-summary')).toContainText('0 / 111');
   await page.getByLabel('Study course',{exact:true}).selectOption('project-mgmt');
   await expect(page.getByRole('heading',{name:'Final course assessment',exact:true})).toBeVisible();
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('project-mgmt');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('project-mgmt');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();await expect(page.getByRole('heading',{name:'Final course assessment',exact:true})).toBeVisible();
   if(!(await page.getByLabel('Find a lesson',{exact:true}).isVisible()))await page.getByRole('button',{name:'Lessons',exact:true}).click();
   await page.getByLabel('Find a lesson',{exact:true}).fill('Complete Project Management Plan');await page.locator(`#lesson-outline [data-route="reader/${project.id}"]`).click();await expect.poll(()=>page.locator('#pane-read').getAttribute('data-restored')).toBe('true');await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);await expect(page.locator('.activity-status')).toContainText('Completion recorded');
@@ -357,7 +358,7 @@ test('Full-Stack course supports coding notes, unique quizzes, projects and isol
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / 170');await expect(page.locator('.progress-summary')).toContainText('1 / 180');await expect(page.locator('.progress-summary')).toContainText('1 / 24');
   await page.screenshot({path:'test-results/21-webdev-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('webdev');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('webdev');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -406,7 +407,7 @@ test('Microsoft Office course supports practical notes, unique quizzes, projects
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / 169');await expect(page.locator('.progress-summary')).toContainText('1 / 179');await expect(page.locator('.progress-summary')).toContainText('1 / 29');
   await page.screenshot({path:'test-results/25-office-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('office');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('office');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -455,7 +456,7 @@ test('Accounting course supports practical notes, unique quizzes, projects and i
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / 132');await expect(page.locator('.progress-summary')).toContainText('1 / 138');await expect(page.locator('.progress-summary')).toContainText('1 / 9');
   await page.screenshot({path:'test-results/29-accounting-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('accounting-bookkeeping');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('accounting-bookkeeping');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -504,7 +505,7 @@ test('Cybersecurity course supports practical notes, source assessments, project
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / 149');await expect(page.locator('.progress-summary')).toContainText('1 / 158');await expect(page.locator('.progress-summary')).toContainText('1 / 21');
   await page.screenshot({path:'test-results/33-cybersecurity-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('cybersecurity');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('cybersecurity');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -553,7 +554,7 @@ test('Android Kotlin course supports practical notes, source assessments, projec
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / 137');await expect(page.locator('.progress-summary')).toContainText('1 / 146');await expect(page.locator('.progress-summary')).toContainText('1 / 21');
   await page.screenshot({path:'test-results/37-android-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('android');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('android');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -602,7 +603,7 @@ test('Graphic Design course supports practical notes, source assessments, projec
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / 139');await expect(page.locator('.progress-summary')).toContainText('1 / 149');await expect(page.locator('.progress-summary')).toContainText('1 / 24');
   await page.screenshot({path:'test-results/41-design-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('design');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('design');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -651,7 +652,7 @@ test('AI Cybersecurity course supports practical notes, source assessments, proj
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / 127');await expect(page.locator('.progress-summary')).toContainText('1 / 136');await expect(page.locator('.progress-summary')).toContainText('1 / 6');
   await page.screenshot({path:'test-results/45-aicyber-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('ai-cybersecurity');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('ai-cybersecurity');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -699,7 +700,7 @@ test('Data Analysis course supports practical notes, source assessments, project
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='lesson').length);await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='quiz').length);await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='project').length);
   await page.screenshot({path:'test-results/49-data-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('data');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('data');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -747,7 +748,7 @@ test('Business Leadership course supports practical notes, source assessments, p
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='lesson').length);await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='quiz').length);await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='project').length);
   await page.screenshot({path:'test-results/53-leadership-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('leadership');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('leadership');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -795,7 +796,7 @@ test('English for Academic and Professional Success course supports practical no
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='lesson').length);await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='quiz').length);await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='project').length);
   await page.screenshot({path:'test-results/57-english-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('english-success');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('english-success');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -834,7 +835,7 @@ test('TOEFL iBT supports notes, practice assessments, persistence and isolated e
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='lesson').length);await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='quiz').length);
   await page.screenshot({path:'test-results/60-toefl-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('toefl');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('toefl');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.locator('.assessment-result')).toContainText('100%');
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -873,7 +874,7 @@ test('Digital SAT Prep supports notes, practice assessments, persistence and iso
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='lesson').length);await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='quiz').length);
   await page.screenshot({path:'test-results/63-sat-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('sat');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('sat');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.locator('.assessment-result')).toContainText('100%');
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -921,7 +922,7 @@ test('Bible School and Christian Ministry course supports practical notes, sourc
   await page.getByRole('button',{name:'Course progress',exact:true}).click();
   await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='lesson').length);await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='quiz').length);await expect(page.locator('.progress-summary')).toContainText('1 / '+web.lessons.filter(l=>l.kind==='project').length);
   await page.screenshot({path:'test-results/67-bible-progress.png',fullPage:true});
-  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('bible-foundations');await electron.close();electron=await _electron.launch(launchOptions());page=await electron.firstWindow();}else await page.reload();
+  if(electron){await expect.poll(()=>JSON.parse(fs.readFileSync(path.join(temp,'students','student-a','study-workspace.json'),'utf8')).activeCourse).toBe('bible-foundations');await electron.close();electron=await launchDesktop();page=await electron.firstWindow();}else await page.reload();
   await page.getByRole('button',{name:'Learning space',exact:true}).click();
   await expect(page.getByLabel('What did you create and learn?',{exact:true})).toHaveValue(reflection);
   await page.getByRole('button',{name:'TIH account',exact:true}).click();await page.getByRole('button',{name:'Sign out',exact:true}).click();
@@ -974,6 +975,37 @@ test('mandatory update screen blocks courses and opens LibApps until verified',a
   // Simulate installation of the current release and its verified policy cache.
   await electron.close();
   fs.writeFileSync(path.join(temp,'update-policy.json'),JSON.stringify({verifiedAt:Date.now(),policy:{latest:require('../package.json').version,requiredAfter:Date.now()+86400000}}));
-  electron=await _electron.launch(launchOptions());page=await electron.firstWindow();
+  electron=await launchDesktop();page=await electron.firstWindow();
   await expect(page.getByRole('heading',{name:'Learn. Grow. Succeed.',exact:true})).toBeVisible();
+});
+
+
+test('sequential topics block skipping, failed quizzes and native access until completion',async()=>{
+  await installAccountFixture();await signInFixture();
+  const course=JSON.parse(fs.readFileSync('src/content/courses/computer-literacy.json','utf8'));
+  await page.getByRole('button',{name:'Learning space',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Next lesson',exact:true})).toBeDisabled();
+  const quizIndex=course.lessons.findIndex(l=>l.kind==='quiz'),quiz=course.lessons[quizIndex],after=course.lessons[quizIndex+1];
+  expect(quizIndex).toBeGreaterThan(0);
+  expect(await page.evaluate(id=>window.tihDesktop.grade(id,[]).then(()=>false,()=>true),quiz.id)).toBeTruthy();
+  expect(await page.evaluate(id=>fetch('tih://reader/'+id+'?size=18&token=test').then(r=>r.status),quiz.id)).toBe(403);
+  for(const lesson of course.lessons.slice(0,quizIndex)){
+    await page.getByRole('button',{name:'Mark as read',exact:true}).click();
+    await expect(page.getByRole('button',{name:'Next lesson',exact:true})).toBeEnabled();
+    await page.getByRole('button',{name:'Next lesson',exact:true}).click();
+  }
+  for(let i=0;i<quiz.questions.length;i++)await page.locator(`[name="question-${i}"][value="${(quiz.questions[i].answer+1)%quiz.questions[i].options.length}"]`).check();
+  await page.getByRole('button',{name:'Submit assessment',exact:true}).click();
+  await expect(page.locator('.assessment-result')).toContainText('0%');
+  await expect(page.getByRole('button',{name:'Next lesson',exact:true})).toBeDisabled();
+  await page.getByRole('button',{name:'Try again',exact:true}).click();
+  for(let i=0;i<quiz.questions.length;i++)await page.locator(`[name="question-${i}"][value="${quiz.questions[i].answer}"]`).check();
+  await page.getByRole('button',{name:'Submit assessment',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Next lesson',exact:true})).toBeEnabled();
+  await page.getByRole('button',{name:'Next lesson',exact:true}).click();
+  await expect(page.getByRole('heading',{name:after.title,exact:true})).toBeVisible();
+  await page.screenshot({path:'test-results/71-sequential-topics.png',fullPage:true});
+  await electron.close();electron=await launchDesktop();page=await electron.firstWindow();
+  await page.getByRole('button',{name:'Learning space',exact:true}).click();
+  await expect(page.getByRole('heading',{name:after.title,exact:true})).toBeVisible();
 });
