@@ -33,6 +33,22 @@ class InformationUiTest {
         compose.onNodeWithText("Sinkor, Monrovia, Liberia, West Africa").assertExists()
         snapshot("08-about")
     }
+    @Test fun loginFormShowsRequiredFieldsAndTogglesPassword() {
+        compose.waitUntil(30000) { compose.onAllNodesWithText("Sign in securely").fetchSemanticsNodes().isNotEmpty() }
+        snapshot("00-login-welcome")
+        compose.onNodeWithText("Sign in securely").performScrollTo().performClick()
+        compose.onNodeWithText("Enter a valid email address.").assertExists()
+        compose.onNodeWithText("Enter your password.").assertExists()
+        compose.onNodeWithTag("login-email").performScrollTo().performTextInput("learner@example.com")
+        compose.onNodeWithTag("login-password").performScrollTo().performTextInput("example-password")
+        compose.onNodeWithContentDescription("Show password").performClick()
+        compose.onNodeWithContentDescription("Hide password").assertExists()
+        compose.onNodeWithTag("login-password").assertTextContains("example-password")
+        compose.onNodeWithContentDescription("Hide password").performClick()
+        compose.onNodeWithContentDescription("Show password").assertExists()
+        compose.onNodeWithTag("welcome-list").performScrollToNode(hasText("Create account"))
+        compose.onNodeWithText("Create account").assertIsEnabled()
+    }
     private fun snapshot(name: String) {
         val dir = File(compose.activity.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
         File(dir, "$name.png").outputStream().use {

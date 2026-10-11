@@ -63,7 +63,7 @@ jobs:
           manifest = pathlib.Path('/tmp/public-apk-manifest.txt').read_text()
           assert 'application-debuggable' not in manifest, 'Public APK must not be debuggable'
           assert "name='org.tolbertinnovationhub.learning.preview'" in manifest, 'Upgrade application ID changed'
-          assert "versionCode='44'" in manifest, 'Unexpected security release version'
+          assert "versionCode='45'" in manifest, 'Unexpected security release version'
           PY
           "$tools_dir/apksigner" verify --print-certs "$apk" > /tmp/public-apk-signature.txt
           python3 - <<'PY'
@@ -76,7 +76,7 @@ jobs:
         env:
           ANDROID_USER_HOME: ${{ runner.temp }}/tih-android-security
           ANDROID_AVD_HOME: ${{ runner.temp }}/tih-avd-security
-          TIH_DEVICE_CLASSES: LessonVideoUiTest,SequentialTopicsUiTest
+          TIH_DEVICE_CLASSES: InformationUiTest,SequentialTopicsUiTest,LessonVideoUiTest
         run: |
           if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
           mkdir -p "$ANDROID_USER_HOME" "$ANDROID_AVD_HOME"
