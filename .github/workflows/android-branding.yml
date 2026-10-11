@@ -2,7 +2,7 @@ name: Android branded app installer
 on:
   push:
     branches: [codex/tih-native-android]
-    paths: ['android-app/app/**', '.github/workflows/android-branding.yml']
+    paths: ['android-app/app/**', 'android-app/tools/emulator-smoke.mjs', '.github/workflows/android-branding.yml']
 permissions:
   contents: read
 jobs:
@@ -72,7 +72,7 @@ jobs:
           actual = pathlib.Path('/tmp/public-apk-signature.txt').read_text().lower()
           assert expected in actual, 'Public signing identity changed'
           PY
-      - name: Verify video lifecycle and minified release on Android 16
+      - name: Verify login, learning and minified release on Android 16
         env:
           ANDROID_USER_HOME: ${{ runner.temp }}/tih-android-security
           ANDROID_AVD_HOME: ${{ runner.temp }}/tih-avd-security

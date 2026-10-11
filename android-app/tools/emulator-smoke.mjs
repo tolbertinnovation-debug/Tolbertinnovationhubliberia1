@@ -99,7 +99,19 @@ try {
   call(['shell','uiautomator','dump','/sdcard/tih-release.xml'],30000);
   const releaseUi=call(['shell','cat','/sdcard/tih-release.xml']);
   fs.writeFileSync(path.join(report,'release-ui.xml'),releaseUi);
-  if(!releaseUi.includes('Sign in securely') || !releaseUi.includes('Create account'))throw new Error('Minified release welcome screen did not load.');
+  if(!releaseUi.includes('Sign in securely') || !releaseUi.includes('Email address') || !releaseUi.includes('Password'))throw new Error('Minified release sign-in form did not load.');
+  // Registration follows the form in a scrollable layout; validate it on screen.
+  const dimensions=call(['shell','wm','size']).match(/(\\d+)x(\\d+)/);
+  if(!dimensions)throw new Error('Device display dimensions unavailable.');
+  const width=Number(dimensions[1]),height=Number(dimensions[2]);
+  let registrationUi=releaseUi;
+  for(let attempt=0;attempt<3&&!registrationUi.includes('Create account');attempt++){
+    call(['shell','input','swipe',String(Math.round(width*.5)),String(Math.round(height*.8)),String(Math.round(width*.5)),String(Math.round(height*.35)),'400']);
+    call(['shell','uiautomator','dump','/sdcard/tih-registration.xml'],30000);
+    registrationUi=call(['shell','cat','/sdcard/tih-registration.xml']);
+  }
+  fs.writeFileSync(path.join(report,'release-registration-ui.xml'),registrationUi);
+  if(!registrationUi.includes('Create account'))throw new Error('Minified release account creation was not reachable by scrolling.');
   console.log('Minified release launched with sign-in and account creation.');
 } finally {
   try {fs.writeFileSync(path.join(report,'logcat.txt'),call(['logcat','-d','-v','threadtime'],15000));}catch{}
