@@ -1,0 +1,444 @@
+{
+  "reviewed": "2026-10-13",
+  "scope": "Independent foundation course; subject correspondence is not accreditation or affiliation.",
+  "sources": {
+    "constitution": [
+      "1986 Constitution — Judiciary of Liberia",
+      "https://judiciary.gov.lr/constitution-of-liberia-2/"
+    ],
+    "courts": [
+      "Judicial laws — Judiciary of Liberia",
+      "https://judiciary.gov.lr/judiciary-law/"
+    ],
+    "rules": [
+      "Court rules — Judiciary of Liberia",
+      "https://judiciary.gov.lr/court-rules/"
+    ],
+    "civil": [
+      "Civil Procedure Law, Title 1 — Liberia Land Authority repository",
+      "https://www.lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=41:civil-procedure-law"
+    ],
+    "land": [
+      "Land Rights Act 2018 — Liberia Land Authority",
+      "https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=79:land-rights-act&start=40"
+    ],
+    "family": [
+      "Domestic Relations Law, Title 9 — Liberia Land Authority repository",
+      "https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=59:domestic-relations-law&start=20"
+    ],
+    "labour": [
+      "Decent Work Act 2015 — Civil Service Agency",
+      "https://csa.gov.lr/wp-content/uploads/2024/11/Decent-Work-Act-2015.pdf"
+    ],
+    "penal": [
+      "Penal Law, Title 26 — primary statute reproduction (check amendments)",
+      "https://assets.tobaccocontrollaws.org/uploads/legislation/Liberia/Liberia-Penal-Law-native.pdf"
+    ],
+    "ethics": [
+      "Code of Moral and Professional Ethics — Judiciary of Liberia",
+      "https://judiciary.gov.lr/code-of-moral-and-professional-ethic/"
+    ],
+    "business": [
+      "Liberian corporate and maritime legislation — Registry library",
+      "https://www.liscr.com/onlinelibrary/"
+    ],
+    "security": [
+      "Collateral Registry — Central Bank of Liberia",
+      "https://www.registry.cbl.org.lr/"
+    ],
+    "tax": [
+      "Tax laws and amendments — Liberia Revenue Authority",
+      "https://revenue.lra.gov.lr/tax-laws-and-amendments/"
+    ],
+    "environment": [
+      "Environmental Protection and Management Law — EPA Liberia",
+      "https://epa.gov.lr/epa-documents/the-environmental-protection-and-management-law-of-liberia/"
+    ],
+    "ip": [
+      "Intellectual property — WIPO",
+      "https://www.wipo.int/en/web/about-ip"
+    ],
+    "rights": [
+      "Universal Declaration of Human Rights — United Nations",
+      "https://www.un.org/en/about-us/universal-declaration-of-human-rights"
+    ],
+    "research": [
+      "Legal research: secondary resources — Library of Congress",
+      "https://guides.loc.gov/law-secondary-resources"
+    ],
+    "irac": [
+      "Legal problem solving with IRAC — Monash University",
+      "https://www.monash.edu/student-academic-success/excel-at-writing/annotated-assessment-samples/law/law-legal-problem-solving-irac"
+    ],
+    "school": [
+      "Published subject list — Liberia School of Law (reference only)",
+      "https://liberiaschooloflaw.com/areas-of-study/"
+    ],
+    "treaties": [
+      "United Nations Treaty Collection",
+      "https://treaties.un.org/"
+    ]
+  },
+  "videos": [
+    {
+      "module": 1,
+      "topic": "Sources of Liberian Law and the Rule of Law",
+      "url": "https://www.youtube.com/watch?v=y-rAjwNhp_8",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Sources of Law in the United States",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 1,
+      "topic": "Common Law, Statutory Law and Customary Justice",
+      "url": "https://www.youtube.com/watch?v=9_M4bNOxsYs",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Common Law vs Civil Law, Legal Systems explained",
+      "channel": "Lex Animata Law Visualized | Hesham Elrafei ",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 2,
+      "topic": "Finding, Checking and Citing Legal Authorities",
+      "url": "https://www.youtube.com/watch?v=ynZSfgFSR64",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "How to Start Legal Research (Beginner’s Guide for Law Students)",
+      "channel": "Ananta Vyas",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 2,
+      "topic": "Case Briefing and IRAC Legal Analysis",
+      "url": "https://www.youtube.com/watch?v=O7G-y6vepos",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "IRAC Method",
+      "channel": "Learn Law Better",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 3,
+      "topic": "Constitutional Supremacy and Separation of Powers",
+      "url": "https://www.youtube.com/watch?v=cc2gCpR6EE0",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Constitutional Law: Separation of Powers and Judicial Review (LAWS11069 Week 1 Lecture)",
+      "channel": "Dr. Manuel Jose “Manjo” Oyson",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 3,
+      "topic": "Fundamental Rights and Due Process in Liberia",
+      "url": "https://www.youtube.com/watch?v=uSyiNn0V31w",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Fundamental Rights Under the Liberian Constitution",
+      "channel": "Focus On Liberia",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 4,
+      "topic": "Civil Jurisdiction, Venue and Service of Process",
+      "url": "https://www.youtube.com/watch?v=iAgaqEfcJmA",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Civil Procedure: Introduction to Jurisdiction and Venue",
+      "channel": "Studicata",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 4,
+      "topic": "Pleadings, Disclosure, Judgment and Civil Appeals",
+      "url": "https://www.youtube.com/watch?v=G4VJwJ295pg",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "What is an Answer to the Complaint?",
+      "channel": "USLawEssentials",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 5,
+      "topic": "Contract Formation and Enforceability",
+      "url": "https://www.youtube.com/watch?v=wrJL6M-ws1w",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Elements of a Contract - Offer and Acceptance: Module 2 of 5",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 5,
+      "topic": "Contract Breach, Defences and Remedies",
+      "url": "https://www.youtube.com/watch?v=0KSh3c9auaw",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Remedies for a Breach of Contract | Learn About Law",
+      "channel": "Learn About Law",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 6,
+      "topic": "Negligence: Duty, Breach, Causation and Loss",
+      "url": "https://www.youtube.com/watch?v=VKimRq1t5ow",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "What Is Negligence? | Law School With Mike",
+      "channel": "Mike Rafi - Personal Injury Lawyer",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 6,
+      "topic": "Intentional Torts and Civil Defences",
+      "url": "https://www.youtube.com/watch?v=ydEgreKaePI",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Defenses to Intentional Torts: Module 3 of 5",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 7,
+      "topic": "Criminal Offences, Conduct and Mental Elements",
+      "url": "https://www.youtube.com/watch?v=DowjAl6WAiU",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Criminal Law - Chapter 1: Actus Reus & Mens Rea (Degree - Year 1)",
+      "channel": "Student Counsel",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 7,
+      "topic": "Criminal Defences, Participation and Sentencing",
+      "url": "https://www.youtube.com/watch?v=Sgs6idCKTkE",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Overview of Criminal Law: Module 1 of 5",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 8,
+      "topic": "Arrest, Detention, Bail and Access to Counsel",
+      "url": "https://www.youtube.com/watch?v=pFUJ2ehSwjA",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "What is Bail?",
+      "channel": "Cornerstone Law Firm, LLC",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 8,
+      "topic": "Criminal Trials, Proof and Fair-Hearing Safeguards",
+      "url": "https://www.youtube.com/watch?v=z9ADGGtLFY0",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "From Arrest to Verdict, Complete anatomy of Fair Trial |",
+      "channel": "Mian Ali Haider",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 9,
+      "topic": "Relevance, Burdens and Standards of Proof",
+      "url": "https://www.youtube.com/watch?v=Zq-4oAWy4XE",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Introduction to Evidence Law",
+      "channel": "Legal Seagull",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 9,
+      "topic": "Hearsay, Documents, Digital Evidence and Authentication",
+      "url": "https://www.youtube.com/watch?v=xf2Gdkgw-N0",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Hearsay evidence - The law of evidence.",
+      "channel": "Mutyaba Conrad ",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 10,
+      "topic": "Land Categories and Customary Land Rights in Liberia",
+      "url": "https://www.youtube.com/watch?v=UJjop_TJXoc",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "MUST WATCH THIS VIDEO BEFORE YOU BUY LAND IN LIBERIA",
+      "channel": "Zawadi Em",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 10,
+      "topic": "Deeds, Leases, Boundaries and Property Due Diligence",
+      "url": "https://www.youtube.com/watch?v=Btw56iFdZwk",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "What Is a Deed of Conveyance?",
+      "channel": "Plain Law",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 11,
+      "topic": "Marriage, Family Obligations and Child Protection",
+      "url": "https://www.youtube.com/watch?v=SmSn06A8suA",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Introduction to Family Law",
+      "channel": "The Law Academy",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 11,
+      "topic": "Decedents’ Estates, Probate and Trust Fundamentals",
+      "url": "https://www.youtube.com/watch?v=SeuD0GbG9aY",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Wills Versus Trusts at the Most Basic Level (Commentary at End)",
+      "channel": "American Estate Planning Series",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 12,
+      "topic": "Decent Work: Employment Terms and Workplace Rights",
+      "url": "https://www.youtube.com/watch?v=bWkQSDmbwHk",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Employment and Labour Relations Law",
+      "channel": "Ministry of Labour and Home Affairs - Botswana",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 12,
+      "topic": "Termination, Workplace Disputes and Labour Remedies",
+      "url": "https://www.youtube.com/watch?v=PalBc6xx99A",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "BASICS OF LAW: TERMINATION OF EMPLOYMENT",
+      "channel": "BAR ASSOCIATION OF SRI LANKA",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 13,
+      "topic": "Corporations, Separate Personality and Governance",
+      "url": "https://www.youtube.com/watch?v=LcXdWSppq-Q",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "How is a COMPANY separate from its OWNERS? | Doctrine of Separate Legal Entity",
+      "channel": "Priya Jain",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 13,
+      "topic": "Agency Authority, Partnerships and Fiduciary Duties",
+      "url": "https://www.youtube.com/watch?v=jDIFoPb0hTY",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Agency Law | Actual vs Apparent Authority, Principal Liability & Third Parties (Business Law 1)",
+      "channel": "Brian Winrow | Tax Attorney & Professor",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 14,
+      "topic": "Negotiable Instruments and Commercial Payment Risk",
+      "url": "https://www.youtube.com/watch?v=1TZplBlkJQg",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Negotiable Instruments: Module 1 of 6",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 14,
+      "topic": "Secured Transactions, Collateral and Priority",
+      "url": "https://www.youtube.com/watch?v=ohmBgsqWC6o",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Overview of Secured Transactions: Module 1 of 5",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 15,
+      "topic": "Administrative Powers and Review of Public Decisions",
+      "url": "https://www.youtube.com/watch?v=YTKOHB8A0KQ",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Administrative Law: Judicial Review and the Criteria for Lawful Decision-Making",
+      "channel": "Dr. Manuel Jose “Manjo” Oyson",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 15,
+      "topic": "Legislation, Interpretation and Tax-Law Research",
+      "url": "https://www.youtube.com/watch?v=0tP9lociqFk",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Statutory Interpretation",
+      "channel": "Blackstone School of Law",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 16,
+      "topic": "Human Rights Instruments and Domestic Remedies",
+      "url": "https://www.youtube.com/watch?v=JpY9s1Agbsw",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "What is a human right?",
+      "channel": "UN Human Rights",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 16,
+      "topic": "Treaties, International Law and Cross-Border Disputes",
+      "url": "https://www.youtube.com/watch?v=vtMovc1ZRP4",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "¿Qué son los Tratados Internacionales?",
+      "channel": "Estudia Derechos Humanos",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 17,
+      "topic": "Liberian Maritime Law and Shipping Transactions",
+      "url": "https://www.youtube.com/watch?v=N7CvEt51fz4",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "How Maritime Law Works",
+      "channel": "Wendover Productions",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 17,
+      "topic": "Insurance Contracts, Coverage and Claims",
+      "url": "https://www.youtube.com/watch?v=ZktoK4w8zAk",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "General Principles of Insurance Law : Insurance Law Tips",
+      "channel": "ehowfinance",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 18,
+      "topic": "Environmental Protection, Permits and Community Participation",
+      "url": "https://www.youtube.com/watch?v=UQL-9wi5OdQ",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Understanding Environmental Law",
+      "channel": "ABA Section of Environment, Energy, and Resources",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 18,
+      "topic": "Intellectual Property, Copyright and Brand Protection",
+      "url": "https://www.youtube.com/watch?v=eEB5MYcj-Ns",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "What is Copyright? A Cartoon Introduction",
+      "channel": "World Intellectual Property Organization – WIPO",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 19,
+      "topic": "Professional Ethics, Confidentiality and Conflicts",
+      "url": "https://www.youtube.com/watch?v=131V56x8LOM",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Attorney Client Privilege & Lawyer Confidentiality EXPLAINED",
+      "channel": "All Up In Yo' Business with Attorney Aiden Durham",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 19,
+      "topic": "Trial Advocacy, Moot Court and Opinion Writing",
+      "url": "https://www.youtube.com/watch?v=lDkU8HUWenA",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "How to Moot: Oral Advocacy",
+      "channel": "SULS Competitions",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 20,
+      "topic": "Jurisprudence: Legal Positivism and Natural Law",
+      "url": "https://www.youtube.com/watch?v=RaHHGv4VIno",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Jurisprudence - Natural Law",
+      "channel": "The Law Simplified",
+      "metadataChecked": "2026-10-13"
+    },
+    {
+      "module": 20,
+      "topic": "Negotiation, Mediation and Arbitration",
+      "url": "https://www.youtube.com/watch?v=QSSkrK0AcWg",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Mediation/Arbitration: What's the Difference?",
+      "channel": "Peter J. Lamont",
+      "metadataChecked": "2026-10-13"
+    }
+  ]
+}

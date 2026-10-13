@@ -791,7 +791,7 @@
     </div>
   </footer>
 
-  <script src="courses-db.js?v=25"></script><script src="ielts-topic-quizzes.js?v=1"></script><script src="ielts-curriculum.js?v=5"></script><script src="toefl-curriculum.js?v=4"></script><script src="sat-curriculum.js?v=2"></script><script src="entrepreneurship-curriculum.js?v=3"></script><script src="webdev-curriculum.js?v=5"></script><script src="design-curriculum.js?v=2"></script><script src="android-curriculum.js?v=2"></script><script src="cybersecurity-curriculum.js?v=2"></script><script src="aicyber-curriculum.js?v=1"></script><script src="publichealth-curriculum.js?v=3"></script><script src="projectmgmt-topic-quizzes.js?v=2"></script><script src="projectmgmt-curriculum.js?v=3"></script><script src="leadership-curriculum.js?v=2"></script><script src="grantwriting-topic-quizzes.js?v=1"></script><script src="grantwriting-curriculum.js?v=4"></script><script src="complit-curriculum.js?v=5"></script><script src="englishsuccess-topic-quizzes.js?v=2"></script><script src="englishsuccess-curriculum.js?v=3"></script><script src="agritech-curriculum.js?v=2"></script><script src="ai-curriculum.js?v=2"></script><script src="data-curriculum.js?v=2"></script><script src="marketing-curriculum.js?v=2"></script><script src="office-curriculum.js?v=2"></script><script src="finlit-curriculum.js?v=2"></script><script src="healthtech-curriculum.js?v=2"></script><script src="remotework-curriculum.js?v=2"></script><script src="bible-curriculum.js?v=2"></script><script src="metaphysics-curriculum.js?v=1"></script><script src="metaphysics-video-map.js?v=1"></script><script src="business-plan-curriculum.js?v=1"></script><script src="business-plan-video-map.js?v=1"></script><script src="military-leadership-curriculum.js?v=1"></script><script src="military-leadership-video-map.js?v=1"></script><script src="national-security-fundamentals-curriculum.js?v=1"></script><script src="national-security-fundamentals-video-map.js?v=1"></script><script src="course-images.js?v=3"></script>
+  <script src="courses-db.js?v=26"></script><script src="ielts-topic-quizzes.js?v=1"></script><script src="ielts-curriculum.js?v=5"></script><script src="toefl-curriculum.js?v=4"></script><script src="sat-curriculum.js?v=2"></script><script src="entrepreneurship-curriculum.js?v=3"></script><script src="webdev-curriculum.js?v=5"></script><script src="design-curriculum.js?v=2"></script><script src="android-curriculum.js?v=2"></script><script src="cybersecurity-curriculum.js?v=2"></script><script src="aicyber-curriculum.js?v=1"></script><script src="publichealth-curriculum.js?v=3"></script><script src="projectmgmt-topic-quizzes.js?v=2"></script><script src="projectmgmt-curriculum.js?v=3"></script><script src="leadership-curriculum.js?v=2"></script><script src="grantwriting-topic-quizzes.js?v=1"></script><script src="grantwriting-curriculum.js?v=4"></script><script src="complit-curriculum.js?v=5"></script><script src="englishsuccess-topic-quizzes.js?v=2"></script><script src="englishsuccess-curriculum.js?v=3"></script><script src="agritech-curriculum.js?v=2"></script><script src="ai-curriculum.js?v=2"></script><script src="data-curriculum.js?v=2"></script><script src="marketing-curriculum.js?v=2"></script><script src="office-curriculum.js?v=2"></script><script src="finlit-curriculum.js?v=2"></script><script src="healthtech-curriculum.js?v=2"></script><script src="remotework-curriculum.js?v=2"></script><script src="bible-curriculum.js?v=2"></script><script src="metaphysics-curriculum.js?v=1"></script><script src="metaphysics-video-map.js?v=1"></script><script src="business-plan-curriculum.js?v=1"></script><script src="business-plan-video-map.js?v=1"></script><script src="military-leadership-curriculum.js?v=1"></script><script src="military-leadership-video-map.js?v=1"></script><script src="national-security-fundamentals-curriculum.js?v=1"></script><script src="national-security-fundamentals-video-map.js?v=1"></script><script src="course-images.js?v=3"></script>
   <script src="hero-network.js?v=2"></script>
   <script>
     // Hero rotating highlight ticker
@@ -850,6 +850,7 @@
         ids.splice.apply(ids, [insertionPoint, 0].concat(orderedIelts));
         var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return ({ '&': '&', '<': '<', '>': '>', '"': '"' })[c]; }); };
         var priceFor = function (id, c) {
+          if (id === 'liberian-law') return {free: false, newLabel: 'US$10', wasLabel: ''};
           // Paid model: IELTS US$50, other exam-prep (TOEFL/SAT) US$25, every
           // other course US$10 (WASSCE is a separate grid at US$3). Legacy
           // "isFree" flags are ignored on purpose.
@@ -882,12 +883,12 @@
             // Cover art already names the category, so skip the chip on it.
             ? ('<img class="lt-img" src="' + esc(cardImg) + '?v=2" alt="' + esc(title) + '" loading="lazy">' + ribbon)
             : (ribbon + '<span class="lt-ico">' + (c.icon || '📘') + '</span><span class="lt-cat">' + esc(cat) + '</span>');
-          html += '<a class="lt-card" href="hub-apply" data-cat="' + esc(cat) + '" data-search="' + esc((title + ' ' + cat).toLowerCase()) + '">'
+          html += '<a class="lt-card" href="' + (ids[i] === 'liberian-law' ? 'liberian-law' : 'hub-apply') + '" data-cat="' + esc(cat) + '" data-search="' + esc((c.title + ' ' + cat).toLowerCase()) + '">'
             + '<div class="lt-top' + (cardImg ? ' has-img' : '') + '" style="background:' + esc(grad) + '">' + topInner + '</div>'
             + '<div class="lt-body">'
             + '<div class="lt-title">' + esc(title) + '</div>'
             + '<div class="lt-meta">' + esc(bits.join(' · ')) + '</div>'
-            + '<div class="lt-foot"><span class="lt-price' + (pr.free ? ' free' : '') + '"><s>' + pr.wasLabel + '</s> ' + pr.newLabel + '</span><span class="lt-go">View →</span></div>'
+            + '<div class="lt-foot"><span class="lt-price' + (pr.free ? ' free' : '') + '">' + (pr.wasLabel ? '<s>' + pr.wasLabel + '</s> ' : '') + pr.newLabel + '</span><span class="lt-go">View →</span></div>'
             + '</div></a>';
         }
         grid.innerHTML = html;
