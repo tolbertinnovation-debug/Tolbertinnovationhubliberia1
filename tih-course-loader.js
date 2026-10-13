@@ -46,6 +46,7 @@
     "financial-literacy": "finlit-curriculum.js",
     "football-coaching": "football-coaching-curriculum.js",
     "human-rights-ihl": "human-rights-ihl-curriculum.js",
+    "liberian-law": "liberian-law-curriculum.js",
     "grant-writing": "grantwriting-curriculum.js",
     "healthtech": "healthtech-curriculum.js",
     "ielts": "ielts-curriculum.js",
@@ -98,6 +99,7 @@
      first, the hook was not yet defined, and every assessment silently kept the
      old shared pool. */
   var TOPIC_QUIZ_BANKS = {
+    'liberian-law': {src:'liberian-law-topic-quizzes.js?v=1'},
     'ielts': {src:'ielts-topic-quizzes.js?v=1',apply:'tihApplyIeltsTopicQuizzes'},
     'english-success': {src:'englishsuccess-topic-quizzes.js?v=2',apply:'tihApplyEnglishTopicQuizzes'},
     'grant-writing': {src:'grantwriting-topic-quizzes.js?v=1',apply:'tihApplyGrantTopicQuizzes'},
@@ -137,6 +139,7 @@
        ent-notes-runtime       likewise fully shadowed by entrepreneurship-notes.js,
                                which covers all 167 content lessons. */
   var EXTRAS = {
+    'liberian-law': ['liberian-law-video-map.js?v=1', 'liberian-law-notes.js?v=1'],
     'accounting-bookkeeping': ['accounting-bookkeeping-video-map.js?v=2'],
     'agritech':         ['agritech-video-map.js?v=1'],
     'ai-cybersecurity': ['aicyber-video-map.js?v=1'],

@@ -27,6 +27,7 @@ jobs:
 
       - name: Validate reviewed question banks and catalog
         run: |
+          node --test tools/liberian-law.test.mjs
           node --test tools/projectmgmt-quizzes.test.mjs tools/accounting-bookkeeping-quizzes.test.mjs tools/webdev-quizzes.test.mjs tools/design-quizzes.test.mjs tools/entrepreneurship-quizzes.test.mjs tools/android-kotlin-quizzes.test.mjs tools/office-quizzes.test.mjs tools/leadership-quizzes.test.mjs tools/grant-writing-quizzes.test.mjs tools/english-success-quizzes.test.mjs tools/ielts-quizzes.test.mjs
           node tools/check-courses-lite.js
 
