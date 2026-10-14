@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-10-14",
-  "scope": "Independent foundation course; subject correspondence is not accreditation or affiliation.",
+  "scope": "Complete independent TIH course; subject correspondence is not accreditation or affiliation.",
   "sources": {
     "constitution": [
       "1986 Constitution — Judiciary of Liberia",
@@ -81,6 +81,30 @@
     "treaties": [
       "United Nations Treaty Collection",
       "https://treaties.un.org/"
+    ],
+    "estates": [
+      "Decedents Estates Law, Title 8 — Liberia Land Authority",
+      "https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=45:decedents-estates-law"
+    ],
+    "commercial": [
+      "Liberian Commercial Code 2010, Title 7 — Ministry of Commerce and Industry (check amendments)",
+      "https://www.moci.gov.lr/sites/default/files/documents/Commercial%20Code%20-%20Title%207%20-%20Liberian%20Code%20of%20Laws%20Revised.pdf"
+    ],
+    "insurance": [
+      "Liberia Insurance Act 2013 — Central Bank of Liberia (check current regulations)",
+      "https://www.cbl.org.lr/sites/default/files/documents/INSURANCE_ACT.pdf"
+    ],
+    "procurement": [
+      "Current procurement legal documents, including 2026 instruments — PPCC Liberia",
+      "https://www.ppcc.gov.lr/publications/document-type/legal-documents"
+    ],
+    "regional-rights": [
+      "Communication guidance — African Commission on Human and Peoples’ Rights",
+      "https://achpr.au.int/en/guidelines-submitting-complaints"
+    ],
+    "liberian-ip": [
+      "Liberia Intellectual Property Act 2016 — WIPO Lex (check amendments)",
+      "https://www.wipo.int/wipolex/en/legislation/details/16994"
     ]
   },
   "videos": [
@@ -433,7 +457,9 @@
       "role": "Comparative concept illustration; consult the note for local authority.",
       "title": "Jurisprudence - Natural Law",
       "channel": "The Law Simplified",
-      "metadataChecked": "2026-10-14"
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "legal positivism natural law African legal pluralism English",
+      "searchUrl": "https://www.youtube.com/results?search_query=legal+positivism+natural+law+African+legal+pluralism+English"
     },
     {
       "module": 20,
@@ -443,6 +469,578 @@
       "title": "Mediation/Arbitration: What's the Difference?",
       "channel": "Peter J. Lamont",
       "metadataChecked": "2026-10-14"
+    },
+    {
+      "module": 22,
+      "topic": "Liberian Courts, Jurisdiction and Access to Justice",
+      "url": "https://www.youtube.com/watch?v=IGyx5UEwgtA",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Structure of the Court System: Crash Course Government and Politics #19",
+      "channel": "CrashCourse",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "Liberia courts judicial system explained",
+      "searchUrl": "https://www.youtube.com/results?search_query=Liberia+courts+judicial+system+explained"
+    },
+    {
+      "module": 22,
+      "topic": "Judicial Precedent, Ratio and Distinguishing Cases",
+      "url": "https://www.youtube.com/watch?v=GJ6qB4gVbns",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Judicial Precedent | English Legal System",
+      "channel": "The Law Academy",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "judicial precedent English Legal System The Law Academy",
+      "searchUrl": "https://www.youtube.com/results?search_query=judicial+precedent+English+Legal+System+The+Law+Academy"
+    },
+    {
+      "module": 23,
+      "topic": "Predictive Legal Memoranda and Opinion Writing",
+      "url": "https://www.youtube.com/watch?v=Io5ttZ0ih9w",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Legal Writing Tutorial: How To Write a Legal Memo in Law School Part 1",
+      "channel": "JD Logic Law School Tutoring",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "legal memorandum writing law school English",
+      "searchUrl": "https://www.youtube.com/results?search_query=legal+memorandum+writing+law+school+English"
+    },
+    {
+      "module": 23,
+      "topic": "Client Interviewing, Case Planning and File Management",
+      "url": "https://www.youtube.com/watch?v=6d6HU0_dV34",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "(UQLS) How To: Client Interviewing",
+      "channel": "University of Queensland Law Society - UQLS",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "client interviewing lawyers interview skills English",
+      "searchUrl": "https://www.youtube.com/results?search_query=client+interviewing+lawyers+interview+skills+English"
+    },
+    {
+      "module": 24,
+      "topic": "Judicial Review and Constitutional Remedies",
+      "url": "https://www.youtube.com/watch?v=c2q0yVdGbhg",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Judicial Review of Administration Actions: Module 5 of 5",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "judicial review remedies law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=judicial+review+remedies+law+English"
+    },
+    {
+      "module": 24,
+      "topic": "Constitutional Amendment and Democratic Participation",
+      "url": "https://www.youtube.com/watch?v=AQNi6ieu3D8",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Amending the Constitution | Simple Civics",
+      "channel": "WFYI",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "constitutional amendment process law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=constitutional+amendment+process+law+English"
+    },
+    {
+      "module": 25,
+      "topic": "Interlocutory Applications, Injunctions and Case Management",
+      "url": "https://www.youtube.com/watch?v=mHG1bL8KMI0",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Injunctions and Restraining Orders (Civil Procedure) - Listen & Learn",
+      "channel": "Law School Toolbox",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "interlocutory injunction civil procedure law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=interlocutory+injunction+civil+procedure+law+English"
+    },
+    {
+      "module": 25,
+      "topic": "Judgment Enforcement, Execution and Appeal Records",
+      "url": "https://www.youtube.com/watch?v=kTnOMXEbPGY",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "An Introduction to the Enforcement of Civil Judgments",
+      "channel": "Goldsmith Chambers",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "enforcement of judgment execution law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=enforcement+of+judgment+execution+law+English"
+    },
+    {
+      "module": 26,
+      "topic": "Contract Terms, Interpretation and Exclusion Clauses",
+      "url": "https://www.youtube.com/watch?v=mQhg4CjHS08",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Contract terms - Exclusion clauses",
+      "channel": "The Law Teacher",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "contract terms exclusion clauses law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=contract+terms+exclusion+clauses+law+English"
+    },
+    {
+      "module": 26,
+      "topic": "Mistake, Misrepresentation, Duress and Undue Influence",
+      "url": "https://www.youtube.com/watch?v=ADrOhfHz13w",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Law of Contracts - Vitiating Factors",
+      "channel": "Kabale University",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "vitiating factors contract misrepresentation duress law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=vitiating+factors+contract+misrepresentation+duress+law+English"
+    },
+    {
+      "module": 27,
+      "topic": "Vicarious Liability, Occupiers and Nuisance",
+      "url": "https://www.youtube.com/watch?v=YjZTxAO6hGM",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Tort Law - Vicarious Liability",
+      "channel": "The Law Simplified",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "vicarious liability tort law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=vicarious+liability+tort+law+English"
+    },
+    {
+      "module": 27,
+      "topic": "Defamation, Privacy and Civil Damages",
+      "url": "https://www.youtube.com/watch?v=oJve0sPKSzE",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Tort Law: The Rules of Defamation",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "defamation law damages English",
+      "searchUrl": "https://www.youtube.com/results?search_query=defamation+law+damages+English"
+    },
+    {
+      "module": 28,
+      "topic": "Inchoate Offences: Attempt, Conspiracy and Participation",
+      "url": "https://www.youtube.com/watch?v=wt6Rfpyz1hA",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Criminal Law: Conspiracy (Part 1) — Common Law Elements (Inchoate Offenses) [LEAP Preview]",
+      "channel": "Studicata",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "inchoate offences attempt conspiracy criminal law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=inchoate+offences+attempt+conspiracy+criminal+law+English"
+    },
+    {
+      "module": 28,
+      "topic": "Property Offences, Dishonesty and Proof",
+      "url": "https://www.youtube.com/watch?v=v6rWRBmhYZM",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Property Crimes (Criminal Law) - Listen & Learn",
+      "channel": "Law School Toolbox",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "theft property offences criminal law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=theft+property+offences+criminal+law+English"
+    },
+    {
+      "module": 29,
+      "topic": "Charging, Disclosure and Pre-Trial Applications",
+      "url": "https://www.youtube.com/watch?v=ED9njYaF75w",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "THE PROCESS OF A PRE-TRIAL IN CRIMINAL CASES",
+      "channel": "Kruse Law",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "criminal pre trial disclosure prosecution English",
+      "searchUrl": "https://www.youtube.com/results?search_query=criminal+pre+trial+disclosure+prosecution+English"
+    },
+    {
+      "module": 29,
+      "topic": "Criminal Appeals, Review and Wrongful-Conviction Safeguards",
+      "url": "https://www.youtube.com/watch?v=0YyLkywhIx8",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Criminal Appeals Explained | Legal English for Lawyers",
+      "channel": "Legal English",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "criminal appeals wrongful convictions law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=criminal+appeals+wrongful+convictions+law+English"
+    },
+    {
+      "module": 30,
+      "topic": "Witness Examination, Expert Evidence and Credibility",
+      "url": "https://www.youtube.com/watch?v=KBRXOv1laRw",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Evidence Law: Opinion Testimony of Laypeople and Experts",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "expert witness evidence law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=expert+witness+evidence+law+English"
+    },
+    {
+      "module": 30,
+      "topic": "Privilege, Improperly Obtained Evidence and Objections",
+      "url": "https://www.youtube.com/watch?v=eFzzBg-Faho",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Legal Professional Privilege: A Conversation with Lord Neuberger",
+      "channel": "UCL Laws",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "legal professional privilege evidence law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=legal+professional+privilege+evidence+law+English"
+    },
+    {
+      "module": 31,
+      "topic": "Leases, Easements and Co-Ownership",
+      "url": "https://www.youtube.com/watch?v=TtuepIM8UM4",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Servitudes (Easements, Profits, Licenses, Real Covenants, and Equitable Servitudes)",
+      "channel": "www.uslawreview.com",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "leases easements co ownership property law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=leases+easements+co+ownership+property+law+English"
+    },
+    {
+      "module": 31,
+      "topic": "Land Transactions, Surveys and Community Consent",
+      "url": "https://www.youtube.com/watch?v=g1JA01KRXkc",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "THIS IS HOW LAND SURVEYING PROCESS WORKS IN LIBERIA",
+      "channel": "Zawadi Em",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "Liberia land survey customary land rights consent",
+      "searchUrl": "https://www.youtube.com/results?search_query=Liberia+land+survey+customary+land+rights+consent"
+    },
+    {
+      "module": 32,
+      "topic": "Wills, Intestacy and Administration of Estates",
+      "url": "https://www.youtube.com/watch?v=18l1ejgXtBU",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Rules of Intestacy",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "wills intestacy probate law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=wills+intestacy+probate+law+English"
+    },
+    {
+      "module": 32,
+      "topic": "Trusts, Fiduciary Administration and Beneficiary Protection",
+      "url": "https://www.youtube.com/watch?v=PGVKADO4Qhs",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Trust Administration Unleashed: Advanced Issues, Fiduciary Duties, and Practical Pitfalls",
+      "channel": "Justia",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "trusts fiduciary duties beneficiaries law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=trusts+fiduciary+duties+beneficiaries+law+English"
+    },
+    {
+      "module": 33,
+      "topic": "Wages, Working Time, Leave and Occupational Safety",
+      "url": "https://www.youtube.com/watch?v=UW-omPizIt0",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Employment Law 4 | Pay, Hours, Leave & Lawful Variations | Namibia",
+      "channel": "Namibian Law Explained",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "working time wages leave labour law ILO English",
+      "searchUrl": "https://www.youtube.com/results?search_query=working+time+wages+leave+labour+law+ILO+English"
+    },
+    {
+      "module": 33,
+      "topic": "Trade Unions, Collective Bargaining and Labour Institutions",
+      "url": "https://www.youtube.com/watch?v=p1CTPyfRA7M",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "What is Collective Bargaining? | HRM | From A Business Professor",
+      "channel": "Business School 101",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "collective bargaining trade union labour law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=collective+bargaining+trade+union+labour+law+English"
+    },
+    {
+      "module": 34,
+      "topic": "Company Formation, Directors and Corporate Compliance",
+      "url": "https://www.youtube.com/watch?v=szv76fD_ftY",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Directors' Duties | Business Law & Practice | SQE Prep",
+      "channel": "The Law Academy",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "company formation directors duties corporate law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=company+formation+directors+duties+corporate+law+English"
+    },
+    {
+      "module": 34,
+      "topic": "Partnership Liability, Agency Authority and Business Dissolution",
+      "url": "https://www.youtube.com/watch?v=ETVTzDs6mRY",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Partnerships – Episode 6: Disassociation and Dissolution",
+      "channel": "Business Law Education",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "partnership dissolution agency law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=partnership+dissolution+agency+law+English"
+    },
+    {
+      "module": 35,
+      "topic": "Sale of Goods, Consumer Contracts and Commercial Risk",
+      "url": "https://www.youtube.com/watch?v=pBZjFomE9cA",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Introduction to the Law of Sale of Goods",
+      "channel": "Dr. Esther Katende Magezi",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "sale of goods risk consumer contract law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=sale+of+goods+risk+consumer+contract+law+English"
+    },
+    {
+      "module": 35,
+      "topic": "Insolvency, Creditors and Priority of Claims",
+      "url": "https://www.youtube.com/watch?v=s_vTdh_sEeA",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "An introduction to concepts of insolvency and security: an English perspective - Part 1",
+      "channel": "Cambridge Law Faculty",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "insolvency creditors priority claims law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=insolvency+creditors+priority+claims+law+English"
+    },
+    {
+      "module": 36,
+      "topic": "Public Procurement, Concessions and Accountability",
+      "url": "https://www.youtube.com/watch?v=Tel3dnWoQfw",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "PA23 Supplier Training Part 1: Introduction to Public Procurement",
+      "channel": "NEPO",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "Liberia public procurement concessions commission training",
+      "searchUrl": "https://www.youtube.com/results?search_query=Liberia+public+procurement+concessions+commission+training"
+    },
+    {
+      "module": 36,
+      "topic": "Tax Administration, Assessments and Objections",
+      "url": "https://www.youtube.com/watch?v=CrmGbCXig4M",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "SARS Readiness Programme - Module 8.2 - Dispute Resolution",
+      "channel": "SARS TV",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "tax disputes objections appeals SARS",
+      "searchUrl": "https://www.youtube.com/results?search_query=tax+disputes+objections+appeals+SARS"
+    },
+    {
+      "module": 37,
+      "topic": "Regional Human-Rights Systems and Complaint Procedures",
+      "url": "https://www.youtube.com/watch?v=sAL5nxTvuIU",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Introduction to the Communication Procedure of the African Commission on Human and Peoples' Rights",
+      "channel": "ACHPR CSOs’ Side Events",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "African Commission human rights communications procedure English",
+      "searchUrl": "https://www.youtube.com/results?search_query=African+Commission+human+rights+communications+procedure+English"
+    },
+    {
+      "module": 37,
+      "topic": "Conflict of Laws, Jurisdiction and Foreign Judgments",
+      "url": "https://www.youtube.com/watch?v=mnf3MAEqvQA",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Conflict of Laws - Introduction",
+      "channel": "The Law Simplified",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "conflict of laws foreign judgment jurisdiction law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=conflict+of+laws+foreign+judgment+jurisdiction+law+English"
+    },
+    {
+      "module": 38,
+      "topic": "Bills of Lading, Charterparties and Maritime Claims",
+      "url": "https://www.youtube.com/watch?v=vVcZP02Y_pw",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Shipping Webinar | The Bill of Lading as a Contract",
+      "channel": "Birketts LLP",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "bill of lading charterparty maritime law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=bill+of+lading+charterparty+maritime+law+English"
+    },
+    {
+      "module": 38,
+      "topic": "Insurance Claims, Disclosure and Subrogation",
+      "url": "https://www.youtube.com/watch?v=htqSRehoTeo",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Subrogation Claims: Here Comes Your Health Insurance Company",
+      "channel": "Law Offices of Matthew J. Quinlan",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "insurance subrogation claims disclosure law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=insurance+subrogation+claims+disclosure+law+English"
+    },
+    {
+      "module": 39,
+      "topic": "Environmental Impact Assessment and Regulatory Enforcement",
+      "url": "https://www.youtube.com/watch?v=7DsmEPkHDtM",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "The EIA Process - English",
+      "channel": "Zimbabwe Environmental Law Organisation",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "environmental impact assessment enforcement law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=environmental+impact+assessment+enforcement+law+English"
+    },
+    {
+      "module": 39,
+      "topic": "Copyright, Trademarks and Patents in Practice",
+      "url": "https://www.youtube.com/watch?v=nXyCyWg6x98",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Patents, Trademarks, and Copyrights: An overview of intellectual property",
+      "channel": "USPTOvideo",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "copyright trademarks patents intellectual property law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=copyright+trademarks+patents+intellectual+property+law+English"
+    },
+    {
+      "module": 40,
+      "topic": "Conflicts of Interest, Confidentiality and Client Money",
+      "url": "https://www.youtube.com/watch?v=IQnqbF2AT4c",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Conflicts of Interest: Module 4 of 5",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "legal ethics conflict interest confidentiality client money English",
+      "searchUrl": "https://www.youtube.com/results?search_query=legal+ethics+conflict+interest+confidentiality+client+money+English"
+    },
+    {
+      "module": 40,
+      "topic": "Appellate Advocacy, Written Submissions and Oral Argument",
+      "url": "https://www.youtube.com/watch?v=JzKExC2MJsQ",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Art of Appellate Advocacy: Tips for Oral Arguments",
+      "channel": "William & Mary Law School",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "appellate advocacy oral argument law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=appellate+advocacy+oral+argument+law+English"
+    },
+    {
+      "module": 41,
+      "topic": "Legal Positivism, Natural Law and African Legal Pluralism",
+      "url": "https://www.youtube.com/watch?v=d6JYlhz0Q-k",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Legal positivism versus natural law",
+      "channel": "DrWernaart",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "legal positivism natural law African legal pluralism English",
+      "searchUrl": "https://www.youtube.com/results?search_query=legal+positivism+natural+law+African+legal+pluralism+English"
+    },
+    {
+      "module": 41,
+      "topic": "Arbitration Agreements, Awards and Settlement Enforcement",
+      "url": "https://www.youtube.com/watch?v=7oXSxc3TomA",
+      "role": "Comparative concept illustration; consult the note for local authority.",
+      "title": "Arbitration Awards Explained | Court Reasons / Arbitration Awards | Arbitration Boot Camp Session 13",
+      "channel": "Lerners LLP",
+      "metadataChecked": "2026-10-14",
+      "searchQuery": "arbitration award enforcement agreement law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=arbitration+award+enforcement+agreement+law+English"
     }
-  ]
+  ],
+  "linkChecks": {
+    "civil": {
+      "url": "https://www.lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=41:civil-procedure-law",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "constitution": {
+      "url": "https://judiciary.gov.lr/constitution-of-liberia-2/",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "rules": {
+      "url": "https://judiciary.gov.lr/court-rules/",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "courts": {
+      "url": "https://judiciary.gov.lr/judiciary-law/",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "land": {
+      "url": "https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=79:land-rights-act&start=40",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "family": {
+      "url": "https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=59:domestic-relations-law&start=20",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "labour": {
+      "url": "https://csa.gov.lr/wp-content/uploads/2024/11/Decent-Work-Act-2015.pdf",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "penal": {
+      "url": "https://assets.tobaccocontrollaws.org/uploads/legislation/Liberia/Liberia-Penal-Law-native.pdf",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "ethics": {
+      "url": "https://judiciary.gov.lr/code-of-moral-and-professional-ethic/",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "environment": {
+      "url": "https://epa.gov.lr/epa-documents/the-environmental-protection-and-management-law-of-liberia/",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "security": {
+      "url": "https://www.registry.cbl.org.lr/",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "business": {
+      "url": "https://www.liscr.com/onlinelibrary/",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "criminal-procedure": {
+      "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/42875/LBR42875.pdf",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "ip": {
+      "url": "https://www.wipo.int/en/web/about-ip",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "research": {
+      "url": "https://guides.loc.gov/law-secondary-resources",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "irac": {
+      "url": "https://www.monash.edu/student-academic-success/excel-at-writing/annotated-assessment-samples/law/law-legal-problem-solving-irac",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "tax": {
+      "url": "https://revenue.lra.gov.lr/tax-laws-and-amendments/",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "rights": {
+      "url": "https://europe.ohchr.org/universal-declaration-human-rights",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "treaties": {
+      "url": "https://treaties.un.org/",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "estates": {
+      "url": "https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=45:decedents-estates-law",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "commercial": {
+      "url": "https://www.moci.gov.lr/sites/default/files/documents/Commercial%20Code%20-%20Title%207%20-%20Liberian%20Code%20of%20Laws%20Revised.pdf",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "insurance": {
+      "url": "https://www.cbl.org.lr/sites/default/files/documents/INSURANCE_ACT.pdf",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "school": {
+      "url": "https://liberiaschooloflaw.com/areas-of-study/",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "procurement": {
+      "url": "https://www.ppcc.gov.lr/publications/document-type/legal-documents",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "regional-rights": {
+      "url": "https://achpr.au.int/en/guidelines-submitting-complaints",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    },
+    "liberian-ip": {
+      "url": "https://www.wipo.int/wipolex/en/legislation/details/16994",
+      "httpStatus": 200,
+      "checked": "2026-10-14"
+    }
+  }
 }

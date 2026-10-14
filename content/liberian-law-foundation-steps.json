@@ -1,0 +1,705 @@
+{
+  "title": "Liberian Law: Law School Preparation",
+  "steps": [
+    {
+      "title": "1.1 Sources of Liberian Law and the Rule of Law",
+      "quizId": null,
+      "videoId": "y-rAjwNhp_8",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Sources of Liberian Law and the Rule of Law",
+      "quizId": "law-m1-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "1.2 Common Law, Statutory Law and Customary Justice",
+      "quizId": null,
+      "videoId": "9_M4bNOxsYs",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Common Law, Statutory Law and Customary Justice",
+      "quizId": "law-m1-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: The Liberian Legal System",
+      "quizId": "law-m1-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "2.1 Finding, Checking and Citing Legal Authorities",
+      "quizId": null,
+      "videoId": "dAPOL6IneKk",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Finding, Checking and Citing Legal Authorities",
+      "quizId": "law-m2-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "2.2 Case Briefing and IRAC Legal Analysis",
+      "quizId": null,
+      "videoId": "O7G-y6vepos",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Case Briefing and IRAC Legal Analysis",
+      "quizId": "law-m2-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Legal Research and Writing",
+      "quizId": "law-m2-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "3.1 Constitutional Supremacy and Separation of Powers",
+      "quizId": null,
+      "videoId": "cc2gCpR6EE0",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Constitutional Supremacy and Separation of Powers",
+      "quizId": "law-m3-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "3.2 Fundamental Rights and Due Process in Liberia",
+      "quizId": null,
+      "videoId": "uSyiNn0V31w",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Fundamental Rights and Due Process in Liberia",
+      "quizId": "law-m3-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Constitutional Law",
+      "quizId": "law-m3-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "4.1 Civil Jurisdiction, Venue and Service of Process",
+      "quizId": null,
+      "videoId": "iAgaqEfcJmA",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Civil Jurisdiction, Venue and Service of Process",
+      "quizId": "law-m4-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "4.2 Pleadings, Disclosure, Judgment and Civil Appeals",
+      "quizId": null,
+      "videoId": "G4VJwJ295pg",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Pleadings, Disclosure, Judgment and Civil Appeals",
+      "quizId": "law-m4-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Civil Procedure",
+      "quizId": "law-m4-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "5.1 Contract Formation and Enforceability",
+      "quizId": null,
+      "videoId": "wrJL6M-ws1w",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Contract Formation and Enforceability",
+      "quizId": "law-m5-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "5.2 Contract Breach, Defences and Remedies",
+      "quizId": null,
+      "videoId": "0KSh3c9auaw",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Contract Breach, Defences and Remedies",
+      "quizId": "law-m5-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Contracts",
+      "quizId": "law-m5-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "6.1 Negligence: Duty, Breach, Causation and Loss",
+      "quizId": null,
+      "videoId": "VKimRq1t5ow",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Negligence: Duty, Breach, Causation and Loss",
+      "quizId": "law-m6-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "6.2 Intentional Torts and Civil Defences",
+      "quizId": null,
+      "videoId": "ydEgreKaePI",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Intentional Torts and Civil Defences",
+      "quizId": "law-m6-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Torts",
+      "quizId": "law-m6-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "7.1 Criminal Offences, Conduct and Mental Elements",
+      "quizId": null,
+      "videoId": "DowjAl6WAiU",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Criminal Offences, Conduct and Mental Elements",
+      "quizId": "law-m7-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "7.2 Criminal Defences, Participation and Sentencing",
+      "quizId": null,
+      "videoId": "Sgs6idCKTkE",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Criminal Defences, Participation and Sentencing",
+      "quizId": "law-m7-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Criminal Law",
+      "quizId": "law-m7-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "8.1 Arrest, Detention, Bail and Access to Counsel",
+      "quizId": null,
+      "videoId": "pFUJ2ehSwjA",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Arrest, Detention, Bail and Access to Counsel",
+      "quizId": "law-m8-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "8.2 Criminal Trials, Proof and Fair-Hearing Safeguards",
+      "quizId": null,
+      "videoId": "rTmoCpEsGe0",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Criminal Trials, Proof and Fair-Hearing Safeguards",
+      "quizId": "law-m8-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Criminal Procedure",
+      "quizId": "law-m8-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "9.1 Relevance, Burdens and Standards of Proof",
+      "quizId": null,
+      "videoId": "Zq-4oAWy4XE",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Relevance, Burdens and Standards of Proof",
+      "quizId": "law-m9-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "9.2 Hearsay, Documents, Digital Evidence and Authentication",
+      "quizId": null,
+      "videoId": "xf2Gdkgw-N0",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Hearsay, Documents, Digital Evidence and Authentication",
+      "quizId": "law-m9-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Evidence",
+      "quizId": "law-m9-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "10.1 Land Categories and Customary Land Rights in Liberia",
+      "quizId": null,
+      "videoId": "UJjop_TJXoc",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Land Categories and Customary Land Rights in Liberia",
+      "quizId": "law-m10-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "10.2 Deeds, Leases, Boundaries and Property Due Diligence",
+      "quizId": null,
+      "videoId": "Btw56iFdZwk",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Deeds, Leases, Boundaries and Property Due Diligence",
+      "quizId": "law-m10-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Property and Land",
+      "quizId": "law-m10-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Midterm Examination",
+      "quizId": "law-midterm",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "11.1 Marriage, Family Obligations and Child Protection",
+      "quizId": null,
+      "videoId": "SmSn06A8suA",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Marriage, Family Obligations and Child Protection",
+      "quizId": "law-m11-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "11.2 Decedents’ Estates, Probate and Trust Fundamentals",
+      "quizId": null,
+      "videoId": "SeuD0GbG9aY",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Decedents’ Estates, Probate and Trust Fundamentals",
+      "quizId": "law-m11-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Family Law and Estates",
+      "quizId": "law-m11-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "12.1 Decent Work: Employment Terms and Workplace Rights",
+      "quizId": null,
+      "videoId": "bWkQSDmbwHk",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Decent Work: Employment Terms and Workplace Rights",
+      "quizId": "law-m12-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "12.2 Termination, Workplace Disputes and Labour Remedies",
+      "quizId": null,
+      "videoId": "CkGxqpqNFTg",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Termination, Workplace Disputes and Labour Remedies",
+      "quizId": "law-m12-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Labour Law",
+      "quizId": "law-m12-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "13.1 Corporations, Separate Personality and Governance",
+      "quizId": null,
+      "videoId": "Y4QaaRUEs8Q",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Corporations, Separate Personality and Governance",
+      "quizId": "law-m13-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "13.2 Agency Authority, Partnerships and Fiduciary Duties",
+      "quizId": null,
+      "videoId": "jDIFoPb0hTY",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Agency Authority, Partnerships and Fiduciary Duties",
+      "quizId": "law-m13-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Corporations, Agency and Partnership",
+      "quizId": "law-m13-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "14.1 Negotiable Instruments and Commercial Payment Risk",
+      "quizId": null,
+      "videoId": "1TZplBlkJQg",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Negotiable Instruments and Commercial Payment Risk",
+      "quizId": "law-m14-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "14.2 Secured Transactions, Collateral and Priority",
+      "quizId": null,
+      "videoId": "ohmBgsqWC6o",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Secured Transactions, Collateral and Priority",
+      "quizId": "law-m14-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Commercial Payments and Security",
+      "quizId": "law-m14-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "15.1 Administrative Powers and Review of Public Decisions",
+      "quizId": null,
+      "videoId": "YTKOHB8A0KQ",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Administrative Powers and Review of Public Decisions",
+      "quizId": "law-m15-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "15.2 Legislation, Interpretation and Tax-Law Research",
+      "quizId": null,
+      "videoId": "0tP9lociqFk",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Legislation, Interpretation and Tax-Law Research",
+      "quizId": "law-m15-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Administrative Law, Legislation and Tax",
+      "quizId": "law-m15-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "16.1 Human Rights Instruments and Domestic Remedies",
+      "quizId": null,
+      "videoId": "JpY9s1Agbsw",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Human Rights Instruments and Domestic Remedies",
+      "quizId": "law-m16-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "16.2 Treaties, International Law and Cross-Border Disputes",
+      "quizId": null,
+      "videoId": "wD2lctCw0H0",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Treaties, International Law and Cross-Border Disputes",
+      "quizId": "law-m16-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Human Rights and International Law",
+      "quizId": "law-m16-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "17.1 Liberian Maritime Law and Shipping Transactions",
+      "quizId": null,
+      "videoId": "N7CvEt51fz4",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Liberian Maritime Law and Shipping Transactions",
+      "quizId": "law-m17-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "17.2 Insurance Contracts, Coverage and Claims",
+      "quizId": null,
+      "videoId": "ZktoK4w8zAk",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Insurance Contracts, Coverage and Claims",
+      "quizId": "law-m17-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Maritime and Insurance Law",
+      "quizId": "law-m17-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "18.1 Environmental Protection, Permits and Community Participation",
+      "quizId": null,
+      "videoId": "UQL-9wi5OdQ",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Environmental Protection, Permits and Community Participation",
+      "quizId": "law-m18-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "18.2 Intellectual Property, Copyright and Brand Protection",
+      "quizId": null,
+      "videoId": "eEB5MYcj-Ns",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Intellectual Property, Copyright and Brand Protection",
+      "quizId": "law-m18-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Environmental and Intellectual Property Law",
+      "quizId": "law-m18-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "19.1 Professional Ethics, Confidentiality and Conflicts",
+      "quizId": null,
+      "videoId": "131V56x8LOM",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Professional Ethics, Confidentiality and Conflicts",
+      "quizId": "law-m19-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "19.2 Trial Advocacy, Moot Court and Opinion Writing",
+      "quizId": null,
+      "videoId": "lDkU8HUWenA",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Trial Advocacy, Moot Court and Opinion Writing",
+      "quizId": "law-m19-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Legal Ethics and Trial Advocacy",
+      "quizId": "law-m19-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "20.1 Jurisprudence: Legal Positivism and Natural Law",
+      "quizId": null,
+      "videoId": "RaHHGv4VIno",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Jurisprudence: Legal Positivism and Natural Law",
+      "quizId": "law-m20-topic1",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "20.2 Negotiation, Mediation and Arbitration",
+      "quizId": null,
+      "videoId": "QSSkrK0AcWg",
+      "isProject": false
+    },
+    {
+      "title": "Practice: Negotiation, Mediation and Arbitration",
+      "quizId": "law-m20-topic2",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Module Assessment: Jurisprudence and Dispute Resolution",
+      "quizId": "law-m20-assessment",
+      "videoId": null,
+      "isProject": false
+    },
+    {
+      "title": "Liberian Case Brief and Research Portfolio",
+      "quizId": null,
+      "videoId": null,
+      "isProject": true
+    },
+    {
+      "title": "Contracts and Land Due-Diligence Portfolio",
+      "quizId": null,
+      "videoId": null,
+      "isProject": true
+    },
+    {
+      "title": "Rights, Employment and Evidence Memorandum",
+      "quizId": null,
+      "videoId": null,
+      "isProject": true
+    },
+    {
+      "title": "Moot Court Capstone and Reasoned Opinion",
+      "quizId": null,
+      "videoId": null,
+      "isProject": true
+    },
+    {
+      "title": "Final Examination and Certificate of Completion",
+      "quizId": "law-final",
+      "videoId": null,
+      "isProject": false
+    }
+  ],
+  "quizHashes": {
+    "law-m1-topic1": "a9975bf021b23bd83e6137e490dca21e6a732777140d19bab449161d934609a6",
+    "law-m1-topic2": "af827607deb515b1bb0804974bdeb5ff53dd7efc4cf1317fdb5d70d08af280ab",
+    "law-m1-assessment": "be9e75ded4ffc2f56fd122ea460165df0a008c028f7d5499138d97627b099bfa",
+    "law-m2-topic1": "99575320aa7ffb76fcc8b0601f6b20da8a1d93a04bfc921eaeb7984f04dc804f",
+    "law-m2-topic2": "47da322b0652778fea0493a6354c89ce7d045b003ecd6ab66afabbb12161aa20",
+    "law-m2-assessment": "9c3e89f4688c44b1eb570ad2d209bc587e5f7afc8dac2cefa6455214d1cef0d3",
+    "law-m3-topic1": "dcac41835cd2e51c4345b267e85c2abed0ecc90e63448bd3f34d7f45183e2265",
+    "law-m3-topic2": "dbc0c4488c5e02ca074757cd36882b6a51cb18dd7e4b06c7e2ee94e1a720b25a",
+    "law-m3-assessment": "6eeabf0bd90a5ab62001290d536d7f0a7393f584105cdfbc163c8f55eaec9035",
+    "law-m4-topic1": "713f25128201e5d3aad1f8f267a6cf75d237242393991ee345b1b4e8d2686d5a",
+    "law-m4-topic2": "838d022998a21a12c8c5698b15962ed5626842cfcb3526017ff1196c59837d18",
+    "law-m4-assessment": "f5faebddada30efad43257ccb6064aa4d865c086bc3361fa163d76c8ad875be3",
+    "law-m5-topic1": "b74ecf0df9f0670153420fde6aae46eebd75591c47a4f12ece621dd6eb1f6c12",
+    "law-m5-topic2": "f9ff46ac62b06e08375814807deb08849990c5c2e170ca4438a9dc2a2dc94ff6",
+    "law-m5-assessment": "0a5a0033ea443ce3d49718cb23f2b67526411b26b2b55030e289f0c042ca68dd",
+    "law-m6-topic1": "f016f0ac9b3ff2dd88527d763977252c89dc7facc28aea451eae1dcd6f2a6cf7",
+    "law-m6-topic2": "b5c61342732275e066c44f8ab0868c0aace0723f38c69cc534a4a3eb5d0a9fc8",
+    "law-m6-assessment": "4674bb5299e0f8bba595c66d9716742bfa996e9edec7f460912d0d2122f739d7",
+    "law-m7-topic1": "2e8e78c86b37b9b1c2e57b3a3ec671ede830ca181be4916625c0b642fe286862",
+    "law-m7-topic2": "4934bbbe73a1fae5c8211d72b4577993c573f0a6fd2b0bb47ad93789618fb042",
+    "law-m7-assessment": "53cd40dff5e7b9a54219dec069e159413ff70462d070c014c96ddf7f432aa95d",
+    "law-m8-topic1": "7a6821b90e6abd74b83f8e5c7bcabb032730440ddb5fc656a308a130ad9a2d6c",
+    "law-m8-topic2": "9de68abf74d8877442df7c8815210bc744b3f336b545fa3ac11ca900635e749a",
+    "law-m8-assessment": "02fc40dedc54eca58fa46fe26f2259b54084b407c6f632c43b39cef1209223ab",
+    "law-m9-topic1": "9df95d9ba9efbb8f1a5cc91e70d43406caeb97170f5a0f8860d45cc3afeda7b7",
+    "law-m9-topic2": "8bd4ba80b6660a678c52bf13e718ab54f40d6f7717381bf87d6c9414346411b0",
+    "law-m9-assessment": "38f339a6730e406783c94b5693f2e5439873e02073ecff35c09004a5d4888b8d",
+    "law-m10-topic1": "40b1a8c4e9ed3f0430492dc3bc5dc34ed66a6d6e69b7bcc4a931186fbfcf43bc",
+    "law-m10-topic2": "ccab60b76b3cc4201c80f511992cee5da9394bc7737bc4b399d3ad928f45193e",
+    "law-m10-assessment": "edc8abf40fbc700f4ccd11973aa4e858e64a07b0064e2bf36732a924332f8989",
+    "law-midterm": "830a49742824bd9d5f738e7572e888144b271465a37aa5a88de57d7aaa26079a",
+    "law-m11-topic1": "d60804e5c9c39a74a131accaaa149f2495b02d10d1974e16350657de50d2a8ec",
+    "law-m11-topic2": "5453c81ebb6f6aa21b1bc8845f3f69cf767cebeacc3b5ea45037380860c27826",
+    "law-m11-assessment": "d1726ec80118b7a65592d648d7c038ed3d1818df05bd18274e2bfa0fa26b025a",
+    "law-m12-topic1": "2b6c5f4fd96312b4e551e088df5b8077dfdecfdf520462f03762b549852efb28",
+    "law-m12-topic2": "231613086f8f0f4aa179eca9350ca9db7ceb8f98549562de6350ed5c9c0e5ad9",
+    "law-m12-assessment": "26578b7b2c437e47d70e01dd67af3ccd39f1e7aab2828607f8b92b36271ca2da",
+    "law-m13-topic1": "7c740d98add4e8b1fb85b3fbc184f1ade2f6f58f24625aaad8cde36a7005c952",
+    "law-m13-topic2": "46ab280a01134e825f5f722d827e2190411c4542caa1e8affecd520f8eb23da0",
+    "law-m13-assessment": "f93eb2181f27edd1878c06aa98a031aa8ad7c860ab2bae2e5199d21846a1d490",
+    "law-m14-topic1": "6e6eb57de7247ef60ce3558544df39c9be145a5ed05d693bc4c59b9087d6f6fc",
+    "law-m14-topic2": "415c8d0e45434ebc9b5bd47b472ef2092c13651ae94f33943eabdd006bfdf0c3",
+    "law-m14-assessment": "12bc5c76cb9f3497580adca814354155980f389bfe4f0e64094af29beebd92be",
+    "law-m15-topic1": "39bbecb815a8088b47a1c64f1a4793fa7656b4cf93ac36998d947c1c5647531a",
+    "law-m15-topic2": "d198dd1aef743bc7b573959585a712ec52b114956adaac1c11837a0bd8c46c90",
+    "law-m15-assessment": "e38cf81fde627b5f6bb8ea1fed2394cb322f0804cf7e3cbbaabe1eb48bb8b3a5",
+    "law-m16-topic1": "f0754e5fae35558a42064f6beab5201e62b69d3eca06b178ea6284f283f18bab",
+    "law-m16-topic2": "47980bafff2150f02a0e5f693d9831625eea775d2bad60c6942a24ee965680b2",
+    "law-m16-assessment": "84bc776548595240aba9526c9303ab8f0562a74bd710714635c4fe8cdf957244",
+    "law-m17-topic1": "1e6d1baed5489efed3aecd9e1d20a54a4712052da4d0d044f239b54f747c9f90",
+    "law-m17-topic2": "93a10eab71788f374fd2c4b997ab39671f526b79d7c992047a4cdf3ef53fe763",
+    "law-m17-assessment": "773809d42e57b343c28fa58599dec884ec7093f28d98542f8b38ba7317ad5376",
+    "law-m18-topic1": "4af24ea61d19fbd23c971477cb82821b4792d1b25706a8c358e9aa6cf5b028ae",
+    "law-m18-topic2": "4aaf13ffafd9712da253aa256dde7b2aded9890c939147a06c461151fb96f6b4",
+    "law-m18-assessment": "4f3133478908b9277c087242726a1bbb5ed0caa4947f58ccc3631c8724f6d91d",
+    "law-m19-topic1": "ce337cea05b8cb49cbe89bc651a0a844901a29049508b648e13fc9d46cdd306c",
+    "law-m19-topic2": "242e2a5f7dd05784a5e07d7121a2c15ea3c5a556dcf9707ff78238283ab2de1f",
+    "law-m19-assessment": "576516bd18fa3977dc6b8a63c13e965c83edb28dbff12ce32fe0761a5ba1dc0e",
+    "law-m20-topic1": "7341b5f149eecf7d43bac6adc7a20b5679da66a755c15652558e4ccefd06873d",
+    "law-m20-topic2": "33d92ebe75a882044de694a415256fa375edb5be43667e5435ee80c39e071619",
+    "law-m20-assessment": "ef24a44488722fb260034a6792ce3751c2b4157900e573c9f93850c2c8058646",
+    "law-final": "04cba5f8c35bbf622876e140ae515500a8c6b2a2f5e9de78bc85a1b5cbd673e7"
+  }
+}

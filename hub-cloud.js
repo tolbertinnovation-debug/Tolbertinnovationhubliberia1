@@ -661,6 +661,13 @@ var HubCloud = (function () {
             studentName: r.student_name, studentId: r.student_id,
             category: r.category, date: r.issue_date, verified: r.verified
           };
+        }).sort(function (a, b) {
+          // Course-keyed caches consume this list in order. Never replace the
+          // expanded Law award with its foundation award, including same-day
+          // issue dates; both permanent registry records remain available.
+          var ap = a.courseId === 'liberian-law' && a.courseTitle === 'Complete Liberian Law Programme' ? 1 : 0;
+          var bp = b.courseId === 'liberian-law' && b.courseTitle === 'Complete Liberian Law Programme' ? 1 : 0;
+          return ap - bp || (Date.parse(a.date) || 0) - (Date.parse(b.date) || 0);
         });
       }).catch(function () { return []; });
   }

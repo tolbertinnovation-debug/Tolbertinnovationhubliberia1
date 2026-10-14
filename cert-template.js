@@ -35,6 +35,7 @@ var TIH_CERT_PATTERN = "url(\"data:image/svg+xml,%3Csvg width='72' height='72' v
    runtime and counting lesson.v would understate it. */
 function tihCourseFacts(course) {
   if (!course) return null;
+  if (Array.isArray(course.certificateFacts)) return course.certificateFacts.slice();
   var mods = course.modules || [], lessons = 0;
   for (var i = 0; i < mods.length; i++) lessons += (mods[i].lessons || []).length;
   var bits = [];
@@ -111,7 +112,11 @@ function buildCertHTML(name, title, certId, certDate, course) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
                     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   };
-  var facts = tihCourseFacts(course);
+  // A foundation credential keeps its historical workload when reprinted
+  // after the same course expands; it does not become a full-programme award.
+  var facts = course && course.legacyTitle === title
+    ? course.legacyCertificateFacts
+    : tihCourseFacts(course);
   var finePrint = course && course.id === 'liberian-law'
     ? 'Independent TIH course completion. This is not a law degree or authority to practise law. Portfolio completion is self-recorded. Online verification is available once the certificate is published to the TIH register.'
     : 'Issued by Tolbert Innovation Hub only after completion and administrator approval. This credential is recorded in the official TIH register and can be verified by anyone using the Credential ID above.';
