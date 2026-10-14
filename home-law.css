@@ -1,0 +1,25 @@
+.home-law{background:linear-gradient(135deg,#fff 30%,#edf7ff);border-top:1px solid #e4edf5;scroll-margin-top:100px}
+.home-law-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center}
+.home-law .section-label{color:#b51623}
+.home-law h2{color:#002868;font-size:clamp(1.9rem,3.4vw,2.8rem);line-height:1.15;margin:.5rem 0 1.2rem}
+.home-law-copy>p{line-height:1.75;color:#43556c}
+.home-law-copy .home-law-lead{font-size:1.05rem}
+.home-law-benefits{padding-left:1.25rem;margin:1.2rem 0 1.6rem;color:#243e61;display:grid;gap:.6rem;line-height:1.6}
+.home-law-benefits li::marker{color:#b51623}
+.home-law-actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.home-law-actions .btn{min-height:44px;text-align:center;white-space:normal}
+.home-law-actions a:focus-visible{outline:3px solid #002868;outline-offset:4px}
+.home-law-copy .home-law-scope{font-size:.82rem;line-height:1.6;margin:1.2rem 0 0;color:#52657a}
+.home-law-card{background:#fff;border:1px solid #dce6f2;border-radius:22px;overflow:hidden;box-shadow:0 16px 42px rgba(0,40,104,.1);min-width:0}
+.home-law-card>img{display:block;width:100%;height:auto;aspect-ratio:16/9}
+.home-law-card-body{padding:1.6rem}
+.home-law-tag{color:#a51420;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin:0 0 .5rem}
+.home-law-card h3{color:#002868;font-size:1.25rem;margin:0 0 1.2rem;line-height:1.4}
+.home-law-facts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:0}
+.home-law-facts>div{background:#f0f7fd;border-radius:12px;padding:1rem;display:flex;flex-direction:column-reverse;gap:.35rem}
+.home-law-facts dt{color:#52657a;font-size:.78rem;line-height:1.4}
+.home-law-facts dd{color:#002868;font-size:1.35rem;font-weight:800;margin:0;line-height:1.2}
+.home-law-pace{font-size:.88rem;color:#52657a;line-height:1.65;margin:1.2rem 0}
+.home-law-fee{font-size:.9rem;color:#243e61;border-top:1px solid #e4edf5;padding-top:1rem;margin:0}
+@media(max-width:900px){.home-law-layout{grid-template-columns:1fr;gap:2rem}.home-law-card{max-width:600px;width:100%}}
+@media(max-width:420px){.home-law-card-body{padding:1.1rem}.home-law-facts>div{padding:.8rem}.home-law-actions{flex-direction:column}.home-law-actions .btn{width:100%}}
