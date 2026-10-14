@@ -44,7 +44,7 @@ const fs=require('node:fs');
   }
   // Search tokens work in any order and include descriptions, not just course names.
   await page.getByLabel('What would you like to learn?').fill('SCHOOL law');
-  assert.deepEqual(await ids(),['liberian-law']);assert.match(await shown().innerText(),/Law: Law School Preparation/);
+  assert.deepEqual(await ids(),['liberian-law']);assert.match(await shown().innerText(),/Complete Liberian Law|Liberian Law Programme/);
   await page.reload();assert.equal(await page.locator('#trackSearch').inputValue(),'SCHOOL law');assert.deepEqual(await ids(),['liberian-law']);
   await page.locator('#trackSearch').fill('eXcEl data');assert.ok((await ids()).includes('data'));
   await page.locator('#trackSearch').fill('AI');assert.ok((await ids()).includes('ai'));

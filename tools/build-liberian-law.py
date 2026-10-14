@@ -6,11 +6,12 @@ Foreign videos illustrate concepts only; linked Liberian primary law controls.
 """
 import json
 import re
+import runpy
 from html import escape as e
 from pathlib import Path
 
 ID = 'liberian-law'
-TITLE = 'Liberian Law: Law School Preparation'
+TITLE = 'Complete Liberian Law Programme'
 REVIEW_DATE = '2026-10-14'
 SOURCES = {
  'constitution': ('1986 Constitution — Judiciary of Liberia', 'https://judiciary.gov.lr/constitution-of-liberia-2/'),
@@ -33,6 +34,12 @@ SOURCES = {
  'irac': ('Legal problem solving with IRAC — Monash University', 'https://www.monash.edu/student-academic-success/excel-at-writing/annotated-assessment-samples/law/law-legal-problem-solving-irac'),
  'school': ('Published subject list — Liberia School of Law (reference only)', 'https://liberiaschooloflaw.com/areas-of-study/'),
  'treaties': ('United Nations Treaty Collection', 'https://treaties.un.org/'),
+ 'estates': ('Decedents Estates Law, Title 8 — Liberia Land Authority', 'https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=45:decedents-estates-law'),
+ 'commercial': ('Liberian Commercial Code 2010, Title 7 — Ministry of Commerce and Industry (check amendments)', 'https://www.moci.gov.lr/sites/default/files/documents/Commercial%20Code%20-%20Title%207%20-%20Liberian%20Code%20of%20Laws%20Revised.pdf'),
+ 'insurance': ('Liberia Insurance Act 2013 — Central Bank of Liberia (check current regulations)', 'https://www.cbl.org.lr/sites/default/files/documents/INSURANCE_ACT.pdf'),
+ 'procurement': ('Current procurement legal documents, including 2026 instruments — PPCC Liberia', 'https://www.ppcc.gov.lr/publications/document-type/legal-documents'),
+ 'regional-rights': ('Communication guidance — African Commission on Human and Peoples’ Rights', 'https://achpr.au.int/en/guidelines-submitting-complaints'),
+ 'liberian-ip': ('Liberia Intellectual Property Act 2016 — WIPO Lex (check amendments)', 'https://www.wipo.int/wipolex/en/legislation/details/16994'),
 }
 
 MODULES = [
@@ -43,8 +50,9 @@ MODULES = [
  'Administrative Law, Legislation and Tax', 'Human Rights and International Law',
  'Maritime and Insurance Law', 'Environmental and Intellectual Property Law',
  'Legal Ethics and Trial Advocacy', 'Jurisprudence and Dispute Resolution',
- 'Practical Portfolio and Graduation'
+ 'Foundation Portfolio and Examination'
 ]
+MODULES += ['Applied ' + title for title in MODULES[:20]] + ['Professional Portfolio and Programme Graduation']
 LESSONS = []
 
 def q(s):
@@ -604,12 +612,12 @@ def table(headers, rows):
     return '<div class="law-table-wrap"><table><thead><tr>' + ''.join('<th scope="col">' + e(x) + '</th>' for x in headers) + '</tr></thead><tbody>' + ''.join('<tr>' + ''.join('<td>' + e(x) + '</td>' for x in row) + '</tr>' for row in rows) + '</tbody></table></div>'
 
 def render_note(index, l):
-    num = index // 2 + 1
+    num = l.get('module', index // 2 + 1)
     source_label, source_url = SOURCES[l['source']]
     questions = l['questions'][:3]
     html = '<article class="law-note"><div class="law-banner">TIH • ' + e(TITLE) + ' • Module ' + str(num) + '</div>'
     html += '<h3>LESSON NOTE: ' + e(l['title'].upper()) + '</h3>'
-    html += table(['Subject', 'Topic', 'Level', 'Lesson duration'], [[MODULES[num-1], l['title'], 'Foundation / law-school preparation', '60–90 minutes including reading and exercises']])
+    html += table(['Subject', 'Topic', 'Level', 'Lesson duration'], [[MODULES[num-1], l['title'], l.get('level','Foundation legal studies'), '60–120 minutes including reading and exercises; longer seminars may need additional time']])
     html += '<h4>Learning objectives</h4><p>By the end of this lesson you should be able to:</p>' + ul([
         'Explain ' + l['title'].lower() + ' using the distinctions below.',
         'Apply the lesson concepts to the fictional scenario and test a competing explanation.',
@@ -617,14 +625,15 @@ def render_note(index, l):
     ])
     html += '<h4>1. Introduction</h4><p>' + e(l['definition']) + '</p>'
     html += '<h4>2. Meaning and important distinctions</h4>' + table(['Concept', 'Meaning'], l['distinction'])
-    html += '<h4>3. Teaching explanation</h4><p>' + e(l['teaching']) + '</p>'
+    html += '<h4>3. Teaching explanation</h4>' + ''.join('<p>' + e(p) + '</p>' for p in l['teaching'].split('\n\n'))
     html += '<h4>4. Worked Liberian classroom example</h4><p>' + e(l['example']) + '</p>'
     html += '<h4>5. Primary reading and legal research</h4><p>' + e(l['reading']) + '</p><p><a href="' + e(source_url, quote=True) + '" target="_blank" rel="noopener noreferrer">' + e(source_label) + '</a></p>'
     for key in l.get('extraSources', []):
         label, url = SOURCES[key]
         html += '<p><a href="' + e(url, quote=True) + '" target="_blank" rel="noopener noreferrer">' + e(label) + '</a></p>'
     html += '<aside class="law-callout"><strong>Jurisdiction check:</strong> The accompanying video may use a foreign legal system. Use it for concepts; test any local proposition against the assigned Liberian sources. Check amendments and current court rules before relying on a deadline, rate, penalty or procedure. Source review: 14 October 2026.</aside>'
-    html += '<h4>6. Answering an examination question</h4><p>Frame the issue narrowly. Identify a verified applicable rule, explain how each material fact supports or challenges it, and give a conditional conclusion where necessary. In this scenario, address both ' + e(l['distinction'][0][0].lower()) + ' and ' + e(l['distinction'][1][0].lower()) + '. A definition without application does not answer the problem.</p>'
+    advice = l.get('examAdvice', 'Frame the issue narrowly. Identify a verified applicable rule, explain how each material fact supports or challenges it, and give a conditional conclusion where necessary. In this scenario, address both ' + l['distinction'][0][0].lower() + ' and ' + l['distinction'][1][0].lower() + '. A definition without application does not answer the problem.')
+    html += '<h4>6. Answering an examination question</h4><p>' + e(advice) + '</p>'
     html += '<h4>Summary</h4>' + ul([l['definition'], 'Separate ' + l['distinction'][0][0].lower() + ' from ' + l['distinction'][1][0].lower() + '.', 'Use the actual legal text and make uncertainty visible.'])
     html += '<h4>Key Terms</h4>' + table(['Term', 'Meaning'], l['distinction'])
     html += '<section class="law-glossary" aria-label="Key Words and Meanings"><h4>Key Words &amp; Meanings</h4><p>Tap a term to open its meaning.</p>'
@@ -632,15 +641,16 @@ def render_note(index, l):
         html += '<details><summary>' + e(word) + '</summary><p>' + e(meaning) + '</p></details>'
     html += '</section><h4>Review Questions</h4><h5>Multiple choice</h5>'
     for item in questions:
-        html += '<p><strong>' + e(item['q']) + '</strong></p><ol type="A">' + ''.join('<li>' + e(o) + '</li>' for o in item['opts']) + '</ol><details><summary>Reveal answer and explanation</summary><p><strong>Answer: A.</strong> ' + e(item['exp']) + '</p></details>'
+        html += '<p><strong>' + e(item['q']) + '</strong></p><ol type="A">' + ''.join('<li>' + e(o) + '</li>' for o in item['opts']) + '</ol><details><summary>Reveal answer and explanation</summary><p><strong>Answer: ' + chr(65+item['correct']) + '.</strong> ' + e(item['exp']) + '</p></details>'
     html += '<h5>Short answer</h5>' + ul(['Explain the distinction between ' + l['distinction'][0][0] + ' and ' + l['distinction'][1][0] + '.', 'What missing fact in the worked example could change your conclusion, and why?'])
-    html += '<h4>Class Activity</h4><ol><li>In pairs, argue both sides of the worked example. Identify one claim that requires more evidence.</li><li>Open the assigned reading, record a pinpoint reference, and explain how it supports or limits the example analysis.</li></ol>'
+    activities = l.get('activities', ['In pairs, argue both sides of the worked example. Identify one claim that requires more evidence.', 'Open the assigned reading, record a pinpoint reference, and explain how it supports or limits the example analysis.'])
+    html += '<h4>Class Activity</h4><ol>' + ''.join('<li>' + e(a) + '</li>' for a in activities) + '</ol>'
     html += '<h4>Assignment</h4><p>' + e(l['assignment']) + '</p><p><strong>Self-review:</strong> Check accuracy, authority, application, counterargument and clarity. Keep your work in your portfolio; project completion is self-recorded unless a TIH tutor separately reviews it.</p>'
     html += '<p class="law-footnote">Independent TIH education. Not legal advice, a law degree, bar admission or an accredited law-school qualification. Use fictional facts and never disclose confidential client information.</p></article>'
     return html
 
-def project_note(title, scenario, deliverables):
-    return '<article class="law-note"><div class="law-banner">Module 21 • Practical portfolio</div><h3>' + e(title) + '</h3><h4>Scenario</h4><p>' + e(scenario) + '</p><h4>Deliverables</h4>' + ul(deliverables) + '<h4>Assessment rubric</h4>' + table(['Criterion', 'Weight', 'Evidence of strong work'], [
+def project_note(title, scenario, deliverables, module=21):
+    return '<article class="law-note"><div class="law-banner">Module ' + str(module) + ' • Practical portfolio</div><h3>' + e(title) + '</h3><h4>Scenario</h4><p>' + e(scenario) + '</p><h4>Deliverables</h4>' + ul(deliverables) + '<h4>Assessment rubric</h4>' + table(['Criterion', 'Weight', 'Evidence of strong work'], [
         ['Legal accuracy and authority', '30%', 'Correct jurisdiction, verified text and pinpoint references'],
         ['Application and counterargument', '30%', 'Elements linked to facts with competing arguments considered'],
         ['Research and evidence', '20%', 'Transparent status checks, reliable records and stated gaps'],
@@ -653,16 +663,40 @@ def build():
     assert len(LESSONS) == 40 and len(EXAM) == 40
     assert all(len(l['questions']) == 4 and l['video'] for l in LESSONS)
     assert len({l['video'] for l in LESSONS}) == 40
-    course = dict(id=ID, title=TITLE, shortDesc='Study Liberia’s legal system through 40 taught lessons, primary readings, worked local cases, 62 quizzes and examinations, and four practical portfolio projects. Independent preparation across core law-school subjects.',
+    expansion = runpy.run_path('tools/liberian-law-expansion.py')
+    extra = expansion['EXTRA_LESSONS']
+    extra_projects = expansion['EXTRA_PROJECTS']
+    exam_rows = runpy.run_path('tools/liberian-law-exams.py')['EXAM_ROWS']
+    assert len(extra) == 40 and len(extra_projects) == 4 and len(exam_rows) == 100
+    def balanced(items, offset=0):
+        out=[]
+        for n, text in enumerate(items):
+            item=q(text); shift=(offset+n)%4
+            if shift: item['opts']=item['opts'][-shift:]+item['opts'][:-shift]
+            item['correct']=shift; out.append(item)
+        return out
+    for i, l in enumerate(extra):
+        l['questions']=balanced(l['questions'],i)
+    new_exams={}
+    for paper in ('midterm','final'):
+        rows=[r for r in exam_rows if r['paper']==paper]
+        new_exams[paper]=balanced([r['text'] for r in rows])
+        for item,row in zip(new_exams[paper],rows):item['sourceModule']=row['module']
+    assert len(new_exams['midterm'])==40 and len(new_exams['final'])==60
+    assert len({l['video'] for l in LESSONS+extra})==80
+    course = dict(id=ID, title=TITLE, shortDesc='A complete 160-hour TIH programme: 80 taught lessons across 20 law subjects, 124 quizzes and examinations with 460 distinct questions, primary Liberian readings, and eight practical portfolio projects. Learn foundations, applied analysis, drafting and advocacy for independent Liberian law-school study.',
         category='Law & Governance', icon='⚖️', gradient='linear-gradient(135deg,#002868,#0e7490)', instructor='Tolbert Innovation Hub',
-        instructorTitle='Independent educational programme', rating=0, reviewCount=0, students='', duration='80h estimated',
-        level='Foundation / Law-school preparation', price='$10', origPrice='$10', isFree=False, badge='new',
+        instructorTitle='Independent educational programme', rating=0, reviewCount=0, students='', duration='160h estimated',
+        level='Foundation → Applied legal studies', price='$10', origPrice='$10', isFree=False, badge='new',
+        certificateRevision=2, legacyTitle='Liberian Law: Law School Preparation', legacyCertificateFacts=['106 Lessons','80h estimated'],
+        certificateFacts=['80 Taught Lessons','8 Portfolio Projects','160h estimated'],
         certId='TIH-2026-LAW-0001', cardImage='liberian-law-card.svg',
-        learn=['Navigate Liberian legal sources, courts and constitutional protections', 'Research primary authorities and write case briefs and IRAC analyses', 'Analyse contracts, torts, criminal law, procedure and evidence', 'Study land, family, estates, labour, corporate and commercial issues', 'Explore administrative, tax, human-rights, international, maritime, environmental and IP law', 'Build a four-project legal portfolio and practise moot-court advocacy'],
+        learn=['Navigate Liberian legal sources, courts and constitutional protections', 'Research primary authorities and write case briefs, memoranda and reasoned opinions', 'Analyse contracts, torts, criminal law, procedure and evidence at foundation and applied levels', 'Study land transactions, family, estates, labour, corporate and commercial issues', 'Apply administrative, procurement, tax, human-rights, international, maritime, environmental and IP concepts', 'Build an eight-project legal portfolio and practise trial and appellate advocacy'],
         requirements=['No prior legal training required; careful English reading and writing are helpful', 'A browser and internet for primary readings and videos', 'A notebook or digital portfolio; fictional or public facts only'],
-        about=['A complete TIH foundation course organised around subjects appearing in published Liberian law-school study programmes. It uses the Constitution, statutes, court rules and local scenarios alongside clearly identified comparative videos.',
+        about=['A complete independent TIH programme covering 20 law subjects in foundation and applied stages, with 42 modules and 212 sequential learning steps. It uses primary Liberian readings, detailed teaching notes, fictional local scenarios, formative practice, unseen examinations and eight portfolio projects.',
                'The published Liberia School of Law subject list is a reference for coverage only. TIH is not claiming a partnership, endorsement, official syllabus equivalence, academic credit, law degree or bar eligibility. Confirm admission and degree requirements directly with the institution.',
-               'Plan about 80 hours: 40 hours of lessons and readings, 12 hours of quizzes and revision, and 28 hours of portfolio work. This is an estimate, not a guarantee. Complete lessons in order and pass the assessments under the existing player rules. Portfolio completion is self-recorded; the certificate is a TIH Certificate of Completion.'],
+               'Plan about 160 hours: 80 hours of lessons and readings, 24 hours of quizzes and revision, and 56 hours of portfolio work. Longer seminars or additional research may take more time. Complete both stages, all eight projects and the 60-question programme final under the existing 70% pass rule. Portfolio completion is self-recorded; the credential is a TIH Certificate of Completion.',
+               'Previous learners retain their original foundation steps and scores. The former 30-question final is now the foundation examination; completion of that stage does not automatically complete the expanded programme. The applied midterm contains 40 unseen questions and the programme final covers all 20 law subjects.'],
         reviews=[], faqs=[dict(q='Is this a Liberian law degree or permission to practise?', a='No. It is independent TIH preparation and continuing learning, with a Certificate of Completion only. It does not replace an accredited law degree, admission procedures or professional authorisation.'),
                          dict(q='Is TIH affiliated with Liberia School of Law or Louis Arthur Grimes School of Law?', a='No affiliation or endorsement is claimed. The subject coverage supports independent study; the published LSL subject list is linked as a reference.'),
                          dict(q='Are all video rules Liberian law?', a='No. Some videos teach comparative concepts. Each note identifies the local reading and explains that current Liberian law controls local questions.'),
@@ -689,30 +723,54 @@ def build():
     for title, scenario, deliverables in PROJECTS:
         last.append(dict(t=title,d='Portfolio project',isProject=True))
         notes['M21:'+title]=project_note(title,scenario,deliverables)
-    course['quizzes']['law-final']=dict(title='Final Examination and Certificate of Completion',moduleNum=21,isFinal=True,questions=EXAM[10:])
-    last.append(dict(t='Final Examination and Certificate of Completion',d='30 unseen questions • 70% to pass',isQuiz=True,isFinal=True,quizId='law-final'))
+    course['quizzes']['law-final']=dict(title='Foundation Examination',moduleNum=21,questions=EXAM[10:])
+    last.append(dict(t='Foundation Examination',d='30 unseen questions • 70% to pass',isQuiz=True,quizId='law-final'))
     course['modules'].append(dict(title='Module 21: '+MODULES[20],icon='🏆',meta='4 projects + final examination',lessons=last))
+    for num in range(22,42):
+        entries=[]
+        topics=[l for l in extra if l['module']==num]
+        assert len(topics)==2
+        for j,l in enumerate(topics):
+            key='M%d:%s'%(num,l['title']);qid='law-applied-m%d-topic%d'%(num,j+1)
+            notes[key]=render_note(0,l)
+            practice[key]=l['questions'][:3];reserved[key]=[l['questions'][3]];pins[key]=l['video']
+            entries += [dict(t='%d.%d %s'%(num,j+1,l['title']),d='Video + full notes + applied assignment',v=l['video']),dict(t='Practice: '+l['title'],d='3 questions',isQuiz=True,quizId=qid)]
+            course['quizzes'][qid]=dict(title='Practice: '+l['title'],moduleNum=num,questions=l['questions'][:3])
+        qid='law-applied-m%d-assessment'%num
+        course['quizzes'][qid]=dict(title=MODULES[num-1]+' Assessment',moduleNum=num,questions=[l['questions'][3] for l in topics])
+        entries.append(dict(t='Module Assessment: '+MODULES[num-1],d='2 unseen questions',isQuiz=True,quizId=qid))
+        if num==31:
+            course['quizzes']['law-applied-midterm']=dict(title='Applied Midterm Examination',moduleNum=31,questions=new_exams['midterm'])
+            entries.append(dict(t='Applied Midterm Examination',d='40 unseen questions',isQuiz=True,quizId='law-applied-midterm'))
+        course['modules'].append(dict(title='Module %d: %s'%(num,MODULES[num-1]),icon='⚖️',meta=str(len(entries))+' applied learning steps',lessons=entries))
+    last=[]
+    for title,scenario,deliverables in extra_projects:
+        last.append(dict(t=title,d='Professional portfolio project',isProject=True))
+        notes['M42:'+title]=project_note(title,scenario,deliverables,42)
+    course['quizzes']['law-programme-final']=dict(title='Complete Programme Final Examination',moduleNum=42,isFinal=True,questions=new_exams['final'])
+    last.append(dict(t='Complete Programme Final Examination',d='60 unseen questions • 70% to pass',isQuiz=True,isFinal=True,quizId='law-programme-final'))
+    course['modules'].append(dict(title='Module 42: '+MODULES[41],icon='🏆',meta='4 professional projects + comprehensive final',lessons=last))
     for quiz_id, quiz in course['quizzes'].items():
         quiz['id'] = quiz_id  # The shared player records best scores by this stable id.
     questions=[item for quiz in course['quizzes'].values() for item in quiz['questions']]
-    assert len(questions)==200 and len({item['q'].lower() for item in questions})==200
+    assert len(questions)==460 and len({item['q'].lower() for item in questions})==460
     style='''.law-note{font-size:1rem;line-height:1.8;max-width:100%;overflow-wrap:anywhere}.law-note h3{color:#002868;font-size:1.4rem;line-height:1.4}.law-note h4{color:#002868;margin:1.8rem 0 .6rem}.law-banner{background:linear-gradient(120deg,#002868,#087a9e);color:white;border-radius:12px;padding:1rem;font-weight:700}.law-table-wrap{overflow-x:auto;margin:1rem 0}.law-note table{width:100%;border-collapse:collapse;min-width:280px}.law-note th,.law-note td{padding:.75rem;border:1px solid #cbd5e1;text-align:left;vertical-align:top}.law-note th{background:#eff6ff}.law-note details{border:1px solid #bfdbfe;border-radius:10px;padding:.8rem;margin:.7rem 0;background:#f8fbff}.law-note summary{cursor:pointer;font-weight:700;color:#002868;min-height:28px}.law-note a{color:#075985;text-decoration:underline}.law-callout{border-left:4px solid #e31e24;background:#fff7ed;padding:1rem;margin:1.5rem 0}.law-footnote{font-size:.85rem;color:#475569}@media(max-width:480px){.law-note h3{font-size:1.15rem}.law-note td,.law-note th{padding:.5rem}}@media print{.law-note details>*{display:block}.law-note{font-size:11pt}.law-callout{break-inside:avoid}}'''
     Path('liberian-law-notes.js').write_text('/* Authored teaching notes. Generated by tools/build-liberian-law.py. */\n(function(){\n'+js_set('TIH_LESSON_NOTES',notes)+'if(typeof document!=="undefined"&&!document.getElementById("law-note-style")){var s=document.createElement("style");s.id="law-note-style";s.textContent='+json.dumps(style)+';document.head.appendChild(s);}\n})();\n')
-    Path('liberian-law-topic-quizzes.js').write_text('/* 120 practice and 40 reserved module items. No assessment reuse. */\n'+js_set('TIH_TOPIC_QUIZZES',practice)+js_set('TIH_RESERVED_QUIZZES',reserved))
+    Path('liberian-law-topic-quizzes.js').write_text('/* 240 practice and 80 reserved module items. No assessment reuse. */\n'+js_set('TIH_TOPIC_QUIZZES',practice)+js_set('TIH_RESERVED_QUIZZES',reserved))
     Path('liberian-law-video-map.js').write_text('/* Distinct clips from retrieved search results; comparative, not local authority. */\n'+js_set('TIH_TOPIC_VIDEOS',pins))
     Path('liberian-law-curriculum.js').write_text('/* Generated by tools/build-liberian-law.py. Self-contained for catalogues and lazy player. */\n(function(){if(typeof COURSES_DB==="undefined")return;COURSES_DB['+json.dumps(ID)+']='+json.dumps(course,ensure_ascii=False)+';})();\n')
     source_path = Path('content/liberian-law-sources.json')
     previous = json.loads(source_path.read_text()) if source_path.exists() else {}
     verified = {v['url']: v for v in previous.get('videos', [])}
     videos = []
-    for i, l in enumerate(LESSONS):
+    for i, l in enumerate(LESSONS+extra):
         url = 'https://www.youtube.com/watch?v=' + l['video']
-        item = dict(module=i//2+1, topic=l['title'], url=url, role='Comparative concept illustration; consult the note for local authority.')
-        for key in ('title', 'channel', 'metadataChecked'):
+        item = dict(module=l.get('module',i//2+1), topic=l['title'], url=url, role='Comparative concept illustration; consult the note for local authority.')
+        for key in ('title', 'channel', 'metadataChecked', 'searchQuery', 'searchUrl'):
             if key in verified.get(url, {}):
                 item[key] = verified[url][key]
         videos.append(item)
-    source_path.write_text(json.dumps(dict(reviewed=REVIEW_DATE, scope='Independent foundation course; subject correspondence is not accreditation or affiliation.', sources=SOURCES, videos=videos), ensure_ascii=False, indent=2)+'\n')
+    source_path.write_text(json.dumps(dict(reviewed=REVIEW_DATE, scope='Complete independent TIH course; subject correspondence is not accreditation or affiliation.', sources=SOURCES, videos=videos, linkChecks=previous.get('linkChecks',{})), ensure_ascii=False, indent=2)+'\n')
     # Keep the public/admin catalogue and the small dashboard catalogue in sync.
     summary={k:v for k,v in course.items() if k not in ('quizzes',)}
     path=Path('courses-db.js'); text=path.read_text()
@@ -723,10 +781,11 @@ def build():
     match=re.search(r'var LITE = (\{.*?\});', text)
     lite=json.loads(match.group(1))
     lite[ID]={k:v for k,v in course.items() if k in ('title','shortDesc','category','icon','gradient','instructor','rating','reviewCount','students','duration','level','price','origPrice','isFree','badge','cardImage','certId')}
-    lite[ID].update(_t=106,_v=40)
+    lite[ID].update(_t=212,_v=80)
     path.write_text(text[:match.start(1)]+json.dumps(lite,ensure_ascii=False,separators=(',',':'))+text[match.end(1):])
+    runpy.run_path('tools/build-liberian-law-page.py')['render'](course,SOURCES,PROJECTS+extra_projects)
     return course
 
 if __name__ == '__main__':
     c=build()
-    print('Built',TITLE,':',len(c['modules']),'modules,',sum(len(m['lessons']) for m in c['modules']),'steps,',len(c['quizzes']),'quizzes, 200 unique questions.')
+    print('Built',TITLE,':',len(c['modules']),'modules,',sum(len(m['lessons']) for m in c['modules']),'steps,',len(c['quizzes']),'quizzes, 460 unique questions.')

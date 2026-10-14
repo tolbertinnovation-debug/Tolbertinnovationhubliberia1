@@ -21,15 +21,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="courses-db.js?v=27"></script>
+  <script src="courses-db.js?v=28"></script>
   <!-- Per-course data loader. Replaces the 47 curriculum builders and the
        whole-site lesson-content.js / topic-quizzes.js bundles that used to
        load in full on every lesson view; their data now lives split by
        course under content/ and quizzes/. -->
-  <script src="tih-course-loader.js?v=22"></script>
+  <script src="tih-course-loader.js?v=23"></script>
   <script src="course-images.js?v=1"></script>
   <script src="hub-config.js?v=4"></script>
-  <script src="hub-cloud.js?v=23"></script>
+  <script src="hub-cloud.js?v=24"></script>
   <script src="hub-db.js?v=46"></script>
   <script src="hub-pay.js?v=1"></script>
   <script src="cert-registry.js?v=3"></script>
@@ -44,7 +44,7 @@
        for the open course only, by tih-authored-notes.js. -->
   <script src="tih-authored-notes.js?v=77"></script>
   <script src="assets/qrcode.js"></script>
-  <script src="cert-template.js?v=7"></script>
+  <script src="cert-template.js?v=8"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -2625,7 +2625,8 @@
     return courseId.replace(/[^a-z0-9]/gi, '').substring(0, 4).toUpperCase();
   }
   function getCredentialId() {
-    var key = 'tih_certid_' + courseId;
+    var revision = course && course.certificateRevision;
+    var key = 'tih_certid_' + courseId + (revision > 1 ? '_r' + revision : '');
     var existing = localStorage.getItem(key);
     if (existing) return existing;
     var year = new Date().getFullYear();
@@ -2645,6 +2646,8 @@
     var record = {
       courseId: courseId,
       courseTitle: course.title,
+      courseRevision: course.certificateRevision || 1,
+      courseFacts: (typeof tihCourseFacts === 'function') ? tihCourseFacts(course) : null,
       studentName: studentName || '',
       studentId: (hubStudent && hubStudent.id) ? hubStudent.id : '',
       certId: certId,
@@ -2655,6 +2658,14 @@
       score: courseScorePct(),
       grade: scoreGrade(courseScorePct())
     };
+    if (course.certificateRevision > 1) {
+      try {
+        var previousRecord = JSON.parse(localStorage.getItem('tih_cert_' + courseId) || 'null');
+        if (previousRecord && previousRecord.certId !== certId) {
+          localStorage.setItem('tih_cert_previous_' + courseId, JSON.stringify(previousRecord));
+        }
+      } catch (e) {}
+    }
     localStorage.setItem('tih_cert_' + courseId, JSON.stringify(record));
     // Publish to the public registry for cross-device verification (best effort,
     // no-op when Supabase is not configured). Only publish with a real name.
