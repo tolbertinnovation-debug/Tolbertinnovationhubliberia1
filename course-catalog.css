@@ -1,0 +1,112 @@
+/* Public Learning Hub catalogue. Keep the learner's dashboard styles separate. */
+#tracks { scroll-margin-top: 80px; background: linear-gradient(180deg,#f0f7ff 0,#fff 420px); }
+.hub-menu-btn { min-width:44px; min-height:44px; }
+#tracks :is(button,input,select) { scroll-margin-block:90px 100px; }
+.catalog-anchor { display:block; position:relative; top:-80px; visibility:hidden; }
+.catalog-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; margin-bottom:1.8rem; }
+.catalog-eyebrow { font-size:.72rem; font-weight:800; letter-spacing:.16em; color:#1565b8; margin-bottom:.55rem; }
+.catalog-heading h2 { color:#002868; font-size:clamp(1.8rem,4vw,2.6rem); letter-spacing:-.04em; margin-bottom:.65rem; }
+.catalog-heading p { color:#52657a; max-width:640px; font-size:.95rem; }
+.catalog-exams { color:#002868; font-weight:700; font-size:.85rem; flex-shrink:0; padding-bottom:.25rem; text-decoration:underline; text-underline-offset:4px; }
+.catalog-tools { padding:1.25rem; border:1px solid #dbe6f3; border-radius:18px; background:#fff; box-shadow:0 8px 26px rgba(0,40,104,.05); }
+.catalog-tools label { display:block; font-size:.75rem; font-weight:700; color:#334b68; margin-bottom:.35rem; }
+.catalog-search-box { position:relative; }
+.catalog-search-box > svg { position:absolute; top:50%; left:1rem; transform:translateY(-50%); width:21px; height:21px; color:#527397; pointer-events:none; }
+#trackSearch { width:100%; min-height:52px; border:1.5px solid #cbdced; border-radius:11px; background:#f8fbff; padding:.8rem 3.2rem .8rem 3rem; font:inherit; font-size:.95rem; color:#172e4b; appearance:none; }
+#trackSearch::-webkit-search-cancel-button { display:none; }
+#trackSearchClear { position:absolute; right:.3rem; top:50%; transform:translateY(-50%); width:44px; height:44px; border:0; background:none; color:#45617f; font-size:1.5rem; cursor:pointer; border-radius:8px; }
+.catalog-refine { display:grid; grid-template-columns:1fr 1fr 1.2fr auto; gap:1rem; margin-top:1rem; align-items:end; }
+.catalog-refine select { width:100%; min-width:0; min-height:44px; padding:.6rem 2rem .6rem .75rem; border:1px solid #ccd9e7; border-radius:9px; color:#233f60; background:#fff; font:inherit; font-size:.83rem; }
+.catalog-reset { min-height:44px; padding:.5rem .25rem; border:0; background:none; color:#1455a1; font:inherit; font-size:.82rem; font-weight:700; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+.catalog-reset:disabled { opacity:.5; cursor:default; text-decoration:none; }
+#tracks :is(a,button,input,select):focus-visible { outline:3px solid #027ac5; outline-offset:3px; }
+#trackFilters { max-width:none; margin:1.2rem 0 1rem; justify-content:flex-start; gap:.5rem; }
+#trackFilters .lt-fbtn { display:inline-flex; align-items:center; gap:.5rem; min-height:44px; padding:.45rem .8rem; font-size:.77rem; font-weight:600; }
+.lt-filter-count { font-size:.7rem; min-width:1.4rem; border-radius:5px; background:#edf3fa; color:#466587; padding:.05rem .25rem; text-align:center; }
+.lt-fbtn.active .lt-filter-count { color:#fff; background:rgba(255,255,255,.19); }
+.catalog-results-row { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.75rem; padding:.4rem 0 1.1rem; }
+#trackResults { font-size:.83rem; font-weight:600; color:#52657a; scroll-margin-top:90px; }
+.catalog-view { display:flex; padding:3px; border:1px solid #dce5ef; background:#f3f7fc; border-radius:9px; }
+.catalog-view button { display:flex; gap:.35rem; align-items:center; justify-content:center; min-width:72px; min-height:38px; padding:.35rem .6rem; border:0; border-radius:6px; font:inherit; font-size:.76rem; color:#52657a; background:none; cursor:pointer; }
+.catalog-view button[aria-pressed="true"] { color:#002868; background:#fff; box-shadow:0 1px 5px #00286818; font-weight:700; }
+.catalog-view svg { width:16px; height:16px; }
+#tracksGrid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.25rem; overflow-anchor:none; }
+#tracks [hidden] { display:none!important; }
+#tracksGrid .lt-card { min-width:0; border-color:#e0e8f1; border-radius:16px; box-shadow:0 3px 15px #00286808; }
+#tracksGrid .lt-card:hover { transform:translateY(-3px); border-color:#abc7e8; box-shadow:0 12px 28px #00286815; }
+#tracksGrid .lt-top { min-height:0; aspect-ratio:3/2; padding:0; flex-shrink:0; }
+#tracksGrid .lt-top::before,#tracksGrid .lt-top::after { display:none; }
+#tracksGrid .lt-img { object-fit:cover; }
+.lt-image-fallback { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.75rem; text-align:center; padding:1rem; color:#fff; }
+.lt-image-fallback > span { font-size:3rem; }
+.lt-image-fallback > span svg { width:56px; height:56px; }
+.lt-image-fallback > small { font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+#tracksGrid .lt-body { padding:1.1rem 1.1rem 1rem; }
+#tracksGrid .lt-cat { font-size:.65rem; letter-spacing:.09em; color:#1565b8; line-height:1.5; display:block; margin-bottom:.45rem; }
+#tracksGrid .lt-title { font-size:1rem; line-height:1.4; letter-spacing:-.02em; margin-bottom:.6rem; }
+.lt-description { color:#617186; font-size:.79rem; line-height:1.6; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; overflow:hidden; margin-bottom:.9rem; }
+#tracksGrid .lt-meta { display:flex; flex-wrap:wrap; gap:.35rem .75rem; font-size:.72rem; color:#46617e; margin:0 0 .5rem; }
+#tracksGrid .lt-meta span { display:inline-flex; align-items:center; gap:.25rem; }
+#tracksGrid .lt-meta svg { width:14px; height:14px; flex-shrink:0; }
+.lt-level { color:#617186; font-size:.7rem; line-height:1.5; padding-bottom:.9rem; }
+#tracksGrid .lt-foot { padding-top:.85rem; border-top:1px solid #edf1f6; flex-wrap:wrap; gap:.6rem; }
+#tracksGrid .lt-price { background:none; border-radius:0; padding:0; color:#002868; font-size:1.03rem; }
+.lt-price-label { display:block; font-size:.64rem; font-weight:500; color:#64748b; }
+#tracksGrid .lt-go { color:#c21b25; font-size:.77rem; font-weight:700; }
+#tracksGrid[data-view="list"] { grid-template-columns:1fr; gap:.75rem; }
+#tracksGrid[data-view="list"] .lt-card { flex-direction:row; align-items:stretch; }
+#tracksGrid[data-view="list"] .lt-top { width:210px; aspect-ratio:auto; min-height:150px; }
+#tracksGrid[data-view="list"] .lt-body { display:grid; grid-template-columns:minmax(0,1fr) auto; column-gap:1.5rem; padding:1.1rem 1.25rem; }
+#tracksGrid[data-view="list"] .lt-body > :not(.lt-foot) { grid-column:1; }
+#tracksGrid[data-view="list"] .lt-description { -webkit-line-clamp:2; margin-bottom:.6rem; }
+#tracksGrid[data-view="list"] .lt-level { padding:0; }
+#tracksGrid[data-view="list"] .lt-foot { grid-column:2; grid-row:1/6; flex-direction:column; align-items:flex-end; justify-content:center; border:0; padding:0 0 0 1.1rem; border-left:1px solid #edf1f6; margin:0; }
+.catalog-pagination { display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center; align-items:center; margin-top:1.75rem; }
+.catalog-pagination button { min-width:44px; min-height:44px; padding:.5rem .8rem; border:1px solid #d5e1ee; border-radius:9px; background:#fff; font:inherit; font-size:.83rem; color:#315579; cursor:pointer; }
+.catalog-pagination button[aria-current="page"] { background:#002868; color:#fff; border-color:#002868; font-weight:700; }
+.catalog-pagination button:disabled { opacity:.4; cursor:default; }
+.catalog-note { font-size:.75rem; color:#64748b; margin:1.5rem auto 0; text-align:center; max-width:760px; line-height:1.7; }
+.catalog-empty { text-align:center; padding:3rem 1rem; border:1px dashed #cbd9e8; border-radius:14px; background:#f8fbff; }
+.catalog-empty h3 { color:#002868; font-size:1.15rem; margin-bottom:.5rem; }
+.catalog-empty p { font-size:.9rem; color:#64748b; }
+.catalog-empty .catalog-reset { margin-top:.75rem; }
+@media (max-width:960px) {
+  #tracksGrid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .catalog-heading { align-items:flex-start; flex-direction:column; gap:.8rem; }
+  .catalog-refine { gap:.75rem; }
+  #tracksGrid[data-view="list"] .lt-top { width:165px; }
+}
+@media (max-width:600px) {
+  .catalog-heading { margin-bottom:1.25rem; }
+  .catalog-tools { padding:1rem; border-radius:14px; }
+  .catalog-refine { grid-template-columns:1fr 1fr; }
+  .catalog-refine > div:nth-child(3) { grid-column:1; }
+  .catalog-reset { justify-self:end; font-size:.76rem; }
+  #trackSearch { font-size:.87rem; }
+  #trackFilters { flex-wrap:nowrap; overflow-x:auto; padding:3px 3px .65rem; scrollbar-width:thin; margin:1rem -3px .5rem; }
+  #trackFilters .lt-fbtn { flex-shrink:0; white-space:nowrap; }
+  #tracksGrid { grid-template-columns:minmax(0,1fr); }
+  #tracksGrid .lt-top { aspect-ratio:3/2; }
+  #tracksGrid[data-view="list"] .lt-top { width:78px; min-height:0; }
+  #tracksGrid[data-view="list"] .lt-body { display:flex; padding:.85rem; min-width:0; }
+  #tracksGrid[data-view="list"] .lt-title { font-size:.88rem; }
+  #tracksGrid[data-view="list"] .lt-description { display:none; }
+  #tracksGrid[data-view="list"] .lt-cat { font-size:.6rem; }
+  #tracksGrid[data-view="list"] .lt-meta { font-size:.66rem; }
+  #tracksGrid[data-view="list"] .lt-level { font-size:.65rem; }
+  #tracksGrid[data-view="list"] .lt-foot { flex-direction:row; align-items:center; justify-content:space-between; border:0; border-top:1px solid #edf1f6; padding:.6rem 0 0; margin-top:.6rem; }
+  #tracksGrid[data-view="list"] .lt-price { font-size:.9rem; }
+  #tracksGrid[data-view="list"] .lt-go { font-size:.7rem; white-space:normal; }
+  #tracksGrid[data-view="list"] .lt-image-fallback > span { font-size:1.8rem; }
+  #tracksGrid[data-view="list"] .lt-image-fallback > span svg { width:32px; height:32px; }
+  #tracksGrid[data-view="list"] .lt-image-fallback > small { display:none; }
+  .catalog-note { text-align:left; }
+}
+@media (max-width:380px) {
+  .hub-brand { font-size:1rem; }
+  .hub-menu-label { display:none; }
+  .catalog-refine { grid-template-columns:1fr; }
+  .catalog-refine > div:nth-child(3) { grid-column:auto; }
+  .catalog-reset { justify-self:start; }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } #tracksGrid .lt-card { transition:none; } #tracksGrid .lt-card:hover { transform:none; } }

@@ -32,7 +32,8 @@ const fs=require('node:fs');
    await page.setViewportSize(size);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   }
   fs.mkdirSync('/tmp/tih-law-qa',{recursive:true});await page.screenshot({path:'/tmp/tih-law-qa/course-page.png',fullPage:true});
-  await page.goto(base+'/learning-hub.html');await page.waitForSelector('.lt-card[href="liberian-law"]');
+  await page.goto(base+'/learning-hub.html');await page.waitForSelector('#tracksGrid .lt-card');
+  await page.locator('#trackSearch').fill('law school');await page.waitForSelector('.lt-card[href="liberian-law"]');
   assert.match(await page.locator('.lt-card[href="liberian-law"]').innerText(),/106 lessons/);
   assert.equal(await page.evaluate(()=>Object.keys(COURSES_DB).length),33);
   assert.equal(await page.locator('#bibleCoursesGrid .lt-card').count()>0||await page.evaluate(()=>!!COURSES_DB['bible-foundations']),true);
