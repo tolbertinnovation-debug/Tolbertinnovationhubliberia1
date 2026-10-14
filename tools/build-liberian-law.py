@@ -687,7 +687,7 @@ def build():
     course = dict(id=ID, title=TITLE, shortDesc='A complete 160-hour TIH programme: 80 taught lessons across 20 law subjects, 124 quizzes and examinations with 460 distinct questions, primary Liberian readings, and eight practical portfolio projects. Learn foundations, applied analysis, drafting and advocacy for independent Liberian law-school study.',
         category='Law & Governance', icon='⚖️', gradient='linear-gradient(135deg,#002868,#0e7490)', instructor='Tolbert Innovation Hub',
         instructorTitle='Independent educational programme', rating=0, reviewCount=0, students='', duration='160h estimated',
-        level='Foundation → Applied legal studies', price='$10', origPrice='$10', isFree=False, badge='new',
+        level='Foundation → Applied legal studies', price='$100', origPrice='$100', isFree=False, badge='new',
         certificateRevision=2, legacyTitle='Liberian Law: Law School Preparation', legacyCertificateFacts=['106 Lessons','80h estimated'],
         certificateFacts=['80 Taught Lessons','8 Portfolio Projects','160h estimated'],
         certId='TIH-2026-LAW-0001', cardImage='liberian-law-card.svg',

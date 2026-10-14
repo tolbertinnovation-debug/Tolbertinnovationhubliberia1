@@ -40,7 +40,7 @@ var HubDB = (function () {
   //   • IELTS prep                                  → US$60
   //   • Premium exam-prep (TOEFL, SAT)              → US$25
   //   • Every other course                          → US$10 / L$1900 (PAYMENT.amountUSD)
-  var PRICE_OVERRIDES = { 'ielts': 60, 'toefl': 25, 'sat': 25, 'ph-career': 100, 'webdev': 20 };
+  var PRICE_OVERRIDES = { 'ielts': 60, 'toefl': 25, 'sat': 25, 'ph-career': 100, 'webdev': 20, 'liberian-law': 100 };
   // Liberian-dollar equivalents shown next to the US price where a fixed rate
   // is published; other prices fall back to a generic note.
   var LRD_EQUIV = { 3: 'L$500', 10: 'L$1900', 20: 'L$3800', 60: 'L$11400' };

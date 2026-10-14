@@ -5,7 +5,7 @@
   var grid = document.getElementById('tracksGrid');
   if (!grid || typeof COURSES_DB === 'undefined') return;
   var PAGE_SIZE = 12;
-  var PRICE_OVERRIDES = {ielts:60, toefl:25, sat:25, 'ph-career':100, webdev:20};
+  var PRICE_OVERRIDES = {ielts:60, toefl:25, sat:25, 'ph-career':100, webdev:20, 'liberian-law':100};
   var GROUPS = [
     ['all','All courses'], ['technology','Technology & design'], ['business','Business & careers'],
     ['exams','Exams & English'], ['law','Law & public service'], ['health','Health & agriculture'],

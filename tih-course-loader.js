@@ -221,7 +221,7 @@
     if (has(QUIZZES, courseId)) urls.push('quizzes/' + courseId + '-quizzes.js' + VERSION);
     var bank = TOPIC_QUIZ_BANKS[courseId];
     if (bank) { urls.push(bank.src); if (bank.reserve) urls.push(bank.reserve); }
-    if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + (courseId === 'liberian-law' ? '?v=3' : courseId === 'ielts' ? '?v=5' : courseId === 'english-success' ? '?v=3' : courseId === 'project-mgmt' ? '?v=3' : courseId === 'accounting-bookkeeping' ? '?v=2' : courseId === 'webdev' || courseId === 'design' || courseId === 'entrepreneurship' || courseId === 'android' || courseId === 'office' || courseId === 'leadership' || courseId === 'grant-writing' ? '?v=2' : VERSION));
+    if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + (courseId === 'liberian-law' ? '?v=4' : courseId === 'ielts' ? '?v=5' : courseId === 'english-success' ? '?v=3' : courseId === 'project-mgmt' ? '?v=3' : courseId === 'accounting-bookkeeping' ? '?v=2' : courseId === 'webdev' || courseId === 'design' || courseId === 'entrepreneurship' || courseId === 'android' || courseId === 'office' || courseId === 'leadership' || courseId === 'grant-writing' ? '?v=2' : VERSION));
     if (EXTRAS[courseId]) urls = urls.concat(EXTRAS[courseId]);
     if (!urls.length) { done(); return; }
     loadInOrder(urls, function () {
