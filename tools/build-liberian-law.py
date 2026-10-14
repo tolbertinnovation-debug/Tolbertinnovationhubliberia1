@@ -11,6 +11,7 @@ from pathlib import Path
 
 ID = 'liberian-law'
 TITLE = 'Liberian Law: Law School Preparation'
+REVIEW_DATE = '2026-10-14'
 SOURCES = {
  'constitution': ('1986 Constitution — Judiciary of Liberia', 'https://judiciary.gov.lr/constitution-of-liberia-2/'),
  'courts': ('Judicial laws — Judiciary of Liberia', 'https://judiciary.gov.lr/judiciary-law/'),
@@ -20,13 +21,14 @@ SOURCES = {
  'family': ('Domestic Relations Law, Title 9 — Liberia Land Authority repository', 'https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=59:domestic-relations-law&start=20'),
  'labour': ('Decent Work Act 2015 — Civil Service Agency', 'https://csa.gov.lr/wp-content/uploads/2024/11/Decent-Work-Act-2015.pdf'),
  'penal': ('Penal Law, Title 26 — primary statute reproduction (check amendments)', 'https://assets.tobaccocontrollaws.org/uploads/legislation/Liberia/Liberia-Penal-Law-native.pdf'),
+ 'criminal-procedure': ('Criminal Procedure Law, Title 2 — primary code reproduction hosted by ILO (check amendments)', 'https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/42875/LBR42875.pdf'),
  'ethics': ('Code of Moral and Professional Ethics — Judiciary of Liberia', 'https://judiciary.gov.lr/code-of-moral-and-professional-ethic/'),
  'business': ('Liberian corporate and maritime legislation — Registry library', 'https://www.liscr.com/onlinelibrary/'),
  'security': ('Collateral Registry — Central Bank of Liberia', 'https://www.registry.cbl.org.lr/'),
  'tax': ('Tax laws and amendments — Liberia Revenue Authority', 'https://revenue.lra.gov.lr/tax-laws-and-amendments/'),
  'environment': ('Environmental Protection and Management Law — EPA Liberia', 'https://epa.gov.lr/epa-documents/the-environmental-protection-and-management-law-of-liberia/'),
  'ip': ('Intellectual property — WIPO', 'https://www.wipo.int/en/web/about-ip'),
- 'rights': ('Universal Declaration of Human Rights — United Nations', 'https://www.un.org/en/about-us/universal-declaration-of-human-rights'),
+ 'rights': ('Universal Declaration of Human Rights — UN Human Rights regional office', 'https://europe.ohchr.org/universal-declaration-human-rights'),
  'research': ('Legal research: secondary resources — Library of Congress', 'https://guides.loc.gov/law-secondary-resources'),
  'irac': ('Legal problem solving with IRAC — Monash University', 'https://www.monash.edu/student-academic-success/excel-at-writing/annotated-assessment-samples/law/law-legal-problem-solving-irac'),
  'school': ('Published subject list — Liberia School of Law (reference only)', 'https://liberiaschooloflaw.com/areas-of-study/'),
@@ -89,7 +91,7 @@ lesson('Finding, Checking and Citing Legal Authorities', 'research', 'Use the Li
  'An AI supplies a case citation you cannot find. What should you do?|Verify or omit it and disclose the gap|Invent the missing paragraph|Treat fluency as proof|Attribute it to any court|A plausible citation can still be fabricated.',
  'Why record a pinpoint citation?|It identifies the exact relevant provision or passage|It replaces legal analysis|It guarantees victory|It makes all sources binding|A reader must be able to check the precise support.',
  'A statute PDF is ten years old. Which check is essential before applying it?|Look for amendments and commencement information|Assume age proves repeal|Use only the filename|Change the date yourself|An older reproduction may not include later changes.'
- ], 'ynZSfgFSR64')
+ ], 'dAPOL6IneKk')
 
 lesson('Case Briefing and IRAC Legal Analysis', 'irac', 'Read the IRAC guide, then practise on a published Liberian judgment located through the Judiciary.',
  'A case brief records material facts, procedural history, issue, holding and reasoning. IRAC means Issue, Rule, Application and Conclusion. A brief explains a decision; IRAC helps organise your own analysis of a problem.',
@@ -245,7 +247,7 @@ lesson('Criminal Trials, Proof and Fair-Hearing Safeguards', 'constitution', 'Re
  'How should conflicting witnesses be assessed?|Examine knowledge, reliability and corroboration|Choose the louder witness|Count social media followers|Ignore all testimony|Reliability depends on evidence, not performance alone.',
  'Which distinction is central to criminal proof?|Suspicion versus proof of the required elements|Formal shoes versus sandals|County size versus population|Ink colour versus paper|A suspicion may justify inquiry without establishing guilt.',
  'What should a trial analysis identify for every offence element?|The evidence and relevant burden of proof|Only the police slogan|Only the courtroom location|Only the sentence requested|Element-based proof prevents unsupported conclusions.'
- ], 'z9ADGGtLFY0')
+ ], 'rTmoCpEsGe0')
 
 lesson('Relevance, Burdens and Standards of Proof', 'civil', 'Read Chapter 25 on evidence and consult Liberian decisions on proof in the relevant type of proceeding.',
  'Relevance concerns whether evidence bears on a legally material fact. Admissibility asks whether the applicable rules permit it. Weight concerns persuasive value. The burden identifies who must prove what; the standard identifies the required degree of proof.',
@@ -341,7 +343,7 @@ lesson('Termination, Workplace Disputes and Labour Remedies', 'labour', 'Read re
  'A worker has a medical record contradicting an absence allegation. What should be done?|Compare it with the timeline and governing rules|Destroy the record|Ignore it because an allegation exists|Assume guaranteed compensation|Relevant contrary evidence must be assessed.',
  'What must be checked before choosing a labour-dispute forum?|The applicable specialised statutory process|Only the nearest building|Only the worker preference|Only a foreign court name|Competence and procedural route come from law.',
  'Why avoid promising automatic reinstatement?|Available remedies depend on law and established facts|Remedies never exist|Only employers may ask questions|A video can order a job restored|A course cannot guarantee the outcome of a real dispute.'
- ], 'PalBc6xx99A')
+ ], 'CkGxqpqNFTg')
 
 lesson('Corporations, Separate Personality and Governance', 'business', 'Locate the Associations Law and amendments in the Registry library; distinguish domestic business registration and applicable local compliance requirements.',
  'A corporation recognised by law can have a legal identity separate from its members. Limited liability and separate personality are related but distinct. Governance allocates powers and responsibilities among owners, directors and officers.',
@@ -353,7 +355,7 @@ lesson('Corporations, Separate Personality and Governance', 'business', 'Locate 
  'Why check the contracting party name?|It helps identify whose obligation was created|Names never matter|Every founder signs personally|Only the logo determines liability|The agreement and authority inform responsibility.',
  'What can change an owner exposure on a company debt?|A valid personal guarantee or applicable exception|Only the company colour|Only the office rent|Only the owner friendship|Liability needs specific legal and factual grounds.',
  'A director uses company money personally. What question arises?|Authority and compliance with applicable duties|Whether separate personality permits any use|Whether every shareholder is criminally guilty|Whether the letterhead is attractive|Governance powers are limited by duties and proper purpose.'
- ], 'LcXdWSppq-Q')
+ ], 'Y4QaaRUEs8Q')
 
 lesson('Agency Authority, Partnerships and Fiduciary Duties', 'business', 'Locate the applicable Associations Law provisions and Liberian cases on agency; compare foreign examples with local authority.',
  'Agency involves one person acting on behalf of another with legally relevant authority. Actual authority comes from the principal authorisation; apparent authority concerns representations attributable to the principal under the applicable test. A partnership is a distinct business relationship requiring its own analysis.',
@@ -437,7 +439,7 @@ lesson('Treaties, International Law and Cross-Border Disputes', 'treaties', 'Use
  'What must be checked before claiming Liberia is bound by a treaty?|Its status, dates and relevant reservations|Only the treaty title|Only another country signature|Only an online slogan|Party status and instrument conditions determine obligations.',
  'Which question concerns use of a foreign judgment in another country?|Recognition and enforcement|Only contract formation|Only citizenship|Only an office licence|A judgment may require a separate enforcement analysis.',
  'A treaty is internationally binding. What further domestic question may remain?|How it applies within the local legal framework|Whether a textbook is colourful|Whether treaties have page numbers|Whether all domestic rules disappear|International obligation and domestic operation require separate analysis.'
- ], 'vtMovc1ZRP4')
+ ], 'wD2lctCw0H0')
 
 lesson('Liberian Maritime Law and Shipping Transactions', 'business', 'Find the Maritime Law and relevant current notices in the Liberian Registry library; identify the version and any applicable convention.',
  'Maritime law regulates shipping-related relationships and obligations. Flag-state authority, port-state authority, ship ownership and contractual responsibility are different concepts. Liberia-specific analysis begins with its Maritime Law and applicable international instruments.',
@@ -537,6 +539,8 @@ lesson('Negotiation, Mediation and Arbitration', 'civil', 'Read Chapter 64 on ar
 
 # Correct, distinct clip sourced from the deed-specific search, not a jurisdiction clip.
 LESSONS[19]['video'] = 'Btw56iFdZwk'
+for index in (14, 15):
+    LESSONS[index]['extraSources'] = ['criminal-procedure']
 
 # Ten unseen midterm items and thirty unseen final items. No practice or module reuse.
 EXAM = [q(s) for s in [
@@ -616,7 +620,10 @@ def render_note(index, l):
     html += '<h4>3. Teaching explanation</h4><p>' + e(l['teaching']) + '</p>'
     html += '<h4>4. Worked Liberian classroom example</h4><p>' + e(l['example']) + '</p>'
     html += '<h4>5. Primary reading and legal research</h4><p>' + e(l['reading']) + '</p><p><a href="' + e(source_url, quote=True) + '" target="_blank" rel="noopener noreferrer">' + e(source_label) + '</a></p>'
-    html += '<aside class="law-callout"><strong>Jurisdiction check:</strong> The accompanying video may use a foreign legal system. Use it for concepts; test any local proposition against the assigned Liberian sources. Check amendments and current court rules before relying on a deadline, rate, penalty or procedure. Source review: 13 October 2026.</aside>'
+    for key in l.get('extraSources', []):
+        label, url = SOURCES[key]
+        html += '<p><a href="' + e(url, quote=True) + '" target="_blank" rel="noopener noreferrer">' + e(label) + '</a></p>'
+    html += '<aside class="law-callout"><strong>Jurisdiction check:</strong> The accompanying video may use a foreign legal system. Use it for concepts; test any local proposition against the assigned Liberian sources. Check amendments and current court rules before relying on a deadline, rate, penalty or procedure. Source review: 14 October 2026.</aside>'
     html += '<h4>6. Answering an examination question</h4><p>Frame the issue narrowly. Identify a verified applicable rule, explain how each material fact supports or challenges it, and give a conditional conclusion where necessary. In this scenario, address both ' + e(l['distinction'][0][0].lower()) + ' and ' + e(l['distinction'][1][0].lower()) + '. A definition without application does not answer the problem.</p>'
     html += '<h4>Summary</h4>' + ul([l['definition'], 'Separate ' + l['distinction'][0][0].lower() + ' from ' + l['distinction'][1][0].lower() + '.', 'Use the actual legal text and make uncertainty visible.'])
     html += '<h4>Key Terms</h4>' + table(['Term', 'Meaning'], l['distinction'])
@@ -694,7 +701,18 @@ def build():
     Path('liberian-law-topic-quizzes.js').write_text('/* 120 practice and 40 reserved module items. No assessment reuse. */\n'+js_set('TIH_TOPIC_QUIZZES',practice)+js_set('TIH_RESERVED_QUIZZES',reserved))
     Path('liberian-law-video-map.js').write_text('/* Distinct clips from retrieved search results; comparative, not local authority. */\n'+js_set('TIH_TOPIC_VIDEOS',pins))
     Path('liberian-law-curriculum.js').write_text('/* Generated by tools/build-liberian-law.py. Self-contained for catalogues and lazy player. */\n(function(){if(typeof COURSES_DB==="undefined")return;COURSES_DB['+json.dumps(ID)+']='+json.dumps(course,ensure_ascii=False)+';})();\n')
-    Path('content/liberian-law-sources.json').write_text(json.dumps(dict(reviewed='2026-10-13', scope='Independent foundation course; subject correspondence is not accreditation or affiliation.', sources=SOURCES, videos=[dict(module=i//2+1,topic=l['title'],url='https://www.youtube.com/watch?v='+l['video'],role='Comparative concept illustration; consult the note for local authority.') for i,l in enumerate(LESSONS)]),ensure_ascii=False,indent=2)+'\n')
+    source_path = Path('content/liberian-law-sources.json')
+    previous = json.loads(source_path.read_text()) if source_path.exists() else {}
+    verified = {v['url']: v for v in previous.get('videos', [])}
+    videos = []
+    for i, l in enumerate(LESSONS):
+        url = 'https://www.youtube.com/watch?v=' + l['video']
+        item = dict(module=i//2+1, topic=l['title'], url=url, role='Comparative concept illustration; consult the note for local authority.')
+        for key in ('title', 'channel', 'metadataChecked'):
+            if key in verified.get(url, {}):
+                item[key] = verified[url][key]
+        videos.append(item)
+    source_path.write_text(json.dumps(dict(reviewed=REVIEW_DATE, scope='Independent foundation course; subject correspondence is not accreditation or affiliation.', sources=SOURCES, videos=videos), ensure_ascii=False, indent=2)+'\n')
     # Keep the public/admin catalogue and the small dashboard catalogue in sync.
     summary={k:v for k,v in course.items() if k not in ('quizzes',)}
     path=Path('courses-db.js'); text=path.read_text()

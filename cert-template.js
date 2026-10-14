@@ -112,6 +112,9 @@ function buildCertHTML(name, title, certId, certDate, course) {
                     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   };
   var facts = tihCourseFacts(course);
+  var finePrint = course && course.id === 'liberian-law'
+    ? 'Independent TIH course completion. This is not a law degree or authority to practise law. Portfolio completion is self-recorded. Online verification is available once the certificate is published to the TIH register.'
+    : 'Issued by Tolbert Innovation Hub only after completion and administrator approval. This credential is recorded in the official TIH register and can be verified by anyone using the Credential ID above.';
   var verifyUrl = 'https://tolbertinnovationhub.org/certificate-verify?id=' + encodeURIComponent(certId);
   var qrSvg = tihVerifyQR(verifyUrl);
   var micro = '';
@@ -233,6 +236,8 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
 .verify-text .fp{font-size:6.4pt;color:#8b93a3;letter-spacing:.08em}
 .verify-text .fp b{color:#7a6a2e;font-size:6.6pt}
 .fineprint{position:relative;z-index:2;text-align:center;font-size:5.8pt;color:#9aa1ad;padding:0 20mm 4mm;letter-spacing:.02em}
+.cert-law .body{min-height:0}
+.cert-law .fineprint{flex-shrink:0;font-size:7.5pt;line-height:1.4;color:#475569;padding:0 20mm 9mm}
 
 /* ---- screen chrome ---------------------------------------------------- */
 .print-btn{position:fixed;top:15px;right:15px;background:#002868;color:#fff;border:none;padding:10px 22px;border-radius:8px;
@@ -251,7 +256,7 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
 ` + '</style></head><body>' +
   '<button class="print-btn" onclick="window.print()">&#11015; Save as PDF / Print</button>' +
   '<div class="print-note">&#128161; To save as PDF: click the button, then choose "Save as PDF" as the printer.</div>' +
-  '<div class="cert">' +
+  '<div class="cert' + (course && course.id === 'liberian-law' ? ' cert-law' : '') + '">' +
     '<div class="wash"></div><div class="pattern"></div>' +
     '<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>' +
     '<div class="frame-red"></div>' +
@@ -301,7 +306,7 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
         '<div class="fp">Security fingerprint <b>' + tihFingerprint(certId) + '</b></div>' +
       '</div>' +
     '</div>' +
-    '<div class="fineprint">Issued by Tolbert Innovation Hub only after completion and administrator approval. This credential is recorded in the official TIH register and can be verified by anyone using the Credential ID above.</div>' +
+    '<div class="fineprint">' + esc(finePrint) + '</div>' +
   '</div>' +
   '<script>window.onload=function(){setTimeout(function(){window.print();},900)};<\/script>' +
   '</body></html>';
