@@ -28,20 +28,23 @@ const fs=require('node:fs');
  try{
   await page.goto(base+'/liberian-law.html');assert.ok((await page.locator('h1').innerText()).includes('Liberian Law'));
   assert.equal(await page.locator('.module').count(),21);
-  for(const size of [{width:390,height:844},{width:1440,height:1000}]){
+  for(const size of [{width:320,height:740},{width:390,height:844},{width:768,height:1024},{width:1440,height:1000}]){
    await page.setViewportSize(size);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   }
   fs.mkdirSync('/tmp/tih-law-qa',{recursive:true});await page.screenshot({path:'/tmp/tih-law-qa/course-page.png',fullPage:true});
   await page.goto(base+'/learning-hub.html');await page.waitForSelector('.lt-card[href="liberian-law"]');
   assert.match(await page.locator('.lt-card[href="liberian-law"]').innerText(),/106 lessons/);
+  assert.equal(await page.evaluate(()=>Object.keys(COURSES_DB).length),33);
+  assert.equal(await page.locator('#bibleCoursesGrid .lt-card').count()>0||await page.evaluate(()=>!!COURSES_DB['bible-foundations']),true);
   await page.goto(base+'/hub-apply.html');await page.waitForFunction(()=>typeof allTrackIds==='function'&&allTrackIds().includes('liberian-law'));
-  // The legacy public catalogue runs unrelated builders without all their quiz
-  // prerequisites. Keep their warnings visible, and scope the strict assertion
-  // to this new course's lazy-loaded player.
   const catalogueWarnings=[...new Set(errors)];errors.length=0;
+  assert.deepEqual(catalogueWarnings,[],'Public catalogue and registration must load without builder errors');
   await page.goto(base+'/course-player.html?id=liberian-law');
   await page.waitForFunction(()=>typeof lessons!=='undefined'&&lessons.length===106&&window.TIH_LESSON_NOTES?.['liberian-law']);
   assert.equal(await page.evaluate(()=>courseIsComplete()),false);
+  await page.evaluate(()=>{window.__alerts=[];window.alert=message=>window.__alerts.push(message);window.print=()=>{};printCertificate();});
+  assert.match(await page.evaluate(()=>window.__alerts[0]),/finish all lessons/);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('tih_cert_liberian-law')),null);
   assert.equal(await page.evaluate(()=>isLessonLocked(1)),true);
   await page.evaluate(()=>selectLessonByIndex(2));assert.equal(await page.evaluate(()=>currentLessonIndex),0);
   assert.match(await page.locator('#overviewContent').innerText(),/Sources of Liberian Law/);
@@ -49,6 +52,8 @@ const fs=require('node:fs');
   await page.setViewportSize({width:390,height:844});
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   await page.evaluate(()=>{closeSidebar();renderLesson(0);document.getElementById('videoScroll').scrollTop=0;});
+  await page.waitForFunction(()=>document.querySelector('.sidebar').getBoundingClientRect().right<=1);
+  await page.waitForFunction(()=>!document.getElementById('lockToast').classList.contains('show'));
   await page.screenshot({path:'/tmp/tih-law-qa/mobile-lesson.png'});
   const report=await page.evaluate(()=>({videos:lessons.filter(l=>!l.isQuiz&&!l.isProject).map(l=>l.videoId),quizCount:Object.keys(quizData).length,notes:Object.keys(window.TIH_LESSON_NOTES['liberian-law']).length}));
   assert.equal(report.videos.length,40);assert.equal(new Set(report.videos).size,40);assert.equal(report.notes,44);assert.equal(report.quizCount,62);
@@ -71,7 +76,43 @@ const fs=require('node:fs');
   console.log('All 200 quiz questions passed; checking persisted completion.');
   await page.reload();await page.waitForFunction(()=>typeof completedLessons!=='undefined'&&completedLessons.length===106);assert.equal(await page.evaluate(()=>courseIsComplete()),true);
   await page.evaluate(()=>showCompletionModal());assert.match(await page.locator('#certCourseTitle').innerText(),/Liberian Law/);
+  const certificate=await page.evaluate(()=>buildCertHTML('Local Law Learner',course.title,getCredentialId(),'October 14, 2026',course));
+  assert.match(certificate,/not a law degree or authority to practise law/);
+  assert.match(certificate,/Portfolio completion is self-recorded/);
+  assert.ok(!certificate.includes('only after completion and administrator approval'));
+  assert.match(certificate,/Local Law Learner/);
+  const certPage=await context.newPage();
+  await certPage.goto(base+'/liberian-law.html');
+  await certPage.setViewportSize({width:1200,height:900});
+  await certPage.emulateMedia({media:'print'});
+  await certPage.setContent(certificate.replace(/<script>[\s\S]*?<\/script>/g,''));
+  await certPage.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].map(img=>img.complete?Promise.resolve():new Promise(resolve=>{img.onload=resolve;img.onerror=resolve;})));});
+  assert.equal(await certPage.evaluate(()=>[...document.images].every(img=>img.complete&&img.naturalWidth>0)),true);
+  assert.equal(await certPage.evaluate(()=>{
+   const fine=document.querySelector('.fineprint'),sheet=document.querySelector('.cert');
+   const range=document.createRange();range.selectNodeContents(fine);
+   return parseFloat(getComputedStyle(fine).fontSize)>=10&&range.getBoundingClientRect().bottom<sheet.getBoundingClientRect().bottom-30;
+  }),true,'Course scope must remain legible inside the printed certificate frame');
+  await certPage.screenshot({path:'/tmp/tih-law-qa/law-certificate.png',fullPage:true});await certPage.close();
+  // Check access boundaries in fresh sessions, without contacting production services.
+  for(const loggedIn of [false,true]){
+   const denied=await browser.newContext();
+   await denied.route('**/*',r=>{
+    const url=new URL(r.request().url());if(url.origin!==new URL(base).origin)return r.abort();
+    if(r.request().resourceType()==='document'&&/^\/(course-player|hub-dashboard)$/.test(url.pathname)){url.pathname+='.html';return r.continue({url:url.href});}
+    return r.continue();
+   });
+   if(loggedIn)await denied.addInitScript(()=>{
+    const id='LAW-LOCKED-QA';localStorage.setItem('tih_hub_last_student',id);
+    localStorage.setItem('tih_hub_student_session',JSON.stringify({id,at:new Date().toISOString()}));
+    localStorage.setItem('tih_hub_students',JSON.stringify([{id,name:'Locked Local Learner',status:'active',courses:[{id:'liberian-law'}]}]));
+   });
+   const locked=await denied.newPage();await locked.goto(base+'/course-player.html?id=liberian-law');
+   if(loggedIn){await locked.waitForSelector('#tihPaywall');assert.equal(await locked.evaluate(()=>typeof lessons==='undefined'),true);}
+   else await locked.waitForURL(/hub-dashboard/);
+   await denied.close();
+  }
   assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);
-  console.log(JSON.stringify({...report,catalogueWarnings,renderedQuestions:answered,progressPersisted:true,certificateEligible:true,passed:true}));
+  console.log(JSON.stringify({...report,catalogueWarnings,renderedQuestions:answered,progressPersisted:true,certificateEligible:true,accessGuards:true,passed:true}));
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
