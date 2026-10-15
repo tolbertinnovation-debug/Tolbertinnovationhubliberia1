@@ -21,5 +21,16 @@
 .home-law-facts dd{color:#002868;font-size:1.35rem;font-weight:800;margin:0;line-height:1.2}
 .home-law-pace{font-size:.88rem;color:#52657a;line-height:1.65;margin:1.2rem 0}
 .home-law-fee{font-size:.9rem;color:#243e61;border-top:1px solid #e4edf5;padding-top:1rem;margin:0}
+.home-law-next{grid-column:1/-1;display:grid;grid-template-columns:260px minmax(0,1fr);gap:2rem;align-items:center;background:#fff;border:1px solid #cbdfee;border-top:4px solid #e31e24;border-radius:18px;padding:1.6rem}
+.home-law-next>img{width:100%;height:auto;display:block;border-radius:12px}
+.home-law-next h3{color:#002868;font-size:clamp(1.2rem,2.2vw,1.6rem);line-height:1.35;margin:.4rem 0 .8rem}
+.home-law-next p{color:#43556c;line-height:1.7;margin:0 0 1rem}
+.home-law-next .home-law-tag{color:#a51420}
+.home-law-next-facts{list-style:none;padding:0;margin:0 0 1rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.home-law-next-facts li{background:#eef6fd;border:1px solid #dce9f4;border-radius:8px;padding:.4rem .65rem;color:#153b69;font-size:.8rem;font-weight:650}
+.home-law-next .home-law-next-scope{font-size:.82rem;color:#52657a}
+.home-law-next .home-law-actions{align-items:center}
+.home-law-next-open{color:#002868;text-decoration:underline;text-underline-offset:3px;font-size:.88rem;display:inline-flex;align-items:center;min-height:44px;padding:.5rem 0}
+@media(max-width:700px){.home-law-next{grid-template-columns:1fr;gap:1.25rem;padding:1.2rem}.home-law-next>img{max-width:400px}}
 @media(max-width:900px){.home-law-layout{grid-template-columns:1fr;gap:2rem}.home-law-card{max-width:600px;width:100%}}
 @media(max-width:420px){.home-law-card-body{padding:1.1rem}.home-law-facts>div{padding:.8rem}.home-law-actions{flex-direction:column}.home-law-actions .btn{width:100%}}
