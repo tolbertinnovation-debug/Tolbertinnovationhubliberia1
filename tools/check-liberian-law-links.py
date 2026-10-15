@@ -1,4 +1,5 @@
 """Check assigned readings and YouTube metadata; does not claim full playback QA."""
+import argparse
 import concurrent.futures
 import datetime
 import json
@@ -7,7 +8,9 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-path = Path('content/liberian-law-sources.json')
+parser = argparse.ArgumentParser()
+parser.add_argument('--course', choices=['liberian-law','advanced-liberian-law'], default='liberian-law')
+path = Path('content/' + parser.parse_args().course + '-sources.json')
 data = json.loads(path.read_text())
 checked = datetime.date.today().isoformat()
 

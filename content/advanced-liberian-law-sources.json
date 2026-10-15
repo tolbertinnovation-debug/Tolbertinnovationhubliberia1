@@ -1,0 +1,783 @@
+{
+  "reviewed": "2026-10-15",
+  "scope": "Original TIH advanced independent course; requested 26-subject scope, not an official university curriculum. Videos illustrate concepts; no current-law or full-playback guarantee is inferred from metadata.",
+  "sources": {
+    "constitution": [
+      "1986 Constitution — Judiciary of Liberia",
+      "https://judiciary.gov.lr/constitution-of-liberia-2/"
+    ],
+    "courts": [
+      "Judicial laws — Judiciary of Liberia",
+      "https://judiciary.gov.lr/judiciary-law/"
+    ],
+    "rules": [
+      "Court rules — Judiciary of Liberia",
+      "https://judiciary.gov.lr/court-rules/"
+    ],
+    "civil": [
+      "Civil Procedure Law, Title 1 — Liberia Land Authority repository",
+      "https://www.lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=41:civil-procedure-law"
+    ],
+    "land": [
+      "Land Rights Act 2018 — Liberia Land Authority",
+      "https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=79:land-rights-act&start=40"
+    ],
+    "family": [
+      "Domestic Relations Law, Title 9 — Liberia Land Authority repository",
+      "https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=59:domestic-relations-law&start=20"
+    ],
+    "labour": [
+      "Decent Work Act 2015 — Civil Service Agency",
+      "https://csa.gov.lr/wp-content/uploads/2024/11/Decent-Work-Act-2015.pdf"
+    ],
+    "penal": [
+      "Penal Law, Title 26 — primary statute reproduction (check amendments)",
+      "https://assets.tobaccocontrollaws.org/uploads/legislation/Liberia/Liberia-Penal-Law-native.pdf"
+    ],
+    "criminal-procedure": [
+      "Criminal Procedure Law, Title 2 — primary code reproduction hosted by ILO (check amendments)",
+      "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/42875/LBR42875.pdf"
+    ],
+    "ethics": [
+      "Code of Moral and Professional Ethics — Judiciary of Liberia",
+      "https://judiciary.gov.lr/code-of-moral-and-professional-ethic/"
+    ],
+    "business": [
+      "Liberian corporate and maritime legislation — Registry library",
+      "https://www.liscr.com/onlinelibrary/"
+    ],
+    "security": [
+      "Collateral Registry — Central Bank of Liberia",
+      "https://www.registry.cbl.org.lr/"
+    ],
+    "tax": [
+      "Tax laws and amendments — Liberia Revenue Authority",
+      "https://revenue.lra.gov.lr/tax-laws-and-amendments/"
+    ],
+    "environment": [
+      "Environmental Protection and Management Law — EPA Liberia",
+      "https://epa.gov.lr/epa-documents/the-environmental-protection-and-management-law-of-liberia/"
+    ],
+    "rights": [
+      "Universal Declaration of Human Rights — UN Human Rights regional office",
+      "https://europe.ohchr.org/universal-declaration-human-rights"
+    ],
+    "research": [
+      "Legal research: secondary resources — Library of Congress",
+      "https://guides.loc.gov/law-secondary-resources"
+    ],
+    "treaties": [
+      "United Nations Treaty Collection",
+      "https://treaties.un.org/"
+    ],
+    "estates": [
+      "Decedents Estates Law, Title 8 — Liberia Land Authority",
+      "https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=45:decedents-estates-law"
+    ],
+    "commercial": [
+      "Liberian Commercial Code 2010, Title 7 — Ministry of Commerce and Industry (check amendments)",
+      "https://www.moci.gov.lr/sites/default/files/documents/Commercial%20Code%20-%20Title%207%20-%20Liberian%20Code%20of%20Laws%20Revised.pdf"
+    ],
+    "procurement": [
+      "Current procurement legal documents, including 2026 instruments — PPCC Liberia",
+      "https://www.ppcc.gov.lr/publications/document-type/legal-documents"
+    ],
+    "liberian-ip": [
+      "Liberia Intellectual Property Act 2016 — WIPO Lex (check amendments)",
+      "https://www.wipo.int/wipolex/en/legislation/details/16994"
+    ],
+    "banking": [
+      "Current financial institutions legislation — Central Bank of Liberia",
+      "https://www.cbl.org.lr/publications/document-type/regulatory-framework-all-acts"
+    ],
+    "bank-rules": [
+      "Current regulations — Central Bank of Liberia",
+      "https://www.cbl.org.lr/publications/document-type/regulations"
+    ],
+    "ul": [
+      "Louis Arthur Grimes School of Law — University of Liberia institutional listing",
+      "https://ul.edu.lr/new/louis-arthur-grimes-school-of-law/"
+    ],
+    "uncitral": [
+      "Foreign arbitral awards: convention and source materials — UN legal library (verify status and local application)",
+      "https://legal.un.org/avl/ha/crefaa/crefaa.html"
+    ],
+    "equity-comparison": [
+      "Fiduciary duties — Federal Court of Australia judicial lecture (comparative)",
+      "https://www.fedcourt.gov.au/digital-law-library/judges-speeches/justice-osullivan/osullivan-j-20260221"
+    ],
+    "yale-banks": [
+      "Banks — Yale conceptual lecture (2011; not current Liberian rules)",
+      "https://oyc.yale.edu/economics/econ-252-11/lecture-13"
+    ]
+  },
+  "videos": [
+    {
+      "module": 1,
+      "topic": "Separation of Powers and Constitutional Interpretation",
+      "url": "https://www.youtube.com/watch?v=cc2gCpR6EE0",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Constitutional Law: Separation of Powers and Judicial Review (LAWS11069 Week 1 Lecture)",
+      "channel": "Dr. Manuel Jose “Manjo” Oyson",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 1,
+      "topic": "Constitutional Review, Standing and Remedial Design",
+      "url": "https://www.youtube.com/watch?v=c2q0yVdGbhg",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Judicial Review of Administration Actions: Module 5 of 5",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "judicial review remedies law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=judicial+review+remedies+law+English"
+    },
+    {
+      "module": 2,
+      "topic": "Offence Elements, Mental States and Evidential Inference",
+      "url": "https://www.youtube.com/watch?v=DowjAl6WAiU",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Criminal Law - Chapter 1: Actus Reus & Mens Rea (Degree - Year 1)",
+      "channel": "Student Counsel",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 2,
+      "topic": "Attempt, Conspiracy and Individual Participation",
+      "url": "https://www.youtube.com/watch?v=wt6Rfpyz1hA",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Criminal Law: Conspiracy (Part 1) — Common Law Elements (Inchoate Offenses) [LEAP Preview]",
+      "channel": "Studicata",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "inchoate offences attempt conspiracy criminal law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=inchoate+offences+attempt+conspiracy+criminal+law+English"
+    },
+    {
+      "module": 3,
+      "topic": "Liberty, Bail and Procedural Safeguards",
+      "url": "https://www.youtube.com/watch?v=pFUJ2ehSwjA",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "What is Bail?",
+      "channel": "Cornerstone Law Firm, LLC",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 3,
+      "topic": "Charging, Disclosure and Pre-Trial Case Management",
+      "url": "https://www.youtube.com/watch?v=ED9njYaF75w",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "THE PROCESS OF A PRE-TRIAL IN CRIMINAL CASES",
+      "channel": "Kruse Law",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "criminal pre trial disclosure prosecution English",
+      "searchUrl": "https://www.youtube.com/results?search_query=criminal+pre+trial+disclosure+prosecution+English"
+    },
+    {
+      "module": 4,
+      "topic": "Jurisdiction, Service and Strategic Forum Analysis",
+      "url": "https://www.youtube.com/watch?v=iAgaqEfcJmA",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Civil Procedure: Introduction to Jurisdiction and Venue",
+      "channel": "Studicata",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 4,
+      "topic": "Interlocutory Relief, Injunctions and Proportional Orders",
+      "url": "https://www.youtube.com/watch?v=mHG1bL8KMI0",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Injunctions and Restraining Orders (Civil Procedure) - Listen & Learn",
+      "channel": "Law School Toolbox",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "interlocutory injunction civil procedure law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=interlocutory+injunction+civil+procedure+law+English"
+    },
+    {
+      "module": 5,
+      "topic": "Contract Interpretation, Risk Allocation and Exclusion Terms",
+      "url": "https://www.youtube.com/watch?v=mQhg4CjHS08",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Contract terms - Exclusion clauses",
+      "channel": "The Law Teacher",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "contract terms exclusion clauses law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=contract+terms+exclusion+clauses+law+English"
+    },
+    {
+      "module": 5,
+      "topic": "Misrepresentation, Duress and Transactional Vulnerability",
+      "url": "https://www.youtube.com/watch?v=ADrOhfHz13w",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Law of Contracts - Vitiating Factors",
+      "channel": "Kabale University",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "vitiating factors contract misrepresentation duress law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=vitiating+factors+contract+misrepresentation+duress+law+English"
+    },
+    {
+      "module": 6,
+      "topic": "Vicarious Liability and Organisational Risk",
+      "url": "https://www.youtube.com/watch?v=YjZTxAO6hGM",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Tort Law - Vicarious Liability",
+      "channel": "The Law Simplified",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "vicarious liability tort law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=vicarious+liability+tort+law+English"
+    },
+    {
+      "module": 6,
+      "topic": "Defamation, Reputation and Proof of Civil Loss",
+      "url": "https://www.youtube.com/watch?v=oJve0sPKSzE",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Tort Law: The Rules of Defamation",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "defamation law damages English",
+      "searchUrl": "https://www.youtube.com/results?search_query=defamation+law+damages+English"
+    },
+    {
+      "module": 7,
+      "topic": "Title, Conveyances and the Limits of Documentary Proof",
+      "url": "https://www.youtube.com/watch?v=Btw56iFdZwk",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "What Is a Deed of Conveyance?",
+      "channel": "Plain Law",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 7,
+      "topic": "Easements, Licences and Co-Ownership Disputes",
+      "url": "https://www.youtube.com/watch?v=TtuepIM8UM4",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Servitudes (Easements, Profits, Licenses, Real Covenants, and Equitable Servitudes)",
+      "channel": "www.uslawreview.com",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "leases easements co ownership property law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=leases+easements+co+ownership+property+law+English"
+    },
+    {
+      "module": 8,
+      "topic": "Land Categories, Customary Rights and Competing Claims",
+      "url": "https://www.youtube.com/watch?v=UJjop_TJXoc",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "MUST WATCH THIS VIDEO BEFORE YOU BUY LAND IN LIBERIA",
+      "channel": "Zawadi Em",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 8,
+      "topic": "Surveys, Community Consent and Transaction Sequencing",
+      "url": "https://www.youtube.com/watch?v=g1JA01KRXkc",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "THIS IS HOW LAND SURVEYING PROCESS WORKS IN LIBERIA",
+      "channel": "Zawadi Em",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "Liberia land survey customary land rights consent",
+      "searchUrl": "https://www.youtube.com/results?search_query=Liberia+land+survey+customary+land+rights+consent"
+    },
+    {
+      "module": 9,
+      "topic": "Administrative Discretion, Reasons and Lawful Decision-Making",
+      "url": "https://www.youtube.com/watch?v=YTKOHB8A0KQ",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Administrative Law: Judicial Review and the Criteria for Lawful Decision-Making",
+      "channel": "Dr. Manuel Jose “Manjo” Oyson",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 9,
+      "topic": "Public Procurement, Concessions and Accountability Review",
+      "url": "https://www.youtube.com/watch?v=Tel3dnWoQfw",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "PA23 Supplier Training Part 1: Introduction to Public Procurement",
+      "channel": "NEPO",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "Liberia public procurement concessions commission training",
+      "searchUrl": "https://www.youtube.com/results?search_query=Liberia+public+procurement+concessions+commission+training"
+    },
+    {
+      "module": 10,
+      "topic": "Sale of Goods, Delivery Risk and Commercial Remedies",
+      "url": "https://www.youtube.com/watch?v=pBZjFomE9cA",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Introduction to the Law of Sale of Goods",
+      "channel": "Dr. Esther Katende Magezi",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "sale of goods risk consumer contract law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=sale+of+goods+risk+consumer+contract+law+English"
+    },
+    {
+      "module": 10,
+      "topic": "Negotiable Instruments and Payment-Chain Liability",
+      "url": "https://www.youtube.com/watch?v=1TZplBlkJQg",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Negotiable Instruments: Module 1 of 6",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 11,
+      "topic": "Directors, Conflicts and Corporate Decision Records",
+      "url": "https://www.youtube.com/watch?v=szv76fD_ftY",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Directors' Duties | Business Law & Practice | SQE Prep",
+      "channel": "The Law Academy",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "company formation directors duties corporate law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=company+formation+directors+duties+corporate+law+English"
+    },
+    {
+      "module": 11,
+      "topic": "Partnership Dissolution and Continuing Business Obligations",
+      "url": "https://www.youtube.com/watch?v=ETVTzDs6mRY",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Partnerships – Episode 6: Disassociation and Dissolution",
+      "channel": "Business Law Education",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "partnership dissolution agency law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=partnership+dissolution+agency+law+English"
+    },
+    {
+      "module": 12,
+      "topic": "Treaties, Consent and Domestic Legal Effect",
+      "url": "https://www.youtube.com/watch?v=wD2lctCw0H0",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Law of treaties: What is a treaty? International Law explained",
+      "channel": "Lex Animata Law Visualized | Hesham Elrafei ",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 12,
+      "topic": "Conflict of Laws, Forum and Foreign Judgments",
+      "url": "https://www.youtube.com/watch?v=mnf3MAEqvQA",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Conflict of Laws - Introduction",
+      "channel": "The Law Simplified",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "conflict of laws foreign judgment jurisdiction law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=conflict+of+laws+foreign+judgment+jurisdiction+law+English"
+    },
+    {
+      "module": 13,
+      "topic": "Rights Analysis, State Duties and Justification",
+      "url": "https://www.youtube.com/watch?v=JpY9s1Agbsw",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "What is a human right?",
+      "channel": "UN Human Rights",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 13,
+      "topic": "African Commission Communications and Admissibility",
+      "url": "https://www.youtube.com/watch?v=sAL5nxTvuIU",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Introduction to the Communication Procedure of the African Commission on Human and Peoples' Rights",
+      "channel": "ACHPR CSOs’ Side Events",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "African Commission human rights communications procedure English",
+      "searchUrl": "https://www.youtube.com/results?search_query=African+Commission+human+rights+communications+procedure+English"
+    },
+    {
+      "module": 14,
+      "topic": "Family Relationships, Child Welfare and Competing Interests",
+      "url": "https://www.youtube.com/watch?v=SmSn06A8suA",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Introduction to Family Law",
+      "channel": "The Law Academy",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 14,
+      "topic": "Intestacy, Estate Administration and Dependant Claims",
+      "url": "https://www.youtube.com/watch?v=18l1ejgXtBU",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Rules of Intestacy",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "wills intestacy probate law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=wills+intestacy+probate+law+English"
+    },
+    {
+      "module": 15,
+      "topic": "Expert Testimony, Method and Evidential Weight",
+      "url": "https://www.youtube.com/watch?v=KBRXOv1laRw",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Evidence Law: Opinion Testimony of Laypeople and Experts",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "expert witness evidence law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=expert+witness+evidence+law+English"
+    },
+    {
+      "module": 15,
+      "topic": "Privilege, Confidentiality and Lawful Evidence Handling",
+      "url": "https://www.youtube.com/watch?v=eFzzBg-Faho",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Legal Professional Privilege: A Conversation with Lord Neuberger",
+      "channel": "UCL Laws",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "legal professional privilege evidence law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=legal+professional+privilege+evidence+law+English"
+    },
+    {
+      "module": 16,
+      "topic": "Doctrinal Research, Source Status and Comparative Method",
+      "url": "https://www.youtube.com/watch?v=dAPOL6IneKk",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Basic Legal Research",
+      "channel": "Alberta Law Libraries",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 16,
+      "topic": "Predictive Memoranda, Critical Argument and Citation Integrity",
+      "url": "https://www.youtube.com/watch?v=Io5ttZ0ih9w",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Legal Writing Tutorial: How To Write a Legal Memo in Law School Part 1",
+      "channel": "JD Logic Law School Tutoring",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "legal memorandum writing law school English",
+      "searchUrl": "https://www.youtube.com/results?search_query=legal+memorandum+writing+law+school+English"
+    },
+    {
+      "module": 17,
+      "topic": "Confidentiality, Candour and Responsible Legal Assistance",
+      "url": "https://www.youtube.com/watch?v=131V56x8LOM",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Attorney Client Privilege & Lawyer Confidentiality EXPLAINED",
+      "channel": "All Up In Yo' Business with Attorney Aiden Durham",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 17,
+      "topic": "Conflicts, Informed Decisions and Protective File Controls",
+      "url": "https://www.youtube.com/watch?v=IQnqbF2AT4c",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Conflicts of Interest: Module 4 of 5",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "legal ethics conflict interest confidentiality client money English",
+      "searchUrl": "https://www.youtube.com/results?search_query=legal+ethics+conflict+interest+confidentiality+client+money+English"
+    },
+    {
+      "module": 18,
+      "topic": "Wages, Working Time and Employment Classification",
+      "url": "https://www.youtube.com/watch?v=UW-omPizIt0",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Employment Law 4 | Pay, Hours, Leave & Lawful Variations | Namibia",
+      "channel": "Namibian Law Explained",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "working time wages leave labour law ILO English",
+      "searchUrl": "https://www.youtube.com/results?search_query=working+time+wages+leave+labour+law+ILO+English"
+    },
+    {
+      "module": 18,
+      "topic": "Collective Bargaining, Representation and Labour Disputes",
+      "url": "https://www.youtube.com/watch?v=p1CTPyfRA7M",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "What is Collective Bargaining? | HRM | From A Business Professor",
+      "channel": "Business School 101",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "collective bargaining trade union labour law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=collective+bargaining+trade+union+labour+law+English"
+    },
+    {
+      "module": 19,
+      "topic": "Environmental Duties, Permits and Regulatory Accountability",
+      "url": "https://www.youtube.com/watch?v=UQL-9wi5OdQ",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Understanding Environmental Law",
+      "channel": "ABA Section of Environment, Energy, and Resources",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 19,
+      "topic": "Environmental Impact Assessment and Meaningful Participation",
+      "url": "https://www.youtube.com/watch?v=7DsmEPkHDtM",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "The EIA Process - English",
+      "channel": "Zimbabwe Environmental Law Organisation",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "environmental impact assessment enforcement law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=environmental+impact+assessment+enforcement+law+English"
+    },
+    {
+      "module": 20,
+      "topic": "Tax Statutory Interpretation and Temporal Application",
+      "url": "https://www.youtube.com/watch?v=0tP9lociqFk",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Statutory Interpretation",
+      "channel": "Blackstone School of Law",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 20,
+      "topic": "Assessments, Objections and Tax Dispute Records",
+      "url": "https://www.youtube.com/watch?v=CrmGbCXig4M",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "SARS Readiness Programme - Module 8.2 - Dispute Resolution",
+      "channel": "SARS TV",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "tax disputes objections appeals SARS",
+      "searchUrl": "https://www.youtube.com/results?search_query=tax+disputes+objections+appeals+SARS"
+    },
+    {
+      "module": 21,
+      "topic": "Trust Creation, Certainty and Beneficial Interests",
+      "url": "https://www.youtube.com/watch?v=YlTSSVVkF2w",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "The Three Certainties | Law of Trusts",
+      "channel": "The Law Academy",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 21,
+      "topic": "Fiduciary Administration, Accounts and Beneficiary Protection",
+      "url": "https://www.youtube.com/watch?v=PGVKADO4Qhs",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Trust Administration Unleashed: Advanced Issues, Fiduciary Duties, and Practical Pitfalls",
+      "channel": "Justia",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "trusts fiduciary duties beneficiaries law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=trusts+fiduciary+duties+beneficiaries+law+English"
+    },
+    {
+      "module": 22,
+      "topic": "Natural Law, Moral Critique and Legal Obligation",
+      "url": "https://www.youtube.com/watch?v=RaHHGv4VIno",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Jurisprudence - Natural Law",
+      "channel": "The Law Simplified",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "legal positivism natural law African legal pluralism English",
+      "searchUrl": "https://www.youtube.com/results?search_query=legal+positivism+natural+law+African+legal+pluralism+English"
+    },
+    {
+      "module": 22,
+      "topic": "Legal Positivism, Pluralism and Customary Authority",
+      "url": "https://www.youtube.com/watch?v=d6JYlhz0Q-k",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Legal positivism versus natural law",
+      "channel": "DrWernaart",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "legal positivism natural law African legal pluralism English",
+      "searchUrl": "https://www.youtube.com/results?search_query=legal+positivism+natural+law+African+legal+pluralism+English"
+    },
+    {
+      "module": 23,
+      "topic": "Banking Regulation, Capital, Liquidity and Supervisory Power",
+      "url": "https://www.youtube.com/watch?v=1mDL1fKEVZM",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "13. Banks",
+      "channel": "YaleCourses",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 23,
+      "topic": "Secured Credit, Priority and Enforcement Risk",
+      "url": "https://www.youtube.com/watch?v=ohmBgsqWC6o",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Overview of Secured Transactions: Module 1 of 5",
+      "channel": "LawShelf",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 24,
+      "topic": "Copyright, Authorship and Digital Reuse",
+      "url": "https://www.youtube.com/watch?v=eEB5MYcj-Ns",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "What is Copyright? A Cartoon Introduction",
+      "channel": "World Intellectual Property Organization – WIPO",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 24,
+      "topic": "Trademarks, Patents and Commercial IP Strategy",
+      "url": "https://www.youtube.com/watch?v=nXyCyWg6x98",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Patents, Trademarks, and Copyrights: An overview of intellectual property",
+      "channel": "USPTOvideo",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "copyright trademarks patents intellectual property law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=copyright+trademarks+patents+intellectual+property+law+English"
+    },
+    {
+      "module": 25,
+      "topic": "Negotiation, Mediation and Settlement Authority",
+      "url": "https://www.youtube.com/watch?v=QSSkrK0AcWg",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Mediation/Arbitration: What's the Difference?",
+      "channel": "Peter J. Lamont",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 25,
+      "topic": "Arbitration Agreements, Awards and Enforcement Defences",
+      "url": "https://www.youtube.com/watch?v=7oXSxc3TomA",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Arbitration Awards Explained | Court Reasons / Arbitration Awards | Arbitration Boot Camp Session 13",
+      "channel": "Lerners LLP",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "arbitration award enforcement agreement law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=arbitration+award+enforcement+agreement+law+English"
+    },
+    {
+      "module": 26,
+      "topic": "Moot Court, Issue Selection and Responsive Oral Advocacy",
+      "url": "https://www.youtube.com/watch?v=lDkU8HUWenA",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "How to Moot: Oral Advocacy",
+      "channel": "SULS Competitions",
+      "metadataChecked": "2026-10-15"
+    },
+    {
+      "module": 26,
+      "topic": "Appellate Submissions, Standards of Review and Reasoned Opinions",
+      "url": "https://www.youtube.com/watch?v=JzKExC2MJsQ",
+      "role": "Comparative concept illustration. The authored note and verified Liberian primary sources govern local analysis.",
+      "title": "Art of Appellate Advocacy: Tips for Oral Arguments",
+      "channel": "William & Mary Law School",
+      "metadataChecked": "2026-10-15",
+      "searchQuery": "appellate advocacy oral argument law English",
+      "searchUrl": "https://www.youtube.com/results?search_query=appellate+advocacy+oral+argument+law+English"
+    }
+  ],
+  "linkChecks": {
+    "land": {
+      "url": "https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=79:land-rights-act&start=40",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "constitution": {
+      "url": "https://judiciary.gov.lr/constitution-of-liberia-2/",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "family": {
+      "url": "https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=59:domestic-relations-law&start=20",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "rules": {
+      "url": "https://judiciary.gov.lr/court-rules/",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "courts": {
+      "url": "https://judiciary.gov.lr/judiciary-law/",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "civil": {
+      "url": "https://www.lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=41:civil-procedure-law",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "business": {
+      "url": "https://www.liscr.com/onlinelibrary/",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "criminal-procedure": {
+      "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/42875/LBR42875.pdf",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "labour": {
+      "url": "https://csa.gov.lr/wp-content/uploads/2024/11/Decent-Work-Act-2015.pdf",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "penal": {
+      "url": "https://assets.tobaccocontrollaws.org/uploads/legislation/Liberia/Liberia-Penal-Law-native.pdf",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "ethics": {
+      "url": "https://judiciary.gov.lr/code-of-moral-and-professional-ethic/",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "rights": {
+      "url": "https://europe.ohchr.org/universal-declaration-human-rights",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "research": {
+      "url": "https://guides.loc.gov/law-secondary-resources",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "environment": {
+      "url": "https://epa.gov.lr/epa-documents/the-environmental-protection-and-management-law-of-liberia/",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "treaties": {
+      "url": "https://treaties.un.org/",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "tax": {
+      "url": "https://revenue.lra.gov.lr/tax-laws-and-amendments/",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "security": {
+      "url": "https://www.registry.cbl.org.lr/",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "estates": {
+      "url": "https://lla.gov.lr/index.php/downloadable-resources/policies-laws-regulations-repository?download=45:decedents-estates-law",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "procurement": {
+      "url": "https://www.ppcc.gov.lr/publications/document-type/legal-documents",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "commercial": {
+      "url": "https://www.moci.gov.lr/sites/default/files/documents/Commercial%20Code%20-%20Title%207%20-%20Liberian%20Code%20of%20Laws%20Revised.pdf",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "liberian-ip": {
+      "url": "https://www.wipo.int/wipolex/en/legislation/details/16994",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "bank-rules": {
+      "url": "https://www.cbl.org.lr/publications/document-type/regulations",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "banking": {
+      "url": "https://www.cbl.org.lr/publications/document-type/regulatory-framework-all-acts",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "yale-banks": {
+      "url": "https://oyc.yale.edu/economics/econ-252-11/lecture-13",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "equity-comparison": {
+      "url": "https://www.fedcourt.gov.au/digital-law-library/judges-speeches/justice-osullivan/osullivan-j-20260221",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "uncitral": {
+      "url": "https://legal.un.org/avl/ha/crefaa/crefaa.html",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    },
+    "ul": {
+      "url": "https://ul.edu.lr/new/louis-arthur-grimes-school-of-law/",
+      "httpStatus": 200,
+      "checked": "2026-10-15"
+    }
+  }
+}

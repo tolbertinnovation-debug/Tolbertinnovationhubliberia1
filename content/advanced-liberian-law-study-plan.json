@@ -1,0 +1,351 @@
+{
+  "courseId": "advanced-liberian-law",
+  "estimatedHours": 240,
+  "weeks": 40,
+  "hoursPerWeek": 6,
+  "subjectBlocks": [
+    {
+      "module": 1,
+      "title": "Constitutional Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Separation of Powers and Constitutional Interpretation",
+        "Constitutional Review, Standing and Remedial Design"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 2,
+      "title": "Criminal Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Offence Elements, Mental States and Evidential Inference",
+        "Attempt, Conspiracy and Individual Participation"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 3,
+      "title": "Criminal Procedure",
+      "estimatedHours": 8,
+      "seminars": [
+        "Liberty, Bail and Procedural Safeguards",
+        "Charging, Disclosure and Pre-Trial Case Management"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 4,
+      "title": "Civil Procedure",
+      "estimatedHours": 8,
+      "seminars": [
+        "Jurisdiction, Service and Strategic Forum Analysis",
+        "Interlocutory Relief, Injunctions and Proportional Orders"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 5,
+      "title": "Law of Contracts",
+      "estimatedHours": 8,
+      "seminars": [
+        "Contract Interpretation, Risk Allocation and Exclusion Terms",
+        "Misrepresentation, Duress and Transactional Vulnerability"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 6,
+      "title": "Law of Torts",
+      "estimatedHours": 8,
+      "seminars": [
+        "Vicarious Liability and Organisational Risk",
+        "Defamation, Reputation and Proof of Civil Loss"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 7,
+      "title": "Property Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Title, Conveyances and the Limits of Documentary Proof",
+        "Easements, Licences and Co-Ownership Disputes"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 8,
+      "title": "Land Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Land Categories, Customary Rights and Competing Claims",
+        "Surveys, Community Consent and Transaction Sequencing"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 9,
+      "title": "Administrative Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Administrative Discretion, Reasons and Lawful Decision-Making",
+        "Public Procurement, Concessions and Accountability Review"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 10,
+      "title": "Commercial Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Sale of Goods, Delivery Risk and Commercial Remedies",
+        "Negotiable Instruments and Payment-Chain Liability"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 11,
+      "title": "Business and Corporate Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Directors, Conflicts and Corporate Decision Records",
+        "Partnership Dissolution and Continuing Business Obligations"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 12,
+      "title": "International Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Treaties, Consent and Domestic Legal Effect",
+        "Conflict of Laws, Forum and Foreign Judgments"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 13,
+      "title": "Human Rights Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Rights Analysis, State Duties and Justification",
+        "African Commission Communications and Admissibility"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 14,
+      "title": "Family Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Family Relationships, Child Welfare and Competing Interests",
+        "Intestacy, Estate Administration and Dependant Claims"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 15,
+      "title": "Evidence",
+      "estimatedHours": 8,
+      "seminars": [
+        "Expert Testimony, Method and Evidential Weight",
+        "Privilege, Confidentiality and Lawful Evidence Handling"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 16,
+      "title": "Legal Research and Writing",
+      "estimatedHours": 8,
+      "seminars": [
+        "Doctrinal Research, Source Status and Comparative Method",
+        "Predictive Memoranda, Critical Argument and Citation Integrity"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 17,
+      "title": "Legal Ethics and Professional Responsibility",
+      "estimatedHours": 8,
+      "seminars": [
+        "Confidentiality, Candour and Responsible Legal Assistance",
+        "Conflicts, Informed Decisions and Protective File Controls"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 18,
+      "title": "Labor and Employment Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Wages, Working Time and Employment Classification",
+        "Collective Bargaining, Representation and Labour Disputes"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 19,
+      "title": "Environmental Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Environmental Duties, Permits and Regulatory Accountability",
+        "Environmental Impact Assessment and Meaningful Participation"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 20,
+      "title": "Taxation Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Tax Statutory Interpretation and Temporal Application",
+        "Assessments, Objections and Tax Dispute Records"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 21,
+      "title": "Equity and Trusts",
+      "estimatedHours": 8,
+      "seminars": [
+        "Trust Creation, Certainty and Beneficial Interests",
+        "Fiduciary Administration, Accounts and Beneficiary Protection"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 22,
+      "title": "Jurisprudence",
+      "estimatedHours": 8,
+      "seminars": [
+        "Natural Law, Moral Critique and Legal Obligation",
+        "Legal Positivism, Pluralism and Customary Authority"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 23,
+      "title": "Banking and Financial Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Banking Regulation, Capital, Liquidity and Supervisory Power",
+        "Secured Credit, Priority and Enforcement Risk"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 24,
+      "title": "Intellectual Property Law",
+      "estimatedHours": 8,
+      "seminars": [
+        "Copyright, Authorship and Digital Reuse",
+        "Trademarks, Patents and Commercial IP Strategy"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 25,
+      "title": "Alternative Dispute Resolution",
+      "estimatedHours": 8,
+      "seminars": [
+        "Negotiation, Mediation and Settlement Authority",
+        "Arbitration Agreements, Awards and Enforcement Defences"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    },
+    {
+      "module": 26,
+      "title": "Trial Advocacy and Moot Court",
+      "estimatedHours": 8,
+      "seminars": [
+        "Moot Court, Issue Selection and Responsive Oral Advocacy",
+        "Appellate Submissions, Standards of Review and Reasoned Opinions"
+      ],
+      "researchTask": "Complete both assignments and retain source-status checks and counterarguments."
+    }
+  ],
+  "capstoneHours": 32,
+  "projects": [
+    {
+      "module": 4,
+      "title": "Public Law and Litigation Research File",
+      "scenario": "A fictional public board cancels a licence and commences proceedings against the provider. Construct a record that separates constitutional review, civil procedure and criminal safeguards.",
+      "deliverables": [
+        "A 1,200-word research memorandum with a narrowly framed question, verified primary authorities and one adverse argument per issue",
+        "A source-status log, procedural chronology and forum map distinguishing civil and criminal routes",
+        "Two alternative relief sections explaining scope, authority and factual assumptions"
+      ]
+    },
+    {
+      "module": 8,
+      "title": "Private Rights and Community Land Clinic",
+      "scenario": "A fictional cooperative purchases equipment and proposes a lease over disputed community land. A damaged shipment and overlapping survey create different claims.",
+      "deliverables": [
+        "A contract-risk and tort-liability matrix distinguishing parties, conduct and remedies",
+        "A land-category, boundary and representation report with a version comparison and participation questions",
+        "A 1,400-word balanced opinion and a plain-language 400-word explainer preserving unresolved rights"
+      ]
+    },
+    {
+      "module": 12,
+      "title": "Public Procurement and Cross-Border Commerce Dossier",
+      "scenario": "A fictional public tender involves a foreign supplier, a director’s interest and a disputed payment instrument. A later judgment is obtained abroad.",
+      "deliverables": [
+        "A procurement criteria audit using current instruments and relevant transition checks",
+        "A corporate conflict report and payment-chain diagram identifying each asserted claim",
+        "A 1,500-word cross-border strategy separating procurement review, contractual remedies and judgment recognition"
+      ]
+    },
+    {
+      "module": 16,
+      "title": "Rights, Family and Evidence Research Portfolio",
+      "scenario": "A fictional family disputes estate administration while a community organisation considers a regional rights complaint. An expert report and privileged email are contested.",
+      "deliverables": [
+        "An estate inventory, administration-authority note and confidential-information handling plan",
+        "An expert-method review and separate privilege schedule with locally sourced objections",
+        "A 1,600-word research memorandum with a domestic-remedies chronology and citation audit"
+      ]
+    },
+    {
+      "module": 20,
+      "title": "Employment, Environmental and Tax Compliance Opinion",
+      "scenario": "A fictional training enterprise expands its facility, changes staff arrangements and receives a disputed tax assessment. Residents raise a water-access concern.",
+      "deliverables": [
+        "An employment-status and pay reconciliation with auditable assumptions",
+        "An environmental authorisation and participation matrix tied to the actual revised design",
+        "A 1,600-word integrated opinion with a tax objection schedule, lawful options and source-based procedural questions"
+      ]
+    },
+    {
+      "module": 24,
+      "title": "Fiduciary Finance and Intellectual Property Case Study",
+      "scenario": "A fictional education fund finances a startup and licenses course media. Its administrator has an undisclosed business interest and a lender claims the startup’s equipment.",
+      "deliverables": [
+        "A trust-classification and fund-reconciliation report distinguishing authority, loss and gain",
+        "A current CBL instrument-status table and collateral-priority timeline identifying third-party property",
+        "A 1,700-word fiduciary-and-IP opinion with a rights-and-licences register and a reasoned counterargument"
+      ]
+    },
+    {
+      "module": 27,
+      "title": "Independent Research Capstone",
+      "scenario": "Choose a narrow Liberian legal question arising from the course. Use published sources and fictional or properly public facts; do not collect private client data or claim to conduct supervised legal practice.",
+      "deliverables": [
+        "A 700-word proposal with question, method, scope, ethics and source plan",
+        "A 3,500–4,500-word critical research paper using at least twelve checked sources, including relevant primary authorities, and an annotated bibliography",
+        "A claim-to-source matrix, adverse-authority discussion, limitations statement and 500-word revision reflection"
+      ]
+    },
+    {
+      "module": 27,
+      "title": "Professional Moot and Reasoned Opinion",
+      "scenario": "Use one fictional appellate record about a disputed supply agreement, board authority, community access and evidence. Establish the applicable local review framework; argue both sides before deciding.",
+      "deliverables": [
+        "Two opposing 1,500-word memorials with authorities, record pinpoints and precise requested relief",
+        "Two eight-minute oral submissions and responses to six bench questions per side; self-record or rehearse privately",
+        "A 1,500-word reasoned opinion, twenty-six-subject portfolio index and rubric-based self-assessment"
+      ]
+    }
+  ]
+}

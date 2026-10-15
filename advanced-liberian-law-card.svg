@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+<title id="title">Advanced Liberian Legal Studies Programme</title><desc id="desc">26 subjects, research, critical analysis and advocacy. Independent TIH education.</desc>
+<defs><linearGradient id="bg"><stop stop-color="#001d49"/><stop offset="1" stop-color="#087f9d"/></linearGradient></defs>
+<rect width="960" height="540" rx="24" fill="url(#bg)"/><circle cx="870" cy="70" r="240" fill="#7dd3fc" opacity=".08"/>
+<path d="M0 450 960 160M0 480 960 190M0 510 960 220" stroke="#7dd3fc" opacity=".12"/>
+<rect x="58" y="58" width="150" height="31" rx="15" fill="#e31e24"/><text x="76" y="79" fill="white" font-family="Arial,sans-serif" font-size="16" font-weight="700">TIH LEARNING</text>
+<g fill="white" font-family="Arial,sans-serif" font-weight="800"><text x="58" y="166" font-size="37">ADVANCED</text><text x="58" y="226" font-size="47">LIBERIAN LEGAL</text><text x="58" y="286" font-size="47" fill="#7dd3fc">STUDIES</text></g>
+<text x="58" y="344" fill="#e2f2ff" font-family="Arial,sans-serif" font-size="24">26 subjects · Research · Advocacy</text>
+<path d="M58 378H548" stroke="#e31e24" stroke-width="6"/>
+<text x="58" y="424" fill="#c4e5f8" font-family="Arial,sans-serif" font-size="20">52 taught seminars · Independent TIH course</text>
+<g stroke="#a7e2ff" stroke-width="7" fill="none" stroke-linejoin="round"><path d="M760 130v210m-85-175h170m-85-35-22 35h44zm-58 35-43 95h86zm116 0-43 95h86zM700 340h120M656 390q50-30 104 0 54-30 104 0v65q-50-25-104 0-54-25-104 0zM760 390v65"/></g>
+</svg>

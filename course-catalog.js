@@ -5,7 +5,7 @@
   var grid = document.getElementById('tracksGrid');
   if (!grid || typeof COURSES_DB === 'undefined') return;
   var PAGE_SIZE = 12;
-  var PRICE_OVERRIDES = {ielts:60, toefl:25, sat:25, 'ph-career':100, webdev:20, 'liberian-law':100};
+  var PRICE_OVERRIDES = {ielts:60, toefl:25, sat:25, 'ph-career':100, webdev:20, 'liberian-law':100, 'advanced-liberian-law':100};
   var GROUPS = [
     ['all','All courses'], ['technology','Technology & design'], ['business','Business & careers'],
     ['exams','Exams & English'], ['law','Law & public service'], ['health','Health & agriculture'],
@@ -15,7 +15,7 @@
     technology:['computer-literacy','ai','data','webdev','design','android','cybersecurity','office','ai-cybersecurity'],
     business:['marketing','entrepreneurship','project-mgmt','leadership','grant-writing','financial-literacy','remote-work','quickbooks','accounting-bookkeeping','business-plan'],
     exams:['english-success','ielts','toefl','sat'],
-    law:['human-rights-ihl','liberian-law','military-leadership','national-security-fundamentals'],
+    law:['human-rights-ihl','liberian-law','advanced-liberian-law','military-leadership','national-security-fundamentals'],
     health:['agritech','healthtech','ph-career'], ministry:['bible-foundations'],
     philosophy:['metaphysics'], sports:['football-coaching']
   };
@@ -86,7 +86,7 @@
   }
   categoryBox.innerHTML=GROUPS.map(function(g){return '<button type="button" class="lt-fbtn" data-cat="'+g[0]+'" aria-pressed="false">'+esc(g[1])+'<span class="lt-filter-count"></span></button>';}).join('');
   courses.forEach(function(c) {
-    var href=c.id==='liberian-law'?'liberian-law':'course-player?id='+encodeURIComponent(c.id);
+    var href=(c.id==='liberian-law'||c.id==='advanced-liberian-law')?c.id:'course-player?id='+encodeURIComponent(c.id);
     var card=document.createElement('a');card.className='lt-card';card.href=href;card.dataset.course=c.id;
     card.innerHTML='<div class="lt-top'+(c.image?' has-img':'')+'" style="background:'+esc(c.gradient)+'">'
       +'<div class="lt-image-fallback" aria-hidden="true"><span>'+icon(c.group)+'</span><small>'+esc(c.category)+'</small></div>'
@@ -95,7 +95,7 @@
       +(c.description?'<p class="lt-description">'+esc(c.description)+'</p>':'')
       +'<div class="lt-meta"><span>'+icon('clock')+esc(c.duration)+'</span><span>'+icon('lesson')+c.lessons+' lessons</span><span>'+icon('video')+c.videos+' videos</span></div>'
       +'<p class="lt-level">'+esc(c.level)+'</p><div class="lt-foot"><span class="lt-price">US$'+c.price+'<span class="lt-price-label">registration per course</span></span>'
-      +'<span class="lt-go">'+(c.id==='liberian-law'?'View syllabus':'Open course')+' <span aria-hidden="true">→</span></span></div></div>';
+      +'<span class="lt-go">'+((c.id==='liberian-law'||c.id==='advanced-liberian-law')?'View syllabus':'Open course')+' <span aria-hidden="true">→</span></span></div></div>';
     var img=card.querySelector('img');if(img)img.addEventListener('error',function(){img.hidden=true;});
     c.element=card;
   });

@@ -47,6 +47,7 @@
     "football-coaching": "football-coaching-curriculum.js",
     "human-rights-ihl": "human-rights-ihl-curriculum.js",
     "liberian-law": "liberian-law-curriculum.js",
+    "advanced-liberian-law": "advanced-liberian-law-curriculum.js",
     "grant-writing": "grantwriting-curriculum.js",
     "healthtech": "healthtech-curriculum.js",
     "ielts": "ielts-curriculum.js",
@@ -99,6 +100,7 @@
      first, the hook was not yet defined, and every assessment silently kept the
      old shared pool. */
   var TOPIC_QUIZ_BANKS = {
+    'advanced-liberian-law': {src:'advanced-liberian-law-topic-quizzes.js?v=1'},
     'liberian-law': {src:'liberian-law-topic-quizzes.js?v=2'},
     'ielts': {src:'ielts-topic-quizzes.js?v=1',apply:'tihApplyIeltsTopicQuizzes'},
     'english-success': {src:'englishsuccess-topic-quizzes.js?v=2',apply:'tihApplyEnglishTopicQuizzes'},
@@ -139,6 +141,7 @@
        ent-notes-runtime       likewise fully shadowed by entrepreneurship-notes.js,
                                which covers all 167 content lessons. */
   var EXTRAS = {
+    'advanced-liberian-law': ['advanced-liberian-law-video-map.js?v=1', 'advanced-liberian-law-notes.js?v=1'],
     'liberian-law': ['liberian-law-video-map.js?v=3', 'liberian-law-notes.js?v=3'],
     'accounting-bookkeeping': ['accounting-bookkeeping-video-map.js?v=2'],
     'agritech':         ['agritech-video-map.js?v=1'],
@@ -221,7 +224,7 @@
     if (has(QUIZZES, courseId)) urls.push('quizzes/' + courseId + '-quizzes.js' + VERSION);
     var bank = TOPIC_QUIZ_BANKS[courseId];
     if (bank) { urls.push(bank.src); if (bank.reserve) urls.push(bank.reserve); }
-    if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + (courseId === 'liberian-law' ? '?v=4' : courseId === 'ielts' ? '?v=5' : courseId === 'english-success' ? '?v=3' : courseId === 'project-mgmt' ? '?v=3' : courseId === 'accounting-bookkeeping' ? '?v=2' : courseId === 'webdev' || courseId === 'design' || courseId === 'entrepreneurship' || courseId === 'android' || courseId === 'office' || courseId === 'leadership' || courseId === 'grant-writing' ? '?v=2' : VERSION));
+    if (CURRICULUM[courseId]) urls.push(CURRICULUM[courseId] + (courseId === 'advanced-liberian-law' ? '?v=1' : courseId === 'liberian-law' ? '?v=4' : courseId === 'ielts' ? '?v=5' : courseId === 'english-success' ? '?v=3' : courseId === 'project-mgmt' ? '?v=3' : courseId === 'accounting-bookkeeping' ? '?v=2' : courseId === 'webdev' || courseId === 'design' || courseId === 'entrepreneurship' || courseId === 'android' || courseId === 'office' || courseId === 'leadership' || courseId === 'grant-writing' ? '?v=2' : VERSION));
     if (EXTRAS[courseId]) urls = urls.concat(EXTRAS[courseId]);
     if (!urls.length) { done(); return; }
     loadInOrder(urls, function () {

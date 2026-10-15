@@ -117,7 +117,9 @@ function buildCertHTML(name, title, certId, certDate, course) {
   var facts = course && course.legacyTitle === title
     ? course.legacyCertificateFacts
     : tihCourseFacts(course);
-  var finePrint = course && course.id === 'liberian-law'
+  var finePrint = course && course.id === 'advanced-liberian-law'
+    ? 'Independent TIH course completion. Not an LL.M., university degree, academic credit or authority to practise law. Portfolio completion is self-recorded. Online verification is available once published to the TIH register.'
+    : course && course.id === 'liberian-law'
     ? 'Independent TIH course completion. This is not a law degree or authority to practise law. Portfolio completion is self-recorded. Online verification is available once the certificate is published to the TIH register.'
     : 'Issued by Tolbert Innovation Hub only after completion and administrator approval. This credential is recorded in the official TIH register and can be verified by anyone using the Credential ID above.';
   var verifyUrl = 'https://tolbertinnovationhub.org/certificate-verify?id=' + encodeURIComponent(certId);
@@ -261,7 +263,7 @@ html,body{width:297mm;height:210mm;background:#e8edf5;display:flex;align-items:c
 ` + '</style></head><body>' +
   '<button class="print-btn" onclick="window.print()">&#11015; Save as PDF / Print</button>' +
   '<div class="print-note">&#128161; To save as PDF: click the button, then choose "Save as PDF" as the printer.</div>' +
-  '<div class="cert' + (course && course.id === 'liberian-law' ? ' cert-law' : '') + '">' +
+  '<div class="cert' + (course && (course.id === 'liberian-law' || course.id === 'advanced-liberian-law') ? ' cert-law' : '') + '">' +
     '<div class="wash"></div><div class="pattern"></div>' +
     '<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>' +
     '<div class="frame-red"></div>' +

@@ -29,9 +29,9 @@ const fs=require('node:fs');
  }
  try{
   await page.goto(base+'/learning-hub.html');await page.waitForSelector('#tracksGrid .lt-card');
-  assert.equal(await page.locator('#tracksGrid .lt-card').count(),33);assert.equal(await shown().count(),12);
-  assert.match(await page.locator('#trackResults').innerText(),/1–12 of 33/);
-  assert.equal(await page.locator('[data-course-total]').first().innerText(),'33');
+  assert.equal(await page.locator('#tracksGrid .lt-card').count(),34);assert.equal(await shown().count(),12);
+  assert.match(await page.locator('#trackResults').innerText(),/1–12 of 34/);
+  assert.equal(await page.locator('[data-course-total]').first().innerText(),'34');
   // Compare public fees to the actual payment data layer, including premium exceptions.
   await page.addScriptTag({url:base+'/hub-db.js'});
   const model=await page.evaluate(()=>Object.fromEntries(Object.entries(COURSES_DB).map(([id,c])=>[id,{title:c.title.replace(/^Complete\s+/i,''),price:HubDB.priceFor(id),hours:parseFloat(c.duration)||0,lessons:c.modules.reduce((sum,m)=>sum+m.lessons.length,0)}])));
@@ -40,7 +40,7 @@ const fs=require('node:fs');
    assert.equal(await card.locator('.lt-title').textContent(),c.title);
    assert.ok((await card.locator('.lt-price').textContent()).startsWith('US$'+c.price+'registration'));
    assert.equal(await card.locator('s').count(),0);
-   assert.equal(await card.getAttribute('href'),id==='liberian-law'?'liberian-law':'course-player?id='+id);
+   assert.equal(await card.getAttribute('href'),(id==='liberian-law'||id==='advanced-liberian-law')?id:'course-player?id='+id);
   }
   // Search tokens work in any order and include descriptions, not just course names.
   await page.getByLabel('What would you like to learn?').fill('SCHOOL law');
@@ -50,14 +50,14 @@ const fs=require('node:fs');
   await page.locator('#trackSearch').fill('AI');assert.ok((await ids()).includes('ai'));
   assert.ok(!(await ids()).includes('football-coaching'),'Short acronym searches must not match letters inside unrelated words');
   await page.getByRole('button',{name:'Clear search',exact:true}).click();assert.equal(await shown().count(),12);
-  await page.locator('#trackFilters [data-cat="law"]').click();assert.equal(await shown().count(),4);
+  await page.locator('#trackFilters [data-cat="law"]').click();assert.equal(await shown().count(),5);
   assert.equal(await page.locator('#trackFilters [data-cat="law"]').getAttribute('aria-pressed'),'true');
-  await page.locator('#trackFee').selectOption('premium');assert.deepEqual(await ids(),['liberian-law']);await reset();
+  await page.locator('#trackFee').selectOption('premium');assert.deepEqual(await ids(),['liberian-law','advanced-liberian-law']);await reset();
   assert.equal(await shown().count(),12);assert.equal(await page.locator('#trackSearch').inputValue(),'');
   await page.locator('#trackFee').selectOption('premium');await page.locator('#trackSort').selectOption('price');
-  assert.deepEqual(await ids(),['ielts','ph-career','liberian-law']);
+  assert.deepEqual(await ids(),['ielts','advanced-liberian-law','ph-career','liberian-law']);
   await reset();await page.locator('#trackSort').selectOption('price');
-  const feeOrder=await allVisiblePages();assert.equal(feeOrder.length,33);assert.equal(new Set(feeOrder).size,33);
+  const feeOrder=await allVisiblePages();assert.equal(feeOrder.length,34);assert.equal(new Set(feeOrder).size,34);
   assert.deepEqual(feeOrder.map(id=>model[id].price),feeOrder.map(id=>model[id].price).sort((a,b)=>a-b));
   await page.locator('#trackTime').selectOption('short');
   const short=await allVisiblePages();assert.deepEqual([...short].sort(),Object.keys(model).filter(id=>model[id].hours>0&&model[id].hours<100).sort());
@@ -68,11 +68,11 @@ const fs=require('node:fs');
   await reset();await page.locator('#trackSearch').fill('<img src=x onerror=alert(1)>');assert.equal(await shown().count(),0);assert.equal(await page.locator('#trackSearchEmpty img').count(),0);
   await reset();await page.locator('#trackFilters [data-cat="law"]').click();await page.locator('[data-catalog-view="list"]').click();
   assert.equal(await page.locator('#tracksGrid').getAttribute('data-view'),'list');
-  await page.goBack();assert.equal(await page.locator('#tracksGrid').getAttribute('data-view'),'grid');assert.equal(await shown().count(),4);
+  await page.goBack();assert.equal(await page.locator('#tracksGrid').getAttribute('data-view'),'grid');assert.equal(await shown().count(),5);
   await page.goForward();assert.equal(await page.locator('#tracksGrid').getAttribute('data-view'),'list');
-  await page.reload();assert.equal(await page.locator('#tracksGrid').getAttribute('data-view'),'list');assert.equal(await shown().count(),4);
+  await page.reload();assert.equal(await page.locator('#tracksGrid').getAttribute('data-view'),'list');assert.equal(await shown().count(),5);
   await page.goto(base+'/learning-hub.html?category=unknown&fee=zero&sort=fake&view=broken&page=999&utm_source=qa');
-  await page.waitForSelector('#tracksGrid .lt-card:visible');assert.equal(await shown().count(),9);assert.match(await page.locator('#trackResults').innerText(),/25–33 of 33/);
+  await page.waitForSelector('#tracksGrid .lt-card:visible');assert.equal(await shown().count(),10);assert.match(await page.locator('#trackResults').innerText(),/25–34 of 34/);
   assert.equal(new URL(page.url()).searchParams.get('utm_source'),'qa');
   assert.equal(new URL(page.url()).searchParams.has('category'),false);
   // Keep both display modes usable at the narrowest supported phone width.
@@ -104,6 +104,6 @@ const fs=require('node:fs');
   // Missing external cover art has an intentional local fallback.
   assert.equal(await page.locator('#tracksGrid img').evaluateAll(imgs=>imgs.every(img=>!img.complete||img.naturalWidth>0||img.hidden)),true);
   assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);
-  console.log(JSON.stringify({courses:33,feesMatchPayment:true,search:true,filters:true,sorting:true,pagination:true,urlAndHistory:true,responsiveWidths:[320,390,768,1110,1440],passed:true}));
+  console.log(JSON.stringify({courses:34,feesMatchPayment:true,search:true,filters:true,sorting:true,pagination:true,urlAndHistory:true,responsiveWidths:[320,390,768,1110,1440],passed:true}));
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
