@@ -46,3 +46,21 @@ test('All 273 delivered questions are distinct and the comprehensive final cover
  const foundation=new Set(Object.values(ctx.COURSES_DB['liberian-law'].quizzes).flatMap(q=>q.questions.map(x=>x.q.toLowerCase())));
  assert.ok(qs.every(q=>!foundation.has(q.q.toLowerCase())),'The new programme must not recycle delivered foundation questions');
 });
+test('Weekly plan covers the complete course in order and places every portfolio checkpoint once',()=>{
+ const plan=JSON.parse(read('content/advanced-liberian-law-study-plan.json')),weeks=plan.weeklySchedule;
+ assert.equal(weeks.length,40);assert.deepEqual(weeks.map(w=>w.week),Array.from({length:40},(_,i)=>i+1));
+ const hours={};let previous=0;const completed=new Set();const checkpoints=[];
+ for(const week of weeks){
+  assert.equal(week.hours,6);assert.equal(week.allocations.reduce((n,a)=>n+a.hours,0),6);
+  for(const a of week.allocations){assert.ok(a.module>=previous);previous=a.module;hours[a.module]=(hours[a.module]||0)+a.hours;if(a.finishes)completed.add(a.module);}
+  for(const m of week.milestones){
+   if(m.kind==='portfolio'){checkpoints.push(m.number);assert.ok(m.number>=7||completed.has(plan.projects[m.number-1].module));}
+   if(m.kind==='exam'&&m.anchor==='subject-13')assert.ok(completed.has(13));
+   if(m.kind==='exam'&&m.anchor==='capstone')assert.equal(completed.size,27);
+  }
+ }
+ assert.deepEqual(checkpoints,[1,2,3,4,5,6,7,8]);
+ for(let n=1;n<=26;n++)assert.equal(hours[n],8);assert.equal(hours[27],32);
+ const html=read('advanced-liberian-law.html');assert.equal((html.match(/class="study-week"/g)||[]).length,40);
+ for(const anchor of ['study-plan','capstone',...Array.from({length:26},(_,i)=>'subject-'+(i+1)),...Array.from({length:8},(_,i)=>'portfolio-'+(i+1))])assert.ok(html.includes('id="'+anchor+'"'),anchor);
+});

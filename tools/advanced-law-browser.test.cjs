@@ -23,6 +23,7 @@ const fs=require('node:fs');
  fs.mkdirSync('/tmp/tih-advanced-law-qa',{recursive:true});
  try{
   await page.goto(base+'/'+id+'.html');assert.match(await page.locator('h1').innerText(),/Advanced Liberian/);assert.equal(await page.locator('.module').count(),26);assert.equal(await page.locator('.project').count(),8);
+  assert.equal(await page.locator('.study-week').count(),40);assert.equal(await page.locator('.study-block').count(),8);assert.equal(await page.locator('.portfolio-checkpoint').count(),8);
   for(const width of [320,390,768,1440]){await page.setViewportSize({width,height:950});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);}
   await page.screenshot({path:'/tmp/tih-advanced-law-qa/course-page.png',fullPage:true});
   await page.goto(base+'/learning-hub.html');await page.waitForSelector('#tracksGrid .lt-card');await page.locator('#trackSearch').fill('advanced legal');

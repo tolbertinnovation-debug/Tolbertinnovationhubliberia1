@@ -347,5 +347,766 @@
         "A 1,500-word reasoned opinion, twenty-six-subject portfolio index and rubric-based self-assessment"
       ]
     }
+  ],
+  "weeklySchedule": [
+    {
+      "week": 1,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 1,
+          "title": "Constitutional Law",
+          "hours": 6,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 2,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 1,
+          "title": "Constitutional Law",
+          "hours": 2,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 2,
+          "title": "Criminal Law",
+          "hours": 4,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 3,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 2,
+          "title": "Criminal Law",
+          "hours": 4,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 3,
+          "title": "Criminal Procedure",
+          "hours": 2,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 4,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 3,
+          "title": "Criminal Procedure",
+          "hours": 6,
+          "starts": false,
+          "finishes": true
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 5,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 4,
+          "title": "Civil Procedure",
+          "hours": 6,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 6,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 4,
+          "title": "Civil Procedure",
+          "hours": 2,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 5,
+          "title": "Law of Contracts",
+          "hours": 4,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "portfolio",
+          "number": 1,
+          "title": "Public Law and Litigation Research File",
+          "anchor": "portfolio-1"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 5,
+          "title": "Law of Contracts",
+          "hours": 4,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 6,
+          "title": "Law of Torts",
+          "hours": 2,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 8,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 6,
+          "title": "Law of Torts",
+          "hours": 6,
+          "starts": false,
+          "finishes": true
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 9,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 7,
+          "title": "Property Law",
+          "hours": 6,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 10,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 7,
+          "title": "Property Law",
+          "hours": 2,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 8,
+          "title": "Land Law",
+          "hours": 4,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 11,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 8,
+          "title": "Land Law",
+          "hours": 4,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 9,
+          "title": "Administrative Law",
+          "hours": 2,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "portfolio",
+          "number": 2,
+          "title": "Private Rights and Community Land Clinic",
+          "anchor": "portfolio-2"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 9,
+          "title": "Administrative Law",
+          "hours": 6,
+          "starts": false,
+          "finishes": true
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 13,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 10,
+          "title": "Commercial Law",
+          "hours": 6,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 14,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 10,
+          "title": "Commercial Law",
+          "hours": 2,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 11,
+          "title": "Business and Corporate Law",
+          "hours": 4,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 15,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 11,
+          "title": "Business and Corporate Law",
+          "hours": 4,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 12,
+          "title": "International Law",
+          "hours": 2,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 16,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 12,
+          "title": "International Law",
+          "hours": 6,
+          "starts": false,
+          "finishes": true
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "portfolio",
+          "number": 3,
+          "title": "Public Procurement and Cross-Border Commerce Dossier",
+          "anchor": "portfolio-3"
+        }
+      ]
+    },
+    {
+      "week": 17,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 13,
+          "title": "Human Rights Law",
+          "hours": 6,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 18,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 13,
+          "title": "Human Rights Law",
+          "hours": 2,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 14,
+          "title": "Family Law",
+          "hours": 4,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "exam",
+          "title": "Complete the 13-question advanced midterm after Module 13.",
+          "anchor": "subject-13"
+        }
+      ]
+    },
+    {
+      "week": 19,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 14,
+          "title": "Family Law",
+          "hours": 4,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 15,
+          "title": "Evidence",
+          "hours": 2,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 20,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 15,
+          "title": "Evidence",
+          "hours": 6,
+          "starts": false,
+          "finishes": true
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 21,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 16,
+          "title": "Legal Research and Writing",
+          "hours": 6,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 22,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 16,
+          "title": "Legal Research and Writing",
+          "hours": 2,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 17,
+          "title": "Legal Ethics and Professional Responsibility",
+          "hours": 4,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "portfolio",
+          "number": 4,
+          "title": "Rights, Family and Evidence Research Portfolio",
+          "anchor": "portfolio-4"
+        }
+      ]
+    },
+    {
+      "week": 23,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 17,
+          "title": "Legal Ethics and Professional Responsibility",
+          "hours": 4,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 18,
+          "title": "Labor and Employment Law",
+          "hours": 2,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 24,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 18,
+          "title": "Labor and Employment Law",
+          "hours": 6,
+          "starts": false,
+          "finishes": true
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 25,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 19,
+          "title": "Environmental Law",
+          "hours": 6,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 26,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 19,
+          "title": "Environmental Law",
+          "hours": 2,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 20,
+          "title": "Taxation Law",
+          "hours": 4,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 27,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 20,
+          "title": "Taxation Law",
+          "hours": 4,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 21,
+          "title": "Equity and Trusts",
+          "hours": 2,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "portfolio",
+          "number": 5,
+          "title": "Employment, Environmental and Tax Compliance Opinion",
+          "anchor": "portfolio-5"
+        }
+      ]
+    },
+    {
+      "week": 28,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 21,
+          "title": "Equity and Trusts",
+          "hours": 6,
+          "starts": false,
+          "finishes": true
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 29,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 22,
+          "title": "Jurisprudence",
+          "hours": 6,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 30,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 22,
+          "title": "Jurisprudence",
+          "hours": 2,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 23,
+          "title": "Banking and Financial Law",
+          "hours": 4,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 31,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 23,
+          "title": "Banking and Financial Law",
+          "hours": 4,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 24,
+          "title": "Intellectual Property Law",
+          "hours": 2,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 32,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 24,
+          "title": "Intellectual Property Law",
+          "hours": 6,
+          "starts": false,
+          "finishes": true
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "portfolio",
+          "number": 6,
+          "title": "Fiduciary Finance and Intellectual Property Case Study",
+          "anchor": "portfolio-6"
+        }
+      ]
+    },
+    {
+      "week": 33,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 25,
+          "title": "Alternative Dispute Resolution",
+          "hours": 6,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 34,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 25,
+          "title": "Alternative Dispute Resolution",
+          "hours": 2,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 26,
+          "title": "Trial Advocacy and Moot Court",
+          "hours": 4,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 35,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 26,
+          "title": "Trial Advocacy and Moot Court",
+          "hours": 4,
+          "starts": false,
+          "finishes": true
+        },
+        {
+          "module": 27,
+          "title": "Independent Research and Advocacy Capstone",
+          "hours": 2,
+          "starts": true,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 36,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 27,
+          "title": "Independent Research and Advocacy Capstone",
+          "hours": 6,
+          "starts": false,
+          "finishes": false
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "research",
+          "title": "Finish the research proposal, scope and source plan.",
+          "anchor": "portfolio-7"
+        }
+      ]
+    },
+    {
+      "week": 37,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 27,
+          "title": "Independent Research and Advocacy Capstone",
+          "hours": 6,
+          "starts": false,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 38,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 27,
+          "title": "Independent Research and Advocacy Capstone",
+          "hours": 6,
+          "starts": false,
+          "finishes": false
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "portfolio",
+          "number": 7,
+          "title": "Independent Research Capstone",
+          "anchor": "portfolio-7"
+        }
+      ]
+    },
+    {
+      "week": 39,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 27,
+          "title": "Independent Research and Advocacy Capstone",
+          "hours": 6,
+          "starts": false,
+          "finishes": false
+        }
+      ],
+      "milestones": []
+    },
+    {
+      "week": 40,
+      "hours": 6,
+      "allocations": [
+        {
+          "module": 27,
+          "title": "Independent Research and Advocacy Capstone",
+          "hours": 6,
+          "starts": false,
+          "finishes": true
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "portfolio",
+          "number": 8,
+          "title": "Professional Moot and Reasoned Opinion",
+          "anchor": "portfolio-8"
+        },
+        {
+          "kind": "exam",
+          "title": "Complete the 52-question comprehensive final after all portfolio requirements.",
+          "anchor": "capstone"
+        }
+      ]
+    }
   ]
 }
