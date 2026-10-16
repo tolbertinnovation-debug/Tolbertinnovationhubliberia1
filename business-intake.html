@@ -47,6 +47,7 @@
   </style>
   <link rel="stylesheet" href="hero-theme.css?v=1" />
   <link rel="stylesheet" href="brand-backgrounds.css?v=2" />
+  <link rel="stylesheet" href="program-paths.css?v=1" />
 </head>
 <body class="tih-branded">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -80,7 +81,7 @@
     <section class="hero tih-hero-red" style="padding: clamp(2.5rem,5vw,4.5rem) 0;">
       <div class="container">
         <div class="eyebrow">Start Your Project</div>
-        <h1 class="page-title">Business Project Intake Form</h1>
+        <h1 class="page-title">Tell Us About Your Project</h1>
         <p class="lead">Tell us about your organization and project goals. Our team reviews every submission and responds with consultation details and a proposal pathway within 2&ndash;3 business days.</p>
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="#consultation-form">Complete the Form Below &darr;</a>
@@ -101,10 +102,10 @@
           </div>
         </div>
 
-        <form class="form-card"
+        <form class="form-card" id="business-project-form"
               data-success-message="Thank you for your consultation request! Our team will review your project details and contact you within 2–3 business days."
               novalidate>
-          <h3>Business Project Intake Form</h3>
+          <h3>Project Enquiry</h3><p class="project-context" id="project-context" role="status" hidden></p>
           <p class="form-card-lead">All fields marked <span style="color:var(--brand-red)">*</span> are required. We'll review and respond within 2–3 business days.</p>
 
           <div class="form-row">
@@ -215,7 +216,7 @@
   </main>
 
   <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+    <img src="assets/whatsapp.svg" width="60" height="60" alt="WhatsApp" />
   </a>
 
   <svg class="tih-wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,70 C240,110 480,20 720,45 C960,70 1200,105 1440,55 L1440,110 L0,110 Z" fill="#E31E24"/><path d="M0,84 C240,116 480,40 720,62 C960,84 1200,110 1440,72 L1440,110 L0,110 Z" fill="#ffffff"/><path d="M0,94 C260,120 520,58 760,76 C1000,94 1240,112 1440,84 L1440,110 L0,110 Z" fill="#0B2A6B"/></svg>
@@ -290,6 +291,18 @@
       window.addEventListener('pageshow', function (e) { if (e.persisted) show(); });
       setTimeout(show, 4000);
     })();
+  </script>
+  <script>
+    (function () {
+      var requested = new URLSearchParams(window.location.search).get('service');
+      var labels = { 'website': 'Website design and development', 'custom-software': 'Custom software and applications' };
+      if (!Object.prototype.hasOwnProperty.call(labels, requested)) return;
+      var choices = document.querySelectorAll('#business-project-form input[name="services"]');
+      choices.forEach(function (choice) { if (choice.value === requested) choice.checked = true; });
+      var context = document.getElementById('project-context');
+      context.textContent = 'Your project: ' + labels[requested] + '. You can select additional services below.';
+      context.hidden = false;
+    }());
   </script>
 </body>
 </html>
