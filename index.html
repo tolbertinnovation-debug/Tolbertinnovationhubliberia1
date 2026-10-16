@@ -210,6 +210,14 @@
     .home-faq details a { font-weight:600; }
     @media(max-width:900px) { .home-goal-grid,.home-resource-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
     @media(max-width:560px) { .home-goal-grid { grid-template-columns:1fr; } .home-resource { padding:1rem .6rem; font-size:.88rem; } }
+
+    .hero-rotating-title,.hero-rotating-copy { display:grid; }
+    .hero-message { grid-area:1 / 1; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .25s ease; }
+    .hero-message.is-active { opacity:1; visibility:visible; pointer-events:auto; }
+    .hero-text-toggle { display:block; margin:-.5rem 0 1.2rem; padding:.35rem .55rem; min-height:36px; border:1px solid var(--border); border-radius:8px; background:var(--surface); color:var(--text-secondary); font:600 .78rem var(--font-body); cursor:pointer; }
+    .hero-text-toggle[hidden] { display:none; }
+    .hero-text-toggle:focus-visible { outline:3px solid #d97706; outline-offset:3px; }
+    @media(prefers-reduced-motion:reduce) { .hero-message { transition:none; } }
   </style>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://formsubmit.co https://formspree.io https://restcountries.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co https://formspree.io; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -274,11 +282,9 @@
         <div class="hero-grid hero-2col">
           <!-- Left: Content -->
           <div class="hero-text">
-            <h1 class="hm-fade hm-d2">Welcome to <span class="hm-blue">Tolbert Innovation Hub</span></h1>
-            <p class="lead hm-fade hm-d3">
-              Practical learning, scholarship guidance, funding resources, and digital solutions for Liberia.
-              Whether you are a student, an NGO, or a growing business, find a clear place to start with Tolbert Innovation Hub.
-            </p>
+            <h1 class="hm-fade hm-d2 hero-rotating-title" aria-label="Welcome to Tolbert Innovation Hub"><span class="hero-message is-active" data-hero-title aria-hidden="true">Welcome to <span class="hm-blue">Tolbert Innovation Hub</span></span><span class="hero-message" data-hero-title aria-hidden="true">Build Practical <span class="hm-red">Skills for Your Future</span></span><span class="hero-message" data-hero-title aria-hidden="true">Explore <span class="hm-blue">Scholarships &amp; Student Aid</span></span><span class="hero-message" data-hero-title aria-hidden="true">Find Funding for <span class="hm-red">Your Organization</span></span><span class="hero-message" data-hero-title aria-hidden="true">Turn Your Ideas into <span class="hm-blue">Digital Solutions</span></span><span class="hero-message" data-hero-title aria-hidden="true">Discover <span class="hm-red">Grandpa AI</span></span></h1>
+            <p class="lead hm-fade hm-d3 hero-rotating-copy" aria-label="Practical learning, scholarship guidance, funding resources, and digital solutions for Liberia."><span class="hero-message is-active" data-hero-copy aria-hidden="true">Practical learning, scholarship guidance, funding resources, and digital solutions for Liberia. Whether you are a student, an NGO, or a growing business, find a clear place to start with Tolbert Innovation Hub.</span><span class="hero-message" data-hero-copy aria-hidden="true">Explore courses, video lessons, quizzes, and exam preparation. Build your knowledge step by step through the TIH Learning Hub.</span><span class="hero-message" data-hero-copy aria-hidden="true">Compare education opportunities, check eligibility and deadlines, and find the application guidance you need for your next step.</span><span class="hero-message" data-hero-copy aria-hidden="true">Browse grants and assistance routes for Liberian NGOs, schools, churches, businesses, and community projects.</span><span class="hero-message" data-hero-copy aria-hidden="true">Discuss a professional website, custom application, or business system with TIH. Explore software projects and routes to potential clients.</span><span class="hero-message" data-hero-copy aria-hidden="true">Explore learning, storytelling, wisdom, and everyday conversations through Grandpa AI, a Tolbert Innovation Hub project built in Liberia.</span></p>
+            <button class="hero-text-toggle" id="hero-text-toggle" type="button" aria-pressed="false" hidden>Pause rotating text</button>
             <div class="hero-actions hm-fade hm-d4">
               <a class="btn btn-primary btn-lg" href="#start-here">Browse Our Services</a>
               <a class="btn btn-hero-blue btn-lg" href="learning-hub">Explore Learning Hub</a>
@@ -1584,6 +1590,40 @@
       // Absolute backstop even if the load event never fires (stalled subresource).
       setTimeout(show, 4000);
     })();
+  </script>
+  <script>
+    // Rotate homepage messages every two seconds without moving the layout.
+    (function () {
+      const titles = Array.from(document.querySelectorAll('[data-hero-title]'));
+      const copies = Array.from(document.querySelectorAll('[data-hero-copy]'));
+      const toggle = document.getElementById('hero-text-toggle');
+      if (titles.length < 2 || titles.length !== copies.length || !toggle) return;
+      const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let paused = motion.matches;
+      let current = 0;
+      let timer = null;
+      function updateTimer() {
+        if (timer !== null) window.clearInterval(timer);
+        timer = null;
+        toggle.textContent = paused ? 'Play rotating text' : 'Pause rotating text';
+        toggle.setAttribute('aria-pressed', String(paused));
+        if (paused || document.hidden) return;
+        timer = window.setInterval(() => {
+          titles[current].classList.remove('is-active');
+          copies[current].classList.remove('is-active');
+          current = (current + 1) % titles.length;
+          titles[current].classList.add('is-active');
+          copies[current].classList.add('is-active');
+        }, 2000);
+      }
+      toggle.hidden = false;
+      toggle.addEventListener('click', () => { paused = !paused; updateTimer(); });
+      document.addEventListener('visibilitychange', updateTimer);
+      const respectMotionPreference = () => { paused = motion.matches; updateTimer(); };
+      if (motion.addEventListener) motion.addEventListener('change', respectMotionPreference);
+      else motion.addListener(respectMotionPreference);
+      updateTimer();
+    }());
   </script>
 </body>
 </html>
