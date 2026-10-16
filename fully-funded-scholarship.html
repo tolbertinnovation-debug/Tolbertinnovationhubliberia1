@@ -9,9 +9,9 @@
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <title>Fully Funded Scholarships 2026 | Tolbert Innovation Hub</title>
+  <title>Fully Funded Scholarships 2026–2027 | Tolbert Innovation Hub</title>
   <meta name="description" content="Explore fully funded scholarship opportunities for Liberian students: Chevening, Fulbright, Mastercard Foundation, DAAD, and more. Free guidance and support from Tolbert Innovation Hub." />
-  <meta property="og:title" content="Fully Funded Scholarships 2026 | Tolbert Innovation Hub" />
+  <meta property="og:title" content="Fully Funded Scholarships 2026–2027 | Tolbert Innovation Hub" />
   <meta property="og:description" content="Discover prestigious fully funded scholarships open to Liberian students worldwide. Tolbert Innovation Hub provides free application guidance and coaching." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,6 +39,23 @@
     .form-feedback:not(:empty) { display: block; }
     .form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.5rem; }
     .form-note { font-size: 0.8rem; color: var(--text-muted); }
+
+    .scholarship-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:1.75rem; margin-top:2rem; }
+    .scholarship-card { min-width:0; }
+    .scholarship-card[hidden] { display:none !important; }
+    .scholarship-new { background:var(--surface); border:1px solid var(--border-light); border-top:4px solid var(--brand-blue); border-radius:var(--radius-lg); padding:2rem; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:0.85rem; }
+    .scholarship-new h3 { font-size:1.2rem; color:var(--brand-blue); margin:0; }
+    .scholarship-new h4 { font-size:0.9rem; margin:0; color:var(--text); }
+    .scholarship-new p { font-size:0.92rem; line-height:1.7; margin:0; color:var(--text-secondary); }
+    .scholarship-new .btn { margin-top:auto; white-space:normal; }
+    .scholarship-country { font-weight:600; }
+    .scholarship-badge { align-self:flex-start; background:var(--bg-alt); color:var(--text); border-radius:999px; font-size:0.75rem; padding:0.35rem 0.7rem; }
+    .scholarship-funding { background:var(--bg-alt); padding:1rem; border-radius:var(--radius-sm); }
+    .scholarship-tools { display:flex; flex-wrap:wrap; align-items:end; gap:1rem; margin:2rem 0 1rem; }
+    .scholarship-tools[hidden] { display:none; }
+    .scholarship-tools > div { flex:1 1 200px; }
+    .scholarship-tools label { display:block; font-weight:600; margin-bottom:0.4rem; }
+    .scholarship-tools input, .scholarship-tools select { width:100%; min-height:46px; padding:0.7rem; background:var(--surface); color:var(--text); border:1px solid var(--border); border-radius:var(--radius-sm); font:inherit; }
   </style>
 </head>
 <body>
@@ -59,7 +76,7 @@
         <a href="news">News</a>
         <a href="about">About</a>
         <a href="contact">Contact</a>
-        <a href="fully-funded-scholarship#scholarship-form" class="nav-cta">Apply Now</a>
+        <a href="fully-funded-scholarship#scholarship-inquiry" class="nav-cta">Apply Now</a>
       </nav>
       <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
       <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
@@ -72,7 +89,7 @@
       <div class="container">
         <div class="eyebrow">🏆 International Scholarships for Liberian Students, 2026-2027</div>
         <h1 class="page-title">Fully Funded Scholarships for Liberian Students</h1>
-        <p class="lead">Discover prestigious fully funded scholarships that cover tuition, living stipend, airfare, and accommodation. Tolbert Innovation Hub provides free guidance and application support to help you secure your place.</p>
+        <p class="lead">Explore scholarships that fund tuition and living costs, with travel, housing, or other support depending on the award. Tolbert Innovation Hub provides free guidance and application support to help you secure your place.</p>
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="#scholarship-inquiry">Get Free Guidance</a>
           <a class="btn btn-outline" href="apply">Study Abroad Application</a>
@@ -80,9 +97,9 @@
         <div class="hero-badges" style="margin-top:1.5rem;">
           <span class="hero-badge">✅ Full Tuition Coverage</span>
           <span class="hero-badge">✅ Monthly Stipend</span>
-          <span class="hero-badge">✅ Return Airfare</span>
+          <span class="hero-badge">✅ Official Application Links</span>
           <span class="hero-badge">✅ 100% Free Guidance</span>
-          <span class="hero-badge">✅ UK · USA · Germany · Africa</span>
+          <span class="hero-badge">✅ Undergraduate · Master’s · PhD</span>
         </div>
       </div>
     </section>
@@ -93,13 +110,65 @@
     <section class="section" id="more-scholarships">
       <div class="container">
         <p class="section-label">Opportunities for Liberian Students</p>
-        <h2>Fully Funded Scholarships You Can Apply For</h2>
-        <p class="section-intro">Liberian students are eligible for several prestigious fully funded international scholarships. Explore each opportunity below. All cover tuition, living costs, and more.</p>
+        <h2>Find Your Fully Funded Scholarship</h2>
+        <p class="section-intro">Explore options for Liberian applicants by study level or destination. Funding, eligibility, and application windows differ by program; use each official website to confirm the current call before applying.</p>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.75rem;margin-top:2.5rem;">
+        <div class="scholarship-tools" hidden>
+          <div><label for="scholarship-search">Search scholarships</label><input id="scholarship-search" type="search" placeholder="Name, country, or subject" /></div>
+          <div><label for="scholarship-level">Study level</label><select id="scholarship-level"><option value="">All study levels</option><option value="undergraduate">Undergraduate</option><option value="masters">Master’s</option><option value="phd">PhD / DPhil</option><option value="professional">Professional fellowship</option></select></div>
+          <button type="button" class="btn btn-outline" id="scholarship-reset">Reset filters</button>
+        </div>
+        <p id="scholarship-results" role="status" aria-live="polite"></p>
+        <p class="form-note">The four new listings were checked against official provider pages on 16 October 2026. Other listings are program directories; a listing does not mean applications are currently open. Funding is competitive and does not guarantee selection.</p>
+        <div id="scholarship-grid" class="scholarship-grid">
+          <article class="scholarship-card scholarship-new" data-levels="masters phd">
+            <span class="scholarship-badge">New listing · checked 16 Oct 2026</span>
+            <p class="scholarship-country">United Kingdom · University of Oxford</p>
+            <h3>Clarendon Scholarships</h3>
+            <p><strong>Master’s / DPhil</strong></p>
+            <div class="scholarship-funding"><h4>Funding</h4><p>Full course fees and a living-cost grant for full-time graduate study during the period of fee liability. Travel and visa costs are not listed as standard benefits.</p></div>
+            <h4>Who can apply?</h4><p>All nationalities, including Liberia. Apply for a new eligible Oxford graduate course; selection is based on academic merit and potential.</p>
+            <h4>Application timing</h4><p>Apply by your course’s December or January funding deadline for automatic consideration. No separate Clarendon form.</p>
+            <a class="btn btn-outline" href="https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon/applicants" target="_blank" rel="noopener noreferrer">Official details &amp; application →</a>
+          </article>
+
+          <article class="scholarship-card scholarship-new" data-levels="masters phd">
+            <span class="scholarship-badge">New listing · checked 16 Oct 2026</span>
+            <p class="scholarship-country">Saudi Arabia · KAUST</p>
+            <h3>KAUST Fellowship</h3>
+            <p><strong>Master’s / PhD</strong></p>
+            <div class="scholarship-funding"><h4>Funding</h4><p>Tuition and bench fees, a living stipend, base accommodation, health insurance, and relocation support. Housing upgrades may cost extra.</p></div>
+            <h4>Who can apply?</h4><p>Apply to an eligible science, engineering, or related graduate program and meet its academic and English requirements. External sponsorship can affect fellowship eligibility.</p>
+            <h4>Application timing</h4><p>Admission rounds and deadlines vary by intake. Check the admissions portal before applying; funding accompanies eligible admission offers.</p>
+            <a class="btn btn-outline" href="https://admissions.kaust.edu.sa/fees-funding" target="_blank" rel="noopener noreferrer">Official details &amp; application →</a>
+          </article>
+
+          <article class="scholarship-card scholarship-new" data-levels="undergraduate">
+            <span class="scholarship-badge">New listing · checked 16 Oct 2026</span>
+            <p class="scholarship-country">United Kingdom · University of Oxford</p>
+            <h3>Reach Oxford Scholarship</h3>
+            <p><strong>Undergraduate</strong></p>
+            <div class="scholarship-funding"><h4>Funding</h4><p>Course fees, a living-cost grant, and one return airfare per year, normally for three or four years.</p></div>
+            <h4>Who can apply?</h4><p>Liberia is on the eligible nationality list. An Oxford admission offer, financial need, and social commitment are required. Medicine is excluded.</p>
+            <h4>Application timing</h4><p>2027 scholarship details are due in January 2027; the published scholarship deadline is 26 January 2027. You must already have applied for Oxford admission on time.</p>
+            <a class="btn btn-outline" href="https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/oxford-bursaries-and-scholarships/reach-oxford" target="_blank" rel="noopener noreferrer">Official details &amp; application →</a>
+          </article>
+
+          <article class="scholarship-card scholarship-new" data-levels="undergraduate">
+            <span class="scholarship-badge">New listing · checked 16 Oct 2026</span>
+            <p class="scholarship-country">Canada · University of Toronto</p>
+            <h3>Lester B. Pearson International Scholarship</h3>
+            <p><strong>Undergraduate</strong></p>
+            <div class="scholarship-funding"><h4>Funding</h4><p>Tuition, books, incidental fees, and full residence support for four years. Do not assume airfare or all personal expenses are covered.</p></div>
+            <h4>Who can apply?</h4><p>International students entering a first undergraduate degree. A high-school nomination is required; students already attending post-secondary study are ineligible.</p>
+            <h4>Application timing</h4><p>2027 entry: school nominations closed 9 October 2026. Already nominated students must apply for admission by 16 October and submit the scholarship application by 6 November 2026.</p>
+            <a class="btn btn-outline" href="https://future.utoronto.ca/pearson-scholarships" target="_blank" rel="noopener noreferrer">Official details &amp; application →</a>
+          </article>
+
+
 
           <!-- Chevening -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="masters" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🇬🇧</span>
               <div>
@@ -133,13 +202,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications open: Aug – Nov each year</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://www.chevening.org/scholarship/liberia/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- Fulbright -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="masters phd" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🇺🇸</span>
               <div>
@@ -173,13 +242,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Deadline: Varies by country (Feb – May)</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://foreign.fulbrightonline.org/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- Mastercard Foundation -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="undergraduate masters" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🌍</span>
               <div>
@@ -213,13 +282,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Varies by partner university</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- DAAD -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="masters phd" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🇩🇪</span>
               <div>
@@ -253,13 +322,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 New calls published: autumn each year</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://www.daad.de/en/the-daad/what-we-do/sustainable-development/funding-programmes/funding-programmes-for-students-a-z/leadership-for-africa/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- Pan African University / AU -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="masters phd" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🌐</span>
               <div>
@@ -293,13 +362,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications open: Nov – Dec each year</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://au.int/en/announcements/20251115/pan-african-university-call-scholarships-applications-academic-year-2026-2027" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- UCL Global Undergraduate -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="undergraduate" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🏛️</span>
               <div>
@@ -309,7 +378,7 @@
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
               <span style="background:#eaf4ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Undergraduate</span>
-              <span style="background:#fef2f2;color:#E31E24;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Fully Funded</span>
+              <span style="background:#fef2f2;color:#E31E24;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Full funding: selected awards</span>
               <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Low-Income Countries</span>
             </div>
             <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">University College London (UCL), ranked top 10 globally, offers this scholarship to enable students from low-income backgrounds, including Liberia, to pursue full-time undergraduate degrees at one of the world's leading universities.</p>
@@ -317,9 +386,9 @@
               <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Covered</p>
               <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
                 <li>Full tuition fees</li>
-                <li>Annual living allowance (London)</li>
-                <li>Return airfare contribution</li>
-                <li>Mentoring and career support</li>
+                <li>Selected awards also include maintenance support</li>
+                <li>Other awards cover tuition only</li>
+                <li>Confirm the award tier and uncovered costs with UCL</li>
               </ul>
             </div>
             <div>
@@ -332,13 +401,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Deadline: Jan – Mar each year</span>
-              <a href="https://www.ucl.ac.uk/scholarships/global-undergraduate-scholarship" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
+              <a href="https://www.ucl.ac.uk/scholarships/ucl-global-undergraduate-scholarship" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- SHE-CAN Scholarship -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="undergraduate" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🇺🇸</span>
               <div>
@@ -374,13 +443,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications open annually; check website</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://www.she-can.org" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- Erasmus Mundus Scholarship -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="masters" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🇪🇺</span>
               <div>
@@ -413,13 +482,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications: Oct – Jan each year</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- Global Korea Scholarship (GKS) -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="undergraduate masters" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🇰🇷</span>
               <div>
@@ -454,13 +523,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications: Feb – Mar each year</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://www.studyinkorea.go.kr/en/sub/gks/allnew_gks.do" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- MEXT Japan Scholarship -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="undergraduate masters phd" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🇯🇵</span>
               <div>
@@ -493,54 +562,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications: Apr – Jun each year (Embassy route)</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://www.studyinjapan.go.jp/en/smap_stopg_app-e" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
-          <!-- Commonwealth Scholarship -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🌍</span>
-              <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">United Kingdom – Commonwealth</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">Commonwealth Scholarship</h3>
-              </div>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eaf4ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Master's &amp; PhD</span>
-              <span style="background:#fef2f2;color:#E31E24;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Fully Funded</span>
-              <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Distance Learning Option</span>
-              <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Liberia Eligible</span>
-            </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">Commonwealth Scholarships are funded by the UK Government for citizens of Commonwealth countries including Liberia. They offer fully-funded Master's and PhD opportunities at top UK universities, plus a Distance Learning track for those who prefer to study from home.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Covered</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Full tuition and university fees</li>
-                <li>Monthly stipend and living allowance</li>
-                <li>Return airfare to the UK</li>
-                <li>Thesis grant and study travel allowance</li>
-                <li>Distance learning option available (no relocation needed)</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Citizen of a Commonwealth country (Liberia ✓)</li>
-                <li>Bachelor's degree (2:1 or equivalent) for Master's</li>
-                <li>Commitment to development in your home country</li>
-                <li>Strong English proficiency</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications: Aug – Oct each year</span>
-              <a href="https://cscuk.fcdo.gov.uk/apply/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
-            </div>
-          </div>
-
           <!-- Turkish Government Scholarship -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="undergraduate" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🇹🇷</span>
               <div>
@@ -575,13 +603,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications: Jan – Feb each year</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://turkiyeburslari.gov.tr/en" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- Chinese Government Scholarship (CSC) -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="undergraduate masters phd" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🇨🇳</span>
               <div>
@@ -615,53 +643,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications: Jan – Apr each year</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://www.csc.edu.cn/studyinchina" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
-          <!-- Australia Awards Scholarship -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-              <span style="font-size:2rem;">🇦🇺</span>
-              <div>
-                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-red);margin:0;">Australia</p>
-                <h3 style="font-size:1.15rem;color:var(--brand-blue);margin:0;">Australia Awards Scholarship</h3>
-              </div>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eaf4ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Undergraduate &amp; Master's</span>
-              <span style="background:#fef2f2;color:#E31E24;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Fully Funded</span>
-              <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Africa Eligible</span>
-            </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">Australia Awards are prestigious international scholarships funded by the Australian Government (DFAT) for students from developing countries in Africa, Asia, and the Pacific. They aim to develop leadership capacity and lasting development outcomes.</p>
-            <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Covered</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Full tuition and university fees</li>
-                <li>Return economy airfare</li>
-                <li>Establishment and living allowances</li>
-                <li>Overseas Student Health Cover (OSHC)</li>
-                <li>Pre-course English language training (if needed)</li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
-              <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Citizen of an eligible developing country (check eligibility)</li>
-                <li>Minimum 2 years work experience (for most programs)</li>
-                <li>Commitment to return home after study</li>
-                <li>Strong English proficiency</li>
-              </ul>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications: Feb – Apr each year (varies by country)</span>
-              <a href="https://www.australiaawardssafrica.org" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
-            </div>
-          </div>
-
           <!-- Gates Cambridge Scholarship -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="masters phd" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🇬🇧</span>
               <div>
@@ -675,14 +663,14 @@
               <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Highly Competitive</span>
               <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Liberia Eligible</span>
             </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">The Gates Cambridge Scholarship is one of the world's most prestigious awards, funded by the Bill &amp; Melinda Gates Foundation. It funds outstanding students from outside the UK to study any subject at the University of Cambridge, one of the top 3 universities in the world.</p>
+            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">The Gates Cambridge Scholarship is one of the world's most prestigious awards, funded by the Bill &amp; Melinda Gates Foundation. It funds outstanding students from outside the UK to study eligible postgraduate courses at the University of Cambridge. Check the excluded courses before applying.</p>
             <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
               <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Covered</p>
               <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
                 <li>Full University of Cambridge tuition</li>
-                <li>Maintenance allowance (£21,000+/year)</li>
+                <li>Maintenance allowance at the published rate</li>
                 <li>Return airfare</li>
-                <li>Family allowance (if applicable)</li>
+                <li>Discretionary family support, where eligible</li>
                 <li>Academic development funding</li>
               </ul>
             </div>
@@ -696,13 +684,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications: Oct – Dec each year</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://www.gatescambridge.org/apply/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- Schwarzman Scholars -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="masters" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🇨🇳</span>
               <div>
@@ -737,13 +725,13 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications: Sep – Oct each year</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://www.schwarzmanscholars.org/admissions/application/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- IsDB Scholarship -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="undergraduate" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🌍</span>
               <div>
@@ -752,18 +740,18 @@
               </div>
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              <span style="background:#eaf4ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Undergraduate, Master's &amp; PhD</span>
+              <span style="background:#eaf4ff;color:#002868;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Undergraduate — SPMC route</span>
               <span style="background:#fef2f2;color:#E31E24;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Fully Funded</span>
               <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Muslim Students</span>
               <span style="background:#f0fdf4;color:#166534;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:999px;">Liberia Eligible</span>
             </div>
-            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">The Islamic Development Bank (IsDB) Scholarship Program supports Muslim students from member countries, including Liberia, to pursue undergraduate, postgraduate, and PhD degrees at reputable international universities, with a focus on STEM, health, and development fields.</p>
+            <p style="font-size:0.93rem;color:var(--text-secondary);line-height:1.65;margin:0;">Muslim applicants from Liberia should check the IsDB Scholarship Program for Muslim Communities in Non-Member Countries (SPMC). This undergraduate route has specific community and financial-need requirements. Its support is an interest-free loan to the student, repayable to a local education trust under program terms.</p>
             <div style="background:var(--bg-alt);border-radius:var(--radius-sm);padding:1rem;">
               <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.6rem;">What's Covered</p>
               <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
                 <li>Full tuition at approved university</li>
                 <li>Monthly living allowance</li>
-                <li>Airfare (once per academic year)</li>
+                <li>Travel support only where applicable under the award terms</li>
                 <li>Health insurance</li>
                 <li>Book and research allowances</li>
               </ul>
@@ -771,20 +759,20 @@
             <div>
               <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin:0 0 0.4rem;">Key Requirements</p>
               <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;color:var(--text-secondary);line-height:1.8;">
-                <li>Muslim student from an IsDB member country (Liberia ✓)</li>
-                <li>Age under 35 (postgraduate), under 24 (undergraduate)</li>
+                <li>Muslim applicant from an eligible non-member community in Liberia</li>
+                <li>Meet the current SPMC age, academic, and community endorsement requirements</li>
                 <li>Strong academic record</li>
                 <li>Commitment to return and contribute to home country</li>
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications: Jan – Mar each year</span>
-              <a href="https://www.isdb.org/scholarship-programs" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
+              <a href="https://www.isdb.org/scholarships/scholarship-programs" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
 
           <!-- Rotary Peace Fellowship -->
-          <div class="reveal" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
+          <div class="reveal scholarship-card" data-levels="masters professional" style="background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
               <span style="font-size:2rem;">🕊️</span>
               <div>
@@ -818,7 +806,7 @@
               </ul>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--border-light);">
-              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Applications: May – Aug each year</span>
+              <span style="font-size:0.82rem;color:var(--text-muted);">📅 Check the official website for current dates</span>
               <a href="https://www.rotary.org/en/our-programs/peace-fellowships" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Apply / Learn More →</a>
             </div>
           </div>
@@ -913,14 +901,16 @@
                 <option>Erasmus Mundus (EU)</option>
                 <option>Global Korea Scholarship (GKS)</option>
                 <option>MEXT Japan Scholarship</option>
-                <option>Commonwealth Scholarship (UK)</option>
                 <option>Türkiye Burslari (Turkey)</option>
                 <option>Chinese Government Scholarship (CSC)</option>
-                <option>Australia Awards Scholarship</option>
                 <option>Gates Cambridge Scholarship</option>
                 <option>Schwarzman Scholars (China)</option>
                 <option>IsDB Scholarship</option>
                 <option>Rotary Peace Fellowship</option>
+                <option>Clarendon Scholarships</option>
+                <option>KAUST Fellowship</option>
+                <option>Reach Oxford Scholarship</option>
+                <option>Lester B. Pearson International Scholarship</option>
                 <option>Not sure, need guidance</option>
               </select>
             </div>
@@ -1001,6 +991,34 @@
     </div>
   </footer>
   <script>window.TIH_WELCOME_AUDIO = 'scholarship-welcome.mp3?v=2';</script>
+
+  <script>
+    (function () {
+      var cards = Array.from(document.querySelectorAll('#scholarship-grid > .scholarship-card'));
+      var search = document.getElementById('scholarship-search');
+      var level = document.getElementById('scholarship-level');
+      function filter() {
+        var terms = search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+        var shown = 0;
+        cards.forEach(function (card) {
+          var text = card.textContent.toLowerCase();
+          card.hidden = !terms.every(function (term) { return text.includes(term); }) ||
+            (level.value !== '' && !card.dataset.levels.split(' ').includes(level.value));
+          if (!card.hidden) shown++;
+        });
+        document.getElementById('scholarship-results').textContent = shown ?
+          shown + ' of ' + cards.length + ' scholarships shown' :
+          'No scholarships match. Try a different search or reset the filters.';
+      }
+      search.addEventListener('input', filter);
+      level.addEventListener('change', filter);
+      document.getElementById('scholarship-reset').addEventListener('click', function () {
+        search.value = ''; level.value = ''; filter(); search.focus();
+      });
+      document.querySelector('.scholarship-tools').hidden = false;
+      filter();
+    }());
+  </script>
   <script src="main.js?v=19"></script>
 <script src="chatbot.js?v=12"></script>
   <script>
