@@ -1,0 +1,37 @@
+/* Coordinated typography: locally served faces, live selectable text, and restrained dimensional headings. */
+@font-face {font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/inter-400-latin.woff2') format('woff2');}
+@font-face {font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/inter-500-latin.woff2') format('woff2');}
+@font-face {font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/inter-600-latin.woff2') format('woff2');}
+@font-face {font-family:'Poppins';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/poppins-600-latin.woff2') format('woff2');}
+@font-face {font-family:'Poppins';font-style:normal;font-weight:700;font-display:swap;src:url('assets/fonts/poppins-700-latin.woff2') format('woff2');}
+@font-face {font-family:'Poppins';font-style:normal;font-weight:800;font-display:swap;src:url('assets/fonts/poppins-800-latin.woff2') format('woff2');}
+@font-face {font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url('assets/fonts/playfair-display-700-latin.woff2') format('woff2');}
+@font-face {font-family:'Great Vibes';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/great-vibes-400-latin.woff2') format('woff2');}
+
+.tih-branded {--font-body:'Inter','Segoe UI',Arial,sans-serif;--font-heading:'Poppins','Segoe UI',Arial,sans-serif;font-family:var(--font-body);font-weight:400;}
+.tih-branded :is(button,input,select,textarea) {font-family:var(--font-body);}
+.tih-branded :is(h1,h2,h3,h4,.brand-text,.home-service-title,.priority-card h3) {font-family:var(--font-heading);}
+.tih-branded :is(h1,h2) {font-weight:700;}
+.tih-branded :is(.section-label,.eyebrow,.priority-label,.sv-category,.home-hero-kicker) {font-family:var(--font-body);font-weight:600;}
+.tih-branded :is(.btn,.nav-links,.menu-toggle,.form-label) {font-family:var(--font-body);}
+/* Navy and red dimensional lettering stays readable without raster text. */
+.tih-branded :is(.tih-hero-light h1,#heroTop .hero-rotating-title) {font-family:'Poppins','Segoe UI',sans-serif;font-weight:800;letter-spacing:-.04em;text-shadow:0 1px 0 #fff,0 2px 0 #c2d1e8,0 4px 9px #10386c12;}
+.tih-branded #heroTop .hero-rotating-title :is(.hm-red,.hm-blue) {text-shadow:0 1px 0 #fff,0 2px 0 #efb1bc,0 4px 8px #a20e2514;}
+.tih-branded .tih-hero-red h1 {font-family:'Poppins','Segoe UI',sans-serif;font-weight:800;letter-spacing:-.035em;text-shadow:0 1px 0 #ffffff40,0 2px 0 #092e6b75,0 5px 10px #06255920;}
+/* An editorial voice for values and the founder's message. */
+.tih-branded.tih-home #core-values h2 {font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:clamp(2rem,3.8vw,3rem);letter-spacing:-.025em;line-height:1.2;}
+.tih-branded.tih-home .founder-band .fb-quote {font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.2rem,2vw,1.65rem);font-weight:700;line-height:1.65;letter-spacing:-.01em;}
+.tih-branded.tih-home .founder-band .fb-name {font-family:'Great Vibes','Brush Script MT',cursive;font-size:clamp(2.1rem,4vw,2.8rem);font-weight:400;line-height:1.4;letter-spacing:0;color:var(--hp-ink);margin-top:.8rem;}
+.tih-branded.tih-home .founder-band .fb-role {font-family:var(--font-body);font-size:.82rem;}
+/* Monospaced figures make counts and sequence numbers easy to scan. */
+.tih-branded :is(.home-service-number,.home-value-number,.priority-number,.impact-number,.home-resource strong) {font-family:ui-monospace,'SFMono-Regular',Consolas,'Liberation Mono',monospace;font-variant-numeric:tabular-nums;letter-spacing:-.04em;}
+.tih-branded.tih-home .home-grandpa h2 {font-family:'Poppins','Segoe UI',sans-serif;font-weight:800;text-shadow:0 2px 0 #5f0c2d55,0 4px 10px #6d0c2415;}
+@media(max-width:480px) {
+ .tih-branded #heroTop .hero-rotating-title {font-size:clamp(1.85rem,8.3vw,2.45rem);line-height:1.12;min-height:3.36em;}
+ .tih-branded .home-scholarship-option h3 {font-size:.91rem;}
+ .tih-branded.tih-home .home-service-title {font-size:.86rem;}
+ .tih-branded.tih-home .home-value-card h3 {font-size:.94rem;}
+ .tih-branded .priority-card h3 {font-size:1.1rem;}
+}
+[data-theme="dark"] .tih-branded #heroTop .hero-rotating-title {text-shadow:0 1px 0 #fff,0 2px 0 #c2d1e8;}
+@media(forced-colors:active) {.tih-branded :is(h1,h2,.hero-rotating-title span) {text-shadow:none !important;}}
