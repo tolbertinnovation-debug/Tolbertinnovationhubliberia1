@@ -14,12 +14,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="styles.css?v=17" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://formsubmit.co https://formspree.io https://restcountries.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co https://formspree.io; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <style>
-    .page-hero { background:linear-gradient(135deg,#08204e,#123e78); color:#fff; padding:clamp(3rem,6vw,5rem) 0; }
-    .page-hero .lead { max-width:65ch; }
+    /* Keep the introduction in normal flow, outside the shared canvas/FX hero.
+       Content must be visible immediately, including on older mobile browsers. */
+    .sv-hero { background:linear-gradient(135deg,#08204e,#123e78); color:#fff; padding:clamp(2rem,5vw,4rem) 0; }
+    .sv-hero h1 { color:#fff; font-size:clamp(1.8rem,4vw,3rem); line-height:1.2; margin:.7rem 0 1rem; }
+    .sv-hero .eyebrow,.sv-hero .lead { color:#e2ecff; }
+    .sv-hero .lead { max-width:65ch; margin:0 0 1.5rem; }
+    .sv-hero .hero-actions { display:flex; flex-wrap:wrap; gap:.75rem; }
+    @media(max-width:560px) { .sv-hero .hero-actions { grid-template-columns:1fr; } .sv-hero .hero-actions > a { width:100%; text-align:center; justify-content:center; } }
     [data-theme="dark"] .sv-category { color:#8ab8ff !important; }
     .sv-tools { display:grid; grid-template-columns:1.3fr 1fr 1fr auto; gap:.8rem; align-items:end; margin:1.5rem 0; }.sv-tools[hidden] { display:none; }.sv-tools label { display:block; font-weight:600; margin-bottom:.4rem; font-size:.88rem; }.sv-tools input,.sv-tools select { width:100%; min-height:46px; padding:.7rem; border:1px solid var(--border); border-radius:9px; background:var(--surface); color:var(--text); font:inherit; }
     .sv-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.1rem; }.sv-card { display:flex; flex-direction:column; border:1px solid var(--border); border-top:3px solid var(--brand-blue-light); border-radius:15px; background:var(--surface); padding:1.4rem; overflow-wrap:anywhere; }.sv-card[hidden] { display:none; }.sv-category { font-size:.75rem !important; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--brand-blue-light) !important; }.sv-card h3 { margin:.3rem 0 .6rem; font-size:1.1rem; }.sv-card p { font-size:.91rem; line-height:1.75; color:var(--text-secondary); margin:.5rem 0; }.sv-card .sv-terms { padding:.6rem .7rem; border-radius:8px; border:1px solid var(--border); background:var(--surface-2); font-size:.79rem; }.sv-card > a { display:flex; align-items:center; min-height:44px; margin-top:auto; padding-top:.7rem; font-weight:700; font-size:.9rem; }
@@ -59,7 +65,7 @@
   </header>
 
   <main id="main-content">
-    <section class="page-hero" aria-labelledby="services-hero-title"><div class="container">
+    <section class="sv-hero" aria-labelledby="services-hero-title"><div class="container">
       <p class="eyebrow">Our Services</p><h1 id="services-hero-title">Practical Support for Learning, Funding &amp; Digital Growth</h1>
       <p class="lead">Explore Tolbert Innovation Hub’s services and resources for students, families, businesses, schools, churches, and NGOs in Liberia. Choose your goal, understand the requirements, and take the next step.</p>
       <div class="hero-actions"><a class="btn btn-primary" href="#service-directory">Find a service</a><a class="btn btn-secondary" href="business-intake">Discuss a digital project</a><a class="btn btn-outline" href="contact">Ask our team</a></div>
