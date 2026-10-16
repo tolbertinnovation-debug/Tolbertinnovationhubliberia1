@@ -1,0 +1,11 @@
+Syne
+Source: https://fonts.google.com/specimen/Syne
+Description: https://github.com/google/fonts/blob/main/ofl/syne/DESCRIPTION.en_us.html
+License: Syne-OFL.txt
+
+Space Grotesk
+Source: https://fonts.google.com/specimen/Space+Grotesk
+Designer source: https://github.com/floriankarsten/space-grotesk
+License: Space-Grotesk-OFL.txt
+
+Latin variable WOFF2 files retrieved from the Google Fonts CSS API on 2026-10-16.

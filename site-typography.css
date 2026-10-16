@@ -35,3 +35,18 @@
 }
 [data-theme="dark"] .tih-branded #heroTop .hero-rotating-title {text-shadow:0 1px 0 #fff,0 2px 0 #c2d1e8;}
 @media(forced-colors:active) {.tih-branded :is(h1,h2,.hero-rotating-title span) {text-shadow:none !important;}}
+
+/* Research-led additions: expressive Syne display lettering and precise Space Grotesk headings. */
+@font-face {font-family:'Syne';font-style:normal;font-weight:600 800;font-display:swap;src:url('assets/fonts/syne-variable-latin.woff2') format('woff2');}
+@font-face {font-family:'Space Grotesk';font-style:normal;font-weight:500 700;font-display:swap;src:url('assets/fonts/space-grotesk-variable-latin.woff2') format('woff2');}
+.tih-branded {--font-heading:'Space Grotesk','Poppins','Segoe UI',sans-serif;}
+.tih-branded :is(h2,h3,h4,.home-service-title,.priority-card h3) {font-family:'Space Grotesk','Poppins','Segoe UI',sans-serif;font-weight:700;}
+.tih-branded :is(.tih-hero-light h1,.tih-hero-red h1),.tih-branded #heroTop .hero-rotating-title {font-family:'Syne','Poppins','Segoe UI',sans-serif;font-weight:700;letter-spacing:-.035em;}
+.tih-branded.tih-home #start-here h2,.tih-branded.tih-home .home-grandpa h2 {font-family:'Syne','Poppins','Segoe UI',sans-serif;font-weight:700;letter-spacing:-.025em;}
+.tih-branded.tih-home .home-service-title,.tih-branded .priority-card h3,.tih-branded .home-scholarship-option h3 {font-family:'Space Grotesk','Poppins','Segoe UI',sans-serif;font-weight:700;}
+.tih-branded :is(.impact-number,.home-resource strong,.priority-number) {font-family:'Space Grotesk',ui-monospace,monospace;font-variant-numeric:tabular-nums;font-weight:700;}
+@media(max-width:480px) {
+ .tih-branded #heroTop .hero-rotating-title {font-size:clamp(1.8rem,8.2vw,2.4rem);line-height:1.14;min-height:3.42em;}
+ .tih-branded.tih-home #start-here h2 {font-size:clamp(1.65rem,7.8vw,2rem);}
+}
+.tih-branded .brand-text {font-family:'Poppins','Segoe UI',sans-serif;}
