@@ -35,11 +35,11 @@
       background:#f8fafc;border-radius:20px;
       box-shadow:0 16px 56px rgba(0,0,0,0.22),0 2px 8px rgba(0,0,0,.08);
       display:flex;flex-direction:column;overflow:hidden;
-      transform:scale(0.92) translateY(20px);opacity:0;pointer-events:none;
+      visibility:hidden;transform:scale(0.92) translateY(20px);opacity:0;pointer-events:none;
       transition:opacity .22s cubic-bezier(.4,0,.2,1),transform .22s cubic-bezier(.4,0,.2,1);
       font-family:'Inter','Segoe UI',sans-serif;font-size:14px;
     }
-    #tih-chat-win.open{opacity:1;pointer-events:all;transform:scale(1) translateY(0);}
+    #tih-chat-win.open{visibility:visible;opacity:1;pointer-events:all;transform:scale(1) translateY(0);}
     .tih-hdr{
       background:linear-gradient(135deg,#0B1F3A 0%,#002868 52%,#1565d8 100%);
       color:#fff;padding:13px 14px 12px;
@@ -2144,7 +2144,10 @@ Or choose a topic below:`;
   const chatWin = document.createElement('div');
   chatWin.id = 'tih-chat-win';
   chatWin.setAttribute('role','dialog');
-  chatWin.setAttribute('aria-modal','true');
+  chatWin.setAttribute('aria-hidden','true');
+  chatWin.inert = true;
+  chatBtn.setAttribute('aria-controls', 'tih-chat-win');
+  chatBtn.setAttribute('aria-expanded', 'false');
   chatWin.setAttribute('aria-label','TIH Chat Assistant');
   chatWin.innerHTML = `
     <div class="tih-hdr">
@@ -2162,7 +2165,7 @@ Or choose a topic below:`;
     <div class="tih-page-ctx" id="tih-page-ctx">${esc(ctx.label)}</div>
     <div class="tih-msgs" id="tih-msgs" aria-live="polite"></div>
     <div class="tih-foot">
-      <input class="tih-inp" id="tih-inp" type="text" placeholder="Ask me anything about TIH…" autocomplete="off" maxlength="300" />
+      <input class="tih-inp" id="tih-inp" aria-label="Message the TIH assistant" type="text" placeholder="Ask me anything about TIH…" autocomplete="off" maxlength="300" />
       <button id="tih-mic" aria-label="Voice input" title="Voice input">
         <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.31 6-6.72h-1.7z"/></svg>
       </button>
@@ -2332,6 +2335,9 @@ Or choose a topic below:`;
   }
 
   function openChat() {
+    chatWin.inert = false;
+    chatWin.removeAttribute('aria-hidden');
+    chatBtn.setAttribute('aria-expanded', 'true');
     chatWin.classList.add('open');
     document.body.classList.add('tih-chat-open'); // hide floating WA/audio buttons
     document.getElementById('tih-chat-badge').style.display = 'none';
@@ -2383,6 +2389,10 @@ Or choose a topic below:`;
   }
 
   function closeChat() {
+    chatBtn.focus();
+    chatWin.inert = true;
+    chatWin.setAttribute('aria-hidden', 'true');
+    chatBtn.setAttribute('aria-expanded', 'false');
     chatWin.classList.remove('open');
     document.body.classList.remove('tih-chat-open'); // restore floating WA/audio buttons
   }
@@ -2390,6 +2400,9 @@ Or choose a topic below:`;
     chatWin.classList.contains('open') ? closeChat() : openChat()
   );
   document.getElementById('tih-close-btn').addEventListener('click', closeChat);
+  chatWin.addEventListener('keydown', event => {
+    if (event.key === 'Escape') { event.preventDefault(); closeChat(); }
+  });
 
   // ── Proactive greeting bubble (once per browser session) ───────────────────────
   (function () {

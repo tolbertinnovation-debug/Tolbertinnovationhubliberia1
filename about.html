@@ -11,7 +11,7 @@
   <link rel="manifest" href="/site.webmanifest" />
   <title>About Us | Tolbert Innovation Hub</title>
   <meta name="description" content="Learn about Tolbert Innovation Hub: our story, mission, vision, core values, and leadership team. Inspired by the legacy of President William R. Tolbert." />
-  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="styles.css?v=18" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -37,7 +37,7 @@
         radial-gradient(ellipse at 10% 85%, rgba(255,255,255,0.04) 0%, transparent 45%);
       pointer-events: none;
     }
-    .page-hero > * { position: relative; z-index: 1; }
+    .page-hero > .container { position: relative; z-index: 1; }
     .page-hero .container { position: relative; z-index: 1; }
 
     /* Mission / Vision two-col */
@@ -358,7 +358,7 @@
     }
 
     /* Scroll reveal */
-    .reveal {
+    .reveal-ready .reveal {
       opacity: 0;
       transform: translateY(28px);
       transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
@@ -586,7 +586,7 @@
             </a>
             <a class="hm-card hm-card-red hm-float-b" href="learning-hub" data-depth="30">
               <span class="hm-ic hm-ic-white">📚</span>
-              <span class="hm-tx"><strong>Learning Hub</strong><small>Courses &amp; WASSCE · US$3–5</small></span>
+              <span class="hm-tx"><strong>Learning Hub</strong><small>Courses &amp; WASSCE prep</small></span>
             </a>
             <a class="hm-card hm-float-c" href="software" data-depth="18">
               <span class="hm-ic hm-ic-red">💻</span>
@@ -1052,6 +1052,7 @@
         <div>
           <p class="footer-heading">Resources</p>
           <ul class="footer-links">
+            <li><a href="resources">Find Resources</a></li>
             <li><a href="learning-hub">IELTS Preparation</a></li>
             <li><a href="learning-hub">TOEFL Preparation</a></li>
             <li><a href="leadership">Leadership</a></li>
@@ -1081,8 +1082,8 @@
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
   </a>
 
-  <script src="main.js?v=20"></script>
-<script src="chatbot.js?v=12"></script>
+  <script src="main.js?v=21"></script>
+<script src="chatbot.js?v=13"></script>
   <script>
     /* ---- Entrance-animation failsafe ----
        On slow / flaky mobile connections the external scripts (main.js) can

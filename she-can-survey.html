@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="styles.css?v=18" />
   <style>
     /* ── SURVEY HERO — same hero-modern system (light gradient, drifting
        background, bobbing orbs, mouse parallax via main.js) as the home
@@ -240,7 +240,7 @@
                 <span class="sv-pill"><input type="checkbox" name="Training Focus[]" id="foc-7" value="Other" data-other-toggle="foc-other-box" /><label for="foc-7">Other</label></span>
               </div>
               <div class="sv-other-box" id="foc-other-box">
-                <input class="sv-input" type="text" name="Training Focus — Other (please specify)" placeholder="Please specify" />
+                <input class="sv-input" type="text" name="Training Focus — Other (please specify)" aria-label="Other training focus, please specify" placeholder="Please specify" />
               </div>
               <p class="field-error" id="focus-error">Please choose at least one option (or specify "Other").</p>
             </div>
@@ -334,6 +334,6 @@
         });
     });
   </script>
-  <script src="main.js?v=20"></script>
+  <script src="main.js?v=21"></script>
 </body>
 </html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var p=location.pathname,n;if(/\/index\.html$/i.test(p))n=p.replace(/\/index\.html$/i,'/');else if(/\.html$/i.test(p))n=p.replace(/\.html$/i,'');else return;/*__cleanurl__*/history.replaceState(null,'', n+location.search+location.hash);}catch(e){}})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <title>Find Resources | Tolbert Innovation Hub</title>
+  <meta name="description" content="Find TIH learning, scholarships, NGO and church grants, school support, medical resources, digital services, and programs for Liberia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=18" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://formsubmit.co https://formspree.io https://restcountries.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co https://formspree.io; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <style>
+    .resource-hero {padding:clamp(2.5rem,5vw,4rem) 0;background:linear-gradient(135deg,#08204e,#123e78);color:#fff;}
+    .resource-hero h1 {color:#fff;font-size:clamp(2rem,4vw,3rem);line-height:1.2;}
+    .resource-hero p {color:#e2ecff;max-width:65ch;line-height:1.8;}
+    .resource-tools {display:grid;grid-template-columns:2fr 1fr auto;gap:1rem;align-items:end;padding:1.5rem;border:1px solid var(--border);border-radius:14px;background:var(--surface-2);}
+    .resource-tools[hidden],.resource-card[hidden] {display:none;}
+    .resource-tools label {display:block;font-weight:700;margin-bottom:.5rem;}
+    .resource-tools input,.resource-tools select {width:100%;min-height:48px;padding:.75rem;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font:inherit;}
+    .resource-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.5rem;}
+    .resource-card {display:flex;flex-direction:column;padding:1.4rem;border:1px solid var(--border);border-top:3px solid var(--brand-blue-light);border-radius:14px;background:var(--surface);}
+    .resource-card h2 {font-size:1.12rem;line-height:1.4;margin:.5rem 0;}
+    .resource-card p {font-size:.94rem;line-height:1.75;color:var(--text-secondary);}
+    .resource-card .resource-kind {font-size:.75rem;text-transform:uppercase;font-weight:700;letter-spacing:.05em;}
+    .resource-card a {display:inline-flex;align-items:center;min-height:44px;font-weight:700;margin-top:auto;}
+    .resource-guidance {padding:1.4rem;background:var(--surface-2);border:1px solid var(--border);border-radius:14px;margin-top:2rem;line-height:1.8;}
+    @media(max-width:1000px){.resource-grid {grid-template-columns:repeat(2,minmax(0,1fr));}}
+    @media(max-width:600px){.resource-tools,.resource-grid {grid-template-columns:1fr;}.resource-tools input,.resource-tools select {font-size:16px;}}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/">Tolbert Innovation Hub</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="learning-hub">Learning Hub</a>
+        <a href="study-abroad">Study Abroad</a>
+        <a href="fully-funded-scholarship">Fully Funded</a>
+        <a href="healthcare">Healthcare</a>
+        <a href="software">Software</a>
+        <a href="library">Library</a>
+        <a href="news">News</a>
+        <a href="about">About</a>
+        <a   href="services">Services</a>
+        <a href="contact">Contact</a>
+        <a href="apply" class="nav-cta">Apply Now</a>
+      </nav>
+      <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="resource-hero" aria-labelledby="resource-title"><div class="container"><p>YOUR NEXT STEP STARTS HERE</p><h1 id="resource-title">Find the Right Resource</h1><p>One place to find learning, funding, digital services, and community support for Liberia. Search by your goal or choose a category.</p><a class="btn btn-primary" href="#resource-directory">Browse all 28 resource routes</a></div></section>
+    <section class="section" id="resource-directory" aria-labelledby="resource-heading"><div class="container"><h2 id="resource-heading">What would you like to do?</h2><p>Try “church”, “school”, “student”, “medical”, “website”, or “innovation”.</p>
+    <div class="resource-tools" id="resource-tools" hidden><div><label for="resource-search">Search resources</label><input id="resource-search" type="search" placeholder="Enter a topic or goal" /></div><div><label for="resource-category">Category</label><select id="resource-category"><option value="all">All categories</option><option value="learning">Learning & Education</option><option value="funding">Funding & Donations</option><option value="technology">Technology & AI</option><option value="support">Services & Help</option><option value="community">Community & Programs</option></select></div><button class="btn btn-outline" type="button" id="resource-reset">Reset</button></div>
+    <p id="resource-count" role="status" aria-live="polite">28 resource routes</p><p id="resource-empty" hidden>No matching resources. Try a broader search or <a href="contact">ask the TIH team</a>.</p><div class="resource-grid"><article class="resource-card" data-category="learning"><p class="resource-kind">Learning & Education</p><h2>Learning Hub</h2><p>Practical courses, video lessons, quizzes, and course-completion certificates. Start here to compare learning options.</p><a href="learning-hub">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="learning"><p class="resource-kind">Learning & Education</p><h2>WASSCE Exam Preparation</h2><p>Subject lessons and revision resources for secondary-school students preparing for WASSCE.</p><a href="wassce">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="learning"><p class="resource-kind">Learning & Education</p><h2>Digital Library</h2><p>Browse books and learning materials for study, personal development, and professional skills.</p><a href="library">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="learning"><p class="resource-kind">Learning & Education</p><h2>Study Abroad Guidance</h2><p>Compare universities and study options, then review entry requirements and application documents.</p><a href="study-abroad">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="learning"><p class="resource-kind">Learning & Education</p><h2>Learning Apps &amp; Downloads</h2><p>Find the TIH Android and Windows learning apps, release details, and installation guidance.</p><a href="libapps">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="funding"><p class="resource-kind">Funding & Donations</p><h2>Fully Funded Scholarships</h2><p>Explore scholarship providers and official application links. Check coverage, eligibility, deadlines, and the current call.</p><a href="fully-funded-scholarship">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="funding"><p class="resource-kind">Funding & Donations</p><h2>Student Financial Aid</h2><p>Find student-support and financial-aid resource routes. Read the provider requirements before applying.</p><a href="grants?category=students#grants-directory">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="funding"><p class="resource-kind">Funding & Donations</p><h2>NGO &amp; Community Funding</h2><p>Explore grant resources for nonprofit organizations and community projects in Liberia.</p><a href="grants?category=ngo#grants-directory">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="funding"><p class="resource-kind">Funding & Donations</p><h2>Church Grants &amp; Donations</h2><p>Find faith-based support routes for churches and community work. Each provider sets its own eligibility rules.</p><a href="grants?category=churches#grants-directory">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="funding"><p class="resource-kind">Funding & Donations</p><h2>School &amp; Education Support</h2><p>Explore education grants, school support, and partnership routes for institutions.</p><a href="grants?category=schools#grants-directory">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="funding"><p class="resource-kind">Funding & Donations</p><h2>Hospital &amp; Medical Support</h2><p>Find hospital, clinic, medical-equipment, and treatment-assistance resource routes.</p><a href="grants?category=health#grants-directory">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="funding"><p class="resource-kind">Funding & Donations</p><h2>Environmental NGO Funding</h2><p>Explore conservation, climate, and environmental-project funding providers.</p><a href="grants?category=env#grants-directory">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="funding"><p class="resource-kind">Funding & Donations</p><h2>Innovation Project Funding</h2><p>Find innovation funding, fellowships, and support routes for new ideas and projects.</p><a href="grants?category=innovation#grants-directory">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="funding"><p class="resource-kind">Funding & Donations</p><h2>Business Funding</h2><p>Explore business-support resources and check whether each opportunity is a grant, investment, or other support.</p><a href="grants?category=business#grants-directory">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="technology"><p class="resource-kind">Technology & AI</p><h2>Website &amp; Software Services</h2><p>Plan a website, application, or digital tool for your business, school, church, or NGO.</p><a href="software">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="technology"><p class="resource-kind">Technology & AI</p><h2>Discuss a Digital Project</h2><p>Share your goals, features, budget, and timeline so the team can discuss a practical project scope.</p><a href="business-intake">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="technology"><p class="resource-kind">Technology & AI</p><h2>Grandpa AI</h2><p>Learn about TIH’s featured AI project and follow the official link to try Grandpa AI.</p><a href="grandpa-ai">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="technology"><p class="resource-kind">Technology & AI</p><h2>Software Sales &amp; Client Routes</h2><p>Explore organizations, procurement portals, and routes for offering website and software services.</p><a href="software#software-sales">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="support"><p class="resource-kind">Services & Help</p><h2>Healthcare Enquiries</h2><p>Read about medical enquiries and referral coordination, then prepare your questions for the team.</p><a href="healthcare">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="support"><p class="resource-kind">Services & Help</p><h2>Contact the TIH Team</h2><p>Find contact options and send an enquiry about the service or resource you need.</p><a href="contact">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="support"><p class="resource-kind">Services & Help</p><h2>Services Directory</h2><p>Compare all TIH services and resource routes by goal, audience, and what to prepare.</p><a href="services">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="support"><p class="resource-kind">Services & Help</p><h2>Help &amp; Frequently Asked Questions</h2><p>Read answers about scholarships, learning, healthcare, technology, grants, and next steps.</p><a href="faq">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="support"><p class="resource-kind">Services & Help</p><h2>Application Guidance</h2><p>Understand the steps involved in an enquiry, application, or service request.</p><a href="process">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="support"><p class="resource-kind">Services & Help</p><h2>Apply to TIH Programs</h2><p>Review the application form and provide the information relevant to your chosen program.</p><a href="apply">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="community"><p class="resource-kind">Community & Programs</p><h2>Events &amp; Programs</h2><p>Explore program options, official external dates, and ways to request a session for your group.</p><a href="events">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="community"><p class="resource-kind">Community & Programs</p><h2>Volunteer &amp; Get Involved</h2><p>Explore ways to contribute your time and skills to TIH’s community work.</p><a href="volunteer">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="community"><p class="resource-kind">Community & Programs</p><h2>Partnerships</h2><p>Discuss collaboration for schools, NGOs, businesses, churches, and community organizations.</p><a href="partner-with-us">Explore resource <span aria-hidden="true">→</span></a></article>
+<article class="resource-card" data-category="community"><p class="resource-kind">Community & Programs</p><h2>News &amp; Updates</h2><p>Read published TIH announcements and project updates.</p><a href="news">Explore resource <span aria-hidden="true">→</span></a></article></div>
+    <aside class="resource-guidance" aria-labelledby="resource-guidance-title"><h2 id="resource-guidance-title">Before you apply or request support</h2><p>For funding, read the official provider’s current requirements, covered costs, and deadline. A resource listing does not guarantee an award. For TIH services, confirm the scope, documents, timeline, and any fees with the team before proceeding.</p><a href="services">Compare TIH services →</a> &nbsp; <a href="contact">Ask a question →</a></aside>
+    </div></section>
+  </main>
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid-main">
+        <div class="footer-brand">
+          <a class="brand" href="/"><span class="brand-text">Tolbert Innovation Hub</span></a>
+          <p class="footer-tagline">Empowering Africa's Future through Education, Technology, and Innovation.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+            <a href="mailto:info@tolbertinnovationhub.org" class="social-link" aria-label="Email">📧</a>
+            <a href="tel:+231880559227" class="social-link" aria-label="Phone">📞</a>
+            <a href="https://www.youtube.com/@TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">▶️</a>
+            <a href="https://www.linkedin.com/company/tolbert-innovation-hub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">💼</a>
+            <a href="https://www.facebook.com/TolbertInnovationHub" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">📘</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Programs</p>
+          <ul class="footer-links">
+            <li><a href="apply">Study Abroad</a></li>
+            <li><a href="fully-funded-scholarship">Fully Funded Scholarship</a></li>
+            <li><a href="healthcare">Healthcare Exposure</a></li>
+            <li><a href="software">Software Innovation</a></li>
+            <li><a href="learning-hub">TIH Learning Hub</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="resources">Find Resources</a></li>
+            <li><a href="learning-hub">IELTS Preparation</a></li>
+            <li><a href="learning-hub">TOEFL Preparation</a></li>
+            <li><a href="impact">Impact Report</a></li>
+            <li><a href="success-stories">Success Stories</a></li>
+            <li><a href="news">News &amp; Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Contact</p>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📧</span><a href="mailto:info@tolbertinnovationhub.org">info@tolbertinnovationhub.org</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+231880559227">+231 880 559 227</a></div>
+          <div class="footer-contact-item"><span class="footer-contact-icon">💬</span><a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="copyright-note">© 2026 Tolbert Innovation Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
+  </a>
+
+
+  <script src="main.js?v=21"></script><script src="chatbot.js?v=13"></script>
+  <script>
+  (()=>{
+    const search=document.getElementById('resource-search'), category=document.getElementById('resource-category');
+    const cards=Array.from(document.querySelectorAll('.resource-card'));
+    function render(){
+      const terms=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean); let shown=0;
+      cards.forEach(card=>{card.hidden=!((category.value==='all'||card.dataset.category===category.value)&&terms.every(term=>card.textContent.toLowerCase().includes(term)));if(!card.hidden)shown++;});
+      document.getElementById('resource-count').textContent=shown+' of '+cards.length+' resource routes shown';
+      document.getElementById('resource-empty').hidden=shown!==0;
+    }
+    search.addEventListener('input',render); category.addEventListener('change',render);
+    document.getElementById('resource-reset').addEventListener('click',()=>{search.value='';category.value='all';render();search.focus();});
+    document.getElementById('resource-tools').hidden=false;render();
+  })();
+  </script>
+</body></html>

@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="styles.css?v=18" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://formsubmit.co https://formspree.io https://restcountries.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co https://formspree.io; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <style>
@@ -39,12 +39,12 @@
       transition: background 0.18s, border-color 0.18s, color 0.18s;
       font-family: 'Inter', sans-serif;
     }
-    .faq-cat-link:hover.faq-cat-link.active {
+    .faq-cat-link:hover, .faq-cat-link.active {
       background: var(--brand-blue);
       border-color: var(--brand-blue);
       color: #fff;
     }
-    .faq-cat-link.red:hover.faq-cat-link.red.active {
+    .faq-cat-link.red:hover, .faq-cat-link.red.active {
       background: var(--brand-red);
       border-color: var(--brand-red);
     }
@@ -136,6 +136,13 @@
       .faq-answer { padding: 0.9rem 1.1rem 1.1rem; }
       .faq-cta-box { padding: 2rem 1.5rem; }
     }
+
+    .faq-search-tools {padding:1.2rem;border:1px solid var(--border);border-radius:12px;background:var(--surface-2);margin-bottom:2rem;}
+    .faq-search-tools[hidden],.faq-section[hidden],.faq-item[hidden] {display:none;}
+    .faq-search-tools label {display:block;font-weight:700;margin-bottom:.6rem;}
+    .faq-search-row {display:flex;gap:.7rem;}
+    .faq-search-row input {flex:1;min-width:0;min-height:48px;font:inherit;font-size:16px;padding:.7rem;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);}
+    @media(max-width:450px){.faq-search-row {flex-direction:column;}}
   </style>
 </head>
 <body>
@@ -183,6 +190,7 @@
         <nav class="faq-category-nav" aria-label="FAQ categories">
           <a href="#all" class="faq-cat-link active">All Questions</a>
           <a href="#scholarships" class="faq-cat-link">&#x1F393; Scholarships</a>
+          <a href="#funding" class="faq-cat-link">Grants &amp; Donations</a>
           <a href="#healthcare" class="faq-cat-link">&#x1F3E5; Healthcare</a>
           <a href="#classroom" class="faq-cat-link">&#x1F4DA; Classroom</a>
           <a href="#technology" class="faq-cat-link">&#x1F4BB; Technology</a>
@@ -194,6 +202,13 @@
     <!-- All FAQ Sections -->
     <section class="section" id="all">
       <div class="container" style="max-width:860px; margin-left:auto; margin-right:auto;">
+
+
+        <div class="faq-search-tools" id="faq-search-tools" hidden>
+          <label for="faq-search">Search questions and answers</label>
+          <div class="faq-search-row"><input id="faq-search" type="search" placeholder="Try grants, church, fees, or Grandpa AI" /><button class="btn btn-outline" id="faq-reset" type="button">Reset</button></div>
+          <p id="faq-results" role="status" aria-live="polite"></p><p id="faq-empty" hidden>No matching questions. <a href="contact">Ask our team</a> or <a href="resources">browse resources</a>.</p>
+        </div>
 
         <!-- ── Scholarships ── -->
         <div class="faq-section" id="scholarships">
@@ -285,6 +300,15 @@
         </div>
 
         <!-- ── Healthcare ── -->
+
+        <div class="faq-section" id="funding"><div class="faq-section-heading"><h2>Grants, Donations &amp; AI Resources</h2></div>
+          <details class="faq-item"><summary>Where can Liberian NGOs, churches, and schools find support?<span class="faq-icon" aria-hidden="true">+</span></summary><div class="faq-answer"><p>Use the <a href="grants">Grants &amp; Donation Resources directory</a> and select the category that fits your organization. Listings include official provider links and eligibility notes. Prepare a clear project summary, budget, organization documents, and evidence of the community need.</p></div></details>
+          <details class="faq-item"><summary>Does a funding listing mean applications are open?<span class="faq-icon" aria-hidden="true">+</span></summary><div class="faq-answer"><p>Each provider controls its own application window. Some entries are recurring programs, partner routes, or resource directories. Check the official provider page for the current call, Liberia eligibility, deadline, and application process before preparing a full proposal.</p></div></details>
+          <details class="faq-item"><summary>Can I find medical donations or student financial aid?<span class="faq-icon" aria-hidden="true">+</span></summary><div class="faq-answer"><p>Yes. Browse <a href="grants?category=health#grants-directory">health support</a>, <a href="grants?category=treatment#grants-directory">patient treatment assistance</a>, or <a href="grants?category=students#grants-directory">student financial aid</a>. Providers decide who they support, and a listing does not guarantee funding or treatment.</p></div></details>
+          <details class="faq-item"><summary>How do I try Grandpa AI?<span class="faq-icon" aria-hidden="true">+</span></summary><div class="faq-answer"><p>Visit the <a href="grandpa-ai">Grandpa AI project page</a> for an introduction and the official app link. Grandpa AI is available at <a href="https://libgrandpaai.com" target="_blank" rel="noopener noreferrer">libgrandpaai.com</a>. Read the app’s current access requirements when you visit.</p></div></details>
+          <details class="faq-item"><summary>How do I choose the right TIH service?<span class="faq-icon" aria-hidden="true">+</span></summary><div class="faq-answer"><p>Use <a href="services">the Services directory</a> to filter by your goal and audience, or <a href="resources">Find Resources</a> to search across the site. Confirm the scope, timeline, and any fees with the team before starting a paid service.</p></div></details>
+        </div>
+
         <div class="faq-section" id="healthcare">
           <div class="faq-section-heading">
             <span class="faq-section-icon">&#x1F3E5;</span>
@@ -595,8 +619,8 @@
   <a href="https://wa.me/231880559227" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
   </a>
-  <script src="main.js?v=20"></script>
-<script src="chatbot.js?v=12"></script>
+  <script src="main.js?v=21"></script>
+<script src="chatbot.js?v=13"></script>
   <script>
     /* ---- Entrance-animation failsafe ----
        On slow / flaky mobile connections the external scripts (main.js) can
@@ -618,5 +642,18 @@
       setTimeout(show, 4000);
     })();
   </script>
+
+<script>
+(()=>{
+ const search=document.getElementById('faq-search'),items=Array.from(document.querySelectorAll('.faq-item')),sections=Array.from(document.querySelectorAll('.faq-section'));
+ function render(){const terms=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean);let shown=0;
+ items.forEach(item=>{item.hidden=!terms.every(term=>item.textContent.toLowerCase().includes(term));if(!item.hidden)shown++;});
+ sections.forEach(section=>section.hidden=!section.querySelector('.faq-item:not([hidden])'));
+ document.getElementById('faq-results').textContent=shown+' of '+items.length+' questions shown';document.getElementById('faq-empty').hidden=shown!==0;}
+ search.addEventListener('input',render);document.getElementById('faq-reset').addEventListener('click',()=>{search.value='';render();search.focus();});
+ document.querySelectorAll('.faq-cat-link').forEach(link=>link.addEventListener('click',()=>{search.value='';render();}));
+ document.getElementById('faq-search-tools').hidden=false;render();
+})();
+</script>
 </body>
 </html>

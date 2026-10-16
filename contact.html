@@ -11,7 +11,7 @@
   <link rel="manifest" href="/site.webmanifest" />
   <title>Contact Us | Tolbert Innovation Hub</title>
   <meta name="description" content="Reach out to Tolbert Innovation Hub: scholarship inquiries, healthcare coordination, software consultations, and general support. We're here to help." />
-  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="styles.css?v=18" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -37,7 +37,7 @@
         radial-gradient(ellipse at 10% 85%, rgba(255,255,255,0.04) 0%, transparent 45%);
       pointer-events: none;
     }
-    .page-hero > * { position: relative; z-index: 1; }
+    .page-hero > .container { position: relative; z-index: 1; }
     .page-hero .container { position: relative; z-index: 1; }
 
     /* Contact info cards */
@@ -384,7 +384,7 @@
     }
 
     /* Scroll reveal */
-    .reveal {
+    .reveal-ready .reveal {
       opacity: 0;
       transform: translateY(28px);
       transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
@@ -919,6 +919,7 @@
         <div>
           <p class="footer-heading">Resources</p>
           <ul class="footer-links">
+            <li><a href="resources">Find Resources</a></li>
             <li><a href="learning-hub">IELTS Preparation</a></li>
             <li><a href="learning-hub">TOEFL Preparation</a></li>
             <li><a href="learning-hub">Resource Center</a></li>
@@ -947,8 +948,8 @@
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
   </a>
 
-  <script src="main.js?v=20"></script>
-<script src="chatbot.js?v=12"></script>
+  <script src="main.js?v=21"></script>
+<script src="chatbot.js?v=13"></script>
   <script>
     /* ---- Entrance-animation failsafe ----
        On slow / flaky mobile connections the external scripts (main.js) can

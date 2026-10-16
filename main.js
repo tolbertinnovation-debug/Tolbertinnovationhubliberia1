@@ -156,7 +156,8 @@ function updateToggleIcon(btn, isDark) {
 }
 
 function initDarkMode() {
-  const saved = localStorage.getItem('tih-theme');
+  let saved;
+  try { saved = localStorage.getItem('tih-theme'); } catch (_) { /* Theme works without storage. */ }
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const theme = saved || (prefersDark ? 'dark' : 'light');
   if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
@@ -167,11 +168,11 @@ function initDarkMode() {
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       if (isDark) {
         document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('tih-theme', 'light');
+        try { localStorage.setItem('tih-theme', 'light'); } catch (_) {}
         document.querySelectorAll('.dark-mode-toggle').forEach((b) => updateToggleIcon(b, false));
       } else {
         document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('tih-theme', 'dark');
+        try { localStorage.setItem('tih-theme', 'dark'); } catch (_) {}
         document.querySelectorAll('.dark-mode-toggle').forEach((b) => updateToggleIcon(b, true));
       }
     });
@@ -205,6 +206,10 @@ function initCounters() {
     requestAnimationFrame(update);
   };
 
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    counters.forEach(el => { el.textContent = (el.dataset.prefix || '') + el.dataset.target + (el.dataset.suffix || ''); });
+    return;
+  }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting && !entry.target.dataset.counted) {
@@ -222,6 +227,13 @@ function initCounters() {
 // Scroll reveal
 // ============================================================
 function initReveal() {
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    return;
+  }
+  document.documentElement.classList.add('reveal-ready');
+  // A suspended observer must never leave content permanently hidden.
+  setTimeout(() => document.documentElement.classList.remove('reveal-ready'), 5000);
   // Auto-tag common cards so every page gets scroll-reveal without markup edits.
   document.querySelectorAll(
     '.section .card:not(.reveal), .spotlight-card:not(.reveal), .news-card:not(.reveal), .program-card:not(.reveal), .stat-card:not(.reveal)'
@@ -366,6 +378,20 @@ function initNav() {
   if (!navWrap || !navLinks) return;
 
   if (!navLinks.id) navLinks.id = 'primary-navigation';
+
+  // Keep key public destinations available on every shared-header page.
+  [['services', 'Services'], ['resources', 'Find Resources'], ['events', 'Events & Programs'], ['grants', 'Grants & Donations'], ['grandpa-ai', 'Grandpa AI'], ['faq', 'Help & FAQ']].forEach(([route, label]) => {
+    if (navLinks.querySelector('a[href="' + route + '"]')) return;
+    const link = document.createElement('a');
+    link.href = route;
+    link.textContent = label;
+    navLinks.append(link);
+  });
+  const currentRoute = location.pathname.replace(/^\//, '').replace(/\.html$/, '') || 'index';
+  navLinks.querySelectorAll('a').forEach(link => {
+    const route = link.getAttribute('href').replace(/^\//, '').replace(/\.html$/, '') || 'index';
+    if (route === currentRoute) { link.classList.add('active'); link.setAttribute('aria-current', 'page'); }
+  });
 
   // Add news link if missing
   if (!navLinks.querySelector('a[href="news"]')) {
@@ -569,8 +595,10 @@ function initBackToTop() {
   btn.id = 'back-to-top';
   btn.setAttribute('aria-label', 'Back to top');
   btn.textContent = '↑';
+  btn.tabIndex = -1;
+  btn.setAttribute('aria-hidden', 'true');
   btn.style.cssText = [
-    'position:fixed', 'bottom:5.5rem', 'right:1.5rem', 'z-index:800',
+    'position:fixed', 'bottom:160px', 'right:1.5rem', 'z-index:800',
     'width:44px', 'height:44px', 'border-radius:50%',
     'background:#002868', 'color:#fff', 'border:none',
     'font-size:1.25rem', 'font-weight:700', 'cursor:pointer',
@@ -583,6 +611,8 @@ function initBackToTop() {
 
   const toggle = () => {
     const show = window.scrollY > 400;
+    btn.tabIndex = show ? 0 : -1;
+    btn.setAttribute('aria-hidden', String(!show));
     btn.style.opacity = show ? '1' : '0';
     btn.style.pointerEvents = show ? 'auto' : 'none';
     btn.style.transform = show ? 'translateY(0)' : 'translateY(8px)';
@@ -630,12 +660,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // Cookie Consent
 // ============================================================
 function initCookieConsent() {
-  if (localStorage.getItem('tih_cookie_consent')) return;
+  try { if (localStorage.getItem('tih_cookie_consent')) return; } catch (_) {}
 
   const banner = document.createElement('div');
   banner.className = 'cookie-banner';
-  banner.setAttribute('role', 'dialog');
-  banner.setAttribute('aria-label', 'Cookie consent');
+  banner.setAttribute('role', 'region');
+  banner.setAttribute('aria-label', 'Cookie preferences');
+  document.body.classList.add('consent-open');
   banner.innerHTML = `
     <div class="cookie-banner-text">
       <strong>🍪 We use cookies</strong> to improve your experience and analyze site traffic.
@@ -655,7 +686,8 @@ function initCookieConsent() {
   });
 
   function dismiss(accepted) {
-    localStorage.setItem('tih_cookie_consent', accepted ? 'accepted' : 'declined');
+    try { localStorage.setItem('tih_cookie_consent', accepted ? 'accepted' : 'declined'); } catch (_) {}
+    document.body.classList.remove('consent-open');
     banner.classList.remove('visible');
     setTimeout(() => banner.remove(), 400);
   }
@@ -715,6 +747,8 @@ function initHeroNetwork() {
     if (hero.querySelector('canvas.hero-net')) return;      // idempotent
     const canvas = document.createElement('canvas');
     canvas.className = 'hero-net';
+    // Page-local hero rules must never turn decoration into layout content.
+    canvas.style.position = 'absolute';
     canvas.setAttribute('aria-hidden', 'true');
     hero.insertBefore(canvas, hero.firstChild);
     buildHeroNetwork(hero, canvas);
@@ -1024,6 +1058,7 @@ function initInnerHero() {
 
     const fx = document.createElement('div');
     fx.className = 'hero-fx';
+    fx.style.position = 'absolute';
     fx.setAttribute('aria-hidden', 'true');
     fx.innerHTML =
       '<span class="hfx-pattern" data-depth="6"></span>' +

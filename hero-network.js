@@ -17,6 +17,7 @@
       if (hero.querySelector('canvas.hero-net')) continue;    // idempotent
       var canvas = document.createElement('canvas');
       canvas.className = 'hero-net';
+      canvas.style.position = 'absolute';
       canvas.setAttribute('aria-hidden', 'true');
       hero.insertBefore(canvas, hero.firstChild);
       build(hero, canvas);

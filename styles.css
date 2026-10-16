@@ -1559,7 +1559,8 @@ textarea {
 }
 
 /* Intersection Observer animation classes */
-.reveal {
+.reveal { opacity: 1; transform: none; }
+.reveal-ready .reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
@@ -2558,3 +2559,24 @@ textarea {
   [data-theme="dark"] .nav-links a.active { background:var(--surface-2); color:var(--text); }
 }
 @media (prefers-reduced-motion:reduce) { .nav-group > summary::after { transition:none; } }
+
+/* Site review: keep decoration out of layout and controls easy to reach. */
+.page-hero > .hero-net, .page-hero > .hero-fx { position:absolute; inset:0; z-index:0; pointer-events:none; }
+.page-hero > .container { position:relative; z-index:1; }
+.nav-group-panel { max-height:calc(100dvh - 130px); overflow-y:auto; overscroll-behavior:contain; }
+body.consent-open :is(.whatsapp-float,.tih-audio-ctl,#back-to-top,#tih-chat-btn,#tih-greet) { visibility:hidden !important; }
+:where(section[id], .faq-section[id]) { scroll-margin-top:110px; }
+@media(max-width:600px) {
+  .cookie-banner { padding:.75rem 1rem; gap:.6rem; }
+  .cookie-banner-text { min-width:0; font-size:.8rem; line-height:1.5; }
+  .cookie-banner-actions button { min-height:44px; }
+  .form-group :is(input,select,textarea), .form-input,.form-select,.form-textarea { font-size:16px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .reveal-ready .reveal { opacity:1; transform:none; transition:none; }
+}
+[data-theme="dark"] :is(.faq-section-heading h2,details.faq-item summary,.form-group label,.form-label) { color:var(--text); }
+[data-theme="dark"] details.faq-item summary:hover { background:var(--surface-2); }
+[data-theme="dark"] .faq-cat-link { background:var(--surface); color:var(--text); border-color:var(--border); }
+[data-theme="dark"] .faq-cat-link:is(:hover,.active) { background:var(--brand-blue); color:#fff; }
+[data-theme="dark"] .form-group :is(input,select,textarea):not([type="checkbox"]):not([type="radio"]) { background:var(--surface-2); color:var(--text); border-color:var(--border); }
