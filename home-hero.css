@@ -88,3 +88,28 @@
   #heroTop .home-launchpad .hm-card strong {font-size:.74rem;}
 }
 @media(prefers-reduced-motion:reduce) {#heroTop .hm-card {transition:none;}}
+
+/* Permanent application routes remain visible while the hero headline rotates. */
+#heroTop .home-scholarships {margin-top:1.3rem;padding:1.05rem;border:1px solid #e5c6cd;border-radius:18px;background:#fffafbf5;text-align:left;}
+#heroTop .home-scholarships h2 {margin:0 0 .8rem;color:#ab132b;font-size:.76rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;}
+#heroTop .home-scholarship-options {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;}
+#heroTop .home-scholarship-option {min-width:0;}
+#heroTop .home-scholarship-option + .home-scholarship-option {border-left:1px solid #ead9de;padding-left:1rem;}
+#heroTop .home-scholarship-option h3 {margin:0 0 .4rem;color:#17263d;font-size:.95rem;line-height:1.35;}
+#heroTop .home-scholarship-option p {margin:0 0 .6rem;color:#586477;font-size:.76rem;line-height:1.5;}
+#heroTop .home-scholarship-apply {display:flex;align-items:center;justify-content:space-between;gap:.4rem;min-height:44px;padding:.55rem .65rem;background:#bd1230;border-radius:9px;color:#fff;font-size:.75rem;font-weight:750;line-height:1.4;text-decoration:none;}
+#heroTop .home-scholarship-apply:hover {background:#960d25;}
+#heroTop .home-scholarship-details {display:flex;align-items:center;min-height:44px;color:#a5122c;font-size:.7rem;font-weight:650;line-height:1.4;text-underline-offset:3px;}
+#heroTop .home-scholarships .home-scholarship-note {margin:.6rem 0 0;padding-top:.65rem;border-top:1px solid #ead9de;color:#667084;font-size:.67rem;line-height:1.5;}
+@media(max-width:400px) {
+  #heroTop .home-scholarships {padding:.9rem;}
+  #heroTop .home-scholarship-options {grid-template-columns:1fr;gap:.65rem;}
+  #heroTop .home-scholarship-option + .home-scholarship-option {border-left:0;border-top:1px solid #ead9de;padding-left:0;padding-top:.8rem;}
+}
+
+#heroTop .home-development-option {grid-column:1/-1;display:grid;grid-template-columns:1.1fr 1fr;gap:1rem;padding-bottom:.7rem;border-bottom:1px solid #ead9de;}
+#heroTop .home-development-option + .home-scholarship-option {border-left:0;padding-left:0;}
+@media(max-width:400px) {
+  #heroTop .home-development-option {grid-template-columns:1fr;gap:0;}
+  #heroTop .home-development-option + .home-scholarship-option {border-top:0;padding-top:0;}
+}

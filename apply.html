@@ -380,8 +380,8 @@
                       <label for="prog-study-abroad">
                         <span class="prog-opt-icon">🌍</span>
                         <span class="prog-opt-text">
-                          <span class="prog-opt-name">Study Abroad Scholarship</span>
-                          <span class="prog-opt-desc">University placement in India or Cyprus with 50% TIH scholarship</span>
+                          <span class="prog-opt-name">Partial / Study Abroad Scholarship</span>
+                          <span class="prog-opt-desc">Study abroad guidance and partial scholarship support; coverage varies by opportunity</span>
                         </span>
                       </label>
                     </div>
@@ -392,7 +392,7 @@
                         <span class="prog-opt-icon">🎓</span>
                         <span class="prog-opt-text">
                           <span class="prog-opt-name">Fully Funded Scholarship</span>
-                          <span class="prog-opt-desc">Government & university scholarships covering tuition, accommodation & living</span>
+                          <span class="prog-opt-desc">Application guidance for government and university scholarships; provider terms apply</span>
                         </span>
                       </label>
                     </div>
@@ -774,7 +774,7 @@
         var el = document.getElementById(id);
         if (el) draft[id] = el.value;
       });
-      localStorage.setItem('tih_apply_draft', JSON.stringify(draft));
+      try { localStorage.setItem('tih_apply_draft', JSON.stringify(draft)); } catch(e) {}
     }
 
     // Restore draft
@@ -938,6 +938,17 @@
 
     // Init
     restoreDraft();
+    // Explicit application links select the requested route, preserving personal draft fields.
+    var requestedProgram = new URLSearchParams(window.location.search).get('program');
+    var programRoutes = { 'partial': 'prog-study-abroad', 'fully-funded': 'prog-fully-funded' };
+    if (Object.prototype.hasOwnProperty.call(programRoutes, requestedProgram)) {
+      var requestedRadio = document.getElementById(programRoutes[requestedProgram]);
+      if (requestedRadio) {
+        requestedRadio.checked = true;
+        selectedProgram = requestedRadio.value;
+        saveDraft();
+      }
+    }
     if (selectedProgram) { updateConditionalBlocks(); }
   </script>
 </body>
