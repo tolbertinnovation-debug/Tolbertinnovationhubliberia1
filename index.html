@@ -177,6 +177,22 @@
       .trust-strip-home-inner{justify-content:flex-start;gap:.65rem 1rem;}
       .tsh-item{font-size:.78rem;}
     }
+
+    /* Featured Grandpa AI project */
+    .home-grandpa { background:linear-gradient(135deg,#06162f,#0b2a6b); color:#fff; padding:clamp(2.5rem,6vw,5rem) 0; scroll-margin-top:100px; }
+    .home-grandpa-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(1.5rem,4vw,3.5rem); align-items:center; }
+    .home-grandpa-label { display:inline-block; border:1px solid rgba(255,255,255,.3); border-radius:999px; padding:.35rem .8rem; font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; margin:0 0 1rem; }
+    .home-grandpa h2 { color:#fff; font-size:clamp(2rem,5vw,3.2rem); margin:0 0 .5rem; }
+    .home-grandpa-tagline { font-size:clamp(1.05rem,2vw,1.3rem); font-weight:600; color:#fbbf24; margin:0 0 1rem; }
+    .home-grandpa-copy { color:#e2e8f0; line-height:1.8; max-width:55ch; }
+    .home-grandpa-topics { display:flex; flex-wrap:wrap; gap:.5rem; list-style:none; padding:0; margin:1.25rem 0 1.75rem; }
+    .home-grandpa-topics li { padding:.4rem .75rem; background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.2); border-radius:8px; font-size:.88rem; }
+    .home-grandpa-actions { display:flex; flex-wrap:wrap; gap:.75rem; }
+    .home-grandpa-actions .btn-outline { color:#fff; border-color:rgba(255,255,255,.6); }
+    .home-grandpa-actions .btn-outline:hover { color:#06162f; background:#fff; }
+    .home-grandpa-image { display:block; width:100%; height:auto; border-radius:18px; border:1px solid rgba(255,255,255,.25); box-shadow:0 20px 55px rgba(0,0,0,.3); }
+    .home-grandpa-domain { color:#cbd5e1; font-size:.9rem; margin:1rem 0 0; overflow-wrap:anywhere; }
+    @media(max-width:720px) { .home-grandpa-grid { grid-template-columns:1fr; } .home-grandpa-actions .btn { flex:1 1 180px; text-align:center; } }
   </style>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://formsubmit.co https://formspree.io https://restcountries.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co https://formspree.io; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -319,6 +335,27 @@
         <span class="tsh-item"><span>🌍</span> Serving 15+ Countries</span>
       </div>
     </div>
+
+    <!-- Featured innovation project: Grandpa AI -->
+    <section class="home-grandpa" id="grandpa-ai-home" aria-labelledby="grandpa-ai-home-title">
+      <div class="container home-grandpa-grid">
+        <div>
+          <p class="home-grandpa-label">Featured TIH Project · Built in Liberia</p>
+          <h2 id="grandpa-ai-home-title">Meet Grandpa AI</h2>
+          <p class="home-grandpa-tagline">Ancestral Wisdom. Modern Innovation.</p>
+          <p class="home-grandpa-copy">Explore a Tolbert Innovation Hub AI project that brings together learning, storytelling, wisdom, and everyday conversations. Discover Grandpa AI through its dedicated website.</p>
+          <ul class="home-grandpa-topics" aria-label="Project themes"><li>Learning</li><li>Stories &amp; Wisdom</li><li>AI Conversations</li></ul>
+          <div class="home-grandpa-actions">
+            <a class="btn btn-primary btn-lg" href="https://libgrandpaai.com" target="_blank" rel="noopener noreferrer">Open Grandpa AI ↗</a>
+            <a class="btn btn-outline" href="grandpa-ai">About the Project →</a>
+          </div>
+          <p class="home-grandpa-domain">libgrandpaai.com</p>
+        </div>
+        <a href="https://libgrandpaai.com" target="_blank" rel="noopener noreferrer" aria-label="Open Grandpa AI website">
+          <img class="home-grandpa-image" src="grandpa-ai-banner.jpg" alt="Grandpa AI — Ancestral Wisdom, Modern Innovation" loading="lazy" decoding="async" />
+        </a>
+      </div>
+    </section>
 
     <!-- INTRO VIDEO -->
     <section class="intro-video-section" aria-label="Introduction to Tolbert Innovation Hub">
