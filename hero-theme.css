@@ -1,0 +1,76 @@
+/* TIH banner system: Learning Hub's light hero and Grandpa AI's red gradient. */
+.tih-hero-light,.tih-hero-red {
+  position:relative; isolation:isolate; overflow:hidden;
+  padding-bottom:clamp(5rem,8vw,7rem) !important;
+  background-attachment:scroll;
+}
+.tih-hero-light {
+  background:radial-gradient(ellipse at 88% 12%,#d5e7ff 0,transparent 50%),radial-gradient(ellipse at 0 100%,#fbd8dc 0,transparent 43%),linear-gradient(135deg,#fff,#edf5ff) !important;
+  color:#102039;
+}
+.tih-hero-red {
+  background:radial-gradient(ellipse at 88% 12%,rgba(255,255,255,.12),transparent 48%),linear-gradient(135deg,#e31e24 0%,#c71026 48%,#8b0521 100%) !important;
+  color:#fff;
+}
+.tih-hero-light > .container,.tih-hero-red > .container {position:relative;z-index:2;}
+.tih-hero-light::before,.tih-hero-red::before {
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='240' viewBox='0 0 360 240'%3E%3Cg fill='none' stroke='%2390b8e4' stroke-opacity='.2'%3E%3Cpath d='M30 40L120 90L190 30L310 110L230 190L120 90L55 200M190 30L230 190'/%3E%3C/g%3E%3Cg fill='%238bb5e5' fill-opacity='.22'%3E%3Ccircle cx='30' cy='40' r='4'/%3E%3Ccircle cx='120' cy='90' r='5'/%3E%3Ccircle cx='190' cy='30' r='4'/%3E%3Ccircle cx='310' cy='110' r='4'/%3E%3Ccircle cx='230' cy='190' r='5'/%3E%3Ccircle cx='55' cy='200' r='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+.tih-hero-red::before {opacity:.5;}
+.tih-hero-light::after,.tih-hero-red::after {
+  content:'';position:absolute;inset:auto 0 -1px;height:58px;width:100%;z-index:3;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 70' preserveAspectRatio='none'%3E%3Cpath d='M0 33C240 75 480 0 720 26S1200 72 1440 28V70H0Z' fill='%23f4f7fc'/%3E%3Cpath d='M0 33C240 75 480 0 720 26S1200 72 1440 28' fill='none' stroke='%23e31e24' stroke-width='6'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat;
+}
+.tih-hero-light > :is(.hm-wave,.tih-wave),.tih-hero-red > :is(.hm-wave,.tih-wave) {display:none;}
+.tih-hero-light h1,.tih-hero-light .page-title {color:#0b1f3a;text-shadow:none;}
+.tih-hero-light h1 :is(.hm-blue,.hm-red,.hero-highlight) {color:#ce1528;}
+.tih-hero-light :is(.lead,.gai-tagline) {color:#3b4a63;}
+.tih-hero-light > .container > p {color:#3b4a63;}
+.tih-hero-light :is(.eyebrow,.hero-live-badge) {background:#fff;border:1px solid #f2c7cc;color:#b31224;box-shadow:0 5px 20px #b3122410;}
+.tih-hero-light .impact-number {color:#ce1528;}
+.tih-hero-light .impact-label {color:#465875;}
+.tih-hero-light .hm-card-red,.tih-hero-light .hm-card-navy {background:linear-gradient(135deg,#e31e24,#a60825);border-color:transparent;color:#fff;}
+.tih-hero-light .hm-card-navy small {color:#fff;}
+.tih-hero-light .hm-card-navy .hm-ic {background:#ffffff22;color:#fff;}
+.tih-hero-red h1,.tih-hero-red h1 span,.tih-hero-red .page-title {color:#fff;text-shadow:none;}
+.tih-hero-red :is(.lead,.gai-tagline),.tih-hero-red > .container > p {color:#fff1f3;}
+.tih-hero-red :is(.eyebrow,.hero-live-badge,.gai-coming-soon) {background:#ffffff16;border:1px solid #ffffff66;color:#fff;box-shadow:none;}
+.tih-hero-red :is(.hero-badge,.trust-badge) {background:#ffffff14;border-color:#ffffff66;color:#fff;}
+.tih-hero-red :is(.impact-number,.gai-stats-strip strong) {color:#fff;}
+.tih-hero-red :is(.impact-label,.gai-stats-strip span) {color:#ffe4e9;}
+.tih-hero-red :is(.hm-orb,.hfx-orb,.hm-glow) {opacity:.15;}
+.tih-hero-red .hero-net {opacity:.35;}
+.tih-hero-red .hm-card {color:#102039;}
+.tih-hero-red .hm-card-red,.tih-hero-red .hm-card-navy {background:#fff;color:#9d1025;border-color:#fff;}
+.tih-hero-red .hm-card :is(small,.hm-tx small) {color:#475569;}
+.tih-hero-red .hm-card .hm-ic {background:#fce4e8;color:#b31224;}
+.tih-hero-light .btn-primary {background:#d91628;border-color:#d91628;color:#fff;box-shadow:0 8px 24px #b3122426;}
+.tih-hero-light .btn-hero-blue {background:#fff;border-color:#d6a5af;color:#ae1125;box-shadow:none;}
+.tih-hero-light .btn-outline {border-color:#c4ccd9;color:#142d50;background:#ffffff66;}
+.tih-hero-red :is(.btn-primary,.btn-white) {background:#fff;border-color:#fff;color:#b31224;box-shadow:0 8px 24px #62081726;}
+.tih-hero-red :is(.btn-secondary,.btn-hero-blue,.btn-outline,.hm-outline) {background:transparent;border-color:#ffffff99;color:#fff;box-shadow:none;}
+.tih-hero-red .btn:hover {background:#fff;color:#9f1025;border-color:#fff;}
+.tih-hero-light .btn:hover {background:#b31224;border-color:#b31224;color:#fff;}
+.tih-hero-light :is(h1,.lead,.hero-actions,.hm-fade),.tih-hero-red :is(h1,.lead,.hero-actions,.hm-fade) {animation:none;}
+.tih-hero-light .hero-actions,.tih-hero-red .hero-actions {gap:.8rem;}
+.tih-hero-red .ep-hero-facts span {background:#ffffff18;border-color:#ffffff66;color:#fff;}
+.tih-hero-red .gai-hero-image {order:initial;}
+/* Reuse the requested red partnership treatment for the home project feature. */
+.home-grandpa {background:linear-gradient(135deg,#e31e24,#8b0521) !important;color:#fff;}
+.home-grandpa :is(h2,.home-grandpa-label,.home-grandpa-tagline,.home-grandpa-copy,.home-grandpa-domain) {color:#fff;}
+.home-grandpa-topics li {background:#ffffff14;border-color:#ffffff66;color:#fff;}
+.home-grandpa .btn-primary {background:#fff;border-color:#fff;color:#b31224;}
+.home-grandpa .btn-outline {color:#fff;border-color:#ffffff99;}
+.home-goal-card {border-top:3px solid #d91628;}
+.cta-banner {background:linear-gradient(135deg,#e31e24,#8b0521);}
+@media(max-width:680px) {
+  .tih-hero-light,.tih-hero-red {padding-top:2.75rem !important;padding-bottom:5rem !important;}
+  .tih-hero-light h1,.tih-hero-red h1 {font-size:clamp(2rem,7vw,2.8rem);line-height:1.12;}
+  .tih-hero-light .hero-actions,.tih-hero-red .hero-actions {display:flex !important;flex-direction:column;align-items:stretch;}
+  .tih-hero-light .hero-actions .btn,.tih-hero-red .hero-actions .btn {width:100%;min-height:50px;justify-content:center;text-align:center;}
+}
+@media(prefers-reduced-motion:reduce) {.tih-hero-light,.tih-hero-red {animation:none;}}
+/* Keep the network subtle behind reading content, as in the reference banner. */
+.tih-hero-light .hero-net {opacity:.4;}
+.tih-hero-light::before {opacity:.5;}
