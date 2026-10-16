@@ -246,31 +246,7 @@
   }
   </script>
   <link rel="stylesheet" href="hero-theme.css?v=1" />
-  <style>
-    /* The reference's logo-and-card cluster stays visible at every breakpoint. */
-    .home-hero .hero-visual { display:block; position:relative; min-height:520px; width:100%; max-width:430px; margin-inline:auto; }
-    .home-hero .hm-card { max-width:calc(100% - 8px); min-height:72px; padding:.8rem .95rem; gap:.7rem; z-index:2; }
-    .home-hero .hm-card strong { font-size:.94rem; }
-    .home-hero .hm-card small { display:block; font-size:.75rem; line-height:1.45; margin-top:.25rem; }
-    .home-hero .hm-emblem { width:176px; top:208px; right:0; left:auto; transform:none; animation:none; z-index:1; }
-    .home-hero .hm-float-a { top:12px; left:2%; right:auto; bottom:auto; }
-    .home-hero .hm-float-b { top:110px; right:0; left:auto; bottom:auto; }
-    .home-hero .hm-float-c { top:218px; left:0; right:auto; bottom:auto; }
-    .home-hero .hm-float-d { top:326px; right:0; left:auto; bottom:auto; }
-    .home-hero .hm-float-e { top:424px; left:6%; right:auto; bottom:auto; }
-    .home-hero .hm-card-navy { background:linear-gradient(135deg,#0b1f3a,#123061); border-color:#123061; color:#fff; }
-    .home-hero .hm-card:hover { z-index:3; }
-    @media(max-width:1024px) {
-      .home-hero .hero-visual { display:block; margin-top:1rem; }
-      .home-hero .hero-2col { gap:1.5rem; }
-    }
-    @media(max-width:380px) {
-      .home-hero .hm-card { padding:.75rem .8rem; gap:.5rem; }
-      .home-hero .hm-card strong { font-size:.86rem; }
-      .home-hero .hm-card small { font-size:.7rem; }
-      .home-hero .hm-emblem { width:154px; }
-    }
-  </style>
+  <link rel="stylesheet" href="home-hero.css?v=1" />
 
 </head>
 <body>
@@ -305,7 +281,7 @@
   <main id="main-content">
 
     <!-- HERO SECTION (banner design system: light, animated, floating cards) -->
-    <section class="hero home-hero hero-modern tih-hero-light" id="heroTop">
+    <section class="hero home-hero hero-modern tih-hero-light home-hero-v2" id="heroTop">
       <div class="hm-orb hm-orb-1" data-depth="18" aria-hidden="true"></div>
       <div class="hm-orb hm-orb-2" data-depth="30" aria-hidden="true"></div>
       <div class="hm-orb hm-orb-3" data-depth="12" aria-hidden="true"></div>
@@ -316,24 +292,26 @@
         <div class="hero-grid hero-2col">
           <!-- Left: Content -->
           <div class="hero-text">
+            <p class="home-hero-kicker">Learning. Opportunity. Innovation.</p>
             <h1 class="hm-fade hm-d2 hero-rotating-title" aria-label="Welcome to Tolbert Innovation Hub"><span class="hero-message is-active" data-hero-title aria-hidden="true">Welcome to <span class="hm-red">Tolbert Innovation Hub</span></span><span class="hero-message" data-hero-title aria-hidden="true">Build Practical <span class="hm-red">Skills for Your Future</span></span><span class="hero-message" data-hero-title aria-hidden="true">Explore <span class="hm-blue">Scholarships &amp; Student Aid</span></span><span class="hero-message" data-hero-title aria-hidden="true">Find Funding for <span class="hm-red">Your Organization</span></span><span class="hero-message" data-hero-title aria-hidden="true">Turn Your Ideas into <span class="hm-blue">Digital Solutions</span></span><span class="hero-message" data-hero-title aria-hidden="true">Discover <span class="hm-red">Grandpa AI</span></span></h1>
-            <p class="lead hm-fade hm-d3 hero-rotating-copy" aria-label="Practical learning, scholarship guidance, funding resources, and digital solutions for Liberia."><span class="hero-message is-active" data-hero-copy aria-hidden="true">Practical learning, scholarship guidance, funding resources, and digital solutions for Liberia. Whether you are a student, an NGO, or a growing business, find a clear place to start with Tolbert Innovation Hub.</span><span class="hero-message" data-hero-copy aria-hidden="true">Explore courses, video lessons, quizzes, and exam preparation. Build your knowledge step by step through the TIH Learning Hub.</span><span class="hero-message" data-hero-copy aria-hidden="true">Compare education opportunities, check eligibility and deadlines, and find the application guidance you need for your next step.</span><span class="hero-message" data-hero-copy aria-hidden="true">Browse grants and assistance routes for Liberian NGOs, schools, churches, businesses, and community projects.</span><span class="hero-message" data-hero-copy aria-hidden="true">Discuss a professional website, custom application, or business system with TIH. Explore software projects and routes to potential clients.</span><span class="hero-message" data-hero-copy aria-hidden="true">Explore learning, storytelling, wisdom, and everyday conversations through Grandpa AI, a Tolbert Innovation Hub project built in Liberia.</span></p>
+            <p class="lead hm-fade hm-d3 hero-rotating-copy" aria-label="Practical learning, scholarship guidance, funding resources, and digital solutions for Liberia."><span class="hero-message is-active" data-hero-copy aria-hidden="true">Practical skills, education opportunities, funding resources, and digital solutions. Find your next step with a hub built for Liberia.</span><span class="hero-message" data-hero-copy aria-hidden="true">Explore courses, video lessons, quizzes, and exam preparation. Build your knowledge step by step through the TIH Learning Hub.</span><span class="hero-message" data-hero-copy aria-hidden="true">Compare education opportunities, check eligibility and deadlines, and find the application guidance you need for your next step.</span><span class="hero-message" data-hero-copy aria-hidden="true">Browse grants and assistance routes for Liberian NGOs, schools, churches, businesses, and community projects.</span><span class="hero-message" data-hero-copy aria-hidden="true">Discuss a professional website, custom application, or business system with TIH. Explore software projects and routes to potential clients.</span><span class="hero-message" data-hero-copy aria-hidden="true">Explore learning, storytelling, wisdom, and everyday conversations through Grandpa AI, a Tolbert Innovation Hub project built in Liberia.</span></p>
             <div class="hero-actions hm-fade hm-d4">
-              <a class="btn btn-primary btn-lg" href="#start-here">Browse Our Services</a>
-              <a class="btn btn-hero-blue btn-lg" href="learning-hub">Explore Learning Hub</a>
-              <a class="btn btn-outline hm-outline" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+              <a class="btn btn-primary btn-lg" href="#start-here">Explore Services <span aria-hidden="true">↗</span></a>
+              <a class="btn btn-hero-blue btn-lg" href="learning-hub">Start Learning <span aria-hidden="true">→</span></a>
+
             </div>
+            <p class="home-hero-help">Have a question? <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Chat with TIH ↗</a></p>
             <div class="impact-inline hm-fade hm-d5" style="margin-top:2.4rem;">
-              <div class="impact-item"><span class="impact-number" data-target="60">60</span><p class="impact-label">Funding &amp; Aid Listings</p></div>
-              <div class="impact-item"><span class="impact-number" data-target="23">23</span><p class="impact-label">WASSCE Subjects</p></div>
-              <div class="impact-item"><span class="impact-number" data-target="11">11</span><p class="impact-label">Software Sales Routes</p></div>
-              <div class="impact-item"><span class="impact-number" data-target="1">1</span><p class="impact-label">Grandpa AI Project</p></div>
+              <div class="impact-item"><span class="impact-number">60</span><p class="impact-label">Funding listings</p></div>
+              <div class="impact-item"><span class="impact-number">23</span><p class="impact-label">Exam subjects</p></div>
+              <div class="impact-item"><span class="impact-number">11</span><p class="impact-label">Client routes</p></div>
+              <div class="impact-item"><span class="impact-number">1</span><p class="impact-label">AI project</p></div>
             </div>
           </div>
 
           <!-- The Learning Hub's floating-card design, available on phones too. -->
-          <div class="hero-visual hm-visual" aria-label="Explore TIH learning resources">
-            <div class="hm-glow" aria-hidden="true"></div>
+          <div class="hero-visual hm-visual home-launchpad" aria-label="Explore TIH learning resources">
+            <div class="home-launchpad-heading"><p>THE TIH LEARNING HUB</p><h2>One hub.<br>More possibilities.</h2><small>Pick a place to begin.</small></div>
             <img class="hm-emblem" src="assets/tih-logo.png" alt="" aria-hidden="true" />
             <a class="hm-card hm-float-a" href="learning-hub#tracks">
               <span class="hm-ic hm-ic-blue" aria-hidden="true">💻</span>
