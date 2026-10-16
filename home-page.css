@@ -187,3 +187,30 @@
 .tih-home :is(.programs-carousel,.news-carousel) .swiper-button-prev,.tih-home :is(.programs-carousel,.news-carousel) .swiper-button-next {width:34px;height:34px;border:1px solid var(--hp-border);border-radius:50%;background:var(--hp-card);color:var(--hp-red);}
 .tih-home :is(.programs-carousel,.news-carousel) .swiper-button-prev::after,.tih-home :is(.programs-carousel,.news-carousel) .swiper-button-next::after {font-size:12px;font-weight:800;}
 .tih-home :is(.programs-carousel,.news-carousel) .swiper-pagination-bullet-active {background:var(--hp-red);}
+
+/* Compact service directory: native disclosure rows keep the page easy to scan. */
+.tih-home #start-here .home-services-compact {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;align-items:start;}
+.tih-home #start-here .home-service-row {display:block;padding:0;overflow:hidden;border:1px solid var(--hp-border);border-radius:14px;background:var(--hp-card);box-shadow:none;}
+.tih-home #start-here .home-service-row::after {display:none;}
+.tih-home #start-here .home-service-row:hover {transform:none;box-shadow:none;border-color:#d4a0ad;}
+.tih-home #start-here .home-service-row summary {display:grid;grid-template-columns:30px minmax(0,1fr) 20px;align-items:center;gap:.85rem;padding:.9rem 1rem;min-height:76px;cursor:pointer;list-style:none;}
+.tih-home #start-here .home-service-row summary::-webkit-details-marker {display:none;}
+.tih-home #start-here .home-service-row summary::marker {content:'';}
+.tih-home #start-here .home-service-number {display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--hp-warm);color:var(--hp-red);font-size:.65rem;font-weight:800;}
+.tih-home #start-here .home-service-name {min-width:0;}
+.tih-home #start-here .home-service-category {display:block;font-size:.58rem;text-transform:uppercase;letter-spacing:.06em;line-height:1.5;font-weight:700;color:var(--hp-copy);margin:0 0 .2rem;}
+.tih-home #start-here .home-service-title {display:block;font-size:.94rem;font-weight:750;line-height:1.4;color:var(--hp-ink);}
+.tih-home #start-here .home-service-toggle {font-size:1.2rem;line-height:1;color:var(--hp-red);text-align:center;transition:transform .15s;}
+.tih-home #start-here .home-service-row[open] {border-color:#d4a0ad;}
+.tih-home #start-here .home-service-row[open] summary {background:var(--hp-warm);}
+.tih-home #start-here .home-service-row[open] .home-service-toggle {transform:rotate(45deg);}
+.tih-home #start-here .home-service-body {padding:.3rem 1rem .75rem 4.1rem;}
+.tih-home #start-here .home-service-body p {font-size:.87rem;line-height:1.7;color:var(--hp-copy);margin:.5rem 0;}
+.tih-home #start-here .home-service-body a {display:inline-flex;align-items:center;min-height:44px;margin:0;color:var(--hp-red);font-size:.8rem;font-weight:750;}
+@media(max-width:700px) {
+ .tih-home #start-here .home-services-compact {grid-template-columns:1fr;gap:.5rem;}
+ .tih-home #start-here .home-service-row summary {min-height:62px;padding:.8rem .85rem;gap:.7rem;}
+ .tih-home #start-here .home-service-category {display:none;}
+ .tih-home #start-here .home-service-title {font-size:.9rem;}
+ .tih-home #start-here .home-service-body {padding-left:3.6rem;}
+}
