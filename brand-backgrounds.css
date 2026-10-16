@@ -25,3 +25,58 @@
 [data-theme="dark"] .tih-branded.tih-home main .home-section.brand-ribbon-section {background-color:#0d192b;}
 [data-theme="dark"] .tih-branded.tih-home main .home-section.brand-ribbon-section:nth-of-type(even) {background-color:#122039;}
 [data-theme="dark"] .tih-branded .brand-section-art {opacity:.16;}
+
+/* Professional finish: restrained decoration, consistent controls and reading rhythm. */
+.tih-branded {text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;}
+.tih-branded .site-header {background:var(--surface,#fff);border-bottom:1px solid var(--border,#e1e7ef);box-shadow:0 2px 12px #14233c06;}
+.tih-branded .brand {padding:.35rem 0;gap:.65rem;}
+.tih-branded .brand-text {font-size:1rem;letter-spacing:-.025em;}
+.tih-branded .brand-logo {object-fit:contain;}
+.tih-branded .nav-links a,.tih-branded .nav-group summary {font-weight:650;}
+.tih-branded .nav-group-panel {border-radius:12px;box-shadow:0 14px 35px #12233c18;}
+.tih-branded :is(.menu-toggle,.dark-mode-toggle) {min-height:44px;box-shadow:none;}
+.tih-branded main .brand-ribbon-section {padding-bottom:clamp(3.5rem,6vw,5rem);}
+.tih-branded .brand-section-art {opacity:.36;background-size:max(100%,1000px) 220px;}
+.tih-branded .brand-ribbon-section.brand-corner .brand-section-art {opacity:.22;}
+.tih-branded .brand-ribbon-section.brand-flow .brand-section-art {opacity:.28;background-size:max(100%,1200px) 260px;}
+.tih-branded main .brand-ribbon-section h2 {letter-spacing:-.025em;line-height:1.2;text-wrap:balance;}
+.tih-branded main .brand-ribbon-section :is(.section-intro,.section-subtitle) {line-height:1.75;max-width:65ch;}
+.tih-branded :is(.btn,.nav-cta) {border-radius:10px;line-height:1.4;min-height:44px;font-weight:650;}
+.tih-branded main .brand-ribbon-section :is(input[type="text"],input[type="email"],input[type="tel"],input[type="url"],input[type="number"],select,textarea) {border-radius:9px;font-size:16px;line-height:1.5;border-color:#c9d4e4;}
+.tih-branded main .brand-ribbon-section :is(input[type="text"],input[type="email"],input[type="tel"],select) {min-height:46px;}
+.tih-branded main .brand-ribbon-section :is(input,select,textarea):focus-visible {outline:3px solid #1565d833;outline-offset:2px;border-color:#1565d8;}
+.tih-branded.tih-home :is(.home-value-card,.home-resource,.welcome-tile,.feature-item,.lh-feat,.lhc-card,.home-law-card,.home-law-next,.path-card,.event-card,.quick-panel,.home-faq details,.programs-carousel .card,.news-carousel .card) {border-radius:14px;box-shadow:0 4px 18px #14233c06;}
+.tih-branded.tih-home .home-section .section-header {margin-bottom:1.75rem;}
+.tih-branded.tih-home .home-section .section-label {letter-spacing:.1em;font-size:.67rem;}
+.tih-branded.tih-home .home-section h3 {font-weight:700;}
+.tih-branded.tih-home .home-value-card h3 {color:var(--hp-ink);}
+.tih-branded.tih-home .home-value-card p {line-height:1.7;}
+.tih-branded.tih-home .home-resource strong {color:var(--brand-blue);}
+.tih-branded.tih-home :is(.home-goal-card,.home-resource,.welcome-tile,.lhc-card):hover {transform:none;border-color:#bccce2;box-shadow:0 6px 20px #14233c0b;}
+.tih-branded .site-footer .footer-links a {min-height:36px;display:inline-flex;align-items:center;}
+.tih-branded #tih-chat-btn::before {animation:none;box-shadow:none;}
+.tih-branded #tih-chat-btn {box-shadow:0 4px 16px #143d7930;}
+.tih-branded .whatsapp-float {box-shadow:0 4px 16px #143d7920;}
+@media(max-width:700px) {
+ .tih-branded .brand-text {font-size:.95rem;}
+ .tih-branded .brand-section-art {opacity:.3;background-size:1000px 155px;}
+ .tih-branded .brand-ribbon-section.brand-corner .brand-section-art {opacity:.18;}
+ .tih-branded .brand-ribbon-section.brand-flow .brand-section-art {opacity:.24;background-size:1050px 180px;}
+ .tih-branded main .brand-ribbon-section {padding-bottom:3.5rem;}
+ .tih-branded.tih-home .home-section .section-intro {font-size:.95rem;}
+ .tih-branded.tih-home .home-values-grid {grid-template-columns:1fr;gap:.65rem;}
+ .tih-branded.tih-home .home-value-card {display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:.85rem;row-gap:.35rem;padding:1rem 1.1rem;}
+ .tih-branded.tih-home .home-value-number {grid-row:1/3;margin:0;width:30px;height:30px;font-size:.65rem;}
+ .tih-branded.tih-home .home-value-card h3 {margin:0;font-size:.98rem;}
+ .tih-branded.tih-home .home-value-card p {grid-column:2;margin:0;font-size:.88rem;}
+ .tih-branded #tih-chat-btn {width:48px;height:48px;left:14px;bottom:18px;}
+ .tih-branded #tih-chat-btn svg {width:23px;height:23px;}
+ .tih-branded .whatsapp-float {width:48px;height:48px;right:14px;bottom:18px;}
+ .tih-branded .whatsapp-float :is(svg,img) {width:48px;height:48px;}
+ .tih-branded .tih-audio-ctl {right:14px;bottom:78px;}
+ .tih-branded #tih-greet {display:none;}
+ .tih-branded .site-footer .footer-links a {min-height:44px;}
+}
+[data-theme="dark"] .tih-branded main .brand-ribbon-section :is(input,select,textarea) {border-color:#40536e;}
+[data-theme="dark"] .tih-branded.tih-home .home-resource strong {color:#9bc1ff;}
+@media(prefers-reduced-motion:reduce) {.tih-branded :is(.btn,.card,.home-value-card,.home-resource) {transition:none;}}
