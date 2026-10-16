@@ -1,5 +1,5 @@
-/* The home hero's blue, ink and soft-surface system, continued down the page. */
-.tih-home {--hp-ink:#14233c;--hp-copy:#526078;--hp-red:#1456c9;--hp-border:#e1e5ec;--hp-card:#fff;--hp-soft:#f5f7fb;--hp-warm:#f4f8ff;--hp-shadow:0 10px 30px #192b4510;background:var(--hp-soft);}
+/* The home hero's red, ink and soft-surface system, continued down the page. */
+.tih-home {--hp-ink:#14233c;--hp-copy:#526078;--hp-red:#c9142d;--hp-border:#e1e5ec;--hp-card:#fff;--hp-soft:#f5f7fb;--hp-warm:#fff4f5;--hp-shadow:0 10px 30px #192b4510;background:var(--hp-soft);}
 .tih-home .home-section {padding:clamp(3rem,5.5vw,5rem) 0;background:var(--hp-card);border:0;}
 .tih-home .home-section:nth-of-type(even) {background:var(--hp-soft);}
 .tih-home .home-section.section-alt {background:var(--hp-soft);background-image:none;}
@@ -14,8 +14,8 @@
 .tih-home .home-section .btn {min-height:46px;border-radius:12px;padding:.75rem 1rem;font-size:.84rem;font-weight:700;box-shadow:none;white-space:normal;}
 .tih-home .home-section :is(.btn-primary,.btn-secondary) {background:var(--hp-red);border-color:var(--hp-red);color:#fff;}
 .tih-home .home-section :is(.btn-outline-blue,.btn-ghost) {background:var(--hp-card);border:1px solid var(--hp-border);color:var(--hp-ink);}
-.tih-home .home-section .btn:hover {background:#104299;border-color:#104299;color:#fff;transform:translateY(-2px);}
-/* Quiet cards, strong typography and one shared blue signature. */
+.tih-home .home-section .btn:hover {background:#99102a;border-color:#99102a;color:#fff;transform:translateY(-2px);}
+/* Quiet cards, strong typography and one shared red signature. */
 .tih-home :is(.home-goal-card,.home-value-card,.home-resource,.welcome-tile,.feature-item,.lh-feat,.lhc-card,.home-law-card,.home-law-next,.path-card,.event-card,.quick-panel,.home-faq details,.programs-carousel .card,.news-carousel .card) {border:1px solid var(--hp-border);border-radius:20px;background:var(--hp-card);box-shadow:var(--hp-shadow);color:var(--hp-ink);}
 .tih-home :is(.home-goal-card,.home-value-card,.home-resource,.welcome-tile,.path-card,.quick-panel,.home-faq details) {padding:1.4rem;}
 .tih-home :is(.home-goal-card,.home-value-card) {position:relative;overflow:hidden;border-top:3px solid var(--hp-red);}
@@ -23,7 +23,7 @@
 .tih-home .home-goal-card h3 {font-size:1.1rem;margin:.2rem 0 .7rem;color:var(--hp-ink);}
 .tih-home .home-goal-card > p:not(.section-label) {font-size:.9rem;line-height:1.75;color:var(--hp-copy);}
 .tih-home .home-goal-card a {font-size:.85rem;color:var(--hp-red);line-height:1.5;}
-.tih-home :is(.home-goal-card,.home-resource,.welcome-tile,.lhc-card):hover {transform:translateY(-3px);border-color:#a0b7df;box-shadow:0 14px 35px #23478414;}
+.tih-home :is(.home-goal-card,.home-resource,.welcome-tile,.lhc-card):hover {transform:translateY(-3px);border-color:#dfa0aa;box-shadow:0 14px 35px #84233714;}
 .tih-home .home-value-card {border-top-width:1px;}
 .tih-home .home-value-card h3 {color:var(--hp-red);font-size:1rem;}
 .tih-home .home-value-card p {font-size:.88rem;color:var(--hp-copy);line-height:1.75;}
@@ -34,24 +34,24 @@
 .tih-home .home-faq details {padding:1.2rem 1.4rem;box-shadow:none;}
 .tih-home .home-faq summary {min-height:40px;display:list-item;line-height:1.6;color:var(--hp-ink);}
 .tih-home .home-faq summary::marker {color:var(--hp-red);}
-.tih-home .home-faq details[open] {border-color:#a0b3d5;background:var(--hp-warm);}
+.tih-home .home-faq details[open] {border-color:#d5a0ac;background:var(--hp-warm);}
 .tih-home .home-faq details p {font-size:.92rem;color:var(--hp-copy);}
 /* Helpful facts should read as a compact strip, not another large section. */
 .tih-home .trust-strip-home {padding:1.1rem 0;box-shadow:none;border-block:1px solid var(--hp-border);background:var(--hp-card);}
 .tih-home .trust-strip-home-inner {gap:.6rem 1.4rem;justify-content:flex-start;}
 .tih-home .tsh-item {font-size:.76rem;color:var(--hp-copy);}
 .tih-home .tsh-divider {display:none;}
-/* Featured project: the same blue rounded panel as the learning launchpad. */
+/* Featured project: the same red rounded panel as the learning launchpad. */
 .tih-home .home-grandpa {background:var(--hp-soft) !important;}
-.tih-home .home-grandpa > .container {padding:clamp(1.5rem,4vw,3rem);border-radius:30px;background:radial-gradient(circle at 100% 0,#538cef,transparent 50%),linear-gradient(145deg,#165dd8,#0d4099);box-shadow:0 20px 50px #163b7c1c;}
+.tih-home .home-grandpa > .container {padding:clamp(1.5rem,4vw,3rem);border-radius:30px;background:radial-gradient(circle at 100% 0,#ef5366,transparent 50%),linear-gradient(145deg,#d81631,#990d2d);box-shadow:0 20px 50px #7c16331c;}
 .tih-home .home-grandpa :is(h2,.home-grandpa-tagline,.home-grandpa-copy,.home-grandpa-domain) {color:#fff;}
 .tih-home .home-grandpa h2 {font-size:clamp(2.3rem,4vw,3.5rem);}
 .tih-home .home-grandpa-label {font-size:.64rem;letter-spacing:.12em;border-color:#ffffff66;background:#ffffff12;}
 .tih-home .home-grandpa-copy {font-size:.97rem;line-height:1.8;}
 .tih-home .home-grandpa-topics li {font-size:.72rem;border-radius:8px;}
-.tih-home .home-grandpa .btn-primary {background:#fff;color:#1048a9;border-color:#fff;}
+.tih-home .home-grandpa .btn-primary {background:#fff;color:#a91028;border-color:#fff;}
 .tih-home .home-grandpa .btn-outline {color:#fff;border-color:#ffffff88;background:transparent;}
-.tih-home .home-grandpa-image {box-shadow:0 14px 35px #092d6c30;border-radius:20px;}
+.tih-home .home-grandpa-image {box-shadow:0 14px 35px #6c092f30;border-radius:20px;}
 /* Video, founder, and learning stories. */
 .tih-home .intro-video-wrap {max-width:960px;}
 .tih-home .intro-video-player {border-radius:24px;border:1px solid var(--hp-border);box-shadow:0 18px 44px #24364f18;}
@@ -63,10 +63,10 @@
 .tih-home .founder-band {background:var(--hp-soft);color:var(--hp-ink);}
 .tih-home .founder-band::before,.tih-home .founder-band::after {display:none;}
 .tih-home .founder-band > .container {padding:clamp(1.5rem,4vw,3rem);border:1px solid var(--hp-border);border-left:5px solid var(--hp-red);border-radius:24px;background:var(--hp-card);box-shadow:var(--hp-shadow);}
-.tih-home .founder-band .fb-portrait {border-radius:22px;border:1px solid #d8dfea;box-shadow:none;}
+.tih-home .founder-band .fb-portrait {border-radius:22px;border:1px solid #ead8df;box-shadow:none;}
 .tih-home .founder-band .fb-label {color:var(--hp-red);font-size:.67rem;letter-spacing:.13em;}
 .tih-home .founder-band .fb-quote {color:var(--hp-ink);font-size:clamp(1.05rem,1.7vw,1.35rem);line-height:1.75;}
-.tih-home .founder-band .fb-quote::before {color:#1456c930;}
+.tih-home .founder-band .fb-quote::before {color:#c9142d30;}
 .tih-home .founder-band .fb-name {color:var(--hp-ink);}
 .tih-home .founder-band .fb-role {color:var(--hp-copy);}
 .tih-home .founder-band .fb-btn {border-radius:12px;min-height:44px;font-size:.8rem;padding:.7rem 1rem;}
@@ -80,8 +80,8 @@
 .tih-home .spotlight-card .sc-header {background:var(--hp-card);color:var(--hp-ink);padding:1.5rem;border-top:3px solid var(--hp-red);}
 .tih-home .spotlight-card .sc-header h3 {color:var(--hp-ink);font-size:1.15rem;}
 .tih-home .spotlight-card .sc-header p {color:var(--hp-copy);font-size:.9rem;line-height:1.7;}
-.tih-home .spotlight-card .sc-badge {background:var(--hp-warm);border:1px solid #a1b7dc;color:var(--hp-red);font-size:.61rem;}
-.tih-home .spotlight-card:nth-child(odd) .sc-header {background:linear-gradient(135deg,#165dd8,#0c43a3);}
+.tih-home .spotlight-card .sc-badge {background:var(--hp-warm);border:1px solid #dca1ad;color:var(--hp-red);font-size:.61rem;}
+.tih-home .spotlight-card:nth-child(odd) .sc-header {background:linear-gradient(135deg,#d81631,#a30c2d);}
 .tih-home .spotlight-card:nth-child(odd) .sc-header :is(h3,p) {color:#fff;}
 .tih-home .spotlight-card:nth-child(odd) .sc-badge {color:#fff;background:#ffffff15;border-color:#ffffff66;}
 .tih-home .spotlight-card .sc-body {padding:1.4rem;}
@@ -94,11 +94,11 @@
 .tih-home :is(.programs-carousel,.news-carousel):not(.swiper-initialized) .swiper-wrapper {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;}
 .tih-home :is(.programs-carousel,.news-carousel):not(.swiper-initialized) .swiper-slide {width:auto;height:auto;min-width:0;}
 .tih-home :is(.programs-carousel,.news-carousel):not(.swiper-initialized) :is(.swiper-button-prev,.swiper-button-next,.swiper-pagination) {display:none;}
-.tih-home .home-program-help {padding:2rem;border-radius:24px;background:linear-gradient(135deg,#165dd8,#0d4099);}
-.tih-home .home-program-help .btn-primary {color:#1048aa;background:#fff;border-color:#fff;}
+.tih-home .home-program-help {padding:2rem;border-radius:24px;background:linear-gradient(135deg,#d81631,#990d2d);}
+.tih-home .home-program-help .btn-primary {color:#aa1028;background:#fff;border-color:#fff;}
 .tih-home .home-program-help .btn-outline {color:#fff;background:transparent;border-color:#ffffff88;}
 /* Courses, law and pathways use the same card and badge language. */
-.tih-home :is(.lh-stat,.home-law-facts>div,.home-law-next-facts li) {background:var(--hp-warm);border-color:#d5ddea;}
+.tih-home :is(.lh-stat,.home-law-facts>div,.home-law-next-facts li) {background:var(--hp-warm);border-color:#ead5da;}
 .tih-home :is(.lh-stat b,.home-law-facts dd,.home-law-next-open,.lh-seeall) {color:var(--hp-red);}
 .tih-home .lh-feat {padding:1.2rem;}
 .tih-home .lh-feat h3 {color:var(--hp-ink);}
@@ -115,27 +115,27 @@
 .tih-home .path-cta {background:var(--hp-red);border-color:var(--hp-red);border-radius:12px;font-size:.81rem;min-height:44px;}
 /* Events, newsletter and the final invitation. */
 .tih-home .event-card {padding:1.2rem;}
-.tih-home .event-date-box {border-radius:14px;background:var(--hp-warm);color:var(--hp-red);border:1px solid #cfdaed;}
+.tih-home .event-date-box {border-radius:14px;background:var(--hp-warm);color:var(--hp-red);border:1px solid #edcfd7;}
 .tih-home .event-date-month,.tih-home .event-date-day {color:var(--hp-red);}
 .tih-home .event-title {color:var(--hp-ink);font-size:.97rem;}
 .tih-home .event-meta {font-size:.82rem;color:var(--hp-copy);}
 .tih-home .event-tag {background:var(--hp-warm);color:var(--hp-red);font-size:.67rem;}
 .tih-home .newsletter-section-v2 {background:var(--hp-soft);box-shadow:none;}
 .tih-home .newsletter-section-v2::before,.tih-home .newsletter-section-v2::after {display:none;}
-.tih-home .newsletter-section-v2 .nl-inner {max-width:760px;padding:clamp(1.5rem,4vw,3rem);border-radius:30px;background:linear-gradient(135deg,#165dd8,#0d4099);text-align:left;}
+.tih-home .newsletter-section-v2 .nl-inner {max-width:760px;padding:clamp(1.5rem,4vw,3rem);border-radius:30px;background:linear-gradient(135deg,#d81631,#990d2d);text-align:left;}
 .tih-home .newsletter-section-v2 h2 {color:#fff;max-width:none;}
-.tih-home .newsletter-section-v2 .nl-inner>p {color:#e7f0ff;margin:1rem 0 1.5rem;font-size:.95rem;}
+.tih-home .newsletter-section-v2 .nl-inner>p {color:#ffe7ec;margin:1rem 0 1.5rem;font-size:.95rem;}
 .tih-home .nl-badge {color:#fff;border-color:#ffffff55;background:#ffffff15;font-size:.64rem;}
 .tih-home .nl-form-v2 {max-width:none;}
 .tih-home .nl-input-v2 {min-width:0;background:#fff;color:#14233c;border:1px solid #fff;min-height:50px;font-size:16px;}
 .tih-home .nl-input-v2::placeholder {color:#647187;}
 .tih-home .nl-btn-v2 {min-height:50px;background:#142644;color:#fff;font-size:.86rem;}
 .tih-home .nl-perks {justify-content:flex-start;gap:.6rem 1.2rem;}
-.tih-home .nl-perk {color:#e7f0ff;font-size:.73rem;}
+.tih-home .nl-perk {color:#ffe7ec;font-size:.73rem;}
 .tih-home .quick-panel {border:1px solid var(--hp-border) !important;}
-.tih-home .quick-panel.home-cta-primary {background:linear-gradient(135deg,#165dd8,#0d4099) !important;color:#fff;}
+.tih-home .quick-panel.home-cta-primary {background:linear-gradient(135deg,#d81631,#990d2d) !important;color:#fff;}
 .tih-home .home-cta-primary h3 {color:#fff;}
-.tih-home .home-cta-primary .btn-primary {background:#fff;color:#1049ac;border-color:#fff;}
+.tih-home .home-cta-primary .btn-primary {background:#fff;color:#ac1028;border-color:#fff;}
 .tih-home .home-cta-primary .btn-outline {background:transparent;color:#fff;border-color:#ffffff88;}
 .tih-home .site-footer {background:#14233c;background-image:none;border-top:4px solid var(--hp-red);padding-top:3rem;}
 .tih-home .site-footer .footer-heading {font-size:.68rem;letter-spacing:.12em;color:#fff;}
@@ -174,8 +174,8 @@
   .tih-home .home-resource span {font-size:.76rem;}
   .tih-home .home-program-help {padding:1.4rem;}
 }
-[data-theme="dark"] .tih-home {--hp-ink:#e8f0fc;--hp-copy:#c0cce0;--hp-border:#2b3b54;--hp-card:#14233a;--hp-soft:#0d192b;--hp-warm:#302132;--hp-red:#77a2ed;--hp-shadow:0 10px 30px #00000018;}
-[data-theme="dark"] .tih-home .home-section :is(.btn-primary,.btn-secondary),[data-theme="dark"] .tih-home :is(.sc-cta,.path-cta,.fb-btn-primary) {background:#0f4cb5;border-color:#0f4cb5;color:#fff;}
+[data-theme="dark"] .tih-home {--hp-ink:#e8f0fc;--hp-copy:#c0cce0;--hp-border:#2b3b54;--hp-card:#14233a;--hp-soft:#0d192b;--hp-warm:#302132;--hp-red:#ed778a;--hp-shadow:0 10px 30px #00000018;}
+[data-theme="dark"] .tih-home .home-section :is(.btn-primary,.btn-secondary),[data-theme="dark"] .tih-home :is(.sc-cta,.path-cta,.fb-btn-primary) {background:#b50f2b;border-color:#b50f2b;color:#fff;}
 @media(prefers-reduced-motion:reduce) {.tih-home .home-section * {scroll-behavior:auto;transition:none;}}
 /* Editorial section headers, with imagery reserved for people, projects and courses. */
 .tih-home .home-section .section-header>img,.tih-home .welcome-intro-grid>.reveal>img,.tih-home .lh-copy>.lh-img {display:none;}
@@ -192,7 +192,7 @@
 .tih-home #start-here .home-services-compact {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;align-items:start;}
 .tih-home #start-here .home-service-row {display:block;padding:0;overflow:hidden;border:1px solid var(--hp-border);border-radius:14px;background:var(--hp-card);box-shadow:none;}
 .tih-home #start-here .home-service-row::after {display:none;}
-.tih-home #start-here .home-service-row:hover {transform:none;box-shadow:none;border-color:#a0b3d4;}
+.tih-home #start-here .home-service-row:hover {transform:none;box-shadow:none;border-color:#d4a0ad;}
 .tih-home #start-here .home-service-row summary {display:grid;grid-template-columns:30px minmax(0,1fr) 20px;align-items:center;gap:.85rem;padding:.9rem 1rem;min-height:76px;cursor:pointer;list-style:none;}
 .tih-home #start-here .home-service-row summary::-webkit-details-marker {display:none;}
 .tih-home #start-here .home-service-row summary::marker {content:'';}
@@ -201,7 +201,7 @@
 .tih-home #start-here .home-service-category {display:block;font-size:.58rem;text-transform:uppercase;letter-spacing:.06em;line-height:1.5;font-weight:700;color:var(--hp-copy);margin:0 0 .2rem;}
 .tih-home #start-here .home-service-title {display:block;font-size:.94rem;font-weight:750;line-height:1.4;color:var(--hp-ink);}
 .tih-home #start-here .home-service-toggle {font-size:1.2rem;line-height:1;color:var(--hp-red);text-align:center;transition:transform .15s;}
-.tih-home #start-here .home-service-row[open] {border-color:#a0b3d4;}
+.tih-home #start-here .home-service-row[open] {border-color:#d4a0ad;}
 .tih-home #start-here .home-service-row[open] summary {background:var(--hp-warm);}
 .tih-home #start-here .home-service-row[open] .home-service-toggle {transform:rotate(45deg);}
 .tih-home #start-here .home-service-body {padding:.3rem 1rem .75rem 4.1rem;}
