@@ -10,11 +10,11 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <title>Grants for Liberian Businesses &amp; Organizations 2026–2027 | Tolbert Innovation Hub</title>
-  <meta name="description" content="Discover active grants for Liberian businesses, NGOs, institutes, and organizations in 2026–2027. TIH helps you find, prepare, and apply for grants from USAID, World Bank, EU, AfDB, UN agencies, Canada Fund, Tony Elumelu Foundation, and more. All free." />
+  <meta name="description" content="Discover grant opportunities and funding programmes for Liberian businesses, NGOs, institutes, and organizations in 2026–2027. TIH helps you find, prepare, and apply for grants from USAID, World Bank, EU, AfDB, UN agencies, Canada Fund, Tony Elumelu Foundation, and more. All free." />
   <meta name="keywords" content="grants Liberia 2026 2027, funding NGO Liberia, EU Spotlight Liberia, World Bank WARDIP2 Liberia, AfDB YEIB Liberia, Canada Fund CFLI Liberia, Tony Elumelu Liberia, UNDP grants Liberia, MSME grants Liberia 2026" />
   <meta name="author" content="Tolbert Innovation Hub" />
   <meta property="og:title" content="Grants for Liberian Businesses &amp; Organizations 2026–2027 | TIH" />
-  <meta property="og:description" content="Active 2026–2027 grants for Liberian businesses, NGOs, and organizations. TIH guides you through every application, completely free." />
+  <meta property="og:description" content="Grant opportunities and funding programmes for Liberian businesses, NGOs, and organizations. TIH guides you through every application, completely free." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.tolbertinnovationhub.org/grants" />
   <meta property="og:image" content="assets/tih-logo.png" />
@@ -317,6 +317,18 @@
       .gc-footer { flex-direction: column; align-items: stretch; }
       .amount-pill { margin-left: 0; text-align: center; }
     }
+
+    .grants-grid { grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr)); }
+    .grant-card { min-width:0; }
+    .grant-card[hidden] { display:none !important; }
+    .gc-mval, .gc-name { overflow-wrap:anywhere; }
+    .grant-checked { color:#4b5563; font-size:0.75rem; margin-top:1rem; }
+    .grant-search-tools { display:flex; flex-wrap:wrap; gap:1rem; align-items:end; margin:1.5rem 0; }
+    .grant-search-tools[hidden] { display:none; }
+    .grant-search-tools > div { flex:1 1 220px; }
+    .grant-search-tools label { display:block; font-weight:600; margin-bottom:0.4rem; }
+    .grant-search-tools input, .grant-search-tools select { width:100%; min-height:44px; padding:0.65rem; font:inherit; border:1px solid var(--border); border-radius:8px; background:var(--surface); color:var(--text); }
+    .grant-search-tools button { min-height:44px; cursor:pointer; border:0; }
   </style>
 </head>
 <body>
@@ -366,12 +378,12 @@
           <div class="hero-text">
             <div class="hero-live-badge hm-fade hm-d1">
               <span class="live-dot"></span>
-              Grant Directory, Liberia 2026–2027 · Updated June 2026
+              Grant Directory, Liberia 2026–2027 · Updated 16 October 2026
             </div>
             <h1 class="hm-fade hm-d2">Access <span class="hm-red">2026–2027 Funding</span> for Your Business, NGO &amp; <span class="hm-blue">Organization</span></h1>
             <p class="lead hm-fade hm-d3">
-              Tolbert Innovation Hub curates verified active grants from the EU, World Bank, AfDB, USAID,
-              UNDP, Canada, Tony Elumelu Foundation, and more, helping Liberian businesses, NGOs,
+              Tolbert Innovation Hub brings together grants and funding programmes relevant to Liberia,
+              with official links and application guidance for businesses, NGOs,
               institutes, and organizations find, prepare, and apply at no cost.
             </p>
             <div class="hero-actions hm-fade hm-d4">
@@ -379,10 +391,10 @@
               <a href="#grant-inquiry" class="btn btn-hero-blue btn-lg">Get TIH Support: Free</a>
             </div>
             <div class="impact-inline hm-fade hm-d5" style="margin-top:2.4rem;">
-              <div class="impact-item"><span class="impact-number" data-target="10" data-suffix="+">0</span><p class="impact-label">Active Grants</p></div>
-              <div class="impact-item"><span class="impact-number" data-prefix="$" data-target="200" data-suffix="M+">$0</span><p class="impact-label">Funding Pool</p></div>
+              <div class="impact-item"><span class="impact-number" data-target="22">22</span><p class="impact-label">Funding Listings</p></div>
+              <div class="impact-item"><span class="impact-number" data-target="10">10</span><p class="impact-label">New Additions</p></div>
               <div class="impact-item"><span class="impact-number" data-target="100" data-suffix="%">0</span><p class="impact-label">Free TIH Help</p></div>
-              <div class="impact-item"><span class="impact-number" data-target="12" data-suffix="+">0</span><p class="impact-label">Global Donors</p></div>
+              <div class="impact-item"><span class="impact-number" data-target="12">12</span><p class="impact-label">Programme Resources</p></div>
             </div>
           </div>
           <div class="hero-visual hm-visual" aria-label="Grant funders">
@@ -412,6 +424,8 @@
           <button class="filter-btn" data-filter="digital">Digital / Tech</button>
           <button class="filter-btn" data-filter="women">Women</button>
           <button class="filter-btn" data-filter="env">Environment</button>
+          <button class="filter-btn" data-filter="media">Journalism</button>
+          <button class="filter-btn" data-filter="inclusion">Disability inclusion</button>
         </div>
       </div>
     </div>
@@ -420,26 +434,144 @@
     <section class="section" style="padding-top:2rem;">
       <div class="container">
         <div class="section-header" style="margin-bottom:0.5rem;">
-          <p class="section-label">Active Grants 2026–2027</p>
-          <h2>Current Funding Opportunities for Liberian Entities</h2>
-          <p class="section-intro">All listings are sourced from official donor records and verified for 2026–2027. Click <strong>"Get TIH Help"</strong> on any grant to have our team assist your application at no cost.</p>
+          <p class="section-label">Grants &amp; Funding Programmes</p>
+          <h2>Find Funding Relevant to Liberia</h2>
+          <p class="section-intro">Ten additions were checked against official provider sources on 16 October 2026. International eligibility includes Liberia where the stated criteria are met. Older listings are programme resources with current intake unconfirmed, except calls marked closed. Programme budgets are not individual grant awards. Click <strong>"Get TIH Help"</strong> on any grant to have our team assist your application at no cost.</p>
         </div>
 
+
+        <div class="grant-search-tools" hidden>
+          <div><label for="grant-search">Search the grant database</label><input id="grant-search" type="search" placeholder="Funder, project, amount, or keyword" /></div>
+          <div><label for="grant-status">Application route</label><select id="grant-status"><option value="all">All routes</option><option value="rolling">Rolling applications</option><option value="deadline">Published deadlines</option><option value="urgent">Urgent / case-based</option><option value="monthly">Monthly windows</option><option value="check">Confirm current call</option><option value="closed">Closed rounds</option></select></div>
+          <button type="button" class="btn-apply" id="grant-reset">Reset filters</button>
+        </div>
+        <p id="grant-results" role="status" aria-live="polite">22 funding listings</p>
         <div class="grants-grid" id="grantsGrid">
+          <article class="grant-card" data-categories="ngo youth women env" data-status="rolling" data-checked="2026-10-16">
+            <div class="gc-header"><div class="gc-icon" style="background:#dbeafe;" aria-hidden="true">🌍</div><div class="gc-title-wrap"><p class="gc-funder">The Pollination Project</p><h3 class="gc-name">The Pollination Project: Seed Grants</h3></div></div>
+            <div class="gc-tags"><span class="gc-tag t-ngo">NGO / CSO</span><span class="gc-tag t-youth">Youth</span><span class="gc-tag t-women">Women</span><span class="gc-tag t-env">Environment</span><span class="gc-tag t-roll">Rolling applications</span></div>
+            <div class="gc-body"><p class="gc-desc">Seed funding for charitable work already in planning or underway. First-time grantees only. No personal gain, political campaigns, or animal-agriculture promotion; review the full exclusions.</p><div class="gc-meta"><div class="gc-row"><span class="gc-mlabel">Amount:</span><span class="gc-mval">Up to US$500</span></div>
+<div class="gc-row"><span class="gc-mlabel">Focus:</span><span class="gc-mval">Volunteer-led community and social-change projects</span></div>
+<div class="gc-row"><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Individuals, informal groups, and early-stage nonprofits anywhere, including Liberia. Project budget under US$10,000; organization budget under US$50,000; no paid staff.</span></div>
+<div class="gc-row"><span class="gc-mlabel">Timing:</span><span class="gc-mval">Rolling review with a brief year-end closure; apply online in English with a referee.</span></div>
+</div><p class="grant-checked">Official sources checked: 16 October 2026</p></div>
+            <div class="gc-footer"><a href="https://thepollinationproject.org/apply/" target="_blank" rel="noopener noreferrer" class="btn-apply">Official details / apply ↗</a><a href="#grant-inquiry" class="btn-tih">Get TIH Help</a></div>
+          </article>
+
+          <article class="grant-card" data-categories="ngo env" data-status="rolling" data-checked="2026-10-16">
+            <div class="gc-header"><div class="gc-icon" style="background:#dbeafe;" aria-hidden="true">🌍</div><div class="gc-title-wrap"><p class="gc-funder">The Rufford Foundation</p><h3 class="gc-name">Rufford Small Grants for Nature Conservation</h3></div></div>
+            <div class="gc-tags"><span class="gc-tag t-ngo">NGO / CSO</span><span class="gc-tag t-env">Environment</span><span class="gc-tag t-roll">No fixed deadline</span></div>
+            <div class="gc-body"><p class="gc-desc">Supports conservation projects with clear practical benefits. Three references are required. Does not fund undergraduate students, academic tuition, or projects already started.</p><div class="gc-meta"><div class="gc-row"><span class="gc-mlabel">Amount:</span><span class="gc-mval">First grant: up to £7,000</span></div>
+<div class="gc-row"><span class="gc-mlabel">Focus:</span><span class="gc-mval">Practical nature conservation and field projects</span></div>
+<div class="gc-row"><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Liberia is an eligible project country. Priority for early-career conservationists; a suitable NGO or university must receive and manage the grant.</span></div>
+<div class="gc-row"><span class="gc-mlabel">Timing:</span><span class="gc-mval">Applications accepted throughout the year. One application per 12 months; allow time for review before starting.</span></div>
+</div><p class="grant-checked">Official sources checked: 16 October 2026</p><p class="gc-desc"><a href="https://apply.ruffordsmallgrants.org/help/eligibility" target="_blank" rel="noopener noreferrer">Official eligibility / guidelines</a></p></div>
+            <div class="gc-footer"><a href="https://apply.ruffordsmallgrants.org/" target="_blank" rel="noopener noreferrer" class="btn-apply">Official details / apply ↗</a><a href="#grant-inquiry" class="btn-tih">Get TIH Help</a></div>
+          </article>
+
+          <article class="grant-card" data-categories="ngo media" data-status="deadline" data-checked="2026-10-16">
+            <div class="gc-header"><div class="gc-icon" style="background:#dbeafe;" aria-hidden="true">🌍</div><div class="gc-title-wrap"><p class="gc-funder">National Endowment for Democracy (NED)</p><h3 class="gc-name">Democracy and Human Rights Project Grants</h3></div></div>
+            <div class="gc-tags"><span class="gc-tag t-ngo">NGO / CSO</span><span class="gc-tag t-dig">Journalism</span><span class="gc-tag t-roll">Next deadline: 27 Jan 2027</span></div>
+            <div class="gc-body"><p class="gc-desc">Submit an organizational profile, project proposal, narrative, budget, and registration documents or an explanation of unregistered status through NED’s official portal.</p><div class="gc-meta"><div class="gc-row"><span class="gc-mlabel">Amount:</span><span class="gc-mval">Project-specific budget</span></div>
+<div class="gc-row"><span class="gc-mlabel">Focus:</span><span class="gc-mval">Civic education, accountability, independent media, and democratic institutions</span></div>
+<div class="gc-row"><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Nongovernmental groups abroad, including qualifying Liberian civil-society organizations. Not an individual scholarship or business-startup grant.</span></div>
+<div class="gc-row"><span class="gc-mlabel">Timing:</span><span class="gc-mval">Published next submission deadline: 27 January 2027; another is 28 June 2027. Proposals received after a deadline move to the following board review.</span></div>
+</div><p class="grant-checked">Official sources checked: 16 October 2026</p></div>
+            <div class="gc-footer"><a href="https://www.ned.org/apply-for-grant/en/" target="_blank" rel="noopener noreferrer" class="btn-apply">Official details / apply ↗</a><a href="#grant-inquiry" class="btn-tih">Get TIH Help</a></div>
+          </article>
+
+          <article class="grant-card" data-categories="ngo women" data-status="urgent" data-checked="2026-10-16">
+            <div class="gc-header"><div class="gc-icon" style="background:#dbeafe;" aria-hidden="true">🌍</div><div class="gc-title-wrap"><p class="gc-funder">Urgent Action Fund–Africa</p><h3 class="gc-name">Rapid Response Grants for Women’s Rights</h3></div></div>
+            <div class="gc-tags"><span class="gc-tag t-ngo">NGO / CSO</span><span class="gc-tag t-women">Women</span><span class="gc-tag t-roll">Urgent response route</span></div>
+            <div class="gc-body"><p class="gc-desc">Supports unexpected opportunities or threats requiring prompt action. This route is for urgent interventions, rather than routine long-term development projects.</p><div class="gc-meta"><div class="gc-row"><span class="gc-mlabel">Amount:</span><span class="gc-mval">Based on eligible request</span></div>
+<div class="gc-row"><span class="gc-mlabel">Focus:</span><span class="gc-mval">Unplanned, time-sensitive action advancing women’s rights in Africa</span></div>
+<div class="gc-row"><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Qualifying African women’s-rights activists and organizations, including Liberia; must meet the fund’s feminist and rapid-response criteria.</span></div>
+<div class="gc-row"><span class="gc-mlabel">Timing:</span><span class="gc-mval">Use the official rapid-response form. The provider describes actions to be implemented within three months; confirm current grant terms.</span></div>
+</div><p class="grant-checked">Official sources checked: 16 October 2026</p></div>
+            <div class="gc-footer"><a href="https://www.uaf-africa.org/apply-for-a-grant/" target="_blank" rel="noopener noreferrer" class="btn-apply">Official details / apply ↗</a><a href="#grant-inquiry" class="btn-tih">Get TIH Help</a></div>
+          </article>
+
+          <article class="grant-card" data-categories="ngo digital media" data-status="urgent" data-checked="2026-10-16">
+            <div class="gc-header"><div class="gc-icon" style="background:#dbeafe;" aria-hidden="true">🌍</div><div class="gc-title-wrap"><p class="gc-funder">Front Line Defenders</p><h3 class="gc-name">Protection Grants for Human Rights Defenders</h3></div></div>
+            <div class="gc-tags"><span class="gc-tag t-ngo">NGO / CSO</span><span class="gc-tag t-dig">Digital / Tech</span><span class="gc-tag t-dig">Journalism</span><span class="gc-tag t-roll">Protection application route</span></div>
+            <div class="gc-body"><p class="gc-desc">Practical protection support connected to peaceful human-rights work. Grants generally do not cover the whole budget. Apply directly through the provider’s secure form.</p><div class="gc-meta"><div class="gc-row"><span class="gc-mlabel">Amount:</span><span class="gc-mval">Up to €7,500</span></div>
+<div class="gc-row"><span class="gc-mlabel">Focus:</span><span class="gc-mval">Physical and digital security, legal and eligible medical protection costs</span></div>
+<div class="gc-row"><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Human-rights defenders at risk and their organizations, including eligible cases in Liberia. General advocacy projects and ordinary office expenses are excluded.</span></div>
+<div class="gc-row"><span class="gc-mlabel">Timing:</span><span class="gc-mval">Case-based applications through the official protection-grants page; no annual competition deadline is stated there.</span></div>
+</div><p class="grant-checked">Official sources checked: 16 October 2026</p></div>
+            <div class="gc-footer"><a href="https://www.frontlinedefenders.org/en/programme/protection-grants" target="_blank" rel="noopener noreferrer" class="btn-apply">Official details / apply ↗</a><a href="#grant-inquiry" class="btn-tih">Get TIH Help</a></div>
+          </article>
+
+          <article class="grant-card" data-categories="business ngo youth digital env" data-status="check" data-checked="2026-10-16">
+            <div class="gc-header"><div class="gc-icon" style="background:#dbeafe;" aria-hidden="true">🌍</div><div class="gc-title-wrap"><p class="gc-funder">The Roddenberry Foundation</p><h3 class="gc-name">The Catalyst Fund</h3></div></div>
+            <div class="gc-tags"><span class="gc-tag t-biz">Business</span><span class="gc-tag t-ngo">NGO / CSO</span><span class="gc-tag t-youth">Youth</span><span class="gc-tag t-dig">Digital / Tech</span><span class="gc-tag t-env">Environment</span><span class="gc-tag t-roll">Confirm current portal intake</span></div>
+            <div class="gc-body"><p class="gc-desc">Funding for ideas or early-stage projects that challenge conventional approaches to a problem. The official portal describes the award; confirm intake before preparing a full submission.</p><div class="gc-meta"><div class="gc-row"><span class="gc-mlabel">Amount:</span><span class="gc-mval">US$2,500–US$15,000</span></div>
+<div class="gc-row"><span class="gc-mlabel">Focus:</span><span class="gc-mval">Bold ideas and early-stage social-impact projects</span></div>
+<div class="gc-row"><span class="gc-mlabel">Eligible:</span><span class="gc-mval">The provider accepts ideas from anyone, anywhere, including Liberia. Review the current applicant and prior-grantee restrictions.</span></div>
+<div class="gc-row"><span class="gc-mlabel">Timing:</span><span class="gc-mval">Check the Catalyst Fund portal and current FAQ for application availability and reapplication rules.</span></div>
+</div><p class="grant-checked">Official sources checked: 16 October 2026</p></div>
+            <div class="gc-footer"><a href="https://apply.roddenberryfoundation.org/app/catalyst" target="_blank" rel="noopener noreferrer" class="btn-apply">Official details / apply ↗</a><a href="#grant-inquiry" class="btn-tih">Get TIH Help</a></div>
+          </article>
+
+          <article class="grant-card" data-categories="ngo business digital inclusion" data-status="monthly" data-checked="2026-10-16">
+            <div class="gc-header"><div class="gc-icon" style="background:#dbeafe;" aria-hidden="true">🌍</div><div class="gc-title-wrap"><p class="gc-funder">The Awesome Foundation: Disability Chapter</p><h3 class="gc-name">Awesome Disability Microgrants</h3></div></div>
+            <div class="gc-tags"><span class="gc-tag t-ngo">NGO / CSO</span><span class="gc-tag t-biz">Business</span><span class="gc-tag t-dig">Digital / Tech</span><span class="gc-tag t-ngo">Disability inclusion</span><span class="gc-tag t-roll">Monthly: apply on days 1–10</span></div>
+            <div class="gc-body"><p class="gc-desc">Funds a specific disability-related project, such as access, arts, technology, or community inclusion. Does not cover personal medical needs, rent, or similar personal bills.</p><div class="gc-meta"><div class="gc-row"><span class="gc-mlabel">Amount:</span><span class="gc-mval">US$1,000</span></div>
+<div class="gc-row"><span class="gc-mlabel">Focus:</span><span class="gc-mval">Projects benefiting disabled people</span></div>
+<div class="gc-row"><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Individuals, nonprofits, and companies worldwide, including Liberia. Priority for disabled-led projects with meaningful involvement of disabled people.</span></div>
+<div class="gc-row"><span class="gc-mlabel">Timing:</span><span class="gc-mval">Applications in English are accepted from the 1st through the 10th of each month. Outside that window, prepare for the next month.</span></div>
+</div><p class="grant-checked">Official sources checked: 16 October 2026</p></div>
+            <div class="gc-footer"><a href="https://www.awesomefoundation.org/en/chapters/disability" target="_blank" rel="noopener noreferrer" class="btn-apply">Official details / apply ↗</a><a href="#grant-inquiry" class="btn-tih">Get TIH Help</a></div>
+          </article>
+
+          <article class="grant-card" data-categories="media ngo" data-status="rolling" data-checked="2026-10-16">
+            <div class="gc-header"><div class="gc-icon" style="background:#dbeafe;" aria-hidden="true">🌍</div><div class="gc-title-wrap"><p class="gc-funder">Pulitzer Center</p><h3 class="gc-name">Global Reporting Grants</h3></div></div>
+            <div class="gc-tags"><span class="gc-tag t-dig">Journalism</span><span class="gc-tag t-ngo">NGO / CSO</span><span class="gc-tag t-roll">Rolling applications</span></div>
+            <div class="gc-body"><p class="gc-desc">Supports the hard costs of a defined reporting project. This is journalism funding, rather than an NGO advocacy, academic research, or general business grant.</p><div class="gc-meta"><div class="gc-row"><span class="gc-mlabel">Amount:</span><span class="gc-mval">Reporting budget assessed individually</span></div>
+<div class="gc-row"><span class="gc-mlabel">Focus:</span><span class="gc-mval">Independent journalism on important underreported issues</span></div>
+<div class="gc-row"><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Staff and freelance journalists worldwide, including Liberia, across reporting formats. A convincing publication and distribution plan is required.</span></div>
+<div class="gc-row"><span class="gc-mlabel">Timing:</span><span class="gc-mval">No fixed deadline; grants awarded on a rolling basis. Apply through the official grant page with a proposal and budget.</span></div>
+</div><p class="grant-checked">Official sources checked: 16 October 2026</p></div>
+            <div class="gc-footer"><a href="https://pulitzercenter.org/grants-fellowships/opportunities-journalists/global-reporting-grants" target="_blank" rel="noopener noreferrer" class="btn-apply">Official details / apply ↗</a><a href="#grant-inquiry" class="btn-tih">Get TIH Help</a></div>
+          </article>
+
+          <article class="grant-card" data-categories="media digital" data-status="rolling" data-checked="2026-10-16">
+            <div class="gc-header"><div class="gc-icon" style="background:#dbeafe;" aria-hidden="true">🌍</div><div class="gc-title-wrap"><p class="gc-funder">Pulitzer Center</p><h3 class="gc-name">AI and Surveillance Reporting Grants</h3></div></div>
+            <div class="gc-tags"><span class="gc-tag t-dig">Journalism</span><span class="gc-tag t-dig">Digital / Tech</span><span class="gc-tag t-roll">Rolling applications</span></div>
+            <div class="gc-body"><p class="gc-desc">Funds in-depth reporting costs for stories about AI’s impact on communities. Requires a clear story, budget, and distribution plan. Does not fund startup seed money, equipment purchases, or advocacy campaigns.</p><div class="gc-meta"><div class="gc-row"><span class="gc-mlabel">Amount:</span><span class="gc-mval">Reporting budget assessed individually</span></div>
+<div class="gc-row"><span class="gc-mlabel">Focus:</span><span class="gc-mval">Accountability journalism on AI and surveillance impacts</span></div>
+<div class="gc-row"><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Staff and freelance journalists worldwide, including Liberia. Reporting from Africa and the Global South is particularly welcome.</span></div>
+<div class="gc-row"><span class="gc-mlabel">Timing:</span><span class="gc-mval">Applications reviewed on a rolling basis. This is a reporting grant, separate from AI Accountability Fellowships.</span></div>
+</div><p class="grant-checked">Official sources checked: 16 October 2026</p></div>
+            <div class="gc-footer"><a href="https://pulitzercenter.org/grants-fellowships/opportunities-journalists/ai-reporting-grants" target="_blank" rel="noopener noreferrer" class="btn-apply">Official details / apply ↗</a><a href="#grant-inquiry" class="btn-tih">Get TIH Help</a></div>
+          </article>
+
+          <article class="grant-card" data-categories="ngo agri" data-status="check" data-checked="2026-10-16">
+            <div class="gc-header"><div class="gc-icon" style="background:#dbeafe;" aria-hidden="true">🌍</div><div class="gc-title-wrap"><p class="gc-funder">Embassy of Japan accredited to Liberia</p><h3 class="gc-name">Grant Assistance for Grassroots Human Security Projects</h3></div></div>
+            <div class="gc-tags"><span class="gc-tag t-ngo">NGO / CSO</span><span class="gc-tag t-agri">Agriculture</span><span class="gc-tag t-roll">Programme: confirm current call</span></div>
+            <div class="gc-body"><p class="gc-desc">Japan’s GGHSP programme explicitly includes Liberia alongside Ghana and Sierra Leone. Review the country-specific guidelines and application form through the embassy.</p><div class="gc-meta"><div class="gc-row"><span class="gc-mlabel">Amount:</span><span class="gc-mval">Confirm ceiling in the current call</span></div>
+<div class="gc-row"><span class="gc-mlabel">Focus:</span><span class="gc-mval">Community infrastructure, basic education, health, water, and sanitation</span></div>
+<div class="gc-row"><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Eligible nonprofit organizations, local authorities, education and health institutions in Liberia. The published guidelines require NGOs to have more than three years of registration history.</span></div>
+<div class="gc-row"><span class="gc-mlabel">Timing:</span><span class="gc-mval">The linked guidance is for 2025, not confirmation of a new open round. Ask the embassy for the current Liberia intake, budget ceiling, and submission instructions.</span></div>
+</div><p class="grant-checked">Official sources checked: 16 October 2026</p><p class="gc-desc"><a href="https://www.gh.emb-japan.go.jp/files/100171807.pdf" target="_blank" rel="noopener noreferrer">Official eligibility / guidelines</a></p></div>
+            <div class="gc-footer"><a href="https://www.gh.emb-japan.go.jp/jointad/lr/en/index.html" target="_blank" rel="noopener noreferrer" class="btn-apply">Official details / apply ↗</a><a href="#grant-inquiry" class="btn-tih">Get TIH Help</a></div>
+          </article>
+
+
 
           <!-- 1. EU Spotlight Initiative -->
-          <article class="grant-card" data-categories="ngo women">
+          <article class="grant-card" data-status="check" data-categories="ngo women">
             <div class="gc-header">
               <div class="gc-icon" style="background:#ede9fe;">🇪🇺</div>
               <div class="gc-title-wrap">
-                <p class="gc-funder">European Union, Liberia <span class="new-badge">NEW 2026</span></p>
+                <p class="gc-funder">European Union, Liberia <span class="new-badge">PROGRAMME</span></p>
                 <h3 class="gc-name">EU Spotlight Initiative: Women &amp; Girls Protection</h3>
               </div>
             </div>
             <div class="gc-tags">
               <span class="gc-tag t-ngo">NGO / CSO</span>
               <span class="gc-tag t-women">Women</span>
-              <span class="gc-tag t-open">Signed March 2026</span>
+              <span class="gc-tag t-soon">Check current call</span>
             </div>
             <div class="gc-body">
               <p class="gc-desc">The EU signed a $13.6M Spotlight Initiative with Liberia (March 2026) to eliminate violence against women and girls. Funds CSOs and NGOs working on legislation, policy reform, economic empowerment, service provision, and strengthening women's movements.</p>
@@ -451,24 +583,24 @@
               </div>
             </div>
             <div class="gc-footer">
-              <a href="https://www.eeas.europa.eu/delegations/liberia_en" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via EU ↗</a>
+              <a href="https://www.eeas.europa.eu/delegations/liberia_en" target="_blank" rel="noopener noreferrer" class="btn-apply">Official programme ↗</a>
               <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
               <span class="amount-pill">$13.6M</span>
             </div>
           </article>
 
           <!-- 2. EU CSO Capacity / Support Measures -->
-          <article class="grant-card" data-categories="ngo">
+          <article class="grant-card" data-status="check" data-categories="ngo">
             <div class="gc-header">
               <div class="gc-icon" style="background:#dbeafe;">🇪🇺</div>
               <div class="gc-title-wrap">
-                <p class="gc-funder">European Union, Liberia <span class="new-badge">NEW 2026</span></p>
+                <p class="gc-funder">European Union, Liberia <span class="new-badge">PROGRAMME</span></p>
                 <h3 class="gc-name">EU CSO Capacity &amp; Governance Support Measures</h3>
               </div>
             </div>
             <div class="gc-tags">
               <span class="gc-tag t-ngo">NGO / CSO</span>
-              <span class="gc-tag t-open">Active 2026</span>
+              <span class="gc-tag t-soon">Check current call</span>
             </div>
             <div class="gc-body">
               <p class="gc-desc">The EU's $7.3M Support Measures agreement (signed March 2026) builds the capacity of civil society organizations to reinforce social cohesion, public discourse, and governance oversight in Liberia. Complements the EU Spotlight Initiative.</p>
@@ -480,18 +612,18 @@
               </div>
             </div>
             <div class="gc-footer">
-              <a href="https://www.eeas.europa.eu/delegations/liberia_en" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via EU ↗</a>
+              <a href="https://www.eeas.europa.eu/delegations/liberia_en" target="_blank" rel="noopener noreferrer" class="btn-apply">Official programme ↗</a>
               <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
               <span class="amount-pill">$7.3M</span>
             </div>
           </article>
 
           <!-- 3. AfDB YEIB -->
-          <article class="grant-card" data-categories="business youth agri digital">
+          <article class="grant-card" data-status="check" data-categories="business youth agri digital">
             <div class="gc-header">
               <div class="gc-icon" style="background:#fce7f3;">🏦</div>
               <div class="gc-title-wrap">
-                <p class="gc-funder">African Development Bank (AfDB) <span class="new-badge">LIVE 2026</span></p>
+                <p class="gc-funder">African Development Bank (AfDB) <span class="new-badge">PROGRAMME</span></p>
                 <h3 class="gc-name">Youth Entrepreneurship Investment Bank (YEIB)</h3>
               </div>
             </div>
@@ -500,7 +632,7 @@
               <span class="gc-tag t-biz">Business / MSME</span>
               <span class="gc-tag t-agri">Agriculture</span>
               <span class="gc-tag t-dig">Digital</span>
-              <span class="gc-tag t-open">Operations 2026</span>
+              <span class="gc-tag t-soon">Check current call</span>
             </div>
             <div class="gc-body">
               <p class="gc-desc">Launched July 2025, the AfDB Youth Entrepreneurship Investment Bank (YEIB) begins operations in 2026. The $16M fund targets youth-led agribusinesses, digital services, mining, and tourism in Liberia, aiming to support 30,000+ youth businesses over 17 years.</p>
@@ -519,18 +651,18 @@
           </article>
 
           <!-- 4. World Bank WARDIP2 -->
-          <article class="grant-card" data-categories="business digital">
+          <article class="grant-card" data-status="check" data-categories="business digital">
             <div class="gc-header">
               <div class="gc-icon" style="background:#dbeafe;">🌐</div>
               <div class="gc-title-wrap">
-                <p class="gc-funder">World Bank Group <span class="new-badge">APPROVED 2026</span></p>
+                <p class="gc-funder">World Bank Group <span class="new-badge">PROGRAMME</span></p>
                 <h3 class="gc-name">West Africa Regional Digital Integration Program (WARDIP2)</h3>
               </div>
             </div>
             <div class="gc-tags">
               <span class="gc-tag t-dig">Digital / Tech</span>
               <span class="gc-tag t-biz">Business / MSME</span>
-              <span class="gc-tag t-open">Approved March 2026</span>
+              <span class="gc-tag t-soon">Check current call</span>
             </div>
             <div class="gc-body">
               <p class="gc-desc">The World Bank approved $137M in March 2026 for Benin, Liberia &amp; Sierra Leone under WARDIP2. The Liberia component strengthens digital infrastructure, creates jobs, and supports digital businesses and startups to scale in the digital economy.</p>
@@ -549,7 +681,7 @@
           </article>
 
           <!-- 5. UNDP MSME Growth Accelerator Cohort V -->
-          <article class="grant-card" data-categories="business youth">
+          <article class="grant-card" data-status="check" data-categories="business youth">
             <div class="gc-header">
               <div class="gc-icon" style="background:#fef3c7;"></div>
               <div class="gc-title-wrap">
@@ -560,7 +692,7 @@
             <div class="gc-tags">
               <span class="gc-tag t-biz">Business / MSME</span>
               <span class="gc-tag t-youth">Youth</span>
-              <span class="gc-tag t-open">Active 2026</span>
+              <span class="gc-tag t-soon">Check current call</span>
             </div>
             <div class="gc-body">
               <p class="gc-desc">Launched July 2025, Cohort V of the UNDP + MoCI MSME Growth Accelerator selected 18 businesses (from 209 applications) for co-financing grants, mentorship, and technical assistance. The program has disbursed $2.3M+ since 2021. Watch for Cohort VI in late 2026.</p>
@@ -572,44 +704,44 @@
               </div>
             </div>
             <div class="gc-footer">
-              <a href="https://www.lr.undp.org" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via UNDP ↗</a>
+              <a href="https://www.undp.org/liberia" target="_blank" rel="noopener noreferrer" class="btn-apply">Official programme ↗</a>
               <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
               <span class="amount-pill">Grants + Mentorship</span>
             </div>
           </article>
 
           <!-- 6. Canada Fund CFLI 2026 -->
-          <article class="grant-card" data-categories="ngo business">
+          <article class="grant-card" data-status="closed" data-categories="ngo business">
             <div class="gc-header">
               <div class="gc-icon" style="background:#fee2e2;">🍁</div>
               <div class="gc-title-wrap">
-                <p class="gc-funder">Government of Canada <span class="new-badge">OPEN 2026</span></p>
+                <p class="gc-funder">Government of Canada <span class="new-badge">CLOSED</span></p>
                 <h3 class="gc-name">Canada Fund for Local Initiatives (CFLI), Liberia 2026</h3>
               </div>
             </div>
             <div class="gc-tags">
               <span class="gc-tag t-ngo">NGO / CSO</span>
               <span class="gc-tag t-biz">Business</span>
-              <span class="gc-tag t-open">April 2026 – March 2027</span>
+              <span class="gc-tag t-soon">2026 round closed</span>
             </div>
             <div class="gc-body">
-              <p class="gc-desc">Canada's CFLI 2026 Liberia call is officially open, funding small-to-medium projects aligned with Canadian development priorities. Thematic focus areas include governance, peace, inclusive growth, gender equality, human dignity, and climate action.</p>
+              <p class="gc-desc">Canada’s CFLI 2026 Liberia call is closed. It supported small-to-medium projects aligned with Canadian development priorities. Thematic focus areas include governance, peace, inclusive growth, gender equality, human dignity, and climate action.</p>
               <div class="gc-meta">
                 <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">CAD $20,000 – $49,000 per project</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Governance, gender equality, inclusive growth, climate</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">Local NGOs, academic institutions, government agencies</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Period:</span><span class="gc-mval">April 1, 2026 – March 31, 2027</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Period:</span><span class="gc-mval">2026 call closed; monitor the official page for a new call</span></div>
               </div>
             </div>
             <div class="gc-footer">
-              <a href="https://www.international.gc.ca/world-monde/funding-financement/cfli-fcil/liberia.aspx" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via Canada ↗</a>
+              <a href="https://www.international.gc.ca/world-monde/funding-financement/cfli-fcil/liberia.aspx" target="_blank" rel="noopener noreferrer" class="btn-apply">Official programme ↗</a>
               <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
               <span class="amount-pill">CAD $20K–$49K</span>
             </div>
           </article>
 
           <!-- 7. Tony Elumelu Foundation 2026 -->
-          <article class="grant-card" data-categories="business youth">
+          <article class="grant-card" data-status="closed" data-categories="business youth">
             <div class="gc-header">
               <div class="gc-icon" style="background:#fef3c7;">🌍</div>
               <div class="gc-title-wrap">
@@ -620,7 +752,7 @@
             <div class="gc-tags">
               <span class="gc-tag t-biz">Business</span>
               <span class="gc-tag t-youth">Youth</span>
-              <span class="gc-tag t-open">Jan – Mar 2026</span>
+              <span class="gc-tag t-soon">2026 round closed</span>
             </div>
             <div class="gc-body">
               <p class="gc-desc">The Tony Elumelu Foundation 2026 Entrepreneurship Programme offers $5,000 non-refundable seed capital, 12 weeks of business training, and mentorship to entrepreneurs across all 54 African countries, including Liberia. Since 2015, TEF has funded 24,000+ entrepreneurs generating $4.2B+ in revenue.</p>
@@ -628,22 +760,22 @@
                 <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">$5,000 non-refundable seed capital + mentorship</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Any sector, business idea or early-stage enterprise</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">African citizen, age 18+, business 0–3 years old</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">Annual, Jan 1 to Mar 1 each year on TEFConnect.com</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Cycle:</span><span class="gc-mval">2026 application period has passed; confirm the next call with TEF</span></div>
               </div>
             </div>
             <div class="gc-footer">
-              <a href="https://www.tonyelumelufoundation.org" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply at TEF ↗</a>
+              <a href="https://www.tonyelumelufoundation.org" target="_blank" rel="noopener noreferrer" class="btn-apply">Official programme ↗</a>
               <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
               <span class="amount-pill">$5,000 Seed</span>
             </div>
           </article>
 
           <!-- 8. UNDP Land Restoration CBOs -->
-          <article class="grant-card" data-categories="ngo env agri">
+          <article class="grant-card" data-status="check" data-categories="ngo env agri">
             <div class="gc-header">
               <div class="gc-icon" style="background:#ecfdf5;">🌱</div>
               <div class="gc-title-wrap">
-                <p class="gc-funder">UNDP Liberia <span class="new-badge">OPEN 2026</span></p>
+                <p class="gc-funder">UNDP Liberia <span class="new-badge">PROGRAMME</span></p>
                 <h3 class="gc-name">Land Restoration Project: Grants for CSOs/CBOs</h3>
               </div>
             </div>
@@ -651,10 +783,10 @@
               <span class="gc-tag t-ngo">NGO / CSO</span>
               <span class="gc-tag t-env">Environment</span>
               <span class="gc-tag t-agri">Agriculture</span>
-              <span class="gc-tag t-open">Jul 2026 – Jun 2027</span>
+              <span class="gc-tag t-soon">Check current call</span>
             </div>
             <div class="gc-body">
-              <p class="gc-desc">UNDP Liberia is inviting Civil Society Organizations and CBOs to submit proposals for sustainable land restoration projects in Kokoya, Bong County. Selected organizations receive grants of up to $50,000 for one-year projects running July 2026 to June 2027.</p>
+              <p class="gc-desc">This previously listed UNDP Liberia programme concerns Civil Society Organizations and CBOs proposing projects for sustainable land restoration projects in Kokoya, Bong County. Selected organizations receive grants of up to $50,000 for one-year projects running July 2026 to June 2027.</p>
               <div class="gc-meta">
                 <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">Up to $50,000 per organization</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Sustainable land restoration, ecosystem services</span></div>
@@ -663,18 +795,18 @@
               </div>
             </div>
             <div class="gc-footer">
-              <a href="https://www.lr.undp.org" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via UNDP ↗</a>
+              <a href="https://www.undp.org/liberia" target="_blank" rel="noopener noreferrer" class="btn-apply">Official programme ↗</a>
               <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
               <span class="amount-pill">Up to $50K</span>
             </div>
           </article>
 
           <!-- 9. UNDP Mercury / Agriculture Safety -->
-          <article class="grant-card" data-categories="ngo agri env">
+          <article class="grant-card" data-status="check" data-categories="ngo agri env">
             <div class="gc-header">
               <div class="gc-icon" style="background:#d1fae5;">🌾</div>
               <div class="gc-title-wrap">
-                <p class="gc-funder">UNDP Liberia / GEF <span class="new-badge">OPEN 2026</span></p>
+                <p class="gc-funder">UNDP Liberia / GEF <span class="new-badge">PROGRAMME</span></p>
                 <h3 class="gc-name">Mercury-Free Agriculture &amp; Ecosystem Safety Grants</h3>
               </div>
             </div>
@@ -682,7 +814,7 @@
               <span class="gc-tag t-ngo">NGO / CSO</span>
               <span class="gc-tag t-agri">Agriculture</span>
               <span class="gc-tag t-env">Environment</span>
-              <span class="gc-tag t-open">Open 2026</span>
+              <span class="gc-tag t-soon">Check current call</span>
             </div>
             <div class="gc-body">
               <p class="gc-desc">UNDP and the Global Environment Facility (GEF) are funding CSOs and CBOs in Liberia to protect human health, ecosystems, and food systems through mercury-free mining, safer agriculture, reduced chemical contamination, and climate-resilient livelihoods. Women and youth participation prioritized.</p>
@@ -690,29 +822,29 @@
                 <div class="gc-row"><span class="gc-icon-sm">💰</span><span class="gc-mlabel">Amount:</span><span class="gc-mval">Up to $40,000 per organization</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">🎯</span><span class="gc-mlabel">Focus:</span><span class="gc-mval">Mercury-free agriculture, food safety, climate resilience</span></div>
                 <div class="gc-row"><span class="gc-icon-sm">✅</span><span class="gc-mlabel">Eligible:</span><span class="gc-mval">CSOs, CBOs, women &amp; youth involvement preferred</span></div>
-                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Open 2026, apply via UNDP Liberia</span></div>
+                <div class="gc-row"><span class="gc-icon-sm">📅</span><span class="gc-mlabel">Status:</span><span class="gc-mval">Current intake unconfirmed; check UNDP Liberia calls</span></div>
               </div>
             </div>
             <div class="gc-footer">
-              <a href="https://www.lr.undp.org" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via UNDP ↗</a>
+              <a href="https://www.undp.org/liberia" target="_blank" rel="noopener noreferrer" class="btn-apply">Official programme ↗</a>
               <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
               <span class="amount-pill">Up to $40K</span>
             </div>
           </article>
 
           <!-- 10. World Bank LIFT MSME -->
-          <article class="grant-card" data-categories="business agri">
+          <article class="grant-card" data-status="check" data-categories="business agri">
             <div class="gc-header">
               <div class="gc-icon" style="background:#d1fae5;">💼</div>
               <div class="gc-title-wrap">
                 <p class="gc-funder">World Bank / Liberia LIFT Project</p>
-                <h3 class="gc-name">MSME Line of Credit: Phase II</h3>
+                <h3 class="gc-name">MSME Line of Credit: Phase II (financing, not a direct grant)</h3>
               </div>
             </div>
             <div class="gc-tags">
               <span class="gc-tag t-biz">Business / MSME</span>
               <span class="gc-tag t-agri">Agriculture</span>
-              <span class="gc-tag t-open">Open</span>
+              <span class="gc-tag t-soon">Check current call</span>
             </div>
             <div class="gc-body">
               <p class="gc-desc">LIFT Project Phase II provides $3.5M in accessible financing and grants to Liberian-owned businesses in agriculture, manufacturing, and technology that cannot access conventional bank financing. Applied through the Ministry of Commerce &amp; Industry.</p>
@@ -724,14 +856,14 @@
               </div>
             </div>
             <div class="gc-footer">
-              <a href="https://www.moci.gov.lr" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via MoCI ↗</a>
+              <a href="https://www.moci.gov.lr" target="_blank" rel="noopener noreferrer" class="btn-apply">Official programme ↗</a>
               <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
               <span class="amount-pill">$3.5M Pool</span>
             </div>
           </article>
 
           <!-- 11. USADF -->
-          <article class="grant-card" data-categories="business ngo youth">
+          <article class="grant-card" data-status="check" data-categories="business ngo youth">
             <div class="gc-header">
               <div class="gc-icon" style="background:#eaf4ff;">🇺🇸</div>
               <div class="gc-title-wrap">
@@ -743,7 +875,7 @@
               <span class="gc-tag t-biz">Business</span>
               <span class="gc-tag t-ngo">NGO</span>
               <span class="gc-tag t-youth">Youth</span>
-              <span class="gc-tag t-roll">Rolling</span>
+              <span class="gc-tag t-soon">Check current call</span>
             </div>
             <div class="gc-body">
               <p class="gc-desc">USADF provides direct grants of up to $250,000 to African grassroots organizations and social enterprises. Strong focus on youth, women, and underserved communities in Liberia. Funds organizational capacity, social enterprise development, and community programs.</p>
@@ -755,14 +887,14 @@
               </div>
             </div>
             <div class="gc-footer">
-              <a href="https://www.usadf.gov" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply at USADF ↗</a>
+              <a href="https://www.usadf.gov" target="_blank" rel="noopener noreferrer" class="btn-apply">Official programme ↗</a>
               <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
               <span class="amount-pill">Up to $250K</span>
             </div>
           </article>
 
           <!-- 12. U.S. Embassy SSH -->
-          <article class="grant-card" data-categories="ngo">
+          <article class="grant-card" data-status="check" data-categories="ngo">
             <div class="gc-header">
               <div class="gc-icon" style="background:#eaf4ff;">🇺🇸</div>
               <div class="gc-title-wrap">
@@ -772,7 +904,7 @@
             </div>
             <div class="gc-tags">
               <span class="gc-tag t-ngo">NGO / CSO</span>
-              <span class="gc-tag t-open">Annual</span>
+              <span class="gc-tag t-soon">Check current call</span>
             </div>
             <div class="gc-body">
               <p class="gc-desc">U.S. Embassy Self-Help (SSH) and Democracy &amp; Human Rights (DHRA) small grants for registered Liberian nonprofits and community organizations. Funds grassroots development, civic engagement, and democracy programs annually.</p>
@@ -784,7 +916,7 @@
               </div>
             </div>
             <div class="gc-footer">
-              <a href="https://lr.usembassy.gov" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply via Embassy ↗</a>
+              <a href="https://lr.usembassy.gov" target="_blank" rel="noopener noreferrer" class="btn-apply">Official programme ↗</a>
               <a href="#grant-inquiry" class="btn-tih">Get TIH Help</a>
               <span class="amount-pill">Up to $10K</span>
             </div>
@@ -793,7 +925,7 @@
         </div><!-- /grantsGrid -->
 
         <div class="no-results" id="noResults">
-          No grants match this filter. <a href="#" onclick="document.querySelectorAll('.filter-btn')[0].click();return false;">Show all grants</a>
+          No grants match your search and filters. <a href="#" onclick="document.getElementById('grant-reset').click();return false;">Show all grants</a>
         </div>
 
         <div style="text-align:center;margin-top:3rem;padding:2rem;background:#fff;border-radius:16px;border:1px solid #e4eaf4;box-shadow:0 2px 10px rgba(0,40,104,0.06);">
@@ -1035,24 +1167,38 @@
   <script src="main.js?v=19"></script>
   <script src="chatbot.js?v=12"></script>
   <script>
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.grant-card');
-    const noResults = document.getElementById('noResults');
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
+    (function () {
+      const buttons = Array.from(document.querySelectorAll('.filter-btn'));
+      const cards = Array.from(document.querySelectorAll('#grantsGrid > .grant-card'));
+      const search = document.getElementById('grant-search');
+      const status = document.getElementById('grant-status');
+      let category = 'all';
+      function render() {
+        const terms = search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
         let visible = 0;
         cards.forEach(card => {
-          const cats = card.dataset.categories || '';
-          const show = filter === 'all' || cats.includes(filter);
-          card.style.display = show ? '' : 'none';
-          if (show) visible++;
+          const matchesCategory = category === 'all' || card.dataset.categories.split(' ').includes(category);
+          const matchesStatus = status.value === 'all' || card.dataset.status === status.value;
+          card.hidden = !(matchesCategory && matchesStatus && terms.every(term => card.textContent.toLowerCase().includes(term)));
+          if (!card.hidden) visible++;
         });
-        noResults.classList.toggle('visible', visible === 0);
+        buttons.forEach(button => {
+          const active = button.dataset.filter === category;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+        document.getElementById('noResults').classList.toggle('visible', visible === 0);
+        document.getElementById('grant-results').textContent = visible + ' of ' + cards.length + ' funding listings shown';
+      }
+      buttons.forEach(button => button.addEventListener('click', () => { category = button.dataset.filter; render(); }));
+      search.addEventListener('input', render);
+      status.addEventListener('change', render);
+      document.getElementById('grant-reset').addEventListener('click', () => {
+        category = 'all'; search.value = ''; status.value = 'all'; render(); search.focus();
       });
-    });
+      document.querySelector('.grant-search-tools').hidden = false;
+      render();
+    }());
   </script>
 </body>
 </html>
