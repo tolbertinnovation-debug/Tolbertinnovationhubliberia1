@@ -1625,7 +1625,7 @@
     })();
   </script>
   <script>
-    // Rotate homepage messages every twenty seconds without moving the layout.
+    // Rotate homepage messages every ten seconds without moving the layout.
     (function () {
       const titles = Array.from(document.querySelectorAll('[data-hero-title]'));
       const copies = Array.from(document.querySelectorAll('[data-hero-copy]'));
@@ -1647,7 +1647,7 @@
           current = (current + 1) % titles.length;
           titles[current].classList.add('is-active');
           copies[current].classList.add('is-active');
-        }, 20000);
+        }, 10000);
       }
       toggle.hidden = false;
       toggle.addEventListener('click', () => { paused = !paused; updateTimer(); });
