@@ -116,8 +116,8 @@
 
 /* Match the Learning Hub's airy white and pale-blue background. */
 #heroTop.home-hero-v2 {background:radial-gradient(ellipse at 88% 12%,#d5e7ff 0,transparent 50%),radial-gradient(ellipse at 0 100%,#fbd8dc 0,transparent 43%),linear-gradient(135deg,#fff,#edf5ff) !important;color:#102039;}
-#heroTop.home-hero-v2::before {opacity:.35;}
-#heroTop.home-hero-v2 .hero-net {opacity:.2;}
+#heroTop.home-hero-v2::before {opacity:.12;}
+#heroTop.home-hero-v2 .hero-net {opacity:.7;}
 #heroTop .home-hero-kicker {color:#174ba6;}
 #heroTop .home-hero-kicker::before {background:#2167d8;}
 #heroTop .hero-rotating-title {color:#102039;}

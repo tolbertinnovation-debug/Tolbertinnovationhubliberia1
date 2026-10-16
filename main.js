@@ -762,14 +762,15 @@ function buildHeroNetwork(hero, canvas) {
   // Light heroes (hero-modern) get brand blue on a pale background; dark
   // heroes get a brighter, airier blue so the nodes read as "glowing".
   const light = hero.classList.contains('hero-modern');
+  const homeNetwork = hero.classList.contains('home-hero-v2');
   const rgb = light ? '21,101,216' : '150,195,255';
-  const LINE_MAX = light ? 0.26 : 0.34;   // peak line opacity
-  const NODE_A   = light ? 0.55 : 0.7;    // node core opacity
-  const HALO_A   = light ? 0.10 : 0.16;   // node glow opacity
+  const LINE_MAX = homeNetwork ? 0.38 : (light ? 0.26 : 0.34);   // peak line opacity
+  const NODE_A   = homeNetwork ? 0.68 : (light ? 0.55 : 0.7);    // node core opacity
+  const HALO_A   = homeNetwork ? 0.14 : (light ? 0.10 : 0.16);   // node glow opacity
 
   const isCoarse = window.matchMedia('(pointer: coarse)').matches;
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
-  const LINK_DIST = 132;                   // max distance to draw a link (css px)
+  const LINK_DIST = homeNetwork ? 155 : 132;                   // max distance to draw a link (css px)
 
   let W = 0, H = 0, nodes = [], raf = null, running = false;
   const pointer = { x: -9999, y: -9999, on: false };
@@ -777,8 +778,8 @@ function buildHeroNetwork(hero, canvas) {
   function seed() {
     // Node count scales with hero area; capped for performance / touch.
     const area = W * H;
-    let n = Math.round(area / 8000);
-    n = Math.max(26, Math.min(n, isCoarse ? 60 : 150));
+    let n = Math.round(area / (homeNetwork ? 4500 : 8000));
+    n = Math.max(homeNetwork ? 50 : 26, Math.min(n, homeNetwork ? (isCoarse ? 110 : 190) : (isCoarse ? 60 : 150)));
     nodes = [];
     for (let i = 0; i < n; i++) {
       nodes.push({
@@ -786,7 +787,7 @@ function buildHeroNetwork(hero, canvas) {
         y: Math.random() * H,
         vx: (Math.random() - 0.5) * 0.8,
         vy: (Math.random() - 0.5) * 0.8,
-        r: 1.1 + Math.random() * 1.7
+        r: homeNetwork ? 1.8 + Math.random() * 1.8 : 1.1 + Math.random() * 1.7
       });
     }
   }
