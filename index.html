@@ -9,12 +9,12 @@
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <title>Tolbert Innovation Hub | Empowering Youth Through Education & Innovation</title>
-  <meta name="description" content="Tolbert Innovation Hub empowers Liberian youth through scholarships, IELTS/TOEFL & WASSCE exam prep, 25 tuition-free skill tracks (registration from US$3 / 500 LRD), a digital library, international healthcare access, and grants guidance. Transform your future today." />
+  <title>Tolbert Innovation Hub | Learn Skills, Find Funding &amp; Build Ideas in Liberia</title>
+  <meta name="description" content="Build practical skills, explore scholarships and student aid, find grants for Liberian organizations, and discover software services and Grandpa AI at Tolbert Innovation Hub." />
   <meta name="keywords" content="Tolbert Innovation Hub, Liberia scholarships, IELTS preparation Liberia, TOEFL classroom, Africa innovation, youth empowerment, education Liberia, grants Liberia 2026, digital library Liberia" />
   <meta name="author" content="Tolbert Innovation Hub" />
   <meta property="og:title" content="Tolbert Innovation Hub | Empowering Youth Through Education & Innovation" />
-  <meta property="og:description" content="Scholarships, a tuition-free skills hub with 25 tracks (registration from US$3 / 500 LRD), digital library, healthcare access, and grants directory, transforming lives across Liberia and Africa." />
+  <meta property="og:description" content="Learning, scholarships, student aid, NGO grants, digital services, and Grandpa AI — practical routes for students, organizations, and businesses in Liberia." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.tolbertinnovationhub.org/" />
   <meta property="og:image" content="assets/tih-logo.png" />
@@ -193,6 +193,23 @@
     .home-grandpa-image { display:block; width:100%; height:auto; border-radius:18px; border:1px solid rgba(255,255,255,.25); box-shadow:0 20px 55px rgba(0,0,0,.3); }
     .home-grandpa-domain { color:#cbd5e1; font-size:.9rem; margin:1rem 0 0; overflow-wrap:anywhere; }
     @media(max-width:720px) { .home-grandpa-grid { grid-template-columns:1fr; } .home-grandpa-actions .btn { flex:1 1 180px; text-align:center; } }
+
+    #start-here { scroll-margin-top:110px; }
+    .home-goal-grid,.home-resource-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.1rem; }
+    .home-goal-card { display:flex; flex-direction:column; padding:1.5rem; border:1px solid var(--border); border-radius:16px; background:var(--surface); box-shadow:0 6px 22px rgba(0,40,104,.05); }
+    .home-goal-card h3 { font-size:1.15rem; margin:.2rem 0 .75rem; }
+    .home-goal-card > p:not(.section-label) { color:var(--text-secondary); line-height:1.7; margin-bottom:1.2rem; }
+    .home-goal-card a { margin-top:auto; font-weight:700; min-height:44px; display:flex; align-items:center; }
+    .home-resource { display:flex; flex-direction:column; align-items:center; padding:1.5rem; text-align:center; border:1px solid var(--border); border-radius:14px; background:var(--surface); color:var(--text); text-decoration:none; }
+    .home-resource strong { font-size:2rem; color:var(--brand-blue-light); }
+    .home-resource span { margin-top:.4rem; font-weight:600; }
+    .home-faq { max-width:900px; }
+    .home-faq details { border:1px solid var(--border); border-radius:12px; background:var(--surface); padding:1rem 1.25rem; margin:.8rem 0; }
+    .home-faq summary { cursor:pointer; font-weight:700; min-height:32px; }
+    .home-faq details p { margin:1rem 0 .25rem; line-height:1.8; color:var(--text-secondary); }
+    .home-faq details a { font-weight:600; }
+    @media(max-width:900px) { .home-goal-grid,.home-resource-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:560px) { .home-goal-grid { grid-template-columns:1fr; } .home-resource { padding:1rem .6rem; font-size:.88rem; } }
   </style>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://formsubmit.co https://formspree.io https://restcountries.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co https://formspree.io; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -257,33 +274,21 @@
         <div class="hero-grid hero-2col">
           <!-- Left: Content -->
           <div class="hero-text">
-            <h1 class="hm-fade hm-d2">Empowering Liberia Through <span class="hm-red">Education</span>, <span class="hm-blue">Innovation</span>, <span class="hm-red">Technology</span> & <span class="hm-blue">Opportunity</span></h1>
+            <h1 class="hm-fade hm-d2">Learn Skills. Build <span class="hm-red">Ideas.</span><br>Find Your Next <span class="hm-blue">Opportunity.</span></h1>
             <p class="lead hm-fade hm-d3">
-              Tolbert Innovation Hub equips students, professionals, entrepreneurs, and communities with the
-              skills, knowledge, scholarships, technology, and opportunities needed to thrive in the digital economy.
+              Practical learning, scholarship guidance, funding resources, and digital solutions for Liberia.
+              Whether you are a student, an NGO, or a growing business, find a clear place to start with Tolbert Innovation Hub.
             </p>
             <div class="hero-actions hm-fade hm-d4">
-              <a class="btn btn-primary btn-lg" href="#programs">Explore Programs</a>
-              <a class="btn btn-hero-blue btn-lg" href="apply">Apply Now</a>
+              <a class="btn btn-primary btn-lg" href="#start-here">Find Your Starting Point</a>
+              <a class="btn btn-hero-blue btn-lg" href="learning-hub">Explore Learning Hub</a>
               <a class="btn btn-outline hm-outline" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
             </div>
             <div class="impact-inline hm-fade hm-d5" style="margin-top:2.4rem;">
-              <div class="impact-item">
-                <span class="impact-number" data-target="5000" data-suffix="+">0</span>
-                <p class="impact-label">Learners Reached</p>
-              </div>
-              <div class="impact-item">
-                <span class="impact-number" data-target="48" data-suffix="">0</span>
-                <p class="impact-label">Courses & Subjects</p>
-              </div>
-              <div class="impact-item">
-                <span class="impact-number" data-prefix="US$" data-target="3" data-suffix="–5">US$3–5</span>
-                <p class="impact-label">Registration Per Course (Tuition Free)</p>
-              </div>
-              <div class="impact-item">
-                <span class="impact-number" data-target="15" data-suffix="+">0</span>
-                <p class="impact-label">Countries Reached</p>
-              </div>
+              <div class="impact-item"><span class="impact-number" data-target="60">60</span><p class="impact-label">Funding &amp; Aid Listings</p></div>
+              <div class="impact-item"><span class="impact-number" data-target="23">23</span><p class="impact-label">WASSCE Subjects</p></div>
+              <div class="impact-item"><span class="impact-number" data-target="11">11</span><p class="impact-label">Software Sales Routes</p></div>
+              <div class="impact-item"><span class="impact-number" data-target="1">1</span><p class="impact-label">Grandpa AI Project</p></div>
             </div>
           </div>
 
@@ -332,9 +337,22 @@
         <span class="tsh-divider"></span>
         <span class="tsh-item"><span>💬</span> WhatsApp Support Available</span>
         <span class="tsh-divider"></span>
-        <span class="tsh-item"><span>🌍</span> Serving 15+ Countries</span>
+        <span class="tsh-item"><span>🌍</span> Learning &amp; Innovation in Liberia</span>
       </div>
     </div>
+
+    <section class="section" id="start-here" aria-labelledby="start-here-title">
+      <div class="container"><div class="section-header centered"><p class="section-label">Start Here</p><h2 id="start-here-title">What Would You Like to Do?</h2><p class="section-intro">Choose your goal to find the most relevant resources and next steps.</p></div>
+        <div class="home-goal-grid">
+          <article class="home-goal-card"><p class="section-label">Students &amp; Learners</p><h3>Build practical skills</h3><p>Explore courses, video lessons, quizzes, and exam preparation.</p><a href="learning-hub">Explore learning →</a></article>
+          <article class="home-goal-card"><p class="section-label">Study &amp; Student Aid</p><h3>Find support for your education</h3><p>Compare scholarships and financial aid with the study-location and eligibility rules.</p><a href="grants?category=students#grants-directory">Browse student aid →</a></article>
+          <article class="home-goal-card"><p class="section-label">NGOs, Schools &amp; Churches</p><h3>Find funding for your work</h3><p>Search project grants, donations, and partnership routes relevant to Liberia.</p><a href="grants">Explore grants and aid →</a></article>
+          <article class="home-goal-card"><p class="section-label">Businesses &amp; Innovators</p><h3>Build a website or software product</h3><p>Describe your organization’s needs and request a project discussion.</p><a href="business-intake">Start a project enquiry →</a></article>
+          <article class="home-goal-card"><p class="section-label">Software Teams</p><h3>Find clients and sales routes</h3><p>Explore local prospects, advertised contracts, and digital marketplaces.</p><a href="software#software-sales">Explore sales routes →</a></article>
+          <article class="home-goal-card"><p class="section-label">Patients &amp; Health Institutions</p><h3>Explore medical assistance</h3><p>Find separate routes for equipment donations and treatment referrals.</p><a href="grants?category=health#grants-directory">Browse health assistance →</a></article>
+        </div>
+      </div>
+    </section>
 
     <!-- Featured innovation project: Grandpa AI -->
     <section class="home-grandpa" id="grandpa-ai-home" aria-labelledby="grandpa-ai-home-title">
@@ -387,11 +405,11 @@
             <p class="section-label">Welcome to TIH</p>
             <h2 style="margin-bottom:1rem;">Your Gateway to Education, Opportunity & Innovation</h2>
             <p style="font-size:1.05rem;color:var(--text-secondary);line-height:1.66;margin-bottom:1rem;">
-              Tolbert Innovation Hub is Liberia's leading platform for education, digital skills, scholarships, healthcare access, and technology solutions.
-              Whether you are a student seeking to study abroad, a professional building digital skills, or a family needing international healthcare, <strong>TIH has a program for you</strong>.
+              Tolbert Innovation Hub connects learning with practical next steps: build a skill, prepare for an exam, research funding, or develop a digital product.
+              We bring these services together so <strong>students, families, organizations, and businesses can find the right support</strong>.
             </p>
             <p style="color:var(--text-secondary);line-height:1.66;margin-bottom:1.5rem;">
-              Every program is built specifically for Liberians and West Africans: practical, accessible, and designed to create real change in your life. Browse all programs below and find the pathway that fits your goals.
+              Explore resources at your own pace, check the requirements for your chosen programme, and contact our team when you need help. Scholarships, grants, healthcare referrals, and paid technology services each have their own application or enquiry process.
             </p>
             <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
               <a href="about" class="btn btn-secondary">Learn About TIH</a>
@@ -532,7 +550,7 @@
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">Why Tolbert Innovation Hub</p>
-          <h2>More Than Programs: A Movement for Change</h2>
+          <h2>Practical Support for Your Next Step</h2>
           <p class="section-intro">Inspired by the legacy of President William R. Tolbert Jr., the 20th President of Liberia, remembered for his commitment to rural development, education, and lifting the standard of living for all Liberians, we carry that vision forward through technology, scholarships, and access to opportunity.</p>
           <img src="https://i.ibb.co/ds2zcHft/file-000000003b2871f48c67c0ef7120286c.png" alt="Tolbert Innovation Hub, more than programs, a movement for change" loading="lazy" decoding="async" style="width:100%;max-width:820px;height:auto;display:block;margin:1.6rem auto 0;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104,.14);border:1px solid #e6e9f2;" />
         </div>
@@ -555,7 +573,7 @@
             <div class="feature-icon">🤝</div>
             <div class="feature-body">
               <h4>End-to-End Support</h4>
-              <p>From application to admission and from inquiry to treatment, we guide you through every step of your journey.</p>
+              <p>Get help understanding requirements, organizing your documents, and finding the right application or enquiry route.</p>
             </div>
           </div>
           <div class="feature-item reveal reveal-delay-3">
@@ -588,8 +606,8 @@
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">Our Core Programs</p>
-          <h2>Everything You Need to Grow</h2>
-          <p class="section-intro">From world-class education and healthcare access to technology services, TIH's core programs are built to transform lives across Liberia and Africa.</p>
+          <h2>Learning, Guidance &amp; Digital Services</h2>
+          <p class="section-intro">Choose a practical service: learn a skill, explore study options, arrange a healthcare enquiry, or discuss a website and software project.</p>
           <img src="https://i.ibb.co/2YLVHGsM/file-00000000bcc871f4855374280c1e7361.png" alt="TIH core programs, education, healthcare and technology services across Liberia and Africa" loading="lazy" decoding="async" style="width:100%;max-width:780px;height:auto;display:block;margin:1.6rem auto 0;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104,.14);border:1px solid #e6e9f2;" />
         </div>
         <div class="spotlight-grid">
@@ -619,15 +637,15 @@
             <div class="sc-header" style="background:linear-gradient(135deg,#064e3b,#065f46,#0f766e);">
               <span class="sc-badge">International Access</span>
               <h3>🏥 Healthcare Access</h3>
-              <p>Connecting Liberians to world-class medical care, specialist consultations, and international healthcare opportunities.</p>
+              <p>Helping patients and families understand referral options, organize enquiries, and connect with healthcare providers for case assessment.</p>
               <span class="sc-icon">🏥</span>
             </div>
             <div class="sc-body">
               <ul class="sc-features">
                 <li>Medical tourism guidance and referrals</li>
-                <li>International hospital partnerships</li>
+                <li>Hospital enquiries and coordination</li>
                 <li>Health scholarship & training programs</li>
-                <li>Specialist telehealth consultations</li>
+                <li>Confirm services directly with the provider</li>
                 <li>Healthcare professional development support</li>
               </ul>
               <a href="healthcare" class="sc-cta" style="background:#065f46;color:#fff;">Access Healthcare →</a>
@@ -659,13 +677,13 @@
             <div class="sc-header" style="background:linear-gradient(135deg,#7c2d12,#991b1b,#b8181d);">
               <span class="sc-badge">International</span>
               <h3>✈️ Study Abroad</h3>
-              <p>Guiding Liberian students to top partner universities in India, Cyprus, and beyond with full application support.</p>
+              <p>Helping Liberian students compare study options, understand requirements, and prepare applications for international education.</p>
               <span class="sc-icon">✈️</span>
             </div>
             <div class="sc-body">
               <ul class="sc-features">
                 <li>University selection and shortlisting</li>
-                <li>Personal statement and essay writing support</li>
+                <li>Application planning and document guidance</li>
                 <li>Scholarship matching for your profile</li>
                 <li>Student visa applications and interviews</li>
                 <li>Pre-departure orientation and mentorship</li>
@@ -704,7 +722,7 @@
         <div class="section-header centered">
           <p class="section-label">All Programs</p>
           <h2>Everything TIH Offers: All in One Place</h2>
-          <p class="section-intro">Ten programs built for Liberians and West Africans, covering digital skills, exam prep, scholarships, healthcare, grants, and business innovation. Find your program and take the next step.</p>
+          <p class="section-intro">Compare our learning, education, funding, healthcare, and technology services. Each programme links to its requirements and next steps, so you can choose what fits your goal.</p>
           <img src="https://i.ibb.co/hxtZvRxQ/file-00000000f31471f4a4f7d623b0df55fc.png" alt="Everything TIH offers, all programs in one place" loading="lazy" decoding="async" style="width:100%;max-width:820px;height:auto;display:block;margin:1.6rem auto 0;border-radius:16px;box-shadow:0 12px 32px rgba(0,40,104,.14);border:1px solid #e6e9f2;" />
         </div>
 
@@ -734,12 +752,12 @@
                 <div class="program-card-icon" style="background:#fee2e2;">✈️</div>
                 <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#E31E24;margin:0 0 .4rem;">International Education</p>
                 <h3 style="margin-bottom:.6rem;">Study Abroad Program</h3>
-                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">Complete scholarship guidance: eligibility check, document preparation, and admission letter issuance for Liberians pursuing international education in India, Cyprus, and beyond.</p>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">Complete scholarship guidance: eligibility check, document preparation, and admission follow-up for Liberians pursuing international education in India, Cyprus, and beyond.</p>
                 <ul class="list-tight" style="font-size:.88rem;">
                   <li>University selection & eligibility review</li>
                   <li>Application & document support</li>
-                  <li>Official admission letter issuance</li>
-                  <li>2026 applications now open</li>
+                  <li>Application submission and admission follow-up</li>
+                  <li>Check intake dates with the institution</li>
                 </ul>
                 <a class="card-link" href="apply">Apply for Scholarship →</a>
               </article>
@@ -749,14 +767,14 @@
             <div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="3 of 10">
               <article class="card card-accent" style="border-top:4px solid #f59e0b;">
                 <div class="program-card-icon" style="background:#fefce8;">🏆</div>
-                <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#b45309;margin:0 0 .4rem;">Zero Cost</p>
+                <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#b45309;margin:0 0 .4rem;">Funding Coverage</p>
                 <h3 style="margin-bottom:.6rem;">Fully Funded Scholarships</h3>
-                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">Curated fully funded scholarship opportunities from governments, universities, and foundations worldwide, covering tuition, accommodation, and living expenses.</p>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">Explore scholarship programmes and compare their study levels, eligibility, deadlines, and covered costs. Follow the official provider’s instructions and confirm what each award includes.</p>
                 <ul class="list-tight" style="font-size:.88rem;">
                   <li>Government & university scholarships</li>
                   <li>Application guidance & deadlines</li>
                   <li>Eligibility matching for Liberians</li>
-                  <li>No cost: 100% covered programs</li>
+                  <li>Check covered costs and remaining expenses</li>
                 </ul>
                 <a class="card-link" href="fully-funded-scholarship">Explore Fully Funded →</a>
               </article>
@@ -802,11 +820,11 @@
                 <div class="program-card-icon" style="background:#ede9fe;">💰</div>
                 <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#7c3aed;margin:0 0 .4rem;">Funding Opportunities</p>
                 <h3 style="margin-bottom:.6rem;">Grants Directory 2026–2027</h3>
-                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">Comprehensive directory of 20+ active grants available to Liberian businesses, NGOs, and individuals. USAID, World Bank, EU, Tony Elumelu Foundation, and more. Updated monthly.</p>
+                <p style="color:var(--text-secondary);font-size:.93rem;margin-bottom:1rem;">Explore 60 funding and assistance listings relevant to Liberia, including student financial aid, innovation grants, NGO funding, church support, and medical donation or treatment routes. Each listing explains eligibility and its application status.</p>
                 <ul class="list-tight" style="font-size:.88rem;">
-                  <li>USAID, EU & World Bank grants</li>
-                  <li>Tony Elumelu & Gates Foundation</li>
-                  <li>NGO, business & research funding</li>
+                  <li>Student aid and innovation project funding</li>
+                  <li>NGO, school, church, and business opportunities</li>
+                  <li>Official links, eligibility, and call-status labels</li>
                   <li>Free TIH grant application support</li>
                 </ul>
                 <a class="card-link" href="grants">Browse Grants Directory →</a>
@@ -1119,7 +1137,7 @@
         <div class="section-header centered">
           <p class="section-label">Find Your Path</p>
           <h2 style="color:#fff;">Which Path is Right for You?</h2>
-          <p class="section-intro">Tell us your goal and we'll show you the TIH programs that get you there fastest.</p>
+          <p class="section-intro">Use these suggested steps to plan your learning or application. Your eligibility, preparation, and the provider’s process determine the outcome.</p>
         </div>
         <div class="path-grid">
 
@@ -1129,19 +1147,19 @@
             <div class="path-steps">
               <div class="path-step">
                 <span class="path-step-num">1</span>
-                <span>Learn in-demand skill tracks in the Learning Hub</span>
+                <span>Choose a course and check its entry requirements</span>
               </div>
               <div class="path-step">
                 <span class="path-step-num">2</span>
-                <span>Browse Fully Funded Scholarship options</span>
+                <span>Compare scholarships, deadlines, and covered costs</span>
               </div>
               <div class="path-step">
                 <span class="path-step-num">3</span>
-                <span>Apply through TIH's Study Abroad Program</span>
+                <span>Prepare the documents required by your chosen institution</span>
               </div>
               <div class="path-step">
                 <span class="path-step-num">4</span>
-                <span>Get admission letter and travel guidance</span>
+                <span>Submit through the official route and follow up on the decision</span>
               </div>
             </div>
             <a href="apply" class="path-cta">Start This Path →</a>
@@ -1173,7 +1191,7 @@
 
           <div class="path-card reveal reveal-delay-2">
             <p class="path-goal">Goal: Get a Job</p>
-            <h3>I want to build digital skills and land employment</h3>
+            <h3>I want to build digital skills for work</h3>
             <div class="path-steps">
               <div class="path-step">
                 <span class="path-step-num">1</span>
@@ -1199,109 +1217,30 @@
       </div>
     </section>
 
-    <!-- IMPACT STATISTICS -->
-    <section class="section" aria-label="Impact Statistics">
+    <!-- Current directory resources -->
+    <section class="section" aria-labelledby="home-resources-title">
       <div class="container">
-        <div class="section-header centered">
-          <p class="section-label">Our Impact</p>
-          <h2>Building a Foundation for Lasting Change</h2>
-          <p class="section-intro">From scholarship guidance to affordable skill training and digital transformation, every program is designed for measurable progress and real-world impact in Liberia.</p>
-        </div>
-        <style>
-          /* Six cards: auto-fit lands on 5+1 at desktop width, so pin 3x2 here. */
-          .impact-stats-3x2{grid-template-columns:repeat(3,1fr);}
-          @media(max-width:900px){.impact-stats-3x2{grid-template-columns:1fr 1fr;}}
-          @media(max-width:520px){.impact-stats-3x2{grid-template-columns:1fr;}}
-        </style>
-        <div class="stats-grid impact-stats-3x2">
-          <div class="stat-card reveal">
-            <span class="stat-icon">👩‍🎓</span>
-            <span class="stat-number counter" data-target="5000" data-suffix="+">5,000+</span>
-            <p class="stat-label">Learners Reached Through TIH Programs</p>
-          </div>
-          <div class="stat-card reveal reveal-delay-1">
-            <span class="stat-icon">📚</span>
-            <span class="stat-number counter" data-target="25" data-suffix="">25</span>
-            <p class="stat-label">Skill Tracks in the Learning Hub</p>
-          </div>
-          <div class="stat-card reveal reveal-delay-2">
-            <span class="stat-icon">🌍</span>
-            <span class="stat-number counter" data-target="15" data-suffix="+">15+</span>
-            <p class="stat-label">Countries Reached Through Partnership Networks</p>
-          </div>
-          <div class="stat-card reveal reveal-delay-3">
-            <span class="stat-icon">💻</span>
-            <span class="stat-number counter" data-target="23" data-suffix="">23</span>
-            <p class="stat-label">WASSCE Subjects + IELTS & TOEFL Exam Prep</p>
-          </div>
-          <div class="stat-card reveal reveal-delay-4">
-            <span class="stat-icon">🏥</span>
-            <span class="stat-number counter" data-target="50" data-suffix="+">50+</span>
-            <p class="stat-label">Healthcare Cases Referred to International Specialists</p>
-          </div>
-          <div class="stat-card reveal">
-            <span class="stat-icon">💰</span>
-            <span class="stat-number counter" data-target="20" data-suffix="+">20+</span>
-            <p class="stat-label">Active Grants Listed in the 2026–2027 Directory</p>
-          </div>
+        <div class="section-header centered"><p class="section-label">Explore the Platform</p><h2 id="home-resources-title">Useful Resources, Ready to Explore</h2><p class="section-intro">Counts reflect the website’s directories as of 16 October 2026. Funding listings include open, upcoming, paused, and closed rounds; check each provider’s current instructions.</p></div>
+        <div class="home-resource-grid">
+          <a class="home-resource" href="grants"><strong>60</strong><span>Funding &amp; Aid Listings</span></a>
+          <a class="home-resource" href="grants?category=students#grants-directory"><strong>3</strong><span>Student Financial Aid Routes</span></a>
+          <a class="home-resource" href="grants?category=innovation#grants-directory"><strong>7</strong><span>Innovation Funding Listings</span></a>
+          <a class="home-resource" href="software#software-sales"><strong>11</strong><span>Software Sales &amp; Prospecting Routes</span></a>
+          <a class="home-resource" href="wassce"><strong>23</strong><span>WASSCE Subjects</span></a>
+          <a class="home-resource" href="grandpa-ai"><strong>1</strong><span>Grandpa AI Project</span></a>
         </div>
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="section section-alt" aria-label="Testimonials">
-      <div class="container">
-        <div class="section-header centered">
-          <p class="section-label">Testimonials</p>
-          <h2>Voices of Impact</h2>
-          <p class="section-intro">Real stories from students, entrepreneurs, and families whose lives have been transformed by Tolbert Innovation Hub programs.</p>
-        </div>
-        <div class="testimonials-grid">
-          <div class="testimonial-card reveal">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"TIH guided me through every step of my scholarship application: document preparation, university selection, and the admission process. I was accepted into a degree program in India in April 2026. I would not have known where to begin without their support."</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">MS</div>
-              <div>
-                <p class="testimonial-name">Moses Sumo</p>
-                <p class="testimonial-role">Study Abroad Scholar, admitted April 2026 &middot; Monrovia</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card reveal reveal-delay-1">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"I used TIH's IELTS classroom for three months before my exam. The structured modules, timed practice tests, and writing feedback made a real difference. I scored Band 7 overall, above what the university required."</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">FK</div>
-              <div>
-                <p class="testimonial-name">Fatima Kollie</p>
-                <p class="testimonial-role">IELTS Band 7, Learning Hub Graduate &middot; Paynesville</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card reveal reveal-delay-2">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"My father needed cardiac treatment that was not available in Liberia. TIH's healthcare team identified a specialist hospital in India, handled the referral documents, and helped us navigate the entire process. The care he received saved his life."</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">JT</div>
-              <div>
-                <p class="testimonial-name">James Tarr</p>
-                <p class="testimonial-role">Healthcare Referral Program &middot; Buchanan, Grand Bassa</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card reveal reveal-delay-3">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"The Grant Writing track taught me how to structure a proper proposal. We applied for a $12,000 EU small grants program and were shortlisted. TIH's free resources and support made the difference for our youth organization."</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">AB</div>
-              <div>
-                <p class="testimonial-name">Abigail Brownell</p>
-                <p class="testimonial-role">NGO Director, Grant Writing Track &middot; Monrovia</p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- Questions and practical next steps -->
+    <section class="section section-alt" aria-labelledby="home-faq-title">
+      <div class="container home-faq"><div class="section-header centered"><p class="section-label">Before You Start</p><h2 id="home-faq-title">Questions Visitors Often Ask</h2><p class="section-intro">Understand the process before you enrol, apply, or request a service.</p></div>
+        <details><summary>Where should I start?</summary><p>Choose your goal in the Start Here section. You can browse resources first, then use the programme page to apply, enquire, or contact TIH. <a href="#start-here">Choose a starting point →</a></p></details>
+        <details><summary>Are courses completely free?</summary><p>The Learning Hub describes tuition-free learning with registration charges for access. Check the current price, entry requirements, and payment instructions for the specific course before paying. <a href="learning-hub">Check course details →</a></p></details>
+        <details><summary>Does a scholarship or grant listing guarantee funding?</summary><p>Awards are decided by the provider. Check eligibility, the current deadline, required documents, and covered expenses. Some entries are closed rounds to monitor or partner-based routes. <a href="grants">Browse funding and aid →</a></p></details>
+        <details><summary>Can TIH build a website or application for my organization?</summary><p>Use the Business Project Intake Form to describe your goal, users, features, and timeline. The team can then discuss the scope, delivery milestones, support, and a project quote. <a href="business-intake">Describe your project →</a></p></details>
+        <details><summary>How can I use Grandpa AI?</summary><p>Open Grandpa AI at libgrandpaai.com to explore the application. You can also read about the project on this website. <a href="https://libgrandpaai.com" target="_blank" rel="noopener noreferrer">Open Grandpa AI →</a></p></details>
+        <details><summary>Where can hospitals or patients find assistance?</summary><p>The grants directory has separate medical donation and patient-treatment routes. Check the provider’s criteria and contact instructions; availability depends on the service and the case. <a href="grants?category=health#grants-directory">Explore health assistance →</a></p></details>
       </div>
     </section>
 
@@ -1366,20 +1305,20 @@
         <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
           <div>
             <p class="section-label">Events</p>
-            <h2>Upcoming Programs & Events</h2>
-            <p class="section-intro">Join us for workshops, scholarship information sessions, and innovation programs.</p>
+            <h2>Get Guidance &amp; Plan Your Next Step</h2>
+            <p class="section-intro">Explore ongoing resources and enquiry routes. Confirm scheduled sessions and appointments with TIH before making plans.</p>
           </div>
           <a href="events" class="btn btn-outline-blue btn-sm" style="flex-shrink:0;">View All Events</a>
         </div>
         <div class="events-list">
           <div class="event-card reveal">
             <div class="event-date-box">
-              <span class="event-date-day">31</span>
-              <span class="event-date-month">Aug</span>
+              <span class="event-date-day">🎓</span>
+              <span class="event-date-month">Explore</span>
             </div>
             <div>
-              <p class="event-title">2026 Scholarship Application Deadline</p>
-              <p class="event-meta">📍 Online &middot; Submit via Portal &nbsp;|&nbsp; 🕐 All Day</p>
+              <p class="event-title">Scholarship Options &amp; Application Guidance</p>
+              <p class="event-meta">Compare programmes and confirm each provider’s current deadline</p>
               <span class="event-tag">Scholarships</span>
             </div>
             <a href="apply" class="btn btn-secondary btn-sm">Apply Now</a>
@@ -1390,8 +1329,8 @@
               <span class="event-date-month">Ongoing</span>
             </div>
             <div>
-              <p class="event-title">SHE-CAN Scholarship — Free Information Session</p>
-              <p class="event-meta">📍 Online &middot; Quick Survey &nbsp;|&nbsp; 🕐 Rolling sign-up</p>
+              <p class="event-title">SHE-CAN Interest Survey</p>
+              <p class="event-meta">Share your interest and request information about the programme</p>
               <span class="event-tag">Scholarships</span>
             </div>
             <a href="she-can-survey" class="btn btn-secondary btn-sm">Take the Survey</a>
@@ -1414,7 +1353,7 @@
               <span class="event-date-month">Anytime</span>
             </div>
             <div>
-              <p class="event-title">Grant Writing Workshop: Proposal Skills for NGOs</p>
+              <p class="event-title">Learn Grant Writing: Proposal Skills for NGOs</p>
               <p class="event-meta">📍 TIH Learning Hub Online &nbsp;|&nbsp; 🕐 Available 24/7</p>
               <span class="event-tag">Grants</span>
             </div>
@@ -1458,7 +1397,7 @@
       <div class="container">
         <div class="nl-inner">
           <span class="nl-badge">📬 Stay Informed</span>
-          <h2>Get the Latest Scholarship & Program Updates</h2>
+          <h2>Stay Informed About Learning &amp; Funding</h2>
           <p>Subscribe to receive scholarship announcements, new classroom tracks, grants deadlines, and digital library additions directly to your inbox. Free, always.</p>
           <form class="nl-form-v2 newsletter-form" action="https://formsubmit.co/tolbertinnovationhub@gmail.com" method="post" aria-label="Newsletter subscription form">
             <input class="nl-input-v2" type="email" name="email" placeholder="Your email address" required autocomplete="email" aria-label="Email address for newsletter" />
@@ -1468,7 +1407,7 @@
           <div class="nl-perks">
             <span class="nl-perk"><span>✓</span> No spam, ever</span>
             <span class="nl-perk"><span>✓</span> Unsubscribe anytime</span>
-            <span class="nl-perk"><span>✓</span> 5,000+ subscribers</span>
+            <span class="nl-perk"><span>✓</span> Scholarships, learning &amp; funding updates</span>
           </div>
         </div>
       </div>
@@ -1479,8 +1418,8 @@
       <div class="container">
         <div class="quick-grid-3">
           <article class="quick-panel card-accent reveal" style="background:linear-gradient(135deg,#002868 0%,#1a3d8a 100%);color:#fff;border:none;">
-            <h3 style="color:#fff;">Apply for a Scholarship Today</h3>
-            <p style="color:rgba(255,255,255,.85);">Open applications for 2026 intake. Get guidance through eligibility check, document preparation, and admission letter issuance.</p>
+            <h3 style="color:#fff;">Plan Your Study Application</h3>
+            <p style="color:rgba(255,255,255,.85);">Compare study options, check entry requirements, and organize the documents for your application. Confirm current intake dates and scholarship terms with the provider.</p>
             <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem;">
               <a class="btn btn-primary" href="apply">Apply Now</a>
               <a class="btn btn-outline" href="fully-funded-scholarship">Fully Funded</a>
