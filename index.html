@@ -49,7 +49,6 @@
     .hero-2col{display:grid;grid-template-columns:1fr 420px;gap:3rem;align-items:center;}
     @media(max-width:1024px){.hero-2col{grid-template-columns:1fr;}}
     .hero-visual{display:flex;flex-direction:column;gap:1rem;}
-    @media(max-width:1024px){.hero-visual{display:none;}}
     .hv-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:1.1rem 1.4rem;display:flex;align-items:center;gap:1rem;backdrop-filter:blur(8px);transition:background .2s;}
     .hv-card:hover{background:rgba(255,255,255,.13);}
     .hv-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
@@ -247,6 +246,32 @@
   }
   </script>
   <link rel="stylesheet" href="hero-theme.css?v=1" />
+  <style>
+    /* The reference's logo-and-card cluster stays visible at every breakpoint. */
+    .home-hero .hero-visual { display:block; position:relative; min-height:520px; width:100%; max-width:430px; margin-inline:auto; }
+    .home-hero .hm-card { max-width:calc(100% - 8px); min-height:72px; padding:.8rem .95rem; gap:.7rem; z-index:2; }
+    .home-hero .hm-card strong { font-size:.94rem; }
+    .home-hero .hm-card small { display:block; font-size:.75rem; line-height:1.45; margin-top:.25rem; }
+    .home-hero .hm-emblem { width:176px; top:208px; right:0; left:auto; transform:none; animation:none; z-index:1; }
+    .home-hero .hm-float-a { top:12px; left:2%; right:auto; bottom:auto; }
+    .home-hero .hm-float-b { top:110px; right:0; left:auto; bottom:auto; }
+    .home-hero .hm-float-c { top:218px; left:0; right:auto; bottom:auto; }
+    .home-hero .hm-float-d { top:326px; right:0; left:auto; bottom:auto; }
+    .home-hero .hm-float-e { top:424px; left:6%; right:auto; bottom:auto; }
+    .home-hero .hm-card-navy { background:linear-gradient(135deg,#0b1f3a,#123061); border-color:#123061; color:#fff; }
+    .home-hero .hm-card:hover { z-index:3; }
+    @media(max-width:1024px) {
+      .home-hero .hero-visual { display:block; margin-top:1rem; }
+      .home-hero .hero-2col { gap:1.5rem; }
+    }
+    @media(max-width:380px) {
+      .home-hero .hm-card { padding:.75rem .8rem; gap:.5rem; }
+      .home-hero .hm-card strong { font-size:.86rem; }
+      .home-hero .hm-card small { font-size:.7rem; }
+      .home-hero .hm-emblem { width:154px; }
+    }
+  </style>
+
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -306,31 +331,29 @@
             </div>
           </div>
 
-          <!-- Right: floating program cards (real links, banner style) -->
-          <div class="hero-visual hm-visual" aria-label="TIH quick links">
+          <!-- The Learning Hub's floating-card design, available on phones too. -->
+          <div class="hero-visual hm-visual" aria-label="Explore TIH learning resources">
             <div class="hm-glow" aria-hidden="true"></div>
-            <img class="hm-emblem" src="assets/tih-logo.png" alt="" aria-hidden="true" data-depth="10" />
-            <a class="hm-card hm-float-a" href="wassce" data-depth="22">
-              <span class="hm-ic hm-ic-blue">🎓</span>
-              <span class="hm-tx"><strong>WASSCE Prep</strong><small>23 subjects &middot; tuition free, US$3 registration</small></span>
+            <img class="hm-emblem" src="assets/tih-logo.png" alt="" aria-hidden="true" />
+            <a class="hm-card hm-float-a" href="learning-hub#tracks">
+              <span class="hm-ic hm-ic-blue" aria-hidden="true">💻</span>
+              <span class="hm-tx"><strong>34 Courses</strong><small>Videos, notes &amp; quizzes</small></span>
             </a>
-            <a class="hm-card hm-card-red hm-float-b" href="learning-hub" data-depth="30">
-              <span class="hm-ic hm-ic-white">▶</span>
-              <span class="hm-tx"><strong>Video Lessons</strong>
-                <span class="hm-bar"><i style="width:75%"></i></span>
-              </span>
+            <a class="hm-card hm-card-red hm-float-b" href="wassce">
+              <span class="hm-ic hm-ic-white" aria-hidden="true">🎓</span>
+              <span class="hm-tx"><strong>WASSCE PRO</strong><small>23 exam subjects</small></span>
             </a>
-            <a class="hm-card hm-float-c" href="certificate-verify" data-depth="18">
-              <span class="hm-ic hm-ic-red">📜</span>
+            <a class="hm-card hm-float-c" href="certificate-verify">
+              <span class="hm-ic hm-ic-red" aria-hidden="true">📜</span>
               <span class="hm-tx"><strong>Certificates</strong><small>Verified online</small></span>
             </a>
-            <a class="hm-card hm-card-navy hm-float-d" href="https://libgrandpaai.com" target="_blank" rel="noopener noreferrer" data-depth="26">
-              <span class="hm-ic hm-ic-white">🧠</span>
-              <span class="hm-tx"><strong>AI Powered Learning</strong><small>Ask Grandpa AI</small></span>
+            <a class="hm-card hm-card-navy hm-float-d" href="practice-test?exam=ielts">
+              <span class="hm-ic hm-ic-white" aria-hidden="true">🧠</span>
+              <span class="hm-tx"><strong>IELTS · TOEFL · SAT</strong><small>Timed practice tests</small></span>
             </a>
-            <a class="hm-card hm-float-e" href="fully-funded-scholarship" data-depth="34">
-              <span class="hm-ic hm-ic-blue">💰</span>
-              <span class="hm-tx"><strong>Scholarships & Grants</strong><small>Fully funded options</small></span>
+            <a class="hm-card hm-float-e" href="ielts-reading-practice">
+              <span class="hm-ic hm-ic-blue" aria-hidden="true">📖</span>
+              <span class="hm-tx"><strong>IELTS Reading</strong><small>Free practice, no sign-in</small></span>
             </a>
           </div>
         </div>
