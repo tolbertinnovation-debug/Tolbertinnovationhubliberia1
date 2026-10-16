@@ -36,8 +36,9 @@
     @media(max-width:600px){.resource-tools,.resource-grid {grid-template-columns:1fr;}.resource-tools input,.resource-tools select {font-size:16px;}}
 </style>
   <link rel="stylesheet" href="hero-theme.css?v=1" />
+  <link rel="stylesheet" href="brand-backgrounds.css?v=1" />
 </head>
-<body>
+<body class="tih-branded">
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header">
@@ -64,7 +65,8 @@
 
   <main id="main-content">
     <section class="resource-hero tih-hero-light" aria-labelledby="resource-title"><div class="container"><p>YOUR NEXT STEP STARTS HERE</p><h1 id="resource-title">Find the Right Resource</h1><p>One place to find learning, funding, digital services, and community support for Liberia. Search by your goal or choose a category.</p><a class="btn btn-primary" href="#resource-directory">Browse all 28 resource routes</a></div></section>
-    <section class="section" id="resource-directory" aria-labelledby="resource-heading"><div class="container"><h2 id="resource-heading">What would you like to do?</h2><p>Try “church”, “school”, “student”, “medical”, “website”, or “innovation”.</p>
+    <section class="section brand-ribbon-section brand-waves" id="resource-directory" aria-labelledby="resource-heading">
+      <div class="brand-section-art" aria-hidden="true"></div><div class="container"><h2 id="resource-heading">What would you like to do?</h2><p>Try “church”, “school”, “student”, “medical”, “website”, or “innovation”.</p>
     <div class="resource-tools" id="resource-tools" hidden><div><label for="resource-search">Search resources</label><input id="resource-search" type="search" placeholder="Enter a topic or goal" /></div><div><label for="resource-category">Category</label><select id="resource-category"><option value="all">All categories</option><option value="learning">Learning & Education</option><option value="funding">Funding & Donations</option><option value="technology">Technology & AI</option><option value="support">Services & Help</option><option value="community">Community & Programs</option></select></div><button class="btn btn-outline" type="button" id="resource-reset">Reset</button></div>
     <p id="resource-count" role="status" aria-live="polite">28 resource routes</p><p id="resource-empty" hidden>No matching resources. Try a broader search or <a href="contact">ask the TIH team</a>.</p><div class="resource-grid"><article class="resource-card" data-category="learning"><p class="resource-kind">Learning & Education</p><h2>Learning Hub</h2><p>Practical courses, video lessons, quizzes, and course-completion certificates. Start here to compare learning options.</p><a href="learning-hub">Explore resource <span aria-hidden="true">→</span></a></article>
 <article class="resource-card" data-category="learning"><p class="resource-kind">Learning & Education</p><h2>WASSCE Exam Preparation</h2><p>Subject lessons and revision resources for secondary-school students preparing for WASSCE.</p><a href="wassce">Explore resource <span aria-hidden="true">→</span></a></article>

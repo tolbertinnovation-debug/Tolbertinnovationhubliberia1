@@ -1,0 +1,27 @@
+/* Public-page backgrounds inspired by TIH's red, blue and white identity.
+   These are vector decorations; the approved hero and interactive layers stay separate. */
+.tih-branded main {background:radial-gradient(ellipse at 0 35%,#edf5ff,transparent 48%),#fbfcff;}
+.tih-branded main .brand-ribbon-section {position:relative;isolation:isolate;overflow:hidden;}
+.tih-branded .brand-section-art {position:absolute;inset:0;z-index:0;pointer-events:none;user-select:none;background-image:url("assets/brand-ribbon.svg");background-position:center bottom;background-size:max(100%,1000px) 290px;background-repeat:no-repeat;opacity:.72;}
+.tih-branded .brand-ribbon-section > :not(.brand-section-art) {position:relative;z-index:1;}
+.tih-branded main .brand-ribbon-section {padding-bottom:clamp(5rem,8vw,7rem);}
+.tih-branded .brand-ribbon-section.brand-corner .brand-section-art {background-image:url("assets/brand-corner.svg"),url("assets/brand-corner.svg");background-size:400px 400px,310px 310px;background-position:left top,right bottom;opacity:.52;}
+.tih-branded .brand-ribbon-section.brand-corner {background-image:radial-gradient(ellipse at 100% 100%,#eaf3ff88,transparent 60%);}
+.tih-branded .brand-ribbon-section.brand-flow .brand-section-art {transform:scaleX(-1);opacity:.52;background-size:max(100%,1200px) 350px;}
+.tih-branded.tih-home main .home-section.brand-ribbon-section {background-color:#fff;}
+.tih-branded.tih-home main .home-section.brand-ribbon-section:nth-of-type(even) {background-color:#f6f9ff;}
+.tih-branded.tih-home main .home-section.brand-ribbon-section::after {pointer-events:none;}
+.tih-branded.tih-home .brand-ribbon-section :is(.home-value-card,.home-resource,.welcome-tile,.feature-item,.path-card,.event-card,.home-faq details) {background:var(--hp-card);}
+.tih-branded.tih-home .brand-ribbon-section .section-header h2::after {background:linear-gradient(90deg,#e31e24 0 48%,#fff 48% 55%,#1555b4 55%);width:65px;}
+.tih-branded.tih-home .brand-ribbon-section .section-label::before {background:linear-gradient(90deg,#e31e24 0 50%,#1555b4 50%);width:28px;}
+.tih-branded .site-footer {border-image:linear-gradient(90deg,#e31e24 0 40%,#fff 40% 44%,#1565d8 44% 100%) 1;}
+@media(max-width:700px) {
+ .tih-branded .brand-section-art {background-size:1000px 190px;background-position:60% bottom;opacity:.52;}
+ .tih-branded .brand-ribbon-section.brand-flow .brand-section-art {background-size:1050px 230px;opacity:.48;}
+ .tih-branded .brand-ribbon-section.brand-corner .brand-section-art {background-size:230px 230px,190px 190px;opacity:.4;}
+ .tih-branded main .brand-ribbon-section {padding-bottom:4.5rem;}
+}
+[data-theme="dark"] .tih-branded main {background:#0d192b;}
+[data-theme="dark"] .tih-branded.tih-home main .home-section.brand-ribbon-section {background-color:#0d192b;}
+[data-theme="dark"] .tih-branded.tih-home main .home-section.brand-ribbon-section:nth-of-type(even) {background-color:#122039;}
+[data-theme="dark"] .tih-branded .brand-section-art {opacity:.16;}
