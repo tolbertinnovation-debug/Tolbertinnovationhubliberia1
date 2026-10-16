@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <title>Events &amp; Programs | Tolbert Innovation Hub</title>
-  <meta name="description" content="Upcoming events, workshops, scholarship deadlines, and program sessions from Tolbert Innovation Hub. Register for free events today." />
+  <meta name="description" content="Explore TIH learning programmes, AI and business session enquiries, scholarship and grant resources, and selected official funding dates relevant to Liberia." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -18,101 +18,27 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://formsubmit.co https://formspree.io https://restcountries.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co https://formspree.io; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <style>
-    .featured-event {
-      background: linear-gradient(135deg, #E31E24 0%, #8a0020 100%);
-      color: #fff;
-      border-radius: 16px;
-      padding: 2.5rem 3rem;
-      margin-top: 2rem;
-      display: flex;
-      gap: 2.5rem;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-    .featured-event-date-block {
-      background: rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      text-align: center;
-      min-width: 110px;
-      flex-shrink: 0;
-    }
-    .featured-event-date-block .fe-month { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.9; }
-    .featured-event-date-block .fe-day { font-size: 3rem; font-weight: 800; font-family: 'Poppins', sans-serif; line-height: 1; margin: 0.2rem 0; }
-    .featured-event-date-block .fe-year { font-size: 0.85rem; opacity: 0.8; }
-    .featured-event-content h2 { color: #fff; margin-bottom: 0.75rem; }
-    .featured-event-content p { opacity: 0.92; line-height: 1.75; margin-bottom: 0.75rem; }
-    .featured-event-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; }
-    .fe-meta-item { background: rgba(255,255,255,0.15); border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.85rem; font-weight: 600; }
-    .events-list { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
-    .event-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 1.5rem 1.75rem;
-      box-shadow: 0 2px 10px rgba(0,40,104,0.08);
-      display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
-      border-left: 5px solid #002868;
-      transition: box-shadow 0.2s;
-    }
-    .event-card:hover { box-shadow: 0 4px 20px rgba(0,40,104,0.15); }
-    .event-card.event-red { border-left-color: #E31E24; }
-    .event-date-block {
-      background: #002868;
-      color: #fff;
-      border-radius: 10px;
-      padding: 0.75rem 1rem;
-      text-align: center;
-      min-width: 68px;
-      flex-shrink: 0;
-    }
-    .event-card.event-red .event-date-block { background: #E31E24; }
-    .event-date-block .ev-month { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.88; }
-    .event-date-block .ev-day { font-size: 1.8rem; font-weight: 800; font-family: 'Poppins', sans-serif; line-height: 1.1; }
-    .event-card-content { flex: 1; }
-    .event-card-content h3 { margin: 0 0 0.35rem; font-size: 1.05rem; color: #111; }
-    .event-card-content p { margin: 0; color: #555; font-size: 0.93rem; line-height: 1.65; }
-    .event-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
-    .event-tag { background: #eaf4ff; color: #002868; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.7rem; border-radius: 12px; }
-    .event-tag.tag-red { background: #fff0f3; color: #E31E24; }
-    .event-tag.tag-green { background: #f0fff4; color: #166534; }
-    .past-events-list { margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-    .past-event-item { background: #fff; border-radius: 10px; padding: 1.25rem 1.5rem; border-left: 4px solid #dde; }
-    .past-event-item .past-date { font-size: 0.8rem; color: #888; font-weight: 600; margin-bottom: 0.3rem; }
-    .past-event-item .past-title { font-weight: 700; color: #333; font-size: 0.95rem; }
-    .past-event-item .past-desc { font-size: 0.88rem; color: #666; margin-top: 0.3rem; }
-    .newsletter-form { background: #fff; border-radius: 14px; padding: 2.5rem; box-shadow: 0 2px 14px rgba(0,40,104,0.09); max-width: 560px; margin: 2rem auto 0; }
-    .newsletter-form h3 { margin-bottom: 0.5rem; color: #002868; }
-    .newsletter-form p { color: #555; margin-bottom: 1.5rem; font-size: 0.95rem; }
-    .newsletter-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .newsletter-row input[type="email"] {
-      flex: 1; min-width: 180px;
-      padding: 0.75rem 1rem;
-      border: 2px solid #dde;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-family: 'Inter', sans-serif;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .newsletter-row input[type="email"]:focus { border-color: #002868; }
-    .btn-cal-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      background: rgba(255,255,255,0.18);
-      color: #fff;
-      border: 2px solid rgba(255,255,255,0.5);
-      border-radius: 8px;
-      padding: 0.55rem 1.1rem;
-      font-size: 0.88rem;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .btn-cal-link:hover { background: rgba(255,255,255,0.3); border-color: rgba(255,255,255,0.85); }
+    .ep-hero-facts { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.7rem; }
+    .ep-hero-facts span { border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:999px; padding:.45rem .8rem; font-size:.84rem; }
+    [data-theme="dark"] .site-header .brand { color:var(--text); }
+    .ep-feature-grid,.ep-request-layout { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem; }
+    .ep-feature { padding:1.7rem; border-radius:16px; background:var(--brand-blue); color:#fff; }
+    .ep-feature:nth-child(2) { background:#183e58; }.ep-feature h3 { color:#fff; }.ep-feature a { color:#fff; font-weight:700; }.ep-feature p { line-height:1.75; }.ep-kicker { font-size:.78rem; text-transform:uppercase; font-weight:700; letter-spacing:.05em; }
+    .ep-tools { display:grid; grid-template-columns:1.3fr 1fr 1fr auto; gap:.8rem; align-items:end; margin:1.5rem 0; }.ep-tools[hidden] { display:none; }
+    .ep-tools label,.ep-form label { display:block; font-weight:600; font-size:.88rem; margin-bottom:.4rem; }
+    .ep-tools input,.ep-tools select,.ep-form input:not([type="checkbox"]),.ep-form select,.ep-form textarea { width:100%; min-height:46px; padding:.7rem; border:1px solid var(--border); border-radius:9px; font:inherit; background:var(--surface); color:var(--text); }
+    .ep-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.1rem; }
+    .ep-card { display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--border); border-radius:15px; padding:1.4rem; overflow-wrap:anywhere; }.ep-card[hidden] { display:none; }
+    .ep-card h3 { font-size:1.08rem; margin:.9rem 0 .6rem; }.ep-card p { font-size:.9rem; line-height:1.75; color:var(--text-secondary); margin:.5rem 0; }
+    .ep-badges { display:flex; flex-wrap:wrap; gap:.4rem; }.ep-badges span { border:1px solid var(--border); background:var(--surface-2); border-radius:7px; padding:.3rem .5rem; font-size:.73rem; font-weight:600; color:var(--text-secondary); }
+    .ep-actions { display:flex; flex-wrap:wrap; gap:.6rem 1rem; margin-top:auto; padding-top:1rem; }.ep-actions a { font-size:.88rem; font-weight:700; min-height:36px; display:flex; align-items:center; }.ep-actions a + a { font-weight:500; }
+    .ep-date-card time { font-size:1.1rem; font-weight:700; color:var(--brand-blue-light); }.ep-calendar { font:600 .85rem var(--font-body); padding:.55rem .7rem; border:1px solid var(--border); background:var(--surface-2); color:var(--text); border-radius:8px; cursor:pointer; }.ep-calendar[hidden] { display:none; }
+    .ep-form { padding:1.5rem; border:1px solid var(--border); border-radius:16px; background:var(--surface); }.ep-form h3 { margin-top:0; }.ep-form input,.ep-form select,.ep-form textarea { margin-bottom:1rem; }.ep-form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }.ep-form .ep-consent { display:flex; align-items:start; gap:.6rem; margin:1rem 0; font-weight:400; }.ep-consent input { flex-shrink:0; margin-top:.3rem; }
+    .ep-note { font-size:.84rem; color:var(--text-muted); line-height:1.7; }.ep-request-layout p { line-height:1.8; }.ep-faq { max-width:900px; }.ep-faq details { padding:1.1rem; margin:.7rem 0; border:1px solid var(--border); border-radius:10px; background:var(--surface); }.ep-faq summary { cursor:pointer; font-weight:600; }.ep-faq p { line-height:1.8; }
+    #register,#funding-dates,#upcoming-events { scroll-margin-top:110px; }
+    @media(max-width:1000px) { .ep-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.ep-tools { grid-template-columns:1fr 1fr; } }
+    @media(max-width:720px) { .ep-feature-grid,.ep-request-layout { grid-template-columns:1fr; } }
+    @media(max-width:560px) { .ep-grid,.ep-tools,.ep-form-row { grid-template-columns:1fr; }.ep-feature,.ep-card { padding:1.2rem; } }
   </style>
 </head>
 <body>
@@ -128,6 +54,8 @@
         <a href="fully-funded-scholarship">Fully Funded</a>
         <a href="healthcare">Healthcare</a>
         <a href="software">Software</a>
+        <a class="active" aria-current="page" href="events">Events &amp; Programs</a>
+        <a href="grants">Grants</a>
         <a href="library">Library</a>
         <a href="news">News</a>
         <a href="about">About</a>
@@ -140,558 +68,149 @@
   </header>
 
   <main id="main-content">
-
-    <!-- Hero -->
     <section class="hero">
       <div class="container">
         <p class="eyebrow">Events &amp; Programs</p>
-        <h1>Upcoming Events, Workshops &amp; Program Sessions</h1>
-        <p class="lead">
-          Stay up to date with scholarship deadlines, IELTS and TOEFL workshops, healthcare orientation sessions,
-          and technology consultation open days. All events are free or low-cost, and most are open to anyone
-          in Liberia and across Africa.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#upcoming-events">View Upcoming Events</a>
-          <a class="btn btn-secondary" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Register via WhatsApp</a>
+        <h1>Learn, Connect &amp; Plan Your Next Step</h1>
+        <p class="lead">Explore TIH learning programmes, request a group session, discuss a business project, and keep track of selected funding dates relevant to Liberia.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#upcoming-events">Explore programmes</a><a class="btn btn-secondary" href="#register">Request a session</a><a class="btn btn-outline" href="#funding-dates">View funding dates</a></div>
+        <div class="ep-hero-facts"><span>16 programme &amp; resource routes</span><span>5 subject areas</span><span>Online resources &amp; session enquiries</span></div>
+      </div>
+    </section>
+    <section class="section ep-intro" aria-labelledby="ep-start-title">
+      <div class="container">
+        <div class="section-header"><p class="section-label">Choose Your Route</p><h2 id="ep-start-title">Start Learning or Ask About a Session</h2><p class="section-intro">Self-paced programmes and resources can be explored through their linked pages. For live sessions, group training, or consultations, send an enquiry and wait for TIH to confirm the date, format, venue, availability, and any charges.</p></div>
+        <div class="ep-feature-grid">
+          <article class="ep-feature"><p class="ep-kicker">Learning &amp; Skills</p><h3>Build a learning plan that fits your goal</h3><p>Explore practical courses, WASSCE preparation, and English exam resources. Check each programme’s requirements and registration details.</p><a href="learning-hub">Explore the Learning Hub →</a></article>
+          <article class="ep-feature"><p class="ep-kicker">Organizations &amp; Teams</p><h3>Request a focused session for your group</h3><p>Tell us who will attend and what you want to learn about AI, proposal writing, funding research, or digital tools. A request does not reserve a place.</p><a href="#register">Share your session requirements →</a></article>
         </div>
       </div>
     </section>
-
-    <!-- Featured Upcoming Event -->
-    <section class="section">
+    <section class="section section-alt" id="upcoming-events" aria-labelledby="programme-directory-title">
       <div class="container">
-        <p class="section-label">Don't Miss</p>
-        <h2>Featured Upcoming Event</h2>
-        <div class="featured-event reveal">
-          <div class="featured-event-date-block">
-            <div class="fe-month">July</div>
-            <div class="fe-day">30</div>
-            <div class="fe-year">2026</div>
-          </div>
-          <div class="featured-event-content">
-            <h2>2026 Scholarship Application Deadline</h2>
-            <p>
-              The deadline for submitting your scholarship application for the 2026 intake is <strong>August 31, 2026</strong>.
-              This applies to students applying for Erasmus+ pathways (Europe),
-              and other bilateral scholarship programs coordinated through Tolbert Innovation Hub.
-            </p>
-            <p>
-              To be considered, you must have completed your eligibility assessment, submitted all required documents,
-              and received confirmation from our team. Applications submitted after this date will be reviewed for
-              the next intake cycle. Do not wait. Scholarship slots are limited.
-            </p>
-            <div class="featured-event-meta">
-              <span class="fe-meta-item">Deadline Event</span>
-              <span class="fe-meta-item">All Scholarship Programs</span>
-              <span class="fe-meta-item">Open to All Applicants</span>
-            </div>
-            <div style="display:flex; flex-wrap:wrap; gap:0.75rem; align-items:center; margin-top:0.5rem;">
-              <a class="btn btn-primary" href="apply" style="background:#fff; color:#E31E24; display:inline-block;">Apply Before Deadline</a>
-              <a class="btn-cal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Scholarship+Application+Deadline+%E2%80%94+Tolbert+Innovation+Hub&dates=20260831T000000Z/20260831T235959Z&details=Application+deadline+for+2026+scholarship+intake+at+Tolbert+Innovation+Hub&location=Monrovia%2C+Liberia" target="_blank" rel="noopener noreferrer">&#x1F4C5; Add to Google Calendar</a>
-            </div>
-          </div>
+        <div class="section-header"><p class="section-label">Programme Directory</p><h2 id="programme-directory-title">Find a Programme, Resource or Enquiry Route</h2><p class="section-intro">Use the category and participation filters to find a relevant next step. Session-interest listings are requests for availability, not scheduled public events.</p></div>
+        <div class="ep-tools" id="programme-tools" hidden>
+          <div><label for="programme-search">Search programmes</label><input type="search" id="programme-search" placeholder="Scholarships, AI, website, NGO…" /></div>
+          <div><label for="programme-category">Subject area</label><select id="programme-category"><option value="all">All subject areas</option><option value="learning">Learning &amp; Exams</option><option value="scholarships">Scholarships &amp; Student Aid</option><option value="funding">Grants &amp; Funding</option><option value="technology">Technology &amp; Business</option><option value="healthcare">Healthcare</option></select></div>
+          <div><label for="programme-mode">Participation</label><select id="programme-mode"><option value="all">All routes</option><option value="self-paced">Self-paced programme</option><option value="resource">Explore a resource / project</option><option value="interest">Session interest — date to be confirmed</option><option value="appointment">By appointment — confirmation required</option></select></div>
+          <button class="btn btn-outline" id="programme-reset" type="button">Reset</button>
         </div>
+        <p id="programme-results" role="status" aria-live="polite">16 programme and resource routes</p>
+        <div class="ep-grid" id="programme-grid">
+          <article class="ep-card" data-category="learning" data-mode="self-paced" id="programme-1">
+            <div class="ep-badges"><span>Learning &amp; Exams</span><span>Self-paced programme</span></div>
+            <h3>TIH Learning Hub</h3><p>Build practical skills through course lessons, notes, quizzes, and course-completion activities.</p><p class="ep-audience"><strong>For:</strong> Students, professionals, and first-time learners</p><p><strong>Next step:</strong> Browse courses and confirm current registration charges and access requirements.</p>
+            <div class="ep-actions"><a href="learning-hub">Explore courses →</a><a href="#register" data-programme="TIH Learning Hub">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="learning" data-mode="self-paced" id="programme-2">
+            <div class="ep-badges"><span>Learning &amp; Exams</span><span>Self-paced programme</span></div>
+            <h3>WASSCE Subject Preparation</h3><p>Work through subject lessons, practice questions, and structured revision resources.</p><p class="ep-audience"><strong>For:</strong> Liberian secondary-school students and independent learners</p><p><strong>Next step:</strong> Choose a subject and check its registration and learning requirements.</p>
+            <div class="ep-actions"><a href="wassce">Browse WASSCE subjects →</a><a href="#register" data-programme="WASSCE Subject Preparation">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="learning" data-mode="self-paced" id="programme-3">
+            <div class="ep-badges"><span>Learning &amp; Exams</span><span>Self-paced programme</span></div>
+            <h3>IELTS &amp; TOEFL Preparation</h3><p>Explore English exam preparation resources and practice activities in the Learning Hub.</p><p class="ep-audience"><strong>For:</strong> Students preparing for English-language study requirements</p><p><strong>Next step:</strong> Check the available preparation tracks. Request a group session separately if needed.</p>
+            <div class="ep-actions"><a href="learning-hub">Explore exam preparation →</a><a href="#register" data-programme="IELTS &amp; TOEFL Preparation">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="learning" data-mode="self-paced" id="programme-4">
+            <div class="ep-badges"><span>Learning &amp; Exams</span><span>Self-paced programme</span></div>
+            <h3>Grant Writing &amp; Proposal Skills</h3><p>Learn how to explain a problem, develop objectives, organize a budget, and structure a proposal.</p><p class="ep-audience"><strong>For:</strong> NGOs, youth groups, community leaders, and project teams</p><p><strong>Next step:</strong> Find the Grant Writing track and check course access details.</p>
+            <div class="ep-actions"><a href="learning-hub">Find the grant-writing course →</a><a href="#register" data-programme="Grant Writing &amp; Proposal Skills">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="learning" data-mode="self-paced" id="programme-5">
+            <div class="ep-badges"><span>Learning &amp; Exams</span><span>Self-paced programme</span></div>
+            <h3>Liberian Law Learning Programmes</h3><p>Explore legal foundations and advanced study pathways, with notes, practice work, and assessments.</p><p class="ep-audience"><strong>For:</strong> Independent learners, community educators, and professionals</p><p><strong>Next step:</strong> Review the programme outline and registration details. TIH completion certificates are not law degrees or permission to practise.</p>
+            <div class="ep-actions"><a href="learning-hub">Explore law learning →</a><a href="#register" data-programme="Liberian Law Learning Programmes">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="scholarships" data-mode="interest" id="programme-6">
+            <div class="ep-badges"><span>Scholarships &amp; Student Aid</span><span>Session interest — date to be confirmed</span></div>
+            <h3>Scholarship &amp; Study Abroad Planning</h3><p>Request information on shortlisting institutions, reviewing requirements, and organizing application documents.</p><p class="ep-audience"><strong>For:</strong> Students and families exploring international education</p><p><strong>Next step:</strong> Express interest; TIH must confirm any live session date, format, availability, and fees.</p>
+            <div class="ep-actions"><a href="study-abroad">Explore study-abroad guidance →</a><a href="#register" data-programme="Scholarship &amp; Study Abroad Planning">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="scholarships" data-mode="resource" id="programme-7">
+            <div class="ep-badges"><span>Scholarships &amp; Student Aid</span><span>Explore a resource / project</span></div>
+            <h3>Student Financial Aid Directory</h3><p>Compare student aid routes and understand study-location, financial-need, age, and enrolment requirements.</p><p class="ep-audience"><strong>For:</strong> Students seeking help with education costs</p><p><strong>Next step:</strong> Follow the official provider’s application process and check whether intake is open.</p>
+            <div class="ep-actions"><a href="grants?category=students#grants-directory">Browse student financial aid →</a><a href="#register" data-programme="Student Financial Aid Directory">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="funding" data-mode="interest" id="programme-8">
+            <div class="ep-badges"><span>Grants &amp; Funding</span><span>Session interest — date to be confirmed</span></div>
+            <h3>NGO, School &amp; Church Funding Guidance</h3><p>Request a session on matching a project to funding criteria, reviewing official calls, and preparing a document checklist.</p><p class="ep-audience"><strong>For:</strong> Nonprofits, schools, churches, and community organizations</p><p><strong>Next step:</strong> Request availability. A session enquiry is separate from an application to a donor.</p>
+            <div class="ep-actions"><a href="grants">Explore funding resources →</a><a href="#register" data-programme="NGO, School &amp; Church Funding Guidance">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="funding" data-mode="resource" id="programme-9">
+            <div class="ep-badges"><span>Grants &amp; Funding</span><span>Explore a resource / project</span></div>
+            <h3>Innovation Project Funding</h3><p>Explore funders supporting pilot projects, evidence-building, and scalable development solutions.</p><p class="ep-audience"><strong>For:</strong> Innovators, startups, research teams, and social enterprises</p><p><strong>Next step:</strong> Check applicant type, project maturity, evidence requirements, and the current call status.</p>
+            <div class="ep-actions"><a href="grants?category=innovation#grants-directory">Find innovation funding →</a><a href="#register" data-programme="Innovation Project Funding">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="funding" data-mode="resource" id="programme-10">
+            <div class="ep-badges"><span>Grants &amp; Funding</span><span>Explore a resource / project</span></div>
+            <h3>Environmental NGO Funding</h3><p>Explore forest, biodiversity, climate, and conservation grant routes relevant to Liberia.</p><p class="ep-audience"><strong>For:</strong> Conservation and climate-action organizations</p><p><strong>Next step:</strong> Compare official eligibility rules and distinguish open calls from closed rounds to monitor.</p>
+            <div class="ep-actions"><a href="grants?category=env#grants-directory">Browse environmental grants →</a><a href="#register" data-programme="Environmental NGO Funding">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="technology" data-mode="appointment" id="programme-11">
+            <div class="ep-badges"><span>Technology &amp; Business</span><span>By appointment — confirmation required</span></div>
+            <h3>Website &amp; Software Project Consultation</h3><p>Discuss your users, required features, delivery priorities, budget range, and ongoing support needs.</p><p class="ep-audience"><strong>For:</strong> Businesses, schools, churches, NGOs, and institutions</p><p><strong>Next step:</strong> Submit a project enquiry. The team must confirm an appointment and any project quote.</p>
+            <div class="ep-actions"><a href="business-intake">Describe your project →</a><a href="#register" data-programme="Website &amp; Software Project Consultation">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="technology" data-mode="interest" id="programme-12">
+            <div class="ep-badges"><span>Technology &amp; Business</span><span>Session interest — date to be confirmed</span></div>
+            <h3>AI &amp; Digital Literacy Group Session</h3><p>Request an introductory group session on practical AI use, digital tools, and responsible information checking.</p><p class="ep-audience"><strong>For:</strong> Schools, community groups, NGOs, and business teams</p><p><strong>Next step:</strong> This is a session request; no public date or venue is confirmed. Share your audience and preferred format.</p>
+            <div class="ep-actions"><a href="#register">Request session availability →</a><a href="#register" data-programme="AI &amp; Digital Literacy Group Session">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="technology" data-mode="resource" id="programme-13">
+            <div class="ep-badges"><span>Technology &amp; Business</span><span>Explore a resource / project</span></div>
+            <h3>Grandpa AI Project</h3><p>Explore learning, storytelling, wisdom, and everyday conversations through TIH’s Grandpa AI project.</p><p class="ep-audience"><strong>For:</strong> Learners, innovators, and curious visitors</p><p><strong>Next step:</strong> Open the project website to explore the application.</p>
+            <div class="ep-actions"><a href="https://libgrandpaai.com" target="_blank" rel="noopener noreferrer">Open Grandpa AI →</a><a href="#register" data-programme="Grandpa AI Project">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="technology" data-mode="resource" id="programme-14">
+            <div class="ep-badges"><span>Technology &amp; Business</span><span>Explore a resource / project</span></div>
+            <h3>Software Sales &amp; Client Opportunities</h3><p>Explore local institutional prospects, procurement portals, and marketplaces for selling websites or applications.</p><p class="ep-audience"><strong>For:</strong> Liberian developers, agencies, and software founders</p><p><strong>Next step:</strong> Use the official contact routes; listed prospects have not confirmed a current purchase requirement.</p>
+            <div class="ep-actions"><a href="software#software-sales">Explore sales routes →</a><a href="#register" data-programme="Software Sales &amp; Client Opportunities">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="technology" data-mode="resource" id="programme-15">
+            <div class="ep-badges"><span>Technology &amp; Business</span><span>Explore a resource / project</span></div>
+            <h3>LibApps: Applications Built in Liberia</h3><p>Browse applications published by TIH and review download details on the app store.</p><p class="ep-audience"><strong>For:</strong> App users and people exploring Liberian digital products</p><p><strong>Next step:</strong> Check each application’s supported platform and installation instructions.</p>
+            <div class="ep-actions"><a href="libapps">Explore LibApps →</a><a href="#register" data-programme="LibApps: Applications Built in Liberia">Ask about this programme</a></div>
+          </article>
+          <article class="ep-card" data-category="healthcare" data-mode="interest" id="programme-16">
+            <div class="ep-badges"><span>Healthcare</span><span>Session interest — date to be confirmed</span></div>
+            <h3>Healthcare Programme Information</h3><p>Request general information on healthcare enquiries and referral routes, or browse medical donation and treatment resources.</p><p class="ep-audience"><strong>For:</strong> Patients, families, hospitals, and clinics</p><p><strong>Next step:</strong> Contact the healthcare team for case-specific guidance. Do not send medical records through the general session form.</p>
+            <div class="ep-actions"><a href="healthcare">Explore healthcare guidance →</a><a href="#register" data-programme="Healthcare Programme Information">Ask about this programme</a></div>
+          </article>
+        </div><p id="programme-empty" hidden>No programmes match these filters. Try another search or reset the filters.</p>
       </div>
     </section>
-
-    <!-- Countdown Timer -->
-    <section class="section section-countdown" id="countdown-section">
-      <div class="container">
-        <p class="countdown-title">&#x23F0; Next Major Deadline</p>
-        <p class="countdown-subtitle">2026 Scholarship Application Deadline: August 31, 2026</p>
-        <div class="countdown-boxes" id="countdown-boxes">
-          <div class="countdown-box">
-            <span class="countdown-num" id="cd-days">00</span>
-            <span class="countdown-label">Days</span>
-          </div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-box">
-            <span class="countdown-num" id="cd-hours">00</span>
-            <span class="countdown-label">Hours</span>
-          </div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-box">
-            <span class="countdown-num" id="cd-minutes">00</span>
-            <span class="countdown-label">Minutes</span>
-          </div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-box">
-            <span class="countdown-num" id="cd-seconds">00</span>
-            <span class="countdown-label">Seconds</span>
-          </div>
-        </div>
-        <p class="countdown-expired" id="countdown-expired" style="display:none;">
-          This deadline has passed. Check our next event.
-        </p>
+    <section class="section" id="funding-dates" aria-labelledby="funding-dates-title">
+      <div class="container"><div class="section-header"><p class="section-label">External Provider Dates</p><h2 id="funding-dates-title">Dates to Plan Around</h2><p class="section-intro">Official provider pages checked on 16 October 2026. These are external application dates, separate from TIH sessions. Recheck the provider’s eligibility, exact cutoff time, and time zone before applying. Calendar downloads mark the date only.</p></div>
+        <div class="ep-grid ep-dates">
+          <article class="ep-card ep-date-card" data-date="2026-11-01" data-kind="deadline"><time datetime="2026-11-01">01 November 2026</time><p class="ep-date-status">Application deadline</p><h3>Waterloo Foundation: Tropical Rainforests</h3><p>Supports qualifying forest-protection work. Overseas applicants need a reference that meets the Foundation’s rules; UK charities receive priority.</p><div class="ep-actions"><a href="https://waterloofoundation.org.uk/environmentapplications/" target="_blank" rel="noopener noreferrer">Official provider details ↗</a><button type="button" class="ep-calendar" data-calendar="0" hidden>Download calendar date</button></div></article>
+          <article class="ep-card ep-date-card" data-date="2026-11-27" data-kind="deadline"><time datetime="2026-11-27">27 November 2026</time><p class="ep-date-status">Application deadline</p><h3>Awesome Foundation: Conservation &amp; Climate</h3><p>For original conservation or climate ideas from individuals and small teams. Review payment-account requirements and excluded costs.</p><div class="ep-actions"><a href="https://www.awesomefoundation.org/en/chapters/conservationandclimate" target="_blank" rel="noopener noreferrer">Official provider details ↗</a><button type="button" class="ep-calendar" data-calendar="1" hidden>Download calendar date</button></div></article>
+          <article class="ep-card ep-date-card" data-date="2026-12-01" data-kind="opening"><time datetime="2026-12-01">01 December 2026</time><p class="ep-date-status">Applications scheduled to open</p><h3>WMI Scholars: 2027 Application Opening</h3><p>The announced opening date for the next WMI Scholars application cycle. Review the new cycle’s student eligibility and partial-funding terms.</p><div class="ep-actions"><a href="https://www.wellsmountaininitiative.org/prospective-scholars/" target="_blank" rel="noopener noreferrer">Official provider details ↗</a><button type="button" class="ep-calendar" data-calendar="2" hidden>Download calendar date</button></div></article>
+        </div><p class="ep-note">After a listed date passes, its status changes to “date passed” so it is not presented as an upcoming deadline. A date reminder does not submit an application.</p>
       </div>
     </section>
-    <style>
-      .section-countdown {
-        background: linear-gradient(135deg, #002868 0%, #001540 100%);
-        padding: 3rem 0;
-        text-align: center;
-      }
-      .countdown-title {
-        font-family: 'Poppins', sans-serif;
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: #fff;
-        margin: 0 0 0.4rem;
-        letter-spacing: 0.01em;
-      }
-      .countdown-subtitle {
-        font-family: 'Inter', sans-serif;
-        font-size: 1rem;
-        color: rgba(255,255,255,0.78);
-        margin: 0 0 2rem;
-      }
-      .countdown-boxes {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0.75rem;
-        flex-wrap: wrap;
-      }
-      .countdown-box {
-        background: rgba(255,255,255,0.12);
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 14px;
-        padding: 1.1rem 1.4rem;
-        min-width: 88px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: background 0.3s;
-      }
-      .countdown-box:hover {
-        background: rgba(227,30,36,0.3);
-      }
-      .countdown-num {
-        font-family: 'Poppins', sans-serif;
-        font-size: 2.8rem;
-        font-weight: 800;
-        color: #fff;
-        line-height: 1;
-        display: block;
-        min-width: 2.4ch;
-        text-align: center;
-        letter-spacing: -0.02em;
-        transition: transform 0.15s ease, color 0.15s ease;
-      }
-      .countdown-num.flip {
-        transform: scaleY(0.7);
-        color: #f8c;
-      }
-      .countdown-label {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.72rem;
-        font-weight: 600;
-        color: rgba(255,255,255,0.65);
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        margin-top: 0.35rem;
-      }
-      .countdown-sep {
-        font-size: 2.4rem;
-        font-weight: 700;
-        color: rgba(255,255,255,0.4);
-        line-height: 1;
-        padding-bottom: 1.4rem;
-        user-select: none;
-      }
-      .countdown-expired {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.05rem;
-        color: rgba(255,255,255,0.85);
-        margin: 0.5rem 0 0;
-        font-style: italic;
-      }
-      @media (max-width: 480px) {
-        .countdown-box { min-width: 68px; padding: 0.85rem 1rem; }
-        .countdown-num { font-size: 2rem; }
-        .countdown-sep { font-size: 1.8rem; }
-      }
-    </style>
-    <script>
-      (function () {
-        var deadline = new Date('2026-07-15T23:59:59Z');
-        var boxIds = ['cd-days','cd-hours','cd-minutes','cd-seconds'];
-
-        function pad(n) { return String(n).padStart(2,'0'); }
-
-        function animateFlip(el) {
-          el.classList.add('flip');
-          setTimeout(function(){ el.classList.remove('flip'); }, 180);
-        }
-
-        function updateCountdown() {
-          var now = new Date();
-          var diff = deadline - now;
-          if (diff <= 0) {
-            document.getElementById('countdown-boxes').style.display = 'none';
-            document.getElementById('countdown-expired').style.display = 'block';
-            return;
-          }
-          var days    = Math.floor(diff / 86400000);
-          var hours   = Math.floor((diff % 86400000) / 3600000);
-          var minutes = Math.floor((diff % 3600000) / 60000);
-          var seconds = Math.floor((diff % 60000) / 1000);
-          var vals = [pad(days), pad(hours), pad(minutes), pad(seconds)];
-
-          boxIds.forEach(function(id, i) {
-            var el = document.getElementById(id);
-            if (el && el.textContent !== vals[i]) {
-              animateFlip(el);
-              el.textContent = vals[i];
-            }
-          });
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-      })();
-    </script>
-
-    <!-- Events List -->
-    <section class="section section-alt" id="upcoming-events">
-      <div class="container">
-        <p class="section-label">Upcoming Events</p>
-        <h2>Full Schedule: July to September 2026</h2>
-        <p class="section-intro">
-          All events below are either free or carry a nominal preparation fee. Contact us via WhatsApp to register
-          or for details on any event.
-        </p>
-        <div class="events-list">
-
-          <div class="event-card event-red reveal">
-            <div class="event-date-block">
-              <div class="ev-month">Jul</div>
-              <div class="ev-day">30</div>
-            </div>
-            <div class="event-card-content">
-              <h3>Scholarship Application Deadline: 2026 Intake</h3>
-              <p>Final deadline for all scholarship applications submitted through Tolbert Innovation Hub for the 2026 academic year intake. All documents must be received and verified before this date.</p>
-              <div class="event-tags">
-                <span class="event-tag tag-red">Deadline</span>
-                <span class="event-tag">Scholarships</span>
-                <span class="event-tag tag-green">All Applicants</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="event-card reveal">
-            <div class="event-date-block">
-              <div class="ev-month">Jul</div>
-              <div class="ev-day">20</div>
-            </div>
-            <div class="event-card-content">
-              <h3>IELTS Writing Skills Workshop (Online)</h3>
-              <p>A live, interactive 90-minute workshop focused on Task 1 and Task 2 IELTS writing strategies. Taught by our lead academic coordinator. Open to all students currently enrolled in our free IELTS classroom. Join via WhatsApp group link after registration.</p>
-              <div class="event-tags">
-                <span class="event-tag">IELTS</span>
-                <span class="event-tag">Online</span>
-                <span class="event-tag tag-green">Free</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="event-card reveal">
-            <div class="event-date-block">
-              <div class="ev-month">Aug</div>
-              <div class="ev-day">1</div>
-            </div>
-            <div class="event-card-content">
-              <h3>Technology Consultation Open Day</h3>
-              <p>A walk-in and scheduled consultation day for businesses, startups, and entrepreneurs seeking digital transformation support. Meet our software team, discuss your project needs, and receive a free initial assessment. Location: Tolbert Innovation Hub, Monrovia (details via WhatsApp).</p>
-              <div class="event-tags">
-                <span class="event-tag">Software</span>
-                <span class="event-tag">Technology</span>
-                <span class="event-tag tag-green">Free Consultation</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="event-card event-red reveal">
-            <div class="event-date-block">
-              <div class="ev-month">Aug</div>
-              <div class="ev-day">15</div>
-            </div>
-            <div class="event-card-content">
-              <h3>Fully Funded Scholarship Information Session</h3>
-              <p>An information and Q&amp;A session for students interested in fully funded international scholarships: Chevening, Fulbright, Mastercard Foundation, DAAD, and more. Topics covered: eligibility requirements, application process, documents needed, and expected timelines for the 2027 intake.</p>
-              <div class="event-tags">
-                <span class="event-tag tag-red">International Scholarships</span>
-                <span class="event-tag">Fully Funded</span>
-                <span class="event-tag tag-green">Free Entry</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="event-card reveal">
-            <div class="event-date-block">
-              <div class="ev-month">Sep</div>
-              <div class="ev-day">1</div>
-            </div>
-            <div class="event-card-content">
-              <h3>Healthcare Program Orientation Session</h3>
-              <p>For individuals and families seeking international medical referral support, this orientation session walks through how our Healthcare Exposure Program works, what it covers, and how to begin the referral coordination process. Attendance is free; registration required via WhatsApp.</p>
-              <div class="event-tags">
-                <span class="event-tag">Healthcare</span>
-                <span class="event-tag">Orientation</span>
-                <span class="event-tag tag-green">Free</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="event-card reveal">
-            <div class="event-date-block">
-              <div class="ev-month">Sep</div>
-              <div class="ev-day">15</div>
-            </div>
-            <div class="event-card-content">
-              <h3>TOEFL Practice Mock Exam Session</h3>
-              <p>A full-length, timed TOEFL practice mock exam session for students preparing for the real exam. Participants will receive annotated results and personalized improvement notes from our classroom tutors. Limited seats available. Register via WhatsApp. Recommended for students who have completed Modules 1–4 of our TOEFL classroom.</p>
-              <div class="event-tags">
-                <span class="event-tag">TOEFL</span>
-                <span class="event-tag">Mock Exam</span>
-                <span class="event-tag tag-green">Free</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Event Registration Form -->
-    <section class="section" id="register">
-      <div class="container">
-        <p class="section-label">Register</p>
-        <h2>Register for an Upcoming Event</h2>
-        <p class="section-intro">
-          Reserve your spot at our free workshops, sessions, and open days. Confirmation will be sent via WhatsApp.
-        </p>
-        <form class="form-card reveal" data-success-message="Thank you for registering! We'll confirm your spot via WhatsApp or email within 24 hours." novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="reg-name">Full Name <span aria-hidden="true" style="color:#E31E24;">*</span></label>
-              <input class="form-input" type="text" id="reg-name" name="name" placeholder="Your full name" required autocomplete="name" />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="reg-email">Email <span aria-hidden="true" style="color:#E31E24;">*</span></label>
-              <input class="form-input" type="email" id="reg-email" name="email" placeholder="Your email address" required autocomplete="email" />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="reg-phone">Phone / WhatsApp <span aria-hidden="true" style="color:#E31E24;">*</span></label>
-              <input class="form-input" type="tel" id="reg-phone" name="phone" placeholder="+231 or international number" required autocomplete="tel" />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="reg-event">Event Selection <span aria-hidden="true" style="color:#E31E24;">*</span></label>
-              <select class="form-select" id="reg-event" name="event" required>
-                <option value="" disabled selected>Select an event&hellip;</option>
-                <option>2026 Scholarship Information Session</option>
-                <option>IELTS Writing Workshop</option>
-                <option>Technology Consultation Open Day</option>
-                <option>Fully Funded Scholarship Information Session</option>
-                <option>Healthcare Program Orientation</option>
-                <option>TOEFL Practice Exam Session</option>
-                <option>Other Event</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="reg-attendees">Number of Attendees</label>
-              <select class="form-select" id="reg-attendees" name="attendees">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5+</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="reg-source">How did you hear about us?</label>
-              <select class="form-select" id="reg-source" name="source">
-                <option value="" disabled selected>Select&hellip;</option>
-                <option>WhatsApp</option>
-                <option>Social Media</option>
-                <option>Friend/Family</option>
-                <option>Google</option>
-                <option>School</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="reg-notes">Special requirements or questions <span style="font-weight:400; color:#888;">(optional)</span></label>
-            <textarea class="form-textarea" id="reg-notes" name="notes" rows="4" placeholder="Any accessibility needs, questions, or additional information&hellip;"></textarea>
-          </div>
-          <p class="form-feedback" aria-live="polite"></p>
-          <div class="form-submit-row">
-            <button class="btn btn-primary" type="submit">Register for Event</button>
-            <p class="form-note">Free to attend. All sessions are conducted online or in Monrovia.</p>
-          </div>
+    <section class="section section-alt" id="register" aria-labelledby="session-request-title">
+      <div class="container ep-request-layout">
+        <div><p class="section-label">Session &amp; Programme Enquiries</p><h2 id="session-request-title">Tell Us What You Want to Explore</h2><p>Request information, suggest a preferred session date, or discuss training for your school, NGO, church, or business. TIH will review your enquiry and contact you about next steps.</p><ul class="list"><li>No date or place is reserved by submitting this form.</li><li>TIH must confirm the session format, venue, availability, and any fees.</li><li>For donor applications, follow the official provider’s instructions.</li></ul><p>Prefer a direct conversation? <a href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Contact TIH on WhatsApp →</a></p></div>
+        <form class="form-card ep-form" action="https://formsubmit.co/tolbertinnovationhub@gmail.com" method="post" data-success-message="Your enquiry has been sent. TIH will contact you about availability and next steps. This is not a booking confirmation." novalidate>
+          <h3>Request Programme Information</h3>
+          <div class="ep-form-row"><div><label for="reg-name">Full name *</label><input id="reg-name" name="name" autocomplete="name" required /></div><div><label for="reg-email">Email *</label><input id="reg-email" name="email" type="email" autocomplete="email" required /></div></div>
+          <div class="ep-form-row"><div><label for="reg-phone">Phone / WhatsApp (optional)</label><input id="reg-phone" name="phone" type="tel" autocomplete="tel" /></div><div><label for="reg-org">Organization (optional)</label><input id="reg-org" name="organization" autocomplete="organization" /></div></div>
+          <label for="reg-event">Programme / topic *</label><select id="reg-event" name="programme" required><option value="">Select a programme</option><option>TIH Learning Hub</option><option>WASSCE Subject Preparation</option><option>IELTS &amp; TOEFL Preparation</option><option>Grant Writing &amp; Proposal Skills</option><option>Liberian Law Learning Programmes</option><option>Scholarship &amp; Study Abroad Planning</option><option>Student Financial Aid Directory</option><option>NGO, School &amp; Church Funding Guidance</option><option>Innovation Project Funding</option><option>Environmental NGO Funding</option><option>Website &amp; Software Project Consultation</option><option>AI &amp; Digital Literacy Group Session</option><option>Grandpa AI Project</option><option>Software Sales &amp; Client Opportunities</option><option>LibApps: Applications Built in Liberia</option><option>Healthcare Programme Information</option><option>Other / propose a session</option></select>
+          <div class="ep-form-row"><div><label for="reg-format">Preferred format *</label><select id="reg-format" name="format" required><option value="">Choose a format</option><option>Online session</option><option>In-person session — location to be agreed</option><option>Information only</option></select></div><div><label for="reg-attendees">Expected group size</label><select id="reg-attendees" name="attendees"><option>1 person</option><option>2–10 people</option><option>11–25 people</option><option>26+ people</option><option>Not yet known</option></select></div></div>
+          <label for="reg-date">Preferred date (optional; subject to confirmation)</label><input id="reg-date" name="preferredDate" type="date" />
+          <label for="reg-notes">What would you like help with? *</label><textarea id="reg-notes" name="message" rows="4" required placeholder="Your learning goal, audience, or session questions"></textarea><p class="ep-note">Use this form for general programme enquiries. Do not include medical records, passwords, or identity documents.</p>
+          <label class="ep-consent"><input type="checkbox" name="contactConsent" required /> I agree that TIH may contact me about this enquiry. *</label><p class="form-feedback" role="status" aria-live="polite"></p><button class="btn btn-primary" type="submit">Send programme enquiry</button>
         </form>
       </div>
     </section>
-    <style>
-      #register .form-card {
-        background: #fff;
-        border-radius: 16px;
-        padding: 2.5rem 2.75rem;
-        box-shadow: 0 4px 24px rgba(0,40,104,0.10);
-        max-width: 820px;
-        margin: 2rem 0 0;
-      }
-      .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.25rem;
-        margin-bottom: 1.25rem;
-      }
-      @media (max-width: 600px) {
-        .form-row { grid-template-columns: 1fr; }
-        #register .form-card { padding: 1.75rem 1.25rem; }
-      }
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-        margin-bottom: 0;
-      }
-      #register .form-group { margin-bottom: 1.25rem; }
-      .form-label {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.88rem;
-        font-weight: 600;
-        color: #002868;
-      }
-      .form-input.form-select.form-textarea {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.95rem;
-        color: #222;
-        background: #f7f9ff;
-        border: 2px solid #dde3f0;
-        border-radius: 8px;
-        padding: 0.7rem 0.95rem;
-        outline: none;
-        transition: border-color 0.2s, box-shadow 0.2s;
-        width: 100%;
-        box-sizing: border-box;
-      }
-      .form-input:focus.form-select:focus.form-textarea:focus {
-        border-color: #002868;
-        box-shadow: 0 0 0 3px rgba(0,40,104,0.10);
-        background: #fff;
-      }
-      .form-textarea { resize: vertical; min-height: 110px; }
-      .form-submit-row {
-        display: flex;
-        align-items: center;
-        gap: 1.25rem;
-        flex-wrap: wrap;
-        margin-top: 0.5rem;
-      }
-      .form-note {
-        font-size: 0.83rem;
-        color: #777;
-        margin: 0;
-        font-family: 'Inter', sans-serif;
-      }
-      .form-feedback {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.93rem;
-        font-weight: 600;
-        color: #166534;
-        margin: 0 0 0.75rem;
-        min-height: 1.4em;
-      }
-    </style>
-
-    <!-- Past Events -->
-    <section class="section">
-      <div class="container">
-        <p class="section-label">What We've Done</p>
-        <h2>Past Program Highlights</h2>
-        <p class="section-intro">
-          A look back at some of the events and program sessions that have shaped our community over the past year.
-        </p>
-        <div class="past-events-list">
-          <div class="past-event-item reveal">
-            <div class="past-date">March 2026</div>
-            <div class="past-title">IELTS Module Launch: All 6 Modules Released</div>
-            <div class="past-desc">Full six-module IELTS curriculum went live on the free classroom platform, covering Reading, Writing, Listening, Speaking, and exam strategy.</div>
-          </div>
-          <div class="past-event-item reveal">
-            <div class="past-date">February 2026</div>
-            <div class="past-title">Healthcare Referral Program Expansion</div>
-            <div class="past-desc">Expanded healthcare referral network to include facilities in Ghana and the UAE, increasing access for complex medical cases.</div>
-          </div>
-          <div class="past-event-item reveal">
-            <div class="past-date">January 2026</div>
-            <div class="past-title">Scholarship Intake Opening: 2026 Cycle</div>
-            <div class="past-desc">Opened applications for the 2026 scholarship cycle, including Erasmus+ and other international pathways, with over 200 initial inquiries received in the first week.</div>
-          </div>
-          <div class="past-event-item reveal">
-            <div class="past-date">November 2025</div>
-            <div class="past-title">Technology Consultation Drive: 15 Businesses Supported</div>
-            <div class="past-desc">A three-week consultation drive provided free digital assessments to 15 small businesses across Monrovia, resulting in 8 active technology projects.</div>
-          </div>
-          <div class="past-event-item reveal">
-            <div class="past-date">October 2025</div>
-            <div class="past-title">TOEFL Classroom Launch</div>
-            <div class="past-desc">The complete TOEFL preparation classroom launched with six modules, full mock exams, video lessons, and a certificate request system.</div>
-          </div>
-          <div class="past-event-item reveal">
-            <div class="past-date">September 2025</div>
-            <div class="past-title">First Cohort Scholarship Placements</div>
-            <div class="past-desc">Celebrated the first cohort of students successfully placed at international universities through our scholarship program guidance pathway.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Register CTA + Newsletter -->
-    <section class="section section-alt">
-      <div class="container">
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:3rem; align-items:start;">
-
-          <div>
-            <p class="section-label">Register</p>
-            <h2>Join Our WhatsApp Community</h2>
-            <p>
-              The fastest way to register for events, receive reminders, and stay connected with the Tolbert Innovation Hub
-              community is through our WhatsApp group. All event details, registration links, and last-minute updates are
-              shared there first.
-            </p>
-            <a class="btn btn-primary" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer" style="margin-top:1rem; display:inline-block;">
-              Join via WhatsApp
-            </a>
-          </div>
-
-          <div>
-            <div class="newsletter-form reveal">
-              <h3>Email Newsletter</h3>
-              <p>Get event announcements, scholarship updates, and program news delivered to your inbox.</p>
-              <form onsubmit="handleNewsletterSubmit(event)">
-                <div class="newsletter-row">
-                  <input type="email" id="newsletter-email" placeholder="Your email address" required aria-label="Email address for newsletter" />
-                  <button type="submit" class="btn btn-primary">Subscribe</button>
-                </div>
-                <p id="newsletter-msg" style="margin-top:0.75rem; font-size:0.88rem; color:#002868; display:none;">
-                  Thank you! We will be in touch soon.
-                </p>
-              </form>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
+    <section class="section"><div class="container ep-faq"><div class="section-header"><p class="section-label">Before You Join</p><h2>Questions &amp; Participation Details</h2></div>
+      <details><summary>Are all programmes free?</summary><p>Resource browsing, course access, consultations, and live sessions have different terms. Check the linked programme page and ask TIH to confirm charges before enrolling or making a payment.</p></details>
+      <details><summary>Where are the live events held?</summary><p>The date, online link, physical venue, and accessibility arrangements must be confirmed for each live session. The session-interest cards do not announce a confirmed event.</p></details>
+      <details><summary>Can a school, NGO, or church request a group session?</summary><p>Yes. Use the enquiry form to describe the audience, topic, expected group size, and preferred format. TIH will review feasibility and availability.</p></details>
+      <details><summary>Does a funding reminder mean I am eligible?</summary><p>No. Review the official provider’s applicant rules, project requirements, deadline, and required documents. Funding decisions are made by the provider.</p></details>
+      <details><summary>How do I follow updates?</summary><p>Visit <a href="news">TIH News</a>, check the programme’s own page, or <a href="contact">contact our team</a> for current session information.</p></details>
+    </div></section>
   </main>
 
   <svg class="tih-wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,70 C240,110 480,20 720,45 C960,70 1200,105 1440,55 L1440,110 L0,110 Z" fill="#E31E24"/><path d="M0,84 C240,116 480,40 720,62 C960,84 1200,110 1440,72 L1440,110 L0,110 Z" fill="#ffffff"/><path d="M0,94 C260,120 520,58 760,76 C1000,94 1240,112 1440,84 L1440,110 L0,110 Z" fill="#0B2A6B"/></svg>
@@ -745,13 +264,6 @@
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60" height="60" alt="WhatsApp" />
   </a>
   <script src="main.js?v=20"></script>
-  <script>
-    function handleNewsletterSubmit(e) {
-      e.preventDefault();
-      document.getElementById('newsletter-msg').style.display = 'block';
-      document.getElementById('newsletter-email').value = '';
-    }
-  </script>
 <script src="chatbot.js?v=12"></script>
   <script>
     /* ---- Entrance-animation failsafe ----
@@ -773,6 +285,68 @@
       window.addEventListener('pageshow', function (e) { if (e.persisted) show(); });
       setTimeout(show, 4000);
     })();
+  </script>
+  <script>
+(function () {
+  const cards = Array.from(document.querySelectorAll('#programme-grid > .ep-card'));
+  const search = document.getElementById('programme-search');
+  const category = document.getElementById('programme-category');
+  const mode = document.getElementById('programme-mode');
+  if (!cards.length || !search || !category || !mode) return;
+  const requested = new URLSearchParams(window.location.search).get('category');
+  if (Array.from(category.options).some(option => option.value === requested)) category.value = requested;
+  function render() {
+    const terms = search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    let shown = 0;
+    cards.forEach(card => {
+      card.hidden = !((category.value === 'all' || card.dataset.category === category.value) && (mode.value === 'all' || card.dataset.mode === mode.value) && terms.every(term => card.textContent.toLowerCase().includes(term)));
+      if (!card.hidden) shown++;
+    });
+    document.getElementById('programme-results').textContent = shown + ' of ' + cards.length + ' programme and resource routes shown';
+    document.getElementById('programme-empty').hidden = shown !== 0;
+  }
+  search.addEventListener('input', render);
+  category.addEventListener('change', render);
+  mode.addEventListener('change', render);
+  document.getElementById('programme-reset').addEventListener('click', () => { search.value = ''; category.value = 'all'; mode.value = 'all'; render(); search.focus(); });
+  document.getElementById('programme-tools').hidden = false;
+  document.querySelectorAll('[data-programme]').forEach(link => link.addEventListener('click', () => {
+    document.getElementById('reg-event').value = link.dataset.programme;
+  }));
+  const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Africa/Monrovia' });
+  document.getElementById('reg-date').min = today;
+  document.querySelectorAll('.ep-date-card').forEach(card => {
+    const opening = card.dataset.kind === 'opening';
+    if (card.dataset.date < today) {
+      card.querySelector('.ep-date-status').textContent = opening ? 'Opening date passed — check current intake' : 'Deadline date passed — check future calls';
+      card.classList.add('ep-date-past');
+    } else if (card.dataset.date === today) {
+      card.querySelector('.ep-date-status').textContent = opening ? 'Scheduled opening date is today — check provider' : 'Published deadline date is today — confirm cutoff';
+    }
+    const button = card.querySelector('[data-calendar]');
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      const title = card.querySelector('h3').textContent;
+      const source = card.querySelector('a').href;
+      const start = card.dataset.date.replace(/-/g, '');
+      const endDate = new Date(card.dataset.date + 'T00:00:00Z');
+      endDate.setUTCDate(endDate.getUTCDate() + 1);
+      const end = endDate.toISOString().slice(0, 10).replace(/-/g, '');
+      const escape = text => text.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
+      const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+      const content = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Tolbert Innovation Hub//Programme Dates//EN', 'CALSCALE:GREGORIAN', 'BEGIN:VEVENT', 'UID:tih-funding-' + button.dataset.calendar + '-' + start + '@tolbertinnovationhub.org', 'DTSTAMP:' + stamp, 'DTSTART;VALUE=DATE:' + start, 'DTEND;VALUE=DATE:' + end, 'SUMMARY:' + escape(title), 'DESCRIPTION:' + escape('External provider date reminder. Confirm eligibility, exact cutoff time and time zone with the provider. ' + source), 'URL:' + source, 'END:VEVENT', 'END:VCALENDAR', ''].join('\r\n');
+      const url = URL.createObjectURL(new Blob([content], { type: 'text/calendar;charset=utf-8' }));
+      const download = document.createElement('a');
+      download.href = url;
+      download.download = 'tih-funding-date-' + start + '.ics';
+      document.body.append(download);
+      download.click();
+      download.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+  });
+  render();
+}());
   </script>
 </body>
 </html>
