@@ -44,6 +44,21 @@
     .cbox-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 0.5rem 1rem; }
     .cbox-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; cursor: pointer; color: var(--text); }
     .cbox-item input[type="checkbox"] { width:16px; height:16px; flex-shrink:0; accent-color: var(--brand-blue); }
+
+    .sales-tools { display:flex; flex-wrap:wrap; gap:1rem; align-items:end; margin:1.5rem 0; }
+    .sales-tools label { display:block; font-weight:600; margin-bottom:.4rem; }
+    .sales-tools > div { flex:1 1 230px; }
+    .sales-tools input,.sales-tools select { width:100%; min-height:46px; padding:.7rem; border:1px solid var(--border); border-radius:8px; background:var(--surface); color:var(--text); font:inherit; }
+    .sales-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr)); gap:1.2rem; }
+    .sales-card { display:flex; flex-direction:column; padding:1.4rem; border:1px solid var(--border); border-radius:14px; background:var(--surface); overflow-wrap:anywhere; }
+    .sales-card h3 { margin:.5rem 0; font-size:1.15rem; }
+    .sales-card p { margin:.45rem 0; font-size:.92rem; }
+    .sales-card .sales-label { color:var(--text-muted); font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
+    .sales-card a { margin-top:auto; padding-top:1rem; font-weight:700; }
+    .sales-card[hidden],.sales-tools[hidden] { display:none; }
+    .sales-guide { padding:1.5rem; margin:1.5rem 0; border:1px solid var(--border); border-radius:14px; background:var(--bg-alt); }
+    .sales-guide li { margin:.6rem 0; }
+    #software-sales { scroll-margin-top:100px; }
   </style>
 </head>
 <body>
@@ -84,6 +99,7 @@
           <a class="btn btn-primary btn-lg" href="business-intake">Business Project Intake Form</a>
           <a class="btn btn-outline" href="business-intake">Request Free Consultation</a>
           <a class="btn btn-outline" href="contact">Contact Our Team</a>
+          <a class="btn btn-outline" href="#software-sales">Find Software Buyers &amp; Sales Routes</a>
         </div>
       </div>
     </section>
@@ -115,6 +131,119 @@
               <li>Begin implementation with milestone tracking.</li>
             </ol>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="software-sales" aria-labelledby="software-sales-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Business Development Directory</p>
+          <h2 id="software-sales-title">Where to Sell Websites, Apps &amp; Software</h2>
+          <p class="section-intro">Practical routes for Tolbert Innovation Hub and Liberian software teams: arrange local discovery meetings, compete for advertised contracts, sell development services, or offer an existing digital business for acquisition.</p>
+          <p><strong>Official sources checked: 16 October 2026.</strong> Local institutions below are prospects to approach, with no current purchase requirement confirmed. Suggested pitches are TIH recommendations. Procurement portals publish opportunities; marketplaces connect sellers with potential buyers. Sales and listing acceptance are not guaranteed.</p>
+        </div>
+        <div class="sales-guide">
+          <h3>Choose the sale that fits your product</h3>
+          <p><strong>Custom development:</strong> Pitch a defined website or software service to an institution or online client. <strong>Software licensing:</strong> Offer a subscription or usage licence with clear support terms. <strong>Asset / business sale:</strong> Transfer an existing app, website, or software business through an acquisition marketplace.</p>
+          <p><a href="#sales-visit-plan">Prepare for a sales visit ↓</a> · <a href="grants?category=innovation#grants-directory">Find innovation project funding →</a></p>
+        </div>
+        <div class="sales-tools" id="sales-tools" hidden>
+          <div><label for="sales-search">Search organizations or software needs</label><input id="sales-search" type="search" placeholder="School, hospital, SaaS, procurement…" /></div>
+          <div><label for="sales-route">Sales route</label><select id="sales-route"><option value="all">All routes</option><option value="liberia">Liberian institutions</option><option value="network">Business networks</option><option value="procurement">Procurement &amp; tenders</option><option value="marketplace">Sell apps / websites</option><option value="services">Sell development services</option></select></div>
+          <button class="btn btn-outline" id="sales-reset" type="button">Reset filters</button>
+        </div>
+        <p id="sales-results" role="status" aria-live="polite">11 sales and prospecting routes</p>
+        <div class="sales-grid" id="sales-grid">
+          <article class="sales-card" data-route="liberia">
+            <p class="sales-label">Institutional prospect</p><h3>University of Liberia</h3>
+            <p><strong>Location / access:</strong> Capitol Hill, Monrovia</p>
+            <p><strong>What to offer:</strong> Suggest a focused demo for departmental websites, research workflows, or student-support tools. Ask what existing systems must be supported.</p>
+            <p><strong>Next step:</strong> Request an appointment with the IT and procurement offices through the university contact page. Follow any public tender process.</p>
+            <a href="https://ul.edu.lr/new/contact/" target="_blank" rel="noopener noreferrer">Official contact / visit details ↗</a>
+          </article>
+          <article class="sales-card" data-route="liberia">
+            <p class="sales-label">Institutional prospect</p><h3>United Methodist University</h3>
+            <p><strong>Location / access:</strong> 508-C-17 Centennial Area, Ashmun Street, Monrovia</p>
+            <p><strong>What to offer:</strong> Pitch a small, clearly scoped education tool, departmental site, or administrative workflow after discussing existing platforms.</p>
+            <p><strong>Next step:</strong> Ask administration to connect TIH with its ICT and procurement teams. Confirm the appointment and current office location before visiting.</p>
+            <a href="https://umu.edu.lr/contact/" target="_blank" rel="noopener noreferrer">Official contact / visit details ↗</a>
+          </article>
+          <article class="sales-card" data-route="liberia">
+            <p class="sales-label">Institutional prospect</p><h3>JFK Medical Center</h3>
+            <p><strong>Location / access:</strong> 21st Street, Sinkor, Monrovia</p>
+            <p><strong>What to offer:</strong> Discuss a public-information website, appointment workflow, or inventory demo using fictional data. Confirm the hospital’s actual needs first.</p>
+            <p><strong>Next step:</strong> Contact administration and ask for the ICT / procurement route. Present a demo and service proposal rather than requesting access to live patient systems.</p>
+            <a href="https://jfkmc.gov.lr/contact-us/" target="_blank" rel="noopener noreferrer">Official contact / visit details ↗</a>
+          </article>
+          <article class="sales-card" data-route="liberia">
+            <p class="sales-label">Institutional prospect</p><h3>Liberian Bank for Development &amp; Investment (LBDI)</h3>
+            <p><strong>Location / access:</strong> 9th Street, Sinkor, Monrovia</p>
+            <p><strong>What to offer:</strong> Explore non-core tools such as internal request tracking, staff training, or business-information pages after a needs meeting.</p>
+            <p><strong>Next step:</strong> Ask the bank for its approved vendor-registration and technology procurement process. Prepare a capability statement, support plan, and references.</p>
+            <a href="https://www.lbdi.net/" target="_blank" rel="noopener noreferrer">Official website / contact details ↗</a>
+          </article>
+          <article class="sales-card" data-route="network">
+            <p class="sales-label">Business introductions</p><h3>Liberia Chamber of Commerce</h3>
+            <p><strong>Location / access:</strong> Queens Avenue, Capitol Hill, Monrovia</p>
+            <p><strong>What to offer:</strong> Find member businesses that need websites, booking systems, e-commerce, or business-management software.</p>
+            <p><strong>Next step:</strong> Ask about membership, networking events, and opportunities to demonstrate TIH services to members. The Chamber is an introduction route; member demand must be confirmed.</p>
+            <a href="https://liberiachamber.org/contact/" target="_blank" rel="noopener noreferrer">Official Chamber contact ↗</a>
+          </article>
+          <article class="sales-card" data-route="procurement">
+            <p class="sales-label">Government procurement</p><h3>Liberia PPCC e-Procurement</h3>
+            <p><strong>Location / access:</strong> Online registration and advertised Liberian public contracts</p>
+            <p><strong>What to offer:</strong> Search current processes and procurement plans for ICT, software development, website design, maintenance, and consulting.</p>
+            <p><strong>Next step:</strong> Register TIH under the applicable domestic-company requirements, review published registration / renewal charges, and submit only through the process stated in each notice.</p>
+            <a href="https://eprocurement.ppcc.gov.lr/epps/home.do" target="_blank" rel="noopener noreferrer">Official tenders / registration ↗</a>
+          </article>
+          <article class="sales-card" data-route="procurement">
+            <p class="sales-label">Development procurement</p><h3>UNDP Liberia Procurement</h3>
+            <p><strong>Location / access:</strong> Liberia office notices; online supplier process</p>
+            <p><strong>What to offer:</strong> Monitor ICT and digital-services notices and respond when TIH meets the experience and technical criteria.</p>
+            <p><strong>Next step:</strong> Start with the official country procurement page. Follow the supplier portal and submission instructions in the specific notice; Quantum may require a separate account from UNGM.</p>
+            <a href="https://www.undp.org/liberia/procurement" target="_blank" rel="noopener noreferrer">Official procurement notices ↗</a>
+          </article>
+          <article class="sales-card" data-route="procurement">
+            <p class="sales-label">UN supplier directory</p><h3>United Nations Global Marketplace (UNGM)</h3>
+            <p><strong>Location / access:</strong> Online supplier registration and notice search</p>
+            <p><strong>What to offer:</strong> Create a company profile and search published UN procurement opportunities for websites, applications, software, and IT consulting in Liberia and other eligible markets.</p>
+            <p><strong>Next step:</strong> Register TIH as a supplier and read each notice’s eligibility, deadline, and submission portal. A supplier profile is not a contract award.</p>
+            <a href="https://www.ungm.org/" target="_blank" rel="noopener noreferrer">Official supplier portal ↗</a>
+          </article>
+          <article class="sales-card" data-route="marketplace">
+            <p class="sales-label">Sell an existing digital asset</p><h3>Flippa</h3>
+            <p><strong>Location / access:</strong> Online marketplace</p>
+            <p><strong>What to offer:</strong> Offer an owned website, SaaS business, or original live mobile app with the transferable assets and performance records a buyer needs.</p>
+            <p><strong>Next step:</strong> Review listing fees, seller verification, payout availability for Liberia, and transfer requirements before listing. Flippa’s app guidance requires original apps with necessary source code.</p>
+            <a href="https://flippa.com/" target="_blank" rel="noopener noreferrer">Official marketplace ↗</a>
+          </article>
+          <article class="sales-card" data-route="marketplace">
+            <p class="sales-label">Sell an operating software business</p><h3>Acquire.com</h3>
+            <p><strong>Location / access:</strong> Online acquisition marketplace</p>
+            <p><strong>What to offer:</strong> Explore a sale of an operating SaaS, app, or other qualifying digital business. Prepare customer, revenue, expense, and ownership records.</p>
+            <p><strong>Next step:</strong> Read seller eligibility and submit for curation. The platform generally expects operating, revenue-generating businesses; pre-revenue SaaS exceptions are limited. Check fees and settlement support for Liberia.</p>
+            <a href="https://help.acquire.com/seller-faqs-1" target="_blank" rel="noopener noreferrer">Official seller eligibility ↗</a>
+          </article>
+          <article class="sales-card" data-route="services">
+            <p class="sales-label">Sell development services</p><h3>Upwork Agency</h3>
+            <p><strong>Location / access:</strong> Online client projects</p>
+            <p><strong>What to offer:</strong> Build websites, apps, integrations, or software for clients while TIH continues operating as an agency.</p>
+            <p><strong>Next step:</strong> Create an eligible agency profile with a portfolio and defined services. Check identity, country, payout, proposal-cost, and agency-plan requirements before bidding.</p>
+            <a href="https://support.upwork.com/hc/en-us/articles/211067598-How-to-create-an-agency" target="_blank" rel="noopener noreferrer">Official agency setup ↗</a>
+          </article>
+        </div>
+        <p id="sales-empty" hidden>No matching routes. Try another search or reset the filters.</p>
+        <div class="sales-guide" id="sales-visit-plan">
+          <h3>A practical sales visit plan for TIH</h3>
+          <ol>
+            <li><strong>Choose a relevant prospect.</strong> For example, show a school an education workflow or a business a booking / inventory tool. Ask for an appointment with ICT, administration, or procurement using the official contact route.</li>
+            <li><strong>Bring a short demo and one-page capability statement.</strong> Include TIH’s portfolio, contact details, delivery approach, and relevant references. Use sample data in demonstrations.</li>
+            <li><strong>Confirm the problem and budget process.</strong> Ask who uses the system, what already exists, who approves purchases, and whether a tender or vendor registration is required.</li>
+            <li><strong>Send a scoped proposal after the meeting.</strong> State deliverables, milestones, price and currency, hosting, maintenance, training, support, and whether ownership or a licence is being sold.</li>
+            <li><strong>Agree on the next step.</strong> Record the requested demo, proposal deadline, or procurement notice. For a business sale, document asset ownership, third-party licences, operating costs, and transfer steps.</li>
+          </ol>
+          <a class="btn btn-primary" href="#portfolio">View TIH’s portfolio</a>
         </div>
       </div>
     </section>
@@ -853,6 +982,30 @@
       window.addEventListener('pageshow', function (e) { if (e.persisted) show(); });
       setTimeout(show, 4000);
     })();
+  </script>
+  <script>
+    (function () {
+      const cards = Array.from(document.querySelectorAll('#sales-grid > .sales-card'));
+      const search = document.getElementById('sales-search');
+      const route = document.getElementById('sales-route');
+      const requested = new URLSearchParams(window.location.search).get('sales-route');
+      if (Array.from(route.options).some(option => option.value === requested)) route.value = requested;
+      function render() {
+        const terms = search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+        let shown = 0;
+        cards.forEach(card => {
+          card.hidden = !((route.value === 'all' || card.dataset.route === route.value) && terms.every(term => card.textContent.toLowerCase().includes(term)));
+          if (!card.hidden) shown++;
+        });
+        document.getElementById('sales-results').textContent = shown + ' of ' + cards.length + ' sales and prospecting routes shown';
+        document.getElementById('sales-empty').hidden = shown !== 0;
+      }
+      search.addEventListener('input', render);
+      route.addEventListener('change', render);
+      document.getElementById('sales-reset').addEventListener('click', () => { search.value = ''; route.value = 'all'; render(); search.focus(); });
+      document.getElementById('sales-tools').hidden = false;
+      render();
+    }());
   </script>
 </body>
 </html>
