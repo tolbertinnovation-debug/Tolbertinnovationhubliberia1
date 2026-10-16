@@ -247,9 +247,10 @@
   </script>
   <link rel="stylesheet" href="hero-theme.css?v=1" />
   <link rel="stylesheet" href="home-hero.css?v=1" />
+  <link rel="stylesheet" href="home-page.css?v=1" />
 
 </head>
-<body>
+<body class="tih-home">
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header">
@@ -339,7 +340,7 @@
       <svg class="tih-wave hm-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,50 C240,86 480,10 720,32 C960,54 1200,88 1440,42 L1440,90 L0,90 Z" fill="#E31E24"/><path d="M0,64 C240,92 480,30 720,48 C960,66 1200,88 1440,58 L1440,90 L0,90 Z" fill="#ffffff"/></svg>
     </section>
 
-    <section class="section" id="start-here" aria-labelledby="start-here-title">
+    <section class="section home-section" id="start-here" aria-labelledby="start-here-title">
       <div class="container"><div class="section-header centered"><p class="section-label">Our Services · Start Here</p><h2 id="start-here-title">Services We Provide</h2><p class="section-intro">Explore our learning, education, funding, technology, healthcare, and creative services. Choose a service to see its details and next steps.</p></div>
         <div class="home-goal-grid">
           <article class="home-goal-card"><p class="section-label">Learning</p><h3>TIH Learning Hub</h3><p>Build practical skills through courses, video lessons, quizzes, and course-completion certificates.</p><a href="learning-hub">Explore courses →</a></article>
@@ -377,7 +378,7 @@
     </div>
 
     <!-- Featured innovation project: Grandpa AI -->
-    <section class="home-grandpa" id="grandpa-ai-home" aria-labelledby="grandpa-ai-home-title">
+    <section class="home-grandpa home-section" id="grandpa-ai-home" aria-labelledby="grandpa-ai-home-title">
       <div class="container home-grandpa-grid">
         <div>
           <p class="home-grandpa-label">Featured TIH Project · Built in Liberia</p>
@@ -398,7 +399,7 @@
     </section>
 
     <!-- INTRO VIDEO -->
-    <section class="intro-video-section" aria-label="Introduction to Tolbert Innovation Hub">
+    <section class="intro-video-section home-section" aria-label="Introduction to Tolbert Innovation Hub">
       <div class="container">
         <div class="intro-video-wrap">
           <div class="section-header centered" style="margin-bottom:1.5rem;">
@@ -420,7 +421,7 @@
     </section>
 
     <!-- WELCOME INTRODUCTION -->
-    <section class="section" aria-label="About Tolbert Innovation Hub">
+    <section class="section home-section" aria-label="About Tolbert Innovation Hub">
       <div class="container">
         <div class="welcome-intro-grid">
           <div class="reveal">
@@ -476,7 +477,7 @@
     </section>
 
     <!-- FOUNDER MESSAGE -->
-    <section class="founder-band" aria-labelledby="founder-band-heading">
+    <section class="founder-band home-section" aria-labelledby="founder-band-heading">
       <style>
         .founder-band{
           background:linear-gradient(135deg,#002868 0%,#1a3d8a 55%,#002055 100%);
@@ -568,7 +569,7 @@
     </section>
 
     <!-- Core values -->
-    <section class="section section-alt home-values" id="core-values" aria-labelledby="core-values-title">
+    <section class="section section-alt home-values home-section" id="core-values" aria-labelledby="core-values-title">
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">What We Stand For</p>
@@ -590,7 +591,7 @@
     </section>
 
     <!-- WHY TOLBERT SECTION -->
-    <section class="section" aria-label="Why Choose Tolbert Innovation Hub">
+    <section class="section home-section" aria-label="Why Choose Tolbert Innovation Hub">
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">Why Tolbert Innovation Hub</p>
@@ -646,7 +647,7 @@
     </section>
 
     <!-- SPOTLIGHT: CORE PROGRAMS -->
-    <section class="section spotlight-section" id="programs" aria-label="Core Programs">
+    <section class="section spotlight-section home-section" id="programs" aria-label="Core Programs">
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">Our Core Programs</p>
@@ -658,7 +659,7 @@
 
           <!-- Academy -->
           <div class="spotlight-card reveal">
-            <div class="sc-header" style="background:linear-gradient(135deg,#001535,#002868,#E31E24);">
+            <div class="sc-header">
               <span class="sc-badge">Tuition Free &middot; Registration From US$3</span>
               <h3>🎓 TIH Learning Hub</h3>
               <p>Affordable skills training with real video lessons, quizzes, and verified certificates, plus IELTS, TOEFL, and WASSCE exam prep, tuition free with a one-time registration fee from US$3 / 500 LRD.</p>
@@ -672,13 +673,13 @@
                 <li>Computer literacy, AI, web dev & data</li>
                 <li>Entrepreneurship, marketing & leadership</li>
               </ul>
-              <a href="learning-hub" class="sc-cta" style="background:#002868;color:#fff;">Explore Learning Hub →</a>
+              <a href="learning-hub" class="sc-cta">Explore Learning Hub →</a>
             </div>
           </div>
 
           <!-- Healthcare -->
           <div class="spotlight-card reveal reveal-delay-1">
-            <div class="sc-header" style="background:linear-gradient(135deg,#064e3b,#065f46,#0f766e);">
+            <div class="sc-header">
               <span class="sc-badge">International Access</span>
               <h3>🏥 Healthcare Access</h3>
               <p>Helping patients and families understand referral options, organize enquiries, and connect with healthcare providers for case assessment.</p>
@@ -692,13 +693,13 @@
                 <li>Confirm services directly with the provider</li>
                 <li>Healthcare professional development support</li>
               </ul>
-              <a href="healthcare" class="sc-cta" style="background:#065f46;color:#fff;">Access Healthcare →</a>
+              <a href="healthcare" class="sc-cta">Access Healthcare →</a>
             </div>
           </div>
 
           <!-- Website Development -->
           <div class="spotlight-card reveal reveal-delay-2">
-            <div class="sc-header" style="background:linear-gradient(135deg,#0c4a6e,#0369a1,#0284c7);">
+            <div class="sc-header">
               <span class="sc-badge">Custom Solutions</span>
               <h3>🌐 Website Development</h3>
               <p>Professional websites, web applications, and digital platforms designed for Liberian businesses, NGOs, and institutions.</p>
@@ -712,13 +713,13 @@
                 <li>SEO optimisation and domain/hosting setup</li>
                 <li>Ongoing maintenance and support packages</li>
               </ul>
-              <a href="software" class="sc-cta" style="background:#0369a1;color:#fff;">Get a Website →</a>
+              <a href="software" class="sc-cta">Get a Website →</a>
             </div>
           </div>
 
           <!-- Study Abroad -->
           <div class="spotlight-card reveal reveal-delay-2">
-            <div class="sc-header" style="background:linear-gradient(135deg,#7c2d12,#991b1b,#b8181d);">
+            <div class="sc-header">
               <span class="sc-badge">International</span>
               <h3>✈️ Study Abroad</h3>
               <p>Helping Liberian students compare study options, understand requirements, and prepare applications for international education.</p>
@@ -732,13 +733,13 @@
                 <li>Student visa applications and interviews</li>
                 <li>Pre-departure orientation and mentorship</li>
               </ul>
-              <a href="study-abroad" class="sc-cta" style="background:#991b1b;color:#fff;">Study Abroad →</a>
+              <a href="study-abroad" class="sc-cta">Study Abroad →</a>
             </div>
           </div>
 
           <!-- Software -->
           <div class="spotlight-card reveal reveal-delay-2">
-            <div class="sc-header" style="background:linear-gradient(135deg,#3b0764,#4c1d95,#6d28d9);">
+            <div class="sc-header">
               <span class="sc-badge">Tech Innovation</span>
               <h3>💻 Software Development</h3>
               <p>Bespoke software systems, mobile apps, and digital tools engineered to solve real problems for Liberian organisations.</p>
@@ -752,7 +753,7 @@
                 <li>API integrations and automation solutions</li>
                 <li>Ongoing tech support and system upgrades</li>
               </ul>
-              <a href="software" class="sc-cta" style="background:#4c1d95;color:#fff;">Our Software Services →</a>
+              <a href="software" class="sc-cta">Our Software Services →</a>
             </div>
           </div>
 
@@ -761,7 +762,7 @@
     </section>
 
     <!-- ALL PROGRAMS -->
-    <section class="section" aria-label="All Programs">
+    <section class="section home-section" aria-label="All Programs">
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">All Programs</p>
@@ -951,7 +952,7 @@
         </div>
 
         <!-- Programs CTA bar -->
-        <div style="background:linear-gradient(135deg,#002868,#1a3d8a);border-radius:var(--radius-xl);padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;" class="reveal">
+        <div style="border-radius:var(--radius-xl);padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;" class="reveal home-program-help">
           <div>
             <h3 style="color:#fff;margin-bottom:.3rem;font-size:1.25rem;">Not sure which program is right for you?</h3>
             <p style="color:rgba(255,255,255,.8);margin:0;font-size:.95rem;">Our team is available on WhatsApp to guide you to the best program for your goals, free of charge.</p>
@@ -965,7 +966,7 @@
     </section>
 
     <!-- ABOUT TIH LEARNING HUB -->
-    <section class="section section-alt" aria-label="About TIH Learning Hub" id="about-learning-hub">
+    <section class="section section-alt home-section" aria-label="About TIH Learning Hub" id="about-learning-hub">
       <style>
         .lh-wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:2.5rem;align-items:center;}
         @media(max-width:860px){.lh-wrap{grid-template-columns:1fr;gap:1.75rem;}}
@@ -1123,7 +1124,7 @@
       </div>
     </section>
 
-    <section class="section home-law" id="law-programme" aria-labelledby="home-law-heading">
+    <section class="section home-law home-section" id="law-programme" aria-labelledby="home-law-heading">
       <div class="container home-law-layout">
         <div class="home-law-copy">
           <p class="section-label">Liberian Law · TIH Learning Hub</p>
@@ -1176,7 +1177,7 @@
     </section>
 
     <!-- LEARNING PATHWAYS -->
-    <section class="path-section" aria-label="Learning Pathways">
+    <section class="path-section home-section" aria-label="Learning Pathways">
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">Find Your Path</p>
@@ -1262,7 +1263,7 @@
     </section>
 
     <!-- Current directory resources -->
-    <section class="section" aria-labelledby="home-resources-title">
+    <section class="section home-section" aria-labelledby="home-resources-title">
       <div class="container">
         <div class="section-header centered"><p class="section-label">Explore the Platform</p><h2 id="home-resources-title">Useful Resources, Ready to Explore</h2><p class="section-intro">Counts reflect the website’s directories as of 16 October 2026. Funding listings include open, upcoming, paused, and closed rounds; check each provider’s current instructions.</p></div>
         <div class="home-resource-grid">
@@ -1277,7 +1278,7 @@
     </section>
 
     <!-- Questions and practical next steps -->
-    <section class="section section-alt" aria-labelledby="home-faq-title">
+    <section class="section section-alt home-section" aria-labelledby="home-faq-title">
       <div class="container home-faq"><div class="section-header centered"><p class="section-label">Before You Start</p><h2 id="home-faq-title">Questions Visitors Often Ask</h2><p class="section-intro">Understand the process before you enrol, apply, or request a service.</p></div>
         <details><summary>Where should I start?</summary><p>Choose your goal in the Start Here section. You can browse resources first, then use the programme page to apply, enquire, or contact TIH. <a href="#start-here">Choose a starting point →</a></p></details>
         <details><summary>Are courses completely free?</summary><p>The Learning Hub describes tuition-free learning with registration charges for access. Check the current price, entry requirements, and payment instructions for the specific course before paying. <a href="learning-hub">Check course details →</a></p></details>
@@ -1289,7 +1290,7 @@
     </section>
 
     <!-- PARTNERS & TRUST -->
-    <section class="section" aria-label="Partners and Trust Indicators">
+    <section class="section home-section" aria-label="Partners and Trust Indicators">
       <div class="container">
         <div class="section-header centered">
           <p class="section-label">Networks & Recognized Exams</p>
@@ -1344,7 +1345,7 @@
     </section>
 
     <!-- UPCOMING EVENTS -->
-    <section class="section section-alt" aria-label="Upcoming Events">
+    <section class="section section-alt home-section" aria-label="Upcoming Events">
       <div class="container">
         <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
           <div>
@@ -1420,7 +1421,7 @@
     </section>
 
     <!-- LATEST NEWS, moved to top after Hero -->
-    <section class="section" aria-label="Latest News">
+    <section class="section home-section" aria-label="Latest News">
       <div class="container">
         <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
           <div>
@@ -1437,13 +1438,13 @@
     </section>
 
     <!-- NEWSLETTER (improved) -->
-    <section class="newsletter-section-v2" aria-label="Newsletter Signup">
+    <section class="newsletter-section-v2 home-section" aria-label="Newsletter Signup">
       <div class="container">
         <div class="nl-inner">
           <span class="nl-badge">📬 Stay Informed</span>
           <h2>Stay Informed About Learning &amp; Funding</h2>
           <p>Subscribe to receive scholarship announcements, new classroom tracks, grants deadlines, and digital library additions directly to your inbox. Free, always.</p>
-          <form class="nl-form-v2 newsletter-form" action="https://formsubmit.co/tolbertinnovationhub@gmail.com" method="post" aria-label="Newsletter subscription form">
+          <form class="nl-form-v2 home-newsletter-form" action="https://formsubmit.co/tolbertinnovationhub@gmail.com" method="post" aria-label="Newsletter subscription form">
             <input class="nl-input-v2" type="email" name="email" placeholder="Your email address" required autocomplete="email" aria-label="Email address for newsletter" />
             <button type="submit" class="nl-btn-v2">Subscribe Free</button>
           </form>
@@ -1458,10 +1459,10 @@
     </section>
 
     <!-- QUICK ACTION CTA -->
-    <section class="section" aria-label="Quick Actions">
+    <section class="section home-section" aria-label="Quick Actions">
       <div class="container">
         <div class="quick-grid-3">
-          <article class="quick-panel card-accent reveal" style="background:linear-gradient(135deg,#002868 0%,#1a3d8a 100%);color:#fff;border:none;">
+          <article class="quick-panel card-accent reveal home-cta-primary" style="background:linear-gradient(135deg,#002868 0%,#1a3d8a 100%);color:#fff;border:none;">
             <h3 style="color:#fff;">Plan Your Study Application</h3>
             <p style="color:rgba(255,255,255,.85);">Compare study options, check entry requirements, and organize the documents for your application. Confirm current intake dates and scholarship terms with the provider.</p>
             <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem;">
@@ -1500,7 +1501,7 @@
   </a>
 
   <!-- FOOTER -->
-  <svg class="tih-wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,70 C240,110 480,20 720,45 C960,70 1200,105 1440,55 L1440,110 L0,110 Z" fill="#E31E24"/><path d="M0,84 C240,116 480,40 720,62 C960,84 1200,110 1440,72 L1440,110 L0,110 Z" fill="#ffffff"/><path d="M0,94 C260,120 520,58 760,76 C1000,94 1240,112 1440,84 L1440,110 L0,110 Z" fill="#0B2A6B"/></svg>
+  <svg class="tih-wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,70 C240,110 480,20 720,45 C960,70 1200,105 1440,55 L1440,110 L0,110 Z" fill="#E31E24"/><path d="M0,84 C240,116 480,40 720,62 C960,84 1200,110 1440,72 L1440,110 L0,110 Z" fill="#ffffff"/><path d="M0,94 C260,120 520,58 760,76 C1000,94 1240,112 1440,84 L1440,110 L0,110 Z" fill="#14233c"/></svg>
   <footer class="site-footer" aria-label="Site footer">
     <div class="container">
       <div class="footer-grid-main">
@@ -1650,6 +1651,39 @@
       else motion.addListener(respectMotionPreference);
       updateTimer();
     }());
+  </script>
+
+  <script>
+    // Keep newsletter feedback accurate and preserve the address for retries.
+    (() => {
+      const form = document.querySelector('.home-newsletter-form');
+      if (!form) return;
+      const input = form.querySelector('input[type="email"]');
+      const button = form.querySelector('button[type="submit"]');
+      const feedback = document.querySelector('.newsletter-feedback');
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        button.disabled = true;
+        button.textContent = 'Subscribing…';
+        feedback.textContent = '';
+        try {
+          const response = await fetch('https://formsubmit.co/ajax/tolbertinnovationhub@gmail.com', {
+            method: 'POST', headers: {'Content-Type':'application/json','Accept':'application/json'},
+            body: JSON.stringify({email: input.value.trim(), _subject:'Newsletter Subscription, Tolbert Innovation Hub', _captcha:'false'})
+          });
+          const result = await response.json();
+          if (!response.ok || !(result.success === true || result.success === 'true')) throw new Error('Subscription failed');
+          button.textContent = '✓ Subscribed';
+          feedback.textContent = 'Thank you! Your subscription request has been sent.';
+          input.value = '';
+        } catch (_) {
+          button.disabled = false;
+          button.textContent = 'Try Again';
+          feedback.textContent = 'Your request could not be sent. Please try again or contact the TIH team.';
+        }
+      });
+    })();
   </script>
 </body>
 </html>
