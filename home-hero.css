@@ -114,18 +114,21 @@
   #heroTop .home-development-option + .home-scholarship-option {border-top:0;padding-top:0;}
 }
 
-/* Electric blue hero, with white copy and a quiet application panel. */
-#heroTop.home-hero-v2 {background:radial-gradient(ellipse at 90% 0,#1977ff 0,transparent 55%),linear-gradient(135deg,#0755ed 0%,#064be1 48%,#0034ad 100%) !important;}
-#heroTop.home-hero-v2::before {opacity:.13;}
-#heroTop.home-hero-v2 .hero-net {opacity:.22;}
-#heroTop .home-hero-kicker,#heroTop .hero-rotating-title,#heroTop .hero-rotating-title :is(.hm-red,.hm-blue) {color:#fff;}
-#heroTop .home-hero-kicker::before {background:#9dcaff;}
-#heroTop .hero-rotating-copy,#heroTop .home-hero-help,#heroTop .impact-label {color:#e6efff;}
-#heroTop .home-hero-help a,#heroTop .impact-number {color:#fff;}
-#heroTop .impact-inline {border-color:#ffffff40;}
-#heroTop .hero-actions .btn-primary {background:#fff;color:#0646bc;border-color:#fff;box-shadow:0 8px 20px #00287724;}
-#heroTop .hero-actions .btn-hero-blue {background:#ffffff10;color:#fff;border-color:#ffffff88;}
-#heroTop .hero-actions .btn:hover {background:#e7f1ff;color:#073c9d;border-color:#fff;}
-#heroTop .home-launchpad {background:radial-gradient(circle at 100% 0,#3b8bff,transparent 48%),linear-gradient(145deg,#0641b9,#082b76);border-color:#ffffff55;box-shadow:0 24px 55px #00206d45;}
-#heroTop .home-scholarships {background:#fff;border-color:#d4e3ff;box-shadow:0 12px 30px #002c881c;}
-#heroTop a:focus-visible {outline-color:#ffdf77;}
+/* Match the Learning Hub's airy white and pale-blue background. */
+#heroTop.home-hero-v2 {background:radial-gradient(ellipse at 88% 12%,#d5e7ff 0,transparent 50%),radial-gradient(ellipse at 0 100%,#fbd8dc 0,transparent 43%),linear-gradient(135deg,#fff,#edf5ff) !important;color:#102039;}
+#heroTop.home-hero-v2::before {opacity:.35;}
+#heroTop.home-hero-v2 .hero-net {opacity:.2;}
+#heroTop .home-hero-kicker {color:#174ba6;}
+#heroTop .home-hero-kicker::before {background:#2167d8;}
+#heroTop .hero-rotating-title {color:#102039;}
+#heroTop .hero-rotating-title :is(.hm-red,.hm-blue) {color:#1555bd;}
+#heroTop .hero-rotating-copy {color:#46536a;}
+#heroTop .home-hero-help,#heroTop .impact-label {color:#55627a;}
+#heroTop .home-hero-help a,#heroTop .impact-number {color:#174ba6;}
+#heroTop .impact-inline {border-color:#ccdaed;}
+#heroTop .hero-actions .btn-primary {background:#1758c6;color:#fff;border-color:#1758c6;box-shadow:0 8px 20px #164ea522;}
+#heroTop .hero-actions .btn-hero-blue {background:#ffffffb3;color:#173d7b;border-color:#b9cce7;}
+#heroTop .hero-actions .btn:hover {background:#103f92;color:#fff;border-color:#103f92;}
+#heroTop .home-launchpad {background:radial-gradient(circle at 100% 0,#3b8bff,transparent 48%),linear-gradient(145deg,#0641b9,#082b76);border-color:#3573d4;box-shadow:0 24px 55px #164b9224;}
+#heroTop .home-scholarships {background:#ffffffed;border-color:#d4e3f5;box-shadow:0 12px 30px #174b8410;}
+#heroTop a:focus-visible {outline-color:#1758c6;}
