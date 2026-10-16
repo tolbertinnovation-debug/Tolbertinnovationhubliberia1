@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <title>Services | Tolbert Innovation Hub</title>
-  <meta name="description" content="Explore the comprehensive programs offered by Tolbert Innovation Hub: scholarship placement, skill development, global healthcare access, and IT solutions for Liberians." />
+  <meta name="description" content="Explore TIH learning, scholarships, student aid, grants, websites, custom software, Grandpa AI, LibApps, healthcare guidance, and group-session enquiries in Liberia." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -18,202 +18,19 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://formsubmit.co https://formspree.io https://restcountries.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co https://formspree.io; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <style>
-    /* ---- Services page styles ---- */
-    .page-hero {
-      background: linear-gradient(135deg, var(--brand-blue) 0%, #1a3d8a 55%, #002055 100%);
-      padding: clamp(3.5rem, 7vw, 6.5rem) 0 clamp(3rem, 5vw, 5rem);
-      position: relative;
-      overflow: hidden;
-      color: #fff;
-    }
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 80% 40%, rgba(227,30,36,0.22) 0%, transparent 55%),
-        radial-gradient(ellipse at 10% 85%, rgba(255,255,255,0.04) 0%, transparent 45%);
-      pointer-events: none;
-    }
-    .page-hero > * { position: relative; z-index: 1; }
-    .page-hero .container { position: relative; z-index: 1; }
-
-    /* Service cards */
-    .service-card {
-      background: var(--surface);
-      border: 1px solid var(--border-light);
-      border-top: 4px solid transparent;
-      border-radius: var(--radius-lg);
-      padding: 2rem 1.75rem;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-    .service-card.blue-top { border-top-color: var(--brand-blue); }
-    .service-card.red-top  { border-top-color: var(--brand-red); }
-
-    .service-icon {
-      font-size: 2.5rem;
-      line-height: 1;
-      margin-bottom: 1.1rem;
-      display: block;
-    }
-
-    .service-card h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--brand-blue);
-      margin-bottom: 0.65rem;
-    }
-    .service-card p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.72;
-      margin-bottom: 1rem;
-      max-width: none;
-    }
-    .service-tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      list-style: none;
-      padding: 0;
-      margin: 0 0 1.25rem;
-    }
-    .service-tag-list li {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.22rem 0.7rem;
-      border-radius: var(--radius-full);
-      font-size: 0.74rem;
-      font-weight: 700;
-      background: var(--bg-alt);
-      color: var(--text-muted);
-      border: 1px solid var(--border-light);
-    }
-
-    /* How We Work steps */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-      position: relative;
-    }
-    .step-card {
-      background: var(--surface);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
-      position: relative;
-    }
-    .step-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-    .step-number {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      font-weight: 800;
-      font-family: var(--font-heading);
-      margin: 0 auto 1.1rem;
-      color: #fff;
-    }
-    .step-number.blue { background: var(--brand-blue); }
-    .step-number.red  { background: var(--brand-red); }
-    .step-card h3 {
-      font-size: 1.1rem;
-      color: var(--brand-blue);
-      margin-bottom: 0.5rem;
-    }
-    .step-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      max-width: none;
-      margin: 0;
-    }
-
-    /* Why Choose Us feature grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-      margin-top: 2.5rem;
-    }
-    .feature-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      background: var(--surface);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .feature-item:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-    .feature-icon-wrap {
-      width: 46px;
-      height: 46px;
-      border-radius: var(--radius-sm);
-      background: var(--brand-blue-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
-    .feature-icon-wrap.red { background: var(--brand-red-pale); }
-    .feature-item h4 {
-      font-size: 1rem;
-      color: var(--brand-blue);
-      margin-bottom: 0.3rem;
-    }
-    .feature-item p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin: 0;
-      max-width: none;
-    }
-
-    /* CTA band */
-    .cta-band {
-      background: linear-gradient(135deg, var(--brand-blue) 0%, #1a3d8a 100%);
-      border-radius: var(--radius-xl);
-      padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem);
-      text-align: center;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-band::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 70% 50%, rgba(227,30,36,0.2) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .cta-band > * { position: relative; z-index: 1; }
-    .cta-band h2 { color: #fff; margin-bottom: 0.75rem; }
-    .cta-band p { color: rgba(255,255,255,0.82); max-width: 58ch; margin: 0 auto 2rem; font-size: 1.05rem; }
-    .cta-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .page-hero { background:linear-gradient(135deg,#08204e,#123e78); color:#fff; padding:clamp(3rem,6vw,5rem) 0; }
+    .page-hero .lead { max-width:65ch; }
+    [data-theme="dark"] .sv-category { color:#8ab8ff !important; }
+    .sv-tools { display:grid; grid-template-columns:1.3fr 1fr 1fr auto; gap:.8rem; align-items:end; margin:1.5rem 0; }.sv-tools[hidden] { display:none; }.sv-tools label { display:block; font-weight:600; margin-bottom:.4rem; font-size:.88rem; }.sv-tools input,.sv-tools select { width:100%; min-height:46px; padding:.7rem; border:1px solid var(--border); border-radius:9px; background:var(--surface); color:var(--text); font:inherit; }
+    .sv-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.1rem; }.sv-card { display:flex; flex-direction:column; border:1px solid var(--border); border-top:3px solid var(--brand-blue-light); border-radius:15px; background:var(--surface); padding:1.4rem; overflow-wrap:anywhere; }.sv-card[hidden] { display:none; }.sv-category { font-size:.75rem !important; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--brand-blue-light) !important; }.sv-card h3 { margin:.3rem 0 .6rem; font-size:1.1rem; }.sv-card p { font-size:.91rem; line-height:1.75; color:var(--text-secondary); margin:.5rem 0; }.sv-card .sv-terms { padding:.6rem .7rem; border-radius:8px; border:1px solid var(--border); background:var(--surface-2); font-size:.79rem; }.sv-card > a { display:flex; align-items:center; min-height:44px; margin-top:auto; padding-top:.7rem; font-weight:700; font-size:.9rem; }
+    .sv-feature-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem; }.sv-feature { padding:1.6rem; border:1px solid var(--border); border-radius:16px; background:var(--surface); }.sv-feature p { line-height:1.8; }.sv-feature h2 { font-size:clamp(1.4rem,3vw,2rem); }.sv-ai img { width:100%; height:auto; border-radius:12px; margin:1rem 0; }.sv-text-link { display:inline-flex; align-items:center; min-height:44px; margin:.6rem .6rem .6rem 0; font-weight:600; }
+    .sv-steps { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; list-style:none; padding:0; counter-reset:service-step; }.sv-steps > li { padding:1.4rem; background:var(--surface); border:1px solid var(--border); border-radius:14px; counter-increment:service-step; }.sv-steps > li::before { content:counter(service-step,decimal-leading-zero); display:block; font-size:1.3rem; font-weight:800; color:var(--brand-blue-light); margin-bottom:1rem; }.sv-steps p { font-size:.91rem; color:var(--text-secondary); line-height:1.8; }
+    .sv-table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:12px; }.sv-table { width:100%; border-collapse:collapse; min-width:650px; background:var(--surface); }.sv-table th,.sv-table td { text-align:left; vertical-align:top; padding:1rem; border-bottom:1px solid var(--border); font-size:.91rem; line-height:1.75; }.sv-table thead { background:var(--surface-2); }.sv-table tbody th { width:22%; }.sv-table a { font-weight:600; }
+    .sv-faq { max-width:900px; }.sv-faq details { padding:1.1rem; margin:.7rem 0; border:1px solid var(--border); border-radius:10px; background:var(--surface); }.sv-faq summary { cursor:pointer; font-weight:600; }.sv-faq p { line-height:1.8; }.sv-contact { padding:2rem; border-radius:16px; border:1px solid var(--border); background:var(--surface-2); }
+    #service-directory { scroll-margin-top:110px; }[data-theme="dark"] .site-header .brand { color:var(--text); }
+    @media(max-width:1050px) { .sv-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.sv-tools,.sv-steps { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:720px) { .sv-feature-grid { grid-template-columns:1fr; } }
+    @media(max-width:560px) { .sv-grid,.sv-tools,.sv-steps { grid-template-columns:1fr; }.sv-card,.sv-feature { padding:1.2rem; }.sv-contact { padding:1.3rem; } }
   </style>
 </head>
 <body>
@@ -242,190 +59,67 @@
   </header>
 
   <main id="main-content">
-
-    <!-- HERO -->
-    <section class="page-hero" aria-label="Services hero">
-      <div class="container">
-        <p class="eyebrow">Our Services</p>
-        <h1>Comprehensive Programs for <span style="color:#ef9090;">Growth and Opportunity</span></h1>
-        <p class="lead" style="max-width:65ch;">From international scholarship placement to specialized healthcare referrals, IELTS/TOEFL preparation, and end-to-end IT solutions. We are your trusted partner for opportunity in Liberia and beyond.</p>
-        <div class="hero-badges">
-          <span class="hero-badge"><span class="hero-badge-icon">🎓</span> Scholarships</span>
-          <span class="hero-badge"><span class="hero-badge-icon">🏥</span> Healthcare Access</span>
-          <span class="hero-badge"><span class="hero-badge-icon">💼</span> Skill Development</span>
-          <span class="hero-badge"><span class="hero-badge-icon">💻</span> IT Solutions</span>
-        </div>
+    <section class="page-hero" aria-labelledby="services-hero-title"><div class="container">
+      <p class="eyebrow">Our Services</p><h1 id="services-hero-title">Practical Support for Learning, Funding &amp; Digital Growth</h1>
+      <p class="lead">Explore Tolbert Innovation Hub’s services and resources for students, families, businesses, schools, churches, and NGOs in Liberia. Choose your goal, understand the requirements, and take the next step.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="#service-directory">Find a service</a><a class="btn btn-secondary" href="business-intake">Discuss a digital project</a><a class="btn btn-outline" href="contact">Ask our team</a></div>
+    </div></section>
+    <section class="section" aria-labelledby="services-heading" id="service-directory"><div class="container">
+      <div class="section-header"><p class="section-label">What We Offer</p><h2 id="services-heading">Find the Right Service for Your Goal</h2><p class="section-intro">Browse 16 services, products, and resource routes. Each listing explains who it is for, what to prepare, and where to begin.</p></div>
+      <div class="sv-tools" id="service-tools" hidden>
+        <div><label for="service-search">Search services</label><input id="service-search" type="search" placeholder="Scholarship, website, church, AI…" /></div>
+        <div><label for="service-category">Service area</label><select id="service-category"><option value="all">All service areas</option><option value="learning">Learning &amp; Exam Prep</option><option value="education">Study Abroad &amp; Scholarships</option><option value="funding">Grants &amp; Financial Aid</option><option value="technology">Technology &amp; Digital Products</option><option value="healthcare">Healthcare Guidance</option><option value="community">Community &amp; Creative Work</option></select></div>
+        <div><label for="service-audience">Who is it for?</label><select id="service-audience"><option value="all">All visitors</option><option value="students">Students &amp; Learners</option><option value="professionals">Professionals &amp; Developers</option><option value="businesses">Businesses &amp; Startups</option><option value="ngos">NGOs &amp; Community Groups</option><option value="schools">Schools &amp; Educators</option><option value="churches">Churches &amp; Faith Groups</option><option value="families">Patients &amp; Families</option><option value="healthcare">Hospitals &amp; Clinics</option></select></div>
+        <button class="btn btn-outline" id="service-reset" type="button">Reset</button>
       </div>
-    </section>
-
-    <!-- SERVICES OVERVIEW -->
-    <section class="section" aria-labelledby="services-heading">
-      <div class="container">
-        <div class="section-header centered">
-          <p class="section-label">What We Offer</p>
-          <h2 id="services-heading">Four Pillars of Opportunity</h2>
-          <p class="section-intro">Every service we provide is designed to remove barriers and open doors, giving Liberians access to opportunities that were once out of reach.</p>
-        </div>
-
-        <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); margin-top:2.5rem;">
-
-          <article class="service-card blue-top reveal">
-            <span class="service-icon">🎓</span>
-            <h3>Scholarship Opportunities</h3>
-            <p>We connect ambitious Liberian students with international scholarship and study-abroad opportunities, guiding them from eligibility check through admission letter, visa support, and pre-departure preparation.</p>
-            <ul class="service-tag-list">
-              <li>Fully Funded Scholarships</li>
-              <li>Study Abroad</li>
-              <li>Document Support</li>
-              <li>Visa Guidance</li>
-            </ul>
-            <a href="apply" class="card-link">Explore Scholarships</a>
-          </article>
-
-          <article class="service-card red-top reveal">
-            <span class="service-icon">💼</span>
-            <h3>Skill Development Programs</h3>
-            <p>Our free classroom delivers practical, job-ready training in high-demand skills. We offer structured IELTS and TOEFL preparation with video lessons, practice tests, and expert-curated study materials, all at no cost.</p>
-            <ul class="service-tag-list">
-              <li>IELTS Prep</li>
-              <li>TOEFL Prep</li>
-              <li>Digital Skills</li>
-              <li>Free Access</li>
-            </ul>
-            <a href="learning-hub" class="card-link">Visit the Classroom</a>
-          </article>
-
-          <article class="service-card blue-top reveal">
-            <span class="service-icon">🏥</span>
-            <h3>Global Healthcare Access</h3>
-            <p>We facilitate access to specialized medical treatment for Liberians seeking care in India and partner countries. Our healthcare team coordinates case assessments, specialist referrals, travel logistics, and ongoing patient support throughout the treatment journey.</p>
-            <ul class="service-tag-list">
-              <li>India Medical Referral</li>
-              <li>Specialist Access</li>
-              <li>Case Management</li>
-              <li>Travel Support</li>
-            </ul>
-            <a href="healthcare" class="card-link">Healthcare Services</a>
-          </article>
-
-          <article class="service-card red-top reveal">
-            <span class="service-icon">💻</span>
-            <h3>IT Solutions</h3>
-            <p>Our software team builds tailored digital products that help Liberian schools, businesses, and organizations modernize. From responsive websites to full business management systems, we bring world-class technology to local needs.</p>
-            <ul class="service-tag-list">
-              <li>Website Development</li>
-              <li>Software Solutions</li>
-              <li>School Management Systems</li>
-              <li>Business Platforms</li>
-            </ul>
-            <a href="software" class="card-link">IT Solutions</a>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW WE WORK -->
-    <section class="section section-alt" aria-labelledby="how-heading">
-      <div class="container">
-        <div class="section-header centered">
-          <p class="section-label">How We Work</p>
-          <h2 id="how-heading">Our Simple 3-Step Process</h2>
-          <p class="section-intro">No matter which service you need, our approach is straightforward, transparent, and built around your success.</p>
-        </div>
-
-        <div class="steps-grid">
-          <div class="step-card reveal">
-            <div class="step-number blue">1</div>
-            <h3>Inquire</h3>
-            <p>Reach out via our contact form, WhatsApp, or email. Tell us what you need: scholarship, healthcare referral, classroom access, or an IT project. We'll respond within 24 hours.</p>
-          </div>
-          <div class="step-card reveal">
-            <div class="step-number red">2</div>
-            <h3>Assess</h3>
-            <p>We review your situation and goals together. Whether it's checking your eligibility for a scholarship or diagnosing your organization's digital needs, we provide honest, expert guidance tailored to you.</p>
-          </div>
-          <div class="step-card reveal">
-            <div class="step-number blue">3</div>
-            <h3>Support</h3>
-            <p>Once matched to the right service, our team provides hands-on support every step of the way: document preparation, referrals, follow-up, and outcome tracking until you reach your goal.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY CHOOSE US -->
-    <section class="section" aria-labelledby="why-heading">
-      <div class="container">
-        <div class="section-header centered">
-          <p class="section-label">Why Choose Us</p>
-          <h2 id="why-heading">The Tolbert Difference</h2>
-          <p class="section-intro">We are not a middleman. We are a committed partner. Here is why thousands of Liberians trust us with their most important life decisions.</p>
-        </div>
-
-        <div class="features-grid">
-          <div class="feature-item reveal">
-            <div class="feature-icon-wrap">🏆</div>
-            <div>
-              <h4>Experienced Team</h4>
-              <p>Our staff brings hands-on expertise in scholarship placement, medical travel coordination, and software development.</p>
-            </div>
-          </div>
-          <div class="feature-item reveal">
-            <div class="feature-icon-wrap red">🌐</div>
-            <div>
-              <h4>Trusted Network</h4>
-              <p>We maintain active partnerships with universities in India and beyond, specialist hospitals, and global tech platforms.</p>
-            </div>
-          </div>
-          <div class="feature-item reveal">
-            <div class="feature-icon-wrap">🔄</div>
-            <div>
-              <h4>End-to-End Support</h4>
-              <p>From first inquiry to final outcome, we stay with you: no hand-offs, no abandoned cases, no unanswered questions.</p>
-            </div>
-          </div>
-          <div class="feature-item reveal">
-            <div class="feature-icon-wrap red">📋</div>
-            <div>
-              <h4>Transparent Process</h4>
-              <p>We explain every step clearly, set realistic expectations, and never charge hidden fees or make promises we cannot keep.</p>
-            </div>
-          </div>
-          <div class="feature-item reveal">
-            <div class="feature-icon-wrap">🌍</div>
-            <div>
-              <h4>Africa-Focused</h4>
-              <p>Every program we design is rooted in a deep understanding of Liberia's context, challenges, and aspirations.</p>
-            </div>
-          </div>
-          <div class="feature-item reveal">
-            <div class="feature-icon-wrap red">📈</div>
-            <div>
-              <h4>Results-Driven</h4>
-              <p>We measure success by the number of students admitted, patients treated, and businesses transformed, not by the number of inquiries handled.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA SECTION -->
-    <section class="section" aria-label="Call to action">
-      <div class="container">
-        <div class="cta-band">
-          <p class="eyebrow" style="justify-content:center;margin:0 auto 1rem;">Ready to Begin?</p>
-          <h2>Your Opportunity Starts Here</h2>
-          <p>Whether you're applying for a scholarship, seeking healthcare abroad, building your English score, or transforming your business with technology, we're here to help you take the next step.</p>
-          <div class="cta-actions">
-            <a href="apply" class="btn btn-primary btn-lg">Apply Now</a>
-            <a href="contact" class="btn btn-outline btn-lg">Contact Us</a>
-            <a href="learning-hub" class="btn btn-outline btn-lg">Join Free Learning Hub</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
+      <p id="service-results" role="status" aria-live="polite">16 services and resource routes</p>
+      <div class="sv-grid" id="service-grid">
+        <article class="sv-card" id="service-1" data-category="learning" data-audiences="students professionals businesses"><p class="sv-category">Learning &amp; Exam Prep</p><h3>TIH Learning Hub</h3><p>Build practical skills through course lessons, notes, quizzes, and completion activities.</p><p><strong>For:</strong> Students, professionals, entrepreneurs, and independent learners</p><p><strong>Start with:</strong> Review course content, prerequisites, registration charges, and access instructions.</p><p class="sv-terms">Course access terms apply</p><a href="learning-hub">Explore learning programmes →</a></article>
+        <article class="sv-card" id="service-2" data-category="learning" data-audiences="students schools"><p class="sv-category">Learning &amp; Exam Prep</p><h3>WASSCE &amp; English Exam Preparation</h3><p>Explore subject revision, practice resources, and English exam preparation pathways.</p><p><strong>For:</strong> Secondary-school students and learners preparing for WASSCE, IELTS, or TOEFL</p><p><strong>Start with:</strong> Choose your preparation route and check its requirements. Official exam registration is separate.</p><p class="sv-terms">Check programme registration</p><a href="wassce">Browse WASSCE preparation →</a><a href="learning-hub">Explore IELTS &amp; TOEFL tracks →</a></article>
+        <article class="sv-card" id="service-3" data-category="education" data-audiences="students families"><p class="sv-category">Study Abroad &amp; Scholarships</p><h3>Study Abroad Application Guidance</h3><p>Compare study options, understand entry requirements, and organize the documents needed for an application.</p><p><strong>For:</strong> Students and families considering international education</p><p><strong>Start with:</strong> Start with your study goals, academic background, intended intake, and destination preferences.</p><p class="sv-terms">Confirm service and provider terms</p><a href="study-abroad">Explore study-abroad guidance →</a></article>
+        <article class="sv-card" id="service-4" data-category="education" data-audiences="students professionals"><p class="sv-category">Study Abroad &amp; Scholarships</p><h3>Scholarship Research &amp; Guidance</h3><p>Explore scholarship programmes and review eligibility, deadlines, covered costs, and official application routes.</p><p><strong>For:</strong> Students and professionals seeking education opportunities</p><p><strong>Start with:</strong> Check each provider’s current instructions and prepare your own application materials where required.</p><p class="sv-terms">Awards decided by providers</p><a href="fully-funded-scholarship">Browse scholarship opportunities →</a></article>
+        <article class="sv-card" id="service-5" data-category="funding" data-audiences="students families"><p class="sv-category">Grants &amp; Financial Aid</p><h3>Student Financial Aid Resources</h3><p>Compare financial assistance routes, including partial awards and programmes that require enrolment in a specific country.</p><p><strong>For:</strong> Students and families planning education costs</p><p><strong>Start with:</strong> Check remaining expenses, study location, age, enrolment status, and whether applications are open.</p><p class="sv-terms">Aid coverage and eligibility vary</p><a href="grants?category=students#grants-directory">Find student financial aid →</a></article>
+        <article class="sv-card" id="service-6" data-category="funding" data-audiences="ngos schools churches businesses healthcare"><p class="sv-category">Grants &amp; Financial Aid</p><h3>Grants &amp; Donation Guidance</h3><p>Find funding, donation, and partnership routes for NGOs, schools, churches, businesses, hospitals, and community projects.</p><p><strong>For:</strong> Nonprofits, faith-based organizations, schools, community teams, and health institutions</p><p><strong>Start with:</strong> Match your project to the donor’s purpose and geographic rules, then review the document checklist.</p><p class="sv-terms">Free TIH grant guidance; donor rules apply</p><a href="grants">Explore funding and assistance →</a></article>
+        <article class="sv-card" id="service-7" data-category="funding" data-audiences="businesses ngos professionals"><p class="sv-category">Grants &amp; Financial Aid</p><h3>Innovation Project Funding Resources</h3><p>Explore funders supporting pilots, evidence-building, and scalable solutions to development challenges.</p><p><strong>For:</strong> Innovators, startups, social enterprises, and research teams</p><p><strong>Start with:</strong> Check project maturity, organizational eligibility, evidence requirements, and current intake status.</p><p class="sv-terms">Grants and other instruments differ</p><a href="grants?category=innovation#grants-directory">Browse innovation funding →</a></article>
+        <article class="sv-card" id="service-8" data-category="technology" data-audiences="businesses ngos schools churches"><p class="sv-category">Technology &amp; Digital Products</p><h3>Website Design &amp; Development</h3><p>Discuss a website for your business, school, church, NGO, or institution, designed around your users and goals.</p><p><strong>For:</strong> Organizations that need a new website or an upgrade</p><p><strong>Start with:</strong> Describe the pages, content, features, timeline, hosting, and maintenance you need.</p><p class="sv-terms">Scope and project quote required</p><a href="business-intake">Request a website project discussion →</a></article>
+        <article class="sv-card" id="service-9" data-category="technology" data-audiences="businesses ngos schools healthcare"><p class="sv-category">Technology &amp; Digital Products</p><h3>Custom Software &amp; Business Systems</h3><p>Plan web applications, administrative tools, dashboards, or workflow automation for your organization.</p><p><strong>For:</strong> Businesses, schools, NGOs, and service institutions</p><p><strong>Start with:</strong> Share the problem, users, workflows, integrations, and support expectations for a scope review.</p><p class="sv-terms">Scope and project quote required</p><a href="software">Explore software services →</a></article>
+        <article class="sv-card" id="service-10" data-category="technology" data-audiences="businesses professionals"><p class="sv-category">Technology &amp; Digital Products</p><h3>Software Sales &amp; Client Resources</h3><p>Explore local institutional prospects, procurement portals, and marketplaces for apps, websites, and software businesses.</p><p><strong>For:</strong> Developers, software founders, and digital agencies</p><p><strong>Start with:</strong> Review each route’s requirements and approach prospects through their official contact channels.</p><p class="sv-terms">Resources; sales are not guaranteed</p><a href="software#software-sales">Find sales and prospecting routes →</a></article>
+        <article class="sv-card" id="service-11" data-category="technology" data-audiences="students professionals families businesses"><p class="sv-category">Technology &amp; Digital Products</p><h3>Grandpa AI</h3><p>Explore learning, storytelling, wisdom, and everyday conversations through TIH’s AI project built in Liberia.</p><p><strong>For:</strong> Learners, innovators, and people exploring practical AI tools</p><p><strong>Start with:</strong> Open the dedicated project website to see the application and its current access terms.</p><p class="sv-terms">Project website terms apply</p><a href="https://libgrandpaai.com" target="_blank" rel="noopener noreferrer">Open Grandpa AI →</a></article>
+        <article class="sv-card" id="service-12" data-category="technology" data-audiences="students professionals businesses"><p class="sv-category">Technology &amp; Digital Products</p><h3>LibApps</h3><p>Browse applications published by TIH and review their platforms, descriptions, and download details.</p><p><strong>For:</strong> App users and people exploring Liberian digital products</p><p><strong>Start with:</strong> Read the specific app’s installation instructions and supported-platform information.</p><p class="sv-terms">Check each application’s details</p><a href="libapps">Explore TIH applications →</a></article>
+        <article class="sv-card" id="service-13" data-category="healthcare" data-audiences="families healthcare"><p class="sv-category">Healthcare Guidance</p><h3>Healthcare Enquiries &amp; Referral Guidance</h3><p>Explore general healthcare programme information and referral-enquiry routes for patients and families.</p><p><strong>For:</strong> Patients, families, hospitals, and clinics</p><p><strong>Start with:</strong> Use the healthcare team’s case-specific instructions; providers assess suitability and availability.</p><p class="sv-terms">Confirm provider services and costs</p><a href="healthcare">Explore healthcare guidance →</a></article>
+        <article class="sv-card" id="service-14" data-category="learning" data-audiences="students professionals ngos businesses"><p class="sv-category">Learning &amp; Exam Prep</p><h3>Digital Library &amp; Learning Resources</h3><p>Find educational materials and resources covering technology, funding, business, exam preparation, and career development.</p><p><strong>For:</strong> Learners, educators, entrepreneurs, and organizations</p><p><strong>Start with:</strong> Browse the library by topic and choose materials relevant to your goal.</p><p class="sv-terms">Free resource browsing</p><a href="library">Browse the digital library →</a></article>
+        <article class="sv-card" id="service-15" data-category="community" data-audiences="schools ngos churches businesses"><p class="sv-category">Community &amp; Creative Work</p><h3>Group Sessions &amp; Programme Enquiries</h3><p>Request information or availability for a focused session on digital skills, AI, proposal writing, or funding research.</p><p><strong>For:</strong> Schools, churches, NGOs, community groups, and workplace teams</p><p><strong>Start with:</strong> Describe your audience, topic, group size, and preferred format. A date and any fees must be confirmed.</p><p class="sv-terms">Availability and terms to be confirmed</p><a href="events#register">Request a group session →</a></article>
+        <article class="sv-card" id="service-16" data-category="community" data-audiences="students professionals businesses"><p class="sv-category">Community &amp; Creative Work</p><h3>Culture &amp; Creative Talent</h3><p>Explore the TIH entertainment platform and its focus on Liberian culture and creative work.</p><p><strong>For:</strong> Creative professionals, young people, and audiences interested in Liberian talent</p><p><strong>Start with:</strong> Visit the platform or contact TIH to ask about participation and collaboration.</p><p class="sv-terms">Participation terms vary</p><a href="entertainment">Explore the entertainment platform →</a></article>
+      </div><p id="service-empty" hidden>No services match your filters. Try another term or reset the filters.</p>
+    </div></section>
+    <section class="section section-alt" aria-labelledby="digital-project-title"><div class="container sv-feature-grid">
+      <article class="sv-feature"><p class="section-label">For Organizations</p><h2 id="digital-project-title">Bring Your Website or Software Idea to TIH</h2><p>Start with the problem you want to solve. Tell us who will use the system, what must work, and when you need it. We can then discuss the scope, milestones, responsibilities, training, and support.</p><ul class="list"><li>Business, school, church, and NGO websites</li><li>Applications, dashboards, and workflow tools</li><li>Content, hosting, maintenance, and ownership terms agreed in the proposal</li></ul><a class="btn btn-primary" href="business-intake">Describe your project</a><a class="sv-text-link" href="software#portfolio">Explore our portfolio →</a></article>
+      <article class="sv-feature sv-ai"><p class="section-label">Featured TIH Project</p><h2>Meet Grandpa AI</h2><img src="grandpa-ai-banner.jpg" alt="Grandpa AI — Ancestral Wisdom, Modern Innovation" loading="lazy" decoding="async" /><p>Explore a TIH AI project focused on learning, storytelling, wisdom, and everyday conversations.</p><a class="btn btn-primary" href="https://libgrandpaai.com" target="_blank" rel="noopener noreferrer">Open Grandpa AI ↗</a><a class="sv-text-link" href="grandpa-ai">Read about the project →</a></article>
+    </div></section>
+    <section class="section" aria-labelledby="how-heading"><div class="container"><div class="section-header"><p class="section-label">How We Work</p><h2 id="how-heading">Four Clear Steps to Get Started</h2></div><ol class="sv-steps">
+      <li><strong>Choose your route</strong><p>Open the service page that matches your goal, or contact TIH if you are unsure where to begin.</p></li>
+      <li><strong>Share the right information</strong><p>Tell us about your study goal, organization, project, or enquiry. Use the relevant programme’s document instructions.</p></li>
+      <li><strong>Confirm scope, requirements &amp; charges</strong><p>Review eligibility, access rules, deadlines, deliverables, and any fees before enrolling, applying, or starting a project.</p></li>
+      <li><strong>Agree on the next step</strong><p>Follow the official application route or agreed service plan. Check who makes the decision and what follow-up is required.</p></li>
+    </ol></div></section>
+    <section class="section section-alt" aria-labelledby="service-terms-title"><div class="container"><div class="section-header"><p class="section-label">Understand the Service</p><h2 id="service-terms-title">What to Check Before You Begin</h2><p class="section-intro">Different services have different access rules. Use these questions to prepare for a clear discussion with TIH or the relevant provider.</p></div>
+      <div class="sv-table-wrap" role="region" aria-label="Service access and next steps" tabindex="0"><table class="sv-table"><thead><tr><th scope="col">Service</th><th scope="col">Check first</th><th scope="col">Next step</th></tr></thead><tbody>
+        <tr><th scope="row">Courses &amp; exam preparation</th><td>Programme content, registration charge, access requirements, and certificate conditions. Exam-provider fees are separate.</td><td><a href="learning-hub">Review the course catalogue</a></td></tr>
+        <tr><th scope="row">Scholarships, grants &amp; aid</th><td>Official eligibility, deadline, required documents, covered costs, and whether the call is open. Providers decide awards and admissions.</td><td><a href="grants">Compare funding routes</a></td></tr>
+        <tr><th scope="row">Websites &amp; custom software</th><td>Written scope, quotation, milestones, payment terms, hosting, maintenance, training, and ownership or licence terms.</td><td><a href="business-intake">Submit a project enquiry</a></td></tr>
+        <tr><th scope="row">Healthcare guidance</th><td>Provider assessment, referral requirements, service availability, treatment costs, and travel arrangements where relevant.</td><td><a href="healthcare">Use the healthcare enquiry route</a></td></tr>
+        <tr><th scope="row">Group sessions</th><td>Audience, topic, format, date, location, accessibility needs, capacity, and any charges. An enquiry is not a booking.</td><td><a href="events#register">Request session information</a></td></tr>
+      </tbody></table></div>
+    </div></section>
+    <section class="section" aria-labelledby="why-heading"><div class="container"><div class="section-header"><p class="section-label">Our Commitments</p><h2 id="why-heading">Service Built on Clear Values</h2><p class="section-intro">Transparency, integrity, accountability, inclusion, innovation, excellence, community service, and collaboration guide how we work. We aim to explain requirements, set realistic expectations, and use feedback to improve.</p></div><a class="btn btn-secondary" href="/#core-values">Read our core values</a><a class="sv-text-link" href="contact">Share feedback or ask a question →</a></div></section>
+    <section class="section section-alt"><div class="container sv-faq"><div class="section-header"><p class="section-label">Common Questions</p><h2>Before You Request a Service</h2></div>
+      <details><summary>Are all TIH services free?</summary><p>No. The library and some resource browsing are free, while courses can require registration and digital projects require a scope and quotation. Check the linked programme’s terms and confirm any service charges before paying.</p></details>
+      <details><summary>Can TIH guarantee a scholarship, grant, admission, or visa?</summary><p>TIH can provide guidance and resource links. The scholarship provider, donor, institution, or responsible authority makes the decision. Follow their official requirements.</p></details>
+      <details><summary>What should I prepare for a software project discussion?</summary><p>Describe your users, the problem, required features, existing systems, content, budget range, and preferred timeline. Ask about maintenance and ownership as part of the proposal.</p></details>
+      <details><summary>Can my school, church, or NGO request group support?</summary><p>Yes. Use the Events &amp; Programs enquiry form to describe the topic and audience. TIH must confirm availability, format, and any fees.</p></details>
+      <details><summary>How do I find services relevant to my organization?</summary><p>Use the audience filter above, then review the “For” and “Start with” details on each card. Contact TIH if you need help choosing a route.</p></details>
+    </div></section>
+    <section class="section"><div class="container sv-contact"><h2>Ready to Take the Next Step?</h2><p>Choose a service, tell us your goal, and ask what is needed to begin.</p><div class="hero-actions"><a class="btn btn-primary" href="contact">Contact TIH</a><a class="btn btn-secondary" href="events#register">Request a group session</a><a class="btn btn-outline" href="https://wa.me/231880559227" target="_blank" rel="noopener noreferrer">Ask on WhatsApp</a></div></div></section>
   </main>
 
   <svg class="tih-wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,70 C240,110 480,20 720,45 C960,70 1200,105 1440,55 L1440,110 L0,110 Z" fill="#E31E24"/><path d="M0,84 C240,116 480,40 720,62 C960,84 1200,110 1440,72 L1440,110 L0,110 Z" fill="#ffffff"/><path d="M0,94 C260,120 520,58 760,76 C1000,94 1240,112 1440,84 L1440,110 L0,110 Z" fill="#0B2A6B"/></svg>
@@ -505,6 +199,37 @@
       window.addEventListener('pageshow', function (e) { if (e.persisted) show(); });
       setTimeout(show, 4000);
     })();
+  </script>
+  <script>
+(function () {
+  const cards = Array.from(document.querySelectorAll('#service-grid > .sv-card'));
+  const search = document.getElementById('service-search');
+  const category = document.getElementById('service-category');
+  const audience = document.getElementById('service-audience');
+  if (!cards.length || !search || !category || !audience) return;
+  const params = new URLSearchParams(window.location.search);
+  for (const [field, key] of [[category, 'category'], [audience, 'audience']]) {
+    const requested = params.get(key);
+    if (Array.from(field.options).some(option => option.value === requested)) field.value = requested;
+  }
+  function render() {
+    const terms = search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    let shown = 0;
+    cards.forEach(card => {
+      const matchesAudience = audience.value === 'all' || card.dataset.audiences.split(' ').includes(audience.value);
+      card.hidden = !((category.value === 'all' || card.dataset.category === category.value) && matchesAudience && terms.every(term => card.textContent.toLowerCase().includes(term)));
+      if (!card.hidden) shown++;
+    });
+    document.getElementById('service-results').textContent = shown + ' of ' + cards.length + ' services and resource routes shown';
+    document.getElementById('service-empty').hidden = shown !== 0;
+  }
+  search.addEventListener('input', render);
+  category.addEventListener('change', render);
+  audience.addEventListener('change', render);
+  document.getElementById('service-reset').addEventListener('click', () => { search.value = ''; category.value = 'all'; audience.value = 'all'; render(); search.focus(); });
+  document.getElementById('service-tools').hidden = false;
+  render();
+}());
   </script>
 </body>
 </html>
