@@ -218,6 +218,17 @@
     .hero-text-toggle[hidden] { display:none; }
     .hero-text-toggle:focus-visible { outline:3px solid #d97706; outline-offset:3px; }
     @media(prefers-reduced-motion:reduce) { .hero-message { transition:none; } }
+
+    #core-values { scroll-margin-top:110px; }
+    .home-values-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; }
+    .home-value-card { padding:1.5rem; border:1px solid var(--border); border-top:3px solid var(--brand-blue-light); border-radius:14px; background:var(--surface); }
+    .home-value-number { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:10px; background:var(--surface-2); color:var(--text-secondary); font-weight:700; font-size:.8rem; }
+    .home-value-card h3 { font-size:1.08rem; margin:1rem 0 .65rem; }
+    .home-value-card p { margin:0; color:var(--text-secondary); font-size:.93rem; line-height:1.75; }
+    .home-values-feedback { text-align:center; margin:1.5rem 0 0; color:var(--text-secondary); }
+    .home-values-feedback a { font-weight:700; }
+    @media(max-width:1100px) { .home-values-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:560px) { .home-values-grid { grid-template-columns:1fr; } }
   </style>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://formsubmit.co https://formspree.io https://restcountries.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co https://formspree.io; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -555,6 +566,28 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Core values -->
+    <section class="section section-alt home-values" id="core-values" aria-labelledby="core-values-title">
+      <div class="container">
+        <div class="section-header centered">
+          <p class="section-label">What We Stand For</p>
+          <h2 id="core-values-title">Our Core Values</h2>
+          <p class="section-intro">These commitments guide how Tolbert Innovation Hub teaches, builds, communicates, and serves our community.</p>
+        </div>
+        <div class="home-values-grid">
+          <article class="home-value-card"><span class="home-value-number" aria-hidden="true">01</span><h3>Transparency</h3><p>We aim to explain our services, fees, eligibility requirements, and processes clearly, so people can make informed decisions.</p></article>
+          <article class="home-value-card"><span class="home-value-number" aria-hidden="true">02</span><h3>Integrity</h3><p>We commit to honest communication, accurate information, and ethical conduct. We represent opportunities fairly and avoid promises we cannot support.</p></article>
+          <article class="home-value-card"><span class="home-value-number" aria-hidden="true">03</span><h3>Accountability</h3><p>We take responsibility for our work, welcome feedback, and correct mistakes. We follow through on agreed commitments and explain changes.</p></article>
+          <article class="home-value-card"><span class="home-value-number" aria-hidden="true">04</span><h3>Inclusion &amp; Respect</h3><p>We treat people with dignity and work to make learning and opportunities more accessible, across backgrounds, abilities, and circumstances.</p></article>
+          <article class="home-value-card"><span class="home-value-number" aria-hidden="true">05</span><h3>Purposeful Innovation</h3><p>We build and improve practical solutions to real problems, using technology to support learning, local businesses, and community needs.</p></article>
+          <article class="home-value-card"><span class="home-value-number" aria-hidden="true">06</span><h3>Excellence</h3><p>We value careful work, useful learning, and dependable service. We keep improving our content, products, and support through review and feedback.</p></article>
+          <article class="home-value-card"><span class="home-value-number" aria-hidden="true">07</span><h3>Community Service</h3><p>We put people and community needs at the center of our work, helping Liberians build skills, pursue opportunities, and contribute to development.</p></article>
+          <article class="home-value-card"><span class="home-value-number" aria-hidden="true">08</span><h3>Collaboration</h3><p>We value shared knowledge and respectful partnerships. We work with learners, organizations, and professionals toward clearly defined goals.</p></article>
+        </div>
+        <p class="home-values-feedback">Your experience helps us improve. <a href="contact">Share feedback or ask a question →</a></p>
       </div>
     </section>
 
