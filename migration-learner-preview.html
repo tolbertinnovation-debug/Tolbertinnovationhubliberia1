@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; form-action 'none'; base-uri 'none'">
+<title>Learner workspace preview · TIH</title><link rel="stylesheet" href="migration-preview.css"><script src="migration-learner-preview.js" defer></script>
+</head><body><main>
+<a class="brand" href="/">TOLBERT INNOVATION HUB</a><p class="badge">ISOLATED LEARNER PREVIEW</p>
+<h1>Your learning workspace.</h1><p>Test your existing login, course requests, progress, and certificate requests in a separate database. Your live records stay unchanged.</p>
+<form id="login-form"><label for="login">Learner email or Student ID</label><input id="login" autocomplete="username" required maxlength="254">
+<label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required maxlength="512"><button id="sign-in">Sign in to the preview</button></form>
+<p id="result" role="status" aria-live="polite">Use your existing learner credentials. Older accounts are supported.</p>
+<section id="workspace" hidden aria-label="Learner test workspace">
+<p id="summary"></p><label for="course">Course</label><select id="course"><option value="">Choose a course</option></select><p id="course-status"></p>
+<button id="request-access" type="button">Request course access in test database</button>
+<label for="completed">Completed lessons for this test</label><input id="completed" type="number" min="0" step="1" value="0"><p id="lesson-total" class="note"></p>
+<button id="save-progress" type="button">Save test progress</button><button id="request-cert" type="button">Submit test certificate request</button>
+<p class="note">Progress here is learner-reported. A pending certificate request requires staff review; it does not issue a certificate. Only courses already granted to your copied account can save progress.</p>
+<button id="logout" class="secondary" type="button">Sign out of this preview</button></section>
+<p class="note">Login is verified by the existing Supabase service. The preview uses a protected session cookie that expires after 15 minutes. Passwords are not saved. This does not migrate or reset your password, and the live website has not switched.</p>
+</main></body></html>

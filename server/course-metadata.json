@@ -1,0 +1,138 @@
+{
+  "computer-literacy": {
+    "title": "Complete Computer Literacy Professional Certificate",
+    "total": 253
+  },
+  "ai": {
+    "title": "Complete AI Fundamentals Professional Certificate",
+    "total": 343
+  },
+  "data": {
+    "title": "Complete Data Analysis with Excel, Power BI & Google Sheets Certificate",
+    "total": 356
+  },
+  "webdev": {
+    "title": "Complete Full-Stack Web Development Program",
+    "total": 374
+  },
+  "design": {
+    "title": "Complete Graphic Design Program: Canva & Adobe Photoshop",
+    "total": 312
+  },
+  "android": {
+    "title": "Complete Android App Development Program (Kotlin)",
+    "total": 304
+  },
+  "marketing": {
+    "title": "Complete Digital Marketing Professional Certificate",
+    "total": 355
+  },
+  "cybersecurity": {
+    "title": "Complete Cybersecurity Fundamentals & Ethical Hacking Program",
+    "total": 328
+  },
+  "entrepreneurship": {
+    "title": "Complete Entrepreneurship & Startup Launch Program",
+    "total": 351
+  },
+  "project-mgmt": {
+    "title": "Complete Project Management Professional Certificate",
+    "total": 314
+  },
+  "office": {
+    "title": "Complete Microsoft Office Mastery Professional Certificate",
+    "total": 377
+  },
+  "leadership": {
+    "title": "Complete Business Leadership Masterclass",
+    "total": 320
+  },
+  "grant-writing": {
+    "title": "Complete Grant Writing & Fundraising Professional Certificate",
+    "total": 320
+  },
+  "financial-literacy": {
+    "title": "Complete Financial Literacy Professional Certificate",
+    "total": 114
+  },
+  "english-success": {
+    "title": "Complete English for Academic & Professional Success Certificate",
+    "total": 332
+  },
+  "agritech": {
+    "title": "Complete AgriTech & Digital Agriculture Professional Certificate",
+    "total": 338
+  },
+  "healthtech": {
+    "title": "Complete Healthcare Technology & Telehealth Professional Certificate",
+    "total": 108
+  },
+  "remote-work": {
+    "title": "Complete Remote Work & Freelancing Professional Certificate",
+    "total": 114
+  },
+  "ielts": {
+    "title": "IELTS Masterclass: Beginner to Band 9",
+    "total": 238
+  },
+  "toefl": {
+    "title": "Complete TOEFL iBT Course: Grammar, Vocabulary & All Four Sections",
+    "total": 184
+  },
+  "sat": {
+    "title": "Complete Digital SAT Prep: Reading & Writing + Math (400–1600)",
+    "total": 216
+  },
+  "bible-foundations": {
+    "title": "Complete Bible School & Christian Ministry Certificate",
+    "total": 114
+  },
+  "quickbooks": {
+    "title": "QuickBooks Accounting",
+    "total": 193
+  },
+  "accounting-bookkeeping": {
+    "title": "Complete Accounting & Bookkeeping Program",
+    "total": 279
+  },
+  "ai-cybersecurity": {
+    "title": "Build Real AI & Cybersecurity Skills",
+    "total": 269
+  },
+  "ph-career": {
+    "title": "Career Success for Public Health Graduates",
+    "total": 114
+  },
+  "metaphysics": {
+    "title": "Complete Metaphysics: Reality, Existence, Mind & Freedom",
+    "total": 37
+  },
+  "business-plan": {
+    "title": "Complete Business Plan Development: From Idea to Funding & Launch",
+    "total": 46
+  },
+  "military-leadership": {
+    "title": "Complete Military Organization and Leadership",
+    "total": 46
+  },
+  "national-security-fundamentals": {
+    "title": "Complete National Security Fundamentals",
+    "total": 46
+  },
+  "football-coaching": {
+    "title": "Football Coaching",
+    "total": 189
+  },
+  "human-rights-ihl": {
+    "title": "Human Rights and International Humanitarian Law",
+    "total": 187
+  },
+  "liberian-law": {
+    "title": "Complete Liberian Law Programme",
+    "total": 212
+  },
+  "advanced-liberian-law": {
+    "title": "Advanced Liberian Legal Studies Programme",
+    "total": 140
+  }
+}

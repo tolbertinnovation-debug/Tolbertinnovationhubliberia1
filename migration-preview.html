@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' https://oracluubhmxobcnsvcxz.supabase.co; form-action 'none'; base-uri 'none'">
+  <title>Learner migration preview · TIH</title>
+  <link rel="stylesheet" href="migration-preview.css">
+  <script src="migration-preview.js" defer></script>
+</head>
+<body><main>
+  <a class="brand" href="/">TOLBERT INNOVATION HUB</a>
+  <p class="badge">READ-ONLY PREVIEW</p>
+  <h1>Check your learning records.</h1>
+  <p>Sign in to check that your copied learner records can be read from the new database. The live website has not switched.</p>
+  <form id="check-form">
+    <label for="email">Learner email</label>
+    <input id="email" type="email" autocomplete="username" required>
+    <label for="password">Password</label>
+    <input id="password" type="password" autocomplete="current-password" required>
+    <button id="submit" disabled>Preparing secure test…</button>
+  </form>
+  <p id="result" role="status" aria-live="polite">Checking preview availability…</p>
+  <p class="note">Use an existing learner account linked to Supabase Auth. Older accounts may need separate migration work. This page does not reset passwords or change your learning records. Your password goes directly to the existing sign-in service; this page does not save it or your session in browser storage.</p>
+  <button id="clear" class="secondary" type="button">Clear this page</button>
+</main></body></html>
