@@ -172,17 +172,44 @@ guard blocks browser fetch, XHR and realtime requests to Supabase, and replaces
 legacy cloud exports so unsupported features cannot write to the live source.
 Registration, password changes, profile editing, payment processing and LibApps
 writes are unavailable. Existing Supabase authentication verification remains
-on the server. Auth-only account coverage still needs reconciliation before
-cutover; the normal compatibility sign-in currently uses the verified legacy
-password path. Password-change enforcement must be restored before production.
+on the server. Email sign-in now falls back to Supabase Auth if the legacy proof fails.
+The verified access token is used only in memory to read student_me; its
+auth_user_id must match the authenticated user before a preview session is
+issued. Auth tokens, refresh tokens and passwords are not copied to Neon or
+returned to the browser. Real Auth-only account sign-in still needs owner
+verification on the deployed normal page.
+
+Source password-change enforcement is preserved at login. The source currently
+reports 95 accounts requiring a change. A true, null or missing flag prevents
+session creation and directs the learner to update the password on the live
+site first. This preview does not reset or update live credentials. The source
+flag must be included in a future final migration; it was excluded from the
+original sanitized snapshot.
 
 Progress is saved through the restricted server API. Failed saves show an
 explicit unsynced message and retry every 30 seconds or when connectivity
-returns while the page remains open. The retry queue is in memory; closing the
-page can discard unsynced changes. Durable offline sync is not complete.
+returns. A minimal local queue (learner ID, course IDs and counts only) now
+survives reloads for up to seven days, is loaded only after that same learner
+is verified, and is removed on explicit logout. It contains no passwords,
+auth tokens, names or email addresses. If device storage is unavailable, the
+message explicitly says to keep the page open. Clearing browser data or device
+storage still loses unsynced changes. Server-monotonic writes make retries
+idempotent. Each adapter mutation also includes expectedStudentId; the server
+compares it to the cookie identity before any database access, preventing a
+stale tab or queue from writing after another tab changes the signed-in account.
 
 Mobile browser checks with mocked API responses cover dashboard sign-in,
 server-session course boot, issued-certificate display and download-handler
 initialization. These do not replace real-account checks on the deployed
 normal pages. No production cutover, final source reconciliation, domain
 change, authentication migration or payment migration has occurred.
+
+
+The updated automated suite has 63 passing checks. The repeatable local mobile
+smoke test in tools/website-preview.browser.cjs verifies failed progress saves,
+queue recovery after a fresh page load, retry with the expected identity, no
+submission of another learner's queue, issued certificates and mobile layout.
+Run after building with the preview flags. It requires Playwright and a
+Chromium installation; set BROWSER_EXECUTABLE_PATH when needed. All browser
+API responses in this smoke test are mocked. No real-user credentials or
+source authentication data are included in the test.

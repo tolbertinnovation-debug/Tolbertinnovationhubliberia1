@@ -20,7 +20,8 @@ function createLearnerHandler({env=process.env,makeDatabase}={}){
       action=body.action;
       if(action==='logout'){res.setHeader('Set-Cookie',clearSessionCookie());return send(200,{ok:true});}
       if(!['requestAccess','progress','certRequest'].includes(action))return send(400,{error:'Unknown learner action'});
-      const allowed=action==='progress'?['action','courseId','completed']:['action','courseId'];
+      const allowed=action==='progress'?['action','courseId','completed','expectedStudentId']:['action','courseId','expectedStudentId'];
+      if(body.expectedStudentId!==undefined&&body.expectedStudentId!==studentId)return send(409,{error:'The signed-in learner changed. Sign in again before syncing this account.'});
       if(Object.keys(body).some(k=>!allowed.includes(k))||typeof body.courseId!=='string'||!Object.hasOwn(catalog,body.courseId))return send(400,{error:'Choose a listed course; extra fields are not accepted'});
       if(action==='progress'&&(!Number.isInteger(body.completed)||body.completed<0||body.completed>catalog[body.courseId].total))return send(400,{error:'Invalid lesson count'});
     }

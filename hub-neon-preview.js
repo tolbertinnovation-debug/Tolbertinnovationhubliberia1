@@ -5,7 +5,7 @@
   var C = window.HubCloud, D = window.HubDB, account = null, student = null, ready = null;
   var unavailable = 'This action is unavailable in the migration preview. Use the staff workspace for staff changes.';
   async function api(path, body) {
-    var response = await fetch('/api/' + path, {method: body ? 'POST' : 'GET', credentials: 'same-origin', cache: 'no-store', headers: body ? {'Content-Type': 'application/json'} : {}, body: body ? JSON.stringify(body) : undefined});
+    var response = await fetch('/api/' + path, {method: body ? 'POST' : 'GET', credentials: 'same-origin', cache: 'no-store', signal: window.AbortSignal && window.AbortSignal.timeout ? window.AbortSignal.timeout(20000) : undefined, headers: body ? {'Content-Type': 'application/json'} : {}, body: body ? JSON.stringify(body) : undefined});
     var data = await response.json(); if (!response.ok) { var error = new Error(data.error || 'Preview request failed'); error.status = response.status; throw error; } return data;
   }
   function camel(row) { var result = {}; Object.keys(row || {}).forEach(function (k) { if (!/password|secret|token/i.test(k)) result[k.replace(/_([a-z])/g, function (_, c) { return c.toUpperCase(); })] = row[k]; }); return result; }
@@ -17,7 +17,7 @@
   cleanCache();
   function receive(data, preserveProgress) {
     var same = student && student.id === data.student.id;
-    if (!same) cleanCache();
+    if (!same) { cleanCache(); loadPending(data.student.id); }
     account = data; student = camel(data.student); student.mustChangePassword = false;
     (data.progress || []).forEach(function (p) {
       try {
@@ -28,6 +28,10 @@
         localStorage.setItem(key, JSON.stringify(done));
       } catch (_) {}
     });
+    pending.forEach(function (count, id) {
+      try { var key = 'tih_progress_' + id, done = JSON.parse(localStorage.getItem(key) || '[]'); if (!Array.isArray(done)) done = []; for (var i = 0; i < count; i++) if (done.indexOf(i) < 0) done.push(i); localStorage.setItem(key, JSON.stringify(done)); } catch (_) {}
+    });
+    if (pending.size) Promise.resolve().then(flush);
     (data.certificates || []).forEach(function (c) { try { localStorage.setItem('tih_cert_' + c.course_id, JSON.stringify(certificate(c))); } catch (_) {} });
     return student;
   }
@@ -63,21 +67,57 @@
   D.pendingCertRequest = function (id, courseId) { return D.getCertRequests().find(function (r) { return r.studentId === id && r.courseId === courseId && r.status === 'pending'; }) || null; };
   D.certApprovedLocal = function (id) { return !!(account && (account.certificates || []).some(function (c) { return c.course_id === id && c.verified === true; })); };
   D.courseCertificate = function (id) { var c = account && (account.certificates || []).find(function (r) { return r.course_id === id && r.verified === true; }); return c ? certificate(c) : null; };
-  D.requestAccess = async function (id) { try { await api('learner-preview', {action: 'requestAccess', courseId: id}); await refresh(true); return {ok: true}; } catch (e) { return {ok: false, error: e.message}; } };
-  D.requestCertificate = async function (_, id) { await api('learner-preview', {action: 'certRequest', courseId: id}); await refresh(true); return {ok: true}; };
-  var pending = new Map(), sending = false;
+  D.requestAccess = async function (id) { try { await api('learner-preview', {action: 'requestAccess', courseId: id, expectedStudentId: student && student.id}); await refresh(true); return {ok: true}; } catch (e) { return {ok: false, error: e.message}; } };
+  D.requestCertificate = async function (_, id) { await api('learner-preview', {action: 'certRequest', courseId: id, expectedStudentId: student && student.id}); await refresh(true); return {ok: true}; };
+  var pending = new Map(), sending = false, pendingOwner = null, queueDurable = true;
+  var queuePrefix = 'tih_neon_pending_progress_v1:';
+  function queueKey(owner) { return queuePrefix + encodeURIComponent(owner); }
+  function loadPending(owner) {
+    pending = new Map(); pendingOwner = owner; queueDurable = true;
+    try {
+      var raw = localStorage.getItem(queueKey(owner)); if (!raw) return;
+      var data = JSON.parse(raw);
+      if (data.version !== 1 || data.owner !== owner || !Number.isFinite(data.updatedAt) || data.updatedAt > Date.now() + 60000 || Date.now() - data.updatedAt > 7 * 86400000 || !Array.isArray(data.entries) || data.entries.length > 128) { localStorage.removeItem(queueKey(owner)); return; }
+      data.entries.forEach(function (entry) { if (Array.isArray(entry) && entry.length === 2 && typeof entry[0] === 'string' && /^[a-z0-9-]{1,100}$/.test(entry[0]) && Number.isInteger(entry[1]) && entry[1] >= 0 && entry[1] <= 10000) pending.set(entry[0], entry[1]); });
+    } catch (_) { queueDurable = false; }
+  }
+  function persistPending() {
+    if (!pendingOwner) return;
+    try {
+      if (pending.size) localStorage.setItem(queueKey(pendingOwner), JSON.stringify({version: 1, owner: pendingOwner, updatedAt: Date.now(), entries: Array.from(pending.entries())}));
+      else localStorage.removeItem(queueKey(pendingOwner));
+      queueDurable = true;
+    } catch (_) { queueDurable = false; }
+  }
   function status(message) { var n = document.getElementById('tih-preview-save-status'); if (!n) { n = document.createElement('div'); n.id = 'tih-preview-save-status'; n.setAttribute('role', 'status'); n.style.cssText = 'position:fixed;bottom:12px;left:12px;right:12px;z-index:2147483646;padding:10px;background:#102c55;color:white;font:14px system-ui;border-radius:8px;pointer-events:none'; document.body.append(n); } n.textContent = message; }
   async function flush() {
-    if (sending || !student || !pending.size) return; sending = true; var owner = student.id;
-    try { for (var entry of pending) { if (!student || student.id !== owner) break; await api('learner-preview', {action: 'progress', courseId: entry[0], completed: entry[1]}); if (pending.get(entry[0]) === entry[1]) pending.delete(entry[0]); } status(pending.size ? 'Some test progress is waiting to sync.' : 'Test progress saved to Neon.'); }
-    catch (error) { status('Test progress has not synced: ' + error.message + '. Keep this page open to retry.'); }
-    finally { sending = false; }
+    if (sending || !student || !pending.size || pendingOwner !== student.id) return false;
+    sending = true; var owner = student.id, batch = pending;
+    try {
+      for (var entry of batch) {
+        if (!student || student.id !== owner || batch !== pending) return false;
+        await api('learner-preview', {action: 'progress', courseId: entry[0], completed: entry[1], expectedStudentId: owner});
+        if (batch !== pending || !student || student.id !== owner) return false;
+        if (pending.get(entry[0]) === entry[1]) pending.delete(entry[0]);
+        persistPending();
+      }
+      status(pending.size ? 'Some test progress is waiting to sync.' : 'Test progress saved to Neon.'); return !pending.size;
+    } catch (error) {
+      if (batch === pending) status('Test progress has not synced: ' + error.message + (queueDurable ? '. Saved on this device for retry after sign-in.' : '. Keep this page open; this browser could not save the retry queue.'));
+      return false;
+    } finally { sending = false; }
   }
-  D.pushProgressSnapshot = function (id) { if (!student || !D.hasAccess(id)) return Promise.resolve(false); var p = D.courseProgress(id); pending.set(id, Math.max(p.completed, pending.get(id) || 0)); return flush(); };
-  var logout = D.studentLogout; D.studentLogout = function () { pending.clear(); return logout(); };
+  D.pushProgressSnapshot = function (id) {
+    if (!student || !D.hasAccess(id)) return Promise.resolve(false);
+    if (pendingOwner !== student.id) loadPending(student.id);
+    var p = D.courseProgress(id); if (!Number.isInteger(p.completed) || p.completed < 0 || p.completed > 10000) return Promise.resolve(false);
+    pending.set(id, Math.max(p.completed, pending.get(id) || 0)); persistPending(); return flush();
+  };
+  var logout = D.studentLogout;
+  D.studentLogout = function () { pending.clear(); persistPending(); pendingOwner = null; return logout(); };
   window.addEventListener('online', flush); setInterval(flush, 30000);
   document.addEventListener('DOMContentLoaded', function () {
-    window.requestCert = async function (id) { try { await flush(); await D.requestCertificate(student && student.id, id); alert('Test certificate request saved for staff review.'); location.reload(); } catch (e) { alert(e.message); } };
+    window.requestCert = async function (id) { try { await flush(); if (pending.size) throw new Error('Sync your test progress before requesting a certificate.'); await D.requestCertificate(student && student.id, id); alert('Test certificate request saved for staff review.'); location.reload(); } catch (e) { alert(e.message); } };
     // Client completion alone must never manufacture an official certificate.
     if (/\/course-player(?:\.html)?$/.test(location.pathname)) {
       window.saveCertificate = function () { return D.courseCertificate(window.courseId); };

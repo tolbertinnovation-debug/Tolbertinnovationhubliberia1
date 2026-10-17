@@ -7,7 +7,7 @@
 <h1>Your learning workspace.</h1><p>Test your existing login, course requests, progress, and certificate requests in a separate database. Your live records stay unchanged.</p>
 <form id="login-form"><label for="login">Learner email or Student ID</label><input id="login" autocomplete="username" required maxlength="254">
 <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required maxlength="512"><button id="sign-in">Sign in to the preview</button></form>
-<p id="result" role="status" aria-live="polite">Use your existing learner credentials. Older accounts are supported.</p>
+<p id="result" role="status" aria-live="polite">Use your existing learner credentials. For Supabase Auth accounts, use your email. Accounts requiring a password update must complete it on the live website first.</p>
 <section id="workspace" hidden aria-label="Learner test workspace">
 <p id="summary"></p><label for="course">Course</label><select id="course"><option value="">Choose a course</option></select><p id="course-status"></p>
 <button id="request-access" type="button">Request course access in test database</button>
