@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' https://oracluubhmxobcnsvcxz.supabase.co; form-action 'none'; base-uri 'none'">
+<title>Course request test · TIH</title><link rel="stylesheet" href="migration-preview.css"><script src="migration-request-preview.js" defer></script>
+</head><body><main>
+<a class="brand" href="/">TOLBERT INNOVATION HUB</a><p class="badge">ISOLATED WRITE TEST</p>
+<h1>Test a course request.</h1><p>This submits a pending course request to a separate test database. It does not change your live learning records or payments.</p>
+<form id="request-form">
+<label for="email">Learner email</label><input id="email" type="email" autocomplete="username" required>
+<label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required>
+<label for="course">Course to request</label><select id="course" required><option value="">Choose a course</option></select>
+<button id="submit" disabled>Preparing test…</button></form>
+<p id="result" role="status" aria-live="polite">Checking preview availability…</p>
+<p class="note">Use a learner account linked to Supabase Auth. This test can create a pending request only. Existing enrollments are preserved. Your password goes directly to the existing sign-in service; this page does not save it or your session in browser storage.</p>
+<a href="/migration-preview">Return to the read-only check</a>
+</main></body></html>
