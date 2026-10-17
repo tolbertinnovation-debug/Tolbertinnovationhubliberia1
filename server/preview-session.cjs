@@ -22,4 +22,11 @@ function sessionStudent(cookie,key,now=Math.floor(Date.now()/1000)){
   }catch{return null;}
 }
 function clearSessionCookie(){return `${NAME}=; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=0`;}
-module.exports={sessionCookie,sessionStudent,clearSessionCookie};
+const STAFF_NAME='__Host-tih_staff_preview';
+function staffKey(key){if(typeof key!=='string'||key.length<32)throw Error('Staff session configuration missing');return createHmac('sha256',key).update('tih-staff-session-domain').digest('hex');}
+function staffSessionCookie(username,key,now){return sessionCookie(username,staffKey(key),now).replace(NAME+'=',STAFF_NAME+'=');}
+function staffSessionUser(cookie,key,now){
+  try{if(typeof cookie!=='string')return null;const parts=cookie.split(';').map(x=>x.trim()).filter(x=>x.startsWith(STAFF_NAME+'='));if(parts.length!==1)return null;return sessionStudent(parts[0].replace(STAFF_NAME+'=',NAME+'='),staffKey(key),now);}catch{return null;}
+}
+function clearStaffSessionCookie(){return clearSessionCookie().replace(NAME+'=',STAFF_NAME+'=');}
+module.exports={sessionCookie,sessionStudent,clearSessionCookie,staffSessionCookie,staffSessionUser,clearStaffSessionCookie};

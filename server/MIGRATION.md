@@ -2,6 +2,52 @@
 
 Updated 2026-10-17. Production cutover is **not complete**.
 
+## Staff preview prepared
+
+`migration-staff-preview` supports administrator sign-in, paginated records,
+application decisions, course grant/revoke, certificate review, create-only
+issuance and certificate lookup. Every staff mutation needs an audit reason.
+Grants preserve payment status and never insert payment records. The payment
+ledger is read only. Application approval requires an existing active learner
+linked to that application; new-account provisioning is not implemented yet.
+Catalog coverage remains the 34 professional courses.
+
+The login issuer verifies the existing Supabase administrator credentials and
+can create a 15-minute capability, but cannot read learner/payment data or grant
+access. Only the opaque token's hash is stored. The operational role cannot
+mint sessions: RLS on every staff data table requires the matching unexpired,
+unrevoked capability. A guessed administrator name alone grants no data access.
+Staff and learner cookie signatures are separated. Logout revokes the database
+session, preventing replay. Runtime audit entries cannot be updated or deleted.
+
+Certificate issuance uses approved requests and stored learner/course data,
+serializes operations per learner/course and preserves existing verified
+certificates. The public lookup role sees only public fields for the supplied
+certificate ID; it cannot list all certificates or read learner IDs/payments.
+
+Migrations `004` and `005` are applied only to `migration-write-tests`. Synthetic
+database tests passed for capability isolation, grant/revoke without payment
+changes, application approval, certificate review, repeat-safe issuance,
+session revocation/replay refusal, and single-ID public lookup. The mobile
+staff flow was tested with mock credentials, including safe text rendering.
+Real administrator sign-in and deployed staff verification remain pending.
+
+New staff credentials have not been configured in Vercel. The following values
+belong only in sensitive preview settings for branch `codex/neon-backend`:
+
+| Variable | Type | Purpose |
+| --- | --- | --- |
+| `TIH_PREVIEW_STAFF_LOGIN_DATABASE_URL` | Sensitive | Restricted login issuer |
+| `TIH_PREVIEW_STAFF_DATABASE_URL` | Sensitive | Capability-scoped operational role |
+| `TIH_PREVIEW_STAFF_SESSION_KEY` | Sensitive | Staff cookie signing |
+| `TIH_STAFF_RATE_KEY` | Sensitive | HMAC login-rate buckets |
+| `TIH_PREVIEW_VERIFY_DATABASE_URL` | Sensitive | Single-ID certificate reader |
+| `TIH_NEON_STAFF_PREVIEW_ENABLED` | Plain, `true` | Enable isolated staff routes |
+| `TIH_NEON_PUBLIC_PREVIEW_ENABLED` | Plain, `true` | Enable isolated lookup route |
+
+Never store credential values in source control, static output or logs. Do not
+enable staff routes until the configuration and real-user verification pass.
+
 ## Learner workspace added
 
 `migration-learner-preview` supports older learner credentials via
@@ -32,8 +78,9 @@ Migrations `002` and `003` apply only to `migration-write-tests`. Real database
 tests with synthetic learners verified identity isolation, progress persistence
 and monotonic updates, incomplete-course refusal, pending request creation,
 and duplicate-request preservation. The source login HTTP endpoint was checked
-using nonexistent credentials and returned an empty result. A real older
-account still needs to verify the complete deployed compatibility flow.
+using nonexistent credentials and returned an empty result. The user verified
+the deployed compatibility login, protected session and progress save with a
+real learner account in screenshots on 2026-10-17.
 
 ## Verified
 
@@ -69,20 +116,22 @@ no UPDATE, DELETE, payment-write, password-column, or private-archive access.
 The SQL policy is in `migrations/001-preview-access-requests.sql`.
 
 The browser tests use mock sign-ins; they do not replace real-user deployment
-verification. Neither preview test page persists credentials or sessions in
-browser storage. Browser password managers are controlled by the user/browser.
+verification. The first read-only and course-request pages do not persist
+credentials or sessions in browser storage. The learner and staff workspaces
+use protected short-lived cookies. Browser password managers are controlled
+by the user/browser.
 All credentials are branch-specific Vercel preview variables, not production
 configuration or repository contents.
 
 ## Required before production cutover
 
-1. Verify the new compatibility path with an actual older account, then connect
-   it to the main learner frontend. Only five of 121 copied profiles are Auth
+1. Connect the verified compatibility path to the main learner frontend.
+   Only five of 121 copied profiles are Auth
    linked. Keep Supabase login verification while this transition is underway;
    do not reset passwords automatically.
 2. Connect and fully verify progress/activities and certificate requests in the
-   main learner frontend. Implement staff certificate review and issuance,
-   applications, staff administration, course grants, payment verification,
+   main learner frontend. Verify and integrate the staff preview workflows.
+   Implement new-account provisioning, payment verification,
    LibApps, and all existing public lookup flows. A pending request API does not
    implement payment processing or authorize course access.
 3. Connect the actual frontend operations to the new backend in preview and
@@ -97,5 +146,5 @@ configuration or repository contents.
 Run API checks with:
 
 ```sh
-node --test tools/neon-preview.test.cjs tools/access-request-preview.test.cjs
+node --test tools/*preview.test.cjs
 ```
