@@ -256,7 +256,7 @@ Real deployed application submission and staff review still require owner
 verification. New-account provisioning remains a production cutover blocker.
 
 
-## New managed identity and learner-profile preview (prepared, deployment blocked)
+## New managed identity and learner-profile preview (deployed for owner testing)
 
 Managed Better Auth was enabled only on migration-write-tests, the existing
 mutable test branch. Existing learners still use the compatibility/source
@@ -308,11 +308,25 @@ audit reports zero vulnerabilities for production dependencies. Real email
 delivery, verified profile insertion, deployed login/logout and cross-browser
 cookie/session restoration remain unverified and are required before cutover.
 
-Automatic approval review rejected transfer of the newly created restricted
-signup connection to Vercel because it contains a database password and needs
-explicit user authorization for that destination. No workaround or existing
-credential was used. Pending variables (codex/neon-backend preview target only):
-TIH_PREVIEW_SIGNUP_DATABASE_URL, TIH_MANAGED_AUTH_URL, and
-TIH_NEON_SIGNUP_PREVIEW_ENABLED. The signup API remains disabled without that
-configuration. Save the prepared code before requesting the transfer approval;
-only deploy and perform owner runtime verification after authorization.
+The owner explicitly approved saving the restricted signup database connection
+to Vercel project tolbertinnovationhubliberia1 for preview branch
+codex/neon-backend only. The approved transfer succeeded on October 17, 2026.
+The following variables were verified as preview-only and branch-specific:
+TIH_PREVIEW_SIGNUP_DATABASE_URL (sensitive), TIH_MANAGED_AUTH_URL, and
+TIH_NEON_SIGNUP_PREVIEW_ENABLED. No production variables were changed.
+
+Vercel deployment dpl_GT4tYwDvvbQuSskyZQFZ7nKDqowR reached READY using commit
+875ad3a02791e4181bad2c451465191857f580ee. Owner testing URL:
+https://tolbertinnovationhubliberia1-10kkpl6ip-tolbert-innovation-hub.vercel.app/migration-signup-preview
+This exact origin and the stable preview-branch origin are trusted by the
+isolated Neon Auth service. The live website and clean snapshot remain unchanged.
+
+Automatic approval review rejected the protected-page fetch because that tool
+may create a temporary authentication-bypass link and follow redirects,
+exposing an access capability beyond the approval to deploy and inspect status.
+No alternate bypass or security setting change was attempted. Deployment READY
+and environment scope are verified; protected runtime responses and real signup,
+email delivery, profile activation and session restoration still need owner
+verification from a signed-in browser. Do not claim production migration or
+end-to-end signup verification is complete.
+
