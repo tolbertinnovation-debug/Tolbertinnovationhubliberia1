@@ -1,0 +1,60 @@
+/* Interior pages share the approved home palette and typography.
+   Only presentation changes: layout, visibility and application state stay page-owned. */
+.tih-interior {
+ --hp-ink:#14233c;--hp-copy:#526078;--hp-red:#c9142d;
+ --hp-border:#e1e5ec;--hp-card:#fff;--hp-soft:#f5f7fb;
+ --hp-warm:#fff4f5;--hp-shadow:0 10px 30px #192b4510;
+ background-color:var(--hp-soft);color:var(--hp-ink);
+}
+.tih-interior :is(h1,h2,h3,h4) {letter-spacing:-.025em;line-height:1.25;}
+.tih-interior h1 {font-family:'Syne','Poppins','Segoe UI',sans-serif;font-weight:700;text-wrap:balance;}
+.tih-interior :is(.section-intro,.section-subtitle,.lead) {line-height:1.75;}
+/* The home page's editorial light hero, with a restrained brand ribbon. */
+.tih-interior :is(.hero,.page-hero,.tih-hero-light,.tih-hero-red) {
+ position:relative;isolation:isolate;
+ background:radial-gradient(ellipse at 95% 0,#ffe6e9,transparent 44%),linear-gradient(135deg,#fff 20%,#f4f7fc) !important;
+ color:var(--hp-ink);border-bottom:1px solid var(--hp-border);
+}
+.tih-interior :is(.hero,.page-hero,.tih-hero-light,.tih-hero-red) h1,
+.tih-interior :is(.hero,.page-hero,.tih-hero-light,.tih-hero-red) h1 span {color:var(--hp-ink);text-shadow:none;}
+.tih-interior :is(.hero,.page-hero,.tih-hero-light,.tih-hero-red) :is(.lead,.section-intro,.gai-tagline),
+.tih-interior :is(.hero,.page-hero,.tih-hero-light,.tih-hero-red) > .container > p {color:var(--hp-copy);}
+.tih-interior :is(.hero,.page-hero) :is(.hero-net,.hm-orb,.hfx-orb,.hm-glow) {opacity:.12;}
+.tih-interior :is(.hero-live-badge,.eyebrow,.gai-coming-soon) {color:#a90d25;background:#fff4f5;border-color:#ebc9cf;}
+.tih-interior :is(.impact-number,.gai-stats-strip strong) {color:var(--hp-red);}
+.tih-interior :is(.impact-label,.gai-stats-strip span) {color:var(--hp-copy);}
+/* Subtle red, white and blue art behind public content; never over controls. */
+.tih-interior main > :is(section.section,section.section-alt) {
+ background-image:url('assets/brand-corner.svg');
+ background-position:right bottom;background-size:240px;background-repeat:no-repeat;
+}
+.tih-interior :is(.section-label,.sv-category) {color:var(--hp-red);font-size:.72rem;letter-spacing:.12em;font-weight:700;}
+.tih-interior :is(.card,.resource-card,.scholarship-card,.grant-card,.value-card,.sv-card,.process-step-card,.program-card,.why-card,.hospital-card,.portfolio-card,.partner-type-card,.story-card,.role-card,.form-card,.stat-card,.ud-about-card,.ud-sidebar-card,.ud-header-card,.ud-highlights-card,.ud-video-card,.table-card) {
+ border:1px solid var(--hp-border);border-radius:20px;
+ background-color:var(--hp-card);box-shadow:var(--hp-shadow);color:var(--hp-ink);
+}
+.tih-interior :is(.card,.resource-card,.value-card,.sv-card,.program-card,.why-card,.portfolio-card,.partner-type-card) h3 {color:var(--hp-ink);}
+.tih-interior :is(.btn,.nav-cta) {border-radius:12px;min-height:44px;white-space:normal;line-height:1.4;}
+.tih-interior :is(.btn-primary,.btn-secondary),
+.tih-interior :is(.hero,.page-hero) :is(.btn-primary,.btn-white) {background:#c9142d;border-color:#c9142d;color:#fff;box-shadow:0 8px 20px #bc102022;}
+.tih-interior :is(.hero,.page-hero) :is(.btn-outline,.btn-hero-blue,.hm-outline) {background:var(--hp-card);border:1px solid var(--hp-border);color:var(--hp-ink);box-shadow:none;}
+.tih-interior .btn-primary:hover {background:#99102a;border-color:#99102a;color:#fff;}
+.tih-interior :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=hidden]):not([type=file]),select,textarea) {border-radius:10px;}
+.tih-interior :is(a,button,input,select,textarea,summary):focus-visible {outline:3px solid #1769db;outline-offset:3px;}
+[data-theme="dark"] .tih-interior {--hp-ink:#e8f0fc;--hp-copy:#c0cce0;--hp-border:#2b3b54;--hp-card:#14233a;--hp-soft:#0d192b;--hp-warm:#302132;--hp-red:#ed778a;--hp-shadow:0 10px 30px #00000018;}
+[data-theme="dark"] .tih-interior :is(.hero,.page-hero,.tih-hero-light,.tih-hero-red) {background:radial-gradient(ellipse at 95% 0,#302132,transparent 44%),linear-gradient(135deg,#14233a,#0d192b) !important;}
+[data-theme="dark"] .tih-interior main > :is(section.section,section.section-alt) {background-image:none;}
+[data-theme="dark"] .tih-interior :is(.hero-live-badge,.eyebrow,.gai-coming-soon) {background:#302132;color:#ffabb8;border-color:#65414c;}
+@media(max-width:700px) {
+ .tih-interior :is(.hero,.page-hero) h1 {font-size:clamp(1.9rem,8vw,2.7rem);}
+ .tih-interior :is(.card,.resource-card,.form-card,.ud-about-card) {border-radius:16px;}
+ .tih-interior main > :is(section.section,section.section-alt) {background-size:160px;}
+}
+@media(prefers-reduced-motion:reduce) {
+ .tih-interior :is(.hero,.page-hero) *, .tih-interior .live-dot {animation:none !important;}
+ .tih-interior :is(.btn,.card,.resource-card) {transition:none !important;}
+}
+/* Preserve contrast for the facts and badges formerly on red banners. */
+.tih-interior :is(.hero,.page-hero,.tih-hero-red) :is(.hero-badge,.trust-badge,.ep-hero-facts span) {background:var(--hp-card);border-color:var(--hp-border);color:var(--hp-ink);}
+.tih-interior .tih-hero-red :is(.hero-text > p,.hero-subtitle,.hero-description) {color:var(--hp-copy);}
+.tih-interior .tih-hero-red :is(.btn-secondary,.hm-outline) {background:var(--hp-card);border-color:var(--hp-border);color:var(--hp-ink);}
