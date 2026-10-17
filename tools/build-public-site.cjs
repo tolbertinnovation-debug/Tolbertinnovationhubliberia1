@@ -3,6 +3,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'public');
+const neonPreview = process.env.VERCEL_ENV === 'preview' && process.env.TIH_NEON_WEBSITE_PREVIEW_ENABLED === 'true';
+const {transformPreviewHtml} = require('./preview-html.cjs');
 const publicDirectories = ['assets','books','content','coursequiz','home-cards','materials','notes','quizzes','videos'];
 const extensions = new Set(['.html','.js','.css','.svg','.ico','.png','.jpg','.jpeg','.webp','.gif','.mp3','.mp4','.pdf','.woff','.woff2','.ttf','.otf','.webmanifest','.xml']);
 const explicitFiles = new Set(['robots.txt','app-updates.json']);
@@ -16,7 +18,8 @@ function copy(source, destination) {
     for (const entry of fs.readdirSync(source)) copy(path.join(source,entry),path.join(destination,entry));
   } else if (extensions.has(path.extname(name).toLowerCase()) || explicitFiles.has(name)) {
     fs.mkdirSync(path.dirname(destination),{recursive:true});
-    fs.copyFileSync(source,destination);
+    if (neonPreview && path.extname(name).toLowerCase() === '.html') fs.writeFileSync(destination, transformPreviewHtml(fs.readFileSync(source, 'utf8'), name));
+    else fs.copyFileSync(source,destination);
   }
 }
 fs.rmSync(out,{recursive:true,force:true});

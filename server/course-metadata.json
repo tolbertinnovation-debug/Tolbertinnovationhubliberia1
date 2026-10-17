@@ -134,5 +134,97 @@
   "advanced-liberian-law": {
     "title": "Advanced Liberian Legal Studies Programme",
     "total": 140
+  },
+  "wassce-accounts": {
+    "title": "WASSCE Financial Accounting: Complete Preparation",
+    "total": 144
+  },
+  "wassce-agriculture": {
+    "title": "WASSCE Agricultural Science: Complete Preparation",
+    "total": 144
+  },
+  "wassce-biology": {
+    "title": "WASSCE Biology: Complete Preparation",
+    "total": 148
+  },
+  "wassce-chemistry": {
+    "title": "WASSCE Chemistry: Complete Preparation",
+    "total": 152
+  },
+  "wassce-civic-education": {
+    "title": "WASSCE Civic Education: Complete Preparation",
+    "total": 144
+  },
+  "wassce-commerce": {
+    "title": "WASSCE Commerce: Complete Preparation",
+    "total": 144
+  },
+  "wassce-computer-science": {
+    "title": "WASSCE Computer Science: Complete Preparation",
+    "total": 152
+  },
+  "wassce-crs": {
+    "title": "WASSCE Christian Religious Studies (CRS): Complete Preparation",
+    "total": 152
+  },
+  "wassce-economics": {
+    "title": "WASSCE Economics: Complete Preparation",
+    "total": 144
+  },
+  "wassce-english": {
+    "title": "WASSCE English Language: Complete Preparation",
+    "total": 145
+  },
+  "wassce-food-nutrition": {
+    "title": "WASSCE Food & Nutrition: Complete Preparation",
+    "total": 143
+  },
+  "wassce-further-maths": {
+    "title": "WASSCE Further Mathematics: Complete Preparation",
+    "total": 144
+  },
+  "wassce-geography": {
+    "title": "WASSCE Geography: Complete Preparation",
+    "total": 144
+  },
+  "wassce-government": {
+    "title": "WASSCE Government: Complete Preparation",
+    "total": 144
+  },
+  "wassce-health-science": {
+    "title": "WASSCE Health Science: Complete Preparation",
+    "total": 148
+  },
+  "wassce-history": {
+    "title": "WASSCE History: Complete Preparation",
+    "total": 141
+  },
+  "wassce-home-economics": {
+    "title": "WASSCE Home Economics: Complete Preparation",
+    "total": 144
+  },
+  "wassce-irs": {
+    "title": "WASSCE Islamic Religious Studies (IRS): Complete Preparation",
+    "total": 148
+  },
+  "wassce-literature": {
+    "title": "WASSCE Literature in English: Complete Preparation",
+    "total": 149
+  },
+  "wassce-marketing": {
+    "title": "WASSCE Marketing: Complete Preparation",
+    "total": 144
+  },
+  "wassce-mathematics": {
+    "title": "WASSCE Mathematics: Complete Preparation",
+    "total": 147
+  },
+  "wassce-physics": {
+    "title": "WASSCE Physics: Complete Preparation",
+    "total": 156
+  },
+  "wassce-technical-drawing": {
+    "title": "WASSCE Technical Drawing: Complete Preparation",
+    "total": 144
   }
 }

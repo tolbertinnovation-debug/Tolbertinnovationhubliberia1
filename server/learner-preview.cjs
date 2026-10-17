@@ -31,9 +31,9 @@ function createLearnerHandler({env=process.env,makeDatabase}={}){
         sql`SELECT id,name,email,status,courses,created_at,updated_at FROM public.students WHERE id=${studentId} AND status='active'`
       ];
       if(action==='account'){
-        queries.push(sql`SELECT e.* FROM public.enrollments e WHERE e.student_id=${studentId} ORDER BY e.created_at DESC`,sql`SELECT p.* FROM public.progress p WHERE p.student_id=${studentId}`,sql`SELECT c.* FROM public.cert_requests c WHERE c.student_id=${studentId}`);
+        queries.push(sql`SELECT e.* FROM public.enrollments e WHERE e.student_id=${studentId} ORDER BY e.created_at DESC`,sql`SELECT p.* FROM public.progress p WHERE p.student_id=${studentId}`,sql`SELECT c.* FROM public.cert_requests c WHERE c.student_id=${studentId}`,sql`SELECT cert_id,student_id,student_name,course_id,course_title,category,issue_date,verified,created_at FROM public.certificates WHERE student_id=${studentId} AND verified=true`);
         const r=await sql.transaction(queries);if(!r[1]?.length)return send(404,{error:'Active learner profile not found'});
-        return send(200,{student:r[1][0],enrollments:r[2],progress:r[3],certRequests:r[4],mode:'isolated learner preview',cutover:false});
+        return send(200,{student:r[1][0],enrollments:r[2],progress:r[3],certRequests:r[4],certificates:r[5]||[],mode:'isolated learner preview',cutover:false});
       }
       const courseId=body.courseId,{title,total}=catalog[courseId];
       if(action==='requestAccess'){

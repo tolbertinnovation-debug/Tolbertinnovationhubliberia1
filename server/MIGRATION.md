@@ -150,3 +150,39 @@ Run API checks with:
 ```sh
 node --test tools/*preview.test.cjs
 ```
+
+
+## Normal website preview integration (October 17)
+
+The owner verified administrator login and copied record views in the deployed
+staff workspace. The build now activates the compatibility adapter only when
+VERCEL_ENV=preview and TIH_NEON_WEBSITE_PREVIEW_ENABLED=true. Production builds
+and the GitHub Pages website retain their existing persistence configuration.
+
+The normal learner dashboard, course player and certificate list use the
+isolated learner API and protected cookie. Access requires access_granted=true;
+a paid status never reverses an explicit revocation. Course boot waits for the
+server session. Certificate requests wait for the server response, and local
+completion cannot publish an official certificate. Own issued certificates are
+read under the new migration 006 policy. The server catalog includes 57 courses
+(34 professional and 23 WASSCE); course content is unchanged.
+
+The preview administrator URL opens the verified staff workspace. The preview
+guard blocks browser fetch, XHR and realtime requests to Supabase, and replaces
+legacy cloud exports so unsupported features cannot write to the live source.
+Registration, password changes, profile editing, payment processing and LibApps
+writes are unavailable. Existing Supabase authentication verification remains
+on the server. Auth-only account coverage still needs reconciliation before
+cutover; the normal compatibility sign-in currently uses the verified legacy
+password path. Password-change enforcement must be restored before production.
+
+Progress is saved through the restricted server API. Failed saves show an
+explicit unsynced message and retry every 30 seconds or when connectivity
+returns while the page remains open. The retry queue is in memory; closing the
+page can discard unsynced changes. Durable offline sync is not complete.
+
+Mobile browser checks with mocked API responses cover dashboard sign-in,
+server-session course boot, issued-certificate display and download-handler
+initialization. These do not replace real-account checks on the deployed
+normal pages. No production cutover, final source reconciliation, domain
+change, authentication migration or payment migration has occurred.
