@@ -333,7 +333,7 @@
   <link rel="stylesheet" href="hero-theme.css?v=1" />
   <link rel="stylesheet" href="brand-backgrounds.css?v=2" />
   <link rel="stylesheet" href="site-typography.css?v=2" />
-  <link rel="stylesheet" href="site-pages.css?v=1" />
+  <link rel="stylesheet" href="site-pages.css?v=2" />
 </head>
 <body class="tih-branded tih-interior">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -418,8 +418,9 @@
     <!-- FILTER BAR -->
     <div class="filter-bar" id="grants-directory">
       <div class="container">
-        <div class="filter-inner">
-          <span class="filter-label">Filter:</span>
+        <div class="grant-mobile-category" hidden><label for="grant-category">Find funding for</label><select id="grant-category"></select></div>
+        <div class="filter-inner" role="group" aria-label="Funding categories">
+          <span class="filter-label">Browse by category</span>
           <button class="filter-btn active" data-filter="all">All Grants</button>
           <button class="filter-btn" data-filter="business">Business / MSME</button>
           <button class="filter-btn" data-filter="ngo">NGO / CSO</button>
@@ -448,13 +449,18 @@
         <div class="section-header" style="margin-bottom:0.5rem;">
           <p class="section-label">Grants &amp; Funding Programmes</p>
           <h2>Find Grants, Student Aid, and Assistance Relevant to Liberia</h2>
-          <p class="section-intro">Forty-eight additions were checked against official provider sources on 16 October 2026. International eligibility includes Liberia where the stated criteria are met. Older listings are programme resources with current intake unconfirmed, except calls marked closed. Programme budgets are not individual grant awards. Student financial aid may be partial and can require enrolment abroad; check the study-location rules. Medical donations and treatment referrals are labeled separately from cash funding. Click <strong>"Get TIH Help"</strong> on any grant to have our team assist your application at no cost.</p>
+          <p class="section-intro">Explore funding, student aid, and assistance routes relevant to Liberia. Choose a category or search for an opportunity.</p>
+          <details class="grant-listing-info"><summary>About these listings and eligibility</summary>
+          <p class="grant-listing-note">Forty-eight additions were checked against official provider sources on 16 October 2026. International eligibility includes Liberia where the stated criteria are met. Older listings are programme resources with current intake unconfirmed, except calls marked closed. Programme budgets are not individual grant awards. Student financial aid may be partial and can require enrolment abroad; check the study-location rules. Medical donations and treatment referrals are labeled separately from cash funding. Click <strong>"Get TIH Help"</strong> on any grant to have our team assist your application at no cost.</p>
+          </details>
         </div>
 
 
 
-        <div class="grant-audience-guide">
-          <h3>Choose a route that fits your organization</h3>
+        <details class="grant-guidance">
+          <summary>Application guidance and eligibility</summary>
+        <details class="grant-audience-guide">
+          <summary>Choose a route that fits your organization</summary>
           <p><strong>NGOs:</strong> Check your legal status, leadership requirements, project focus, and the donor’s geographic rules.</p>
           <p id="medical-support"><strong>Hospitals and clinics:</strong> Use Medical Donations for equipment and medicines. Check licensing, product availability, import clearance, co-financing, shipping, and maintenance requirements with the provider.</p>
           <p><strong>Patients and families:</strong> Use Patient Treatment Assistance for condition-specific referral routes. Contact the provider or treating clinician directly; these listings do not promise cash payments or coverage of every medical condition.</p>
@@ -462,40 +468,42 @@
           <p><strong>Schools:</strong> Japan’s grassroots programme covers eligible education institutions; Rotary projects need a club sponsor. Theirworld supports nonprofits, while Spencer and Internet Society opportunities require research eligibility.</p>
           <p><strong>Businesses:</strong> D-Prize supports new ventures distributing proven interventions. DRK targets scalable social enterprises and may offer investment rather than a grant. Conventional businesses must meet each funder’s impact criteria.</p>
           <p>Use the application-route filter to separate rolling opportunities, published deadlines, partner routes, and closed rounds to monitor.</p>
-        </div>
+        </details>
 
 
-        <div class="grant-audience-guide" id="church-donations">
-          <h3>Donation and grant routes for churches in Liberia</h3>
+        <details class="grant-audience-guide" id="church-donations">
+          <summary>Donation and grant routes for churches in Liberia</summary>
           <p><strong>Pastoral work and church buildings:</strong> Check ACN or missio for qualifying Catholic projects. USCCB requests must go through an eligible bishops’ conference.</p>
           <p><strong>Community projects:</strong> Bread for the World considers eligible nonprofit development partners. UTO serves qualifying Episcopal / Anglican applicants. Waldensian funding supports social projects under its annual call.</p>
           <p><strong>Books and learning:</strong> Church Periodical Club has Episcopal / Anglican routes with fund-specific endorsements and overseas submission rules.</p>
           <p><strong>Before applying:</strong> Match the project to the donor’s purpose, confirm the denomination and applicant rules, and prepare registration, budget, financial records, and required Church endorsements. Awards are competitive.</p>
           <a class="btn-apply" href="grants?category=churches#grants-directory">Browse church opportunities →</a>
-        </div>
+        </details>
 
-        <div class="grant-audience-guide" id="environment-ngo-grants">
-          <h3>Environmental NGO grants for Liberia</h3>
+        <details class="grant-audience-guide" id="environment-ngo-grants">
+          <summary>Environmental NGO grants for Liberia</summary>
           <p><strong>Forest and habitat protection:</strong> Waterloo supports avoided deforestation and community forest rights; overseas applicants need a qualifying reference. Rainforest Trust focuses on creating or expanding protected areas.</p>
           <p><strong>Climate and biodiversity:</strong> Monitor IKI Small Grants and CEPF for future calls. Their listed 2026 rounds are closed. Rufford and other conservation sources also appear under Environment.</p>
           <p><strong>Before applying:</strong> Prepare registration documents, a project map, community consent where required, measurable conservation outcomes, a budget, financial records, and any donor-required references.</p>
           <a class="btn-apply" href="grants?category=env#grants-directory">Browse environmental opportunities →</a>
-        </div>
+        </details>
 
-        <div class="grant-audience-guide" id="student-innovation-funding">
-          <h3>Student financial aid and innovation project grants</h3>
+        <details class="grant-audience-guide" id="student-innovation-funding">
+          <summary>Student financial aid and innovation project grants</summary>
           <p><strong>Students:</strong> WMI supports qualifying first-degree study in your home country or region. MMEG’s listed route is for eligible women already studying in the US or Canada. MPOWER’s scholarship intake is paused. Check what each award covers, your remaining costs, and the study location.</p>
           <p><strong>Innovators:</strong> FID accepts qualifying organizational projects year-round, with restrictions by funding stage. The Awesome Conservation and Climate chapter offers small project grants. Also browse existing Emergent Ventures, Catalyst Fund, DRK, and D-Prize listings; match your project to each programme’s purpose.</p>
           <p><strong>Prepare your application:</strong> Students need academic records, a cost breakdown, and any required enrolment evidence or references. Innovation teams need a clear problem, target users, project milestones, evidence, and a budget. Follow each provider’s rules for original application writing.</p>
           <a class="btn-apply" href="grants?category=students#grants-directory">Browse student financial aid →</a>
           <a class="btn-apply" href="grants?category=innovation#grants-directory">Browse innovation funding →</a>
-        </div>
+        </details>
 
-        <div class="grant-audience-guide" id="innovation-sales-routes">
-          <h3>Turn an innovation into a software business</h3>
+        <details class="grant-audience-guide" id="innovation-sales-routes">
+          <summary>Turn an innovation into a software business</summary>
           <p>Explore Liberian institutions to approach, official procurement portals, and online marketplaces for selling websites, apps, and software services. Each route explains what to offer and how to start.</p>
           <a class="btn-apply" href="software#software-sales">Find software buyers and sales routes →</a>
-        </div>
+        </details>
+
+        </details>
 
         <div class="grant-search-tools" hidden>
           <div><label for="grant-search">Search the grant database</label><input id="grant-search" type="search" placeholder="Funder, project, amount, or keyword" /></div>
@@ -1662,6 +1670,10 @@
   <script>
     (function () {
       const buttons = Array.from(document.querySelectorAll('.filter-btn'));
+      const categorySelect = document.getElementById('grant-category');
+      buttons.forEach(button => categorySelect.add(new Option(button.textContent.trim(), button.dataset.filter)));
+      document.querySelector('.grant-mobile-category').hidden = false;
+      categorySelect.addEventListener('change', () => { category = categorySelect.value; render(); });
       const cards = Array.from(document.querySelectorAll('#grantsGrid > .grant-card'));
       const search = document.getElementById('grant-search');
       const status = document.getElementById('grant-status');
@@ -1669,6 +1681,7 @@
       const requestedCategory = new URLSearchParams(window.location.search).get('category');
       let category = buttons.some(button => button.dataset.filter === requestedCategory) ? requestedCategory : 'all';
       function render() {
+        categorySelect.value = category;
         const terms = search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
         let visible = 0;
         cards.forEach(card => {
@@ -1694,6 +1707,18 @@
         category = 'all'; search.value = ''; status.value = 'all'; support.value = 'all'; render(); search.focus();
       });
       document.querySelector('.grant-search-tools').hidden = false;
+      // Open linked guidance when arriving via an existing fragment link.
+      function revealGuide() {
+        const target = document.getElementById(location.hash.slice(1));
+        const guide = target && (target.matches('details') ? target : target.closest('details'));
+        if (guide) {
+          let parent = guide;
+          while (parent) { if (parent.matches('details')) parent.open = true; parent = parent.parentElement; }
+          target.scrollIntoView({block:'start'});
+        }
+      }
+      window.addEventListener('hashchange', revealGuide);
+      revealGuide();
       render();
     }());
   </script>

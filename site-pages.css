@@ -58,3 +58,61 @@
 .tih-interior :is(.hero,.page-hero,.tih-hero-red) :is(.hero-badge,.trust-badge,.ep-hero-facts span) {background:var(--hp-card);border-color:var(--hp-border);color:var(--hp-ink);}
 .tih-interior .tih-hero-red :is(.hero-text > p,.hero-subtitle,.hero-description) {color:var(--hp-copy);}
 .tih-interior .tih-hero-red :is(.btn-secondary,.hm-outline) {background:var(--hp-card);border-color:var(--hp-border);color:var(--hp-ink);}
+
+/* Directory usability: category tools should never cover the results. */
+.tih-interior #grants-directory.filter-bar {position:static;background:var(--hp-card);border-color:var(--hp-border);box-shadow:none;padding:1.1rem 0;scroll-margin-top:90px;}
+.tih-interior #grants-directory .filter-inner {gap:.5rem;}
+.tih-interior #grants-directory .filter-label {flex-basis:100%;color:var(--hp-copy);font-size:.68rem;margin-bottom:.25rem;}
+.tih-interior #grants-directory .filter-btn {min-height:44px;padding:.6rem .9rem;border:1px solid var(--hp-border);background:var(--hp-soft);color:var(--hp-ink);font-size:.78rem;}
+.tih-interior #grants-directory .filter-btn:is(.active,:hover) {background:#c9142d;border-color:#c9142d;color:#fff;}
+.tih-interior .grant-mobile-category {display:none;}
+.tih-interior .grant-audience-guide {background:var(--hp-card);border:1px solid var(--hp-border);border-radius:16px;padding:1rem 1.2rem;margin-top:.65rem;color:var(--hp-copy);}
+.tih-interior .grant-audience-guide summary {font-family:var(--font-heading);font-size:.95rem;line-height:1.5;font-weight:700;color:var(--hp-ink);cursor:pointer;padding:.35rem 0;}
+.tih-interior .grant-audience-guide summary::marker {color:var(--hp-red);}
+.tih-interior .grant-audience-guide[open] {border-color:var(--hp-red);}
+.tih-interior .grant-audience-guide p {max-width:75ch;}
+.tih-interior .grant-search-tools {padding:1.2rem;border:1px solid var(--hp-border);border-radius:18px;background:var(--hp-card);gap:.8rem;}
+.tih-interior .grant-search-tools :is(input,select) {font-size:1rem;min-height:48px;}
+.tih-interior #grant-results {font-size:.85rem;font-weight:600;color:var(--hp-copy);padding:.8rem 0;border-bottom:1px solid var(--hp-border);}
+.tih-interior .grant-card :is(.gc-name,.gc-mlabel) {color:var(--hp-ink);}
+.tih-interior .grant-card :is(.gc-desc,.gc-mval,.gc-funder,.grant-checked) {color:var(--hp-copy);}
+.tih-interior .grant-card :is(.gc-header,.gc-footer) {border-color:var(--hp-border);}
+.tih-interior .g-hero-stat .num {color:var(--hp-red);}
+.tih-interior .g-hero-stat .lbl {color:var(--hp-copy);}
+/* The other directories use the same theme-aware surfaces and touch targets. */
+.tih-interior .dir-filter-bar {background:var(--hp-card);border-color:var(--hp-border);}
+.tih-interior :is(.news-filter-bar,.dir-filter-pills) .filter-pill {min-height:44px;border-color:var(--hp-border);color:var(--hp-ink);background:var(--hp-card);}
+.tih-interior :is(.news-filter-bar,.dir-filter-pills) .filter-pill:is(.active,:hover) {background:#c9142d;border-color:#c9142d;color:#fff;}
+.tih-interior :is(.dir-search-wrap input,.dir-filters-btn) {background:var(--hp-card);color:var(--hp-ink);border-color:var(--hp-border);}
+@media(max-width:700px) {
+ .tih-interior #grants-directory .grant-mobile-category:not([hidden]) {display:grid;gap:.5rem;}
+ .tih-interior .grant-mobile-category label {font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--hp-copy);}
+ .tih-interior .grant-mobile-category select {width:100%;min-height:48px;padding:.7rem 2rem .7rem .85rem;border:1px solid var(--hp-border);background:var(--hp-soft);color:var(--hp-ink);font:inherit;font-size:1rem;}
+ .tih-interior #grants-directory:has(.grant-mobile-category:not([hidden])) .filter-inner {display:none;}
+ .tih-interior .grant-search-tools {padding:1rem;}
+ .tih-interior .grant-search-tools > div {flex-basis:100%;min-width:0;}
+ .tih-interior .grant-search-tools button {width:100%;}
+ .tih-interior .grant-audience-guide {padding:.8rem 1rem;}
+ .tih-interior .grant-audience-guide p {font-size:.88rem;}
+ .tih-interior .news-filter-bar {flex-wrap:nowrap;overflow-x:auto;gap:.5rem;padding-bottom:.5rem;}
+ .tih-interior .news-filter-bar .filter-pill {flex-shrink:0;}
+ .tih-interior .dir-filter-bar {position:static;}
+ .tih-interior .grants-grid {gap:1rem;}
+ .tih-interior .gc-footer {flex-wrap:wrap;}
+ .tih-interior .gc-footer a {min-height:44px;display:inline-flex;align-items:center;justify-content:center;}
+}
+/* Keep detailed advice available without delaying access to the directory. */
+.tih-interior :is(.grant-guidance,.grant-listing-info) {margin:1rem 0;border:1px solid var(--hp-border);border-radius:14px;background:var(--hp-card);padding:1rem 1.2rem;color:var(--hp-copy);}
+.tih-interior :is(.grant-guidance,.grant-listing-info) > summary {cursor:pointer;font-weight:650;font-size:.9rem;color:var(--hp-ink);line-height:1.5;}
+.tih-interior :is(.grant-guidance,.grant-listing-info) > summary::marker {color:var(--hp-red);}
+.tih-interior .grant-listing-note {font-size:.88rem;line-height:1.75;}
+[data-theme="dark"] .tih-interior :is(.brand,.brand-text) {color:var(--hp-ink);}
+[data-theme="dark"] .tih-interior :is(.tih-hero-light,.tih-hero-red)::after {filter:brightness(.3);}
+@media(max-width:700px) {
+ .tih-interior :is(.grant-guidance,.grant-listing-info) {padding:.85rem 1rem;}
+ .tih-interior .whatsapp-float {right:12px;bottom:calc(18px + env(safe-area-inset-bottom,0px));}
+ .tih-interior .whatsapp-float img {width:44px;height:44px;}
+ .tih-interior .tih-audio-ctl {right:12px;bottom:calc(72px + env(safe-area-inset-bottom,0px));}
+ .tih-interior .tih-audio-btn {width:44px;height:44px;}
+ .tih-interior #back-to-top {right:12px !important;bottom:calc(126px + env(safe-area-inset-bottom,0px)) !important;}
+}
