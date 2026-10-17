@@ -32,8 +32,8 @@ session revocation/replay refusal, and single-ID public lookup. The mobile
 staff flow was tested with mock credentials, including safe text rendering.
 Real administrator sign-in and deployed staff verification remain pending.
 
-New staff credentials have not been configured in Vercel. The following values
-belong only in sensitive preview settings for branch `codex/neon-backend`:
+The user authorized the staff credential transfer, and the following variables
+were configured on 2026-10-17 in preview settings for `codex/neon-backend` only:
 
 | Variable | Type | Purpose |
 | --- | --- | --- |
@@ -45,8 +45,10 @@ belong only in sensitive preview settings for branch `codex/neon-backend`:
 | `TIH_NEON_STAFF_PREVIEW_ENABLED` | Plain, `true` | Enable isolated staff routes |
 | `TIH_NEON_PUBLIC_PREVIEW_ENABLED` | Plain, `true` | Enable isolated lookup route |
 
-Never store credential values in source control, static output or logs. Do not
-enable staff routes until the configuration and real-user verification pass.
+Staff deployment `dpl_52LnLvkK1L7KRU8DA3gb4ZLNRBSt` is Ready, built from
+commit `8bc6e3ada7e0b73784635f6a72d88267ccf164b7`. Real administrator sign-in
+verification remains pending. Production environment variables are unchanged.
+Never store credential values in source control, static output or logs.
 
 ## Learner workspace added
 
