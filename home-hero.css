@@ -121,3 +121,18 @@
 #heroTop .hero-rotating-title {color:#102039;}
 #heroTop .hero-actions .btn-hero-blue {background:#ffffffb3;color:#173d7b;border-color:#b9cce7;}
 #heroTop .home-scholarships {background:#ffffffed;border-color:#d8e3f3;}
+
+/* Home hero: showcase the whole hub with six balanced feature links. */
+#heroTop .home-features-panel .hm-float-a {grid-column:auto;flex-direction:column;align-items:flex-start;justify-content:center;gap:.65rem;min-height:125px;}
+#heroTop .home-features-panel .hm-float-a .hm-ic {width:33px;height:33px;}
+#heroTop .home-features-panel .hm-float-a strong {font-size:.83rem;}
+#heroTop .home-features-panel .hm-tx {min-width:0;}
+#heroTop .home-features-panel .hm-card strong {display:block;overflow-wrap:break-word;}
+#heroTop .home-features-panel .home-launchpad-heading p {max-width:22ch;line-height:1.6;}
+@media(max-width:640px) {
+ #heroTop .home-features-panel .hm-float-a {min-height:110px;padding:.85rem;}
+}
+@media(max-width:380px) {
+ #heroTop .home-features-panel .hm-float-a strong {font-size:.74rem;}
+ #heroTop .home-features-panel .home-launchpad-heading h2 {font-size:1.35rem;}
+}
