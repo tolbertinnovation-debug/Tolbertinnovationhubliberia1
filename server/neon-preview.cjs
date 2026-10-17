@@ -11,6 +11,7 @@ function createPreviewHandler({env=process.env,fetchImpl=fetch,makeDatabase}={})
     if(req.method!=='GET'){res.setHeader('Allow','GET');return send(405,{error:'Method not allowed'});}
     const action=typeof req.query?.action==='string'?req.query.action:'status';
     if(action==='status')return send(200,{mode:'read-only preview',authentication:'supabase',cutover:false});
+    if(action==='config')return send(200,{authUrl:env.TIH_AUTH_URL,publishableKey:env.TIH_AUTH_PUBLISHABLE_KEY});
     if(action!=='account')return send(404,{error:'Not found'});
     const authorization=req.headers.authorization||'';
     if(typeof authorization!=='string'||!/^Bearer [^\s]{20,8192}$/.test(authorization))return send(401,{error:'Sign in required'});
