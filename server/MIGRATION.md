@@ -213,3 +213,44 @@ Run after building with the preview flags. It requires Playwright and a
 Chromium installation; set BROWSER_EXECUTABLE_PATH when needed. All browser
 API responses in this smoke test are mocked. No real-user credentials or
 source authentication data are included in the test.
+
+
+## Application intake and private tracking preview
+
+The normal preview hub-apply and hub-track URLs open
+migration-application-preview. This is pending application intake only, not
+learner-account registration, and it does not ask for a password or send
+email/WhatsApp messages. Existing learner registration stays disabled.
+
+The application API has its own restricted database role and branch-specific
+connection/rate-limit key. Migration 007 adds an optional receipt-hash column
+to applications in migration-write-tests only. Copied rows have NULL hashes.
+The public role cannot read copied applications, learner profiles or payments,
+create learners, approve applications or grant course access. It can insert
+pending applications and read only the status record matching a receipt hash.
+Staff application responses explicitly omit the receipt-hash column.
+
+The browser generates a 256-bit random tracking code. It sends that code only
+in POST JSON; no code goes in a URL, cookie or browser storage. The server
+stores a SHA-256 hash, derives the new application ID from that hash and uses
+an insert-on-conflict-do-nothing operation. Retrying with the same code
+preserves the existing application. The user is told to save the code before
+leaving the page. Public tracking returns only ID, status, status message and
+timestamps, never name, email, phone or goals. A guessable application ID or
+email cannot retrieve status. Five submit attempts per 15 minutes and 30
+tracking attempts per five minutes are allowed per hashed platform IP bucket.
+Missing IP information shares an unknown bucket and fails closed at its limit.
+These preview limits need production traffic evaluation before cutover.
+
+Database checks using the actual restricted role found zero rows without a
+receipt, exactly one row with its matching synthetic receipt, no duplicate
+on retry, and zero rows after clearing the receipt context. Learner reads,
+learner creation, payment writes and application approval privileges are absent.
+Only a synthetic pending application was added to the isolated test branch.
+The clean snapshot, source Supabase records and live website were unchanged.
+
+Automated API checks now total 70. The mobile browser smoke test also covers
+application-page routing, a failed submission followed by a retry with the
+same tracking code, private tracking, untrusted status text and mobile layout.
+Real deployed application submission and staff review still require owner
+verification. New-account provisioning remains a production cutover blocker.

@@ -37,7 +37,7 @@ function createStaffHandler({env=process.env,makeDatabase}={}){
         const queries={
           summary:()=>sql`SELECT (SELECT count(*) FROM public.students) AS students,(SELECT count(*) FROM public.applications) AS applications,(SELECT count(*) FROM public.enrollments WHERE access_granted=false) AS access_requests,(SELECT count(*) FROM public.cert_requests WHERE status='pending') AS certificate_requests,(SELECT count(*) FROM public.payments) AS payments`,
           students:()=>sql`SELECT id,name,email,phone,status,courses,application_id,created_at,updated_at FROM public.students ORDER BY created_at DESC,id LIMIT 50 OFFSET ${offset}`,
-          applications:()=>sql`SELECT * FROM public.applications ORDER BY submitted_at DESC,id LIMIT 50 OFFSET ${offset}`,
+          applications:()=>sql`SELECT id,submitted_at,status,status_message,name,email,phone,location,dob,education,occupation,goals,tracks,referral,notes,updated_at FROM public.applications ORDER BY submitted_at DESC,id LIMIT 50 OFFSET ${offset}`,
           enrollments:()=>sql`SELECT * FROM public.enrollments ORDER BY created_at DESC,id LIMIT 50 OFFSET ${offset}`,
           requests:()=>sql`SELECT * FROM public.cert_requests ORDER BY requested_at DESC,id LIMIT 50 OFFSET ${offset}`,
           certificates:()=>sql`SELECT * FROM public.certificates ORDER BY created_at DESC,cert_id LIMIT 50 OFFSET ${offset}`,

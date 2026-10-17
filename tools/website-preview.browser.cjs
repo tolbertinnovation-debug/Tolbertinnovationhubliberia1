@@ -45,6 +45,31 @@ const server=http.createServer((req,res)=>{
     assert.equal(writes.length,0);assert(await page.evaluate(k=>!!localStorage.getItem(k),queueKey));
     await page.goto(origin+'/my-certificates');await page.waitForFunction(()=>document.querySelector('#earnedCount')?.textContent==='1');
     assert.equal(await page.evaluate(()=>typeof downloadCert),'function');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
-    assert.deepEqual(errors,[]);console.log('Mobile preview passed: sign-in, course session, reload/retry, account isolation, issued certificates and layout.');
+    let submissionAttempts=0,trackingCode=null;
+    await page.route('**/api/application-preview**',async route=>{
+      const request=route.request(),body=request.postDataJSON();
+      if(request.method()==='GET')return route.fulfill({json:{courses:{ai:{title:'AI fundamentals',total:343}}}});
+      if(body.action==='submit'){
+        submissionAttempts++;assert(/^[0-9a-f]{64}$/.test(body.receipt));
+        if(submissionAttempts===1){trackingCode=body.receipt;return route.fulfill({status:503,json:{error:'Temporary test outage'}});}
+        assert.equal(body.receipt,trackingCode);
+        return route.fulfill({json:{application:{id:'TIH-PREVIEW-APP-TEST',status:'pending'},created:false,accountCreated:false}});
+      }
+      assert.equal(body.receipt,trackingCode);
+      return route.fulfill({json:{application:{id:'TIH-PREVIEW-APP-TEST',status:'pending',status_message:'<img src=x onerror="window.injected=true">'}}});
+    });
+    await page.goto(origin+'/hub-apply');await page.waitForURL('**/migration-application-preview');
+    await page.waitForFunction(()=>document.querySelector('#course')?.options.length===2);
+    await page.fill('#name','Synthetic applicant');await page.fill('#email','synthetic@example.test');await page.selectOption('#course','ai');
+    await page.click('#submit');await page.waitForFunction(()=>document.querySelector('#result')?.dataset.state==='error');
+    assert.equal(await page.locator('#receipt').inputValue(),trackingCode);
+    await page.click('#submit');await page.waitForFunction(()=>document.querySelector('#result')?.dataset.state==='success');
+    assert(await page.locator('#application-form').isHidden());assert((await page.locator('#result').textContent()).includes('existing test application was preserved'));
+    await page.click('#track');await page.waitForFunction(()=>document.querySelector('#tracking-result')?.dataset.state==='success');
+    assert((await page.locator('#tracking-result').textContent()).includes('<img'));
+    assert.equal(await page.evaluate(()=>window.injected),undefined);
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+    assert.equal(await page.evaluate(()=>Object.keys(localStorage).some(k=>k.includes('application_receipt'))),false);
+    assert.deepEqual(errors,[]);console.log('Mobile preview passed: learner flows, progress recovery/account isolation, application retry/tracking, safe text and layout.');
   }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
 })().catch(error=>{console.error(error);process.exitCode=1;});

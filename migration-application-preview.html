@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; form-action 'none'; base-uri 'none'">
+<title>Application preview · TIH</title><link rel="stylesheet" href="migration-preview.css"><script src="migration-application-preview.js" defer></script>
+</head><body><main>
+<a class="brand" href="/">TOLBERT INNOVATION HUB</a><p class="badge">ISOLATED APPLICATION PREVIEW</p>
+<h1>Your next step starts here.</h1><p>Test an application and follow its status. This saves a pending application in the test database. It does not create a learner account, grant course access or record a payment.</p>
+<form id="application-form">
+<label for="name">Full name</label><input id="name" autocomplete="name" required minlength="2" maxlength="120">
+<label for="email">Email</label><input id="email" type="email" autocomplete="email" required maxlength="254">
+<label for="phone">Phone (optional)</label><input id="phone" type="tel" autocomplete="tel" maxlength="40">
+<label for="course">Course of interest</label><select id="course" required><option value="">Choose a course</option></select>
+<label for="goals">Learning goals (optional)</label><textarea id="goals" rows="4" maxlength="2000"></textarea>
+<p class="note">Use test details. Your application stays pending for staff review. Passwords are never requested here.</p>
+<button id="submit">Submit test application</button></form>
+<section id="receipt-section" hidden><h2>Keep your tracking code</h2><p class="note">Anyone with this code can read the application status. Save it privately before leaving this page. The application number alone cannot retrieve a record.</p>
+<label for="receipt">Private tracking code</label><input id="receipt" readonly autocomplete="off" spellcheck="false"><button id="copy" type="button" class="secondary">Copy tracking code</button></section>
+<p id="result" role="status" aria-live="polite"></p>
+<section aria-label="Track a preview application"><h2>Check your application</h2><form id="tracking-form"><label for="tracking-code">Private tracking code</label><input id="tracking-code" autocomplete="off" spellcheck="false" required minlength="64" maxlength="64"><button id="track">Check status</button></form><p id="tracking-result" role="status" aria-live="polite"></p></section>
+<p class="note"><a href="/hub-dashboard">Existing learner sign-in</a> · <a href="/migration-staff-preview">Staff workspace</a></p>
+</main></body></html>
