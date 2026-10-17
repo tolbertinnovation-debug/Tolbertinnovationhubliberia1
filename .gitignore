@@ -1,3 +1,9 @@
 .claude/
 !.claude/workflows/
 !.claude/workflows/*.js
+
+node_modules/
+public/
+.vercel/
+.env*
+!.env.example
