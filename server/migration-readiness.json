@@ -1,0 +1,147 @@
+{
+  "checkedAt": "2026-10-17 21:04:26.949802+00",
+  "productionCutover": false,
+  "source": {
+    "projectId": "oracluubhmxobcnsvcxz",
+    "applicationTables": 15,
+    "applicationRows": 3700,
+    "storageObjects": 0,
+    "storageBuckets": 2,
+    "authProfiles": 30
+  },
+  "candidate": {
+    "projectId": "raspy-mud-82524046",
+    "database": "tih",
+    "branchId": "br-royal-cherry-zae841g2",
+    "branchName": "migration-candidate-20261017",
+    "parentBranchId": "br-falling-block-zau0k2q2",
+    "runtimeMigrationsApplied": false,
+    "connectedToWebsite": false
+  },
+  "comparison": {
+    "method": "PostgreSQL canonical jsonb MD5 per table; count and content",
+    "excludedColumns": "Names matching password|secret|token, except must_change_password is explicitly retained",
+    "allApplicationTablesMatch": true,
+    "tables": [
+      {
+        "table": "payments",
+        "source": 691,
+        "candidate": 691,
+        "matches": true
+      },
+      {
+        "table": "progress",
+        "source": 105,
+        "candidate": 105,
+        "matches": true
+      },
+      {
+        "table": "students",
+        "source": 121,
+        "candidate": 121,
+        "matches": true
+      },
+      {
+        "table": "activities",
+        "source": 2181,
+        "candidate": 2181,
+        "matches": true
+      },
+      {
+        "table": "app_admins",
+        "source": 1,
+        "candidate": 1,
+        "matches": true
+      },
+      {
+        "table": "enrollments",
+        "source": 474,
+        "candidate": 474,
+        "matches": true
+      },
+      {
+        "table": "applications",
+        "source": 115,
+        "candidate": 115,
+        "matches": true
+      },
+      {
+        "table": "certificates",
+        "source": 7,
+        "candidate": 7,
+        "matches": true
+      },
+      {
+        "table": "cert_requests",
+        "source": 5,
+        "candidate": 5,
+        "matches": true
+      },
+      {
+        "table": "hub_courses",
+        "source": 0,
+        "candidate": 0,
+        "matches": true
+      },
+      {
+        "table": "libapps_apps",
+        "source": 0,
+        "candidate": 0,
+        "matches": true
+      },
+      {
+        "table": "topic_videos",
+        "source": 0,
+        "candidate": 0,
+        "matches": true
+      },
+      {
+        "table": "libapps_likes",
+        "source": 0,
+        "candidate": 0,
+        "matches": true
+      },
+      {
+        "table": "libapps_reports",
+        "source": 0,
+        "candidate": 0,
+        "matches": true
+      },
+      {
+        "table": "libapps_comments",
+        "source": 0,
+        "candidate": 0,
+        "matches": true
+      }
+    ]
+  },
+  "passwordPolicy": {
+    "profiles": 121,
+    "requiresChange": 95,
+    "notRequired": 26,
+    "correctedFromImportedDefault": 26,
+    "passwordHashesCopied": 0
+  },
+  "candidateSafety": {
+    "learnerPasswordHashes": 0,
+    "adminPasswordHashes": 0,
+    "testLearnerProfiles": 0,
+    "previewApplications": 0,
+    "managedAuthTables": 0,
+    "testRuntimeTables": 0,
+    "publicTablesWithoutRls": 0
+  },
+  "signup": {
+    "deploymentId": "dpl_GT4tYwDvvbQuSskyZQFZ7nKDqowR",
+    "deploymentState": "READY",
+    "verifiedTestIdentities": 0,
+    "activatedNewProfiles": 0,
+    "realEmailAndActivationVerified": false
+  },
+  "limitations": [
+    "Private account profiles and bucket configuration were previously archived; this check confirms source counts, not fresh content equality for those archives.",
+    "Source authentication remains in use for copied learners. Existing password hashes and session secrets are excluded.",
+    "This is a data candidate, not a deployable production backend. Runtime migrations, least-privilege credentials, production integration, final reconciliation and rollout verification are still required.",
+    "Never cut over from migration-write-tests, which contains synthetic data and test writes."
+  ]
+}

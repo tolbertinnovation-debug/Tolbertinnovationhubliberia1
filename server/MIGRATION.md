@@ -1,332 +1,213 @@
 # TIH database migration status
 
-Updated 2026-10-17. Production cutover is **not complete**.
+Updated October 17, 2026, 21:04 UTC. **Production cutover is not complete.**
+The live website and source Supabase application data are unchanged.
 
-## Staff preview prepared
+## Verified data and branch separation
 
-`migration-staff-preview` supports administrator sign-in, paginated records,
-application decisions, course grant/revoke, certificate review, create-only
-issuance and certificate lookup. Every staff mutation needs an audit reason.
-Grants preserve payment status and never insert payment records. The payment
-ledger is read only. Application approval requires an existing active learner
-linked to that application; new-account provisioning is not implemented yet.
-Catalog coverage remains the 34 professional courses.
+Project: `tolbertinnovationhub-migration` (`raspy-mud-82524046`), database `tih`.
 
-The login issuer verifies the existing Supabase administrator credentials and
-can create a 15-minute capability, but cannot read learner/payment data or grant
-access. Only the opaque token's hash is stored. The operational role cannot
-mint sessions: RLS on every staff data table requires the matching unexpired,
-unrevoked capability. A guessed administrator name alone grants no data access.
-Staff and learner cookie signatures are separated. Logout revokes the database
-session, preventing replay. Runtime audit entries cannot be updated or deleted.
-
-Certificate issuance uses approved requests and stored learner/course data,
-serializes operations per learner/course and preserves existing verified
-certificates. The public lookup role sees only public fields for the supplied
-certificate ID; it cannot list all certificates or read learner IDs/payments.
-
-Migrations `004` and `005` are applied only to `migration-write-tests`. Synthetic
-database tests passed for capability isolation, grant/revoke without payment
-changes, application approval, certificate review, repeat-safe issuance,
-session revocation/replay refusal, and single-ID public lookup. The mobile
-staff flow was tested with mock credentials, including safe text rendering.
-Real administrator sign-in and deployed staff verification remain pending.
-
-The user authorized the staff credential transfer, and the following variables
-were configured on 2026-10-17 in preview settings for `codex/neon-backend` only:
-
-| Variable | Type | Purpose |
+| Branch | ID | Purpose |
 | --- | --- | --- |
-| `TIH_PREVIEW_STAFF_LOGIN_DATABASE_URL` | Sensitive | Restricted login issuer |
-| `TIH_PREVIEW_STAFF_DATABASE_URL` | Sensitive | Capability-scoped operational role |
-| `TIH_PREVIEW_STAFF_SESSION_KEY` | Sensitive | Staff cookie signing |
-| `TIH_STAFF_RATE_KEY` | Sensitive | HMAC login-rate buckets |
-| `TIH_PREVIEW_VERIFY_DATABASE_URL` | Sensitive | Single-ID certificate reader |
-| `TIH_NEON_STAFF_PREVIEW_ENABLED` | Plain, `true` | Enable isolated staff routes |
-| `TIH_NEON_PUBLIC_PREVIEW_ENABLED` | Plain, `true` | Enable isolated lookup route |
+| migration-staging | br-falling-block-zau0k2q2 | Original verified snapshot and rollback reference; unchanged |
+| migration-write-tests | br-frosty-truth-zavu1ro6 | Active preview APIs, synthetic fixtures, test writes and managed signup |
+| migration-candidate-20261017 | br-royal-cherry-zae841g2 | Separate clean data candidate with corrected password-policy flags |
 
-Staff deployment `dpl_52LnLvkK1L7KRU8DA3gb4ZLNRBSt` is Ready, built from
-commit `8bc6e3ada7e0b73784635f6a72d88267ccf164b7`. Real administrator sign-in
-verification remains pending. Production environment variables are unchanged.
-Never store credential values in source control, static output or logs.
+**Never cut over from migration-write-tests.** The data candidate is not connected
+to any website and does not yet have the preview runtime migrations or roles.
+The original snapshot remains the parent/rollback reference.
 
-## Learner workspace added
+At 21:02 UTC, all 15 public application tables still matched the original
+snapshot: 3,700 rows, compared by counts and canonical JSONB content checksums.
+The original export omitted fields whose names contain password, including
+must_change_password. Omitted values took the target default true, so 26 learner
+flags differed from the source. On the new candidate only, those 26 were restored
+to false. All 121 policies now match the source: 95 require a password change and
+26 do not. A second complete comparison retained this nonsecret flag while
+excluding password hashes, tokens and secrets; all 15 application tables matched.
+No source rows or existing branches were changed by that correction.
 
-`migration-learner-preview` supports older learner credentials via
-`POST /api/legacy-learner-preview`. The existing Supabase RPC verifies the
-SHA-256 proof; its HTTP response is projected to `id,status` only. All 116
-unlinked source profiles currently use this supported format. No hashes are
-copied, returned to the browser, or persisted by this endpoint. A source outage
-fails closed. A database-backed HMAC-keyed limiter allows five attempts per
-login label per five-minute bucket; email/Student-ID aliases have separate
-buckets. This is not a replacement for platform abuse protection.
+| Table | Verified rows |
+| --- | ---: |
+| activities | 2,181 |
+| payments | 691 |
+| enrollments | 474 |
+| students | 121 |
+| applications | 115 |
+| progress | 105 |
+| certificates | 7 |
+| cert_requests | 5 |
+| app_admins | 1 |
+| hub_courses, topic_videos, four libapps tables | 0 |
+| **Total** | **3,700** |
 
-On success, a 15-minute signed HttpOnly/Secure/SameSite=Strict preview cookie
-is issued. `/api/learner-preview` validates its signature and expiry before
-using its subject for RLS. It supports account reads, pending access requests,
-granted-course progress saves and pending certificate requests. Browser writes
-require same-origin JSON. Logout clears the preview cookie. Sessions remain
-valid until expiry if credentials change during that window.
+The candidate has zero learner/admin password hashes, test learner profiles,
+preview applications, managed-auth tables, or test runtime/session tables. All
+public tables have RLS enabled. These are data checks, not proof that the
+production runtime permissions and flows are ready.
 
-The compatibility role can insert pending enrollments, update its own granted
-course progress, append constrained activity entries and submit pending
-certificate requests. It cannot edit learner credentials, grant course access,
-write payments, approve requests, issue certificates, or access the private
-archive. The server uses fixed catalog totals; progress updates are monotonic.
-Progress is learner-reported and does not prove completion of lessons or exams.
-Certificate requests are not automatic issuance and still require staff review.
+Source storage remains empty: zero objects in two buckets. Thirty nonsecret
+Auth profiles and the two bucket configurations were previously archived under
+migration_private. This pass confirmed source counts; it did not repeat full
+content comparison of those private archives. Password hashes and authentication
+session secrets are excluded from the migration. Authentication is not fully
+migrated.
 
-Migrations `002` and `003` apply only to `migration-write-tests`. Real database
-tests with synthetic learners verified identity isolation, progress persistence
-and monotonic updates, incomplete-course refusal, pending request creation,
-and duplicate-request preservation. The source login HTTP endpoint was checked
-using nonexistent credentials and returned an empty result. The user verified
-the deployed compatibility login, protected session and progress save with a
-real learner account in screenshots on 2026-10-17.
+Machine-readable evidence is in migration-readiness.json. Reusable, read-only
+checks are in checks/application-fingerprint.sql and
+checks/migration-candidate-preflight.sql. Fingerprints deliberately preserve
+must_change_password while excluding credential fields. They compare JSONB
+content using MD5, not a cryptographic attestation. Recheck against a consistent
+source snapshot immediately before any final synchronization or cutover.
 
-## Verified
+## Current Vercel preview
 
-- The 2026-10-17 13:54 UTC source snapshot was copied to the Neon project
-  `tolbertinnovationhub-migration`, database `tih`, branch `migration-staging`.
-  All 15 public application tables matched the snapshot (3,700 rows).
-- Nonsecret account profiles and bucket configuration were archived privately.
-  Password hashes and authentication/session secrets were excluded.
-- The read-only preview authenticates using Supabase and reads identity-scoped
-  learner records from Neon. A user verified the deployed flow on their account.
-- The separate `migration-write-tests` branch contains synthetic test learners
-  and isolated course-request writes. Do not use it as the cutover source.
+Project: tolbertinnovationhubliberia1 (`prj_l01CHDzoY6JQuXxT1djmI9rUfyXC`).
+All migration configuration targets preview branch `codex/neon-backend` only.
+Production environment variables, custom domains and the live site have not
+switched. The deployed code is commit `875ad3a02791e4181bad2c451465191857f580ee`.
+Deployment `dpl_GT4tYwDvvbQuSskyZQFZ7nKDqowR` reached READY.
 
-## Preview endpoints
-
-`GET /api/neon-preview?action=account` requires a Supabase bearer token and an
-active linked learner. `status` and public browser `config` are unauthenticated.
-`TIH_NEON_PREVIEW_ENABLED` must be `true`; the connection uses the restricted
-read-only role via `TIH_PREVIEW_DATABASE_URL`.
-
-`POST /api/access-request-preview` accepts only JSON `{ "courseId": "ai" }`.
-It requires a verified Supabase bearer token and active linked learner. Course
-titles come from `course-catalog.json`, derived from the 34-course lightweight
-catalog. WASSCE and other item catalogs still need separate coverage.
-`GET ?action=config` supplies public browser settings and available courses.
-The endpoint requires `TIH_NEON_WRITES_PREVIEW_ENABLED=true` and the separate
-restricted `TIH_PREVIEW_REQUEST_DATABASE_URL` on the isolated test branch.
-
-The request insert always uses `payment_status='requested'` and
-`access_granted=false`. Database column permissions and RLS enforce ownership
-and those values. Conflicts leave existing enrollments unchanged. The role has
-no UPDATE, DELETE, payment-write, password-column, or private-archive access.
-The SQL policy is in `migrations/001-preview-access-requests.sql`.
-
-The browser tests use mock sign-ins; they do not replace real-user deployment
-verification. The first read-only and course-request pages do not persist
-credentials or sessions in browser storage. The learner and staff workspaces
-use protected short-lived cookies. Browser password managers are controlled
-by the user/browser.
-All credentials are branch-specific Vercel preview variables, not production
-configuration or repository contents.
-
-## Required before production cutover
-
-1. Connect the verified compatibility path to the main learner frontend.
-   Only five of 121 copied profiles are Auth
-   linked. Keep Supabase login verification while this transition is underway;
-   do not reset passwords automatically.
-2. Connect and fully verify progress/activities and certificate requests in the
-   main learner frontend. Verify and integrate the staff preview workflows.
-   Implement new-account provisioning, payment verification,
-   LibApps, and all existing public lookup flows. A pending request API does not
-   implement payment processing or authorize course access.
-3. Connect the actual frontend operations to the new backend in preview and
-   verify the complete learner and staff journeys, including retries/offline
-   synchronization. Existing frontend operations still target Supabase.
-4. Reconcile changes made since the snapshot, with a final consistent sync and
-   record verification. Preserve the source and a rollback path. Do not copy
-   synthetic test data or private authentication/session secrets.
-5. Verify deployment access, production configuration, custom-domain routing,
-   write permissions and rollback before enabling production traffic.
-
-Run API checks with:
-
-```sh
-node --test tools/*preview.test.cjs
-```
-
-
-## Normal website preview integration (October 17)
-
-The owner verified administrator login and copied record views in the deployed
-staff workspace. The build now activates the compatibility adapter only when
-VERCEL_ENV=preview and TIH_NEON_WEBSITE_PREVIEW_ENABLED=true. Production builds
-and the GitHub Pages website retain their existing persistence configuration.
-
-The normal learner dashboard, course player and certificate list use the
-isolated learner API and protected cookie. Access requires access_granted=true;
-a paid status never reverses an explicit revocation. Course boot waits for the
-server session. Certificate requests wait for the server response, and local
-completion cannot publish an official certificate. Own issued certificates are
-read under the new migration 006 policy. The server catalog includes 57 courses
-(34 professional and 23 WASSCE); course content is unchanged.
-
-The preview administrator URL opens the verified staff workspace. The preview
-guard blocks browser fetch, XHR and realtime requests to Supabase, and replaces
-legacy cloud exports so unsupported features cannot write to the live source.
-Registration, password changes, profile editing, payment processing and LibApps
-writes are unavailable. Existing Supabase authentication verification remains
-on the server. Email sign-in now falls back to Supabase Auth if the legacy proof fails.
-The verified access token is used only in memory to read student_me; its
-auth_user_id must match the authenticated user before a preview session is
-issued. Auth tokens, refresh tokens and passwords are not copied to Neon or
-returned to the browser. Real Auth-only account sign-in still needs owner
-verification on the deployed normal page.
-
-Source password-change enforcement is preserved at login. The source currently
-reports 95 accounts requiring a change. A true, null or missing flag prevents
-session creation and directs the learner to update the password on the live
-site first. This preview does not reset or update live credentials. The source
-flag must be included in a future final migration; it was excluded from the
-original sanitized snapshot.
-
-Progress is saved through the restricted server API. Failed saves show an
-explicit unsynced message and retry every 30 seconds or when connectivity
-returns. A minimal local queue (learner ID, course IDs and counts only) now
-survives reloads for up to seven days, is loaded only after that same learner
-is verified, and is removed on explicit logout. It contains no passwords,
-auth tokens, names or email addresses. If device storage is unavailable, the
-message explicitly says to keep the page open. Clearing browser data or device
-storage still loses unsynced changes. Server-monotonic writes make retries
-idempotent. Each adapter mutation also includes expectedStudentId; the server
-compares it to the cookie identity before any database access, preventing a
-stale tab or queue from writing after another tab changes the signed-in account.
-
-Mobile browser checks with mocked API responses cover dashboard sign-in,
-server-session course boot, issued-certificate display and download-handler
-initialization. These do not replace real-account checks on the deployed
-normal pages. No production cutover, final source reconciliation, domain
-change, authentication migration or payment migration has occurred.
-
-
-The updated automated suite has 63 passing checks. The repeatable local mobile
-smoke test in tools/website-preview.browser.cjs verifies failed progress saves,
-queue recovery after a fresh page load, retry with the expected identity, no
-submission of another learner's queue, issued certificates and mobile layout.
-Run after building with the preview flags. It requires Playwright and a
-Chromium installation; set BROWSER_EXECUTABLE_PATH when needed. All browser
-API responses in this smoke test are mocked. No real-user credentials or
-source authentication data are included in the test.
-
-
-## Application intake and private tracking preview
-
-The normal preview hub-apply and hub-track URLs open
-migration-application-preview. This is pending application intake only, not
-learner-account registration, and it does not ask for a password or send
-email/WhatsApp messages. Existing learner registration stays disabled.
-
-The application API has its own restricted database role and branch-specific
-connection/rate-limit key. Migration 007 adds an optional receipt-hash column
-to applications in migration-write-tests only. Copied rows have NULL hashes.
-The public role cannot read copied applications, learner profiles or payments,
-create learners, approve applications or grant course access. It can insert
-pending applications and read only the status record matching a receipt hash.
-Staff application responses explicitly omit the receipt-hash column.
-
-The browser generates a 256-bit random tracking code. It sends that code only
-in POST JSON; no code goes in a URL, cookie or browser storage. The server
-stores a SHA-256 hash, derives the new application ID from that hash and uses
-an insert-on-conflict-do-nothing operation. Retrying with the same code
-preserves the existing application. The user is told to save the code before
-leaving the page. Public tracking returns only ID, status, status message and
-timestamps, never name, email, phone or goals. A guessable application ID or
-email cannot retrieve status. Five submit attempts per 15 minutes and 30
-tracking attempts per five minutes are allowed per hashed platform IP bucket.
-Missing IP information shares an unknown bucket and fails closed at its limit.
-These preview limits need production traffic evaluation before cutover.
-
-Database checks using the actual restricted role found zero rows without a
-receipt, exactly one row with its matching synthetic receipt, no duplicate
-on retry, and zero rows after clearing the receipt context. Learner reads,
-learner creation, payment writes and application approval privileges are absent.
-Only a synthetic pending application was added to the isolated test branch.
-The clean snapshot, source Supabase records and live website were unchanged.
-
-Automated API checks now total 70. The mobile browser smoke test also covers
-application-page routing, a failed submission followed by a retry with the
-same tracking code, private tracking, untrusted status text and mobile layout.
-Real deployed application submission and staff review still require owner
-verification. New-account provisioning remains a production cutover blocker.
-
-
-## New managed identity and learner-profile preview (deployed for owner testing)
-
-Managed Better Auth was enabled only on migration-write-tests, the existing
-mutable test branch. Existing learners still use the compatibility/source
-verification flow. No source password hashes or sessions were transferred.
-The clean migration-staging snapshot and production configuration are unchanged.
-The new auth service uses the shared development email provider.
-
-The dedicated migration-signup-preview page uses the official pinned Neon
-vanilla client, bundled at preview build time by esbuild. It supports new
-identity signup, email-code request and verification, sign-in, session restore,
-activation retry and sign-out. Sending an email happens only when the person
-clicks the explicit email-code button; automated browser tests mock delivery.
-Passwords and JWTs are not put in localStorage. The new-account page and normal
-dashboard logout both attempt managed identity sign-out as well as clearing the
-local learner cookie. Already-issued JWTs are not claimed to be instantly revoked.
-
-The activation API verifies Ed25519 JWT signature, fixed branch issuer/audience,
-expiry, issuance time and user ID consistency. Both the signed claims and the
-current identity view must indicate a verified, non-banned identity. Provider
-signup-verification defaults remain off: the connector exposes only an auth
-configuration name update, not verification settings. This is not bypassed;
-the application API and database insert policy independently deny unverified
-identities. Enable the provider-level verification requirements before any
-production rollout, in addition to preserving these application checks.
-
-Migration 008 adds neon_auth_user_id to test-branch students and a scoped,
-security-barrier identity view. The signup role cannot read auth sessions,
-password accounts, copied learners, or write payments, access grants or staff
-approvals. It can only create a new profile for its verified identity; the
-profile ID is derived from that identity, and identity name/email are checked
-in the insert policy. Repeated activation preserves the same profile. Suspended
-profiles cannot be reactivated. Matching a copied learner email returns a
-conflict and directs that learner to the existing login; it never links by
-email or replaces existing records. New course cards start with no access grant.
-
-Database checks using the actual restricted role returned no identity without
-a scope, only the selected synthetic unverified identity with its scope, zero
-copied learner profiles, no direct auth-schema access, and no payment/access
-write privileges. An attempt to insert a profile for that unverified identity
-was rejected by RLS. The synthetic Auth fixture has no verified email, password
-or granted access and uses an example.invalid email address. No verification
-email was sent by these tests.
-
-The automated suite now has 78 passing checks, including real Ed25519 token
-validation against local test keys. The mobile browser smoke test covers the
-new page with mocked managed-auth responses: signup, verification gate, code
-request, activation, repeat activation, sign-out, privacy and layout. Dependency
-audit reports zero vulnerabilities for production dependencies. Real email
-delivery, verified profile insertion, deployed login/logout and cross-browser
-cookie/session restoration remain unverified and are required before cutover.
-
-The owner explicitly approved saving the restricted signup database connection
-to Vercel project tolbertinnovationhubliberia1 for preview branch
-codex/neon-backend only. The approved transfer succeeded on October 17, 2026.
-The following variables were verified as preview-only and branch-specific:
-TIH_PREVIEW_SIGNUP_DATABASE_URL (sensitive), TIH_MANAGED_AUTH_URL, and
-TIH_NEON_SIGNUP_PREVIEW_ENABLED. No production variables were changed.
-
-Vercel deployment dpl_GT4tYwDvvbQuSskyZQFZ7nKDqowR reached READY using commit
-875ad3a02791e4181bad2c451465191857f580ee. Owner testing URL:
+Owner testing URL:
 https://tolbertinnovationhubliberia1-10kkpl6ip-tolbert-innovation-hub.vercel.app/migration-signup-preview
-This exact origin and the stable preview-branch origin are trusted by the
-isolated Neon Auth service. The live website and clean snapshot remain unchanged.
 
-Automatic approval review rejected the protected-page fetch because that tool
-may create a temporary authentication-bypass link and follow redirects,
-exposing an access capability beyond the approval to deploy and inspect status.
-No alternate bypass or security setting change was attempted. Deployment READY
-and environment scope are verified; protected runtime responses and real signup,
-email delivery, profile activation and session restoration still need owner
-verification from a signed-in browser. Do not claim production migration or
-end-to-end signup verification is complete.
+The owner explicitly approved transferring the restricted signup connection to
+this Vercel preview branch. Its sensitive connection and public Auth URL/enable
+flag were configured and their scope verified. Credential values must never
+appear in source, static output, logs or documentation.
 
+Automatic approval review rejected the protected-page fetch because it may mint
+a temporary access-bypass link. No alternate bypass or security-setting change
+was attempted. READY does not establish real runtime flow verification. As of
+21:01 UTC, the test branch has zero verified managed identities and zero newly
+activated managed learner profiles. A synthetic unverified example.invalid
+identity exists for negative permission checks. Real signup/email delivery,
+verified profile insertion and cookie restoration still need owner testing.
+
+## Implemented preview behavior
+
+The public asset build excludes server code, SQL, database files, credentials
+and reports. Production-default builds retain the existing persistence behavior.
+Only VERCEL_ENV=preview plus TIH_NEON_WEBSITE_PREVIEW_ENABLED=true injects the
+compatibility guard/adapter. The guard blocks browser Supabase fetch, XHR and
+realtime calls. Replaced cloud exports cannot fall back to source writes.
+
+The normal dashboard, course player and certificate list use restricted APIs.
+Course boot waits for server session verification. Access requires
+access_granted=true; paid status cannot reverse a revocation. Client completion
+cannot publish an official certificate. The server catalog has 57 metadata
+records: 34 professional courses and 23 WASSCE subjects. Course content is unchanged.
+
+Failed progress saves have a bounded local retry queue, separate per verified
+learner, valid up to seven days and cleared on explicit logout. It contains only
+learner ID, course IDs and counts. No passwords, JWTs, names or emails are stored
+in that queue. Reloads restore it only after its owner is verified. Writes carry
+expectedStudentId, checked against the protected cookie before database access;
+a stale tab cannot submit another account's queue. Retried progress is monotonic.
+When storage is unavailable, the UI states that the page must remain open.
+Progress is learner-reported; it does not prove lesson or exam completion.
+
+Normal hub-admin opens the staff workspace. Normal hub-apply and hub-track open
+pending application intake/private tracking. This does not create learner
+accounts, grant access or record payments. The browser generates a random
+256-bit receipt, sends it only in POST JSON, and stores no receipt in URLs,
+cookies or localStorage. The server stores its SHA-256 hash. Submission retries
+with the same receipt preserve one application. Tracking returns only status,
+status message, ID and timestamps. Copied applications have no receipt and are
+not publicly retrievable by ID, email or phone. The dedicated role cannot read
+learners or payments, approve applications, create accounts or grant access.
+Staff API responses omit the receipt-hash column. Rate limits are five submit
+attempts per 15 minutes and 30 tracking attempts per five minutes per hashed IP
+bucket; a missing IP shares a restricted unknown bucket. These preview limits
+need production traffic evaluation.
+
+LibApps uploads and mutations, account/profile changes and payment processing
+remain unavailable in the normal preview. Online payment is also disabled in the
+current site configuration; this work has not enabled a processor. The copied
+payment ledger is read only. A staff access grant does not record a payment.
+
+## Authentication and authorization
+
+Existing learners keep source verification. The legacy proof is computed only
+in server memory and checked using the projected Supabase student_login RPC.
+Email logins can fall back to Supabase Auth. A returned token is held only in
+memory to read student_me; auth_user_id must match the authenticated user.
+Passwords, hashes and source tokens are neither copied nor returned to the
+browser. Five failed attempts per login label per five minutes are allowed;
+limiter or source outages fail closed. Email and Student-ID aliases have separate
+buckets. Source must_change_password must be explicitly false to create a session;
+true, null or missing states direct the learner to update the password on the
+live website first. The preview does not reset live passwords.
+
+New test identities use managed Better Auth only on migration-write-tests.
+Existing copied learners are not linked or replaced by matching email. Activation
+verifies Ed25519 signature, fixed branch issuer/audience, expiry, issuance time,
+and matching ID/sub. Signed claims and the current scoped identity view must both
+show a verified, non-banned identity. A copied-email collision requires existing
+learner login. Database insert policy binds ID/name/email to that verified
+identity; repeated activation preserves one profile, and a suspended profile
+cannot be reactivated. Creating a profile grants no course access or payments.
+
+Provider-level verify-at-signup defaults remain off: the connector exposes a
+configuration name update but not the verification settings. Application/API
+and database gates independently reject unverified identities. Provider-level
+requirements should also be enabled before production. Emails use the development
+shared provider; production needs its own delivery configuration. Automated tests
+mock email delivery and do not send messages. The browser requests an email only
+when the person clicks the explicit email-code button. Managed and local learner
+sign-out are both attempted; already-issued JWTs are not instantly revoked.
+
+Learner cookies are signed, HttpOnly, Secure, SameSite=Strict and expire in
+15 minutes. Learner identity controls every query. Logout clears the cookie;
+a copied cookie may remain valid until expiry. The restricted learner role
+cannot grant access, write payments, edit credentials, approve requests, issue
+certificates or access private archives. Certificate requests require access and
+full server-catalog progress, remain pending, serialize per course/learner and
+preserve existing pending/approved requests. All writes require same-origin JSON.
+
+Staff source-login verification uses a separate issuer role that can create only
+short-lived opaque capabilities and cannot read operational learner/payment data.
+Only the capability hash is stored. The operational role cannot mint sessions;
+every table policy requires its matching unexpired, unrevoked capability. A guessed
+administrator username has no access. Staff/learner signature domains are separate.
+Staff logout revokes the database capability, blocking replay. Every staff mutation
+needs a reason and atomic append-only audit. Grants/revocations preserve payment
+status and never insert payments. Certificate approval/issuance requires stored
+active learner, granted access and complete catalog progress; issuance is
+create-only and repeat-safe. Public verification is scoped to one verified
+certificate and excludes learner IDs, emails and payment data.
+
+## Validation and remaining cutover requirements
+
+Owner screenshots verified the read-only learner flow, existing-login session,
+progress persistence, administrator login, overview and copied record views.
+The automated suite has 78 passing checks. Mobile browser tests mock APIs and
+cover normal learner pages, issued certificates, queue recovery/account isolation,
+application retry/tracking, signup verification gating, activation retry,
+sign-out, safe text rendering and layout. Token tests use real Ed25519 signatures
+with local test keys. Production dependency audit reported zero vulnerabilities.
+
+Run `node --test tools/*preview.test.cjs`. Build with the two preview flags before
+`node tools/website-preview.browser.cjs`; it needs Playwright and Chromium, with
+BROWSER_EXECUTABLE_PATH when the binary is not in the default location.
+
+Before production cutover:
+
+1. Complete owner signup, email verification, profile activation, login/logout,
+   reload and cookie tests. Verify Auth-only copied accounts and real staff
+   write flows on isolated data, including retries and permission failures.
+2. Complete the remaining production integrations, including LibApps, application
+   approval/linking to new learners, required staff operations and payment
+   recording/verification for whichever payment flows will remain enabled.
+3. Apply reviewed runtime migrations and provision appropriate restricted roles
+   on a clean candidate. Synthetic fixtures and test Auth sessions must not be
+   copied. The clean data candidate currently has no runtime migrations applied.
+4. Prepare production API/build configuration and routing. The current adapter
+   and APIs are preview-gated. Preserve password-change enforcement and a tested
+   identity migration/recovery plan; source authentication remains in use.
+5. Repeat consistent source reconciliation, public/private verification and file
+   inventory. Source edits after this check need another sync. Keep the unchanged
+   snapshot and a rollback route. Do not copy credential hashes or session secrets.
+6. Verify hosting access, production configuration, domains, permissions and
+   rollback; perform a controlled rollout with runtime checks before enabling
+   production traffic. Never describe READY or mocked tests as full migration.
