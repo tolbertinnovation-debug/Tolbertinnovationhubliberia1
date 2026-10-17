@@ -30,6 +30,7 @@ for (const entry of fs.readdirSync(root)) {
     if(publicDirectories.includes(entry)) copy(source,path.join(out,entry));
   } else copy(source,path.join(out,entry));
 }
+if(neonPreview) require('esbuild').buildSync({entryPoints:[path.join(root,'tools/signup-client.js')],bundle:true,minify:true,platform:'browser',format:'iife',target:['es2020'],outfile:path.join(out,'hub-neon-auth.js')});
 if(!fs.existsSync(path.join(out,'index.html'))) throw new Error('Missing home page');
 for (const forbidden of ['backend','supabase','tools','supabase-schema.sql','SECURITY-AUDIT.md']) {
   if(fs.existsSync(path.join(out,forbidden))) throw new Error('Non-public file in output: '+forbidden);

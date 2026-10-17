@@ -254,3 +254,65 @@ application-page routing, a failed submission followed by a retry with the
 same tracking code, private tracking, untrusted status text and mobile layout.
 Real deployed application submission and staff review still require owner
 verification. New-account provisioning remains a production cutover blocker.
+
+
+## New managed identity and learner-profile preview (prepared, deployment blocked)
+
+Managed Better Auth was enabled only on migration-write-tests, the existing
+mutable test branch. Existing learners still use the compatibility/source
+verification flow. No source password hashes or sessions were transferred.
+The clean migration-staging snapshot and production configuration are unchanged.
+The new auth service uses the shared development email provider.
+
+The dedicated migration-signup-preview page uses the official pinned Neon
+vanilla client, bundled at preview build time by esbuild. It supports new
+identity signup, email-code request and verification, sign-in, session restore,
+activation retry and sign-out. Sending an email happens only when the person
+clicks the explicit email-code button; automated browser tests mock delivery.
+Passwords and JWTs are not put in localStorage. The new-account page and normal
+dashboard logout both attempt managed identity sign-out as well as clearing the
+local learner cookie. Already-issued JWTs are not claimed to be instantly revoked.
+
+The activation API verifies Ed25519 JWT signature, fixed branch issuer/audience,
+expiry, issuance time and user ID consistency. Both the signed claims and the
+current identity view must indicate a verified, non-banned identity. Provider
+signup-verification defaults remain off: the connector exposes only an auth
+configuration name update, not verification settings. This is not bypassed;
+the application API and database insert policy independently deny unverified
+identities. Enable the provider-level verification requirements before any
+production rollout, in addition to preserving these application checks.
+
+Migration 008 adds neon_auth_user_id to test-branch students and a scoped,
+security-barrier identity view. The signup role cannot read auth sessions,
+password accounts, copied learners, or write payments, access grants or staff
+approvals. It can only create a new profile for its verified identity; the
+profile ID is derived from that identity, and identity name/email are checked
+in the insert policy. Repeated activation preserves the same profile. Suspended
+profiles cannot be reactivated. Matching a copied learner email returns a
+conflict and directs that learner to the existing login; it never links by
+email or replaces existing records. New course cards start with no access grant.
+
+Database checks using the actual restricted role returned no identity without
+a scope, only the selected synthetic unverified identity with its scope, zero
+copied learner profiles, no direct auth-schema access, and no payment/access
+write privileges. An attempt to insert a profile for that unverified identity
+was rejected by RLS. The synthetic Auth fixture has no verified email, password
+or granted access and uses an example.invalid email address. No verification
+email was sent by these tests.
+
+The automated suite now has 78 passing checks, including real Ed25519 token
+validation against local test keys. The mobile browser smoke test covers the
+new page with mocked managed-auth responses: signup, verification gate, code
+request, activation, repeat activation, sign-out, privacy and layout. Dependency
+audit reports zero vulnerabilities for production dependencies. Real email
+delivery, verified profile insertion, deployed login/logout and cross-browser
+cookie/session restoration remain unverified and are required before cutover.
+
+Automatic approval review rejected transfer of the newly created restricted
+signup connection to Vercel because it contains a database password and needs
+explicit user authorization for that destination. No workaround or existing
+credential was used. Pending variables (codex/neon-backend preview target only):
+TIH_PREVIEW_SIGNUP_DATABASE_URL, TIH_MANAGED_AUTH_URL, and
+TIH_NEON_SIGNUP_PREVIEW_ENABLED. The signup API remains disabled without that
+configuration. Save the prepared code before requesting the transfer approval;
+only deploy and perform owner runtime verification after authorization.

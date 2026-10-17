@@ -114,7 +114,18 @@
     pending.set(id, Math.max(p.completed, pending.get(id) || 0)); persistPending(); return flush();
   };
   var logout = D.studentLogout;
-  D.studentLogout = function () { pending.clear(); persistPending(); pendingOwner = null; return logout(); };
+  D.studentLogout = function () {
+    var managed = student && /^TIH-NEON-/.test(student.id);
+    pending.clear(); persistPending(); pendingOwner = null;
+    var local = logout(); if (!managed) return local;
+    return Promise.resolve(local).then(async function () {
+      try {
+        if (!window.TIHNeonAuth) await new Promise(function (resolve, reject) { var script = document.createElement('script'); script.src = '/hub-neon-auth.js'; script.onload = resolve; script.onerror = reject; document.head.append(script); });
+        var auth = await window.TIHNeonAuth.getClient(), response = await auth.signOut();
+        if (response.error) throw new Error('Managed sign-out failed');
+      } catch (_) { status('Learner session cleared. Open the new test account page and sign out there to retry ending the identity session.'); }
+    });
+  };
   window.addEventListener('online', flush); setInterval(flush, 30000);
   document.addEventListener('DOMContentLoaded', function () {
     window.requestCert = async function (id) { try { await flush(); if (pending.size) throw new Error('Sync your test progress before requesting a certificate.'); await D.requestCertificate(student && student.id, id); alert('Test certificate request saved for staff review.'); location.reload(); } catch (e) { alert(e.message); } };

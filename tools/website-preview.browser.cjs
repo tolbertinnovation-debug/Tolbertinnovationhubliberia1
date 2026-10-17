@@ -70,6 +70,39 @@ const server=http.createServer((req,res)=>{
     assert.equal(await page.evaluate(()=>window.injected),undefined);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
     assert.equal(await page.evaluate(()=>Object.keys(localStorage).some(k=>k.includes('application_receipt'))),false);
-    assert.deepEqual(errors,[]);console.log('Mobile preview passed: learner flows, progress recovery/account isolation, application retry/tracking, safe text and layout.');
+    let identityVerified=false,activationCount=0,codeRequests=0,managedSigned=false;
+    const managedUser=()=>({id:'11111111-2222-4333-8444-555555555555',name:'Synthetic new learner',email:'new@example.invalid',emailVerified:identityVerified});
+    await page.route('**/api/signup-preview**',async route=>{
+      if(route.request().method()==='GET')return route.fulfill({json:{authUrl:'https://ep-mute-union-zaodwa48.neonauth.c-2.eu-west-2.aws.neon.tech/tih/auth'}});
+      assert.deepEqual(route.request().postDataJSON(),{});
+      assert(route.request().headers().authorization.startsWith('Bearer '));
+      if(!identityVerified)return route.fulfill({status:403,json:{error:'Verify your email before activating a learner profile'}});
+      activationCount++;return route.fulfill({json:{student:{id:'TIH-NEON-synthetic'},created:activationCount===1,accessGranted:false,paymentRecorded:false}});
+    });
+    await page.route('https://ep-mute-union-zaodwa48.neonauth.c-2.eu-west-2.aws.neon.tech/**',async route=>{
+      const req=route.request(),url=new URL(req.url()),headers={'access-control-allow-origin':origin,'access-control-allow-credentials':'true','access-control-allow-headers':req.headers()['access-control-request-headers']||'content-type','access-control-allow-methods':'GET,POST,OPTIONS'};
+      if(req.method()==='OPTIONS')return route.fulfill({status:204,headers});
+      let data={};const body=req.postDataJSON();
+      if(url.pathname.endsWith('/sign-up/email')||url.pathname.endsWith('/sign-in/email')){managedSigned=true;data={token:'synthetic-session',user:managedUser()};}
+      else if(url.pathname.endsWith('/get-session'))data=managedSigned?{session:{id:'synthetic',token:'synthetic-session',expiresAt:'2099-01-01T00:00:00Z'},user:managedUser()}:null;
+      else if(url.pathname.endsWith('/token'))data={token:'synthetic-token-kept-only-in-memory'};
+      else if(url.pathname.endsWith('/email-otp/send-verification-otp')){assert.equal(body.type,'email-verification');codeRequests++;data={success:true};}
+      else if(url.pathname.endsWith('/email-otp/verify-email')){identityVerified=true;data={status:true,user:managedUser()};}
+      else if(url.pathname.endsWith('/sign-out')){managedSigned=false;data={success:true};}
+      else throw Error('Unexpected managed auth request: '+url.pathname);
+      return route.fulfill({headers,json:data});
+    });
+    await page.goto(origin+'/migration-signup-preview');await page.fill('#name','Synthetic new learner');await page.fill('#email','new@example.invalid');await page.fill('#password','synthetic-password-for-test');await page.click('#create');
+    await page.waitForFunction(()=>document.querySelector('#result')?.textContent.includes('Identity created'));
+    assert.equal(activationCount,0);assert.equal(await page.locator('#password').inputValue(),'');
+    await page.click('#restore');await page.waitForFunction(()=>document.querySelector('#result')?.dataset.state==='error');assert.equal(activationCount,0);
+    await page.click('#send-code');await page.waitForFunction(()=>document.querySelector('#result')?.textContent.includes('Verification code requested'));assert.equal(codeRequests,1);
+    await page.fill('#otp','123456');await page.click('#verify');await page.waitForFunction(()=>document.querySelector('#result')?.textContent.includes('profile ready'));
+    assert.equal(activationCount,1);assert(await page.locator('#workspace-link').isVisible());
+    await page.click('#restore');await page.waitForFunction(()=>!document.querySelector('#restore')?.disabled);assert.equal(activationCount,2);
+    await page.click('#sign-out');await page.waitForFunction(()=>document.querySelector('#result')?.textContent.includes('Signed out of the new test account'));assert(await page.locator('#workspace-link').isHidden());
+    assert.equal(await page.evaluate(()=>Object.values(localStorage).some(v=>/synthetic-password|synthetic-token/.test(v))),false);
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+    assert.deepEqual(errors,[]);console.log('Mobile preview passed: learner/application flows, new signup verification gate, activation retry, sign-out and layout (mocked auth delivery).');
   }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
 })().catch(error=>{console.error(error);process.exitCode=1;});

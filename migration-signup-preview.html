@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' https://ep-mute-union-zaodwa48.neonauth.c-2.eu-west-2.aws.neon.tech; form-action 'none'; base-uri 'none'">
+<title>New learner preview · TIH</title><link rel="stylesheet" href="migration-preview.css"><script src="/hub-neon-auth.js" defer></script>
+</head><body><main><a class="brand" href="/">TOLBERT INNOVATION HUB</a><p class="badge">NEW TEST ACCOUNTS ONLY</p>
+<h1>Start your learning journey.</h1><p>Create a separate test identity, verify your email and activate a learner profile. Existing learners should use <a href="/hub-dashboard">their current login</a>. This does not replace or link an existing account.</p>
+<form id="signup-form"><label for="name">Full name</label><input id="name" autocomplete="name" required minlength="2" maxlength="120">
+<label for="email">Your email</label><input id="email" type="email" autocomplete="username" required maxlength="254">
+<label for="password">Password</label><input id="password" type="password" autocomplete="new-password" required minlength="12" maxlength="128">
+<p class="note">Choose a new password for this test account. New identities are stored in the isolated Neon test branch. No live account is changed.</p>
+<button id="create" type="submit">Create new test identity</button><button id="sign-in" class="secondary" type="button">Sign in to an existing test identity</button></form>
+<section aria-label="Verify your email"><h2>Verify your email</h2><p class="note">Requesting a code sends a verification email to the address you entered. A learner profile is created only after verification.</p><button id="send-code" type="button">Email me a verification code</button>
+<form id="verify-form"><label for="otp">Email verification code</label><input id="otp" autocomplete="one-time-code" inputmode="numeric" required maxlength="12"><button id="verify" type="submit">Verify email and activate test profile</button></form></section>
+<p id="result" role="status" aria-live="polite">Paid courses remain locked until staff grants access. Creating an account records no payment.</p>
+<a id="workspace-link" href="/hub-dashboard" hidden>Open your learning dashboard →</a>
+<button id="restore" class="secondary" type="button">Restore verified test session</button><button id="sign-out" class="secondary" type="button">Sign out of test identity</button>
+<p class="note">If your browser blocks the authentication cookie, sign-in or session restoration may fail. Registration, verification email delivery and session restoration must pass owner testing before production use.</p>
+</main></body></html>

@@ -1,5 +1,10 @@
 {
   "dependencies": {
-    "@neondatabase/serverless": "1.2.0"
+    "@neondatabase/auth": "0.6.0-beta",
+    "@neondatabase/serverless": "1.2.0",
+    "jose": "6.2.12"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
   }
 }

@@ -17,8 +17,9 @@
   document.addEventListener('DOMContentLoaded', function () {
     var notice = document.createElement('aside'); notice.id = 'tih-migration-notice'; notice.setAttribute('role', 'status');
     notice.style.cssText = 'position:relative;z-index:2147483646;background:#eaf2ff;color:#102c55;padding:12px 18px;font:600 14px/1.5 system-ui;text-align:center;border-bottom:2px solid #134fae';
-    notice.append('Migration preview · Test records only. Registration, payments and account changes are unavailable. ');
+    notice.append('Migration preview · Test records only. Live account changes and payments are unavailable. ');
     var link = document.createElement('a'); link.href = '/migration-staff-preview'; link.textContent = 'Staff workspace'; notice.append(link); document.body.prepend(notice);
+    if (/\/hub-dashboard(?:\.html)?\/?$/.test(location.pathname)) fetch('/api/signup-preview?action=config', {cache:'no-store'}).then(function (r) { if (r.ok) { notice.append(' · '); var signup = document.createElement('a'); signup.href = '/migration-signup-preview'; signup.textContent = 'New test account'; notice.append(signup); } }).catch(function () {});
     if (/\/hub-(?:apply|track)(?:\.html)?\/?$/.test(location.pathname)) location.replace('/migration-application-preview');
     if (/\/hub-admin(?:\.html)?\/?$/.test(location.pathname)) location.replace('/migration-staff-preview');
   });
