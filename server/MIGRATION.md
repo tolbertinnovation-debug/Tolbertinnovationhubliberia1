@@ -2,6 +2,39 @@
 
 Updated 2026-10-17. Production cutover is **not complete**.
 
+## Learner workspace added
+
+`migration-learner-preview` supports older learner credentials via
+`POST /api/legacy-learner-preview`. The existing Supabase RPC verifies the
+SHA-256 proof; its HTTP response is projected to `id,status` only. All 116
+unlinked source profiles currently use this supported format. No hashes are
+copied, returned to the browser, or persisted by this endpoint. A source outage
+fails closed. A database-backed HMAC-keyed limiter allows five attempts per
+login label per five-minute bucket; email/Student-ID aliases have separate
+buckets. This is not a replacement for platform abuse protection.
+
+On success, a 15-minute signed HttpOnly/Secure/SameSite=Strict preview cookie
+is issued. `/api/learner-preview` validates its signature and expiry before
+using its subject for RLS. It supports account reads, pending access requests,
+granted-course progress saves and pending certificate requests. Browser writes
+require same-origin JSON. Logout clears the preview cookie. Sessions remain
+valid until expiry if credentials change during that window.
+
+The compatibility role can insert pending enrollments, update its own granted
+course progress, append constrained activity entries and submit pending
+certificate requests. It cannot edit learner credentials, grant course access,
+write payments, approve requests, issue certificates, or access the private
+archive. The server uses fixed catalog totals; progress updates are monotonic.
+Progress is learner-reported and does not prove completion of lessons or exams.
+Certificate requests are not automatic issuance and still require staff review.
+
+Migrations `002` and `003` apply only to `migration-write-tests`. Real database
+tests with synthetic learners verified identity isolation, progress persistence
+and monotonic updates, incomplete-course refusal, pending request creation,
+and duplicate-request preservation. The source login HTTP endpoint was checked
+using nonexistent credentials and returned an empty result. A real older
+account still needs to verify the complete deployed compatibility flow.
+
 ## Verified
 
 - The 2026-10-17 13:54 UTC source snapshot was copied to the Neon project
@@ -43,11 +76,12 @@ configuration or repository contents.
 
 ## Required before production cutover
 
-1. Preserve login for the 116 of 121 copied learner profiles with no Auth link.
-   Only five profiles are currently linked. Legacy login currently relies on
-   Supabase RPCs. Keep that compatibility path working until verified replacement
-   or account linking is complete; do not reset passwords automatically.
-2. Implement and test progress/activities, certificate requests and issuance,
+1. Verify the new compatibility path with an actual older account, then connect
+   it to the main learner frontend. Only five of 121 copied profiles are Auth
+   linked. Keep Supabase login verification while this transition is underway;
+   do not reset passwords automatically.
+2. Connect and fully verify progress/activities and certificate requests in the
+   main learner frontend. Implement staff certificate review and issuance,
    applications, staff administration, course grants, payment verification,
    LibApps, and all existing public lookup flows. A pending request API does not
    implement payment processing or authorize course access.
